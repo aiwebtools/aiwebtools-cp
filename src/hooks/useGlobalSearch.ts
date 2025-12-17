@@ -50,55 +50,238 @@ const searchCache = new LRUCache<string, any[]>(50);
 
 // ==================== INTELLIGENCE MAPS (precomputed, instant lookup) ====================
 
-// 1. COMMON MISSPELLINGS → correct spelling
+// 1. COMMON MISSPELLINGS → correct spelling (COMPREHENSIVE)
 const TYPO_MAP: Record<string, string> = {
   // Major platforms
-  "chatgtp": "chatgpt", "chatgot": "chatgpt", "chtgpt": "chatgpt", "chatgbt": "chatgpt",
-  "cluade": "claude", "clade": "claude", "claued": "claude",
-  "midjourny": "midjourney", "midjorney": "midjourney", "midjouney": "midjourney", "midjoureny": "midjourney",
-  "perplexty": "perplexity", "perplexiy": "perplexity", "perpelxity": "perplexity",
-  "runwya": "runway", "runwa": "runway", "ruwnay": "runway", "rnuway": "runway",
-  "stabledifusion": "stable diffusion", "stablediffusion": "stable diffusion",
-  "dallE": "dalle", "dall-e": "dalle", "dali": "dalle",
-  "elevnlabs": "elevenlabs", "elevenlab": "elevenlabs", "11labs": "elevenlabs",
-  "synthsia": "synthesia", "syntehsia": "synthesia",
-  "heyegn": "heygen", "heygne": "heygen",
-  "luam": "luma", "lumaa": "luma",
-  "pikaa": "pika", "piak": "pika",
-  "soar": "sora", "soraa": "sora",
-  "gemni": "gemini", "gemnii": "gemini", "gimini": "gemini",
-  "leonadro": "leonardo", "lenoardo": "leonardo",
-  "notoin": "notion", "ntoion": "notion",
-  "canav": "canva", "canvaa": "canva",
-  "grammrly": "grammarly", "gramamrly": "grammarly",
-  "jaspr": "jasper", "jaspre": "jasper",
-  // Custom GPTs - Education/Learning
+  "chatgtp": "chatgpt", "chatgot": "chatgpt", "chtgpt": "chatgpt", "chatgbt": "chatgpt", "cahtgpt": "chatgpt",
+  "cluade": "claude", "clade": "claude", "claued": "claude", "cluad": "claude",
+  "midjourny": "midjourney", "midjorney": "midjourney", "midjouney": "midjourney", "midjoureny": "midjourney", "midjournye": "midjourney",
+  "perplexty": "perplexity", "perplexiy": "perplexity", "perpelxity": "perplexity", "preplexity": "perplexity",
+  "runwya": "runway", "runwa": "runway", "ruwnay": "runway", "rnuway": "runway", "runaway": "runway",
+  "stabledifusion": "stable diffusion", "stablediffusion": "stable diffusion", "stabel diffusion": "stable diffusion",
+  "dallE": "dalle", "dall-e": "dalle", "dali": "dalle", "dalli": "dalle",
+  "elevnlabs": "elevenlabs", "elevenlab": "elevenlabs", "11labs": "elevenlabs", "elevnlab": "elevenlabs",
+  "synthsia": "synthesia", "syntehsia": "synthesia", "synthseia": "synthesia",
+  "heyegn": "heygen", "heygne": "heygen", "hayegen": "heygen",
+  "luam": "luma", "lumaa": "luma", "luma dream": "luma dream machine",
+  "pikaa": "pika", "piak": "pika", "pika labs": "pika",
+  "soar": "sora", "soraa": "sora", "sorra": "sora",
+  "gemni": "gemini", "gemnii": "gemini", "gimini": "gemini", "gemeni": "gemini",
+  "leonadro": "leonardo", "lenoardo": "leonardo", "lionardo": "leonardo",
+  "notoin": "notion", "ntoion": "notion", "notin": "notion",
+  "canav": "canva", "canvaa": "canva", "cnavaa": "canva",
+  "grammrly": "grammarly", "gramamrly": "grammarly", "gramarly": "grammarly",
+  "jaspr": "jasper", "jaspre": "jasper", "jaspor": "jasper",
+  // Business / Common words
+  "buisness": "business", "busines": "business", "bussiness": "business", "buisines": "business", "bizness": "business",
+  "maketing": "marketing", "marketng": "marketing", "markting": "marketing", "markteing": "marketing",
+  "autmation": "automation", "automaton": "automation", "autoamtion": "automation", "automtaion": "automation",
+  "wedsite": "website", "websit": "website", "webiste": "website", "wbesite": "website", "wesbite": "website",
+  "desgin": "design", "desgn": "design", "deisgn": "design", "desing": "design",
+  "anaysis": "analysis", "analaysis": "analysis", "analyis": "analysis", "anlysis": "analysis",
+  "genrator": "generator", "genertor": "generator", "geneartor": "generator", "generatr": "generator",
+  "assitant": "assistant", "asistant": "assistant", "assistent": "assistant", "asisstant": "assistant",
+  // Learning / Education
   "colege": "college", "collge": "college", "colleeg": "college", "colelge": "college", "colledge": "college",
-  "leanr": "learn", "laern": "learn", "leran": "learn", "learnr": "learn",
-  "skil": "skill", "skiil": "skill", "skll": "skill",
-  "corse": "course", "coarse": "course", "coures": "course", "coursse": "course",
-  "educaton": "education", "eductaion": "education", "educaiton": "education",
-  // Custom GPTs - Other
-  "survivlist": "survivalist", "survivlaist": "survivalist",
-  "crinimologist": "criminologist", "criminoligist": "criminologist",
-  "vetrinarian": "veterinarian", "veternarian": "veterinarian",
-  "apotehcary": "apothecary", "apothecray": "apothecary",
-  "alchemsit": "alchemist", "alchemits": "alchemist",
-  "interpetis": "interpretis", "interpretsi": "interpretis",
-  "oraclum": "oraculum", "oracluum": "oraculum",
-  "resurection": "resurrection", "ressurection": "resurrection",
-  "legistlation": "legislation", "legilsation": "legislation",
-  "probabilty": "probability", "probablity": "probability",
-  "phenomeon": "phenomenon", "phenomenn": "phenomenon",
-  "archeologist": "archaeologist", "archeaologist": "archaeologist",
-  "genone": "genome", "genoe": "genome",
-  "manichaesim": "manicheism", "manichaeism": "manicheism",
-  "buisness": "business", "busines": "business", "bussiness": "business",
-  "writter": "writer", "writerr": "writer", "writr": "writer",
-  "moive": "movie", "movei": "movie", "movvie": "movie",
-  "tatto": "tattoo", "tatoo": "tattoo",
-  "docter": "doctor", "doctr": "doctor",
-  "helth": "health", "heatlh": "health", "healht": "health",
+  "leanr": "learn", "laern": "learn", "leran": "learn", "learnr": "learn", "lern": "learn",
+  "skil": "skill", "skiil": "skill", "skll": "skill", "skils": "skills",
+  "corse": "course", "coarse": "course", "coures": "course", "coursse": "course", "cors": "course",
+  "educaton": "education", "eductaion": "education", "educaiton": "education", "edcuation": "education",
+  "tutoiral": "tutorial", "tutoral": "tutorial", "tutorail": "tutorial",
+  "trainng": "training", "traning": "training", "trainging": "training",
+  // Media / Creative
+  "viedo": "video", "vidoe": "video", "vedio": "video", "vido": "video", "vdieo": "video",
+  "immage": "image", "imge": "image", "iamge": "image", "imag": "image",
+  "auido": "audio", "adio": "audio", "audoi": "audio", "aidio": "audio",
+  "musci": "music", "muisc": "music", "muscic": "music", "msuic": "music",
+  "writter": "writer", "writerr": "writer", "writr": "writer", "wirter": "writer",
+  "moive": "movie", "movei": "movie", "movvie": "movie", "mvie": "movie",
+  "grpahic": "graphic", "graphc": "graphic", "grahpic": "graphic",
+  "anmation": "animation", "animtion": "animation", "animaiton": "animation",
+  // Tech / Coding
+  "codign": "coding", "codin": "coding", "coidng": "coding",
+  "progamming": "programming", "programing": "programming", "progrmming": "programming",
+  "javscript": "javascript", "javascrpt": "javascript", "javasript": "javascript",
+  "aplication": "application", "applcation": "application", "applicaton": "application",
+  // Custom GPTs
+  "survivlist": "survivalist", "survivlaist": "survivalist", "survivalst": "survivalist",
+  "crinimologist": "criminologist", "criminoligist": "criminologist", "criminoloist": "criminologist",
+  "vetrinarian": "veterinarian", "veternarian": "veterinarian", "vetarnarian": "veterinarian",
+  "apotehcary": "apothecary", "apothecray": "apothecary", "apotheacry": "apothecary",
+  "alchemsit": "alchemist", "alchemits": "alchemist", "alcemist": "alchemist",
+  "interpetis": "interpretis", "interpretsi": "interpretis", "interpreits": "interpretis",
+  "oraclum": "oraculum", "oracluum": "oraculum", "oracluem": "oraculum",
+  "resurection": "resurrection", "ressurection": "resurrection", "resurrecion": "resurrection",
+  "legistlation": "legislation", "legilsation": "legislation", "legislaton": "legislation",
+  "probabilty": "probability", "probablity": "probability", "probabiilty": "probability",
+  "phenomeon": "phenomenon", "phenomenn": "phenomenon", "phenmenon": "phenomenon",
+  "archeologist": "archaeologist", "archeaologist": "archaeologist", "archeoligist": "archaeologist",
+  "genone": "genome", "genoe": "genome", "genme": "genome",
+  "manichaesim": "manicheism", "manichaeism": "manicheism", "mancihaeism": "manicheism",
+  "tatto": "tattoo", "tatoo": "tattoo", "tattooo": "tattoo",
+  "docter": "doctor", "doctr": "doctor", "docor": "doctor",
+  "helth": "health", "heatlh": "health", "healht": "health", "helath": "health",
+  // Legal
+  "contarct": "contract", "contrct": "contract", "cntract": "contract",
+  "leagl": "legal", "legla": "legal", "lega": "legal",
+  "laywer": "lawyer", "lawyr": "lawyer", "lwayer": "lawyer",
+  "agreemnt": "agreement", "agrement": "agreement", "agrrement": "agreement",
+  // Finance
+  "fiannce": "finance", "finace": "finance", "finacne": "finance",
+  "invstment": "investment", "investmnt": "investment", "investent": "investment",
+  "anlytics": "analytics", "analtyics": "analytics", "anaytics": "analytics",
+  // Agent
+  "agnet": "agent", "agetn": "agent", "agnt": "agent", "agentt": "agent",
+  "agnets": "agents", "agenst": "agents", "agetns": "agents",
+  // Common typos
+  "ai tol": "ai tool", "ai tols": "ai tools", "aitool": "ai tool",
+  "speach": "speech", "speec": "speech", "speeck": "speech",
+  "vocie": "voice", "voic": "voice", "vioce": "voice",
+  "soudns": "sounds", "souns": "sounds", "soudn": "sound",
+};
+
+// 1b. PARTIAL WORD → FULL WORD (for 2-4 character guessing)
+const PARTIAL_WORD_MAP: Record<string, string[]> = {
+  // Video/Media partials
+  "vid": ["video", "video generation", "video generator"],
+  "vide": ["video", "video generation"],
+  "mov": ["movie", "movie maker"],
+  "movi": ["movie", "movie maker"],
+  "film": ["film", "movie", "video"],
+  "ani": ["animation", "anime"],
+  "anim": ["animation", "animate", "anime"],
+  // Audio partials
+  "aud": ["audio", "audio tools"],
+  "audi": ["audio", "audio tools"],
+  "sou": ["sound", "sounds"],
+  "soun": ["sound", "sounds"],
+  "mus": ["music", "music generation"],
+  "musi": ["music", "music generation"],
+  "voi": ["voice", "voice synthesis"],
+  "voic": ["voice", "voice synthesis"],
+  "spe": ["speech", "speech synthesis"],
+  "spee": ["speech", "speech synthesis"],
+  "tts": ["text to speech"],
+  "t2v": ["text to video"],
+  // Agent partials
+  "age": ["agent", "agents"],
+  "agen": ["agent", "agents", "agentic"],
+  "agent": ["agents", "agent", "agentic"],
+  "auto": ["automation", "automate"],
+  "autom": ["automation", "automate"],
+  "work": ["workflow", "workspace"],
+  "workf": ["workflow"],
+  // Website/Web partials
+  "web": ["website", "web builder", "webflow"],
+  "webs": ["website", "web builder"],
+  "websi": ["website", "web builder"],
+  "site": ["website", "site builder"],
+  "land": ["landing page"],
+  "landi": ["landing page"],
+  // Business partials
+  "bus": ["business", "business tools"],
+  "busi": ["business", "business plan"],
+  "busin": ["business", "business plan"],
+  "star": ["startup", "start"],
+  "start": ["startup", "startup validator"],
+  "mark": ["marketing", "market"],
+  "marke": ["marketing", "market"],
+  "sale": ["sales", "sale"],
+  "comm": ["commerce", "ecommerce"],
+  "ecom": ["ecommerce", "e-commerce"],
+  // Image/Design partials
+  "img": ["image", "image generator"],
+  "imag": ["image", "image generator"],
+  "des": ["design", "designer"],
+  "desi": ["design", "designer"],
+  "desig": ["design", "designer"],
+  "logo": ["logo", "logo design"],
+  "grap": ["graphic", "graphics"],
+  "graph": ["graphic", "graphics", "graph"],
+  "ui": ["ui", "ui design"],
+  "ux": ["ux", "ux design"],
+  // Writing partials
+  "wri": ["write", "writing", "writer"],
+  "writ": ["write", "writing", "writer"],
+  "write": ["writer", "writing"],
+  "blog": ["blog", "blogging"],
+  "art": ["article", "art"],
+  "arti": ["article"],
+  "copy": ["copywriting", "copy"],
+  "copyw": ["copywriting"],
+  "res": ["resume", "research"],
+  "resu": ["resume"],
+  "emai": ["email"],
+  // Learning partials
+  "lea": ["learn", "learning"],
+  "lear": ["learn", "learning"],
+  "learn": ["learning", "learn any"],
+  "edu": ["education", "educational"],
+  "educ": ["education", "educational"],
+  "cour": ["course", "courses"],
+  "cours": ["course", "courses"],
+  "tut": ["tutorial", "tutor"],
+  "tuto": ["tutorial", "tutor"],
+  "trai": ["training", "train"],
+  "train": ["training", "train"],
+  "stu": ["study", "student"],
+  "stud": ["study", "student"],
+  // Coding partials
+  "cod": ["code", "coding", "coder"],
+  "code": ["coding", "coder", "code"],
+  "codi": ["coding"],
+  "prog": ["programming", "program"],
+  "progr": ["programming", "program"],
+  "dev": ["developer", "development"],
+  "deve": ["developer", "development"],
+  "app": ["app", "application"],
+  // AI partials
+  "ai": ["ai", "artificial intelligence"],
+  "gpt": ["gpt", "chatgpt"],
+  "bot": ["bot", "chatbot"],
+  "chat": ["chatbot", "chat", "chatgpt"],
+  "assi": ["assistant"],
+  "assis": ["assistant"],
+  // Legal partials
+  "leg": ["legal", "legislation"],
+  "lega": ["legal"],
+  "con": ["contract", "content"],
+  "cont": ["contract", "content"],
+  "contr": ["contract"],
+  "law": ["lawyer", "law", "legal"],
+  // Health partials
+  "hea": ["health", "healthcare"],
+  "heal": ["health", "healthcare"],
+  "med": ["medical", "medicine"],
+  "medi": ["medical", "medicine", "meditation"],
+  "doc": ["doctor", "document"],
+  "doct": ["doctor"],
+  // Data partials
+  "dat": ["data", "database"],
+  "data": ["data", "database", "analytics"],
+  "anal": ["analytics", "analysis"],
+  "analy": ["analytics", "analysis"],
+  "char": ["chart", "character"],
+  "chart": ["chart", "charts"],
+  "rep": ["report", "reports"],
+  "repo": ["report", "reports"],
+  "spre": ["spreadsheet"],
+  "sprea": ["spreadsheet"],
+  // Finance partials
+  "fin": ["finance", "financial"],
+  "fina": ["finance", "financial"],
+  "inv": ["investment", "invest"],
+  "inve": ["investment", "invest"],
+  "trad": ["trading", "trade", "trader"],
+  "trade": ["trading", "trader"],
+  "mon": ["money", "monetize"],
+  "mone": ["money", "monetize"],
+  // Spiritual partials  
+  "spi": ["spiritual", "spirit"],
+  "spir": ["spiritual", "spirit"],
+  "spiri": ["spiritual", "spirit"],
+  "god": ["god", "gods", "deity"],
+  "medit": ["meditation"],
 };
 
 // Helper: Remove doubled letters (e.g., "learnn" → "learn", "anyy" → "any")
@@ -481,18 +664,117 @@ const PHRASE_TO_TOOLS: Record<string, string[]> = {
   // Research patterns
   "research": ["Perplexity", "ChatGPT", "Claude", "Data Research Analysis Report GPT", "FACT CHECKER GPT"],
   "research tools": ["Perplexity", "ChatGPT", "Claude", "Data Research Analysis Report GPT"],
+  
+  // ==================== NATURAL LANGUAGE INTENT (50+ phrases) ====================
+  // "I want to..." patterns
+  "i want to build a website": ["Lovable", "Bolt.new", "Webflow", "Framer", "Wix"],
+  "i want to make money": ["Business Plan Generator GPT", "Startup Validator GPT", "MicroSaaS GPT", "Trader GPT"],
+  "i want to make money online": ["Business Plan Generator GPT", "MicroSaaS GPT", "Dropshipping tools"],
+  "i want to automate": ["Zapier", "Make.com", "n8n", "Microsoft Power Automate"],
+  "i want to automate my business": ["Zapier", "Make.com", "n8n", "Microsoft Power Automate"],
+  
+  // "Help me..." patterns
+  "help me make money online": ["Business Plan Generator GPT", "MicroSaaS GPT", "Startup Validator GPT"],
+  "help me build a website": ["Lovable", "Bolt.new", "Webflow", "Framer"],
+  "help me analyze": ["Data Research Analysis Report GPT", "ChatGPT", "Claude", "Perplexity"],
+  "help me automate": ["Zapier", "Make.com", "n8n", "Microsoft Power Automate"],
+  
+  // "Tool to..." patterns
+  "tool to analyze contracts": ["Contract Review Bot", "Legal Draftsmith GPT"],
+  "tool to write emails": ["ChatGPT", "Claude", "Jasper AI", "Grammarly"],
+  "tool to make videos": ["Sora", "Runway", "Pika", "Veo 3", "Movie Maker Studio AI SUITE"],
+  "tool to generate images": ["Midjourney", "DALL-E 3", "Stable Diffusion", "Leonardo AI"],
+  
+  // "Something that..." patterns
+  "something that writes emails for me": ["ChatGPT", "Claude", "Jasper AI", "Grammarly"],
+  "something that makes videos": ["Sora", "Runway", "Pika", "Veo 3", "Movie Maker Studio AI SUITE"],
+  "something that generates images": ["Midjourney", "DALL-E 3", "Stable Diffusion"],
+  "something for learning": ["LEARN ANY SKILL GPT", "LEARN ANY COURSE GPT", "COLLEGE DEGREE GPT"],
+  
+  // "AI for..." patterns
+  "ai for learning anything": ["LEARN ANY SKILL GPT", "LEARN ANY COURSE GPT", "COLLEGE DEGREE GPT"],
+  "ai for writing": ["BOOK WRITER GPT", "ChatGPT", "Claude", "Jasper AI"],
+  "ai for coding": ["GitHub Copilot", "Cursor", "Lovable", "Bolt.new"],
+  "ai for business": ["Business Plan Generator GPT", "ChatGPT", "Claude", "MULTITASKER GPT"],
+  "ai for marketing": ["Jasper AI", "ChatGPT", "Claude", "Canva"],
+  "ai for sales": ["ChatGPT", "Claude", "Salesforce Einstein"],
+  "ai for design": ["Midjourney", "DALL-E 3", "Canva", "Figma"],
+  
+  // Business intent patterns
+  "make money": ["Business Plan Generator GPT", "Startup Validator GPT", "MicroSaaS GPT", "Trader GPT"],
+  "passive income": ["Business Plan Generator GPT", "MicroSaaS GPT"],
+  "side hustle": ["Business Plan Generator GPT", "MicroSaaS GPT", "Startup Validator GPT"],
+  "online business": ["Business Plan Generator GPT", "MicroSaaS GPT", "Startup Validator GPT"],
+  "dropshipping": ["Business Plan Generator GPT", "Startup Validator GPT"],
+  "ecommerce": ["Business Plan Generator GPT", "Startup Validator GPT", "Shopify"],
+  "e-commerce": ["Business Plan Generator GPT", "Startup Validator GPT", "Shopify"],
+  
+  // Data/Analytics patterns
+  "analytics": ["Data Research Analysis Report GPT", "Google Analytics", "Mixpanel"],
+  "spreadsheet": ["ChatGPT", "Claude", "Airtable", "Notion"],
+  "csv": ["ChatGPT", "Claude", "Data Research Analysis Report GPT"],
+  "chart": ["Data Research Analysis Report GPT", "ChatGPT", "Claude"],
+  "report": ["Data Research Analysis Report GPT", "ChatGPT", "Claude"],
+  "convert spreadsheet to chart": ["Data Research Analysis Report GPT", "ChatGPT"],
+  
+  // Design fast patterns
+  "design a logo fast": ["Graphic & Cover Design GPT", "Canva", "Looka"],
+  "quick logo": ["Graphic & Cover Design GPT", "Canva", "Looka"],
+  "fast design": ["Canva", "Figma", "Graphic & Cover Design GPT"],
+  "branding": ["Graphic & Cover Design GPT", "Canva", "Looka"],
+  "ui": ["Figma", "Framer", "Canva"],
+  "ux": ["Figma", "Framer", "Maze"],
+  "ui design": ["Figma", "Framer", "Canva"],
+  "ux design": ["Figma", "Framer", "Maze"],
+  
+  // Tech/Coding patterns
+  "javascript": ["GitHub Copilot", "Cursor", "Lovable", "Bolt.new"],
+  "html": ["GitHub Copilot", "Cursor", "Lovable", "Bolt.new"],
+  "css": ["GitHub Copilot", "Cursor", "Lovable", "Bolt.new"],
+  "seo": ["ChatGPT", "Claude", "Surfer SEO", "Jasper AI"],
+  
+  // Learning shortcuts
+  "tutorial": ["LEARN ANY SKILL GPT", "LEARN ANY COURSE GPT"],
+  "course": ["LEARN ANY COURSE GPT", "Course Maker GPT", "COLLEGE DEGREE GPT"],
+  "training": ["LEARN ANY SKILL GPT", "Training Manual Generator GPT"],
+  
+  // Legal shortcuts
+  "nda": ["Contract Review Bot", "Legal Draftsmith GPT"],
+  "terms of service": ["Contract Review Bot", "Legal Draftsmith GPT"],
+  "compliance": ["Contract Review Bot", "Legal Draftsmith GPT"],
+  "policy": ["Contract Review Bot", "Legal Draftsmith GPT"],
+  "document review": ["Contract Review Bot", "Legal Draftsmith GPT"],
+  
+  // AI/General shortcuts
+  "smart tool": ["ChatGPT", "Claude", "Gemini", "Perplexity", "MULTITASKER GPT"],
+  "ai helper": ["ChatGPT", "Claude", "Gemini", "Perplexity", "MULTITASKER GPT"],
+  "machine learning": ["ChatGPT", "Claude", "Hugging Face", "TensorFlow"],
+  "neural": ["ChatGPT", "Claude", "Hugging Face", "Runway"],
+  "gpt": ["ChatGPT", "Claude", "Gemini", "GODMODE GPT"],
+  "artificial intelligence": ["ChatGPT", "Claude", "Gemini", "Perplexity"],
+  "ai": ["ChatGPT", "Claude", "Gemini", "Perplexity", "Midjourney", "DALL-E 3"],
+  
+  // Copywriting patterns  
+  "copywriting": ["Jasper AI", "ChatGPT", "Claude", "Writesonic", "Copy.ai"],
+  "email": ["ChatGPT", "Claude", "Jasper AI", "Mailchimp"],
+  "resume": ["The Resume & Job Finder Ai Suite"],
+  "article": ["Article and Blog Rewriter GPT", "ChatGPT", "Jasper AI"],
+  "blog": ["Article and Blog Rewriter GPT", "ChatGPT", "Jasper AI"],
 };
 
 // 6. INTENT KEYWORDS → tool types (fallback for partial matches)
 const INTENT_MAP: Record<string, string[]> = {
   "want to write": ["book writer", "content", "writing"],
-  "want to make video": ["video", "sora", "runway", "pika"],
+  "want to make video": ["video", "sora", "runway", "pika", "veo"],
   "want to make image": ["image", "midjourney", "dalle", "stable diffusion"],
   "want to learn": ["learn", "course", "education", "skill"],
-  "want to code": ["coding", "developer", "programming"],
+  "want to code": ["coding", "developer", "programming", "lovable", "bolt"],
   "want to trade": ["trader", "trading", "finance"],
   "need help": ["assistant", "gpt", "helper"],
   "create music": ["music", "audio", "suno", "udio"],
+  "build website": ["website", "lovable", "bolt", "webflow", "framer"],
+  "make money": ["business", "startup", "income", "saas"],
+  "automate": ["automation", "zapier", "make", "n8n", "workflow"],
 };
 
 // Helper: fast Levenshtein for strings (max 2 edits, extended length)
@@ -624,6 +906,21 @@ export const useGlobalSearch = () => {
     // Get synonyms (but only for corrected single words)
     const synonyms = (q.split(/\s+/).length === 1) ? (SYNONYM_MAP[q] || []) : [];
     
+    // === PARTIAL WORD EXPANSION (for 2-4 character queries) ===
+    const partialExpansions: string[] = [];
+    if (q.length >= 2 && q.length <= 5) {
+      const expansions = PARTIAL_WORD_MAP[q];
+      if (expansions) {
+        partialExpansions.push(...expansions);
+      }
+      // Also check for close matches in partial word map
+      for (const [partial, words] of Object.entries(PARTIAL_WORD_MAP)) {
+        if (partial.startsWith(q) || q.startsWith(partial)) {
+          partialExpansions.push(...words);
+        }
+      }
+    }
+    
     // Normalize compound words
     q = q
       .replace(/\s+/g, " ")
@@ -633,10 +930,16 @@ export const useGlobalSearch = () => {
       .replace(/\bstable diffusion\b/g, "stablediffusion")
       .replace(/\bdall e\b/g, "dalle")
       .replace(/\beleven labs\b/g, "elevenlabs")
+      .replace(/\btext to video\b/g, "text-to-video")
+      .replace(/\btext to speech\b/g, "text-to-speech")
       .trim();
 
     const qNoSpace = q.replace(/\s+/g, "");
     const qOriginalNoSpace = qOriginal.replace(/\s+/g, "");
+    
+    // Handle plural/singular normalization
+    const qSingular = q.endsWith('s') && q.length > 3 ? q.slice(0, -1) : q;
+    const qPlural = !q.endsWith('s') ? q + 's' : q;
 
     // === STEP 2: Score all tools ===
     type Scored = { tool: any; score: number };
@@ -711,14 +1014,45 @@ export const useGlobalSearch = () => {
         }
       }
 
-      // TIER 8: Tag/category matches (2+ chars)
+      // TIER 7.5: Partial word expansion matches (for 2-4 char queries like "vid" → video)
+      if (!score && partialExpansions.length > 0) {
+        for (const exp of partialExpansions) {
+          if (it.t.includes(exp)) {
+            score = 6500;  // Higher than synonyms
+            if (isAIWebToolsGPT) score += 650;
+            break;
+          }
+          if (it.c.includes(exp)) {
+            score = 5500;
+            if (isAIWebToolsGPT) score += 550;
+            break;
+          }
+          if (it.tags.some(tag => tag.includes(exp))) {
+            score = 5000;
+            if (isAIWebToolsGPT) score += 500;
+            break;
+          }
+        }
+      }
+
+      // TIER 8: Tag/category matches (2+ chars) + plural/singular
       if (!score && q.length >= 2) {
-        if (it.c.startsWith(q) || it.c.includes(q)) {
+        if (it.c.startsWith(q) || it.c.includes(q) || it.c.includes(qSingular) || it.c.includes(qPlural)) {
           score = 4000;
-        } else if (it.tags.some(tag => tag.startsWith(q))) {
+        } else if (it.tags.some(tag => tag.startsWith(q) || tag.startsWith(qSingular))) {
           score = 3500;
-        } else if (it.tags.some(tag => tag.includes(q))) {
+        } else if (it.tags.some(tag => tag.includes(q) || tag.includes(qSingular) || tag.includes(qPlural))) {
           score = 3000;
+        }
+      }
+      
+      // TIER 8.5: Description matches (lower priority)
+      if (!score && q.length >= 3) {
+        if (it.d.includes(q) || it.d.includes(qSingular)) {
+          score = 2000;
+          if (isAIWebToolsGPT) score += 200;
+          // Boost if description starts with query
+          if (it.d.startsWith(q)) score += 500;
         }
       }
 
