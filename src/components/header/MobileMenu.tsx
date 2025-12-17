@@ -1,9 +1,7 @@
 import { Menu, Phone, Search, X, FileText, Globe, ChevronDown, Download, Trees, Clapperboard, Heart, Copy, Gift, Clock } from "lucide-react";
-import { useState, useEffect, useRef, useMemo, useCallback } from "react";
+import { useState, useRef, useMemo, useCallback, lazy, Suspense } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -25,49 +23,40 @@ import { useRecentlyVisitedTools } from "@/hooks/useRecentlyVisitedTools";
 
 const MobileMenu = () => {
   const navigate = useNavigate();
-  
-  // Safe hook usage with error handling
-  let getFavoritesCount;
-  try {
-    const favoritesContext = useFavorites();
-    getFavoritesCount = favoritesContext.getFavoritesCount;
-  } catch (error) {
-    console.warn('useFavorites hook not available in MobileMenu, using fallback');
-    getFavoritesCount = () => 0;
-  }
-  
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isWeb3Open, setIsWeb3Open] = useState(false);
   const [isAboutOpen, setIsAboutOpen] = useState(false);
   const [isToolsOpen, setIsToolsOpen] = useState(false);
-  const [toolStats, setToolStats] = useState({ total: 0, marketing: "0+", categories: 0 });
   const dropdownRef = useRef<HTMLDivElement>(null);
+  
+  // Only load heavy data when menu is open
   const { recentTools } = useRecentlyVisitedTools();
-
-  // Keep dropdown stable when search results appear
-  useEffect(() => {
-    if (dropdownRef.current && isMenuOpen) {
-      // Lock scroll position when menu opens
-      dropdownRef.current.scrollTop = 0;
-    }
+  
+  // Lazy load favorites count
+  let getFavoritesCount = () => 0;
+  try {
+    const favoritesContext = useFavorites();
+    getFavoritesCount = favoritesContext.getFavoritesCount;
+  } catch (error) {
+    // Fallback silently
+  }
+  
+  // Lazy compute tool stats only when needed
+  const toolStats = useMemo(() => {
+    if (!isMenuOpen) return { total: 0, marketing: "0+", categories: 0 };
+    return getCurrentToolCount();
   }, [isMenuOpen]);
 
   const handleMenuToggle = useCallback((open: boolean) => {
     setIsMenuOpen(open);
   }, []);
 
-  useEffect(() => {
-    const stats = getCurrentToolCount();
-    setToolStats(stats);
-  }, []);
-
-  const handleExternalLink = (url: string, e: React.MouseEvent) => {
+  const handleExternalLink = useCallback((url: string, e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    console.log('🌀 External link clicked in mobile menu:', url);
     createTimePortalEffect(url);
     setIsMenuOpen(false);
-  };
+  }, []);
 
   const handleBrowseAITools = useCallback(() => {
     navigate('/main-category/ALL%20AI%20TOOLS');
@@ -177,7 +166,7 @@ const MobileMenu = () => {
   }, [closeMenu]);
 
   return (
-    <TooltipProvider>
+    <>
       <div className="md:hidden">  {/* Show on mobile only */}
         {/* Backdrop overlay - click to close */}
         {isMenuOpen && (
@@ -559,7 +548,7 @@ const MobileMenu = () => {
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
-    </TooltipProvider>
+    </>
   );
 };
 
