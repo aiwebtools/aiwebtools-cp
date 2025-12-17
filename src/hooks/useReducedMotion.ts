@@ -1,32 +1,39 @@
-// Detect if we should reduce animations (Facebook browser, low-power mode, user preference)
+// Detect if we're in a limited browser and should defer animations for faster initial load
 import { useState, useEffect } from 'react';
 
 export const useReducedMotion = () => {
-  const [shouldReduce, setShouldReduce] = useState(false);
+  // Always return false - we want to show effects to everyone
+  return false;
+};
+
+// Hook to defer heavy animations until after initial paint
+export const useDeferredAnimation = (delayMs: number = 500) => {
+  const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    // Check user's OS-level reduced motion preference
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    
-    // Detect Facebook in-app browser (has limited JS performance)
+    // Detect Facebook/Instagram/TikTok in-app browsers
     const ua = navigator.userAgent || '';
-    const isFacebookBrowser = ua.includes('FBAN') || ua.includes('FBAV') || ua.includes('FB_IAB');
+    const isLimitedBrowser = ua.includes('FBAN') || ua.includes('FBAV') || ua.includes('FB_IAB') ||
+                             ua.includes('Instagram') || ua.includes('LinkedInApp') || ua.includes('BytedanceWebview');
     
-    // Detect other in-app browsers with limited performance
-    const isInstagramBrowser = ua.includes('Instagram');
-    const isLinkedInBrowser = ua.includes('LinkedInApp');
-    const isTikTokBrowser = ua.includes('BytedanceWebview');
-    
-    const isLimitedBrowser = isFacebookBrowser || isInstagramBrowser || isLinkedInBrowser || isTikTokBrowser;
-    
-    setShouldReduce(prefersReducedMotion || isLimitedBrowser);
+    // Longer delay for limited browsers, shorter for regular browsers
+    const delay = isLimitedBrowser ? 1000 : delayMs;
     
     if (isLimitedBrowser) {
-      console.log('📱 Limited in-app browser detected - reducing animations for better performance');
+      console.log('📱 Limited browser detected - deferring animations for faster load');
     }
-  }, []);
 
-  return shouldReduce;
+    // Use requestIdleCallback if available, otherwise setTimeout
+    if ('requestIdleCallback' in window) {
+      (window as any).requestIdleCallback(() => {
+        setTimeout(() => setReady(true), delay);
+      });
+    } else {
+      setTimeout(() => setReady(true), delay);
+    }
+  }, [delayMs]);
+
+  return ready;
 };
 
 export default useReducedMotion;
