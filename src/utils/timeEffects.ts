@@ -223,9 +223,64 @@ export const createTimePortalEffect = (
   // Play voice immediately (preloaded)
   playTimeWarpVoice();
 
-  // Open URL immediately - no visual effects that linger
+  // Create ultra-brief 50ms green matrix flash
+  createInstantMatrixFlash();
+
+  // Open URL immediately
   console.log('🚀 Opening destination URL NOW');
   if (destinationUrl && destinationUrl.trim()) {
     openDestinationUrl(destinationUrl);
   }
+};
+
+// Ultra-brief 50ms green matrix flash - can't linger
+const createInstantMatrixFlash = () => {
+  // Green flash overlay
+  const flash = document.createElement('div');
+  flash.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: radial-gradient(circle at center, rgba(0,255,0,0.9) 0%, rgba(0,200,0,0.6) 30%, transparent 70%);
+    z-index: 99999;
+    pointer-events: none;
+  `;
+  document.body.appendChild(flash);
+
+  // Binary explosion - 30 characters shooting out
+  const chars: HTMLDivElement[] = [];
+  for (let i = 0; i < 30; i++) {
+    const char = document.createElement('div');
+    const binary = Math.random() > 0.5 ? '1' : '0';
+    const angle = (i / 30) * 360;
+    const distance = 100 + Math.random() * 200;
+    const x = Math.cos(angle * Math.PI / 180) * distance;
+    const y = Math.sin(angle * Math.PI / 180) * distance;
+    
+    char.textContent = binary;
+    char.style.cssText = `
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      font-family: 'Courier New', monospace;
+      font-size: 24px;
+      font-weight: bold;
+      color: #00FF00;
+      text-shadow: 0 0 10px #00FF00;
+      z-index: 100000;
+      pointer-events: none;
+      transform: translate(-50%, -50%) translate(${x}px, ${y}px);
+      opacity: 1;
+    `;
+    document.body.appendChild(char);
+    chars.push(char);
+  }
+
+  // Remove everything after 50ms - guaranteed cleanup
+  setTimeout(() => {
+    flash.remove();
+    chars.forEach(c => c.remove());
+  }, 50);
 };
