@@ -139,101 +139,89 @@ const DesktopMenu = () => {
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent 
-            className="w-[600px] bg-black/98 shadow-2xl border-2 border-cyan-500/50 backdrop-blur-xl max-h-[85vh] overflow-y-auto z-[110]"
+            className="w-[480px] bg-black/98 shadow-2xl border border-cyan-500/40 backdrop-blur-xl max-h-[85vh] overflow-y-auto z-[110]"
             align="end"
             alignOffset={0}
             sideOffset={8}
             avoidCollisions={true}
             sticky="always"
           >
-            <div className="p-8">
-              {/* Header with Close Button */}
-              <div className="text-center mb-8 border-b border-cyan-500/30 pb-6 relative">
+            <div className="p-4">
+              {/* Compact Header with Close Button */}
+              <div className="flex items-center justify-between mb-4 pb-3 border-b border-cyan-500/20">
+                <div className="flex items-center gap-3">
+                  <Logo compact={true} />
+                  <div>
+                    <div className="text-sm font-semibold text-cyan-400">Navigation</div>
+                    <p className="text-xs text-cyan-200/60">Desktop Menu</p>
+                  </div>
+                </div>
                 <Button
                   variant="ghost"
                   size="sm"
                   onClick={closeMenu}
-                  className="absolute -top-2 -right-2 h-12 w-12 p-0 text-gray-400 hover:text-white hover:bg-red-500/40 border border-red-500/60 rounded-full transition-all duration-200 shadow-lg backdrop-blur-sm z-[120]"
+                  className="h-8 w-8 p-0 text-gray-400 hover:text-white hover:bg-red-500/30 rounded-full"
                   aria-label="Close menu"
                 >
-                  <X className="w-6 h-6" />
+                  <X className="w-4 h-4" />
                 </Button>
-                
-                <div className="flex flex-col items-center mb-3">
-                  <Logo compact={true} />
-                </div>
-                <div className="text-2xl font-bold text-cyan-400 mb-3">
-                  Navigate our platform
-                </div>
-                <p className="text-lg text-cyan-200/80">Full Desktop Navigation & Search</p>
               </div>
 
-              {/* Ultra-Fast Hero Search Bar - EXACT SAME AS HERO */}
-              <div className="mb-8">
+              {/* Search Bar */}
+              <div className="mb-4">
                 {renderSearch ? (
                   <GlobalSearchBar />
                 ) : (
-                  <div className="h-12 rounded-lg border-2 border-white/20 bg-black/40 backdrop-blur-sm" />
+                  <div className="h-10 rounded-lg border border-white/20 bg-black/40" />
                 )}
               </div>
 
               <DeferredMount delay={80}>
-              {/* Navigation Grid - Desktop Layout */}
-              <div className="grid grid-cols-2 gap-4 mb-6">
-                <DropdownMenuItem onClick={() => { navigate('/'); setIsMenuOpen(false); }} className="text-cyan-100 hover:bg-cyan-500/20 rounded-lg h-16 text-lg font-medium px-4 col-span-1">
-                  <span className="mr-4 text-2xl">🏠</span> Home
+              {/* Quick Navigation Row */}
+              <div className="flex gap-2 mb-4">
+                <DropdownMenuItem onClick={() => { navigate('/'); setIsMenuOpen(false); }} className="flex-1 text-cyan-100 hover:bg-cyan-500/20 rounded-lg h-10 text-sm font-medium px-3 justify-center">
+                  <span className="mr-2">🏠</span> Home
                 </DropdownMenuItem>
                 
                 <DropdownMenuItem
                   onClick={handleBrowseAITools}
-                  className="text-center bg-gradient-to-r from-cyan-500 to-blue-600 text-white hover:from-cyan-600 hover:to-blue-700 font-bold rounded-xl p-6 text-xl shadow-xl shadow-cyan-500/30 border border-cyan-400/50 transition-all duration-200 col-span-1"
+                  className="flex-1 bg-gradient-to-r from-cyan-500 to-blue-600 text-white hover:from-cyan-600 hover:to-blue-700 font-semibold rounded-lg h-10 text-sm justify-center border border-cyan-400/50"
                 >
-                  <span className="mr-3 text-2xl">🎯</span> Browse Categories
+                  <span className="mr-2">🎯</span> Browse All
                 </DropdownMenuItem>
               </div>
               
-              {/* Download 150+ GPT Instructions Button */}
-              <div className="mb-6">
-                <button
-                  onClick={handleDownloadGPTInstructions}
-                  className="w-full relative group overflow-hidden bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 hover:from-yellow-500 hover:via-yellow-600 hover:to-yellow-700 text-black font-extrabold py-6 px-8 rounded-xl shadow-2xl shadow-yellow-500/50 transition-all duration-300 transform hover:scale-105 border-2 border-yellow-300 gold-glow"
-                >
-                  {/* Animated background shine */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
-                  
-                  <span className="relative z-10 flex items-center justify-center gap-3 text-lg">
-                    <Gift className="w-6 h-6 animate-bounce" />
-                    🎁 FREE DOWNLOAD: 150+ Custom GPT Instructions
-                    <Download className="w-6 h-6 animate-pulse" />
-                  </span>
-                </button>
-              </div>
+              {/* Compact Download Button */}
+              <button
+                onClick={handleDownloadGPTInstructions}
+                className="w-full relative group overflow-hidden bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-black font-bold py-3 px-4 rounded-lg shadow-lg transition-all duration-200 border border-yellow-300 mb-4"
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500"></div>
+                <span className="relative z-10 flex items-center justify-center gap-2 text-sm">
+                  <Gift className="w-4 h-4" />
+                  FREE: 150+ GPT Instructions
+                  <Download className="w-4 h-4" />
+                </span>
+              </button>
               
-              <DropdownMenuSeparator className="border-gray-700 mb-6" />
+              <DropdownMenuSeparator className="border-gray-700 mb-4" />
                 
-              {/* WEB3 Domains Section - Full Accordion Structure */}
-              <div className="mb-6">
-                <div className="px-2 py-2 text-sm text-cyan-400/70 font-semibold uppercase tracking-wider">
-                  💰 Register WEB3 Domains
+              {/* WEB3 Domains Section - Compact */}
+              <div className="mb-4">
+                <div className="px-2 py-1 text-xs text-cyan-400/70 font-semibold uppercase tracking-wider mb-2">
+                  💰 WEB3 Domains
                 </div>
-                <div className="mb-4 p-4 bg-gradient-to-r from-purple-900/50 to-blue-900/50 rounded-lg border border-purple-500/30">
-                  <p className="text-sm text-gray-300 leading-relaxed">
-                    🔗 <span className="font-semibold text-cyan-400">Connect to Your Crypto Wallet</span><br/>
-                    Own forever • Resell for profit • Minted as NFT • Trade anytime
-                  </p>
-                  <p className="text-sm mt-2 font-bold bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent">
-                    🏦 NO BIO CHIP REQUIRED • WEB3 BANKING
-                  </p>
+                <div className="mb-3 p-3 bg-gradient-to-r from-purple-900/30 to-blue-900/30 rounded-lg border border-purple-500/20 text-xs">
+                  <span className="font-semibold text-cyan-400">Own forever • Resell • NFT</span>
+                  <span className="ml-2 font-bold text-green-400">NO BIO CHIP WEB3</span>
                 </div>
                 
-                <div className="space-y-2">
-                  {/* Financial & Cash Transfer Domains */}
+                <div className="space-y-1">
+                  {/* Financial Domains */}
                   <Collapsible>
-                    <CollapsibleTrigger className="w-full text-cyan-100 hover:bg-cyan-500/20 rounded-lg flex items-center justify-between px-4 py-3 text-base border border-white/10 outline-none focus:bg-cyan-500/20 transition-colors">
-                      <span className="flex items-center">
-                        💰 Financial & Cash Transfer Domains
-                      </span>
-                      <ChevronDown className="w-4 h-4 transition-transform duration-200" />
+                    <CollapsibleTrigger className="w-full text-cyan-100 hover:bg-cyan-500/20 rounded flex items-center justify-between px-3 py-2 text-sm border border-white/10 outline-none focus:bg-cyan-500/20 transition-colors">
+                      <span className="flex items-center">💰 Financial Domains</span>
+                      <ChevronDown className="w-3 h-3" />
                     </CollapsibleTrigger>
                     <CollapsibleContent className="mt-1">
                       <div className="bg-gray-900/50 rounded-lg border border-white/5 p-3 space-y-2">
@@ -273,101 +261,63 @@ const DesktopMenu = () => {
 
                   {/* AI & Technology Domains */}
                   <Collapsible>
-                    <CollapsibleTrigger className="w-full text-cyan-100 hover:bg-cyan-500/20 rounded-lg flex items-center justify-between px-4 py-3 text-base border border-white/10 outline-none focus:bg-cyan-500/20 transition-colors">
-                      <span className="flex items-center">
-                        🤖 AI & Technology Domains
-                      </span>
-                      <ChevronDown className="w-4 h-4 transition-transform duration-200" />
+                    <CollapsibleTrigger className="w-full text-cyan-100 hover:bg-cyan-500/20 rounded flex items-center justify-between px-3 py-2 text-sm border border-white/10 outline-none focus:bg-cyan-500/20 transition-colors">
+                      <span className="flex items-center">🤖 AI & Tech Domains</span>
+                      <ChevronDown className="w-3 h-3" />
                     </CollapsibleTrigger>
                     <CollapsibleContent className="mt-1">
-                      <div className="bg-gray-900/50 rounded-lg border border-white/5 p-3 space-y-2">
-                        <div className="flex items-center justify-between w-full px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors">
-                          <button onClick={(e) => handleExternalLink("https://freename.io/discover/ai-tools?ref=olive-ears-obey", e)} className="flex items-center flex-1 text-left text-sm">
-                            🧠 .ai-tools
-                          </button>
-                          <span className="text-xs bg-green-600/20 text-green-300 px-2 py-1 rounded border border-green-500/30">Solana</span>
+                      <div className="bg-gray-900/50 rounded border border-white/5 p-2 space-y-1">
+                        <div className="flex items-center justify-between w-full px-2 py-1.5 rounded hover:bg-white/5 hover:text-cyan-300 transition-colors">
+                          <button onClick={(e) => handleExternalLink("https://freename.io/discover/ai-tools?ref=olive-ears-obey", e)} className="flex items-center flex-1 text-left text-xs">🧠 .ai-tools</button>
+                          <span className="text-xs bg-green-600/20 text-green-300 px-1.5 py-0.5 rounded border border-green-500/30">Solana</span>
                         </div>
-                        <div className="flex items-center justify-between w-full px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors">
-                          <button onClick={(e) => handleExternalLink("https://freename.io/discover/.aiwebtools?ref=olive-ears-obey", e)} className="flex items-center flex-1 text-left text-sm">
-                            🤖 .aiwebtools
-                          </button>
-                          <span className="text-xs bg-green-600/20 text-green-300 px-2 py-1 rounded border border-green-500/30">Solana</span>
+                        <div className="flex items-center justify-between w-full px-2 py-1.5 rounded hover:bg-white/5 hover:text-cyan-300 transition-colors">
+                          <button onClick={(e) => handleExternalLink("https://freename.io/discover/.aiwebtools?ref=olive-ears-obey", e)} className="flex items-center flex-1 text-left text-xs">🤖 .aiwebtools</button>
+                          <span className="text-xs bg-green-600/20 text-green-300 px-1.5 py-0.5 rounded border border-green-500/30">Solana</span>
                         </div>
-                        <div className="flex items-center justify-between w-full px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors">
-                          <button onClick={(e) => handleExternalLink("https://freename.io/discover/aimainframe?ref=olive-ears-obey", e)} className="flex items-center flex-1 text-left text-sm">
-                            🗄️ .aimainframe
-                          </button>
-                          <span className="text-xs bg-green-600/20 text-green-300 px-2 py-1 rounded border border-green-500/30">Solana</span>
-                        </div>
-                        <div className="flex items-center justify-between w-full px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors">
-                          <button onClick={(e) => handleExternalLink("https://freename.io/discover/aitoolscompany?ref=olive-ears-obey", e)} className="flex items-center flex-1 text-left text-sm">
-                            🏢 .aitoolscompany
-                          </button>
-                          <span className="text-xs bg-green-600/20 text-green-300 px-2 py-1 rounded border border-green-500/30">Solana</span>
+                        <div className="flex items-center justify-between w-full px-2 py-1.5 rounded hover:bg-white/5 hover:text-cyan-300 transition-colors">
+                          <button onClick={(e) => handleExternalLink("https://freename.io/discover/aimainframe?ref=olive-ears-obey", e)} className="flex items-center flex-1 text-left text-xs">🗄️ .aimainframe</button>
+                          <span className="text-xs bg-green-600/20 text-green-300 px-1.5 py-0.5 rounded border border-green-500/30">Solana</span>
                         </div>
                       </div>
                     </CollapsibleContent>
                   </Collapsible>
 
-                  {/* Robotics & Automation Domains */}
+                  {/* Robotics Domains */}
                   <Collapsible>
-                    <CollapsibleTrigger className="w-full text-cyan-100 hover:bg-cyan-500/20 rounded-lg flex items-center justify-between px-4 py-3 text-base border border-white/10 outline-none focus:bg-cyan-500/20 transition-colors">
-                      <span className="flex items-center">
-                        🤖 Robotics & Automation Domains
-                      </span>
-                      <ChevronDown className="w-4 h-4 transition-transform duration-200" />
+                    <CollapsibleTrigger className="w-full text-cyan-100 hover:bg-cyan-500/20 rounded flex items-center justify-between px-3 py-2 text-sm border border-white/10 outline-none focus:bg-cyan-500/20 transition-colors">
+                      <span className="flex items-center">🦾 Robotics Domains</span>
+                      <ChevronDown className="w-3 h-3" />
                     </CollapsibleTrigger>
                     <CollapsibleContent className="mt-1">
-                      <div className="bg-gray-900/50 rounded-lg border border-white/5 p-3 space-y-2">
-                        <div className="flex items-center justify-between w-full px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors">
-                          <button onClick={(e) => handleExternalLink("https://freename.io/discover/robotsales?ref=olive-ears-obey", e)} className="flex items-center flex-1 text-left text-sm">
-                            🦾 .robotsales
-                          </button>
-                          <span className="text-xs bg-purple-600/20 text-purple-300 px-2 py-1 rounded border border-purple-500/30">Polygon</span>
+                      <div className="bg-gray-900/50 rounded border border-white/5 p-2 space-y-1">
+                        <div className="flex items-center justify-between w-full px-2 py-1.5 rounded hover:bg-white/5 hover:text-cyan-300 transition-colors">
+                          <button onClick={(e) => handleExternalLink("https://freename.io/discover/robotsales?ref=olive-ears-obey", e)} className="flex items-center flex-1 text-left text-xs">🦾 .robotsales</button>
+                          <span className="text-xs bg-purple-600/20 text-purple-300 px-1.5 py-0.5 rounded border border-purple-500/30">Polygon</span>
                         </div>
-                        <div className="flex items-center justify-between w-full px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors">
-                          <button onClick={(e) => handleExternalLink("https://freename.io/discover/robotshop?ref=olive-ears-obey", e)} className="flex items-center flex-1 text-left text-sm">
-                            🛍️ .robotshop
-                          </button>
-                          <span className="text-xs bg-purple-600/20 text-purple-300 px-2 py-1 rounded border border-purple-500/30">Polygon</span>
-                        </div>
-                        <div className="flex items-center justify-between w-full px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors">
-                          <button onClick={(e) => handleExternalLink("https://freename.io/discover/robotstore?ref=olive-ears-obey", e)} className="flex items-center flex-1 text-left text-sm">
-                            🛒 .robotstore
-                          </button>
-                          <span className="text-xs bg-purple-600/20 text-purple-300 px-2 py-1 rounded border border-purple-500/30">Polygon</span>
+                        <div className="flex items-center justify-between w-full px-2 py-1.5 rounded hover:bg-white/5 hover:text-cyan-300 transition-colors">
+                          <button onClick={(e) => handleExternalLink("https://freename.io/discover/robotshop?ref=olive-ears-obey", e)} className="flex items-center flex-1 text-left text-xs">🛍️ .robotshop</button>
+                          <span className="text-xs bg-purple-600/20 text-purple-300 px-1.5 py-0.5 rounded border border-purple-500/30">Polygon</span>
                         </div>
                       </div>
                     </CollapsibleContent>
                   </Collapsible>
 
-                  {/* Global & World Domains */}
+                  {/* Global Domains */}
                   <Collapsible>
-                    <CollapsibleTrigger className="w-full text-cyan-100 hover:bg-cyan-500/20 rounded-lg flex items-center justify-between px-4 py-3 text-base border border-white/10 outline-none focus:bg-cyan-500/20 transition-colors">
-                      <span className="flex items-center">
-                        🌍 Global & World Domains
-                      </span>
-                      <ChevronDown className="w-4 h-4 transition-transform duration-200" />
+                    <CollapsibleTrigger className="w-full text-cyan-100 hover:bg-cyan-500/20 rounded flex items-center justify-between px-3 py-2 text-sm border border-white/10 outline-none focus:bg-cyan-500/20 transition-colors">
+                      <span className="flex items-center">🌍 Global Domains</span>
+                      <ChevronDown className="w-3 h-3" />
                     </CollapsibleTrigger>
                     <CollapsibleContent className="mt-1">
-                      <div className="bg-gray-900/50 rounded-lg border border-white/5 p-3 space-y-2">
-                        <div className="flex items-center justify-between w-full px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors">
-                          <button onClick={(e) => handleExternalLink("https://freename.io/discover/worldpeace?ref=olive-ears-obey", e)} className="flex items-center flex-1 text-left text-sm">
-                            🕊️ .worldpeace
-                          </button>
-                          <span className="text-xs bg-purple-600/20 text-purple-300 px-2 py-1 rounded border border-purple-500/30">Polygon</span>
+                      <div className="bg-gray-900/50 rounded border border-white/5 p-2 space-y-1">
+                        <div className="flex items-center justify-between w-full px-2 py-1.5 rounded hover:bg-white/5 hover:text-cyan-300 transition-colors">
+                          <button onClick={(e) => handleExternalLink("https://freename.io/discover/worldpeace?ref=olive-ears-obey", e)} className="flex items-center flex-1 text-left text-xs">🕊️ .worldpeace</button>
+                          <span className="text-xs bg-purple-600/20 text-purple-300 px-1.5 py-0.5 rounded border border-purple-500/30">Polygon</span>
                         </div>
-                        <div className="flex items-center justify-between w-full px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors">
-                          <button onClick={(e) => handleExternalLink("https://freename.io/discover/worldtrade?ref=olive-ears-obey", e)} className="flex items-center flex-1 text-left text-sm">
-                            🌐 .worldtrade
-                          </button>
-                          <span className="text-xs bg-green-600/20 text-green-300 px-2 py-1 rounded border border-green-500/30">Solana</span>
-                        </div>
-                        <div className="flex items-center justify-between w-full px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors">
-                          <button onClick={(e) => handleExternalLink("https://freename.io/discover/worldtrader?ref=olive-ears-obey", e)} className="flex items-center flex-1 text-left text-sm">
-                            💹 .worldtrader
-                          </button>
-                          <span className="text-xs bg-purple-600/20 text-purple-300 px-2 py-1 rounded border border-purple-500/30">Polygon</span>
+                        <div className="flex items-center justify-between w-full px-2 py-1.5 rounded hover:bg-white/5 hover:text-cyan-300 transition-colors">
+                          <button onClick={(e) => handleExternalLink("https://freename.io/discover/worldtrade?ref=olive-ears-obey", e)} className="flex items-center flex-1 text-left text-xs">🌐 .worldtrade</button>
+                          <span className="text-xs bg-green-600/20 text-green-300 px-1.5 py-0.5 rounded border border-green-500/30">Solana</span>
                         </div>
                       </div>
                     </CollapsibleContent>
@@ -375,123 +325,87 @@ const DesktopMenu = () => {
                 </div>
               </div>
 
-              <DropdownMenuSeparator className="border-gray-700 mb-6" />
+              <DropdownMenuSeparator className="border-gray-700 mb-4" />
 
-              {/* About & Company Accordion */}
+              {/* About & Company */}
               <Collapsible open={isAboutOpen} onOpenChange={setIsAboutOpen}>
                 <CollapsibleTrigger 
-                  className="w-full text-cyan-100 hover:bg-cyan-500/20 rounded-lg flex items-center justify-between px-4 py-3 text-base border border-white/10 outline-none focus:bg-cyan-500/20 transition-colors mb-2"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    setIsAboutOpen(!isAboutOpen);
-                  }}
+                  className="w-full text-cyan-100 hover:bg-cyan-500/20 rounded flex items-center justify-between px-3 py-2 text-sm border border-white/10 outline-none focus:bg-cyan-500/20 transition-colors mb-1"
+                  onClick={(e) => { e.preventDefault(); e.stopPropagation(); setIsAboutOpen(!isAboutOpen); }}
                 >
-                  <span className="flex items-center text-lg font-medium">
-                    🏢 About & Company
-                  </span>
-                  <ChevronDown className={`w-4 h-4 transition-transform ${isAboutOpen ? 'rotate-180' : ''}`} />
+                  <span className="flex items-center font-medium">🏢 About & Company</span>
+                  <ChevronDown className={`w-3 h-3 transition-transform ${isAboutOpen ? 'rotate-180' : ''}`} />
                 </CollapsibleTrigger>
-                <CollapsibleContent className="mt-1 mb-4">
-                  <div className="bg-gray-900/50 rounded-lg border border-white/5 p-3 space-y-2">
-                    <DropdownMenuItem onClick={() => { navigate('/our-story'); setIsMenuOpen(false); }} className="text-cyan-100 hover:bg-cyan-500/20 rounded text-base px-3 py-2">
+                <CollapsibleContent className="mt-1 mb-3">
+                  <div className="bg-gray-900/50 rounded border border-white/5 p-2 space-y-1">
+                    <DropdownMenuItem onClick={() => { navigate('/our-story'); setIsMenuOpen(false); }} className="text-cyan-100 hover:bg-cyan-500/20 rounded text-sm px-2 py-1.5">
                       📖 About AI Web Tools LLC
                     </DropdownMenuItem>
-                    <DropdownMenuItem onClick={(e) => handleExternalLink('https://linktr.ee/aiwebtools', e)} className="text-cyan-100 hover:bg-cyan-500/20 rounded text-base px-3 py-2">
-                      <Trees className="w-4 h-4 mr-2" /> Connect with us
+                    <DropdownMenuItem onClick={(e) => handleExternalLink('https://linktr.ee/aiwebtools', e)} className="text-cyan-100 hover:bg-cyan-500/20 rounded text-sm px-2 py-1.5">
+                      <Trees className="w-3 h-3 mr-2" /> Connect with us
                     </DropdownMenuItem>
-                    <DropdownMenuItem onClick={(e) => handleExternalLink('https://www.tiktok.com/@aiwebtools', e)} className="text-cyan-100 hover:bg-cyan-500/20 rounded text-base px-3 py-2">
-                      <Clapperboard className="w-4 h-4 mr-2" /> TikTok
+                    <DropdownMenuItem onClick={(e) => handleExternalLink('https://www.tiktok.com/@aiwebtools', e)} className="text-cyan-100 hover:bg-cyan-500/20 rounded text-sm px-2 py-1.5">
+                      <Clapperboard className="w-3 h-3 mr-2" /> TikTok
                     </DropdownMenuItem>
-                    <div className="flex items-center space-x-2 text-cyan-100 px-3 py-2 rounded hover:bg-cyan-500/20 text-base">
-                      <Phone className="w-4 h-4" />
-                      <a href="tel:+14758008096" className="hover:text-cyan-400 transition-colors">
-                        📞 Contact: 475-800-8096
-                      </a>
+                    <div className="flex items-center space-x-2 text-cyan-100 px-2 py-1.5 rounded hover:bg-cyan-500/20 text-sm">
+                      <Phone className="w-3 h-3" />
+                      <a href="tel:+14758008096" className="hover:text-cyan-400 transition-colors text-xs">475-800-8096</a>
                     </div>
                   </div>
                 </CollapsibleContent>
               </Collapsible>
 
-              {/* Tools & Downloads Accordion */}
+              {/* Tools & Downloads */}
               <Collapsible open={isToolsOpen} onOpenChange={setIsToolsOpen}>
                 <CollapsibleTrigger 
-                  className="w-full text-cyan-100 hover:bg-cyan-500/20 rounded-lg flex items-center justify-between px-4 py-3 text-base border border-white/10 outline-none focus:bg-cyan-500/20 transition-colors mb-2"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    setIsToolsOpen(!isToolsOpen);
-                  }}
+                  className="w-full text-cyan-100 hover:bg-cyan-500/20 rounded flex items-center justify-between px-3 py-2 text-sm border border-white/10 outline-none focus:bg-cyan-500/20 transition-colors mb-1"
+                  onClick={(e) => { e.preventDefault(); e.stopPropagation(); setIsToolsOpen(!isToolsOpen); }}
                 >
-                  <span className="flex items-center text-lg font-medium">
-                    🔧 Tools & Downloads
-                  </span>
-                  <ChevronDown className={`w-4 h-4 transition-transform ${isToolsOpen ? 'rotate-180' : ''}`} />
+                  <span className="flex items-center font-medium">🔧 Tools & Downloads</span>
+                  <ChevronDown className={`w-3 h-3 transition-transform ${isToolsOpen ? 'rotate-180' : ''}`} />
                 </CollapsibleTrigger>
-                <CollapsibleContent className="mt-1 mb-4">
-                  <div className="bg-gray-900/50 rounded-lg border border-white/5 p-3 space-y-2">
-                    <DropdownMenuItem onClick={handleDownloadAllToolsCSV} className="text-cyan-100 hover:bg-cyan-500/20 rounded text-base px-3 py-2">
-                      <Download className="w-4 h-4 mr-2" />
-                      📊 Download ALL {toolStats.marketing} AI Tools (CSV)
+                <CollapsibleContent className="mt-1 mb-3">
+                  <div className="bg-gray-900/50 rounded border border-white/5 p-2 space-y-1">
+                    <DropdownMenuItem onClick={handleDownloadAllToolsCSV} className="text-cyan-100 hover:bg-cyan-500/20 rounded text-sm px-2 py-1.5">
+                      <Download className="w-3 h-3 mr-2" />
+                      📊 Download {toolStats.marketing} Tools (CSV)
                     </DropdownMenuItem>
                     <DropdownMenuItem 
                       onClick={(e) => {
                         e.preventDefault();
-                        // Download source code as info - redirect to GitHub or provide instructions
                         createConfettiCelebration();
-                        const codeInfo = `# AI Web Tools - Source Code Download Info
-                        
-To download the complete source code of AI Web Tools:
-
-1. Visit: https://lovable.dev/projects/6bc45a49-a34b-46a4-9b9d-c50f06b2d957?via=aiwebtools
-2. Click "Clone" to create your own copy
-3. Connect to GitHub to export all code
-4. Download as ZIP from your GitHub repository
-
-Website: https://aiwebtools.ai
-Contact: contact@ai-webtools.com
-
-This is a React + Vite + TypeScript project.
-No API keys or personal data are included in the source code.`;
-                        
+                        const codeInfo = `# AI Web Tools - Source Code Download Info\n\nVisit: https://lovable.dev/projects/6bc45a49-a34b-46a4-9b9d-c50f06b2d957?via=aiwebtools`;
                         const blob = new Blob([codeInfo], { type: 'text/plain' });
                         const url = URL.createObjectURL(blob);
                         const a = document.createElement('a');
                         a.href = url;
-                        a.download = 'AIWebTools-Source-Code-Download-Instructions.txt';
+                        a.download = 'AIWebTools-Source-Code-Instructions.txt';
                         document.body.appendChild(a);
                         a.click();
                         document.body.removeChild(a);
                         URL.revokeObjectURL(url);
-                        
-                        // Also open the clone page
-                        setTimeout(() => {
-                          window.open("https://lovable.dev/projects/6bc45a49-a34b-46a4-9b9d-c50f06b2d957?via=aiwebtools", '_blank');
-                        }, 300);
+                        setTimeout(() => window.open("https://lovable.dev/projects/6bc45a49-a34b-46a4-9b9d-c50f06b2d957?via=aiwebtools", '_blank'), 300);
                         setIsMenuOpen(false);
                       }}
-                      className="text-green-100 hover:bg-green-500/20 rounded text-base px-3 py-2 bg-green-600/10 border border-green-500/30"
+                      className="text-green-100 hover:bg-green-500/20 rounded text-sm px-2 py-1.5 bg-green-600/10 border border-green-500/30"
                     >
-                      <FileText className="w-4 h-4 mr-2" />
-                      💾 Download Website Source Code
+                      <FileText className="w-3 h-3 mr-2" />
+                      💾 Source Code
                     </DropdownMenuItem>
                     <DropdownMenuItem 
-                      onClick={(e) => { 
-                        e.preventDefault();
-                        handleExternalLink("https://lovable.dev/projects/6bc45a49-a34b-46a4-9b9d-c50f06b2d957?via=aiwebtools", e);
-                      }}
-                      className="text-yellow-100 hover:bg-gradient-to-r hover:from-yellow-500/20 hover:to-amber-500/20 rounded flex items-center space-x-2 bg-gradient-to-r from-yellow-600/10 to-amber-600/10 border border-yellow-500/30 px-3 py-2 text-base"
+                      onClick={(e) => { e.preventDefault(); handleExternalLink("https://lovable.dev/projects/6bc45a49-a34b-46a4-9b9d-c50f06b2d957?via=aiwebtools", e); }}
+                      className="text-yellow-100 hover:bg-yellow-500/20 rounded text-sm px-2 py-1.5 bg-yellow-600/10 border border-yellow-500/30"
                     >
-                      <Copy className="w-4 h-4" />
-                      <span className="font-semibold">Clone This Site</span>
+                      <Copy className="w-3 h-3 mr-2" />
+                      Clone Site
                     </DropdownMenuItem>
                   </div>
                 </CollapsibleContent>
               </Collapsible>
 
-              {/* Favorites - Standalone */}
-              <DropdownMenuItem onClick={() => { navigate('/favorites'); setIsMenuOpen(false); }} className="text-cyan-100 hover:bg-cyan-500/20 rounded-lg flex items-center space-x-3 text-lg font-medium px-4 py-3 border border-white/10 mb-4">
-                <Heart className="w-5 h-5 fill-current text-red-500" />
+              {/* Favorites */}
+              <DropdownMenuItem onClick={() => { navigate('/favorites'); setIsMenuOpen(false); }} className="text-cyan-100 hover:bg-cyan-500/20 rounded flex items-center space-x-2 text-sm font-medium px-3 py-2 border border-white/10 mb-2">
+                <Heart className="w-4 h-4 fill-current text-red-500" />
                 <span>Favorites ({getFavoritesCount()})</span>
               </DropdownMenuItem>
               </DeferredMount>
