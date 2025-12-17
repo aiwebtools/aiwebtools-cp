@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useCallback } from 'react';
+import React, { useEffect, useRef, useCallback, memo } from 'react';
 import { useMobile } from '@/hooks/useMobile';
 import { useCrossBrowserOptimization } from '@/hooks/useCrossBrowserOptimization';
 
@@ -19,12 +19,13 @@ interface InteractionPoint {
   intensity: number;
 }
 
-const InteractiveMatrixBackground = () => {
+const InteractiveMatrixBackground = memo(() => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationFrameRef = useRef<number>();
   const dropsRef = useRef<MatrixDrop[]>([]);
   const interactionPointsRef = useRef<InteractionPoint[]>([]);
   const lastTimeRef = useRef<number>(0);
+  const isVisibleRef = useRef(true);
   const { isMobile } = useMobile();
   const { performanceTier, addOptimizedEventListener } = useCrossBrowserOptimization();
 
@@ -68,9 +69,12 @@ const InteractiveMatrixBackground = () => {
 
     const fontSize = 16;
     const columns = Math.floor(canvas.width / fontSize);
-    const maxDrops = performanceTier === 'high' ? columns * 2 : 
-                     performanceTier === 'medium' ? columns * 1.5 : 
-                     Math.min(columns, 80);
+    // Significantly reduce drops on mobile for battery and performance
+    const maxDrops = isMobile 
+      ? Math.min(columns * 0.5, 40) 
+      : performanceTier === 'high' ? columns * 1.5 : 
+        performanceTier === 'medium' ? columns : 
+        Math.min(columns, 60);
 
     dropsRef.current = [];
 
@@ -153,6 +157,12 @@ const InteractiveMatrixBackground = () => {
   }, [isMobile, matrixChars]);
 
   const animate = useCallback((currentTime: number) => {
+    // Skip if tab not visible
+    if (!isVisibleRef.current) {
+      animationFrameRef.current = requestAnimationFrame(animate);
+      return;
+    }
+    
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -161,7 +171,8 @@ const InteractiveMatrixBackground = () => {
 
     // Simplified timing for better browser compatibility (especially Brave)
     const deltaTime = currentTime - lastTimeRef.current;
-    const targetInterval = performanceTier === 'high' ? 16.67 : performanceTier === 'medium' ? 22.22 : 33.33; // 60fps, 45fps, 30fps
+    // Lower FPS on mobile for battery savings
+    const targetInterval = isMobile ? 33.33 : (performanceTier === 'high' ? 16.67 : performanceTier === 'medium' ? 22.22 : 33.33);
 
     // Use more consistent frame limiting that works better with Brave's optimizations
     if (deltaTime < targetInterval && lastTimeRef.current > 0) {
@@ -260,8 +271,8 @@ const InteractiveMatrixBackground = () => {
     });
     ctx.globalAlpha = 1; // Reset alpha
 
-    // Clean up excess drops for performance but allow more streaks
-    const maxActiveDrops = performanceTier === 'high' ? 200 : performanceTier === 'medium' ? 140 : 100;
+    // Clean up excess drops for performance - reduce on mobile
+    const maxActiveDrops = isMobile ? 50 : performanceTier === 'high' ? 150 : performanceTier === 'medium' ? 100 : 70;
     if (dropsRef.current.length > maxActiveDrops) {
       dropsRef.current = dropsRef.current.slice(0, maxActiveDrops);
     }
@@ -272,6 +283,12 @@ const InteractiveMatrixBackground = () => {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
+
+    // Pause animation when tab not visible
+    const handleVisibility = () => {
+      isVisibleRef.current = document.visibilityState === 'visible';
+    };
+    document.addEventListener('visibilitychange', handleVisibility);
 
     initializeCanvas();
     initializeDrops();
@@ -317,6 +334,7 @@ const InteractiveMatrixBackground = () => {
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
       }
+      document.removeEventListener('visibilitychange', handleVisibility);
       removeMouseMove?.();
       removeClick?.();
       canvas.removeEventListener('touchmove', handleTouchMove);
@@ -330,10 +348,13 @@ const InteractiveMatrixBackground = () => {
       className="fixed top-0 left-0 w-full h-full pointer-events-none z-0"
       style={{
         background: '#000000',
-        touchAction: 'auto' // Allow normal touch scrolling
+        touchAction: 'auto', // Allow normal touch scrolling
+        contain: 'strict'
       }}
     />
   );
-};
+});
+
+InteractiveMatrixBackground.displayName = 'InteractiveMatrixBackground';
 
 export default InteractiveMatrixBackground;

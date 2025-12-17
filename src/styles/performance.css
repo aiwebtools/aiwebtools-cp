@@ -18,10 +18,13 @@ html {
   contain-intrinsic-size: 300px 400px;
 }
 
-/* Reduce repaints on interactive elements */
+/* Reduce repaints on interactive elements - only on hover, not always */
 button, a, [role="button"] {
-  will-change: transform, opacity;
   transform: translateZ(0);
+}
+
+button:hover, a:hover, [role="button"]:hover {
+  will-change: transform;
 }
 
 /* Optimize cards for scroll performance */
@@ -143,4 +146,29 @@ input, textarea, select {
 /* Prevent reflow on dynamic content */
 [data-dynamic] {
   min-height: 1px;
+}
+
+/* Optimize fixed headers/footers */
+header, footer, [role="banner"], [role="contentinfo"] {
+  contain: layout style;
+}
+
+/* Reduce blur cost on mobile */
+@media (max-width: 768px) {
+  .blur-3xl {
+    filter: blur(32px); /* Reduced from 64px */
+  }
+  .blur-2xl {
+    filter: blur(24px); /* Reduced from 40px */
+  }
+  .backdrop-blur-sm,
+  .backdrop-blur {
+    backdrop-filter: none; /* Disable expensive backdrop blur on mobile */
+    background: rgba(0, 0, 0, 0.8);
+  }
+}
+
+/* Optimize canvas elements */
+canvas {
+  contain: strict;
 }
