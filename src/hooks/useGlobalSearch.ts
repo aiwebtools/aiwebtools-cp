@@ -30,61 +30,79 @@ export const useGlobalSearch = () => {
 
   // INSTANT prefix-based autocomplete search - type "R" = all R tools, "RU" = Runway etc.
   const quickSearch = useCallback((term: string) => {
-    const q = term.toLowerCase().trim();
-    if (!q) return [];
+    const qRaw = term.toLowerCase().trim();
+    if (!qRaw) return [];
 
-    // Tier 1: Exact title prefix matches (highest priority - "R" finds "Runway", "Restyle ME GPT")
-    const prefixMatches: any[] = [];
-    // Tier 2: Title contains the query
-    const titleContains: any[] = [];
-    // Tier 3: Word in title starts with query (e.g., "writ" matches "Book Writer GPT")  
-    const wordPrefixMatches: any[] = [];
-    // Tier 4: Tag/category matches
-    const tagMatches: any[] = [];
+    // Lightweight normalization for common spaced compounds (keeps instant stage smart)
+    const q = qRaw
+      .replace(/\s+/g, " ")
+      .replace(/\brun way\b/g, "runway")
+      .trim();
+
+    type Scored = { tool: any; score: number };
+    const scored: Scored[] = [];
 
     for (let i = 0; i < quickIndex.length; i++) {
       const it = quickIndex[i];
       if (!it.t) continue;
 
-      // TIER 1: Title starts with query - highest priority
+      let score = 0;
+
+      // Title prefix is king ("run" => Runway*, Runpod, etc.)
       if (it.t.startsWith(q)) {
-        prefixMatches.push(it.tool);
-        continue;
+        score += 10000;
+
+        // Prefer exact/near-exact matches first
+        const title = it.t;
+        if (title === q) score += 3000;
+        if (title.startsWith(`${q} `) || title.startsWith(`${q}-`) || title.startsWith(`${q}:`)) score += 1500;
+
+        // Shorter titles are usually the canonical product ("Runway ML" over "RunwayML Gen-2")
+        score += Math.max(0, 600 - title.length);
       }
 
-      // TIER 2: Any word in title starts with query
-      const titleWords = it.t.split(/[\s\-_&,.:]+/);
-      let wordMatch = false;
-      for (const word of titleWords) {
-        if (word.startsWith(q)) {
-          wordPrefixMatches.push(it.tool);
-          wordMatch = true;
-          break;
-        }
-      }
-      if (wordMatch) continue;
-
-      // TIER 3: Title contains query anywhere
-      if (it.t.includes(q)) {
-        titleContains.push(it.tool);
-        continue;
-      }
-
-      // TIER 4: Tags or category match (for 2+ char queries)
-      if (q.length >= 2) {
-        const tagMatch = it.tags.some(tag => tag.startsWith(q) || tag.includes(q));
-        const catMatch = it.c.startsWith(q) || it.c.includes(q);
-        if (tagMatch || catMatch) {
-          tagMatches.push(it.tool);
+      // Any word in title starts with query
+      if (!score) {
+        const titleWords = it.t.split(/[\s\-_\u0026,.:]+/);
+        for (const word of titleWords) {
+          if (word && word.startsWith(q)) {
+            score += 8000;
+            score += Math.max(0, 400 - word.length);
+            break;
+          }
         }
       }
 
-      // Performance cap - we have plenty of results
-      if (prefixMatches.length + wordPrefixMatches.length + titleContains.length + tagMatches.length >= 100) break;
+      // Title contains query
+      if (!score && it.t.includes(q)) {
+        score += 5000;
+      }
+
+      // Tags/category help (only when user is a bit more specific)
+      if (!score && q.length >= 2) {
+        if (it.c && (it.c.startsWith(q) || it.c.includes(q))) score += 2500;
+        if (it.tags?.some((tag: string) => tag.startsWith(q))) score += 2400;
+        else if (it.tags?.some((tag: string) => tag.includes(q))) score += 2000;
+      }
+
+      // Tiny extra boost for major platforms when query is a prefix
+      if (score && (q === "run" || q === "runw" || q === "runway")) {
+        if (it.t.startsWith("runway")) score += 1200;
+      }
+
+      if (score) scored.push({ tool: it.tool, score });
+
+      if (scored.length >= 140) break;
     }
 
-    // Return in priority order: prefix > word prefix > contains > tags
-    return [...prefixMatches, ...wordPrefixMatches, ...titleContains, ...tagMatches].slice(0, 100);
+    scored.sort((a, b) => {
+      if (b.score !== a.score) return b.score - a.score;
+      const at = a.tool.title?.toLowerCase() || "";
+      const bt = b.tool.title?.toLowerCase() || "";
+      return at.localeCompare(bt);
+    });
+
+    return scored.map((s) => s.tool).slice(0, 100);
   }, [quickIndex]);
 
   // Track current search to prevent stale updates
