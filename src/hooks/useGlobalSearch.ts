@@ -47,7 +47,7 @@ class LRUCache<K, V> {
 
 // Global search cache (persists across component re-renders)
 // NOTE: versioned to prevent "stale" cached results after search-intelligence updates.
-const SEARCH_CACHE_VERSION = "v13";
+const SEARCH_CACHE_VERSION = "v14";
 const searchCache = new LRUCache<string, any[]>(50);
 
 // ==================== INTELLIGENCE MAPS (precomputed, instant lookup) ====================
@@ -583,7 +583,25 @@ const PHRASE_TO_TOOLS: Record<string, string[]> = {
   "stock trading": ["Trader GPT", "FinChat.io", "ChainGPT"],
   "crypto": ["ChainGPT", "Trader GPT", "FinChat.io"],
   "cryptocurrency": ["ChainGPT", "Trader GPT", "FinChat.io"],
-  "bitcoin": ["ChainGPT", "Trader GPT"],
+  "cryptocurrencies": ["ChainGPT", "Trader GPT", "FinChat.io"],
+  "bitcoin": ["ChainGPT", "Trader GPT", "FinChat.io"],
+  "btc": ["ChainGPT", "Trader GPT", "FinChat.io"],
+  "ethereum": ["ChainGPT", "Trader GPT", "FinChat.io"],
+  "eth": ["ChainGPT", "Trader GPT", "FinChat.io"],
+  "coin": ["ChainGPT", "Trader GPT", "FinChat.io"],
+  "coins": ["ChainGPT", "Trader GPT", "FinChat.io"],
+  "altcoin": ["ChainGPT", "Trader GPT", "FinChat.io"],
+  "altcoins": ["ChainGPT", "Trader GPT", "FinChat.io"],
+  "blockchain": ["ChainGPT", "Trader GPT"],
+  "defi": ["ChainGPT", "Trader GPT"],
+  "nft": ["ChainGPT", "Trader GPT"],
+  "nfts": ["ChainGPT", "Trader GPT"],
+  "web3": ["ChainGPT", "Trader GPT"],
+  "solana": ["ChainGPT", "Trader GPT", "FinChat.io"],
+  "dogecoin": ["ChainGPT", "Trader GPT", "FinChat.io"],
+  "litecoin": ["ChainGPT", "Trader GPT", "FinChat.io"],
+  "ripple": ["ChainGPT", "Trader GPT", "FinChat.io"],
+  "xrp": ["ChainGPT", "Trader GPT", "FinChat.io"],
   "forex": ["Buy Forex Expert Advisor Online", "Trader GPT", "FinChat.io"],
   "investment": ["Trader GPT", "FinChat.io", "ChainGPT", "Business Plan Generator GPT"],
   "investing": ["Trader GPT", "FinChat.io", "ChainGPT", "Business Plan Generator GPT"],
