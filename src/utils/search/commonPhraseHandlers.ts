@@ -1120,6 +1120,443 @@ export const COMMON_PHRASE_HANDLERS: Record<string, PhraseHandler> = {
     keywords: ['reality', 'existence', 'metaphysics', 'ontology', 'being', 'consciousness'],
     priorityTools: ['ENTER THE MATRIX GPT (NEO👁️MATRIX GPT)', 'Albert Einstein GPT', 'ALAN WATTS GPT', 'Sophia Aeterna AI'],
     relatedCategories: ['Spirituality & Philosophy', 'Metaphysics']
+  },
+
+  // ==================== 60 NEW HANDLERS ====================
+
+  // ===== LEARNING & EDUCATION =====
+  learnSpanish: {
+    triggers: ['learn spanish', 'spanish lessons', 'hablar español', 'speak spanish', 'spanish language', 'learn french', 'learn german', 'learn italian', 'learn japanese', 'learn chinese', 'language learning'],
+    keywords: ['spanish', 'french', 'german', 'italian', 'japanese', 'chinese', 'language', 'learn', 'fluent', 'vocabulary'],
+    priorityTools: ['LEARN ANY SKILL GPT', 'LEARN ANY COURSE GPT'],
+    relatedCategories: ['Education & Learning', 'Language Learning']
+  },
+
+  mathHelp: {
+    triggers: ['math help', 'algebra help', 'calculus help', 'geometry help', 'mathematics', 'solve equation', 'math problem', 'math tutor', 'trigonometry'],
+    keywords: ['math', 'algebra', 'calculus', 'geometry', 'equation', 'trigonometry', 'mathematics', 'formula'],
+    priorityTools: ['Algebraic Expression Inventor GPT', 'LEARN ANY COURSE GPT', 'COLLEGE DEGREE GPT'],
+    relatedCategories: ['Education & Learning', 'Mathematics']
+  },
+
+  chemistryHelp: {
+    triggers: ['chemistry help', 'chemical reactions', 'molecules', 'periodic table', 'organic chemistry', 'chem help', 'chemisty'],
+    keywords: ['chemistry', 'chemical', 'molecule', 'reaction', 'element', 'compound', 'organic', 'periodic'],
+    priorityTools: ['Alchemist Scientist GPT', 'LEARN ANY COURSE GPT', 'COLLEGE DEGREE GPT'],
+    relatedCategories: ['Science & Research', 'Chemistry']
+  },
+
+  biologyHelp: {
+    triggers: ['biology help', 'cell biology', 'genetics', 'dna', 'evolution', 'microbiology', 'bio help', 'biologoy'],
+    keywords: ['biology', 'cell', 'genetics', 'dna', 'evolution', 'organism', 'microbe', 'gene'],
+    priorityTools: ['Genome GPT', 'LEARN ANY COURSE GPT', 'COLLEGE DEGREE GPT'],
+    relatedCategories: ['Science & Research', 'Biology']
+  },
+
+  studyTips: {
+    triggers: ['study tips', 'how to study', 'study techniques', 'memorization', 'test prep', 'exam prep', 'study hacks', 'study help'],
+    keywords: ['study', 'memorize', 'exam', 'test', 'learn', 'review', 'technique', 'retention'],
+    priorityTools: ['LEARN ANY COURSE GPT', 'LEARN ANY SKILL GPT', 'Quiz Maker Ai'],
+    relatedCategories: ['Education & Learning', 'Study Skills']
+  },
+
+  collegeApplications: {
+    triggers: ['college applications', 'college admissions', 'apply to college', 'university application', 'college essay', 'scholarship application'],
+    keywords: ['college', 'university', 'admission', 'application', 'essay', 'scholarship', 'acceptance'],
+    priorityTools: ['COLLEGE DEGREE GPT', 'Grant Writer GPT'],
+    relatedCategories: ['Education & Learning', 'College Admissions']
+  },
+
+  // ===== MENTAL HEALTH & WELLNESS =====
+  anxietyHelp: {
+    triggers: ['anxiety help', 'anxiety relief', 'panic attack', 'anxious', 'worry', 'social anxiety', 'calm anxiety', 'anxeity', 'anixety'],
+    keywords: ['anxiety', 'panic', 'worry', 'nervous', 'calm', 'relief', 'anxious', 'fear'],
+    priorityTools: ['Mental Wellness GPT', 'ALAN WATTS GPT'],
+    relatedCategories: ['Health & Wellness', 'Mental Health']
+  },
+
+  depressionHelp: {
+    triggers: ['depression help', 'feeling depressed', 'sad all the time', 'mental health help', 'feeling down', 'depresion', 'deppression'],
+    keywords: ['depression', 'depressed', 'sad', 'hopeless', 'mental health', 'mood', 'therapy'],
+    priorityTools: ['Mental Wellness GPT', 'ALAN WATTS GPT'],
+    relatedCategories: ['Health & Wellness', 'Mental Health']
+  },
+
+  stressRelief: {
+    triggers: ['stress relief', 'reduce stress', 'stress management', 'destress', 'overwhelmed', 'burnout', 'relax'],
+    keywords: ['stress', 'relief', 'relax', 'calm', 'overwhelm', 'burnout', 'tension'],
+    priorityTools: ['Mental Wellness GPT', 'ALAN WATTS GPT', 'Dream Interpreter GPT'],
+    relatedCategories: ['Health & Wellness', 'Stress Management']
+  },
+
+  sleepHelp: {
+    triggers: ['sleep help', 'insomnia', 'cant sleep', 'sleep better', 'sleep problems', 'trouble sleeping', 'fall asleep', 'insomina'],
+    keywords: ['sleep', 'insomnia', 'rest', 'tired', 'bedtime', 'dream', 'night'],
+    priorityTools: ['Dream Interpreter GPT', 'Mental Wellness GPT'],
+    relatedCategories: ['Health & Wellness', 'Sleep']
+  },
+
+  addictionHelp: {
+    triggers: ['addiction help', 'addiction recovery', 'sobriety', 'quit drinking', 'quit smoking', 'substance abuse', 'recovery help'],
+    keywords: ['addiction', 'recovery', 'sober', 'sobriety', 'quit', 'substance', 'rehab'],
+    priorityTools: ['Mental Wellness GPT'],
+    relatedCategories: ['Health & Wellness', 'Addiction Recovery']
+  },
+
+  // ===== FITNESS & NUTRITION =====
+  weightLoss: {
+    triggers: ['weight loss', 'lose weight', 'diet plan', 'burn fat', 'weight loss tips', 'how to lose weight', 'calorie deficit', 'weightloss'],
+    keywords: ['weight', 'loss', 'diet', 'fat', 'calorie', 'slim', 'burn', 'pounds'],
+    priorityTools: ['Chef "Sizzle" AI Culinary Assistant', 'Personalized DR. GPT (Doctor GPT)'],
+    relatedCategories: ['Health & Wellness', 'Fitness']
+  },
+
+  muscleBuilding: {
+    triggers: ['muscle building', 'build muscle', 'bodybuilding', 'gym workout', 'strength training', 'bulk up', 'gain muscle', 'weightlifting'],
+    keywords: ['muscle', 'gym', 'workout', 'strength', 'bodybuilding', 'lift', 'protein', 'bulk'],
+    priorityTools: ['LEARN ANY SKILL GPT', 'Personalized DR. GPT (Doctor GPT)'],
+    relatedCategories: ['Health & Wellness', 'Fitness']
+  },
+
+  yogaPractice: {
+    triggers: ['yoga practice', 'yoga poses', 'yoga for beginners', 'yoga routine', 'yoga stretches', 'learn yoga', 'yogi'],
+    keywords: ['yoga', 'pose', 'stretch', 'flexibility', 'asana', 'namaste', 'meditation'],
+    priorityTools: ['LEARN ANY SKILL GPT', 'Mental Wellness GPT', 'ALAN WATTS GPT'],
+    relatedCategories: ['Health & Wellness', 'Yoga']
+  },
+
+  runningHelp: {
+    triggers: ['running help', 'how to run', 'marathon training', 'jogging tips', 'run faster', 'running plan', 'couch to 5k'],
+    keywords: ['running', 'run', 'marathon', 'jog', 'sprint', 'cardio', 'race', '5k'],
+    priorityTools: ['LEARN ANY SKILL GPT'],
+    relatedCategories: ['Health & Wellness', 'Running']
+  },
+
+  nutritionAdvice: {
+    triggers: ['nutrition advice', 'healthy eating', 'macros', 'vitamins', 'supplements', 'meal plan', 'nutritionist', 'nutriton'],
+    keywords: ['nutrition', 'diet', 'vitamin', 'supplement', 'macro', 'protein', 'healthy', 'meal'],
+    priorityTools: ['Chef "Sizzle" AI Culinary Assistant', 'Personalized DR. GPT (Doctor GPT)', 'Food Quality Inspector GPT'],
+    relatedCategories: ['Health & Wellness', 'Nutrition']
+  },
+
+  // ===== HOBBIES & CRAFTS =====
+  gardeningHelp: {
+    triggers: ['gardening help', 'grow plants', 'garden tips', 'vegetable garden', 'flower garden', 'plant care', 'gardning', 'gardeing'],
+    keywords: ['garden', 'plant', 'grow', 'seed', 'flower', 'vegetable', 'soil', 'water'],
+    priorityTools: ['Agronomus AI Farming Expert', 'Self Sufficiency GPT'],
+    relatedCategories: ['Home & DIY', 'Gardening']
+  },
+
+  photographyTips: {
+    triggers: ['photography tips', 'camera settings', 'photo tips', 'how to photograph', 'photography help', 'take better photos', 'photograpy'],
+    keywords: ['photography', 'camera', 'photo', 'lens', 'exposure', 'shot', 'lighting', 'aperture'],
+    priorityTools: ['Graphic & Cover Design GPT', 'LEARN ANY SKILL GPT'],
+    relatedCategories: ['Image & Design', 'Photography']
+  },
+
+  woodworkingHelp: {
+    triggers: ['woodworking help', 'woodworking projects', 'carpentry', 'build furniture', 'wood projects', 'woodwork'],
+    keywords: ['woodworking', 'wood', 'carpentry', 'furniture', 'saw', 'build', 'craft'],
+    priorityTools: ['Home Renovator GPT 🏡🔧', 'LEARN ANY SKILL GPT'],
+    relatedCategories: ['Home & DIY', 'Woodworking']
+  },
+
+  sewingKnitting: {
+    triggers: ['sewing help', 'knitting help', 'crochet', 'how to sew', 'how to knit', 'sewing patterns', 'knitting patterns'],
+    keywords: ['sewing', 'knit', 'knitting', 'crochet', 'pattern', 'fabric', 'yarn', 'stitch'],
+    priorityTools: ['LEARN ANY SKILL GPT', 'RESTYLE ME GPT'],
+    relatedCategories: ['Crafts', 'Sewing']
+  },
+
+  paintingArt: {
+    triggers: ['painting help', 'how to paint', 'art painting', 'canvas painting', 'watercolor', 'acrylic painting', 'oil painting'],
+    keywords: ['painting', 'paint', 'canvas', 'brush', 'watercolor', 'acrylic', 'oil', 'art'],
+    priorityTools: ['Graphic & Cover Design GPT', 'LEARN ANY SKILL GPT'],
+    relatedCategories: ['Image & Design', 'Art']
+  },
+
+  // ===== MUSIC & INSTRUMENTS =====
+  learnGuitar: {
+    triggers: ['learn guitar', 'guitar lessons', 'guitar chords', 'play guitar', 'guitar tabs', 'guitar tutorial', 'gutar', 'guitrar'],
+    keywords: ['guitar', 'chord', 'tab', 'strum', 'fret', 'acoustic', 'electric', 'riff'],
+    priorityTools: ['Music Melodies & Lessons GPT', 'LEARN ANY SKILL GPT'],
+    relatedCategories: ['Music & Audio', 'Music Lessons']
+  },
+
+  learnPiano: {
+    triggers: ['learn piano', 'piano lessons', 'play piano', 'keyboard lessons', 'piano tutorial', 'piano keys', 'pianio'],
+    keywords: ['piano', 'keyboard', 'key', 'scale', 'chord', 'classical', 'play'],
+    priorityTools: ['Music Melodies & Lessons GPT', 'LEARN ANY SKILL GPT'],
+    relatedCategories: ['Music & Audio', 'Music Lessons']
+  },
+
+  songwritingHelp: {
+    triggers: ['songwriting', 'write a song', 'song lyrics', 'compose music', 'how to write songs', 'lyric writing'],
+    keywords: ['songwriting', 'song', 'lyrics', 'compose', 'melody', 'verse', 'chorus', 'hook'],
+    priorityTools: ['Music Melodies & Lessons GPT', 'BOOK WRITER GPT'],
+    relatedCategories: ['Music & Audio', 'Songwriting']
+  },
+
+  // ===== SPORTS =====
+  golfTips: {
+    triggers: ['golf tips', 'golf swing', 'how to golf', 'golf help', 'improve golf', 'golf handicap', 'golfing'],
+    keywords: ['golf', 'swing', 'handicap', 'putt', 'drive', 'club', 'course', 'tee'],
+    priorityTools: ['LEARN ANY SKILL GPT'],
+    relatedCategories: ['Sports', 'Golf']
+  },
+
+  tennisTips: {
+    triggers: ['tennis tips', 'tennis serve', 'how to play tennis', 'tennis help', 'improve tennis', 'tennis lessons'],
+    keywords: ['tennis', 'serve', 'racket', 'court', 'volley', 'forehand', 'backhand'],
+    priorityTools: ['LEARN ANY SKILL GPT'],
+    relatedCategories: ['Sports', 'Tennis']
+  },
+
+  basketballTips: {
+    triggers: ['basketball tips', 'basketball shooting', 'how to play basketball', 'basketball drills', 'improve basketball', 'dribbling'],
+    keywords: ['basketball', 'shoot', 'dribble', 'hoop', 'court', 'nba', 'layup', 'dunk'],
+    priorityTools: ['LEARN ANY SKILL GPT'],
+    relatedCategories: ['Sports', 'Basketball']
+  },
+
+  // ===== RELATIONSHIPS & LIFE =====
+  datingAdvice: {
+    triggers: ['dating advice', 'dating tips', 'find love', 'dating help', 'how to date', 'online dating', 'relationship advice', 'dateing'],
+    keywords: ['dating', 'date', 'love', 'relationship', 'romance', 'partner', 'match'],
+    priorityTools: ['Marriage Mender GPT', 'Mental Wellness GPT'],
+    relatedCategories: ['Relationships', 'Dating']
+  },
+
+  parentingHelp: {
+    triggers: ['parenting help', 'parenting tips', 'raise kids', 'child development', 'parenting advice', 'new parent', 'parentng'],
+    keywords: ['parenting', 'parent', 'child', 'kid', 'baby', 'raise', 'family', 'discipline'],
+    priorityTools: ['Home-Schooling Assistant GPT', 'Mental Wellness GPT'],
+    relatedCategories: ['Family', 'Parenting']
+  },
+
+  weddingPlanning: {
+    triggers: ['wedding planning', 'plan wedding', 'wedding help', 'getting married', 'wedding ideas', 'bridal'],
+    keywords: ['wedding', 'bride', 'groom', 'ceremony', 'reception', 'marriage', 'engagement'],
+    priorityTools: ['Travel Advisor GPT', 'LEARN ANY SKILL GPT'],
+    relatedCategories: ['Events', 'Wedding']
+  },
+
+  divorceHelp: {
+    triggers: ['divorce help', 'getting divorced', 'divorce advice', 'divorce process', 'separation', 'divorc'],
+    keywords: ['divorce', 'separation', 'custody', 'alimony', 'lawyer', 'split', 'marriage'],
+    priorityTools: ['Public Defender GPT', 'Legal Draftsmith GPT', 'Mental Wellness GPT'],
+    relatedCategories: ['Legal & Government', 'Family Law']
+  },
+
+  griefSupport: {
+    triggers: ['grief support', 'dealing with loss', 'grief help', 'grieving', 'lost loved one', 'mourning', 'bereavement'],
+    keywords: ['grief', 'loss', 'mourning', 'death', 'bereavement', 'sadness', 'heal'],
+    priorityTools: ['Mental Wellness GPT', 'Resurrection GPT', 'ALAN WATTS GPT'],
+    relatedCategories: ['Health & Wellness', 'Grief Support']
+  },
+
+  // ===== HOME & DIY =====
+  plumbingHelp: {
+    triggers: ['plumbing help', 'fix plumbing', 'plumber', 'leaky pipe', 'clogged drain', 'toilet repair', 'plumbing problem', 'plumbing issues'],
+    keywords: ['plumbing', 'pipe', 'leak', 'drain', 'toilet', 'faucet', 'water', 'repair'],
+    priorityTools: ['Home Renovator GPT 🏡🔧'],
+    relatedCategories: ['Home & DIY', 'Plumbing']
+  },
+
+  electricalHelp: {
+    triggers: ['electrical help', 'electrical wiring', 'electrician', 'fix electrical', 'electrical problem', 'wiring help', 'eletrical'],
+    keywords: ['electrical', 'wiring', 'circuit', 'outlet', 'switch', 'breaker', 'voltage', 'wire'],
+    priorityTools: ['Home Renovator GPT 🏡🔧', 'Engineering GPT AI Suite'],
+    relatedCategories: ['Home & DIY', 'Electrical']
+  },
+
+  cleaningTips: {
+    triggers: ['cleaning tips', 'how to clean', 'house cleaning', 'organizing', 'declutter', 'cleaning hacks', 'home cleaning'],
+    keywords: ['cleaning', 'clean', 'organize', 'declutter', 'tidy', 'spotless', 'house'],
+    priorityTools: ['Home Renovator GPT 🏡🔧', 'LEARN ANY SKILL GPT'],
+    relatedCategories: ['Home & DIY', 'Cleaning']
+  },
+
+  // ===== ANIMALS & PETS =====
+  horseHelp: {
+    triggers: ['horse help', 'horse care', 'equestrian', 'horseback riding', 'horse training', 'horses'],
+    keywords: ['horse', 'equestrian', 'riding', 'stable', 'saddle', 'mare', 'stallion', 'foal'],
+    priorityTools: ['Veterinarian GPT', 'LEARN ANY SKILL GPT'],
+    relatedCategories: ['Pet Care', 'Equestrian']
+  },
+
+  birdCare: {
+    triggers: ['bird care', 'pet bird', 'parrot care', 'bird help', 'aviary', 'bird keeping'],
+    keywords: ['bird', 'parrot', 'aviary', 'feather', 'cage', 'beak', 'cockatiel', 'budgie'],
+    priorityTools: ['Veterinarian GPT'],
+    relatedCategories: ['Pet Care', 'Birds']
+  },
+
+  aquariumHelp: {
+    triggers: ['aquarium help', 'fish tank', 'fish care', 'reef tank', 'aquarium setup', 'tropical fish', 'aquaruim'],
+    keywords: ['aquarium', 'fish', 'tank', 'reef', 'tropical', 'saltwater', 'freshwater', 'filter'],
+    priorityTools: ['Veterinarian GPT', 'Fisherman GPT🎣😊'],
+    relatedCategories: ['Pet Care', 'Aquariums']
+  },
+
+  // ===== BUSINESS & MARKETING =====
+  ecommerceHelp: {
+    triggers: ['ecommerce help', 'online store', 'shopify help', 'sell online', 'ecommerce business', 'online shop', 'e-commerce'],
+    keywords: ['ecommerce', 'store', 'shopify', 'sell', 'product', 'online', 'shop', 'cart'],
+    priorityTools: ['MicroSaaS GPT', 'Business Plan Generator GPT'],
+    relatedCategories: ['Business & Productivity', 'E-commerce']
+  },
+
+  dropshippingHelp: {
+    triggers: ['dropshipping', 'dropship', 'dropshipping business', 'how to dropship', 'dropshipping help', 'drop shipping'],
+    keywords: ['dropshipping', 'dropship', 'supplier', 'fulfillment', 'aliexpress', 'shipping', 'inventory'],
+    priorityTools: ['MicroSaaS GPT', 'Business Plan Generator GPT'],
+    relatedCategories: ['Business & Productivity', 'Dropshipping']
+  },
+
+  affiliateMarketing: {
+    triggers: ['affiliate marketing', 'affiliate program', 'earn commissions', 'affiliate links', 'affiliate income', 'affilate'],
+    keywords: ['affiliate', 'commission', 'referral', 'link', 'program', 'partner', 'earn'],
+    priorityTools: ['MicroSaaS GPT', 'Business Plan Generator GPT'],
+    relatedCategories: ['Marketing Tools', 'Affiliate Marketing']
+  },
+
+  emailMarketing: {
+    triggers: ['email marketing', 'email campaign', 'newsletter', 'email list', 'email automation', 'email strategy'],
+    keywords: ['email', 'newsletter', 'campaign', 'subscriber', 'list', 'automation', 'open rate'],
+    priorityTools: ['Business Plan Generator GPT', 'MULTITASKER GPT'],
+    relatedCategories: ['Marketing Tools', 'Email Marketing']
+  },
+
+  brandingHelp: {
+    triggers: ['branding help', 'brand identity', 'brand strategy', 'build a brand', 'branding tips', 'brand design'],
+    keywords: ['branding', 'brand', 'identity', 'logo', 'positioning', 'image', 'voice'],
+    priorityTools: ['Graphic & Cover Design GPT', 'Business Plan Generator GPT'],
+    relatedCategories: ['Marketing Tools', 'Branding']
+  },
+
+  customerServiceHelp: {
+    triggers: ['customer service', 'customer support', 'help desk', 'customer experience', 'support help', 'customer care'],
+    keywords: ['customer', 'service', 'support', 'help', 'satisfaction', 'experience', 'ticket'],
+    priorityTools: ['Training Manual Generator GPT', 'Business Plan Generator GPT'],
+    relatedCategories: ['Business & Productivity', 'Customer Service']
+  },
+
+  // ===== PRODUCTIVITY =====
+  timeManagement: {
+    triggers: ['time management', 'manage time', 'productivity tips', 'time saving', 'schedule help', 'time blocking'],
+    keywords: ['time', 'management', 'productivity', 'schedule', 'efficient', 'organize', 'calendar'],
+    priorityTools: ['MULTITASKER GPT', 'LEARN ANY SKILL GPT'],
+    relatedCategories: ['Productivity & Utilities', 'Time Management']
+  },
+
+  projectManagement: {
+    triggers: ['project management', 'manage projects', 'project planning', 'project help', 'task management', 'project manager'],
+    keywords: ['project', 'management', 'task', 'deadline', 'milestone', 'team', 'planning'],
+    priorityTools: ['MULTITASKER GPT', 'Business Plan Generator GPT'],
+    relatedCategories: ['Productivity & Utilities', 'Project Management']
+  },
+
+  noteTaking: {
+    triggers: ['note taking', 'take notes', 'note app', 'notes help', 'organize notes', 'note system'],
+    keywords: ['note', 'notes', 'taking', 'organize', 'journal', 'write', 'capture'],
+    priorityTools: ['MULTITASKER GPT', 'Clarity Omni GPT'],
+    relatedCategories: ['Productivity & Utilities', 'Note Taking']
+  },
+
+  decisionMaking: {
+    triggers: ['decision making', 'make decision', 'help decide', 'decision help', 'should i', 'pros and cons', 'how to decide'],
+    keywords: ['decision', 'decide', 'choice', 'option', 'pros', 'cons', 'analyze'],
+    priorityTools: ['Probability GPT', 'MULTITASKER GPT', 'Clarity Omni GPT'],
+    relatedCategories: ['Productivity & Utilities', 'Decision Making']
+  },
+
+  // ===== LEGAL & DOCUMENTS =====
+  willEstate: {
+    triggers: ['will estate', 'write a will', 'estate planning', 'inheritance', 'last will', 'living will', 'trust fund'],
+    keywords: ['will', 'estate', 'inheritance', 'trust', 'beneficiary', 'executor', 'probate'],
+    priorityTools: ['Legal Draftsmith GPT', 'Contract Review Bot'],
+    relatedCategories: ['Legal & Government', 'Estate Planning']
+  },
+
+  immigrationHelp: {
+    triggers: ['immigration help', 'visa help', 'citizenship', 'green card', 'immigration lawyer', 'work visa', 'immigraton'],
+    keywords: ['immigration', 'visa', 'citizenship', 'green card', 'passport', 'status', 'asylum'],
+    priorityTools: ['Public Defender GPT', 'Legal Draftsmith GPT'],
+    relatedCategories: ['Legal & Government', 'Immigration']
+  },
+
+  tenantRights: {
+    triggers: ['tenant rights', 'renter rights', 'landlord issues', 'lease help', 'eviction help', 'rental agreement'],
+    keywords: ['tenant', 'landlord', 'lease', 'rent', 'eviction', 'rental', 'housing'],
+    priorityTools: ['Public Defender GPT', 'Legal Draftsmith GPT'],
+    relatedCategories: ['Legal & Government', 'Tenant Rights']
+  },
+
+  consumerRights: {
+    triggers: ['consumer rights', 'consumer protection', 'get refund', 'scammed', 'fraud help', 'consumer complaint'],
+    keywords: ['consumer', 'rights', 'refund', 'scam', 'fraud', 'complaint', 'protection'],
+    priorityTools: ['Public Defender GPT', 'FACT CHECKER GPT'],
+    relatedCategories: ['Legal & Government', 'Consumer Rights']
+  },
+
+  // ===== HISTORY PERIODS =====
+  worldWarHistory: {
+    triggers: ['world war', 'ww1', 'ww2', 'wwi', 'wwii', 'world war 1', 'world war 2', 'world war history', 'second world war'],
+    keywords: ['world war', 'ww1', 'ww2', 'nazi', 'allies', 'axis', 'hitler', 'military', 'battle'],
+    priorityTools: ['TALK TO HISTORY GPT', 'TIME MACHINE GPT', 'Historical Headlines GPT'],
+    relatedCategories: ['History', 'World Wars']
+  },
+
+  civilWarHistory: {
+    triggers: ['civil war', 'american civil war', 'confederate', 'union army', 'lincoln', 'civil war history'],
+    keywords: ['civil war', 'confederate', 'union', 'lincoln', 'slavery', 'battle', 'gettysburg'],
+    priorityTools: ['TALK TO HISTORY GPT', 'TIME MACHINE GPT', 'Historical Headlines GPT'],
+    relatedCategories: ['History', 'American History']
+  },
+
+  renaissanceHistory: {
+    triggers: ['renaissance', 'medieval history', 'middle ages', 'renaissance art', 'dark ages', 'medival'],
+    keywords: ['renaissance', 'medieval', 'middle ages', 'art', 'europe', 'davinci', 'michelangelo'],
+    priorityTools: ['TALK TO HISTORY GPT', 'TIME MACHINE GPT', 'Artwork & Vintage Appraisal GPT'],
+    relatedCategories: ['History', 'Renaissance']
+  },
+
+  coldWarHistory: {
+    triggers: ['cold war', 'soviet union', 'ussr', 'nuclear arms', 'iron curtain', 'cold war history'],
+    keywords: ['cold war', 'soviet', 'ussr', 'nuclear', 'communist', 'capitalism', 'berlin wall'],
+    priorityTools: ['TALK TO HISTORY GPT', 'TIME MACHINE GPT', 'Historical Headlines GPT'],
+    relatedCategories: ['History', 'Cold War']
+  },
+
+  // ===== WEATHER & ENVIRONMENT =====
+  climateChange: {
+    triggers: ['climate change', 'global warming', 'environment', 'carbon footprint', 'sustainability', 'climate crisis', 'climat change'],
+    keywords: ['climate', 'warming', 'carbon', 'environment', 'sustainable', 'emissions', 'greenhouse'],
+    priorityTools: ['Sustainable Futures GPT', 'Data Research Analysis Report GPT'],
+    relatedCategories: ['Science & Research', 'Environment']
+  },
+
+  weatherPrediction: {
+    triggers: ['weather prediction', 'weather forecast', 'meteorology', 'weather help', 'whats the weather', 'storm forecast'],
+    keywords: ['weather', 'forecast', 'meteorology', 'storm', 'rain', 'temperature', 'climate'],
+    priorityTools: ['Probability GPT', 'Illuminous World Data Explorer GPT'],
+    relatedCategories: ['Science & Research', 'Weather']
+  },
+
+  // ===== COMMUNICATION =====
+  publicSpeaking: {
+    triggers: ['public speaking', 'presentation tips', 'speech help', 'how to present', 'speech writing', 'overcome fear of speaking'],
+    keywords: ['public speaking', 'speech', 'presentation', 'audience', 'stage', 'confidence', 'speak'],
+    priorityTools: ['PPTx Powerpoint Maker GPT', 'LEARN ANY SKILL GPT'],
+    relatedCategories: ['Communication', 'Public Speaking']
+  },
+
+  negotiationSkills: {
+    triggers: ['negotiation skills', 'how to negotiate', 'negotiation tips', 'bargaining', 'deal making', 'salary negotiation'],
+    keywords: ['negotiation', 'negotiate', 'bargain', 'deal', 'agreement', 'compromise', 'salary'],
+    priorityTools: ['LEARN ANY SKILL GPT', 'Business Plan Generator GPT'],
+    relatedCategories: ['Business & Productivity', 'Negotiation']
   }
 };
 
