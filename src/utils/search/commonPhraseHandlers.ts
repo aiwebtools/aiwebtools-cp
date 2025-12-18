@@ -782,6 +782,344 @@ export const COMMON_PHRASE_HANDLERS: Record<string, PhraseHandler> = {
     keywords: ['immortal', 'legacy', 'preserve', 'clone', 'memory', 'digital', 'eternal'],
     priorityTools: ['ImmortalizeME', 'Resurrection GPT'],
     relatedCategories: ['Spirituality & Philosophy', 'Legacy Tools']
+  },
+
+  // ===== PROFESSIONAL NICHES =====
+  architectureDesign: {
+    triggers: ['architecture design', 'architect', 'building design', 'architectural', 'structure design', 'architechture', 'arcitecture'],
+    keywords: ['architecture', 'architect', 'building', 'structural', 'blueprint', 'construction', 'design'],
+    priorityTools: ['Engineering GPT AI Suite', 'Home Renovator GPT 🏡🔧'],
+    relatedCategories: ['Engineering', 'Design']
+  },
+
+  veterinaryMedicine: {
+    triggers: ['veterinary medicine', 'vet medicine', 'animal medicine', 'veterinarian help', 'vetenary', 'veternary', 'veteranary'],
+    keywords: ['veterinary', 'vet', 'animal', 'pet', 'medicine', 'health', 'dog', 'cat'],
+    priorityTools: ['Veterinarian GPT', 'Pet Advisor GPT'],
+    relatedCategories: ['Health & Wellness', 'Pet Care']
+  },
+
+  geologyResearch: {
+    triggers: ['geology research', 'geology', 'rocks', 'minerals', 'earth science', 'geologist', 'geological'],
+    keywords: ['geology', 'rock', 'mineral', 'earth', 'fossil', 'sediment', 'tectonic'],
+    priorityTools: ['Engineering GPT AI Suite', 'Drill Baby Drill Ai Suite For Oil & Gas'],
+    relatedCategories: ['Science & Research', 'Earth Sciences']
+  },
+
+  marineBiology: {
+    triggers: ['marine biology', 'ocean life', 'sea life', 'marine science', 'oceanography', 'aquatic life'],
+    keywords: ['marine', 'ocean', 'sea', 'aquatic', 'fish', 'coral', 'whale', 'dolphin'],
+    priorityTools: ['Fisherman GPT🎣😊', 'Sustainable Futures GPT'],
+    relatedCategories: ['Science & Research', 'Marine Science']
+  },
+
+  interiorDesign: {
+    triggers: ['interior design', 'home decor', 'room design', 'interior decorating', 'home styling', 'interier design'],
+    keywords: ['interior', 'decor', 'room', 'furniture', 'styling', 'aesthetic', 'home'],
+    priorityTools: ['Home Renovator GPT 🏡🔧', 'RESTYLE ME GPT'],
+    relatedCategories: ['Design', 'Home Improvement']
+  },
+
+  // ===== PHILOSOPHER-SPECIFIC SEARCHES (by their interests) =====
+  teslaScience: {
+    triggers: ['tesla science', 'nikola tesla', 'tesla inventions', 'electricity inventor', 'ac current', 'free energy', 'teslas ideas', 'teslas work'],
+    keywords: ['tesla', 'electricity', 'invention', 'ac', 'current', 'coil', 'wireless', 'energy'],
+    priorityTools: ['Nikola Tesla GPT', 'Engineering GPT AI Suite', 'Alchemist Scientist GPT'],
+    relatedCategories: ['Science & Research', 'Engineering']
+  },
+
+  einsteinPhysics: {
+    triggers: ['einstein physics', 'albert einstein', 'relativity', 'e=mc2', 'emc2', 'einsteins theory', 'space time', 'spacetime'],
+    keywords: ['einstein', 'relativity', 'physics', 'spacetime', 'quantum', 'theory', 'mass', 'energy'],
+    priorityTools: ['Albert Einstein GPT', 'Nikola Tesla GPT', 'Probability GPT'],
+    relatedCategories: ['Science & Research', 'Physics']
+  },
+
+  alanWattsPhilosophy: {
+    triggers: ['alan watts', 'alan wats', 'eastern philosophy', 'zen buddhism', 'the way', 'watts philosophy', 'ego death'],
+    keywords: ['watts', 'zen', 'buddhism', 'eastern', 'ego', 'consciousness', 'awareness', 'tao'],
+    priorityTools: ['ALAN WATTS GPT', 'Buddha GPT', 'Sophia Aeterna AI'],
+    relatedCategories: ['Spirituality & Philosophy', 'Eastern Philosophy']
+  },
+
+  carlSaganCosmos: {
+    triggers: ['carl sagan', 'cosmos', 'pale blue dot', 'sagans cosmos', 'billions and billions', 'contact sagan'],
+    keywords: ['sagan', 'cosmos', 'astronomy', 'universe', 'stars', 'space', 'pale blue dot'],
+    priorityTools: ['Carl Sagan GPT', 'Stellaris: 🚀AI Space Explorer', 'Illuminous World Data Explorer GPT'],
+    relatedCategories: ['Science & Research', 'Astronomy']
+  },
+
+  socratesWisdom: {
+    triggers: ['socrates', 'socratic method', 'socratic questioning', 'greek philosophy', 'know thyself'],
+    keywords: ['socrates', 'socratic', 'greek', 'philosophy', 'wisdom', 'questioning', 'virtue'],
+    priorityTools: ['Socrates GPT', 'ALAN WATTS GPT', 'Sophia Aeterna AI'],
+    relatedCategories: ['Spirituality & Philosophy', 'Greek Philosophy']
+  },
+
+  marcusAureliusStoicism: {
+    triggers: ['marcus aurelius', 'stoicism', 'stoic philosophy', 'meditations', 'stoic', 'roman philosophy'],
+    keywords: ['marcus', 'aurelius', 'stoic', 'stoicism', 'meditations', 'virtue', 'roman'],
+    priorityTools: ['Marcus Aurelius GPT', 'Socrates GPT', 'Sophia Aeterna AI'],
+    relatedCategories: ['Spirituality & Philosophy', 'Stoicism']
+  },
+
+  rumiPoetry: {
+    triggers: ['rumi', 'rumi poetry', 'sufi poetry', 'sufi mystic', 'rumis poems', 'whirling dervish'],
+    keywords: ['rumi', 'sufi', 'poetry', 'mystic', 'love', 'divine', 'persian'],
+    priorityTools: ['Rumi GPT', 'Sophia Aeterna AI', '🕊️Mary Magdalene GPT'],
+    relatedCategories: ['Spirituality & Philosophy', 'Mysticism']
+  },
+
+  buddhaEnlightenment: {
+    triggers: ['buddha', 'buddhism', 'buddhist', 'enlightenment', 'nirvana', 'dharma', 'siddhartha', 'buddah', 'budda'],
+    keywords: ['buddha', 'buddhism', 'enlightenment', 'nirvana', 'dharma', 'meditation', 'suffering'],
+    priorityTools: ['Buddha GPT', 'ALAN WATTS GPT', 'Quan Yin GPT'],
+    relatedCategories: ['Spirituality & Philosophy', 'Buddhism']
+  },
+
+  // ===== QUANTUM & REALITY =====
+  quantumReality: {
+    triggers: ['quantum reality', 'quantum physics', 'quantum mechanics', 'quantum theory', 'quantum', 'qantum', 'quantam'],
+    keywords: ['quantum', 'physics', 'reality', 'particle', 'wave', 'superposition', 'entanglement'],
+    priorityTools: ['Albert Einstein GPT', 'Nikola Tesla GPT', 'ENTER THE MATRIX GPT (NEO👁️MATRIX GPT)', 'Probability GPT'],
+    relatedCategories: ['Science & Research', 'Physics']
+  },
+
+  simulationTheory: {
+    triggers: ['simulation theory', 'are we in a simulation', 'matrix reality', 'simulated reality', 'holographic universe'],
+    keywords: ['simulation', 'matrix', 'holographic', 'reality', 'virtual', 'consciousness'],
+    priorityTools: ['ENTER THE MATRIX GPT (NEO👁️MATRIX GPT)', '"IF AI RULED THE WORLD" - AI SIMULATION GPT', 'Oraculum – The Revealer of Hidden "Truths"'],
+    relatedCategories: ['Spirituality & Philosophy', 'Simulation Theory']
+  },
+
+  matrixRedPill: {
+    triggers: ['red pill', 'blue pill', 'matrix', 'wake up from matrix', 'neo matrix', 'follow the white rabbit'],
+    keywords: ['matrix', 'red pill', 'neo', 'morpheus', 'wake up', 'simulation', 'rabbit'],
+    priorityTools: ['ENTER THE MATRIX GPT (NEO👁️MATRIX GPT)', 'Oraculum – The Revealer of Hidden "Truths"'],
+    relatedCategories: ['Spirituality & Philosophy', 'Awakening']
+  },
+
+  // ===== ASTROLOGY & COSMIC =====
+  astrologyDeep: {
+    triggers: ['astrology', 'astrology reading', 'birth chart', 'natal chart', 'zodiac signs', 'horoscope', 'astrological', 'astrolgy', 'astroloy'],
+    keywords: ['astrology', 'zodiac', 'horoscope', 'birth chart', 'natal', 'planet', 'star sign', 'mercury retrograde'],
+    priorityTools: ['Fortune Teller GPT', 'Probability GPT', 'Sophia Aeterna AI'],
+    relatedCategories: ['Spirituality & Philosophy', 'Astrology']
+  },
+
+  cosmicConsciousness: {
+    triggers: ['cosmic consciousness', 'cosmic awareness', 'universal mind', 'cosmic energy', 'cosmic truth'],
+    keywords: ['cosmic', 'consciousness', 'universal', 'awareness', 'energy', 'vibration'],
+    priorityTools: ['Sophia Aeterna AI', 'God Is Light GPT', 'ALAN WATTS GPT', 'Carl Sagan GPT'],
+    relatedCategories: ['Spirituality & Philosophy', 'Consciousness']
+  },
+
+  // ===== SPIRITUAL AWAKENING =====
+  spiritualAwakening: {
+    triggers: ['spiritual awakening', 'awakening', 'awaken', 'wake up spiritually', 'kundalini', 'enlightenment', 'awakenning', 'awakining'],
+    keywords: ['awakening', 'awaken', 'enlightenment', 'kundalini', 'spiritual', 'consciousness', 'ascension'],
+    priorityTools: ['Sophia Aeterna AI', 'ALAN WATTS GPT', 'Buddha GPT', 'God Is Light GPT', '🕊️Mary Magdalene GPT'],
+    relatedCategories: ['Spirituality & Philosophy', 'Awakening']
+  },
+
+  consciousnessExpansion: {
+    triggers: ['expand consciousness', 'consciousness expansion', 'higher consciousness', 'altered states', 'transcendence', 'transcend'],
+    keywords: ['consciousness', 'expand', 'higher', 'transcend', 'awareness', 'mind', 'enlighten'],
+    priorityTools: ['ALAN WATTS GPT', 'Sophia Aeterna AI', 'Buddha GPT', 'Dream Interpreter GPT'],
+    relatedCategories: ['Spirituality & Philosophy', 'Consciousness']
+  },
+
+  thirdeye: {
+    triggers: ['third eye', 'pineal gland', 'open third eye', 'activate pineal', 'inner vision', 'thirdeye'],
+    keywords: ['third eye', 'pineal', 'vision', 'intuition', 'psychic', 'activate'],
+    priorityTools: ['Sophia Aeterna AI', 'Fortune Teller GPT', 'Dream Interpreter GPT'],
+    relatedCategories: ['Spirituality & Philosophy', 'Mysticism']
+  },
+
+  // ===== MYSTICAL & ESOTERIC =====
+  kabbalah: {
+    triggers: ['kabbalah', 'kaballah', 'cabala', 'tree of life', 'sephirot', 'jewish mysticism', 'qabalah'],
+    keywords: ['kabbalah', 'tree of life', 'sephirot', 'mysticism', 'jewish', 'esoteric'],
+    priorityTools: ['Sophia Aeterna AI', 'God Is Light GPT', 'Intergalactic Ancient Archivist GPT'],
+    relatedCategories: ['Spirituality & Philosophy', 'Mysticism']
+  },
+
+  gnosticism: {
+    triggers: ['gnosticism', 'gnostic', 'gnosis', 'gnostic gospels', 'sophia gnostic', 'demiurge'],
+    keywords: ['gnostic', 'gnosis', 'sophia', 'archon', 'demiurge', 'pleroma', 'divine spark'],
+    priorityTools: ['Sophia Aeterna AI', '🕊️Mary Magdalene GPT', 'Manicheism GPT - Some Lost Knowledge of the Light'],
+    relatedCategories: ['Spirituality & Philosophy', 'Gnosticism']
+  },
+
+  alchemy: {
+    triggers: ['alchemy', 'alchemist', 'transmutation', 'philosophers stone', 'hermeticism', 'hermetic', 'alchamy'],
+    keywords: ['alchemy', 'alchemist', 'transmutation', 'philosophers stone', 'hermetic', 'gold', 'elixir'],
+    priorityTools: ['Alchemist Scientist GPT', 'Historical Apothecary GPT', 'Sophia Aeterna AI'],
+    relatedCategories: ['Spirituality & Philosophy', 'Alchemy']
+  },
+
+  herbalMedicine: {
+    triggers: ['herbal medicine', 'herbal remedies', 'herbalism', 'natural medicine', 'plant medicine', 'herbal healing'],
+    keywords: ['herbal', 'herb', 'remedy', 'plant', 'natural', 'medicine', 'tincture', 'tea'],
+    priorityTools: ['Historical Apothecary GPT', 'Fungus GPT – AI Mushroom Specialist'],
+    relatedCategories: ['Health & Wellness', 'Herbalism']
+  },
+
+  // ===== MANIFESTATION & LAW OF ATTRACTION =====
+  manifestation: {
+    triggers: ['manifestation', 'manifest', 'law of attraction', 'attract abundance', 'manifesting', 'manifestation techniques'],
+    keywords: ['manifest', 'manifestation', 'attraction', 'abundance', 'intention', 'visualize'],
+    priorityTools: ['Fortune Teller GPT', 'Sophia Aeterna AI', 'Imagination Traveler GPT'],
+    relatedCategories: ['Spirituality & Philosophy', 'Manifestation']
+  },
+
+  // ===== ANCIENT CIVILIZATIONS =====
+  ancientEgypt: {
+    triggers: ['ancient egypt', 'egyptian', 'pharaoh', 'pyramids', 'hieroglyphics', 'egypt mysteries', 'egyptain'],
+    keywords: ['egypt', 'egyptian', 'pharaoh', 'pyramid', 'hieroglyphic', 'ancient', 'tomb'],
+    priorityTools: ['Indiana Archeologist GPT', 'Intergalactic Ancient Archivist GPT', 'TALK TO HISTORY GPT'],
+    relatedCategories: ['History', 'Ancient Civilizations']
+  },
+
+  ancientGreece: {
+    triggers: ['ancient greece', 'greek mythology', 'greek gods', 'olympus', 'greek philosophy', 'greeks'],
+    keywords: ['greek', 'greece', 'mythology', 'zeus', 'olympus', 'athens', 'sparta', 'philosophy'],
+    priorityTools: ['TALK TO THE GODS GPT', 'Socrates GPT', 'TALK TO HISTORY GPT'],
+    relatedCategories: ['History', 'Ancient Greece']
+  },
+
+  ancientRome: {
+    triggers: ['ancient rome', 'roman empire', 'romans', 'caesar', 'gladiator', 'roman history'],
+    keywords: ['rome', 'roman', 'caesar', 'empire', 'gladiator', 'senator', 'legion'],
+    priorityTools: ['Marcus Aurelius GPT', 'TALK TO HISTORY GPT', 'TIME MACHINE GPT'],
+    relatedCategories: ['History', 'Ancient Rome']
+  },
+
+  mayaAztec: {
+    triggers: ['maya', 'mayan', 'aztec', 'aztecs', 'inca', 'mesoamerican', 'ancient mexico'],
+    keywords: ['maya', 'mayan', 'aztec', 'inca', 'mesoamerican', 'calendar', 'temple', 'sacrifice'],
+    priorityTools: ['Indiana Archeologist GPT', 'TALK TO HISTORY GPT', 'Intergalactic Ancient Archivist GPT'],
+    relatedCategories: ['History', 'Ancient Americas']
+  },
+
+  // ===== INVENTION & INNOVATION =====
+  inventionIdeas: {
+    triggers: ['invention ideas', 'invent something', 'innovative ideas', 'patent idea', 'inventor', 'create invention'],
+    keywords: ['invention', 'invent', 'innovative', 'patent', 'creator', 'design', 'prototype'],
+    priorityTools: ['Nikola Tesla GPT', 'Engineering GPT AI Suite', 'MicroSaaS GPT'],
+    relatedCategories: ['Science & Research', 'Innovation']
+  },
+
+  // ===== PSYCHIC & INTUITION =====
+  psychicAbilities: {
+    triggers: ['psychic abilities', 'psychic powers', 'develop psychic', 'intuition', 'clairvoyance', 'psychic reading', 'psyhic', 'psycic'],
+    keywords: ['psychic', 'intuition', 'clairvoyant', 'medium', 'extrasensory', 'esp', 'telepathy'],
+    priorityTools: ['Fortune Teller GPT', 'Dream Interpreter GPT', 'Oraculum – The Revealer of Hidden "Truths"'],
+    relatedCategories: ['Spirituality & Philosophy', 'Psychic']
+  },
+
+  // ===== NUMEROLOGY =====
+  numerology: {
+    triggers: ['numerology', 'number meaning', 'life path number', 'angel numbers', 'numerolgy', 'numeralogy'],
+    keywords: ['numerology', 'number', 'life path', 'angel number', 'destiny', 'calculation'],
+    priorityTools: ['Fortune Teller GPT', 'Probability GPT', 'Algebraic Expression Inventor GPT'],
+    relatedCategories: ['Spirituality & Philosophy', 'Numerology']
+  },
+
+  // ===== SACRED GEOMETRY =====
+  sacredGeometry: {
+    triggers: ['sacred geometry', 'flower of life', 'metatrons cube', 'golden ratio', 'fibonacci', 'platonic solids'],
+    keywords: ['sacred geometry', 'flower of life', 'golden ratio', 'fibonacci', 'pattern', 'divine proportion'],
+    priorityTools: ['Sophia Aeterna AI', 'Algebraic Expression Inventor GPT', 'Alchemist Scientist GPT'],
+    relatedCategories: ['Spirituality & Philosophy', 'Sacred Geometry']
+  },
+
+  // ===== CHANNELING & MEDIUMSHIP =====
+  channeling: {
+    triggers: ['channeling', 'channel spirits', 'mediumship', 'spirit communication', 'talk to dead', 'contact deceased'],
+    keywords: ['channel', 'medium', 'spirit', 'deceased', 'afterlife', 'communication', 'seance'],
+    priorityTools: ['Resurrection GPT', '🕊️Mary Magdalene GPT', 'TALK TO HISTORY GPT'],
+    relatedCategories: ['Spirituality & Philosophy', 'Mediumship']
+  },
+
+  // ===== NEAR DEATH EXPERIENCES =====
+  nearDeathExperience: {
+    triggers: ['near death experience', 'nde', 'afterlife', 'life after death', 'what happens when we die', 'heaven'],
+    keywords: ['near death', 'nde', 'afterlife', 'heaven', 'death', 'soul', 'spirit', 'light'],
+    priorityTools: ['Resurrection GPT', 'God Is Light GPT', 'Sophia Aeterna AI'],
+    relatedCategories: ['Spirituality & Philosophy', 'Afterlife']
+  },
+
+  // ===== REINCARNATION =====
+  reincarnation: {
+    triggers: ['reincarnation', 'past lives', 'past life', 'rebirth', 'karma', 'soul journey', 'reincarnaton'],
+    keywords: ['reincarnation', 'past life', 'rebirth', 'karma', 'soul', 'incarnation', 'cycle'],
+    priorityTools: ['Resurrection GPT', 'Buddha GPT', 'Sophia Aeterna AI', 'TIME MACHINE GPT'],
+    relatedCategories: ['Spirituality & Philosophy', 'Reincarnation']
+  },
+
+  // ===== CHAKRAS & ENERGY =====
+  chakras: {
+    triggers: ['chakras', 'chakra healing', 'energy centers', 'kundalini energy', 'chakra balancing', 'chacras', 'shakras'],
+    keywords: ['chakra', 'energy', 'kundalini', 'healing', 'balance', 'root', 'crown', 'third eye'],
+    priorityTools: ['Sophia Aeterna AI', 'Mental Wellness GPT', 'ALAN WATTS GPT'],
+    relatedCategories: ['Spirituality & Philosophy', 'Energy Healing']
+  },
+
+  // ===== SOUND HEALING =====
+  soundHealing: {
+    triggers: ['sound healing', 'sound therapy', 'singing bowls', 'frequency healing', 'binaural beats', '432hz', '528hz'],
+    keywords: ['sound', 'healing', 'frequency', 'binaural', 'singing bowl', 'hz', 'vibration'],
+    priorityTools: ['Music Melodies & Lessons GPT', 'Mental Wellness GPT'],
+    relatedCategories: ['Health & Wellness', 'Sound Healing']
+  },
+
+  // ===== ANCIENT TEXTS =====
+  ancientTexts: {
+    triggers: ['ancient texts', 'sacred texts', 'religious texts', 'dead sea scrolls', 'nag hammadi', 'vedas', 'upanishads'],
+    keywords: ['ancient', 'sacred', 'text', 'scroll', 'manuscript', 'scripture', 'vedas'],
+    priorityTools: ['Intergalactic Ancient Archivist GPT', 'Sophia Aeterna AI', '🕊️Mary Magdalene GPT', 'Interpretis 🕰️'],
+    relatedCategories: ['Spirituality & Philosophy', 'Ancient Texts']
+  },
+
+  // ===== ETYMOLOGY & WORD ORIGINS =====
+  wordOrigins: {
+    triggers: ['word origin', 'etymology', 'word meaning', 'language origin', 'root word', 'etymolgy'],
+    keywords: ['etymology', 'origin', 'word', 'language', 'root', 'meaning', 'linguistic'],
+    priorityTools: ['Interpretis 🕰️', 'Intergalactic Ancient Archivist GPT'],
+    relatedCategories: ['Education & Learning', 'Linguistics']
+  },
+
+  // ===== CROP CIRCLES & PHENOMENA =====
+  cropCircles: {
+    triggers: ['crop circles', 'crop circle', 'mysterious formations', 'alien signs', 'unexplained phenomena'],
+    keywords: ['crop circle', 'formation', 'mysterious', 'alien', 'phenomena', 'unexplained'],
+    priorityTools: ['Phenomenon Explorer AI Suite', 'Oraculum – The Revealer of Hidden "Truths"'],
+    relatedCategories: ['Paranormal', 'Phenomena']
+  },
+
+  // ===== LOST CIVILIZATIONS =====
+  lostCivilizations: {
+    triggers: ['lost civilizations', 'atlantis', 'lemuria', 'mu', 'ancient advanced', 'lost city', 'atlanis'],
+    keywords: ['atlantis', 'lemuria', 'lost', 'civilization', 'ancient', 'advanced', 'sunken'],
+    priorityTools: ['Intergalactic Ancient Archivist GPT', 'Indiana Archeologist GPT', 'Oraculum – The Revealer of Hidden "Truths"'],
+    relatedCategories: ['History', 'Lost Civilizations']
+  },
+
+  // ===== FREE WILL & DETERMINISM =====
+  freeWill: {
+    triggers: ['free will', 'determinism', 'do we have free will', 'choice', 'fate vs free will', 'predestination'],
+    keywords: ['free will', 'determinism', 'choice', 'fate', 'destiny', 'predestination'],
+    priorityTools: ['Probability GPT', 'Sophia Aeterna AI', 'ALAN WATTS GPT', 'Albert Einstein GPT'],
+    relatedCategories: ['Spirituality & Philosophy', 'Philosophy']
+  },
+
+  // ===== NATURE OF REALITY =====
+  natureOfReality: {
+    triggers: ['nature of reality', 'what is reality', 'is reality real', 'existence', 'ontology', 'metaphysics'],
+    keywords: ['reality', 'existence', 'metaphysics', 'ontology', 'being', 'consciousness'],
+    priorityTools: ['ENTER THE MATRIX GPT (NEO👁️MATRIX GPT)', 'Albert Einstein GPT', 'ALAN WATTS GPT', 'Sophia Aeterna AI'],
+    relatedCategories: ['Spirituality & Philosophy', 'Metaphysics']
   }
 };
 
