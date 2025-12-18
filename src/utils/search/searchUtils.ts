@@ -264,6 +264,109 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
     return [...sortedTimeMachineTools, ...nonTimeMachineTools];
   }
 
+  // APP BUILDER SEARCH PRIORITY - Tools that build apps, websites, UI
+  const APP_BUILDER_TRIGGERS = [
+    'app builder', 'app building', 'build app', 'build apps', 'app maker', 'app creator',
+    'website builder', 'site builder', 'web builder', 'no code', 'nocode', 'low code', 'lowcode',
+    'ui builder', 'ui design', 'interface builder', 'drag and drop', 'visual builder',
+    'app development', 'app generator', 'create app', 'make app', 'develop app'
+  ];
+  
+  if (APP_BUILDER_TRIGGERS.some(trigger => normalizedSearchTerm.includes(trigger)) ||
+      (normalizedSearchTerm.includes('app') && normalizedSearchTerm.includes('build'))) {
+    debugLog('📱 APP BUILDER SEARCH DETECTED - Finding app/website building tools');
+    
+    // Keywords for app building tools
+    const APP_BUILDER_KEYWORDS = [
+      // Core app builder terms
+      'app builder', 'app building', 'app maker', 'app creator', 'app generator', 'app development',
+      // Website/web builders
+      'website builder', 'site builder', 'web builder', 'landing page', 'webpage',
+      // No-code/low-code platforms
+      'no code', 'nocode', 'no-code', 'low code', 'lowcode', 'low-code', 'visual builder',
+      // UI/Design tools
+      'ui builder', 'ui design', 'interface', 'drag and drop', 'visual development',
+      // Coding/development agents
+      'coding agent', 'code agent', 'developer agent', 'dev agent', 'code generator',
+      'ai coder', 'ai developer', 'ai coding', 'ai development',
+      // Specific platforms
+      'lovable', 'bolt', 'replit', 'v0', 'vercel', 'webflow', 'bubble', 'softr', 'glide',
+      'adalo', 'thunkable', 'flutterflow', 'appgyver', 'outsystems', 'mendix',
+      'retool', 'internal tool', 'admin panel', 'dashboard builder',
+      // Related terms
+      'prototype', 'wireframe', 'mockup', 'frontend', 'full stack', 'fullstack',
+      'react', 'next.js', 'web app', 'mobile app', 'saas', 'mvp', 'startup builder'
+    ];
+    
+    const appBuilderTools = tools.filter(tool => {
+      const lowerTitle = tool.title.toLowerCase();
+      const lowerDescription = tool.description.toLowerCase();
+      const lowerCategory = tool.category?.toLowerCase() || '';
+      const lowerTags = tool.tags?.map(tag => tag.toLowerCase()) || [];
+      const allText = `${lowerTitle} ${lowerDescription} ${lowerCategory} ${lowerTags.join(' ')}`;
+      
+      return APP_BUILDER_KEYWORDS.some(keyword => allText.includes(keyword)) ||
+             lowerCategory.includes('development') || lowerCategory.includes('coding') ||
+             lowerCategory.includes('no-code') || lowerCategory.includes('web builder') ||
+             lowerTags.some(tag => tag.includes('app builder') || tag.includes('coding agent') || tag.includes('no code'));
+    });
+    
+    debugLog(`📱 Found ${appBuilderTools.length} app builder tools`);
+    
+    // Sort app builder tools by relevance
+    const sortedAppBuilderTools = appBuilderTools.sort((a, b) => {
+      let scoreA = 0, scoreB = 0;
+      const titleA = a.title.toLowerCase();
+      const titleB = b.title.toLowerCase();
+      const descA = a.description.toLowerCase();
+      const descB = b.description.toLowerCase();
+      const tagsA = a.tags?.map(t => t.toLowerCase()).join(' ') || '';
+      const tagsB = b.tags?.map(t => t.toLowerCase()).join(' ') || '';
+      
+      // HIGHEST: Exact "app builder" in title
+      if (titleA.includes('app builder')) scoreA += 80000;
+      if (titleB.includes('app builder')) scoreB += 80000;
+      
+      // VERY HIGH: "app building" or "app maker" in title
+      if (titleA.includes('app building') || titleA.includes('app maker') || titleA.includes('app creator')) scoreA += 70000;
+      if (titleB.includes('app building') || titleB.includes('app maker') || titleB.includes('app creator')) scoreB += 70000;
+      
+      // HIGH: Major no-code/low-code platforms
+      const majorPlatforms = ['lovable', 'bolt', 'replit', 'v0', 'webflow', 'bubble', 'softr', 'glide', 'flutterflow'];
+      if (majorPlatforms.some(p => titleA.includes(p))) scoreA += 60000;
+      if (majorPlatforms.some(p => titleB.includes(p))) scoreB += 60000;
+      
+      // HIGH: Coding agents
+      if (titleA.includes('coding agent') || titleA.includes('code agent') || titleA.includes('coder')) scoreA += 55000;
+      if (titleB.includes('coding agent') || titleB.includes('code agent') || titleB.includes('coder')) scoreB += 55000;
+      
+      // MEDIUM-HIGH: Website builder in title
+      if (titleA.includes('website builder') || titleA.includes('site builder') || titleA.includes('web builder')) scoreA += 50000;
+      if (titleB.includes('website builder') || titleB.includes('site builder') || titleB.includes('web builder')) scoreB += 50000;
+      
+      // MEDIUM: No-code/low-code in title or tags
+      if (titleA.includes('no code') || titleA.includes('nocode') || titleA.includes('low code') || tagsA.includes('no code')) scoreA += 45000;
+      if (titleB.includes('no code') || titleB.includes('nocode') || titleB.includes('low code') || tagsB.includes('no code')) scoreB += 45000;
+      
+      // MEDIUM: UI/interface builder
+      if (titleA.includes('ui') || titleA.includes('interface') || titleA.includes('frontend')) scoreA += 40000;
+      if (titleB.includes('ui') || titleB.includes('interface') || titleB.includes('frontend')) scoreB += 40000;
+      
+      // LOWER: App building in description
+      if (descA.includes('build app') || descA.includes('app builder') || descA.includes('create app')) scoreA += 30000;
+      if (descB.includes('build app') || descB.includes('app builder') || descB.includes('create app')) scoreB += 30000;
+      
+      // LOWEST: Development/coding category
+      if (a.category?.toLowerCase().includes('development') || a.category?.toLowerCase().includes('coding')) scoreA += 20000;
+      if (b.category?.toLowerCase().includes('development') || b.category?.toLowerCase().includes('coding')) scoreB += 20000;
+      
+      return scoreB - scoreA;
+    });
+    
+    const nonAppBuilderTools = tools.filter(tool => !appBuilderTools.includes(tool));
+    return [...sortedAppBuilderTools, ...nonAppBuilderTools];
+  }
+
   // HISTORY SEARCH PRIORITY - Comprehensive historical tools detection
   if (normalizedSearchTerm === 'history' || normalizedSearchTerm.includes('history') ||
       normalizedSearchTerm.includes('historical') || normalizedSearchTerm.includes('ancient')) {
