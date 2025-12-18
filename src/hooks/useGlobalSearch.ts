@@ -47,7 +47,7 @@ class LRUCache<K, V> {
 
 // Global search cache (persists across component re-renders)
 // NOTE: versioned to prevent "stale" cached results after search-intelligence updates.
-const SEARCH_CACHE_VERSION = "v18";
+const SEARCH_CACHE_VERSION = "v19";
 const searchCache = new LRUCache<string, any[]>(50);
 
 // ==================== INTELLIGENCE MAPS (precomputed, instant lookup) ====================
@@ -1589,6 +1589,48 @@ export const useGlobalSearch = () => {
           const isSecuritySearch = q.includes("security") || q.includes("cyber") || q.includes("hack") ||
             q.includes("privacy") || q.includes("encrypt") || q.includes("protect");
           
+          // Category affinity map - which categories are related to each other
+          const getCategoryAffinity = (searchType: string): string[] => {
+            const affinities: Record<string, string[]> = {
+              history: ['spiritual', 'philosophy', 'education', 'science', 'research'],
+              spiritual: ['history', 'philosophy', 'education', 'wellness', 'meditation'],
+              education: ['history', 'science', 'writing', 'research', 'learning'],
+              science: ['education', 'research', 'data', 'analytics', 'history'],
+              writing: ['education', 'content', 'creative', 'book', 'blog'],
+              business: ['productivity', 'finance', 'trading', 'marketing', 'startup'],
+              trading: ['finance', 'business', 'crypto', 'investment', 'analytics'],
+              health: ['wellness', 'fitness', 'medical', 'mental', 'nutrition'],
+              legal: ['business', 'contract', 'compliance', 'professional'],
+              coding: ['development', 'software', 'tech', 'automation', 'ai agents'],
+              video: ['creative', 'multimedia', 'film', 'animation', 'content'],
+              image: ['creative', 'design', 'art', 'visual', 'graphics'],
+              music: ['audio', 'creative', 'entertainment', 'sound'],
+              gaming: ['entertainment', 'creative', 'streaming', 'interactive'],
+              security: ['coding', 'privacy', 'cyber', 'tech', 'protection']
+            };
+            return affinities[searchType] || [];
+          };
+          
+          // Determine primary search type
+          let primarySearchType = '';
+          if (isHistorySearch) primarySearchType = 'history';
+          else if (isSpiritualSearch) primarySearchType = 'spiritual';
+          else if (isEducationSearch) primarySearchType = 'education';
+          else if (isScienceSearch) primarySearchType = 'science';
+          else if (isWritingSearch) primarySearchType = 'writing';
+          else if (isBusinessSearch) primarySearchType = 'business';
+          else if (isTradingSearch) primarySearchType = 'trading';
+          else if (isHealthSearch) primarySearchType = 'health';
+          else if (isLegalSearch) primarySearchType = 'legal';
+          else if (isCodingSearch) primarySearchType = 'coding';
+          else if (isVideoSearch) primarySearchType = 'video';
+          else if (isImageSearch) primarySearchType = 'image';
+          else if (isMusicSearch) primarySearchType = 'music';
+          else if (isGameSearch) primarySearchType = 'gaming';
+          else if (isSecuritySearch) primarySearchType = 'security';
+          
+          const relatedCategories = getCategoryAffinity(primarySearchType);
+          
           const reranked = results
             .map((tool, idx) => {
               const title = (tool?.title || "").toLowerCase();
@@ -1637,45 +1679,53 @@ export const useGlobalSearch = () => {
               const isSecurityTool = category.includes('security') || category.includes('privacy') ||
                 tags.some((t: string) => t.includes('security') || t.includes('cyber'));
               
+              // Check if tool belongs to a related/affinity category
+              const isRelatedCategory = relatedCategories.some(rc => 
+                category.includes(rc) || tags.some((t: string) => t.includes(rc))
+              );
+              
               // Penalize mismatched categories (only apply if search has clear intent)
               const hasSpecificIntent = isTradingSearch || isVideoSearch || isMusicSearch || isImageSearch ||
                 isBusinessSearch || isHistorySearch || isEducationSearch || isHealthSearch || isLegalSearch ||
                 isSpiritualSearch || isCodingSearch || isWritingSearch || isScienceSearch || isGameSearch || isSecuritySearch;
               
               if (hasSpecificIntent) {
-                // Penalize video tools for non-video searches
-                if (isVideoTool && !isVideoSearch) boost -= 50000;
+                // Boost tools from related/affinity categories (shows after direct matches)
+                if (isRelatedCategory && !boost) boost += 40000;
+                
+                // Penalize video tools for non-video searches (unless related)
+                if (isVideoTool && !isVideoSearch && !relatedCategories.includes('video')) boost -= 60000;
                 // Penalize trading tools for non-trading searches  
-                if (isTradingTool && !isTradingSearch) boost -= 50000;
+                if (isTradingTool && !isTradingSearch && !relatedCategories.includes('trading')) boost -= 60000;
                 // Penalize music tools for non-music searches
-                if (isMusicTool && !isMusicSearch && !isVideoSearch) boost -= 50000;
+                if (isMusicTool && !isMusicSearch && !isVideoSearch && !relatedCategories.includes('music')) boost -= 60000;
                 // Penalize image tools for non-image searches
-                if (isImageTool && !isImageSearch) boost -= 30000;
+                if (isImageTool && !isImageSearch && !relatedCategories.includes('image')) boost -= 50000;
                 // Penalize business tools for non-business searches
-                if (isBusinessTool && !isBusinessSearch && !isTradingSearch) boost -= 30000;
+                if (isBusinessTool && !isBusinessSearch && !isTradingSearch && !relatedCategories.includes('business')) boost -= 40000;
                 // Penalize history tools for non-history searches
-                if (isHistoryTool && !isHistorySearch && !isEducationSearch) boost -= 30000;
+                if (isHistoryTool && !isHistorySearch && !isEducationSearch && !relatedCategories.includes('history')) boost -= 40000;
                 // Penalize education tools for non-education searches
-                if (isEducationTool && !isEducationSearch) boost -= 20000;
+                if (isEducationTool && !isEducationSearch && !relatedCategories.includes('education')) boost -= 30000;
                 // Penalize health tools for non-health searches
-                if (isHealthTool && !isHealthSearch) boost -= 30000;
+                if (isHealthTool && !isHealthSearch && !relatedCategories.includes('health')) boost -= 40000;
                 // Penalize legal tools for non-legal searches
-                if (isLegalTool && !isLegalSearch) boost -= 30000;
+                if (isLegalTool && !isLegalSearch && !relatedCategories.includes('legal')) boost -= 40000;
                 // Penalize spiritual tools for non-spiritual searches
-                if (isSpiritualTool && !isSpiritualSearch) boost -= 30000;
+                if (isSpiritualTool && !isSpiritualSearch && !relatedCategories.includes('spiritual')) boost -= 40000;
                 // Penalize coding tools for non-coding searches
-                if (isCodingTool && !isCodingSearch) boost -= 30000;
+                if (isCodingTool && !isCodingSearch && !relatedCategories.includes('coding')) boost -= 40000;
                 // Penalize writing tools for non-writing searches
-                if (isWritingTool && !isWritingSearch) boost -= 20000;
+                if (isWritingTool && !isWritingSearch && !relatedCategories.includes('writing')) boost -= 30000;
                 // Penalize science tools for non-science searches
-                if (isScienceTool && !isScienceSearch && !isEducationSearch) boost -= 30000;
+                if (isScienceTool && !isScienceSearch && !isEducationSearch && !relatedCategories.includes('science')) boost -= 40000;
                 // Penalize game tools for non-game searches
-                if (isGameTool && !isGameSearch) boost -= 30000;
+                if (isGameTool && !isGameSearch && !relatedCategories.includes('gaming')) boost -= 40000;
                 // Penalize security tools for non-security searches
-                if (isSecurityTool && !isSecuritySearch && !isCodingSearch) boost -= 30000;
+                if (isSecurityTool && !isSecuritySearch && !isCodingSearch && !relatedCategories.includes('security')) boost -= 40000;
               }
               
-              // Boost matching categories
+              // Boost matching categories (primary matches)
               if (isTradingSearch && isTradingTool) boost += 80000;
               if (isVideoSearch && isVideoTool) boost += 80000;
               if (isMusicSearch && isMusicTool) boost += 80000;
