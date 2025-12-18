@@ -47,7 +47,7 @@ class LRUCache<K, V> {
 
 // Global search cache (persists across component re-renders)
 // NOTE: versioned to prevent "stale" cached results after search-intelligence updates.
-const SEARCH_CACHE_VERSION = "v12";
+const SEARCH_CACHE_VERSION = "v13";
 const searchCache = new LRUCache<string, any[]>(50);
 
 // ==================== INTELLIGENCE MAPS (precomputed, instant lookup) ====================
@@ -565,6 +565,33 @@ const PHRASE_TO_TOOLS: Record<string, string[]> = {
   "landing page": ["Lovable", "Bolt.new", "Webflow", "Framer", "Carrd", "Unbounce"],
   "build website": ["Lovable", "Bolt.new", "Webflow", "Framer", "Wix", "Squarespace"],
   "site builder": ["Lovable", "Bolt.new", "Webflow", "Framer", "Wix", "Squarespace"],
+  
+  // ==================== TRADING & FINANCE ====================
+  "trading": ["Trader GPT", "ChainGPT", "FinChat.io", "Buy Forex Expert Advisor Online", "Predictive Credit Score Checker GPT"],
+  "trade": ["Trader GPT", "ChainGPT", "FinChat.io", "Buy Forex Expert Advisor Online"],
+  "trader": ["Trader GPT", "ChainGPT", "FinChat.io", "Buy Forex Expert Advisor Online"],
+  "day trading": ["Trader GPT", "ChainGPT", "FinChat.io", "Buy Forex Expert Advisor Online"],
+  "daytrading": ["Trader GPT", "ChainGPT", "FinChat.io", "Buy Forex Expert Advisor Online"],
+  "day trader": ["Trader GPT", "ChainGPT", "FinChat.io", "Buy Forex Expert Advisor Online"],
+  "daytrader": ["Trader GPT", "ChainGPT", "FinChat.io", "Buy Forex Expert Advisor Online"],
+  "trading advice": ["Trader GPT", "ChainGPT", "FinChat.io"],
+  "trade stocks": ["Trader GPT", "FinChat.io", "ChainGPT"],
+  "trade crypto": ["ChainGPT", "Trader GPT"],
+  "stock": ["Trader GPT", "FinChat.io", "ChainGPT", "Predictive Credit Score Checker GPT"],
+  "stocks": ["Trader GPT", "FinChat.io", "ChainGPT", "Predictive Credit Score Checker GPT"],
+  "stock market": ["Trader GPT", "FinChat.io", "ChainGPT"],
+  "stock trading": ["Trader GPT", "FinChat.io", "ChainGPT"],
+  "crypto": ["ChainGPT", "Trader GPT", "FinChat.io"],
+  "cryptocurrency": ["ChainGPT", "Trader GPT", "FinChat.io"],
+  "bitcoin": ["ChainGPT", "Trader GPT"],
+  "forex": ["Buy Forex Expert Advisor Online", "Trader GPT", "FinChat.io"],
+  "investment": ["Trader GPT", "FinChat.io", "ChainGPT", "Business Plan Generator GPT"],
+  "investing": ["Trader GPT", "FinChat.io", "ChainGPT", "Business Plan Generator GPT"],
+  "invest": ["Trader GPT", "FinChat.io", "ChainGPT", "Business Plan Generator GPT"],
+  "market analysis": ["Trader GPT", "FinChat.io", "ChainGPT", "Data Research Analysis Report GPT"],
+  "financial": ["FinChat.io", "Trader GPT", "Taxes GPT", "Predictive Credit Score Checker GPT", "Insurance Claims GPT"],
+  "finance": ["FinChat.io", "Trader GPT", "Taxes GPT", "Predictive Credit Score Checker GPT", "Insurance Claims GPT"],
+  "money": ["Trader GPT", "FinChat.io", "Taxes GPT", "Predictive Credit Score Checker GPT", "Business Plan Generator GPT"],
   
   // ==================== BUSINESS TOOLS ====================
   "business": ["Business Plan Generator GPT", "Startup Validator GPT", "MicroSaaS GPT", "Taxes GPT", "The Resume & Job Finder Ai Suite", "Grant Writer GPT", "Training Manual Generator GPT", "Data Research Analysis Report GPT", "MULTITASKER GPT"],
