@@ -16,6 +16,7 @@ import { deduplicateSearchResults } from "./core/searchDeduplication";
 import { getAlphabeticalSortKey, sortToolsAlphabetically } from "./alphabeticalSorting";
 import { performSimpleSearch } from "./simpleSearch";
 import { applySearchInterleaving } from "./searchInterleaving";
+import { getMatchingPhraseHandler, toolMatchesPhraseHandler, scorePhraseHandlerMatch } from "./commonPhraseHandlers";
 
 // Tools to exclude from search results
 const EXCLUDED_TOOLS = [
@@ -220,6 +221,35 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   const userIntent = detectIntent(normalizedSearchTerm);
   const intentConfig = userIntent ? INTENT_PATTERNS[userIntent as keyof typeof INTENT_PATTERNS] : null;
   
+  // COMMON PHRASE HANDLER - Check 50 common search phrases first
+  const phraseHandler = getMatchingPhraseHandler(normalizedSearchTerm);
+  if (phraseHandler) {
+    debugLog(`🎯 PHRASE HANDLER MATCHED: Finding tools for "${normalizedSearchTerm}"`);
+    
+    // Get all matching tools
+    const matchingTools = tools.filter(tool => {
+      if (EXCLUDED_TOOLS.includes(tool.title)) return false;
+      return toolMatchesPhraseHandler(tool, phraseHandler);
+    });
+    
+    debugLog(`🎯 Found ${matchingTools.length} matching tools`);
+    
+    // Score and sort matching tools
+    const scoredTools = matchingTools.map(tool => ({
+      tool,
+      score: scorePhraseHandlerMatch(tool, phraseHandler)
+    })).sort((a, b) => b.score - a.score);
+    
+    const sortedMatchingTools = scoredTools.map(st => st.tool);
+    
+    // Get non-matching tools for infinite scroll
+    const nonMatchingTools = tools.filter(tool => 
+      !EXCLUDED_TOOLS.includes(tool.title) && !matchingTools.includes(tool)
+    );
+    
+    return deduplicateSearchResults([...sortedMatchingTools, ...nonMatchingTools]);
+  }
+
   // TIME MACHINE SEARCH PRIORITY - Exact phrase matching for all time machine variants
   if (normalizedSearchTerm.includes('time machine') || normalizedSearchTerm.includes('timemachine') ||
       (normalizedSearchTerm.includes('time') && normalizedSearchTerm.includes('machine'))) {
