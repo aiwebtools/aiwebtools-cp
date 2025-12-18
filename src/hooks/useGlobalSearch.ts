@@ -47,7 +47,7 @@ class LRUCache<K, V> {
 
 // Global search cache (persists across component re-renders)
 // NOTE: versioned to prevent "stale" cached results after search-intelligence updates.
-const SEARCH_CACHE_VERSION = "v15";
+const SEARCH_CACHE_VERSION = "v16";
 const searchCache = new LRUCache<string, any[]>(50);
 
 // ==================== INTELLIGENCE MAPS (precomputed, instant lookup) ====================
@@ -1140,7 +1140,38 @@ export const useGlobalSearch = () => {
         return aIdx - bIdx;
       });
       
-      const results = [...matched, ...remaining.slice(0, 50)];
+      // Get categories from matched tools to prioritize similar tools in remaining
+      const matchedCategories = new Set(matched.map(t => t.category?.toLowerCase()).filter(Boolean));
+      const matchedTags = new Set(matched.flatMap(t => (t.tags || []).map((tag: string) => tag.toLowerCase())));
+      
+      // Sort remaining by category/tag relevance to matched tools
+      const scoredRemaining = remaining.map(tool => {
+        let score = 0;
+        const cat = tool.category?.toLowerCase() || '';
+        const toolTags = (tool.tags || []).map((t: string) => t.toLowerCase());
+        
+        // Boost tools from same category
+        if (matchedCategories.has(cat)) score += 1000;
+        
+        // Boost tools with matching tags
+        for (const tag of toolTags) {
+          if (matchedTags.has(tag)) score += 100;
+        }
+        
+        // Penalize video tools when searching for non-video terms (trading, finance, etc.)
+        const isVideoTool = cat.includes('video') || toolTags.some((t: string) => 
+          t.includes('video') || t.includes('text to video') || t.includes('video generation')
+        );
+        const isVideoSearch = qRaw.includes('video') || qRaw.includes('movie') || qRaw.includes('film');
+        if (isVideoTool && !isVideoSearch) score -= 500;
+        
+        return { tool, score };
+      });
+      
+      scoredRemaining.sort((a, b) => b.score - a.score);
+      const sortedRemaining = scoredRemaining.map(s => s.tool);
+      
+      const results = [...matched, ...sortedRemaining.slice(0, 50)];
       searchCache.set(cacheKey, results);
       return results;
     }
@@ -1155,12 +1186,37 @@ export const useGlobalSearch = () => {
           }
         }
         if (matched.length > 0) {
-          // Continue with normal search but prepend matched tools
+          // Get categories from matched tools to prioritize similar tools
+          const matchedCategories = new Set(matched.map(t => t.category?.toLowerCase()).filter(Boolean));
+          const matchedTags = new Set(matched.flatMap(t => (t.tags || []).map((tag: string) => tag.toLowerCase())));
           const matchedTitles = new Set(matched.map(m => m.title));
+          
+          // Score remaining tools by relevance
           const rest = quickIndex
             .filter(it => !matchedTitles.has(it.tool.title))
+            .map(it => {
+              let score = 0;
+              const cat = it.tool.category?.toLowerCase() || '';
+              const toolTags = (it.tool.tags || []).map((t: string) => t.toLowerCase());
+              
+              if (matchedCategories.has(cat)) score += 1000;
+              for (const tag of toolTags) {
+                if (matchedTags.has(tag)) score += 100;
+              }
+              
+              // Penalize video tools for non-video searches
+              const isVideoTool = cat.includes('video') || toolTags.some((t: string) => 
+                t.includes('video') || t.includes('text to video')
+              );
+              const isVideoSearch = qRaw.includes('video') || qRaw.includes('movie') || qRaw.includes('film');
+              if (isVideoTool && !isVideoSearch) score -= 500;
+              
+              return { tool: it.tool, score };
+            })
+            .sort((a, b) => b.score - a.score)
             .slice(0, 30)
-            .map(it => it.tool);
+            .map(s => s.tool);
+          
           const results = [...matched, ...rest];
           searchCache.set(cacheKey, results);
           return results;
