@@ -120,6 +120,16 @@ const COMPOUND_WORD_MAPPINGS: Record<string, string> = {
   'gpt 5': 'gpt5',
   'claude 3': 'claude3',
   'claude 4': 'claude4',
+  // Web3 mappings
+  'web 3': 'web3',
+  'web3 domains': 'web3domains',
+  'world peace': 'worldpeace',
+  'world trade': 'worldtrade',
+  'transfer money': 'transfermoney',
+  'transfer coin': 'transfercoin',
+  'coin transfer': 'cointransfer',
+  'cash transfer': 'cashtransfer',
+  'transfer cash': 'transfercash',
 };
 
 // Normalize compound words in search term
