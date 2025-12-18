@@ -47,7 +47,7 @@ class LRUCache<K, V> {
 
 // Global search cache (persists across component re-renders)
 // NOTE: versioned to prevent "stale" cached results after search-intelligence updates.
-const SEARCH_CACHE_VERSION = "v19";
+const SEARCH_CACHE_VERSION = "v20";
 const searchCache = new LRUCache<string, any[]>(50);
 
 // ==================== INTELLIGENCE MAPS (precomputed, instant lookup) ====================
@@ -1785,10 +1785,107 @@ export const useGlobalSearch = () => {
           mustHave.forEach(push);
           reranked.forEach(push);
 
-          // Cache full search results
-          searchCache.set(fullCacheKey, merged);
+          // Spread out similar tools (GPT/Gem variants) so they're not adjacent
+          // Tools with similar base names should be at least 10 positions apart
+          const spreadSimilarTools = (tools: any[]): any[] => {
+            if (tools.length < 15) return tools; // Not enough tools to matter
+            
+            // Normalize title to detect variants (remove GPT, GEM, GEMINI suffixes)
+            const normalizeForComparison = (title: string): string => {
+              return title.toLowerCase()
+                .replace(/\s*(gpt|gem|gemini|\(gem\)|\[gem\])\s*/gi, ' ')
+                .replace(/\s+/g, ' ')
+                .trim();
+            };
+            
+            const result: any[] = [];
+            const usedIndices = new Set<number>();
+            const recentBases: { base: string; position: number }[] = [];
+            const MIN_DISTANCE = 10;
+            
+            for (let i = 0; i < tools.length; i++) {
+              if (usedIndices.has(i)) continue;
+              
+              const tool = tools[i];
+              const title = (tool?.title || "").toLowerCase();
+              const baseTitle = normalizeForComparison(title);
+              
+              // Check if a similar tool was placed recently
+              const similarRecent = recentBases.find(rb => {
+                // Check if bases are similar (one contains the other or high overlap)
+                const base1Words = rb.base.split(' ').filter(Boolean);
+                const base2Words = baseTitle.split(' ').filter(Boolean);
+                const commonWords = base1Words.filter(w => base2Words.includes(w));
+                return commonWords.length >= Math.min(base1Words.length, base2Words.length) * 0.6;
+              });
+              
+              if (similarRecent && (result.length - similarRecent.position) < MIN_DISTANCE) {
+                // Defer this tool - find a non-similar tool to insert instead
+                let inserted = false;
+                for (let j = i + 1; j < tools.length && j < i + 20; j++) {
+                  if (usedIndices.has(j)) continue;
+                  const altTool = tools[j];
+                  const altTitle = (altTool?.title || "").toLowerCase();
+                  const altBase = normalizeForComparison(altTitle);
+                  
+                  const altSimilar = recentBases.find(rb => {
+                    const base1Words = rb.base.split(' ').filter(Boolean);
+                    const base2Words = altBase.split(' ').filter(Boolean);
+                    const commonWords = base1Words.filter(w => base2Words.includes(w));
+                    return commonWords.length >= Math.min(base1Words.length, base2Words.length) * 0.6;
+                  });
+                  
+                  if (!altSimilar || (result.length - altSimilar.position) >= MIN_DISTANCE) {
+                    // Insert this non-similar tool
+                    result.push(altTool);
+                    usedIndices.add(j);
+                    recentBases.push({ base: altBase, position: result.length - 1 });
+                    // Clean up old entries
+                    while (recentBases.length > 0 && (result.length - recentBases[0].position) > MIN_DISTANCE) {
+                      recentBases.shift();
+                    }
+                    inserted = true;
+                    break;
+                  }
+                }
+                
+                if (!inserted) {
+                  // No alternative found, just insert the original
+                  result.push(tool);
+                  usedIndices.add(i);
+                  recentBases.push({ base: baseTitle, position: result.length - 1 });
+                }
+                
+                // Now we need to re-add the deferred tool later by continuing the loop
+                // It will be picked up when we revisit
+              } else {
+                // No conflict, add normally
+                result.push(tool);
+                usedIndices.add(i);
+                recentBases.push({ base: baseTitle, position: result.length - 1 });
+                // Clean up old entries
+                while (recentBases.length > 0 && (result.length - recentBases[0].position) > MIN_DISTANCE) {
+                  recentBases.shift();
+                }
+              }
+            }
+            
+            // Add any remaining tools that weren't inserted
+            for (let i = 0; i < tools.length; i++) {
+              if (!usedIndices.has(i)) {
+                result.push(tools[i]);
+              }
+            }
+            
+            return result;
+          };
+          
+          const spreadResults = spreadSimilarTools(merged);
 
-          setSearchResults(merged);
+          // Cache full search results
+          searchCache.set(fullCacheKey, spreadResults);
+
+          setSearchResults(spreadResults);
           setDisplayedCount(50);
         };
 
