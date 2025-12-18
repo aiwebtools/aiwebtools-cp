@@ -375,6 +375,413 @@ export const COMMON_PHRASE_HANDLERS: Record<string, PhraseHandler> = {
     keywords: ['translate', 'translation', 'language', 'translator', 'interpret'],
     priorityTools: ['DeepL', 'Google Translate', 'ChatGPT'],
     relatedCategories: ['AI Chatbots', 'Translation Tools']
+  },
+
+  // ===== NICHE QUERIES - ANTIQUES & COLLECTIBLES =====
+  appraiseAntiques: {
+    triggers: ['appraise antiques', 'antique appraisal', 'value antiques', 'antique worth', 'old items value', 'collectible appraisal'],
+    keywords: ['antique', 'appraisal', 'collectible', 'vintage', 'value', 'worth', 'rare'],
+    priorityTools: ['Antique and Collectible Appraisal GPT', 'Artwork & Vintage Appraisal GPT'],
+    relatedCategories: ['Appraisal Tools', 'Collectibles']
+  },
+
+  appraiseArt: {
+    triggers: ['appraise art', 'art appraisal', 'artwork value', 'painting worth', 'art valuation'],
+    keywords: ['art', 'artwork', 'painting', 'sculpture', 'appraisal', 'value', 'gallery'],
+    priorityTools: ['Artwork & Vintage Appraisal GPT', 'Antique and Collectible Appraisal GPT'],
+    relatedCategories: ['Appraisal Tools', 'Art']
+  },
+
+  sportCards: {
+    triggers: ['sports cards', 'card appraisal', 'baseball cards', 'trading cards', 'card value', 'sport card'],
+    keywords: ['card', 'sports', 'baseball', 'basketball', 'trading', 'collectible', 'grading'],
+    priorityTools: ['Sport Card Appraisal GPT'],
+    relatedCategories: ['Appraisal Tools', 'Collectibles']
+  },
+
+  // ===== SURVIVAL & PREPAREDNESS =====
+  survivalSkills: {
+    triggers: ['survival skills', 'survivalist', 'prepping', 'emergency preparedness', 'wilderness survival', 'doomsday prep'],
+    keywords: ['survival', 'survivalist', 'prepper', 'emergency', 'wilderness', 'bushcraft', 'disaster'],
+    priorityTools: ['Survivalist GPT', 'Self Sufficiency GPT'],
+    relatedCategories: ['Survival & Preparedness', 'Emergency Tools']
+  },
+
+  selfSufficiency: {
+    triggers: ['self sufficiency', 'homesteading', 'off grid', 'live off grid', 'sustainable living', 'self sufficient'],
+    keywords: ['homestead', 'self sufficient', 'off grid', 'sustainable', 'farming', 'garden'],
+    priorityTools: ['Self Sufficiency GPT', 'Agronomus AI Farming Expert', 'Survivalist GPT'],
+    relatedCategories: ['Homesteading', 'Sustainable Living']
+  },
+
+  // ===== SPACE & EXPLORATION =====
+  spaceExploration: {
+    triggers: ['space exploration', 'explore space', 'astronomy', 'space travel', 'exoplanets', 'cosmos'],
+    keywords: ['space', 'astronomy', 'cosmos', 'planet', 'galaxy', 'star', 'nasa', 'exoplanet'],
+    priorityTools: ['Stellaris: 🚀AI Space Explorer', 'Illuminous World Data Explorer GPT'],
+    relatedCategories: ['Science & Research', 'Space & Astronomy']
+  },
+
+  alienLife: {
+    triggers: ['alien life', 'extraterrestrial', 'ufo', 'aliens', 'ufos', 'et life', 'are aliens real'],
+    keywords: ['alien', 'ufo', 'extraterrestrial', 'et', 'abduction', 'sighting', 'phenomenon'],
+    priorityTools: ['Phenomenon Explorer AI Suite', 'Stellaris: 🚀AI Space Explorer'],
+    relatedCategories: ['Paranormal', 'Space & Astronomy']
+  },
+
+  // ===== GENEALOGY & HISTORY =====
+  genealogyResearch: {
+    triggers: ['genealogy research', 'family tree', 'ancestry', 'find ancestors', 'family history', 'trace lineage'],
+    keywords: ['genealogy', 'ancestry', 'family tree', 'lineage', 'heritage', 'relatives', 'dna'],
+    priorityTools: ['Person Information Finder GPT', 'TALK TO HISTORY GPT'],
+    relatedCategories: ['Research & Academic', 'Genealogy']
+  },
+
+  historyResearch: {
+    triggers: ['history research', 'historical research', 'learn history', 'ancient history', 'world history'],
+    keywords: ['history', 'historical', 'ancient', 'medieval', 'war', 'civilization', 'empire'],
+    priorityTools: ['TALK TO HISTORY GPT', 'TIME MACHINE GPT', 'Historical Headlines GPT'],
+    relatedCategories: ['History', 'Education & Learning']
+  },
+
+  talkToHistoricalFigure: {
+    triggers: ['talk to historical figure', 'chat with einstein', 'talk to tesla', 'speak to ancestors', 'historical conversation'],
+    keywords: ['historical', 'figure', 'einstein', 'tesla', 'ancestor', 'conversation', 'resurrect'],
+    priorityTools: ['TALK TO HISTORY GPT', 'Nikola Tesla GPT', 'Albert Einstein GPT', 'Resurrection GPT'],
+    relatedCategories: ['Spirituality & Philosophy', 'History']
+  },
+
+  // ===== CANNABIS & PLANTS =====
+  cannabisInfo: {
+    triggers: ['cannabis info', 'marijuana', 'weed help', 'cannabis strains', 'grow cannabis', 'cbd info'],
+    keywords: ['cannabis', 'marijuana', 'weed', 'cbd', 'thc', 'strain', 'hemp', 'grow'],
+    priorityTools: ['Cannabis GPT'],
+    relatedCategories: ['Health & Wellness', 'Cannabis']
+  },
+
+  mushroomInfo: {
+    triggers: ['mushroom info', 'mushroom identification', 'fungi', 'mycology', 'foraging mushrooms', 'grow mushrooms'],
+    keywords: ['mushroom', 'fungi', 'mycology', 'foraging', 'spore', 'cultivation', 'edible'],
+    priorityTools: ['Fungus GPT – AI Mushroom Specialist'],
+    relatedCategories: ['Health & Wellness', 'Mycology']
+  },
+
+  farmingHelp: {
+    triggers: ['farming help', 'agriculture', 'grow crops', 'farm advice', 'farming tips', 'crop management'],
+    keywords: ['farm', 'farming', 'agriculture', 'crop', 'soil', 'harvest', 'agronomy'],
+    priorityTools: ['Agronomus AI Farming Expert', 'Self Sufficiency GPT'],
+    relatedCategories: ['Agriculture', 'Farming Tools']
+  },
+
+  // ===== PARANORMAL & MYSTERIES =====
+  paranormalInvestigation: {
+    triggers: ['paranormal investigation', 'ghost hunting', 'supernatural', 'haunted', 'spirit communication'],
+    keywords: ['paranormal', 'ghost', 'supernatural', 'haunted', 'spirit', 'psychic', 'medium'],
+    priorityTools: ['Phenomenon Explorer AI Suite', 'Oraculum – The Revealer of Hidden "Truths"'],
+    relatedCategories: ['Paranormal', 'Spirituality & Philosophy']
+  },
+
+  cryptozoology: {
+    triggers: ['cryptozoology', 'cryptids', 'bigfoot', 'loch ness', 'mythical creatures', 'monster sightings'],
+    keywords: ['cryptid', 'bigfoot', 'sasquatch', 'creature', 'monster', 'sighting', 'legend'],
+    priorityTools: ['Phenomenon Explorer AI Suite', 'Criminologist GPT'],
+    relatedCategories: ['Paranormal', 'Cryptozoology']
+  },
+
+  conspiracyResearch: {
+    triggers: ['conspiracy research', 'hidden truth', 'secret history', 'cover up', 'deep state', 'truth seeking'],
+    keywords: ['conspiracy', 'hidden', 'secret', 'truth', 'coverup', 'illuminati', 'investigate'],
+    priorityTools: ['Oraculum – The Revealer of Hidden "Truths"', 'Uncovering Hidden Historical Patterns GPT', 'FACT CHECKER GPT'],
+    relatedCategories: ['Research & Academic', 'Truth Seeking']
+  },
+
+  // ===== CRIME & INVESTIGATION =====
+  crimeInvestigation: {
+    triggers: ['crime investigation', 'forensics', 'solve crime', 'criminal investigation', 'detective work'],
+    keywords: ['crime', 'forensic', 'investigation', 'detective', 'evidence', 'criminal', 'case'],
+    priorityTools: ['Criminologist GPT', 'Sketch Artist GPT'],
+    relatedCategories: ['Legal & Government', 'Investigation']
+  },
+
+  findPerson: {
+    triggers: ['find person', 'locate someone', 'people search', 'find someone', 'background check'],
+    keywords: ['person', 'find', 'locate', 'search', 'background', 'lookup', 'trace'],
+    priorityTools: ['Person Information Finder GPT'],
+    relatedCategories: ['Research & Academic', 'People Search']
+  },
+
+  // ===== RELIGION & PHILOSOPHY =====
+  compareReligions: {
+    triggers: ['compare religions', 'world religions', 'religious comparison', 'different faiths', 'spirituality comparison'],
+    keywords: ['religion', 'faith', 'spiritual', 'belief', 'theology', 'compare', 'christian', 'buddhist', 'hindu', 'islam'],
+    priorityTools: ['God Is Light GPT', 'TALK TO THE GODS GPT', 'Sophia Aeterna AI'],
+    relatedCategories: ['Spirituality & Philosophy', 'Religion']
+  },
+
+  philosophyDiscussion: {
+    triggers: ['philosophy discussion', 'philosophical questions', 'meaning of life', 'existential questions', 'deep thinking'],
+    keywords: ['philosophy', 'philosophical', 'existential', 'meaning', 'wisdom', 'truth', 'socrates'],
+    priorityTools: ['ALAN WATTS GPT', 'Carl Sagan GPT', 'Sophia Aeterna AI', 'Socrates GPT'],
+    relatedCategories: ['Spirituality & Philosophy', 'Philosophy']
+  },
+
+  ancientWisdom: {
+    triggers: ['ancient wisdom', 'ancient knowledge', 'lost knowledge', 'ancient texts', 'esoteric knowledge'],
+    keywords: ['ancient', 'wisdom', 'esoteric', 'mystical', 'occult', 'sacred', 'gnostic'],
+    priorityTools: ['Intergalactic Ancient Archivist GPT', 'Sophia Aeterna AI', 'Historical Apothecary GPT', 'Alchemist Scientist GPT'],
+    relatedCategories: ['Spirituality & Philosophy', 'Ancient Studies']
+  },
+
+  // ===== GAMING & ENTERTAINMENT =====
+  gameDesign: {
+    triggers: ['game design', 'make a game', 'video game design', 'game development', 'create game'],
+    keywords: ['game', 'gaming', 'design', 'development', 'unity', 'unreal', 'rpg'],
+    priorityTools: ['Game Design Document / Developer GPT', 'Unity', 'Unreal Engine'],
+    relatedCategories: ['Gaming & Entertainment', 'Game Development']
+  },
+
+  triviaQuestions: {
+    triggers: ['trivia questions', 'trivia night', 'quiz questions', 'pub quiz', 'trivia game'],
+    keywords: ['trivia', 'quiz', 'question', 'game', 'knowledge', 'fun fact'],
+    priorityTools: ['Trivia Night GPT', 'Quiz Maker Ai'],
+    relatedCategories: ['Gaming & Entertainment', 'Trivia']
+  },
+
+  // ===== AUTOMOTIVE & VEHICLES =====
+  carHelp: {
+    triggers: ['car help', 'car repair', 'auto repair', 'vehicle problems', 'fix car', 'car advice'],
+    keywords: ['car', 'auto', 'vehicle', 'repair', 'mechanic', 'engine', 'maintenance'],
+    priorityTools: ['AUTOMOBILE GPT'],
+    relatedCategories: ['Automotive', 'Vehicle Tools']
+  },
+
+  // ===== OIL & ENERGY =====
+  oilAndGas: {
+    triggers: ['oil and gas', 'drilling', 'petroleum', 'energy industry', 'oil exploration'],
+    keywords: ['oil', 'gas', 'drilling', 'petroleum', 'energy', 'exploration', 'rig'],
+    priorityTools: ['Drill Baby Drill Ai Suite For Oil & Gas'],
+    relatedCategories: ['Energy & Resources', 'Oil & Gas']
+  },
+
+  solarEnergy: {
+    triggers: ['solar energy', 'solar panels', 'solar installation', 'renewable energy', 'solar power'],
+    keywords: ['solar', 'renewable', 'energy', 'panel', 'photovoltaic', 'green', 'sustainable'],
+    priorityTools: ['Solar Land Assessor GPT', 'Sustainable Futures GPT'],
+    relatedCategories: ['Energy & Resources', 'Solar Energy']
+  },
+
+  // ===== REAL ESTATE & PROPERTY =====
+  propertyInfo: {
+    triggers: ['property info', 'real estate', 'property data', 'home value', 'property search'],
+    keywords: ['property', 'real estate', 'home', 'house', 'land', 'value', 'market'],
+    priorityTools: ['Property Data Finder GPT'],
+    relatedCategories: ['Real Estate', 'Property Tools']
+  },
+
+  // ===== FIREARMS & SAFETY =====
+  firearmsInfo: {
+    triggers: ['firearms info', 'gun safety', 'shooting', 'firearm training', 'gun education'],
+    keywords: ['firearm', 'gun', 'shooting', 'safety', 'training', 'weapon', 'ammunition'],
+    priorityTools: ['Firearms Safety Instructor GPT'],
+    relatedCategories: ['Safety & Training', 'Firearms']
+  },
+
+  // ===== FISHING & OUTDOORS =====
+  fishingHelp: {
+    triggers: ['fishing help', 'go fishing', 'fishing tips', 'best fishing spots', 'catch fish'],
+    keywords: ['fishing', 'fish', 'angler', 'bait', 'tackle', 'lake', 'river', 'ocean'],
+    priorityTools: ['Fisherman GPT🎣😊'],
+    relatedCategories: ['Outdoor Activities', 'Fishing']
+  },
+
+  // ===== FASHION & STYLE =====
+  fashionAdvice: {
+    triggers: ['fashion advice', 'style help', 'outfit ideas', 'what to wear', 'personal style'],
+    keywords: ['fashion', 'style', 'outfit', 'clothing', 'wear', 'wardrobe', 'look'],
+    priorityTools: ['RESTYLE ME GPT'],
+    relatedCategories: ['Fashion & Style', 'Personal Styling']
+  },
+
+  tattooDesign: {
+    triggers: ['tattoo design', 'tattoo ideas', 'design tattoo', 'custom tattoo', 'tattoo artist'],
+    keywords: ['tattoo', 'design', 'ink', 'body art', 'custom', 'artist', 'sleeve'],
+    priorityTools: ['Tattoo Designer GPT'],
+    relatedCategories: ['Art & Design', 'Tattoos']
+  },
+
+  // ===== GOVERNMENT & LEGISLATION =====
+  writeLegislation: {
+    triggers: ['write legislation', 'draft law', 'legislative writing', 'policy writing', 'government policy'],
+    keywords: ['legislation', 'law', 'policy', 'bill', 'government', 'congress', 'senate'],
+    priorityTools: ['Legislation Writer GPT', 'Public Testimony Writer GPT', 'Legislator Link GPT'],
+    relatedCategories: ['Legal & Government', 'Legislation']
+  },
+
+  publicTestimony: {
+    triggers: ['public testimony', 'testify', 'government hearing', 'public comment', 'citizen testimony'],
+    keywords: ['testimony', 'testify', 'hearing', 'comment', 'public', 'legislature', 'council'],
+    priorityTools: ['Public Testimony Writer GPT', 'Legislator Link GPT'],
+    relatedCategories: ['Legal & Government', 'Public Engagement']
+  },
+
+  // ===== ARCHAEOLOGY & ANCIENT =====
+  archaeology: {
+    triggers: ['archaeology', 'ancient artifacts', 'archaeological dig', 'excavation', 'ancient ruins'],
+    keywords: ['archaeology', 'artifact', 'ancient', 'excavation', 'ruins', 'civilization', 'dig'],
+    priorityTools: ['Indiana Archeologist GPT', 'Intergalactic Ancient Archivist GPT'],
+    relatedCategories: ['History', 'Archaeology']
+  },
+
+  // ===== PERFORMING ARTS =====
+  theaterProduction: {
+    triggers: ['theater production', 'stage design', 'theatrical', 'performing arts', 'drama production'],
+    keywords: ['theater', 'stage', 'drama', 'performance', 'acting', 'production', 'play'],
+    priorityTools: ['STAGEMASTER AI SUITE FOR THE Preforming Arts', '🎭 Playwriter GPT'],
+    relatedCategories: ['Arts & Entertainment', 'Theater']
+  },
+
+  // ===== SUPPLY CHAIN & LOGISTICS =====
+  supplyChain: {
+    triggers: ['supply chain', 'logistics', 'shipping', 'inventory', 'supply management', 'distribution'],
+    keywords: ['supply chain', 'logistics', 'shipping', 'inventory', 'distribution', 'warehouse'],
+    priorityTools: ['Global Supply Chain Collapse GPT'],
+    relatedCategories: ['Business & Productivity', 'Logistics']
+  },
+
+  // ===== FIREFIGHTING & EMERGENCY =====
+  firefighting: {
+    triggers: ['firefighting', 'fire safety', 'wildfire', 'fire prevention', 'emergency response'],
+    keywords: ['fire', 'firefight', 'wildfire', 'emergency', 'rescue', 'safety', 'prevention'],
+    priorityTools: ['Firefighter GPT'],
+    relatedCategories: ['Safety & Emergency', 'Firefighting']
+  },
+
+  // ===== PROBABILITY & PREDICTIONS =====
+  probabilityAnalysis: {
+    triggers: ['probability analysis', 'odds calculator', 'what are the odds', 'likelihood', 'chance of'],
+    keywords: ['probability', 'odds', 'chance', 'likelihood', 'statistics', 'predict', 'forecast'],
+    priorityTools: ['Probability GPT', 'Fortune Teller GPT'],
+    relatedCategories: ['Data & Analytics', 'Predictions']
+  },
+
+  // ===== ENGINEERING =====
+  engineeringHelp: {
+    triggers: ['engineering help', 'engineer assistance', 'technical engineering', 'mechanical engineering', 'civil engineering'],
+    keywords: ['engineering', 'engineer', 'mechanical', 'electrical', 'civil', 'structural', 'design'],
+    priorityTools: ['Engineering GPT AI Suite'],
+    relatedCategories: ['Science & Research', 'Engineering']
+  },
+
+  // ===== PHARMACY & MEDICINE =====
+  pharmacyInfo: {
+    triggers: ['pharmacy info', 'medication info', 'drug information', 'prescription help', 'medicine lookup'],
+    keywords: ['pharmacy', 'medication', 'drug', 'prescription', 'medicine', 'pharmaceutical', 'rx'],
+    priorityTools: ['Pharmaceutical Assistant GPT', 'PHARMA RESEARCH PRO'],
+    relatedCategories: ['Health & Wellness', 'Pharmacy']
+  },
+
+  // ===== GRANTS & FUNDING =====
+  grantWriting: {
+    triggers: ['grant writing', 'write grant', 'grant application', 'funding application', 'get grants'],
+    keywords: ['grant', 'funding', 'application', 'nonprofit', 'proposal', 'foundation'],
+    priorityTools: ['Grant Writer GPT'],
+    relatedCategories: ['Business & Productivity', 'Nonprofit Tools']
+  },
+
+  // ===== WEB3 & BLOCKCHAIN =====
+  web3Domains: {
+    triggers: ['web3 domain', 'blockchain domain', 'decentralized web', 'crypto domain', 'web3 banking'],
+    keywords: ['web3', 'blockchain', 'decentralized', 'crypto', 'domain', 'defi', 'nft'],
+    priorityTools: ['.worldpeace', '.worldtrade', '.transfermoney'],
+    relatedCategories: ['Web3 & Blockchain', 'Cryptocurrency']
+  },
+
+  // ===== MARRIAGE & RELATIONSHIPS =====
+  marriageHelp: {
+    triggers: ['marriage help', 'relationship advice', 'couples therapy', 'marriage counseling', 'fix marriage'],
+    keywords: ['marriage', 'relationship', 'couple', 'counseling', 'therapy', 'spouse', 'partner'],
+    priorityTools: ['Marriage Mender GPT'],
+    relatedCategories: ['Health & Wellness', 'Relationships']
+  },
+
+  // ===== RESTAURANT & FOOD BUSINESS =====
+  restaurantMenu: {
+    triggers: ['restaurant menu', 'menu design', 'create menu', 'food menu', 'menu maker'],
+    keywords: ['restaurant', 'menu', 'food', 'dining', 'cafe', 'bistro', 'design'],
+    priorityTools: ['Restaurant Menu Maker GPT', 'Chef "Sizzle" AI Culinary Assistant'],
+    relatedCategories: ['Food & Cooking', 'Business Tools']
+  },
+
+  // ===== CREDIT & FINANCE =====
+  creditScore: {
+    triggers: ['credit score', 'check credit', 'improve credit', 'credit report', 'credit rating'],
+    keywords: ['credit', 'score', 'rating', 'report', 'fico', 'loan', 'debt'],
+    priorityTools: ['Predictive Credit Score Checker GPT'],
+    relatedCategories: ['Finance & Trading', 'Credit Tools']
+  },
+
+  // ===== COLORING & KIDS =====
+  coloringBook: {
+    triggers: ['coloring book', 'coloring pages', 'kids coloring', 'color pages', 'printable coloring'],
+    keywords: ['coloring', 'color', 'kids', 'children', 'printable', 'drawing', 'activity'],
+    priorityTools: ['Coloring Book Generator GPT', 'Children\'s Picture Book Maker GPT'],
+    relatedCategories: ['Education & Learning', 'Kids Activities']
+  },
+
+  // ===== PODCASTING =====
+  startPodcast: {
+    triggers: ['start podcast', 'podcast script', 'create podcast', 'podcast help', 'podcast writing'],
+    keywords: ['podcast', 'audio', 'episode', 'script', 'host', 'interview', 'show'],
+    priorityTools: ['Podcast Script Writer GPT'],
+    relatedCategories: ['Content Creation', 'Podcasting']
+  },
+
+  // ===== NATIVE AMERICAN HISTORY =====
+  nativeAmericanHistory: {
+    triggers: ['native american history', 'indigenous history', 'tribal history', 'native culture', 'first nations'],
+    keywords: ['native', 'indigenous', 'tribal', 'american indian', 'apache', 'cherokee', 'navajo'],
+    priorityTools: ['Native American History Time Machine GPT - (Special Edition)', 'Chief Crazy Horse GPT'],
+    relatedCategories: ['History', 'Cultural Studies']
+  },
+
+  // ===== AI WORLD SIMULATION =====
+  aiSimulation: {
+    triggers: ['ai simulation', 'if ai ruled', 'ai world', 'ai takeover', 'ai future', 'singularity'],
+    keywords: ['simulation', 'ai rule', 'future', 'singularity', 'takeover', 'scenario'],
+    priorityTools: ['"IF AI RULED THE WORLD" - AI SIMULATION GPT', 'GODMODE GPT'],
+    relatedCategories: ['AI & Technology', 'Simulations']
+  },
+
+  // ===== FOOD SAFETY =====
+  foodSafety: {
+    triggers: ['food safety', 'food quality', 'food inspection', 'is food safe', 'food ingredients'],
+    keywords: ['food', 'safety', 'quality', 'inspection', 'ingredient', 'nutrition', 'label'],
+    priorityTools: ['Food Quality Inspector GPT'],
+    relatedCategories: ['Health & Wellness', 'Food Safety']
+  },
+
+  // ===== UBI & SOCIAL POLICY =====
+  universalBasicIncome: {
+    triggers: ['universal basic income', 'ubi', 'basic income', 'guaranteed income', 'social welfare'],
+    keywords: ['ubi', 'basic income', 'universal', 'welfare', 'social', 'policy', 'guaranteed'],
+    priorityTools: ['Universal Basic Income Strategist GPT', 'Social Safety Net GPT'],
+    relatedCategories: ['Legal & Government', 'Social Policy']
+  },
+
+  // ===== WORLD PEACE =====
+  worldPeace: {
+    triggers: ['world peace', 'global peace', 'end wars', 'peace strategy', 'conflict resolution'],
+    keywords: ['peace', 'war', 'conflict', 'diplomacy', 'global', 'resolution', 'international'],
+    priorityTools: ['Global Peace Restoration Strategist GPT', 'WE THE PEOPLE AI'],
+    relatedCategories: ['Legal & Government', 'International Relations']
+  },
+
+  // ===== IMMORTALITY & LEGACY =====
+  digitalLegacy: {
+    triggers: ['digital legacy', 'immortalize', 'preserve memory', 'digital clone', 'after death'],
+    keywords: ['immortal', 'legacy', 'preserve', 'clone', 'memory', 'digital', 'eternal'],
+    priorityTools: ['ImmortalizeME', 'Resurrection GPT'],
+    relatedCategories: ['Spirituality & Philosophy', 'Legacy Tools']
   }
 };
 
