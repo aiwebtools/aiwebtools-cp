@@ -47,7 +47,7 @@ class LRUCache<K, V> {
 
 // Global search cache (persists across component re-renders)
 // NOTE: versioned to prevent "stale" cached results after search-intelligence updates.
-const SEARCH_CACHE_VERSION = "v20";
+const SEARCH_CACHE_VERSION = "v21";
 const searchCache = new LRUCache<string, any[]>(50);
 
 // ==================== INTELLIGENCE MAPS (precomputed, instant lookup) ====================
@@ -1649,39 +1649,100 @@ export const useGlobalSearch = () => {
               // Head-intent boosts (e.g., "learn everything" should still prioritize LEARN tools)
               if (!boost && qFirst && firstWord === qFirst) boost = 180000;
               
-              // Category mismatch penalties - prevent unrelated tools from appearing high
-              const isVideoTool = category.includes('video') || tags.some((t: string) => 
-                t.includes('video generation') || t.includes('text to video'));
-              const isMusicTool = category.includes('music') || category.includes('audio');
-              const isImageTool = category.includes('image') || category.includes('design');
+              // Category mismatch penalties - detect by category, tags, AND title keywords
+              const desc = (tool?.description || "").toLowerCase();
+              
+              // Video tools
+              const isVideoTool = category.includes('video') || 
+                tags.some((t: string) => t.includes('video generation') || t.includes('text to video')) ||
+                title.includes('video') || title.includes('sora') || title.includes('runway') || 
+                title.includes('pika') || title.includes('luma') || title.includes('film') || title.includes('movie maker');
+              
+              // Music tools
+              const isMusicTool = category.includes('music') || category.includes('audio') ||
+                title.includes('music') || title.includes('suno') || title.includes('udio') || title.includes('song');
+              
+              // Image tools
+              const isImageTool = category.includes('image') || category.includes('design') ||
+                title.includes('midjourney') || title.includes('dalle') || title.includes('stable diffusion') ||
+                title.includes('image gen') || title.includes('art gen');
+              
+              // Trading/Finance tools
               const isTradingTool = category.includes('trading') || category.includes('financial') || 
-                category.includes('finance') || tags.some((t: string) => t.includes('trading'));
+                category.includes('finance') || tags.some((t: string) => t.includes('trading')) ||
+                title.includes('trader') || title.includes('trading') || title.includes('crypto') || 
+                title.includes('bitcoin') || title.includes('forex') || title.includes('stock');
+              
+              // Business tools
               const isBusinessTool = category.includes('business') || category.includes('productivity') ||
-                tags.some((t: string) => t.includes('business') || t.includes('startup'));
-              const isHistoryTool = category.includes('history') || tags.some((t: string) => 
-                t.includes('history') || t.includes('historical') || t.includes('time machine'));
+                tags.some((t: string) => t.includes('business') || t.includes('startup')) ||
+                title.includes('business') || title.includes('startup') || title.includes('entrepreneur');
+              
+              // History tools - expanded detection
+              const isHistoryTool = category.includes('history') || category.includes('time') ||
+                tags.some((t: string) => t.includes('history') || t.includes('historical') || t.includes('time machine')) ||
+                title.includes('history') || title.includes('historical') || title.includes('time machine') ||
+                title.includes('ancient') || title.includes('civilization') || title.includes('past voices');
+              
+              // Education tools
               const isEducationTool = category.includes('education') || category.includes('learning') ||
-                tags.some((t: string) => t.includes('education') || t.includes('learning'));
+                tags.some((t: string) => t.includes('education') || t.includes('learning')) ||
+                title.includes('learn') || title.includes('course') || title.includes('tutor') || title.includes('degree');
+              
+              // Health tools
               const isHealthTool = category.includes('health') || category.includes('wellness') ||
-                category.includes('medical') || tags.some((t: string) => t.includes('health'));
-              const isLegalTool = category.includes('legal') || tags.some((t: string) => 
-                t.includes('legal') || t.includes('law'));
+                category.includes('medical') || tags.some((t: string) => t.includes('health')) ||
+                title.includes('health') || title.includes('doctor') || title.includes('medical') || title.includes('wellness');
+              
+              // Legal tools
+              const isLegalTool = category.includes('legal') || 
+                tags.some((t: string) => t.includes('legal') || t.includes('law')) ||
+                title.includes('legal') || title.includes('lawyer') || title.includes('attorney') || title.includes('law ');
+              
+              // Spiritual/Philosophy tools - EXPANDED detection by title keywords
               const isSpiritualTool = category.includes('spiritual') || category.includes('philosophy') ||
-                tags.some((t: string) => t.includes('spiritual') || t.includes('religion'));
+                tags.some((t: string) => t.includes('spiritual') || t.includes('religion') || t.includes('philosophy')) ||
+                title.includes('spiritual') || title.includes('soul') || title.includes('divine') || 
+                title.includes('god ') || title.includes('gods') || title.includes('meditation') ||
+                title.includes('buddha') || title.includes('jesus') || title.includes('prophet') ||
+                title.includes('saint') || title.includes('angel') || title.includes('mystic') ||
+                title.includes('wisdom') || title.includes('enlighten') || title.includes('consciousness') ||
+                title.includes('philosophy') || title.includes('socrates') || title.includes('plato') ||
+                title.includes('aristotle') || title.includes('confucius') || title.includes('lao tzu') ||
+                title.includes('alan watts') || title.includes('rumi') || title.includes('kabbalah') ||
+                title.includes('tarot') || title.includes('astrology') || title.includes('zodiac') ||
+                title.includes('resurrection') || title.includes('reincarnation') || title.includes('afterlife') ||
+                title.includes('heaven') || title.includes('prayer') || title.includes('scripture');
+              
+              // Coding tools
               const isCodingTool = category.includes('coding') || category.includes('development') ||
-                tags.some((t: string) => t.includes('coding') || t.includes('programming'));
+                tags.some((t: string) => t.includes('coding') || t.includes('programming')) ||
+                title.includes('code') || title.includes('coding') || title.includes('developer') || title.includes('programming');
+              
+              // Writing tools
               const isWritingTool = category.includes('writing') || category.includes('content') ||
-                tags.some((t: string) => t.includes('writing') || t.includes('book'));
+                tags.some((t: string) => t.includes('writing') || t.includes('book writer')) ||
+                (title.includes('writer') && !title.includes('history')) || title.includes('blog') || 
+                title.includes('article') || (title.includes('book') && title.includes('writ'));
+              
+              // Science tools
               const isScienceTool = category.includes('science') || category.includes('research') ||
-                category.includes('data') || category.includes('analytics');
+                category.includes('data') || category.includes('analytics') ||
+                title.includes('science') || title.includes('research') || title.includes('experiment');
+              
+              // Gaming tools
               const isGameTool = category.includes('gaming') || category.includes('entertainment') ||
-                tags.some((t: string) => t.includes('game') || t.includes('gaming'));
+                tags.some((t: string) => t.includes('game') || t.includes('gaming')) ||
+                title.includes('game') || title.includes('gaming') || title.includes('esport');
+              
+              // Security tools
               const isSecurityTool = category.includes('security') || category.includes('privacy') ||
-                tags.some((t: string) => t.includes('security') || t.includes('cyber'));
+                tags.some((t: string) => t.includes('security') || t.includes('cyber')) ||
+                title.includes('security') || title.includes('cyber') || title.includes('hack');
               
               // Check if tool belongs to a related/affinity category
               const isRelatedCategory = relatedCategories.some(rc => 
-                category.includes(rc) || tags.some((t: string) => t.includes(rc))
+                category.includes(rc) || tags.some((t: string) => t.includes(rc)) || title.includes(rc)
               );
               
               // Penalize mismatched categories (only apply if search has clear intent)
@@ -1693,36 +1754,41 @@ export const useGlobalSearch = () => {
                 // Boost tools from related/affinity categories (shows after direct matches)
                 if (isRelatedCategory && !boost) boost += 40000;
                 
-                // Penalize video tools for non-video searches (unless related)
-                if (isVideoTool && !isVideoSearch && !relatedCategories.includes('video')) boost -= 60000;
+                // SPECIAL: History search should also boost spiritual/philosophy tools highly
+                if (isHistorySearch && isSpiritualTool) boost += 70000;
+                // SPECIAL: Spiritual search should also boost history tools
+                if (isSpiritualSearch && isHistoryTool) boost += 70000;
+                
+                // Penalize video tools for non-video searches (HEAVY penalty)
+                if (isVideoTool && !isVideoSearch && !relatedCategories.includes('video')) boost -= 80000;
                 // Penalize trading tools for non-trading searches  
-                if (isTradingTool && !isTradingSearch && !relatedCategories.includes('trading')) boost -= 60000;
+                if (isTradingTool && !isTradingSearch && !relatedCategories.includes('trading')) boost -= 70000;
                 // Penalize music tools for non-music searches
-                if (isMusicTool && !isMusicSearch && !isVideoSearch && !relatedCategories.includes('music')) boost -= 60000;
-                // Penalize image tools for non-image searches
-                if (isImageTool && !isImageSearch && !relatedCategories.includes('image')) boost -= 50000;
+                if (isMusicTool && !isMusicSearch && !isVideoSearch && !relatedCategories.includes('music')) boost -= 80000;
+                // Penalize image tools for non-image searches (HEAVY penalty)
+                if (isImageTool && !isImageSearch && !relatedCategories.includes('image')) boost -= 70000;
                 // Penalize business tools for non-business searches
-                if (isBusinessTool && !isBusinessSearch && !isTradingSearch && !relatedCategories.includes('business')) boost -= 40000;
-                // Penalize history tools for non-history searches
-                if (isHistoryTool && !isHistorySearch && !isEducationSearch && !relatedCategories.includes('history')) boost -= 40000;
+                if (isBusinessTool && !isBusinessSearch && !isTradingSearch && !relatedCategories.includes('business')) boost -= 50000;
+                // Penalize history tools for non-history searches (but not for spiritual)
+                if (isHistoryTool && !isHistorySearch && !isSpiritualSearch && !isEducationSearch && !relatedCategories.includes('history')) boost -= 50000;
                 // Penalize education tools for non-education searches
-                if (isEducationTool && !isEducationSearch && !relatedCategories.includes('education')) boost -= 30000;
+                if (isEducationTool && !isEducationSearch && !isHistorySearch && !relatedCategories.includes('education')) boost -= 40000;
                 // Penalize health tools for non-health searches
-                if (isHealthTool && !isHealthSearch && !relatedCategories.includes('health')) boost -= 40000;
+                if (isHealthTool && !isHealthSearch && !relatedCategories.includes('health')) boost -= 50000;
                 // Penalize legal tools for non-legal searches
-                if (isLegalTool && !isLegalSearch && !relatedCategories.includes('legal')) boost -= 40000;
-                // Penalize spiritual tools for non-spiritual searches
-                if (isSpiritualTool && !isSpiritualSearch && !relatedCategories.includes('spiritual')) boost -= 40000;
+                if (isLegalTool && !isLegalSearch && !relatedCategories.includes('legal')) boost -= 50000;
+                // Penalize spiritual tools for non-spiritual searches (but not for history)
+                if (isSpiritualTool && !isSpiritualSearch && !isHistorySearch && !relatedCategories.includes('spiritual')) boost -= 50000;
                 // Penalize coding tools for non-coding searches
-                if (isCodingTool && !isCodingSearch && !relatedCategories.includes('coding')) boost -= 40000;
-                // Penalize writing tools for non-writing searches
-                if (isWritingTool && !isWritingSearch && !relatedCategories.includes('writing')) boost -= 30000;
+                if (isCodingTool && !isCodingSearch && !relatedCategories.includes('coding')) boost -= 50000;
+                // Penalize writing tools for non-writing searches (HEAVY penalty for history searches)
+                if (isWritingTool && !isWritingSearch && !relatedCategories.includes('writing')) boost -= 70000;
                 // Penalize science tools for non-science searches
-                if (isScienceTool && !isScienceSearch && !isEducationSearch && !relatedCategories.includes('science')) boost -= 40000;
+                if (isScienceTool && !isScienceSearch && !isEducationSearch && !relatedCategories.includes('science')) boost -= 50000;
                 // Penalize game tools for non-game searches
-                if (isGameTool && !isGameSearch && !relatedCategories.includes('gaming')) boost -= 40000;
+                if (isGameTool && !isGameSearch && !relatedCategories.includes('gaming')) boost -= 50000;
                 // Penalize security tools for non-security searches
-                if (isSecurityTool && !isSecuritySearch && !isCodingSearch && !relatedCategories.includes('security')) boost -= 40000;
+                if (isSecurityTool && !isSecuritySearch && !isCodingSearch && !relatedCategories.includes('security')) boost -= 50000;
               }
               
               // Boost matching categories (primary matches)
