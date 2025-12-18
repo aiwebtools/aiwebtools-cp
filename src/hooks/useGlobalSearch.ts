@@ -5,6 +5,14 @@ import { allTools } from "@/data/toolsData";
 import { searchTools } from "@/utils/searchUtils";
 import { createTimePortalEffect } from "@/utils/timeEffects";
 import { getCurrentToolCount } from "@/utils/toolCounter";
+import { 
+  CATEGORY_TITLE_KEYWORDS, 
+  SIBLING_CATEGORIES,
+  areSiblingCategories,
+  areInSameFamily,
+  detectToolCategoryFromTitle,
+  getCategoryRelationshipScore
+} from "@/utils/search/categoryIntelligence";
 
 // ==================== LRU CACHE FOR SEARCH RESULTS ====================
 // Caches the last 50 search queries to avoid recomputation on repeated searches
@@ -47,7 +55,7 @@ class LRUCache<K, V> {
 
 // Global search cache (persists across component re-renders)
 // NOTE: versioned to prevent "stale" cached results after search-intelligence updates.
-const SEARCH_CACHE_VERSION = "v21";
+const SEARCH_CACHE_VERSION = "v22";
 const searchCache = new LRUCache<string, any[]>(50);
 
 // ==================== INTELLIGENCE MAPS (precomputed, instant lookup) ====================
@@ -1556,80 +1564,45 @@ export const useGlobalSearch = () => {
           const q = t.toLowerCase().trim();
           const qFirst = q.split(/\s+/)[0] || "";
           
-          // Detect search intent for ALL category filtering
-          const isTradingSearch = q.includes("trad") || q.includes("stock") || q.includes("crypto") || 
-            q.includes("forex") || q.includes("invest") || q.includes("coin") || q.includes("bitcoin") ||
-            q.includes("ethereum") || q.includes("finance") || q.includes("financial") || q.includes("money");
-          const isVideoSearch = q.includes("video") || q.includes("movie") || q.includes("film") || 
-            q.includes("sora") || q.includes("runway") || q.includes("pika") || q.includes("luma");
-          const isMusicSearch = q.includes("music") || q.includes("song") || q.includes("audio") || 
-            q.includes("suno") || q.includes("udio");
-          const isImageSearch = q.includes("image") || q.includes("picture") || q.includes("photo") ||
-            q.includes("midjourney") || q.includes("dalle") || q.includes("stable diffusion");
-          const isBusinessSearch = q.includes("business") || q.includes("startup") || q.includes("entrepreneur") ||
-            q.includes("company") || q.includes("enterprise") || q.includes("productivity") || q.includes("workflow");
-          const isHistorySearch = q.includes("history") || q.includes("historical") || q.includes("ancient") ||
-            q.includes("time machine") || q.includes("past") || q.includes("civilization");
-          const isEducationSearch = q.includes("learn") || q.includes("education") || q.includes("course") ||
-            q.includes("study") || q.includes("school") || q.includes("degree") || q.includes("tutor");
-          const isHealthSearch = q.includes("health") || q.includes("medical") || q.includes("doctor") ||
-            q.includes("wellness") || q.includes("fitness") || q.includes("diet") || q.includes("mental");
-          const isLegalSearch = q.includes("legal") || q.includes("law") || q.includes("lawyer") ||
-            q.includes("attorney") || q.includes("contract") || q.includes("court");
-          const isSpiritualSearch = q.includes("spiritual") || q.includes("religion") || q.includes("god") ||
-            q.includes("meditation") || q.includes("soul") || q.includes("divine") || q.includes("mystic");
-          const isCodingSearch = q.includes("code") || q.includes("coding") || q.includes("programming") ||
-            q.includes("developer") || q.includes("software") || q.includes("app") || q.includes("web dev");
-          const isWritingSearch = q.includes("writ") || q.includes("book") || q.includes("story") ||
-            q.includes("blog") || q.includes("article") || q.includes("script") || q.includes("content");
-          const isScienceSearch = q.includes("science") || q.includes("research") || q.includes("experiment") ||
-            q.includes("data") || q.includes("analytic") || q.includes("physics") || q.includes("chemistry");
-          const isGameSearch = q.includes("game") || q.includes("gaming") || q.includes("play") ||
-            q.includes("esport") || q.includes("stream");
-          const isSecuritySearch = q.includes("security") || q.includes("cyber") || q.includes("hack") ||
-            q.includes("privacy") || q.includes("encrypt") || q.includes("protect");
-          
-          // Category affinity map - which categories are related to each other
-          const getCategoryAffinity = (searchType: string): string[] => {
-            const affinities: Record<string, string[]> = {
-              history: ['spiritual', 'philosophy', 'education', 'science', 'research'],
-              spiritual: ['history', 'philosophy', 'education', 'wellness', 'meditation'],
-              education: ['history', 'science', 'writing', 'research', 'learning'],
-              science: ['education', 'research', 'data', 'analytics', 'history'],
-              writing: ['education', 'content', 'creative', 'book', 'blog'],
-              business: ['productivity', 'finance', 'trading', 'marketing', 'startup'],
-              trading: ['finance', 'business', 'crypto', 'investment', 'analytics'],
-              health: ['wellness', 'fitness', 'medical', 'mental', 'nutrition'],
-              legal: ['business', 'contract', 'compliance', 'professional'],
-              coding: ['development', 'software', 'tech', 'automation', 'ai agents'],
-              video: ['creative', 'multimedia', 'film', 'animation', 'content'],
-              image: ['creative', 'design', 'art', 'visual', 'graphics'],
-              music: ['audio', 'creative', 'entertainment', 'sound'],
-              gaming: ['entertainment', 'creative', 'streaming', 'interactive'],
-              security: ['coding', 'privacy', 'cyber', 'tech', 'protection']
-            };
-            return affinities[searchType] || [];
+          // Detect search intent for ALL category filtering using intelligent keywords
+          const detectSearchIntent = (query: string): string[] => {
+            const intents: string[] = [];
+            const q = query.toLowerCase();
+            
+            // Check each category's keywords
+            for (const [category, keywords] of Object.entries(CATEGORY_TITLE_KEYWORDS)) {
+              if (keywords.some(kw => q.includes(kw))) {
+                intents.push(category);
+              }
+            }
+            
+            // Also check common search patterns
+            if (q.includes("trad") || q.includes("stock") || q.includes("crypto") || q.includes("forex") || q.includes("invest")) intents.push('trading');
+            if (q.includes("video") || q.includes("movie") || q.includes("film")) intents.push('video');
+            if (q.includes("music") || q.includes("song") || q.includes("audio")) intents.push('music');
+            if (q.includes("image") || q.includes("picture") || q.includes("photo") || q.includes("art")) intents.push('image');
+            if (q.includes("business") || q.includes("startup") || q.includes("entrepreneur")) intents.push('business');
+            if (q.includes("history") || q.includes("historical") || q.includes("ancient")) intents.push('history');
+            if (q.includes("learn") || q.includes("education") || q.includes("course")) intents.push('education');
+            if (q.includes("health") || q.includes("medical") || q.includes("doctor")) intents.push('health');
+            if (q.includes("legal") || q.includes("law") || q.includes("lawyer")) intents.push('legal');
+            if (q.includes("spiritual") || q.includes("religion") || q.includes("god") || q.includes("meditation")) intents.push('spiritual');
+            if (q.includes("code") || q.includes("coding") || q.includes("programming")) intents.push('coding');
+            if (q.includes("writ") || q.includes("book") || q.includes("blog") || q.includes("article")) intents.push('writing');
+            if (q.includes("science") || q.includes("research") || q.includes("experiment")) intents.push('science');
+            if (q.includes("game") || q.includes("gaming")) intents.push('gaming');
+            if (q.includes("security") || q.includes("cyber") || q.includes("hack")) intents.push('security');
+            if (q.includes("philosophy") || q.includes("philosopher") || q.includes("wisdom")) intents.push('philosophy');
+            
+            // Remove duplicates
+            return [...new Set(intents)];
           };
           
-          // Determine primary search type
-          let primarySearchType = '';
-          if (isHistorySearch) primarySearchType = 'history';
-          else if (isSpiritualSearch) primarySearchType = 'spiritual';
-          else if (isEducationSearch) primarySearchType = 'education';
-          else if (isScienceSearch) primarySearchType = 'science';
-          else if (isWritingSearch) primarySearchType = 'writing';
-          else if (isBusinessSearch) primarySearchType = 'business';
-          else if (isTradingSearch) primarySearchType = 'trading';
-          else if (isHealthSearch) primarySearchType = 'health';
-          else if (isLegalSearch) primarySearchType = 'legal';
-          else if (isCodingSearch) primarySearchType = 'coding';
-          else if (isVideoSearch) primarySearchType = 'video';
-          else if (isImageSearch) primarySearchType = 'image';
-          else if (isMusicSearch) primarySearchType = 'music';
-          else if (isGameSearch) primarySearchType = 'gaming';
-          else if (isSecuritySearch) primarySearchType = 'security';
+          const searchIntents = detectSearchIntent(q);
+          const primaryIntent = searchIntents[0] || '';
           
-          const relatedCategories = getCategoryAffinity(primarySearchType);
+          // Get all sibling categories for the primary intent
+          const siblingCats = primaryIntent ? (SIBLING_CATEGORIES[primaryIntent] || []) : [];
           
           const reranked = results
             .map((tool, idx) => {
@@ -1638,6 +1611,7 @@ export const useGlobalSearch = () => {
               const firstWord = words[0] || "";
               const category = (tool?.category || "").toLowerCase();
               const tags = (tool?.tags || []).map((t: string) => t.toLowerCase());
+              const desc = (tool?.description || "").toLowerCase();
               let boost = 0;
 
               // Exact / prefix boosts
@@ -1649,164 +1623,80 @@ export const useGlobalSearch = () => {
               // Head-intent boosts (e.g., "learn everything" should still prioritize LEARN tools)
               if (!boost && qFirst && firstWord === qFirst) boost = 180000;
               
-              // Category mismatch penalties - detect by category, tags, AND title keywords
-              const desc = (tool?.description || "").toLowerCase();
+              // INTELLIGENT CATEGORY DETECTION - detect tool categories from title, tags, and category
+              const toolCategories = detectToolCategoryFromTitle(title);
               
-              // Video tools
-              const isVideoTool = category.includes('video') || 
-                tags.some((t: string) => t.includes('video generation') || t.includes('text to video')) ||
-                title.includes('video') || title.includes('sora') || title.includes('runway') || 
-                title.includes('pika') || title.includes('luma') || title.includes('film') || title.includes('movie maker');
-              
-              // Music tools
-              const isMusicTool = category.includes('music') || category.includes('audio') ||
-                title.includes('music') || title.includes('suno') || title.includes('udio') || title.includes('song');
-              
-              // Image tools
-              const isImageTool = category.includes('image') || category.includes('design') ||
-                title.includes('midjourney') || title.includes('dalle') || title.includes('stable diffusion') ||
-                title.includes('image gen') || title.includes('art gen');
-              
-              // Trading/Finance tools
-              const isTradingTool = category.includes('trading') || category.includes('financial') || 
-                category.includes('finance') || tags.some((t: string) => t.includes('trading')) ||
-                title.includes('trader') || title.includes('trading') || title.includes('crypto') || 
-                title.includes('bitcoin') || title.includes('forex') || title.includes('stock');
-              
-              // Business tools
-              const isBusinessTool = category.includes('business') || category.includes('productivity') ||
-                tags.some((t: string) => t.includes('business') || t.includes('startup')) ||
-                title.includes('business') || title.includes('startup') || title.includes('entrepreneur');
-              
-              // History tools - expanded detection
-              const isHistoryTool = category.includes('history') || category.includes('time') ||
-                tags.some((t: string) => t.includes('history') || t.includes('historical') || t.includes('time machine')) ||
-                title.includes('history') || title.includes('historical') || title.includes('time machine') ||
-                title.includes('ancient') || title.includes('civilization') || title.includes('past voices');
-              
-              // Education tools
-              const isEducationTool = category.includes('education') || category.includes('learning') ||
-                tags.some((t: string) => t.includes('education') || t.includes('learning')) ||
-                title.includes('learn') || title.includes('course') || title.includes('tutor') || title.includes('degree');
-              
-              // Health tools
-              const isHealthTool = category.includes('health') || category.includes('wellness') ||
-                category.includes('medical') || tags.some((t: string) => t.includes('health')) ||
-                title.includes('health') || title.includes('doctor') || title.includes('medical') || title.includes('wellness');
-              
-              // Legal tools
-              const isLegalTool = category.includes('legal') || 
-                tags.some((t: string) => t.includes('legal') || t.includes('law')) ||
-                title.includes('legal') || title.includes('lawyer') || title.includes('attorney') || title.includes('law ');
-              
-              // Spiritual/Philosophy tools - EXPANDED detection by title keywords
-              const isSpiritualTool = category.includes('spiritual') || category.includes('philosophy') ||
-                tags.some((t: string) => t.includes('spiritual') || t.includes('religion') || t.includes('philosophy')) ||
-                title.includes('spiritual') || title.includes('soul') || title.includes('divine') || 
-                title.includes('god ') || title.includes('gods') || title.includes('meditation') ||
-                title.includes('buddha') || title.includes('jesus') || title.includes('prophet') ||
-                title.includes('saint') || title.includes('angel') || title.includes('mystic') ||
-                title.includes('wisdom') || title.includes('enlighten') || title.includes('consciousness') ||
-                title.includes('philosophy') || title.includes('socrates') || title.includes('plato') ||
-                title.includes('aristotle') || title.includes('confucius') || title.includes('lao tzu') ||
-                title.includes('alan watts') || title.includes('rumi') || title.includes('kabbalah') ||
-                title.includes('tarot') || title.includes('astrology') || title.includes('zodiac') ||
-                title.includes('resurrection') || title.includes('reincarnation') || title.includes('afterlife') ||
-                title.includes('heaven') || title.includes('prayer') || title.includes('scripture');
-              
-              // Coding tools
-              const isCodingTool = category.includes('coding') || category.includes('development') ||
-                tags.some((t: string) => t.includes('coding') || t.includes('programming')) ||
-                title.includes('code') || title.includes('coding') || title.includes('developer') || title.includes('programming');
-              
-              // Writing tools
-              const isWritingTool = category.includes('writing') || category.includes('content') ||
-                tags.some((t: string) => t.includes('writing') || t.includes('book writer')) ||
-                (title.includes('writer') && !title.includes('history')) || title.includes('blog') || 
-                title.includes('article') || (title.includes('book') && title.includes('writ'));
-              
-              // Science tools
-              const isScienceTool = category.includes('science') || category.includes('research') ||
-                category.includes('data') || category.includes('analytics') ||
-                title.includes('science') || title.includes('research') || title.includes('experiment');
-              
-              // Gaming tools
-              const isGameTool = category.includes('gaming') || category.includes('entertainment') ||
-                tags.some((t: string) => t.includes('game') || t.includes('gaming')) ||
-                title.includes('game') || title.includes('gaming') || title.includes('esport');
-              
-              // Security tools
-              const isSecurityTool = category.includes('security') || category.includes('privacy') ||
-                tags.some((t: string) => t.includes('security') || t.includes('cyber')) ||
-                title.includes('security') || title.includes('cyber') || title.includes('hack');
-              
-              // Check if tool belongs to a related/affinity category
-              const isRelatedCategory = relatedCategories.some(rc => 
-                category.includes(rc) || tags.some((t: string) => t.includes(rc)) || title.includes(rc)
-              );
-              
-              // Penalize mismatched categories (only apply if search has clear intent)
-              const hasSpecificIntent = isTradingSearch || isVideoSearch || isMusicSearch || isImageSearch ||
-                isBusinessSearch || isHistorySearch || isEducationSearch || isHealthSearch || isLegalSearch ||
-                isSpiritualSearch || isCodingSearch || isWritingSearch || isScienceSearch || isGameSearch || isSecuritySearch;
-              
-              if (hasSpecificIntent) {
-                // Boost tools from related/affinity categories (shows after direct matches)
-                if (isRelatedCategory && !boost) boost += 40000;
-                
-                // SPECIAL: History search should also boost spiritual/philosophy tools highly
-                if (isHistorySearch && isSpiritualTool) boost += 70000;
-                // SPECIAL: Spiritual search should also boost history tools
-                if (isSpiritualSearch && isHistoryTool) boost += 70000;
-                
-                // Penalize video tools for non-video searches (HEAVY penalty)
-                if (isVideoTool && !isVideoSearch && !relatedCategories.includes('video')) boost -= 80000;
-                // Penalize trading tools for non-trading searches  
-                if (isTradingTool && !isTradingSearch && !relatedCategories.includes('trading')) boost -= 70000;
-                // Penalize music tools for non-music searches
-                if (isMusicTool && !isMusicSearch && !isVideoSearch && !relatedCategories.includes('music')) boost -= 80000;
-                // Penalize image tools for non-image searches (HEAVY penalty)
-                if (isImageTool && !isImageSearch && !relatedCategories.includes('image')) boost -= 70000;
-                // Penalize business tools for non-business searches
-                if (isBusinessTool && !isBusinessSearch && !isTradingSearch && !relatedCategories.includes('business')) boost -= 50000;
-                // Penalize history tools for non-history searches (but not for spiritual)
-                if (isHistoryTool && !isHistorySearch && !isSpiritualSearch && !isEducationSearch && !relatedCategories.includes('history')) boost -= 50000;
-                // Penalize education tools for non-education searches
-                if (isEducationTool && !isEducationSearch && !isHistorySearch && !relatedCategories.includes('education')) boost -= 40000;
-                // Penalize health tools for non-health searches
-                if (isHealthTool && !isHealthSearch && !relatedCategories.includes('health')) boost -= 50000;
-                // Penalize legal tools for non-legal searches
-                if (isLegalTool && !isLegalSearch && !relatedCategories.includes('legal')) boost -= 50000;
-                // Penalize spiritual tools for non-spiritual searches (but not for history)
-                if (isSpiritualTool && !isSpiritualSearch && !isHistorySearch && !relatedCategories.includes('spiritual')) boost -= 50000;
-                // Penalize coding tools for non-coding searches
-                if (isCodingTool && !isCodingSearch && !relatedCategories.includes('coding')) boost -= 50000;
-                // Penalize writing tools for non-writing searches (HEAVY penalty for history searches)
-                if (isWritingTool && !isWritingSearch && !relatedCategories.includes('writing')) boost -= 70000;
-                // Penalize science tools for non-science searches
-                if (isScienceTool && !isScienceSearch && !isEducationSearch && !relatedCategories.includes('science')) boost -= 50000;
-                // Penalize game tools for non-game searches
-                if (isGameTool && !isGameSearch && !relatedCategories.includes('gaming')) boost -= 50000;
-                // Penalize security tools for non-security searches
-                if (isSecurityTool && !isSecuritySearch && !isCodingSearch && !relatedCategories.includes('security')) boost -= 50000;
+              // Also check category and tags
+              for (const [cat, keywords] of Object.entries(CATEGORY_TITLE_KEYWORDS)) {
+                if (category.includes(cat) || tags.some((t: string) => keywords.some(kw => t.includes(kw)))) {
+                  if (!toolCategories.includes(cat)) toolCategories.push(cat);
+                }
               }
               
-              // Boost matching categories (primary matches)
-              if (isTradingSearch && isTradingTool) boost += 80000;
-              if (isVideoSearch && isVideoTool) boost += 80000;
-              if (isMusicSearch && isMusicTool) boost += 80000;
-              if (isImageSearch && isImageTool) boost += 80000;
-              if (isBusinessSearch && isBusinessTool) boost += 80000;
-              if (isHistorySearch && isHistoryTool) boost += 80000;
-              if (isEducationSearch && isEducationTool) boost += 80000;
-              if (isHealthSearch && isHealthTool) boost += 80000;
-              if (isLegalSearch && isLegalTool) boost += 80000;
-              if (isSpiritualSearch && isSpiritualTool) boost += 80000;
-              if (isCodingSearch && isCodingTool) boost += 80000;
-              if (isWritingSearch && isWritingTool) boost += 80000;
-              if (isScienceSearch && isScienceTool) boost += 80000;
-              if (isGameSearch && isGameTool) boost += 80000;
-              if (isSecuritySearch && isSecurityTool) boost += 80000;
+              // Apply intelligent category relationship scoring
+              if (primaryIntent && toolCategories.length > 0) {
+                const relationScore = getCategoryRelationshipScore(primaryIntent, toolCategories);
+                boost += relationScore;
+                
+                // Additional sibling boosts for all detected intents
+                for (const intent of searchIntents) {
+                  for (const toolCat of toolCategories) {
+                    if (areSiblingCategories(intent, toolCat)) {
+                      boost += 50000; // Strong sibling boost
+                    } else if (areInSameFamily(intent, toolCat)) {
+                      boost += 20000; // Family boost
+                    }
+                  }
+                }
+              }
+              
+              // SPECIAL SIBLING RELATIONSHIPS - heavily boost bidirectionally
+              const specialSiblings: Record<string, string[]> = {
+                history: ['spiritual', 'philosophy', 'ancient', 'archaeology', 'civilization'],
+                spiritual: ['history', 'philosophy', 'wisdom', 'mystical', 'meditation', 'religion'],
+                philosophy: ['history', 'spiritual', 'wisdom', 'consciousness'],
+                trading: ['finance', 'investment', 'crypto', 'stock', 'forex'],
+                finance: ['trading', 'investment', 'banking', 'money'],
+                video: ['film', 'movie', 'animation', 'cinema', 'multimedia'],
+                image: ['art', 'design', 'visual', 'graphics', 'illustration'],
+                music: ['audio', 'sound', 'song', 'melody'],
+                coding: ['development', 'programming', 'software', 'engineering'],
+                health: ['wellness', 'medical', 'fitness', 'nutrition'],
+                education: ['learning', 'course', 'training', 'skill', 'tutor'],
+                science: ['research', 'experiment', 'academic', 'study']
+              };
+              
+              // Apply special sibling boosts based on title keywords
+              if (primaryIntent && specialSiblings[primaryIntent]) {
+                for (const sibling of specialSiblings[primaryIntent]) {
+                  if (title.includes(sibling) || category.includes(sibling) || 
+                      tags.some((t: string) => t.includes(sibling))) {
+                    boost += 60000; // Strong sibling boost
+                  }
+                }
+              }
+              
+              // HEAVY PENALTIES for completely unrelated categories when search has clear intent
+              if (primaryIntent && toolCategories.length > 0) {
+                const isUnrelated = !toolCategories.some(tc => 
+                  tc === primaryIntent || 
+                  areSiblingCategories(primaryIntent, tc) ||
+                  areInSameFamily(primaryIntent, tc) ||
+                  (specialSiblings[primaryIntent] || []).includes(tc)
+                );
+                
+                if (isUnrelated) {
+                  // Specific heavy penalties for common mismatches
+                  const heavyPenaltyCategories = ['video', 'image', 'music', 'gaming'];
+                  const isHeavyPenalty = toolCategories.some(tc => heavyPenaltyCategories.includes(tc));
+                  
+                  if (isHeavyPenalty && !searchIntents.some(i => heavyPenaltyCategories.includes(i))) {
+                    boost -= 80000; // Very heavy penalty
+                  } else {
+                    boost -= 50000; // Standard unrelated penalty
+                  }
+                }
+              }
 
               return { tool, idx, boost };
             })
