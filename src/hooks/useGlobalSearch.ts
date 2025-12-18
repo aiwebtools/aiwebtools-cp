@@ -47,7 +47,7 @@ class LRUCache<K, V> {
 
 // Global search cache (persists across component re-renders)
 // NOTE: versioned to prevent "stale" cached results after search-intelligence updates.
-const SEARCH_CACHE_VERSION = "v16";
+const SEARCH_CACHE_VERSION = "v17";
 const searchCache = new LRUCache<string, any[]>(50);
 
 // ==================== INTELLIGENCE MAPS (precomputed, instant lookup) ====================
@@ -1555,11 +1555,25 @@ export const useGlobalSearch = () => {
           // Keep full intelligence, but ensure literal prefix matches never get buried
           const q = t.toLowerCase().trim();
           const qFirst = q.split(/\s+/)[0] || "";
+          
+          // Detect search intent for category filtering
+          const isTradingSearch = q.includes("trad") || q.includes("stock") || q.includes("crypto") || 
+            q.includes("forex") || q.includes("invest") || q.includes("coin") || q.includes("bitcoin") ||
+            q.includes("ethereum") || q.includes("finance") || q.includes("financial") || q.includes("money");
+          const isVideoSearch = q.includes("video") || q.includes("movie") || q.includes("film") || 
+            q.includes("sora") || q.includes("runway") || q.includes("pika") || q.includes("luma");
+          const isMusicSearch = q.includes("music") || q.includes("song") || q.includes("audio") || 
+            q.includes("suno") || q.includes("udio");
+          const isImageSearch = q.includes("image") || q.includes("picture") || q.includes("photo") ||
+            q.includes("midjourney") || q.includes("dalle") || q.includes("stable diffusion");
+          
           const reranked = results
             .map((tool, idx) => {
               const title = (tool?.title || "").toLowerCase();
               const words = title.split(/\s+/).filter(Boolean);
               const firstWord = words[0] || "";
+              const category = (tool?.category || "").toLowerCase();
+              const tags = (tool?.tags || []).map((t: string) => t.toLowerCase());
               let boost = 0;
 
               // Exact / prefix boosts
@@ -1570,6 +1584,29 @@ export const useGlobalSearch = () => {
 
               // Head-intent boosts (e.g., "learn everything" should still prioritize LEARN tools)
               if (!boost && qFirst && firstWord === qFirst) boost = 180000;
+              
+              // Category mismatch penalties - prevent unrelated tools from appearing high
+              const isVideoTool = category.includes('video') || tags.some((t: string) => 
+                t.includes('video generation') || t.includes('text to video'));
+              const isMusicTool = category.includes('music') || category.includes('audio');
+              const isImageTool = category.includes('image') || category.includes('design');
+              const isTradingTool = category.includes('trading') || category.includes('financial') || 
+                category.includes('finance') || tags.some((t: string) => t.includes('trading'));
+              
+              // Penalize video tools for non-video searches
+              if (isVideoTool && !isVideoSearch) boost -= 50000;
+              // Penalize trading tools for non-trading searches  
+              if (isTradingTool && !isTradingSearch) boost -= 50000;
+              // Penalize music tools for non-music searches
+              if (isMusicTool && !isMusicSearch && !isVideoSearch) boost -= 50000;
+              // Penalize image tools for non-image searches
+              if (isImageTool && !isImageSearch) boost -= 30000;
+              
+              // Boost matching categories
+              if (isTradingSearch && isTradingTool) boost += 80000;
+              if (isVideoSearch && isVideoTool) boost += 80000;
+              if (isMusicSearch && isMusicTool) boost += 80000;
+              if (isImageSearch && isImageTool) boost += 80000;
 
               return { tool, idx, boost };
             })
