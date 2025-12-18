@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { ChevronUp, ChevronDown } from "lucide-react";
 import { allTools } from "@/data/toolsData";
-
+import { getToolCategoryColor } from "@/utils/search/categoryColors";
 interface GlobalSearchResultsProps {
   searchResults: any[];
   displayedCount: number;
@@ -85,20 +85,29 @@ const GlobalSearchResults = ({
             // Show separator before first recommendation
             const showSeparator = index === directMatchCount && directMatchCount > 0;
             
+            // Get category-based color coding
+            const categoryStyle = getToolCategoryColor(tool);
+            
             const toolItem = (
               <div 
                 className={`flex items-center space-x-3 p-3 rounded-lg hover:bg-cyan-500/10 cursor-pointer group transition-all duration-200 border border-transparent hover:border-cyan-500/30 ${isRecommendation ? 'opacity-90' : ''}`}
                 onClick={() => onToolClick(toolIndex)}
               >
-                <div className={`w-6 h-6 sm:w-8 sm:h-8 rounded-lg bg-gradient-to-r ${tool.color} flex items-center justify-center text-xs sm:text-sm flex-shrink-0`}>
-                  {tool.emoji}
+                {/* Category color-coded icon */}
+                <div 
+                  className={`w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-gradient-to-br ${categoryStyle.bg} ${categoryStyle.border} border flex items-center justify-center text-sm sm:text-base flex-shrink-0 shadow-lg ${categoryStyle.glow} transition-transform group-hover:scale-110`}
+                >
+                  {categoryStyle.icon}
                 </div>
                 <div className="flex-1 min-w-0">
                   <h3 className="font-medium text-cyan-100 text-xs sm:text-sm leading-tight mb-1 group-hover:text-cyan-300 transition-colors">
                     {tool.title}
                   </h3>
                   {tool.category && (
-                    <p className="text-xs text-cyan-400/70 truncate">{tool.category}</p>
+                    <p className="text-xs text-cyan-400/70 truncate">
+                      <span className="mr-1">{categoryStyle.icon}</span>
+                      {tool.category}
+                    </p>
                   )}
                 </div>
                 
@@ -145,7 +154,9 @@ const GlobalSearchResults = ({
                     >
                       <div className="space-y-2">
                         <div className="flex items-center space-x-2">
-                          <span className="text-lg">{tool.emoji}</span>
+                          <div className={`w-8 h-8 rounded-lg bg-gradient-to-br ${categoryStyle.bg} flex items-center justify-center text-sm`}>
+                            {categoryStyle.icon}
+                          </div>
                           <span className="font-semibold text-cyan-300">{tool.title}</span>
                         </div>
                         <p className="text-sm text-cyan-200/80 leading-relaxed">
