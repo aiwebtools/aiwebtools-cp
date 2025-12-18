@@ -47,7 +47,7 @@ class LRUCache<K, V> {
 
 // Global search cache (persists across component re-renders)
 // NOTE: versioned to prevent "stale" cached results after search-intelligence updates.
-const SEARCH_CACHE_VERSION = "v17";
+const SEARCH_CACHE_VERSION = "v18";
 const searchCache = new LRUCache<string, any[]>(50);
 
 // ==================== INTELLIGENCE MAPS (precomputed, instant lookup) ====================
@@ -1556,7 +1556,7 @@ export const useGlobalSearch = () => {
           const q = t.toLowerCase().trim();
           const qFirst = q.split(/\s+/)[0] || "";
           
-          // Detect search intent for category filtering
+          // Detect search intent for ALL category filtering
           const isTradingSearch = q.includes("trad") || q.includes("stock") || q.includes("crypto") || 
             q.includes("forex") || q.includes("invest") || q.includes("coin") || q.includes("bitcoin") ||
             q.includes("ethereum") || q.includes("finance") || q.includes("financial") || q.includes("money");
@@ -1566,6 +1566,28 @@ export const useGlobalSearch = () => {
             q.includes("suno") || q.includes("udio");
           const isImageSearch = q.includes("image") || q.includes("picture") || q.includes("photo") ||
             q.includes("midjourney") || q.includes("dalle") || q.includes("stable diffusion");
+          const isBusinessSearch = q.includes("business") || q.includes("startup") || q.includes("entrepreneur") ||
+            q.includes("company") || q.includes("enterprise") || q.includes("productivity") || q.includes("workflow");
+          const isHistorySearch = q.includes("history") || q.includes("historical") || q.includes("ancient") ||
+            q.includes("time machine") || q.includes("past") || q.includes("civilization");
+          const isEducationSearch = q.includes("learn") || q.includes("education") || q.includes("course") ||
+            q.includes("study") || q.includes("school") || q.includes("degree") || q.includes("tutor");
+          const isHealthSearch = q.includes("health") || q.includes("medical") || q.includes("doctor") ||
+            q.includes("wellness") || q.includes("fitness") || q.includes("diet") || q.includes("mental");
+          const isLegalSearch = q.includes("legal") || q.includes("law") || q.includes("lawyer") ||
+            q.includes("attorney") || q.includes("contract") || q.includes("court");
+          const isSpiritualSearch = q.includes("spiritual") || q.includes("religion") || q.includes("god") ||
+            q.includes("meditation") || q.includes("soul") || q.includes("divine") || q.includes("mystic");
+          const isCodingSearch = q.includes("code") || q.includes("coding") || q.includes("programming") ||
+            q.includes("developer") || q.includes("software") || q.includes("app") || q.includes("web dev");
+          const isWritingSearch = q.includes("writ") || q.includes("book") || q.includes("story") ||
+            q.includes("blog") || q.includes("article") || q.includes("script") || q.includes("content");
+          const isScienceSearch = q.includes("science") || q.includes("research") || q.includes("experiment") ||
+            q.includes("data") || q.includes("analytic") || q.includes("physics") || q.includes("chemistry");
+          const isGameSearch = q.includes("game") || q.includes("gaming") || q.includes("play") ||
+            q.includes("esport") || q.includes("stream");
+          const isSecuritySearch = q.includes("security") || q.includes("cyber") || q.includes("hack") ||
+            q.includes("privacy") || q.includes("encrypt") || q.includes("protect");
           
           const reranked = results
             .map((tool, idx) => {
@@ -1592,21 +1614,83 @@ export const useGlobalSearch = () => {
               const isImageTool = category.includes('image') || category.includes('design');
               const isTradingTool = category.includes('trading') || category.includes('financial') || 
                 category.includes('finance') || tags.some((t: string) => t.includes('trading'));
+              const isBusinessTool = category.includes('business') || category.includes('productivity') ||
+                tags.some((t: string) => t.includes('business') || t.includes('startup'));
+              const isHistoryTool = category.includes('history') || tags.some((t: string) => 
+                t.includes('history') || t.includes('historical') || t.includes('time machine'));
+              const isEducationTool = category.includes('education') || category.includes('learning') ||
+                tags.some((t: string) => t.includes('education') || t.includes('learning'));
+              const isHealthTool = category.includes('health') || category.includes('wellness') ||
+                category.includes('medical') || tags.some((t: string) => t.includes('health'));
+              const isLegalTool = category.includes('legal') || tags.some((t: string) => 
+                t.includes('legal') || t.includes('law'));
+              const isSpiritualTool = category.includes('spiritual') || category.includes('philosophy') ||
+                tags.some((t: string) => t.includes('spiritual') || t.includes('religion'));
+              const isCodingTool = category.includes('coding') || category.includes('development') ||
+                tags.some((t: string) => t.includes('coding') || t.includes('programming'));
+              const isWritingTool = category.includes('writing') || category.includes('content') ||
+                tags.some((t: string) => t.includes('writing') || t.includes('book'));
+              const isScienceTool = category.includes('science') || category.includes('research') ||
+                category.includes('data') || category.includes('analytics');
+              const isGameTool = category.includes('gaming') || category.includes('entertainment') ||
+                tags.some((t: string) => t.includes('game') || t.includes('gaming'));
+              const isSecurityTool = category.includes('security') || category.includes('privacy') ||
+                tags.some((t: string) => t.includes('security') || t.includes('cyber'));
               
-              // Penalize video tools for non-video searches
-              if (isVideoTool && !isVideoSearch) boost -= 50000;
-              // Penalize trading tools for non-trading searches  
-              if (isTradingTool && !isTradingSearch) boost -= 50000;
-              // Penalize music tools for non-music searches
-              if (isMusicTool && !isMusicSearch && !isVideoSearch) boost -= 50000;
-              // Penalize image tools for non-image searches
-              if (isImageTool && !isImageSearch) boost -= 30000;
+              // Penalize mismatched categories (only apply if search has clear intent)
+              const hasSpecificIntent = isTradingSearch || isVideoSearch || isMusicSearch || isImageSearch ||
+                isBusinessSearch || isHistorySearch || isEducationSearch || isHealthSearch || isLegalSearch ||
+                isSpiritualSearch || isCodingSearch || isWritingSearch || isScienceSearch || isGameSearch || isSecuritySearch;
+              
+              if (hasSpecificIntent) {
+                // Penalize video tools for non-video searches
+                if (isVideoTool && !isVideoSearch) boost -= 50000;
+                // Penalize trading tools for non-trading searches  
+                if (isTradingTool && !isTradingSearch) boost -= 50000;
+                // Penalize music tools for non-music searches
+                if (isMusicTool && !isMusicSearch && !isVideoSearch) boost -= 50000;
+                // Penalize image tools for non-image searches
+                if (isImageTool && !isImageSearch) boost -= 30000;
+                // Penalize business tools for non-business searches
+                if (isBusinessTool && !isBusinessSearch && !isTradingSearch) boost -= 30000;
+                // Penalize history tools for non-history searches
+                if (isHistoryTool && !isHistorySearch && !isEducationSearch) boost -= 30000;
+                // Penalize education tools for non-education searches
+                if (isEducationTool && !isEducationSearch) boost -= 20000;
+                // Penalize health tools for non-health searches
+                if (isHealthTool && !isHealthSearch) boost -= 30000;
+                // Penalize legal tools for non-legal searches
+                if (isLegalTool && !isLegalSearch) boost -= 30000;
+                // Penalize spiritual tools for non-spiritual searches
+                if (isSpiritualTool && !isSpiritualSearch) boost -= 30000;
+                // Penalize coding tools for non-coding searches
+                if (isCodingTool && !isCodingSearch) boost -= 30000;
+                // Penalize writing tools for non-writing searches
+                if (isWritingTool && !isWritingSearch) boost -= 20000;
+                // Penalize science tools for non-science searches
+                if (isScienceTool && !isScienceSearch && !isEducationSearch) boost -= 30000;
+                // Penalize game tools for non-game searches
+                if (isGameTool && !isGameSearch) boost -= 30000;
+                // Penalize security tools for non-security searches
+                if (isSecurityTool && !isSecuritySearch && !isCodingSearch) boost -= 30000;
+              }
               
               // Boost matching categories
               if (isTradingSearch && isTradingTool) boost += 80000;
               if (isVideoSearch && isVideoTool) boost += 80000;
               if (isMusicSearch && isMusicTool) boost += 80000;
               if (isImageSearch && isImageTool) boost += 80000;
+              if (isBusinessSearch && isBusinessTool) boost += 80000;
+              if (isHistorySearch && isHistoryTool) boost += 80000;
+              if (isEducationSearch && isEducationTool) boost += 80000;
+              if (isHealthSearch && isHealthTool) boost += 80000;
+              if (isLegalSearch && isLegalTool) boost += 80000;
+              if (isSpiritualSearch && isSpiritualTool) boost += 80000;
+              if (isCodingSearch && isCodingTool) boost += 80000;
+              if (isWritingSearch && isWritingTool) boost += 80000;
+              if (isScienceSearch && isScienceTool) boost += 80000;
+              if (isGameSearch && isGameTool) boost += 80000;
+              if (isSecuritySearch && isSecurityTool) boost += 80000;
 
               return { tool, idx, boost };
             })
