@@ -198,7 +198,8 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   const compoundNormalized = normalizeCompoundWords(searchTerm);
 
   // Use advanced search for most queries - intent matching needs this!
-  const shouldUseAdvancedSearch = trimmed.length <= 30 && /^[a-zA-Z\s]{1,}$/.test(trimmed);
+  // IMPORTANT: allow digits + dots so queries like "web3", "web 3", ".worldtrade" still get full intelligence.
+  const shouldUseAdvancedSearch = trimmed.length <= 30 && /^[a-zA-Z0-9\s.]{1,}$/.test(trimmed);
 
   // CRITICAL: Never typo-correct very short prefixes (e.g., "lea" → "health")
   // Short prefixes must behave as literal partial matching.
