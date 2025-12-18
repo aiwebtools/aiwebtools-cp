@@ -19,7 +19,10 @@ export const CATEGORY_FAMILIES = {
   lifestyle: ['health', 'wellness', 'fitness', 'travel', 'food', 'entertainment'],
   
   // Professional Services family
-  professional: ['legal', 'medical', 'consulting', 'real estate', 'insurance']
+  professional: ['legal', 'medical', 'consulting', 'real estate', 'insurance'],
+  
+  // Web3 & Blockchain family
+  web3: ['web3', 'blockchain', 'crypto', 'nft', 'defi', 'decentralized']
 };
 
 // Sibling categories that should HEAVILY boost each other (treated almost as same category)
@@ -48,7 +51,12 @@ export const SIBLING_CATEGORIES: Record<string, string[]> = {
   legal: ['law', 'attorney', 'court', 'contract', 'compliance'],
   
   writing: ['content', 'blog', 'article', 'copywriting', 'storytelling'],
-  gaming: ['entertainment', 'esports', 'streaming', 'interactive']
+  gaming: ['entertainment', 'esports', 'streaming', 'interactive'],
+  
+  // Web3 & Blockchain siblings
+  web3: ['blockchain', 'crypto', 'cryptocurrency', 'nft', 'defi', 'decentralized', 'wallet', 'token'],
+  blockchain: ['web3', 'crypto', 'nft', 'defi', 'decentralized', 'smart contract'],
+  crypto: ['web3', 'blockchain', 'bitcoin', 'ethereum', 'defi', 'trading', 'finance']
 };
 
 // Extended title keywords for detecting tool categories by name
@@ -174,6 +182,16 @@ export const CATEGORY_TITLE_KEYWORDS: Record<string, string[]> = {
     'game', 'gaming', 'gamer', 'esport', 'stream', 'twitch', 'console', 'pc',
     'mobile game', 'rpg', 'fps', 'mmorpg', 'strategy', 'puzzle', 'adventure',
     'multiplayer', 'single player', 'level', 'quest', 'achievement', 'leaderboard'
+  ],
+  
+  // Web3 & Blockchain keywords
+  web3: [
+    'web3', 'web 3', 'blockchain', 'crypto', 'cryptocurrency', 'bitcoin', 'ethereum',
+    'solana', 'polygon', 'nft', 'defi', 'decentralized', 'decentralised', 'wallet',
+    'metamask', 'phantom', 'coinbase', 'token', 'smart contract', 'dao', 'dapp',
+    'future of finance', 'digital asset', 'mint', 'minting', 'no bio chip',
+    'worldpeace', 'worldtrade', 'transfermoney', 'transfercoin', 'cashtransfer',
+    'domain', 'freename', 'unstoppable', 'ens', '.eth', '.sol', '.crypto'
   ]
 };
 

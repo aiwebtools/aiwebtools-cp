@@ -127,6 +127,23 @@ export const CATEGORY_COLORS: Record<string, { bg: string; border: string; glow:
     glow: 'shadow-teal-500/30'
   },
 
+  // Web3 & Blockchain family - crypto colors
+  web3: {
+    bg: 'from-purple-600 to-blue-500',
+    border: 'border-purple-400/50',
+    glow: 'shadow-purple-500/30'
+  },
+  blockchain: {
+    bg: 'from-blue-600 to-indigo-500',
+    border: 'border-blue-400/50',
+    glow: 'shadow-blue-500/30'
+  },
+  crypto: {
+    bg: 'from-amber-500 to-yellow-400',
+    border: 'border-amber-400/50',
+    glow: 'shadow-amber-500/30'
+  },
+
   // Lifestyle family
   health: {
     bg: 'from-green-500 to-teal-400',
@@ -228,6 +245,10 @@ export const CATEGORY_ICONS: Record<string, string> = {
   medical: '🏥',
   writing: '✍️',
   gaming: '🎮',
+  // Web3 & Blockchain
+  web3: '🌐',
+  blockchain: '⛓️',
+  crypto: '🪙',
   default: '🔧'
 };
 
@@ -247,6 +268,8 @@ export const detectToolCategory = (tool: {
   
   // Priority detection order (most specific first)
   const detectionRules: [string, string[]][] = [
+    // Web3 detection (check early since it's specific)
+    ['web3', ['web3', 'web 3', 'blockchain', 'decentralized', 'nft', 'defi', 'wallet', 'metamask', 'phantom', 'coinbase wallet', 'solana', 'polygon', 'ethereum', '.worldpeace', '.worldtrade', '.transfermoney', 'freename', 'domain nft', 'web3 domain', 'no bio chip', 'future of finance']],
     ['spiritual', ['spiritual', 'soul', 'divine', 'god', 'buddha', 'meditation', 'prayer', 'faith', 'sacred', 'mystical', 'enlighten', 'consciousness', 'tarot', 'astrology', 'oracle', 'psychic', 'resurrection', 'scripture', 'religious', 'sufi', 'kabbalah', 'gnostic', 'esoteric', 'chakra', 'kundalini', 'mantra', 'temple', 'prophet', 'saint', 'angel']],
     ['philosophy', ['philosophy', 'philosopher', 'socrates', 'plato', 'aristotle', 'nietzsche', 'stoic', 'metaphysics', 'ethics', 'existential', 'wisdom']],
     ['history', ['history', 'historical', 'time machine', 'ancient', 'civilization', 'archaeology', 'heritage', 'dynasty', 'empire', 'medieval', 'renaissance', 'ancestors', 'chronicles']],
