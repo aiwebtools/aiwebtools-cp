@@ -47,7 +47,7 @@ class LRUCache<K, V> {
 
 // Global search cache (persists across component re-renders)
 // NOTE: versioned to prevent "stale" cached results after search-intelligence updates.
-const SEARCH_CACHE_VERSION = "v14";
+const SEARCH_CACHE_VERSION = "v15";
 const searchCache = new LRUCache<string, any[]>(50);
 
 // ==================== INTELLIGENCE MAPS (precomputed, instant lookup) ====================
@@ -610,6 +610,24 @@ const PHRASE_TO_TOOLS: Record<string, string[]> = {
   "financial": ["FinChat.io", "Trader GPT", "Taxes GPT", "Predictive Credit Score Checker GPT", "Insurance Claims GPT"],
   "finance": ["FinChat.io", "Trader GPT", "Taxes GPT", "Predictive Credit Score Checker GPT", "Insurance Claims GPT"],
   "money": ["Trader GPT", "FinChat.io", "Taxes GPT", "Predictive Credit Score Checker GPT", "Business Plan Generator GPT"],
+  // Natural language crypto/trading intents
+  "how to buy crypto": ["ChainGPT", "Trader GPT", "FinChat.io"],
+  "buy crypto": ["ChainGPT", "Trader GPT", "FinChat.io"],
+  "crypto trading tips": ["ChainGPT", "Trader GPT", "FinChat.io"],
+  "best crypto exchange": ["ChainGPT", "Trader GPT", "FinChat.io"],
+  "crypto exchange": ["ChainGPT", "Trader GPT", "FinChat.io"],
+  "crypto advice": ["ChainGPT", "Trader GPT", "FinChat.io"],
+  "trading tips": ["Trader GPT", "ChainGPT", "FinChat.io"],
+  "stock tips": ["Trader GPT", "FinChat.io", "ChainGPT"],
+  "investment advice": ["Trader GPT", "FinChat.io", "ChainGPT", "Business Plan Generator GPT"],
+  "how to invest": ["Trader GPT", "FinChat.io", "ChainGPT", "Business Plan Generator GPT"],
+  "how to trade": ["Trader GPT", "ChainGPT", "FinChat.io", "Buy Forex Expert Advisor Online"],
+  "learn trading": ["Trader GPT", "ChainGPT", "FinChat.io"],
+  "learn to trade": ["Trader GPT", "ChainGPT", "FinChat.io"],
+  "make money trading": ["Trader GPT", "ChainGPT", "FinChat.io", "Buy Forex Expert Advisor Online"],
+  "financial advice": ["FinChat.io", "Trader GPT", "Taxes GPT", "Predictive Credit Score Checker GPT"],
+  "smart contract": ["ChainGPT"],
+  "smart contracts": ["ChainGPT"],
   
   // ==================== BUSINESS TOOLS ====================
   "business": ["Business Plan Generator GPT", "Startup Validator GPT", "MicroSaaS GPT", "Taxes GPT", "The Resume & Job Finder Ai Suite", "Grant Writer GPT", "Training Manual Generator GPT", "Data Research Analysis Report GPT", "MULTITASKER GPT"],
@@ -1514,6 +1532,14 @@ export const useGlobalSearch = () => {
             // Always keep LEARN ANY SKILL GPT surfaced for learn/le/skill queries
             if (q.includes("learn") || q.startsWith("le") || q.includes("skill")) {
               if (title.includes("learn any skill gpt")) return true;
+            }
+            // Preserve trading/finance tools for trading-related queries
+            if (q.includes("trad") || q.includes("stock") || q.includes("crypto") || 
+                q.includes("forex") || q.includes("invest") || q.includes("coin") ||
+                q.includes("bitcoin") || q.includes("ethereum") || q.includes("day trader") ||
+                q.includes("daytrader") || q.includes("finance") || q.includes("financial")) {
+              if (title.includes("trader") || title.includes("chain") || title.includes("finchat") ||
+                  title.includes("forex") || title.includes("credit") || title.includes("taxes")) return true;
             }
             // Generic safety: keep strong literal prefix matches
             if (title.startsWith(q) || firstWord.startsWith(q)) return true;
