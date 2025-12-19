@@ -150,8 +150,24 @@ const ToolMedia = ({ tool, toolIndex }: ToolMediaProps) => {
     );
   };
 
+  // Generate a short description (first sentence or first 120 chars)
+  const getShortDescription = () => {
+    if (!tool.description) return null;
+    const firstSentence = tool.description.split(/[.!?]/)[0];
+    if (firstSentence.length <= 120) return firstSentence + '.';
+    return tool.description.substring(0, 117) + '...';
+  };
+
+  const shortDescription = getShortDescription();
+
   return (
     <div ref={containerRef} className="mb-6 sm:mb-8 px-4 sm:px-0">
+      {/* Short description above video */}
+      {shortDescription && (
+        <p className="text-gray-300 text-sm mb-3 text-center leading-relaxed">
+          {shortDescription}
+        </p>
+      )}
       <div className="shadow-lg border border-cyan-500/30 neon-border rounded-xl overflow-hidden">
         <MediaComponent />
       </div>
