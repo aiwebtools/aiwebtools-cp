@@ -166,8 +166,8 @@ const ToolDetail = () => {
               </CardHeader>
 
               <CardContent className="p-8 bg-gray-900/50">
-                <ToolActions tool={tool} />
                 <ToolMedia tool={tool} toolIndex={toolIndex} />
+                <ToolActions tool={tool} />
                 <ToolDescription tool={tool} />
                 <ToolTags tool={tool} />
               </CardContent>
