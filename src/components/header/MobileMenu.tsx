@@ -177,20 +177,21 @@ const MobileMenu = () => {
           />
         )}
         
-        <DropdownMenu open={isMenuOpen} onOpenChange={handleMenuToggle}>
+        <DropdownMenu open={isMenuOpen} onOpenChange={handleMenuToggle} modal={false}>
           <DropdownMenuTrigger asChild>
             <Button 
               variant="outline" 
               size="lg" 
-              className="border-2 border-cyan-400 bg-cyan-500/20 text-cyan-100 hover:bg-cyan-500/40 px-4 py-3 min-w-[56px] min-h-[56px] rounded-xl shadow-lg shadow-cyan-500/30"
+              className="border-2 border-cyan-400 bg-cyan-500/20 text-cyan-100 px-4 py-3 min-w-[56px] min-h-[56px] rounded-xl active:bg-cyan-500/40"
               aria-label="Open menu"
+              style={{ touchAction: 'manipulation', transform: 'translateZ(0)' }}
             >
               <Menu className="w-7 h-7" />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent 
             ref={dropdownRef}
-            className="w-[95vw] max-w-[400px] bg-black/98 shadow-2xl border-2 border-cyan-500/50 backdrop-blur-xl max-h-[70vh] overflow-hidden z-[110]"
+            className="w-[95vw] max-w-[400px] bg-black border-2 border-cyan-500/50 max-h-[70vh] overflow-hidden z-[110]"
             align="end"
             side="bottom"
             alignOffset={0}
@@ -202,27 +203,27 @@ const MobileMenu = () => {
             onTouchEnd={handleTouchEnd}
             style={{
               scrollBehavior: 'auto',
-              overscrollBehavior: 'contain'
+              overscrollBehavior: 'contain',
+              transform: 'translateZ(0)',
+              willChange: 'auto',
+              contain: 'layout style paint'
             }}
           >
             {/* Sticky Close Button - Always visible while scrolling */}
-            <div className="sticky top-0 z-[130] flex justify-end p-2 pointer-events-none">
+            <div className="sticky top-0 z-[130] flex justify-end p-2 pointer-events-none bg-black">
               <Button
                 variant="ghost"
                 size="sm"
                 onClick={closeMenu}
-                className="pointer-events-auto h-10 w-10 p-0 text-red-400 hover:text-white bg-black/40 hover:bg-red-500/70 border border-red-500/50 hover:border-red-400 rounded-full transition-all duration-300 shadow-lg shadow-red-500/30 hover:shadow-red-500/50 backdrop-blur-md hover:scale-110"
+                className="pointer-events-auto h-10 w-10 p-0 text-red-400 bg-black/80 border border-red-500/50 rounded-full active:bg-red-500/70"
                 aria-label="Close menu"
-                style={{
-                  backdropFilter: 'blur(8px)',
-                  WebkitBackdropFilter: 'blur(8px)',
-                }}
+                style={{ touchAction: 'manipulation', transform: 'translateZ(0)' }}
               >
                 <X className="w-5 h-5" />
               </Button>
             </div>
             
-            <div className="p-4 pt-0 overflow-y-scroll max-h-[65vh]" style={{ WebkitOverflowScrolling: 'touch', touchAction: 'pan-y', overscrollBehavior: 'contain' }}>
+            <div className="p-4 pt-0 overflow-y-scroll max-h-[65vh]" style={{ WebkitOverflowScrolling: 'touch', touchAction: 'pan-y', overscrollBehavior: 'contain', transform: 'translateZ(0)' }}>
               {/* Redesigned Header Section */}
               <div className="relative mb-5">
                 {/* Glowing header background */}

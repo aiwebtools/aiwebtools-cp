@@ -1,5 +1,19 @@
 /* Mobile Performance Optimizations */
 
+/* Instant dropdown/menu opening on mobile */
+@media (max-width: 768px) {
+  [data-radix-popper-content-wrapper],
+  [data-state="open"],
+  [data-state="closed"],
+  [role="menu"],
+  [role="dialog"] {
+    animation-duration: 0ms !important;
+    animation: none !important;
+    transition-duration: 0ms !important;
+    transition: none !important;
+  }
+}
+
 /* Disable animations on low-performance devices */
 @media (prefers-reduced-motion: reduce) {
   *,

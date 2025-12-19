@@ -145,6 +145,19 @@ input, textarea, select {
     min-height: 44px;
     min-width: 44px;
   }
+  
+  /* Instant dropdown opening on mobile - no animations */
+  [data-radix-popper-content-wrapper],
+  [data-state="open"],
+  [data-state="closed"] {
+    animation: none !important;
+    transition: none !important;
+  }
+  
+  /* Disable all transition delays on mobile */
+  * {
+    transition-delay: 0ms !important;
+  }
 }
 
 /* Optimize grid layouts */
