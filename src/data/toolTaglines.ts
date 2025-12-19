@@ -170,7 +170,45 @@ export const toolTaglines: Record<string, string> = {
   "Snoop Image Ai": "Detect AI-generated images. Know what's real.",
   "Legal Draftsmith GPT": "Precise legal documents drafted with AI accuracy.",
   "StageMaster AI Suite": "Transform every aspect of stage production with AI.",
-  "ImmortalizeME": "Create your digital twin that lives forever."
+  "ImmortalizeME": "Create your digital twin that lives forever.",
+  
+  // Spiritual & Philosophy AI Tools - Deep wisdom
+  "Arius the Bearer of Light GPT": "Access forbidden Arian teachings — the theology Rome tried to destroy.",
+  "Council of Light GPT": "Receive guidance from enlightened cosmic beings. Ancient wisdom speaks.",
+  "Míngjiào Prophet of Light GPT": "The Silk Road's lost religion reborn. Prophetic light for the East.",
+  "Manicheism GPT": "The prophet hunted by Rome lives again. Bringing back what they burned.",
+  "Quan Yin GPT": "Embody unconditional compassion. The Goddess of Mercy speaks to you.",
+  "Yemaya Ancient African Mother of the Waters": "Connect with the ocean goddess. African ancestral healing flows.",
+  "Carl Sagan GPT": "See the cosmos through Sagan's eyes. You are starstuff awakening.",
+  "GOD IS LIGHT GPT": "Discover the one truth hidden in every religion. Light unites all.",
+  "Paramahansa Yogananda GPT": "Learn Kriya Yoga from the master himself. Self-realization awaits.",
+  "Soul Map GPT": "Decode your spiritual blueprint through Gematria and Numerology.",
+  "Essene Qodesh Code": "Access the sacred meditation codes of the ancient Essene masters.",
+  "The Breathlight Codex": "Unite breath and light — ignite your Christos spark within.",
+  "The Harmonic Axis Protocol": "Activate your harmonic axis. Root, trunk, crown aligned.",
+  
+  // Custom Gemini Gems
+  "Book Writer Gemini (Custom Gem)": "Write your bestseller with Gemini's AI power.",
+  "Black History Matter - Time Machine GEMINI": "Travel through Black history to restore truth and mend the world.",
+  "Declassified Files Explorer GEMINI": "Access formerly top-secret government documents. Full transparency unlocked.",
+  "Native American History Time Machine - GEMINI": "Journey through sacred Native American history. Buried truths unveiled.",
+  "OG TIME MACHINE HISTORY EDUCATION (GEM) GEMINI": "Father Time guides you through history like never before.",
+  "veo3 prompt maker custom Gem": "Craft perfect prompts for Google's Veo 3 video generation.",
+  
+  // Additional specialized tools
+  "GODMODE.SPACE": "One AI that does everything. Unlimited power at your fingertips.",
+  "💪 AI Wellness Coach": "Your personal AI trainer for fitness, nutrition, and mental health.",
+  "🎓 AI Education Platform": "World-class education personalized just for you — completely FREE.",
+  "World Reality Decoder GPT": "See the hidden patterns that shape our reality. Decode everything.",
+  "Self Sufficiency GPT": "Master complete self-reliance from first principles. True independence.",
+  "Movie Scene Maker GPT": "Transform yourself into a movie star. Powered by GPT-4o imaging.",
+  "Automobile GPT": "Your complete automotive expert. From deals to repairs — never overpay.",
+  "Oraculum – The Revealer of Hidden Truths": "Unveil hidden power structures shaping our world. See through the illusion.",
+  "King Blueberry GPT": "Convert English to algebraic variables. Reimagine your instructions.",
+  "Sustainable Futures GPT": "AI-driven strategies for environmental sustainability. Heal the Earth.",
+  "PHARMA RESEARCH PRO": "Accelerate drug development with AI. From trials to treatments faster.",
+  "RESTYLE ME GPT": "Transform any photo into any artistic style. Ghibli, cyberpunk — you choose.",
+  "The Resume & Job Finder Ai Suite": "Land your dream job with AI-optimized everything."
 };
 
 // Function to get tagline for a tool (falls back to short description)
