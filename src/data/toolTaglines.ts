@@ -208,7 +208,165 @@ export const toolTaglines: Record<string, string> = {
   "Sustainable Futures GPT": "AI-driven strategies for environmental sustainability. Heal the Earth.",
   "PHARMA RESEARCH PRO": "Accelerate drug development with AI. From trials to treatments faster.",
   "RESTYLE ME GPT": "Transform any photo into any artistic style. Ghibli, cyberpunk — you choose.",
-  "The Resume & Job Finder Ai Suite": "Land your dream job with AI-optimized everything."
+  "The Resume & Job Finder Ai Suite": "Land your dream job with AI-optimized everything.",
+  
+  // Music & Creative Arts - NEW BATCH
+  "Music Melodies & Lessons GPT": "Master any instrument with AI. Your pocket music teacher awaits.",
+  "Newsletter Writer GPT": "Craft newsletters that actually get opened. Engage your audience.",
+  "Postcard Maker GPT": "Design stunning custom postcards in seconds. Make memories shareable.",
+  "Image Cloner GPT": "Replicate and analyze images with AI precision. Clone visual patterns.",
+  "Diagrams & Charts GPT": "Turn complex data into beautiful visuals. Explain anything clearly.",
+  
+  // Education & Learning - NEW BATCH
+  "Math Inventor GPT": "Create and solve mathematical equations. Algebra reimagined.",
+  "Educator Pro": "Lesson plans, assessments, and materials — teaching made effortless.",
+  "Blueberry Method GPT": "Revolutionary problem-solving with the Blueberry Method. Think different.",
+  "Etymological Studies GPT": "Trace the origins of any word. Language archaeology unlocked.",
+  
+  // Entertainment - NEW BATCH
+  "Roleplay Companion": "Immersive storytelling and character adventures. Be anyone, anywhere.",
+  "Team of GPTs Simulator": "Multiple AI minds collaborating on your problem. Team intelligence.",
+  "Celebrity Chat Simulator GPT": "Have conversations with any celebrity. They're finally available.",
+  "YOU = MOVIESTAR AI": "Star in your own blockbuster. Hollywood dreams, AI reality.",
+  
+  // Cannabis & Hemp Industry - NEW BATCH
+  "Mass Cannabis Data GPT": "Massachusetts cannabis market intelligence. Data-driven industry insights.",
+  "Connecticut MMP Data Explorer": "CT Medical Marijuana Program data at your fingertips.",
+  "Greenleaf Logistics GPT": "Cannabis supply chain mastery. Compliance meets efficiency.",
+  "The Cannabis Compliance Guide AI": "Navigate cannabis regulations flawlessly. Stay legal, stay profitable.",
+  "Cannabis Edible Dosage Determinator 2.0": "Precise cannabis dosing for safety. Never guess again.",
+  "CannaEats GPT 2.0": "Cannabis-infused recipes and growing tips. From seed to table.",
+  "Cannabis Educational Course Maker": "Build comprehensive cannabis training programs instantly.",
+  
+  // Government & Civic - NEW BATCH
+  "Politician Outreach GPT": "Connect directly with your legislators. Make your voice matter.",
+  "Connecticut Legislator Info Finder GPT": "Find CT legislators instantly. Democracy at your fingertips.",
+  
+  // Investigative - NEW BATCH
+  "Hidden Histories GPT": "Uncover suppressed events and alternative historical narratives.",
+  "Video Analysis GPT": "Frame-by-frame video breakdown. See what others miss.",
+  "Declassified Files Explorer GPT": "Access declassified government secrets. What were they hiding?",
+  
+  // AI & Prompting - NEW BATCH
+  "Meta.ai Video Prompt Generator GPT": "Perfect prompts for Meta.ai videos. Copy, paste, create.",
+  
+  // Research & Data - NEW BATCH
+  "World Data Explorer GPT": "Global statistics and insights at your command. Know the world.",
+  "Algebraic Expression Inventor GPT": "Invent new mathematical relationships. Math creativity unleashed.",
+  
+  // Business & Finance - NEW BATCH 2
+  "POVERTY CRUSHER - Economic Empowerment GPT": "Break the cycle of poverty. Financial freedom is learnable.",
+  "The Negotiator": "Win every negotiation with AI coaching. Get what you deserve.",
+  "Startup Idea Generator": "Discover your next million-dollar idea. Innovation on demand.",
+  "Business Plan Architect": "Investor-ready business plans in minutes. Launch smarter.",
+  "Market Research Analyst": "Understand your market deeply. Data-driven competitive edge.",
+  "Financial Modeling Expert": "Complex financial forecasts made simple. Strategic precision.",
+  "HR & Employee Relations Advisor": "Manage your workforce like a Fortune 500 company.",
+  "Tax Filing Assistant": "Maximize deductions, minimize stress. Tax season conquered.",
+  "Accounting & Bookkeeping Assistant": "Perfect financial records without the accountant fees.",
+  "Risk Management Advisor": "Identify threats before they strike. Protect your business.",
+  "Venture Capital Analyst": "Evaluate investments like a VC pro. Spot the next unicorn.",
+  "Personal Budgeting Assistant": "Master your money. Financial goals within reach.",
+  "Contract Law Advisor": "Understand legal agreements without a lawyer. Protect yourself.",
+  "Economic Forecaster": "Predict market shifts before they happen. Stay ahead.",
+  "Global Trade Consultant": "Navigate international markets with confidence. Go global.",
+  "Innovation Strategy Advisor": "Foster creativity that drives revenue. Innovate or die.",
+  "Efficiency Expert": "Eliminate waste, boost productivity. Work smarter.",
+  "Personal Finance Ai": "Take control of your finances. Build real wealth.",
+  "FIAT TO CRYPTO AI VALUE CALCULATOR –For Businesses": "Real-time crypto conversion for smart business decisions.",
+  "Competitor Comparison GPT": "Know your competition better than they know themselves.",
+  "Side Hustle & Microbusiness Planner GPT": "Launch profitable side ventures. Start earning today.",
+  "Business Expense Deduction Optimizer GPT": "Find every tax deduction. Keep more profit.",
+  "Nonprofit Fundraising Builder GPT": "Secure funding for your cause. Grants demystified.",
+  "Local Business Grant & Permit GPT": "Navigate permits and grants. Stay compliant, get funded.",
+  "Financial Aid & Tax Credit Navigator GPT": "Discover money you didn't know was available.",
+  
+  // Health & Wellness - NEW BATCH 2
+  "SKIN CARE GPT": "Your AI dermatologist. Personalized skincare that actually works.",
+  "DENTAL GPT": "Expert dental guidance anytime. Smile with confidence.",
+  "MyFitnessPal": "Track calories and fitness. Data-driven health transformation.",
+  "Headspace": "AI-guided meditation. Find your calm in the chaos.",
+  "WebMD Symptom Checker": "Understand your symptoms. Know when to seek care.",
+  "Calm": "Reduce anxiety, improve sleep. Peace of mind on demand.",
+  "FITNESS COACH AI": "Your personal AI trainer. Achieve your fitness goals faster.",
+  "Fitness Trainer GPT": "Professional workout plans customized for you.",
+  "AI Home Cleanliness & Declutter Coach GPT": "Transform your living space. Organization mastery.",
+  "Apothecary GPT": "Ancient herbal wisdom meets modern science.",
+  "Patient Advocate GPT": "Navigate healthcare like a pro. Fight for fair treatment.",
+  "Branford River Spa GPT": "Local spa expertise at your fingertips.",
+  "Friend GPT": "A caring AI friend who truly listens. Never feel alone.",
+  "Parenting Guide GPT": "Expert parenting advice for every stage.",
+  "Relationship Advisor GPT": "Save your relationship with expert guidance.",
+  
+  // Entertainment & Gaming - NEW BATCH 2
+  "1995 Illuminati Card Game GPT": "Play the legendary conspiracy card game with AI. Secrets revealed.",
+  
+  // Creative & Media - NEW BATCH 2
+  "SORA2 Text to Video Prompt Maker GPT": "Perfect prompts for Sora 2 video generation. Cinematic mastery.",
+  "Bob Ross GPT": "Learn painting with Bob Ross's gentle guidance. Happy little trees await.",
+  "Cyber-Kabbalah Light Code Translation Engine GPT": "Encode secret messages in light codes. Hidden communication.",
+  "AD Maker GPT4o Image GPT": "Create professional ads instantly. Marketing visuals that convert.",
+  "VIRTUAL TRY ON STYLIST GPT": "Try on outfits virtually. Fashion without the fitting room.",
+  "SHOPPING GPT": "Find the best deals instantly. Smart shopping made easy.",
+  "COMMERCIAL SCENE IMAGE GENERATOR GPT": "Professional commercial photography without the studio.",
+  "SCREENPLAY WRITER GPT": "Write Hollywood-quality screenplays. Your story, properly formatted.",
+  "LOGO AND AD GENERATOR GPT": "Professional logos and ads in seconds. Brand identity unlocked.",
+  "Comic Book Generator GPT": "Create full comic books with AI. Your superhero story awaits.",
+  "MEME GENERATOR GPT": "Create viral memes instantly. Internet fame awaits.",
+  
+  // Time & History - NEW BATCH 2
+  "Black History Matters Time Machine GPT": "Experience Black history firsthand. Stories that matter told right.",
+  "Palestinian History Preserver": "Preserving Palestinian voices and stories. History will not be erased.",
+  "Middle East History Guide": "Comprehensive Middle Eastern history across all eras. Deep knowledge.",
+  "Gravestone Decoder GPT": "Uncover identities behind the stone. Their stories, verified and preserved.",
+  "Time Machine of Unwritten History GPT": "Lost truths revealed. History the mainstream forgot.",
+  
+  // Legal & Government - NEW BATCH 2
+  "Human Rights & AI Ethics Guardian GPT": "Protect rights in the digital age. AI ethics expertise.",
+  "Fraud & Scam Guard": "Detect fraud before it costs you. Financial protection powered by AI.",
+  "Prison to Prosperity Re-Entry Companion GPT": "Second chances made possible. Rebuilding lives after incarceration.",
+  "Tenant Rights & Eviction Defender GPT": "Fight unfair evictions. Know your tenant rights.",
+  "Employment Rights & Wage Recovery GPT": "Get the wages you earned. Labor rights enforced.",
+  "AI Student Loan Repayment & Forgiveness GPT": "Escape student debt faster. Forgiveness programs found.",
+  
+  // Food & Hospitality - Additional
+  "Culinary Recipe Master GPT": "Master any cuisine with AI. Professional cooking for everyone.",
+  
+  // Appraisal & Valuation - NEW BATCH 2
+  "Sport Card Appraisal GPT": "Know your sports cards' true value. Collector intelligence.",
+  
+  // Science & Research - NEW BATCH 2
+  "Consensus": "Find scientific evidence fast. Peer-reviewed answers on demand.",
+  "Elicit": "Automate literature reviews. Research at the speed of thought.",
+  "Semantic Scholar": "AI-powered academic search. Discover what matters.",
+  "Research Rabbit": "Explore connected research visually. Never miss relevant papers.",
+  "Connected Papers": "See how research connects. Visual paper discovery.",
+  "Plastoline GPT - Inspired by Julian Brown": "Turn plastic waste into fuel. Environmental innovation.",
+  "Geology & Rock Identification GPT": "Identify any rock or mineral instantly. Earth science unlocked.",
+  "Garden & Vision Analysis Plant Doctor GPT": "Diagnose plant problems with a photo. Garden health mastered.",
+  "Microgrid & Power Safety Planning Assistant GPT": "Design off-grid power systems safely. Energy independence.",
+  "AQUILA — Water Safety Planning Assistant GPT": "Plan for safe water in any situation. Survival essential.",
+  "WORLD DATA EXPLORER GPT5": "Deep global data analysis with verified predictions.",
+  "World Resource Clock": "Track global resource consumption in real-time. See Earth's pulse.",
+  "Astrodynamics GPT": "Calculate orbital mechanics with precision. Space science made accessible.",
+  
+  // Mysterious & Unusual - NEW BATCH 2
+  "Mind Reader GPT": "AI that analyzes patterns in thought. Digital telepathy explored.",
+  "Atlantean Memory Keeper": "Access lost wisdom of Atlantis. Ancient knowledge restored.",
+  "Mayan Dreamspell Matrix": "Decode your galactic signature. Cosmic identity revealed.",
+  "Emerald Signature of Thoth": "Access hermetic wisdom and emerald codes. Divine transmission.",
+  "The Babylonian Star Tablet Protocol": "Align with ancient celestial frequencies. Star wisdom.",
+  "The Rune Frequency Protocol": "Activate living runes in your body. Ancient power restored.",
+  "Reality Splitter GPT": "Explore parallel timelines of your decisions. See all outcomes.",
+  "AstroTheology Revealer GPT": "Decode astronomical roots of religion. Celestial truth.",
+  "Architect Matrix Tool": "Debate reality with The Architect. Philosophy meets quantum.",
+  "Ancient Gematria Scan GPT": "Decode hidden numbers in words. Sacred mathematics.",
+  "JARVIS – The Steward of Humanity GPT": "Post-collapse guidance for rebuilding civilization.",
+  "Magnetism GPT": "Understand how magnetic fields weave life together. Biofield science.",
+  "The Cosmic Probability GPT": "Calculate cosmic existence probabilities. Universe mathematics.",
+  "Frequency Signature Mystic Decoder GPT": "Decode vibrational patterns shaping reality.",
+  "Intergalactic Ancient Archivist GPT": "Access cosmic archives spanning countless worlds.",
+  "Architectural Old World Investigator GPT": "Decode impossible architecture. Timeline anomalies exposed."
 };
 
 // Function to get tagline for a tool (falls back to short description)
