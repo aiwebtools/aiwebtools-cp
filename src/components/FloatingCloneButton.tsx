@@ -23,15 +23,16 @@ const FloatingCloneButton = () => {
   const content = useMemo(
     () => (
       <>
-        {/* Ensures true viewport pinning on mobile (avoids transform/scroll containers) */}
+        {/* Ensures true viewport pinning on mobile - optimized for instant response */}
         <style>{`
           .floating-clone-btn {
             position: fixed !important;
             left: 8px;
             z-index: 9999;
             top: 100px;
-            -webkit-transform: translate3d(0, 0, 0);
-            transform: translate3d(0, 0, 0);
+            transform: translateZ(0);
+            will-change: auto;
+            contain: layout style;
           }
           @media (min-width: 768px) {
             .floating-clone-btn {
@@ -50,29 +51,26 @@ const FloatingCloneButton = () => {
               e.stopPropagation();
               createTimePortalEffect(CLONE_URL, "Clone AI Web Tools");
             }}
-            className="clone-button-container group bg-gradient-to-br from-cyan-500 via-blue-500 to-purple-600 hover:from-cyan-400 hover:via-blue-400 hover:to-purple-500 text-white 
+            className="clone-button-container bg-gradient-to-br from-cyan-500 via-blue-500 to-purple-600 text-white 
               w-14 h-14 md:w-20 md:h-20 
-              rounded-full shadow-2xl transition-all duration-300 transform hover:scale-110 flex flex-col items-center justify-center relative overflow-hidden"
+              rounded-full shadow-lg flex flex-col items-center justify-center relative"
             style={{
-              boxShadow:
-                "0 8px 30px rgba(6, 182, 212, 0.4), 0 4px 20px rgba(59, 130, 246, 0.3), 0 0 40px rgba(147, 51, 234, 0.2)",
-              backdropFilter: "blur(8px)",
+              boxShadow: "0 4px 20px rgba(6, 182, 212, 0.4)",
+              transform: "translateZ(0)",
             }}
             title="Clone This AI Tools Website"
           >
-            <div className="absolute inset-0 rounded-full border-2 md:border-4 border-cyan-400/50 animate-ping" />
-            <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 via-blue-500/20 to-purple-600/20 animate-pulse rounded-full" />
+            {/* Static border glow - no animation */}
+            <div className="absolute inset-0 rounded-full border-2 md:border-4 border-cyan-400/50" />
 
             <div className="relative flex flex-col items-center justify-center text-center">
-              <Copy className="w-4 h-4 md:w-5 md:h-5 group-hover:animate-bounce mb-0.5" />
+              <Copy className="w-4 h-4 md:w-5 md:h-5 mb-0.5" />
               <div className="text-[7px] md:text-[9px] font-bold leading-tight tracking-wide">
                 <div>CLONE</div>
                 <div>SITE</div>
                 <div className="text-yellow-300">FREE</div>
               </div>
             </div>
-
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 translate-x-full group-hover:translate-x-[-200%] transition-transform duration-700 rounded-full" />
           </a>
         </div>
       </>
