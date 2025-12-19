@@ -1,9 +1,12 @@
 
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { ExternalLink } from "lucide-react";
 import { Tool } from "@/types/tools";
 import StarRating from "@/components/tools/StarRating";
 import { useNavigate } from "react-router-dom";
 import { isFreeTool } from "@/utils/freeToolDetection";
+import { createTimePortalEffect } from "@/utils/timeEffects";
 
 interface ToolHeaderProps {
   tool: Tool;
@@ -21,7 +24,13 @@ const ToolHeader = ({ tool, defaultRating, defaultVotes, toolIndex }: ToolHeader
     }
   };
 
-  // Check if this is a FREE custom GPT (lovable.app, chatgpt.com/g/, gemini.google.com/gem/, or tagged as custom GPT)
+  const handleQuickUse = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    createTimePortalEffect(tool.directUrl || '', tool.title);
+  };
+
+  // Check if this is a FREE custom GPT
   const isFreeCustomGPT = isFreeTool(tool);
 
   return (
@@ -51,6 +60,20 @@ const ToolHeader = ({ tool, defaultRating, defaultVotes, toolIndex }: ToolHeader
             {tool.category}
           </Badge>
         )}
+        
+        {/* Quick USE IT NOW shortcut button */}
+        <div className="pt-2">
+          <Button
+            size="sm"
+            onClick={handleQuickUse}
+            className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white px-4 py-2 text-xs rounded-lg shadow-md shadow-cyan-500/20"
+            style={{ touchAction: 'manipulation' }}
+          >
+            <ExternalLink className="w-3 h-3 mr-1" />
+            {tool.directUrl ? "USE IT NOW" : "COMING SOON"}
+          </Button>
+        </div>
+        
         <div className="flex justify-center">
           <StarRating 
             rating={defaultRating} 
