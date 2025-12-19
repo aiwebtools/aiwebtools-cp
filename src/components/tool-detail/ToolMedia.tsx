@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { Image as ImageIcon } from "lucide-react";
 import { Tool } from "@/types/tools";
+import { getToolTagline } from "@/data/toolTaglines";
 
 interface ToolMediaProps {
   tool: Tool;
@@ -150,32 +151,15 @@ const ToolMedia = ({ tool, toolIndex }: ToolMediaProps) => {
     );
   };
 
-  // Generate a very short tagline (max 80 chars, complete words only)
-  const getShortTagline = () => {
-    if (!tool.description) return null;
-    const desc = tool.description.trim();
-    
-    // If description is already short, use it
-    if (desc.length <= 80) return desc;
-    
-    // Find the last space before 80 chars to avoid cutting words
-    const truncated = desc.substring(0, 80);
-    const lastSpace = truncated.lastIndexOf(' ');
-    
-    if (lastSpace > 40) {
-      return truncated.substring(0, lastSpace);
-    }
-    return truncated;
-  };
-
-  const shortTagline = getShortTagline();
+  // Get custom tagline or generate from description
+  const tagline = getToolTagline(tool.title, tool.description);
 
   return (
     <div ref={containerRef} className="mb-4 sm:mb-6 px-4 sm:px-0">
       {/* Compact tagline above video */}
-      {shortTagline && (
+      {tagline && (
         <p className="text-gray-400 text-xs mb-2 text-center leading-snug max-w-lg mx-auto">
-          {shortTagline}
+          {tagline}
         </p>
       )}
       <div className="shadow-lg border border-cyan-500/30 neon-border rounded-xl overflow-hidden">
