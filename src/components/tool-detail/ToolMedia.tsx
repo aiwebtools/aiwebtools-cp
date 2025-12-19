@@ -150,22 +150,32 @@ const ToolMedia = ({ tool, toolIndex }: ToolMediaProps) => {
     );
   };
 
-  // Generate a short description (first sentence or first 120 chars)
-  const getShortDescription = () => {
+  // Generate a very short tagline (max 80 chars, complete words only)
+  const getShortTagline = () => {
     if (!tool.description) return null;
-    const firstSentence = tool.description.split(/[.!?]/)[0];
-    if (firstSentence.length <= 120) return firstSentence + '.';
-    return tool.description.substring(0, 117) + '...';
+    const desc = tool.description.trim();
+    
+    // If description is already short, use it
+    if (desc.length <= 80) return desc;
+    
+    // Find the last space before 80 chars to avoid cutting words
+    const truncated = desc.substring(0, 80);
+    const lastSpace = truncated.lastIndexOf(' ');
+    
+    if (lastSpace > 40) {
+      return truncated.substring(0, lastSpace);
+    }
+    return truncated;
   };
 
-  const shortDescription = getShortDescription();
+  const shortTagline = getShortTagline();
 
   return (
-    <div ref={containerRef} className="mb-6 sm:mb-8 px-4 sm:px-0">
-      {/* Short description above video */}
-      {shortDescription && (
-        <p className="text-gray-300 text-sm mb-3 text-center leading-relaxed">
-          {shortDescription}
+    <div ref={containerRef} className="mb-4 sm:mb-6 px-4 sm:px-0">
+      {/* Compact tagline above video */}
+      {shortTagline && (
+        <p className="text-gray-400 text-xs mb-2 text-center leading-snug max-w-lg mx-auto">
+          {shortTagline}
         </p>
       )}
       <div className="shadow-lg border border-cyan-500/30 neon-border rounded-xl overflow-hidden">
