@@ -1,0 +1,201 @@
+// Mind-blowing taglines for AI Web Tools GPTs
+// These highlight the revolutionary aspect of each tool
+
+export const toolTaglines: Record<string, string> = {
+  // Education & Learning - Breaking barriers
+  "College Degree GPT": "Learn ANY college degree from ANY university curriculum — completely FREE. Say goodbye to student debt.",
+  "Learn Any Course GPT": "Master any course from Harvard to MIT without paying a dime. Education without limits.",
+  "Learn Any Skill GPT": "From coding to cooking — become an expert in anything without expensive classes.",
+  "Home-Schooling Assistant GPT": "Your child's personalized AI tutor. World-class education from your living room.",
+  
+  // Time & History - Breaking the veil
+  "Time Machine GPT": "Step through the veil of time. Experience history firsthand like you were actually there.",
+  "Talk to History GPT": "Have real conversations with Abraham Lincoln, Cleopatra, or any historical figure.",
+  "Historical Headlines GPT": "Read tomorrow's newspaper from 1776. History as breaking news.",
+  "Native American History Time Machine GPT": "Witness untold stories of indigenous peoples — history the textbooks forgot.",
+  "Titanic Resurrections GPT": "Speak with passengers and crew of the Titanic. Their stories, finally heard.",
+  
+  // Spiritual & Mystical - Beyond the ordinary
+  "Talk to the Gods GPT": "Commune with deities from every pantheon. Divine wisdom at your fingertips.",
+  "Mary Magdalene GPT": "Access hidden Gnostic teachings and lost gospels. Secrets the church buried.",
+  "Resurrection GPT": "Reconnect with loved ones who have passed. Healing conversations beyond the veil.",
+  "Fortune Teller GPT": "AI-powered predictions using data patterns most can't see.",
+  "Dream Interpreter GPT": "Decode the hidden messages in your dreams. Your subconscious revealed.",
+  "Oraculum GPT": "Unveil hidden truths and patterns shaping our world. See what others miss.",
+  
+  // Creative - Unleashing potential
+  "Book Writer GPT": "Write your bestseller with AI. From blank page to published author.",
+  "Movie Script Writer GPT": "Hollywood-quality scripts without the Hollywood price tag.",
+  "Movie Maker Studio AI Suite": "Your complete film studio in your pocket. Direct your vision.",
+  "Music Video Maker AI Studio": "Become the star of professional music videos. No budget needed.",
+  "Playwriter GPT": "Broadway-worthy plays crafted with AI precision.",
+  "Children's Picture Book Maker GPT": "Create magical illustrated books your kids will treasure forever.",
+  "Graphic & Cover Design GPT": "Professional designs in seconds. No design skills required.",
+  "Tattoo Designer GPT": "Custom tattoo art that's uniquely yours. Ink your story.",
+  
+  // Professional & Business - Game changers
+  "Public Defender GPT": "Legal defense assistance for those who can't afford lawyers. Justice for all.",
+  "Taxes GPT": "Maximize your refund with AI. Keep more of what you earn.",
+  "Business Plan Generator GPT": "Launch your dream business with investor-ready plans.",
+  "Grant Writer GPT": "Unlock funding with winning grant proposals. Money waiting to be claimed.",
+  "Resume & Job Finder Ai Suite": "Land your dream job with AI-optimized applications.",
+  "Insurance Claims GPT": "Fight back against unfair settlements. Get what you deserve.",
+  "Contract Review Bot": "Catch the fine print that could cost you thousands.",
+  
+  // Health & Wellness - Life changing
+  "Personalized DR. GPT": "Your private AI doctor. Medical guidance when you need it most.",
+  "Veterinarian GPT": "Expert pet care advice 24/7. Because they're family too.",
+  "Mental Wellness GPT": "Your judgment-free space for emotional support and healing.",
+  "Cannabis GPT": "Expert cultivation, strain info, and legal guidance. Grow smarter.",
+  "Pharmaceutical Assistant GPT": "Understand your medications and interactions. Stay safe.",
+  
+  // Investigation & Research - Uncovering truth
+  "Criminologist GPT": "Analyze evidence like a forensic expert. Uncover what others miss.",
+  "Fact Checker GPT": "Cut through misinformation. Know what's actually true.",
+  "Person Information Finder GPT": "Find anyone's public information. Reconnect or research.",
+  "Property Data Finder GPT": "Uncover hidden property details before you buy. Never overpay.",
+  
+  // Science & Technology - Pushing boundaries
+  "Genome GPT": "Decode genetic mysteries. Understand your DNA.",
+  "Stellaris: AI Space Explorer": "Chart courses through the cosmos. Plan interstellar missions.",
+  "Engineering GPT AI Suite": "Solve complex engineering problems across all disciplines.",
+  "Nikola Tesla GPT": "Channel Tesla's genius. Push scientific boundaries.",
+  "Albert Einstein GPT": "Think like Einstein. Unravel the universe's deepest mysteries.",
+  
+  // Survival & Practical - Life skills
+  "Survivalist GPT": "Expert survival knowledge in your pocket. Be ready for anything.",
+  "Firefighter GPT": "Master fire safety and emergency response. Save lives.",
+  "Home Renovator GPT": "DIY like a pro. Save thousands on home repairs.",
+  "Fisherman GPT": "Find the best spots, techniques, and gear. Catch more fish.",
+  "Agronomus AI Farming Expert": "Farm smarter with AI precision agriculture. Maximize yields.",
+  
+  // Entertainment & Fun - Pure joy
+  "Celebrity Chatline GPT": "Chat with your favorite celebrities. They're finally calling you back.",
+  "Trivia Night GPT": "Host epic game nights. Endless questions, endless fun.",
+  "ENTER THE MATRIX GPT": "Take the red pill. Explore simulation theory and hidden truths.",
+  "GodMode GPT": "One AI that transforms to do everything. Unlimited power.",
+  "Multitasker GPT": "Give it 10 tasks at once. Watch it crush them all.",
+  
+  // Food & Lifestyle - Living better
+  "Chef Sizzle AI Culinary Assistant": "Michelin-star recipes tailored to what's in your fridge.",
+  "Mixologist GPT": "Craft perfect cocktails. Your personal bartender.",
+  "Food Quality Inspector GPT": "Know exactly what you're eating. Avoid hidden dangers.",
+  "Restaurant Menu Maker GPT": "Professional menus that make customers hungry.",
+  
+  // Finance & Trading - Building wealth
+  "Trader GPT": "AI-powered market analysis. Trade smarter, not harder.",
+  "Predictive Credit Score Checker GPT": "Know your creditworthiness before lenders do.",
+  "Material Valuation GPT": "Understand true asset values. Never get ripped off.",
+  
+  // Specialized & Unique - One of a kind
+  "Illuminous World Data Explorer GPT": "See global patterns others can't. Predict what's coming.",
+  "Legislation Writer GPT": "Draft real legislation. Shape policy and change laws.",
+  "Public Testimony Writer GPT": "Make your voice heard. Influence legislative decisions.",
+  "Solar Land Assessor GPT": "Find the perfect land for solar. Power the future.",
+  "Drill Baby Drill Ai Suite": "Optimize oil & gas operations. Maximize extraction.",
+  
+  // AI Tool Creation - Meta
+  "Customizable GPT Maker": "Build your own custom AI. No coding required.",
+  "Custom GPT Ideas & Brainstorming Assistant": "Discover AI ideas that could change everything.",
+  "Perfect Prompt Engine": "Master the art of AI communication. Get exactly what you want.",
+  "AI Tools Finder GPT": "Find the perfect AI tool for any task. Your AI guide.",
+  
+  // Writing & Content - Express yourself
+  "Article and Blog Rewriter GPT": "Transform any content into SEO gold. Rank higher.",
+  "Podcast Script Writer GPT": "Captivating podcast scripts that keep listeners hooked.",
+  "PPTx Powerpoint Maker GPT": "Stunning presentations in minutes. Impress every audience.",
+  
+  // Appraisal & Valuation - Know your worth
+  "Antique and Collectible Appraisal GPT": "Discover hidden treasures in your attic. Know their true value.",
+  "Artwork & Vintage Appraisal GPT": "Expert art valuations instantly. Find out what it's worth.",
+  
+  // Conversion & Utility - Practical magic
+  "Binary-Text-Image Converter GPT": "Convert anything to anything. Universal translator.",
+  "Sketch Artist GPT": "Turn words or photos into professional sketches.",
+  "Video Second-by-Second Analysis GPT": "Break down any video frame by frame. Miss nothing.",
+  
+  // Relationship & Personal - Human connection
+  "Marriage Mender GPT": "Save your relationship with AI-guided communication.",
+  "Restyle Me GPT": "Transform your look with AI fashion expertise.",
+  "Name Insight Research & Predictor GPT": "Discover the hidden meaning and destiny in your name.",
+  
+  // Travel & Adventure - Explore the world
+  "Travel Advisor GPT": "Plan dream vacations perfectly tailored to you.",
+  "Imagination Traveler GPT": "Journey through alternate realities and possible futures.",
+  
+  // Prompt Engineering - Master AI
+  "Sora Prompt Assistant": "Create cinematic AI videos with perfect prompts.",
+  "Luma Dream Machine Prompt Assistant": "Master text-to-video generation. Bring visions to life.",
+  "MiddleJourney Midjourney Prompting Assistant": "Create stunning AI art with optimized prompts.",
+  
+  // Philosophy & Wisdom - Deep thinking
+  "Alan Watts GPT": "Free your mind with philosophical wisdom. See reality clearly.",
+  "Sophia Aeterna AI": "Access timeless wisdom and esoteric knowledge.",
+  "Interpretis GPT": "Decode hidden meanings in language and symbols.",
+  "Alchemist Scientist GPT": "Blend ancient alchemy with modern science. Transform matter.",
+  
+  // Historical Patterns - See the truth
+  "Uncovering Hidden Historical Patterns GPT": "See the patterns history books hide. Connect the dots.",
+  "Historical Apothecary GPT": "Ancient remedies and forgotten healing arts revealed.",
+  
+  // Strategy & Planning - Think ahead
+  "Global Peace Restoration Strategist GPT": "AI-powered diplomacy for a more peaceful world.",
+  "Universal Basic Income Strategist GPT": "Design sustainable UBI models for the post-AI economy.",
+  "IF AI RULED THE WORLD GPT": "Explore what happens when AI makes all decisions. Eye-opening.",
+  "Startup Validator GPT": "Know if your idea will succeed before investing a dime.",
+  
+  // Emergency & Safety - Protection
+  "Cyber Security GPT": "Defend against hackers. Protect your digital life.",
+  "Firearms Safety Instructor GPT": "Expert firearms training and safety education.",
+  
+  // Specialized Knowledge - Expert access
+  "Fungus GPT": "Master mycology. Identify, cultivate, and understand fungi.",
+  "Indiana Archeologist GPT": "Uncover ancient mysteries like a real archaeologist.",
+  "Phenomenon Explorer AI Suite": "Investigate UFOs, paranormal activity, and unexplained phenomena.",
+  
+  // Social Impact - Change the world
+  "Social Safety Net GPT": "Connect people with resources they desperately need.",
+  "Legislator Link GPT": "Direct line to your representatives. Make democracy work.",
+  
+  // Analysis & Prediction - See the future
+  "Probability GPT": "Calculate the likelihood of anything. Know your odds.",
+  "Data Research Analysis Report GPT": "Transform raw data into actionable insights.",
+  "Clarity Omni GPT": "Make complex text crystal clear. Perfect understanding.",
+  
+  // Quick additions for other prominent tools
+  "Coloring Book Generator GPT": "Create custom coloring books for endless creative fun.",
+  "Quiz Maker Ai": "Generate perfect quizzes and tests in seconds.",
+  "Course Maker GPT": "Build comprehensive courses on any topic instantly.",
+  "Training Manual Generator GPT": "Professional employee training materials on demand.",
+  "Snoop Image Ai": "Detect AI-generated images. Know what's real.",
+  "Legal Draftsmith GPT": "Precise legal documents drafted with AI accuracy.",
+  "StageMaster AI Suite": "Transform every aspect of stage production with AI.",
+  "ImmortalizeME": "Create your digital twin that lives forever."
+};
+
+// Function to get tagline for a tool (falls back to short description)
+export const getToolTagline = (title: string, description?: string): string => {
+  // Check exact match first
+  if (toolTaglines[title]) {
+    return toolTaglines[title];
+  }
+  
+  // Check for partial matches (handles slight naming variations)
+  const normalizedTitle = title.toLowerCase().replace(/[^a-z0-9]/g, '');
+  for (const [key, tagline] of Object.entries(toolTaglines)) {
+    const normalizedKey = key.toLowerCase().replace(/[^a-z0-9]/g, '');
+    if (normalizedTitle.includes(normalizedKey) || normalizedKey.includes(normalizedTitle)) {
+      return tagline;
+    }
+  }
+  
+  // Fallback: generate from description
+  if (description) {
+    if (description.length <= 80) return description;
+    const truncated = description.substring(0, 80);
+    const lastSpace = truncated.lastIndexOf(' ');
+    return lastSpace > 40 ? truncated.substring(0, lastSpace) : truncated;
+  }
+  
+  return '';
+};

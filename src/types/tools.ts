@@ -16,4 +16,5 @@ export interface Tool {
   totalVotes?: number;
   blockchain?: string;
   isFree?: boolean; // Flag for free tools from AI Web Tools
+  tagline?: string; // Short, mind-blowing one-liner about what the tool does
 }
