@@ -29,21 +29,46 @@ const LoadingSpinner = () => (
 
 const Index = () => {
   const navigate = useNavigate();
-  
+
+  // If disclaimer not accepted, immediately show a lightweight gate state and redirect.
+  // IMPORTANT: this prevents heavy homepage components from mounting and slowing first load.
+  const [hasAccepted, setHasAccepted] = useState(() => {
+    try {
+      return Boolean(localStorage.getItem("aitools-consent-v3"));
+    } catch {
+      return false;
+    }
+  });
+
   // Use fast cached stats initially for better performance
   const [toolStats, setToolStats] = useState(getFastToolCount());
   const [hasPlayedOnce, setHasPlayedOnce] = useState(false);
-  const [videoSrc, setVideoSrc] = useState("https://www.youtube.com/embed/4zflGSSuBcA?controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&vq=hd1080&iv_load_policy=3&cc_load_policy=0&fs=1&color=red&theme=dark");
-  
+  const [videoSrc, setVideoSrc] = useState(
+    "https://www.youtube.com/embed/4zflGSSuBcA?controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&vq=hd1080&iv_load_policy=3&cc_load_policy=0&fs=1&color=red&theme=dark"
+  );
+
   const mainVideoRef = useRef<HTMLIFrameElement>(null);
 
-  // If disclaimer not accepted, send user to gate page first
   useEffect(() => {
-    const hasAccepted = localStorage.getItem("aitools-consent-v3");
-    if (!hasAccepted) {
-      navigate("/welcome", { replace: true });
+    let accepted = hasAccepted;
+    try {
+      accepted = Boolean(localStorage.getItem("aitools-consent-v3"));
+    } catch {
+      accepted = false;
     }
-  }, [navigate]);
+
+    if (accepted !== hasAccepted) setHasAccepted(accepted);
+    if (!accepted) navigate("/welcome", { replace: true });
+  }, [hasAccepted, navigate]);
+
+  if (!hasAccepted) {
+    return (
+      <div className="min-h-screen bg-black">
+        <ImprovedSEOHead pageType="homepage" />
+        <LoadingSpinner />
+      </div>
+    );
+  }
 
   useEffect(() => {
     // Load actual stats in background
@@ -68,7 +93,6 @@ const Index = () => {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting && !hasPlayedOnce) {
-            console.log('🎬 Video in view - triggering UNMUTED autoplay');
             // User interaction already happened on disclaimer gate, so unmuted autoplay is allowed
             setVideoSrc("https://www.youtube.com/embed/4zflGSSuBcA?autoplay=1&mute=0&controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&vq=hd1080&loop=0&iv_load_policy=3&cc_load_policy=0&fs=1&color=red&theme=dark");
             setHasPlayedOnce(true);
