@@ -3483,12 +3483,50 @@ const featuredGPTsUnsorted = [
   },
 ];
 
-// Sort alphabetically by title (ignoring emojis/special chars), then move Inspector GPTs to bottom
+// Priority tools to show first (coolest, most diverse tools)
+const priorityToolTitles = [
+  "TIME MACHINE GPT",
+  "Personalized DR. GPT",
+  "COLLEGE DEGREE GPT",
+  "TALK TO HISTORY GPT",
+  "Tattoo GPT",
+  "GODMODE GPT",
+  "Movie Maker Studio",
+  "Trader GPT",
+  "Survivalist GPT",
+  "Criminologist GPT",
+  "AUTOMOBILE GPT",
+  "Cannabis GPT",
+  "Albert Einstein GPT",
+  "Nikola Tesla GPT",
+  "BOOK WRITER GPT",
+  "Chef Sizzle GPT",
+  "Dream Interpreter GPT",
+  "Fortune Teller GPT",
+  "Genome GPT",
+  "ALAN WATTS GPT",
+];
+
+// Sort with priority tools first, then alphabetically, inspector GPTs last
 const sortedGPTs = [...featuredGPTsUnsorted].sort(sortByTitle);
 const isInspectorGPT = (title: string) => title.toLowerCase().includes('inspector');
-const regularGPTs = sortedGPTs.filter(gpt => !isInspectorGPT(gpt.title));
+const isResurrectionGPT = (title: string) => title.toLowerCase().includes('resurrection');
+
+// Separate into categories
+const priorityGPTs = priorityToolTitles
+  .map(name => sortedGPTs.find(gpt => gpt.title.toUpperCase().includes(name.toUpperCase())))
+  .filter(Boolean) as typeof sortedGPTs;
+
+const regularGPTs = sortedGPTs.filter(gpt => 
+  !isInspectorGPT(gpt.title) && 
+  !isResurrectionGPT(gpt.title) &&
+  !priorityToolTitles.some(p => gpt.title.toUpperCase().includes(p.toUpperCase()))
+);
+const resurrectionGPTs = sortedGPTs.filter(gpt => isResurrectionGPT(gpt.title));
 const inspectorGPTs = sortedGPTs.filter(gpt => isInspectorGPT(gpt.title));
-const featuredGPTs = [...regularGPTs, ...inspectorGPTs];
+
+// Final order: Priority first, then regular alphabetically, then resurrection, then inspector
+const featuredGPTs = [...priorityGPTs, ...regularGPTs, ...resurrectionGPTs, ...inspectorGPTs];
 
 const getVideoId = (url: string) => {
   if (!url) return null;
