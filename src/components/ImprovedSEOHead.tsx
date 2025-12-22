@@ -24,7 +24,7 @@ const ImprovedSEOHead: React.FC<ImprovedSEOHeadProps> = ({
       case 'search':
         return `${searchTerm} AI Tools - Search Results | AI Web Tools Directory`;
       default:
-        return 'AI Web Tools - #1 AI Tools Directory | 2195+ Best AI Tools 2025';
+        return 'AI Web Tools - #1 AI Tools Directory | 2195+ Best Free AI Tools 2025';
     }
   };
 
@@ -39,22 +39,22 @@ const ImprovedSEOHead: React.FC<ImprovedSEOHeadProps> = ({
       case 'search':
         return `Find the best AI tools for "${searchTerm}". Browse our comprehensive directory of AI tools with reviews, features, and direct access links.`;
       default:
-        return 'Discover the world\'s largest directory of 2195+ AI tools for productivity, creativity, and business. Find the perfect AI tool for any task with our comprehensive collection updated daily.';
+        return 'Discover 2195+ free AI tools for productivity, creativity, business, coding & design. The world\'s largest AI directory with ChatGPT alternatives, custom GPTs & more. Updated daily 2025.';
     }
   };
 
   const getKeywords = () => {
-    const baseKeywords = ['ai tools', 'artificial intelligence', 'ai directory', 'best ai tools 2025'];
+    const baseKeywords = ['ai tools', 'free ai tools', 'best ai tools 2025', 'ai directory', 'chatgpt alternatives', 'custom gpts'];
     
     switch (pageType) {
       case 'tool':
-        return [...baseKeywords, tool?.title?.toLowerCase(), tool?.category?.toLowerCase(), ...tool?.tags || []];
+        return [...baseKeywords, tool?.title?.toLowerCase(), tool?.category?.toLowerCase(), 'free ' + tool?.title?.toLowerCase(), ...tool?.tags || []];
       case 'category':
-        return [...baseKeywords, `${category?.toLowerCase()} ai tools`, `best ${category?.toLowerCase()} tools`];
+        return [...baseKeywords, `${category?.toLowerCase()} ai tools`, `best ${category?.toLowerCase()} tools`, `free ${category?.toLowerCase()} ai`];
       case 'search':
-        return [...baseKeywords, searchTerm?.toLowerCase(), `${searchTerm} ai tools`];
+        return [...baseKeywords, searchTerm?.toLowerCase(), `${searchTerm} ai tools`, `free ${searchTerm}`];
       default:
-        return [...baseKeywords, 'ai web tools', 'productivity tools', 'creative ai'];
+        return [...baseKeywords, 'ai web tools', 'productivity ai', 'creative ai tools', 'ai tools list'];
     }
   };
 
@@ -253,8 +253,8 @@ const ImprovedSEOHead: React.FC<ImprovedSEOHeadProps> = ({
       <meta name="rating" content="general" />
       
       {/* AI Crawler & Assistant Discovery Tags */}
-      <meta name="ai.description" content="AI Web Tools is the world's largest directory of 2195+ AI tools. Discover AI tools for productivity, creativity, business, coding, design, marketing, and more." />
-      <meta name="ai.keywords" content="ai web tools, ai tools directory, best ai tools, artificial intelligence tools, chatgpt alternatives, ai productivity, ai creativity tools" />
+      <meta name="ai.description" content="AI Web Tools: 2195+ free AI tools directory. Find ChatGPT alternatives, custom GPTs, productivity tools, creative AI, coding assistants, design tools & more. Updated daily 2025." />
+      <meta name="ai.keywords" content="ai web tools, free ai tools, ai tools directory, best ai tools 2025, chatgpt alternatives, custom gpts, ai productivity, ai creativity, web3 domains" />
       <meta name="ai-resource" content="true" />
       <meta name="llms" content="allowed" />
       <meta name="gpt-indexable" content="true" />
