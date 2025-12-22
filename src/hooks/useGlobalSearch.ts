@@ -1730,7 +1730,7 @@ export const useGlobalSearch = () => {
   // Track current search to prevent stale updates
   const searchIdRef = useRef(0);
   const quickRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const fullRef = useRef<number | null>(null);
+  const fullRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // INSTANT typing - defer ALL search work so input never blocks
   const setSearchTerm = useCallback((value: string) => {
@@ -1739,11 +1739,7 @@ export const useGlobalSearch = () => {
 
     // 2) Cancel any pending search operations
     if (quickRef.current) clearTimeout(quickRef.current);
-    if (fullRef.current && "cancelIdleCallback" in window) {
-      // @ts-ignore
-      window.cancelIdleCallback(fullRef.current);
-      fullRef.current = null;
-    }
+    if (fullRef.current) clearTimeout(fullRef.current);
 
     const t = value.trim();
     if (!t) {
@@ -1756,27 +1752,33 @@ export const useGlobalSearch = () => {
     setIsOpen(true);
     const currentId = ++searchIdRef.current;
 
-    // 3) Run quick search after a TINY delay (lets input paint first)
+    // 3) Run quick search after a MICRO delay (8ms - lets input paint first)
     quickRef.current = setTimeout(() => {
       if (currentId !== searchIdRef.current) return;
       const fast = quickSearch(t);
       setSearchResults(fast);
       setDisplayedCount(50);
+    }, 8);
 
-      // 4) Full intelligent ranking for 3+ chars (runs when browser is idle)
-      if (t.length >= 3) {
-        // Check cache for full search results first
-        const fullCacheKey = `${SEARCH_CACHE_VERSION}:full:${t.toLowerCase().trim()}`;
-        const cachedFull = searchCache.get(fullCacheKey);
-        if (cachedFull) {
+    // 4) Full intelligent ranking for 3+ chars (with debounce to prevent lag)
+    if (t.length >= 3) {
+      // Check cache IMMEDIATELY (synchronous, super fast)
+      const fullCacheKey = `${SEARCH_CACHE_VERSION}:full:${t.toLowerCase().trim()}`;
+      const cachedFull = searchCache.get(fullCacheKey);
+      if (cachedFull) {
+        // Cache hit - apply after micro delay to let input paint
+        quickRef.current = setTimeout(() => {
+          if (currentId !== searchIdRef.current) return;
           setSearchResults(cachedFull);
           setDisplayedCount(50);
-          return;
-        }
-        
-        const runFull = () => {
-          if (currentId !== searchIdRef.current) return;
-          const results = searchTools(allTools, t);
+        }, 8);
+        return;
+      }
+      
+      // No cache - debounce the heavy searchTools call (150ms)
+      fullRef.current = setTimeout(() => {
+        if (currentId !== searchIdRef.current) return;
+        const results = searchTools(allTools, t);
 
           // Keep full intelligence, but ensure literal prefix matches never get buried
           const q = t.toLowerCase().trim();
@@ -2061,24 +2063,15 @@ export const useGlobalSearch = () => {
 
           setSearchResults(spreadResults);
           setDisplayedCount(50);
-        };
-
-        if ("requestIdleCallback" in window) {
-          // @ts-ignore
-          fullRef.current = window.requestIdleCallback(runFull, { timeout: 150 });
-        } else {
-          setTimeout(runFull, 50);
-        }
-      }
-    }, 8); // 8ms = 1 frame, lets the keystroke paint first
+      }, 150); // 150ms debounce for heavy searchTools computation
+    }
   }, [quickSearch]);
   
   // Cleanup on unmount
   useEffect(() => {
     return () => {
-      if (quickRef.current) {
-        clearTimeout(quickRef.current);
-      }
+      if (quickRef.current) clearTimeout(quickRef.current);
+      if (fullRef.current) clearTimeout(fullRef.current);
     };
   }, []);
 
