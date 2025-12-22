@@ -3562,9 +3562,42 @@ const getOptimizedEmbedUrl = (videoUrl: string) => {
   return `https://www.youtube.com/embed/${videoId}?autoplay=0&controls=1&rel=0&modestbranding=1&playsinline=1`;
 };
 
+// Get unique badges/categories for filtering
+const allCategories = [...new Set(featuredGPTs.map(gpt => gpt.badge))].sort();
+
 const SpecialServices = () => {
   const navigate = useNavigate();
   const containerRef = useRef<HTMLDivElement>(null);
+  const [displayedGPTs, setDisplayedGPTs] = useState(featuredGPTs);
+  const [selectedCategory, setSelectedCategory] = useState<string>("ALL");
+  const [isShuffled, setIsShuffled] = useState(false);
+  
+  // Shuffle function
+  const shuffleTools = () => {
+    const shuffled = [...displayedGPTs].sort(() => Math.random() - 0.5);
+    setDisplayedGPTs(shuffled);
+    setIsShuffled(true);
+  };
+
+  // Reset to original order
+  const resetOrder = () => {
+    const filtered = selectedCategory === "ALL" 
+      ? featuredGPTs 
+      : featuredGPTs.filter(gpt => gpt.badge === selectedCategory);
+    setDisplayedGPTs(filtered);
+    setIsShuffled(false);
+  };
+
+  // Filter by category
+  const filterByCategory = (category: string) => {
+    setSelectedCategory(category);
+    setIsShuffled(false);
+    if (category === "ALL") {
+      setDisplayedGPTs(featuredGPTs);
+    } else {
+      setDisplayedGPTs(featuredGPTs.filter(gpt => gpt.badge === category));
+    }
+  };
   
   const handleLaunchGPT = (directUrl: string, title: string, e: React.MouseEvent) => {
     e.stopPropagation();
@@ -3602,10 +3635,69 @@ const SpecialServices = () => {
           <div className="mt-4 max-w-2xl mx-auto">
             <GlobalSearchBar />
           </div>
+          
+          {/* Shuffle & Filter Controls */}
+          <div className="mt-6 flex flex-col gap-4">
+            {/* Shuffle Buttons */}
+            <div className="flex justify-center gap-3">
+              <Button
+                onClick={shuffleTools}
+                variant="outline"
+                className="border-purple-500/50 bg-purple-500/10 text-purple-300 hover:bg-purple-500/20 hover:border-purple-400 transition-all"
+              >
+                🎲 Shuffle & Discover
+              </Button>
+              {isShuffled && (
+                <Button
+                  onClick={resetOrder}
+                  variant="outline"
+                  className="border-cyan-500/50 bg-cyan-500/10 text-cyan-300 hover:bg-cyan-500/20 hover:border-cyan-400 transition-all"
+                >
+                  ↺ Reset Order
+                </Button>
+              )}
+            </div>
+            
+            {/* Category Filter */}
+            <div className="flex flex-wrap justify-center gap-2 max-w-4xl mx-auto">
+              <Button
+                size="sm"
+                onClick={() => filterByCategory("ALL")}
+                className={`text-xs px-3 py-1.5 transition-all ${
+                  selectedCategory === "ALL"
+                    ? "bg-gradient-to-r from-cyan-500 to-purple-500 text-white"
+                    : "bg-gray-800/50 text-gray-300 hover:bg-gray-700/50 border border-gray-600/50"
+                }`}
+              >
+                ALL ({featuredGPTs.length})
+              </Button>
+              {allCategories.slice(0, 12).map((category) => (
+                <Button
+                  key={category}
+                  size="sm"
+                  onClick={() => filterByCategory(category)}
+                  className={`text-xs px-3 py-1.5 transition-all ${
+                    selectedCategory === category
+                      ? "bg-gradient-to-r from-cyan-500 to-purple-500 text-white"
+                      : "bg-gray-800/50 text-gray-300 hover:bg-gray-700/50 border border-gray-600/50"
+                  }`}
+                >
+                  {category} ({featuredGPTs.filter(g => g.badge === category).length})
+                </Button>
+              ))}
+            </div>
+            
+            {/* Results count */}
+            <p className="text-sm text-muted-foreground">
+              Showing {displayedGPTs.length} of {featuredGPTs.length} GPTs
+              {selectedCategory !== "ALL" && ` in "${selectedCategory}"`}
+              {isShuffled && " (shuffled)"}
+            </p>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-4">
-          {featuredGPTs.map((gpt, index) => (
+          {displayedGPTs.map((gpt, index) => (
             <Card 
               key={`${gpt.title}-${index}`}
               className="group relative overflow-hidden border-0 bg-gradient-to-br from-card/90 to-card/70 backdrop-blur-md hover:shadow-2xl hover:shadow-primary/20 transition-all duration-500 hover:-translate-y-1 cursor-pointer"
