@@ -19,6 +19,7 @@ import AnimatedBackground from "@/components/AnimatedBackground";
 import CloneOfferPopup from "@/components/CloneOfferPopup";
 import AIWebToolsSEOSection from "@/components/seo/AIWebToolsSEOSection";
 import DeferredMount from "@/components/DeferredMount";
+import EthicalAIQuoteSection from "@/components/EthicalAIQuoteSection";
 
 const LoadingSpinner = () => (
   <div className="flex items-center justify-center min-h-[200px]">
@@ -106,7 +107,6 @@ const Index = () => {
         <HeroSection />
         
         {/* Featured Video Section - Autoplay only on first visit */}
-        {/* Featured Video Section - Autoplay only on first visit (lazy-mounted for speed) */}
         <DeferredMount delay={200} fallback={null}>
           <section className="py-16 bg-gradient-to-br from-slate-900 to-purple-900">
             <div className="container mx-auto px-4">
@@ -151,6 +151,7 @@ const Index = () => {
           </section>
         </DeferredMount>
         
+        {/* Category Selection - Tools First */}
         <div id="categories-section">
           <CategoryPageSelection />
         </div>
@@ -158,22 +159,18 @@ const Index = () => {
         {/* SEO-optimized AI Web Tools section - Compact version for SEO only */}
         <AIWebToolsSEOSection />
    
-        {/* Heavy sections are deferred so Home appears INSTANTLY on navigation */}
+        {/* Featured Tools Section */}
         <DeferredMount delay={120} fallback={<LoadingSpinner />}>
-          {/* Featured Tools Section */}
           <LazyFeaturedTools onToolsLoaded={(count) => console.log(`Featured tools loaded: ${count}`)} />
         </DeferredMount>
         
+        {/* Custom GPTs Video Section */}
         <DeferredMount delay={180} fallback={null}>
-          <BookPromotionCard />
-        </DeferredMount>
-        
-        <DeferredMount delay={220} fallback={null}>
           <SpecialServices />
         </DeferredMount>
         
-        {/* Bottom Search Portal - positioned below all featured tools */}
-        <DeferredMount delay={260} fallback={null}>
+        {/* Bottom Search Portal */}
+        <DeferredMount delay={220} fallback={null}>
           <section className="py-16 bg-gradient-to-br from-gray-900 to-black relative">
             <div className="container mx-auto px-4">
               <div className="text-center mb-12">
@@ -189,6 +186,16 @@ const Index = () => {
               <LazySearchPortal />
             </div>
           </section>
+        </DeferredMount>
+        
+        {/* Ethical AI Quote Section - Above Book Promotion */}
+        <DeferredMount delay={260} fallback={null}>
+          <EthicalAIQuoteSection />
+        </DeferredMount>
+        
+        {/* Book of Deployable Robots - Bottom of page, above footer */}
+        <DeferredMount delay={280} fallback={null}>
+          <BookPromotionCard />
         </DeferredMount>
         
         <ScrollToTop />
