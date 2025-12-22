@@ -9,8 +9,6 @@ import ScrollToTop from "@/components/ui/scroll-to-top";
 import ImprovedSEOHead from "@/components/ImprovedSEOHead";
 import GoogleRankingBooster from "@/components/seo/GoogleRankingBooster";
 import { Button } from "@/components/ui/button";
-import { getFastToolCount, updateCachedStats } from "@/utils/fastToolCounter";
-import { getCurrentToolCount } from "@/utils/toolCounter";
 import BookPromotionCard from "@/components/BookPromotionCard";
 import LazyFeaturedTools from "@/components/LazyFeaturedTools";
 import LazySearchPortal from "@/components/LazySearchPortal";
@@ -20,6 +18,7 @@ import CloneOfferPopup from "@/components/CloneOfferPopup";
 import AIWebToolsSEOSection from "@/components/seo/AIWebToolsSEOSection";
 import DeferredMount from "@/components/DeferredMount";
 import EthicalAIQuoteSection from "@/components/EthicalAIQuoteSection";
+import ConsentBanner from "@/components/ConsentBanner";
 
 const LoadingSpinner = () => (
   <div className="flex items-center justify-center min-h-[200px]">
@@ -30,18 +29,6 @@ const LoadingSpinner = () => (
 const Index = () => {
   const navigate = useNavigate();
 
-  // If disclaimer not accepted, immediately show a lightweight gate state and redirect.
-  // IMPORTANT: this prevents heavy homepage components from mounting and slowing first load.
-  const [hasAccepted, setHasAccepted] = useState(() => {
-    try {
-      return Boolean(localStorage.getItem("aitools-consent-v3"));
-    } catch {
-      return false;
-    }
-  });
-
-  // Use fast cached stats initially for better performance
-  const [toolStats, setToolStats] = useState(getFastToolCount());
   const [hasPlayedOnce, setHasPlayedOnce] = useState(false);
   const [videoSrc, setVideoSrc] = useState(
     "https://www.youtube.com/embed/4zflGSSuBcA?controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&vq=hd1080&iv_load_policy=3&cc_load_policy=0&fs=1&color=red&theme=dark"
@@ -49,40 +36,6 @@ const Index = () => {
 
   const mainVideoRef = useRef<HTMLIFrameElement>(null);
 
-  useEffect(() => {
-    let accepted = hasAccepted;
-    try {
-      accepted = Boolean(localStorage.getItem("aitools-consent-v3"));
-    } catch {
-      accepted = false;
-    }
-
-    if (accepted !== hasAccepted) setHasAccepted(accepted);
-    if (!accepted) navigate("/welcome", { replace: true });
-  }, [hasAccepted, navigate]);
-
-  if (!hasAccepted) {
-    return (
-      <div className="min-h-screen bg-black">
-        <ImprovedSEOHead pageType="homepage" />
-        <LoadingSpinner />
-      </div>
-    );
-  }
-
-  useEffect(() => {
-    // Load actual stats in background
-    const statsTimer = setTimeout(() => {
-      const stats = getCurrentToolCount();
-      setToolStats(stats);
-      updateCachedStats(stats);
-    }, 8000);
-
-    return () => {
-      clearTimeout(statsTimer);
-    };
-  }, []);
-  
   // Autoplay video UNMUTED when user scrolls to it
   // User already clicked disclaimer button = user interaction = unmuted autoplay allowed
   useEffect(() => {
@@ -113,6 +66,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-black relative overflow-x-hidden">
       <ImprovedSEOHead pageType="homepage" />
+      <ConsentBanner />
       {/* Defer heavy SEO booster until after first paint */}
       <DeferredMount delay={150}>
         <GoogleRankingBooster pageType="homepage" />

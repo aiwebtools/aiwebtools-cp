@@ -4,7 +4,7 @@ import { Suspense, lazy } from 'react';
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, useLocation, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { HelmetProvider } from 'react-helmet-async';
 import { FavoritesProvider } from "@/hooks/useFavorites";
 import { VideoManagerProvider } from "@/hooks/useGlobalVideoManager";
@@ -129,18 +129,9 @@ const AnimatedRoutes = () => {
   );
 };
 
-// Global route guard to enforce disclaimer gate BEFORE any page
+// Global route guard (non-blocking): we no longer force a hard redirect to /welcome.
+// The homepage displays a lightweight consent banner instead for instant initial load.
 const RouteGuard: React.FC = () => {
-  const location = useLocation();
-  const hasAccepted =
-    typeof window !== "undefined" &&
-    window.localStorage.getItem("aitools-consent-v3");
-
-  // If user has NOT accepted and is not already on /welcome, redirect there
-  if (!hasAccepted && location.pathname !== "/welcome") {
-    return <Navigate to="/welcome" replace />;
-  }
-
   return <AnimatedRoutes />;
 };
 function App() {
