@@ -215,33 +215,32 @@ export const createTimePortalEffect = (
   toolName?: string,
   options?: { skipScreenOverlay?: boolean; emoji?: string }
 ) => {
-  console.log('🌀 Creating TIME WARP portal effect for URL:', destinationUrl);
+  console.log('🌀 TIME WARP ACTIVATED for URL:', destinationUrl);
   
   // Extract tool name for logging
   const finalToolName = extractToolName(destinationUrl, toolName);
-  console.log('🎯 Final detected tool name:', finalToolName);
+  console.log('🎯 Tool name:', finalToolName);
 
   // Track this tool visit for "Recently Visited" feature
   const emoji = options?.emoji || '🔧';
   trackToolVisit(finalToolName, emoji, destinationUrl);
 
-  // Play voice immediately (preloaded)
+  // Play voice immediately - MUST be called from click handler for autoplay
+  console.log('🎤 Triggering voice...');
   playTimeWarpVoice();
 
-  // Create ultra-brief green matrix flash - SYNC before URL opens
+  // Create ultra-brief green matrix flash
+  console.log('✨ Creating visual flash...');
   const elements = createInstantMatrixFlash();
 
-  // Remove flash after 50ms, THEN open URL
+  // Remove flash after 80ms, THEN open URL
   setTimeout(() => {
-    // Cleanup flash elements
     elements.forEach(el => el.remove());
-    
-    // NOW open URL after flash is gone
-    console.log('🚀 Opening destination URL NOW');
+    console.log('🚀 Opening URL:', destinationUrl);
     if (destinationUrl && destinationUrl.trim()) {
       openDestinationUrl(destinationUrl);
     }
-  }, 50);
+  }, 80);
 };
 
 // Ultra-brief green matrix flash - returns elements for cleanup
