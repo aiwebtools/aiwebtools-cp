@@ -3562,15 +3562,78 @@ const getOptimizedEmbedUrl = (videoUrl: string) => {
   return `https://www.youtube.com/embed/${videoId}?autoplay=0&controls=1&rel=0&modestbranding=1&playsinline=1`;
 };
 
-// Get unique badges/categories for filtering
-const allCategories = [...new Set(featuredGPTs.map(gpt => gpt.badge))].sort();
+// Main filter categories - 5 focused areas
+const FILTER_CATEGORIES = {
+  "SPIRITUALITY & AWAKENING": [
+    "PHILOSOPHY", "ANCIENT WISDOM", "SPIRITUAL", "SACRED", "PROPHECY", "MEDITATION", 
+    "CONSCIOUSNESS", "MYSTICAL", "RESURRECTION", "DIVINE", "GNOSTICISM", "BIBLICAL",
+    "FORTUNE", "DREAM", "ASTROLOGY", "NUMEROLOGY", "TAROT", "ESOTERIC", "OCCULT",
+    "RELIGION", "FAITH", "PRAYER", "AFTERLIFE", "SOUL", "ENLIGHTENMENT", "ORACLE",
+    "METAPHYSICS", "WISDOM", "ALAN WATTS", "MANICHEISM", "GEMATRIA", "APOTHECARY",
+    "SOPHIA", "MARY MAGDALENE", "GODS", "ESSENE", "BUDDHA", "ADVAITA"
+  ],
+  "MATH, SCIENCE & HISTORY": [
+    "MATHEMATICS", "PHYSICS", "SCIENCE", "CHEMISTRY", "BIOLOGY", "GENOME", "ENGINEERING",
+    "TIME TRAVEL", "HISTORY", "HISTORICAL", "ARCHAEOLOGY", "ANTHROPOLOGY", "ASTRONOMY",
+    "SPACE", "QUANTUM", "RESEARCH", "ANALYSIS", "DATA", "STATISTICS", "ALGEBRA",
+    "GEOMETRY", "CALCULUS", "EDUCATION", "COLLEGE", "LEARNING", "ACADEMIC", "STUDY",
+    "TIMELINE", "CIVILIZATIONS", "ANCIENT", "MEDIEVAL", "AUTOMOTIVE", "AVIATION",
+    "EINSTEIN", "TESLA", "ALCHEMIST", "PROBABILITY", "TITANIC", "HEADLINES"
+  ],
+  "AI DEVELOPMENT TOOLS": [
+    "AI DEVELOPMENT", "GPT", "PROMPT", "CODING", "SOFTWARE", "PROGRAMMING", "API",
+    "MACHINE LEARNING", "AUTOMATION", "TECH", "DEVELOPER", "BUILDER", "CREATOR",
+    "GENERATOR", "MAKER", "STUDIO", "ENGINE", "PLATFORM", "SAAS", "MICROSAAS",
+    "CUSTOM GPT", "VIDEO AI", "IMAGE AI", "TEXT AI", "VOICE AI", "CHATBOT",
+    "MULTITASKER", "GODMODE", "CLARITY", "REWRITER", "BINARY", "SORA", "LUMA", "META"
+  ],
+  "INVESTIGATION & RESEARCH": [
+    "INVESTIGATION", "DETECTIVE", "CRIMINOLOGY", "FORENSIC", "LEGAL", "LAW", "COURT",
+    "RESEARCH", "FACT CHECK", "ANALYSIS", "VERIFICATION", "EVIDENCE", "CASE",
+    "PHENOMENON", "UFO", "PARANORMAL", "CRYPTOZOOLOGY", "MYSTERY", "TRUTH",
+    "CYBER", "SECURITY", "HACKING", "INTELLIGENCE", "SPY", "SURVEILLANCE",
+    "ORACULUM", "PATTERN", "HIDDEN", "CONSPIRACY", "ILLUMINOUS", "SNOOP"
+  ],
+  "SOCIETAL & SPECIALIZED": [
+    "CIVIC", "GOVERNMENT", "LEGISLATION", "POLITICS", "DEMOCRACY", "ACTIVIST",
+    "BUSINESS", "FINANCE", "TRADING", "INSURANCE", "TAX", "REAL ESTATE", "PROPERTY",
+    "HEALTH", "MEDICAL", "DOCTOR", "PHARMACEUTICAL", "VETERINARY", "WELLNESS",
+    "AGRICULTURE", "FARMING", "SUSTAINABILITY", "ENVIRONMENT", "SOLAR", "ENERGY",
+    "CREATIVE", "WRITING", "BOOK", "MOVIE", "MUSIC", "ART", "DESIGN", "THEATER",
+    "LIFESTYLE", "TRAVEL", "FOOD", "CHEF", "CANNABIS", "TATTOO", "FASHION",
+    "CAREER", "RESUME", "JOB", "TRAINING", "GRANT", "INSPECTOR", "APPRAISAL",
+    "SURVIVAL", "FIREARMS", "FIREFIGHTER", "HOME", "FISHING", "GAMING", "TRIVIA",
+    "CHILDREN", "FAMILY", "MARRIAGE", "PET", "WEB3", "BLOCKCHAIN", "CRYPTO"
+  ]
+};
+
+// Function to categorize a GPT into one of the 5 main categories
+const categorizeGPT = (gpt: typeof featuredGPTs[0]): string => {
+  const searchText = `${gpt.title} ${gpt.badge} ${gpt.features.join(' ')} ${gpt.description}`.toUpperCase();
+  
+  for (const [category, keywords] of Object.entries(FILTER_CATEGORIES)) {
+    if (keywords.some(keyword => searchText.includes(keyword.toUpperCase()))) {
+      return category;
+    }
+  }
+  return "SOCIETAL & SPECIALIZED"; // Default fallback
+};
+
+// Pre-categorize all GPTs
+const categorizedGPTs = featuredGPTs.map(gpt => ({
+  ...gpt,
+  filterCategory: categorizeGPT(gpt)
+}));
 
 const SpecialServices = () => {
   const navigate = useNavigate();
   const containerRef = useRef<HTMLDivElement>(null);
-  const [displayedGPTs, setDisplayedGPTs] = useState(featuredGPTs);
+  const [displayedGPTs, setDisplayedGPTs] = useState(categorizedGPTs);
   const [selectedCategory, setSelectedCategory] = useState<string>("ALL");
   const [isShuffled, setIsShuffled] = useState(false);
+  
+  // The 5 main filter categories
+  const mainCategories = Object.keys(FILTER_CATEGORIES);
   
   // Shuffle function
   const shuffleTools = () => {
@@ -3582,8 +3645,8 @@ const SpecialServices = () => {
   // Reset to original order
   const resetOrder = () => {
     const filtered = selectedCategory === "ALL" 
-      ? featuredGPTs 
-      : featuredGPTs.filter(gpt => gpt.badge === selectedCategory);
+      ? categorizedGPTs 
+      : categorizedGPTs.filter(gpt => gpt.filterCategory === selectedCategory);
     setDisplayedGPTs(filtered);
     setIsShuffled(false);
   };
@@ -3593,9 +3656,9 @@ const SpecialServices = () => {
     setSelectedCategory(category);
     setIsShuffled(false);
     if (category === "ALL") {
-      setDisplayedGPTs(featuredGPTs);
+      setDisplayedGPTs(categorizedGPTs);
     } else {
-      setDisplayedGPTs(featuredGPTs.filter(gpt => gpt.badge === category));
+      setDisplayedGPTs(categorizedGPTs.filter(gpt => gpt.filterCategory === category));
     }
   };
   
@@ -3658,38 +3721,49 @@ const SpecialServices = () => {
               )}
             </div>
             
-            {/* Category Filter */}
-            <div className="flex flex-wrap justify-center gap-2 max-w-4xl mx-auto">
+            {/* Category Filter - 5 Main Categories */}
+            <div className="flex flex-wrap justify-center gap-2 max-w-5xl mx-auto">
               <Button
                 size="sm"
                 onClick={() => filterByCategory("ALL")}
-                className={`text-xs px-3 py-1.5 transition-all ${
+                className={`text-xs md:text-sm px-4 py-2 font-bold transition-all ${
                   selectedCategory === "ALL"
-                    ? "bg-gradient-to-r from-cyan-500 to-purple-500 text-white"
+                    ? "bg-gradient-to-r from-green-500 to-emerald-500 text-white shadow-lg shadow-green-500/30"
                     : "bg-gray-800/50 text-gray-300 hover:bg-gray-700/50 border border-gray-600/50"
                 }`}
               >
-                ALL ({featuredGPTs.length})
+                🌐 SHOW ALL ({categorizedGPTs.length})
               </Button>
-              {allCategories.slice(0, 12).map((category) => (
-                <Button
-                  key={category}
-                  size="sm"
-                  onClick={() => filterByCategory(category)}
-                  className={`text-xs px-3 py-1.5 transition-all ${
-                    selectedCategory === category
-                      ? "bg-gradient-to-r from-cyan-500 to-purple-500 text-white"
-                      : "bg-gray-800/50 text-gray-300 hover:bg-gray-700/50 border border-gray-600/50"
-                  }`}
-                >
-                  {category} ({featuredGPTs.filter(g => g.badge === category).length})
-                </Button>
-              ))}
+              {mainCategories.map((category, idx) => {
+                const count = categorizedGPTs.filter(g => g.filterCategory === category).length;
+                const emojis = ["🔮", "🔬", "🤖", "🔍", "🏛️"];
+                const colors = [
+                  "from-purple-500 to-pink-500",
+                  "from-blue-500 to-cyan-500", 
+                  "from-green-500 to-teal-500",
+                  "from-orange-500 to-red-500",
+                  "from-indigo-500 to-purple-500"
+                ];
+                return (
+                  <Button
+                    key={category}
+                    size="sm"
+                    onClick={() => filterByCategory(category)}
+                    className={`text-xs md:text-sm px-3 py-2 font-bold transition-all ${
+                      selectedCategory === category
+                        ? `bg-gradient-to-r ${colors[idx]} text-white shadow-lg`
+                        : "bg-gray-800/50 text-gray-300 hover:bg-gray-700/50 border border-gray-600/50"
+                    }`}
+                  >
+                    {emojis[idx]} {category} ({count})
+                  </Button>
+                );
+              })}
             </div>
             
             {/* Results count */}
             <p className="text-sm text-muted-foreground">
-              Showing {displayedGPTs.length} of {featuredGPTs.length} GPTs
+              Showing {displayedGPTs.length} of {categorizedGPTs.length} GPTs
               {selectedCategory !== "ALL" && ` in "${selectedCategory}"`}
               {isShuffled && " (shuffled)"}
             </p>
