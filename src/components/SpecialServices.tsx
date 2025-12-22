@@ -3734,45 +3734,66 @@ const SpecialServices = () => {
               )}
             </div>
             
-            {/* Category Filter - 5 Main Categories */}
-            <div className="flex flex-wrap justify-center gap-2 max-w-5xl mx-auto">
-              <Button
-                size="sm"
-                onClick={() => filterByCategory("ALL")}
-                className={`text-xs md:text-sm px-4 py-2 font-bold transition-all ${
-                  selectedCategory === "ALL"
-                    ? "bg-gradient-to-r from-green-500 to-emerald-500 text-white shadow-lg shadow-green-500/30"
-                    : "bg-gray-800/50 text-gray-300 hover:bg-gray-700/50 border border-gray-600/50"
-                }`}
-              >
-                🌐 SHOW ALL ({categorizedGPTs.length})
-              </Button>
-              {mainCategories.map((category, idx) => {
-                const count = categorizedGPTs.filter(g => g.filterCategory === category).length;
-                const emojis = ["🔮", "🔬", "🤖", "🔍", "🏛️", "🎨"];
-                const colors = [
-                  "from-purple-500 to-pink-500",
-                  "from-blue-500 to-cyan-500", 
-                  "from-green-500 to-teal-500",
-                  "from-orange-500 to-red-500",
-                  "from-indigo-500 to-purple-500",
-                  "from-pink-500 to-rose-500"
-                ];
-                return (
-                  <Button
-                    key={category}
-                    size="sm"
-                    onClick={() => filterByCategory(category)}
-                    className={`text-xs md:text-sm px-3 py-2 font-bold transition-all ${
-                      selectedCategory === category
-                        ? `bg-gradient-to-r ${colors[idx]} text-white shadow-lg`
-                        : "bg-gray-800/50 text-gray-300 hover:bg-gray-700/50 border border-gray-600/50"
-                    }`}
-                  >
-                    {emojis[idx]} {category} ({count})
-                  </Button>
-                );
-              })}
+            {/* Category Filter - 6 Main Categories - Mobile Optimized */}
+            <div className="w-full px-2 md:px-0">
+              {/* Mobile: 2-column grid, Desktop: flex wrap */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:flex md:flex-wrap md:justify-center gap-1.5 md:gap-2 max-w-5xl mx-auto">
+                <Button
+                  size="sm"
+                  onClick={() => filterByCategory("ALL")}
+                  className={`text-[10px] sm:text-xs md:text-sm px-2 sm:px-3 md:px-4 py-1.5 md:py-2 font-bold transition-all min-h-[36px] md:min-h-[40px] leading-tight ${
+                    selectedCategory === "ALL"
+                      ? "bg-gradient-to-r from-green-500 to-emerald-500 text-white shadow-lg shadow-green-500/30"
+                      : "bg-gray-800/50 text-gray-300 hover:bg-gray-700/50 border border-gray-600/50"
+                  }`}
+                >
+                  <span className="flex items-center justify-center gap-1">
+                    <span>🌐</span>
+                    <span className="truncate">ALL</span>
+                    <span className="text-[9px] md:text-xs opacity-80">({categorizedGPTs.length})</span>
+                  </span>
+                </Button>
+                {mainCategories.map((category, idx) => {
+                  const count = categorizedGPTs.filter(g => g.filterCategory === category).length;
+                  const emojis = ["🔮", "🔬", "🤖", "🔍", "🏛️", "🎨"];
+                  const colors = [
+                    "from-purple-500 to-pink-500",
+                    "from-blue-500 to-cyan-500", 
+                    "from-green-500 to-teal-500",
+                    "from-orange-500 to-red-500",
+                    "from-indigo-500 to-purple-500",
+                    "from-pink-500 to-rose-500"
+                  ];
+                  // Shorter mobile-friendly category names
+                  const shortNames: Record<string, string> = {
+                    "SPIRITUALITY & AWAKENING": "SPIRIT",
+                    "MATH, SCIENCE & HISTORY": "SCIENCE",
+                    "AI DEVELOPMENT TOOLS": "AI DEV",
+                    "INVESTIGATION & RESEARCH": "RESEARCH",
+                    "PROFESSIONAL & CIVIC": "CIVIC",
+                    "CREATIVE & LIFESTYLE": "CREATIVE"
+                  };
+                  return (
+                    <Button
+                      key={category}
+                      size="sm"
+                      onClick={() => filterByCategory(category)}
+                      className={`text-[10px] sm:text-xs md:text-sm px-2 sm:px-3 py-1.5 md:py-2 font-bold transition-all min-h-[36px] md:min-h-[40px] leading-tight ${
+                        selectedCategory === category
+                          ? `bg-gradient-to-r ${colors[idx]} text-white shadow-lg`
+                          : "bg-gray-800/50 text-gray-300 hover:bg-gray-700/50 border border-gray-600/50"
+                      }`}
+                    >
+                      <span className="flex items-center justify-center gap-1">
+                        <span>{emojis[idx]}</span>
+                        <span className="truncate hidden sm:inline">{category}</span>
+                        <span className="truncate sm:hidden">{shortNames[category] || category}</span>
+                        <span className="text-[9px] md:text-xs opacity-80">({count})</span>
+                      </span>
+                    </Button>
+                  );
+                })}
+              </div>
             </div>
             
             {/* Results count */}
