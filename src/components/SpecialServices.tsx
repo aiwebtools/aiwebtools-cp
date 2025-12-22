@@ -3562,7 +3562,7 @@ const getOptimizedEmbedUrl = (videoUrl: string) => {
   return `https://www.youtube.com/embed/${videoId}?autoplay=0&controls=1&rel=0&modestbranding=1&playsinline=1`;
 };
 
-// Main filter categories - 6 focused areas (order matters for categorization priority)
+// Main filter categories - 8 focused areas (order matters for categorization priority)
 const FILTER_CATEGORIES = {
   "SPIRITUALITY & AWAKENING": [
     "PHILOSOPHY", "ANCIENT WISDOM", "SPIRITUAL", "SACRED", "PROPHECY", "MEDITATION", 
@@ -3571,10 +3571,25 @@ const FILTER_CATEGORIES = {
     "RELIGION", "FAITH", "PRAYER", "AFTERLIFE", "SOUL", "ENLIGHTENMENT", "ORACLE",
     "METAPHYSICS", "ALAN WATTS", "MANICHEISM", "GEMATRIA", "APOTHECARY",
     "SOPHIA AETERNA", "MARY MAGDALENE", "GODS", "ESSENE", "BUDDHA", "ADVAITA",
-    "IMMORTALIZE", "MENTAL WELLNESS", "TALK TO THE GODS"
+    "IMMORTALIZE", "TALK TO THE GODS"
+  ],
+  "HEALTH & WELLNESS": [
+    "DOCTOR", "DR.", "PERSONALIZED DR", "MEDICAL", "HEALTH", "WELLNESS", "MENTAL WELLNESS",
+    "THERAPY", "MENTAL", "CBT", "COUNSELING", "PSYCHIATRY", "PSYCHOLOGY",
+    "VETERINAR", "PET CARE", "ANIMAL HEALTH",
+    "PHARMACEUTICAL", "PHARMA", "MEDICATION", "RX", "PRESCRIPTION",
+    "GENOME", "DNA", "GENETIC", "GENOMICS",
+    "FITNESS", "NUTRITION", "DIET", "EXERCISE", "HEALING", "HOLISTIC"
+  ],
+  "WRITING & CONTENT": [
+    "BOOK WRITER", "MOVIE SCRIPT", "SCRIPTWRITER", "SCRIPT WRITER", "PLAYWRITER", "PLAYWRIGHT",
+    "PODCAST SCRIPT", "PODCAST WRITER", "ARTICLE REWRITER", "BLOG REWRITER", 
+    "GRANT WRITER", "LEGISLATION WRITER", "TESTIMONY WRITER", "PUBLIC TESTIMONY",
+    "EBOOK", "STORY", "NOVEL", "AUTHOR", "CHILDREN'S BOOK", "PICTURE BOOK",
+    "TRAINING MANUAL", "WRITING SUITE", "RESUME WRITER"
   ],
   "MATH, SCIENCE & HISTORY": [
-    "MATHEMATICS", "PHYSICS", "SCIENCE", "CHEMISTRY", "BIOLOGY", "GENOME", "ENGINEERING",
+    "MATHEMATICS", "PHYSICS", "SCIENCE", "CHEMISTRY", "BIOLOGY", "ENGINEERING",
     "TIME MACHINE", "TIME TRAVEL", "HISTORY", "HISTORICAL", "ARCHAEOLOGY", "ANTHROPOLOGY", "ASTRONOMY",
     "SPACE EXPLORER", "STELLARIS", "QUANTUM", "STATISTICS", "ALGEBRA",
     "GEOMETRY", "CALCULUS", "EDUCATION", "COLLEGE DEGREE", "LEARNING", "ACADEMIC", "STUDY",
@@ -3601,16 +3616,15 @@ const FILTER_CATEGORIES = {
   "PROFESSIONAL & CIVIC": [
     "CIVIC", "GOVERNMENT", "LEGISLATION", "LEGISLATOR", "POLITICS", "DEMOCRACY", "ACTIVIST", "WE THE PEOPLE",
     "BUSINESS PLAN", "FINANCE", "TRADING", "TRADER", "INSURANCE", "TAX", "REAL ESTATE", "PROPERTY DATA",
-    "HEALTH", "MEDICAL", "DOCTOR", "PHARMACEUTICAL", "PHARMA", "VETERINAR", "WELLNESS",
     "AGRICULTURE", "FARMING", "AGRONOMUS", "SUSTAINABILITY", "SUSTAINABLE", "ENVIRONMENT", "SOLAR LAND", "ENERGY",
-    "CAREER", "RESUME", "JOB FINDER", "TRAINING MANUAL", "GRANT WRITER", "INSPECTOR", "APPRAISAL",
+    "CAREER", "RESUME", "JOB FINDER", "INSPECTOR", "APPRAISAL",
     "SURVIVAL", "SURVIVALIST", "FIREARMS", "FIREFIGHTER", "HOME RENOVATOR", "PUBLIC DEFENDER",
     "CONTRACT REVIEW", "LEGAL", "LAW", "COURT", "UBI", "WORLD PEACE", "GLOBAL PEACE",
     "FOOD QUALITY", "STARTUP VALIDATOR", "MATERIAL VALUATION", "CREDIT SCORE"
   ],
   "CREATIVE & LIFESTYLE": [
-    "CREATIVE", "BOOK WRITER", "MOVIE", "MUSIC VIDEO", "MUSIC MELODIES", "ART", "THEATER",
-    "PLAYWRITER", "SCRIPT WRITER", "PODCAST", "MEME", "COLORING BOOK", "SKETCH ARTIST", "GRAPHIC DESIGN",
+    "CREATIVE", "MOVIE MAKER", "MOVIE SCENE", "MUSIC VIDEO", "MUSIC MELODIES", "ART", "THEATER",
+    "MEME", "COLORING BOOK", "SKETCH ARTIST", "GRAPHIC DESIGN", "COVER DESIGN",
     "TRAVEL", "FOOD", "CHEF", "MIXOLOGIST", "CANNABIS", "TATTOO", "FASHION", "RESTYLE",
     "FISHING", "FISHERMAN", "GAMING", "GAME DESIGN", "TRIVIA", "CELEBRITY", "CHILDREN", "FAMILY", "MARRIAGE MENDER", 
     "PET", "WEB3", "BLOCKCHAIN", "CRYPTO", "DOMAIN", "NFT", "WORLDPEACE", "WORLDTRADE",
@@ -3619,7 +3633,7 @@ const FILTER_CATEGORIES = {
   ]
 };
 
-// Function to categorize a GPT into one of the 6 main categories
+// Function to categorize a GPT into one of the 8 main categories
 const categorizeGPT = (gpt: typeof featuredGPTs[0]): string => {
   const searchText = `${gpt.title} ${gpt.badge} ${gpt.features.join(' ')} ${gpt.description}`.toUpperCase();
   
@@ -3734,10 +3748,10 @@ const SpecialServices = () => {
               )}
             </div>
             
-            {/* Category Filter - 6 Main Categories - Mobile Optimized */}
+            {/* Category Filter - 8 Main Categories - Mobile Optimized */}
             <div className="w-full px-2 md:px-0">
-              {/* Mobile: 2-column grid, Desktop: flex wrap */}
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:flex md:flex-wrap md:justify-center gap-1.5 md:gap-2 max-w-5xl mx-auto">
+              {/* Mobile: 3-column grid, Desktop: flex wrap */}
+              <div className="grid grid-cols-3 md:flex md:flex-wrap md:justify-center gap-1 md:gap-2 max-w-6xl mx-auto">
                 <Button
                   size="sm"
                   onClick={() => filterByCategory("ALL")}
@@ -3755,11 +3769,13 @@ const SpecialServices = () => {
                 </Button>
                 {mainCategories.map((category, idx) => {
                   const count = categorizedGPTs.filter(g => g.filterCategory === category).length;
-                  const emojis = ["🔮", "🔬", "🤖", "🔍", "🏛️", "🎨"];
+                  const emojis = ["🔮", "💚", "✍️", "🔬", "🤖", "🔍", "🏛️", "🎨"];
                   const colors = [
                     "from-purple-500 to-pink-500",
+                    "from-green-500 to-emerald-500",
+                    "from-amber-500 to-orange-500",
                     "from-blue-500 to-cyan-500", 
-                    "from-green-500 to-teal-500",
+                    "from-teal-500 to-green-500",
                     "from-orange-500 to-red-500",
                     "from-indigo-500 to-purple-500",
                     "from-pink-500 to-rose-500"
@@ -3767,6 +3783,8 @@ const SpecialServices = () => {
                   // Shorter mobile-friendly category names
                   const shortNames: Record<string, string> = {
                     "SPIRITUALITY & AWAKENING": "SPIRIT",
+                    "HEALTH & WELLNESS": "HEALTH",
+                    "WRITING & CONTENT": "WRITING",
                     "MATH, SCIENCE & HISTORY": "SCIENCE",
                     "AI DEVELOPMENT TOOLS": "AI DEV",
                     "INVESTIGATION & RESEARCH": "RESEARCH",
