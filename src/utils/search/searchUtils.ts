@@ -294,6 +294,82 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
     return [...sortedTimeMachineTools, ...nonTimeMachineTools];
   }
 
+  // WEB3 DOMAIN SEARCH PRIORITY - Find all Web3/blockchain domains when searching for domain names
+  const WEB3_DOMAIN_TRIGGERS = [
+    // Direct domain name searches (with or without dot)
+    '.worldtrade', 'worldtrade', '.worldpeace', 'worldpeace', '.transfermoney', 'transfermoney',
+    '.transfercoin', 'transfercoin', '.cointransfer', 'cointransfer', '.transfercash', 'transfercash',
+    '.cashtransfer', 'cashtransfer', '.ai-tools', 'ai-tools', '.aiwebtools', 'aiwebtools',
+    '.aimainframe', 'aimainframe', '.aitoolscompany', 'aitoolscompany',
+    '.robotsales', 'robotsales', '.robotshop', 'robotshop', '.robotstore', 'robotstore',
+    '.worldtrader', 'worldtrader',
+    // Web3/blockchain domain terms
+    'web3', 'web 3', 'web3 domain', 'blockchain domain', 'decentralized domain', 'crypto domain',
+    'nft domain', 'web3 domains', 'register domain', 'freename', 'decentralized web',
+    // Cash/money transfer terms that map to domains
+    'transfer money', 'send money', 'coin transfer', 'cash transfer', 'crypto transfer'
+  ];
+  
+  if (WEB3_DOMAIN_TRIGGERS.some(trigger => normalizedSearchTerm.includes(trigger)) ||
+      normalizedSearchTerm.startsWith('.') || // Any search starting with a dot
+      (normalizedSearchTerm.includes('domain') && (normalizedSearchTerm.includes('web') || normalizedSearchTerm.includes('crypto') || normalizedSearchTerm.includes('blockchain')))) {
+    debugLog('🌐 WEB3 DOMAIN SEARCH DETECTED - Finding all Web3/blockchain domains');
+    
+    const web3DomainTools = tools.filter(tool => {
+      const lowerTitle = tool.title.toLowerCase();
+      const lowerCategory = tool.category?.toLowerCase() || '';
+      const lowerTags = tool.tags?.map(tag => tag.toLowerCase()) || [];
+      const allText = `${lowerTitle} ${lowerCategory} ${lowerTags.join(' ')}`;
+      
+      // Match WEB3 Domains category or domain-related tools
+      return lowerCategory.includes('web3') || lowerCategory.includes('domain') ||
+             lowerTitle.includes('domain') || lowerTitle.startsWith('.') ||
+             lowerTags.some(tag => tag.includes('web3') || tag.includes('domain') || tag.includes('blockchain domain') || tag.startsWith('.'));
+    });
+    
+    debugLog(`🌐 Found ${web3DomainTools.length} Web3 domain tools:`, web3DomainTools.map(t => t.title));
+    
+    // Sort Web3 domain tools - exact domain name matches first
+    const sortedWeb3DomainTools = web3DomainTools.sort((a, b) => {
+      let scoreA = 0, scoreB = 0;
+      const titleA = a.title.toLowerCase();
+      const titleB = b.title.toLowerCase();
+      const tagsA = a.tags?.map(t => t.toLowerCase()).join(' ') || '';
+      const tagsB = b.tags?.map(t => t.toLowerCase()).join(' ') || '';
+      
+      // HIGHEST: Exact domain name match in title (user searched for ".worldtrade" and tool is ".worldtrade Domain")
+      if (titleA.includes(normalizedSearchTerm.replace('.', ''))) scoreA += 100000;
+      if (titleB.includes(normalizedSearchTerm.replace('.', ''))) scoreB += 100000;
+      
+      // HIGH: Domain name in tags
+      if (tagsA.includes(normalizedSearchTerm.replace('.', ''))) scoreA += 80000;
+      if (tagsB.includes(normalizedSearchTerm.replace('.', ''))) scoreB += 80000;
+      
+      // MEDIUM-HIGH: Financial/money transfer domains when searching for transfer terms
+      if (normalizedSearchTerm.includes('money') || normalizedSearchTerm.includes('transfer') || normalizedSearchTerm.includes('cash') || normalizedSearchTerm.includes('coin')) {
+        if (titleA.includes('transfer') || titleA.includes('cash') || titleA.includes('coin') || titleA.includes('money')) scoreA += 60000;
+        if (titleB.includes('transfer') || titleB.includes('cash') || titleB.includes('coin') || titleB.includes('money')) scoreB += 60000;
+      }
+      
+      // MEDIUM: World/global domains when searching world terms
+      if (normalizedSearchTerm.includes('world') || normalizedSearchTerm.includes('peace') || normalizedSearchTerm.includes('trade')) {
+        if (titleA.includes('world')) scoreA += 50000;
+        if (titleB.includes('world')) scoreB += 50000;
+      }
+      
+      // MEDIUM: AI/robot domains when searching AI terms
+      if (normalizedSearchTerm.includes('ai') || normalizedSearchTerm.includes('robot')) {
+        if (titleA.includes('ai') || titleA.includes('robot')) scoreA += 40000;
+        if (titleB.includes('ai') || titleB.includes('robot')) scoreB += 40000;
+      }
+      
+      return scoreB - scoreA;
+    });
+    
+    const nonWeb3DomainTools = tools.filter(tool => !web3DomainTools.includes(tool));
+    return [...sortedWeb3DomainTools, ...nonWeb3DomainTools];
+  }
+
   // APP BUILDER SEARCH PRIORITY - Tools that build apps, websites, UI
   const APP_BUILDER_TRIGGERS = [
     'app builder', 'app building', 'build app', 'build apps', 'app maker', 'app creator',
