@@ -1,56 +1,30 @@
-// Time Warp Voice Effect - Preloaded so it plays immediately on click
-
-let cachedVoiceAudio: HTMLAudioElement | null = null;
-
-const getPreloadedVoiceAudio = () => {
-  if (typeof window === 'undefined') return null;
-
-  if (!cachedVoiceAudio) {
-    const audio = new Audio('/sounds/time-warp-voice.mp3');
-    audio.preload = 'auto';
-    audio.volume = 0.85;
-    audio.playbackRate = 1.0;
-
-    // Kick off buffering ASAP
-    try {
-      audio.load();
-    } catch {
-      // ignore
-    }
-
-    cachedVoiceAudio = audio;
-  }
-
-  return cachedVoiceAudio;
-};
-
-// Start buffering immediately (no autoplay)
-getPreloadedVoiceAudio();
+// Time Warp Voice Effect - Plays immediately on user click
 
 export const playTimeWarpVoice = () => {
-  console.log('🎤 Playing time warp voice effect - PRELOADED');
+  console.log('🎤 Playing time warp voice effect');
 
   try {
-    const audio = getPreloadedVoiceAudio();
-    if (!audio) return null;
-
-    // Always restart from the beginning
-    try {
-      audio.currentTime = 0;
-    } catch {
-      // ignore
-    }
-
+    // Create fresh audio each time to avoid stale state issues
+    const audio = new Audio('/sounds/time-warp-voice.mp3');
+    audio.volume = 0.85;
+    audio.playbackRate = 1.0;
+    
+    // Play immediately - this is called from a click handler so autoplay works
     const playPromise = audio.play();
+    
     if (playPromise) {
-      playPromise.catch((error) => {
-        console.log('🎤 Autoplay blocked:', error);
-      });
+      playPromise
+        .then(() => {
+          console.log('🎤 Time warp voice playing successfully');
+        })
+        .catch((error) => {
+          console.log('🎤 Voice playback failed:', error.message);
+        });
     }
 
     return audio;
   } catch (error) {
-    console.log('🎤 Voice failed:', error);
+    console.log('🎤 Voice creation failed:', error);
     return null;
   }
 };
