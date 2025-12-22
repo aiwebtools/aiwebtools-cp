@@ -3562,7 +3562,7 @@ const getOptimizedEmbedUrl = (videoUrl: string) => {
   return `https://www.youtube.com/embed/${videoId}?autoplay=0&controls=1&rel=0&modestbranding=1&playsinline=1`;
 };
 
-// Main filter categories - 5 focused areas
+// Main filter categories - 6 focused areas
 const FILTER_CATEGORIES = {
   "SPIRITUALITY & AWAKENING": [
     "PHILOSOPHY", "ANCIENT WISDOM", "SPIRITUAL", "SACRED", "PROPHECY", "MEDITATION", 
@@ -3581,33 +3581,37 @@ const FILTER_CATEGORIES = {
     "EINSTEIN", "TESLA", "ALCHEMIST", "PROBABILITY", "TITANIC", "HEADLINES"
   ],
   "AI DEVELOPMENT TOOLS": [
-    "AI DEVELOPMENT", "GPT", "PROMPT", "CODING", "SOFTWARE", "PROGRAMMING", "API",
-    "MACHINE LEARNING", "AUTOMATION", "TECH", "DEVELOPER", "BUILDER", "CREATOR",
-    "GENERATOR", "MAKER", "STUDIO", "ENGINE", "PLATFORM", "SAAS", "MICROSAAS",
+    "AI DEVELOPMENT", "PROMPT", "CODING", "SOFTWARE", "PROGRAMMING", "API",
+    "MACHINE LEARNING", "AUTOMATION", "TECH", "DEVELOPER", "BUILDER",
+    "GENERATOR", "ENGINE", "PLATFORM", "SAAS", "MICROSAAS",
     "CUSTOM GPT", "VIDEO AI", "IMAGE AI", "TEXT AI", "VOICE AI", "CHATBOT",
     "MULTITASKER", "GODMODE", "CLARITY", "REWRITER", "BINARY", "SORA", "LUMA", "META"
   ],
   "INVESTIGATION & RESEARCH": [
     "INVESTIGATION", "DETECTIVE", "CRIMINOLOGY", "FORENSIC", "LEGAL", "LAW", "COURT",
-    "RESEARCH", "FACT CHECK", "ANALYSIS", "VERIFICATION", "EVIDENCE", "CASE",
+    "FACT CHECK", "VERIFICATION", "EVIDENCE", "CASE",
     "PHENOMENON", "UFO", "PARANORMAL", "CRYPTOZOOLOGY", "MYSTERY", "TRUTH",
     "CYBER", "SECURITY", "HACKING", "INTELLIGENCE", "SPY", "SURVEILLANCE",
     "ORACULUM", "PATTERN", "HIDDEN", "CONSPIRACY", "ILLUMINOUS", "SNOOP"
   ],
-  "SOCIETAL & SPECIALIZED": [
+  "PROFESSIONAL & CIVIC": [
     "CIVIC", "GOVERNMENT", "LEGISLATION", "POLITICS", "DEMOCRACY", "ACTIVIST",
     "BUSINESS", "FINANCE", "TRADING", "INSURANCE", "TAX", "REAL ESTATE", "PROPERTY",
     "HEALTH", "MEDICAL", "DOCTOR", "PHARMACEUTICAL", "VETERINARY", "WELLNESS",
     "AGRICULTURE", "FARMING", "SUSTAINABILITY", "ENVIRONMENT", "SOLAR", "ENERGY",
-    "CREATIVE", "WRITING", "BOOK", "MOVIE", "MUSIC", "ART", "DESIGN", "THEATER",
-    "LIFESTYLE", "TRAVEL", "FOOD", "CHEF", "CANNABIS", "TATTOO", "FASHION",
     "CAREER", "RESUME", "JOB", "TRAINING", "GRANT", "INSPECTOR", "APPRAISAL",
-    "SURVIVAL", "FIREARMS", "FIREFIGHTER", "HOME", "FISHING", "GAMING", "TRIVIA",
-    "CHILDREN", "FAMILY", "MARRIAGE", "PET", "WEB3", "BLOCKCHAIN", "CRYPTO"
+    "SURVIVAL", "FIREARMS", "FIREFIGHTER", "HOME RENOVATOR"
+  ],
+  "CREATIVE & LIFESTYLE": [
+    "CREATIVE", "WRITING", "BOOK", "MOVIE", "MUSIC", "ART", "DESIGN", "THEATER",
+    "PLAYWRITER", "SCRIPTWRITER", "PODCAST", "MEME", "COLORING", "SKETCH", "GRAPHIC",
+    "TRAVEL", "FOOD", "CHEF", "MIXOLOGIST", "CANNABIS", "TATTOO", "FASHION", "RESTYLE",
+    "FISHING", "GAMING", "TRIVIA", "CELEBRITY", "CHILDREN", "FAMILY", "MARRIAGE", 
+    "PET", "WEB3", "BLOCKCHAIN", "CRYPTO", "DOMAIN", "NFT"
   ]
 };
 
-// Function to categorize a GPT into one of the 5 main categories
+// Function to categorize a GPT into one of the 6 main categories
 const categorizeGPT = (gpt: typeof featuredGPTs[0]): string => {
   const searchText = `${gpt.title} ${gpt.badge} ${gpt.features.join(' ')} ${gpt.description}`.toUpperCase();
   
@@ -3616,7 +3620,7 @@ const categorizeGPT = (gpt: typeof featuredGPTs[0]): string => {
       return category;
     }
   }
-  return "SOCIETAL & SPECIALIZED"; // Default fallback
+  return "CREATIVE & LIFESTYLE"; // Default fallback for misc tools
 };
 
 // Pre-categorize all GPTs
@@ -3736,13 +3740,14 @@ const SpecialServices = () => {
               </Button>
               {mainCategories.map((category, idx) => {
                 const count = categorizedGPTs.filter(g => g.filterCategory === category).length;
-                const emojis = ["🔮", "🔬", "🤖", "🔍", "🏛️"];
+                const emojis = ["🔮", "🔬", "🤖", "🔍", "🏛️", "🎨"];
                 const colors = [
                   "from-purple-500 to-pink-500",
                   "from-blue-500 to-cyan-500", 
                   "from-green-500 to-teal-500",
                   "from-orange-500 to-red-500",
-                  "from-indigo-500 to-purple-500"
+                  "from-indigo-500 to-purple-500",
+                  "from-pink-500 to-rose-500"
                 ];
                 return (
                   <Button
