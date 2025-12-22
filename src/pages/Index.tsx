@@ -20,11 +20,7 @@ import DeferredMount from "@/components/DeferredMount";
 import EthicalAIQuoteSection from "@/components/EthicalAIQuoteSection";
 import ConsentBanner from "@/components/ConsentBanner";
 
-const LoadingSpinner = () => (
-  <div className="flex items-center justify-center min-h-[200px]">
-    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-cyan-400"></div>
-  </div>
-);
+// Removed loading spinner - causes perceived slowness on refresh
 
 const Index = () => {
   const navigate = useNavigate();
@@ -67,13 +63,13 @@ const Index = () => {
     <div className="min-h-screen bg-black relative overflow-x-hidden">
       <ImprovedSEOHead pageType="homepage" />
       <ConsentBanner />
-      {/* Defer heavy SEO booster until after first paint */}
-      <DeferredMount delay={150}>
+      {/* SEO booster - minimal delay */}
+      <DeferredMount delay={0}>
         <GoogleRankingBooster pageType="homepage" />
       </DeferredMount>
       
-      {/* Background effects - deferred to improve initial paint */}
-      <DeferredMount delay={50}>
+      {/* Background effects - render immediately */}
+      <DeferredMount delay={0}>
         <InteractiveMatrixBackground />
         <AnimatedBackground />
       </DeferredMount>
@@ -84,8 +80,8 @@ const Index = () => {
       <div className="relative z-10 pt-[70px] md:pt-[85px]">
         <HeroSection />
         
-        {/* Featured Video Section - Autoplay only on first visit */}
-        <DeferredMount delay={200} fallback={null}>
+        {/* Featured Video Section */}
+        <DeferredMount delay={0} fallback={null}>
           <section className="py-16 bg-gradient-to-br from-slate-900 to-purple-900">
             <div className="container mx-auto px-4">
               <div className="text-center mb-8">
@@ -137,18 +133,18 @@ const Index = () => {
         {/* SEO-optimized AI Web Tools section - Compact version for SEO only */}
         <AIWebToolsSEOSection />
    
-        {/* Featured Tools Section */}
-        <DeferredMount delay={120} fallback={<LoadingSpinner />}>
-          <LazyFeaturedTools onToolsLoaded={(count) => console.log(`Featured tools loaded: ${count}`)} />
+        {/* Featured Tools Section - no loading spinner, renders when ready */}
+        <DeferredMount delay={50} fallback={null}>
+          <LazyFeaturedTools onToolsLoaded={(count) => {}} />
         </DeferredMount>
         
         {/* Custom GPTs Video Section */}
-        <DeferredMount delay={180} fallback={null}>
+        <DeferredMount delay={0} fallback={null}>
           <SpecialServices />
         </DeferredMount>
         
         {/* Bottom Search Portal */}
-        <DeferredMount delay={220} fallback={null}>
+        <DeferredMount delay={0} fallback={null}>
           <section className="py-16 bg-gradient-to-br from-gray-900 to-black relative">
             <div className="container mx-auto px-4">
               <div className="text-center mb-12">
@@ -166,13 +162,13 @@ const Index = () => {
           </section>
         </DeferredMount>
         
-        {/* Ethical AI Quote Section - Above Book Promotion */}
-        <DeferredMount delay={260} fallback={null}>
+        {/* Ethical AI Quote Section */}
+        <DeferredMount delay={0} fallback={null}>
           <EthicalAIQuoteSection />
         </DeferredMount>
         
-        {/* Book of Deployable Robots - Bottom of page, above footer */}
-        <DeferredMount delay={280} fallback={null}>
+        {/* Book of Deployable Robots */}
+        <DeferredMount delay={0} fallback={null}>
           <BookPromotionCard />
         </DeferredMount>
         
