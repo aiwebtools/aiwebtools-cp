@@ -690,10 +690,22 @@ export const COMMON_PHRASE_HANDLERS: Record<string, PhraseHandler> = {
 
   // ===== WEB3 & BLOCKCHAIN =====
   web3Domains: {
-    triggers: ['web3 domain', 'blockchain domain', 'decentralized web', 'crypto domain', 'web3 banking'],
-    keywords: ['web3', 'blockchain', 'decentralized', 'crypto', 'domain', 'defi', 'nft'],
-    priorityTools: ['.worldpeace', '.worldtrade', '.transfermoney'],
-    relatedCategories: ['Web3 & Blockchain', 'Cryptocurrency']
+    triggers: [
+      'web3 domain', 'web3 domains', 'blockchain domain', 'decentralized web', 'crypto domain', 'web3 banking',
+      'nft domain', 'register domain', 'buy domain', 'freename', 'decentralized domain',
+      '.worldtrade', '.worldpeace', '.transfermoney', '.transfercoin', '.cointransfer', '.cashtransfer', '.transfercash',
+      '.ai-tools', '.aiwebtools', '.aimainframe', '.aitoolscompany', '.robotsales', '.robotshop', '.robotstore', '.worldtrader',
+      'worldtrade', 'worldpeace', 'transfermoney', 'transfercoin', 'cointransfer', 'cashtransfer', 'transfercash',
+      'world trade domain', 'world peace domain', 'transfer money domain', 'robot domain', 'ai domain'
+    ],
+    keywords: ['web3', 'web 3', 'blockchain', 'decentralized', 'crypto', 'domain', 'defi', 'nft', 'wallet', 'freename', 'polygon', 'solana'],
+    priorityTools: [
+      '.worldtrade Domain', '.worldpeace Domain', '.transfermoney Domain', '.transfercoin Domain', 
+      '.cointransfer Domain', '.cashtransfer Domain', '.transfercash Domain', '.worldtrader Domain',
+      '.ai-tools Domain', '.aiwebtools Domain', '.aimainframe Domain', '.aitoolscompany Domain',
+      '.robotsales Domain', '.robotshop Domain', '.robotstore Domain'
+    ],
+    relatedCategories: ['WEB3 Domains', 'Web3 & Blockchain', 'Cryptocurrency']
   },
 
   // ===== MARRIAGE & RELATIONSHIPS =====

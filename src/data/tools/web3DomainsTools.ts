@@ -2,7 +2,17 @@ import { Tool } from "@/types/tools";
 import { Globe } from "lucide-react";
 
 // Common Web3 tags for all domain tools - ensures they appear in web3/crypto/decentralized searches
-const WEB3_COMMON_TAGS = ["WEB3", "web 3", "decentralized", "blockchain", "crypto", "cryptocurrency", "NFT", "wallet", "future of finance", "digital asset", "no bio chip", "decentralized finance", "defi"];
+const WEB3_COMMON_TAGS = [
+  // Core Web3 terms
+  "WEB3", "web 3", "web3 domain", "web3 domains", "decentralized", "decentralised", "blockchain", "crypto", "cryptocurrency", 
+  "NFT", "wallet", "future of finance", "digital asset", "no bio chip", "decentralized finance", "defi",
+  // Wallet mentions
+  "metamask", "phantom", "coinbase wallet", "phantom wallet", "trust wallet",
+  // Domain/registration terms
+  "domain", "domain name", "register domain", "buy domain", "nft domain", "blockchain domain", "freename",
+  // Search variations
+  "decentralized web", "crypto domain", "web3 banking", "digital domain", "crypto wallet", "nft marketplace"
+];
 
 export const web3DomainsTools: Tool[] = [
   {
@@ -12,7 +22,7 @@ export const web3DomainsTools: Tool[] = [
     emoji: "🧠",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://freename.io/discover/ai-tools?ref=olive-ears-obey",
-    tags: [...WEB3_COMMON_TAGS, "Domain", "AI", "Future Tech", "Solana"],
+    tags: [...WEB3_COMMON_TAGS, ".ai-tools", "ai-tools", "ai tools domain", "Domain", "AI", "Future Tech", "Solana"],
     category: "WEB3 Domains",
     rating: 5.0,
     blockchain: "Solana"
@@ -24,7 +34,7 @@ export const web3DomainsTools: Tool[] = [
     emoji: "🤖",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://freename.io/discover/.aiwebtools?ref=olive-ears-obey",
-    tags: [...WEB3_COMMON_TAGS, "Domain", "AI Tools", "Web Development", "Innovation", "Solana"],
+    tags: [...WEB3_COMMON_TAGS, ".aiwebtools", "aiwebtools", "aiwebtools domain", "Domain", "AI Tools", "Web Development", "Innovation", "Solana"],
     category: "WEB3 Domains",
     rating: 5.0,
     blockchain: "Solana"
@@ -36,7 +46,7 @@ export const web3DomainsTools: Tool[] = [
     emoji: "🗄️",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://freename.io/discover/aimainframe?ref=olive-ears-obey",
-    tags: [...WEB3_COMMON_TAGS, "Domain", "AI Infrastructure", "Enterprise", "Computing", "Solana"],
+    tags: [...WEB3_COMMON_TAGS, ".aimainframe", "aimainframe", "aimainframe domain", "Domain", "AI Infrastructure", "Enterprise", "Computing", "Solana"],
     category: "WEB3 Domains",
     rating: 5.0,
     blockchain: "Solana"
@@ -48,7 +58,7 @@ export const web3DomainsTools: Tool[] = [
     emoji: "🏢",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://freename.io/discover/aitoolscompany?ref=olive-ears-obey",
-    tags: [...WEB3_COMMON_TAGS, "Domain", "AI Company", "Business", "Startup", "Solana"],
+    tags: [...WEB3_COMMON_TAGS, ".aitoolscompany", "aitoolscompany", "aitoolscompany domain", "Domain", "AI Company", "Business", "Startup", "Solana"],
     category: "WEB3 Domains",
     rating: 5.0,
     blockchain: "Solana"
@@ -60,7 +70,7 @@ export const web3DomainsTools: Tool[] = [
     emoji: "🦾",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://freename.io/discover/robotsales?ref=olive-ears-obey",
-    tags: [...WEB3_COMMON_TAGS, "Domain", "Robotics", "Sales", "Automation", "Polygon"],
+    tags: [...WEB3_COMMON_TAGS, ".robotsales", "robotsales", "robot sales domain", "Domain", "Robotics", "Sales", "Automation", "Polygon"],
     category: "WEB3 Domains",
     rating: 5.0,
     blockchain: "Polygon"
@@ -73,7 +83,7 @@ export const web3DomainsTools: Tool[] = [
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://freename.io/discover/robotshop?ref=olive-ears-obey",
     videoUrl: "https://youtu.be/_1qcKvXwPbE?si=R9gSMdmfao8u54iR",
-    tags: [...WEB3_COMMON_TAGS, "Domain", "Robot Shop", "E-commerce", "Future Commerce", "Polygon"],
+    tags: [...WEB3_COMMON_TAGS, ".robotshop", "robotshop", "robot shop domain", "Domain", "Robot Shop", "E-commerce", "Future Commerce", "Polygon"],
     category: "WEB3 Domains",
     rating: 5.0,
     blockchain: "Polygon"
@@ -85,7 +95,7 @@ export const web3DomainsTools: Tool[] = [
     emoji: "🛒",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://freename.io/discover/robotstore?ref=olive-ears-obey",
-    tags: [...WEB3_COMMON_TAGS, "Domain", "Robot Store", "Retail", "Technology", "Polygon"],
+    tags: [...WEB3_COMMON_TAGS, ".robotstore", "robotstore", "robot store domain", "Domain", "Robot Store", "Retail", "Technology", "Polygon"],
     category: "WEB3 Domains",
     rating: 5.0,
     blockchain: "Polygon"
@@ -97,7 +107,7 @@ export const web3DomainsTools: Tool[] = [
     emoji: "🕊️",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://freename.io/discover/worldpeace?ref=olive-ears-obey",
-    tags: [...WEB3_COMMON_TAGS, "Domain", "World Peace", "Humanitarian", "Global Unity", "Polygon", "worldpeace"],
+    tags: [...WEB3_COMMON_TAGS, ".worldpeace", "worldpeace", "world peace", "world peace domain", "Domain", "World Peace", "Humanitarian", "Global Unity", "Polygon", "peace"],
     category: "WEB3 Domains",
     rating: 5.0,
     blockchain: "Polygon"
@@ -109,7 +119,7 @@ export const web3DomainsTools: Tool[] = [
     emoji: "🌐",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://freename.io/discover/worldtrade?ref=olive-ears-obey",
-    tags: [...WEB3_COMMON_TAGS, "Domain", "World Trade", "Global Commerce", "International Business", "Solana", "worldtrade"],
+    tags: [...WEB3_COMMON_TAGS, ".worldtrade", "worldtrade", "world trade", "world trade domain", "Domain", "World Trade", "Global Commerce", "International Business", "Solana", "trade", "trading"],
     category: "WEB3 Domains",
     rating: 5.0,
     blockchain: "Solana"
@@ -121,7 +131,7 @@ export const web3DomainsTools: Tool[] = [
     emoji: "💹",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://freename.io/discover/worldtrader?ref=olive-ears-obey",
-    tags: [...WEB3_COMMON_TAGS, "Domain", "World Trading", "Finance", "Investment", "Polygon", "worldtrader"],
+    tags: [...WEB3_COMMON_TAGS, ".worldtrader", "worldtrader", "world trader", "world trader domain", "Domain", "World Trading", "Finance", "Investment", "Polygon", "trader", "trading"],
     category: "WEB3 Domains",
     rating: 5.0,
     blockchain: "Polygon"
@@ -133,7 +143,7 @@ export const web3DomainsTools: Tool[] = [
     emoji: "💸",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://freename.io/discover/transfermoney",
-    tags: [...WEB3_COMMON_TAGS, "Domain", "Money Transfer", "Fintech", "Payments", "Polygon", "transfermoney"],
+    tags: [...WEB3_COMMON_TAGS, ".transfermoney", "transfermoney", "transfer money", "transfer money domain", "Domain", "Money Transfer", "Fintech", "Payments", "Polygon", "send money", "remittance"],
     category: "WEB3 Domains",
     rating: 5.0,
     blockchain: "Polygon"
@@ -145,7 +155,7 @@ export const web3DomainsTools: Tool[] = [
     emoji: "🪙",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://freename.io/discover/transfercoin",
-    tags: [...WEB3_COMMON_TAGS, "Domain", "Cryptocurrency", "Digital Assets", "Polygon", "transfercoin"],
+    tags: [...WEB3_COMMON_TAGS, ".transfercoin", "transfercoin", "transfer coin", "transfer coin domain", "Domain", "Cryptocurrency", "Digital Assets", "Polygon", "send crypto", "crypto transfer"],
     category: "WEB3 Domains",
     rating: 5.0,
     blockchain: "Polygon"
@@ -157,7 +167,7 @@ export const web3DomainsTools: Tool[] = [
     emoji: "💰",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://freename.io/discover/cointransfer",
-    tags: [...WEB3_COMMON_TAGS, "Domain", "Coin Transfer", "Crypto Payments", "Blockchain Finance", "Polygon", "cointransfer"],
+    tags: [...WEB3_COMMON_TAGS, ".cointransfer", "cointransfer", "coin transfer", "coin transfer domain", "Domain", "Coin Transfer", "Crypto Payments", "Blockchain Finance", "Polygon", "crypto exchange"],
     category: "WEB3 Domains",
     rating: 5.0,
     blockchain: "Polygon"
@@ -169,7 +179,7 @@ export const web3DomainsTools: Tool[] = [
     emoji: "💵",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://freename.io/discover/transfercash",
-    tags: [...WEB3_COMMON_TAGS, "Domain", "Cash Transfer", "Money Remittance", "Financial Services", "Polygon", "transfercash"],
+    tags: [...WEB3_COMMON_TAGS, ".transfercash", "transfercash", "transfer cash", "transfer cash domain", "Domain", "Cash Transfer", "Money Remittance", "Financial Services", "Polygon", "cash app", "payment"],
     category: "WEB3 Domains",
     rating: 5.0,
     blockchain: "Polygon"
@@ -181,7 +191,7 @@ export const web3DomainsTools: Tool[] = [
     emoji: "💴",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://freename.io/discover/cashtransfer",
-    tags: [...WEB3_COMMON_TAGS, "Domain", "Cash Remittance", "Money Transfer", "Digital Cash", "Polygon", "cashtransfer"],
+    tags: [...WEB3_COMMON_TAGS, ".cashtransfer", "cashtransfer", "cash transfer", "cash transfer domain", "Domain", "Cash Remittance", "Money Transfer", "Digital Cash", "Polygon", "send cash", "payment app"],
     category: "WEB3 Domains",
     rating: 5.0,
     blockchain: "Polygon"

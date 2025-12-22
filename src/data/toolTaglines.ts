@@ -366,7 +366,24 @@ export const toolTaglines: Record<string, string> = {
   "The Cosmic Probability GPT": "Calculate cosmic existence probabilities. Universe mathematics.",
   "Frequency Signature Mystic Decoder GPT": "Decode vibrational patterns shaping reality.",
   "Intergalactic Ancient Archivist GPT": "Access cosmic archives spanning countless worlds.",
-  "Architectural Old World Investigator GPT": "Decode impossible architecture. Timeline anomalies exposed."
+  "Architectural Old World Investigator GPT": "Decode impossible architecture. Timeline anomalies exposed.",
+  
+  // WEB3 & BLOCKCHAIN DOMAINS - Own the future
+  ".worldtrade Domain": "Own your piece of global commerce. A Web3 domain minted as tradable NFT.",
+  ".worldpeace Domain": "Stake your claim on world peace. Premium Web3 domain for humanitarians.",
+  ".transfermoney Domain": "The future of fintech branding. Premium Web3 domain for money transfer.",
+  ".transfercoin Domain": "Lead the crypto revolution. Premium Web3 domain for digital asset transfers.",
+  ".cointransfer Domain": "Own the crypto payment space. Premium Web3 domain minted as NFT.",
+  ".transfercash Domain": "Revolutionize cash remittance. Premium Web3 domain for payments.",
+  ".cashtransfer Domain": "Digital cash transfers reimagined. Premium Web3 domain minted as NFT.",
+  ".worldtrader Domain": "Master global markets. Premium Web3 domain for traders and investors.",
+  ".ai-tools Domain": "Lead the AI revolution. Premium Web3 domain for AI platforms.",
+  ".aiwebtools Domain": "Dominate the AI web ecosystem. Premium Web3 domain minted as NFT.",
+  ".aimainframe Domain": "Command AI infrastructure. Premium Web3 domain for enterprise AI.",
+  ".aitoolscompany Domain": "Build your AI empire. Premium Web3 domain for AI startups.",
+  ".robotsales Domain": "Own the robotics marketplace. Premium Web3 domain for automation.",
+  ".robotshop Domain": "The future of robot retail. Premium Web3 domain minted as NFT.",
+  ".robotstore Domain": "Premier robotics destination. Premium Web3 domain for robot commerce."
 };
 
 // Function to get tagline for a tool (falls back to short description)
