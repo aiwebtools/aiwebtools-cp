@@ -475,7 +475,7 @@ export const aiAgents: Tool[] = [
   // ========================================
   {
     icon: Smartphone,
-    title: "ElevenLabs Voice Agents",
+    title: "Eleven Labs: Voice Agents, Text to Speech, FX Sound Effects Generator",
     description: "Advanced AI voice agents and conversational AI platform for businesses. Create intelligent phone agents that handle customer calls, appointments, and support with ultra-realistic human-like conversation.",
     emoji: "📞",
     color: "from-purple-500 to-pink-600",

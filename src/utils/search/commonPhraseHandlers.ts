@@ -101,14 +101,14 @@ export const COMMON_PHRASE_HANDLERS: Record<string, PhraseHandler> = {
   textToSpeech: {
     triggers: ['text to speech', 'tts', 'convert text to audio', 'read text aloud', 'voice over'],
     keywords: ['text to speech', 'tts', 'voice', 'speech', 'audio', 'narration'],
-    priorityTools: ['ElevenLabs', 'Play.ht', 'Murf', 'Speechify'],
+    priorityTools: ['Eleven Labs: Voice Agents, Text to Speech, FX Sound Effects Generator', 'Play.ht', 'Murf', 'Speechify'],
     relatedCategories: ['Music & Audio', 'Voice & Speech']
   },
   
   cloneVoice: {
     triggers: ['clone voice', 'voice cloning', 'copy voice', 'replicate voice', 'ai voice'],
     keywords: ['voice', 'clone', 'cloning', 'speech', 'elevenlabs', 'synthesis'],
-    priorityTools: ['ElevenLabs', 'Play.ht', 'Resemble AI', 'Descript'],
+    priorityTools: ['Eleven Labs: Voice Agents, Text to Speech, FX Sound Effects Generator', 'Play.ht', 'Resemble AI', 'Descript'],
     relatedCategories: ['Music & Audio', 'Voice & Speech']
   },
   
