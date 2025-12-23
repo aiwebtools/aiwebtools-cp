@@ -18,6 +18,7 @@ import ToolDisclaimerBadges from "@/components/disclaimers/ToolDisclaimerBadges"
 import FullSpiritualDisclaimer from "@/components/disclaimers/FullSpiritualDisclaimer";
 import FullMedicalDisclaimer from "@/components/disclaimers/FullMedicalDisclaimer";
 import { needsSpiritualDisclaimer, needsMedicalDisclaimer } from "@/utils/toolDisclaimerDetection";
+import ToolCardMedia from "@/components/tools/ToolCardMedia";
 
 const ToolPage = () => {
   const { toolIndex } = useParams<{ toolIndex: string }>();
@@ -94,32 +95,39 @@ const ToolPage = () => {
       <div className="relative z-10 cyber-grid">
         <Header />
         
-        <main className="container mx-auto px-4 py-8">
-          {/* Tool Header */}
-          <div className="text-center mb-8">
-            <div className="text-6xl mb-4">{tool.emoji}</div>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 bg-clip-text text-transparent cyber-glow">
-              {tool.title}
-            </h1>
-            
-            {/* Disclaimer badges for spiritual/medical tools */}
-            <div className="flex justify-center mb-4">
-              <ToolDisclaimerBadges tool={tool} size="md" showFullText={true} />
+          <main className="container mx-auto px-4 py-8">
+            {/* Tool Header */}
+            <div className="text-center mb-8">
+              <div className="text-6xl mb-4">{tool.emoji}</div>
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 bg-clip-text text-transparent cyber-glow">
+                {tool.title}
+              </h1>
+
+              {/* Tool media (image/video) */}
+              {(tool.imageUrl || tool.videoUrl) && (
+                <div className="max-w-4xl mx-auto mb-6 group">
+                  <ToolCardMedia tool={tool} isFeatured={true} imageHeight="h-72" />
+                </div>
+              )}
+              
+              {/* Disclaimer badges for spiritual/medical tools */}
+              <div className="flex justify-center mb-4">
+                <ToolDisclaimerBadges tool={tool} size="md" showFullText={true} />
+              </div>
+              
+              <p className="text-lg text-gray-300 mb-6 max-w-2xl mx-auto">
+                {tool.description}
+              </p>
+              <Button
+                onClick={() => handleNavigation(tool.directUrl)}
+                size="lg"
+                className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700"
+              >
+                <ExternalLink className="mr-2" />
+                Visit Website
+              </Button>
             </div>
             
-            <p className="text-lg text-gray-300 mb-6 max-w-2xl mx-auto">
-              {tool.description}
-            </p>
-            <Button
-              onClick={() => handleNavigation(tool.directUrl)}
-              size="lg"
-              className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700"
-            >
-              <ExternalLink className="mr-2" />
-              Visit Website
-            </Button>
-          </div>
-          
           {/* Full Disclaimers for spiritual/medical tools */}
           <div className="max-w-4xl mx-auto space-y-6 mb-8">
             {needsSpiritualDisclaimer(tool) && (
