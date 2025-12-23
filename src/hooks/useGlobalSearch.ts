@@ -1915,17 +1915,7 @@ export const useGlobalSearch = () => {
       setDisplayedCount(50);
     }, 8);
 
-    // PERFORMANCE GUARD: Skip heavy full search for very long or gibberish queries
-    // This prevents lag when typing long phrases quickly
-    const isLongQuery = t.length > 25;
-    const isGibberish = t.length > 15 && !/^[a-zA-Z\s]{3,}/.test(t);
-    
-    if (isLongQuery || isGibberish) {
-      // For very long queries, only use quick search - skip heavy searchTools
-      return;
-    }
-
-    // 4) Full intelligent ranking for 3+ chars (with ADAPTIVE debounce)
+    // 4) Full intelligent ranking for 3+ chars (with debounce to prevent lag)
     if (t.length >= 3) {
       // Check cache IMMEDIATELY (synchronous, super fast)
       const fullCacheKey = `${SEARCH_CACHE_VERSION}:full:${t.toLowerCase().trim()}`;
@@ -1940,18 +1930,10 @@ export const useGlobalSearch = () => {
         return;
       }
       
-      // ADAPTIVE DEBOUNCE: longer queries get more debounce time
-      // This prevents rapid-fire heavy searches while typing long phrases
-      const debounceMs = t.length <= 6 ? 100 : t.length <= 12 ? 180 : 280;
-      
-      // No cache - debounce the heavy searchTools call
+      // No cache - debounce the heavy searchTools call (150ms)
       fullRef.current = setTimeout(() => {
         if (currentId !== searchIdRef.current) return;
-        
-        // Use requestAnimationFrame to yield to main thread before heavy work
-        requestAnimationFrame(() => {
-          if (currentId !== searchIdRef.current) return;
-          const results = searchTools(allTools, t);
+        const results = searchTools(allTools, t);
 
           // Keep full intelligence, but ensure literal prefix matches never get buried
           const q = t.toLowerCase().trim();
@@ -2236,8 +2218,7 @@ export const useGlobalSearch = () => {
 
           setSearchResults(spreadResults);
           setDisplayedCount(50);
-        }); // close requestAnimationFrame
-      }, debounceMs); // adaptive debounce for smoother typing
+      }, 80); // 80ms debounce - faster for smoother typing
     }
   }, [quickSearch]);
   
