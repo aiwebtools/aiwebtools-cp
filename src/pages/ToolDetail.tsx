@@ -32,17 +32,32 @@ import { mainCategories } from "@/utils/mainCategoryMapping";
 
 const ToolDetail = () => {
   const { toolId, toolSlug } = useParams();
-  
+
   // Handle both numeric IDs (legacy) and SEO-friendly slugs
   let toolIndex: number;
   let shouldRedirect = false;
   let redirectSlug = '';
-  
+
+  const pickBestToolIndexForSlug = (slug: string): number => {
+    const matches = allTools
+      .map((tool, idx) => ({ tool, idx }))
+      .filter(({ tool }) => generateToolSlug(tool.title) === slug);
+
+    if (matches.length === 0) return -1;
+    if (matches.length === 1) return matches[0].idx;
+
+    // Prefer entries that actually have media (video > image), then keep first stable
+    const score = (t: (typeof matches)[number]["tool"]) =>
+      (t.videoUrl ? 2 : 0) + (t.imageUrl ? 1 : 0) + (t.directUrl ? 0.1 : 0);
+
+    return matches
+      .sort((a, b) => score(b.tool) - score(a.tool))
+      .map((m) => m.idx)[0];
+  };
+
   if (toolSlug) {
     // If accessing via slug route (/:toolSlug)
-    toolIndex = allTools.findIndex(tool => 
-      generateToolSlug(tool.title) === toolSlug
-    );
+    toolIndex = pickBestToolIndexForSlug(toolSlug);
   } else if (toolId) {
     // If accessing via legacy numeric route (/tool/:toolId)
     const numericId = parseInt(toolId);
@@ -53,9 +68,7 @@ const ToolDetail = () => {
       redirectSlug = generateToolSlug(allTools[numericId].title);
     } else {
       // toolId might actually be a slug on the /tool/ route
-      toolIndex = allTools.findIndex(tool => 
-        generateToolSlug(tool.title) === toolId
-      );
+      toolIndex = pickBestToolIndexForSlug(toolId);
       if (toolIndex !== -1) {
         // Redirect /tool/slug to /slug
         shouldRedirect = true;
