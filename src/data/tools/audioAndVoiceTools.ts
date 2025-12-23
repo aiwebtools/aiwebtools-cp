@@ -19,7 +19,7 @@ import {
 export const audioAndVoiceTools: Tool[] = [
   {
     icon: Mic,
-    title: "ElevenLabs",
+    title: "Eleven Labs: Voice Agents, Text to Speech, FX Sound Effects Generator",
     description: "Advanced AI voice generation and cloning platform. Create natural-sounding voices for any content with cutting-edge text-to-speech technology.",
     emoji: "🎙️",
     color: "from-purple-500 to-blue-600",

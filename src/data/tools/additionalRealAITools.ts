@@ -157,7 +157,7 @@ export const additionalRealAITools: Tool[] = [
   },
   {
     icon: Mic,
-    title: "ElevenLabs",
+    title: "Eleven Labs: Voice Agents, Text to Speech, FX Sound Effects Generator",
     description: "AI voice generation and cloning platform for creating realistic speech in multiple languages.",
     emoji: "🗣️",
     color: "from-orange-500 to-red-600",

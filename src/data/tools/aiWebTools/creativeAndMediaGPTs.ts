@@ -281,7 +281,7 @@ export const creativeAndMediaGPTs: Tool[] = [
   },
   {
     icon: Mic,
-    title: "ElevenLabs",
+    title: "Eleven Labs: Voice Agents, Text to Speech, FX Sound Effects Generator",
     description: "AI voice generation and cloning platform that creates realistic human-like speech from text. ElevenLabs offers advanced voice synthesis technology for podcasts, audiobooks, dubbing, and content creation with natural-sounding AI voices.",
     emoji: "🎤",
     color: "from-green-500 to-blue-600",
