@@ -361,6 +361,114 @@ export const aiAgents: Tool[] = [
     rating: 4.7,
     totalVotes: 2200
   },
+  {
+    icon: TerminalIcon,
+    title: "Aider - AI Pair Programmer",
+    description: "AI pair programming in your terminal. Aider is a command-line tool that lets you pair program with LLMs to edit code in your local git repo. Works with GPT-4, Claude, and local models.",
+    emoji: "⌨️",
+    color: "from-green-500 to-teal-600",
+    directUrl: "https://aider.chat/?via=aiwebtools",
+    tags: ["Coding Agent", "terminal", "pair programming", "git", "Aider", "command-line", "open source", "local LLM"],
+    category: "AI Agents",
+    rating: 4.8,
+    totalVotes: 5200
+  },
+  {
+    icon: Zap,
+    title: "Supermaven - Fastest AI Code Completion",
+    description: "The fastest code completion AI with 1 million token context window. Supermaven delivers blazing-fast inline suggestions with deep codebase understanding and minimal latency.",
+    emoji: "⚡",
+    color: "from-yellow-500 to-orange-600",
+    directUrl: "https://supermaven.com/?via=aiwebtools",
+    tags: ["Coding Agent", "code completion", "fast", "Supermaven", "inline suggestions", "large context", "autocomplete"],
+    category: "AI Agents",
+    rating: 4.7,
+    totalVotes: 3800
+  },
+  {
+    icon: Code,
+    title: "Continue.dev - Open Source AI Coding",
+    description: "Open-source AI code assistant that connects to any LLM. Customizable coding agent for VS Code and JetBrains with autocomplete, chat, and edit capabilities using your preferred AI models.",
+    emoji: "🔄",
+    color: "from-blue-500 to-indigo-600",
+    directUrl: "https://continue.dev/?via=aiwebtools",
+    tags: ["Coding Agent", "open source", "VS Code", "JetBrains", "Continue.dev", "customizable", "any LLM", "autocomplete"],
+    category: "AI Agents",
+    rating: 4.7,
+    totalVotes: 4100
+  },
+  {
+    icon: Brain,
+    title: "Augment Code - Enterprise AI Coding",
+    description: "AI coding agent built for enterprise teams. Augment understands your entire codebase, provides context-aware suggestions, and integrates with your development workflow securely.",
+    emoji: "🔮",
+    color: "from-purple-500 to-violet-600",
+    directUrl: "https://www.augmentcode.com/?via=aiwebtools",
+    tags: ["Coding Agent", "enterprise", "Augment", "codebase understanding", "context-aware", "secure", "team collaboration"],
+    category: "AI Agents",
+    rating: 4.6,
+    totalVotes: 2900
+  },
+  {
+    icon: Code,
+    title: "Zed AI Editor",
+    description: "High-performance code editor with built-in AI assistant. Zed combines blazing-fast editing with AI-powered code generation, chat, and refactoring in a collaborative multiplayer environment.",
+    emoji: "⚡",
+    color: "from-cyan-500 to-blue-600",
+    directUrl: "https://zed.dev/?via=aiwebtools",
+    tags: ["Coding Agent", "code editor", "Zed", "multiplayer", "fast", "AI assistant", "collaborative coding"],
+    category: "AI Agents",
+    rating: 4.7,
+    totalVotes: 3500
+  },
+  {
+    icon: Settings2,
+    title: "Qodo (CodiumAI) - AI Code Quality",
+    description: "AI-powered code integrity agent that generates meaningful tests, reviews code, and improves code quality. Qodo analyzes your code to suggest tests that matter and catch edge cases.",
+    emoji: "✅",
+    color: "from-green-500 to-emerald-600",
+    directUrl: "https://www.qodo.ai/?via=aiwebtools",
+    tags: ["Coding Agent", "testing", "Qodo", "CodiumAI", "code quality", "test generation", "code review", "edge cases"],
+    category: "AI Agents",
+    rating: 4.6,
+    totalVotes: 3200
+  },
+  {
+    icon: Layers,
+    title: "Pieces for Developers",
+    description: "AI-powered developer productivity tool that saves, enriches, and reuses code snippets. Intelligent code management with on-device AI, context-aware search, and workflow integration.",
+    emoji: "🧩",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://pieces.app/?via=aiwebtools",
+    tags: ["Coding Agent", "snippets", "Pieces", "productivity", "code management", "on-device AI", "workflow"],
+    category: "AI Agents",
+    rating: 4.5,
+    totalVotes: 2800
+  },
+  {
+    icon: Rocket,
+    title: "Trae AI - ByteDance Code Assistant",
+    description: "Advanced AI coding assistant by ByteDance with powerful code generation and understanding. Free IDE with built-in AI chat, inline suggestions, and multi-model support.",
+    emoji: "🚀",
+    color: "from-blue-500 to-cyan-600",
+    directUrl: "https://trae.ai/?via=aiwebtools",
+    tags: ["Coding Agent", "ByteDance", "Trae", "free IDE", "code generation", "multi-model", "AI chat"],
+    category: "AI Agents",
+    rating: 4.6,
+    totalVotes: 2600
+  },
+  {
+    icon: Code,
+    title: "CodeGeeX - Open Source AI Coder",
+    description: "Free open-source AI coding assistant supporting 100+ programming languages. Multilingual code generation, translation, explanation, and review powered by large language models.",
+    emoji: "🌐",
+    color: "from-indigo-500 to-purple-600",
+    directUrl: "https://codegeex.cn/?via=aiwebtools",
+    tags: ["Coding Agent", "open source", "CodeGeeX", "multilingual", "free", "code translation", "100+ languages"],
+    category: "AI Agents",
+    rating: 4.5,
+    totalVotes: 2400
+  },
   
   // ========================================
   // VOICE & CONVERSATIONAL AGENTS
