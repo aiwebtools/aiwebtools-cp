@@ -2,7 +2,7 @@
 import { Search, X } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { memo, useCallback, useEffect, useRef, useState, useTransition } from "react";
+import { memo, useCallback, useEffect, useRef, useState } from "react";
 
 interface GlobalSearchInputProps {
   searchTerm: string;
@@ -24,42 +24,66 @@ const GlobalSearchInput = memo(({
   onAcceptPrediction,
 }: GlobalSearchInputProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
-
-  // IMPORTANT: Keep typing 100% instant by decoupling input value from heavy search renders.
-  // The input uses local state; we update the global search term in a transition.
+  
+  // 100% INSTANT typing - completely decoupled from search
+  // Local state for instant paint, search updates via RAF
   const [localValue, setLocalValue] = useState(searchTerm);
-  const [isPending, startTransition] = useTransition();
+  const rafRef = useRef<number | null>(null);
+  const pendingValueRef = useRef<string | null>(null);
 
-  // Sync external changes (clear, navigation, prediction accept) into the input.
+  // Sync external changes (clear, navigation, prediction accept)
   useEffect(() => {
-    // Only sync when the external value differs. This avoids fighting the user's typing.
-    if (searchTerm !== localValue) setLocalValue(searchTerm);
+    if (searchTerm !== localValue) {
+      setLocalValue(searchTerm);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchTerm]);
 
-  // Direct onChange handler for maximum speed
+  // ULTRA-FAST onChange - paint immediately, defer search to next frame
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const next = e.target.value;
-      setLocalValue(next); // paint immediately
-      startTransition(() => onSearchChange(next)); // run search work in non-urgent lane
+      
+      // INSTANT paint - no delay whatsoever
+      setLocalValue(next);
+      
+      // Store pending value and schedule RAF if not already scheduled
+      pendingValueRef.current = next;
+      
+      if (rafRef.current === null) {
+        rafRef.current = requestAnimationFrame(() => {
+          rafRef.current = null;
+          if (pendingValueRef.current !== null) {
+            onSearchChange(pendingValueRef.current);
+            pendingValueRef.current = null;
+          }
+        });
+      }
     },
-    [onSearchChange, startTransition]
+    [onSearchChange]
   );
+
+  // Cleanup RAF on unmount
+  useEffect(() => {
+    return () => {
+      if (rafRef.current !== null) {
+        cancelAnimationFrame(rafRef.current);
+      }
+    };
+  }, []);
 
   // Handle Tab key to accept prediction
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
       if (e.key === "Tab" && prediction && onAcceptPrediction) {
         e.preventDefault();
-        // Update the input instantly, then let the global handler update results.
         setLocalValue(prediction);
-        startTransition(() => onAcceptPrediction());
+        onAcceptPrediction();
         return;
       }
       onKeyDown(e);
     },
-    [prediction, onAcceptPrediction, onKeyDown, startTransition]
+    [prediction, onAcceptPrediction, onKeyDown]
   );
 
   // Calculate the ghost text (prediction minus what user typed)
@@ -72,6 +96,13 @@ const GlobalSearchInput = memo(({
   const handleContainerClick = useCallback(() => {
     inputRef.current?.focus();
   }, []);
+
+  // Handle clear with instant local update
+  const handleClear = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation();
+    setLocalValue("");
+    onClear();
+  }, [onClear]);
 
   return (
     <div className="relative rounded-lg border border-border cursor-text" onClick={handleContainerClick}>
@@ -113,22 +144,13 @@ const GlobalSearchInput = memo(({
         <Button
           variant="ghost"
           size="sm"
-          onClick={(e) => {
-            e.stopPropagation();
-            setLocalValue("");
-            startTransition(() => onClear());
-          }}
+          onClick={handleClear}
           className="absolute right-1 top-1/2 transform -translate-y-1/2 h-6 w-6 p-0 text-gray-300 hover:text-white hover:bg-white/10 z-10"
           aria-label="Clear search"
         >
           <X className="w-3 h-3" />
         </Button>
       )}
-
-      {/* Optional: accessibility-friendly loading hint without impacting layout */}
-      <div className="sr-only" aria-live="polite">
-        {isPending ? "Searching" : ""}
-      </div>
     </div>
   );
 });

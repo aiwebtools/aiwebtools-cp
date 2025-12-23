@@ -1907,28 +1907,29 @@ export const useGlobalSearch = () => {
     setIsOpen(true);
     const currentId = ++searchIdRef.current;
 
-    // 3) Run quick search after a MICRO delay (8ms - lets input paint first)
-    quickRef.current = setTimeout(() => {
+    // 3) Check cache FIRST - if hit, apply results in next frame (zero compute)
+    const fullCacheKey = `${SEARCH_CACHE_VERSION}:full:${t.toLowerCase().trim()}`;
+    const cachedFull = searchCache.get(fullCacheKey);
+    if (cachedFull) {
+      // Cache hit - apply in next animation frame for zero blocking
+      requestAnimationFrame(() => {
+        if (currentId !== searchIdRef.current) return;
+        setSearchResults(cachedFull);
+        setDisplayedCount(50);
+      });
+      return;
+    }
+
+    // 4) Run quick search IMMEDIATELY in next frame (no delay)
+    requestAnimationFrame(() => {
       if (currentId !== searchIdRef.current) return;
       const fast = quickSearch(t);
       setSearchResults(fast);
       setDisplayedCount(50);
-    }, 8);
+    });
 
-    // 4) Full intelligent ranking for 3+ chars (with debounce to prevent lag)
+    // 5) Full intelligent ranking for 3+ chars (with 60ms debounce)
     if (t.length >= 3) {
-      // Check cache IMMEDIATELY (synchronous, super fast)
-      const fullCacheKey = `${SEARCH_CACHE_VERSION}:full:${t.toLowerCase().trim()}`;
-      const cachedFull = searchCache.get(fullCacheKey);
-      if (cachedFull) {
-        // Cache hit - apply after micro delay to let input paint
-        quickRef.current = setTimeout(() => {
-          if (currentId !== searchIdRef.current) return;
-          setSearchResults(cachedFull);
-          setDisplayedCount(50);
-        }, 8);
-        return;
-      }
       
       // No cache - debounce the heavy searchTools call (150ms)
       fullRef.current = setTimeout(() => {
@@ -2218,7 +2219,7 @@ export const useGlobalSearch = () => {
 
           setSearchResults(spreadResults);
           setDisplayedCount(50);
-      }, 80); // 80ms debounce - faster for smoother typing
+      }, 50); // 50ms debounce - ultra fast for instant feel
     }
   }, [quickSearch]);
   
