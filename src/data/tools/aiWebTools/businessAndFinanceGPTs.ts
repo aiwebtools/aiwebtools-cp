@@ -49,18 +49,6 @@ export const businessAndFinanceGPTs: Tool[] = [
     totalVotes: 3456
   },
   {
-    icon: DollarSign,
-    title: "The Negotiator",
-    description: "AI-powered negotiation coach that helps users prepare for and conduct successful negotiations in business and personal contexts.",
-    emoji: "🤝",
-    color: "from-yellow-500 to-orange-600",
-    directUrl: "https://chat.openai.com/g/g-yNFhSm7iL-the-negotiator",
-    tags: ["negotiation", "coaching", "business", "strategy"],
-    category: "Business & Finance",
-    rating: 4.7,
-    totalVotes: 2468
-  },
-  {
     icon: PieChart,
     title: "Startup Idea Generator",
     description: "Generates innovative startup ideas based on user interests and market trends, providing a foundation for new ventures.",
@@ -110,18 +98,6 @@ export const businessAndFinanceGPTs: Tool[] = [
     totalVotes: 2345
   },
   {
-    icon: Briefcase,
-    title: "HR & Employee Relations Advisor",
-    description: "Offers guidance on human resources and employee relations, helping businesses manage their workforce effectively and legally.",
-    emoji: "💼",
-    color: "from-blue-500 to-cyan-600",
-    directUrl: "https://chat.openai.com/g/g-JvoJ9KZZ3-hr-employee-relations-advisor",
-    tags: ["human resources", "employee relations", "workforce management", "legal compliance"],
-    category: "Business & Finance",
-    rating: 4.6,
-    totalVotes: 2198
-  },
-  {
     icon: CreditCard,
     title: "Tax Filing Assistant",
     description: "Assists with tax preparation and filing, providing up-to-date information on tax laws and deductions to minimize liabilities.",
@@ -147,54 +123,6 @@ export const businessAndFinanceGPTs: Tool[] = [
     totalVotes: 2311
   },
   {
-    icon: TrendingDown,
-    title: "Risk Management Advisor",
-    description: "Advises on risk management strategies, helping businesses identify and mitigate potential financial and operational risks.",
-    emoji: "⚠️",
-    color: "from-lime-500 to-yellow-600",
-    directUrl: "https://chat.openai.com/g/g-t0Mhgc93b-risk-management-advisor",
-    tags: ["risk management", "financial risk", "operational risk", "risk mitigation"],
-    category: "Business & Finance",
-    rating: 4.6,
-    totalVotes: 2045
-  },
-  {
-    icon: Banknote,
-    title: "Venture Capital Analyst",
-    description: "Analyzes venture capital opportunities, providing insights into potential investments and market trends for startups.",
-    emoji: "💸",
-    color: "from-yellow-500 to-orange-600",
-    directUrl: "https://chat.openai.com/g/g-6zgcjfj7z-venture-capital-analyst",
-    tags: ["venture capital", "investment analysis", "market trends", "startups"],
-    category: "Business & Finance",
-    rating: 4.5,
-    totalVotes: 1879
-  },
-  {
-    icon: Wallet,
-    title: "Personal Budgeting Assistant",
-    description: "Assists with personal budgeting, offering tools and advice to manage expenses and achieve financial goals.",
-    emoji: "👛",
-    color: "from-orange-500 to-red-600",
-    directUrl: "https://chat.openai.com/g/g-kuy8j9z9p-personal-budgeting-assistant",
-    tags: ["personal budgeting", "expense management", "financial goals", "budgeting tools"],
-    category: "Business & Finance",
-    rating: 4.7,
-    totalVotes: 2214
-  },
-  {
-    icon: FileText,
-    title: "Contract Law Advisor",
-    description: "Provides advice on contract law, helping businesses draft, review, and understand legal agreements.",
-    emoji: "📜",
-    color: "from-red-500 to-pink-600",
-    directUrl: "https://chat.openai.com/g/g-vXj9x0v9z-contract-law-advisor",
-    tags: ["contract law", "legal agreements", "drafting", "review"],
-    category: "Business & Finance",
-    rating: 4.6,
-    totalVotes: 1958
-  },
-  {
     icon: Scale,
     title: "Economic Forecaster",
     description: "Forecasts economic trends, providing insights into potential market shifts and investment opportunities.",
@@ -205,18 +133,6 @@ export const businessAndFinanceGPTs: Tool[] = [
     category: "Business & Finance",
     rating: 4.4,
     totalVotes: 1723
-  },
-  {
-    icon: Globe,
-    title: "Global Trade Consultant",
-    description: "Consults on global trade, providing insights into international markets and trade regulations.",
-    emoji: "🌍",
-    color: "from-blue-500 to-cyan-600",
-    directUrl: "https://chat.openai.com/g/g-4y9w8x7z2-global-trade-consultant",
-    tags: ["global trade", "international markets", "trade regulations", "consulting"],
-    category: "Business & Finance",
-    rating: 4.7,
-    totalVotes: 2222
   },
   {
     icon: Lightbulb,
