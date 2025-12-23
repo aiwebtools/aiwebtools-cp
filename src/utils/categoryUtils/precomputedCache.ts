@@ -74,9 +74,6 @@ export async function initializeCategoryCache(): Promise<void> {
   if (initializationPromise) return initializationPromise;
   
   initializationPromise = (async () => {
-    const startTime = performance.now();
-    console.log('🚀 Pre-computing category cache...');
-    
     const detectors = await getDetectors();
     categoryToolsCache = new Map();
     categoryCounts = {};
@@ -148,8 +145,6 @@ export async function initializeCategoryCache(): Promise<void> {
     }
     
     cacheInitialized = true;
-    const duration = performance.now() - startTime;
-    console.log(`✅ Category cache ready in ${duration.toFixed(0)}ms`);
   })();
   
   return initializationPromise;
