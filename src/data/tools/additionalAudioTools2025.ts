@@ -56,7 +56,7 @@ export const additionalAudioTools2025: Tool[] = [
   },
   {
     icon: Mic,
-    title: "ElevenLabs",
+    title: "Eleven Labs: Voice Agents, Text to Speech, FX Sound Effects Generator",
     description: "AI voice synthesis company offering realistic text-to-speech and voice cloning with emotional expression.",
     emoji: "🎙️",
     color: "from-orange-500 to-red-500",
