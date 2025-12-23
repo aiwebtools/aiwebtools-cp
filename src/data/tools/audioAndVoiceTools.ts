@@ -364,5 +364,151 @@ export const audioAndVoiceTools: Tool[] = [
     category: "Audio & Voice",
     rating: 4.6,
     totalVotes: 4890
+  },
+  // ==================== NEW VOICE AI TOOLS 2025 ====================
+  {
+    icon: Phone,
+    title: "Goodcall",
+    description: "AI receptionist and phone agent for small businesses. Answers calls, books appointments, and handles customer inquiries automatically with no-code setup in minutes.",
+    emoji: "📞",
+    color: "from-green-500 to-teal-600",
+    directUrl: "https://www.goodcall.com/?via=aiwebtools",
+    tags: ["Voice Agent", "phone agents", "AI receptionist", "appointment booking", "small business", "no-code", "customer service", "inbound calls", "agent"],
+    category: "Phone & Voice Agents",
+    rating: 4.5,
+    totalVotes: 2890
+  },
+  {
+    icon: AudioLines,
+    title: "Cartesia AI",
+    description: "Ultra-low latency voice AI with Sonic TTS and Ink speech-to-text. Create lifelike voices with instant reactions, multilingual support, and voice cloning in seconds.",
+    emoji: "⚡",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://cartesia.ai/?via=aiwebtools",
+    tags: ["Voice Synthesis", "Text-to-Speech", "voice cloning", "low latency", "real-time", "speech-to-text", "multilingual", "expressive voices"],
+    category: "Audio & Voice",
+    rating: 4.7,
+    totalVotes: 3200
+  },
+  {
+    icon: Bot,
+    title: "Vocode",
+    description: "Open-source framework for building voice agents with your own models. Full control over ASR, TTS, LLM, and telephony with Python and Node SDKs.",
+    emoji: "🔧",
+    color: "from-gray-600 to-gray-800",
+    directUrl: "https://github.com/vocodedev/?via=aiwebtools",
+    tags: ["Voice Agent", "open source", "voice framework", "ASR", "TTS", "LLM", "telephony", "developer tools", "agent"],
+    category: "Phone & Voice Agents",
+    rating: 4.4,
+    totalVotes: 1890
+  },
+  {
+    icon: Bot,
+    title: "Lindy AI Voice Agents",
+    description: "Complete AI employee platform with Gaia phone agent. Handles calls, schedules appointments, and completes tasks during conversations with integrated CRM and calendar support.",
+    emoji: "🤖",
+    color: "from-indigo-500 to-blue-600",
+    directUrl: "https://www.lindy.ai/?via=aiwebtools",
+    tags: ["Voice Agent", "phone agents", "AI employee", "call automation", "appointment booking", "CRM integration", "conversational AI", "agent"],
+    category: "Phone & Voice Agents",
+    rating: 4.6,
+    totalVotes: 3450
+  },
+  {
+    icon: Mic,
+    title: "FakeYou",
+    description: "Deep fake text-to-speech with thousands of celebrity and character voices. Create audio content featuring iconic voices from movies, games, and pop culture.",
+    emoji: "🎭",
+    color: "from-red-500 to-orange-600",
+    directUrl: "https://fakeyou.com/?via=aiwebtools",
+    tags: ["Text-to-Speech", "Voice Cloning", "celebrity voices", "character voices", "deep fake", "voice generation", "entertainment"],
+    category: "Audio & Voice",
+    rating: 4.3,
+    totalVotes: 5670
+  },
+  {
+    icon: Mic,
+    title: "Replica Studios",
+    description: "AI voice actors for games, films, and creative projects. Create realistic character voices with emotional range and lip-sync ready audio output.",
+    emoji: "🎬",
+    color: "from-blue-600 to-purple-600",
+    directUrl: "https://replicastudios.com/?via=aiwebtools",
+    tags: ["Voice Synthesis", "voice actors", "game audio", "film production", "character voices", "emotional AI", "lip sync"],
+    category: "Audio & Voice",
+    rating: 4.5,
+    totalVotes: 2980
+  },
+  {
+    icon: Volume2,
+    title: "Typecast",
+    description: "AI voice actors and virtual humans for video content. Create professional voiceovers with 400+ voices and generate AI avatars for presentations and marketing.",
+    emoji: "🎙️",
+    color: "from-cyan-500 to-blue-600",
+    directUrl: "https://typecast.ai/?via=aiwebtools",
+    tags: ["Text-to-Speech", "voice actors", "AI avatars", "video content", "marketing", "presentations", "virtual humans"],
+    category: "Audio & Voice",
+    rating: 4.4,
+    totalVotes: 3120
+  },
+  {
+    icon: Mic,
+    title: "Respeecher",
+    description: "Hollywood-grade voice cloning for film and TV production. Create perfect voice matches for dubbing, de-aging, and posthumous performances used in major productions.",
+    emoji: "🎥",
+    color: "from-amber-500 to-red-600",
+    directUrl: "https://www.respeecher.com/?via=aiwebtools",
+    tags: ["Voice Cloning", "film production", "dubbing", "de-aging", "Hollywood", "professional voice", "speech-to-speech"],
+    category: "Audio & Voice",
+    rating: 4.8,
+    totalVotes: 2340
+  },
+  {
+    icon: Headphones,
+    title: "Listnr",
+    description: "AI voice generator with 900+ voices in 142 languages. Create podcasts, audiobooks, and voiceovers with emotion control and audio editing tools.",
+    emoji: "🎧",
+    color: "from-green-500 to-emerald-600",
+    directUrl: "https://www.listnr.tech/?via=aiwebtools",
+    tags: ["Text-to-Speech", "podcast creation", "audiobooks", "voiceovers", "multilingual", "emotion control", "audio editing"],
+    category: "Audio & Voice",
+    rating: 4.4,
+    totalVotes: 2890
+  },
+  {
+    icon: Radio,
+    title: "Podcast.ai",
+    description: "AI-powered podcast creation platform. Generate entire podcast episodes with AI hosts, create show notes, and produce professional audio content automatically.",
+    emoji: "🎙️",
+    color: "from-purple-600 to-indigo-600",
+    directUrl: "https://podcast.ai/?via=aiwebtools",
+    tags: ["Podcast Tools", "AI podcast", "audio generation", "show notes", "content creation", "AI hosts", "automated podcasting"],
+    category: "Audio & Voice",
+    rating: 4.3,
+    totalVotes: 2150
+  },
+  {
+    icon: Phone,
+    title: "Dialora AI",
+    description: "AI voice agents for phone calls with natural conversation abilities. Handle inbound and outbound calls for sales, support, and appointment scheduling.",
+    emoji: "📲",
+    color: "from-teal-500 to-cyan-600",
+    directUrl: "https://www.dialora.ai/?via=aiwebtools",
+    tags: ["Voice Agent", "phone agents", "call automation", "sales calls", "customer support", "appointment booking", "conversational AI", "agent"],
+    category: "Phone & Voice Agents",
+    rating: 4.5,
+    totalVotes: 1980
+  },
+  {
+    icon: Phone,
+    title: "CallPod AI",
+    description: "Enterprise AI phone agent platform for high-volume call operations. Automate customer service, lead qualification, and appointment setting with human-like conversations.",
+    emoji: "☎️",
+    color: "from-blue-600 to-indigo-600",
+    directUrl: "https://www.callpod.ai/?via=aiwebtools",
+    tags: ["Voice Agent", "phone agents", "enterprise", "call center", "lead qualification", "customer service", "high volume", "agent"],
+    category: "Phone & Voice Agents",
+    rating: 4.4,
+    totalVotes: 1750
   }
 ];
+
