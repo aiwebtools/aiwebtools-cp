@@ -62,19 +62,13 @@ const ToolCardMedia = ({ tool, isFeatured, imageHeight }: ToolCardMediaProps) =>
   };
   
   const getOptimizedEmbedUrl = (url: string) => {
-    const ua = navigator.userAgent.toLowerCase();
-    const isChromebook = ua.includes('cros') || ua.includes('chromebook');
-    const hardwareConcurrency = navigator.hardwareConcurrency || 4;
-    const isLowPower = isChromebook || hardwareConcurrency <= 4;
-    const quality = isLowPower ? 'medium' : 'hd720';
-
+    // Always use HD 1080p quality for best viewing experience
     if (videoId) {
-      return `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0&controls=1&rel=0&vq=${quality}&enablejsapi=1&origin=${encodeURIComponent(window.location.origin)}&playsinline=1&modestbranding=1&fs=1&iv_load_policy=3`;
+      return `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0&controls=1&rel=0&vq=hd1080&hd=1&quality=hd1080&enablejsapi=1&origin=${encodeURIComponent(window.location.origin)}&playsinline=1&modestbranding=1&fs=1&iv_load_policy=3`;
     }
     if (url.includes('vimeo.com/')) {
       const vimeoId = url.split('vimeo.com/')[1].split('?')[0];
-      const vimeoQuality = isLowPower ? '540p' : '720p';
-      return `https://player.vimeo.com/video/${vimeoId}?autoplay=1&quality=${vimeoQuality}&volume=1&muted=0`;
+      return `https://player.vimeo.com/video/${vimeoId}?autoplay=1&quality=1080p&volume=1&muted=0`;
     }
     return url;
   };

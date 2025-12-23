@@ -78,7 +78,7 @@ const LazyYouTubeEmbed = ({
     setIsLoaded(true);
   };
 
-  const embedUrl = `https://www.youtube.com/embed/${actualVideoId}?autoplay=1&mute=0&controls=1&rel=0&modestbranding=1&playsinline=1&enablejsapi=1`;
+  const embedUrl = `https://www.youtube.com/embed/${actualVideoId}?autoplay=1&mute=0&controls=1&rel=0&modestbranding=1&playsinline=1&enablejsapi=1&vq=hd1080&hd=1&quality=hd1080`;
 
   return (
     <div
