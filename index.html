@@ -195,7 +195,7 @@
         width: 0%;
         background: linear-gradient(90deg, #00ff41, #00ff9d);
         border-radius: 2px;
-        transition: width 0.3s ease-out;
+        transition: width 0.1s ease-out;
         box-shadow: 0 0 8px #00ff41, 0 0 16px rgba(0, 255, 65, 0.5);
       }
       .progress-text {
@@ -273,20 +273,15 @@
         }
       };
 
-      // Smooth gradual progress simulation - fills evenly over ~500ms
+      // Ultra-fast progress - visual fills quickly while spinner keeps moving
       let startTime = Date.now();
-      const totalDuration = 500; // Total time to reach 90%
       const progressInterval = setInterval(() => {
         const elapsed = Date.now() - startTime;
-        // Smooth easing curve - starts slower, accelerates slightly
-        const progressRatio = Math.min(elapsed / totalDuration, 1);
-        // Use easeOutQuad for smooth feel: t*(2-t)
-        const easedProgress = progressRatio * (2 - progressRatio);
-        const targetProgress = easedProgress * 85; // Go to 85% max before actual load completes
-        if (progress < 85) {
-          updateProgress(targetProgress);
+        // Fast fill - reach 90% in ~200ms
+        if (progress < 90) {
+          updateProgress(Math.min(90, elapsed / 2.2));
         }
-      }, 30); // Update every 30ms for smooth animation
+      }, 10);
 
       // Track actual module loading
       window.addEventListener('load', () => {
