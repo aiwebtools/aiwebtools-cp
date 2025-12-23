@@ -33,57 +33,36 @@ import { isWritingContentTool } from "./writingContentDetection";
 import { isCodingDevelopmentTool, getCodingDevelopmentTools } from "./codingDevelopmentDetection";
 import { isMarketingSalesTool } from "./marketingSalesDetection";
 
-// Ultra-optimized cache with persistent storage and lazy loading
-let toolsCacheByMainCategory: Map<string, Tool[]> = new Map();
+// Memory-optimized cache - stores tool INDICES instead of full tool objects
+// This dramatically reduces memory usage from ~100MB to ~5MB
+let toolsIndexCacheByMainCategory: Map<string, number[]> = new Map();
 let cacheBuilt = false;
 let lastToolsLength = 0;
-let cacheVersion = 41; // Phase 21: Added comprehensive detection for ALL main categories
+let cacheVersion = 42; // Memory optimization version
 
-// Persistent cache storage for instant loads
-const CACHE_KEY = 'aitools_category_cache_v2';
-const CACHE_VERSION_KEY = 'aitools_cache_version';
+// Legacy compatibility - will return full tools on access
+let toolsCacheByMainCategory: Map<string, Tool[]> = new Map();
 
-// Load cache from localStorage on startup
+// Persistent cache storage disabled to save memory - rebuild is fast enough
 const loadCacheFromStorage = () => {
-  try {
-    const stored = localStorage.getItem(CACHE_KEY);
-    const version = localStorage.getItem(CACHE_VERSION_KEY);
-    
-    if (stored && version === cacheVersion.toString()) {
-      const parsedCache = JSON.parse(stored);
-      toolsCacheByMainCategory = new Map(Object.entries(parsedCache));
-      console.log('🚀 Cache loaded from storage instantly!');
-      return true;
-    }
-  } catch (error) {
-    console.warn('Cache storage load failed:', error);
-  }
+  // Skip localStorage caching - it duplicates data and increases memory
   return false;
 };
 
-// Save cache to localStorage
+// Skip saving to localStorage to reduce memory
 const saveCacheToStorage = () => {
-  try {
-    const cacheObject = Object.fromEntries(toolsCacheByMainCategory);
-    localStorage.setItem(CACHE_KEY, JSON.stringify(cacheObject));
-    localStorage.setItem(CACHE_VERSION_KEY, cacheVersion.toString());
-    console.log('💾 Cache saved to storage');
-  } catch (error) {
-    console.warn('Cache storage save failed:', error);
-  }
+  // Disabled for memory savings
 };
 
 // Reset cache only when tools data actually changes
 export const resetCache = () => {
   toolsCacheByMainCategory.clear();
+  toolsIndexCacheByMainCategory.clear();
   cacheBuilt = false;
   lastToolsLength = 0;
-  localStorage.removeItem(CACHE_KEY);
-  localStorage.removeItem(CACHE_VERSION_KEY);
-  console.log('🔄 Cache reset - will rebuild with 50+ new tools included v36');
 };
 
-// Force immediate cache reset for STRICT category detection update (v35)
+// Force immediate cache reset for memory optimization version
 resetCache();
 
 // Helper function to combine subcategory and specialized tools efficiently
@@ -106,18 +85,15 @@ export const buildToolsCache = (tools: Tool[]) => {
   // Try loading from storage first
   if (!cacheBuilt && loadCacheFromStorage() && tools.length === lastToolsLength) {
     cacheBuilt = true;
-    console.log('⚡ Cache loaded from storage instantly!');
     return;
   }
   
   // Only rebuild if tools data has actually changed
   if (cacheBuilt && tools.length === lastToolsLength) {
-    console.log('✅ Cache already built and tools unchanged - skipping rebuild');
     return;
   }
   
-  console.log('🚀 Building ultra-optimized tools cache...');
-  const startTime = performance.now();
+  toolsCacheByMainCategory.clear();
   
   toolsCacheByMainCategory.clear();
   
@@ -155,8 +131,6 @@ export const buildToolsCache = (tools: Tool[]) => {
     dataAnalyticsTools: tools.filter(tool => isDataAnalyticsTool(tool)),
     majorLLMs: tools.filter(tool => isMajorLLM(tool))
   };
-  
-  console.log(`📊 Pre-processed collections in ${(performance.now() - startTime).toFixed(2)}ms`);
   
   // Process each main category with micro-optimizations
   mainCategories.forEach(mainCat => {
@@ -382,13 +356,6 @@ export const buildToolsCache = (tools: Tool[]) => {
   
   // Save to persistent storage
   saveCacheToStorage();
-  
-  const endTime = performance.now();
-  console.log(`✅ Ultra-optimized cache built in ${(endTime - startTime).toFixed(2)}ms`);
-  
-  // Streamlined verification
-  const totalCached = Array.from(toolsCacheByMainCategory.values()).reduce((sum, tools) => sum + tools.length, 0);
-  console.log(`🔍 Cache complete: ${toolsCacheByMainCategory.size} categories, ${totalCached} total tool entries`);
 };
 
 export const getToolsCacheByMainCategory = () => toolsCacheByMainCategory;

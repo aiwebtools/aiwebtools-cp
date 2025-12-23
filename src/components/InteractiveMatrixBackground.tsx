@@ -1,356 +1,151 @@
 import React, { useEffect, useRef, useCallback, memo } from 'react';
 import { useMobile } from '@/hooks/useMobile';
-import { useCrossBrowserOptimization } from '@/hooks/useCrossBrowserOptimization';
 
-interface MatrixDrop {
-  x: number;
-  y: number;
-  speed: number;
-  chars: string[];
-  opacity: number;
-  length: number;
-}
-
-interface InteractionPoint {
-  x: number;
-  y: number;
-  radius: number;
-  decay: number;
-  intensity: number;
-}
-
+// Lightweight Matrix background - minimal memory footprint
 const InteractiveMatrixBackground = memo(() => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationFrameRef = useRef<number>();
-  const dropsRef = useRef<MatrixDrop[]>([]);
-  const interactionPointsRef = useRef<InteractionPoint[]>([]);
-  const lastTimeRef = useRef<number>(0);
   const isVisibleRef = useRef(true);
+  const lastTimeRef = useRef<number>(0);
   const { isMobile } = useMobile();
-  const { performanceTier, addOptimizedEventListener } = useCrossBrowserOptimization();
 
-  // Matrix characters - identical for desktop and mobile
-  const matrixChars = '01ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜｦﾝ012345ABCDEFGHIJKLMNOPQRSTUVWXYZｧｨｩｪｫｯｬｭｮ';
+  // Minimal drop data - just numbers, no objects
+  const dropsRef = useRef<Float32Array | null>(null); // [x, y, speed] per drop
+  const dropCount = useRef(0);
 
-  const initializeCanvas = useCallback(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
+  // Simple character set - reuse single string
+  const chars = '01アイウエオ';
 
-    const ctx = canvas.getContext('2d', { 
-      alpha: true,
-      desynchronized: true, // Better for animations
-      powerPreference: 'high-performance'
-    });
-    if (!ctx) return;
-
-    // Set canvas size
-    const updateSize = () => {
-      const { innerWidth, innerHeight } = window;
-      canvas.width = innerWidth;
-      canvas.height = innerHeight;
-      canvas.style.width = `${innerWidth}px`;
-      canvas.style.height = `${innerHeight}px`;
-
-      // Reinitialize drops when canvas size changes
-      initializeDrops();
-    };
-
-    updateSize();
-    window.addEventListener('resize', updateSize, { passive: true });
-
-    return () => {
-      window.removeEventListener('resize', updateSize);
-    };
-  }, []);
-
-  const initializeDrops = useCallback(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
+  const initializeDrops = useCallback((width: number) => {
     const fontSize = 16;
-    const columns = Math.floor(canvas.width / fontSize);
-    // Significantly reduce drops on mobile for battery and performance
-    const maxDrops = isMobile 
-      ? Math.min(columns * 0.5, 40) 
-      : performanceTier === 'high' ? columns * 1.5 : 
-        performanceTier === 'medium' ? columns : 
-        Math.min(columns, 60);
-
-    dropsRef.current = [];
-
-    for (let i = 0; i < maxDrops; i++) {
-      const drop: MatrixDrop = {
-        x: (i * fontSize * 0.7) + (Math.random() * fontSize * 0.5),
-        y: Math.random() * -canvas.height,
-        speed: (Math.random() * 5 + 3),
-        chars: [],
-        opacity: Math.random() * 0.5 + 0.5,
-        length: Math.floor(Math.random() * 14) + 6
-      };
-
-      // Generate random characters for this drop
-      for (let j = 0; j < drop.length; j++) {
-        drop.chars.push(matrixChars[Math.floor(Math.random() * matrixChars.length)]);
-      }
-
-      dropsRef.current.push(drop);
-    }
-  }, [isMobile, performanceTier, matrixChars]);
-
-  const handleInteraction = useCallback((x: number, y: number) => {
-    // Add interaction point that affects nearby matrix drops
-    const interactionPoint: InteractionPoint = {
-      x,
-      y,
-      radius: 120,
-      decay: 0.95,
-      intensity: 1.5
-    };
-
-    interactionPointsRef.current.push(interactionPoint);
-
-    // Limit number of interaction points for performance
-    if (interactionPointsRef.current.length > 5) {
-      interactionPointsRef.current.shift();
-    }
-
-      // Create ripple effect by affecting nearby drops
-      dropsRef.current.forEach(drop => {
-        const distance = Math.sqrt(
-          Math.pow(drop.x - x, 2) + Math.pow(drop.y - y, 2)
-        );
-
-        if (distance < interactionPoint.radius) {
-          // Speed up drops near interaction - more dramatic
-          drop.speed *= 2.2;
-          drop.opacity = Math.min(1, drop.opacity + 0.4);
-          
-          // Randomize characters for ripple effect
-          if (Math.random() < 0.3) {
-            drop.chars = drop.chars.map(() => 
-              matrixChars[Math.floor(Math.random() * matrixChars.length)]
-            );
-          }
-        }
-      });
-
-      // Add multiple new drops at interaction point for more streaks
-      const newDropCount = 5;
-      for (let i = 0; i < newDropCount; i++) {
-        if (Math.random() < 0.9) {
-          const newDrop: MatrixDrop = {
-            x: x + (Math.random() - 0.5) * 60,
-            y: y - Math.random() * 80,
-            speed: Math.random() * 6 + 4,
-            chars: [],
-            opacity: 1,
-            length: Math.floor(Math.random() * 12) + 8
-          };
-
-          for (let j = 0; j < newDrop.length; j++) {
-            newDrop.chars.push(matrixChars[Math.floor(Math.random() * matrixChars.length)]);
-          }
-
-          dropsRef.current.push(newDrop);
-        }
-      }
-  }, [isMobile, matrixChars]);
-
-  const animate = useCallback((currentTime: number) => {
-    // Skip if tab not visible
-    if (!isVisibleRef.current) {
-      animationFrameRef.current = requestAnimationFrame(animate);
-      return;
-    }
+    const columns = Math.floor(width / fontSize);
+    // Drastically reduce drop count for memory savings
+    const count = isMobile ? Math.min(columns * 0.3, 25) : Math.min(columns * 0.5, 50);
+    dropCount.current = count;
     
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    // Simplified timing for better browser compatibility (especially Brave)
-    const deltaTime = currentTime - lastTimeRef.current;
-    // Lower FPS on mobile for battery savings
-    const targetInterval = isMobile ? 33.33 : (performanceTier === 'high' ? 16.67 : performanceTier === 'medium' ? 22.22 : 33.33);
-
-    // Use more consistent frame limiting that works better with Brave's optimizations
-    if (deltaTime < targetInterval && lastTimeRef.current > 0) {
-      animationFrameRef.current = requestAnimationFrame(animate);
-      return;
+    // Use typed array for memory efficiency (3 floats per drop: x, y, speed)
+    dropsRef.current = new Float32Array(count * 3);
+    
+    for (let i = 0; i < count; i++) {
+      const idx = i * 3;
+      dropsRef.current[idx] = i * fontSize * 1.2 + Math.random() * fontSize; // x
+      dropsRef.current[idx + 1] = Math.random() * -500; // y
+      dropsRef.current[idx + 2] = Math.random() * 3 + 2; // speed
     }
-
-    lastTimeRef.current = currentTime;
-
-    // Solid black background clear
-    ctx.globalAlpha = 1;
-    ctx.fillStyle = '#000000';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    const fontSize = 16;
-
-    // Update and render drops
-    dropsRef.current = dropsRef.current.filter(drop => {
-      // Update position
-      drop.y += drop.speed;
-
-      // Reset drop when it goes off screen with proper spacing
-      if (drop.y > canvas.height + drop.length * (fontSize * 1.4)) {
-        drop.y = -drop.length * (fontSize * 1.4);
-        drop.x = Math.random() * canvas.width;
-        drop.speed = (Math.random() * 4 + 2);
-        drop.opacity = Math.random() * 0.8 + 0.2;
-      }
-
-      // Gradually return speed and opacity to normal
-      drop.speed = Math.max(drop.speed * 0.99, 1);
-      drop.opacity = Math.max(drop.opacity * 0.998, 0.3);
-
-      // Render drop with defined Matrix characters
-      ctx.font = `bold ${fontSize}px 'Courier New', 'Lucida Console', monospace`;
-      ctx.textBaseline = 'top';
-      ctx.textAlign = 'center';
-      
-      // Set rendering options for better Brave browser compatibility
-      ctx.globalAlpha = 1;
-      ctx.shadowBlur = 0;
-      ctx.shadowColor = 'transparent';
-      
-      for (let i = 0; i < drop.chars.length; i++) {
-        const charY = drop.y + i * (fontSize * 1.4); // More spacing for definition
-        if (charY > 0 && charY < canvas.height + fontSize) {
-          // Stronger fade effect for more definition
-          const fadeMultiplier = Math.max(0, 1 - (i / drop.length) * 1.5);
-          const alpha = drop.opacity * fadeMultiplier;
-          
-          // Skip very faint characters
-          if (alpha < 0.2) continue;
-          
-          // Head character is bright white
-          if (i === 0) {
-            ctx.globalAlpha = Math.min(alpha, 1);
-            ctx.fillStyle = '#ffffff';
-          } else if (i <= 3) {
-            // First few characters are bright green
-            ctx.globalAlpha = Math.min(alpha * 0.95, 0.9);
-            ctx.fillStyle = '#00ff41';
-          } else {
-            // Body characters with defined green
-            ctx.globalAlpha = alpha * 0.8;
-            ctx.fillStyle = '#00cc33';
-          }
-          
-          // Render defined characters with pixel-perfect positioning
-          ctx.fillText(drop.chars[i], Math.round(drop.x), Math.round(charY));
-        }
-      }
-
-      // Reset global alpha for consistency
-      ctx.globalAlpha = 1;
-      return true;
-    });
-
-    // Update interaction points
-    interactionPointsRef.current = interactionPointsRef.current.filter(point => {
-      point.intensity *= point.decay;
-      point.radius *= 1.02; // Expand ripple
-      return point.intensity > 0.1;
-    });
-
-    // Render interaction ripples - clean circles with consistent alpha
-    ctx.globalAlpha = 1;
-    interactionPointsRef.current.forEach(point => {
-      ctx.globalAlpha = point.intensity * 0.6;
-      ctx.strokeStyle = '#00ff41';
-      ctx.lineWidth = 2;
-      ctx.shadowBlur = 0;
-      ctx.shadowColor = 'transparent';
-      ctx.beginPath();
-      ctx.arc(Math.round(point.x), Math.round(point.y), Math.round(point.radius), 0, Math.PI * 2);
-      ctx.stroke();
-    });
-    ctx.globalAlpha = 1; // Reset alpha
-
-    // Clean up excess drops for performance - reduce on mobile
-    const maxActiveDrops = isMobile ? 50 : performanceTier === 'high' ? 150 : performanceTier === 'medium' ? 100 : 70;
-    if (dropsRef.current.length > maxActiveDrops) {
-      dropsRef.current = dropsRef.current.slice(0, maxActiveDrops);
-    }
-
-    animationFrameRef.current = requestAnimationFrame(animate);
-  }, [isMobile, performanceTier]);
+  }, [isMobile]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    // Pause animation when tab not visible
+    const ctx = canvas.getContext('2d', { alpha: false });
+    if (!ctx) return;
+
+    // Set size once
+    const updateSize = () => {
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.5); // Cap DPR for memory
+      canvas.width = window.innerWidth * dpr;
+      canvas.height = window.innerHeight * dpr;
+      canvas.style.width = `${window.innerWidth}px`;
+      canvas.style.height = `${window.innerHeight}px`;
+      ctx.scale(dpr, dpr);
+      initializeDrops(window.innerWidth);
+    };
+    
+    updateSize();
+
+    // Debounced resize
+    let resizeTimeout: number;
+    const handleResize = () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = window.setTimeout(updateSize, 200);
+    };
+    window.addEventListener('resize', handleResize, { passive: true });
+
+    // Visibility handling
     const handleVisibility = () => {
       isVisibleRef.current = document.visibilityState === 'visible';
     };
     document.addEventListener('visibilitychange', handleVisibility);
 
-    initializeCanvas();
-    initializeDrops();
+    // Minimal animation loop
+    const animate = (time: number) => {
+      if (!isVisibleRef.current || !dropsRef.current) {
+        animationFrameRef.current = requestAnimationFrame(animate);
+        return;
+      }
 
-    // Start animation
+      // Limit to ~20 FPS on mobile, ~30 FPS on desktop for memory/CPU savings
+      const targetInterval = isMobile ? 50 : 33;
+      if (time - lastTimeRef.current < targetInterval) {
+        animationFrameRef.current = requestAnimationFrame(animate);
+        return;
+      }
+      lastTimeRef.current = time;
+
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      const fontSize = 16;
+      const drops = dropsRef.current;
+      const count = dropCount.current;
+
+      // Clear with fade effect
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.15)';
+      ctx.fillRect(0, 0, width, height);
+
+      // Render drops
+      ctx.font = `${fontSize}px monospace`;
+      ctx.textAlign = 'center';
+
+      for (let i = 0; i < count; i++) {
+        const idx = i * 3;
+        let x = drops[idx];
+        let y = drops[idx + 1];
+        const speed = drops[idx + 2];
+
+        // Update position
+        y += speed;
+        
+        // Reset if off screen
+        if (y > height + 50) {
+          y = -50;
+          x = Math.random() * width;
+          drops[idx] = x;
+        }
+        drops[idx + 1] = y;
+
+        // Draw single character (minimal)
+        if (y > 0 && y < height) {
+          const char = chars[Math.floor(Math.random() * chars.length)];
+          ctx.fillStyle = '#00ff41';
+          ctx.globalAlpha = 0.7;
+          ctx.fillText(char, x, y);
+        }
+      }
+
+      ctx.globalAlpha = 1;
+      animationFrameRef.current = requestAnimationFrame(animate);
+    };
+
     animationFrameRef.current = requestAnimationFrame(animate);
-
-    // Mouse interaction
-    const handleMouseMove = (e: MouseEvent) => {
-      if (Math.random() < 0.1) { // Throttle for performance
-        handleInteraction(e.clientX, e.clientY);
-      }
-    };
-
-    const handleClick = (e: MouseEvent) => {
-      handleInteraction(e.clientX, e.clientY);
-    };
-
-    // Touch interaction - don't prevent default to allow scrolling
-    const handleTouchMove = (e: TouchEvent) => {
-      // Don't prevent default - allow normal scrolling
-      if (e.touches.length > 0 && Math.random() < 0.1) { // Same throttle as desktop
-        const touch = e.touches[0];
-        handleInteraction(touch.clientX, touch.clientY);
-      }
-    };
-
-    const handleTouchStart = (e: TouchEvent) => {
-      // Don't prevent default - allow normal scrolling
-      if (e.touches.length > 0) {
-        const touch = e.touches[0];
-        handleInteraction(touch.clientX, touch.clientY);
-      }
-    };
-
-    // Add event listeners with optimization - use passive for touch events to allow scrolling
-    const removeMouseMove = addOptimizedEventListener(canvas, 'mousemove', handleMouseMove);
-    const removeClick = addOptimizedEventListener(canvas, 'click', handleClick);
-    canvas.addEventListener('touchmove', handleTouchMove, { passive: true });
-    canvas.addEventListener('touchstart', handleTouchStart, { passive: true });
 
     return () => {
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
       }
+      clearTimeout(resizeTimeout);
       document.removeEventListener('visibilitychange', handleVisibility);
-      removeMouseMove?.();
-      removeClick?.();
-      canvas.removeEventListener('touchmove', handleTouchMove);
-      canvas.removeEventListener('touchstart', handleTouchStart);
+      window.removeEventListener('resize', handleResize);
+      // Clear typed array reference
+      dropsRef.current = null;
     };
-  }, [initializeCanvas, initializeDrops, animate, handleInteraction, addOptimizedEventListener]);
+  }, [isMobile, initializeDrops, chars]);
 
   return (
     <canvas
       ref={canvasRef}
       className="fixed top-0 left-0 w-full h-full pointer-events-none z-0"
-      style={{
-        background: '#000000',
-        touchAction: 'auto', // Allow normal touch scrolling
-        contain: 'strict'
-      }}
+      style={{ background: '#000000', contain: 'strict' }}
     />
   );
 });
