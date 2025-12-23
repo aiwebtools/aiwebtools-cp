@@ -32,7 +32,7 @@ export const coreAudioVoiceTools: Tool[] = [
   },
   {
     icon: Mic,
-    title: "ElevenLabs - AI Voice Platform",
+    title: "Eleven Labs: Voice Agents, Text to Speech, FX Sound Effects Generator",
     description: "Leading AI voice platform offering advanced text-to-speech, conversational AI agents, voice cloning, dubbing, speech-to-text transcription, and ElevenReader for audiobook creation. Generate realistic human voices, create AI conversations, clone voices, and produce professional audio content for any project.",
     emoji: "🎤",
     color: "from-purple-500 to-blue-600",

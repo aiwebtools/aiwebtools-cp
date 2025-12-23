@@ -406,7 +406,7 @@ export const audioMusicTools: Tool[] = [
   },
   {
     icon: Volume2,
-    title: "ElevenLabs",
+    title: "Eleven Labs: Voice Agents, Text to Speech, FX Sound Effects Generator",
     description: "Trailblazing voice AI research and deployment company dedicated to breaking language barriers and enhancing content accessibility through advanced AI audio generation technology.",
     emoji: "🔊",
     color: "from-blue-500 to-purple-600",
