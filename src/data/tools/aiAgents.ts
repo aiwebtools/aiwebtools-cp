@@ -597,6 +597,30 @@ export const aiAgents: Tool[] = [
     rating: 4.5,
     totalVotes: 1800
   },
+  {
+    icon: Code,
+    title: "Vitara AI Vibe Coding Agent",
+    description: "AI-powered development platform that helps you design, build, and scale full-stack applications using vibe coding. Rapid prototyping with AI-assisted features for next-gen app development.",
+    emoji: "🚀",
+    color: "from-violet-500 to-purple-600",
+    directUrl: "https://vitara.ai/?via=aiwebtools",
+    tags: ["Vibe Coding Agent", "Coding Agent", "app builder", "full-stack agent", "Vitara", "development agent", "rapid prototyping", "vibe coding"],
+    category: "AI Agents",
+    rating: 4.6,
+    totalVotes: 2890
+  },
+  {
+    icon: Users,
+    title: "Microsoft AutoGen Agent Framework",
+    description: "Enterprise-grade multi-agent orchestration framework from Microsoft. Build teams of interoperating AI agents for complex workflows, automation, research, and sophisticated task handling at scale.",
+    emoji: "🔧",
+    color: "from-blue-500 to-indigo-600",
+    directUrl: "https://microsoft.github.io/autogen/?via=aiwebtools",
+    tags: ["Multi-Agent Framework", "Microsoft", "AutoGen", "orchestration", "enterprise", "collaborative agents", "workflow automation", "agent"],
+    category: "AI Agents",
+    rating: 4.7,
+    totalVotes: 4567
+  },
   
   // ========================================
   // PRODUCTIVITY & WORK AGENTS

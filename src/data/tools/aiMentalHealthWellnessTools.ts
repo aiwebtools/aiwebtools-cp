@@ -73,5 +73,113 @@ export const aiMentalHealthWellnessTools: Tool[] = [
     category: "AI Mental Health & Wellness",
     rating: 4.7,
     totalVotes: 28934
+  },
+  {
+    icon: Brain,
+    title: "Headspace",
+    description: "AI-enhanced meditation and mindfulness app with personalized recommendations. Guided meditations, sleep aids, and stress relief content powered by behavioral science.",
+    emoji: "🧘",
+    color: "from-orange-400 to-yellow-500",
+    directUrl: "https://www.headspace.com/?via=aiwebtools",
+    tags: ["meditation", "mindfulness", "sleep", "stress relief", "mental wellness", "guided meditation", "relaxation"],
+    category: "AI Mental Health & Wellness",
+    rating: 4.8,
+    totalVotes: 35678
+  },
+  {
+    icon: Heart,
+    title: "Calm",
+    description: "AI-powered sleep and meditation app. Personalized relaxation content, sleep stories, breathing exercises, and mindfulness programs for better mental health.",
+    emoji: "😌",
+    color: "from-blue-400 to-indigo-500",
+    directUrl: "https://www.calm.com/?via=aiwebtools",
+    tags: ["sleep", "meditation", "relaxation", "mindfulness", "stress relief", "sleep stories", "breathing exercises"],
+    category: "AI Mental Health & Wellness",
+    rating: 4.8,
+    totalVotes: 42345
+  },
+  {
+    icon: MessageCircle,
+    title: "Elomia",
+    description: "AI therapy chatbot providing 24/7 emotional support and CBT-based conversations. Anonymous mental health support for anxiety, depression, and daily stress.",
+    emoji: "💭",
+    color: "from-pink-500 to-rose-600",
+    directUrl: "https://elomia.com/?via=aiwebtools",
+    tags: ["AI therapy", "emotional support", "CBT", "anxiety", "depression", "chatbot", "24/7 support"],
+    category: "AI Mental Health & Wellness",
+    rating: 4.4,
+    totalVotes: 8765
+  },
+  {
+    icon: Smile,
+    title: "Sanvello",
+    description: "AI-driven mental health app combining CBT techniques, peer support, and coaching. Track mood, manage anxiety, and build healthy coping skills.",
+    emoji: "🌱",
+    color: "from-green-400 to-teal-500",
+    directUrl: "https://www.sanvello.com/?via=aiwebtools",
+    tags: ["mental health", "CBT", "peer support", "mood tracking", "anxiety management", "coping skills", "coaching"],
+    category: "AI Mental Health & Wellness",
+    rating: 4.5,
+    totalVotes: 12345
+  },
+  {
+    icon: Brain,
+    title: "Moodpath",
+    description: "AI-powered depression and anxiety screening app. Daily check-ins, mental health assessments, and personalized insights to track your emotional wellbeing.",
+    emoji: "📊",
+    color: "from-purple-400 to-pink-500",
+    directUrl: "https://mymoodpath.com/?via=aiwebtools",
+    tags: ["depression screening", "anxiety", "mood tracking", "mental health assessment", "daily check-ins", "emotional wellbeing"],
+    category: "AI Mental Health & Wellness",
+    rating: 4.3,
+    totalVotes: 7654
+  },
+  {
+    icon: Sparkles,
+    title: "Happify",
+    description: "Science-based activities and games for emotional wellbeing. AI-personalized programs to reduce stress, overcome negative thoughts, and build resilience.",
+    emoji: "🎯",
+    color: "from-yellow-400 to-orange-500",
+    directUrl: "https://www.happify.com/?via=aiwebtools",
+    tags: ["emotional wellbeing", "positive psychology", "stress reduction", "resilience", "gamified therapy", "science-based"],
+    category: "AI Mental Health & Wellness",
+    rating: 4.4,
+    totalVotes: 9876
+  },
+  {
+    icon: Heart,
+    title: "Mindshine",
+    description: "AI-powered personal trainer for mental fitness. Daily exercises, mood tracking, and personalized programs for stress management and positive thinking.",
+    emoji: "✨",
+    color: "from-amber-400 to-yellow-500",
+    directUrl: "https://www.mindshine.app/?via=aiwebtools",
+    tags: ["mental fitness", "positive thinking", "stress management", "daily exercises", "mood tracking", "personal growth"],
+    category: "AI Mental Health & Wellness",
+    rating: 4.3,
+    totalVotes: 5432
+  },
+  {
+    icon: MessageCircle,
+    title: "Earkick",
+    description: "AI-powered anxiety and panic attack relief chatbot. Real-time support with breathing exercises, grounding techniques, and personalized coping strategies.",
+    emoji: "🐼",
+    color: "from-slate-500 to-gray-600",
+    directUrl: "https://www.earkick.com/?via=aiwebtools",
+    tags: ["anxiety relief", "panic attacks", "breathing exercises", "grounding", "coping strategies", "real-time support"],
+    category: "AI Mental Health & Wellness",
+    rating: 4.5,
+    totalVotes: 6789
+  },
+  {
+    icon: Users,
+    title: "7 Cups",
+    description: "Free emotional support platform with AI chatbot and trained listeners. Anonymous chat for anxiety, depression, and life challenges with 24/7 availability.",
+    emoji: "☕",
+    color: "from-teal-400 to-green-500",
+    directUrl: "https://www.7cups.com/?via=aiwebtools",
+    tags: ["emotional support", "peer support", "free therapy", "anonymous chat", "trained listeners", "24/7 support"],
+    category: "AI Mental Health & Wellness",
+    rating: 4.4,
+    totalVotes: 18234
   }
 ];
