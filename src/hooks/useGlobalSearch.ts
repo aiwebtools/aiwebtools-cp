@@ -55,7 +55,7 @@ class LRUCache<K, V> {
 
 // Global search cache (persists across component re-renders)
 // NOTE: versioned to prevent "stale" cached results after search-intelligence updates.
-const SEARCH_CACHE_VERSION = "v33";
+const SEARCH_CACHE_VERSION = "v34";
 const searchCache = new LRUCache<string, any[]>(50);
 
 // ==================== INTELLIGENCE MAPS (precomputed, instant lookup) ====================
@@ -774,24 +774,43 @@ const PHRASE_TO_TOOLS: Record<string, string[]> = {
   "foley": ["Eleven Labs: Voice Agents, Text to Speech, FX Sound Effects Generator"],
   
   // ==================== VOICE AGENTS ====================
-  "voice agents": ["Eleven Labs: Voice Agents, Text to Speech, FX Sound Effects Generator", "Vapi", "Bland AI", "Retell AI", "Air AI"],
-  "voice agent": ["Eleven Labs: Voice Agents, Text to Speech, FX Sound Effects Generator", "Vapi", "Bland AI", "Retell AI", "Air AI"],
-  "phone agent": ["Eleven Labs: Voice Agents, Text to Speech, FX Sound Effects Generator", "Vapi", "Bland AI", "Retell AI", "Air AI"],
-  "call agent": ["Eleven Labs: Voice Agents, Text to Speech, FX Sound Effects Generator", "Vapi", "Bland AI", "Retell AI", "Air AI"],
-  "conversational ai": ["Eleven Labs: Voice Agents, Text to Speech, FX Sound Effects Generator", "Vapi", "Bland AI", "Retell AI", "Air AI"],
-  "ai phone": ["Eleven Labs: Voice Agents, Text to Speech, FX Sound Effects Generator", "Vapi", "Bland AI", "Retell AI", "Air AI"],
-  "ai caller": ["Eleven Labs: Voice Agents, Text to Speech, FX Sound Effects Generator", "Vapi", "Bland AI", "Retell AI", "Air AI"],
+  "voice agents": ["Eleven Labs: Voice Agents, Text to Speech, FX Sound Effects Generator", "Vapi", "Bland AI", "Retell AI", "Air AI", "Synthflow AI", "Goodcall", "Lindy AI Voice Agents", "Dialora AI", "CallPod AI", "Vocode"],
+  "voice agent": ["Eleven Labs: Voice Agents, Text to Speech, FX Sound Effects Generator", "Vapi", "Bland AI", "Retell AI", "Air AI", "Synthflow AI", "Goodcall", "Lindy AI Voice Agents", "Dialora AI", "CallPod AI"],
+  "phone agent": ["Eleven Labs: Voice Agents, Text to Speech, FX Sound Effects Generator", "Vapi", "Bland AI", "Retell AI", "Air AI", "Synthflow AI", "Goodcall", "Lindy AI Voice Agents", "Dialora AI", "CallPod AI"],
+  "phone agents": ["Vapi", "Bland AI", "Retell AI", "Air AI", "Synthflow AI", "Goodcall", "Lindy AI Voice Agents", "Dialora AI", "CallPod AI", "Eleven Labs: Voice Agents, Text to Speech, FX Sound Effects Generator"],
+  "call agent": ["Eleven Labs: Voice Agents, Text to Speech, FX Sound Effects Generator", "Vapi", "Bland AI", "Retell AI", "Air AI", "Synthflow AI", "Goodcall", "Lindy AI Voice Agents", "Dialora AI", "CallPod AI"],
+  "call agents": ["Vapi", "Bland AI", "Retell AI", "Air AI", "Synthflow AI", "Goodcall", "Lindy AI Voice Agents", "Dialora AI", "CallPod AI"],
+  "conversational ai": ["Eleven Labs: Voice Agents, Text to Speech, FX Sound Effects Generator", "Vapi", "Bland AI", "Retell AI", "Air AI", "Voiceflow", "Cognigy", "Kore.ai"],
+  "ai phone": ["Eleven Labs: Voice Agents, Text to Speech, FX Sound Effects Generator", "Vapi", "Bland AI", "Retell AI", "Air AI", "Synthflow AI", "Goodcall", "Dialora AI", "CallPod AI"],
+  "ai caller": ["Eleven Labs: Voice Agents, Text to Speech, FX Sound Effects Generator", "Vapi", "Bland AI", "Retell AI", "Air AI", "Dialora AI", "CallPod AI"],
+  "ai receptionist": ["Goodcall", "Air AI", "Synthflow AI", "Lindy AI Voice Agents", "Vapi", "Bland AI"],
+  "call center ai": ["Retell AI", "Bland AI", "Vapi", "Air AI", "Synthflow AI", "CallPod AI", "Dialora AI"],
   "elevenlabs": ["Eleven Labs: Voice Agents, Text to Speech, FX Sound Effects Generator"],
   "eleven labs": ["Eleven Labs: Voice Agents, Text to Speech, FX Sound Effects Generator"],
   "11labs": ["Eleven Labs: Voice Agents, Text to Speech, FX Sound Effects Generator"],
+  
+  // ==================== TEXT TO SPEECH / VOICE CLONING ====================
+  "fakeyou": ["FakeYou"],
+  "fake you": ["FakeYou"],
+  "celebrity voices": ["FakeYou", "Replica Studios", "Eleven Labs: Voice Agents, Text to Speech, FX Sound Effects Generator"],
+  "character voices": ["FakeYou", "Replica Studios", "Typecast"],
+  "voice cloning": ["Eleven Labs: Voice Agents, Text to Speech, FX Sound Effects Generator", "Resemble AI", "Respeecher", "Cartesia AI", "Play.ht", "FakeYou"],
+  "clone voice": ["Eleven Labs: Voice Agents, Text to Speech, FX Sound Effects Generator", "Resemble AI", "Respeecher", "Cartesia AI", "Play.ht"],
+  "ai voiceover": ["Murf AI", "Play.ht", "Eleven Labs: Voice Agents, Text to Speech, FX Sound Effects Generator", "LOVO", "Listnr", "WellSaid Labs", "Typecast"],
+  "podcast ai": ["Podcast.ai", "Descript", "Listnr", "Podcast Script Writer GPT"],
+  "cartesia": ["Cartesia AI"],
+  "respeecher": ["Respeecher"],
+  "listnr": ["Listnr"],
+  "typecast": ["Typecast"],
+  "replica studios": ["Replica Studios"],
   
   // ==================== SOUND & AUDIO ====================
   "sound": ["Eleven Labs: Voice Agents, Text to Speech, FX Sound Effects Generator", "Play.ht", "Murf.ai", "Suno", "Udio", "Music Melodies & Lessons GPT", "Resemble AI", "LOVO", "Speechify", "Podcast Script Writer GPT"],
   "sounds": ["Eleven Labs: Voice Agents, Text to Speech, FX Sound Effects Generator", "Play.ht", "Murf.ai", "Suno", "Udio", "Music Melodies & Lessons GPT", "Resemble AI", "LOVO", "Speechify"],
   "audio": ["Eleven Labs: Voice Agents, Text to Speech, FX Sound Effects Generator", "Play.ht", "Murf.ai", "Suno", "Udio", "Music Melodies & Lessons GPT", "Resemble AI", "LOVO", "Speechify", "Descript", "Podcast Script Writer GPT"],
   "audio tools": ["Eleven Labs: Voice Agents, Text to Speech, FX Sound Effects Generator", "Play.ht", "Murf.ai", "Suno", "Udio", "Music Melodies & Lessons GPT", "Descript", "Podcast Script Writer GPT"],
-  "voice": ["Eleven Labs: Voice Agents, Text to Speech, FX Sound Effects Generator", "Play.ht", "Murf.ai", "WellSaid Labs", "Resemble AI", "LOVO", "Speechify"],
-  "voice tools": ["Eleven Labs: Voice Agents, Text to Speech, FX Sound Effects Generator", "Play.ht", "Murf.ai", "WellSaid Labs", "Resemble AI", "LOVO"],
+  "voice": ["Eleven Labs: Voice Agents, Text to Speech, FX Sound Effects Generator", "Play.ht", "Murf.ai", "WellSaid Labs", "Resemble AI", "LOVO", "Speechify", "Cartesia AI", "FakeYou"],
+  "voice tools": ["Eleven Labs: Voice Agents, Text to Speech, FX Sound Effects Generator", "Play.ht", "Murf.ai", "WellSaid Labs", "Resemble AI", "LOVO", "Cartesia AI"],
   
   // ==================== AGENTS ====================
   "agent": ["Lovable", "Bolt.new", "Replit Agent", "Emergent Agent", "n8n", "ChatGPT Operator", "Surf.new", "Manus", "Claude Computer Use", "OpenAI Agents", "Zapier", "Make.com", "Browser Use", "AgentGPT", "Auto-GPT", "BabyAGI", "MetaGPT", "LangChain Agents", "CrewAI", "Microsoft AutoGen"],
