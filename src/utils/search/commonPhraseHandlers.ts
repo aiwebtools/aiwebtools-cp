@@ -212,6 +212,63 @@ export const COMMON_PHRASE_HANDLERS: Record<string, PhraseHandler> = {
     priorityTools: ['Home-Schooling Assistant GPT', 'LEARN ANY COURSE GPT', 'Quiz Maker Ai'],
     relatedCategories: ['Education & Learning', 'Homeschool']
   },
+
+  // ===== HOMEWORK & STUDYING =====
+  homeworkHelp: {
+    triggers: ['homework help', 'help me with homework', 'homework', 'do my homework', 'homework assistance', 'help with homework', 'finish homework', 'complete homework', 'homework tutor', 'need help with homework'],
+    keywords: ['homework', 'assignment', 'study', 'school', 'class', 'tutor', 'student', 'learn', 'academic', 'education'],
+    priorityTools: ['LEARN ANY COURSE GPT', 'LEARN ANY SKILL GPT', 'COLLEGE DEGREE GPT', 'Home-Schooling Assistant GPT', 'Quiz Maker Ai', 'Algebraic Expression Inventor GPT', 'Photomath'],
+    relatedCategories: ['Education & Learning', 'Education & Research Tools', 'Educational Tools']
+  },
+
+  studyHelp: {
+    triggers: ['study help', 'help me study', 'studying', 'study for test', 'study for exam', 'exam prep', 'test prep', 'prepare for exam', 'study guide', 'study session', 'help studying', 'need to study'],
+    keywords: ['study', 'exam', 'test', 'quiz', 'prepare', 'review', 'practice', 'flashcard', 'memorize', 'learn'],
+    priorityTools: ['LEARN ANY COURSE GPT', 'Quiz Maker Ai', 'COLLEGE DEGREE GPT', 'LEARN ANY SKILL GPT', 'Home-Schooling Assistant GPT', 'Quizlet AI'],
+    relatedCategories: ['Education & Learning', 'Educational Tools', 'Education & Research Tools']
+  },
+
+  mathHelp: {
+    triggers: ['math help', 'help with math', 'solve math', 'math problem', 'math homework', 'algebra help', 'calculus help', 'geometry help', 'solve equation', 'math tutor', 'math question'],
+    keywords: ['math', 'mathematics', 'algebra', 'calculus', 'geometry', 'equation', 'solve', 'calculate', 'number', 'formula'],
+    priorityTools: ['Algebraic Expression Inventor GPT', 'Photomath', 'LEARN ANY COURSE GPT', 'COLLEGE DEGREE GPT', 'Probability GPT'],
+    relatedCategories: ['Education & Learning', 'Educational Tools', 'Math Tools']
+  },
+
+  writingHelp: {
+    triggers: ['essay help', 'help with essay', 'write essay', 'essay writing', 'research paper', 'help me write', 'writing homework', 'paper help', 'thesis help', 'assignment writing'],
+    keywords: ['essay', 'paper', 'writing', 'write', 'thesis', 'research', 'academic', 'paragraph', 'grammar', 'draft'],
+    priorityTools: ['BOOK WRITER GPT', 'Article and Blog Rewriter GPT', 'Grammarly', 'LEARN ANY COURSE GPT', 'Clarity Omni GPT'],
+    relatedCategories: ['Writing & Text Generation', 'Education & Learning', 'Educational Tools']
+  },
+
+  scienceHelp: {
+    triggers: ['science help', 'help with science', 'science homework', 'physics help', 'chemistry help', 'biology help', 'science project', 'lab report', 'science tutor'],
+    keywords: ['science', 'physics', 'chemistry', 'biology', 'experiment', 'lab', 'hypothesis', 'scientific', 'research', 'molecule'],
+    priorityTools: ['COLLEGE DEGREE GPT', 'LEARN ANY COURSE GPT', 'Nikola Tesla GPT', 'Alchemist Scientist GPT', 'Genome GPT'],
+    relatedCategories: ['Education & Learning', 'Science & Research', 'Educational Tools']
+  },
+
+  historyHelp: {
+    triggers: ['history help', 'help with history', 'history homework', 'history project', 'history tutor', 'learn history', 'historical research'],
+    keywords: ['history', 'historical', 'ancient', 'war', 'civilization', 'timeline', 'event', 'era', 'period', 'past'],
+    priorityTools: ['TIME MACHINE GPT', 'TALK TO HISTORY GPT', 'Historical Headlines GPT', 'COLLEGE DEGREE GPT', 'LEARN ANY COURSE GPT'],
+    relatedCategories: ['Education & Learning', 'Historical & Time-Based AI Tools', 'Educational Tools']
+  },
+
+  tutorMe: {
+    triggers: ['tutor me', 'i need a tutor', 'personal tutor', 'online tutor', 'tutoring', 'teach me', 'be my tutor', 'private tutor', 'get tutored'],
+    keywords: ['tutor', 'tutoring', 'teach', 'teacher', 'instructor', 'lesson', 'explain', 'help', 'understand', 'learn'],
+    priorityTools: ['LEARN ANY COURSE GPT', 'LEARN ANY SKILL GPT', 'COLLEGE DEGREE GPT', 'Home-Schooling Assistant GPT', 'Quiz Maker Ai'],
+    relatedCategories: ['Education & Learning', 'Educational Tools', 'Tutoring']
+  },
+
+  collegeHelp: {
+    triggers: ['college help', 'university help', 'college homework', 'college assignment', 'degree help', 'graduate school', 'undergrad help'],
+    keywords: ['college', 'university', 'degree', 'undergraduate', 'graduate', 'professor', 'campus', 'major', 'credits', 'semester'],
+    priorityTools: ['COLLEGE DEGREE GPT', 'LEARN ANY COURSE GPT', 'Grant Writer GPT', 'The Resume & Job Finder Ai Suite'],
+    relatedCategories: ['Education & Learning', 'Educational Tools', 'College']
+  },
   
   // ===== HEALTH & WELLNESS =====
   healthAdvice: {
@@ -1142,13 +1199,6 @@ export const COMMON_PHRASE_HANDLERS: Record<string, PhraseHandler> = {
     keywords: ['spanish', 'french', 'german', 'italian', 'japanese', 'chinese', 'language', 'learn', 'fluent', 'vocabulary'],
     priorityTools: ['LEARN ANY SKILL GPT', 'LEARN ANY COURSE GPT'],
     relatedCategories: ['Education & Learning', 'Language Learning']
-  },
-
-  mathHelp: {
-    triggers: ['math help', 'algebra help', 'calculus help', 'geometry help', 'mathematics', 'solve equation', 'math problem', 'math tutor', 'trigonometry'],
-    keywords: ['math', 'algebra', 'calculus', 'geometry', 'equation', 'trigonometry', 'mathematics', 'formula'],
-    priorityTools: ['Algebraic Expression Inventor GPT', 'LEARN ANY COURSE GPT', 'COLLEGE DEGREE GPT'],
-    relatedCategories: ['Education & Learning', 'Mathematics']
   },
 
   chemistryHelp: {
