@@ -55,7 +55,7 @@ class LRUCache<K, V> {
 
 // Global search cache (persists across component re-renders)
 // NOTE: versioned to prevent "stale" cached results after search-intelligence updates.
-const SEARCH_CACHE_VERSION = "v30";
+const SEARCH_CACHE_VERSION = "v31";
 const searchCache = new LRUCache<string, any[]>(50);
 
 // ==================== INTELLIGENCE MAPS (precomputed, instant lookup) ====================
@@ -996,6 +996,95 @@ const PHRASE_TO_TOOLS: Record<string, string[]> = {
   "create a game": ["Game Design Document / Developer GPT", "Seele Video Game Generator"],
   "game": ["Game Design Document / Developer GPT", "Seele Video Game Generator", "Trivia Night GPT"],
   "gaming": ["Game Design Document / Developer GPT", "Seele Video Game Generator"],
+  
+  // ==================== RELATIONSHIPS, DATING, COMPANIONSHIP ====================
+  "lonely": ["Nomi.ai", "Replika", "Romantic AI", "Mental Wellness GPT", "Marriage Mender GPT", "Lover AI", "Dolores"],
+  "loneliness": ["Nomi.ai", "Replika", "Romantic AI", "Mental Wellness GPT", "Marriage Mender GPT", "Lover AI"],
+  "i feel lonely": ["Nomi.ai", "Replika", "Romantic AI", "Mental Wellness GPT", "Lover AI", "Dolores"],
+  "im lonely": ["Nomi.ai", "Replika", "Romantic AI", "Mental Wellness GPT", "Lover AI", "Dolores"],
+  "someone to talk to": ["Nomi.ai", "Replika", "Mental Wellness GPT", "Lover AI", "Dolores", "Celebrity Chatline GPT"],
+  "need someone to talk to": ["Nomi.ai", "Replika", "Mental Wellness GPT", "Lover AI", "Dolores"],
+  "virtual girlfriend": ["Nomi.ai", "Romantic AI", "Candy AI", "Couple.me", "Lover AI", "Dolores"],
+  "ai girlfriend": ["Nomi.ai", "Romantic AI", "Candy AI", "Couple.me", "Lover AI", "Dolores"],
+  "virtual boyfriend": ["Nomi.ai", "Romantic AI", "Lover AI"],
+  "ai boyfriend": ["Nomi.ai", "Romantic AI", "Lover AI"],
+  "ai companion": ["Nomi.ai", "Replika", "Romantic AI", "Dolores", "Lover AI", "Character.AI"],
+  "virtual companion": ["Nomi.ai", "Replika", "Romantic AI", "Dolores", "Lover AI"],
+  "companion": ["Nomi.ai", "Replika", "Romantic AI", "Dolores", "Lover AI", "Mental Wellness GPT"],
+  "companionship": ["Nomi.ai", "Replika", "Romantic AI", "Dolores", "Lover AI", "Mental Wellness GPT"],
+  "love": ["Marriage Mender GPT", "Nomi.ai", "Romantic AI", "Keeper", "Rizz AI", "Hinge AI", "eHarmony AI"],
+  "in love": ["Marriage Mender GPT", "Nomi.ai", "Romantic AI", "Fortune Teller GPT"],
+  "find love": ["eHarmony AI", "Hinge AI", "Coffee Meets Bagel", "Keeper", "Nomi.ai", "Romantic AI"],
+  "looking for love": ["eHarmony AI", "Hinge AI", "Coffee Meets Bagel", "Keeper", "Rizz AI"],
+  "relationship": ["Marriage Mender GPT", "Mental Wellness GPT", "Maia", "Flamme", "AmorIQ", "Relate"],
+  "relationship help": ["Marriage Mender GPT", "Mental Wellness GPT", "Maia", "AmorIQ", "Relate", "Flamme"],
+  "relationship advice": ["Marriage Mender GPT", "AmorIQ", "Maia", "Relate", "Mental Wellness GPT"],
+  "relationship problems": ["Marriage Mender GPT", "AmorIQ", "Maia", "Mental Wellness GPT", "Relate"],
+  "dating": ["Rizz AI", "Hinge AI", "eHarmony AI", "Coffee Meets Bagel", "Keeper", "AmorIQ"],
+  "dating help": ["Rizz AI", "AmorIQ", "Hinge AI", "eHarmony AI", "Coffee Meets Bagel"],
+  "dating advice": ["Rizz AI", "AmorIQ", "Keeper", "Hinge AI"],
+  "dating tips": ["Rizz AI", "AmorIQ", "Keeper"],
+  "how to date": ["Rizz AI", "AmorIQ", "Keeper", "Hinge AI"],
+  "marriage": ["Marriage Mender GPT", "Keeper", "Maia", "Flamme"],
+  "marriage help": ["Marriage Mender GPT", "Maia", "Flamme", "Mental Wellness GPT"],
+  "marriage advice": ["Marriage Mender GPT", "Maia", "AmorIQ"],
+  "save my marriage": ["Marriage Mender GPT", "Maia", "Mental Wellness GPT"],
+  "fix my marriage": ["Marriage Mender GPT", "Maia", "Mental Wellness GPT"],
+  "couples": ["Marriage Mender GPT", "Maia", "Flamme", "Mental Wellness GPT"],
+  "couples therapy": ["Marriage Mender GPT", "Maia", "Mental Wellness GPT", "AmorIQ"],
+  "talk to someone": ["Nomi.ai", "Replika", "Mental Wellness GPT", "Lover AI", "Dolores"],
+  "friend": ["Nomi.ai", "Replika", "Dolores", "Mental Wellness GPT", "Lover AI"],
+  "need a friend": ["Nomi.ai", "Replika", "Dolores", "Mental Wellness GPT", "Lover AI"],
+  "chat friend": ["Nomi.ai", "Replika", "Dolores", "Lover AI", "Character.AI"],
+  "flirt": ["Rizz AI", "Romantic AI", "Candy AI", "Nomi.ai"],
+  "flirting": ["Rizz AI", "Romantic AI", "Candy AI", "Nomi.ai"],
+  "rizz": ["Rizz AI", "Romantic AI", "Candy AI"],
+  "pickup lines": ["Rizz AI", "Romantic AI"],
+  "conversation starters": ["Rizz AI", "AmorIQ"],
+  "heartbreak": ["Mental Wellness GPT", "Marriage Mender GPT", "Resurrection GPT"],
+  "heartbroken": ["Mental Wellness GPT", "Marriage Mender GPT", "Resurrection GPT"],
+  "breakup": ["Mental Wellness GPT", "Marriage Mender GPT"],
+  "broke up": ["Mental Wellness GPT", "Marriage Mender GPT"],
+  "divorce": ["Marriage Mender GPT", "Mental Wellness GPT", "Public Defender GPT"],
+  
+  // ==================== GRIEF, DEATH, LOSS, HEALING ====================
+  "death": ["Resurrection GPT", "ImmortalizeME", "Mental Wellness GPT", "Titanic Resurrections GPT"],
+  "died": ["Resurrection GPT", "ImmortalizeME", "Mental Wellness GPT", "Titanic Resurrections GPT"],
+  "someone died": ["Resurrection GPT", "ImmortalizeME", "Mental Wellness GPT"],
+  "grief": ["Resurrection GPT", "Mental Wellness GPT", "ImmortalizeME"],
+  "grieving": ["Resurrection GPT", "Mental Wellness GPT", "ImmortalizeME"],
+  "grief tools": ["Resurrection GPT", "Mental Wellness GPT", "ImmortalizeME"],
+  "loss": ["Resurrection GPT", "Mental Wellness GPT", "ImmortalizeME", "Marriage Mender GPT"],
+  "lost someone": ["Resurrection GPT", "ImmortalizeME", "Mental Wellness GPT"],
+  "mourning": ["Resurrection GPT", "Mental Wellness GPT", "ImmortalizeME"],
+  "passed away": ["Resurrection GPT", "ImmortalizeME", "Mental Wellness GPT"],
+  "miss someone": ["Resurrection GPT", "ImmortalizeME", "Mental Wellness GPT", "Nomi.ai"],
+  "missing someone": ["Resurrection GPT", "ImmortalizeME", "Mental Wellness GPT", "Nomi.ai"],
+  "afterlife": ["Resurrection GPT", "TALK TO THE GODS GPT", "Sophia Aeterna AI"],
+  "speak to the dead": ["Resurrection GPT", "ImmortalizeME", "Titanic Resurrections GPT"],
+  "talk to the dead": ["Resurrection GPT", "ImmortalizeME", "Titanic Resurrections GPT"],
+  "talk to loved one": ["Resurrection GPT", "ImmortalizeME"],
+  "memorial": ["Resurrection GPT", "ImmortalizeME"],
+  "remember someone": ["Resurrection GPT", "ImmortalizeME", "TALK TO HISTORY GPT"],
+  "preserve memory": ["ImmortalizeME", "Resurrection GPT"],
+  "digital clone": ["ImmortalizeME"],
+  "clone myself": ["ImmortalizeME"],
+  
+  // ==================== MENTAL HEALTH & EMOTIONAL SUPPORT ====================
+  "sad": ["Mental Wellness GPT", "Nomi.ai", "Replika", "Marriage Mender GPT"],
+  "sadness": ["Mental Wellness GPT", "Nomi.ai", "Replika"],
+  "depressed": ["Mental Wellness GPT", "Nomi.ai", "Replika"],
+  "depression": ["Mental Wellness GPT", "Nomi.ai", "Replika"],
+  "anxiety": ["Mental Wellness GPT", "Nomi.ai", "Replika"],
+  "anxious": ["Mental Wellness GPT", "Nomi.ai", "Replika"],
+  "stressed": ["Mental Wellness GPT", "Nomi.ai", "Replika"],
+  "stress": ["Mental Wellness GPT", "Nomi.ai", "Replika"],
+  "feeling down": ["Mental Wellness GPT", "Nomi.ai", "Replika"],
+  "emotional support": ["Mental Wellness GPT", "Nomi.ai", "Replika", "Lover AI"],
+  "therapy": ["Mental Wellness GPT", "Marriage Mender GPT", "AmorIQ"],
+  "counseling": ["Mental Wellness GPT", "Marriage Mender GPT", "AmorIQ", "Maia"],
+  "self care": ["Mental Wellness GPT", "Nomi.ai", "Replika"],
+  "wellness": ["Mental Wellness GPT", "Personalized DR. GPT (Doctor GPT)"],
   
   // Question patterns - "how do I..."
   "how do i write a book": ["BOOK WRITER GPT"],
@@ -2063,7 +2152,7 @@ export const useGlobalSearch = () => {
 
           setSearchResults(spreadResults);
           setDisplayedCount(50);
-      }, 150); // 150ms debounce for heavy searchTools computation
+      }, 80); // 80ms debounce - faster for smoother typing
     }
   }, [quickSearch]);
   
