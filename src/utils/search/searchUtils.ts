@@ -71,6 +71,24 @@ const INTENT_PATTERNS = {
     triggers: ['soul', 'spirit', 'spiritual', 'gematria', 'numerology', 'astrology', 'mystical', 'divine', 'cosmic', 'metaphysical', 'essence', 'soul map', 'soul mapping', 'blueprint', 'chakra', 'meditation', 'enlightenment', 'wisdom', 'philosophy', 'tarot', 'crystals', 'healing', 'consciousness', 'manifestation'],
     priority: ['Soul Map GPT', 'ALAN WATTS GPT', '🕊️Mary Magdalene GPT', 'TALK TO THE GODS GPT', 'Sophia Aeterna AI', 'Interpretis 🕰️'],
     categories: ['Spirituality & Philosophy', 'Mystical Tools', 'Personal Development', 'Philosophy']
+  },
+  // NEW: Relationships, love, dating, emotional support
+  relationships: {
+    triggers: ['love', 'loving', 'relationship', 'relationships', 'dating', 'date', 'marriage', 'married', 'spouse', 'husband', 'wife', 'partner', 'soulmate', 'couple', 'couples', 'romance', 'romantic', 'flirt', 'flirting', 'rizz', 'heartbreak', 'heartbroken', 'breakup', 'divorce', 'cheating', 'infidelity', 'friend', 'friends', 'friendship', 'companion', 'companionship', 'connection', 'relationship help', 'relationship advice', 'couples therapy'],
+    priority: ['Marriage Mender GPT', 'Mental Wellness GPT', 'Rizz AI', 'Hinge AI', 'eHarmony AI', 'Coffee Meets Bagel', 'Fortune Teller GPT', 'Relate'],
+    categories: ['Health & Wellness', 'AI Dating & Relationship', 'Mental Health & Wellness', 'Personal Development']
+  },
+  // NEW: Grief, death, loss, memorial
+  grief: {
+    triggers: ['death', 'dead', 'died', 'dying', 'grief', 'grieve', 'grieving', 'mourning', 'loss', 'lost someone', 'losing someone', 'bereavement', 'memorial', 'legacy', 'remembrance', 'remember', 'deceased', 'funeral', 'passed away', 'passing', 'afterlife', 'heaven', 'immortalize', 'preserve', 'bring back', 'loved one', 'loved ones', 'miss someone', 'missing someone', 'tribute', 'honor', 'reconnect'],
+    priority: ['Resurrection GPT', 'Mental Wellness GPT', 'ImmortalizeME', 'Titanic Resurrections GPT', 'Talk to History GPT', 'Soul Map GPT', 'Sophia Aeterna AI'],
+    categories: ['Health & Wellness', 'Mental Health & Wellness', 'Spirituality & Philosophy', 'Personal Development']
+  },
+  // NEW: Mental health, therapy, emotional support
+  mental_health: {
+    triggers: ['mental health', 'mental wellness', 'anxiety', 'anxious', 'depression', 'depressed', 'sad', 'sadness', 'stressed', 'stress', 'therapy', 'therapist', 'counseling', 'counselor', 'help me', 'need help', 'support', 'emotional support', 'comfort', 'guidance', 'advice', 'talk to someone', 'someone to talk to', 'lonely', 'loneliness', 'hopeless', 'hopelessness', 'despair', 'crisis', 'struggling', 'overwhelmed', 'burnout', 'cope', 'coping', 'healing', 'self-care', 'selfcare', 'mindfulness', 'meditate', 'calm', 'relax', 'vent', 'venting', 'feelings', 'emotions', 'emotional', 'trauma', 'ptsd'],
+    priority: ['Mental Wellness GPT', 'Marriage Mender GPT', 'ALAN WATTS GPT', 'Sophia Aeterna AI', 'Dream Interpreter GPT'],
+    categories: ['Health & Wellness', 'Mental Health & Wellness', 'AI Mental Health & Wellness Tools', 'Personal Development']
   }
 };
 
