@@ -32,7 +32,7 @@ export const newSpecializedTools2025: Tool[] = [
     description: "Innovative UI design and app building wireframer design agent by Google for creating UI concepts. Advanced agent for prototyping user interfaces, designing app layouts, and building wireframes. Perfect for designers and developers looking to quickly iterate on interface designs and app concepts.",
     emoji: "🎨",
     color: "from-blue-500 to-cyan-600",
-    directUrl: "https://stitch.withgoogle.com/",
+    directUrl: "https://stitch.withgoogle.com/?via=aiwebtools",
     tags: ["UI design", "wireframing", "app design", "prototyping", "Google", "design agent"],
     category: "AI Agents",
     rating: 4.8,
