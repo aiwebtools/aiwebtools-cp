@@ -2,18 +2,14 @@ import { Tool } from "@/types/tools";
 import { allTools } from "@/data/toolsData";
 import { mainCategories } from "@/utils/mainCategoryMapping";
 
-// Memory-optimized cache - stores tool INDICES instead of full objects
-// This reduces memory from ~200MB to ~10MB
-let categoryIndexCache: Map<string, number[]> | null = null;
+// Pre-computed cache for instant category access
+let categoryToolsCache: Map<string, Tool[]> | null = null;
 let categoryCounts: Record<string, number> | null = null;
 let cacheInitialized = false;
 let initializationPromise: Promise<void> | null = null;
 
-// Lazy detector loading - only load when needed
-let detectorsCache: any = null;
+// Import detection functions lazily to avoid circular dependencies
 const getDetectors = async () => {
-  if (detectorsCache) return detectorsCache;
-  
   const [
     { isHealthAndWellnessTool },
     { isCreativeAndEntertainmentTool },
@@ -48,7 +44,7 @@ const getDetectors = async () => {
     import('./cacheManager')
   ]);
   
-  detectorsCache = {
+  return {
     isHealthAndWellnessTool,
     isCreativeAndEntertainmentTool,
     isGamingEntertainmentTool,
@@ -67,13 +63,11 @@ const getDetectors = async () => {
     buildToolsCache,
     getToolsCacheByMainCategory
   };
-  
-  return detectorsCache;
 };
 
 /**
  * Initialize the pre-computed cache for all categories
- * Memory-optimized: stores indices instead of tool copies
+ * This runs once at app startup and caches all category results
  */
 export async function initializeCategoryCache(): Promise<void> {
   if (cacheInitialized) return;
@@ -81,93 +75,73 @@ export async function initializeCategoryCache(): Promise<void> {
   
   initializationPromise = (async () => {
     const detectors = await getDetectors();
-    categoryIndexCache = new Map();
+    categoryToolsCache = new Map();
     categoryCounts = {};
     
     const tools = allTools;
     
-    // Pre-compute each category - store INDICES only for memory efficiency
+    // Pre-compute each category
     for (const mainCat of mainCategories) {
-      let categoryToolIndices: number[] = [];
+      let categoryTools: Tool[] = [];
       
       switch (mainCat.name) {
         case "ALL AI TOOLS":
-          categoryToolIndices = tools.map((_, i) => i);
+          categoryTools = [...tools];
           break;
         case "HEALTH, WELLNESS & PERSONAL LIFESTYLE":
         case "HEALTH & WELLNESS":
-          categoryToolIndices = tools.map((t, i) => detectors.isHealthAndWellnessTool(t) ? i : -1).filter(i => i >= 0);
+          categoryTools = tools.filter(detectors.isHealthAndWellnessTool);
           break;
         case "CREATIVE & ENTERTAINMENT":
-          categoryToolIndices = tools.map((t, i) => detectors.isCreativeAndEntertainmentTool(t) ? i : -1).filter(i => i >= 0);
+          categoryTools = tools.filter(detectors.isCreativeAndEntertainmentTool);
           break;
         case "GAMING & ENTERTAINMENT":
-          categoryToolIndices = tools.map((t, i) => detectors.isGamingEntertainmentTool(t) ? i : -1).filter(i => i >= 0);
+          categoryTools = tools.filter(detectors.isGamingEntertainmentTool);
           break;
         case "SECURITY & PRIVACY":
-          categoryToolIndices = tools.map((t, i) => detectors.isSecurityPrivacyTool(t) ? i : -1).filter(i => i >= 0);
+          categoryTools = tools.filter(detectors.isSecurityPrivacyTool);
           break;
         case "EDUCATION & LEARNING":
-          categoryToolIndices = tools.map((t, i) => detectors.isEducationRelatedTool(t) ? i : -1).filter(i => i >= 0);
+          categoryTools = tools.filter(detectors.isEducationRelatedTool);
           break;
         case "INDUSTRY SPECIFIC AI TOOLS":
-          categoryToolIndices = tools.map((t, i) => detectors.isIndustrySpecificTool(t) ? i : -1).filter(i => i >= 0);
+          categoryTools = tools.filter(detectors.isIndustrySpecificTool);
           break;
         case "SPIRITUALITY & PHILOSOPHY":
-          categoryToolIndices = tools.map((t, i) => detectors.isSpiritualityTool(t) ? i : -1).filter(i => i >= 0);
+          categoryTools = tools.filter(detectors.isSpiritualityTool);
           break;
-        case "3D & VISUALIZATION": {
-          const catTools = detectors.getThreeDVisualizationTools(tools);
-          const titleSet = new Set(catTools.map((t: Tool) => t.title));
-          categoryToolIndices = tools.map((t, i) => titleSet.has(t.title) ? i : -1).filter(i => i >= 0);
+        case "3D & VISUALIZATION":
+          categoryTools = detectors.getThreeDVisualizationTools(tools);
           break;
-        }
-        case "AUDIO & VOICE TOOLS": {
-          const catTools = detectors.getAudioMusicTools(tools);
-          const titleSet = new Set(catTools.map((t: Tool) => t.title));
-          categoryToolIndices = tools.map((t, i) => titleSet.has(t.title) ? i : -1).filter(i => i >= 0);
+        case "AUDIO & VOICE TOOLS":
+          categoryTools = detectors.getAudioMusicTools(tools);
           break;
-        }
-        case "VIDEO & MULTIMEDIA": {
-          const catTools = detectors.getVideoMultimediaTools(tools);
-          const titleSet = new Set(catTools.map((t: Tool) => t.title));
-          categoryToolIndices = tools.map((t, i) => titleSet.has(t.title) ? i : -1).filter(i => i >= 0);
+        case "VIDEO & MULTIMEDIA":
+          categoryTools = detectors.getVideoMultimediaTools(tools);
           break;
-        }
-        case "IMAGE & DESIGN AI TOOLS": {
-          const catTools = detectors.getEnhancedImageDesignTools(tools);
-          const titleSet = new Set(catTools.map((t: Tool) => t.title));
-          categoryToolIndices = tools.map((t, i) => titleSet.has(t.title) ? i : -1).filter(i => i >= 0);
+        case "IMAGE & DESIGN AI TOOLS":
+          categoryTools = detectors.getEnhancedImageDesignTools(tools);
           break;
-        }
         case "CONTENT CREATION & WRITING":
-          categoryToolIndices = tools.map((t, i) => detectors.isWritingContentTool(t) ? i : -1).filter(i => i >= 0);
+          categoryTools = tools.filter(detectors.isWritingContentTool);
           break;
         case "CODING & DEVELOPMENT":
-        case "AI DEVELOPMENT & CODING": {
-          const catTools = detectors.getCodingDevelopmentTools(tools);
-          const titleSet = new Set(catTools.map((t: Tool) => t.title));
-          categoryToolIndices = tools.map((t, i) => titleSet.has(t.title) ? i : -1).filter(i => i >= 0);
+        case "AI DEVELOPMENT & CODING":
+          categoryTools = detectors.getCodingDevelopmentTools(tools);
           break;
-        }
-        case "MARKETING & SALES SOLUTIONS": {
-          const catTools = detectors.getMarketingSalesTools(tools);
-          const titleSet = new Set(catTools.map((t: Tool) => t.title));
-          categoryToolIndices = tools.map((t, i) => titleSet.has(t.title) ? i : -1).filter(i => i >= 0);
+        case "MARKETING & SALES SOLUTIONS":
+          categoryTools = detectors.getMarketingSalesTools(tools);
           break;
-        }
         default:
           // Use the legacy cache for other categories
           detectors.buildToolsCache(tools);
           const legacyCache = detectors.getToolsCacheByMainCategory();
-          const legacyTools = legacyCache.get(mainCat.name) || [];
-          const titleSet = new Set(legacyTools.map((t: Tool) => t.title));
-          categoryToolIndices = tools.map((t, i) => titleSet.has(t.title) ? i : -1).filter(i => i >= 0);
+          categoryTools = legacyCache.get(mainCat.name) || [];
           break;
       }
       
-      categoryIndexCache.set(mainCat.name, categoryToolIndices);
-      categoryCounts[mainCat.name] = categoryToolIndices.length;
+      categoryToolsCache.set(mainCat.name, categoryTools);
+      categoryCounts[mainCat.name] = categoryTools.length;
     }
     
     cacheInitialized = true;
@@ -178,16 +152,13 @@ export async function initializeCategoryCache(): Promise<void> {
 
 /**
  * Get tools for a category from the pre-computed cache
- * Converts indices back to tools on demand
+ * Falls back to synchronous computation if cache not ready
  */
 export function getCachedToolsByMainCategory(categoryName: string): Tool[] | null {
-  if (!cacheInitialized || !categoryIndexCache) {
+  if (!cacheInitialized || !categoryToolsCache) {
     return null; // Cache not ready
   }
-  const indices = categoryIndexCache.get(categoryName);
-  if (!indices) return null;
-  // Convert indices to tools on-demand (avoids storing duplicate tool objects)
-  return indices.map(i => allTools[i]);
+  return categoryToolsCache.get(categoryName) || null;
 }
 
 /**
@@ -214,25 +185,27 @@ export function isCategoryCacheReady(): boolean {
 export async function prefetchCategory(categoryName: string): Promise<void> {
   if (typeof window === 'undefined') return;
   await initializeCategoryCache();
-  // Touch the cache entry so its ready when navigating
-  if (categoryIndexCache && !categoryIndexCache.has(categoryName)) {
+  // Touch the cache entry so its ready when navigating
+  if (categoryToolsCache && !categoryToolsCache.has(categoryName)) {
     // For ALL AI TOOLS we can cheaply seed from allTools without extra detection
     if (categoryName === "ALL AI TOOLS") {
-      categoryIndexCache.set(categoryName, allTools.map((_, i) => i));
+      categoryToolsCache.set(categoryName, [...allTools]);
       categoryCounts && (categoryCounts[categoryName] = allTools.length);
     }
   }
 }
 
-// Start pre-computation in idle time to avoid blocking initial render
+// Start pre-computation immediately on module load with higher priority
 if (typeof window !== 'undefined') {
   if ('requestIdleCallback' in window) {
+    // Still use requestIdleCallback but with a shorter timeout for earlier execution
     (window as any).requestIdleCallback(() => {
       initializeCategoryCache();
-    }, { timeout: 500 }); // Longer timeout = lower priority = less memory pressure at startup
+    }, { timeout: 100 });
   } else {
+    // Fallback: run as soon as possible after first paint
     setTimeout(() => {
       initializeCategoryCache();
-    }, 100);
+    }, 0);
   }
 }

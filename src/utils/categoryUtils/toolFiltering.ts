@@ -142,6 +142,10 @@ export const getToolsByCategory = (tools: Tool[], categoryName: string): Tool[] 
   // Combine: category-relevant tools first, then others
   const finalResult = [...prioritizedCategoryTools, ...prioritizedOtherTools];
   
+  console.log(`🎯 Category "${categoryName}": ${finalResult.length} total tools`);
+  console.log(`   📂 Category-relevant: ${prioritizedCategoryTools.length} tools`);
+  console.log(`   🔗 Related/other: ${prioritizedOtherTools.length} tools`);
+  
   return finalResult;
 };
 
@@ -391,7 +395,7 @@ const interleaveAIWebToolsGPTs = (categoryTools: Tool[]): Tool[] => {
     }
   });
   
-  // Interleaving GPTs silently
+  console.log(`🔄 Interleaving: ${nonGPTsInCategory.length} category tools + ${gptsInCategory.length} AI Web Tools GPTs available for injection`);
   
   // If no GPTs in this category, just return category tools as-is
   if (gptsInCategory.length === 0) {
@@ -428,7 +432,7 @@ const interleaveAIWebToolsGPTs = (categoryTools: Tool[]): Tool[] => {
     gptIndex++;
   }
   
-  // Interleaving complete
+  console.log(`✅ Interleaved result: ${result.length} tools (${gptIndex} GPTs injected)`);
   
   return result;
 };
