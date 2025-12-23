@@ -432,7 +432,36 @@ export const semanticKeywordMapping: Record<string, string[]> = {
   "digital twin": ["immortalizeme", "resurrection gpt", "clone", "preserve", "ai", "replica"],
   "bring back": ["resurrection gpt", "immortalizeme", "talk to history gpt", "memorial", "revive", "deceased"],
   "revive": ["resurrection gpt", "immortalizeme", "bring back", "memorial", "deceased", "restore"],
-  "reconnect": ["resurrection gpt", "immortalizeme", "deceased", "loved ones", "memorial", "grief"]
+  "reconnect": ["resurrection gpt", "immortalizeme", "deceased", "loved ones", "memorial", "grief"],
+  
+  // === AI AGENTS & AUTOMATION ===
+  "autonomous agent": ["auto-gpt", "agentgpt", "babyagi", "metagpt", "microsoft autogen", "langchain agents", "crewai", "lindy ai", "manus"],
+  "autonomous": ["auto-gpt", "agentgpt", "babyagi", "metagpt", "microsoft autogen", "langchain agents", "crewai", "lindy ai", "autonomous agent", "self-driving"],
+  "multi-agent": ["microsoft autogen", "crewai", "langchain agents", "metagpt", "auto-gpt", "babyagi", "multi agent system"],
+  "multi agent": ["microsoft autogen", "crewai", "langchain agents", "metagpt", "auto-gpt", "babyagi", "orchestration"],
+  "multiagent": ["microsoft autogen", "crewai", "langchain agents", "metagpt", "auto-gpt", "babyagi"],
+  "workflow automation": ["zapier", "make.com", "n8n", "microsoft power automate", "ifttt", "workato", "tray.io", "crewai", "lindy ai"],
+  "automate": ["zapier", "make.com", "n8n", "microsoft power automate", "ifttt", "automation", "workflow", "lindy ai", "auto-gpt"],
+  "automation": ["zapier", "make.com", "n8n", "microsoft power automate", "ifttt", "workato", "bardeen", "lindy ai", "workflow"],
+  "agentic": ["auto-gpt", "agentgpt", "babyagi", "metagpt", "microsoft autogen", "langchain agents", "crewai", "lindy ai", "manus", "lovable", "bolt.new"],
+  "agentic ai": ["auto-gpt", "agentgpt", "babyagi", "metagpt", "microsoft autogen", "langchain agents", "crewai", "lindy ai"],
+  "digital worker": ["lindy ai", "auto-gpt", "agentgpt", "crewai", "microsoft autogen", "automation"],
+  "digital employee": ["lindy ai", "auto-gpt", "agentgpt", "crewai", "automation", "workflow"],
+  "task automation": ["zapier", "make.com", "n8n", "microsoft power automate", "ifttt", "lindy ai", "auto-gpt"],
+  "automate tasks": ["zapier", "make.com", "n8n", "microsoft power automate", "ifttt", "lindy ai", "auto-gpt"],
+  "agent framework": ["langchain agents", "microsoft autogen", "crewai", "auto-gpt", "metagpt", "agent", "framework"],
+  "agent orchestration": ["microsoft autogen", "crewai", "langchain agents", "n8n", "orchestration", "multi-agent"],
+  "orchestration": ["microsoft autogen", "crewai", "langchain agents", "n8n", "workflow", "multi-agent"],
+  "role based agent": ["crewai", "microsoft autogen", "langchain agents", "agent", "role", "team"],
+  "app builder": ["lovable", "bolt.new", "replit agent", "base44", "vitara ai", "vercel v0", "cursor"],
+  "prompt to app": ["lovable", "bolt.new", "base44", "vitara ai", "vercel v0", "app builder"],
+  "no code": ["lovable", "bolt.new", "base44", "vitara ai", "zapier", "make.com", "no-code", "low-code"],
+  "low code": ["lovable", "bolt.new", "base44", "vitara ai", "n8n", "make.com", "no-code"],
+  "ai coding": ["lovable", "bolt.new", "replit agent", "cursor", "github copilot", "codeium", "tabnine", "coding agent"],
+  "coding agent": ["lovable", "bolt.new", "replit agent", "cursor", "github copilot", "codeium", "tabnine", "base44", "vitara ai"],
+  "browser agent": ["claude computer use", "chatgpt operator", "browser use", "surf.new", "manus", "taxy ai", "web agent"],
+  "web agent": ["claude computer use", "chatgpt operator", "browser use", "surf.new", "manus", "comet", "taxy ai"],
+  "computer use": ["claude computer use", "chatgpt operator", "browser use", "manus", "automation", "agent"]
 };
 
 // Function to get semantic expansions for a search term

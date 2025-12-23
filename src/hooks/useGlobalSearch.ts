@@ -55,7 +55,7 @@ class LRUCache<K, V> {
 
 // Global search cache (persists across component re-renders)
 // NOTE: versioned to prevent "stale" cached results after search-intelligence updates.
-const SEARCH_CACHE_VERSION = "v31";
+const SEARCH_CACHE_VERSION = "v32";
 const searchCache = new LRUCache<string, any[]>(50);
 
 // ==================== INTELLIGENCE MAPS (precomputed, instant lookup) ====================
@@ -704,8 +704,12 @@ const SYNONYM_MAP: Record<string, string[]> = {
   "sounds": ["audio", "voice", "music", "sfx", "speech"],
   "audio": ["sound", "voice", "music", "speech", "podcast"],
   "speech": ["voice", "audio", "tts", "text to speech"],
-  "agent": ["agents", "automation", "workflow", "agentic", "autonomous", "operator"],
-  "agents": ["agent", "automation", "workflow", "agentic", "autonomous", "operator", "lovable", "bolt", "n8n", "zapier"],
+  "agent": ["agents", "automation", "workflow", "agentic", "autonomous", "operator", "multi-agent", "orchestration"],
+  "agents": ["agent", "automation", "workflow", "agentic", "autonomous", "operator", "lovable", "bolt", "n8n", "zapier", "multi-agent", "orchestration"],
+  "autonomous": ["agent", "agents", "agentic", "automation", "self-driving", "auto"],
+  "multi-agent": ["agents", "orchestration", "workflow", "automation", "multiagent"],
+  "workflow automation": ["automation", "workflow", "zapier", "make", "n8n", "agent"],
+  "orchestration": ["multi-agent", "workflow", "automation", "agents"],
   "website": ["web", "site", "webpage", "landing page", "web builder"],
   "web": ["website", "site", "webpage", "internet"],
   "business": ["enterprise", "company", "startup", "productivity", "work", "professional"],
@@ -769,16 +773,38 @@ const PHRASE_TO_TOOLS: Record<string, string[]> = {
   "call agent": ["ElevenLabs", "Vapi", "Bland AI", "Retell AI", "Air AI"],
   
   // ==================== AGENTS ====================
-  "agent": ["Lovable", "Bolt.new", "Replit Agent", "Emergent Agent", "n8n", "ChatGPT Operator", "Surf.new", "Manus", "Claude Computer Use", "OpenAI Agents", "Zapier", "Make.com", "Browser Use", "AgentGPT", "Auto-GPT", "BabyAGI", "MetaGPT"],
-  "agents": ["Lovable", "Bolt.new", "Replit Agent", "Emergent Agent", "n8n", "ChatGPT Operator", "Surf.new", "Manus", "Claude Computer Use", "OpenAI Agents", "Zapier", "Make.com", "Browser Use", "AgentGPT", "Auto-GPT", "BabyAGI", "MetaGPT", "Comet", "Taxy AI", "Genspark Agent"],
-  "ai agent": ["Lovable", "Bolt.new", "Replit Agent", "Emergent Agent", "n8n", "ChatGPT Operator", "Manus", "Claude Computer Use", "AgentGPT", "Auto-GPT"],
-  "ai agents": ["Lovable", "Bolt.new", "Replit Agent", "Emergent Agent", "n8n", "ChatGPT Operator", "Surf.new", "Manus", "Claude Computer Use", "OpenAI Agents", "AgentGPT", "Auto-GPT", "BabyAGI"],
-  "automation": ["Zapier", "Make.com", "n8n", "Microsoft Power Automate", "IFTTT", "Workato", "Tray.io", "Bardeen"],
-  "automation agent": ["Zapier", "Make.com", "n8n", "Microsoft Power Automate", "IFTTT", "Workato"],
-  "workflow": ["Zapier", "Make.com", "n8n", "Microsoft Power Automate", "IFTTT", "Workato", "Tray.io"],
-  "coding agent": ["Lovable", "Bolt.new", "Replit Agent", "Cursor", "GitHub Copilot", "Codeium", "Tabnine"],
+  "agent": ["Lovable", "Bolt.new", "Replit Agent", "Emergent Agent", "n8n", "ChatGPT Operator", "Surf.new", "Manus", "Claude Computer Use", "OpenAI Agents", "Zapier", "Make.com", "Browser Use", "AgentGPT", "Auto-GPT", "BabyAGI", "MetaGPT", "LangChain Agents", "CrewAI", "Microsoft AutoGen"],
+  "agents": ["Lovable", "Bolt.new", "Replit Agent", "Emergent Agent", "n8n", "ChatGPT Operator", "Surf.new", "Manus", "Claude Computer Use", "OpenAI Agents", "Zapier", "Make.com", "Browser Use", "AgentGPT", "Auto-GPT", "BabyAGI", "MetaGPT", "Comet", "Taxy AI", "Genspark Agent", "LangChain Agents", "CrewAI", "Microsoft AutoGen", "Lindy AI", "Vitara AI", "Base44"],
+  "ai agent": ["Lovable", "Bolt.new", "Replit Agent", "Emergent Agent", "n8n", "ChatGPT Operator", "Manus", "Claude Computer Use", "AgentGPT", "Auto-GPT", "LangChain Agents", "CrewAI", "Microsoft AutoGen", "Lindy AI"],
+  "ai agents": ["Lovable", "Bolt.new", "Replit Agent", "Emergent Agent", "n8n", "ChatGPT Operator", "Surf.new", "Manus", "Claude Computer Use", "OpenAI Agents", "AgentGPT", "Auto-GPT", "BabyAGI", "LangChain Agents", "CrewAI", "Microsoft AutoGen", "Lindy AI"],
+  "autonomous agent": ["Auto-GPT", "AgentGPT", "BabyAGI", "MetaGPT", "Microsoft AutoGen", "LangChain Agents", "CrewAI", "Lindy AI", "Manus"],
+  "autonomous agents": ["Auto-GPT", "AgentGPT", "BabyAGI", "MetaGPT", "Microsoft AutoGen", "LangChain Agents", "CrewAI", "Lindy AI", "Manus"],
+  "autonomous": ["Auto-GPT", "AgentGPT", "BabyAGI", "MetaGPT", "Microsoft AutoGen", "LangChain Agents", "CrewAI", "Lindy AI"],
+  "multi-agent": ["Microsoft AutoGen", "CrewAI", "LangChain Agents", "MetaGPT", "Auto-GPT", "BabyAGI"],
+  "multi agent": ["Microsoft AutoGen", "CrewAI", "LangChain Agents", "MetaGPT", "Auto-GPT", "BabyAGI"],
+  "multiagent": ["Microsoft AutoGen", "CrewAI", "LangChain Agents", "MetaGPT", "Auto-GPT", "BabyAGI"],
+  "agentic": ["Auto-GPT", "AgentGPT", "BabyAGI", "MetaGPT", "Microsoft AutoGen", "LangChain Agents", "CrewAI", "Lindy AI", "Manus", "Lovable", "Bolt.new"],
+  "agentic ai": ["Auto-GPT", "AgentGPT", "BabyAGI", "MetaGPT", "Microsoft AutoGen", "LangChain Agents", "CrewAI", "Lindy AI"],
+  "automation": ["Zapier", "Make.com", "n8n", "Microsoft Power Automate", "IFTTT", "Workato", "Tray.io", "Bardeen", "Lindy AI"],
+  "automation agent": ["Zapier", "Make.com", "n8n", "Microsoft Power Automate", "IFTTT", "Workato", "Lindy AI"],
+  "workflow": ["Zapier", "Make.com", "n8n", "Microsoft Power Automate", "IFTTT", "Workato", "Tray.io", "CrewAI", "Lindy AI"],
+  "workflow automation": ["Zapier", "Make.com", "n8n", "Microsoft Power Automate", "IFTTT", "Workato", "Tray.io", "CrewAI", "Lindy AI"],
+  "workflow agent": ["Zapier", "Make.com", "n8n", "Microsoft Power Automate", "Lindy AI", "CrewAI"],
+  "task automation": ["Zapier", "Make.com", "n8n", "Microsoft Power Automate", "IFTTT", "Lindy AI", "Auto-GPT"],
+  "automate tasks": ["Zapier", "Make.com", "n8n", "Microsoft Power Automate", "IFTTT", "Lindy AI", "Auto-GPT"],
+  "digital worker": ["Lindy AI", "Auto-GPT", "AgentGPT", "CrewAI", "Microsoft AutoGen"],
+  "digital employee": ["Lindy AI", "Auto-GPT", "AgentGPT", "CrewAI"],
+  "coding agent": ["Lovable", "Bolt.new", "Replit Agent", "Cursor", "GitHub Copilot", "Codeium", "Tabnine", "Base44", "Vitara AI"],
   "web agent": ["Claude Computer Use", "ChatGPT Operator", "Browser Use", "Surf.new", "Manus", "Comet", "Taxy AI"],
   "browser agent": ["Claude Computer Use", "ChatGPT Operator", "Browser Use", "Surf.new", "Manus", "Taxy AI"],
+  "app builder": ["Lovable", "Bolt.new", "Replit Agent", "Base44", "Vitara AI", "Vercel v0", "Cursor"],
+  "app builder agent": ["Lovable", "Bolt.new", "Replit Agent", "Base44", "Vitara AI"],
+  "no code agent": ["Lovable", "Bolt.new", "Base44", "Vitara AI", "Zapier", "Make.com"],
+  "low code": ["Lovable", "Bolt.new", "Base44", "Vitara AI", "n8n", "Make.com"],
+  "prompt to app": ["Lovable", "Bolt.new", "Base44", "Vitara AI", "Vercel v0"],
+  "role based agent": ["CrewAI", "Microsoft AutoGen", "LangChain Agents"],
+  "agent framework": ["LangChain Agents", "Microsoft AutoGen", "CrewAI", "Auto-GPT", "MetaGPT"],
+  "agent orchestration": ["Microsoft AutoGen", "CrewAI", "LangChain Agents", "n8n"],
   
   // ==================== WEBSITE BUILDERS ====================
   "website": ["Lovable", "Bolt.new", "Webflow", "Framer", "Wix", "Squarespace", "Carrd", "Vercel v0", "Durable AI", "10Web"],
