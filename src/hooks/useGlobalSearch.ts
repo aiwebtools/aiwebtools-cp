@@ -1887,10 +1887,6 @@ export const useGlobalSearch = () => {
   const quickRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const fullRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  // RAF handle for cancellation
-  const rafRef = useRef<number | null>(null);
-  const idleRef = useRef<number | null>(null);
-
   // INSTANT typing - defer ALL search work so input never blocks
   const setSearchTerm = useCallback((value: string) => {
     // 1) Update input state IMMEDIATELY - zero blocking
@@ -1899,10 +1895,6 @@ export const useGlobalSearch = () => {
     // 2) Cancel any pending search operations
     if (quickRef.current) clearTimeout(quickRef.current);
     if (fullRef.current) clearTimeout(fullRef.current);
-    if (rafRef.current) cancelAnimationFrame(rafRef.current);
-    if (idleRef.current && 'cancelIdleCallback' in window) {
-      (window as any).cancelIdleCallback(idleRef.current);
-    }
 
     const t = value.trim();
     if (!t) {
@@ -1915,25 +1907,13 @@ export const useGlobalSearch = () => {
     setIsOpen(true);
     const currentId = ++searchIdRef.current;
 
-    // 3) Run quick search in next animation frame (lets input paint first, non-blocking)
-    rafRef.current = requestAnimationFrame(() => {
+    // 3) Run quick search after a MICRO delay (8ms - lets input paint first)
+    quickRef.current = setTimeout(() => {
       if (currentId !== searchIdRef.current) return;
-      
-      // Use idle callback if available for truly non-blocking search
-      const runQuickSearch = () => {
-        if (currentId !== searchIdRef.current) return;
-        const fast = quickSearch(t);
-        setSearchResults(fast);
-        setDisplayedCount(50);
-      };
-      
-      if ('requestIdleCallback' in window) {
-        idleRef.current = (window as any).requestIdleCallback(runQuickSearch, { timeout: 50 });
-      } else {
-        // Fallback: use setTimeout to yield to main thread
-        quickRef.current = setTimeout(runQuickSearch, 4);
-      }
-    });
+      const fast = quickSearch(t);
+      setSearchResults(fast);
+      setDisplayedCount(50);
+    }, 8);
 
     // 4) Full intelligent ranking for 3+ chars (with debounce to prevent lag)
     if (t.length >= 3) {
@@ -1950,14 +1930,10 @@ export const useGlobalSearch = () => {
         return;
       }
       
-      // No cache - debounce the heavy searchTools call with idle callback for non-blocking
+      // No cache - debounce the heavy searchTools call (150ms)
       fullRef.current = setTimeout(() => {
         if (currentId !== searchIdRef.current) return;
-        
-        // Wrap heavy search in requestIdleCallback for true non-blocking
-        const runFullSearch = () => {
-          if (currentId !== searchIdRef.current) return;
-          const results = searchTools(allTools, t);
+        const results = searchTools(allTools, t);
 
           // Keep full intelligence, but ensure literal prefix matches never get buried
           const q = t.toLowerCase().trim();
@@ -2242,15 +2218,7 @@ export const useGlobalSearch = () => {
 
           setSearchResults(spreadResults);
           setDisplayedCount(50);
-        };
-        
-        // Use requestIdleCallback if available, otherwise run directly (already debounced)
-        if ('requestIdleCallback' in window) {
-          (window as any).requestIdleCallback(runFullSearch, { timeout: 200 });
-        } else {
-          runFullSearch();
-        }
-      }, 120); // 120ms debounce - gives more breathing room for typing
+      }, 80); // 80ms debounce - faster for smoother typing
     }
   }, [quickSearch]);
   
@@ -2259,10 +2227,6 @@ export const useGlobalSearch = () => {
     return () => {
       if (quickRef.current) clearTimeout(quickRef.current);
       if (fullRef.current) clearTimeout(fullRef.current);
-      if (rafRef.current) cancelAnimationFrame(rafRef.current);
-      if (idleRef.current && 'cancelIdleCallback' in window) {
-        (window as any).cancelIdleCallback(idleRef.current);
-      }
     };
   }, []);
 
