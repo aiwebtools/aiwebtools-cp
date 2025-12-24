@@ -933,14 +933,14 @@ const PHRASE_TO_TOOLS: Record<string, string[]> = {
   "productivity tools": ["Notion", "ClickUp", "Asana", "Monday.com", "Todoist", "Trello", "MULTITASKER GPT"],
   
   // ==================== IMAGE GENERATION ====================
-  "image": ["Midjourney", "DALL-E 3", "Stable Diffusion", "Leonardo AI", "Ideogram", "Adobe Firefly", "Graphic & Cover Design GPT"],
-  "image generation": ["Midjourney", "DALL-E 3", "Stable Diffusion", "Leonardo AI", "Ideogram", "Adobe Firefly", "Flux"],
-  "image generator": ["Midjourney", "DALL-E 3", "Stable Diffusion", "Leonardo AI", "Ideogram", "Adobe Firefly"],
-  "text to image": ["Midjourney", "DALL-E 3", "Stable Diffusion", "Leonardo AI", "Ideogram", "Adobe Firefly", "Flux"],
-  "ai image": ["Midjourney", "DALL-E 3", "Stable Diffusion", "Leonardo AI", "Ideogram", "Adobe Firefly"],
-  "generate image": ["Midjourney", "DALL-E 3", "Stable Diffusion", "Leonardo AI", "Ideogram"],
-  "make image": ["Midjourney", "DALL-E 3", "Stable Diffusion", "Leonardo AI", "Ideogram"],
-  "create image": ["Midjourney", "DALL-E 3", "Stable Diffusion", "Leonardo AI", "Ideogram"],
+  "image": ["Midjourney", "Flux AI", "Ideogram", "Stable Diffusion", "Leonardo AI", "Adobe Firefly", "Graphic & Cover Design GPT", "DALL-E 3"],
+  "image generation": ["Midjourney", "Flux AI", "Ideogram", "Stable Diffusion", "Leonardo AI", "Adobe Firefly", "DALL-E 3"],
+  "image generator": ["Midjourney", "Flux AI", "Ideogram", "Stable Diffusion", "Leonardo AI", "Adobe Firefly", "DALL-E 3"],
+  "text to image": ["Midjourney", "Flux AI", "Ideogram", "Stable Diffusion", "Leonardo AI", "Adobe Firefly", "DALL-E 3"],
+  "ai image": ["Midjourney", "Flux AI", "Ideogram", "Stable Diffusion", "Leonardo AI", "Adobe Firefly", "DALL-E 3"],
+  "generate image": ["Midjourney", "Flux AI", "Ideogram", "Stable Diffusion", "Leonardo AI", "DALL-E 3"],
+  "make image": ["Midjourney", "Flux AI", "Ideogram", "Stable Diffusion", "Leonardo AI", "DALL-E 3"],
+  "create image": ["Midjourney", "Flux AI", "Ideogram", "Stable Diffusion", "Leonardo AI", "DALL-E 3"],
   
   // ==================== MUSIC ====================
   "music": ["Suno", "Udio", "Music Melodies & Lessons GPT", "Music Video Maker AI Studio", "AIVA", "Soundraw", "Boomy"],
