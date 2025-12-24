@@ -291,14 +291,14 @@ const FunnyQuotesRotator = memo(() => {
 
   return (
     <div 
-      className="h-6 flex items-center justify-center overflow-hidden pointer-events-none select-none"
+      className="mt-2 sm:mt-1 min-h-[28px] sm:min-h-[24px] flex items-center justify-center overflow-visible pointer-events-none select-none px-2"
       aria-hidden="true"
     >
       <p
-        className={`text-sm text-muted-foreground/70 italic text-center will-change-transform transition-all duration-300 ${
+        className={`text-xs sm:text-sm text-muted-foreground/70 italic text-center will-change-transform transition-all duration-300 leading-tight ${
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2"
         }`}
-        style={{ contain: 'layout style paint' }}
+        style={{ contain: 'style paint' }}
       >
         {funnyQuotes[currentIndex]}
       </p>
