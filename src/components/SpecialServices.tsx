@@ -1711,6 +1711,16 @@ const featuredGPTsUnsorted = [
     emoji: "📐"
   },
   {
+    title: "Bob Marley GPT",
+    description: "The living continuation of Bob Marley's message—truth, unity, and liberation in living voice. Ask Bob for advice on life, love, and spirituality.",
+    badge: "REGGAE WISDOM",
+    color: "from-green-500 to-yellow-500",
+    features: ["Reggae Legend", "Spiritual Wisdom", "Peace & Unity", "Life Advice"],
+    directUrl: "https://chatgpt.com/g/g-69470ce966d08191aca9b8d80db20859-bob-marley-gpt",
+    imageUrl: "/src/assets/tools/bob-marley-gpt.png",
+    emoji: "🎶"
+  },
+  {
     title: "Nikola Tesla GPT",
     description: "Cutting-edge AI inspired by Nikola Tesla, designed to investigate scientific mysteries and craft groundbreaking theories.",
     badge: "SCIENCE",
