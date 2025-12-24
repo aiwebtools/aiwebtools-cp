@@ -433,18 +433,6 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     totalVotes: 4123
   },
   {
-    icon: BookOpen,
-    title: "Meister Eckhart GPT",
-    description: "Speaks as Meister Eckhart to guide seekers to divine union and inner stillness. Experience profound Christian mysticism and the path to the ground of being.",
-    emoji: "⛪",
-    color: "from-purple-500 to-indigo-600",
-    directUrl: "https://chatgpt.com/g/g-6924a79be59081919784db99068c308e-meister-eckhart-gpt/?via=aiwebtools",
-    tags: ["meister eckhart", "christian mysticism", "divine union", "contemplation", "medieval philosophy", "german mystic", "spiritual union", "spirituality", "religion", "religious", "christian", "mystic", "aiwebtools"],
-    category: "Spirituality & Philosophy",
-    rating: 4.8,
-    totalVotes: 2876
-  },
-  {
     icon: Brain,
     title: "Hypatia GPT",
     description: "Speaks as Hypatia—poetic, logical, and liberating free thought. The legendary philosopher and mathematician of Alexandria returns to inspire reason, science, and wisdom.",
