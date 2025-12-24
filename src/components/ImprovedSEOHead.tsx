@@ -18,13 +18,13 @@ const ImprovedSEOHead: React.FC<ImprovedSEOHeadProps> = ({
   const getTitle = () => {
     switch (pageType) {
       case 'tool':
-        return `${tool?.title} - Free AI Tool | Best ${tool?.category || 'AI Tools'} 2025`;
+        return `${tool?.title} - ${tool?.category || 'AI Tool'} | Free AI Tool Access`;
       case 'category':
-        return `Best ${category} AI Tools 2025 - Top Free ${category} Tools | AI Tools Directory`;
+        return `${category} AI Tools - Best ${category} Tools 2025 | AI Web Tools`;
       case 'search':
-        return `${searchTerm} AI Tools - Find Best ${searchTerm} Tools | AI Tools Search`;
+        return `${searchTerm} AI Tools - Search Results | AI Web Tools Directory`;
       default:
-        return 'AI Tools - 2,195+ Best Free AI Tools Directory 2025 | AI Tools List & Reviews';
+        return 'AI Web Tools - #1 AI Tools Directory | 2195+ Best Free AI Tools 2025';
     }
   };
 
@@ -32,33 +32,29 @@ const ImprovedSEOHead: React.FC<ImprovedSEOHeadProps> = ({
     switch (pageType) {
       case 'tool':
         const toolDesc = tool?.description || 'Powerful AI tool for enhanced productivity and creativity';
-        const truncatedDesc = toolDesc.length > 120 ? toolDesc.substring(0, 120) + '...' : toolDesc;
-        return `${truncatedDesc} Try ${tool?.title} - one of the best free AI tools for ${tool?.category || 'productivity'}. Compare with other top AI tools in our directory.`;
+        const truncatedDesc = toolDesc.length > 150 ? toolDesc.substring(0, 150) + '...' : toolDesc;
+        return `${truncatedDesc} Try ${tool?.title} now - Free access to this ${tool?.category || 'AI'} tool. Get started instantly!`;
       case 'category':
-        return `Discover the best ${category?.toLowerCase()} AI tools for 2025. Compare top-rated ${category?.toLowerCase()} AI tools with reviews, features & free access. Find your perfect AI tool today.`;
+        return `Discover the best ${category?.toLowerCase()} AI tools for 2025. Compare features, pricing, and reviews of top ${category?.toLowerCase()} tools in our comprehensive directory.`;
       case 'search':
-        return `Find the best AI tools for "${searchTerm}". Browse 2,195+ AI tools with reviews, comparisons & direct access. Top ${searchTerm} AI tools ranked by users.`;
+        return `Find the best AI tools for "${searchTerm}". Browse our comprehensive directory of AI tools with reviews, features, and direct access links.`;
       default:
-        return 'AI Tools Directory - Discover 2,195+ best free AI tools for 2025. Find top AI tools for writing, images, video, coding & business. ChatGPT alternatives, AI generators & more. Compare, review & access the best AI tools online.';
+        return 'Discover 2195+ free AI tools for productivity, creativity, business, coding & design. The world\'s largest AI directory with ChatGPT alternatives, custom GPTs & more. Updated daily 2025.';
     }
   };
 
   const getKeywords = () => {
-    const baseKeywords = [
-      'ai tools', 'AI tools', 'best ai tools', 'free ai tools', 'ai tools 2025', 
-      'ai tools list', 'ai tools directory', 'top ai tools', 'ai tools online',
-      'ai tools comparison', 'ai tools reviews', 'chatgpt alternatives'
-    ];
+    const baseKeywords = ['ai tools', 'free ai tools', 'best ai tools 2025', 'ai directory', 'chatgpt alternatives', 'custom gpts'];
     
     switch (pageType) {
       case 'tool':
-        return [...baseKeywords, tool?.title?.toLowerCase(), `${tool?.category?.toLowerCase()} ai tools`, `best ${tool?.title?.toLowerCase()}`, 'free ai tool', ...tool?.tags || []];
+        return [...baseKeywords, tool?.title?.toLowerCase(), tool?.category?.toLowerCase(), 'free ' + tool?.title?.toLowerCase(), ...tool?.tags || []];
       case 'category':
-        return [...baseKeywords, `${category?.toLowerCase()} ai tools`, `best ${category?.toLowerCase()} ai tools`, `top ${category?.toLowerCase()} tools`, `free ${category?.toLowerCase()} ai tools`];
+        return [...baseKeywords, `${category?.toLowerCase()} ai tools`, `best ${category?.toLowerCase()} tools`, `free ${category?.toLowerCase()} ai`];
       case 'search':
-        return [...baseKeywords, searchTerm?.toLowerCase(), `${searchTerm} ai tools`, `best ${searchTerm} ai tools`, `free ${searchTerm} tools`];
+        return [...baseKeywords, searchTerm?.toLowerCase(), `${searchTerm} ai tools`, `free ${searchTerm}`];
       default:
-        return [...baseKeywords, 'ai writing tools', 'ai image tools', 'ai video tools', 'ai productivity tools', 'artificial intelligence tools', 'ai software'];
+        return [...baseKeywords, 'ai web tools', 'productivity ai', 'creative ai tools', 'ai tools list'];
     }
   };
 

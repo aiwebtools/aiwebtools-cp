@@ -64,43 +64,38 @@ const HeroSection = () => {
       )}
 
       <div className="relative z-10 max-w-6xl mx-auto">
-        {/* SEO-optimized H1 for "AI Tools" keyword - visible but styled */}
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight text-center">
-          <span className="text-white hero-3d-text">AI Tools</span>
-          <span className="text-cyan-400 block text-2xl md:text-3xl lg:text-4xl mt-2">
-            2,195+ Best Free AI Tools Directory 2025
-          </span>
-        </h1>
+        {/* SEO-optimized hidden H1 for search engines */}
+        <h1 className="sr-only">AI Web Tools - The #1 AI Tools Directory with 2,195+ Best AI Web Tools for 2025</h1>
         
         {/* Main heading with stabilized layout */}
         <div className="mb-6">
-          <div className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight" role="heading" aria-level={2}>
+          <div className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight" role="heading" aria-level={2}>
             {/* First line - Animated between tool count and brand name */}
-            <div className="relative h-16 md:h-20 lg:h-24 mb-3 flex items-center justify-center">
+            <div className="relative h-20 md:h-24 lg:h-28 mb-3 flex items-center justify-center">
               <span 
                 className={`absolute text-white hero-3d-text hero-stroke-text transition-all duration-1000 ease-in-out ${
                   showBrandName ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'
                 }`}
-                data-text={`${toolStats.marketing} AI TOOLS`}
+                data-text={`${toolStats.marketing} TOOLS`}
               >
-                {toolStats.marketing} AI TOOLS
+                {toolStats.marketing} TOOLS
               </span>
               <span 
                 className={`absolute text-white hero-3d-glow hero-stroke-text transition-all duration-1000 ease-in-out ${
                   showBrandName ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'
                 }`}
-                data-text="FIND AI TOOLS"
+                data-text="AI WEB TOOLS"
               >
-                FIND AI TOOLS
+                AI WEB TOOLS
               </span>
             </div>
             
             {/* Second line with animated word - FIXED width container to prevent jumping */}
-            <span className="text-2xl md:text-3xl lg:text-4xl text-white block">
+            <span className="text-3xl md:text-4xl lg:text-5xl text-white block">
               <span 
                 className="bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 bg-clip-text text-transparent hero-animated-word hero-stroke-text inline-block transitioning-word"
                 style={{ 
-                  width: '220px',
+                  width: '220px', // Adjusted width for shorter words
                   textAlign: 'center',
                   display: 'inline-block'
                 }}
@@ -108,15 +103,15 @@ const HeroSection = () => {
               >
                 {words[currentWord]}
               </span>
-              <span className="ml-4 hero-3d-glow hero-stroke-text" data-text="& Compare AI Tools">& Compare AI Tools</span>
+              <span className="ml-4 hero-3d-glow hero-stroke-text" data-text="& Compare">& Compare</span>
             </span>
           </div>
           
-          {/* Clear value proposition subtitle - keyword rich */}
+          {/* Clear value proposition subtitle */}
           <div className="mb-8">
-            <p className="text-lg md:text-xl text-cyan-100 font-medium max-w-4xl mx-auto leading-relaxed hero-white-stroke">
-              The #1 AI tools directory for productivity, creativity, and business. 
-              <span className="text-cyan-400 font-semibold hero-white-stroke"> Find the best AI tools for any task - ChatGPT alternatives, AI image generators, AI video makers & more.</span>
+            <p className="text-xl md:text-2xl text-cyan-100 font-medium max-w-4xl mx-auto leading-relaxed hero-white-stroke">
+              The largest directory of AI tools for productivity, creativity, and business. 
+              <span className="text-cyan-400 font-semibold hero-white-stroke"> Find the perfect AI tool for any task.</span>
             </p>
           </div>
         </div>
