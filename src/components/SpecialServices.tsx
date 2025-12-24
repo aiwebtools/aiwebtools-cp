@@ -1711,16 +1711,6 @@ const featuredGPTsUnsorted = [
     emoji: "📐"
   },
   {
-    title: "Meister Eckhart GPT",
-    description: "Speaks as Meister Eckhart to guide seekers to divine union and inner stillness.",
-    badge: "MYSTICISM",
-    color: "from-purple-500 to-indigo-600",
-    features: ["Christian Mysticism", "Divine Union", "Contemplation", "Inner Stillness"],
-    directUrl: "https://chatgpt.com/g/g-6924b016d88c8191a7e3e6f440a0d16d-meister-eckhart-gpt/?via=aiwebtools",
-    imageUrl: "/src/assets/meister-eckhart-reborn-gpt-hero.jpg",
-    emoji: "✨"
-  },
-  {
     title: "Nikola Tesla GPT",
     description: "Cutting-edge AI inspired by Nikola Tesla, designed to investigate scientific mysteries and craft groundbreaking theories.",
     badge: "SCIENCE",
