@@ -22,18 +22,6 @@ export const topImageGenerators: Tool[] = [
     totalVotes: 156000
   },
   {
-    icon: Image,
-    title: "DALL-E 3",
-    description: "OpenAI's powerful AI image generator integrated with ChatGPT. Creates highly detailed, photorealistic images with superior prompt understanding and commercial usage rights.",
-    emoji: "🖼️",
-    color: "from-green-500 to-teal-600",
-    directUrl: "https://openai.com/dall-e-3?via=aiwebtools",
-    tags: ["Image Generator", "DALL-E", "OpenAI", "image generation", "photorealistic", "ChatGPT", "text-to-image", "AI art"],
-    category: "AI Image Generation",
-    rating: 4.8,
-    totalVotes: 134000
-  },
-  {
     icon: Zap,
     title: "Flux AI",
     description: "Next-generation AI image model by Black Forest Labs (Stable Diffusion creators). Flux Pro and Dev models deliver exceptional quality, prompt adherence, and diverse artistic styles.",
@@ -42,8 +30,8 @@ export const topImageGenerators: Tool[] = [
     directUrl: "https://flux1.ai/?via=aiwebtools",
     tags: ["Image Generator", "Flux", "AI image", "Black Forest Labs", "high quality", "text-to-image", "artistic styles"],
     category: "AI Image Generation",
-    rating: 4.8,
-    totalVotes: 89000
+    rating: 4.9,
+    totalVotes: 112000
   },
   {
     icon: Sparkles,
@@ -54,8 +42,8 @@ export const topImageGenerators: Tool[] = [
     directUrl: "https://ideogram.ai/?via=aiwebtools",
     tags: ["Image Generator", "Logo Design", "Ideogram", "text in images", "logo design", "posters", "AI image", "text rendering", "design"],
     category: "AI Image Generation",
-    rating: 4.7,
-    totalVotes: 67000
+    rating: 4.8,
+    totalVotes: 89000
   },
   {
     icon: Layers,
@@ -68,6 +56,18 @@ export const topImageGenerators: Tool[] = [
     category: "AI Image Generation",
     rating: 4.8,
     totalVotes: 178000
+  },
+  {
+    icon: Image,
+    title: "Leonardo.AI",
+    description: "Game-focused AI art generator with fine-tuned models for game assets, characters, and environments. Create consistent art styles with custom model training and character reference tools.",
+    emoji: "🎮",
+    color: "from-cyan-500 to-blue-600",
+    directUrl: "https://leonardo.ai/?via=aiwebtools",
+    tags: ["Image Generator", "Illustration", "Leonardo AI", "game art", "character design", "game assets", "consistent style", "custom models"],
+    category: "AI Image Generation",
+    rating: 4.7,
+    totalVotes: 84000
   },
   {
     icon: Wand2,
@@ -83,14 +83,14 @@ export const topImageGenerators: Tool[] = [
   },
   {
     icon: Image,
-    title: "Leonardo.AI",
-    description: "Game-focused AI art generator with fine-tuned models for game assets, characters, and environments. Create consistent art styles with custom model training and character reference tools.",
-    emoji: "🎮",
-    color: "from-cyan-500 to-blue-600",
-    directUrl: "https://leonardo.ai/?via=aiwebtools",
-    tags: ["Image Generator", "Illustration", "Leonardo AI", "game art", "character design", "game assets", "consistent style", "custom models"],
+    title: "DALL-E 3",
+    description: "OpenAI's AI image generator integrated with ChatGPT. Creates detailed images from text descriptions with good prompt understanding.",
+    emoji: "🖼️",
+    color: "from-green-500 to-teal-600",
+    directUrl: "https://openai.com/dall-e-3?via=aiwebtools",
+    tags: ["Image Generator", "DALL-E", "OpenAI", "image generation", "photorealistic", "ChatGPT", "text-to-image", "AI art"],
     category: "AI Image Generation",
-    rating: 4.7,
-    totalVotes: 84000
+    rating: 4.5,
+    totalVotes: 134000
   }
 ];
