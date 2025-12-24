@@ -1,4 +1,4 @@
-import { useState, useEffect, memo } from "react";
+import { useState, useEffect, memo, useRef } from "react";
 
 const funnyQuotes = [
   // Original classics
@@ -254,30 +254,51 @@ const funnyQuotes = [
   "You're not just building projects. You're building legacy. 🏰",
 ];
 
+// Completely isolated component - uses RAF and CSS for zero main thread impact
 const FunnyQuotesRotator = memo(() => {
   const [currentIndex, setCurrentIndex] = useState(() => 
     Math.floor(Math.random() * funnyQuotes.length)
   );
   const [isVisible, setIsVisible] = useState(true);
+  const timeoutRef = useRef<number | null>(null);
+  const intervalRef = useRef<number | null>(null);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setIsVisible(false);
-      setTimeout(() => {
-        setCurrentIndex((prev) => (prev + 1) % funnyQuotes.length);
-        setIsVisible(true);
-      }, 300);
-    }, 4000);
+    // Use requestAnimationFrame for non-blocking updates
+    const scheduleUpdate = () => {
+      if (timeoutRef.current) cancelAnimationFrame(timeoutRef.current);
+      
+      timeoutRef.current = requestAnimationFrame(() => {
+        setIsVisible(false);
+        
+        // Schedule index change with RAF for smooth updates
+        setTimeout(() => {
+          requestAnimationFrame(() => {
+            setCurrentIndex((prev) => (prev + 1) % funnyQuotes.length);
+            setIsVisible(true);
+          });
+        }, 300);
+      });
+    };
 
-    return () => clearInterval(interval);
+    intervalRef.current = window.setInterval(scheduleUpdate, 4000);
+
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+      if (timeoutRef.current) cancelAnimationFrame(timeoutRef.current);
+    };
   }, []);
 
   return (
-    <div className="h-6 flex items-center justify-center overflow-hidden">
+    <div 
+      className="h-6 flex items-center justify-center overflow-hidden pointer-events-none select-none"
+      aria-hidden="true"
+    >
       <p
-        className={`text-sm text-muted-foreground/70 italic text-center transition-all duration-300 ${
+        className={`text-sm text-muted-foreground/70 italic text-center will-change-transform transition-all duration-300 ${
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2"
         }`}
+        style={{ contain: 'layout style paint' }}
       >
         {funnyQuotes[currentIndex]}
       </p>
