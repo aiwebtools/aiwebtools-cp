@@ -9,28 +9,29 @@ interface GoogleRankingBoosterProps {
 }
 
 const GoogleRankingBooster = ({ pageType = 'homepage', toolData, category }: GoogleRankingBoosterProps) => {
-  // Generate comprehensive competitive structured data
+  // Generate comprehensive competitive structured data - PRIMARY KEYWORD: "AI Tools"
   const generateCompetitiveSchema = () => {
     const organizationSchema = {
       "@type": "Organization",
-      "name": "AI WEB TOOLS LLC",
-      "alternateName": ["AI WEB TOOLS", "AIWebTools", "AITools.Studio"],
+      "name": "AI Tools Directory",
+      "alternateName": ["AI Tools", "Best AI Tools", "Free AI Tools", "AI Tools List", "AITools.Studio", "AI Web Tools"],
       "url": "https://aitools.studio",
       "logo": "https://aitools.studio/favicon.ico",
-      "description": "The world's #1 most comprehensive AI web tools directory with 2195+ verified AI web tools. Find, compare, and access the best AI web tools for any purpose. Better than competitors with expert reviews and daily updates.",
+      "description": "The #1 AI tools directory with 2,195+ best free AI tools for 2025. Find, compare, and access top AI tools for writing, images, video, coding & business.",
       "foundingDate": "2023",
-      "keywords": competitiveAdvantage.brandDominance.join(", ") + ", ai web tools, best ai web tools, ai web tools directory, find ai web tools, compare ai web tools",
-      "slogan": "#1 AI Web Tools Directory - Find & Compare 2,195+ AI Web Tools",
-      "awards": ["#1 AI Web Tools Directory 2025", "Most Comprehensive AI Web Tools Database", "Trusted by 100K+ Users"],
+      "keywords": "ai tools, best ai tools, free ai tools, ai tools 2025, ai tools list, ai tools directory, top ai tools, ai writing tools, ai image tools, ai video tools, chatgpt alternatives",
+      "slogan": "#1 AI Tools Directory - Find & Compare 2,195+ Best AI Tools",
+      "awards": ["#1 AI Tools Directory 2025", "Best AI Tools Collection", "Most Comprehensive AI Tools Database"],
       "knowsAbout": [
-        "AI Web Tools",
-        "AI Web Tools Directory",
-        "Best AI Web Tools",
-        "Artificial Intelligence Tools",
-        "AI Software Directory", 
-        "Technology Curation",
-        "AI Tool Reviews",
-        "Enterprise AI Solutions"
+        "AI Tools",
+        "Best AI Tools",
+        "Free AI Tools",
+        "AI Writing Tools",
+        "AI Image Generators",
+        "AI Video Makers",
+        "AI Coding Assistants",
+        "ChatGPT Alternatives",
+        "AI Productivity Tools"
       ],
       "sameAs": [
         "https://aitools.studio",
@@ -40,13 +41,13 @@ const GoogleRankingBooster = ({ pageType = 'homepage', toolData, category }: Goo
 
     const websiteSchema = {
       "@type": "WebSite",
-      "name": "AI WEB TOOLS - #1 AI Web Tools Directory",
-      "alternateName": "AI Web Tools Directory",
+      "name": "AI Tools - Best Free AI Tools Directory 2025",
+      "alternateName": ["AI Tools Directory", "AI Tools List", "Best AI Tools 2025"],
       "url": "https://aitools.studio",
-      "description": "Discover 2,195+ AI web tools in the most comprehensive AI web tools directory. Find and compare the best AI web tools with expert reviews, ratings, and detailed analysis. Your trusted source for AI web tools.",
+      "description": "Discover 2,195+ best free AI tools in the #1 AI tools directory. Find top AI tools for writing, images, video, coding & business with reviews and comparisons.",
       "publisher": {
         "@type": "Organization",
-        "name": "AI WEB TOOLS LLC"
+        "name": "AI Tools Directory"
       },
       "potentialAction": {
         "@type": "SearchAction",
@@ -58,8 +59,8 @@ const GoogleRankingBooster = ({ pageType = 'homepage', toolData, category }: Goo
       },
       "mainEntity": {
         "@type": "ItemList",
-        "name": "AI Web Tools Directory",
-        "description": "Comprehensive collection of 2,195+ verified AI web tools",
+        "name": "Best AI Tools 2025",
+        "description": "Complete list of 2,195+ best free AI tools for productivity, creativity, and business",
         "numberOfItems": "2195+"
       }
     };
@@ -108,28 +109,28 @@ const GoogleRankingBooster = ({ pageType = 'homepage', toolData, category }: Goo
     return baseSchema;
   };
 
-  // Generate FAQ schema for featured snippets
+  // Generate FAQ schema for featured snippets - "AI Tools" focused
   const generateFAQSchema = () => {
     const faqs = [
       {
-        question: "What are AI web tools?",
-        answer: "AI web tools are artificial intelligence-powered applications and software that run in web browsers. AI WEB TOOLS directory features 2,195+ AI web tools for content creation, business automation, data analysis, design, development, and more. These AI web tools help users work smarter and faster."
+        question: "What are the best AI tools in 2025?",
+        answer: "The best AI tools in 2025 include ChatGPT, Claude, Midjourney, DALL-E, Gemini, and thousands more. Our AI tools directory features 2,195+ best AI tools across categories like AI writing tools, AI image generators, AI video makers, and AI coding assistants. Find the perfect AI tools for any task."
       },
       {
-        question: "How do I find the best AI web tools?",
-        answer: "Use AI WEB TOOLS directory to find and compare the best AI web tools. We provide expert reviews, ratings, pricing information, and detailed analysis for 2,195+ AI web tools. Filter by category, use case, or pricing to discover AI web tools perfect for your needs."
+        question: "Where can I find free AI tools?",
+        answer: "Our AI tools directory offers the largest collection of free AI tools. Browse 2,195+ AI tools with free tiers, trials, and completely free options. Find free AI tools for writing, images, video, productivity, and business - all in one comprehensive AI tools list."
       },
       {
-        question: "Are AI web tools free to use?",
-        answer: "Many AI web tools offer free tiers or completely free access. On AI WEB TOOLS directory, we clearly indicate pricing for each AI web tool and highlight the best free AI web tools available. Browse our collection to find both free and premium AI web tools."
+        question: "What is the best AI tools directory?",
+        answer: "AITools.Studio is the #1 AI tools directory with 2,195+ best AI tools for 2025. Compare AI tools with reviews, ratings, and direct access. Find top AI tools for writing, images, video, coding & business in our comprehensive AI tools list."
       },
       {
-        question: "What makes AI WEB TOOLS the best AI web tools directory?",
-        answer: "AI WEB TOOLS is the #1 AI web tools directory with 2,195+ verified AI web tools, expert reviews, daily updates, and comprehensive analysis. Unlike competitors, we test every AI web tool, provide detailed comparisons, and help you find the perfect AI web tools for your specific needs."
+        question: "What AI tools are best for business?",
+        answer: "The best AI tools for business include AI marketing tools, AI sales tools, AI analytics platforms, AI customer service bots, and AI productivity assistants. Our AI tools directory features hundreds of AI tools specifically designed for business automation and growth."
       },
       {
-        question: "How often are new AI web tools added to the directory?",
-        answer: "AI WEB TOOLS directory is updated daily with new AI web tools and reviews. Our team continuously discovers, tests, and adds the latest AI web tools to ensure you have access to the most current and innovative AI web tools available in 2025."
+        question: "How do I choose the right AI tools?",
+        answer: "Use our AI tools directory to compare features, read reviews, and find AI tools that match your needs. Filter by category (writing, images, video, coding), pricing (free, freemium, paid), and use case to discover the best AI tools for your specific requirements."
       }
     ];
 
