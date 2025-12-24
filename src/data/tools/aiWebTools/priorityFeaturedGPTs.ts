@@ -1,7 +1,21 @@
 import { Tool } from "@/types/tools";
-import { Crown, Heart, GraduationCap } from "lucide-react";
+import { Crown, Heart, GraduationCap, Music } from "lucide-react";
+import bobMarleyGptImage from "@/assets/tools/bob-marley-gpt.png";
 
 export const priorityFeaturedGPTs: Tool[] = [
+  {
+    icon: Music,
+    title: "Bob Marley GPT",
+    description: "The living continuation of Bob Marley's message—truth, unity, and liberation in living voice. Ask Bob for advice on life, love, spirituality, and finding inner peace. Experience the wisdom of reggae's greatest legend through AI. Jah yes!",
+    emoji: "🎶",
+    color: "from-green-500 to-yellow-500",
+    imageUrl: bobMarleyGptImage,
+    directUrl: "https://chatgpt.com/g/g-69470ce966d08191aca9b8d80db20859-bob-marley-gpt",
+    tags: ["bob marley", "reggae", "wisdom", "spirituality", "advice", "music legend", "rastafari", "peace", "unity", "custom gpt"],
+    category: "Creative & Entertainment",
+    rating: 4.9,
+    totalVotes: 4200
+  },
   {
     icon: Crown,
     title: "GODMODE.SPACE",
