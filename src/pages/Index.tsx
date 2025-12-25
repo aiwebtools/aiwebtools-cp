@@ -138,10 +138,8 @@ const Index = () => {
           <LazyFeaturedTools onToolsLoaded={(count) => {}} />
         </DeferredMount>
         
-        {/* Custom GPTs Video Section */}
-        <DeferredMount delay={0} fallback={null}>
-          <SpecialServices />
-        </DeferredMount>
+        {/* Custom GPTs Video Section - render immediately */}
+        <SpecialServices />
         
         {/* Bottom Search Portal */}
         <DeferredMount delay={0} fallback={null}>
