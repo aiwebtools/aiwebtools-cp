@@ -1115,8 +1115,16 @@ export const COMMON_PHRASE_HANDLERS: Record<string, PhraseHandler> = {
   nearDeathExperience: {
     triggers: ['near death experience', 'nde', 'afterlife', 'life after death', 'what happens when we die', 'heaven'],
     keywords: ['near death', 'nde', 'afterlife', 'heaven', 'death', 'soul', 'spirit', 'light'],
-    priorityTools: ['Resurrection GPT', 'God Is Light GPT', 'Sophia Aeterna AI'],
+    priorityTools: ['Resurrection GPT', 'God Is Light GPT', 'GOD IS LIGHT — Roman Catholic Edition GPT', 'Sophia Aeterna AI'],
     relatedCategories: ['Spirituality & Philosophy', 'Afterlife']
+  },
+
+  // ===== CATHOLIC & CHRISTIANITY =====
+  catholicMysticism: {
+    triggers: ['catholic', 'catholicism', 'roman catholic', 'catholic mysticism', 'catholic saints', 'catholic doctrine', 'catholic spirituality'],
+    keywords: ['catholic', 'catholicism', 'roman catholic', 'saints', 'sacraments', 'mysticism', 'doctrine', 'mercy', 'interior transformation'],
+    priorityTools: ['GOD IS LIGHT — Roman Catholic Edition GPT', 'God Is Light GPT', '🕊️Mary Magdalene GPT', 'Sophia Aeterna AI'],
+    relatedCategories: ['Spirituality & Philosophy', 'Religion']
   },
 
   // ===== REINCARNATION =====

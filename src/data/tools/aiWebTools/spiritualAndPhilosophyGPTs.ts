@@ -119,6 +119,20 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     totalVotes: 1234
   },
   {
+    icon: Sun,
+    title: "GOD IS LIGHT — Roman Catholic Edition GPT",
+    description: "Catholic mysticism teaching doctrine through Light, mercy, and interior transformation. By AiWebTools.Ai. Explore the profound depths of Roman Catholic spirituality through the lens of divine Light, guided by the teachings of the saints, mystics, and the rich tradition of Catholic contemplative prayer. Discover how the Light of Christ illuminates the path to holiness, interior transformation, and union with God through sacraments, devotion, and mystical theology.",
+    emoji: "✝️",
+    color: "from-gold-500 to-white",
+    directUrl: "https://chatgpt.com/g/g-catholic-god-is-light-gpt/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/god-is-light-catholic-edition.png",
+    tags: ["catholic", "roman catholic", "catholicism", "catholic mysticism", "divine light", "mercy", "interior transformation", "saints", "mystics", "contemplative prayer", "sacraments", "holiness", "christ", "christian", "spirituality", "religion", "religious", "aiwebtools", "Custom GPT"],
+    category: "Spirituality & Philosophy",
+    rating: 4.9,
+    totalVotes: 1456,
+    isFree: true
+  },
+  {
     icon: Star,
     title: "Paramahansa Yogananda GPT",
     description: "Connect with the wisdom of Paramahansa Yogananda, the renowned spiritual teacher and author of 'Autobiography of a Yogi'. This GPT embodies his teachings on Kriya Yoga, Self-Realization, meditation practices, and the unity of all religions. Explore profound spiritual insights, receive guidance on the path to Self-realization, and discover the scientific approach to God-realization through his timeless wisdom and practical spirituality.",

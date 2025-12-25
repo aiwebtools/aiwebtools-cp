@@ -181,6 +181,7 @@ export const toolTaglines: Record<string, string> = {
   "Yemaya Ancient African Mother of the Waters": "Connect with the ocean goddess. African ancestral healing flows.",
   "Carl Sagan GPT": "See the cosmos through Sagan's eyes. You are starstuff awakening.",
   "GOD IS LIGHT GPT": "Discover the one truth hidden in every religion. Light unites all.",
+  "GOD IS LIGHT — Roman Catholic Edition GPT": "Catholic mysticism through Light, mercy, and interior transformation.",
   "Paramahansa Yogananda GPT": "Learn Kriya Yoga from the master himself. Self-realization awaits.",
   "Soul Map GPT": "Decode your spiritual blueprint through Gematria and Numerology.",
   "Essene Qodesh Code": "Access the sacred meditation codes of the ancient Essene masters.",
