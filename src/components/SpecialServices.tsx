@@ -1371,6 +1371,16 @@ const featuredGPTsUnsorted = [
     emoji: "💡"
   },
   {
+    title: "GOD IS LIGHT — Roman Catholic Edition GPT",
+    description: "Catholic mysticism teaching doctrine through Light, mercy, and interior transformation. By AiWebTools.Ai.",
+    badge: "CATHOLIC MYSTICISM",
+    color: "from-gold-500 to-white",
+    features: ["Catholic Doctrine", "Divine Light", "Interior Transformation", "Saints & Mystics"],
+    directUrl: "https://chatgpt.com/g/g-catholic-god-is-light-gpt/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/god-is-light-catholic-edition.png",
+    emoji: "✝️"
+  },
+  {
     title: "Míngjiào Prophet of Light GPT",
     description: "The living voice of Light—poetic, prophetic, and radiant with the remembrance of Truth.",
     badge: "ANCIENT WISDOM",
@@ -3607,7 +3617,7 @@ const FILTER_CATEGORIES = {
     "FREQUENCY SIGNATURE", "COSMIC", "ATLANTEAN", "MITHRAIC", "ENOCHIAN", "HERMETIC",
     "BOGOMIL", "PAULICIAN", "DESERT MONASTIC", "NEOPLATONIC", "GNOSTIC", "THERAPEUTAE",
     "BILL DONAHUE", "AETHER GUIDE", "REALITY DECODER", "JUDAISM", "TORAH", "MAGNETISM",
-    "MINGJIAO", "PROPHET OF LIGHT"
+    "MINGJIAO", "PROPHET OF LIGHT", "CATHOLIC", "CATHOLICISM", "ROMAN CATHOLIC"
   ],
   "WRITING & CONTENT": [
     "BOOK WRITER", "MOVIE SCRIPT", "SCRIPTWRITER", "SCRIPT WRITER", "SCREENWRITING",

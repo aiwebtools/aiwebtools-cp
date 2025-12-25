@@ -60,9 +60,9 @@ export const isSpiritualityTool = (tool: Tool): boolean => {
   const brandedNames = [
     "talk to the gods", "mary magdalene gpt", "time machine gpt", "oraculum",
     "sophia aeterna", "historical headlines", "native american history time machine",
-    "resurrection gpt", "immortalizeme", "god is light", "interpretis",
+    "resurrection gpt", "immortalizeme", "god is light", "god is light — roman catholic", "interpretis",
     "phenomenon explorer", "yemaya", "quan yin", "self sufficiency gpt",
-    "alan watts", "carl sagan gpt", "manicheism", "mani gpt", "mingjiao"
+    "alan watts", "carl sagan gpt", "manicheism", "mani gpt", "mingjiao", "catholic mysticism"
   ];
 
   const haystack = `${title} ${description} ${category} ${tags}`;

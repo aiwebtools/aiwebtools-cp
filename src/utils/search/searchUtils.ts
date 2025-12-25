@@ -1057,7 +1057,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       // TIER 5: Premium spiritual tools general boost
       const premiumSpiritualTools = [
         'talk to the gods', 'mary magdalene', 'alan watts', 'carl sagan',
-        'sophia aeterna', 'oraculum', 'god is light', 'resurrection',
+        'sophia aeterna', 'oraculum', 'god is light', 'god is light — roman catholic', 'resurrection',
         'time machine', 'talk to history', 'kabbalah', 'interpretis',
         'mani', 'manicheism', 'quan yin', 'yemaya', 'self sufficiency',
         'soul map', 'i am q', 'essenes', 'buddha', 'krishna'
@@ -2674,6 +2674,7 @@ const performEnhancedSearch = (
       "TALK TO THE GODS GPT",
       "Sophia Aeterna AI",
       "God Is Light GPT",
+      "GOD IS LIGHT — Roman Catholic Edition GPT",
       "Resurrection GPT",
       "Oraculum – The Revealer of Hidden \"Truths\"",
       "Dream Interpreter GPT",
