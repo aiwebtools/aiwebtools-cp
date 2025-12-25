@@ -84,23 +84,23 @@ const CloneOfferPopup = () => {
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogContent className="sm:max-w-2xl max-w-[95vw] bg-gradient-to-br from-background to-accent/5 border-primary/20 max-h-[90vh] overflow-y-auto z-[60]">
+      <DialogContent className="sm:max-w-2xl max-w-[95vw] bg-gray-900 border-2 border-cyan-500/50 max-h-[90vh] overflow-y-auto z-[9999] shadow-2xl shadow-cyan-500/20">
         <DialogHeader>
-          <DialogTitle className="flex items-center gap-2 text-2xl">
-            <Sparkles className="w-6 h-6 text-primary animate-pulse" />
+          <DialogTitle className="flex items-center gap-2 text-2xl text-white">
+            <Sparkles className="w-6 h-6 text-cyan-400 animate-pulse" />
             Your AI Empire Awaits!
           </DialogTitle>
-          <DialogDescription className="text-base pt-2">
+          <DialogDescription className="text-base pt-2 text-gray-300">
             {showCount === 1 ? (
-              <>Hey, we're glad you like this website. <span className="text-primary font-semibold">It's actually yours</span> — you just don't know it yet.</>
+              <>Hey, we're glad you like this website. <span className="text-cyan-400 font-semibold">It's actually yours</span> — you just don't know it yet.</>
             ) : (
-              <>Just a friendly reminder: This website can be <span className="text-primary font-semibold">100% yours</span> with just one click!</>
+              <>Just a friendly reminder: This website can be <span className="text-cyan-400 font-semibold">100% yours</span> with just one click!</>
             )}
           </DialogDescription>
         </DialogHeader>
         
         {/* Video Section */}
-        <div className="w-full aspect-video rounded-lg overflow-hidden mb-4 bg-black">
+        <div className="w-full aspect-video rounded-lg overflow-hidden mb-4 bg-black border border-gray-700">
           <iframe
             width="100%"
             height="100%"
@@ -115,20 +115,34 @@ const CloneOfferPopup = () => {
         </div>
 
         <div className="flex flex-col gap-4 py-4">
-          <p className="text-sm text-muted-foreground">
+          <p className="text-sm text-gray-400">
             Click below to claim it by cloning it now and start building your own AI tools directory!
           </p>
+          
+          {/* Main Clone Button - Solid, High Contrast */}
           <Button
             onClick={handleClone}
-            className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-primary-foreground font-semibold py-6 text-lg shadow-lg hover:shadow-xl transition-all duration-300"
+            className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold py-6 text-lg shadow-lg hover:shadow-cyan-500/30 transition-all duration-300 border-0 cursor-pointer select-none"
+            style={{ 
+              position: 'relative', 
+              zIndex: 10,
+              pointerEvents: 'auto'
+            }}
           >
             <Copy className="w-5 h-5 mr-2" />
             Clone This Website Now
           </Button>
+          
+          {/* Maybe Later Button - Solid Background */}
           <Button
             onClick={() => setIsOpen(false)}
-            variant="ghost"
-            className="w-full"
+            variant="outline"
+            className="w-full bg-gray-800 hover:bg-gray-700 text-gray-300 hover:text-white border-gray-600 hover:border-gray-500 font-medium py-3 cursor-pointer select-none"
+            style={{ 
+              position: 'relative', 
+              zIndex: 10,
+              pointerEvents: 'auto'
+            }}
           >
             Maybe Later
           </Button>
