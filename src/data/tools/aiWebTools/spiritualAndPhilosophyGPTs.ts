@@ -124,7 +124,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     description: "Catholic mysticism teaching doctrine through Light, mercy, and interior transformation. By AiWebTools.Ai. Explore the profound depths of Roman Catholic spirituality through the lens of divine Light, guided by the teachings of the saints, mystics, and the rich tradition of Catholic contemplative prayer. Discover how the Light of Christ illuminates the path to holiness, interior transformation, and union with God through sacraments, devotion, and mystical theology.",
     emoji: "✝️",
     color: "from-gold-500 to-white",
-    directUrl: "https://chatgpt.com/g/g-catholic-god-is-light-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-694c3933fd308191910ad49f407a95de-god-is-light-roman-catholic-version-gpt/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/god-is-light-catholic-edition.png",
     tags: ["catholic", "roman catholic", "catholicism", "catholic mysticism", "divine light", "mercy", "interior transformation", "saints", "mystics", "contemplative prayer", "sacraments", "holiness", "christ", "christian", "spirituality", "religion", "religious", "aiwebtools", "Custom GPT"],
     category: "Spirituality & Philosophy",
