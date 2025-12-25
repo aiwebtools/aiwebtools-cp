@@ -4,8 +4,8 @@
       0 0 5px rgba(6, 182, 212, 0.8),
       0 0 10px rgba(6, 182, 212, 0.6),
       0 0 15px rgba(6, 182, 212, 0.4),
-      0 0 20px rgba(6, 182, 212, 0.3);
-    animation: neon-pulse 2s ease-in-out infinite alternate;
+        0 0 20px rgba(6, 182, 212, 0.3);
+    animation: none; /* Disabled for performance */
   }
 
   @keyframes neon-pulse {
@@ -31,7 +31,7 @@
     box-shadow: 
       0 0 10px rgba(6, 182, 212, 0.3),
       0 0 20px rgba(6, 182, 212, 0.2);
-    animation: button-glow 3s ease-in-out infinite alternate;
+    animation: none; /* Disabled for performance */
   }
 
   @keyframes button-glow {

@@ -19,8 +19,8 @@
     0 0 5px rgba(6, 182, 212, 0.8),
     0 0 10px rgba(6, 182, 212, 0.6),
     0 0 15px rgba(6, 182, 212, 0.4);
-  animation: glowing-pulse 3s ease-in-out infinite alternate;
-  will-change: text-shadow;
+  /* Animation disabled for performance - static glow */
+  will-change: auto;
 }
 
 @keyframes glowing-pulse {
