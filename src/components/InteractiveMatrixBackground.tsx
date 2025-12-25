@@ -69,23 +69,23 @@ const InteractiveMatrixBackground = memo(() => {
 
     const fontSize = 16;
     const columns = Math.floor(canvas.width / fontSize);
-    // Significantly reduce drops on mobile for battery and performance
+    // Drastically reduce drops for smooth performance
     const maxDrops = isMobile 
-      ? Math.min(columns * 0.5, 40) 
-      : performanceTier === 'high' ? columns * 1.5 : 
-        performanceTier === 'medium' ? columns : 
-        Math.min(columns, 60);
+      ? Math.min(columns * 0.25, 20) // Much fewer on mobile
+      : performanceTier === 'high' ? Math.min(columns * 0.6, 50) : 
+        performanceTier === 'medium' ? Math.min(columns * 0.4, 35) : 
+        Math.min(columns * 0.3, 25);
 
     dropsRef.current = [];
 
     for (let i = 0; i < maxDrops; i++) {
       const drop: MatrixDrop = {
-        x: (i * fontSize * 0.7) + (Math.random() * fontSize * 0.5),
+        x: (i * fontSize * 1.2) + (Math.random() * fontSize * 0.5),
         y: Math.random() * -canvas.height,
-        speed: (Math.random() * 5 + 3),
+        speed: (Math.random() * 3 + 2), // Slower, smoother
         chars: [],
-        opacity: Math.random() * 0.5 + 0.5,
-        length: Math.floor(Math.random() * 14) + 6
+        opacity: Math.random() * 0.4 + 0.4,
+        length: Math.floor(Math.random() * 8) + 4 // Shorter trails
       };
 
       // Generate random characters for this drop
@@ -169,12 +169,10 @@ const InteractiveMatrixBackground = memo(() => {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    // Simplified timing for better browser compatibility (especially Brave)
+    // Consistent 30fps for smooth animation without overloading
     const deltaTime = currentTime - lastTimeRef.current;
-    // Lower FPS on mobile for battery savings
-    const targetInterval = isMobile ? 33.33 : (performanceTier === 'high' ? 16.67 : performanceTier === 'medium' ? 22.22 : 33.33);
+    const targetInterval = isMobile ? 50 : 33.33; // 20fps mobile, 30fps desktop
 
-    // Use more consistent frame limiting that works better with Brave's optimizations
     if (deltaTime < targetInterval && lastTimeRef.current > 0) {
       animationFrameRef.current = requestAnimationFrame(animate);
       return;
@@ -271,8 +269,8 @@ const InteractiveMatrixBackground = memo(() => {
     });
     ctx.globalAlpha = 1; // Reset alpha
 
-    // Clean up excess drops for performance - reduce on mobile
-    const maxActiveDrops = isMobile ? 50 : performanceTier === 'high' ? 150 : performanceTier === 'medium' ? 100 : 70;
+    // Clean up excess drops aggressively for smooth performance
+    const maxActiveDrops = isMobile ? 25 : performanceTier === 'high' ? 60 : 40;
     if (dropsRef.current.length > maxActiveDrops) {
       dropsRef.current = dropsRef.current.slice(0, maxActiveDrops);
     }
