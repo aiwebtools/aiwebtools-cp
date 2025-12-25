@@ -3562,8 +3562,13 @@ const getOptimizedEmbedUrl = (videoUrl: string) => {
   return `https://www.youtube.com/embed/${videoId}?autoplay=0&controls=1&rel=0&modestbranding=1&playsinline=1`;
 };
 
-// Main filter categories - 8 focused areas (order matters for categorization priority)
+// Main filter categories - 9 focused areas (order matters for categorization priority)
 const FILTER_CATEGORIES = {
+  "EDUCATION & LEARNING": [
+    "EDUCATION", "COLLEGE DEGREE", "LEARN ANY", "HOME SCHOOL", "HOMESCHOOL", "COURSE", 
+    "SKILL LEARNING", "TUTORING", "ACADEMIC", "STUDY", "TRAINING MANUAL", "QUIZ", 
+    "TRIVIA", "KNOWLEDGE", "TEACHING", "CURRICULUM", "LESSONS", "CLASSROOM"
+  ],
   "SPIRITUALITY & AWAKENING": [
     "PHILOSOPHY", "ANCIENT WISDOM", "SPIRITUAL", "SACRED", "PROPHECY", "MEDITATION", 
     "CONSCIOUSNESS", "MYSTICAL", "RESURRECTION", "DIVINE", "GNOSTICISM", "BIBLICAL",
@@ -3576,8 +3581,9 @@ const FILTER_CATEGORIES = {
     "COUNCIL OF LIGHT", "ARIUS", "AKHENATEN", "IMHOTEP", "SITTING BULL", "GANDHI",
     "HERACLITUS", "ST. FRANCIS", "CRAZY HORSE", "AUROBINDO", "RAMANA", "BLACK ELK",
     "HALLAJ", "TERESA", "MOOJI", "AUGUSTINE", "SERAPHIM", "PADRE PIO", "CATHERINE",
-    "JOHN OF THE CROSS", "MOSES", "BREATHLIGHT", "CODEX", "MAGNETISM", "SOUL SCAN",
-    "SOCRATES", "PLATO"
+    "JOHN OF THE CROSS", "MOSES", "BREATHLIGHT", "CODEX", "SOUL SCAN",
+    "SOCRATES", "PLATO", "ARISTOTLE", "YOGANANDA", "KABBALAH", "ZOROASTRIAN",
+    "ORIGEN", "BOB MARLEY", "REGGAE WISDOM"
   ],
   "HEALTH & WELLNESS": [
     "DOCTOR", "DR.", "PERSONALIZED DR", "MEDICAL", "HEALTH", "WELLNESS", "MENTAL WELLNESS",
@@ -3586,7 +3592,7 @@ const FILTER_CATEGORIES = {
     "PHARMACEUTICAL", "PHARMA", "MEDICATION", "RX", "PRESCRIPTION",
     "GENOME", "DNA", "GENETIC", "GENOMICS",
     "FITNESS", "FITNESS TRAINER", "NUTRITION", "DIET", "EXERCISE", "HEALING", "HOLISTIC",
-    "MARRIAGE MENDER", "RELATIONSHIP"
+    "MARRIAGE MENDER", "RELATIONSHIP", "FRIEND GPT", "COMPANIONSHIP"
   ],
   "WRITING & CONTENT": [
     "BOOK WRITER", "MOVIE SCRIPT", "SCRIPTWRITER", "SCRIPT WRITER", "SCREENWRITING",
@@ -3594,16 +3600,15 @@ const FILTER_CATEGORIES = {
     "PODCAST SCRIPT", "PODCAST WRITER", "ARTICLE REWRITER", "BLOG REWRITER", "CONTENT WRITING",
     "GRANT WRITER", "LEGISLATION WRITER", "TESTIMONY WRITER", "PUBLIC TESTIMONY",
     "EBOOK", "STORY", "NOVEL", "AUTHOR", "CHILDREN'S BOOK", "PICTURE BOOK", "CHILDREN'S BOOKS",
-    "TRAINING MANUAL", "WRITING SUITE", "RESUME WRITER", "WRITING"
+    "RESUME WRITER", "WRITING SUITE", "WRITING"
   ],
-  "MATH, SCIENCE & HISTORY": [
-    "MATHEMATICS", "PHYSICS", "SCIENCE", "CHEMISTRY", "BIOLOGY", "ENGINEERING",
+  "SCIENCE & HISTORY": [
+    "PHYSICS", "SCIENCE", "CHEMISTRY", "BIOLOGY", "ENGINEERING", "GEOLOGY", "ROCK IDENTIFICATION",
     "TIME MACHINE", "TIME TRAVEL", "HISTORY", "HISTORICAL", "ARCHAEOLOGY", "ANTHROPOLOGY", "ASTRONOMY",
-    "SPACE EXPLORER", "STELLARIS", "QUANTUM", "STATISTICS", "ALGEBRA", "ALGEBRAIC",
-    "GEOMETRY", "CALCULUS", "EDUCATION", "COLLEGE DEGREE", "LEARNING", "ACADEMIC", "STUDY",
-    "TIMELINE", "CIVILIZATIONS", "AUTOMOTIVE", "AUTOMOBILE",
+    "SPACE EXPLORER", "STELLARIS", "QUANTUM", "STATISTICS", "ALGEBRA", "ALGEBRAIC", "MATHEMATICS",
+    "GEOMETRY", "CALCULUS", "TIMELINE", "CIVILIZATIONS", "COSMOS", "CARL SAGAN",
     "EINSTEIN", "TESLA", "ALCHEMIST", "PROBABILITY", "TITANIC", "HEADLINES", "THALES",
-    "LEARN ANY", "COURSE", "HOME SCHOOL", "INDIANA ARCHAEO", "BRUNO", "NATIVE AMERICAN"
+    "INDIANA ARCHAEO", "BRUNO", "NATIVE AMERICAN", "HYPATIA", "PRESOCRATIC", "MAGNETISM"
   ],
   "AI DEVELOPMENT TOOLS": [
     "AI DEVELOPMENT", "PROMPT", "CODING", "SOFTWARE", "PROGRAMMING", "API",
@@ -3612,7 +3617,7 @@ const FILTER_CATEGORIES = {
     "CUSTOM GPT", "VIDEO AI", "IMAGE AI", "TEXT AI", "VOICE AI", "CHATBOT",
     "MULTITASKER", "GODMODE", "CLARITY OMNI", "REWRITER", "BINARY", "SORA", "LUMA", 
     "META.AI", "AI TOOL", "GPT MAKER", "GPT IDEAS", "MIDDLEJOURNEY", "AI DISCOVERY",
-    "MEME GENERATOR"
+    "MEME GENERATOR", "VEO3", "VIDEO PROMPTS", "GPT CLONER"
   ],
   "INVESTIGATION & RESEARCH": [
     "INVESTIGATION", "DETECTIVE", "CRIMINOLOGY", "CRIMINOLOGIST", "FORENSIC", 
@@ -3630,17 +3635,17 @@ const FILTER_CATEGORIES = {
     "SURVIVAL", "SURVIVALIST", "FIREARMS", "FIREFIGHTER", "HOME RENOVATOR", "PUBLIC DEFENDER",
     "CONTRACT REVIEW", "LEGAL", "LAW", "COURT", "UBI", "WORLD PEACE", "GLOBAL PEACE",
     "FOOD QUALITY", "STARTUP VALIDATOR", "MATERIAL VALUATION", "CREDIT SCORE", "JARVIS", "SELF SUFFICIENCY",
-    "PLASTOLINE"
+    "PLASTOLINE", "AUTOMOTIVE", "AUTOMOBILE", "TRAINING MANUAL"
   ],
   "CREATIVE & LIFESTYLE": [
     "CREATIVE", "MOVIE MAKER", "MOVIE SCENE", "MUSIC VIDEO", "MUSIC MELODIES", "ART", "CINEMATIC",
     "MEME", "COLORING BOOK", "SKETCH ARTIST", "GRAPHIC DESIGN", "COVER DESIGN", "DESIGN",
     "TRAVEL", "FOOD", "CHEF", "MIXOLOGIST", "CANNABIS", "TATTOO", "FASHION", "RESTYLE", "CULINARY",
-    "FISHING", "FISHERMAN", "GAMING", "GAME DESIGN", "TRIVIA", "CELEBRITY", "CHILDREN", "FAMILY", 
+    "FISHING", "FISHERMAN", "GAMING", "GAME DESIGN", "CELEBRITY", "CHILDREN", "FAMILY", 
     "PET", "WEB3", "BLOCKCHAIN", "CRYPTO", "DOMAIN", "NFT", "WORLDPEACE", "WORLDTRADE",
-    "RESTAURANT MENU", "PPT", "POWERPOINT", "QUIZ", "INTERPRETIS", "IMAGINATION TRAVELER",
+    "RESTAURANT MENU", "PPT", "POWERPOINT", "INTERPRETIS", "IMAGINATION TRAVELER",
     "FUNGUS", "MUSHROOM", "DRILL BABY", "OIL", "GAS", "FARM FINDER", "BARTER",
-    "STAGEMASTER", "PERFORMING ARTS", "SPORT CARD", "ARTWORK", "VINTAGE", "GEOLOGY"
+    "STAGEMASTER", "PERFORMING ARTS", "SPORT CARD", "ARTWORK", "VINTAGE", "ENTERTAINMENT"
   ]
 };
 
@@ -3759,7 +3764,7 @@ const SpecialServices = () => {
               )}
             </div>
             
-            {/* Category Filter - 8 Main Categories - Mobile Optimized */}
+            {/* Category Filter - 9 Main Categories - Mobile Optimized */}
             <div className="w-full px-2 md:px-0">
               {/* Mobile: 3-column grid, Desktop: flex wrap */}
               <div className="grid grid-cols-3 md:flex md:flex-wrap md:justify-center gap-1 md:gap-2 max-w-6xl mx-auto">
@@ -3780,12 +3785,13 @@ const SpecialServices = () => {
                 </Button>
                 {mainCategories.map((category, idx) => {
                   const count = categorizedGPTs.filter(g => g.filterCategory === category).length;
-                  const emojis = ["🔮", "💚", "✍️", "🔬", "🤖", "🔍", "🏛️", "🎨"];
+                  const emojis = ["📚", "🔮", "💚", "✍️", "🔬", "🤖", "🔍", "🏛️", "🎨"];
                   const colors = [
+                    "from-blue-500 to-indigo-500",
                     "from-purple-500 to-pink-500",
                     "from-green-500 to-emerald-500",
                     "from-amber-500 to-orange-500",
-                    "from-blue-500 to-cyan-500", 
+                    "from-cyan-500 to-blue-500", 
                     "from-teal-500 to-green-500",
                     "from-orange-500 to-red-500",
                     "from-indigo-500 to-purple-500",
@@ -3793,10 +3799,11 @@ const SpecialServices = () => {
                   ];
                   // Shorter mobile-friendly category names
                   const shortNames: Record<string, string> = {
+                    "EDUCATION & LEARNING": "LEARN",
                     "SPIRITUALITY & AWAKENING": "SPIRIT",
                     "HEALTH & WELLNESS": "HEALTH",
                     "WRITING & CONTENT": "WRITING",
-                    "MATH, SCIENCE & HISTORY": "SCIENCE",
+                    "SCIENCE & HISTORY": "SCIENCE",
                     "AI DEVELOPMENT TOOLS": "AI DEV",
                     "INVESTIGATION & RESEARCH": "RESEARCH",
                     "PROFESSIONAL & CIVIC": "CIVIC",
