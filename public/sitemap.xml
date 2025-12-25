@@ -5,7 +5,7 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
         xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
   
-  <!-- HOMEPAGE - MAXIMUM PRIORITY FOR AIWEBTOOLS.AI & AI WEB TOOLS KEYWORDS -->
+  <!-- HOMEPAGE - MAXIMUM PRIORITY FOR AI TOOLS KEYWORDS -->
   <url>
     <loc>https://aitools.studio</loc>
     <lastmod>2025-01-17</lastmod>
@@ -13,6 +13,28 @@
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://aitools.studio"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://aitools.studio"/>
+  </url>
+  
+  <!-- CRITICAL SEO LANDING PAGES FOR "AI TOOLS" KEYWORD -->
+  <url>
+    <loc>https://aitools.studio/ai-tools</loc>
+    <lastmod>2025-01-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <url>
+    <loc>https://aitools.studio/best-ai-tools</loc>
+    <lastmod>2025-01-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.99</priority>
+  </url>
+  
+  <url>
+    <loc>https://aitools.studio/free-ai-tools</loc>
+    <lastmod>2025-01-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.99</priority>
   </url>
   
   <!-- BLOG SECTION - HIGH PRIORITY FOR ORGANIC TRAFFIC -->
@@ -52,6 +74,13 @@
   </url>
   
   <url>
+    <loc>https://aitools.studio/faq</loc>
+    <lastmod>2025-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  
+  <url>
     <loc>https://aitools.studio/our-story</loc>
     <lastmod>2025-01-17</lastmod>
     <changefreq>monthly</changefreq>
@@ -72,37 +101,30 @@
     <priority>0.70</priority>
   </url>
   
-  <!-- CRITICAL KEYWORD OPTIMIZED PAGES FOR #1 RANKING -->
+  <!-- CRITICAL KEYWORD OPTIMIZED SEARCH PAGES -->
   <url>
-    <loc>https://aitools.studio/?search=aiwebtools</loc>
+    <loc>https://aitools.studio/?search=AI%20tools</loc>
     <lastmod>2025-01-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.99</priority>
   </url>
   
   <url>
-    <loc>https://aitools.studio/?search=aiwebtools.ai</loc>
-    <lastmod>2025-01-17</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.99</priority>
-  </url>
-  
-  <url>
-    <loc>https://aitools.studio/?search=AI%20WEB%20TOOLS</loc>
-    <lastmod>2025-01-17</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.99</priority>
-  </url>
-  
-  <url>
-    <loc>https://aitools.studio/?search=ai%20web%20tools%20directory</loc>
+    <loc>https://aitools.studio/?search=best%20AI%20tools</loc>
     <lastmod>2025-01-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.98</priority>
   </url>
   
   <url>
-    <loc>https://aitools.studio/?search=best%20ai%20tools%202025</loc>
+    <loc>https://aitools.studio/?search=free%20AI%20tools</loc>
+    <lastmod>2025-01-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.98</priority>
+  </url>
+  
+  <url>
+    <loc>https://aitools.studio/?search=AI%20tools%202025</loc>
     <lastmod>2025-01-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.98</priority>
@@ -116,7 +138,35 @@
   </url>
   
   <url>
-    <loc>https://aitools.studio/?search=free%20ai%20tools</loc>
+    <loc>https://aitools.studio/?search=AI%20image%20generator</loc>
+    <lastmod>2025-01-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.97</priority>
+  </url>
+  
+  <url>
+    <loc>https://aitools.studio/?search=AI%20writing%20tools</loc>
+    <lastmod>2025-01-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.97</priority>
+  </url>
+  
+  <url>
+    <loc>https://aitools.studio/?search=AI%20video%20generator</loc>
+    <lastmod>2025-01-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.97</priority>
+  </url>
+  
+  <url>
+    <loc>https://aitools.studio/?search=AI%20coding%20tools</loc>
+    <lastmod>2025-01-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.97</priority>
+  </url>
+  
+  <url>
+    <loc>https://aitools.studio/?search=aiwebtools</loc>
     <lastmod>2025-01-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.96</priority>

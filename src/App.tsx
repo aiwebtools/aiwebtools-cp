@@ -36,6 +36,9 @@ const BlogPage = lazy(() => import("./pages/BlogPage"));
 const BlogPostPage = lazy(() => import("./pages/BlogPostPage"));
 const GamingEntertainmentPage = lazy(() => import("./pages/GamingEntertainmentPage"));
 const FAQPage = lazy(() => import("./pages/FAQPage"));
+const AIToolsPage = lazy(() => import("./pages/AIToolsPage"));
+const BestAIToolsPage = lazy(() => import("./pages/BestAIToolsPage"));
+const FreeAIToolsPage = lazy(() => import("./pages/FreeAIToolsPage"));
 
 // Lazy load non-critical components
 const FloatingCloneButton = lazy(() => import("./components/FloatingCloneButton"));
@@ -124,6 +127,9 @@ const AnimatedRoutes = () => {
         <Route path="/blog/:slug" element={<BlogPostPage />} />
         <Route path="/gaming-entertainment" element={<GamingEntertainmentPage />} />
         <Route path="/faq" element={<FAQPage />} />
+        <Route path="/ai-tools" element={<AIToolsPage />} />
+        <Route path="/best-ai-tools" element={<BestAIToolsPage />} />
+        <Route path="/free-ai-tools" element={<FreeAIToolsPage />} />
         <Route path="/favorites" element={<FavoritesPage />} />
         <Route path="/disclaimers" element={<DisclaimersPage />} />
         <Route path="/our-story" element={<OurStoryPage />} />
