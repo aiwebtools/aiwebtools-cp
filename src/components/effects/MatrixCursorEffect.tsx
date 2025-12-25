@@ -25,8 +25,8 @@ const MatrixCursorEffect = memo(() => {
     if (!containerRef.current || !isVisibleRef.current) return;
     
     const now = Date.now();
-    // Throttle particle spawning to every 80ms (was 50ms)
-    if (now - lastSpawnRef.current < 80) return;
+    // Throttle particle spawning to every 120ms for better perf
+    if (now - lastSpawnRef.current < 120) return;
     lastSpawnRef.current = now;
     
     const id = particleIdRef.current++;
@@ -49,8 +49,8 @@ const MatrixCursorEffect = memo(() => {
     containerRef.current.appendChild(span);
     particlesRef.current.set(id, span);
     
-    // Limit max particles
-    if (particlesRef.current.size > 12) {
+    // Limit max particles to 8 for better perf
+    if (particlesRef.current.size > 8) {
       const firstKey = particlesRef.current.keys().next().value;
       const firstEl = particlesRef.current.get(firstKey);
       firstEl?.remove();
