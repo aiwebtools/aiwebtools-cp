@@ -6,11 +6,59 @@ import { useNavigate } from "react-router-dom";
 import GlobalSearchBar from "@/components/GlobalSearchBar";
 import { FavoritesButton } from "@/components/favorites/FavoritesButton";
 import { Tool } from "@/types/tools";
-import { useState, useRef } from "react";
+import { useState, useRef, useMemo } from "react";
 import { Play } from "lucide-react";
 import ToolDisclaimerBadges from "@/components/disclaimers/ToolDisclaimerBadges";
 import { generateToolSlug } from "@/utils/urlGenerator";
 import AutoScaleTitle from "@/components/ui/auto-scale-title";
+
+// Weighted shuffle - keeps high-quality tools near the top but adds randomness
+const weightedShuffle = <T extends { title: string }>(items: T[]): T[] => {
+  // Define premium/flagship tools that should appear in top positions
+  const premiumTitles = new Set([
+    "TIME MACHINE GPT", "GODMODE GPT", "Talk to the Gods GPT", "Stellaris: AI Space Explorer",
+    "Movie Maker Studio AI SUITE", "BOOK WRITER GPT", "Criminologist GPT", "Phenomenon Explorer AI Suite",
+    "ImmortalizeME", "Resurrection GPT", "🕊️Mary Magdalene GPT", "ALAN WATTS GPT", "Albert Einstein GPT",
+    "Nikola Tesla GPT", "Personalized DR. GPT", "Public Defender GPT", "Trader GPT", "COLLEGE DEGREE GPT",
+    "LEARN ANY COURSE GPT", "LEARN ANY SKILL GPT", "Children's Picture Book Maker GPT", "Movie Scene Maker GPT",
+    "Music Video Maker AI Studio", "Sophia Aeterna AI", "Oraculum – The Revealer of Hidden \"Truths\"",
+    "GOD IS LIGHT — Roman Catholic Edition GPT", "God Is Light GPT", "Carl Sagan GPT", "Manicheism GPT"
+  ]);
+  
+  // Split into premium and regular
+  const premium: T[] = [];
+  const regular: T[] = [];
+  
+  items.forEach(item => {
+    if (premiumTitles.has(item.title)) {
+      premium.push(item);
+    } else {
+      regular.push(item);
+    }
+  });
+  
+  // Shuffle both arrays
+  const shuffleArray = (arr: T[]): T[] => {
+    const shuffled = [...arr];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+  };
+  
+  const shuffledPremium = shuffleArray(premium);
+  const shuffledRegular = shuffleArray(regular);
+  
+  // Interleave: put some premium tools at top, then mix
+  const topPremium = shuffledPremium.slice(0, Math.min(8, shuffledPremium.length));
+  const remainingPremium = shuffledPremium.slice(8);
+  
+  // Combine remaining premium with regular and shuffle again
+  const mixed = shuffleArray([...remainingPremium, ...shuffledRegular]);
+  
+  return [...topPremium, ...mixed];
+};
 
 // Lazy-loading YouTube video component - shows thumbnail until clicked
 const LazyVideoEmbed = ({ videoUrl, title, height = "h-32" }: { videoUrl: string; title: string; height?: string }) => {
@@ -3710,21 +3758,28 @@ const categorizedGPTs = featuredGPTs.map(gpt => ({
 const SpecialServices = () => {
   const navigate = useNavigate();
   const containerRef = useRef<HTMLDivElement>(null);
-  const [displayedGPTs, setDisplayedGPTs] = useState(categorizedGPTs);
+  
+  // Use useMemo to create initial shuffled order once per page load
+  const initialShuffledGPTs = useMemo(() => weightedShuffle(categorizedGPTs), []);
+  
+  const [displayedGPTs, setDisplayedGPTs] = useState(initialShuffledGPTs);
   const [selectedCategory, setSelectedCategory] = useState<string>("ALL");
-  const [isShuffled, setIsShuffled] = useState(false);
+  const [isShuffled, setIsShuffled] = useState(true); // Start as shuffled
   
   // The 6 main filter categories
   const mainCategories = Object.keys(FILTER_CATEGORIES);
   
-  // Shuffle function
+  // Shuffle function - re-shuffle with weighted algorithm
   const shuffleTools = () => {
-    const shuffled = [...displayedGPTs].sort(() => Math.random() - 0.5);
+    const currentItems = selectedCategory === "ALL" 
+      ? categorizedGPTs 
+      : categorizedGPTs.filter(gpt => gpt.filterCategory === selectedCategory);
+    const shuffled = weightedShuffle(currentItems);
     setDisplayedGPTs(shuffled);
     setIsShuffled(true);
   };
 
-  // Reset to original order
+  // Reset to original alphabetical order
   const resetOrder = () => {
     const filtered = selectedCategory === "ALL" 
       ? categorizedGPTs 
@@ -3733,14 +3788,18 @@ const SpecialServices = () => {
     setIsShuffled(false);
   };
 
-  // Filter by category
+  // Filter by category - applies weighted shuffle to filtered results
   const filterByCategory = (category: string) => {
     setSelectedCategory(category);
-    setIsShuffled(false);
     if (category === "ALL") {
-      setDisplayedGPTs(categorizedGPTs);
+      // Re-shuffle all GPTs when going back to ALL
+      setDisplayedGPTs(weightedShuffle(categorizedGPTs));
+      setIsShuffled(true);
     } else {
-      setDisplayedGPTs(categorizedGPTs.filter(gpt => gpt.filterCategory === category));
+      // Apply weighted shuffle to filtered category
+      const filtered = categorizedGPTs.filter(gpt => gpt.filterCategory === category);
+      setDisplayedGPTs(weightedShuffle(filtered));
+      setIsShuffled(true);
     }
   };
   
