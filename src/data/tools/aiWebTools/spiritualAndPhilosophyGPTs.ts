@@ -125,7 +125,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     emoji: "✝️",
     color: "from-gold-500 to-white",
     directUrl: "https://chatgpt.com/g/g-694c3933fd308191910ad49f407a95de-god-is-light-roman-catholic-version-gpt/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/god-is-light-catholic-edition.png",
+    imageUrl: "/src/assets/god-is-light-catholic-gpt.png",
     tags: ["catholic", "roman catholic", "catholicism", "catholic mysticism", "divine light", "mercy", "interior transformation", "saints", "mystics", "contemplative prayer", "sacraments", "holiness", "christ", "christian", "spirituality", "religion", "religious", "aiwebtools", "Custom GPT"],
     category: "Spirituality & Philosophy",
     rating: 4.9,
