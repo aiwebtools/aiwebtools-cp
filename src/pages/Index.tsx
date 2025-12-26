@@ -141,6 +141,11 @@ const Index = () => {
         {/* Custom GPTs Video Section - render immediately */}
         <SpecialServices />
         
+        {/* Book of Deployable Robots - positioned above search */}
+        <DeferredMount delay={0} fallback={null}>
+          <BookPromotionCard />
+        </DeferredMount>
+        
         {/* Bottom Search Portal */}
         <DeferredMount delay={0} fallback={null}>
           <section className="py-16 bg-gradient-to-br from-gray-900 to-black relative">
@@ -163,11 +168,6 @@ const Index = () => {
         {/* Ethical AI Quote Section */}
         <DeferredMount delay={0} fallback={null}>
           <EthicalAIQuoteSection />
-        </DeferredMount>
-        
-        {/* Book of Deployable Robots */}
-        <DeferredMount delay={0} fallback={null}>
-          <BookPromotionCard />
         </DeferredMount>
         
         <ScrollToTop />
