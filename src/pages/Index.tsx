@@ -134,7 +134,7 @@ const Index = () => {
         <AIWebToolsSEOSection />
    
         {/* Featured Tools Section - no loading spinner, renders when ready */}
-        <DeferredMount delay={50} fallback={null}>
+        <DeferredMount delay={0} fallback={null}>
           <LazyFeaturedTools onToolsLoaded={(count) => {}} />
         </DeferredMount>
         
