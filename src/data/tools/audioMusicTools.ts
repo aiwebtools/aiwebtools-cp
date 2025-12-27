@@ -25,7 +25,7 @@ export const audioMusicTools: Tool[] = [
     emoji: "🎙️",
     color: "from-emerald-500 to-teal-600",
     directUrl: "https://udio.com/",
-    tags: ["Music Generator", "udio", "high-fidelity audio", "natural vocals", "text to music", "original compositions", "AI instruments"],
+    tags: ["Music Generator", "udio", "high-fidelity audio", "natural vocals", "text to music", "original compositions", "AI instruments", "music generator", "ai music", "make music", "create music", "song generator", "music maker"],
     category: "Audio & Music Tools",
     rating: 4.7,
     totalVotes: 5432
@@ -39,7 +39,7 @@ export const audioMusicTools: Tool[] = [
     directUrl: "https://musicvideomakergpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/_vZhs4FoTco?si=oYk_LS_EynMkLliD",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-dynamic-product-advertisement-showcase_TiaF.jpeg/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg=true/qt=q:98",
-    tags: ["Music Generator", "music video creation", "AI-powered effects", "visual synchronization", "cinematic storytelling", "YouTube content", "TikTok videos", "professional editing", "music visualization"],
+    tags: ["Music Generator", "music video creation", "AI-powered effects", "visual synchronization", "cinematic storytelling", "YouTube content", "TikTok videos", "professional editing", "music visualization", "music generator", "ai music", "make music", "video generator", "ai video", "make videos"],
     category: "Audio & Music Tools",
     rating: 4.9,
     totalVotes: 5847
@@ -51,7 +51,7 @@ export const audioMusicTools: Tool[] = [
     emoji: "🔊",
     color: "from-violet-500 to-purple-600",
     directUrl: "https://stableaudio.com/",
-    tags: ["Music Generator", "Sound Effects", "Stability AI", "ambient audio", "variable length", "text descriptions", "high quality"],
+    tags: ["Music Generator", "Sound Effects", "Stability AI", "ambient audio", "variable length", "text descriptions", "high quality", "music generator", "ai music", "make music", "create music", "song generator"],
     category: "Audio & Music Tools",
     rating: 4.6,
     totalVotes: 4321
@@ -63,7 +63,7 @@ export const audioMusicTools: Tool[] = [
     emoji: "🎵",
     color: "from-blue-500 to-indigo-600",
     directUrl: "https://google-research.github.io/seanet/musiclm/examples/",
-    tags: ["Music Generator", "Google Research", "high-fidelity", "text descriptions", "multiple genres", "musical styles", "research model"],
+    tags: ["Music Generator", "Google Research", "high-fidelity", "text descriptions", "multiple genres", "musical styles", "research model", "music generator", "ai music", "make music", "create music", "song generator"],
     category: "Audio & Music Tools",
     rating: 4.5,
     totalVotes: 3876
@@ -75,7 +75,7 @@ export const audioMusicTools: Tool[] = [
     emoji: "🎛️",
     color: "from-orange-500 to-red-600",
     directUrl: "https://github.com/facebookresearch/audiocraft",
-    tags: ["Music Generator", "Sound Effects", "Meta", "open source", "MusicGen", "AudioGen", "neural synthesis", "research toolkit"],
+    tags: ["Music Generator", "Sound Effects", "Meta", "open source", "MusicGen", "AudioGen", "neural synthesis", "research toolkit", "music generator", "ai music", "make music", "create music"],
     category: "Audio & Music Tools",
     rating: 4.4,
     totalVotes: 3245
@@ -87,7 +87,7 @@ export const audioMusicTools: Tool[] = [
     emoji: "🎭",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://www.voicemod.net/",
-    tags: ["Voice Synthesis", "voice transformation", "celebrity voices", "character voices", "real-time", "streaming", "gaming"],
+    tags: ["Voice Synthesis", "voice transformation", "celebrity voices", "character voices", "real-time", "streaming", "gaming", "voice generator", "text to speech", "ai voice", "voice cloning"],
     category: "Audio & Music Tools",
     rating: 4.3,
     totalVotes: 4567
@@ -99,7 +99,7 @@ export const audioMusicTools: Tool[] = [
     emoji: "🌊",
     color: "from-teal-500 to-cyan-600",
     directUrl: "https://www.splashmusic.com/",
-    tags: ["Music Generator", "beats generation", "melodies", "collaborative tools", "DAW integration", "professional production", "AI composition"],
+    tags: ["Music Generator", "beats generation", "melodies", "collaborative tools", "DAW integration", "professional production", "AI composition", "music generator", "ai music", "make music", "create music", "song generator", "music maker"],
     category: "Audio & Music Tools",
     rating: 4.2,
     totalVotes: 2987
@@ -111,7 +111,7 @@ export const audioMusicTools: Tool[] = [
     emoji: "🗣️",
     color: "from-green-500 to-emerald-600",
     directUrl: "https://coqui.ai/",
-    tags: ["Text-to-Speech", "Voice Cloning", "open source", "multilingual", "real-time synthesis", "custom voices", "TTS"],
+    tags: ["Text-to-Speech", "Voice Cloning", "open source", "multilingual", "real-time synthesis", "custom voices", "TTS", "voice generator", "text to speech", "ai voice", "voice cloning", "speech generator"],
     category: "Audio & Music Tools",
     rating: 4.5,
     totalVotes: 3654
@@ -123,7 +123,7 @@ export const audioMusicTools: Tool[] = [
     emoji: "🎼",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://soundful.com/",
-    tags: ["Music Generator", "royalty-free", "background music", "content creators", "mood-based", "videos", "podcasts"],
+    tags: ["Music Generator", "royalty-free", "background music", "content creators", "mood-based", "videos", "podcasts", "music generator", "ai music", "make music", "create music"],
     category: "Audio & Music Tools",
     rating: 4.3,
     totalVotes: 2765
@@ -135,7 +135,7 @@ export const audioMusicTools: Tool[] = [
     emoji: "🎬",
     color: "from-red-500 to-orange-600",
     directUrl: "https://www.respeecher.com/",
-    tags: ["Voice Cloning", "Voice Synthesis", "professional voice cloning", "filmmakers", "dubbing", "localization", "ultra-realistic", "voice transformation"],
+    tags: ["Voice Cloning", "Voice Synthesis", "professional voice cloning", "filmmakers", "dubbing", "localization", "ultra-realistic", "voice transformation", "voice generator", "ai voice", "voice cloning"],
     category: "Audio & Music Tools",
     rating: 4.6,
     totalVotes: 3987

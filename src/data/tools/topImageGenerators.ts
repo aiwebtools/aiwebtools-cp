@@ -40,7 +40,7 @@ export const topImageGenerators: Tool[] = [
     emoji: "✨",
     color: "from-blue-500 to-indigo-600",
     directUrl: "https://ideogram.ai/?via=aiwebtools",
-    tags: ["Image Generator", "Logo Design", "Ideogram", "text in images", "logo design", "posters", "AI image", "text rendering", "design"],
+    tags: ["Image Generator", "Logo Design", "Ideogram", "text in images", "logo design", "posters", "AI image", "text rendering", "design", "image generator", "ai image", "generate images", "logo generator", "logo maker", "create logo", "ai logo"],
     category: "AI Image Generation",
     rating: 4.8,
     totalVotes: 89000

@@ -21,7 +21,7 @@ export const documentAndResearchTools: Tool[] = [
     emoji: "📄",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://chatdoc.com/",
-    tags: ["ChatGPT powered", "multiple formats", "PDF", "Word", "cited sources", "document processing", "Paper Summarization", "Data Analysis"],
+    tags: ["ChatGPT powered", "multiple formats", "PDF", "Word", "cited sources", "document processing", "Paper Summarization", "Data Analysis", "document assistant", "pdf reader", "document analyzer", "file reader", "document summarizer"],
     category: "Document & Research Tools",
     rating: 4.6,
     totalVotes: 4567
@@ -45,7 +45,7 @@ export const documentAndResearchTools: Tool[] = [
     emoji: "🧠",
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://doclime.com/",
-    tags: ["document analysis", "lightning-fast", "universities", "corporations", "citations", "research", "Data Analysis", "Citation Management"],
+    tags: ["document analysis", "lightning-fast", "universities", "corporations", "citations", "research", "Data Analysis", "Citation Management", "document assistant", "document analyzer", "data analysis", "data analyzer"],
     category: "Document & Research Tools",
     rating: 4.7,
     totalVotes: 4234
