@@ -4,7 +4,7 @@ import { Suspense, lazy } from 'react';
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation, Navigate } from "react-router-dom";
 import { HelmetProvider } from 'react-helmet-async';
 import { FavoritesProvider } from "@/hooks/useFavorites";
 import { VideoManagerProvider } from "@/hooks/useGlobalVideoManager";
@@ -140,21 +140,14 @@ const AnimatedRoutes = () => {
   );
 };
 
-// Global route guard: redirect new visitors to /welcome disclaimer gate
+// Global route guard: instant redirect new visitors to /welcome disclaimer gate
 const RouteGuard: React.FC = () => {
   const location = useLocation();
   const hasAccepted = localStorage.getItem("aitools-consent-v3");
   
-  // If user hasn't accepted disclaimer and isn't on /welcome, redirect them
-  React.useEffect(() => {
-    if (!hasAccepted && location.pathname !== '/welcome') {
-      window.location.replace('/welcome');
-    }
-  }, [hasAccepted, location.pathname]);
-  
-  // Show nothing while redirecting
+  // Instant redirect using React Router (no page reload)
   if (!hasAccepted && location.pathname !== '/welcome') {
-    return null;
+    return <Navigate to="/welcome" replace />;
   }
   
   return <AnimatedRoutes />;
