@@ -123,18 +123,6 @@ export const coreImageGenerators: Tool[] = [
     totalVotes: 6789
   },
   {
-    icon: Crown,
-    title: "DALL-E 3",
-    description: "OpenAI's most advanced image generation model with improved prompt adherence and safety. Create detailed, contextually accurate images from complex descriptions.",
-    emoji: "👑",
-    color: "from-gold-500 to-orange-600",
-    directUrl: "https://openai.com/dall-e-3?via=aiwebtools",
-    tags: ["Image Generator", "OpenAI", "advanced model", "prompt adherence", "detailed images", "safety"],
-    category: "Core Image Generators",
-    rating: 4.8,
-    totalVotes: 5432
-  },
-  {
     icon: Zap,
     title: "Stable Diffusion",
     description: "Open-source AI image generator that can be run locally or through various online platforms. Highly customizable with extensive community support and models.",

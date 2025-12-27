@@ -81,16 +81,4 @@ export const topImageGenerators: Tool[] = [
     rating: 4.6,
     totalVotes: 92000
   },
-  {
-    icon: Image,
-    title: "DALL-E 3",
-    description: "OpenAI's AI image generator integrated with ChatGPT. Creates detailed images from text descriptions with good prompt understanding.",
-    emoji: "🖼️",
-    color: "from-green-500 to-teal-600",
-    directUrl: "https://openai.com/dall-e-3?via=aiwebtools",
-    tags: ["Image Generator", "DALL-E", "OpenAI", "image generation", "photorealistic", "ChatGPT", "text-to-image", "AI art"],
-    category: "AI Image Generation",
-    rating: 4.5,
-    totalVotes: 134000
-  }
 ];
