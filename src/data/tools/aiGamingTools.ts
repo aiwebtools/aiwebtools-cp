@@ -9,7 +9,7 @@ export const aiGamingTools: Tool[] = [
     emoji: "🎮",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://www.scenario.com/?via=aiwebtools",
-    tags: ["game assets", "AI art", "game development", "character design", "environment art", "asset generation", "Game Asset Generator"],
+    tags: ["game assets", "AI art", "game development", "character design", "environment art", "asset generation", "Game Asset Generator", "video game", "video game generator", "ai to make video games", "make video games"],
     category: "AI Gaming & Game Development",
     rating: 4.7,
     totalVotes: 11234
@@ -21,7 +21,7 @@ export const aiGamingTools: Tool[] = [
     emoji: "🎲",
     color: "from-blue-500 to-indigo-600",
     directUrl: "https://ludo.ai/?via=aiwebtools",
-    tags: ["game design", "game concepts", "ideation", "game mechanics", "design documents", "AI assistant", "Game Design"],
+    tags: ["game design", "game concepts", "ideation", "game mechanics", "design documents", "AI assistant", "Game Design", "video game", "video game generator", "ai to make video games", "make video games"],
     category: "AI Gaming & Game Development",
     rating: 4.6,
     totalVotes: 9876
@@ -33,7 +33,7 @@ export const aiGamingTools: Tool[] = [
     emoji: "👥",
     color: "from-green-500 to-emerald-600",
     directUrl: "https://www.inworld.ai/?via=aiwebtools",
-    tags: ["AI NPCs", "character AI", "conversational AI", "game characters", "interactive experiences", "intelligent agents", "NPC & Character AI"],
+    tags: ["AI NPCs", "character AI", "conversational AI", "game characters", "interactive experiences", "intelligent agents", "NPC & Character AI", "video game", "video game generator", "ai to make video games"],
     category: "AI Gaming & Game Development",
     rating: 4.8,
     totalVotes: 13456
@@ -45,7 +45,7 @@ export const aiGamingTools: Tool[] = [
     emoji: "🪄",
     color: "from-pink-500 to-rose-600",
     directUrl: "https://www.rosebud.ai/?via=aiwebtools",
-    tags: ["game development", "no-code games", "AI game creation", "natural language", "game builder", "rapid prototyping", "Game Development"],
+    tags: ["game development", "no-code games", "AI game creation", "natural language", "game builder", "rapid prototyping", "Game Development", "video game", "video game generator", "ai to make video games", "make video games", "create video games"],
     category: "AI Gaming & Game Development",
     rating: 4.5,
     totalVotes: 7890
@@ -57,7 +57,7 @@ export const aiGamingTools: Tool[] = [
     emoji: "🤖",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://www.convai.com/?via=aiwebtools",
-    tags: ["conversational AI", "game NPCs", "voice AI", "virtual characters", "interactive dialogue", "game AI", "NPC & Character AI"],
+    tags: ["conversational AI", "game NPCs", "voice AI", "virtual characters", "interactive dialogue", "game AI", "NPC & Character AI", "video game", "video game generator", "ai to make video games"],
     category: "AI Gaming & Game Development",
     rating: 4.6,
     totalVotes: 8234
@@ -69,7 +69,7 @@ export const aiGamingTools: Tool[] = [
     emoji: "✨",
     color: "from-orange-500 to-red-600",
     directUrl: "https://leonardo.ai/?via=aiwebtools",
-    tags: ["game art", "concept art", "AI generation", "game assets", "visual content", "style consistency", "Game Asset Generator"],
+    tags: ["game art", "concept art", "AI generation", "game assets", "visual content", "style consistency", "Game Asset Generator", "video game", "video game generator", "ai to make video games"],
     category: "AI Gaming & Game Development",
     rating: 4.7,
     totalVotes: 16789
@@ -81,7 +81,7 @@ export const aiGamingTools: Tool[] = [
     emoji: "🎮",
     color: "from-gray-600 to-gray-800",
     directUrl: "https://unity.com/?via=aiwebtools",
-    tags: ["game engine", "3D games", "2D games", "VR", "AR", "cross-platform", "Game Engine"],
+    tags: ["game engine", "3D games", "2D games", "VR", "AR", "cross-platform", "Game Engine", "video game", "video game generator", "make video games", "create video games"],
     category: "AI Gaming & Game Development",
     rating: 4.8,
     totalVotes: 45678
@@ -93,7 +93,7 @@ export const aiGamingTools: Tool[] = [
     emoji: "🎮",
     color: "from-blue-600 to-purple-700",
     directUrl: "https://www.unrealengine.com/?via=aiwebtools",
-    tags: ["game engine", "3D games", "AAA games", "visual scripting", "photorealistic", "Game Engine"],
+    tags: ["game engine", "3D games", "AAA games", "visual scripting", "photorealistic", "Game Engine", "video game", "video game generator", "make video games", "create video games"],
     category: "AI Gaming & Game Development",
     rating: 4.9,
     totalVotes: 52345
@@ -105,7 +105,7 @@ export const aiGamingTools: Tool[] = [
     emoji: "🤖",
     color: "from-blue-400 to-cyan-500",
     directUrl: "https://godotengine.org/?via=aiwebtools",
-    tags: ["game engine", "open source", "2D games", "3D games", "indie games", "GDScript", "Game Engine"],
+    tags: ["game engine", "open source", "2D games", "3D games", "indie games", "GDScript", "Game Engine", "video game", "video game generator", "make video games", "create video games"],
     category: "AI Gaming & Game Development",
     rating: 4.7,
     totalVotes: 23456
@@ -141,7 +141,7 @@ export const aiGamingTools: Tool[] = [
     emoji: "⚔️",
     color: "from-red-500 to-orange-600",
     directUrl: "https://www.rpgmakerweb.com/?via=aiwebtools",
-    tags: ["rpg maker", "game development", "no-code", "rpg games", "storytelling", "Game Development"],
+    tags: ["rpg maker", "game development", "no-code", "rpg games", "storytelling", "Game Development", "video game", "video game generator", "make video games", "create video games"],
     category: "AI Gaming & Game Development",
     rating: 4.5,
     totalVotes: 18765
