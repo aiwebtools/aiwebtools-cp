@@ -60,18 +60,6 @@ export const additionalRealAITools: Tool[] = [
     totalVotes: 7832
   },
   {
-    icon: Image,
-    title: "DALL-E 3",
-    description: "OpenAI's most advanced AI image generator for creating detailed images from text descriptions.",
-    emoji: "🎨",
-    color: "from-blue-500 to-purple-600",
-    directUrl: "https://openai.com/dall-e-3/?via=aiwebtools",
-    tags: ["image generation", "AI art", "creativity", "design", "visual"],
-    category: "AI Image Generation",
-    rating: 4.6,
-    totalVotes: 9234
-  },
-  {
     icon: Video,
     title: "Runway ML",
     description: "AI-powered creative suite for video generation, editing, and visual effects with cutting-edge models.",
