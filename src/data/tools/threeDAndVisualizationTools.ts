@@ -23,7 +23,7 @@ export const threeDAndVisualizationTools: Tool[] = [
     emoji: "🌍",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://www.manyworlds.run/?via=aiwebtools",
-    tags: ["VR environments", "game environments", "3D generation", "virtual reality", "world building", "game development", "3D worlds", "aiwebtools"],
+    tags: ["VR environments", "game environments", "3D generation", "virtual reality", "world building", "game development", "3D worlds", "aiwebtools", "video game", "video game generator", "ai to make video games"],
     category: "3D & VISUALIZATION",
     rating: 4.9,
     totalVotes: 4234
@@ -35,7 +35,7 @@ export const threeDAndVisualizationTools: Tool[] = [
     emoji: "🎮",
     color: "from-pink-500 to-rose-600",
     directUrl: "https://rosebud.ai/?via=aiwebtools",
-    tags: ["AI game generation", "video games", "game development", "text-to-game", "interactive experiences", "game assets", "rosebud ai", "aiwebtools"],
+    tags: ["AI game generation", "video games", "game development", "text-to-game", "interactive experiences", "game assets", "rosebud ai", "aiwebtools", "video game generator", "ai to make video games", "make video games", "create video games"],
     category: "3D & VISUALIZATION",
     rating: 4.8,
     totalVotes: 3890
@@ -48,7 +48,7 @@ export const threeDAndVisualizationTools: Tool[] = [
     color: "from-green-500 to-blue-600",
     directUrl: "https://www.meshy.ai/?via=aiwebtools",
     imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377357834886582463/image.png?ex=6838abf1&is=68375a71&hm=8796d07ef297f42d59644ba648de8f8e892976312a6e04ec90242aea3c02c9ad&",
-    tags: ["AI 3D generation", "text-to-3D", "image-to-3D", "game assets", "3D models", "meshy ai", "aiwebtools"],
+    tags: ["AI 3D generation", "text-to-3D", "image-to-3D", "game assets", "3D models", "meshy ai", "aiwebtools", "video game", "video game generator", "game development"],
     category: "3D & VISUALIZATION",
     rating: 4.8,
     totalVotes: 4567
@@ -84,7 +84,7 @@ export const threeDAndVisualizationTools: Tool[] = [
     emoji: "🔧",
     color: "from-orange-500 to-red-600",
     directUrl: "https://sloyd.ai/?via=aiwebtools",
-    tags: ["AI 3D models", "customizable 3D", "game development", "text-to-3D", "creative tools"],
+    tags: ["AI 3D models", "customizable 3D", "game development", "text-to-3D", "creative tools", "video game", "video game generator", "game assets"],
     category: "3D & VISUALIZATION",
     rating: 4.5,
     totalVotes: 2234
