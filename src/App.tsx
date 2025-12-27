@@ -140,9 +140,23 @@ const AnimatedRoutes = () => {
   );
 };
 
-// Global route guard (non-blocking): we no longer force a hard redirect to /welcome.
-// The homepage displays a lightweight consent banner instead for instant initial load.
+// Global route guard: redirect new visitors to /welcome disclaimer gate
 const RouteGuard: React.FC = () => {
+  const location = useLocation();
+  const hasAccepted = localStorage.getItem("aitools-consent-v3");
+  
+  // If user hasn't accepted disclaimer and isn't on /welcome, redirect them
+  React.useEffect(() => {
+    if (!hasAccepted && location.pathname !== '/welcome') {
+      window.location.replace('/welcome');
+    }
+  }, [hasAccepted, location.pathname]);
+  
+  // Show nothing while redirecting
+  if (!hasAccepted && location.pathname !== '/welcome') {
+    return null;
+  }
+  
   return <AnimatedRoutes />;
 };
 function App() {
