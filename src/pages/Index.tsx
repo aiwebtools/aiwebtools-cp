@@ -18,7 +18,7 @@ import CloneOfferPopup from "@/components/CloneOfferPopup";
 import AIWebToolsSEOSection from "@/components/seo/AIWebToolsSEOSection";
 import DeferredMount from "@/components/DeferredMount";
 import EthicalAIQuoteSection from "@/components/EthicalAIQuoteSection";
-import ConsentBanner from "@/components/ConsentBanner";
+
 
 // Removed loading spinner - causes perceived slowness on refresh
 
@@ -62,7 +62,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-black relative overflow-x-hidden">
       <ImprovedSEOHead pageType="homepage" />
-      <ConsentBanner />
+      
       {/* SEO booster - minimal delay */}
       <DeferredMount delay={0}>
         <GoogleRankingBooster pageType="homepage" />
