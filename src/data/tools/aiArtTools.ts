@@ -11,7 +11,7 @@ export const aiArtTools: Tool[] = [
     emoji: "🍌",
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://aistudio.google.com/",
-    tags: ["Google AI", "image generation", "AI Studio", "visual content", "Google Labs", "image creation", "Image Generator", "AI Art"],
+    tags: ["Google AI", "image generation", "AI Studio", "visual content", "Google Labs", "image creation", "Image Generator", "AI Art", "image generator", "ai image", "generate images", "create images", "picture generator", "ai art generator"],
     category: "AI Art"
   },
   {
@@ -22,7 +22,7 @@ export const aiArtTools: Tool[] = [
     color: "from-purple-500 to-pink-500",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-visually-captivating-advertisement-for-the-.jpeg/:/cr=t:0.11%25,l:0%25,w:100%25,h:75%25/rs=w:600,h:300,cg:true/qt=q:98",
     directUrl: "https://texttovideoprompter.lovable.app/?via=aiwebtools",
-    tags: ["midjourney", "prompts", "AI art", "optimization", "assistant", "Image Generator", "Prompt Engineering"],
+    tags: ["midjourney", "prompts", "AI art", "optimization", "assistant", "Image Generator", "Prompt Engineering", "image generator", "ai image", "generate images", "create images", "picture generator"],
     category: "AI Art"
   },
   {
@@ -33,7 +33,7 @@ export const aiArtTools: Tool[] = [
     color: "from-gray-500 to-black-500",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-an-ai-tool-called-sketch-ar.jpeg/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,h:300,cg:true",
     directUrl: "https://sketchartistgpt.lovable.app/?via=aiwebtools",
-    tags: ["sketching", "drawing", "art", "character design", "illustration", "Image Generator", "AI Art"],
+    tags: ["sketching", "drawing", "art", "character design", "illustration", "Image Generator", "AI Art", "image generator", "ai image", "generate images", "create images", "picture generator"],
     category: "AI Art",
     rating: 4.3,
     totalVotes: 1847
@@ -47,7 +47,7 @@ export const aiArtTools: Tool[] = [
     color: "from-purple-500 to-pink-500",
     videoUrl: "https://www.youtube.com/watch?v=5deYUaqwreo",
     directUrl: "https://www.midjourney.com/home?via=aiwebtools",
-    tags: ["image generation", "AI art", "creativity", "visual", "midjourney", "discord", "Image Generator"],
+    tags: ["image generation", "AI art", "creativity", "visual", "midjourney", "discord", "Image Generator", "image generator", "ai image", "generate images", "create images", "picture generator", "ai art generator"],
     category: "AI Art"
   },
   {
@@ -58,7 +58,7 @@ export const aiArtTools: Tool[] = [
     color: "from-blue-500 to-green-500",
     videoUrl: "https://www.youtube.com/watch?v=USSpwbe3Rxk",
     directUrl: "https://ideogram.ai/?via=aiwebtools",
-    tags: ["image generation", "graphics", "AI art", "design", "logos", "professional", "Image Generator", "Logo Design"],
+    tags: ["image generation", "graphics", "AI art", "design", "logos", "professional", "Image Generator", "Logo Design", "image generator", "ai image", "generate images", "logo generator", "logo maker", "create logo", "ai logo"],
     category: "AI Art"
   },
   {
@@ -68,7 +68,7 @@ export const aiArtTools: Tool[] = [
     emoji: "🎬",
     color: "from-purple-500 to-red-500",
     directUrl: "https://runwayml.com/?via=aiwebtools",
-    tags: ["creative suite", "video generation", "interactive content", "professional", "artists"],
+    tags: ["creative suite", "video generation", "interactive content", "professional", "artists", "video generator", "ai video", "make videos", "create videos", "video maker"],
     category: "AI Art",
     rating: 4.6,
     totalVotes: 3421
@@ -80,7 +80,7 @@ export const aiArtTools: Tool[] = [
     emoji: "💫",
     color: "from-indigo-500 to-pink-500",
     directUrl: "https://beta.dreamstudio.ai/?via=aiwebtools",
-    tags: ["dreamstudio", "stability AI", "customization", "professional", "advanced"],
+    tags: ["dreamstudio", "stability AI", "customization", "professional", "advanced", "image generator", "ai image", "generate images", "create images", "ai art generator"],
     category: "AI Art",
     rating: 4.5,
     totalVotes: 3765
@@ -92,7 +92,7 @@ export const aiArtTools: Tool[] = [
     emoji: "🎯",
     color: "from-orange-500 to-purple-500",
     directUrl: "https://leonardo.ai/?via=aiwebtools",
-    tags: ["game assets", "concept art", "fine-tuned models", "professional", "creative designs"],
+    tags: ["game assets", "concept art", "fine-tuned models", "professional", "creative designs", "image generator", "ai image", "generate images", "create images", "ai art generator"],
     category: "AI Art",
     rating: 4.5,
     totalVotes: 3892
@@ -104,7 +104,7 @@ export const aiArtTools: Tool[] = [
     emoji: "🌟",
     color: "from-cyan-500 to-purple-500",
     directUrl: "https://stablediffusionweb.com/?via=aiwebtools",
-    tags: ["stable diffusion", "free", "online", "text to image", "high quality"],
+    tags: ["stable diffusion", "free", "online", "text to image", "high quality", "image generator", "ai image", "generate images", "create images", "ai art generator"],
     category: "AI Art",
     rating: 4.4,
     totalVotes: 2987

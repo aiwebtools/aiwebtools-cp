@@ -289,7 +289,7 @@ export const moreRealAITools: Tool[] = [
     emoji: "✨",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://looka.grsm.io/aiwebtools",
-    tags: ["logo design", "brand identity", "AI design", "business branding", "brand kit", "marketing materials"],
+    tags: ["logo design", "brand identity", "AI design", "business branding", "brand kit", "marketing materials", "logo generator", "logo maker", "create logo", "ai logo", "brand logo"],
     category: "Design Tools",
     rating: 4.4,
     totalVotes: 6789

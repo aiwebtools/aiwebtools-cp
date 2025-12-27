@@ -10,7 +10,7 @@ export const resumeAndCareerTools: Tool[] = [
     emoji: "📄",
     color: "from-blue-400 to-purple-500",
     directUrl: "https://airesumebuilder.me/",
-    tags: ["resume creation", "ATS-friendly", "AI generation", "professional", "job search"],
+    tags: ["resume creation", "ATS-friendly", "AI generation", "professional", "job search", "resume builder", "resume maker", "cv generator", "resume writer", "job resume"],
     category: "Career & Professional Tools",
     rating: 4.5,
     totalVotes: 2890
@@ -22,7 +22,7 @@ export const resumeAndCareerTools: Tool[] = [
     emoji: "🎯",
     color: "from-green-400 to-teal-500",
     directUrl: "https://www.finalroundai.com",
-    tags: ["interview preparation", "mock interviews", "real-time coaching", "resume builder", "career coaching"],
+    tags: ["interview preparation", "mock interviews", "real-time coaching", "resume builder", "career coaching", "resume maker", "cv generator", "resume writer", "job resume"],
     category: "Career & Professional Tools",
     rating: 4.7,
     totalVotes: 3200

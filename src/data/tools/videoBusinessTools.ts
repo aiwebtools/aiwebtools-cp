@@ -21,7 +21,7 @@ export const videoBusinessTools: Tool[] = [
     emoji: "🎭",
     color: "from-blue-500 to-green-600",
     directUrl: "https://www.synthesia.io/",
-    tags: ["AI avatars", "professional videos", "training", "marketing", "educational", "Video Generator", "Avatar Video"],
+    tags: ["AI avatars", "professional videos", "training", "marketing", "educational", "Video Generator", "Avatar Video", "avatar generator", "ai avatar", "video generator", "ai video", "make videos"],
     category: "Video Tools",
     rating: 4.6,
     totalVotes: 3456
@@ -33,7 +33,7 @@ export const videoBusinessTools: Tool[] = [
     emoji: "📹",
     color: "from-orange-500 to-red-600",
     directUrl: "https://app.heygen.com/guest?sid=rewardful&via=aiwebtools",
-    tags: ["AI avatars", "voice cloning", "personalized videos", "multilingual", "scale", "video generation", "Video Generator", "Avatar Video"],
+    tags: ["AI avatars", "voice cloning", "personalized videos", "multilingual", "scale", "video generation", "Video Generator", "Avatar Video", "avatar generator", "ai avatar", "video generator", "ai video", "make videos"],
     category: "Video Tools",
     rating: 4.5,
     totalVotes: 3123
@@ -45,7 +45,7 @@ export const videoBusinessTools: Tool[] = [
     emoji: "👥",
     color: "from-blue-500 to-teal-600",
     directUrl: "https://www.colossyan.com/",
-    tags: ["AI actors", "training videos", "learning", "multilingual", "virtual presenters", "Video Generator", "Avatar Video"],
+    tags: ["AI actors", "training videos", "learning", "multilingual", "virtual presenters", "Video Generator", "Avatar Video", "avatar generator", "ai avatar", "video generator", "ai video"],
     category: "Video Tools",
     rating: 4.3,
     totalVotes: 2134

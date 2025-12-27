@@ -9,7 +9,7 @@ export const aiTranslationTools: Tool[] = [
     emoji: "🌐",
     color: "from-blue-500 to-indigo-600",
     directUrl: "https://www.deepl.com/?via=aiwebtools",
-    tags: ["translation", "AI translation", "document translation", "multilingual", "neural translation", "language AI"],
+    tags: ["translation", "AI translation", "document translation", "multilingual", "neural translation", "language AI", "translator", "ai translate", "language translator", "translate text", "translation tool"],
     category: "AI Translation & Localization",
     rating: 4.9,
     totalVotes: 15678
@@ -21,7 +21,7 @@ export const aiTranslationTools: Tool[] = [
     emoji: "🗺️",
     color: "from-green-500 to-emerald-600",
     directUrl: "https://translate.google.com/?via=aiwebtools",
-    tags: ["translation", "multilingual", "speech translation", "document translation", "free", "language AI", "Google"],
+    tags: ["translation", "multilingual", "speech translation", "document translation", "free", "language AI", "Google", "translator", "ai translate", "language translator", "translate text"],
     category: "AI Translation & Localization",
     rating: 4.7,
     totalVotes: 28934

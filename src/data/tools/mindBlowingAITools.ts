@@ -103,7 +103,7 @@ export const mindBlowingAITools: Tool[] = [
     emoji: "🖼️",
     color: "from-pink-500 to-red-600",
     directUrl: "https://remove.bg/?via=aiwebtools",
-    tags: ["background removal", "image editing", "AI processing", "photography", "free"],
+    tags: ["background removal", "image editing", "AI processing", "photography", "free", "photo editor", "ai photo", "image editor", "picture editor", "photo enhancer"],
     category: "Image Editing",
     rating: 4.8,
     totalVotes: 78000
@@ -115,7 +115,7 @@ export const mindBlowingAITools: Tool[] = [
     emoji: "🎨",
     color: "from-gradient-start to-gradient-end",
     directUrl: "https://prisma-ai.com/lensa/?via=aiwebtools",
-    tags: ["AI portraits", "selfie enhancement", "avatar creation", "art generation", "paid"],
+    tags: ["AI portraits", "selfie enhancement", "avatar creation", "art generation", "paid", "avatar generator", "ai avatar", "profile picture", "character creator", "virtual avatar"],
     category: "Image Generation",
     rating: 4.2,
     totalVotes: 89000
@@ -151,7 +151,7 @@ export const mindBlowingAITools: Tool[] = [
     emoji: "📸",
     color: "from-pink-500 to-purple-600",
     directUrl: "https://faceapp.com/?via=aiwebtools",
-    tags: ["face editing", "photo transformation", "age progression", "AI filters", "freemium"],
+    tags: ["face editing", "photo transformation", "age progression", "AI filters", "freemium", "photo editor", "ai photo", "image editor", "picture editor"],
     category: "Photo Editing",
     rating: 4.1,
     totalVotes: 156000
@@ -223,7 +223,7 @@ export const mindBlowingAITools: Tool[] = [
     emoji: "🌐",
     color: "from-blue-500 to-green-600",
     directUrl: "https://deepl.com/?via=aiwebtools",
-    tags: ["AI translation", "language", "document translation", "multilingual", "freemium"],
+    tags: ["AI translation", "language", "document translation", "multilingual", "freemium", "translator", "ai translate", "language translator", "translate text", "translation tool"],
     category: "Translation",
     rating: 4.7,
     totalVotes: 134000

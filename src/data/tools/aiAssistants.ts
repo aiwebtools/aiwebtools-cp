@@ -193,7 +193,7 @@ export const aiAssistants: Tool[] = [
     color: "from-gray-600 to-blue-600",
     directUrl: "https://notion.so/ai",
     category: "AI Writing Assistants",
-    tags: ["Writing Agent", "Productivity Agent", "writing", "productivity", "workspace", "collaboration", "agent"],
+    tags: ["Writing Agent", "Productivity Agent", "writing", "productivity", "workspace", "collaboration", "agent", "writing assistant", "ai writer", "content writer", "write for me"],
     rating: 4.5,
     totalVotes: 7890
   },
@@ -205,7 +205,7 @@ export const aiAssistants: Tool[] = [
     color: "from-purple-500 to-indigo-600",
     directUrl: "https://jasper.ai",
     category: "AI Writing Assistants",
-    tags: ["Writing Agent", "Marketing Agent", "writing", "marketing", "content creation", "business", "agent"],
+    tags: ["Writing Agent", "Marketing Agent", "writing", "marketing", "content creation", "business", "agent", "writing assistant", "ai writer", "content writer", "blog writer"],
     rating: 4.3,
     totalVotes: 5890
   },
@@ -217,7 +217,7 @@ export const aiAssistants: Tool[] = [
     color: "from-green-500 to-blue-600",
     directUrl: "https://grammarly.com",
     category: "AI Writing Assistants",
-    tags: ["Writing Agent", "grammar", "writing", "proofreading", "style", "agent"],
+    tags: ["Writing Agent", "grammar", "writing", "proofreading", "style", "agent", "writing assistant", "ai writer", "content writer"],
     rating: 4.6,
     totalVotes: 12340
   },
@@ -229,7 +229,7 @@ export const aiAssistants: Tool[] = [
     color: "from-blue-500 to-purple-600",
     directUrl: "https://writesonic.com",
     category: "AI Writing Assistants",
-    tags: ["writing", "marketing", "articles", "landing pages"],
+    tags: ["writing", "marketing", "articles", "landing pages", "writing assistant", "ai writer", "content writer", "blog writer"],
     rating: 4.1,
     totalVotes: 3890
   },
@@ -241,7 +241,7 @@ export const aiAssistants: Tool[] = [
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://rytr.me",
     category: "AI Writing Assistants",
-    tags: ["writing", "content creation", "blogs", "emails"],
+    tags: ["writing", "content creation", "blogs", "emails", "writing assistant", "ai writer", "content writer", "blog writer"],
     rating: 4.0,
     totalVotes: 3450
   },
@@ -277,7 +277,7 @@ export const aiAssistants: Tool[] = [
     color: "from-gray-600 to-blue-600",
     directUrl: "https://github.com/features/copilot",
     category: "AI Coding Assistants",
-    tags: ["Coding Agent", "coding", "programming", "github", "development", "agent"],
+    tags: ["Coding Agent", "coding", "programming", "github", "development", "agent", "code generator", "ai coder", "write code", "coding assistant", "programming helper"],
     rating: 4.5,
     totalVotes: 8900
   },
