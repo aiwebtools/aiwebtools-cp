@@ -16,16 +16,18 @@ const DisclaimerGate: React.FC = () => {
   }, [navigate]);
 
   const handleAccept = () => {
-    // Store acceptance immediately
+    // Store acceptance synchronously first
     localStorage.setItem("aitools-consent-v3", "true");
-
-    // Play welcome audio in background
-    const audio = new Audio("/welcome-disclaimer.mp3");
-    audio.volume = 1.0;
-    audio.play().catch(() => {});
-
-    // Navigate instantly (no delay)
+    
+    // Navigate immediately - don't wait for anything
     navigate("/", { replace: true });
+    
+    // Play audio after navigation starts (non-blocking)
+    try {
+      const audio = new Audio("/welcome-disclaimer.mp3");
+      audio.volume = 1.0;
+      audio.play();
+    } catch {}
   };
 
   return (
