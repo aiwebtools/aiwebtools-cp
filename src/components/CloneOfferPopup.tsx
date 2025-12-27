@@ -104,7 +104,8 @@ const CloneOfferPopup = () => {
           <iframe
             width="100%"
             height="100%"
-            src="https://www.youtube.com/embed/lPZVKMfUcrs?autoplay=0&mute=0&controls=1&rel=0&modestbranding=1&playsinline=1&fs=1&vq=hd1080&hd=1&quality=hd1080"
+            src={isOpen ? "https://www.youtube.com/embed/lPZVKMfUcrs?autoplay=1&mute=0&controls=1&rel=0&modestbranding=1&playsinline=1&fs=1&vq=hd1080&hd=1&quality=hd1080&enablejsapi=1" : ""}
+            key={isOpen ? "playing" : "stopped"}
             title="Clone This Website"
             frameBorder="0"
             allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
