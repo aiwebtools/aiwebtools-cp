@@ -3,6 +3,22 @@ import { Tool } from "@/types/tools";
 
 export const aiAgents: Tool[] = [
   // ========================================
+  // AI AGENT DIRECTORIES & DATABASES
+  // ========================================
+  {
+    icon: DatabaseIcon,
+    title: "AI Agent Store - Open Agent Directory",
+    description: "Comprehensive open library and database of AI agents. Discover, explore, and compare hundreds of AI agents across categories including automation, coding, research, and more.",
+    emoji: "📚",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://aiagentstore.ai/ai-agents-directory?via=aiwebtools",
+    tags: ["AI Agent Directory", "agent database", "open library", "agent discovery", "AI Agent Store", "agent comparison", "agent catalog"],
+    category: "AI Agents",
+    rating: 4.8,
+    totalVotes: 3500
+  },
+
+  // ========================================
   // AUTOMATION AGENTS (Zapier, Make, n8n, etc.)
   // ========================================
   {
