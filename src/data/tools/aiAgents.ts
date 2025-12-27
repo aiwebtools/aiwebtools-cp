@@ -502,6 +502,18 @@ export const aiAgents: Tool[] = [
     totalVotes: 6321
   },
   {
+    icon: Smartphone,
+    title: "Millis AI Voice Agents Design Platform",
+    description: "Build next-gen voice agents with 500ms latency. Effortlessly create advanced LLM-based voice applications with ultra-low latency — The Fastest on the Market.",
+    emoji: "🎙️",
+    color: "from-cyan-500 to-blue-600",
+    directUrl: "https://www.millis.ai/?via=aiwebtools",
+    tags: ["Voice Agent", "low latency", "LLM voice", "voice applications", "Millis AI", "voice design", "conversational AI"],
+    category: "AI Agents",
+    rating: 4.8,
+    totalVotes: 2800
+  },
+  {
     icon: Brain,
     title: "Claude by Anthropic",
     description: "Advanced conversational AI agent by Anthropic with extended context window and superior reasoning. Multi-purpose AI agent for analysis, coding, writing, and complex problem-solving tasks.",
