@@ -89,58 +89,53 @@ const PinnedVideoPlayer = () => {
     <div 
       className={`fixed z-50 transition-all duration-300 ${
         isMinimized 
-          ? "bottom-4 left-4 w-12 h-12" 
-          : "bottom-4 left-4 w-48 sm:w-56"
+          ? "bottom-3 left-3 w-8 h-8" 
+          : "bottom-3 left-3 w-32"
       }`}
     >
       {isMinimized ? (
         <button
           onClick={() => setIsMinimized(false)}
-          className="w-12 h-12 rounded-full bg-gradient-to-r from-cyan-600 to-purple-600 flex items-center justify-center text-white shadow-lg hover:scale-110 transition-transform animate-pulse"
+          className="w-8 h-8 rounded-full bg-gradient-to-r from-cyan-600 to-purple-600 flex items-center justify-center text-white shadow-lg hover:scale-110 transition-transform animate-pulse"
           title="Open Video Player"
         >
-          <span className="text-lg">▶</span>
+          <span className="text-xs">▶</span>
         </button>
       ) : (
-        <div className="bg-gray-900/95 backdrop-blur-sm rounded-lg border border-cyan-500/30 shadow-2xl shadow-cyan-500/20 overflow-hidden">
-          {/* Header with controls */}
-          <div className="flex items-center justify-between px-2 py-1 bg-gray-800/80 border-b border-gray-700/50">
-            <span className="text-[10px] text-cyan-400 font-medium truncate max-w-[100px]">
-              🎬 Tool Showcase
-            </span>
-            <div className="flex items-center gap-1">
-              <button
-                onClick={toggleMute}
-                className="p-1 hover:bg-gray-700/50 rounded text-gray-400 hover:text-white transition-colors"
-                title={isMuted ? "Unmute" : "Mute"}
-              >
-                {isMuted ? <VolumeX className="w-3 h-3" /> : <Volume2 className="w-3 h-3" />}
-              </button>
-              <button
-                onClick={handleNextVideo}
-                className="p-1 hover:bg-gray-700/50 rounded text-gray-400 hover:text-white transition-colors"
-                title="Next Video"
-              >
-                <SkipForward className="w-3 h-3" />
-              </button>
-              <button
-                onClick={() => setIsMinimized(true)}
-                className="p-1 hover:bg-gray-700/50 rounded text-gray-400 hover:text-yellow-400 transition-colors"
-                title="Minimize"
-              >
-                <span className="text-xs">−</span>
-              </button>
-              <button
-                onClick={() => setIsVisible(false)}
-                className="p-1 hover:bg-gray-700/50 rounded text-gray-400 hover:text-red-400 transition-colors"
-                title="Close"
-              >
-                <X className="w-3 h-3" />
-              </button>
-            </div>
+        <div className="bg-gray-900/95 backdrop-blur-sm rounded border border-cyan-500/30 shadow-xl shadow-cyan-500/10 overflow-hidden">
+          {/* Tiny header with controls */}
+          <div className="flex items-center justify-end gap-0.5 px-1 py-0.5 bg-gray-800/80">
+            <button
+              onClick={toggleMute}
+              className="p-0.5 hover:bg-gray-700/50 rounded text-gray-400 hover:text-white transition-colors"
+              title={isMuted ? "Unmute" : "Mute"}
+            >
+              {isMuted ? <VolumeX className="w-2.5 h-2.5" /> : <Volume2 className="w-2.5 h-2.5" />}
+            </button>
+            <button
+              onClick={handleNextVideo}
+              className="p-0.5 hover:bg-gray-700/50 rounded text-gray-400 hover:text-white transition-colors"
+              title="Next"
+            >
+              <SkipForward className="w-2.5 h-2.5" />
+            </button>
+            <button
+              onClick={() => setIsMinimized(true)}
+              className="p-0.5 hover:bg-gray-700/50 rounded text-gray-400 hover:text-yellow-400 transition-colors"
+              title="Minimize"
+            >
+              <span className="text-[8px]">−</span>
+            </button>
+            <button
+              onClick={() => setIsVisible(false)}
+              className="p-0.5 hover:bg-gray-700/50 rounded text-gray-400 hover:text-red-400 transition-colors"
+              title="Close"
+            >
+              <X className="w-2.5 h-2.5" />
+            </button>
           </div>
 
-          {/* Video Container */}
+          {/* Tiny Video Container */}
           <div className="relative aspect-video bg-black">
             <iframe
               key={`${currentVideoId}-${isMuted}`}
@@ -152,27 +147,14 @@ const PinnedVideoPlayer = () => {
             />
           </div>
 
-          {/* Tool Info & CTA */}
-          <div className="p-2 space-y-2">
-            <p className="text-[10px] text-gray-300 truncate" title={currentTool.title}>
-              {currentTool.emoji || "🤖"} {currentTool.title}
-            </p>
-            <Button
-              onClick={handleToolClick}
-              size="sm"
-              className="w-full h-7 text-xs bg-gradient-to-r from-cyan-600 to-purple-600 hover:from-cyan-500 hover:to-purple-500 text-white font-bold shadow-lg"
-            >
-              🚀 USE THIS TOOL
-            </Button>
-          </div>
-
-          {/* Progress indicator */}
-          <div className="h-0.5 bg-gray-700">
-            <div 
-              className="h-full bg-gradient-to-r from-cyan-500 to-purple-500 animate-[progress_60s_linear_infinite]"
-              style={{ width: '100%' }}
-            />
-          </div>
+          {/* Tiny CTA */}
+          <Button
+            onClick={handleToolClick}
+            size="sm"
+            className="w-full h-5 text-[8px] rounded-none bg-gradient-to-r from-cyan-600 to-purple-600 hover:from-cyan-500 hover:to-purple-500 text-white font-bold"
+          >
+            🚀 USE THIS TOOL
+          </Button>
         </div>
       )}
     </div>
