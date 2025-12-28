@@ -51,6 +51,9 @@ const PinnedVideoPlayer = () => {
     return sessionStorage.getItem(SESSION_CLOSED_KEY) !== "true";
   });
   
+  // Only show after scrolling past hero/categories section
+  const [hasScrolledEnough, setHasScrolledEnough] = useState(false);
+  
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isMuted, setIsMuted] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
@@ -60,6 +63,21 @@ const PinnedVideoPlayer = () => {
 
   const currentTool: Tool | undefined = toolsWithVideos[currentIndex];
   const currentVideoId = currentTool ? extractYouTubeId(currentTool.videoUrl || '') : null;
+
+  // Detect scroll position - only show after scrolling past 600px (past hero + categories)
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      // Show after scrolling 600px down (past hero and main categories)
+      setHasScrolledEnough(scrollY > 600);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    // Check initial position
+    handleScroll();
+    
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   // Listen for YouTube iframe API messages to detect video end
   useEffect(() => {
@@ -120,7 +138,8 @@ const PinnedVideoPlayer = () => {
     setIsMuted(prev => !prev);
   }, []);
 
-  if (!isVisible || toolsWithVideos.length === 0 || !currentTool || !currentVideoId) {
+  // Don't render if not visible, no tools, or haven't scrolled past hero yet
+  if (!isVisible || !hasScrolledEnough || toolsWithVideos.length === 0 || !currentTool || !currentVideoId) {
     return null;
   }
 
