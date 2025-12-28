@@ -73,7 +73,7 @@ const CloneOfferPopup = () => {
 
   const handleClone = (e: React.MouseEvent) => {
     e.preventDefault();
-    const cloneUrl = "https://lovable.dev/projects/585da6cd-1b1d-4fb3-87cc-ae8767920244?via=aiwebtools";
+    const cloneUrl = "https://lovable.dev/projects/debf21bc-787a-4053-b672-14a326f63643?via=aiwebtools";
     
     // Close popup immediately
     setIsOpen(false);
