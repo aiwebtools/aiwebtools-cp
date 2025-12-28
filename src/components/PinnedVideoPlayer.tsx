@@ -58,6 +58,9 @@ const PinnedVideoPlayer = () => {
   // Only require scroll on homepage, show immediately on other pages
   const [hasScrolledEnough, setHasScrolledEnough] = useState(!isHomepage);
   
+  // Hide when user is viewing the main tool video on a detail page
+  const [isMainVideoVisible, setIsMainVideoVisible] = useState(false);
+  
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isMuted, setIsMuted] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
@@ -66,6 +69,18 @@ const PinnedVideoPlayer = () => {
   const [toolsWithVideos] = useState(() => getShuffledToolsWithVideos());
 
   const currentTool: Tool | undefined = toolsWithVideos[currentIndex];
+  
+  // Listen for main tool video visibility changes
+  useEffect(() => {
+    const handleToolVideoVisibility = (event: CustomEvent<{ isVisible: boolean }>) => {
+      setIsMainVideoVisible(event.detail.isVisible);
+    };
+    
+    window.addEventListener('toolVideoVisibility', handleToolVideoVisibility as EventListener);
+    return () => {
+      window.removeEventListener('toolVideoVisibility', handleToolVideoVisibility as EventListener);
+    };
+  }, []);
   const currentVideoId = currentTool ? extractYouTubeId(currentTool.videoUrl || '') : null;
 
   // Detect scroll position - only needed on homepage
@@ -148,8 +163,8 @@ const PinnedVideoPlayer = () => {
     setIsMuted(prev => !prev);
   }, []);
 
-  // Don't render if not visible, no tools, or haven't scrolled past hero yet
-  if (!isVisible || !hasScrolledEnough || toolsWithVideos.length === 0 || !currentTool || !currentVideoId) {
+  // Don't render if not visible, no tools, haven't scrolled past hero yet, or main video is visible
+  if (!isVisible || !hasScrolledEnough || isMainVideoVisible || toolsWithVideos.length === 0 || !currentTool || !currentVideoId) {
     return null;
   }
 

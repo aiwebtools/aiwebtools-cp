@@ -20,9 +20,13 @@ const ToolMedia = ({ tool, toolIndex }: ToolMediaProps) => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
+          // Dispatch custom event for pinned player to know when main video is visible
+          window.dispatchEvent(new CustomEvent('toolVideoVisibility', { 
+            detail: { isVisible: entry.isIntersecting } 
+          }));
+          
           if (entry.isIntersecting) {
             setIsVisible(true);
-            observer.disconnect();
           }
         });
       },
@@ -33,7 +37,13 @@ const ToolMedia = ({ tool, toolIndex }: ToolMediaProps) => {
       observer.observe(containerRef.current);
     }
 
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      // Reset visibility when unmounting
+      window.dispatchEvent(new CustomEvent('toolVideoVisibility', { 
+        detail: { isVisible: false } 
+      }));
+    };
   }, []);
 
   const getOptimizedEmbedUrl = (url: string) => {
