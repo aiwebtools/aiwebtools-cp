@@ -207,13 +207,13 @@ const PinnedVideoPlayer = () => {
         </button>
       ) : (
         <div 
-          className="bg-gray-900/95 backdrop-blur-sm rounded-xl border border-cyan-500/50 overflow-hidden shadow-2xl"
+          className="bg-gray-900/95 backdrop-blur-sm rounded-lg border border-cyan-500/40 overflow-hidden shadow-2xl"
           style={{
-            boxShadow: '0 0 20px rgba(34, 211, 238, 0.4), 0 0 40px rgba(168, 85, 247, 0.2), 0 8px 32px rgba(0, 0, 0, 0.5)'
+            boxShadow: '0 0 15px rgba(34, 211, 238, 0.3), 0 0 30px rgba(168, 85, 247, 0.15), 0 6px 24px rgba(0, 0, 0, 0.4)'
           }}
         >
           {/* Video Container */}
-          <div className="relative aspect-video bg-black" style={{ minHeight: '90px' }}>
+          <div className="relative aspect-video bg-black" style={{ minHeight: '80px' }}>
             <iframe
               ref={iframeRef}
               key={`${currentVideoId}-${isMuted}-${currentIndex}`}
@@ -222,75 +222,65 @@ const PinnedVideoPlayer = () => {
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
               title={currentTool.title}
-              style={{ minHeight: '90px' }}
+              style={{ minHeight: '80px' }}
             />
             
-            {/* Overlay controls - sleek glass bar at bottom of video */}
-            <div className="absolute bottom-0 left-0 right-0 flex items-center justify-between px-2 py-1.5 bg-gradient-to-t from-black/90 via-black/60 to-transparent">
-              {/* Left: Mute + Next buttons */}
-              <div className="flex items-center gap-1.5">
-                <button
-                  onClick={toggleMute}
-                  className="w-7 h-7 flex items-center justify-center rounded-full bg-cyan-500/90 hover:bg-cyan-400 text-white shadow-lg transition-all hover:scale-105"
-                  style={{ boxShadow: '0 0 12px rgba(34, 211, 238, 0.6)' }}
-                  title={isMuted ? "Unmute" : "Mute"}
-                >
-                  {isMuted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5" />}
-                </button>
-                <button
-                  onClick={handleNextVideo}
-                  className="w-6 h-6 flex items-center justify-center rounded-full bg-white/20 hover:bg-white/30 text-white transition-all hover:scale-105"
-                  title="Next Video"
-                >
-                  <SkipForward className="w-3 h-3" />
-                </button>
-              </div>
-              
-              {/* Right: Minimize + Close */}
-              <div className="flex items-center gap-1">
-                <button
-                  onClick={() => setIsMinimized(true)}
-                  className="w-5 h-5 flex items-center justify-center rounded bg-white/10 hover:bg-yellow-500/50 text-white/70 hover:text-white transition-colors"
-                  title="Minimize"
-                >
-                  <span className="text-xs font-bold leading-none">−</span>
-                </button>
-                <button
-                  onClick={handleClose}
-                  className="w-5 h-5 flex items-center justify-center rounded bg-white/10 hover:bg-red-500/50 text-white/70 hover:text-white transition-colors"
-                  title="Close"
-                >
-                  <X className="w-3 h-3" />
-                </button>
-              </div>
+            {/* Tiny corner controls - top right */}
+            <div className="absolute top-1 right-1 flex items-center gap-0.5">
+              <button
+                onClick={() => setIsMinimized(true)}
+                className="w-4 h-4 flex items-center justify-center rounded bg-black/60 hover:bg-yellow-500/70 text-white/80 hover:text-white transition-colors"
+                title="Minimize"
+              >
+                <span className="text-[8px] font-bold leading-none">−</span>
+              </button>
+              <button
+                onClick={handleClose}
+                className="w-4 h-4 flex items-center justify-center rounded bg-black/60 hover:bg-red-500/70 text-white/80 hover:text-white transition-colors"
+                title="Close"
+              >
+                <X className="w-2.5 h-2.5" />
+              </button>
             </div>
           </div>
 
-          {/* Tool name + CTA footer */}
-          <div className="bg-gradient-to-r from-gray-800/95 to-gray-900/95 border-t border-cyan-500/20">
-            {/* Tool name - glowing gold */}
-            <div className="px-2 py-1.5 border-b border-white/5">
-              <p 
-                className="text-[10px] font-bold truncate leading-tight"
-                style={{
-                  color: '#FFD700',
-                  textShadow: '0 0 8px #FFD700, 0 0 16px #FFA500'
-                }}
-                title={currentTool.title}
-              >
-                {currentTool.emoji || "🤖"} {currentTool.title}
-              </p>
-            </div>
-            
-            {/* CTA Button */}
-            <Button
-              onClick={handleToolClick}
-              size="sm"
-              className="w-full h-7 text-[10px] rounded-none rounded-b-xl bg-gradient-to-r from-cyan-600 via-purple-600 to-cyan-600 hover:from-cyan-500 hover:via-purple-500 hover:to-cyan-500 text-white font-bold tracking-wide shadow-lg transition-all hover:shadow-cyan-500/30"
+          {/* Controls bar - compact */}
+          <div className="flex items-center gap-1.5 px-2 py-1 bg-gray-800/95 border-t border-cyan-500/20">
+            <button
+              onClick={toggleMute}
+              className="w-5 h-5 flex items-center justify-center rounded-full bg-cyan-500 hover:bg-cyan-400 text-white transition-all"
+              title={isMuted ? "Unmute" : "Mute"}
             >
-              🚀 TRY THIS TOOL
-            </Button>
+              {isMuted ? <VolumeX className="w-2.5 h-2.5" /> : <Volume2 className="w-2.5 h-2.5" />}
+            </button>
+            <button
+              onClick={handleNextVideo}
+              className="w-5 h-5 flex items-center justify-center rounded-full bg-gray-600 hover:bg-gray-500 text-white transition-all"
+              title="Next Video"
+            >
+              <SkipForward className="w-2.5 h-2.5" />
+            </button>
+            {/* Tool name inline */}
+            <p 
+              className="flex-1 text-[9px] font-semibold truncate ml-1"
+              style={{
+                color: '#FFD700',
+                textShadow: '0 0 6px #FFD700'
+              }}
+              title={currentTool.title}
+            >
+              {currentTool.emoji || "🤖"} {currentTool.title}
+            </p>
           </div>
+            
+          {/* CTA Button */}
+          <Button
+            onClick={handleToolClick}
+            size="sm"
+            className="w-full h-6 text-[9px] rounded-none rounded-b-lg bg-gradient-to-r from-cyan-600 to-purple-600 hover:from-cyan-500 hover:to-purple-500 text-white font-bold"
+          >
+            🚀 TRY IT
+          </Button>
         </div>
       )}
     </div>
