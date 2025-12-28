@@ -197,7 +197,12 @@ const PinnedVideoPlayer = () => {
           <span className="text-xs">▶</span>
         </button>
       ) : (
-        <div className="bg-gray-900/95 backdrop-blur-sm rounded border border-cyan-500/30 shadow-xl shadow-cyan-500/10 overflow-hidden">
+        <div 
+          className="bg-gray-900/95 backdrop-blur-sm rounded-lg border border-cyan-400/40 overflow-hidden"
+          style={{
+            boxShadow: '0 0 15px rgba(34, 211, 238, 0.3), 0 0 30px rgba(168, 85, 247, 0.2), 0 4px 20px rgba(0, 0, 0, 0.4)'
+          }}
+        >
           {/* Tool name header - bright yellow gold flashing */}
           <div className="px-1.5 py-1 bg-gradient-to-r from-yellow-900/40 to-amber-900/40 border-b border-yellow-500/30">
             <p 
