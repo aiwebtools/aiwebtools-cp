@@ -32,6 +32,12 @@
   animation: matrixFall 3s linear infinite;
 }
 
+/* Pinned video player progress animation */
+@keyframes progress {
+  0% { width: 0%; }
+  100% { width: 100%; }
+}
+
 /* Custom Scrollbar - Extra thick for accessibility */
 ::-webkit-scrollbar {
   width: 20px;
