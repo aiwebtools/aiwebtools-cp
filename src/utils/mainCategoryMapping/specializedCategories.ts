@@ -18,6 +18,10 @@ export const specializedCategories: MainCategory[] = [
     emoji: "🕰️",
     description: "Tools for exploring history, time travel simulations, and historical analysis",
     subcategories: [
+      // Include the canonical category label used by many tools
+      "Historical & Time-Based AI Tools",
+
+      // Broader historical groupings
       "Time & History",
       "Historical & Cultural",
       "Time Travel Tools",
