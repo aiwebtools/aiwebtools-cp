@@ -121,8 +121,16 @@ const PinnedVideoPlayer = () => {
       
       try {
         const data = typeof event.data === "string" ? JSON.parse(event.data) : event.data;
-        // State 0 = ended
+        
+        // Check for video ended state (state 0 = ended)
         if (data?.event === "onStateChange" && data?.info === 0) {
+          console.log("🎬 Video ended, advancing to next...");
+          setCurrentIndex(prev => (prev + 1) % toolsWithVideos.length);
+        }
+        
+        // Also check for infoDelivery with playerState
+        if (data?.info?.playerState === 0) {
+          console.log("🎬 Video ended (infoDelivery), advancing to next...");
           setCurrentIndex(prev => (prev + 1) % toolsWithVideos.length);
         }
       } catch {
@@ -134,13 +142,14 @@ const PinnedVideoPlayer = () => {
     return () => window.removeEventListener("message", handleMessage);
   }, [isVisible, toolsWithVideos.length]);
 
-  // Fallback: auto-advance every 90 seconds if video end detection fails
+  // Reliable fallback: auto-advance every 45 seconds (most YouTube shorts/demos are under this)
   useEffect(() => {
     if (!isVisible || toolsWithVideos.length === 0) return;
     
     const timeout = setTimeout(() => {
+      console.log("⏰ Auto-advance timeout triggered");
       setCurrentIndex(prev => (prev + 1) % toolsWithVideos.length);
-    }, 90000); // 90 second fallback
+    }, 45000); // 45 second fallback - more reasonable for demo videos
     
     return () => clearTimeout(timeout);
   }, [isVisible, toolsWithVideos.length, currentIndex]);
@@ -175,8 +184,8 @@ const PinnedVideoPlayer = () => {
     return null;
   }
 
-  // Enable JS API for video end detection - playsinline=1 is required for iOS
-  const videoSrc = `https://www.youtube.com/embed/${currentVideoId}?autoplay=1&mute=${isMuted ? 1 : 0}&controls=0&modestbranding=1&rel=0&showinfo=0&enablejsapi=1&playsinline=1&origin=${window.location.origin}`;
+  // Enable JS API for video end detection - add widget_referrer for proper event delivery
+  const videoSrc = `https://www.youtube.com/embed/${currentVideoId}?autoplay=1&mute=${isMuted ? 1 : 0}&controls=0&modestbranding=1&rel=0&showinfo=0&enablejsapi=1&playsinline=1&origin=${encodeURIComponent(window.location.origin)}&widget_referrer=${encodeURIComponent(window.location.href)}`;
 
   return (
     <div 
