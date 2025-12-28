@@ -175,8 +175,8 @@ const PinnedVideoPlayer = () => {
     return null;
   }
 
-  // Enable JS API for video end detection
-  const videoSrc = `https://www.youtube.com/embed/${currentVideoId}?autoplay=1&mute=${isMuted ? 1 : 0}&controls=0&modestbranding=1&rel=0&showinfo=0&enablejsapi=1&origin=${window.location.origin}`;
+  // Enable JS API for video end detection - playsinline=1 is required for iOS
+  const videoSrc = `https://www.youtube.com/embed/${currentVideoId}?autoplay=1&mute=${isMuted ? 1 : 0}&controls=0&modestbranding=1&rel=0&showinfo=0&enablejsapi=1&playsinline=1&origin=${window.location.origin}`;
 
   return (
     <div 
@@ -184,8 +184,8 @@ const PinnedVideoPlayer = () => {
         shouldShow ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
       } ${
         isMinimized 
-          ? "bottom-3 left-3 w-10 h-10 sm:w-8 sm:h-8" 
-          : "bottom-3 left-3 w-44 sm:w-40 md:w-32"
+          ? "bottom-3 left-3 w-12 h-12" 
+          : "bottom-3 left-3 w-[200px] sm:w-[180px] md:w-32"
       }`}
     >
       {isMinimized ? (
@@ -253,16 +253,17 @@ const PinnedVideoPlayer = () => {
             </div>
           </div>
 
-          {/* Tiny Video Container */}
-          <div className="relative aspect-video bg-black">
+          {/* Video Container - minimum height for mobile YouTube rendering */}
+          <div className="relative aspect-video bg-black" style={{ minHeight: '80px' }}>
             <iframe
               ref={iframeRef}
               key={`${currentVideoId}-${isMuted}-${currentIndex}`}
               src={videoSrc}
               className="w-full h-full"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
               title={currentTool.title}
+              style={{ minHeight: '80px' }}
             />
           </div>
 
