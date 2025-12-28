@@ -13,6 +13,7 @@ import {
 } from "@/utils/categoryUtils/precomputedCache";
 import { allTools } from "@/data/toolsData";
 import { mainCategories } from "@/utils/mainCategoryMapping";
+import { getMainCategoriesWithCounts } from "@/utils/categoryUtils/toolFiltering";
 
 interface CategoryFiltersProps {
   categoriesWithCounts: Record<string, number>;
@@ -24,24 +25,23 @@ interface CategoryFiltersProps {
   onFreeOnlyChange?: (freeOnly: boolean) => void;
 }
 
-// Pre-compute counts ONCE at module level - no heavy computation on render
-let staticMainCategoryCounts: Record<string, number> | null = null;
+// Pre-compute accurate counts ONCE at module level using detection functions
+let accurateMainCategoryCounts: Record<string, number> | null = null;
+let countsInitialized = false;
 
 const getStaticMainCategoryCounts = () => {
   // Try pre-computed cache first (instant)
   const cached = getCachedCategoryCounts();
-  if (cached) return cached;
-  
-  // Fallback to simple fast count
-  if (!staticMainCategoryCounts) {
-    staticMainCategoryCounts = {};
-    mainCategories.forEach(cat => {
-      staticMainCategoryCounts![cat.name] = cat.name === "ALL AI TOOLS" 
-        ? allTools.length 
-        : Math.floor(allTools.length / mainCategories.length);
-    });
+  if (cached && Object.keys(cached).length > 0) {
+    return cached;
   }
-  return staticMainCategoryCounts;
+  
+  // Use accurate detection-based counting (same as getToolsByMainCategory)
+  if (!countsInitialized || !accurateMainCategoryCounts) {
+    accurateMainCategoryCounts = getMainCategoriesWithCounts(allTools);
+    countsInitialized = true;
+  }
+  return accurateMainCategoryCounts;
 };
 
 const CategoryFilters = memo(({
