@@ -42,6 +42,7 @@ const FreeAIToolsPage = lazy(() => import("./pages/FreeAIToolsPage"));
 
 // Lazy load non-critical components
 const FloatingCloneButton = lazy(() => import("./components/FloatingCloneButton"));
+const PinnedVideoPlayer = lazy(() => import("./components/PinnedVideoPlayer"));
 
 // Welcome Neo voice - plays when user lands on main site after accepting disclaimer
 const WelcomeNeoVoice = () => {
@@ -178,6 +179,10 @@ function App() {
                   {/* Tiny floating clone button - hides on scroll */}
                   <Suspense fallback={null}>
                     <FloatingCloneButton />
+                  </Suspense>
+                  {/* Pinned rotating video player - lower left corner */}
+                  <Suspense fallback={null}>
+                    <PinnedVideoPlayer />
                   </Suspense>
                 </BrowserRouter>
               </TooltipProvider>
