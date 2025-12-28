@@ -184,8 +184,8 @@ const PinnedVideoPlayer = () => {
         shouldShow ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
       } ${
         isMinimized 
-          ? "bottom-3 left-3 w-8 h-8" 
-          : "bottom-3 left-3 w-32"
+          ? "bottom-3 left-3 w-10 h-10 sm:w-8 sm:h-8" 
+          : "bottom-3 left-3 w-44 sm:w-40 md:w-32"
       }`}
     >
       {isMinimized ? (
