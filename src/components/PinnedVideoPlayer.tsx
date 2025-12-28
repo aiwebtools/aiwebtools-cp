@@ -164,7 +164,14 @@ const PinnedVideoPlayer = () => {
         </button>
       ) : (
         <div className="bg-gray-900/95 backdrop-blur-sm rounded border border-cyan-500/30 shadow-xl shadow-cyan-500/10 overflow-hidden">
-          {/* Tiny header with controls */}
+          {/* Tool name header */}
+          <div className="px-1 py-0.5 bg-gray-800/90 border-b border-gray-700/50">
+            <p className="text-[7px] text-cyan-300 font-medium truncate leading-tight" title={currentTool.title}>
+              {currentTool.emoji || "🤖"} {currentTool.title}
+            </p>
+          </div>
+          
+          {/* Controls row */}
           <div className="flex items-center justify-end gap-0.5 px-1 py-0.5 bg-gray-800/80">
             <button
               onClick={toggleMute}
