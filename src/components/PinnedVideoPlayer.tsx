@@ -60,6 +60,8 @@ const PinnedVideoPlayer = () => {
   
   // Hide when user is viewing the main tool video on a detail page
   const [isMainVideoVisible, setIsMainVideoVisible] = useState(false);
+  // Track if player should be shown with animation
+  const [shouldShow, setShouldShow] = useState(true);
   
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isMuted, setIsMuted] = useState(false);
@@ -69,6 +71,11 @@ const PinnedVideoPlayer = () => {
   const [toolsWithVideos] = useState(() => getShuffledToolsWithVideos());
 
   const currentTool: Tool | undefined = toolsWithVideos[currentIndex];
+  
+  // Handle smooth fade animation when main video visibility changes
+  useEffect(() => {
+    setShouldShow(!isMainVideoVisible);
+  }, [isMainVideoVisible]);
   
   // Listen for main tool video visibility changes
   useEffect(() => {
@@ -163,8 +170,8 @@ const PinnedVideoPlayer = () => {
     setIsMuted(prev => !prev);
   }, []);
 
-  // Don't render if not visible, no tools, haven't scrolled past hero yet, or main video is visible
-  if (!isVisible || !hasScrolledEnough || isMainVideoVisible || toolsWithVideos.length === 0 || !currentTool || !currentVideoId) {
+  // Don't render if permanently closed, no tools, or haven't scrolled past hero yet
+  if (!isVisible || !hasScrolledEnough || toolsWithVideos.length === 0 || !currentTool || !currentVideoId) {
     return null;
   }
 
@@ -173,7 +180,9 @@ const PinnedVideoPlayer = () => {
 
   return (
     <div 
-      className={`fixed z-50 transition-all duration-300 ${
+      className={`fixed z-50 transition-all duration-500 ease-in-out ${
+        shouldShow ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
+      } ${
         isMinimized 
           ? "bottom-3 left-3 w-8 h-8" 
           : "bottom-3 left-3 w-32"
