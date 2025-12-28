@@ -10,18 +10,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no" />
     <title>AI Web Tools - AIWEBTOOLS.AI #1 AI Tools Directory | 2,195+ Best AI Tools 2025 | Free AI Tools Database - AIWEBTOOLS.AI</title>
     
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PQH30EX1YJ"></script>
+    <!-- Google tag (gtag.js) - deferred for faster initial load -->
+    <script defer src="https://www.googletagmanager.com/gtag/js?id=G-PQH30EX1YJ"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-PQH30EX1YJ');
+      // Defer analytics initialization until after page load
+      window.addEventListener('load', function() {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        window.gtag = gtag;
+        gtag('js', new Date());
+        gtag('config', 'G-PQH30EX1YJ');
+      });
     </script>
     
-    <!-- Google AdSense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5053006805192587"
+    <!-- Google AdSense - load after main content -->
+    <script defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5053006805192587"
          crossorigin="anonymous"></script>
     
     <!-- Enhanced Meta Tags for SEO -->
