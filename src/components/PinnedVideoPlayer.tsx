@@ -217,22 +217,22 @@ const PinnedVideoPlayer = () => {
             </p>
           </div>
           
-          {/* Controls row - compact icons */}
-          <div className="flex items-center justify-between px-1 py-0.5 bg-gray-800/90">
-            <div className="flex items-center gap-0.5">
+          {/* Controls row - larger icons for mobile visibility */}
+          <div className="flex items-center justify-between px-2 py-1 bg-gray-800/90">
+            <div className="flex items-center gap-1">
               <button
                 onClick={toggleMute}
-                className="p-0.5 rounded-full hover:bg-gray-600/80 text-gray-300 hover:text-cyan-400 transition-colors"
+                className="p-1.5 rounded-full bg-cyan-600/80 hover:bg-cyan-500 text-white transition-colors"
                 title={isMuted ? "Unmute" : "Mute"}
               >
-                {isMuted ? <VolumeX className="w-2.5 h-2.5" /> : <Volume2 className="w-2.5 h-2.5" />}
+                {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
               </button>
               <button
                 onClick={handleNextVideo}
-                className="p-0.5 rounded-full hover:bg-gray-600/80 text-gray-300 hover:text-cyan-400 transition-colors"
+                className="p-1 rounded-full hover:bg-gray-600/80 text-gray-300 hover:text-cyan-400 transition-colors"
                 title="Next Video"
               >
-                <SkipForward className="w-2.5 h-2.5" />
+                <SkipForward className="w-3.5 h-3.5" />
               </button>
             </div>
             <div className="flex items-center gap-0.5">
