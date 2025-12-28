@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { X, SkipForward, Volume2, VolumeX } from "lucide-react";
 import { allTools } from "@/data/toolsData";
@@ -44,15 +44,19 @@ const getShuffledToolsWithVideos = (): Tool[] => {
 
 const PinnedVideoPlayer = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const iframeRef = useRef<HTMLIFrameElement>(null);
+  
+  // Check if on homepage
+  const isHomepage = location.pathname === "/" || location.pathname === "";
   
   // Check if closed this session
   const [isVisible, setIsVisible] = useState(() => {
     return sessionStorage.getItem(SESSION_CLOSED_KEY) !== "true";
   });
   
-  // Only show after scrolling past hero/categories section
-  const [hasScrolledEnough, setHasScrolledEnough] = useState(false);
+  // Only require scroll on homepage, show immediately on other pages
+  const [hasScrolledEnough, setHasScrolledEnough] = useState(!isHomepage);
   
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isMuted, setIsMuted] = useState(false);
@@ -64,8 +68,14 @@ const PinnedVideoPlayer = () => {
   const currentTool: Tool | undefined = toolsWithVideos[currentIndex];
   const currentVideoId = currentTool ? extractYouTubeId(currentTool.videoUrl || '') : null;
 
-  // Detect scroll position - only show after scrolling past 600px (past hero + categories)
+  // Detect scroll position - only needed on homepage
   useEffect(() => {
+    // If not on homepage, always show
+    if (!isHomepage) {
+      setHasScrolledEnough(true);
+      return;
+    }
+    
     const handleScroll = () => {
       const scrollY = window.scrollY;
       // Show after scrolling 600px down (past hero and main categories)
@@ -77,7 +87,7 @@ const PinnedVideoPlayer = () => {
     handleScroll();
     
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [isHomepage]);
 
   // Listen for YouTube iframe API messages to detect video end
   useEffect(() => {
