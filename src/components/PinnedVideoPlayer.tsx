@@ -2,7 +2,6 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { X, SkipForward, Volume2, VolumeX } from "lucide-react";
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { allTools } from "@/data/toolsData";
 import { Tool } from "@/types/tools";
 
@@ -66,7 +65,6 @@ const PinnedVideoPlayer = () => {
   
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isMuted, setIsMuted] = useState(true);
-  const [isMinimized, setIsMinimized] = useState(false);
   
   // Shuffled tools - computed once when component mounts (random each page load)
   const [toolsWithVideos] = useState(() => getShuffledToolsWithVideos());
@@ -185,128 +183,82 @@ const PinnedVideoPlayer = () => {
     return null;
   }
 
-  // Enable JS API for video end detection - add widget_referrer for proper event delivery
-  const videoSrc = `https://www.youtube.com/embed/${currentVideoId}?autoplay=1&mute=${isMuted ? 1 : 0}&controls=0&modestbranding=1&rel=0&showinfo=0&enablejsapi=1&playsinline=1&origin=${encodeURIComponent(window.location.origin)}&widget_referrer=${encodeURIComponent(window.location.href)}`;
+  // Enable JS API + hide YouTube logo with iv_load_policy=3
+  const videoSrc = `https://www.youtube.com/embed/${currentVideoId}?autoplay=1&mute=${isMuted ? 1 : 0}&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&enablejsapi=1&playsinline=1&origin=${encodeURIComponent(window.location.origin)}&widget_referrer=${encodeURIComponent(window.location.href)}`;
 
   return (
     <div 
-      className={`fixed z-50 transition-all duration-500 ease-in-out ${
+      className={`fixed z-50 transition-all duration-500 ease-in-out bottom-3 left-3 w-[160px] sm:w-[150px] md:w-36 ${
         shouldShow ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
-      } ${
-        isMinimized 
-          ? "bottom-3 left-3 w-12 h-12" 
-          : "bottom-3 left-3 w-[200px] sm:w-[180px] md:w-32"
       }`}
     >
-      {isMinimized ? (
-        <button
-          onClick={() => setIsMinimized(false)}
-          className="w-8 h-8 rounded-full bg-gradient-to-r from-cyan-600 to-purple-600 flex items-center justify-center text-white shadow-lg hover:scale-110 transition-transform animate-pulse"
-          title="Open Video Player"
-        >
-          <span className="text-xs">▶</span>
-        </button>
-      ) : (
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <div 
-              className="bg-gray-900/95 backdrop-blur-sm rounded-lg border border-cyan-500/40 overflow-hidden shadow-2xl cursor-pointer group"
-              style={{
-                boxShadow: '0 0 15px rgba(34, 211, 238, 0.3), 0 0 30px rgba(168, 85, 247, 0.15), 0 6px 24px rgba(0, 0, 0, 0.4)'
-              }}
-            >
-              {/* Tool title header - above video */}
-              <div className="px-2 py-1 bg-gradient-to-r from-gray-800 to-gray-900 border-b border-cyan-500/30">
-                <p 
-                  className="text-[9px] font-bold truncate leading-tight"
-                  style={{
-                    color: '#FFD700',
-                    textShadow: '0 0 8px #FFD700'
-                  }}
-                >
-                  {currentTool.emoji || "🤖"} {currentTool.title}
-                </p>
-              </div>
-
-              {/* Video Container */}
-              <div className="relative aspect-video bg-black" style={{ minHeight: '75px' }}>
-                <iframe
-                  ref={iframeRef}
-                  key={`${currentVideoId}-${isMuted}-${currentIndex}`}
-                  src={videoSrc}
-                  className="w-full h-full"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowFullScreen
-                  title={currentTool.title}
-                  style={{ minHeight: '75px' }}
-                />
-                
-                {/* Tiny corner controls - top right */}
-                <div className="absolute top-1 right-1 flex items-center gap-0.5">
-                  <button
-                    onClick={() => setIsMinimized(true)}
-                    className="w-4 h-4 flex items-center justify-center rounded bg-black/60 hover:bg-yellow-500/70 text-white/80 hover:text-white transition-colors"
-                    title="Minimize"
-                  >
-                    <span className="text-[8px] font-bold leading-none">−</span>
-                  </button>
-                  <button
-                    onClick={handleClose}
-                    className="w-4 h-4 flex items-center justify-center rounded bg-black/60 hover:bg-red-500/70 text-white/80 hover:text-white transition-colors"
-                    title="Close"
-                  >
-                    <X className="w-2.5 h-2.5" />
-                  </button>
-                </div>
-              </div>
-
-              {/* Controls bar - compact */}
-              <div className="flex items-center gap-1 px-2 py-1 bg-gray-800/95 border-t border-cyan-500/20">
-                <button
-                  onClick={toggleMute}
-                  className="w-5 h-5 flex items-center justify-center rounded-full bg-cyan-500 hover:bg-cyan-400 text-white transition-all"
-                  title={isMuted ? "Unmute" : "Mute"}
-                >
-                  {isMuted ? <VolumeX className="w-2.5 h-2.5" /> : <Volume2 className="w-2.5 h-2.5" />}
-                </button>
-                <button
-                  onClick={handleNextVideo}
-                  className="w-5 h-5 flex items-center justify-center rounded-full bg-gray-600 hover:bg-gray-500 text-white transition-all"
-                  title="Next Video"
-                >
-                  <SkipForward className="w-2.5 h-2.5" />
-                </button>
-                <div className="flex-1" />
-                {/* CTA Button inline */}
-                <Button
-                  onClick={handleToolClick}
-                  size="sm"
-                  className="h-5 px-2 text-[8px] rounded bg-gradient-to-r from-cyan-600 to-purple-600 hover:from-cyan-500 hover:to-purple-500 text-white font-bold"
-                >
-                  🚀 TRY IT
-                </Button>
-              </div>
-            </div>
-          </TooltipTrigger>
-          <TooltipContent 
-            side="top" 
-            align="start"
-            className="max-w-[250px] bg-gray-900/95 border-cyan-500/50 p-3"
+      <div 
+        className="bg-gray-900/95 backdrop-blur-sm rounded-lg border border-cyan-500/40 overflow-hidden shadow-2xl"
+        style={{
+          boxShadow: '0 0 15px rgba(34, 211, 238, 0.3), 0 0 30px rgba(168, 85, 247, 0.15), 0 6px 24px rgba(0, 0, 0, 0.4)'
+        }}
+      >
+        {/* Tool title header with X button */}
+        <div className="flex items-center justify-between px-1.5 py-0.5 bg-gradient-to-r from-gray-800 to-gray-900 border-b border-cyan-500/30">
+          <p 
+            className="text-[8px] font-bold truncate leading-tight flex-1"
+            style={{
+              color: '#FFD700',
+              textShadow: '0 0 6px #FFD700'
+            }}
+            title={`${currentTool.title} - ${currentTool.description?.slice(0, 100) || ''}`}
           >
-            <div className="space-y-1">
-              <p 
-                className="text-sm font-bold"
-                style={{ color: '#FFD700', textShadow: '0 0 6px #FFD700' }}
-              >
-                {currentTool.emoji || "🤖"} {currentTool.title}
-              </p>
-              <p className="text-xs text-gray-300 leading-relaxed">
-                {currentTool.description?.slice(0, 150)}{currentTool.description && currentTool.description.length > 150 ? '...' : ''}
-              </p>
-            </div>
-          </TooltipContent>
-        </Tooltip>
-      )}
+            {currentTool.emoji || "🤖"} {currentTool.title}
+          </p>
+          <button
+            onClick={handleClose}
+            className="w-4 h-4 flex items-center justify-center rounded bg-black/40 hover:bg-red-500/70 text-white/60 hover:text-white transition-colors ml-1 flex-shrink-0"
+            title="Close"
+          >
+            <X className="w-2.5 h-2.5" />
+          </button>
+        </div>
+
+        {/* Video Container - clean */}
+        <div className="relative aspect-video bg-black" style={{ minHeight: '70px' }}>
+          <iframe
+            ref={iframeRef}
+            key={`${currentVideoId}-${isMuted}-${currentIndex}`}
+            src={videoSrc}
+            className="w-full h-full"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+            title={currentTool.title}
+            style={{ minHeight: '70px' }}
+          />
+        </div>
+
+        {/* Controls bar - mute, next, try */}
+        <div className="flex items-center gap-1 px-1.5 py-1 bg-gray-800/95 border-t border-cyan-500/20">
+          <button
+            onClick={toggleMute}
+            className="w-5 h-5 flex items-center justify-center rounded-full bg-cyan-500 hover:bg-cyan-400 text-white transition-all flex-shrink-0"
+            title={isMuted ? "Unmute" : "Mute"}
+          >
+            {isMuted ? <VolumeX className="w-2.5 h-2.5" /> : <Volume2 className="w-2.5 h-2.5" />}
+          </button>
+          <button
+            onClick={handleNextVideo}
+            className="w-5 h-5 flex items-center justify-center rounded-full bg-gray-600 hover:bg-gray-500 text-white transition-all flex-shrink-0"
+            title="Next Video"
+          >
+            <SkipForward className="w-2.5 h-2.5" />
+          </button>
+          {/* Thin CTA */}
+          <Button
+            onClick={handleToolClick}
+            size="sm"
+            className="flex-1 h-4 px-1 text-[7px] rounded bg-gradient-to-r from-cyan-600 to-purple-600 hover:from-cyan-500 hover:to-purple-500 text-white font-bold ml-1"
+          >
+            🚀 TRY
+          </Button>
+        </div>
+      </div>
     </div>
   );
 };
