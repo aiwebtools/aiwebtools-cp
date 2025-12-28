@@ -164,43 +164,54 @@ const PinnedVideoPlayer = () => {
         </button>
       ) : (
         <div className="bg-gray-900/95 backdrop-blur-sm rounded border border-cyan-500/30 shadow-xl shadow-cyan-500/10 overflow-hidden">
-          {/* Tool name header */}
-          <div className="px-1 py-0.5 bg-gray-800/90 border-b border-gray-700/50">
-            <p className="text-[7px] text-cyan-300 font-medium truncate leading-tight" title={currentTool.title}>
+          {/* Tool name header - bright yellow gold flashing */}
+          <div className="px-1.5 py-1 bg-gradient-to-r from-yellow-900/40 to-amber-900/40 border-b border-yellow-500/30">
+            <p 
+              className="text-[8px] font-bold truncate leading-tight animate-pulse"
+              style={{
+                color: '#FFD700',
+                textShadow: '0 0 8px #FFD700, 0 0 16px #FFA500, 0 0 24px #FF8C00'
+              }}
+              title={currentTool.title}
+            >
               {currentTool.emoji || "🤖"} {currentTool.title}
             </p>
           </div>
           
-          {/* Controls row */}
-          <div className="flex items-center justify-end gap-0.5 px-1 py-0.5 bg-gray-800/80">
-            <button
-              onClick={toggleMute}
-              className="p-0.5 hover:bg-gray-700/50 rounded text-gray-400 hover:text-white transition-colors"
-              title={isMuted ? "Unmute" : "Mute"}
-            >
-              {isMuted ? <VolumeX className="w-2.5 h-2.5" /> : <Volume2 className="w-2.5 h-2.5" />}
-            </button>
-            <button
-              onClick={handleNextVideo}
-              className="p-0.5 hover:bg-gray-700/50 rounded text-gray-400 hover:text-white transition-colors"
-              title="Next"
-            >
-              <SkipForward className="w-2.5 h-2.5" />
-            </button>
-            <button
-              onClick={() => setIsMinimized(true)}
-              className="p-0.5 hover:bg-gray-700/50 rounded text-gray-400 hover:text-yellow-400 transition-colors"
-              title="Minimize"
-            >
-              <span className="text-[8px]">−</span>
-            </button>
-            <button
-              onClick={handleClose}
-              className="p-0.5 hover:bg-gray-700/50 rounded text-gray-400 hover:text-red-400 transition-colors"
-              title="Close"
-            >
-              <X className="w-2.5 h-2.5" />
-            </button>
+          {/* Controls row - mute & next clearly visible */}
+          <div className="flex items-center justify-between gap-1 px-1.5 py-1 bg-gray-800/90">
+            <div className="flex items-center gap-1">
+              <button
+                onClick={toggleMute}
+                className="flex items-center gap-0.5 px-1 py-0.5 rounded bg-gray-700/60 hover:bg-gray-600/80 text-gray-300 hover:text-white transition-colors"
+                title={isMuted ? "Unmute" : "Mute"}
+              >
+                {isMuted ? <VolumeX className="w-3 h-3" /> : <Volume2 className="w-3 h-3" />}
+              </button>
+              <button
+                onClick={handleNextVideo}
+                className="flex items-center gap-0.5 px-1 py-0.5 rounded bg-gray-700/60 hover:bg-cyan-600/80 text-gray-300 hover:text-white transition-colors"
+                title="Next Video"
+              >
+                <SkipForward className="w-3 h-3" />
+              </button>
+            </div>
+            <div className="flex items-center gap-0.5">
+              <button
+                onClick={() => setIsMinimized(true)}
+                className="p-0.5 hover:bg-gray-700/50 rounded text-gray-400 hover:text-yellow-400 transition-colors"
+                title="Minimize"
+              >
+                <span className="text-[10px] font-bold">−</span>
+              </button>
+              <button
+                onClick={handleClose}
+                className="p-0.5 hover:bg-gray-700/50 rounded text-gray-400 hover:text-red-400 transition-colors"
+                title="Close"
+              >
+                <X className="w-3 h-3" />
+              </button>
+            </div>
           </div>
 
           {/* Tiny Video Container */}
