@@ -198,10 +198,10 @@ const PinnedVideoPlayer = () => {
           boxShadow: '0 0 15px rgba(34, 211, 238, 0.3), 0 0 30px rgba(168, 85, 247, 0.15), 0 6px 24px rgba(0, 0, 0, 0.4)'
         }}
       >
-        {/* Tool title header with X button */}
-        <div className="flex items-center justify-between px-1.5 py-0.5 bg-gradient-to-r from-gray-800 to-gray-900 border-b border-cyan-500/30">
+        {/* Tool title header with X button - allow wrap */}
+        <div className="flex items-start justify-between gap-1 px-1.5 py-1 bg-gradient-to-r from-gray-800 to-gray-900 border-b border-cyan-500/30">
           <p 
-            className="text-[8px] font-bold truncate leading-tight flex-1"
+            className="text-[7px] font-bold leading-tight flex-1 line-clamp-2"
             style={{
               color: '#FFD700',
               textShadow: '0 0 6px #FFD700'
@@ -212,7 +212,7 @@ const PinnedVideoPlayer = () => {
           </p>
           <button
             onClick={handleClose}
-            className="w-4 h-4 flex items-center justify-center rounded bg-black/40 hover:bg-red-500/70 text-white/60 hover:text-white transition-colors ml-1 flex-shrink-0"
+            className="w-4 h-4 flex items-center justify-center rounded bg-black/40 hover:bg-red-500/70 text-white/60 hover:text-white transition-colors flex-shrink-0"
             title="Close"
           >
             <X className="w-2.5 h-2.5" />
@@ -234,7 +234,7 @@ const PinnedVideoPlayer = () => {
         </div>
 
         {/* Controls bar - mute, next, try */}
-        <div className="flex items-center gap-1 px-1.5 py-1 bg-gray-800/95 border-t border-cyan-500/20">
+        <div className="flex items-center gap-1.5 px-1.5 py-1 bg-gray-800/95 border-t border-cyan-500/20">
           <button
             onClick={toggleMute}
             className="w-5 h-5 flex items-center justify-center rounded-full bg-cyan-500 hover:bg-cyan-400 text-white transition-all flex-shrink-0"
@@ -249,13 +249,13 @@ const PinnedVideoPlayer = () => {
           >
             <SkipForward className="w-2.5 h-2.5" />
           </button>
-          {/* Thin CTA */}
+          {/* Square TRY button */}
           <Button
             onClick={handleToolClick}
             size="sm"
-            className="flex-1 h-4 px-1 text-[7px] rounded bg-gradient-to-r from-cyan-600 to-purple-600 hover:from-cyan-500 hover:to-purple-500 text-white font-bold ml-1"
+            className="w-5 h-5 p-0 text-[6px] rounded bg-gradient-to-r from-cyan-600 to-purple-600 hover:from-cyan-500 hover:to-purple-500 text-white font-bold flex-shrink-0"
           >
-            🚀 TRY
+            TRY
           </Button>
         </div>
       </div>
