@@ -64,7 +64,7 @@ const PinnedVideoPlayer = () => {
   const [shouldShow, setShouldShow] = useState(true);
   
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isMuted, setIsMuted] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
   const [isMinimized, setIsMinimized] = useState(false);
   
   // Shuffled tools - computed once when component mounts (random each page load)
