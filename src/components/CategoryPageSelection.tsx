@@ -5,37 +5,33 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { mainCategories } from "@/utils/mainCategoryMapping";
 import { allTools } from "@/data/toolsData";
-import { 
-  getCachedCategoryCounts, 
-  isCategoryCacheReady 
-} from "@/utils/categoryUtils/precomputedCache";
+import { getCachedCategoryCounts } from "@/utils/categoryUtils/precomputedCache";
+import { getMainCategoriesWithCounts } from "@/utils/categoryUtils/toolFiltering";
 
-// Pre-compute counts ONCE at module level for instant access
-let staticCategoryCounts: Record<string, number> | null = null;
+// Pre-computed accurate counts using detection functions
+let accurateCategoryCounts: Record<string, number> | null = null;
+let countsInitialized = false;
+
+const initializeAccurateCounts = () => {
+  if (countsInitialized && accurateCategoryCounts) return accurateCategoryCounts;
+  
+  // Try pre-computed cache first (fastest)
+  const cached = getCachedCategoryCounts();
+  if (cached && Object.keys(cached).length > 0) {
+    accurateCategoryCounts = cached;
+    countsInitialized = true;
+    return cached;
+  }
+  
+  // Use the same detection functions as getToolsByMainCategory for accurate counts
+  const counts = getMainCategoriesWithCounts(allTools);
+  accurateCategoryCounts = counts;
+  countsInitialized = true;
+  return counts;
+};
 
 const getStaticCounts = () => {
-  // Try pre-computed cache first (instant)
-  const cached = getCachedCategoryCounts();
-  if (cached) return cached;
-  
-  // If no cache, use a simple fast count (just category matching, no detection)
-  if (!staticCategoryCounts) {
-    staticCategoryCounts = {};
-    mainCategories.forEach(cat => {
-      if (cat.name === "ALL AI TOOLS") {
-        staticCategoryCounts![cat.name] = allTools.length;
-      } else {
-        // Fast approximate count based on category string matching
-        const count = allTools.filter(tool => {
-          const category = (tool.category || '').toLowerCase();
-          const catName = cat.name.toLowerCase();
-          return category.includes(catName) || catName.includes(category.split(' ')[0]);
-        }).length;
-        staticCategoryCounts![cat.name] = count || Math.floor(allTools.length / mainCategories.length);
-      }
-    });
-  }
-  return staticCategoryCounts;
+  return initializeAccurateCounts();
 };
 
 const CategoryPageSelection = memo(() => {
