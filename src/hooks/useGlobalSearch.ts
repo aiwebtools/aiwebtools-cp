@@ -2011,7 +2011,16 @@ export const useGlobalSearch = () => {
           if (q.includes("video") || q.includes("movie") || q.includes("film")) intents.push('video');
           if (q.includes("music") || q.includes("song")) intents.push('music');
           // Sound effects / FX intent - separate from music
-          if (q.includes("fx") || q.includes("sfx") || q.includes("sound effect") || q.includes("sound design") || q.includes("foley") || q.includes("audio effect")) intents.push('audio');
+          if (
+            q.includes("fx") ||
+            q.includes("sfx") ||
+            q.includes("sound effect") ||
+            q.includes("sound effects") ||
+            q.includes("sound design") ||
+            q.includes("foley") ||
+            q.includes("audio effect") ||
+            (q.includes("sound") && q.includes("generat"))
+          ) intents.push('audio');
           if (q.includes("audio") && !q.includes("fx") && !q.includes("effect")) intents.push('music');
           if (q.includes("image") || q.includes("picture") || q.includes("photo") || q.includes("art")) intents.push('image');
           if (q.includes("business") || q.includes("startup") || q.includes("entrepreneur")) intents.push('business');
@@ -2211,8 +2220,16 @@ export const useGlobalSearch = () => {
           }
           
           // === SOUND EFFECTS / FX SEARCH PROTECTION ===
-          if (q.includes("fx") || q.includes("sfx") || q.includes("sound effect") || 
-              q.includes("sound design") || q.includes("foley") || q.includes("audio effect")) {
+          if (
+            q.includes("fx") ||
+            q.includes("sfx") ||
+            q.includes("sound effect") ||
+            q.includes("sound effects") ||
+            q.includes("sound design") ||
+            q.includes("foley") ||
+            q.includes("audio effect") ||
+            (q.includes("sound") && q.includes("generat"))
+          ) {
             const isSoundFxTool = title.includes("eleven") || title.includes("elevenlabs") ||
                                  title.includes("sound") || title.includes("fx") ||
                                  category.includes("audio") || category.includes("sound") ||
