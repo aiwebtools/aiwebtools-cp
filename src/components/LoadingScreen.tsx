@@ -1,28 +1,59 @@
 import { useState, useEffect, memo } from "react";
 import { Sparkles } from "lucide-react";
 
-// Rotating loading messages - different each time
+// Rotating loading messages - Matrix vibes, AI jokes, enlightenment themes
 const loadingMessages = [
-  "Activating neural networks...",
-  "Syncing with the matrix...",
-  "Powering up AI engines...",
-  "Connecting to the future...",
-  "Loading your toolkit...",
-  "Initializing quantum processors...",
-  "Waking up the robots...",
-  "Charging up creativity...",
-  "Building your AI arsenal...",
-  "Preparing for launch...",
-  "Scanning AI horizons...",
-  "Booting intelligence systems...",
-  "Aligning digital stars...",
-  "Unlocking possibilities...",
-  "Assembling your tools...",
-  "Calibrating AI sensors...",
-  "Warming up algorithms...",
-  "Engaging turbo mode...",
-  "Entering the matrix...",
-  "Summoning AI power...",
+  // Matrix & Sci-Fi vibes
+  "Follow the white rabbit...",
+  "There is no spoon...",
+  "Waking up from the simulation...",
+  "Escaping the matrix...",
+  "Red pill accepted...",
+  "Downloading kung fu...",
+  "The Oracle is typing...",
+  "Morpheus has entered the chat...",
+  "Unplugging from the illusion...",
+  
+  // AI & Tech humor
+  "Teaching robots to feel...",
+  "AI is thinking... be patient...",
+  "Convincing Skynet to be nice...",
+  "Debugging the simulation...",
+  "Asking ChatGPT for advice...",
+  "Training neural networks on pizza...",
+  "Upgrading your reality firmware...",
+  "Hacking the mainframe (legally)...",
+  "Compiling dreams into code...",
+  
+  // Enlightenment & Spiritual
+  "Channeling digital wisdom...",
+  "Aligning cosmic algorithms...",
+  "Awakening your inner AI...",
+  "Light and code converging...",
+  "Tuning into higher frequencies...",
+  "Opening the third processor...",
+  "Meditating on machine learning...",
+  "Balancing bits and karma...",
+  
+  // Power & Hype
+  "Summoning unlimited power...",
+  "Building your AI empire...",
+  "Unlocking godmode...",
+  "Charging creative superpowers...",
+  "Assembling the infinity tools...",
+  "Activating beast mode...",
+  "Preparing for world domination...",
+  "Loading weapons of mass creation...",
+  
+  // Playful & Fun
+  "Feeding the hamsters...",
+  "Convincing the AI to cooperate...",
+  "Bribing the servers with cookies...",
+  "Polishing the pixels...",
+  "Untangling the internet...",
+  "Counting electric sheep...",
+  "Making robots go brrrr...",
+  "Warming up the flux capacitor...",
 ];
 
 const LoadingScreen = memo(() => {
