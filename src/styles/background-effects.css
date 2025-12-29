@@ -7,7 +7,7 @@
   height: 100%;
   pointer-events: none;
   z-index: 1;
-  will-change: auto;
+  contain: strict;
 }
 
 .star {
@@ -16,7 +16,6 @@
   border-radius: 50%;
   animation: optimizedTwinkle 6s infinite ease-in-out;
   box-shadow: 0 0 6px #00ffff;
-  will-change: opacity;
 }
 
 @keyframes optimizedTwinkle {
@@ -36,7 +35,7 @@
   height: 100%;
   pointer-events: none;
   z-index: 2;
-  will-change: auto;
+  contain: strict;
 }
 
 .particle {
@@ -45,7 +44,6 @@
   border-radius: 50%;
   animation: optimizedFloat 25s infinite linear;
   box-shadow: 0 0 8px rgba(0, 255, 255, 0.7);
-  will-change: transform;
 }
 
 @keyframes optimizedFloat {
@@ -74,7 +72,7 @@
   height: 100%;
   pointer-events: none;
   z-index: 4;
-  will-change: auto;
+  contain: strict;
 }
 
 .shooting-star {
@@ -85,7 +83,6 @@
   border-radius: 50%;
   animation: optimizedShootingStar 5s infinite linear;
   box-shadow: 0 0 8px #00ffff;
-  will-change: transform;
 }
 
 .shooting-star::before {
@@ -125,10 +122,10 @@
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: 30; /* Above section backgrounds so code streams over purple panels */
+  z-index: 30;
   overflow: hidden;
-  will-change: auto;
-  opacity: 0.6; /* Reduce overall opacity for subtlety */
+  contain: strict;
+  opacity: 0.6;
 }
 
 .matrix-column {
@@ -143,16 +140,13 @@
   animation: matrixFall 8s infinite linear;
   white-space: nowrap;
   overflow: hidden;
-  will-change: transform;
   line-height: 1.4;
-  contain: layout style paint; /* Improve rendering performance */
+  contain: layout style paint;
 }
 
 .matrix-char {
   display: block;
   font-weight: bold;
-  will-change: auto; /* Remove expensive will-change */
-  transition: none; /* Remove transitions for performance */
 }
 
 @keyframes matrixFall {

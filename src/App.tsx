@@ -12,7 +12,6 @@ import { useCrossBrowserOptimization } from "@/hooks/useCrossBrowserOptimization
 import { useChromebookOptimization } from "@/hooks/useChromebookOptimization";
 import { usePrefetchRoutes } from "@/hooks/usePrefetch";
 import ErrorBoundary from "@/components/ErrorBoundary";
-import PageTransition from "@/components/navigation/PageTransition";
 import MatrixCursorEffect from "@/components/effects/MatrixCursorEffect";
 
 // Eager load - critical path (home page AND disclaimer gate for instant first load)

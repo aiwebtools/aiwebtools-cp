@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef, memo } from "react";
+import { useState, useEffect, useCallback, useRef, memo, useMemo } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { X, SkipForward, Volume2, VolumeX } from "lucide-react";
@@ -37,7 +37,6 @@ const shuffleArray = <T,>(array: T[]): T[] => {
 
 // Get or create shuffled tools - persisted in sessionStorage to survive navigation
 const getShuffledToolsWithVideos = (): Tool[] => {
-  // Try to restore from session
   try {
     const cached = sessionStorage.getItem(SHUFFLED_TOOLS_KEY);
     if (cached) {
@@ -46,14 +45,12 @@ const getShuffledToolsWithVideos = (): Tool[] => {
     }
   } catch {}
   
-  // Create new shuffled list
   const toolsWithIndices = allTools
     .map((tool, index) => ({ tool, index }))
     .filter(({ tool }) => extractYouTubeId(tool.videoUrl || '') !== null);
   
   const shuffled = shuffleArray(toolsWithIndices);
   
-  // Store indices in session
   try {
     sessionStorage.setItem(SHUFFLED_TOOLS_KEY, JSON.stringify(shuffled.map(t => t.index)));
   } catch {}
@@ -77,6 +74,15 @@ const setStoredIndex = (index: number) => {
   } catch {}
 };
 
+// Lazy-init tools list ONCE at module level to prevent recalc on re-renders
+let cachedToolsWithVideos: Tool[] | null = null;
+const getToolsWithVideosCached = (): Tool[] => {
+  if (!cachedToolsWithVideos) {
+    cachedToolsWithVideos = getShuffledToolsWithVideos();
+  }
+  return cachedToolsWithVideos;
+};
+
 const PinnedVideoPlayer = memo(() => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -96,15 +102,14 @@ const PinnedVideoPlayer = memo(() => {
   
   // Hide when user is viewing the main tool video on a detail page
   const [isMainVideoVisible, setIsMainVideoVisible] = useState(false);
-  // Track if player should be shown with animation
   const [shouldShow, setShouldShow] = useState(true);
   
   // Persisted current index - survives navigation
   const [currentIndex, setCurrentIndex] = useState(getStoredIndex);
   const [isMuted, setIsMuted] = useState(true);
   
-  // Shuffled tools - computed once per session, persisted
-  const [toolsWithVideos] = useState(getShuffledToolsWithVideos);
+  // Shuffled tools - computed once at module level, never recalculated
+  const toolsWithVideos = useMemo(() => getToolsWithVideosCached(), []);
   
   // Track video src separately to prevent unnecessary iframe reloads
   const [videoSrc, setVideoSrc] = useState<string>("");
@@ -118,12 +123,15 @@ const PinnedVideoPlayer = memo(() => {
     setStoredIndex(currentIndex);
   }, [currentIndex]);
   
-  // Update video src only when video ID changes (not on mute toggle or navigation)
+  // Update video src only when video ID actually changes
   useEffect(() => {
-    if (!currentVideoId || currentVideoId === lastVideoIdRef.current) return;
+    if (!currentVideoId) return;
+    if (currentVideoId === lastVideoIdRef.current) return;
     
     lastVideoIdRef.current = currentVideoId;
-    const newSrc = `https://www.youtube.com/embed/${currentVideoId}?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&enablejsapi=1&playsinline=1&origin=${encodeURIComponent(window.location.origin)}`;
+    // Use stable origin reference
+    const origin = typeof window !== 'undefined' ? window.location.origin : '';
+    const newSrc = `https://www.youtube.com/embed/${currentVideoId}?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&enablejsapi=1&playsinline=1&origin=${encodeURIComponent(origin)}`;
     setVideoSrc(newSrc);
     playerMountedRef.current = true;
   }, [currentVideoId]);
