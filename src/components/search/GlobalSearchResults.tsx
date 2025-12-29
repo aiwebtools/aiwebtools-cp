@@ -90,12 +90,14 @@ const GlobalSearchResults = ({
             
             const toolItem = (
               <div 
-                className={`flex items-center space-x-3 p-3 rounded-lg hover:bg-cyan-500/10 cursor-pointer group transition-all duration-200 border border-transparent hover:border-cyan-500/30 ${isRecommendation ? 'opacity-90' : ''}`}
+                className={`flex items-center space-x-3 p-3 rounded-lg hover:bg-cyan-500/10 cursor-pointer group border border-transparent hover:border-cyan-500/30 ${isRecommendation ? 'opacity-90' : ''}`}
                 onClick={() => onToolClick(toolIndex)}
+                style={{ transform: 'translateZ(0)' }}
               >
                 {/* Category color-coded icon */}
                 <div 
-                  className={`w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-gradient-to-br ${categoryStyle.bg} ${categoryStyle.border} border flex items-center justify-center text-sm sm:text-base flex-shrink-0 shadow-lg ${categoryStyle.glow} transition-transform group-hover:scale-110`}
+                  className={`w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-gradient-to-br ${categoryStyle.bg} ${categoryStyle.border} border flex items-center justify-center text-sm sm:text-base flex-shrink-0 shadow-lg ${categoryStyle.glow} group-hover:scale-110`}
+                  style={{ transition: 'none' }}
                 >
                   {categoryStyle.icon}
                 </div>
