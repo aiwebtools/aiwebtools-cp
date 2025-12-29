@@ -1973,14 +1973,14 @@ export const useGlobalSearch = () => {
       return;
     }
 
-    // 4) Run INSTANT quick search - NO delay, shows results immediately
-    // Use queueMicrotask to ensure it runs after React's batch update but before paint
-    queueMicrotask(() => {
+    // 4) Run quick search AFTER paint to prevent any typing lag
+    // (queueMicrotask was fast but could block rendering on slower devices)
+    quickRef.current = setTimeout(() => {
       if (currentId !== searchIdRef.current) return;
       const fast = quickSearch(t);
       setSearchResults(fast);
       setDisplayedCount(50);
-    });
+    }, 0);
 
     // 5) Full intelligent ranking for 3+ chars - only 50ms debounce for near-instant refinement
     if (t.length >= 3) {
