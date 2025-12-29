@@ -108,6 +108,18 @@ export const imageEditingTools: Tool[] = [
     totalVotes: 3567
   },
   {
+    icon: Scissors,
+    title: "Magic Studio",
+    description: "User-friendly online photo editor that simplifies removing unwanted elements from images. Drag-and-drop interface, no signup required, eliminates distractions with PRO version for high-resolution downloads and bulk editing.",
+    emoji: "✂️",
+    color: "from-red-500 to-orange-600",
+    directUrl: "https://magicstudio.com/?via=aiwebtools",
+    tags: ["Background Removal", "Photo Editor", "drag-and-drop", "no signup", "unwanted removal", "PRO version", "bulk editing", "real estate", "magic eraser"],
+    category: "Image Generation Platforms",
+    rating: 4.6,
+    totalVotes: 4123
+  },
+  {
     icon: Monitor,
     title: "DiffusionBee",
     description: "Groundbreaking AI art generation tool that empowers users to create stunning images through Stable Diffusion technology locally without usage limitations. Prioritizes privacy with local processing and active Discord community.",
