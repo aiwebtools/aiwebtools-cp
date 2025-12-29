@@ -29,13 +29,14 @@ export const isStrictlyHistoricalTimeRelatedTool = (tool: Tool): boolean => {
   // ========== STRICT EXCLUSION LIST ==========
   // These tools should NEVER appear in Historical & Time-Based category
   const excludedTools = [
+    // AI/LLM platforms - NOT historical
     'lm studio', 'warmbox', 'bitwarden', 'malwarebytes', 'mailchimp',
     'zapier', 'make.com', 'n8n', 'notion', 'slack', 'discord', 'zoom',
     'canva', 'figma', 'adobe', 'midjourney', 'dall-e', 'stable diffusion',
     'suno', 'udio', 'elevenlabs', 'eleven labs', 'cursor', 'replit',
     'vercel', 'netlify', 'github', 'gitlab', 'stripe', 'shopify',
     'hubspot', 'salesforce', 'asana', 'trello', 'monday', 'clickup',
-    'grammarly', 'jasper', 'copy.ai', 'writesonic', 'ai tools finder',
+    'grammarly', 'jasper', 'copy.ai', 'writesonic',
     'buffer', 'hootsuite', 'sprout social', 'semrush', 'ahrefs', 'moz',
     'anthropic', 'openai', 'google ai', 'meta ai', 'microsoft copilot',
     'chatgpt', 'claude', 'gemini', 'perplexity', 'mistral', 'llama',
@@ -49,7 +50,17 @@ export const isStrictlyHistoricalTimeRelatedTool = (tool: Tool): boolean => {
     'writerly', 'jenni', 'wordtune', 'quillbot', 'sudowrite',
     'huggingface', 'replicate', 'together ai', 'groq', 'cohere',
     'perplexity', 'you.com', 'kagi', 'phind', 'exa', 'tavily',
-    'browserless', 'apify', 'firecrawl', 'scraper', 'automation'
+    'browserless', 'apify', 'firecrawl', 'scraper', 'automation',
+    // Specific tools that keep appearing in wrong category
+    'ai tools finder', 'restorephotos', 'restore photos', 'restorephoto',
+    'myheritage', 'deep nostalgia', 'bbc sound', 'sound effects',
+    'character.ai', 'character ai', 'chai', 'replika', 'pi ai',
+    'invideo', 'lumen5', 'pictory', 'flexclip', 'kapwing',
+    'crisp', 'intercom', 'zendesk', 'freshdesk', 'drift',
+    'otter.ai', 'fireflies', 'grain', 'fathom', 'tldv',
+    'copy ai', 'anyword', 'hypotenuse', 'rytr', 'simplified',
+    'brandmark', 'looka', 'hatchful', 'tailor brands',
+    'gamma', 'tome', 'beautiful.ai', 'pitch', 'slides ai'
   ];
   
   // Exclude these tools immediately
@@ -65,36 +76,43 @@ export const isStrictlyHistoricalTimeRelatedTool = (tool: Tool): boolean => {
   // ========== EXPLICIT HISTORICAL TOOL NAMES ==========
   // These tools MUST be included in Historical & Time-Based category
   const explicitHistoricalTools = [
-    // Time Machine family
-    'time machine gpt', 'time machine', 'time-machine',
+    // Time Machine family - ALL VERSIONS
+    'time machine gpt', 'time machine', 'time-machine', 'time traveler',
     'native american history time machine', 'native american time machine',
+    'black history matters time machine', 'time machine of unwritten history',
+    'unwritten history', 'time traveler gpt',
     
     // Talk to History family
     'talk to history', 'talk to history gpt',
     
-    // Historical personalities
+    // Historical personalities (famous historical figures GPTs)
     'nikola tesla gpt', 'albert einstein gpt', 'alan watts gpt',
-    'mary magdalene gpt', 'talk to the gods', 
+    'mary magdalene gpt', 'talk to the gods',
     
     // Historical exploration tools
     'historical headlines', 'historical headline', 
     'titanic resurrection', 'titanic resurrections',
     'oraculum', 'interpretis', 
     'phenomenon explorer', 'hidden histories', 'hidden historical patterns',
+    'uncovering hidden historical', 'historical patterns gpt',
     'archaeologist', 'indiana archaeologist', 'indiana archaeology',
     'grave decoder', 'gravestone decoder', 'cemetery', 'memorial decoder',
     'historical apothecary', 'apothecary gpt',
     'alchemist scientist', 'alchemical scientist',
-    'resurrection gpt',
+    'resurrection gpt', 'gptpastvoices', 'past voices',
+    'ancient calendar', 'historical map explorer', 'historical map',
+    'imagination traveler', // cosmic journeys through time
     
-    // Civilization & Era exploration
+    // Regional/Cultural history tools
+    'palestinian history', 'middle east history', 'black history',
     'civilization gpt', 'ancient egypt', 'roman empire', 'medieval',
     'renaissance', 'dynasty', 'empire explorer', 'heritage',
     'antiquity', 'ancestors', 'ancestry', 'genealogy', 'lineage',
     
     // Historical education/immersion
     'historical immersion', 'historical simulation', 'historical figure',
-    'historical persona', 'history immersive', 'history simulation'
+    'historical persona', 'history immersive', 'history simulation',
+    'history guide', 'history explorer', 'history preserver'
   ];
   
   // Check for explicit historical tool names first - highest priority
