@@ -39,18 +39,26 @@ const GlobalSearchInput = memo(({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchTerm]);
 
-  // ULTRA-FAST onChange - paint immediately, defer search to next frame
+  // LIGHTNING-FAST onChange - paint immediately, batch search updates
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const next = e.target.value;
       
-      // INSTANT paint - no delay whatsoever
+      // INSTANT paint - absolutely zero delay, no async
       setLocalValue(next);
       
-      // Store pending value and schedule RAF if not already scheduled
+      // Cancel any pending RAF to prevent queuing
+      if (rafRef.current !== null) {
+        cancelAnimationFrame(rafRef.current);
+        rafRef.current = null;
+      }
+      
+      // Store pending value
       pendingValueRef.current = next;
       
-      if (rafRef.current === null) {
+      // Schedule search update in next idle moment
+      // Using double-RAF ensures paint happens first
+      rafRef.current = requestAnimationFrame(() => {
         rafRef.current = requestAnimationFrame(() => {
           rafRef.current = null;
           if (pendingValueRef.current !== null) {
@@ -58,7 +66,7 @@ const GlobalSearchInput = memo(({
             pendingValueRef.current = null;
           }
         });
-      }
+      });
     },
     [onSearchChange]
   );
