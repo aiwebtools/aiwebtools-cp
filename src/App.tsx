@@ -74,12 +74,10 @@ const WelcomeNeoVoice = () => {
 // Pre-initialize category cache for instant category page loads
 import "@/utils/categoryUtils/precomputedCache";
 
-// Minimal loader - just a quick flash, not blocking
-const PageLoader = () => (
-  <div className="min-h-screen bg-black flex items-center justify-center">
-    <div className="w-6 h-6 border-2 border-green-500 border-t-transparent rounded-full animate-spin" />
-  </div>
-);
+// Loading screen with rotating messages and animated progress
+import LoadingScreen from "@/components/LoadingScreen";
+
+const PageLoader = () => <LoadingScreen />;
 
 const queryClient = new QueryClient({
   defaultOptions: {
