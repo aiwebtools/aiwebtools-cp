@@ -26,10 +26,10 @@ const GlobalSearchInput = memo(({
   const inputRef = useRef<HTMLInputElement>(null);
   
   // 100% INSTANT typing - completely decoupled from search
-  // Local state for instant paint, search updates via RAF
   const [localValue, setLocalValue] = useState(searchTerm);
-  const rafRef = useRef<number | null>(null);
-  const pendingValueRef = useRef<string | null>(null);
+
+  // Defer search updates so typing never lags
+  const searchUpdateRef = useRef<number | null>(null);
 
   // Sync external changes (clear, navigation, prediction accept)
   useEffect(() => {
@@ -39,34 +39,33 @@ const GlobalSearchInput = memo(({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchTerm]);
 
-  // LIGHTNING-FAST onChange - instant paint, immediate search trigger
+  // LIGHTNING-FAST onChange - instant paint, defer search to next tick
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const next = e.target.value;
-      
-      // INSTANT paint - absolutely zero delay
+
+      // INSTANT paint (this is what user feels)
       setLocalValue(next);
-      
-      // Cancel any pending update
-      if (rafRef.current !== null) {
-        cancelAnimationFrame(rafRef.current);
-        rafRef.current = null;
+
+      // Cancel any queued search update
+      if (searchUpdateRef.current !== null) {
+        clearTimeout(searchUpdateRef.current);
+        searchUpdateRef.current = null;
       }
-      
-      // Trigger search IMMEDIATELY using queueMicrotask
-      // This runs after React's batch update but before paint - fastest possible
-      queueMicrotask(() => {
+
+      // Defer search work until AFTER paint to avoid "letters lag"
+      searchUpdateRef.current = window.setTimeout(() => {
         onSearchChange(next);
-      });
+      }, 0);
     },
     [onSearchChange]
   );
 
-  // Cleanup RAF on unmount
+  // Cleanup timeout on unmount
   useEffect(() => {
     return () => {
-      if (rafRef.current !== null) {
-        cancelAnimationFrame(rafRef.current);
+      if (searchUpdateRef.current !== null) {
+        clearTimeout(searchUpdateRef.current);
       }
     };
   }, []);
