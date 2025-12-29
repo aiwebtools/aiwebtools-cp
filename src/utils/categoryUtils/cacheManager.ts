@@ -37,7 +37,7 @@ import { isMarketingSalesTool } from "./marketingSalesDetection";
 let toolsCacheByMainCategory: Map<string, Tool[]> = new Map();
 let cacheBuilt = false;
 let lastToolsLength = 0;
-let cacheVersion = 42; // Phase 22: Fixed Historical & Time-Based detection - strict exclusions and explicit tool names
+let cacheVersion = 43; // Phase 23: STRICT Historical detection - no subcategory matching, expanded exclusions
 
 // Persistent cache storage for instant loads
 const CACHE_KEY = 'aitools_category_cache_v2';
@@ -240,7 +240,10 @@ export const buildToolsCache = (tools: Tool[]) => {
         break;
         
       case "HISTORICAL & TIME-BASED AI TOOLS":
-        categoryTools = getCombinedTools(tools, mainCat, toolCollections.strictHistoricalTools);
+        // STRICT: Use ONLY specialized detection - no subcategory matching
+        // This prevents non-history tools from being included via loose category matching
+        categoryTools = [...toolCollections.strictHistoricalTools];
+        console.log(`⏰ HISTORICAL & TIME-BASED: Found ${categoryTools.length} tools with STRICT detection only`);
         break;
         
       case "VIDEO & MULTIMEDIA": {
