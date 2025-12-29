@@ -55,7 +55,7 @@ const WelcomeNeoVoice = () => {
     if (location.pathname === '/' && hasAccepted && !hasPlayedRef.current) {
       hasPlayedRef.current = true;
       
-      // Small delay to let page render
+      // Play as soon as the main page renders
       setTimeout(() => {
         const audio = new Audio('/welcome-neo.mp3');
         audio.volume = 0.7;
@@ -64,15 +64,15 @@ const WelcomeNeoVoice = () => {
         }).catch((err) => {
           console.log('⏳ Audio requires user interaction:', err);
         });
-      }, 300);
+      }, 0);
     }
   }, [location.pathname]);
 
   return null;
 };
 
-// Pre-initialize category cache for instant category page loads
-import "@/utils/categoryUtils/precomputedCache";
+// NOTE: precomputed category cache is initialized AFTER disclaimer acceptance
+// to keep the /welcome disclaimer gate load instant.
 
 // Loading screen with rotating messages and animated progress
 import LoadingScreen from "@/components/LoadingScreen";
@@ -145,15 +145,67 @@ const RouteGuard: React.FC = () => {
   
   return <AnimatedRoutes />;
 };
+
+const PostAcceptBoot: React.FC = () => {
+  const location = useLocation();
+  const hasAccepted = !!localStorage.getItem("aitools-consent-v3");
+
+  // Never run heavy boot work on disclaimer gate
+  const enabled = hasAccepted && location.pathname !== "/welcome";
+
+  React.useEffect(() => {
+    if (!enabled) return;
+
+    // Defer category cache init until after first paint
+    const id = window.setTimeout(() => {
+      import("@/utils/categoryUtils/precomputedCache");
+    }, 0);
+
+    return () => {
+      clearTimeout(id);
+    };
+  }, [enabled]);
+
+  if (!enabled) return null;
+
+  // Prefetch common routes for instant navigation (only after accept)
+  usePrefetchRoutes();
+
+  return null;
+};
+
+const GlobalOverlays: React.FC = () => {
+  const location = useLocation();
+  const hasAccepted = !!localStorage.getItem("aitools-consent-v3");
+  const show = hasAccepted && location.pathname !== "/welcome";
+
+  return (
+    <>
+      {show ? <MatrixCursorEffect /> : null}
+      {/* Welcome Neo voice - only plays after disclaimer accepted */}
+      <WelcomeNeoVoice />
+      {/* Tiny floating clone button - hides on scroll */}
+      {show ? (
+        <Suspense fallback={null}>
+          <FloatingCloneButton />
+        </Suspense>
+      ) : null}
+      {/* Pinned rotating video player - lower left corner */}
+      {show ? (
+        <Suspense fallback={null}>
+          <PinnedVideoPlayer />
+        </Suspense>
+      ) : null}
+    </>
+  );
+};
+
 function App() {
   // Initialize cross-browser optimizations
   useCrossBrowserOptimization();
-  
+
   // Initialize Chromebook-specific optimizations
   useChromebookOptimization();
-  
-  // Prefetch common routes for instant navigation
-  usePrefetchRoutes();
 
   return (
     <ErrorBoundary>
@@ -163,19 +215,10 @@ function App() {
             <VideoManagerProvider>
               <TooltipProvider>
                 <Toaster />
-                <MatrixCursorEffect />
                 <BrowserRouter>
                   <RouteGuard />
-                  {/* Welcome Neo voice - only plays after disclaimer accepted */}
-                  <WelcomeNeoVoice />
-                  {/* Tiny floating clone button - hides on scroll */}
-                  <Suspense fallback={null}>
-                    <FloatingCloneButton />
-                  </Suspense>
-                  {/* Pinned rotating video player - lower left corner */}
-                  <Suspense fallback={null}>
-                    <PinnedVideoPlayer />
-                  </Suspense>
+                  <PostAcceptBoot />
+                  <GlobalOverlays />
                 </BrowserRouter>
               </TooltipProvider>
             </VideoManagerProvider>
