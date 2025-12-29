@@ -1,15 +1,20 @@
 /* Performance Optimizations CSS */
 
-/* GPU acceleration for smooth scrolling */
+/* Instant scroll for navigation */
 html {
-  scroll-behavior: auto; /* Instant scroll for navigation, smooth optional via JS */
+  scroll-behavior: auto !important;
 }
 
 /* Optimize rendering performance */
 * {
-  /* Disable subpixel antialiasing on low-end devices for better performance */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Instant navigation - no transitions during route changes */
+.navigating * {
+  transition: none !important;
+  animation: none !important;
 }
 
 /* Content visibility for offscreen elements */
