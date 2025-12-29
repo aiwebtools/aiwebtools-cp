@@ -62,6 +62,9 @@ import { newPersonalDevelopmentTools } from "./tools/newPersonalDevelopmentTools
 // Import WEB3 domains
 import { web3DomainsTools } from "./tools/web3DomainsTools";
 
+// Import SFX Generator Tools
+import { sfxGeneratorTools } from "./tools/sfxGeneratorTools";
+
 const allToolCategories = consolidateTools([
   ...getAllToolCategories(),
   ...newAffiliatePlatforms2025,
@@ -110,7 +113,10 @@ const allToolCategories = consolidateTools([
   ...customGeminiGems,
   ...inspectorAndSafetyGPTs,
   ...philosophyAndLifestyleGPTs,
-  ...videoPromptGPTs
+  ...videoPromptGPTs,
+  
+  // SFX Generator Tools
+  ...sfxGeneratorTools
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories
