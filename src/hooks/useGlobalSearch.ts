@@ -55,7 +55,7 @@ class LRUCache<K, V> {
 
 // Global search cache (persists across component re-renders)
 // NOTE: versioned to prevent "stale" cached results after search-intelligence updates.
-const SEARCH_CACHE_VERSION = "v34";
+const SEARCH_CACHE_VERSION = "v35";
 const searchCache = new LRUCache<string, any[]>(50);
 
 // ==================== INTELLIGENCE MAPS (precomputed, instant lookup) ====================
@@ -1016,8 +1016,16 @@ const PHRASE_TO_TOOLS: Record<string, string[]> = {
   "file taxes": ["Taxes GPT"],
   "do my taxes": ["Taxes GPT"],
   
-  // Health intents
+  // Health intents - DOCTOR MUST BE FIRST
+  "doctor": ["Personalized DR. GPT (Doctor GPT)", "Mental Wellness GPT", "Veterinarian GPT"],
+  "dr": ["Personalized DR. GPT (Doctor GPT)", "Mental Wellness GPT"],
+  "doc": ["Personalized DR. GPT (Doctor GPT)", "Mental Wellness GPT"],
+  "doctor gpt": ["Personalized DR. GPT (Doctor GPT)"],
+  "medical doctor": ["Personalized DR. GPT (Doctor GPT)"],
+  "ai doctor": ["Personalized DR. GPT (Doctor GPT)"],
   "talk to a doctor": ["Personalized DR. GPT (Doctor GPT)"],
+  "talk to doctor": ["Personalized DR. GPT (Doctor GPT)"],
+  "need a doctor": ["Personalized DR. GPT (Doctor GPT)"],
   "medical advice": ["Personalized DR. GPT (Doctor GPT)"],
   "health advice": ["Personalized DR. GPT (Doctor GPT)", "Mental Wellness GPT"],
   "mental health": ["Mental Wellness GPT"],
@@ -1025,6 +1033,9 @@ const PHRASE_TO_TOOLS: Record<string, string[]> = {
   "vet advice": ["Veterinarian GPT"],
   "health": ["Personalized DR. GPT (Doctor GPT)", "Mental Wellness GPT", "Veterinarian GPT", "Pharmaceutical Assistant GPT"],
   "health tools": ["Personalized DR. GPT (Doctor GPT)", "Mental Wellness GPT", "Veterinarian GPT"],
+  "symptoms": ["Personalized DR. GPT (Doctor GPT)"],
+  "diagnosis": ["Personalized DR. GPT (Doctor GPT)"],
+  "medical": ["Personalized DR. GPT (Doctor GPT)", "Pharmaceutical Assistant GPT"],
   
   // Spiritual/philosophy intents
   "talk to god": ["TALK TO THE GODS GPT"],

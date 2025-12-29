@@ -25,7 +25,7 @@ export const healthAndWellnessGPTs: Tool[] = [
     color: "from-blue-500 to-green-600",
     directUrl: "https://aidoctorgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/jwjNOKP5mf4",
-    tags: ["dr", "doctor", "personalized doctor", "medical consultation", "health advice", "doctor simulation", "healthcare", "medical ai", "aiwebtools", "Custom GPT", "Medical", "Healthcare"],
+    tags: ["dr", "doc", "doctor", "doctor gpt", "ai doctor", "personalized doctor", "medical doctor", "medical consultation", "health advice", "doctor simulation", "healthcare", "medical ai", "symptoms", "diagnosis", "treatment", "physician", "medical help", "health help", "talk to doctor", "need doctor", "aiwebtools", "Custom GPT", "Medical", "Healthcare"],
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.7,
     totalVotes: 5432

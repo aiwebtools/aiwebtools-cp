@@ -271,9 +271,16 @@ export const COMMON_PHRASE_HANDLERS: Record<string, PhraseHandler> = {
   },
   
   // ===== HEALTH & WELLNESS =====
+  doctor: {
+    triggers: ['doctor', 'doc', 'dr', 'doctor gpt', 'ai doctor', 'talk to doctor', 'need a doctor', 'find a doctor', 'medical doctor', 'physician'],
+    keywords: ['doctor', 'medical', 'physician', 'health', 'diagnosis', 'symptoms', 'treatment', 'healthcare'],
+    priorityTools: ['Personalized DR. GPT (Doctor GPT)', 'Mental Wellness GPT', 'Veterinarian GPT', 'Pharmaceutical Assistant GPT'],
+    relatedCategories: ['Health & Wellness', 'Medical Tools', 'Healthcare']
+  },
+  
   healthAdvice: {
-    triggers: ['health advice', 'medical advice', 'health help', 'doctor help', 'am i sick'],
-    keywords: ['health', 'medical', 'doctor', 'symptoms', 'diagnosis', 'wellness'],
+    triggers: ['health advice', 'medical advice', 'health help', 'doctor help', 'am i sick', 'feeling sick', 'medical help'],
+    keywords: ['health', 'medical', 'doctor', 'symptoms', 'diagnosis', 'wellness', 'sick', 'illness'],
     priorityTools: ['Personalized DR. GPT (Doctor GPT)', 'Mental Wellness GPT'],
     relatedCategories: ['Health & Wellness', 'Medical Tools']
   },

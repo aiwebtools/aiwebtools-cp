@@ -290,19 +290,29 @@ export const scoreAIWebToolsGPT = (tool: Tool, searchTerm: string): number => {
     score += 600;
   }
   
-  // PRIORITY SCORING FOR MEDICAL SEARCHES
-  if (lowerSearchTerm.includes('medical') || lowerSearchTerm.includes('health') || lowerSearchTerm.includes('doctor') || lowerSearchTerm.includes('wellness')) {
+  // PRIORITY SCORING FOR MEDICAL/DOCTOR SEARCHES - Doctor GPT MUST be first
+  const isDoctorSearch = lowerSearchTerm === 'doctor' || lowerSearchTerm === 'doc' || lowerSearchTerm === 'dr' || lowerSearchTerm.includes('doctor');
+  const isMedicalSearch = lowerSearchTerm.includes('medical') || lowerSearchTerm.includes('health') || lowerSearchTerm.includes('wellness') || lowerSearchTerm.includes('symptoms');
+  
+  if (isDoctorSearch) {
+    // Doctor GPT gets massive boost for "doctor" searches
+    if (toolText.includes('personalized dr. gpt') || toolText.includes('doctor gpt') || tool.title.toLowerCase().includes('doctor')) {
+      score += 8000; // Massive priority for direct doctor search
+    }
+  }
+  
+  if (isDoctorSearch || isMedicalSearch) {
     if (toolText.includes('personalized dr. gpt') || toolText.includes('doctor gpt')) {
-      score += 500;
+      score += 1500;
     }
     if (toolText.includes('mental wellness gpt')) {
-      score += 490;
+      score += 800;
     }
     if (toolText.includes('veterinarian gpt')) {
-      score += 400;
+      score += 700;
     }
     if (toolText.includes('pharmaceutical assistant')) {
-      score += 380;
+      score += 600;
     }
   }
   
