@@ -76,43 +76,62 @@ export const isStrictlyHistoricalTimeRelatedTool = (tool: Tool): boolean => {
   // ========== EXPLICIT HISTORICAL TOOL NAMES ==========
   // These tools MUST be included in Historical & Time-Based category
   const explicitHistoricalTools = [
-    // Time Machine family - ALL VERSIONS
+    // Time Machine family - ALL VERSIONS (highest priority)
     'time machine gpt', 'time machine', 'time-machine', 'time traveler',
     'native american history time machine', 'native american time machine',
-    'black history matters time machine', 'time machine of unwritten history',
-    'unwritten history', 'time traveler gpt',
+    'black history matters time machine', 'black history matter', 'time machine of unwritten history',
+    'unwritten history', 'time traveler gpt', 'time machine gemini',
     
-    // Talk to History family
+    // Talk to History family - CORE HISTORICAL TOOLS
     'talk to history', 'talk to history gpt',
     
-    // Historical personalities (famous historical figures GPTs)
-    'nikola tesla gpt', 'albert einstein gpt', 'alan watts gpt',
-    'mary magdalene gpt', 'talk to the gods',
+    // Historical Headlines - News from history
+    'historical headlines', 'historical headline', 'historical headlines gpt',
     
-    // Historical exploration tools
-    'historical headlines', 'historical headline', 
-    'titanic resurrection', 'titanic resurrections',
-    'oraculum', 'interpretis', 
-    'phenomenon explorer', 'hidden histories', 'hidden historical patterns',
-    'uncovering hidden historical', 'historical patterns gpt',
-    'archaeologist', 'indiana archaeologist', 'indiana archaeology',
+    // Historical personalities (REAL historical figure GPTs from AIWebTools)
+    'nikola tesla gpt', 'nikola tesla',
+    'albert einstein gpt', 'albert einstein',
+    'alan watts gpt', 'alan watts',
+    'mary magdalene gpt', 'mary magdalene',
+    'carl sagan gpt', 'carl sagan',
+    'paramahansa yogananda gpt', 'paramahansa yogananda', 'yogananda',
+    'talk to the gods', 'talk to the gods gpt',
+    'sophia aeterna', 'sophia aeterna ai',
+    
+    // Historical exploration & immersion tools (AIWebTools originals)
+    'titanic resurrection', 'titanic resurrections', 'titanic resurrections gpt',
+    'oraculum', 'oraculum gpt',
+    'interpretis', 'interpretis gpt', // etymology = language history
+    'imagination traveler', 'imagination traveler gpt', // cosmic time journeys
+    'resurrection gpt', // reconnecting with the past
+    'uncovering hidden historical', 'hidden historical patterns', 'historical patterns gpt',
+    
+    // Archaeology & Ancient exploration
+    'archaeologist', 'indiana archaeologist', 'indiana archaeology', 'indiana archeologist',
     'grave decoder', 'gravestone decoder', 'cemetery', 'memorial decoder',
-    'historical apothecary', 'apothecary gpt',
-    'alchemist scientist', 'alchemical scientist',
-    'resurrection gpt', 'gptpastvoices', 'past voices',
+    
+    // Historical medicine & alchemy
+    'historical apothecary', 'apothecary gpt', 'historical apothecary gpt',
+    'alchemist scientist', 'alchemical scientist', 'alchemist scientist gpt',
+    
+    // Historical voices & records
+    'gptpastvoices', 'past voices',
     'ancient calendar', 'historical map explorer', 'historical map',
-    'imagination traveler', // cosmic journeys through time
+    'ancient knowledge gpt', 'ancient knowledge',
     
     // Regional/Cultural history tools
     'palestinian history', 'middle east history', 'black history',
-    'civilization gpt', 'ancient egypt', 'roman empire', 'medieval',
-    'renaissance', 'dynasty', 'empire explorer', 'heritage',
-    'antiquity', 'ancestors', 'ancestry', 'genealogy', 'lineage',
+    'civilization gpt', 'ancient egypt', 'roman empire', 'medieval history',
+    'renaissance', 'dynasty', 'empire explorer', 'heritage explorer',
+    'antiquity', 'ancestors', 'ancestry research', 'genealogy', 'lineage',
     
-    // Historical education/immersion
+    // Historical education/immersion/simulation
     'historical immersion', 'historical simulation', 'historical figure',
     'historical persona', 'history immersive', 'history simulation',
-    'history guide', 'history explorer', 'history preserver'
+    'history guide', 'history explorer', 'history preserver',
+    
+    // Stellaris - space exploration & temporal simulation
+    'stellaris', 'stellaris ai space explorer'
   ];
   
   // Check for explicit historical tool names first - highest priority
