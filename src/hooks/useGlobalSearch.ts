@@ -53,9 +53,51 @@ class LRUCache<K, V> {
   }
 }
 
+// FAST spread function - simplified O(n) algorithm for instant spreading
+const spreadSimilarToolsFast = (tools: any[]): any[] => {
+  if (tools.length < 20) return tools;
+  
+  const result: any[] = [];
+  const seen = new Set<string>();
+  const recentBases: string[] = [];
+  const MIN_GAP = 8;
+  
+  const getBase = (title: string): string => {
+    return title.toLowerCase()
+      .replace(/\s*(gpt|gem|gemini|\(gem\)|\[gem\])\s*/gi, '')
+      .split(' ').slice(0, 2).join(' ');
+  };
+  
+  for (const tool of tools) {
+    const title = (tool?.title || "").toLowerCase();
+    const base = getBase(title);
+    
+    // Check if similar base was recent
+    const recentMatch = recentBases.slice(-MIN_GAP).includes(base);
+    
+    if (!recentMatch || result.length < 10) {
+      result.push(tool);
+      recentBases.push(base);
+    } else {
+      // Defer to end
+      seen.add(title);
+    }
+  }
+  
+  // Add deferred tools
+  for (const tool of tools) {
+    const title = (tool?.title || "").toLowerCase();
+    if (seen.has(title) && !result.some(r => (r?.title || "").toLowerCase() === title)) {
+      result.push(tool);
+    }
+  }
+  
+  return result;
+};
+
 // Global search cache (persists across component re-renders)
 // NOTE: versioned to prevent "stale" cached results after search-intelligence updates.
-const SEARCH_CACHE_VERSION = "v35";
+const SEARCH_CACHE_VERSION = "v36";
 const searchCache = new LRUCache<string, any[]>(50);
 
 // ==================== INTELLIGENCE MAPS (precomputed, instant lookup) ====================
@@ -1931,322 +1973,209 @@ export const useGlobalSearch = () => {
       return;
     }
 
-    // 4) Run quick search with tiny debounce (16ms = 1 frame) for ultra-smooth typing
-    // This prevents blocking when user types fast
-    quickRef.current = setTimeout(() => {
+    // 4) Run INSTANT quick search - NO delay, shows results immediately
+    // Use queueMicrotask to ensure it runs after React's batch update but before paint
+    queueMicrotask(() => {
       if (currentId !== searchIdRef.current) return;
-      requestAnimationFrame(() => {
-        if (currentId !== searchIdRef.current) return;
-        const fast = quickSearch(t);
-        setSearchResults(fast);
-        setDisplayedCount(50);
-      });
-    }, 16); // 16ms = 1 frame delay - feels instant but doesn't block typing
+      const fast = quickSearch(t);
+      setSearchResults(fast);
+      setDisplayedCount(50);
+    });
 
-    // 5) Full intelligent ranking for 3+ chars (with 150ms debounce for smooth typing)
+    // 5) Full intelligent ranking for 3+ chars - only 50ms debounce for near-instant refinement
     if (t.length >= 3) {
-      
-      // Debounce heavy searchTools call - 150ms allows smooth typing without interruption
       fullRef.current = setTimeout(() => {
         if (currentId !== searchIdRef.current) return;
         
-        // Run heavy computation in next idle callback or setTimeout to not block
-        const runSearch = () => {
-          if (currentId !== searchIdRef.current) return;
-          const results = searchTools(allTools, t);
+        // Run search SYNCHRONOUSLY - no requestIdleCallback delays
+        const results = searchTools(allTools, t);
 
-          // Keep full intelligence, but ensure literal prefix matches never get buried
-          const q = t.toLowerCase().trim();
-          const qFirst = q.split(/\s+/)[0] || "";
+        // Keep full intelligence, but ensure literal prefix matches never get buried
+        const q = t.toLowerCase().trim();
+        const qFirst = q.split(/\s+/)[0] || "";
+        
+        // Detect search intent for ALL category filtering using intelligent keywords
+        const detectSearchIntent = (query: string): string[] => {
+          const intents: string[] = [];
+          const q = query.toLowerCase();
           
-          // Detect search intent for ALL category filtering using intelligent keywords
-          const detectSearchIntent = (query: string): string[] => {
-            const intents: string[] = [];
-            const q = query.toLowerCase();
-            
-            // Check each category's keywords
-            for (const [category, keywords] of Object.entries(CATEGORY_TITLE_KEYWORDS)) {
-              if (keywords.some(kw => q.includes(kw))) {
-                intents.push(category);
-              }
+          // Check each category's keywords
+          for (const [category, keywords] of Object.entries(CATEGORY_TITLE_KEYWORDS)) {
+            if (keywords.some(kw => q.includes(kw))) {
+              intents.push(category);
             }
-            
-            // Also check common search patterns
-            if (q.includes("trad") || q.includes("stock") || q.includes("crypto") || q.includes("forex") || q.includes("invest")) intents.push('trading');
-            if (q.includes("video") || q.includes("movie") || q.includes("film")) intents.push('video');
-            if (q.includes("music") || q.includes("song") || q.includes("audio")) intents.push('music');
-            if (q.includes("image") || q.includes("picture") || q.includes("photo") || q.includes("art")) intents.push('image');
-            if (q.includes("business") || q.includes("startup") || q.includes("entrepreneur")) intents.push('business');
-            if (q.includes("history") || q.includes("historical") || q.includes("ancient")) intents.push('history');
-            if (q.includes("learn") || q.includes("education") || q.includes("course")) intents.push('education');
-            if (q.includes("health") || q.includes("medical") || q.includes("doctor")) intents.push('health');
-            if (q.includes("legal") || q.includes("law") || q.includes("lawyer")) intents.push('legal');
-            if (q.includes("spiritual") || q.includes("religion") || q.includes("god") || q.includes("meditation")) intents.push('spiritual');
-            if (q.includes("code") || q.includes("coding") || q.includes("programming")) intents.push('coding');
-            if (q.includes("writ") || q.includes("book") || q.includes("blog") || q.includes("article")) intents.push('writing');
-            if (q.includes("science") || q.includes("research") || q.includes("experiment")) intents.push('science');
-            if (q.includes("game") || q.includes("gaming")) intents.push('gaming');
-            if (q.includes("security") || q.includes("cyber") || q.includes("hack")) intents.push('security');
-            if (q.includes("philosophy") || q.includes("philosopher") || q.includes("wisdom")) intents.push('philosophy');
-            
-            // Remove duplicates
-            return [...new Set(intents)];
-          };
+          }
           
-          const searchIntents = detectSearchIntent(q);
-          const primaryIntent = searchIntents[0] || '';
+          // Also check common search patterns
+          if (q.includes("trad") || q.includes("stock") || q.includes("crypto") || q.includes("forex") || q.includes("invest")) intents.push('trading');
+          if (q.includes("video") || q.includes("movie") || q.includes("film")) intents.push('video');
+          if (q.includes("music") || q.includes("song") || q.includes("audio")) intents.push('music');
+          if (q.includes("image") || q.includes("picture") || q.includes("photo") || q.includes("art")) intents.push('image');
+          if (q.includes("business") || q.includes("startup") || q.includes("entrepreneur")) intents.push('business');
+          if (q.includes("history") || q.includes("historical") || q.includes("ancient")) intents.push('history');
+          if (q.includes("learn") || q.includes("education") || q.includes("course")) intents.push('education');
+          if (q.includes("health") || q.includes("medical") || q.includes("doctor")) intents.push('health');
+          if (q.includes("legal") || q.includes("law") || q.includes("lawyer")) intents.push('legal');
+          if (q.includes("spiritual") || q.includes("religion") || q.includes("god") || q.includes("meditation")) intents.push('spiritual');
+          if (q.includes("code") || q.includes("coding") || q.includes("programming")) intents.push('coding');
+          if (q.includes("writ") || q.includes("book") || q.includes("blog") || q.includes("article")) intents.push('writing');
+          if (q.includes("science") || q.includes("research") || q.includes("experiment")) intents.push('science');
+          if (q.includes("game") || q.includes("gaming")) intents.push('gaming');
+          if (q.includes("security") || q.includes("cyber") || q.includes("hack")) intents.push('security');
+          if (q.includes("philosophy") || q.includes("philosopher") || q.includes("wisdom")) intents.push('philosophy');
           
-          // Get all sibling categories for the primary intent
-          const siblingCats = primaryIntent ? (SIBLING_CATEGORIES[primaryIntent] || []) : [];
-          
-          const reranked = results
-            .map((tool, idx) => {
-              const title = (tool?.title || "").toLowerCase();
-              const words = title.split(/\s+/).filter(Boolean);
-              const firstWord = words[0] || "";
-              const category = (tool?.category || "").toLowerCase();
-              const tags = (tool?.tags || []).map((t: string) => t.toLowerCase());
-              const desc = (tool?.description || "").toLowerCase();
-              let boost = 0;
-
-              // Exact / prefix boosts
-              if (title === q) boost = 400000;
-              else if (firstWord === q) boost = 300000;
-              else if (title.startsWith(q)) boost = 200000;
-              else if (words.some((w) => w.startsWith(q))) boost = 120000;
-
-              // Head-intent boosts (e.g., "learn everything" should still prioritize LEARN tools)
-              if (!boost && qFirst && firstWord === qFirst) boost = 180000;
-              
-              // INTELLIGENT CATEGORY DETECTION - detect tool categories from title, tags, and category
-              const toolCategories = detectToolCategoryFromTitle(title);
-              
-              // Also check category and tags
-              for (const [cat, keywords] of Object.entries(CATEGORY_TITLE_KEYWORDS)) {
-                if (category.includes(cat) || tags.some((t: string) => keywords.some(kw => t.includes(kw)))) {
-                  if (!toolCategories.includes(cat)) toolCategories.push(cat);
-                }
-              }
-              
-              // Apply intelligent category relationship scoring
-              if (primaryIntent && toolCategories.length > 0) {
-                const relationScore = getCategoryRelationshipScore(primaryIntent, toolCategories);
-                boost += relationScore;
-                
-                // Additional sibling boosts for all detected intents
-                for (const intent of searchIntents) {
-                  for (const toolCat of toolCategories) {
-                    if (areSiblingCategories(intent, toolCat)) {
-                      boost += 50000; // Strong sibling boost
-                    } else if (areInSameFamily(intent, toolCat)) {
-                      boost += 20000; // Family boost
-                    }
-                  }
-                }
-              }
-              
-              // SPECIAL SIBLING RELATIONSHIPS - heavily boost bidirectionally
-              const specialSiblings: Record<string, string[]> = {
-                history: ['spiritual', 'philosophy', 'ancient', 'archaeology', 'civilization'],
-                spiritual: ['history', 'philosophy', 'wisdom', 'mystical', 'meditation', 'religion'],
-                philosophy: ['history', 'spiritual', 'wisdom', 'consciousness'],
-                trading: ['finance', 'investment', 'crypto', 'stock', 'forex'],
-                finance: ['trading', 'investment', 'banking', 'money'],
-                video: ['film', 'movie', 'animation', 'cinema', 'multimedia'],
-                image: ['art', 'design', 'visual', 'graphics', 'illustration'],
-                music: ['audio', 'sound', 'song', 'melody'],
-                coding: ['development', 'programming', 'software', 'engineering'],
-                health: ['wellness', 'medical', 'fitness', 'nutrition'],
-                education: ['learning', 'course', 'training', 'skill', 'tutor'],
-                science: ['research', 'experiment', 'academic', 'study']
-              };
-              
-              // Apply special sibling boosts based on title keywords
-              if (primaryIntent && specialSiblings[primaryIntent]) {
-                for (const sibling of specialSiblings[primaryIntent]) {
-                  if (title.includes(sibling) || category.includes(sibling) || 
-                      tags.some((t: string) => t.includes(sibling))) {
-                    boost += 60000; // Strong sibling boost
-                  }
-                }
-              }
-              
-              // HEAVY PENALTIES for completely unrelated categories when search has clear intent
-              if (primaryIntent && toolCategories.length > 0) {
-                const isUnrelated = !toolCategories.some(tc => 
-                  tc === primaryIntent || 
-                  areSiblingCategories(primaryIntent, tc) ||
-                  areInSameFamily(primaryIntent, tc) ||
-                  (specialSiblings[primaryIntent] || []).includes(tc)
-                );
-                
-                if (isUnrelated) {
-                  // Specific heavy penalties for common mismatches
-                  const heavyPenaltyCategories = ['video', 'image', 'music', 'gaming'];
-                  const isHeavyPenalty = toolCategories.some(tc => heavyPenaltyCategories.includes(tc));
-                  
-                  if (isHeavyPenalty && !searchIntents.some(i => heavyPenaltyCategories.includes(i))) {
-                    boost -= 80000; // Very heavy penalty
-                  } else {
-                    boost -= 50000; // Standard unrelated penalty
-                  }
-                }
-              }
-
-              return { tool, idx, boost };
-            })
-            .sort((a, b) => {
-              if (b.boost !== a.boost) return b.boost - a.boost;
-              return a.idx - b.idx; // stable fallback (preserve searchTools ordering)
-            })
-            .map((x) => x.tool);
-
-          // CRITICAL: merge in quickSearch “must-have” prefix hits so nothing disappears after full search
-          // (Fixes cases where a tool shows in quick results but vanishes/reorders out of view after full ranking.)
-          const quick = quickSearch(t);
-          const mustHave = quick.filter((tool) => {
-            const title = (tool?.title || "").toLowerCase();
-            const firstWord = title.split(/\s+/)[0] || "";
-            // Always keep LEARN ANY SKILL GPT surfaced for learn/le/skill queries
-            if (q.includes("learn") || q.startsWith("le") || q.includes("skill")) {
-              if (title.includes("learn any skill gpt")) return true;
-            }
-            // Preserve trading/finance tools for trading-related queries
-            if (q.includes("trad") || q.includes("stock") || q.includes("crypto") || 
-                q.includes("forex") || q.includes("invest") || q.includes("coin") ||
-                q.includes("bitcoin") || q.includes("ethereum") || q.includes("day trader") ||
-                q.includes("daytrader") || q.includes("finance") || q.includes("financial")) {
-              if (title.includes("trader") || title.includes("chain") || title.includes("finchat") ||
-                  title.includes("forex") || title.includes("credit") || title.includes("taxes")) return true;
-            }
-            // Generic safety: keep strong literal prefix matches
-            if (title.startsWith(q) || firstWord.startsWith(q)) return true;
-            return false;
-          });
-
-          const seen = new Set<string>();
-          const merged: any[] = [];
-          const push = (tool: any) => {
-            const key = `${(tool?.title || "").toLowerCase()}|||${(tool?.directUrl || "").toLowerCase()}`;
-            if (seen.has(key)) return;
-            seen.add(key);
-            merged.push(tool);
-          };
-
-          mustHave.forEach(push);
-          reranked.forEach(push);
-
-          // Spread out similar tools (GPT/Gem variants) so they're not adjacent
-          // Tools with similar base names should be at least 10 positions apart
-          const spreadSimilarTools = (tools: any[]): any[] => {
-            if (tools.length < 15) return tools; // Not enough tools to matter
-            
-            // Normalize title to detect variants (remove GPT, GEM, GEMINI suffixes)
-            const normalizeForComparison = (title: string): string => {
-              return title.toLowerCase()
-                .replace(/\s*(gpt|gem|gemini|\(gem\)|\[gem\])\s*/gi, ' ')
-                .replace(/\s+/g, ' ')
-                .trim();
-            };
-            
-            const result: any[] = [];
-            const usedIndices = new Set<number>();
-            const recentBases: { base: string; position: number }[] = [];
-            const MIN_DISTANCE = 10;
-            
-            for (let i = 0; i < tools.length; i++) {
-              if (usedIndices.has(i)) continue;
-              
-              const tool = tools[i];
-              const title = (tool?.title || "").toLowerCase();
-              const baseTitle = normalizeForComparison(title);
-              
-              // Check if a similar tool was placed recently
-              const similarRecent = recentBases.find(rb => {
-                // Check if bases are similar (one contains the other or high overlap)
-                const base1Words = rb.base.split(' ').filter(Boolean);
-                const base2Words = baseTitle.split(' ').filter(Boolean);
-                const commonWords = base1Words.filter(w => base2Words.includes(w));
-                return commonWords.length >= Math.min(base1Words.length, base2Words.length) * 0.6;
-              });
-              
-              if (similarRecent && (result.length - similarRecent.position) < MIN_DISTANCE) {
-                // Defer this tool - find a non-similar tool to insert instead
-                let inserted = false;
-                for (let j = i + 1; j < tools.length && j < i + 20; j++) {
-                  if (usedIndices.has(j)) continue;
-                  const altTool = tools[j];
-                  const altTitle = (altTool?.title || "").toLowerCase();
-                  const altBase = normalizeForComparison(altTitle);
-                  
-                  const altSimilar = recentBases.find(rb => {
-                    const base1Words = rb.base.split(' ').filter(Boolean);
-                    const base2Words = altBase.split(' ').filter(Boolean);
-                    const commonWords = base1Words.filter(w => base2Words.includes(w));
-                    return commonWords.length >= Math.min(base1Words.length, base2Words.length) * 0.6;
-                  });
-                  
-                  if (!altSimilar || (result.length - altSimilar.position) >= MIN_DISTANCE) {
-                    // Insert this non-similar tool
-                    result.push(altTool);
-                    usedIndices.add(j);
-                    recentBases.push({ base: altBase, position: result.length - 1 });
-                    // Clean up old entries
-                    while (recentBases.length > 0 && (result.length - recentBases[0].position) > MIN_DISTANCE) {
-                      recentBases.shift();
-                    }
-                    inserted = true;
-                    break;
-                  }
-                }
-                
-                if (!inserted) {
-                  // No alternative found, just insert the original
-                  result.push(tool);
-                  usedIndices.add(i);
-                  recentBases.push({ base: baseTitle, position: result.length - 1 });
-                }
-                
-                // Now we need to re-add the deferred tool later by continuing the loop
-                // It will be picked up when we revisit
-              } else {
-                // No conflict, add normally
-                result.push(tool);
-                usedIndices.add(i);
-                recentBases.push({ base: baseTitle, position: result.length - 1 });
-                // Clean up old entries
-                while (recentBases.length > 0 && (result.length - recentBases[0].position) > MIN_DISTANCE) {
-                  recentBases.shift();
-                }
-              }
-            }
-            
-            // Add any remaining tools that weren't inserted
-            for (let i = 0; i < tools.length; i++) {
-              if (!usedIndices.has(i)) {
-                result.push(tools[i]);
-              }
-            }
-            
-            return result;
-          };
-          
-          const spreadResults = spreadSimilarTools(merged);
-
-          // Cache full search results
-          searchCache.set(fullCacheKey, spreadResults);
-
-          setSearchResults(spreadResults);
-          setDisplayedCount(50);
+          // Remove duplicates
+          return [...new Set(intents)];
         };
         
-        // Use requestIdleCallback if available, otherwise setTimeout(0) for non-blocking
-        if ('requestIdleCallback' in window) {
-          (window as any).requestIdleCallback(runSearch, { timeout: 100 });
-        } else {
-          setTimeout(runSearch, 0);
-        }
-      }, 120); // 120ms debounce - fast enough to feel responsive, slow enough for smooth typing
+        const searchIntents = detectSearchIntent(q);
+        const primaryIntent = searchIntents[0] || '';
+        
+        // Get all sibling categories for the primary intent
+        const siblingCats = primaryIntent ? (SIBLING_CATEGORIES[primaryIntent] || []) : [];
+        
+        const reranked = results
+          .map((tool, idx) => {
+            const title = (tool?.title || "").toLowerCase();
+            const words = title.split(/\s+/).filter(Boolean);
+            const firstWord = words[0] || "";
+            const category = (tool?.category || "").toLowerCase();
+            const tags = (tool?.tags || []).map((t: string) => t.toLowerCase());
+            const desc = (tool?.description || "").toLowerCase();
+            let boost = 0;
+
+            // Exact / prefix boosts
+            if (title === q) boost = 400000;
+            else if (firstWord === q) boost = 300000;
+            else if (title.startsWith(q)) boost = 200000;
+            else if (words.some((w) => w.startsWith(q))) boost = 120000;
+
+            // Head-intent boosts (e.g., "learn everything" should still prioritize LEARN tools)
+            if (!boost && qFirst && firstWord === qFirst) boost = 180000;
+            
+            // INTELLIGENT CATEGORY DETECTION - detect tool categories from title, tags, and category
+            const toolCategories = detectToolCategoryFromTitle(title);
+            
+            // Also check category and tags
+            for (const [cat, keywords] of Object.entries(CATEGORY_TITLE_KEYWORDS)) {
+              if (category.includes(cat) || tags.some((t: string) => keywords.some(kw => t.includes(kw)))) {
+                if (!toolCategories.includes(cat)) toolCategories.push(cat);
+              }
+            }
+            
+            // Apply intelligent category relationship scoring
+            if (primaryIntent && toolCategories.length > 0) {
+              const relationScore = getCategoryRelationshipScore(primaryIntent, toolCategories);
+              boost += relationScore;
+              
+              // Additional sibling boosts for all detected intents
+              for (const intent of searchIntents) {
+                for (const toolCat of toolCategories) {
+                  if (areSiblingCategories(intent, toolCat)) {
+                    boost += 50000; // Strong sibling boost
+                  } else if (areInSameFamily(intent, toolCat)) {
+                    boost += 20000; // Family boost
+                  }
+                }
+              }
+            }
+            
+            // SPECIAL SIBLING RELATIONSHIPS - heavily boost bidirectionally
+            const specialSiblings: Record<string, string[]> = {
+              history: ['spiritual', 'philosophy', 'ancient', 'archaeology', 'civilization'],
+              spiritual: ['history', 'philosophy', 'wisdom', 'mystical', 'meditation', 'religion'],
+              philosophy: ['history', 'spiritual', 'wisdom', 'consciousness'],
+              trading: ['finance', 'investment', 'crypto', 'stock', 'forex'],
+              finance: ['trading', 'investment', 'banking', 'money'],
+              video: ['film', 'movie', 'animation', 'cinema', 'multimedia'],
+              image: ['art', 'design', 'visual', 'graphics', 'illustration'],
+              music: ['audio', 'sound', 'song', 'melody'],
+              coding: ['development', 'programming', 'software', 'engineering'],
+              health: ['wellness', 'medical', 'fitness', 'nutrition'],
+              education: ['learning', 'course', 'training', 'skill', 'tutor'],
+              science: ['research', 'experiment', 'academic', 'study']
+            };
+            
+            // Apply special sibling boosts based on title keywords
+            if (primaryIntent && specialSiblings[primaryIntent]) {
+              for (const sibling of specialSiblings[primaryIntent]) {
+                if (title.includes(sibling) || category.includes(sibling) || 
+                    tags.some((t: string) => t.includes(sibling))) {
+                  boost += 60000; // Strong sibling boost
+                }
+              }
+            }
+            
+            // HEAVY PENALTIES for completely unrelated categories when search has clear intent
+            if (primaryIntent && toolCategories.length > 0) {
+              const isUnrelated = !toolCategories.some(tc => 
+                tc === primaryIntent || 
+                areSiblingCategories(primaryIntent, tc) ||
+                areInSameFamily(primaryIntent, tc) ||
+                (specialSiblings[primaryIntent] || []).includes(tc)
+              );
+              
+              if (isUnrelated) {
+                // Specific heavy penalties for common mismatches
+                const heavyPenaltyCategories = ['video', 'image', 'music', 'gaming'];
+                const isHeavyPenalty = toolCategories.some(tc => heavyPenaltyCategories.includes(tc));
+                
+                if (isHeavyPenalty && !searchIntents.some(i => heavyPenaltyCategories.includes(i))) {
+                  boost -= 80000; // Very heavy penalty
+                } else {
+                  boost -= 50000; // Standard unrelated penalty
+                }
+              }
+            }
+
+            return { tool, idx, boost };
+          })
+          .sort((a, b) => {
+            if (b.boost !== a.boost) return b.boost - a.boost;
+            return a.idx - b.idx; // stable fallback (preserve searchTools ordering)
+          })
+          .map((x) => x.tool);
+
+        // CRITICAL: merge in quickSearch "must-have" prefix hits so nothing disappears after full search
+        const quick = quickSearch(t);
+        const mustHave = quick.filter((tool) => {
+          const title = (tool?.title || "").toLowerCase();
+          const firstWord = title.split(/\s+/)[0] || "";
+          if (q.includes("learn") || q.startsWith("le") || q.includes("skill")) {
+            if (title.includes("learn any skill gpt")) return true;
+          }
+          if (q.includes("trad") || q.includes("stock") || q.includes("crypto") || 
+              q.includes("forex") || q.includes("invest") || q.includes("coin") ||
+              q.includes("bitcoin") || q.includes("ethereum") || q.includes("day trader") ||
+              q.includes("daytrader") || q.includes("finance") || q.includes("financial")) {
+            if (title.includes("trader") || title.includes("chain") || title.includes("finchat") ||
+                title.includes("forex") || title.includes("credit") || title.includes("taxes")) return true;
+          }
+          if (title.startsWith(q) || firstWord.startsWith(q)) return true;
+          return false;
+        });
+
+        const seen = new Set<string>();
+        const merged: any[] = [];
+        const push = (tool: any) => {
+          const key = `${(tool?.title || "").toLowerCase()}|||${(tool?.directUrl || "").toLowerCase()}`;
+          if (seen.has(key)) return;
+          seen.add(key);
+          merged.push(tool);
+        };
+
+        mustHave.forEach(push);
+        reranked.forEach(push);
+
+        // Spread out similar tools - simplified for speed
+        const spreadResults = merged.length > 50 ? spreadSimilarToolsFast(merged) : merged;
+
+        // Cache full search results
+        searchCache.set(fullCacheKey, spreadResults);
+
+        setSearchResults(spreadResults);
+        setDisplayedCount(50);
+      }, 50); // 50ms debounce - ultra fast refinement
     }
   }, [quickSearch]);
   
