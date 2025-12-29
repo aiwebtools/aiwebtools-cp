@@ -64,18 +64,9 @@ const DisclaimerGate: React.FC = () => {
   }, [navigate]);
 
   const handleAccept = () => {
-    // Store acceptance synchronously first
+    // INSTANT - just set flag and navigate, nothing else
     localStorage.setItem("aitools-consent-v3", "true");
-    
-    // Navigate immediately - don't wait for anything
     navigate("/", { replace: true });
-    
-    // Play audio after navigation starts (non-blocking)
-    try {
-      const audio = new Audio("/welcome-disclaimer.mp3");
-      audio.volume = 1.0;
-      audio.play();
-    } catch {}
   };
 
   return (
