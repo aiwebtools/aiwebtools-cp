@@ -121,6 +121,13 @@ input[data-testid="global-search-input"] {
   touch-action: manipulation;
 }
 
+/* Search results - INSTANT hover response */
+[data-scroll-container] > div > div > div {
+  transition: none !important;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
 /* Prevent Flash of Invisible Text (FOIT) */
 .font-loading body {
   font-family: system-ui, -apple-system, sans-serif;
