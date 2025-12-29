@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback, useRef, memo } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { X, SkipForward, Volume2, VolumeX } from "lucide-react";
@@ -6,6 +6,8 @@ import { allTools } from "@/data/toolsData";
 import { Tool } from "@/types/tools";
 
 const SESSION_CLOSED_KEY = "pinned-video-closed";
+const SHUFFLED_TOOLS_KEY = "pinned-video-shuffled-tools";
+const CURRENT_INDEX_KEY = "pinned-video-current-index";
 
 // Extract YouTube video ID from various URL formats
 const extractYouTubeId = (url: string): string | null => {
@@ -33,19 +35,53 @@ const shuffleArray = <T,>(array: T[]): T[] => {
   return shuffled;
 };
 
-// Get shuffled tools - computed once per page load (truly random each visit)
+// Get or create shuffled tools - persisted in sessionStorage to survive navigation
 const getShuffledToolsWithVideos = (): Tool[] => {
-  const filtered = allTools.filter(tool => {
-    const videoId = extractYouTubeId(tool.videoUrl || '');
-    return videoId !== null;
-  });
-  return shuffleArray(filtered);
+  // Try to restore from session
+  try {
+    const cached = sessionStorage.getItem(SHUFFLED_TOOLS_KEY);
+    if (cached) {
+      const indices = JSON.parse(cached) as number[];
+      return indices.map(i => allTools[i]).filter(Boolean);
+    }
+  } catch {}
+  
+  // Create new shuffled list
+  const toolsWithIndices = allTools
+    .map((tool, index) => ({ tool, index }))
+    .filter(({ tool }) => extractYouTubeId(tool.videoUrl || '') !== null);
+  
+  const shuffled = shuffleArray(toolsWithIndices);
+  
+  // Store indices in session
+  try {
+    sessionStorage.setItem(SHUFFLED_TOOLS_KEY, JSON.stringify(shuffled.map(t => t.index)));
+  } catch {}
+  
+  return shuffled.map(t => t.tool);
 };
 
-const PinnedVideoPlayer = () => {
+// Persist current index to survive navigation
+const getStoredIndex = (): number => {
+  try {
+    const stored = sessionStorage.getItem(CURRENT_INDEX_KEY);
+    return stored ? parseInt(stored, 10) : 0;
+  } catch {
+    return 0;
+  }
+};
+
+const setStoredIndex = (index: number) => {
+  try {
+    sessionStorage.setItem(CURRENT_INDEX_KEY, String(index));
+  } catch {}
+};
+
+const PinnedVideoPlayer = memo(() => {
   const navigate = useNavigate();
   const location = useLocation();
   const iframeRef = useRef<HTMLIFrameElement>(null);
+  const playerMountedRef = useRef(false);
   
   // Check if on homepage
   const isHomepage = location.pathname === "/" || location.pathname === "";
@@ -63,13 +99,47 @@ const PinnedVideoPlayer = () => {
   // Track if player should be shown with animation
   const [shouldShow, setShouldShow] = useState(true);
   
-  const [currentIndex, setCurrentIndex] = useState(0);
+  // Persisted current index - survives navigation
+  const [currentIndex, setCurrentIndex] = useState(getStoredIndex);
   const [isMuted, setIsMuted] = useState(true);
   
-  // Shuffled tools - computed once when component mounts (random each page load)
-  const [toolsWithVideos] = useState(() => getShuffledToolsWithVideos());
+  // Shuffled tools - computed once per session, persisted
+  const [toolsWithVideos] = useState(getShuffledToolsWithVideos);
+  
+  // Track video src separately to prevent unnecessary iframe reloads
+  const [videoSrc, setVideoSrc] = useState<string>("");
+  const lastVideoIdRef = useRef<string>("");
 
   const currentTool: Tool | undefined = toolsWithVideos[currentIndex];
+  const currentVideoId = currentTool ? extractYouTubeId(currentTool.videoUrl || '') : null;
+  
+  // Persist index changes
+  useEffect(() => {
+    setStoredIndex(currentIndex);
+  }, [currentIndex]);
+  
+  // Update video src only when video ID changes (not on mute toggle or navigation)
+  useEffect(() => {
+    if (!currentVideoId || currentVideoId === lastVideoIdRef.current) return;
+    
+    lastVideoIdRef.current = currentVideoId;
+    const newSrc = `https://www.youtube.com/embed/${currentVideoId}?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&enablejsapi=1&playsinline=1&origin=${encodeURIComponent(window.location.origin)}`;
+    setVideoSrc(newSrc);
+    playerMountedRef.current = true;
+  }, [currentVideoId]);
+  
+  // Handle mute/unmute via postMessage instead of iframe reload
+  useEffect(() => {
+    if (!iframeRef.current || !playerMountedRef.current) return;
+    
+    try {
+      const command = isMuted ? 'mute' : 'unMute';
+      iframeRef.current.contentWindow?.postMessage(
+        JSON.stringify({ event: 'command', func: command }),
+        'https://www.youtube.com'
+      );
+    } catch {}
+  }, [isMuted]);
   
   // Handle smooth fade animation when main video visibility changes
   useEffect(() => {
@@ -87,7 +157,6 @@ const PinnedVideoPlayer = () => {
       window.removeEventListener('toolVideoVisibility', handleToolVideoVisibility as EventListener);
     };
   }, []);
-  const currentVideoId = currentTool ? extractYouTubeId(currentTool.videoUrl || '') : null;
 
   // Detect scroll position - only needed on homepage
   useEffect(() => {
@@ -123,13 +192,11 @@ const PinnedVideoPlayer = () => {
         
         // Check for video ended state (state 0 = ended)
         if (data?.event === "onStateChange" && data?.info === 0) {
-          console.log("🎬 Video ended, advancing to next...");
           setCurrentIndex(prev => (prev + 1) % toolsWithVideos.length);
         }
         
         // Also check for infoDelivery with playerState
         if (data?.info?.playerState === 0) {
-          console.log("🎬 Video ended (infoDelivery), advancing to next...");
           setCurrentIndex(prev => (prev + 1) % toolsWithVideos.length);
         }
       } catch {
@@ -141,14 +208,13 @@ const PinnedVideoPlayer = () => {
     return () => window.removeEventListener("message", handleMessage);
   }, [isVisible, toolsWithVideos.length]);
 
-  // Reliable fallback: auto-advance every 45 seconds (most YouTube shorts/demos are under this)
+  // Reliable fallback: auto-advance every 45 seconds
   useEffect(() => {
     if (!isVisible || toolsWithVideos.length === 0) return;
     
     const timeout = setTimeout(() => {
-      console.log("⏰ Auto-advance timeout triggered");
       setCurrentIndex(prev => (prev + 1) % toolsWithVideos.length);
-    }, 45000); // 45 second fallback - more reasonable for demo videos
+    }, 45000);
     
     return () => clearTimeout(timeout);
   }, [isVisible, toolsWithVideos.length, currentIndex]);
@@ -179,12 +245,9 @@ const PinnedVideoPlayer = () => {
   }, []);
 
   // Don't render if permanently closed, no tools, or haven't scrolled past hero yet
-  if (!isVisible || !hasScrolledEnough || toolsWithVideos.length === 0 || !currentTool || !currentVideoId) {
+  if (!isVisible || !hasScrolledEnough || toolsWithVideos.length === 0 || !currentTool || !currentVideoId || !videoSrc) {
     return null;
   }
-
-  // Enable JS API + hide YouTube logo with iv_load_policy=3
-  const videoSrc = `https://www.youtube.com/embed/${currentVideoId}?autoplay=1&mute=${isMuted ? 1 : 0}&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&enablejsapi=1&playsinline=1&origin=${encodeURIComponent(window.location.origin)}&widget_referrer=${encodeURIComponent(window.location.href)}`;
 
   return (
     <div 
@@ -219,11 +282,10 @@ const PinnedVideoPlayer = () => {
           </button>
         </div>
 
-        {/* Video Container - clean */}
+        {/* Video Container - stable iframe that doesn't remount on navigation */}
         <div className="relative aspect-video bg-black" style={{ minHeight: '70px' }}>
           <iframe
             ref={iframeRef}
-            key={`${currentVideoId}-${isMuted}-${currentIndex}`}
             src={videoSrc}
             className="w-full h-full"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -261,6 +323,8 @@ const PinnedVideoPlayer = () => {
       </div>
     </div>
   );
-};
+});
+
+PinnedVideoPlayer.displayName = 'PinnedVideoPlayer';
 
 export default PinnedVideoPlayer;
