@@ -76,14 +76,16 @@ export const isStrictlyHistoricalTimeRelatedTool = (tool: Tool): boolean => {
   // ========== EXPLICIT HISTORICAL TOOL NAMES ==========
   // These tools MUST be included in Historical & Time-Based category
   const explicitHistoricalTools = [
-    // Time Machine family - ALL VERSIONS (highest priority)
+    // Time Machine family - ALL VERSIONS (highest priority) - COMPLETE LIST
     'time machine gpt', 'time machine', 'time-machine', 'time traveler',
     'native american history time machine', 'native american time machine',
-    'black history matters time machine', 'black history matter', 'time machine of unwritten history',
-    'unwritten history', 'time traveler gpt', 'time machine gemini',
+    'black history matters time machine', 'black history matter',
+    'time machine of unwritten history', 'unwritten history time machine', 'unwritten history',
+    'time traveler gpt', 'time machine gemini',
+    'world reality decoder', 'reality decoder', 'world decoder',
     
-    // Talk to History family - CORE HISTORICAL TOOLS
-    'talk to history', 'talk to history gpt',
+    // Talk to History family - CORE HISTORICAL TOOLS (MUST BE INCLUDED)
+    'talk to history', 'talk to history gpt', 'talktohistory',
     
     // Historical Headlines - News from history
     'historical headlines', 'historical headline', 'historical headlines gpt',
@@ -97,6 +99,7 @@ export const isStrictlyHistoricalTimeRelatedTool = (tool: Tool): boolean => {
     'paramahansa yogananda gpt', 'paramahansa yogananda', 'yogananda',
     'talk to the gods', 'talk to the gods gpt',
     'sophia aeterna', 'sophia aeterna ai',
+    'celebrity chatline', 'celebrity chatline gpt', // historical figures chat
     
     // Historical exploration & immersion tools (AIWebTools originals)
     'titanic resurrection', 'titanic resurrections', 'titanic resurrections gpt',
@@ -105,6 +108,7 @@ export const isStrictlyHistoricalTimeRelatedTool = (tool: Tool): boolean => {
     'imagination traveler', 'imagination traveler gpt', // cosmic time journeys
     'resurrection gpt', // reconnecting with the past
     'uncovering hidden historical', 'hidden historical patterns', 'historical patterns gpt',
+    'illuminous', 'illuminous world data explorer', // world data & predictions
     
     // Archaeology & Ancient exploration
     'archaeologist', 'indiana archaeologist', 'indiana archaeology', 'indiana archeologist',
@@ -113,6 +117,13 @@ export const isStrictlyHistoricalTimeRelatedTool = (tool: Tool): boolean => {
     // Historical medicine & alchemy
     'historical apothecary', 'apothecary gpt', 'historical apothecary gpt',
     'alchemist scientist', 'alchemical scientist', 'alchemist scientist gpt',
+    
+    // Historical knowledge & wisdom
+    'criminologist gpt', 'criminologist', // historical crime analysis
+    'phenomenon explorer', 'phenomenon investigator', // historical phenomena
+    'manicheism gpt', 'manicheism', 'prophet of light', 'mingjiao', // ancient religion/philosophy
+    'quan yin gpt', 'quan yin', // ancient wisdom
+    'yemaya', 'yemaya gpt', // ancient african spirituality
     
     // Historical voices & records
     'gptpastvoices', 'past voices',
@@ -124,6 +135,8 @@ export const isStrictlyHistoricalTimeRelatedTool = (tool: Tool): boolean => {
     'civilization gpt', 'ancient egypt', 'roman empire', 'medieval history',
     'renaissance', 'dynasty', 'empire explorer', 'heritage explorer',
     'antiquity', 'ancestors', 'ancestry research', 'genealogy', 'lineage',
+    'antique', 'antique appraisal', 'vintage appraisal', 'collectible appraisal',
+    'artwork appraisal', 'artwork & vintage',
     
     // Historical education/immersion/simulation
     'historical immersion', 'historical simulation', 'historical figure',
@@ -131,7 +144,10 @@ export const isStrictlyHistoricalTimeRelatedTool = (tool: Tool): boolean => {
     'history guide', 'history explorer', 'history preserver',
     
     // Stellaris - space exploration & temporal simulation
-    'stellaris', 'stellaris ai space explorer'
+    'stellaris', 'stellaris ai space explorer',
+    
+    // Legislative & historical records
+    'legislation writer', 'legislator link', 'public testimony writer'
   ];
   
   // Check for explicit historical tool names first - highest priority
