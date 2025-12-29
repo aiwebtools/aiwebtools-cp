@@ -1931,21 +1931,29 @@ export const useGlobalSearch = () => {
       return;
     }
 
-    // 4) Run quick search IMMEDIATELY in next frame (no delay)
-    requestAnimationFrame(() => {
+    // 4) Run quick search with tiny debounce (16ms = 1 frame) for ultra-smooth typing
+    // This prevents blocking when user types fast
+    quickRef.current = setTimeout(() => {
       if (currentId !== searchIdRef.current) return;
-      const fast = quickSearch(t);
-      setSearchResults(fast);
-      setDisplayedCount(50);
-    });
+      requestAnimationFrame(() => {
+        if (currentId !== searchIdRef.current) return;
+        const fast = quickSearch(t);
+        setSearchResults(fast);
+        setDisplayedCount(50);
+      });
+    }, 16); // 16ms = 1 frame delay - feels instant but doesn't block typing
 
-    // 5) Full intelligent ranking for 3+ chars (with 60ms debounce)
+    // 5) Full intelligent ranking for 3+ chars (with 150ms debounce for smooth typing)
     if (t.length >= 3) {
       
-      // No cache - debounce the heavy searchTools call (150ms)
+      // Debounce heavy searchTools call - 150ms allows smooth typing without interruption
       fullRef.current = setTimeout(() => {
         if (currentId !== searchIdRef.current) return;
-        const results = searchTools(allTools, t);
+        
+        // Run heavy computation in next idle callback or setTimeout to not block
+        const runSearch = () => {
+          if (currentId !== searchIdRef.current) return;
+          const results = searchTools(allTools, t);
 
           // Keep full intelligence, but ensure literal prefix matches never get buried
           const q = t.toLowerCase().trim();
@@ -2230,7 +2238,15 @@ export const useGlobalSearch = () => {
 
           setSearchResults(spreadResults);
           setDisplayedCount(50);
-      }, 50); // 50ms debounce - ultra fast for instant feel
+        };
+        
+        // Use requestIdleCallback if available, otherwise setTimeout(0) for non-blocking
+        if ('requestIdleCallback' in window) {
+          (window as any).requestIdleCallback(runSearch, { timeout: 100 });
+        } else {
+          setTimeout(runSearch, 0);
+        }
+      }, 120); // 120ms debounce - fast enough to feel responsive, slow enough for smooth typing
     }
   }, [quickSearch]);
   

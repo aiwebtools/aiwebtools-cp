@@ -98,10 +98,27 @@ h1, h2, h3, h4, h5, h6 {
   text-rendering: optimizeLegibility;
 }
 
-/* Optimize form inputs */
+/* Optimize form inputs - LIGHTNING FAST typing */
 input, textarea, select {
   -webkit-appearance: none;
   appearance: none;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  will-change: auto;
+}
+
+/* Search input specifically - absolute zero delay */
+input[type="text"], input[type="search"], 
+input[data-testid="global-search-input"] {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-transform: translateZ(0);
+  transition: none !important;
+  animation: none !important;
+  /* Ensure text rendering is optimized */
+  text-rendering: optimizeSpeed;
+  /* Disable any input delay */
+  touch-action: manipulation;
 }
 
 /* Prevent Flash of Invisible Text (FOIT) */
