@@ -83,6 +83,7 @@ export const isStrictlyHistoricalTimeRelatedTool = (tool: Tool): boolean => {
     'time machine of unwritten history', 'unwritten history time machine', 'unwritten history',
     'time traveler gpt', 'time machine gemini',
     'world reality decoder', 'reality decoder', 'world decoder',
+    'og time machine history', 'og time machine',
     
     // Talk to History family - CORE HISTORICAL TOOLS (MUST BE INCLUDED)
     'talk to history', 'talk to history gpt', 'talktohistory',
@@ -90,7 +91,7 @@ export const isStrictlyHistoricalTimeRelatedTool = (tool: Tool): boolean => {
     // Historical Headlines - News from history
     'historical headlines', 'historical headline', 'historical headlines gpt',
     
-    // ========== ANCIENT PHILOSOPHERS & THINKERS (HISTORICAL FIGURES) ==========
+    // ========== ANCIENT GREEK/ROMAN PHILOSOPHERS ==========
     'socrates', 'socrates free thought', 'socrates gpt',
     'plato reborn', 'plato gpt', 'plato',
     'aristotle gpt', 'aristotle',
@@ -98,13 +99,25 @@ export const isStrictlyHistoricalTimeRelatedTool = (tool: Tool): boolean => {
     'thales of miletus', 'thales gpt', 'thales',
     'plotinus', 'plotinus the revealer', 'plotinus gpt',
     'heraclitus reborn', 'heraclitus gpt', 'heraclitus',
-    'lao tzu', 'laozi', 'lao tzu free thought', 'lao tzu gpt',
-    'confucius', 'confucius free thought', 'confucius gpt', 'kongzi',
-    'buddha free thought', 'buddha gpt',
     'marcus aurelius', 'marcus aurelius gpt',
     'hermes trismegistus', 'hermes trismegistus gpt',
     'pythagorean', 'pythagoras', 'orphic light gpt',
     'sappho', 'sappho alive once more', 'sappho gpt',
+    
+    // ========== EASTERN PHILOSOPHERS & SAGES ==========
+    'lao tzu', 'laozi', 'lao tzu free thought', 'lao tzu gpt',
+    'confucius', 'confucius free thought', 'confucius gpt', 'kongzi',
+    'buddha free thought', 'buddha gpt',
+    'rumi gpt', 'rumi',
+    'shams of tabriz', 'shams gpt',
+    'quan yin gpt', 'quan yin', 'guanyin', 'kuan yin',
+    
+    // ========== HISTORICAL SCIENTISTS ==========
+    'nikola tesla gpt', 'nikola tesla', 'tesla gpt',
+    'albert einstein gpt', 'albert einstein', 'einstein gpt',
+    'carl sagan gpt', 'carl sagan',
+    'carl jung gpt', 'carl jung',
+    'galileo gpt', 'galileo',
     
     // ========== HISTORICAL RELIGIOUS/SPIRITUAL FIGURES ==========
     'arius', 'arius the bearer of light', 'arianism',
@@ -113,8 +126,6 @@ export const isStrictlyHistoricalTimeRelatedTool = (tool: Tool): boolean => {
     'zoroaster', 'zoroaster free thought', 'zarathustra', 'zoroastrian light',
     'akhenaten', 'akhenaten gpt', 'aten',
     'imhotep', 'imhotep living mind', 'kemet',
-    'rumi gpt', 'rumi',
-    'shams of tabriz', 'shams gpt',
     'mansur al-hallaj', 'al-hallaj', 'hallaj',
     'hildegard von bingen', 'hildegard gpt',
     'joan of arc', 'joan of arc gpt',
@@ -130,6 +141,11 @@ export const isStrictlyHistoricalTimeRelatedTool = (tool: Tool): boolean => {
     'proto-gnostic', 'gnostic luminary',
     'ancient light mysticism',
     'pre-rome jewish light',
+    'mary magdalene gpt', 'mary magdalene',
+    'talk to the gods', 'talk to the gods gpt',
+    'sophia aeterna', 'sophia aeterna ai',
+    'council of light',
+    'yemaya', 'yemaya gpt', 'yemaya ancient african',
     
     // ========== NATIVE AMERICAN HISTORICAL FIGURES ==========
     'chief seattle', 'sealth', 'seattle gpt',
@@ -137,7 +153,7 @@ export const isStrictlyHistoricalTimeRelatedTool = (tool: Tool): boolean => {
     'sitting bull', 'sitting bull gpt',
     'black elk', 'black elk vision',
     
-    // ========== SAINTS & HISTORICAL RELIGIOUS LEADERS ==========
+    // ========== SAINTS & MEDIEVAL HISTORICAL FIGURES ==========
     'st. francis', 'saint francis', 'francis of assisi',
     'saint teresa', 'teresa of avila',
     'saint therese', 'therese of lisieux', 'little flower',
@@ -152,25 +168,13 @@ export const isStrictlyHistoricalTimeRelatedTool = (tool: Tool): boolean => {
     'saint josephine bakhita', 'josephine bakhita',
     'saint anthony of padua',
     
-    // ========== HISTORICAL SCIENTISTS & THINKERS ==========
-    'nikola tesla gpt', 'nikola tesla', 'tesla gpt',
-    'albert einstein gpt', 'albert einstein', 'einstein gpt',
-    'carl sagan gpt', 'carl sagan',
-    'carl jung gpt', 'carl jung',
+    // ========== HISTORICAL SPIRITUAL TEACHERS ==========
     'alan watts gpt', 'alan watts',
     'paramahansa yogananda', 'yogananda gpt',
     'paramahansa nityananda', 'nityananda',
     'sri aurobindo', 'aurobindo gpt',
     'ramana maharshi', 'ramana gpt',
     'mooji gpt',
-    
-    // ========== HISTORICAL RELIGIOUS FIGURES (BIBLICAL/SPIRITUAL) ==========
-    'mary magdalene gpt', 'mary magdalene',
-    'talk to the gods', 'talk to the gods gpt',
-    'sophia aeterna', 'sophia aeterna ai',
-    'council of light', // ancient wisdom council
-    'quan yin gpt', 'quan yin', 'guanyin', 'kuan yin',
-    'yemaya', 'yemaya gpt', // ancient african orisha
     
     // ========== ANCIENT CIVILIZATION & MYSTERY TOOLS ==========
     'atlantean memory keeper', 'atlantis',
@@ -183,30 +187,30 @@ export const isStrictlyHistoricalTimeRelatedTool = (tool: Tool): boolean => {
     'architectural old world', 'old world investigator',
     'intergalactic ancient archivist',
     
-    // Historical exploration & immersion tools (AIWebTools originals)
+    // ========== HISTORICAL EXPLORATION & IMMERSION ==========
     'titanic resurrection', 'titanic resurrections', 'titanic resurrections gpt',
     'oraculum', 'oraculum gpt',
-    'interpretis', 'interpretis gpt', // etymology = language history
-    'imagination traveler', 'imagination traveler gpt', // cosmic time journeys
-    'resurrection gpt', // reconnecting with the past
+    'interpretis', 'interpretis gpt',
+    'imagination traveler', 'imagination traveler gpt',
+    'resurrection gpt',
     'uncovering hidden historical', 'hidden historical patterns', 'historical patterns gpt',
-    'illuminous', 'illuminous world data explorer', // world data & predictions
-    'celebrity chatline', // historical figures chat
+    'illuminous', 'illuminous world data explorer',
+    'celebrity chatline',
     
-    // Archaeology & Ancient exploration
+    // ========== ARCHAEOLOGY & ANCIENT EXPLORATION ==========
     'archaeologist', 'indiana archaeologist', 'indiana archaeology', 'indiana archeologist',
     'grave decoder', 'gravestone decoder', 'cemetery', 'memorial decoder',
     
-    // Historical medicine & alchemy
+    // ========== HISTORICAL MEDICINE & ALCHEMY ==========
     'historical apothecary', 'apothecary gpt', 'historical apothecary gpt',
     'alchemist scientist', 'alchemical scientist', 'alchemist scientist gpt',
     
-    // Historical voices & records
+    // ========== HISTORICAL VOICES & RECORDS ==========
     'gptpastvoices', 'past voices',
     'ancient calendar', 'historical map explorer', 'historical map',
     'ancient knowledge gpt', 'ancient knowledge',
     
-    // Regional/Cultural history tools
+    // ========== REGIONAL/CULTURAL HISTORY ==========
     'palestinian history', 'middle east history', 'black history',
     'civilization gpt', 'ancient egypt', 'roman empire', 'medieval history',
     'renaissance', 'dynasty', 'empire explorer', 'heritage explorer',
@@ -214,15 +218,15 @@ export const isStrictlyHistoricalTimeRelatedTool = (tool: Tool): boolean => {
     'antique', 'antique appraisal', 'vintage appraisal', 'collectible appraisal',
     'artwork appraisal', 'artwork & vintage',
     
-    // Historical education/immersion/simulation
+    // ========== HISTORICAL EDUCATION/SIMULATION ==========
     'historical immersion', 'historical simulation', 'historical figure',
     'historical persona', 'history immersive', 'history simulation',
     'history guide', 'history explorer', 'history preserver',
     
-    // Stellaris - space exploration & temporal simulation
+    // ========== SPACE/TEMPORAL EXPLORATION ==========
     'stellaris', 'stellaris ai space explorer',
     
-    // Legislative & historical records
+    // ========== LEGISLATIVE & HISTORICAL RECORDS ==========
     'legislation writer', 'legislator link', 'public testimony writer'
   ];
   

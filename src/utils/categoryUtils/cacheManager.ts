@@ -37,7 +37,7 @@ import { isMarketingSalesTool } from "./marketingSalesDetection";
 let toolsCacheByMainCategory: Map<string, Tool[]> = new Map();
 let cacheBuilt = false;
 let lastToolsLength = 0;
-let cacheVersion = 46; // Phase 26: Added 50 historical character GPTs (philosophers, saints, prophets, native american leaders, ancient figures)
+let cacheVersion = 47; // Phase 27: Expanded historical detection with 89+ verified AIWebTools GPTs (philosophers, saints, scientists, ancient civilization tools)
 
 // Persistent cache storage for instant loads
 const CACHE_KEY = 'aitools_category_cache_v2';
