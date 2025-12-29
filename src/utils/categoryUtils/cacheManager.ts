@@ -37,7 +37,7 @@ import { isMarketingSalesTool } from "./marketingSalesDetection";
 let toolsCacheByMainCategory: Map<string, Tool[]> = new Map();
 let cacheBuilt = false;
 let lastToolsLength = 0;
-let cacheVersion = 43; // Phase 23: STRICT Historical detection - no subcategory matching, expanded exclusions
+let cacheVersion = 44; // Phase 24: Added 20 real AIWebTools historical GPTs to category
 
 // Persistent cache storage for instant loads
 const CACHE_KEY = 'aitools_category_cache_v2';
