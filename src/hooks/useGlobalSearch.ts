@@ -2116,14 +2116,50 @@ export const useGlobalSearch = () => {
               );
               
               if (isUnrelated) {
-                // Specific heavy penalties for common mismatches
-                const heavyPenaltyCategories = ['video', 'image', 'music', 'gaming'];
-                const isHeavyPenalty = toolCategories.some(tc => heavyPenaltyCategories.includes(tc));
+                // === ULTRA-HEAVY PENALTIES for obvious category mismatches ===
+                // When searching for "image generation", spiritual tools should NOT appear
+                const creativeCategories = ['video', 'image', 'music', 'gaming', 'design', 'art'];
+                const professionalCategories = ['coding', 'business', 'finance', 'trading', 'legal'];
+                const academicCategories = ['education', 'learning', 'science', 'research', 'history'];
+                const wellnessCategories = ['health', 'medical', 'wellness', 'fitness'];
+                const spiritualCategories = ['spiritual', 'philosophy', 'religion', 'wisdom', 'mystical'];
                 
-                if (isHeavyPenalty && !searchIntents.some(i => heavyPenaltyCategories.includes(i))) {
-                  boost -= 80000; // Very heavy penalty
+                // Determine which category family the search intent belongs to
+                const isCreativeSearch = creativeCategories.includes(primaryIntent);
+                const isProfessionalSearch = professionalCategories.includes(primaryIntent);
+                const isAcademicSearch = academicCategories.includes(primaryIntent);
+                const isWellnessSearch = wellnessCategories.includes(primaryIntent);
+                const isSpiritualSearch = spiritualCategories.includes(primaryIntent);
+                
+                // Determine which category family the tool belongs to  
+                const isCreativeTool = toolCategories.some(tc => creativeCategories.includes(tc)) ||
+                                      category.includes('image') || category.includes('video') ||
+                                      category.includes('music') || category.includes('design');
+                const isProfessionalTool = toolCategories.some(tc => professionalCategories.includes(tc));
+                const isAcademicTool = toolCategories.some(tc => academicCategories.includes(tc));
+                const isWellnessTool = toolCategories.some(tc => wellnessCategories.includes(tc));
+                const isSpiritualTool = toolCategories.some(tc => spiritualCategories.includes(tc)) ||
+                                       category.includes('spiritual') || category.includes('philosophy') ||
+                                       title.includes('aristotle') || title.includes('confucius') ||
+                                       title.includes('marcus aurelius') || title.includes('socrates') ||
+                                       title.includes('buddha') || title.includes('jesus') ||
+                                       title.includes('prophet') || title.includes('mystic');
+                
+                // Apply massive penalties for cross-family mismatches
+                if (isCreativeSearch && isSpiritualTool) {
+                  boost -= 200000; // Creative search but spiritual tool = HUGE penalty
+                } else if (isCreativeSearch && !isCreativeTool) {
+                  boost -= 120000; // Creative search but non-creative tool
+                } else if (isProfessionalSearch && isSpiritualTool) {
+                  boost -= 150000; 
+                } else if (isProfessionalSearch && !isProfessionalTool && !isAcademicTool) {
+                  boost -= 100000;
+                } else if (isSpiritualSearch && isCreativeTool) {
+                  // Don't heavily penalize creative tools for spiritual search (some overlap)
+                  boost -= 30000;
                 } else {
-                  boost -= 50000; // Standard unrelated penalty
+                  // Standard unrelated penalty
+                  boost -= 50000;
                 }
               }
             }
@@ -2140,17 +2176,90 @@ export const useGlobalSearch = () => {
         const quick = quickSearch(t);
         const mustHave = quick.filter((tool) => {
           const title = (tool?.title || "").toLowerCase();
+          const category = (tool?.category || "").toLowerCase();
+          const tags = (tool?.tags || []).map((t: string) => t.toLowerCase());
           const firstWord = title.split(/\s+/)[0] || "";
-          if (q.includes("learn") || q.startsWith("le") || q.includes("skill")) {
-            if (title.includes("learn any skill gpt")) return true;
+          
+          // === IMAGE GENERATION SEARCH PROTECTION ===
+          if (q.includes("image") || q.includes("generat") || q.includes("picture") || 
+              q.includes("photo") || q.includes("art") || q.includes("visual") || 
+              q.includes("dall") || q.includes("midjourney") || q.includes("stable diffusion")) {
+            const isImageTool = category.includes("image") || category.includes("design") || 
+                               category.includes("art") || category.includes("visual") ||
+                               title.includes("image") || title.includes("dall") || 
+                               title.includes("midjourney") || title.includes("stable diffusion") ||
+                               title.includes("ideogram") || title.includes("leonardo") ||
+                               title.includes("flux") || title.includes("firefly") ||
+                               tags.some((t: string) => t.includes("image") || t.includes("art") || 
+                                                       t.includes("generator") || t.includes("design"));
+            if (isImageTool) return true;
           }
+          
+          // === VIDEO GENERATION SEARCH PROTECTION ===
+          if (q.includes("video") || q.includes("movie") || q.includes("film") || 
+              q.includes("sora") || q.includes("runway") || q.includes("pika") ||
+              q.includes("kling") || q.includes("luma")) {
+            const isVideoTool = category.includes("video") || 
+                               title.includes("video") || title.includes("sora") || 
+                               title.includes("runway") || title.includes("pika") ||
+                               title.includes("kling") || title.includes("luma") ||
+                               tags.some((t: string) => t.includes("video") || t.includes("text to video"));
+            if (isVideoTool) return true;
+          }
+          
+          // === MUSIC/AUDIO SEARCH PROTECTION ===
+          if (q.includes("music") || q.includes("audio") || q.includes("song") || 
+              q.includes("suno") || q.includes("udio")) {
+            const isMusicTool = category.includes("music") || category.includes("audio") ||
+                               title.includes("music") || title.includes("suno") || title.includes("udio") ||
+                               tags.some((t: string) => t.includes("music") || t.includes("audio"));
+            if (isMusicTool) return true;
+          }
+          
+          // === CODING/DEVELOPMENT SEARCH PROTECTION ===
+          if (q.includes("code") || q.includes("coding") || q.includes("programming") || 
+              q.includes("developer") || q.includes("software")) {
+            const isCodeTool = category.includes("code") || category.includes("develop") ||
+                              title.includes("code") || title.includes("programming") ||
+                              tags.some((t: string) => t.includes("code") || t.includes("develop"));
+            if (isCodeTool) return true;
+          }
+          
+          // === LEARN/EDUCATION SEARCH PROTECTION ===
+          if (q.includes("learn") || q.startsWith("le") || q.includes("skill") || 
+              q.includes("education") || q.includes("course")) {
+            if (title.includes("learn") || title.includes("course") || title.includes("education") ||
+                category.includes("education") || category.includes("learning")) return true;
+          }
+          
+          // === TRADING/FINANCE SEARCH PROTECTION ===
           if (q.includes("trad") || q.includes("stock") || q.includes("crypto") || 
               q.includes("forex") || q.includes("invest") || q.includes("coin") ||
               q.includes("bitcoin") || q.includes("ethereum") || q.includes("day trader") ||
               q.includes("daytrader") || q.includes("finance") || q.includes("financial")) {
             if (title.includes("trader") || title.includes("chain") || title.includes("finchat") ||
-                title.includes("forex") || title.includes("credit") || title.includes("taxes")) return true;
+                title.includes("forex") || title.includes("credit") || title.includes("taxes") ||
+                category.includes("finance") || category.includes("trading")) return true;
           }
+          
+          // === WRITING SEARCH PROTECTION ===
+          if (q.includes("writ") || q.includes("book") || q.includes("blog") || 
+              q.includes("article") || q.includes("content")) {
+            const isWritingTool = category.includes("writ") || category.includes("content") ||
+                                 title.includes("writer") || title.includes("book") ||
+                                 tags.some((t: string) => t.includes("writ") || t.includes("content"));
+            if (isWritingTool) return true;
+          }
+          
+          // === HEALTH/MEDICAL SEARCH PROTECTION ===
+          if (q.includes("health") || q.includes("medical") || q.includes("doctor") || 
+              q.includes("wellness") || q.includes("therapy")) {
+            const isHealthTool = category.includes("health") || category.includes("medical") ||
+                                title.includes("doctor") || title.includes("health") ||
+                                tags.some((t: string) => t.includes("health") || t.includes("medical"));
+            if (isHealthTool) return true;
+          }
+          
           if (title.startsWith(q) || firstWord.startsWith(q)) return true;
           return false;
         });
