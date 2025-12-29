@@ -21,54 +21,130 @@ export const isMajorLLM = (tool: Tool): boolean => {
 
 // Helper function to detect STRICTLY historical and time-based tools
 export const isStrictlyHistoricalTimeRelatedTool = (tool: Tool): boolean => {
-  // First check if it's primarily an educational tool - if so, exclude it from historical category
-  if (isPrimaryEducationTool(tool)) {
-    return false;
-  }
-
-  const strictHistoricalKeywords = [
-    'time machine', 'time travel', 'historical figures', 'talk to history', 'historical headlines',
-    'titanic resurrection', 'native american history', 'ancient calendar', 'historical map',
-    'historical photography', 'historical demographics', 'historical royalty', 'historical geography',
-    'historical literature', 'oraculum', 'interpretis', 'phenomenon explorer', 'hidden histories',
-    'archaeological', 'artifact', 'heritage', 'medieval', 'renaissance', 'antiquity',
-    'museum', 'archive', 'chronicle', 'manuscript', 'relic', 'fossil',
-    'genealogy', 'ancestry', 'lineage', 'dynasty', 'monarchy', 'empire', 'kingdom', 'gravestone', 'cemetery', 'grave decoder', 'memorial',
-    'revolution', 'war', 'battle', 'conquest', 'discovery', 'exploration', 'expedition',
-    'prehistoric', 'paleolithic', 'neolithic', 'bronze age', 'iron age', 'stone age',
-    'mystical', 'esoteric', 'occult', 'temporal', 'chronological', 'anachronism'
-  ];
-  
   const titleLower = tool.title.toLowerCase();
   const descriptionLower = tool.description.toLowerCase();
+  const categoryLower = tool.category?.toLowerCase() || '';
+  const tagsLower = (tool.tags || []).map(t => t.toLowerCase()).join(' ');
+  
+  // ========== STRICT EXCLUSION LIST ==========
+  // These tools should NEVER appear in Historical & Time-Based category
+  const excludedTools = [
+    'lm studio', 'warmbox', 'bitwarden', 'malwarebytes', 'mailchimp',
+    'zapier', 'make.com', 'n8n', 'notion', 'slack', 'discord', 'zoom',
+    'canva', 'figma', 'adobe', 'midjourney', 'dall-e', 'stable diffusion',
+    'suno', 'udio', 'elevenlabs', 'eleven labs', 'cursor', 'replit',
+    'vercel', 'netlify', 'github', 'gitlab', 'stripe', 'shopify',
+    'hubspot', 'salesforce', 'asana', 'trello', 'monday', 'clickup',
+    'grammarly', 'jasper', 'copy.ai', 'writesonic', 'ai tools finder',
+    'buffer', 'hootsuite', 'sprout social', 'semrush', 'ahrefs', 'moz',
+    'anthropic', 'openai', 'google ai', 'meta ai', 'microsoft copilot',
+    'chatgpt', 'claude', 'gemini', 'perplexity', 'mistral', 'llama',
+    '1password', 'lastpass', 'dashlane', 'nordvpn', 'expressvpn',
+    'protonmail', 'protonvpn', 'signal', 'telegram', 'whatsapp',
+    'quickbooks', 'xero', 'freshbooks', 'wave', 'square', 'paypal',
+    'runway', 'pika', 'heygen', 'synthesia', 'descript', 'opus clip',
+    'remove.bg', 'cleanup.pictures', 'photoroom', 'magic eraser',
+    'ideogram', 'leonardo', 'playground ai', 'craiyon', 'nightcafe',
+    'soundraw', 'mubert', 'boomy', 'aiva', 'loudly', 'beatoven',
+    'writerly', 'jenni', 'wordtune', 'quillbot', 'sudowrite',
+    'huggingface', 'replicate', 'together ai', 'groq', 'cohere',
+    'perplexity', 'you.com', 'kagi', 'phind', 'exa', 'tavily',
+    'browserless', 'apify', 'firecrawl', 'scraper', 'automation'
+  ];
+  
+  // Exclude these tools immediately
+  if (excludedTools.some(excluded => titleLower.includes(excluded))) {
+    return false;
+  }
   
   // Exclude major LLMs and general education tools from historical category
   if (isMajorLLM(tool)) {
     return false;
   }
   
-  // Check for specific historical tool names
-  const historicalToolNames = [
-    'time machine gpt', 'talk to history', 'historical headlines', 'titanic resurrection',
-    'native american history', 'oraculum', 'interpretis', 'phenomenon explorer',
-    'hidden histories', 'nikola tesla gpt', 'albert einstein gpt'
+  // ========== EXPLICIT HISTORICAL TOOL NAMES ==========
+  // These tools MUST be included in Historical & Time-Based category
+  const explicitHistoricalTools = [
+    // Time Machine family
+    'time machine gpt', 'time machine', 'time-machine',
+    'native american history time machine', 'native american time machine',
+    
+    // Talk to History family
+    'talk to history', 'talk to history gpt',
+    
+    // Historical personalities
+    'nikola tesla gpt', 'albert einstein gpt', 'alan watts gpt',
+    'mary magdalene gpt', 'talk to the gods', 
+    
+    // Historical exploration tools
+    'historical headlines', 'historical headline', 
+    'titanic resurrection', 'titanic resurrections',
+    'oraculum', 'interpretis', 
+    'phenomenon explorer', 'hidden histories', 'hidden historical patterns',
+    'archaeologist', 'indiana archaeologist', 'indiana archaeology',
+    'grave decoder', 'gravestone decoder', 'cemetery', 'memorial decoder',
+    'historical apothecary', 'apothecary gpt',
+    'alchemist scientist', 'alchemical scientist',
+    'resurrection gpt',
+    
+    // Civilization & Era exploration
+    'civilization gpt', 'ancient egypt', 'roman empire', 'medieval',
+    'renaissance', 'dynasty', 'empire explorer', 'heritage',
+    'antiquity', 'ancestors', 'ancestry', 'genealogy', 'lineage',
+    
+    // Historical education/immersion
+    'historical immersion', 'historical simulation', 'historical figure',
+    'historical persona', 'history immersive', 'history simulation'
   ];
   
-  const isHistoricalToolByName = historicalToolNames.some(name => 
-    titleLower.includes(name)
-  );
-  
-  if (isHistoricalToolByName) {
+  // Check for explicit historical tool names first - highest priority
+  if (explicitHistoricalTools.some(name => titleLower.includes(name))) {
     return true;
   }
   
-  // Check for strict historical keywords in title or primary description
-  return strictHistoricalKeywords.some(keyword => 
+  // ========== STRICT HISTORICAL KEYWORDS ==========
+  // Must have CLEAR historical/time context
+  const strictHistoricalKeywords = [
+    'time travel', 'historical figures', 'ancient calendar',
+    'historical map', 'historical photography', 'historical demographics',
+    'historical royalty', 'historical geography', 'historical literature',
+    'archaeological', 'artifact', 'heritage site', 'medieval history',
+    'renaissance art', 'antiquity studies', 'museum collection', 'archive',
+    'chronicle', 'manuscript', 'relic', 'fossil', 'paleontology',
+    'genealogy research', 'ancestry dna', 'lineage', 'dynasty research',
+    'monarchy history', 'empire history', 'kingdom history',
+    'revolution history', 'civil war', 'world war', 'battle history',
+    'conquest', 'historical discovery', 'exploration history', 'expedition history',
+    'prehistoric', 'paleolithic', 'neolithic', 'bronze age', 'iron age', 'stone age',
+    'temporal analysis', 'chronological study', 'historical timeline'
+  ];
+  
+  // Check for strict historical keywords with confirmation
+  const hasStrictKeyword = strictHistoricalKeywords.some(keyword => 
     titleLower.includes(keyword) || 
     (descriptionLower.includes(keyword) && 
      (descriptionLower.includes('historical') || descriptionLower.includes('history') || 
-      descriptionLower.includes('time travel') || descriptionLower.includes('ancient')))
+      descriptionLower.includes('time travel') || descriptionLower.includes('ancient') ||
+      descriptionLower.includes('past') || descriptionLower.includes('era')))
   );
+  
+  if (hasStrictKeyword) {
+    return true;
+  }
+  
+  // Check category for historical designation
+  if (categoryLower.includes('historical') || categoryLower.includes('time-based') || 
+      categoryLower.includes('time & history') || categoryLower.includes('history')) {
+    return true;
+  }
+  
+  // Check tags for historical indicators
+  if (tagsLower.includes('historical') || tagsLower.includes('time machine') || 
+      tagsLower.includes('time travel') || tagsLower.includes('history gpt')) {
+    return true;
+  }
+  
+  return false;
 };
 
 // Helper function to detect PRIMARY education tools - EXPANDED for comprehensive coverage
