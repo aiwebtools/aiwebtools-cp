@@ -37,7 +37,7 @@ import { isMarketingSalesTool } from "./marketingSalesDetection";
 let toolsCacheByMainCategory: Map<string, Tool[]> = new Map();
 let cacheBuilt = false;
 let lastToolsLength = 0;
-let cacheVersion = 45; // Phase 25: Added World Reality Decoder, Unwritten History Time Machine, Talk to History + 10 more AIWebTools GPTs
+let cacheVersion = 46; // Phase 26: Added 50 historical character GPTs (philosophers, saints, prophets, native american leaders, ancient figures)
 
 // Persistent cache storage for instant loads
 const CACHE_KEY = 'aitools_category_cache_v2';

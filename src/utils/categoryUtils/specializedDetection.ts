@@ -90,16 +90,98 @@ export const isStrictlyHistoricalTimeRelatedTool = (tool: Tool): boolean => {
     // Historical Headlines - News from history
     'historical headlines', 'historical headline', 'historical headlines gpt',
     
-    // Historical personalities (REAL historical figure GPTs from AIWebTools)
-    'nikola tesla gpt', 'nikola tesla',
-    'albert einstein gpt', 'albert einstein',
-    'alan watts gpt', 'alan watts',
-    'mary magdalene gpt', 'mary magdalene',
+    // ========== ANCIENT PHILOSOPHERS & THINKERS (HISTORICAL FIGURES) ==========
+    'socrates', 'socrates free thought', 'socrates gpt',
+    'plato reborn', 'plato gpt', 'plato',
+    'aristotle gpt', 'aristotle',
+    'hypatia gpt', 'hypatia',
+    'thales of miletus', 'thales gpt', 'thales',
+    'plotinus', 'plotinus the revealer', 'plotinus gpt',
+    'heraclitus reborn', 'heraclitus gpt', 'heraclitus',
+    'lao tzu', 'laozi', 'lao tzu free thought', 'lao tzu gpt',
+    'confucius', 'confucius free thought', 'confucius gpt', 'kongzi',
+    'buddha free thought', 'buddha gpt',
+    'marcus aurelius', 'marcus aurelius gpt',
+    'hermes trismegistus', 'hermes trismegistus gpt',
+    'pythagorean', 'pythagoras', 'orphic light gpt',
+    'sappho', 'sappho alive once more', 'sappho gpt',
+    
+    // ========== HISTORICAL RELIGIOUS/SPIRITUAL FIGURES ==========
+    'arius', 'arius the bearer of light', 'arianism',
+    'manicheism gpt', 'manicheism', 'prophet mani', 'mani',
+    'mingjiao', 'mingjiao prophet', 'prophet of light',
+    'zoroaster', 'zoroaster free thought', 'zarathustra', 'zoroastrian light',
+    'akhenaten', 'akhenaten gpt', 'aten',
+    'imhotep', 'imhotep living mind', 'kemet',
+    'rumi gpt', 'rumi',
+    'shams of tabriz', 'shams gpt',
+    'mansur al-hallaj', 'al-hallaj', 'hallaj',
+    'hildegard von bingen', 'hildegard gpt',
+    'joan of arc', 'joan of arc gpt',
+    'giordano bruno', 'giordano bruno reborn',
+    'origen reborn', 'origen gpt',
+    'moses gpt', 'moses',
+    'essene qodesh', 'essene', 'essenes',
+    'bogomils gpt', 'bogomil',
+    'paulician', 'paulician lightbearer',
+    'mithraic light', 'mithras', 'mithraism',
+    'enochian mysticism', 'enoch',
+    'hermetic mysteries', 'emerald tablet',
+    'proto-gnostic', 'gnostic luminary',
+    'ancient light mysticism',
+    'pre-rome jewish light',
+    
+    // ========== NATIVE AMERICAN HISTORICAL FIGURES ==========
+    'chief seattle', 'sealth', 'seattle gpt',
+    'chief crazy horse', 'crazy horse gpt',
+    'sitting bull', 'sitting bull gpt',
+    'black elk', 'black elk vision',
+    
+    // ========== SAINTS & HISTORICAL RELIGIOUS LEADERS ==========
+    'st. francis', 'saint francis', 'francis of assisi',
+    'saint teresa', 'teresa of avila',
+    'saint therese', 'therese of lisieux', 'little flower',
+    'saint john of the cross', 'john of the cross',
+    'saint hildegard', 'hildegard of bingen',
+    'saint catherine of siena', 'catherine of siena',
+    'saint augustine', 'augustine gpt',
+    'saint padre pio', 'padre pio',
+    'saint seraphim', 'seraphim of sarov',
+    'abba anthony', 'anthony the great', 'desert fathers',
+    'mahatma gandhi', 'gandhi reborn', 'gandhi gpt',
+    'saint josephine bakhita', 'josephine bakhita',
+    'saint anthony of padua',
+    
+    // ========== HISTORICAL SCIENTISTS & THINKERS ==========
+    'nikola tesla gpt', 'nikola tesla', 'tesla gpt',
+    'albert einstein gpt', 'albert einstein', 'einstein gpt',
     'carl sagan gpt', 'carl sagan',
-    'paramahansa yogananda gpt', 'paramahansa yogananda', 'yogananda',
+    'carl jung gpt', 'carl jung',
+    'alan watts gpt', 'alan watts',
+    'paramahansa yogananda', 'yogananda gpt',
+    'paramahansa nityananda', 'nityananda',
+    'sri aurobindo', 'aurobindo gpt',
+    'ramana maharshi', 'ramana gpt',
+    'mooji gpt',
+    
+    // ========== HISTORICAL RELIGIOUS FIGURES (BIBLICAL/SPIRITUAL) ==========
+    'mary magdalene gpt', 'mary magdalene',
     'talk to the gods', 'talk to the gods gpt',
     'sophia aeterna', 'sophia aeterna ai',
-    'celebrity chatline', 'celebrity chatline gpt', // historical figures chat
+    'council of light', // ancient wisdom council
+    'quan yin gpt', 'quan yin', 'guanyin', 'kuan yin',
+    'yemaya', 'yemaya gpt', // ancient african orisha
+    
+    // ========== ANCIENT CIVILIZATION & MYSTERY TOOLS ==========
+    'atlantean memory keeper', 'atlantis',
+    'mayan dreamspell', 'mayan calendar',
+    'emerald signature of thoth', 'thoth',
+    'babylonian star tablet', 'babylon',
+    'rune frequency', 'ancient runes',
+    'astrotheology revealer',
+    'ancient gematria', 'gematria scan',
+    'architectural old world', 'old world investigator',
+    'intergalactic ancient archivist',
     
     // Historical exploration & immersion tools (AIWebTools originals)
     'titanic resurrection', 'titanic resurrections', 'titanic resurrections gpt',
@@ -109,6 +191,7 @@ export const isStrictlyHistoricalTimeRelatedTool = (tool: Tool): boolean => {
     'resurrection gpt', // reconnecting with the past
     'uncovering hidden historical', 'hidden historical patterns', 'historical patterns gpt',
     'illuminous', 'illuminous world data explorer', // world data & predictions
+    'celebrity chatline', // historical figures chat
     
     // Archaeology & Ancient exploration
     'archaeologist', 'indiana archaeologist', 'indiana archaeology', 'indiana archeologist',
@@ -117,13 +200,6 @@ export const isStrictlyHistoricalTimeRelatedTool = (tool: Tool): boolean => {
     // Historical medicine & alchemy
     'historical apothecary', 'apothecary gpt', 'historical apothecary gpt',
     'alchemist scientist', 'alchemical scientist', 'alchemist scientist gpt',
-    
-    // Historical knowledge & wisdom
-    'criminologist gpt', 'criminologist', // historical crime analysis
-    'phenomenon explorer', 'phenomenon investigator', // historical phenomena
-    'manicheism gpt', 'manicheism', 'prophet of light', 'mingjiao', // ancient religion/philosophy
-    'quan yin gpt', 'quan yin', // ancient wisdom
-    'yemaya', 'yemaya gpt', // ancient african spirituality
     
     // Historical voices & records
     'gptpastvoices', 'past voices',

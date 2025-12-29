@@ -115,15 +115,21 @@ const getRelatedCategories = (category: string): string[] => {
     "Audio": ["Music", "Content Creation", "Entertainment"],
     "Business": ["Productivity", "Sales", "Marketing"],
     "Productivity": ["Business", "Automation", "AI Assistants"],
-    "Education": ["Learning", "Research", "Writing"],
+    // CRITICAL: Education ↔ History cross-reference for similar tools
+    "Education": ["Learning", "Research", "Writing", "Time & History", "Historical & Time-Based AI Tools", "Spirituality & Philosophy"],
+    "Education & Learning": ["Research", "Writing", "Time & History", "Historical & Time-Based AI Tools", "Spirituality & Philosophy"],
     "Healthcare": ["Medical", "Wellness", "Research"],
     "Health & Wellness": ["Healthcare", "Medical", "Wellness"],
     "Development": ["Programming", "Web Development", "AI Tools"],
-    "Research": ["Education", "Academic", "Data Analysis"],
+    "Research": ["Education", "Academic", "Data Analysis", "Time & History", "Historical & Time-Based AI Tools"],
     "Entertainment": ["Games", "Fun", "Creative"],
     "Finance": ["Business", "Analytics", "Trading"],
     "Marketing": ["Business", "Content Creation", "Sales"],
-    "E-commerce": ["Business", "Marketing", "Sales"]
+    "E-commerce": ["Business", "Marketing", "Sales"],
+    // CRITICAL: History ↔ Education cross-reference for similar tools
+    "Time & History": ["Education", "Education & Learning", "Research", "Spirituality & Philosophy", "Science & Research"],
+    "Historical & Time-Based AI Tools": ["Education", "Education & Learning", "Research", "Spirituality & Philosophy", "Science & Research"],
+    "Spirituality & Philosophy": ["Education", "Education & Learning", "Time & History", "Historical & Time-Based AI Tools", "Research"]
   };
 
   return categoryGroups[category] || [];
