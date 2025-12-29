@@ -27,13 +27,19 @@ const EXCLUDED_TOOLS = [
 
 // Intent detection patterns for better search prioritization - EXPANDED FOR ALL CATEGORIES
 const INTENT_PATTERNS = {
+  // NEW: Video generation - top priority for video-related queries
+  video_generation: {
+    triggers: ['video generator', 'video generation', 'text to video', 'text-to-video', 'ai video', 'make video', 'create video', 'generate video', 'video maker', 'video creator', 'video ai', 'video producing', 'video synthesis', 'sora', 'runway', 'pika', 'luma', 'kling', 'heygen', 'synthesia'],
+    priority: ['Sora', 'SORA by OpenAI', 'SORA 2', 'Runway Gen-3', 'Runway ML', 'RunwayML', 'RunwayML Gen-2', 'Pika', 'Pika Labs', 'Luma Dream Machine', 'Luma AI', 'Luma Labs Dream Machine', 'KLING AI', 'HeyGen', 'Synthesia', 'InVideo AI', 'Veo', 'Stable Video Diffusion', 'Movie Maker Studio AI SUITE', 'Music Video Maker AI Studio', 'D-ID', 'Kaiber', 'Colossyan'],
+    categories: ['AI Video Generation', 'Video & Multimedia', 'Video & Animation Tools', 'Video Generation', 'VIDEO & MULTIMEDIA']
+  },
   education: {
     triggers: ['college', 'university', 'degree', 'education', 'learn', 'study', 'course', 'school', 'academic', 'skill', 'training', 'lesson', 'class', 'homework', 'tutor', 'teacher', 'student'],
     priority: ['COLLEGE DEGREE GPT', 'LEARN ANY SKILL GPT', 'LEARN ANY COURSE GPT', 'Home-Schooling Assistant GPT', 'HomeSchool GPT', 'Quiz Maker Ai', 'Course Maker GPT'],
     categories: ['Education & Research Tools', 'Learning & Education', 'Educational Tools', 'Education & Learning']
   },
   creative: {
-    triggers: ['book', 'write', 'writing', 'author', 'story', 'novel', 'script', 'content', 'blog', 'article', 'creative', 'design', 'art', 'graphic', 'logo', 'image', 'video', 'movie', 'music'],
+    triggers: ['book', 'write', 'writing', 'author', 'story', 'novel', 'script', 'content', 'blog', 'article', 'creative', 'design', 'art', 'graphic', 'logo', 'image', 'movie', 'music'],
     priority: ['BOOK WRITER GPT', 'Movie Script Writer GPT', 'Article and Blog Rewriter GPT', 'Graphic & Cover Design GPT', 'Movie Maker Studio AI SUITE', 'Music Video Maker AI Studio', 'RESTYLE ME GPT', 'Sketch Artist GPT'],
     categories: ['Writing & Text Generation', 'Content Creation', 'Creative Tools', 'Creative & Media', 'Creative & Design']
   },

@@ -40,10 +40,17 @@ export const COMMON_PHRASE_HANDLERS: Record<string, PhraseHandler> = {
   },
   
   // ===== VIDEO & MULTIMEDIA =====
+  videoGenerator: {
+    triggers: ['video generator', 'video generators', 'text to video', 'text-to-video', 'ai video generator', 'generate video', 'make video ai', 'video ai', 'video generation', 'video creation', 'video maker ai', 'create videos ai', 'ai video maker', 'video producing', 'video synthesis'],
+    keywords: ['video', 'generator', 'sora', 'runway', 'pika', 'luma', 'kling', 'heygen', 'synthesia', 'text-to-video', 'text to video', 'ai video', 'generate video'],
+    priorityTools: ['Sora (OpenAI)', 'Runway Gen-3', 'Runway ML', 'RunwayML', 'Pika', 'Pika Labs', 'Luma Dream Machine', 'Kling AI', 'HeyGen', 'Synthesia', 'InVideo AI', 'Veo', 'Stable Video Diffusion', 'Movie Maker Studio AI SUITE', 'Music Video Maker AI Studio', 'Luma Dream Machine Prompt Assistant', 'Sora Prompt Assistant', 'SORA2 Text to Video Prompt Maker GPT'],
+    relatedCategories: ['AI Video Generation', 'Video & Multimedia', 'Video & Animation Tools', 'Video Generation']
+  },
+  
   makeVideo: {
-    triggers: ['make a video', 'make video', 'create video', 'video maker', 'generate video', 'ai video', 'text to video'],
+    triggers: ['make a video', 'make video', 'create video', 'video maker', 'generate video', 'ai video', 'create a video', 'produce video', 'video creator', 'video creating'],
     keywords: ['video', 'film', 'movie', 'animation', 'sora', 'runway', 'pika', 'luma', 'kling'],
-    priorityTools: ['Sora', 'Runway', 'Pika', 'Luma Dream Machine', 'Kling AI', 'Movie Maker Studio AI SUITE'],
+    priorityTools: ['Sora (OpenAI)', 'Runway Gen-3', 'Pika', 'Luma Dream Machine', 'Kling AI', 'Movie Maker Studio AI SUITE', 'HeyGen', 'Synthesia'],
     relatedCategories: ['Video & Multimedia', 'AI Video Generation']
   },
   
@@ -1690,10 +1697,11 @@ export const scorePhraseHandlerMatch = (
   const lowerCategory = (tool.category || '').toLowerCase();
   const lowerTags = (tool.tags || []).map(t => t.toLowerCase()).join(' ');
   
-  // HIGHEST: Tool is in priority list (exact match)
+  // HIGHEST: Tool is in priority list (bidirectional partial match)
   for (let i = 0; i < handler.priorityTools.length; i++) {
     const priorityTool = handler.priorityTools[i].toLowerCase();
-    if (lowerTitle.includes(priorityTool) || lowerTitle === priorityTool) {
+    // Match if title includes priority OR priority includes title (for short titles like "Sora", "Pika")
+    if (lowerTitle.includes(priorityTool) || priorityTool.includes(lowerTitle) || lowerTitle === priorityTool) {
       score += 100000 - (i * 5000); // Higher priority for tools listed first
     }
   }
