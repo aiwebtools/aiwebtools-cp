@@ -95,6 +95,33 @@ export const creativeCategories: MainCategory[] = [
     ]
   },
   {
+    name: "SOUND EFFECTS & SFX",
+    emoji: "🔊",
+    description: "AI tools for sound effects, SFX generation, voice cloning, music production, and audio creation",
+    subcategories: [
+      "Sound Effects",
+      "SFX Generation",
+      "Sound Effects & SFX",
+      "Sound Generation",
+      "FX Sounds",
+      "Voice Generation",
+      "Voice Cloning",
+      "Text to Speech",
+      "TTS Tools",
+      "Music Generation",
+      "Music Production",
+      "Audio Generation",
+      "Audio Production",
+      "Voice AI",
+      "Sound Design",
+      "Audio Effects",
+      "Synthetic Voice",
+      "Voice Synthesis",
+      "Audio FX",
+      "Sound Libraries"
+    ]
+  },
+  {
     name: "3D & VISUALIZATION",
     emoji: "🧊",
     description: "AI tools for 3D modeling, visualization, and immersive content creation",

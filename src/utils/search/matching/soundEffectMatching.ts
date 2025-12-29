@@ -9,7 +9,10 @@ const soundEffectKeywords = [
   'audio ai', 'ai voice', 'ai audio', 'voice tools', 'audio tools',
   'sound generator', 'voice generator', 'audio generator', 'fx sounds',
   'audio fx', 'voice over', 'narration', 'speech generation',
-  'voice cloning', 'synthetic voice', 'artificial voice', 'audio production'
+  'voice cloning', 'synthetic voice', 'artificial voice', 'audio production',
+  'sound generation', 'music generation', 'music production', 'sound library',
+  'audio library', 'royalty free', 'sound pack', 'audio pack', 'sfx library',
+  'foley', 'ambient sound', 'game audio', 'film sound', 'sound mixing'
 ];
 
 const soundEffectToolNames = [
@@ -24,7 +27,24 @@ const soundEffectToolNames = [
   'podcast script writer',
   'nucleus ai',
   'voice agent',
-  'call agent'
+  'call agent',
+  'adobe podcast',
+  'soundly',
+  'boom library',
+  'splice',
+  'artlist',
+  'epidemic sound',
+  'zapsplat',
+  'freesound',
+  'soundsnap',
+  'sonniss',
+  'pro sound effects',
+  'a sound effect',
+  'audio jungle',
+  'bbc sound effects',
+  'storyblocks audio',
+  'music melodies',
+  'music video maker'
 ];
 
 export const matchSoundEffect = (tool: Tool, searchTerm: string): boolean => {

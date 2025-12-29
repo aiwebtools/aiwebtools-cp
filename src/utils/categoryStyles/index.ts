@@ -65,6 +65,18 @@ export const categoryStyles: Record<string, CategoryStyle> = {
     icon: Headphones
   },
 
+  // Sound Effects & SFX - Cyan/Teal
+  "SOUND EFFECTS & SFX": {
+    emoji: "🔊",
+    colors: {
+      bg: "bg-gradient-to-r from-cyan-600/20 to-teal-600/20",
+      border: "border-cyan-500/40",
+      hover: "hover:bg-gradient-to-r hover:from-cyan-600/30 hover:to-teal-600/30 hover:border-cyan-400",
+      selected: "bg-gradient-to-r from-cyan-600 to-teal-700"
+    },
+    icon: Headphones
+  },
+
   // Business Operations & Productivity - Slate/Gray
   "Business Operations & Productivity": {
     emoji: "💼",

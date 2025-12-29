@@ -27,6 +27,7 @@ import { isImageDesignTool, getEnhancedImageDesignTools } from "./imageDesignDet
 import { isWritingContentTool } from "./writingContentDetection";
 import { isCodingDevelopmentTool, getCodingDevelopmentTools } from "./codingDevelopmentDetection";
 import { isMarketingSalesTool, getMarketingSalesTools as getMarketingSalesToolsDirect } from "./marketingSalesDetection";
+import { isSoundEffectsTool, getSoundEffectsTools } from "./soundEffectsDetection";
 
 export const getCategoriesWithCounts = (tools: Tool[]): CategoryCounts => {
   const categoryCounts: CategoryCounts = {};
@@ -216,6 +217,11 @@ export const getMainCategoriesWithCounts = (tools: Tool[]): MainCategoryCounts =
         toolCount = audioTools.length;
         break;
       }
+      case "SOUND EFFECTS & SFX": {
+        const sfxTools = getSoundEffectsTools(tools);
+        toolCount = sfxTools.length;
+        break;
+      }
       case "VIDEO & MULTIMEDIA": {
         const videoTools = getVideoMultimediaTools(tools);
         toolCount = videoTools.length;
@@ -307,6 +313,11 @@ export const getToolsByMainCategory = (tools: Tool[], mainCategoryName: string):
   // Enhanced handling for Audio & Voice Tools
   else if (mainCategoryName === "AUDIO & VOICE TOOLS") {
     categoryTools = getAudioMusicTools(tools);
+  }
+  
+  // Enhanced handling for Sound Effects & SFX
+  else if (mainCategoryName === "SOUND EFFECTS & SFX") {
+    categoryTools = getSoundEffectsTools(tools);
   }
   
   // Enhanced handling for Video & Multimedia
