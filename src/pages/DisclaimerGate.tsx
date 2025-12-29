@@ -1,11 +1,59 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Check, Sparkles, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ImprovedSEOHead from "@/components/ImprovedSEOHead";
 
+// Creative rotating welcome messages - Matrix/AI/Enlightenment themed
+const welcomeMessages = [
+  // Matrix vibes
+  "The Matrix has you...",
+  "Wake up, Neo...",
+  "You've been living in a dream world...",
+  "Free your mind...",
+  "There is no spoon...",
+  "Follow the white rabbit...",
+  
+  // AI & Tech
+  "Initiating neural handshake...",
+  "The machines are ready for you...",
+  "Your AI journey begins here...",
+  "Unlocking digital consciousness...",
+  "The algorithm awaits your command...",
+  "Entering the AI dimension...",
+  
+  // Enlightenment & Wisdom
+  "Seek and you shall find...",
+  "The truth is within reach...",
+  "Illuminate your path forward...",
+  "Knowledge is infinite power...",
+  "Awakening begins with a choice...",
+  "Open your third eye to AI...",
+  
+  // Hype & Power
+  "Welcome to the future...",
+  "Your empire awaits...",
+  "Prepare for digital enlightenment...",
+  "The portal is opening...",
+  "Unlimited power loading...",
+  "Godmode activation pending...",
+];
+
 const DisclaimerGate: React.FC = () => {
   const navigate = useNavigate();
+  
+  // Random starting message, rotates every 2s
+  const [messageIndex, setMessageIndex] = useState(() => 
+    Math.floor(Math.random() * welcomeMessages.length)
+  );
+
+  // Rotate messages
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setMessageIndex(prev => (prev + 1) % welcomeMessages.length);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, []);
 
   // If already accepted, skip this page
   useEffect(() => {
@@ -36,10 +84,16 @@ const DisclaimerGate: React.FC = () => {
       <div className="max-w-md w-full bg-gray-900 border-2 border-cyan-500 rounded-2xl p-6 shadow-2xl shadow-cyan-500/30 animate-fade-in">
         <div className="text-center mb-6">
           <div className="flex items-center justify-center gap-3 mb-3">
-            <Sparkles className="w-6 h-6 text-cyan-400" />
-            <h1 className="text-xl font-bold text-white">Welcome to AI Web Tools</h1>
+            <Sparkles className="w-6 h-6 text-cyan-400 animate-pulse" />
+            <h1 className="text-xl font-bold text-white">AI Web Tools Portal</h1>
           </div>
-          <p className="text-cyan-200 text-sm">Please review our guidelines before entering</p>
+          {/* Rotating creative message */}
+          <p 
+            className="text-cyan-200 text-sm font-medium h-6 transition-opacity duration-300"
+            style={{ textShadow: '0 0 10px rgba(34, 211, 238, 0.5)' }}
+          >
+            {welcomeMessages[messageIndex]}
+          </p>
         </div>
 
         <div className="space-y-3 mb-6">
