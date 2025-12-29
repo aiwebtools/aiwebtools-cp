@@ -24,18 +24,12 @@ const prefetchRoute = (route: string) => {
   document.head.appendChild(link);
 };
 
-// Prefetch with requestIdleCallback for non-blocking
+// Prefetch with requestIdleCallback for non-blocking - immediate for better navigation
 const idlePrefetch = (routes: string[]) => {
-  if ('requestIdleCallback' in window) {
-    (window as any).requestIdleCallback(() => {
-      routes.forEach(prefetchRoute);
-    }, { timeout: 2000 });
-  } else {
-    // Fallback for Safari
-    setTimeout(() => {
-      routes.forEach(prefetchRoute);
-    }, 100);
-  }
+  // Prefetch immediately but in microtask to not block render
+  queueMicrotask(() => {
+    routes.forEach(prefetchRoute);
+  });
 };
 
 export const usePrefetchRoutes = () => {

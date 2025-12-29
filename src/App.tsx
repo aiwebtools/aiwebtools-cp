@@ -75,15 +75,10 @@ const WelcomeNeoVoice = () => {
 // Pre-initialize category cache for instant category page loads
 import "@/utils/categoryUtils/precomputedCache";
 
-// Minimal loading fallback with rotating quotes - only shows briefly for lazy routes
-const LoadingQuotes = React.lazy(() => import("./components/search/FunnyQuotesRotator"));
-
+// Minimal loader - just a quick flash, not blocking
 const PageLoader = () => (
-  <div className="min-h-screen bg-black flex flex-col items-center justify-center gap-6">
-    <div className="w-8 h-8 border-2 border-green-500 border-t-transparent rounded-full animate-spin" />
-    <Suspense fallback={<p className="text-muted-foreground/70 italic text-sm">Loading...</p>}>
-      <LoadingQuotes />
-    </Suspense>
+  <div className="min-h-screen bg-black flex items-center justify-center">
+    <div className="w-6 h-6 border-2 border-green-500 border-t-transparent rounded-full animate-spin" />
   </div>
 );
 
