@@ -98,6 +98,13 @@ export const COMMON_PHRASE_HANDLERS: Record<string, PhraseHandler> = {
   },
   
   // ===== MUSIC & AUDIO =====
+  soundEffects: {
+    triggers: ['fx generation', 'fx generator', 'sound effects', 'sound effect', 'sfx generator', 'sfx generation', 'generate sfx', 'create sound effects', 'sound fx', 'audio effects', 'foley', 'fx sounds', 'sound design', 'generate sound', 'ai sound effects', 'ai sfx'],
+    keywords: ['sound effects', 'sfx', 'fx', 'foley', 'audio effects', 'sound design', 'elevenlabs', 'sound', 'effects'],
+    priorityTools: ['Eleven Labs: Voice Agents, Text to Speech, FX Sound Effects Generator', 'ElevenLabs', 'Soundraw', 'Epidemic Sound', 'Artlist', 'Audio Jungle'],
+    relatedCategories: ['Music & Audio', 'Audio & Voice', 'Sound Effects']
+  },
+  
   createMusic: {
     triggers: ['create music', 'make music', 'generate music', 'ai music', 'music generator', 'compose music'],
     keywords: ['music', 'song', 'melody', 'composition', 'suno', 'udio', 'beat'],

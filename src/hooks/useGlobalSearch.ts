@@ -2009,7 +2009,10 @@ export const useGlobalSearch = () => {
           // Also check common search patterns
           if (q.includes("trad") || q.includes("stock") || q.includes("crypto") || q.includes("forex") || q.includes("invest")) intents.push('trading');
           if (q.includes("video") || q.includes("movie") || q.includes("film")) intents.push('video');
-          if (q.includes("music") || q.includes("song") || q.includes("audio")) intents.push('music');
+          if (q.includes("music") || q.includes("song")) intents.push('music');
+          // Sound effects / FX intent - separate from music
+          if (q.includes("fx") || q.includes("sfx") || q.includes("sound effect") || q.includes("sound design") || q.includes("foley") || q.includes("audio effect")) intents.push('audio');
+          if (q.includes("audio") && !q.includes("fx") && !q.includes("effect")) intents.push('music');
           if (q.includes("image") || q.includes("picture") || q.includes("photo") || q.includes("art")) intents.push('image');
           if (q.includes("business") || q.includes("startup") || q.includes("entrepreneur")) intents.push('business');
           if (q.includes("history") || q.includes("historical") || q.includes("ancient")) intents.push('history');
@@ -2207,8 +2210,19 @@ export const useGlobalSearch = () => {
             if (isVideoTool) return true;
           }
           
+          // === SOUND EFFECTS / FX SEARCH PROTECTION ===
+          if (q.includes("fx") || q.includes("sfx") || q.includes("sound effect") || 
+              q.includes("sound design") || q.includes("foley") || q.includes("audio effect")) {
+            const isSoundFxTool = title.includes("eleven") || title.includes("elevenlabs") ||
+                                 title.includes("sound") || title.includes("fx") ||
+                                 category.includes("audio") || category.includes("sound") ||
+                                 tags.some((t: string) => t.includes("sound") || t.includes("fx") || 
+                                                         t.includes("sfx") || t.includes("effect"));
+            if (isSoundFxTool) return true;
+          }
+          
           // === MUSIC/AUDIO SEARCH PROTECTION ===
-          if (q.includes("music") || q.includes("audio") || q.includes("song") || 
+          if (q.includes("music") || q.includes("song") || 
               q.includes("suno") || q.includes("udio")) {
             const isMusicTool = category.includes("music") || category.includes("audio") ||
                                title.includes("music") || title.includes("suno") || title.includes("udio") ||
