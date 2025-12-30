@@ -8,7 +8,7 @@ interface ToolCardMediaProps {
   imageHeight: string;
 }
 
-// Extract video ID from various YouTube URL formats
+// Extract video ID from various YouTube URL formats (handles ?si= query params)
 const extractYouTubeId = (url: string): string | null => {
   if (!url) return null;
   
@@ -16,10 +16,12 @@ const extractYouTubeId = (url: string): string | null => {
     return url.split('v=')[1].split('&')[0];
   }
   if (url.includes('youtu.be/')) {
-    return url.split('youtu.be/')[1].split('?')[0];
+    // Handle youtu.be/VIDEO_ID?si=... format
+    const pathPart = url.split('youtu.be/')[1];
+    return pathPart.split(/[?&#]/)[0];
   }
   if (url.includes('youtube.com/embed/')) {
-    return url.split('embed/')[1].split('?')[0];
+    return url.split('embed/')[1].split(/[?&#]/)[0];
   }
   return null;
 };
