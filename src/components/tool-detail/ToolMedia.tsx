@@ -47,52 +47,34 @@ const ToolMedia = ({ tool, toolIndex }: ToolMediaProps) => {
   }, []);
 
   const getOptimizedEmbedUrl = (url: string) => {
-    console.log('Processing video URL:', url);
-    
-    // Handle youtu.be short URLs
+    // Handle youtu.be short URLs (including ?si= query params)
     if (url.includes('youtu.be/')) {
-      const videoId = url.split('youtu.be/')[1].split('?')[0];
+      const pathPart = url.split('youtu.be/')[1];
+      const videoId = pathPart.split(/[?&#]/)[0];
       // Autoplay unmuted at 1080p
-      const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0&controls=1&rel=0&enablejsapi=1&origin=${window.location.origin}&playsinline=1&modestbranding=1&fs=1&vq=hd1080`;
-      console.log('YouTube short embed URL:', embedUrl);
-      return embedUrl;
+      return `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0&controls=1&rel=0&enablejsapi=1&origin=${window.location.origin}&playsinline=1&modestbranding=1&fs=1&vq=hd1080`;
     }
     
     if (url.includes('youtube.com/watch?v=')) {
       const videoId = url.split('v=')[1].split('&')[0];
       // Autoplay unmuted at 1080p
-      const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0&controls=1&rel=0&enablejsapi=1&origin=${window.location.origin}&playsinline=1&modestbranding=1&fs=1&vq=hd1080`;
-      console.log('YouTube embed URL:', embedUrl);
-      return embedUrl;
+      return `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0&controls=1&rel=0&enablejsapi=1&origin=${window.location.origin}&playsinline=1&modestbranding=1&fs=1&vq=hd1080`;
     }
     
     if (url.includes('vimeo.com/')) {
       const videoId = url.split('vimeo.com/')[1].split('?')[0];
       // Autoplay unmuted at 1080p
-      const embedUrl = `https://player.vimeo.com/video/${videoId}?autoplay=1&loop=0&autopause=1&muted=0&quality=1080p`;
-      console.log('Vimeo embed URL:', embedUrl);
-      return embedUrl;
+      return `https://player.vimeo.com/video/${videoId}?autoplay=1&loop=0&autopause=1&muted=0&quality=1080p`;
     }
-    console.log('Using original URL:', url);
+    
     return url;
   };
 
   const handleVideoError = () => {
-    console.error('Video failed to load for tool:', tool.title);
     setVideoError(true);
   };
 
   const MediaComponent = () => {
-    console.log('Tool media check:', {
-      title: tool.title,
-      hasImage: !!tool.imageUrl,
-      hasVideo: !!tool.videoUrl,
-      videoUrl: tool.videoUrl,
-      imageError,
-      videoError,
-      isVisible
-    });
-
     // Prioritize video if available, then fallback to image
     if (tool.videoUrl && !videoError) {
       const embedUrl = getOptimizedEmbedUrl(tool.videoUrl);
@@ -117,7 +99,6 @@ const ToolMedia = ({ tool, toolIndex }: ToolMediaProps) => {
                 backfaceVisibility: 'hidden'
               }}
               onError={handleVideoError}
-              onLoad={() => console.log('Video loaded successfully for:', tool.title)}
             />
           ) : (
             <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center">

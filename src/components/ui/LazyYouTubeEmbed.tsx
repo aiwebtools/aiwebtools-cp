@@ -21,8 +21,8 @@ export const extractYouTubeId = (url: string): string | null => {
   const watchMatch = url.match(/[?&]v=([a-zA-Z0-9_-]{11})/);
   if (watchMatch) return watchMatch[1];
   
-  // Shortened youtu.be/
-  const shortMatch = url.match(/youtu\.be\/([a-zA-Z0-9_-]{11})/);
+  // Shortened youtu.be/ - extract ID before any query params (handles ?si= etc)
+  const shortMatch = url.match(/youtu\.be\/([a-zA-Z0-9_-]{11})(?:[?&]|$)/);
   if (shortMatch) return shortMatch[1];
   
   // Embed URL
