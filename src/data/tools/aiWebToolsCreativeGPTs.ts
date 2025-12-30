@@ -41,6 +41,7 @@ export const aiWebToolsCreativeGPTs: Tool[] = [
     emoji: "📚",
     color: "from-red-500 to-yellow-600",
     directUrl: "https://comicbookmakergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/MryAyvg_N0U",
     tags: ["comic book", "comic creation", "GPT-4o", "comic generator", "storytelling", "visual storytelling", "comic book maker", "comic art", "graphic novel", "sequential art", "comic strips", "creative writing", "illustration", "character creation", "comic panels"],
     category: "Creative & Entertainment",
     rating: 4.8,
