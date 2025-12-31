@@ -103,7 +103,7 @@ const GlobalSearchInput = memo(({
   }, [onClear]);
 
   return (
-    <div className="relative rounded-lg border border-border cursor-text" onClick={handleContainerClick}>
+    <div className="relative rounded-lg border border-border cursor-text gpu-accelerated" onClick={handleContainerClick} style={{ transform: 'translateZ(0)', willChange: 'contents' }}>
       <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-300 w-4 h-4 pointer-events-none z-10" />
 
       {/* Ghost text prediction layer */}
@@ -122,7 +122,8 @@ const GlobalSearchInput = memo(({
         value={localValue}
         onChange={handleChange}
         onKeyDown={handleKeyDown}
-        className="pl-10 pr-10 bg-black/60 border-0 text-white placeholder-gray-300 focus:ring-0 focus:outline-none rounded-lg backdrop-blur-sm focus:bg-black/80 relative z-[1] bg-transparent cursor-text"
+        className="pl-10 pr-10 bg-black/60 border-0 text-white placeholder-gray-300 focus:ring-0 focus:outline-none rounded-lg focus:bg-black/80 relative z-[1] bg-transparent cursor-text"
+        style={{ transform: 'translateZ(0)' }}
         autoComplete="off"
         spellCheck={false}
         inputMode="search"
