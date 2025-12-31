@@ -129,9 +129,9 @@ const PinnedVideoPlayer = memo(() => {
     if (currentVideoId === lastVideoIdRef.current) return;
     
     lastVideoIdRef.current = currentVideoId;
-    // Use stable origin reference
+    // Use stable origin reference - enable JS API for state change detection
     const origin = typeof window !== 'undefined' ? window.location.origin : '';
-    const newSrc = `https://www.youtube.com/embed/${currentVideoId}?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&enablejsapi=1&playsinline=1&origin=${encodeURIComponent(origin)}`;
+    const newSrc = `https://www.youtube.com/embed/${currentVideoId}?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&enablejsapi=1&playsinline=1&loop=0&origin=${encodeURIComponent(origin)}&widget_referrer=${encodeURIComponent(origin)}`;
     setVideoSrc(newSrc);
     playerMountedRef.current = true;
   }, [currentVideoId]);
@@ -201,11 +201,22 @@ const PinnedVideoPlayer = memo(() => {
         // Check for video ended state (state 0 = ended)
         if (data?.event === "onStateChange" && data?.info === 0) {
           setCurrentIndex(prev => (prev + 1) % toolsWithVideos.length);
+          return;
         }
         
-        // Also check for infoDelivery with playerState
+        // Also check for infoDelivery with playerState (0 = ended)
         if (data?.info?.playerState === 0) {
           setCurrentIndex(prev => (prev + 1) % toolsWithVideos.length);
+          return;
+        }
+        
+        // Check for onReady event to request state updates
+        if (data?.event === "onReady" && iframeRef.current) {
+          // Request the player to send state updates
+          iframeRef.current.contentWindow?.postMessage(
+            JSON.stringify({ event: 'listening' }),
+            'https://www.youtube.com'
+          );
         }
       } catch {
         // Ignore parse errors
@@ -216,13 +227,13 @@ const PinnedVideoPlayer = memo(() => {
     return () => window.removeEventListener("message", handleMessage);
   }, [isVisible, toolsWithVideos.length]);
 
-  // Reliable fallback: auto-advance every 45 seconds
+  // Reliable fallback: auto-advance every 30 seconds (most demo videos are under 30s)
   useEffect(() => {
     if (!isVisible || toolsWithVideos.length === 0) return;
     
     const timeout = setTimeout(() => {
       setCurrentIndex(prev => (prev + 1) % toolsWithVideos.length);
-    }, 45000);
+    }, 30000);
     
     return () => clearTimeout(timeout);
   }, [isVisible, toolsWithVideos.length, currentIndex]);
