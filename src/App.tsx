@@ -156,6 +156,36 @@ const PostAcceptBoot: React.FC = () => {
   // Never run heavy boot work on disclaimer gate
   const enabled = hasAccepted && location.pathname !== "/welcome";
 
+  // Prefetch common routes - hook must be called unconditionally (React rules)
+  // The hook internally handles the enabled check via useEffect
+  React.useEffect(() => {
+    if (!enabled) return;
+    
+    // Prefetch priority routes after disclaimer accepted
+    const PRIORITY_ROUTES = [
+      '/main-category/ALL%20AI%20TOOLS',
+      '/main-category/AI%20AGENTS',
+      '/main-category/IMAGE%20%26%20DESIGN',
+      '/main-category/VIDEO%20%26%20MULTIMEDIA',
+      '/main-category/WRITING%20%26%20CONTENT',
+      '/main-category/CODING%20%26%20DEVELOPMENT',
+      '/ai-tools-hub',
+      '/favorites',
+    ];
+    
+    // Prefetch in microtask to not block render
+    queueMicrotask(() => {
+      PRIORITY_ROUTES.forEach(route => {
+        if (document.querySelector(`link[href="${route}"]`)) return;
+        const link = document.createElement('link');
+        link.rel = 'prefetch';
+        link.href = route;
+        link.as = 'document';
+        document.head.appendChild(link);
+      });
+    });
+  }, [enabled]);
+
   React.useEffect(() => {
     if (!enabled) return;
 
@@ -168,11 +198,6 @@ const PostAcceptBoot: React.FC = () => {
       clearTimeout(id);
     };
   }, [enabled]);
-
-  if (!enabled) return null;
-
-  // Prefetch common routes for instant navigation (only after accept)
-  usePrefetchRoutes();
 
   return null;
 };
