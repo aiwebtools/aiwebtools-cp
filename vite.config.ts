@@ -13,9 +13,9 @@ export default defineConfig(({ mode }) => ({
   plugins: [
     react(),
     mode === 'development' && componentTagger(),
+    // PWA for caching and offline support - simplified config
     VitePWA({
-      registerType: 'autoUpdate', // Auto-update when new version available
-      includeAssets: ['favicon.ico', 'lovable-uploads/**/*'],
+      registerType: 'autoUpdate',
       manifest: {
         name: 'AI Web Tools - AI Tools Directory',
         short_name: 'AI Tools',
@@ -34,73 +34,18 @@ export default defineConfig(({ mode }) => ({
         ]
       },
       workbox: {
-        // Clean up old caches on activate
         cleanupOutdatedCaches: true,
-        // Skip waiting - apply updates immediately
         skipWaiting: true,
         clientsClaim: true,
-        
-        // Runtime caching strategies
+        // Simplified - just cache navigations and static assets
+        globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2}'],
         runtimeCaching: [
-          // HTML/Navigation: Network-first (always get latest, fallback to cache)
-          {
-            urlPattern: ({ request }) => request.mode === 'navigate',
-            handler: 'NetworkFirst',
-            options: {
-              cacheName: 'pages-cache',
-              expiration: {
-                maxEntries: 50,
-                maxAgeSeconds: 60 * 60 * 24 // 1 day
-              },
-              networkTimeoutSeconds: 3 // Fast fallback to cache
-            }
-          },
-          // JS/CSS: Stale-while-revalidate (fast load, update in background)
-          {
-            urlPattern: /\.(js|css)$/,
-            handler: 'StaleWhileRevalidate',
-            options: {
-              cacheName: 'static-resources',
-              expiration: {
-                maxEntries: 100,
-                maxAgeSeconds: 60 * 60 * 24 * 7 // 1 week
-              }
-            }
-          },
-          // Images: Cache-first (fast, update less frequently)
-          {
-            urlPattern: /\.(png|jpg|jpeg|svg|gif|webp|ico)$/,
-            handler: 'CacheFirst',
-            options: {
-              cacheName: 'images-cache',
-              expiration: {
-                maxEntries: 200,
-                maxAgeSeconds: 60 * 60 * 24 * 30 // 30 days
-              }
-            }
-          },
-          // Fonts: Cache-first with long expiry
           {
             urlPattern: /^https:\/\/fonts\.(googleapis|gstatic)\.com/,
             handler: 'CacheFirst',
             options: {
               cacheName: 'google-fonts',
-              expiration: {
-                maxEntries: 20,
-                maxAgeSeconds: 60 * 60 * 24 * 365 // 1 year
-              }
-            }
-          },
-          // External images (YouTube thumbnails, Discord, etc): Stale-while-revalidate
-          {
-            urlPattern: /^https:\/\/(i\.ytimg\.com|img1\.wsimg\.com|media\.discordapp\.net|cdn\.discordapp\.com)/,
-            handler: 'StaleWhileRevalidate',
-            options: {
-              cacheName: 'external-images',
-              expiration: {
-                maxEntries: 300,
-                maxAgeSeconds: 60 * 60 * 24 * 7 // 1 week
-              }
+              expiration: { maxEntries: 20, maxAgeSeconds: 60 * 60 * 24 * 365 }
             }
           }
         ]
@@ -113,11 +58,9 @@ export default defineConfig(({ mode }) => ({
     },
   },
   build: {
-    // Optimize chunk splitting for faster initial load
     rollupOptions: {
       output: {
         manualChunks: {
-          // Vendor chunks - load separately for caching
           'vendor-react': ['react', 'react-dom'],
           'vendor-router': ['react-router-dom'],
           'vendor-query': ['@tanstack/react-query'],
@@ -125,15 +68,11 @@ export default defineConfig(({ mode }) => ({
         },
       },
     },
-    // Minification settings
     minify: 'esbuild',
     target: 'esnext',
-    // CSS code splitting
     cssCodeSplit: true,
-    // Reduce chunk size warnings threshold
     chunkSizeWarningLimit: 500,
   },
-  // Optimize deps for faster dev server start
   optimizeDeps: {
     include: ['react', 'react-dom', 'react-router-dom', '@tanstack/react-query'],
   },
