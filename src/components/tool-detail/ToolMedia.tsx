@@ -42,11 +42,10 @@ const ToolMedia = ({ tool, toolIndex }: ToolMediaProps) => {
           
           if (entry.isIntersecting) {
             setIsVisible(true);
-            // First mute the pinned player
+            // When tool video becomes visible, MUTE the pinned player and UNMUTE ourselves
             window.dispatchEvent(new CustomEvent('toolVideoPlaying'));
-            // Then unmute ourselves after a longer delay to ensure pinned player is muted first
-            // This prevents audio renderer conflicts from multiple audio streams
-            setTimeout(unmuteSelf, 800);
+            // Delay unmute slightly to ensure iframe is ready
+            setTimeout(unmuteSelf, 500);
           }
         });
       },
@@ -71,20 +70,20 @@ const ToolMedia = ({ tool, toolIndex }: ToolMediaProps) => {
     if (url.includes('youtu.be/')) {
       const pathPart = url.split('youtu.be/')[1];
       const videoId = pathPart.split(/[?&#]/)[0];
-      // Start MUTED to avoid audio renderer conflicts - will unmute via postMessage after pinned player mutes
-      return `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&controls=1&rel=0&enablejsapi=1&origin=${window.location.origin}&playsinline=1&modestbranding=1&fs=1&vq=hd1080`;
+      // Autoplay unmuted at 1080p
+      return `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0&controls=1&rel=0&enablejsapi=1&origin=${window.location.origin}&playsinline=1&modestbranding=1&fs=1&vq=hd1080`;
     }
     
     if (url.includes('youtube.com/watch?v=')) {
       const videoId = url.split('v=')[1].split('&')[0];
-      // Start MUTED to avoid audio renderer conflicts - will unmute via postMessage after pinned player mutes
-      return `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&controls=1&rel=0&enablejsapi=1&origin=${window.location.origin}&playsinline=1&modestbranding=1&fs=1&vq=hd1080`;
+      // Autoplay unmuted at 1080p
+      return `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0&controls=1&rel=0&enablejsapi=1&origin=${window.location.origin}&playsinline=1&modestbranding=1&fs=1&vq=hd1080`;
     }
     
     if (url.includes('vimeo.com/')) {
       const videoId = url.split('vimeo.com/')[1].split('?')[0];
-      // Start MUTED for Vimeo too
-      return `https://player.vimeo.com/video/${videoId}?autoplay=1&loop=0&autopause=1&muted=1&quality=1080p`;
+      // Autoplay unmuted at 1080p
+      return `https://player.vimeo.com/video/${videoId}?autoplay=1&loop=0&autopause=1&muted=0&quality=1080p`;
     }
     
     return url;

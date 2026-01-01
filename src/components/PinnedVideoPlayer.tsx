@@ -252,9 +252,6 @@ const PinnedVideoPlayer = memo(() => {
   const playerMountedRef = useRef(false);
   const advanceTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   
-  // Track if user manually toggled mute (overrides auto behavior)
-  const userMuteOverrideRef = useRef<boolean | null>(null);
-  
   // Check if on homepage
   const isHomepage = location.pathname === "/" || location.pathname === "";
   
@@ -274,8 +271,8 @@ const PinnedVideoPlayer = memo(() => {
   // Persisted current index - survives navigation
   const [currentIndex, setCurrentIndex] = useState(getStoredIndex);
   
-  // Start muted on mobile. On tool pages, auto-mute only while the main tool video is visible.
-  // Desktop homepage starts unmuted.
+  // Start muted on mobile OR on tool detail pages (let tool video have audio priority)
+  // Only start unmuted on desktop homepage
   const [isMuted, setIsMuted] = useState(() => {
     const isMobile = isMobileDevice();
     const isOnToolPage = location.pathname !== "/" && location.pathname !== "";
@@ -297,25 +294,6 @@ const PinnedVideoPlayer = memo(() => {
     setStoredIndex(currentIndex);
   }, [currentIndex]);
   
-  // Reset manual mute override when navigating to a different route
-  useEffect(() => {
-    userMuteOverrideRef.current = null;
-  }, [location.pathname]);
-
-  // Auto audio priority:
-  // - On tool pages: mute pinned player while the main tool video is visible, unmute when it's not.
-  // - On mobile: keep muted (autoplay restrictions).
-  useEffect(() => {
-    const isMobile = isMobileDevice();
-    const isOnToolPage = location.pathname !== "/" && location.pathname !== "";
-
-    if (isMobile) return;
-    if (!isOnToolPage) return; // homepage behavior unchanged
-    if (userMuteOverrideRef.current !== null) return; // user manually chose
-
-    setIsMuted(isMainVideoVisible);
-  }, [isMainVideoVisible, location.pathname]);
-
   // Update video src only when video ID actually changes
   useEffect(() => {
     if (!currentVideoId) return;
@@ -325,10 +303,9 @@ const PinnedVideoPlayer = memo(() => {
     const isMobile = isMobileDevice();
     const isOnToolPage = location.pathname !== "/" && location.pathname !== "";
     
-    // On tool pages, mute only while main tool video is visible
-    const shouldMuteByPolicy = isMobile || (isOnToolPage && isMainVideoVisible);
-    const effectiveMuted = userMuteOverrideRef.current ?? shouldMuteByPolicy;
-    const muteParam = effectiveMuted ? '1' : '0';
+    // Start muted on mobile OR on tool pages (tool video gets audio priority)
+    const shouldMute = isMobile || isOnToolPage;
+    const muteParam = shouldMute ? '1' : '0';
     
     const origin = typeof window !== 'undefined' ? window.location.origin : '';
     const newSrc = `https://www.youtube.com/embed/${currentVideoId}?autoplay=1&mute=${muteParam}&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&enablejsapi=1&playsinline=1&loop=0&origin=${encodeURIComponent(origin)}&widget_referrer=${encodeURIComponent(origin)}`;
@@ -336,8 +313,14 @@ const PinnedVideoPlayer = memo(() => {
     playerMountedRef.current = true;
     
     // Update mute state to match
-    setIsMuted(effectiveMuted);
-  }, [currentVideoId, location.pathname, isMainVideoVisible]);
+    setIsMuted(shouldMute);
+    
+    // Only dispatch pinnedPlayerPlaying on homepage (not on tool pages)
+    // On tool pages, the tool video should have audio priority
+    if (!shouldMute && !isOnToolPage) {
+      window.dispatchEvent(new CustomEvent('pinnedPlayerPlaying'));
+    }
+  }, [currentVideoId, location.pathname]);
   
   // Handle mute/unmute via postMessage instead of iframe reload
   useEffect(() => {
@@ -547,7 +530,10 @@ const PinnedVideoPlayer = memo(() => {
   const toggleMute = useCallback(() => {
     setIsMuted(prev => {
       const newMuted = !prev;
-      userMuteOverrideRef.current = newMuted;
+      // If unmuting pinned player, notify tool page video to mute
+      if (!newMuted) {
+        window.dispatchEvent(new CustomEvent('pinnedPlayerPlaying'));
+      }
       return newMuted;
     });
   }, []);
