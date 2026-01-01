@@ -334,8 +334,16 @@ const PinnedVideoPlayer = memo(() => {
   // Mute pinned player when tool page video starts playing
   useEffect(() => {
     const handleToolVideoPlaying = () => {
-      // Mute pinned player when tool video plays
+      // Mute pinned player when tool video plays - use postMessage for immediate effect
       setIsMuted(true);
+      if (iframeRef.current) {
+        try {
+          iframeRef.current.contentWindow?.postMessage(
+            JSON.stringify({ event: 'command', func: 'mute' }),
+            'https://www.youtube.com'
+          );
+        } catch {}
+      }
     };
     
     window.addEventListener('toolVideoPlaying', handleToolVideoPlaying);

@@ -16,6 +16,18 @@ const ToolMedia = ({ tool, toolIndex }: ToolMediaProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
+  // Unmute this video (after user clicks or interacts)
+  const unmuteToolVideo = useCallback(() => {
+    if (iframeRef.current) {
+      try {
+        iframeRef.current.contentWindow?.postMessage(
+          JSON.stringify({ event: 'command', func: 'unMute' }),
+          'https://www.youtube.com'
+        );
+      } catch {}
+    }
+  }, []);
+
   // Mute this video when pinned player starts playing
   const handlePinnedPlayerPlaying = useCallback(() => {
     if (iframeRef.current) {
@@ -28,7 +40,7 @@ const ToolMedia = ({ tool, toolIndex }: ToolMediaProps) => {
     }
   }, []);
 
-  // Listen for pinned player playing event
+  // Listen for pinned player playing event - only when pinned player unmutes
   useEffect(() => {
     window.addEventListener('pinnedPlayerPlaying', handlePinnedPlayerPlaying);
     return () => {
@@ -48,8 +60,12 @@ const ToolMedia = ({ tool, toolIndex }: ToolMediaProps) => {
           
           if (entry.isIntersecting) {
             setIsVisible(true);
-            // When tool video becomes visible and starts playing, mute the pinned player
+            // When tool video becomes visible, mute the pinned player and unmute this video
             window.dispatchEvent(new CustomEvent('toolVideoPlaying'));
+            // Small delay to ensure iframe is loaded before sending unmute command
+            setTimeout(() => {
+              unmuteToolVideo();
+            }, 500);
           }
         });
       },
@@ -67,7 +83,7 @@ const ToolMedia = ({ tool, toolIndex }: ToolMediaProps) => {
         detail: { isVisible: false } 
       }));
     };
-  }, []);
+  }, [unmuteToolVideo]);
 
   const getOptimizedEmbedUrl = (url: string) => {
     // Handle youtu.be short URLs (including ?si= query params)
