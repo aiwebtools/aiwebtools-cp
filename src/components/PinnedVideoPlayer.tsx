@@ -354,32 +354,32 @@ const PinnedVideoPlayer = memo(() => {
           />
         </div>
 
-        {/* Controls bar - micro buttons */}
-        <div className="flex items-center justify-center gap-px px-px py-px bg-gray-800/95 border-t border-cyan-500/20">
+        {/* Controls bar - 2x2 grid buttons */}
+        <div className="grid grid-cols-2 gap-0.5 p-1 bg-gray-800/95 border-t border-cyan-500/20">
           <button
             onClick={toggleMute}
-            className="w-3.5 h-3.5 flex items-center justify-center rounded-full bg-cyan-500 hover:bg-cyan-400 text-white"
+            className="h-5 flex items-center justify-center rounded bg-cyan-500 hover:bg-cyan-400 text-white"
             title={isMuted ? "Unmute" : "Mute"}
           >
-            {isMuted ? <VolumeX className="w-1.5 h-1.5" /> : <Volume2 className="w-1.5 h-1.5" />}
+            {isMuted ? <VolumeX className="w-2.5 h-2.5" /> : <Volume2 className="w-2.5 h-2.5" />}
           </button>
           <button
             onClick={handlePrevVideo}
-            className="w-3.5 h-3.5 flex items-center justify-center rounded-full bg-gray-600 hover:bg-gray-500 text-white"
+            className="h-5 flex items-center justify-center rounded bg-gray-600 hover:bg-gray-500 text-white"
             title="Previous Video"
           >
-            <SkipBack className="w-1.5 h-1.5" />
+            <SkipBack className="w-2.5 h-2.5" />
           </button>
           <button
             onClick={handleNextVideo}
-            className="w-3.5 h-3.5 flex items-center justify-center rounded-full bg-gray-600 hover:bg-gray-500 text-white"
+            className="h-5 flex items-center justify-center rounded bg-gray-600 hover:bg-gray-500 text-white"
             title="Next Video"
           >
-            <SkipForward className="w-1.5 h-1.5" />
+            <SkipForward className="w-2.5 h-2.5" />
           </button>
           <button
             onClick={handleToolClick}
-            className="h-3.5 px-1 text-[5px] rounded bg-gradient-to-r from-cyan-600 to-purple-600 hover:from-cyan-500 hover:to-purple-500 text-white font-bold"
+            className="h-5 text-[7px] rounded bg-gradient-to-r from-cyan-600 to-purple-600 hover:from-cyan-500 hover:to-purple-500 text-white font-bold"
           >
             TRY
           </button>
