@@ -355,32 +355,32 @@ const PinnedVideoPlayer = memo(() => {
         </div>
 
         {/* Controls bar - 2x2 grid compact square buttons */}
-        <div className="flex justify-center p-1.5 bg-gray-800/95 border-t border-cyan-500/20">
-          <div className="grid grid-cols-2 gap-1">
+        <div className="flex justify-center py-1 px-1.5 bg-gray-800/95 border-t border-cyan-500/20">
+          <div className="grid grid-cols-2 gap-0.5">
             <button
               onClick={toggleMute}
-              className="w-[38px] h-[38px] flex items-center justify-center rounded bg-cyan-500 hover:bg-cyan-400 text-white"
+              className="w-6 h-6 flex items-center justify-center rounded bg-cyan-500 hover:bg-cyan-400 text-white"
               title={isMuted ? "Unmute" : "Mute"}
             >
-              {isMuted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5" />}
+              {isMuted ? <VolumeX className="w-3 h-3" /> : <Volume2 className="w-3 h-3" />}
             </button>
             <button
               onClick={handlePrevVideo}
-              className="w-[38px] h-[38px] flex items-center justify-center rounded bg-gray-600 hover:bg-gray-500 text-white"
+              className="w-6 h-6 flex items-center justify-center rounded bg-gray-600 hover:bg-gray-500 text-white"
               title="Previous Video"
             >
-              <SkipBack className="w-3.5 h-3.5" />
+              <SkipBack className="w-3 h-3" />
             </button>
             <button
               onClick={handleNextVideo}
-              className="w-[38px] h-[38px] flex items-center justify-center rounded bg-gray-600 hover:bg-gray-500 text-white"
+              className="w-6 h-6 flex items-center justify-center rounded bg-gray-600 hover:bg-gray-500 text-white"
               title="Next Video"
             >
-              <SkipForward className="w-3.5 h-3.5" />
+              <SkipForward className="w-3 h-3" />
             </button>
             <button
               onClick={handleToolClick}
-              className="w-[38px] h-[38px] text-[8px] rounded bg-gradient-to-r from-cyan-600 to-purple-600 hover:from-cyan-500 hover:to-purple-500 text-white font-bold"
+              className="w-6 h-6 text-[6px] rounded bg-gradient-to-r from-cyan-600 to-purple-600 hover:from-cyan-500 hover:to-purple-500 text-white font-bold"
             >
               TRY
             </button>
