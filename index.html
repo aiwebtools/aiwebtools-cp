@@ -255,8 +255,11 @@
       @keyframes blink { 50% { opacity: 0.5; } }
     </style>
     <script>
-      (function() {
+      document.addEventListener('DOMContentLoaded', function() {
         let removed = false;
+        const bar = document.getElementById('progress-bar');
+        const pct = document.getElementById('progress-pct');
+        
         const removeSpinner = () => {
           if (removed) return;
           removed = true;
@@ -267,27 +270,23 @@
           }
         };
         
-        // Check for REAL visible content - not just DOM elements
+        // Check for REAL visible content
         const hasVisibleContent = () => {
           const root = document.getElementById('root');
           if (!root) return false;
           
-          // Check if React has rendered actual content (not just the loading spinner)
           const children = root.children;
           let hasRealContent = false;
           
           for (let i = 0; i < children.length; i++) {
             const child = children[i];
-            // Skip the loading spinner itself
             if (child.classList.contains('loading-spinner')) continue;
-            // Check if there's any other content with actual height
             if (child.offsetHeight > 50) {
               hasRealContent = true;
               break;
             }
           }
           
-          // Also check for specific rendered components
           const header = document.querySelector('header');
           const mainContent = document.querySelector('main');
           const disclaimerGate = document.querySelector('[class*="disclaimer"], [class*="Disclaimer"], [class*="welcome"]');
@@ -295,43 +294,46 @@
           return hasRealContent && (header || mainContent || disclaimerGate);
         };
 
-        // Smooth progress animation - always moving
+        // Smooth progress animation - always moving until done
         let width = 5;
         const tick = () => {
-          const bar = document.getElementById('progress-bar');
-          const pct = document.getElementById('progress-pct');
-          width = Math.min(width + (Math.random() * 1.5 + 0.3), 88);
+          if (removed) return; // Stop if already removed
+          width = Math.min(width + (Math.random() * 1.2 + 0.4), 92);
           if (bar) bar.style.width = width + '%';
           if (pct) pct.textContent = Math.round(width) + '%';
         };
-        const progressInterval = setInterval(tick, 60);
-        tick();
+        
+        const progressInterval = setInterval(tick, 80);
+        tick(); // Start immediately
 
-        // Check for VISIBLE content with proper timing
+        // Check for VISIBLE content
         const contentCheck = setInterval(() => {
           if (hasVisibleContent()) {
             clearInterval(contentCheck);
-            clearInterval(progressInterval);
-            const bar = document.getElementById('progress-bar');
-            const pct = document.getElementById('progress-pct');
-            if (bar) bar.style.width = '100%';
-            if (pct) pct.textContent = '100%';
-            // Small delay to show 100% before fading
-            setTimeout(removeSpinner, 200);
+            // Animate to 100% smoothly before removing
+            const finishProgress = setInterval(() => {
+              width = Math.min(width + 4, 100);
+              if (bar) bar.style.width = width + '%';
+              if (pct) pct.textContent = Math.round(width) + '%';
+              if (width >= 100) {
+                clearInterval(finishProgress);
+                clearInterval(progressInterval);
+                setTimeout(removeSpinner, 150);
+              }
+            }, 20);
           }
         }, 50);
 
-        // Fallback - but longer to ensure content loads
+        // Fallback
         setTimeout(() => {
+          if (removed) return;
           clearInterval(contentCheck);
           clearInterval(progressInterval);
-          const bar = document.getElementById('progress-bar');
-          const pct = document.getElementById('progress-pct');
           if (bar) bar.style.width = '100%';
           if (pct) pct.textContent = '100%';
           removeSpinner();
-        }, 5000);
-      })();
+        }, 6000);
+      });
     </script>
     
     <!-- Enhanced Structured Data -->
