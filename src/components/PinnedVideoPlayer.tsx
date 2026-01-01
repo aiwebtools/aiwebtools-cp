@@ -354,33 +354,33 @@ const PinnedVideoPlayer = memo(() => {
           />
         </div>
 
-        {/* Controls bar - compact layout that always fits */}
-        <div className="flex items-center justify-center gap-1.5 px-1 py-1 bg-gray-800/95 border-t border-cyan-500/20">
+        {/* Controls bar - compact layout that fits container */}
+        <div className="flex items-center justify-center gap-1 px-1 py-1 bg-gray-800/95 border-t border-cyan-500/20 overflow-hidden">
           <button
             onClick={toggleMute}
-            className="w-7 h-7 flex items-center justify-center rounded-full bg-cyan-500 hover:bg-cyan-400 text-white transition-all flex-shrink-0"
+            className="w-6 h-6 flex items-center justify-center rounded-full bg-cyan-500 hover:bg-cyan-400 text-white transition-all flex-shrink-0"
             title={isMuted ? "Unmute" : "Mute"}
           >
-            {isMuted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5" />}
+            {isMuted ? <VolumeX className="w-3 h-3" /> : <Volume2 className="w-3 h-3" />}
           </button>
           <button
             onClick={handlePrevVideo}
-            className="w-7 h-7 flex items-center justify-center rounded-full bg-gray-600 hover:bg-gray-500 text-white transition-all flex-shrink-0"
+            className="w-6 h-6 flex items-center justify-center rounded-full bg-gray-600 hover:bg-gray-500 text-white transition-all flex-shrink-0"
             title="Previous Video"
           >
-            <SkipBack className="w-3.5 h-3.5" />
+            <SkipBack className="w-3 h-3" />
           </button>
           <button
             onClick={handleNextVideo}
-            className="w-7 h-7 flex items-center justify-center rounded-full bg-gray-600 hover:bg-gray-500 text-white transition-all flex-shrink-0"
+            className="w-6 h-6 flex items-center justify-center rounded-full bg-gray-600 hover:bg-gray-500 text-white transition-all flex-shrink-0"
             title="Next Video"
           >
-            <SkipForward className="w-3.5 h-3.5" />
+            <SkipForward className="w-3 h-3" />
           </button>
           <Button
             onClick={handleToolClick}
             size="sm"
-            className="h-7 w-10 p-0 text-[10px] rounded bg-gradient-to-r from-cyan-600 to-purple-600 hover:from-cyan-500 hover:to-purple-500 text-white font-bold flex-shrink-0"
+            className="h-6 px-2 text-[9px] rounded bg-gradient-to-r from-cyan-600 to-purple-600 hover:from-cyan-500 hover:to-purple-500 text-white font-bold flex-shrink-0"
           >
             TRY
           </Button>
