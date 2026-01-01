@@ -366,33 +366,53 @@ const PinnedVideoPlayer = memo(() => {
     
     const getScrollY = (): number => {
       // Try multiple methods for maximum browser compatibility
-      if (typeof window.scrollY === 'number') return window.scrollY;
-      if (typeof window.pageYOffset === 'number') return window.pageYOffset;
-      if (document.documentElement) return document.documentElement.scrollTop;
-      if (document.body) return document.body.scrollTop;
+      if (typeof window.scrollY === 'number' && window.scrollY > 0) return window.scrollY;
+      if (typeof window.pageYOffset === 'number' && window.pageYOffset > 0) return window.pageYOffset;
+      if (document.documentElement && document.documentElement.scrollTop > 0) return document.documentElement.scrollTop;
+      if (document.body && document.body.scrollTop > 0) return document.body.scrollTop;
+      // Also check scrolling element
+      if (document.scrollingElement && document.scrollingElement.scrollTop > 0) return document.scrollingElement.scrollTop;
       return 0;
     };
     
     const handleScroll = () => {
       const scrollY = getScrollY();
-      // Show after scrolling 600px down (past hero and main categories)
-      setHasScrolledEnough(scrollY > 600);
+      // Show after scrolling 400px down (reduced threshold for better detection)
+      if (scrollY > 400) {
+        setHasScrolledEnough(true);
+      }
     };
 
     // Listen on multiple targets for maximum compatibility
     window.addEventListener("scroll", handleScroll, { passive: true });
     document.addEventListener("scroll", handleScroll, { passive: true });
     
+    // Also listen on the scrolling element directly
+    if (document.scrollingElement && document.scrollingElement !== document.documentElement) {
+      document.scrollingElement.addEventListener("scroll", handleScroll, { passive: true });
+    }
+    
     // Check initial position
     handleScroll();
     
-    // Also check periodically in case scroll events are missed (some embedded browsers)
-    const intervalId = setInterval(handleScroll, 1000);
+    // Check more frequently - every 500ms
+    const intervalId = setInterval(handleScroll, 500);
+    
+    // GUARANTEED FALLBACK: After 8 seconds on homepage, show anyway
+    // This ensures the player appears even if scroll detection completely fails
+    const fallbackTimer = setTimeout(() => {
+      console.log('[PinnedPlayer] Fallback timer triggered - forcing show');
+      setHasScrolledEnough(true);
+    }, 8000);
     
     return () => {
       window.removeEventListener("scroll", handleScroll);
       document.removeEventListener("scroll", handleScroll);
+      if (document.scrollingElement && document.scrollingElement !== document.documentElement) {
+        document.scrollingElement.removeEventListener("scroll", handleScroll);
+      }
       clearInterval(intervalId);
+      clearTimeout(fallbackTimer);
     };
   }, [isHomepage]);
 
