@@ -305,37 +305,37 @@
           return hasRealContent && (header || mainContent || disclaimerGate);
         };
 
-        // Smooth progress animation - always moving until done
-        let width = 5;
+        // Fast progress animation - aggressive speed
+        let width = 10;
         const tick = () => {
-          if (removed) return; // Stop if already removed
-          width = Math.min(width + (Math.random() * 1.2 + 0.4), 92);
+          if (removed) return;
+          width = Math.min(width + (Math.random() * 2.5 + 1), 88);
           if (bar) bar.style.width = width + '%';
           if (pct) pct.textContent = Math.round(width) + '%';
         };
         
-        const progressInterval = setInterval(tick, 80);
-        tick(); // Start immediately
+        const progressInterval = setInterval(tick, 50);
+        tick();
 
-        // Check for VISIBLE content
+        // Aggressive content detection - check frequently
         const contentCheck = setInterval(() => {
           if (hasVisibleContent()) {
             clearInterval(contentCheck);
-            // Animate to 100% smoothly before removing
+            clearInterval(progressInterval);
+            // Fast finish to 100%
             const finishProgress = setInterval(() => {
-              width = Math.min(width + 4, 100);
+              width = Math.min(width + 8, 100);
               if (bar) bar.style.width = width + '%';
               if (pct) pct.textContent = Math.round(width) + '%';
               if (width >= 100) {
                 clearInterval(finishProgress);
-                clearInterval(progressInterval);
-                setTimeout(removeSpinner, 150);
+                setTimeout(removeSpinner, 80);
               }
-            }, 20);
+            }, 15);
           }
-        }, 50);
+        }, 30);
 
-        // Fallback
+        // Short fallback - 3 seconds max
         setTimeout(() => {
           if (removed) return;
           clearInterval(contentCheck);
@@ -343,7 +343,7 @@
           if (bar) bar.style.width = '100%';
           if (pct) pct.textContent = '100%';
           removeSpinner();
-        }, 6000);
+        }, 3000);
       });
     </script>
     
