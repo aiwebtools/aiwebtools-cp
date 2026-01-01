@@ -294,45 +294,60 @@
           return hasRealContent && (header || mainContent || disclaimerGate);
         };
 
-        // Smooth progress animation - always moving until done
-        let width = 5;
+        // Count by 10s: 10%, 20%, 30%... 100% with 600ms per step
+        const percentages = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+        let stepIndex = 0;
+        
         const tick = () => {
-          if (removed) return; // Stop if already removed
-          width = Math.min(width + (Math.random() * 1.2 + 0.4), 92);
+          if (removed || stepIndex >= percentages.length) return;
+          const width = percentages[stepIndex];
           if (bar) bar.style.width = width + '%';
-          if (pct) pct.textContent = Math.round(width) + '%';
+          if (pct) {
+            if (width === 100) {
+              pct.textContent = 'AI WEB TOOLS ACCESS GRANTED';
+              pct.style.color = '#22d3ee';
+              pct.style.textShadow = '0 0 10px #22d3ee';
+            } else {
+              pct.textContent = width + '%';
+            }
+          }
+          stepIndex++;
+          
+          if (stepIndex < percentages.length) {
+            setTimeout(tick, 600); // 600ms per step
+          }
         };
         
-        const progressInterval = setInterval(tick, 80);
-        tick(); // Start immediately
+        // Start progress animation
+        tick();
 
         // Check for VISIBLE content
         const contentCheck = setInterval(() => {
           if (hasVisibleContent()) {
             clearInterval(contentCheck);
-            // Animate to 100% smoothly before removing
-            const finishProgress = setInterval(() => {
-              width = Math.min(width + 4, 100);
-              if (bar) bar.style.width = width + '%';
-              if (pct) pct.textContent = Math.round(width) + '%';
-              if (width >= 100) {
-                clearInterval(finishProgress);
-                clearInterval(progressInterval);
-                setTimeout(removeSpinner, 150);
-              }
-            }, 20);
+            // Jump to 100% if not already there
+            if (bar) bar.style.width = '100%';
+            if (pct) {
+              pct.textContent = 'AI WEB TOOLS ACCESS GRANTED';
+              pct.style.color = '#22d3ee';
+              pct.style.textShadow = '0 0 10px #22d3ee';
+            }
+            setTimeout(removeSpinner, 400);
           }
         }, 50);
 
-        // Fallback
+        // Fallback after full animation cycle (10 steps x 600ms = 6000ms) + buffer
         setTimeout(() => {
           if (removed) return;
           clearInterval(contentCheck);
-          clearInterval(progressInterval);
           if (bar) bar.style.width = '100%';
-          if (pct) pct.textContent = '100%';
-          removeSpinner();
-        }, 6000);
+          if (pct) {
+            pct.textContent = 'AI WEB TOOLS ACCESS GRANTED';
+            pct.style.color = '#22d3ee';
+            pct.style.textShadow = '0 0 10px #22d3ee';
+          }
+          setTimeout(removeSpinner, 400);
+        }, 7000);
       });
     </script>
     
