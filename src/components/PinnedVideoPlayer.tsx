@@ -52,11 +52,14 @@ const WOW_FACTOR_TOOLS = new Set([
   "Music Video Maker AI Studio",
   "Children's Picture Book Maker GPT",
   "Playwriter GPT",
+  "Podcast Script Writer GPT",
   
   // Mind-blowing educational
   "College Degree GPT",
   "Learn Any Course GPT",
   "Learn Any Skill GPT",
+  "Home-Schooling Assistant GPT",
+  "HomeSchool GPT",
   
   // Time & history experiences
   "Time Machine GPT",
@@ -64,18 +67,57 @@ const WOW_FACTOR_TOOLS = new Set([
   "Talk to the Gods GPT",
   "Resurrection GPT",
   "Titanic Resurrections GPT",
+  "Native American History Time Machine GPT",
+  "Historical Headlines GPT",
   
   // Space & exploration
   "Stellaris: AI Space Explorer",
   "Phenomenon Explorer AI Suite",
   
-  // Life-changing tools
+  // Self-sufficiency & survival - HELP THE MEEK THRIVE
+  "Survivalist GPT",
+  "Agronomus",
+  "Agronomus AI Farming Expert",
+  "Fisherman GPT",
+  "Fungus GPT",
+  "Fungus Whisperer GPT",
+  "Home Renovator GPT",
+  "Solar Land Assessor GPT",
+  "Sustainable Futures GPT",
+  "Food Quality Inspector GPT",
+  
+  // Automotive & practical life
+  "Automobile GPT",
+  
+  // Health & wellness - EMPOWER THE PEOPLE
   "Personalized DR. GPT",
+  "Veterinarian GPT",
+  "Pet Care GPT",
+  "Mental Wellness GPT",
+  "Cannabis GPT",
+  "Pharmaceutical Assistant GPT",
+  
+  // Financial empowerment
   "Trader GPT",
+  "Taxes GPT",
+  "Insurance Claims GPT",
+  "Property Data Finder GPT",
+  "Predictive Credit Score GPT",
+  
+  // Legal & civic empowerment - VOICE FOR THE VOICELESS
   "Public Defender GPT",
+  "Legislation Writer GPT",
+  "Legislator Link GPT",
+  "Public Testimony Writer GPT",
+  "Contract Review Bot",
+  "Legal Draftsmith GPT",
+  
+  // Career & business
   "Resume & Job Finder Ai Suite",
   "Business Plan Generator GPT",
   "Startup Validator GPT",
+  "Training Manual Generator GPT",
+  "Grant Writer GPT",
   
   // Mind-expanding
   "GODMODE GPT",
@@ -84,6 +126,7 @@ const WOW_FACTOR_TOOLS = new Set([
   "Oraculum",
   "Fortune Teller GPT",
   "Dream Interpreter GPT",
+  "Imagination Traveler GPT",
   
   // Unique & groundbreaking
   "ImmortalizeME",
@@ -96,19 +139,37 @@ const WOW_FACTOR_TOOLS = new Set([
   
   // Professional game-changers
   "Engineering GPT AI Suite",
-  "Legislation Writer GPT",
-  "Grant Writer GPT",
   "Data Research Analysis Report GPT",
+  "Drill Baby Drill Ai Suite",
   
   // Creative design
   "Graphic & Cover Design GPT",
   "Tattoo Designer GPT",
   "RESTYLE ME GPT",
+  "Coloring Book Generator GPT",
   
   // Investigation & analysis
   "Criminologist GPT",
   "Fact Checker GPT",
   "Indiana Archaeologist GPT",
+  "Historical Apothecary GPT",
+  "Alchemist Scientist GPT",
+  
+  // Social good & peace
+  "Social Safety Net GPT",
+  "Global Peace Restoration GPT",
+  "UBI Strategist GPT",
+  "Marriage Mender GPT",
+  
+  // Safety & emergency
+  "Firefighter GPT",
+  "Firearms Safety Instructor GPT",
+  "Cyber Security GPT",
+  
+  // Collectibles & appraisal
+  "Antique and Collectible Appraisal GPT",
+  "Artwork & Vintage Appraisal GPT",
+  "Material Valuation GPT",
 ]);
 
 // Get shuffled tools with priority ordering - FRESH every page load
