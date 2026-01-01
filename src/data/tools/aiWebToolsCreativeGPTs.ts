@@ -17,6 +17,7 @@ export const aiWebToolsCreativeGPTs: Tool[] = [
     color: "from-purple-500 to-pink-600",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-dynamic-product-advertisement-showcase_TiaF.jpeg/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:98",
     directUrl: "https://musicvideomakergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=rBQTUrvHcR8",
     tags: ["music video", "ai director", "video creation", "music production", "cinematic", "video maker"],
     category: "Video & Animation Tools",
     rating: 4.7,
