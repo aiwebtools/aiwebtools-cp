@@ -644,13 +644,6 @@ const PinnedVideoPlayer = memo(() => {
             title={currentTool.title}
             style={{ minHeight: '70px' }}
           />
-          {/* Preview label */}
-          <span 
-            className="absolute bottom-0.5 left-0.5 text-[6px] text-white/50 font-medium px-0.5 bg-black/40 rounded"
-            style={{ letterSpacing: '0.02em' }}
-          >
-            Preview
-          </span>
         </div>
 
         {/* Controls bar - 2x2 grid compact square buttons */}
