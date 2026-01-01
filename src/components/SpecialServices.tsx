@@ -20,6 +20,10 @@ const weightedShuffle = <T extends { title: string }>(items: T[]): T[] => {
     // Civic Empowerment & Action
     "WE THE PEOPLE AI", "Public Testimony Writer GPT", "Legislation Writer GPT",
     "Social Safety Net GPT", "Global Peace Restoration GPT",
+    // Health & Wellness
+    "Personalized DR. GPT (Doctor GPT)", "Mental Wellness GPT (CBT)", "VETERINARIAN GPT",
+    "Dental GPT Expert", "Pharmaceutical Assistant GPT", "Historical Apothecary GPT",
+    "Genome GPT", "Dream Interpreter GPT", "Friend GPT", "Marriage Mender GPT",
     // Content Creation & Writing
     "BOOK WRITER GPT", "Movie Script Writer GPT", "Movie Maker Studio AI SUITE", 
     "Children's Picture Book Maker GPT", "Coloring Book Generator GPT", "Movie Scene Maker GPT",
@@ -27,9 +31,11 @@ const weightedShuffle = <T extends { title: string }>(items: T[]): T[] => {
     "Article and Blog Rewriter GPT", "Grant Writer GPT",
     // Education & Learning  
     "COLLEGE DEGREE GPT", "LEARN ANY COURSE GPT", "Learn Any Skill GPT",
+    "Home-Schooling Assistant GPT", "Course Maker GPT", "Quiz Maker AI",
+    "Music Melodies & Lessons GPT",
     // Business & Entrepreneurship
     "Business Plan Generator GPT", "🚀 Startup Validator GPT", "MICROSAAS GPT",
-    "Training Manual Generator GPT", "Trader GPT", "Taxes GPT",
+    "Training Manual Generator GPT", "Trader GPT", "Taxes GPT", "Contract Review Bot",
     // Design & Creative
     "Graphic & Cover Design GPT", "Sketch Artist GPT", "RESTYLE ME GPT",
     "Restaurant Menu Maker GPT", "Tattoo Designer GPT", "Meme Generator GPT",
@@ -42,10 +48,13 @@ const weightedShuffle = <T extends { title: string }>(items: T[]): T[] => {
     "Game Design Document / Developer GPT", "Celebrity Chatline GPT", "TRIVIA NIGHT GPT",
     // Specialized Professional Tools
     "Property Data Finder GPT", "Insurance Claims GPT", "HOME RENOVATOR GPT",
-    "AUTOMOBILE GPT", "STAGEMASTER AI SUITE",
+    "AUTOMOBILE GPT", "STAGEMASTER AI SUITE", "FISHERMAN GPT", "Chef Sizzle AI Culinary Assistant",
+    "Mixologist GPT", "Travel Advisor GPT", "Agronomus AI Farming Expert",
     // Self-Reliance & Empowerment
     "Self Sufficiency GPT", "Survivalist GPT", "FACT CHECKER GPT", "Fortune Teller GPT",
-    "Cyber Security GPT", "Probability GPT"
+    "Cyber Security GPT", "Probability GPT", "FOOD QUALITY INSPECTOR GPT",
+    "Cannabis GPT", "MATERIAL VALUATION GPT (MATERIUMOR)", "COLLECTIBLES APPRAISAL GPT",
+    "Artwork & Vintage Appraisal GPT", "Sport Card Appraisal GPT"
   ]);
 
   // SECOND TIER: Other premium tools (spirituality, exploration, history, etc.)
@@ -53,9 +62,9 @@ const weightedShuffle = <T extends { title: string }>(items: T[]): T[] => {
     "TIME MACHINE GPT", "Talk to the Gods GPT", "Stellaris: 🚀AI Space Explorer",
     "Criminologist GPT", "Phenomenon Explorer AI Suite", "ImmortalizeME™", "Resurrection GPT", 
     "Mary Magdalene GPT", "ALAN WATTS GPT", "Albert Einstein GPT", "Nikola Tesla GPT", 
-    "Personalized DR. GPT (Doctor GPT)", "Public Defender GPT", "Sophia Aeterna AI", 
-    "Oraculum – The Revealer of Hidden Truths", "Carl Sagan GPT", "Manicheism GPT",
-    "TALK TO HISTORY GPT", "Indiana Archeologist GPT", "Illuminous World Data Explorer GPT"
+    "Public Defender GPT", "Sophia Aeterna AI", "Carl Sagan GPT", "Manicheism GPT",
+    "Oraculum – The Revealer of Hidden Truths", "TALK TO HISTORY GPT", 
+    "Indiana Archeologist GPT", "Illuminous World Data Explorer GPT"
   ]);
   
   // Split into tiers
