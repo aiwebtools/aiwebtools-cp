@@ -13,6 +13,7 @@ import { useChromebookOptimization } from "@/hooks/useChromebookOptimization";
 import { usePrefetchRoutes } from "@/hooks/usePrefetch";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import MatrixCursorEffect from "@/components/effects/MatrixCursorEffect";
+import { getConsentAccepted } from "@/utils/consent";
 
 // Eager load - critical path (home page AND disclaimer gate for instant first load)
 import Index from "./pages/Index";
@@ -50,7 +51,7 @@ const WelcomeNeoVoice = () => {
   const hasPlayedRef = React.useRef(false);
 
   React.useEffect(() => {
-    const hasAccepted = localStorage.getItem("aitools-consent-v3");
+    const hasAccepted = getConsentAccepted();
     
     // Only play on main page ("/"), after disclaimer accepted, once per session
     if (location.pathname === '/' && hasAccepted && !hasPlayedRef.current) {
@@ -138,7 +139,7 @@ const AnimatedRoutes = () => {
 // Global route guard: instant redirect new visitors to /welcome disclaimer gate
 const RouteGuard: React.FC = () => {
   const location = useLocation();
-  const hasAccepted = localStorage.getItem("aitools-consent-v3");
+  const hasAccepted = getConsentAccepted();
   
   // Instant redirect using React Router (no page reload)
   if (!hasAccepted && location.pathname !== '/welcome') {
@@ -150,7 +151,7 @@ const RouteGuard: React.FC = () => {
 
 const PostAcceptBoot: React.FC = () => {
   const location = useLocation();
-  const hasAccepted = !!localStorage.getItem("aitools-consent-v3");
+  const hasAccepted = getConsentAccepted();
 
   // Never run heavy boot work on disclaimer gate
   const enabled = hasAccepted && location.pathname !== "/welcome";
@@ -178,7 +179,7 @@ const PostAcceptBoot: React.FC = () => {
 
 const GlobalOverlays: React.FC = () => {
   const location = useLocation();
-  const hasAccepted = !!localStorage.getItem("aitools-consent-v3");
+  const hasAccepted = getConsentAccepted();
   const show = hasAccepted && location.pathname !== "/welcome";
 
   return (

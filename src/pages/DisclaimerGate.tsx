@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Check, Sparkles, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ImprovedSEOHead from "@/components/ImprovedSEOHead";
+import { getConsentAccepted, setConsentAccepted } from "@/utils/consent";
 
 // Creative rotating welcome messages - Matrix/AI/Enlightenment themed
 const welcomeMessages = [
@@ -57,15 +58,14 @@ const DisclaimerGate: React.FC = () => {
 
   // If already accepted, skip this page
   useEffect(() => {
-    const hasAccepted = localStorage.getItem("aitools-consent-v3");
-    if (hasAccepted) {
+    if (getConsentAccepted()) {
       navigate("/", { replace: true });
     }
   }, [navigate]);
 
   const handleAccept = () => {
-    // INSTANT - just set flag and navigate, nothing else
-    localStorage.setItem("aitools-consent-v3", "true");
+    // INSTANT - set flag and navigate
+    setConsentAccepted(true);
     navigate("/", { replace: true });
   };
 

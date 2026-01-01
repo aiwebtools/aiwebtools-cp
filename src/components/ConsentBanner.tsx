@@ -1,8 +1,7 @@
 import React from "react";
 import { useLocation, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-
-const CONSENT_KEY = "aitools-consent-v3";
+import { getConsentAccepted, setConsentAccepted } from "@/utils/consent";
 
 const ConsentBanner: React.FC = () => {
   const location = useLocation();
@@ -15,20 +14,12 @@ const ConsentBanner: React.FC = () => {
       return;
     }
 
-    try {
-      const hasAccepted = Boolean(localStorage.getItem(CONSENT_KEY));
-      setOpen(!hasAccepted);
-    } catch {
-      setOpen(true);
-    }
+    const hasAccepted = getConsentAccepted();
+    setOpen(!hasAccepted);
   }, [location.pathname]);
 
   const handleAccept = () => {
-    try {
-      localStorage.setItem(CONSENT_KEY, "true");
-    } catch {
-      // If storage is blocked, we still let the user proceed without blocking.
-    }
+    setConsentAccepted(true);
     setOpen(false);
   };
 
