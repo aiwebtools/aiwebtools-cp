@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { Image as ImageIcon } from "lucide-react";
 import { Tool } from "@/types/tools";
 import { getToolTagline } from "@/data/toolTaglines";
@@ -14,6 +14,27 @@ const ToolMedia = ({ tool, toolIndex }: ToolMediaProps) => {
   const [videoError, setVideoError] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+
+  // Mute this video when pinned player starts playing
+  const handlePinnedPlayerPlaying = useCallback(() => {
+    if (iframeRef.current) {
+      try {
+        iframeRef.current.contentWindow?.postMessage(
+          JSON.stringify({ event: 'command', func: 'mute' }),
+          'https://www.youtube.com'
+        );
+      } catch {}
+    }
+  }, []);
+
+  // Listen for pinned player playing event
+  useEffect(() => {
+    window.addEventListener('pinnedPlayerPlaying', handlePinnedPlayerPlaying);
+    return () => {
+      window.removeEventListener('pinnedPlayerPlaying', handlePinnedPlayerPlaying);
+    };
+  }, [handlePinnedPlayerPlaying]);
 
   // Intersection observer to detect when video is in viewport
   useEffect(() => {
@@ -27,6 +48,8 @@ const ToolMedia = ({ tool, toolIndex }: ToolMediaProps) => {
           
           if (entry.isIntersecting) {
             setIsVisible(true);
+            // When tool video becomes visible and starts playing, mute the pinned player
+            window.dispatchEvent(new CustomEvent('toolVideoPlaying'));
           }
         });
       },
@@ -83,6 +106,7 @@ const ToolMedia = ({ tool, toolIndex }: ToolMediaProps) => {
         <div className="relative w-full overflow-hidden rounded-xl bg-gray-800" style={{ aspectRatio: '16/9' }}>
           {isVisible ? (
             <iframe
+              ref={iframeRef}
               width="100%"
               height="100%"
               src={embedUrl}

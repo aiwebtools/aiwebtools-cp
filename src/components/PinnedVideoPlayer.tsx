@@ -149,6 +149,11 @@ const PinnedVideoPlayer = memo(() => {
     
     // Update mute state to match
     setIsMuted(isMobile);
+    
+    // If starting unmuted (desktop), notify tool page videos to mute
+    if (!isMobile) {
+      window.dispatchEvent(new CustomEvent('pinnedPlayerPlaying'));
+    }
   }, [currentVideoId]);
   
   // Handle mute/unmute via postMessage instead of iframe reload
@@ -168,6 +173,19 @@ const PinnedVideoPlayer = memo(() => {
   useEffect(() => {
     setShouldShow(!isMainVideoVisible);
   }, [isMainVideoVisible]);
+  
+  // Mute pinned player when tool page video starts playing
+  useEffect(() => {
+    const handleToolVideoPlaying = () => {
+      // Mute pinned player when tool video plays
+      setIsMuted(true);
+    };
+    
+    window.addEventListener('toolVideoPlaying', handleToolVideoPlaying);
+    return () => {
+      window.removeEventListener('toolVideoPlaying', handleToolVideoPlaying);
+    };
+  }, []);
   
   // Listen for main tool video visibility changes
   useEffect(() => {
@@ -319,7 +337,14 @@ const PinnedVideoPlayer = memo(() => {
   }, [currentTool, navigate]);
 
   const toggleMute = useCallback(() => {
-    setIsMuted(prev => !prev);
+    setIsMuted(prev => {
+      const newMuted = !prev;
+      // If unmuting pinned player, notify tool page video to mute
+      if (!newMuted) {
+        window.dispatchEvent(new CustomEvent('pinnedPlayerPlaying'));
+      }
+      return newMuted;
+    });
   }, []);
 
   // Don't render if permanently closed, no tools, or haven't scrolled past hero yet
