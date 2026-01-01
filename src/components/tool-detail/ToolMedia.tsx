@@ -16,19 +16,25 @@ const ToolMedia = ({ tool, toolIndex }: ToolMediaProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
-  // Tool page videos always have audio priority - don't let pinned player mute them
-
-  // Unmute this video when it becomes visible (take audio priority)
-  const unmuteSelf = useCallback(() => {
+  // Mute this video when pinned player starts playing
+  const handlePinnedPlayerPlaying = useCallback(() => {
     if (iframeRef.current) {
       try {
         iframeRef.current.contentWindow?.postMessage(
-          JSON.stringify({ event: 'command', func: 'unMute' }),
+          JSON.stringify({ event: 'command', func: 'mute' }),
           'https://www.youtube.com'
         );
       } catch {}
     }
   }, []);
+
+  // Listen for pinned player playing event
+  useEffect(() => {
+    window.addEventListener('pinnedPlayerPlaying', handlePinnedPlayerPlaying);
+    return () => {
+      window.removeEventListener('pinnedPlayerPlaying', handlePinnedPlayerPlaying);
+    };
+  }, [handlePinnedPlayerPlaying]);
 
   // Intersection observer to detect when video is in viewport
   useEffect(() => {
@@ -42,10 +48,8 @@ const ToolMedia = ({ tool, toolIndex }: ToolMediaProps) => {
           
           if (entry.isIntersecting) {
             setIsVisible(true);
-            // When tool video becomes visible, MUTE the pinned player and UNMUTE ourselves
+            // When tool video becomes visible and starts playing, mute the pinned player
             window.dispatchEvent(new CustomEvent('toolVideoPlaying'));
-            // Delay unmute slightly to ensure iframe is ready
-            setTimeout(unmuteSelf, 500);
           }
         });
       },
@@ -63,7 +67,7 @@ const ToolMedia = ({ tool, toolIndex }: ToolMediaProps) => {
         detail: { isVisible: false } 
       }));
     };
-  }, [unmuteSelf]);
+  }, []);
 
   const getOptimizedEmbedUrl = (url: string) => {
     // Handle youtu.be short URLs (including ?si= query params)

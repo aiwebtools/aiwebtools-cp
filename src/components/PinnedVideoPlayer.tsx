@@ -271,13 +271,8 @@ const PinnedVideoPlayer = memo(() => {
   // Persisted current index - survives navigation
   const [currentIndex, setCurrentIndex] = useState(getStoredIndex);
   
-  // Start muted on mobile OR on tool detail pages (let tool video have audio priority)
-  // Only start unmuted on desktop homepage
-  const [isMuted, setIsMuted] = useState(() => {
-    const isMobile = isMobileDevice();
-    const isOnToolPage = location.pathname !== "/" && location.pathname !== "";
-    return isMobile || isOnToolPage;
-  });
+  // Start unmuted on desktop, muted on mobile (browser autoplay policy)
+  const [isMuted, setIsMuted] = useState(() => isMobileDevice());
   
   // Shuffled tools - computed once at module level, never recalculated
   const toolsWithVideos = useMemo(() => getToolsWithVideosCached(), []);
@@ -301,26 +296,22 @@ const PinnedVideoPlayer = memo(() => {
     
     lastVideoIdRef.current = currentVideoId;
     const isMobile = isMobileDevice();
-    const isOnToolPage = location.pathname !== "/" && location.pathname !== "";
-    
-    // Start muted on mobile OR on tool pages (tool video gets audio priority)
-    const shouldMute = isMobile || isOnToolPage;
-    const muteParam = shouldMute ? '1' : '0';
-    
+    // Use stable origin reference - enable JS API for state change detection
+    // Start muted for mobile (browser requirement), unmuted for desktop
+    const muteParam = isMobile ? '1' : '0';
     const origin = typeof window !== 'undefined' ? window.location.origin : '';
     const newSrc = `https://www.youtube.com/embed/${currentVideoId}?autoplay=1&mute=${muteParam}&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&enablejsapi=1&playsinline=1&loop=0&origin=${encodeURIComponent(origin)}&widget_referrer=${encodeURIComponent(origin)}`;
     setVideoSrc(newSrc);
     playerMountedRef.current = true;
     
     // Update mute state to match
-    setIsMuted(shouldMute);
+    setIsMuted(isMobile);
     
-    // Only dispatch pinnedPlayerPlaying on homepage (not on tool pages)
-    // On tool pages, the tool video should have audio priority
-    if (!shouldMute && !isOnToolPage) {
+    // If starting unmuted (desktop), notify tool page videos to mute
+    if (!isMobile) {
       window.dispatchEvent(new CustomEvent('pinnedPlayerPlaying'));
     }
-  }, [currentVideoId, location.pathname]);
+  }, [currentVideoId]);
   
   // Handle mute/unmute via postMessage instead of iframe reload
   useEffect(() => {
