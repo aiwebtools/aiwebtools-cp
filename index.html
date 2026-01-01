@@ -294,73 +294,45 @@
           return hasRealContent && (header || mainContent || disclaimerGate);
         };
 
-        // Count by 10s: 10%, 20%, 30%... 100% with 600ms per step
-        const percentages = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
-        let stepIndex = 0;
-        let contentReady = false;
-        let animationComplete = false;
-        
-        const tryRemove = () => {
-          // Only remove when BOTH animation is complete AND content is ready
-          if (animationComplete && contentReady && !removed) {
-            setTimeout(removeSpinner, 400);
-          }
-        };
-        
+        // Smooth progress animation - always moving until done
+        let width = 5;
         const tick = () => {
-          if (removed || stepIndex >= percentages.length) {
-            animationComplete = true;
-            tryRemove();
-            return;
-          }
-          const width = percentages[stepIndex];
+          if (removed) return; // Stop if already removed
+          width = Math.min(width + (Math.random() * 1.2 + 0.4), 92);
           if (bar) bar.style.width = width + '%';
-          if (pct) {
-            if (width === 100) {
-              pct.textContent = 'AI WEB TOOLS ACCESS GRANTED';
-              pct.style.color = '#22d3ee';
-              pct.style.textShadow = '0 0 10px #22d3ee';
-              pct.style.letterSpacing = '1px';
-            } else {
-              pct.textContent = 'LOADING ' + width + '%';
-            }
-          }
-          stepIndex++;
-          
-          if (stepIndex < percentages.length) {
-            setTimeout(tick, 600); // 600ms per step
-          } else {
-            animationComplete = true;
-            tryRemove();
-          }
+          if (pct) pct.textContent = Math.round(width) + '%';
         };
         
-        // Start progress animation immediately
-        tick();
+        const progressInterval = setInterval(tick, 80);
+        tick(); // Start immediately
 
-        // Check for VISIBLE content in background
+        // Check for VISIBLE content
         const contentCheck = setInterval(() => {
           if (hasVisibleContent()) {
             clearInterval(contentCheck);
-            contentReady = true;
-            tryRemove();
+            // Animate to 100% smoothly before removing
+            const finishProgress = setInterval(() => {
+              width = Math.min(width + 4, 100);
+              if (bar) bar.style.width = width + '%';
+              if (pct) pct.textContent = Math.round(width) + '%';
+              if (width >= 100) {
+                clearInterval(finishProgress);
+                clearInterval(progressInterval);
+                setTimeout(removeSpinner, 150);
+              }
+            }, 20);
           }
-        }, 100);
+        }, 50);
 
-        // Fallback after full animation cycle (10 steps x 600ms = 6000ms) + buffer
+        // Fallback
         setTimeout(() => {
           if (removed) return;
           clearInterval(contentCheck);
-          animationComplete = true;
-          contentReady = true;
+          clearInterval(progressInterval);
           if (bar) bar.style.width = '100%';
-          if (pct) {
-            pct.textContent = 'AI WEB TOOLS ACCESS GRANTED';
-            pct.style.color = '#22d3ee';
-            pct.style.textShadow = '0 0 10px #22d3ee';
-          }
-          tryRemove();
-        }, 7000);
+          if (pct) pct.textContent = '100%';
+          removeSpinner();
+        }, 6000);
       });
     </script>
     
