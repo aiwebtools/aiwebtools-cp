@@ -297,9 +297,22 @@
         // Count by 10s: 10%, 20%, 30%... 100% with 600ms per step
         const percentages = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
         let stepIndex = 0;
+        let contentReady = false;
+        let animationComplete = false;
+        
+        const tryRemove = () => {
+          // Only remove when BOTH animation is complete AND content is ready
+          if (animationComplete && contentReady && !removed) {
+            setTimeout(removeSpinner, 400);
+          }
+        };
         
         const tick = () => {
-          if (removed || stepIndex >= percentages.length) return;
+          if (removed || stepIndex >= percentages.length) {
+            animationComplete = true;
+            tryRemove();
+            return;
+          }
           const width = percentages[stepIndex];
           if (bar) bar.style.width = width + '%';
           if (pct) {
@@ -307,46 +320,46 @@
               pct.textContent = 'AI WEB TOOLS ACCESS GRANTED';
               pct.style.color = '#22d3ee';
               pct.style.textShadow = '0 0 10px #22d3ee';
+              pct.style.letterSpacing = '1px';
             } else {
-              pct.textContent = width + '%';
+              pct.textContent = 'LOADING ' + width + '%';
             }
           }
           stepIndex++;
           
           if (stepIndex < percentages.length) {
             setTimeout(tick, 600); // 600ms per step
+          } else {
+            animationComplete = true;
+            tryRemove();
           }
         };
         
-        // Start progress animation
+        // Start progress animation immediately
         tick();
 
-        // Check for VISIBLE content
+        // Check for VISIBLE content in background
         const contentCheck = setInterval(() => {
           if (hasVisibleContent()) {
             clearInterval(contentCheck);
-            // Jump to 100% if not already there
-            if (bar) bar.style.width = '100%';
-            if (pct) {
-              pct.textContent = 'AI WEB TOOLS ACCESS GRANTED';
-              pct.style.color = '#22d3ee';
-              pct.style.textShadow = '0 0 10px #22d3ee';
-            }
-            setTimeout(removeSpinner, 400);
+            contentReady = true;
+            tryRemove();
           }
-        }, 50);
+        }, 100);
 
         // Fallback after full animation cycle (10 steps x 600ms = 6000ms) + buffer
         setTimeout(() => {
           if (removed) return;
           clearInterval(contentCheck);
+          animationComplete = true;
+          contentReady = true;
           if (bar) bar.style.width = '100%';
           if (pct) {
             pct.textContent = 'AI WEB TOOLS ACCESS GRANTED';
             pct.style.color = '#22d3ee';
             pct.style.textShadow = '0 0 10px #22d3ee';
           }
-          setTimeout(removeSpinner, 400);
+          tryRemove();
         }, 7000);
       });
     </script>
