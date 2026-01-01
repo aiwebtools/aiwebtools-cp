@@ -354,8 +354,8 @@ const PinnedVideoPlayer = memo(() => {
           />
         </div>
 
-        {/* Controls bar - 2x2 grid buttons with reduced size and padding */}
-        <div className="grid grid-cols-2 gap-1 p-1.5 bg-gray-800/95 border-t border-cyan-500/20">
+        {/* Controls bar - 2x2 grid buttons tightly grouped */}
+        <div className="grid grid-cols-2 gap-0.5 p-1 bg-gray-800/95 border-t border-cyan-500/20">
           <button
             onClick={toggleMute}
             className="h-4 w-[75%] mx-auto flex items-center justify-center rounded bg-cyan-500 hover:bg-cyan-400 text-white"
