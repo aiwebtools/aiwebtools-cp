@@ -146,7 +146,7 @@ Best regards,
         {/* Prominent Clone Website Button */}
         <div className="flex justify-center mb-16 px-4">
           <button
-            onClick={(e) => handleExternalLink("https://lovable.dev/projects/debf21bc-787a-4053-b672-14a326f63643?via=aiwebtools", e)}
+            onClick={(e) => handleExternalLink("https://lovable.dev/projects/38a1243b-8500-49a2-9548-57e729ab78e7?via=aiwebtools", e)}
             className="relative px-4 sm:px-8 md:px-12 py-4 sm:py-5 md:py-6 bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 text-black font-bold text-sm sm:text-base md:text-lg rounded-full shadow-2xl transform transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-yellow-400/50 group overflow-hidden gold-glow interactive-button max-w-[90vw] sm:max-w-none"
           >
             {/* Radiating light effect */}
