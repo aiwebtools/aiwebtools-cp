@@ -115,6 +115,51 @@
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500;700&family=Dancing+Script:wght@400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet"></noscript>
     
+    <!-- Non-blocking resource preloader - starts fetching before React boots -->
+    <script>
+      // Instant preloader - zero blocking, maximum speed
+      (function() {
+        var hints = [
+          // Critical images (logo, hero elements)
+          { href: '/lovable-uploads/fe59a436-1f90-45d6-9b98-236a54034010.png', as: 'image' },
+          // YouTube thumbnail CDN (most tools have videos)
+          { href: 'https://i.ytimg.com', as: 'fetch', crossorigin: true },
+          // Key external domains for tool images
+          { href: 'https://img1.wsimg.com', as: 'fetch', crossorigin: true },
+          { href: 'https://media.discordapp.net', as: 'fetch', crossorigin: true }
+        ];
+        
+        // Use requestIdleCallback or setTimeout(0) to ensure zero blocking
+        var schedule = window.requestIdleCallback || function(cb) { setTimeout(cb, 1); };
+        
+        schedule(function() {
+          hints.forEach(function(h) {
+            var link = document.createElement('link');
+            link.rel = 'preload';
+            link.href = h.href;
+            link.as = h.as;
+            if (h.crossorigin) link.crossOrigin = 'anonymous';
+            // Low priority fetch - don't compete with critical resources
+            link.setAttribute('fetchpriority', 'low');
+            document.head.appendChild(link);
+          });
+          
+          // Prefetch common tool domains (even lower priority)
+          var prefetchDomains = [
+            'https://lovable.app',
+            'https://chatgpt.com',
+            'https://cdn.discordapp.com'
+          ];
+          prefetchDomains.forEach(function(domain) {
+            var link = document.createElement('link');
+            link.rel = 'dns-prefetch';
+            link.href = domain;
+            document.head.appendChild(link);
+          });
+        });
+      })();
+    </script>
+    
     <!-- Critical CSS for instant first paint - Matrix Loading -->
     <style>
       body { margin: 0; background: #030712; color: #fff; font-family: system-ui, -apple-system, sans-serif; }
