@@ -48,28 +48,50 @@ const ToolMedia = ({ tool, toolIndex }: ToolMediaProps) => {
     };
   }, [handlePinnedPlayerPlaying]);
 
-  // Intersection observer to detect when video is in viewport
+  // Track last visibility state to prevent redundant events
+  const lastVisibilityRef = useRef<boolean | null>(null);
+  const visibilityTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Intersection observer to detect when video is in viewport - with debouncing
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          // Dispatch custom event for pinned player to know when main video is visible
-          window.dispatchEvent(new CustomEvent('toolVideoVisibility', { 
-            detail: { isVisible: entry.isIntersecting } 
-          }));
+          const nowVisible = entry.isIntersecting;
           
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-            // When tool video becomes visible, mute the pinned player and unmute this video
-            window.dispatchEvent(new CustomEvent('toolVideoPlaying'));
-            // Small delay to ensure iframe is loaded before sending unmute command
-            setTimeout(() => {
-              unmuteToolVideo();
-            }, 500);
+          // Skip if visibility hasn't actually changed
+          if (lastVisibilityRef.current === nowVisible) return;
+          
+          // Clear any pending visibility change
+          if (visibilityTimeoutRef.current) {
+            clearTimeout(visibilityTimeoutRef.current);
           }
+          
+          // Debounce visibility changes to prevent flickering during scroll
+          visibilityTimeoutRef.current = setTimeout(() => {
+            lastVisibilityRef.current = nowVisible;
+            
+            // Dispatch stable visibility event
+            window.dispatchEvent(new CustomEvent('toolVideoVisibility', { 
+              detail: { isVisible: nowVisible } 
+            }));
+            
+            if (nowVisible) {
+              setIsVisible(true);
+              // When tool video becomes visible, mute the pinned player and unmute this video
+              window.dispatchEvent(new CustomEvent('toolVideoPlaying'));
+              // Delay to ensure iframe is loaded before sending unmute command
+              setTimeout(() => {
+                unmuteToolVideo();
+              }, 500);
+            }
+          }, 150); // 150ms debounce prevents flickering
         });
       },
-      { threshold: 0.3 } // Trigger when 30% visible
+      { 
+        threshold: [0.2, 0.5], // Multiple thresholds for smoother detection
+        rootMargin: '-50px 0px' // Requires more of the video to be visible
+      }
     );
 
     if (containerRef.current) {
@@ -78,7 +100,12 @@ const ToolMedia = ({ tool, toolIndex }: ToolMediaProps) => {
 
     return () => {
       observer.disconnect();
+      // Clear pending timeout
+      if (visibilityTimeoutRef.current) {
+        clearTimeout(visibilityTimeoutRef.current);
+      }
       // Reset visibility when unmounting
+      lastVisibilityRef.current = null;
       window.dispatchEvent(new CustomEvent('toolVideoVisibility', { 
         detail: { isVisible: false } 
       }));
