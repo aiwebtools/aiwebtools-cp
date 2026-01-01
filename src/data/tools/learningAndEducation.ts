@@ -158,6 +158,7 @@ export const learningAndEducation: Tool[] = [
     emoji: "📰",
     color: "from-gray-500 to-blue-600",
     directUrl: "https://historical-headlines-time-traveler.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=5t7EXS5tthQ",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-historical-headline_1Ll1g.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
     tags: ["historical news", "period journalism", "historical accuracy", "educational content", "learning history", "aiwebtools"],
     category: "Learning & Education",
