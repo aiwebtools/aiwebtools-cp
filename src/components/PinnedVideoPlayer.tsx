@@ -594,8 +594,8 @@ const PinnedVideoPlayer = memo(() => {
     });
   }, []);
 
-  // Don't render if permanently closed, no tools, or haven't scrolled past hero yet
-  if (!isVisible || !hasScrolledEnough || toolsWithVideos.length === 0 || !currentTool || !currentVideoId || !videoSrc) {
+  // Don't render if not on homepage, permanently closed, no tools, or haven't scrolled past hero yet
+  if (!isHomepage || !isVisible || !hasScrolledEnough || toolsWithVideos.length === 0 || !currentTool || !currentVideoId || !videoSrc) {
     return null;
   }
 
