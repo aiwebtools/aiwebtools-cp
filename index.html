@@ -115,96 +115,97 @@
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500;700&family=Dancing+Script:wght@400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet"></noscript>
     
-    <!-- Critical CSS for instant first paint - NO matrix rain for speed -->
+    <!-- Critical CSS for instant first paint -->
     <style>
       body { margin: 0; background: #030712; color: #fff; font-family: system-ui, -apple-system, sans-serif; }
       #root { min-height: 100vh; }
       .loading-spinner { 
+        position: fixed;
+        inset: 0;
         display: flex; 
         align-items: center; 
         justify-content: center; 
-        min-height: 100vh; 
         background: #030712;
+        z-index: 9999;
+        opacity: 1;
+        transition: opacity 0.3s ease-out;
+      }
+      .loading-spinner.fade-out { 
+        opacity: 0;
+        pointer-events: none;
       }
       .loading-content {
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 12px;
+        gap: 16px;
+        animation: fadeIn 0.2s ease-out;
       }
-      .loading-text {
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .loading-logo {
         font-family: 'Courier New', monospace;
-        font-size: 14px;
+        font-size: 18px;
+        font-weight: bold;
+        color: #22d3ee;
+        letter-spacing: 3px;
+        text-shadow: 0 0 20px rgba(34, 211, 238, 0.5);
+      }
+      .loading-tagline {
+        font-family: 'Courier New', monospace;
+        font-size: 12px;
         color: #00ff41;
-        letter-spacing: 2px;
+        letter-spacing: 1px;
         text-shadow: 0 0 8px #00ff41;
+        opacity: 0.8;
       }
       .progress-container {
-        width: 240px;
-        height: 3px;
-        background: rgba(0, 255, 65, 0.15);
+        width: 200px;
+        height: 2px;
+        background: rgba(34, 211, 238, 0.2);
         border-radius: 2px;
         overflow: hidden;
+        margin-top: 8px;
       }
       .progress-bar {
         height: 100%;
         width: 0%;
-        background: #00ff41;
+        background: linear-gradient(90deg, #22d3ee, #a855f7);
         border-radius: 2px;
-        transition: width 0.05s linear;
-      }
-      .progress-text {
-        font-family: 'Courier New', monospace;
-        font-size: 10px;
-        color: rgba(0, 255, 65, 0.6);
-      }
-      .loading-spinner.fade-out { 
-        opacity: 0; 
-        transition: opacity 0.05s ease-out;
-        pointer-events: none;
+        transition: width 0.1s linear;
       }
     </style>
     <script>
       let progress = 0;
-      const progressBar = () => document.getElementById('progress-bar');
-      const progressText = () => document.getElementById('progress-text');
+      let removed = false;
       
       const removeSpinner = () => {
+        if (removed) return;
+        removed = true;
         const spinner = document.querySelector('.loading-spinner');
         if (spinner) {
           spinner.classList.add('fade-out');
-          setTimeout(() => spinner.remove(), 50);
+          setTimeout(() => spinner.remove(), 300);
         }
       };
       
       const updateProgress = (value) => {
         progress = Math.min(value, 100);
-        const bar = progressBar();
-        const text = progressText();
+        const bar = document.getElementById('progress-bar');
         if (bar) bar.style.width = progress + '%';
-        if (text) text.textContent = Math.round(progress) + '%';
         if (progress >= 100) removeSpinner();
       };
 
-      // Real-time progress tracking
-      let resourcesLoaded = 0;
-      let totalResources = 1;
-      
-      // Track performance entries for real progress
-      if (window.PerformanceObserver) {
-        const po = new PerformanceObserver((list) => {
-          resourcesLoaded += list.getEntries().length;
-          updateProgress(Math.min(85, (resourcesLoaded / Math.max(totalResources, resourcesLoaded + 1)) * 85));
-        });
-        try { po.observe({ entryTypes: ['resource'] }); } catch(e) {}
-      }
-
-      // Fast initial ramp while waiting for resources
+      // Smooth progress animation
       const startTime = performance.now();
       const progressInterval = setInterval(() => {
         const elapsed = performance.now() - startTime;
-        if (progress < 70) updateProgress(Math.min(70, elapsed / 2));
-      }, 8);
+        // Smooth curve: fast start, slow at 80%
+        const target = Math.min(85, 85 * (1 - Math.exp(-elapsed / 200)));
+        if (progress < target) updateProgress(target);
+      }, 16);
 
       // Complete on window load
       window.addEventListener('load', () => {
@@ -212,21 +213,25 @@
         clearInterval(progressInterval);
       });
       
-      // React detection
+      // React detection - wait for actual content
       const observer = new MutationObserver(() => {
-        if (document.querySelector('#root > *:not(.loading-spinner)')) {
+        const root = document.getElementById('root');
+        if (root && root.children.length > 0 && !document.querySelector('.loading-spinner + *')) {
+          // React rendered
           updateProgress(100);
           clearInterval(progressInterval);
           observer.disconnect();
         }
       });
-      observer.observe(document.getElementById('root'), { childList: true, subtree: true });
+      if (document.getElementById('root')) {
+        observer.observe(document.getElementById('root'), { childList: true, subtree: true });
+      }
 
-      // Ultra-fast fallback: 200ms max
+      // Fallback after 500ms (enough time for smooth animation)
       setTimeout(() => {
         updateProgress(100);
         clearInterval(progressInterval);
-      }, 200);
+      }, 500);
     </script>
     
     <!-- Enhanced Structured Data -->
@@ -298,11 +303,11 @@
     <div id="root">
       <div class="loading-spinner">
         <div class="loading-content">
-          <div class="loading-text">LOADING</div>
+          <div class="loading-logo">AI WEB TOOLS</div>
+          <div class="loading-tagline">Entering the AI dimension...</div>
           <div class="progress-container">
             <div class="progress-bar" id="progress-bar"></div>
           </div>
-          <div class="progress-text" id="progress-text">0%</div>
         </div>
       </div>
     </div>
