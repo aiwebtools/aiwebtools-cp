@@ -41,27 +41,114 @@ const shuffleArray = <T,>(array: T[]): T[] => {
   return shuffled;
 };
 
-// Get or create shuffled tools - persisted in sessionStorage to survive navigation
+// Priority "wow factor" tools that blow minds - these play FIRST
+const WOW_FACTOR_TOOLS = new Set([
+  // Creative powerhouses
+  "Book Writer GPT",
+  "Movie Script Writer GPT", 
+  "Movie Scriptwriter GPT",
+  "Movie Scene Maker GPT",
+  "Movie Maker Studio AI SUITE",
+  "Music Video Maker AI Studio",
+  "Children's Picture Book Maker GPT",
+  "Playwriter GPT",
+  
+  // Mind-blowing educational
+  "College Degree GPT",
+  "Learn Any Course GPT",
+  "Learn Any Skill GPT",
+  
+  // Time & history experiences
+  "Time Machine GPT",
+  "Talk to History GPT",
+  "Talk to the Gods GPT",
+  "Resurrection GPT",
+  "Titanic Resurrections GPT",
+  
+  // Space & exploration
+  "Stellaris: AI Space Explorer",
+  "Phenomenon Explorer AI Suite",
+  
+  // Life-changing tools
+  "Personalized DR. GPT",
+  "Trader GPT",
+  "Public Defender GPT",
+  "Resume & Job Finder Ai Suite",
+  "Business Plan Generator GPT",
+  "Startup Validator GPT",
+  
+  // Mind-expanding
+  "GODMODE GPT",
+  "Illuminous World Data Explorer GPT",
+  "NEO MATRIX GPT",
+  "Oraculum",
+  "Fortune Teller GPT",
+  "Dream Interpreter GPT",
+  
+  // Unique & groundbreaking
+  "ImmortalizeME",
+  "ImmortalizeMe",
+  "Nikola Tesla GPT",
+  "Albert Einstein GPT",
+  "Alan Watts GPT",
+  "Mary Magdalene GPT",
+  "Sophia Aeterna",
+  
+  // Professional game-changers
+  "Engineering GPT AI Suite",
+  "Legislation Writer GPT",
+  "Grant Writer GPT",
+  "Data Research Analysis Report GPT",
+  
+  // Creative design
+  "Graphic & Cover Design GPT",
+  "Tattoo Designer GPT",
+  "RESTYLE ME GPT",
+  
+  // Investigation & analysis
+  "Criminologist GPT",
+  "Fact Checker GPT",
+  "Indiana Archaeologist GPT",
+]);
+
+// Get shuffled tools with priority ordering - FRESH every page load
 const getShuffledToolsWithVideos = (): Tool[] => {
-  try {
-    const cached = sessionStorage.getItem(SHUFFLED_TOOLS_KEY);
-    if (cached) {
-      const indices = JSON.parse(cached) as number[];
-      return indices.map(i => allTools[i]).filter(Boolean);
+  // Always generate fresh random order (no caching)
+  const toolsWithVideos = allTools
+    .filter(tool => extractYouTubeId(tool.videoUrl || '') !== null);
+  
+  // Separate into priority tiers
+  const wowFactorTools: Tool[] = [];
+  const regularTools: Tool[] = [];
+  
+  toolsWithVideos.forEach(tool => {
+    // Check if tool title matches any wow factor tool (case-insensitive partial match)
+    const isWowFactor = Array.from(WOW_FACTOR_TOOLS).some(wowTitle => 
+      tool.title.toLowerCase().includes(wowTitle.toLowerCase()) ||
+      wowTitle.toLowerCase().includes(tool.title.toLowerCase())
+    );
+    
+    if (isWowFactor) {
+      wowFactorTools.push(tool);
+    } else {
+      regularTools.push(tool);
     }
-  } catch {}
+  });
   
-  const toolsWithIndices = allTools
-    .map((tool, index) => ({ tool, index }))
-    .filter(({ tool }) => extractYouTubeId(tool.videoUrl || '') !== null);
+  // Shuffle each tier independently for variety
+  const shuffledWow = shuffleArray(wowFactorTools);
+  const shuffledRegular = shuffleArray(regularTools);
   
-  const shuffled = shuffleArray(toolsWithIndices);
+  // Wow factor tools first, then regular tools
+  const result = [...shuffledWow, ...shuffledRegular];
   
+  // Store indices in session for navigation persistence only (not order persistence)
   try {
-    sessionStorage.setItem(SHUFFLED_TOOLS_KEY, JSON.stringify(shuffled.map(t => t.index)));
+    const indices = result.map(tool => allTools.indexOf(tool));
+    sessionStorage.setItem(SHUFFLED_TOOLS_KEY, JSON.stringify(indices));
   } catch {}
   
-  return shuffled.map(t => t.tool);
+  return result;
 };
 
 // Persist current index to survive navigation
@@ -80,11 +167,19 @@ const setStoredIndex = (index: number) => {
   } catch {}
 };
 
-// Lazy-init tools list ONCE at module level to prevent recalc on re-renders
+// Generate fresh shuffled list on each page load
 let cachedToolsWithVideos: Tool[] | null = null;
+let lastGenerationTime = 0;
+
 const getToolsWithVideosCached = (): Tool[] => {
-  if (!cachedToolsWithVideos) {
+  const now = Date.now();
+  // Regenerate if more than 1 second since last generation (new page load)
+  // or if not yet generated
+  if (!cachedToolsWithVideos || (now - lastGenerationTime > 1000)) {
     cachedToolsWithVideos = getShuffledToolsWithVideos();
+    lastGenerationTime = now;
+    // Reset index to 0 for fresh experience
+    setStoredIndex(0);
   }
   return cachedToolsWithVideos;
 };
