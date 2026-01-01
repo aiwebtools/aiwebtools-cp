@@ -250,7 +250,7 @@ const PinnedVideoPlayer = memo(() => {
     return () => window.removeEventListener("message", handleMessage);
   }, [isVisible, toolsWithVideos.length, advanceToNextVideo]);
 
-  // Reliable fallback: auto-advance every 25 seconds to ensure videos cycle
+  // Reliable fallback: auto-advance every 20 seconds to ensure videos cycle
   useEffect(() => {
     if (!isVisible || toolsWithVideos.length === 0) return;
     
@@ -259,12 +259,12 @@ const PinnedVideoPlayer = memo(() => {
       clearTimeout(advanceTimeoutRef.current);
     }
     
-    console.log('[PinnedPlayer] Setting 25s auto-advance timer for:', currentTool?.title);
+    console.log('[PinnedPlayer] Setting 20s auto-advance timer for:', currentTool?.title);
     
     advanceTimeoutRef.current = setTimeout(() => {
-      console.log('[PinnedPlayer] Auto-advancing after 25s timeout');
+      console.log('[PinnedPlayer] Auto-advancing after 20s timeout');
       advanceToNextVideo();
-    }, 25000);
+    }, 20000);
     
     return () => {
       if (advanceTimeoutRef.current) {
@@ -354,34 +354,35 @@ const PinnedVideoPlayer = memo(() => {
           />
         </div>
 
-        {/* Controls bar - mute, prev, next, try */}
-        <div className="flex items-center justify-center gap-1 px-1.5 py-1 bg-gray-800/95 border-t border-cyan-500/20">
+        {/* Controls bar - evenly spaced with better layout */}
+        <div className="flex items-center justify-between px-2 py-1.5 bg-gray-800/95 border-t border-cyan-500/20">
           <button
             onClick={toggleMute}
-            className="w-5 h-5 flex items-center justify-center rounded-full bg-cyan-500 hover:bg-cyan-400 text-white transition-all flex-shrink-0"
+            className="w-6 h-6 flex items-center justify-center rounded-full bg-cyan-500 hover:bg-cyan-400 text-white transition-all"
             title={isMuted ? "Unmute" : "Mute"}
           >
-            {isMuted ? <VolumeX className="w-2.5 h-2.5" /> : <Volume2 className="w-2.5 h-2.5" />}
+            {isMuted ? <VolumeX className="w-3 h-3" /> : <Volume2 className="w-3 h-3" />}
           </button>
-          <button
-            onClick={handlePrevVideo}
-            className="w-5 h-5 flex items-center justify-center rounded-full bg-gray-600 hover:bg-gray-500 text-white transition-all flex-shrink-0"
-            title="Previous Video"
-          >
-            <SkipBack className="w-2.5 h-2.5" />
-          </button>
-          <button
-            onClick={handleNextVideo}
-            className="w-5 h-5 flex items-center justify-center rounded-full bg-gray-600 hover:bg-gray-500 text-white transition-all flex-shrink-0"
-            title="Next Video"
-          >
-            <SkipForward className="w-2.5 h-2.5" />
-          </button>
-          {/* Square TRY button */}
+          <div className="flex items-center gap-2">
+            <button
+              onClick={handlePrevVideo}
+              className="w-6 h-6 flex items-center justify-center rounded-full bg-gray-600 hover:bg-gray-500 text-white transition-all"
+              title="Previous Video"
+            >
+              <SkipBack className="w-3 h-3" />
+            </button>
+            <button
+              onClick={handleNextVideo}
+              className="w-6 h-6 flex items-center justify-center rounded-full bg-gray-600 hover:bg-gray-500 text-white transition-all"
+              title="Next Video"
+            >
+              <SkipForward className="w-3 h-3" />
+            </button>
+          </div>
           <Button
             onClick={handleToolClick}
             size="sm"
-            className="w-5 h-5 p-0 text-[6px] rounded bg-gradient-to-r from-cyan-600 to-purple-600 hover:from-cyan-500 hover:to-purple-500 text-white font-bold flex-shrink-0"
+            className="h-6 px-2 text-[8px] rounded bg-gradient-to-r from-cyan-600 to-purple-600 hover:from-cyan-500 hover:to-purple-500 text-white font-bold"
           >
             TRY
           </Button>
