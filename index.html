@@ -118,7 +118,7 @@
     <!-- Critical CSS for instant first paint -->
     <style>
       body { margin: 0; background: #030712; color: #fff; font-family: system-ui, -apple-system, sans-serif; }
-      #root { min-height: 100vh; }
+      #root { min-height: 100vh; background: #030712; }
       .loading-spinner { 
         position: fixed;
         inset: 0;
@@ -128,7 +128,7 @@
         background: #030712;
         z-index: 9999;
         opacity: 1;
-        transition: opacity 0.3s ease-out;
+        transition: opacity 0.25s ease-out;
       }
       .loading-spinner.fade-out { 
         opacity: 0;
@@ -139,47 +139,50 @@
         flex-direction: column;
         align-items: center;
         gap: 16px;
-        animation: fadeIn 0.2s ease-out;
+        animation: pulseGlow 1.5s ease-in-out infinite;
       }
-      @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(10px); }
-        to { opacity: 1; transform: translateY(0); }
+      @keyframes pulseGlow {
+        0%, 100% { opacity: 0.8; }
+        50% { opacity: 1; }
       }
       .loading-logo {
         font-family: 'Courier New', monospace;
-        font-size: 18px;
+        font-size: 20px;
         font-weight: bold;
         color: #22d3ee;
-        letter-spacing: 3px;
-        text-shadow: 0 0 20px rgba(34, 211, 238, 0.5);
+        letter-spacing: 4px;
+        text-shadow: 0 0 30px rgba(34, 211, 238, 0.6);
       }
       .loading-tagline {
         font-family: 'Courier New', monospace;
-        font-size: 12px;
+        font-size: 13px;
         color: #00ff41;
         letter-spacing: 1px;
-        text-shadow: 0 0 8px #00ff41;
-        opacity: 0.8;
+        text-shadow: 0 0 10px #00ff41;
       }
       .progress-container {
-        width: 200px;
-        height: 2px;
+        width: 220px;
+        height: 3px;
         background: rgba(34, 211, 238, 0.2);
         border-radius: 2px;
         overflow: hidden;
-        margin-top: 8px;
+        margin-top: 12px;
       }
       .progress-bar {
         height: 100%;
         width: 0%;
-        background: linear-gradient(90deg, #22d3ee, #a855f7);
+        background: linear-gradient(90deg, #22d3ee, #a855f7, #22d3ee);
+        background-size: 200% 100%;
         border-radius: 2px;
-        transition: width 0.1s linear;
+        animation: shimmer 1s linear infinite;
+      }
+      @keyframes shimmer {
+        0% { background-position: 200% 0; }
+        100% { background-position: -200% 0; }
       }
     </style>
     <script>
       (function() {
-        let progress = 0;
         let removed = false;
         
         const removeSpinner = () => {
@@ -188,48 +191,46 @@
           const spinner = document.querySelector('.loading-spinner');
           if (spinner) {
             spinner.classList.add('fade-out');
-            setTimeout(() => spinner.remove(), 300);
+            setTimeout(() => spinner.remove(), 250);
           }
         };
         
-        const updateProgress = (value) => {
-          progress = Math.min(value, 100);
-          const bar = document.getElementById('progress-bar');
-          if (bar) bar.style.width = progress + '%';
-          if (progress >= 100) removeSpinner();
+        // Check if any real content is visible (not just empty containers)
+        const hasVisibleContent = () => {
+          // Look for actual rendered content elements
+          const header = document.querySelector('header');
+          const heroSection = document.querySelector('[class*="hero"], [class*="Hero"]');
+          const mainContent = document.querySelector('main, [class*="min-h-screen"]:not(.loading-spinner)');
+          const disclaimerGate = document.querySelector('[class*="bg-gray-900"]'); // Disclaimer modal
+          
+          return !!(header || heroSection || mainContent || disclaimerGate);
         };
 
-        // Smooth progress animation
-        const startTime = performance.now();
+        // Progress bar animation
+        const bar = document.getElementById('progress-bar');
+        let width = 0;
         const progressInterval = setInterval(() => {
-          const elapsed = performance.now() - startTime;
-          const target = Math.min(90, 90 * (1 - Math.exp(-elapsed / 150)));
-          if (progress < target) updateProgress(target);
-        }, 16);
+          width = Math.min(width + 2, 95);
+          if (bar) bar.style.width = width + '%';
+        }, 20);
 
-        // Complete on window load
-        window.addEventListener('load', () => {
-          updateProgress(100);
-          clearInterval(progressInterval);
-        });
-        
-        // React detection
-        const observer = new MutationObserver(() => {
-          const root = document.getElementById('root');
-          if (root && root.children.length > 1) {
-            updateProgress(100);
+        // Wait for actual visible content before removing
+        const contentCheck = setInterval(() => {
+          if (hasVisibleContent()) {
+            clearInterval(contentCheck);
             clearInterval(progressInterval);
-            observer.disconnect();
+            if (bar) bar.style.width = '100%';
+            setTimeout(removeSpinner, 100);
           }
-        });
-        const root = document.getElementById('root');
-        if (root) observer.observe(root, { childList: true });
+        }, 50);
 
-        // Fallback - ensure removal
+        // Fallback - remove after 1.5s max to prevent stuck loading
         setTimeout(() => {
-          updateProgress(100);
+          clearInterval(contentCheck);
           clearInterval(progressInterval);
-        }, 400);
+          if (bar) bar.style.width = '100%';
+          removeSpinner();
+        }, 1500);
       })();
     </script>
     
