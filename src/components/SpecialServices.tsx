@@ -17,26 +17,39 @@ import AutoScaleTitle from "@/components/ui/auto-scale-title";
 const weightedShuffle = <T extends { title: string }>(items: T[]): T[] => {
   // TOP TIER: Dream-conquering, practical tools that help users excel and create
   const dreamConqueringTitles = new Set([
+    // Content Creation & Writing
     "BOOK WRITER GPT", "Movie Script Writer GPT", "Movie Maker Studio AI SUITE", 
-    "Children's Picture Book Maker GPT", "Coloring Book Generator GPT", "Comic Book Generator GPT",
-    "COLLEGE DEGREE GPT", "LEARN ANY COURSE GPT", "LEARN ANY SKILL GPT",
-    "Movie Scene Maker GPT", "Music Video Maker AI Studio", "Graphic & Cover Design GPT",
-    "Custom GPT Maker GPT", "MicroSaaS GPT", "Game Design Document / Developer GPT",
-    "Resume & Job Finder AI Suite", "Business Plan Generator GPT", "Startup Validator GPT",
-    "Training Manual Generator GPT", "Grant Writer GPT", "Trader GPT", "Taxes GPT",
-    "Engineering GPT AI Suite", "Podcast Script Writer GPT", "🎭 Playwriter GPT",
-    "PPTx Powerpoint Maker GPT", "Article and Blog Rewriter GPT", "Course Maker GPT",
-    "GODMODE GPT", "MULTITASKER GPT", "Data Research Analysis Report GPT"
+    "Children's Picture Book Maker GPT", "Coloring Book Generator GPT", "Movie Scene Maker GPT",
+    "Music Video Maker AI Studio", "🎭 Playwriter GPT", "Podcast Script Writer GPT",
+    "Article and Blog Rewriter GPT", "Grant Writer GPT",
+    // Education & Learning  
+    "COLLEGE DEGREE GPT", "LEARN ANY COURSE GPT", "Learn Any Skill GPT",
+    // Business & Entrepreneurship
+    "Business Plan Generator GPT", "🚀 Startup Validator GPT", "MICROSAAS GPT",
+    "Training Manual Generator GPT", "Trader GPT", "Taxes GPT",
+    // Design & Creative
+    "Graphic & Cover Design GPT", "Sketch Artist GPT", "RESTYLE ME GPT",
+    "Restaurant Menu Maker GPT", "Tattoo Designer GPT", "Meme Generator GPT",
+    // AI Development & Productivity
+    "Customizable GPT Maker", "AIWEBTOOLS GPT CLONER GPT", "GODMODE GPT", "MULTITASKER GPT",
+    "PERFECT PROMPT ENGINE", "Data Research Analysis Report GPT",
+    // Career & Professional
+    "Resume & Job Finder AI Suite", "Engineering GPT Suite", "PPTx Powerpoint Maker GPT",
+    // Entertainment & Gaming
+    "Game Design Document / Developer GPT", "Celebrity Chatline GPT", "TRIVIA NIGHT GPT",
+    // Specialized Professional Tools
+    "Property Data Finder GPT", "Insurance Claims GPT", "HOME RENOVATOR GPT",
+    "AUTOMOBILE GPT", "STAGEMASTER AI SUITE"
   ]);
 
-  // SECOND TIER: Other premium tools (spirituality, exploration, etc.)
+  // SECOND TIER: Other premium tools (spirituality, exploration, history, etc.)
   const premiumTitles = new Set([
-    "TIME MACHINE GPT", "Talk to the Gods GPT", "Stellaris: AI Space Explorer",
-    "Criminologist GPT", "Phenomenon Explorer AI Suite", "ImmortalizeME", "Resurrection GPT", 
-    "🕊️Mary Magdalene GPT", "ALAN WATTS GPT", "Albert Einstein GPT", "Nikola Tesla GPT", 
-    "Personalized DR. GPT", "Public Defender GPT", "Sophia Aeterna AI", 
-    "Oraculum – The Revealer of Hidden \"Truths\"", "GOD IS LIGHT — Roman Catholic Edition GPT", 
-    "God Is Light GPT", "Carl Sagan GPT", "Manicheism GPT"
+    "TIME MACHINE GPT", "Talk to the Gods GPT", "Stellaris: 🚀AI Space Explorer",
+    "Criminologist GPT", "Phenomenon Explorer AI Suite", "ImmortalizeME™", "Resurrection GPT", 
+    "Mary Magdalene GPT", "ALAN WATTS GPT", "Albert Einstein GPT", "Nikola Tesla GPT", 
+    "Personalized DR. GPT (Doctor GPT)", "Public Defender GPT", "Sophia Aeterna AI", 
+    "Oraculum – The Revealer of Hidden Truths", "Carl Sagan GPT", "Manicheism GPT",
+    "TALK TO HISTORY GPT", "Indiana Archeologist GPT", "Illuminous World Data Explorer GPT"
   ]);
   
   // Split into tiers
