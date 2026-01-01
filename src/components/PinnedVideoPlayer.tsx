@@ -289,6 +289,9 @@ const PinnedVideoPlayer = memo(() => {
     setStoredIndex(currentIndex);
   }, [currentIndex]);
   
+  // Track if this is the first video load (to set initial mute state)
+  const isFirstVideoRef = useRef(true);
+  
   // Update video src only when video ID actually changes
   useEffect(() => {
     if (!currentVideoId) return;
@@ -296,22 +299,27 @@ const PinnedVideoPlayer = memo(() => {
     
     lastVideoIdRef.current = currentVideoId;
     const isMobile = isMobileDevice();
-    // Use stable origin reference - enable JS API for state change detection
-    // Start muted for mobile (browser requirement), unmuted for desktop
-    const muteParam = isMobile ? '1' : '0';
+    
+    // Determine mute param: use current mute state for subsequent videos, only use device default for first
+    const shouldMute = isFirstVideoRef.current ? isMobile : isMuted;
+    const muteParam = shouldMute ? '1' : '0';
+    
     const origin = typeof window !== 'undefined' ? window.location.origin : '';
     const newSrc = `https://www.youtube.com/embed/${currentVideoId}?autoplay=1&mute=${muteParam}&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&enablejsapi=1&playsinline=1&loop=0&origin=${encodeURIComponent(origin)}&widget_referrer=${encodeURIComponent(origin)}`;
     setVideoSrc(newSrc);
     playerMountedRef.current = true;
     
-    // Update mute state to match
-    setIsMuted(isMobile);
+    // Only set initial mute state on first video, preserve user preference after
+    if (isFirstVideoRef.current) {
+      setIsMuted(isMobile);
+      isFirstVideoRef.current = false;
+    }
     
-    // If starting unmuted (desktop), notify tool page videos to mute
-    if (!isMobile) {
+    // If unmuted (desktop or user chose to unmute), notify tool page videos to mute
+    if (!shouldMute) {
       window.dispatchEvent(new CustomEvent('pinnedPlayerPlaying'));
     }
-  }, [currentVideoId]);
+  }, [currentVideoId, isMuted]);
   
   // Handle mute/unmute via postMessage instead of iframe reload
   useEffect(() => {
