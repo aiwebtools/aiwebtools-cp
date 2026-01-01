@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback, useRef, memo, useMemo } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { X, SkipForward, Volume2, VolumeX } from "lucide-react";
+import { X, SkipForward, SkipBack, Volume2, VolumeX } from "lucide-react";
 import { allTools } from "@/data/toolsData";
 import { Tool } from "@/types/tools";
 
@@ -277,6 +277,10 @@ const PinnedVideoPlayer = memo(() => {
     setCurrentIndex(prev => (prev + 1) % toolsWithVideos.length);
   }, [toolsWithVideos.length]);
 
+  const handlePrevVideo = useCallback(() => {
+    setCurrentIndex(prev => (prev - 1 + toolsWithVideos.length) % toolsWithVideos.length);
+  }, [toolsWithVideos.length]);
+
   const handleClose = useCallback(() => {
     sessionStorage.setItem(SESSION_CLOSED_KEY, "true");
     setIsVisible(false);
@@ -350,14 +354,21 @@ const PinnedVideoPlayer = memo(() => {
           />
         </div>
 
-        {/* Controls bar - mute, next, try */}
-        <div className="flex items-center gap-1.5 px-1.5 py-1 bg-gray-800/95 border-t border-cyan-500/20">
+        {/* Controls bar - mute, prev, next, try */}
+        <div className="flex items-center justify-center gap-1 px-1.5 py-1 bg-gray-800/95 border-t border-cyan-500/20">
           <button
             onClick={toggleMute}
             className="w-5 h-5 flex items-center justify-center rounded-full bg-cyan-500 hover:bg-cyan-400 text-white transition-all flex-shrink-0"
             title={isMuted ? "Unmute" : "Mute"}
           >
             {isMuted ? <VolumeX className="w-2.5 h-2.5" /> : <Volume2 className="w-2.5 h-2.5" />}
+          </button>
+          <button
+            onClick={handlePrevVideo}
+            className="w-5 h-5 flex items-center justify-center rounded-full bg-gray-600 hover:bg-gray-500 text-white transition-all flex-shrink-0"
+            title="Previous Video"
+          >
+            <SkipBack className="w-2.5 h-2.5" />
           </button>
           <button
             onClick={handleNextVideo}
