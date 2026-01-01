@@ -267,46 +267,70 @@
           }
         };
         
-        const hasContent = () => {
-          return document.querySelector('header') || 
-                 document.querySelector('[class*="Hero"]') ||
-                 document.querySelector('button[class*="bg-gradient"]');
+        // Check for REAL visible content - not just DOM elements
+        const hasVisibleContent = () => {
+          const root = document.getElementById('root');
+          if (!root) return false;
+          
+          // Check if React has rendered actual content (not just the loading spinner)
+          const children = root.children;
+          let hasRealContent = false;
+          
+          for (let i = 0; i < children.length; i++) {
+            const child = children[i];
+            // Skip the loading spinner itself
+            if (child.classList.contains('loading-spinner')) continue;
+            // Check if there's any other content with actual height
+            if (child.offsetHeight > 50) {
+              hasRealContent = true;
+              break;
+            }
+          }
+          
+          // Also check for specific rendered components
+          const header = document.querySelector('header');
+          const mainContent = document.querySelector('main');
+          const disclaimerGate = document.querySelector('[class*="disclaimer"], [class*="Disclaimer"], [class*="welcome"]');
+          
+          return hasRealContent && (header || mainContent || disclaimerGate);
         };
 
         // Smooth progress animation - always moving
-        const bar = document.getElementById('progress-bar');
-        const pct = document.getElementById('progress-pct');
         let width = 5;
         const tick = () => {
-          width = Math.min(width + (Math.random() * 2 + 0.5), 92);
+          const bar = document.getElementById('progress-bar');
+          const pct = document.getElementById('progress-pct');
+          width = Math.min(width + (Math.random() * 1.5 + 0.3), 88);
           if (bar) bar.style.width = width + '%';
           if (pct) pct.textContent = Math.round(width) + '%';
         };
-        const progressInterval = setInterval(tick, 50);
-        tick(); // Start immediately
+        const progressInterval = setInterval(tick, 60);
+        tick();
 
-        // Check for content
+        // Check for VISIBLE content with proper timing
         const contentCheck = setInterval(() => {
-          if (hasContent()) {
+          if (hasVisibleContent()) {
             clearInterval(contentCheck);
             clearInterval(progressInterval);
+            const bar = document.getElementById('progress-bar');
+            const pct = document.getElementById('progress-pct');
             if (bar) bar.style.width = '100%';
             if (pct) pct.textContent = '100%';
-            setTimeout(removeSpinner, 150);
+            // Small delay to show 100% before fading
+            setTimeout(removeSpinner, 200);
           }
-        }, 30);
+        }, 50);
 
-        // Fast fallback
+        // Fallback - but longer to ensure content loads
         setTimeout(() => {
           clearInterval(contentCheck);
           clearInterval(progressInterval);
+          const bar = document.getElementById('progress-bar');
+          const pct = document.getElementById('progress-pct');
           if (bar) bar.style.width = '100%';
           if (pct) pct.textContent = '100%';
           removeSpinner();
-        }, 2000);
-      })();
-    </script>
-        }, 3000);
+        }, 5000);
       })();
     </script>
     
