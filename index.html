@@ -115,7 +115,7 @@
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500;700&family=Dancing+Script:wght@400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet"></noscript>
     
-    <!-- Critical CSS for instant first paint -->
+    <!-- Critical CSS for instant first paint - Matrix Loading -->
     <style>
       body { margin: 0; background: #030712; color: #fff; font-family: system-ui, -apple-system, sans-serif; }
       #root { min-height: 100vh; background: #030712; }
@@ -125,119 +125,187 @@
         display: flex; 
         align-items: center; 
         justify-content: center; 
-        background: #030712;
+        background: radial-gradient(ellipse at center, #0a1628 0%, #030712 70%);
         z-index: 9999;
         opacity: 1;
-        transition: opacity 0.25s ease-out;
+        transition: opacity 0.3s ease-out;
+        overflow: hidden;
       }
-      .loading-spinner.fade-out { 
-        opacity: 0;
-        pointer-events: none;
-      }
+      .loading-spinner.fade-out { opacity: 0; pointer-events: none; }
+      
+      /* Matrix rain background */
+      .matrix-bg { position: absolute; inset: 0; opacity: 0.15; overflow: hidden; }
+      .matrix-col { position: absolute; top: -100%; font: 10px monospace; color: #00ff41; writing-mode: vertical-rl; animation: fall linear infinite; text-shadow: 0 0 8px #00ff41; }
+      @keyframes fall { 0% { transform: translateY(0); } 100% { transform: translateY(250vh); } }
+      
       .loading-content {
+        position: relative;
+        z-index: 10;
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 16px;
-        animation: pulseGlow 1.5s ease-in-out infinite;
+        gap: 20px;
       }
-      @keyframes pulseGlow {
-        0%, 100% { opacity: 0.8; }
-        50% { opacity: 1; }
+      
+      /* Rotating cube */
+      .cube-container { perspective: 200px; width: 50px; height: 50px; margin-bottom: 10px; }
+      .cube {
+        width: 50px; height: 50px;
+        position: relative;
+        transform-style: preserve-3d;
+        animation: rotateCube 3s linear infinite;
       }
-      .loading-logo {
-        font-family: 'Courier New', monospace;
-        font-size: 20px;
-        font-weight: bold;
-        color: #22d3ee;
-        letter-spacing: 4px;
-        text-shadow: 0 0 30px rgba(34, 211, 238, 0.6);
+      .cube-face {
+        position: absolute;
+        width: 50px; height: 50px;
+        border: 2px solid #00ff41;
+        background: rgba(0, 255, 65, 0.1);
+        box-shadow: 0 0 15px rgba(0, 255, 65, 0.3), inset 0 0 15px rgba(0, 255, 65, 0.1);
+        display: flex; align-items: center; justify-content: center;
+        font: bold 16px monospace; color: #00ff41;
       }
-      .loading-tagline {
-        font-family: 'Courier New', monospace;
-        font-size: 13px;
+      .cube-face.front { transform: translateZ(25px); }
+      .cube-face.back { transform: rotateY(180deg) translateZ(25px); }
+      .cube-face.right { transform: rotateY(90deg) translateZ(25px); }
+      .cube-face.left { transform: rotateY(-90deg) translateZ(25px); }
+      .cube-face.top { transform: rotateX(90deg) translateZ(25px); }
+      .cube-face.bottom { transform: rotateX(-90deg) translateZ(25px); }
+      @keyframes rotateCube { 
+        0% { transform: rotateX(0deg) rotateY(0deg); }
+        100% { transform: rotateX(360deg) rotateY(360deg); }
+      }
+      
+      /* Glitch text */
+      .glitch-text {
+        font: bold 22px 'Courier New', monospace;
         color: #00ff41;
-        letter-spacing: 1px;
-        text-shadow: 0 0 10px #00ff41;
+        letter-spacing: 4px;
+        text-shadow: 0 0 20px #00ff41;
+        position: relative;
+        animation: glitch 0.5s infinite;
       }
-      .progress-container {
-        width: 220px;
-        height: 3px;
-        background: rgba(34, 211, 238, 0.2);
-        border-radius: 2px;
+      .glitch-text::before, .glitch-text::after {
+        content: attr(data-text);
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+      }
+      .glitch-text::before {
+        color: #ff00ff;
+        animation: glitchLeft 0.3s infinite;
+        clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+      }
+      .glitch-text::after {
+        color: #00ffff;
+        animation: glitchRight 0.3s infinite;
+        clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
+      }
+      @keyframes glitch {
+        0%, 100% { transform: translate(0); }
+        20% { transform: translate(-2px, 1px); }
+        40% { transform: translate(2px, -1px); }
+        60% { transform: translate(-1px, 2px); }
+        80% { transform: translate(1px, -2px); }
+      }
+      @keyframes glitchLeft {
+        0%, 100% { transform: translate(0); }
+        50% { transform: translate(-3px, 0); }
+      }
+      @keyframes glitchRight {
+        0%, 100% { transform: translate(0); }
+        50% { transform: translate(3px, 0); }
+      }
+      
+      /* Tagline with typing effect */
+      .tagline {
+        font: 12px 'Courier New', monospace;
+        color: #22d3ee;
+        letter-spacing: 2px;
+        animation: pulse 1.5s ease-in-out infinite;
+      }
+      @keyframes pulse { 0%, 100% { opacity: 0.7; } 50% { opacity: 1; } }
+      
+      /* Progress bar - always moving */
+      .progress-wrap {
+        width: 200px;
+        height: 4px;
+        background: rgba(0, 255, 65, 0.2);
+        border-radius: 4px;
         overflow: hidden;
-        margin-top: 12px;
+        position: relative;
       }
       .progress-bar {
         height: 100%;
-        width: 0%;
-        background: linear-gradient(90deg, #22d3ee, #a855f7, #22d3ee);
-        background-size: 200% 100%;
-        border-radius: 2px;
-        animation: shimmer 1s linear infinite;
+        background: linear-gradient(90deg, #00ff41, #22d3ee, #a855f7, #00ff41);
+        background-size: 300% 100%;
+        border-radius: 4px;
+        animation: progressShimmer 1.5s linear infinite;
+        transition: width 0.1s ease-out;
       }
-      @keyframes shimmer {
-        0% { background-position: 200% 0; }
-        100% { background-position: -200% 0; }
+      @keyframes progressShimmer {
+        0% { background-position: 100% 0; }
+        100% { background-position: 0% 0; }
       }
+      .progress-text {
+        font: 10px 'Courier New', monospace;
+        color: #00ff41;
+        margin-top: 8px;
+        animation: blink 1s step-end infinite;
+      }
+      @keyframes blink { 50% { opacity: 0.5; } }
     </style>
     <script>
       (function() {
         let removed = false;
-        
         const removeSpinner = () => {
           if (removed) return;
           removed = true;
           const spinner = document.querySelector('.loading-spinner');
           if (spinner) {
             spinner.classList.add('fade-out');
-            setTimeout(() => spinner.remove(), 250);
+            setTimeout(() => spinner.remove(), 300);
           }
         };
         
-        // Check if content is fully loaded and visible
-        const hasFullyLoadedContent = () => {
-          const header = document.querySelector('header');
-          const heroSection = document.querySelector('[class*="hero"], [class*="Hero"], [class*="HeroSection"]');
-          const searchBar = document.querySelector('input[placeholder*="Search"]');
-          const disclaimerGate = document.querySelector('[class*="AI Web Tools Portal"], button[class*="bg-gradient"]');
-          
-          // Need either disclaimer gate OR (header + hero + search)
-          return !!disclaimerGate || (header && heroSection) || (header && searchBar);
+        const hasContent = () => {
+          return document.querySelector('header') || 
+                 document.querySelector('[class*="Hero"]') ||
+                 document.querySelector('button[class*="bg-gradient"]');
         };
 
-        // Progress bar animation - slower, smoother
+        // Smooth progress animation - always moving
         const bar = document.getElementById('progress-bar');
-        let width = 0;
-        const progressInterval = setInterval(() => {
-          // Slower progress - max 85% during initial load
-          width = Math.min(width + 0.8, 85);
+        const pct = document.getElementById('progress-pct');
+        let width = 5;
+        const tick = () => {
+          width = Math.min(width + (Math.random() * 2 + 0.5), 92);
           if (bar) bar.style.width = width + '%';
-        }, 30);
+          if (pct) pct.textContent = Math.round(width) + '%';
+        };
+        const progressInterval = setInterval(tick, 50);
+        tick(); // Start immediately
 
-        // Wait for actual visible content before removing
-        let checksCompleted = 0;
+        // Check for content
         const contentCheck = setInterval(() => {
-          checksCompleted++;
-          
-          // Only start checking after minimum 800ms
-          if (checksCompleted < 16) return; // 16 * 50ms = 800ms minimum
-          
-          if (hasFullyLoadedContent()) {
+          if (hasContent()) {
             clearInterval(contentCheck);
             clearInterval(progressInterval);
             if (bar) bar.style.width = '100%';
-            // Small delay after content detected to ensure render complete
-            setTimeout(removeSpinner, 200);
+            if (pct) pct.textContent = '100%';
+            setTimeout(removeSpinner, 150);
           }
-        }, 50);
+        }, 30);
 
-        // Fallback - remove after 3s max
+        // Fast fallback
         setTimeout(() => {
           clearInterval(contentCheck);
           clearInterval(progressInterval);
           if (bar) bar.style.width = '100%';
+          if (pct) pct.textContent = '100%';
           removeSpinner();
+        }, 2000);
+      })();
+    </script>
         }, 3000);
       })();
     </script>
@@ -310,12 +378,39 @@
   <body>
     <div id="root">
       <div class="loading-spinner">
+        <!-- Matrix rain background -->
+        <div class="matrix-bg">
+          <span class="matrix-col" style="left:5%;animation-duration:2.5s">01010110</span>
+          <span class="matrix-col" style="left:15%;animation-duration:3s;animation-delay:.3s">10101001</span>
+          <span class="matrix-col" style="left:25%;animation-duration:2.2s;animation-delay:.6s">01101110</span>
+          <span class="matrix-col" style="left:35%;animation-duration:2.8s;animation-delay:.1s">11010010</span>
+          <span class="matrix-col" style="left:45%;animation-duration:2.4s;animation-delay:.5s">00110101</span>
+          <span class="matrix-col" style="left:55%;animation-duration:3.2s;animation-delay:.2s">10011010</span>
+          <span class="matrix-col" style="left:65%;animation-duration:2.6s;animation-delay:.7s">01100101</span>
+          <span class="matrix-col" style="left:75%;animation-duration:2.3s;animation-delay:.4s">11001011</span>
+          <span class="matrix-col" style="left:85%;animation-duration:2.9s;animation-delay:.8s">00101110</span>
+          <span class="matrix-col" style="left:95%;animation-duration:2.1s;animation-delay:.15s">10110100</span>
+        </div>
         <div class="loading-content">
-          <div class="loading-logo">AI WEB TOOLS</div>
-          <div class="loading-tagline">Entering the AI dimension...</div>
-          <div class="progress-container">
-            <div class="progress-bar" id="progress-bar"></div>
+          <!-- Rotating 3D cube -->
+          <div class="cube-container">
+            <div class="cube">
+              <div class="cube-face front">AI</div>
+              <div class="cube-face back">01</div>
+              <div class="cube-face right">⟨⟩</div>
+              <div class="cube-face left">∞</div>
+              <div class="cube-face top">◈</div>
+              <div class="cube-face bottom">∆</div>
+            </div>
           </div>
+          <!-- Glitch text -->
+          <div class="glitch-text" data-text="AI WEB TOOLS">AI WEB TOOLS</div>
+          <div class="tagline">ENTERING THE MATRIX...</div>
+          <!-- Progress bar -->
+          <div class="progress-wrap">
+            <div class="progress-bar" id="progress-bar" style="width:5%"></div>
+          </div>
+          <div class="progress-text">LOADING <span id="progress-pct">5%</span></div>
         </div>
       </div>
     </div>
