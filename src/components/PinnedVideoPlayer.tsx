@@ -291,6 +291,7 @@ const PinnedVideoPlayer = memo(() => {
   
   // Track if this is the first video load (to set initial mute state)
   const isFirstVideoRef = useRef(true);
+  const userMutePreferenceRef = useRef<boolean | null>(null);
   
   // Update video src only when video ID actually changes
   useEffect(() => {
@@ -300,26 +301,31 @@ const PinnedVideoPlayer = memo(() => {
     lastVideoIdRef.current = currentVideoId;
     const isMobile = isMobileDevice();
     
-    // Determine mute param: use current mute state for subsequent videos, only use device default for first
-    const shouldMute = isFirstVideoRef.current ? isMobile : isMuted;
-    const muteParam = shouldMute ? '1' : '0';
+    // First video: desktop = unmuted, mobile = muted (browser requirement)
+    // Subsequent videos: preserve user's preference
+    let shouldMute: boolean;
+    if (isFirstVideoRef.current) {
+      shouldMute = isMobile; // Desktop unmuted, mobile muted
+      isFirstVideoRef.current = false;
+    } else {
+      // Use stored preference, or current state
+      shouldMute = userMutePreferenceRef.current !== null ? userMutePreferenceRef.current : isMuted;
+    }
     
+    const muteParam = shouldMute ? '1' : '0';
     const origin = typeof window !== 'undefined' ? window.location.origin : '';
     const newSrc = `https://www.youtube.com/embed/${currentVideoId}?autoplay=1&mute=${muteParam}&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&enablejsapi=1&playsinline=1&loop=0&origin=${encodeURIComponent(origin)}&widget_referrer=${encodeURIComponent(origin)}`;
     setVideoSrc(newSrc);
     playerMountedRef.current = true;
     
-    // Only set initial mute state on first video, preserve user preference after
-    if (isFirstVideoRef.current) {
-      setIsMuted(isMobile);
-      isFirstVideoRef.current = false;
-    }
+    // Sync state with what we're actually doing
+    setIsMuted(shouldMute);
     
-    // If unmuted (desktop or user chose to unmute), notify tool page videos to mute
+    // If unmuted, notify tool page videos to mute
     if (!shouldMute) {
       window.dispatchEvent(new CustomEvent('pinnedPlayerPlaying'));
     }
-  }, [currentVideoId, isMuted]);
+  }, [currentVideoId]); // Only depend on video ID, not mute state
   
   // Handle mute/unmute via postMessage instead of iframe reload
   useEffect(() => {
@@ -557,6 +563,8 @@ const PinnedVideoPlayer = memo(() => {
   const toggleMute = useCallback(() => {
     setIsMuted(prev => {
       const newMuted = !prev;
+      // Store user preference for subsequent videos
+      userMutePreferenceRef.current = newMuted;
       // If unmuting pinned player, notify tool page video to mute
       if (!newMuted) {
         window.dispatchEvent(new CustomEvent('pinnedPlayerPlaying'));
