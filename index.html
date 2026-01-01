@@ -147,13 +147,22 @@
         gap: 20px;
       }
       
-      /* Rotating cube */
-      .cube-container { perspective: 200px; width: 50px; height: 50px; margin-bottom: 10px; }
+      /* Rotating cube - GPU accelerated for consistent smooth rotation */
+      .cube-container { 
+        perspective: 200px; 
+        width: 50px; 
+        height: 50px; 
+        margin-bottom: 10px;
+        transform: translateZ(0);
+      }
       .cube {
         width: 50px; height: 50px;
         position: relative;
         transform-style: preserve-3d;
-        animation: rotateCube 3s linear infinite;
+        animation: rotateCube 2.5s linear infinite;
+        will-change: transform;
+        backface-visibility: visible;
+        transform: translateZ(0);
       }
       .cube-face {
         position: absolute;
@@ -163,6 +172,8 @@
         box-shadow: 0 0 15px rgba(0, 255, 65, 0.3), inset 0 0 15px rgba(0, 255, 65, 0.1);
         display: flex; align-items: center; justify-content: center;
         font: bold 16px monospace; color: #00ff41;
+        backface-visibility: visible;
+        transform: translateZ(0);
       }
       .cube-face.front { transform: translateZ(25px); }
       .cube-face.back { transform: rotateY(180deg) translateZ(25px); }
@@ -171,8 +182,8 @@
       .cube-face.top { transform: rotateX(90deg) translateZ(25px); }
       .cube-face.bottom { transform: rotateX(-90deg) translateZ(25px); }
       @keyframes rotateCube { 
-        0% { transform: rotateX(0deg) rotateY(0deg); }
-        100% { transform: rotateX(360deg) rotateY(360deg); }
+        0% { transform: rotateX(0deg) rotateY(0deg) translateZ(0); }
+        100% { transform: rotateX(360deg) rotateY(360deg) translateZ(0); }
       }
       
       /* Glitch text */
