@@ -301,25 +301,46 @@ const PinnedVideoPlayer = memo(() => {
     lastVideoIdRef.current = currentVideoId;
     const isMobile = isMobileDevice();
     
-    // First video: desktop = unmuted, mobile = muted (browser requirement)
-    // Subsequent videos: preserve user's preference
+    // First video: desktop = unmuted, mobile = muted (browser requirement for autoplay)
+    // Subsequent videos: ALWAYS preserve user's preference regardless of device
     let shouldMute: boolean;
     if (isFirstVideoRef.current) {
-      shouldMute = isMobile; // Desktop unmuted, mobile muted
+      // First video only - use device default
+      shouldMute = isMobile; // Desktop unmuted, mobile muted (browser requirement)
       isFirstVideoRef.current = false;
+    } else if (userMutePreferenceRef.current !== null) {
+      // User has explicitly toggled mute - respect their choice on ALL devices
+      shouldMute = userMutePreferenceRef.current;
     } else {
-      // Use stored preference, or current state
-      shouldMute = userMutePreferenceRef.current !== null ? userMutePreferenceRef.current : isMuted;
+      // No user preference yet, use current state
+      shouldMute = isMuted;
     }
     
-    const muteParam = shouldMute ? '1' : '0';
+    // Build video URL - on mobile, browser requires mute=1 for autoplay to work
+    // But we'll send unmute command via postMessage after load if user wants unmuted
+    const embedMuteParam = isMobile ? '1' : (shouldMute ? '1' : '0');
     const origin = typeof window !== 'undefined' ? window.location.origin : '';
-    const newSrc = `https://www.youtube.com/embed/${currentVideoId}?autoplay=1&mute=${muteParam}&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&enablejsapi=1&playsinline=1&loop=0&origin=${encodeURIComponent(origin)}&widget_referrer=${encodeURIComponent(origin)}`;
+    const newSrc = `https://www.youtube.com/embed/${currentVideoId}?autoplay=1&mute=${embedMuteParam}&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&enablejsapi=1&playsinline=1&loop=0&origin=${encodeURIComponent(origin)}&widget_referrer=${encodeURIComponent(origin)}`;
     setVideoSrc(newSrc);
     playerMountedRef.current = true;
     
-    // Sync state with what we're actually doing
+    // Sync UI state with what user wants
     setIsMuted(shouldMute);
+    
+    // On mobile, if user previously unmuted, we need to send unmute command after iframe loads
+    // because we had to use mute=1 in URL for autoplay to work
+    if (isMobile && !shouldMute) {
+      setTimeout(() => {
+        if (iframeRef.current) {
+          try {
+            iframeRef.current.contentWindow?.postMessage(
+              JSON.stringify({ event: 'command', func: 'unMute' }),
+              'https://www.youtube.com'
+            );
+          } catch {}
+        }
+      }, 500); // Wait for iframe to load
+    }
     
     // If unmuted, notify tool page videos to mute
     if (!shouldMute) {
