@@ -13,31 +13,48 @@ import { generateToolSlug } from "@/utils/urlGenerator";
 import AutoScaleTitle from "@/components/ui/auto-scale-title";
 
 // Weighted shuffle - keeps high-quality tools near the top but adds randomness
+// PRIORITY: Dream-conquering practical tools FIRST, then spirituality/awakening
 const weightedShuffle = <T extends { title: string }>(items: T[]): T[] => {
-  // Define premium/flagship tools that should appear in top positions
+  // TOP TIER: Dream-conquering, practical tools that help users excel and create
+  const dreamConqueringTitles = new Set([
+    "BOOK WRITER GPT", "Movie Script Writer GPT", "Movie Maker Studio AI SUITE", 
+    "Children's Picture Book Maker GPT", "Coloring Book Generator GPT", "Comic Book Generator GPT",
+    "COLLEGE DEGREE GPT", "LEARN ANY COURSE GPT", "LEARN ANY SKILL GPT",
+    "Movie Scene Maker GPT", "Music Video Maker AI Studio", "Graphic & Cover Design GPT",
+    "Custom GPT Maker GPT", "MicroSaaS GPT", "Game Design Document / Developer GPT",
+    "Resume & Job Finder AI Suite", "Business Plan Generator GPT", "Startup Validator GPT",
+    "Training Manual Generator GPT", "Grant Writer GPT", "Trader GPT", "Taxes GPT",
+    "Engineering GPT AI Suite", "Podcast Script Writer GPT", "🎭 Playwriter GPT",
+    "PPTx Powerpoint Maker GPT", "Article and Blog Rewriter GPT", "Course Maker GPT",
+    "GODMODE GPT", "MULTITASKER GPT", "Data Research Analysis Report GPT"
+  ]);
+
+  // SECOND TIER: Other premium tools (spirituality, exploration, etc.)
   const premiumTitles = new Set([
-    "TIME MACHINE GPT", "GODMODE GPT", "Talk to the Gods GPT", "Stellaris: AI Space Explorer",
-    "Movie Maker Studio AI SUITE", "BOOK WRITER GPT", "Criminologist GPT", "Phenomenon Explorer AI Suite",
-    "ImmortalizeME", "Resurrection GPT", "🕊️Mary Magdalene GPT", "ALAN WATTS GPT", "Albert Einstein GPT",
-    "Nikola Tesla GPT", "Personalized DR. GPT", "Public Defender GPT", "Trader GPT", "COLLEGE DEGREE GPT",
-    "LEARN ANY COURSE GPT", "LEARN ANY SKILL GPT", "Children's Picture Book Maker GPT", "Movie Scene Maker GPT",
-    "Music Video Maker AI Studio", "Sophia Aeterna AI", "Oraculum – The Revealer of Hidden \"Truths\"",
-    "GOD IS LIGHT — Roman Catholic Edition GPT", "God Is Light GPT", "Carl Sagan GPT", "Manicheism GPT"
+    "TIME MACHINE GPT", "Talk to the Gods GPT", "Stellaris: AI Space Explorer",
+    "Criminologist GPT", "Phenomenon Explorer AI Suite", "ImmortalizeME", "Resurrection GPT", 
+    "🕊️Mary Magdalene GPT", "ALAN WATTS GPT", "Albert Einstein GPT", "Nikola Tesla GPT", 
+    "Personalized DR. GPT", "Public Defender GPT", "Sophia Aeterna AI", 
+    "Oraculum – The Revealer of Hidden \"Truths\"", "GOD IS LIGHT — Roman Catholic Edition GPT", 
+    "God Is Light GPT", "Carl Sagan GPT", "Manicheism GPT"
   ]);
   
-  // Split into premium and regular
+  // Split into tiers
+  const dreamConquering: T[] = [];
   const premium: T[] = [];
   const regular: T[] = [];
   
   items.forEach(item => {
-    if (premiumTitles.has(item.title)) {
+    if (dreamConqueringTitles.has(item.title)) {
+      dreamConquering.push(item);
+    } else if (premiumTitles.has(item.title)) {
       premium.push(item);
     } else {
       regular.push(item);
     }
   });
   
-  // Shuffle both arrays
+  // Shuffle each tier
   const shuffleArray = (arr: T[]): T[] => {
     const shuffled = [...arr];
     for (let i = shuffled.length - 1; i > 0; i--) {
@@ -47,17 +64,21 @@ const weightedShuffle = <T extends { title: string }>(items: T[]): T[] => {
     return shuffled;
   };
   
+  const shuffledDreamConquering = shuffleArray(dreamConquering);
   const shuffledPremium = shuffleArray(premium);
   const shuffledRegular = shuffleArray(regular);
   
-  // Interleave: put some premium tools at top, then mix
+  // Dream-conquering tools first (top 12), then premium (next 8), then rest
+  const topDreamConquering = shuffledDreamConquering.slice(0, Math.min(12, shuffledDreamConquering.length));
+  const remainingDreamConquering = shuffledDreamConquering.slice(12);
+  
   const topPremium = shuffledPremium.slice(0, Math.min(8, shuffledPremium.length));
   const remainingPremium = shuffledPremium.slice(8);
   
-  // Combine remaining premium with regular and shuffle again
-  const mixed = shuffleArray([...remainingPremium, ...shuffledRegular]);
+  // Combine remaining with regular and shuffle
+  const mixed = shuffleArray([...remainingDreamConquering, ...remainingPremium, ...shuffledRegular]);
   
-  return [...topPremium, ...mixed];
+  return [...topDreamConquering, ...topPremium, ...mixed];
 };
 
 // Lazy-loading YouTube video component - shows thumbnail until clicked
