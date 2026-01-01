@@ -197,7 +197,7 @@
       @keyframes hop { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
       .loading-spinner.fade-out { 
         opacity: 0; 
-        transition: opacity 0.15s ease-out;
+        transition: opacity 0.08s ease-out;
         pointer-events: none;
       }
     </style>
@@ -219,7 +219,7 @@
         const spinner = document.querySelector('.loading-spinner');
         if (spinner) {
           spinner.classList.add('fade-out');
-          setTimeout(() => spinner.remove(), 150);
+          setTimeout(() => spinner.remove(), 80);
         }
       };
       
@@ -244,19 +244,21 @@
         }
       };
 
-      // Fast progress simulation - complete in ~400ms
+      // Fast progress simulation - complete in ~200ms
       let startTime = Date.now();
       const progressInterval = setInterval(() => {
         const elapsed = Date.now() - startTime;
-        // Very fast ramp - reach 90% in 300ms
+        // Ultra fast ramp - reach 90% in 150ms
         if (progress < 90) {
-          updateProgress(Math.min(90, elapsed / 3.3));
+          updateProgress(Math.min(90, elapsed / 1.7));
         }
       }, 16);
 
       // Track actual module loading
       window.addEventListener('load', () => {
-        updateProgress(95);
+        updateProgress(100);
+        clearInterval(progressInterval);
+        removeSpinner();
       });
       
       // Complete when React takes over
@@ -279,12 +281,12 @@
       });
       observer.observe(document.getElementById('root'), { childList: true, subtree: true });
 
-      // Fallback: auto-complete after 600ms max (quick flash)
+      // Fallback: auto-complete after 300ms max (near instant)
       setTimeout(() => {
         updateProgress(100);
         clearInterval(progressInterval);
         removeSpinner();
-      }, 600);
+      }, 300);
     </script>
     <script>
       // Scramble Matrix characters continuously until React loads
