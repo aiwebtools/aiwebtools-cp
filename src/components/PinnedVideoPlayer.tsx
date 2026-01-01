@@ -261,8 +261,19 @@ const PinnedVideoPlayer = memo(() => {
   });
   
   // Only require scroll on homepage, show immediately on other pages
-  // Start as false on homepage - must scroll down first
-  const [hasScrolledEnough, setHasScrolledEnough] = useState(false);
+  // Check initial scroll position on mount
+  const [hasScrolledEnough, setHasScrolledEnough] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    const getScrollY = (): number => {
+      if (typeof window.scrollY === 'number' && window.scrollY > 0) return window.scrollY;
+      if (typeof window.pageYOffset === 'number' && window.pageYOffset > 0) return window.pageYOffset;
+      if (document.documentElement?.scrollTop > 0) return document.documentElement.scrollTop;
+      if (document.body?.scrollTop > 0) return document.body.scrollTop;
+      return 0;
+    };
+    const threshold = 600;
+    return getScrollY() > threshold;
+  });
   
   // Hide when user is viewing the main tool video on a detail page
   const [isMainVideoVisible, setIsMainVideoVisible] = useState(false);
@@ -445,14 +456,18 @@ const PinnedVideoPlayer = memo(() => {
     window.addEventListener("scroll", handleScroll, { passive: true });
     document.addEventListener("scroll", handleScroll, { passive: true });
     
-    // Check initial position
+    // Check initial position immediately and after a short delay (for navigation cases)
     handleScroll();
+    const immediateCheck = requestAnimationFrame(handleScroll);
+    const delayedCheck = setTimeout(handleScroll, 50);
     
     return () => {
       window.removeEventListener("scroll", handleScroll);
       document.removeEventListener("scroll", handleScroll);
+      cancelAnimationFrame(immediateCheck);
+      clearTimeout(delayedCheck);
     };
-  }, [isHomepage]);
+  }, [isHomepage, location.pathname]); // Re-run on route change
 
   // Auto-advance function
   const advanceToNextVideo = useCallback(() => {
