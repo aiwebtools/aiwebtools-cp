@@ -116,6 +116,7 @@ export const aiAgents: Tool[] = [
     emoji: "☄️",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://pplx.ai/kgmasterbic1853",
+    videoUrl: "https://youtu.be/7ZsZ0DAbW-E?si=ej4X9bvRgzWyexBB",
     tags: ["Web Tasks Agent", "web browsing", "research agent", "autonomous search", "Perplexity", "Comet", "internet agent"],
     category: "AI Agents",
     rating: 4.8,
