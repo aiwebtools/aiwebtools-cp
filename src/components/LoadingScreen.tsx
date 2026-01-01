@@ -71,19 +71,39 @@ const LoadingScreen = memo(() => {
     return () => clearInterval(interval);
   }, []);
 
-  // Animate progress bar
+  // Animate progress bar - smooth illusion that always reaches 100%
   useEffect(() => {
     const startTime = performance.now();
-    const duration = 2000; // 2 seconds to 95%
+    // Total animation: quick to 60%, then slower to 85%, then very slow to 100%
+    const phase1Duration = 800;  // 0-60% in 800ms (fast start)
+    const phase2Duration = 1200; // 60-85% in 1200ms (medium)
+    const phase3Duration = 2000; // 85-100% in 2000ms (slow crawl)
+    const totalDuration = phase1Duration + phase2Duration + phase3Duration;
     
     const animate = (currentTime: number) => {
       const elapsed = currentTime - startTime;
-      // Ease out - fast at start, slows near end
-      const rawProgress = Math.min((elapsed / duration), 1);
-      const easedProgress = 1 - Math.pow(1 - rawProgress, 3);
-      setProgress(Math.min(easedProgress * 95, 95)); // Max 95% to show it's still loading
       
-      if (elapsed < duration) {
+      let progress: number;
+      
+      if (elapsed < phase1Duration) {
+        // Phase 1: 0-60% with ease-out (fast start)
+        const phaseProgress = elapsed / phase1Duration;
+        const eased = 1 - Math.pow(1 - phaseProgress, 2);
+        progress = eased * 60;
+      } else if (elapsed < phase1Duration + phase2Duration) {
+        // Phase 2: 60-85% with linear
+        const phaseProgress = (elapsed - phase1Duration) / phase2Duration;
+        progress = 60 + (phaseProgress * 25);
+      } else {
+        // Phase 3: 85-100% with ease-in (slow crawl to finish)
+        const phaseProgress = Math.min((elapsed - phase1Duration - phase2Duration) / phase3Duration, 1);
+        const eased = phaseProgress * phaseProgress; // Ease-in for slow finish
+        progress = 85 + (eased * 15);
+      }
+      
+      setProgress(Math.min(progress, 100));
+      
+      if (elapsed < totalDuration) {
         requestAnimationFrame(animate);
       }
     };
