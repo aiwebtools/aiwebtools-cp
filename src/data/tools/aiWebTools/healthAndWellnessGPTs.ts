@@ -254,7 +254,7 @@ export const healthAndWellnessGPTs: Tool[] = [
     emoji: "👨‍👩‍👧‍👦",
     color: "from-green-500 to-teal-600",
     directUrl: "https://chatgpt.com/g/g-68f046753bc481918943c245fb913ff8-tim-the-parenting-guide?via=aiwebtools",
-    videoUrl: "https://youtu.be/HfT-9XqDNeU",
+    videoUrl: "https://youtu.be/vUreBwGa1w4?si=bjVtTP7qwesVGwZx",
     tags: ["parenting advice", "child development", "family support", "parenting strategies", "emotional intelligence", "child psychology", "family wellness", "aiwebtools", "Custom GPT"],
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.7,
