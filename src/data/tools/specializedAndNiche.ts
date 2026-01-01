@@ -53,7 +53,7 @@ export const specializedAndNiche: Tool[] = [
     emoji: "🏕️",
     color: "from-green-500 to-brown-600",
     directUrl: "https://survivalistgpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=RX6W8KC0y18&list=TLGGkaSLRgubL1gyODA1MjAyNQ",
+    videoUrl: "https://youtu.be/RX6W8KC0y18?si=iEp3dxzZORO1s_sN",
     imageUrl: "https://media.discordapp.net/attachments/1150636600846450729/1377298679387521186/survivalist.webp?ex=683874da&is=6837235a&hm=47343d2e045ffa4fbd8d754f9e85a79b9172d12cb3651ee90c48add9ad6ed748&=&format=webp&width=2340&height=1312",
     tags: ["survival", "wilderness", "emergency preparedness", "outdoor skills"],
     category: "Specialized & Niche",

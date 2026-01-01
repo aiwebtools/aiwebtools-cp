@@ -167,7 +167,7 @@ export const fourthPriorityFeaturedGPTs: Tool[] = [
     color: "from-red-500 to-orange-600",
     category: "Industry-Specific Solutions",
     directUrl: "https://firefightergpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://youtu.be/kDu2SSP9Glw",
+    videoUrl: "https://youtu.be/kDu2SSP9Glw?si=RDSEgewVsQYFRt3S",
     rating: 4.6,
     totalVotes: 3600,
     tags: ["firefighting", "wildfire management", "emergency response", "fire safety", "disaster management"]
