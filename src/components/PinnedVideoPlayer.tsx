@@ -352,15 +352,35 @@ const PinnedVideoPlayer = memo(() => {
     };
   }, []);
   
-  // Listen for main tool video visibility changes
+  // Listen for main tool video visibility changes - with stable state management
+  const visibilityDebounceRef = useRef<NodeJS.Timeout | null>(null);
+  const lastMainVideoVisibleRef = useRef(false);
+  
   useEffect(() => {
     const handleToolVideoVisibility = (event: CustomEvent<{ isVisible: boolean }>) => {
-      setIsMainVideoVisible(event.detail.isVisible);
+      const newVisible = event.detail.isVisible;
+      
+      // Skip if no change
+      if (lastMainVideoVisibleRef.current === newVisible) return;
+      
+      // Clear any pending update
+      if (visibilityDebounceRef.current) {
+        clearTimeout(visibilityDebounceRef.current);
+      }
+      
+      // Apply with slight debounce to prevent flickering
+      visibilityDebounceRef.current = setTimeout(() => {
+        lastMainVideoVisibleRef.current = newVisible;
+        setIsMainVideoVisible(newVisible);
+      }, 100);
     };
     
     window.addEventListener('toolVideoVisibility', handleToolVideoVisibility as EventListener);
     return () => {
       window.removeEventListener('toolVideoVisibility', handleToolVideoVisibility as EventListener);
+      if (visibilityDebounceRef.current) {
+        clearTimeout(visibilityDebounceRef.current);
+      }
     };
   }, []);
 
