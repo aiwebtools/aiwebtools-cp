@@ -23,6 +23,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     emoji: "💫",
     color: "from-yellow-300 to-amber-500",
     directUrl: "https://chatgpt.com/g/g-69348b45baa081919439c80361a63bda-council-of-light-gpt/?via=aiwebtools",
+    videoUrl: "https://youtu.be/864_bIK9Feo?si=70gIuEIYhrAE7icg",
     tags: ["council", "light", "council of light", "cosmology", "symbolic wisdom", "spiritual guidance", "ancient teachers", "enlightened beings", "cosmic wisdom", "divine guidance", "aiwebtools", "Custom GPT"],
     category: "Spirituality & Philosophy",
     rating: 4.9,
