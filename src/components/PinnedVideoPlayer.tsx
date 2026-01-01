@@ -401,6 +401,16 @@ const PinnedVideoPlayer = memo(() => {
     setCurrentIndex(prev => (prev + 1) % toolsWithVideos.length);
   }, [toolsWithVideos.length]);
 
+  // Track when video started to prevent premature skipping
+  const videoStartTimeRef = useRef<number>(Date.now());
+  const hasReceivedPlayStateRef = useRef(false);
+  
+  // Reset timing when video changes
+  useEffect(() => {
+    videoStartTimeRef.current = Date.now();
+    hasReceivedPlayStateRef.current = false;
+  }, [currentVideoId]);
+
   // Listen for YouTube iframe API messages to detect video end
   useEffect(() => {
     if (!isVisible || toolsWithVideos.length === 0) return;
@@ -412,17 +422,38 @@ const PinnedVideoPlayer = memo(() => {
       try {
         const data = typeof event.data === "string" ? JSON.parse(event.data) : event.data;
         
+        // Track when we receive a "playing" state (state 1)
+        if (data?.event === "onStateChange" && data?.info === 1) {
+          hasReceivedPlayStateRef.current = true;
+          videoStartTimeRef.current = Date.now();
+        }
+        if (data?.info?.playerState === 1) {
+          hasReceivedPlayStateRef.current = true;
+          videoStartTimeRef.current = Date.now();
+        }
+        
+        // Only advance if video has been playing for at least 8 seconds
+        // This prevents false "ended" signals during loading
+        const timeSinceStart = Date.now() - videoStartTimeRef.current;
+        const MIN_PLAY_TIME = 8000; // 8 seconds minimum
+        
         // Check for video ended state (state 0 = ended)
         if (data?.event === "onStateChange" && data?.info === 0) {
-          console.log('[PinnedPlayer] Video ended via onStateChange, advancing...');
-          advanceToNextVideo();
+          if (hasReceivedPlayStateRef.current && timeSinceStart > MIN_PLAY_TIME) {
+            console.log('[PinnedPlayer] Video ended via onStateChange after', timeSinceStart, 'ms, advancing...');
+            advanceToNextVideo();
+          } else {
+            console.log('[PinnedPlayer] Ignoring premature end signal, only', timeSinceStart, 'ms elapsed');
+          }
           return;
         }
         
         // Also check for infoDelivery with playerState (0 = ended)
         if (data?.info?.playerState === 0) {
-          console.log('[PinnedPlayer] Video ended via infoDelivery, advancing...');
-          advanceToNextVideo();
+          if (hasReceivedPlayStateRef.current && timeSinceStart > MIN_PLAY_TIME) {
+            console.log('[PinnedPlayer] Video ended via infoDelivery after', timeSinceStart, 'ms, advancing...');
+            advanceToNextVideo();
+          }
           return;
         }
         
@@ -442,7 +473,7 @@ const PinnedVideoPlayer = memo(() => {
 
     window.addEventListener("message", handleMessage);
     return () => window.removeEventListener("message", handleMessage);
-  }, [isVisible, toolsWithVideos.length, advanceToNextVideo]);
+  }, [isVisible, toolsWithVideos.length, advanceToNextVideo, currentVideoId]);
 
   // Reliable fallback: auto-advance every 20 seconds to ensure videos cycle
   useEffect(() => {
