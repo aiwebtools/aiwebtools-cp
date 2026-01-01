@@ -351,7 +351,7 @@ const PinnedVideoPlayer = memo(() => {
   // Handle mute/unmute via postMessage instead of iframe reload
   useEffect(() => {
     if (!iframeRef.current || !playerMountedRef.current) return;
-
+    
     try {
       const command = isMuted ? 'mute' : 'unMute';
       iframeRef.current.contentWindow?.postMessage(
@@ -360,50 +360,6 @@ const PinnedVideoPlayer = memo(() => {
       );
     } catch {}
   }, [isMuted]);
-
-  // Mobile autoplay policy workaround:
-  // Browsers block autoplay-with-sound, so we unmute automatically on the FIRST user gesture anywhere on the page.
-  // This makes it *feel* like it starts unmuted (no need to hit the tiny unmute button).
-  useEffect(() => {
-    const isMobile = isMobileDevice();
-    if (!isMobile) return;
-    if (!isVisible || !hasScrolledEnough) return;
-    if (!isMuted) return;
-
-    const unlockAudio = () => {
-      // Persist preference: user wants sound
-      userMutePreferenceRef.current = false;
-      setIsMuted(false);
-
-      // Ensure tool page videos get muted if needed
-      window.dispatchEvent(new CustomEvent('pinnedPlayerPlaying'));
-
-      // Direct unmute command (best-effort)
-      if (iframeRef.current) {
-        try {
-          iframeRef.current.contentWindow?.postMessage(
-            JSON.stringify({ event: 'command', func: 'unMute' }),
-            'https://www.youtube.com'
-          );
-        } catch {}
-      }
-
-      window.removeEventListener('pointerdown', unlockAudio, true);
-      window.removeEventListener('touchstart', unlockAudio, true);
-      window.removeEventListener('click', unlockAudio, true);
-    };
-
-    // Capture phase so we run even if the user taps other UI first
-    window.addEventListener('pointerdown', unlockAudio, true);
-    window.addEventListener('touchstart', unlockAudio, true);
-    window.addEventListener('click', unlockAudio, true);
-
-    return () => {
-      window.removeEventListener('pointerdown', unlockAudio, true);
-      window.removeEventListener('touchstart', unlockAudio, true);
-      window.removeEventListener('click', unlockAudio, true);
-    };
-  }, [isVisible, hasScrolledEnough, isMuted]);
   
   // Handle smooth fade animation when main video visibility changes
   useEffect(() => {
