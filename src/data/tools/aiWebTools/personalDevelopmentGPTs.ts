@@ -170,6 +170,7 @@ export const personalDevelopmentGPTs: Tool[] = [
     emoji: "🧭",
     color: "from-blue-400 to-orange-500",
     directUrl: "https://chat.openai.com/g/g-68afa2aea7a88191ae30470b2547b176-purpose-finder-gpt",
+    videoUrl: "https://youtu.be/LHaPL2oBUmY?si=R4KSEB9egcFPdsFu",
     tags: ["purpose", "values", "passions", "talents", "meaning", "Custom GPT"],
     category: "Personal Development & Self-Discovery",
     rating: 4.0,
