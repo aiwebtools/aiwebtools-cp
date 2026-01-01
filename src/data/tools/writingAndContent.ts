@@ -22,7 +22,7 @@ export const writingAndContent: Tool[] = [
     emoji: "📝",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://moviescriptwritergpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=4e3Rkurt3-c&list=TLGGtoG6kc0vED4yODA1MjAyNQ",
+    videoUrl: "https://youtube.com/shorts/IVoy-B4GkXU?si=0HxBQ5i3TcluZth9",
     tags: ["script writing", "movie scripts", "professional formatting", "character development", "industry standards", "Script Writing", "Creative Writing"],
     category: "Writing & Content",
     rating: 4.8,

@@ -118,6 +118,7 @@ export const videoGenerationTools: Tool[] = [
     emoji: "🎬",
     color: "from-red-500 to-purple-600",
     directUrl: "https://moviescriptwritergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtube.com/shorts/IVoy-B4GkXU?si=0HxBQ5i3TcluZth9",
     tags: ["video scripts", "content creation", "marketing videos", "social media", "video production", "Video Production", "Script Writing"],
     category: "Video Generation",
     rating: 4.6,
