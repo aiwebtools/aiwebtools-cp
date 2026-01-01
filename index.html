@@ -195,42 +195,50 @@
           }
         };
         
-        // Check if any real content is visible (not just empty containers)
-        const hasVisibleContent = () => {
-          // Look for actual rendered content elements
+        // Check if content is fully loaded and visible
+        const hasFullyLoadedContent = () => {
           const header = document.querySelector('header');
-          const heroSection = document.querySelector('[class*="hero"], [class*="Hero"]');
-          const mainContent = document.querySelector('main, [class*="min-h-screen"]:not(.loading-spinner)');
-          const disclaimerGate = document.querySelector('[class*="bg-gray-900"]'); // Disclaimer modal
+          const heroSection = document.querySelector('[class*="hero"], [class*="Hero"], [class*="HeroSection"]');
+          const searchBar = document.querySelector('input[placeholder*="Search"]');
+          const disclaimerGate = document.querySelector('[class*="AI Web Tools Portal"], button[class*="bg-gradient"]');
           
-          return !!(header || heroSection || mainContent || disclaimerGate);
+          // Need either disclaimer gate OR (header + hero + search)
+          return !!disclaimerGate || (header && heroSection) || (header && searchBar);
         };
 
-        // Progress bar animation
+        // Progress bar animation - slower, smoother
         const bar = document.getElementById('progress-bar');
         let width = 0;
         const progressInterval = setInterval(() => {
-          width = Math.min(width + 2, 95);
+          // Slower progress - max 85% during initial load
+          width = Math.min(width + 0.8, 85);
           if (bar) bar.style.width = width + '%';
-        }, 20);
+        }, 30);
 
         // Wait for actual visible content before removing
+        let checksCompleted = 0;
         const contentCheck = setInterval(() => {
-          if (hasVisibleContent()) {
+          checksCompleted++;
+          
+          // Only start checking after minimum 800ms
+          if (checksCompleted < 16) return; // 16 * 50ms = 800ms minimum
+          
+          if (hasFullyLoadedContent()) {
             clearInterval(contentCheck);
             clearInterval(progressInterval);
             if (bar) bar.style.width = '100%';
-            setTimeout(removeSpinner, 100);
+            // Small delay after content detected to ensure render complete
+            setTimeout(removeSpinner, 200);
           }
         }, 50);
 
-        // Fallback - remove after 1.5s max to prevent stuck loading
+        // Fallback - remove after 3s max
         setTimeout(() => {
           clearInterval(contentCheck);
           clearInterval(progressInterval);
           if (bar) bar.style.width = '100%';
           removeSpinner();
-        }, 1500);
+        }, 3000);
       })();
     </script>
     
