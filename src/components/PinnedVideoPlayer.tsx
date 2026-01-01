@@ -261,7 +261,8 @@ const PinnedVideoPlayer = memo(() => {
   });
   
   // Only require scroll on homepage, show immediately on other pages
-  const [hasScrolledEnough, setHasScrolledEnough] = useState(!isHomepage);
+  // Start as false on homepage - must scroll down first
+  const [hasScrolledEnough, setHasScrolledEnough] = useState(false);
   
   // Hide when user is viewing the main tool video on a detail page
   const [isMainVideoVisible, setIsMainVideoVisible] = useState(false);
@@ -355,64 +356,38 @@ const PinnedVideoPlayer = memo(() => {
     };
   }, []);
 
-  // Detect scroll position - only needed on homepage
-  // Use multiple detection methods for maximum browser compatibility
+  // Detect scroll position - required to show
   useEffect(() => {
-    // If not on homepage, always show
-    if (!isHomepage) {
-      setHasScrolledEnough(true);
-      return;
-    }
-    
     const getScrollY = (): number => {
-      // Try multiple methods for maximum browser compatibility
       if (typeof window.scrollY === 'number' && window.scrollY > 0) return window.scrollY;
       if (typeof window.pageYOffset === 'number' && window.pageYOffset > 0) return window.pageYOffset;
-      if (document.documentElement && document.documentElement.scrollTop > 0) return document.documentElement.scrollTop;
-      if (document.body && document.body.scrollTop > 0) return document.body.scrollTop;
-      // Also check scrolling element
-      if (document.scrollingElement && document.scrollingElement.scrollTop > 0) return document.scrollingElement.scrollTop;
+      if (document.documentElement?.scrollTop > 0) return document.documentElement.scrollTop;
+      if (document.body?.scrollTop > 0) return document.body.scrollTop;
+      if (document.scrollingElement?.scrollTop > 0) return document.scrollingElement.scrollTop;
       return 0;
     };
     
     const handleScroll = () => {
       const scrollY = getScrollY();
-      // Show after scrolling 400px down (reduced threshold for better detection)
-      if (scrollY > 400) {
+      // Show after scrolling 600px down on homepage, 200px on other pages
+      const threshold = isHomepage ? 600 : 200;
+      if (scrollY > threshold) {
         setHasScrolledEnough(true);
+      } else {
+        // Hide again if scrolled back to top
+        setHasScrolledEnough(false);
       }
     };
 
-    // Listen on multiple targets for maximum compatibility
     window.addEventListener("scroll", handleScroll, { passive: true });
     document.addEventListener("scroll", handleScroll, { passive: true });
-    
-    // Also listen on the scrolling element directly
-    if (document.scrollingElement && document.scrollingElement !== document.documentElement) {
-      document.scrollingElement.addEventListener("scroll", handleScroll, { passive: true });
-    }
     
     // Check initial position
     handleScroll();
     
-    // Check more frequently - every 500ms
-    const intervalId = setInterval(handleScroll, 500);
-    
-    // GUARANTEED FALLBACK: After 8 seconds on homepage, show anyway
-    // This ensures the player appears even if scroll detection completely fails
-    const fallbackTimer = setTimeout(() => {
-      console.log('[PinnedPlayer] Fallback timer triggered - forcing show');
-      setHasScrolledEnough(true);
-    }, 8000);
-    
     return () => {
       window.removeEventListener("scroll", handleScroll);
       document.removeEventListener("scroll", handleScroll);
-      if (document.scrollingElement && document.scrollingElement !== document.documentElement) {
-        document.scrollingElement.removeEventListener("scroll", handleScroll);
-      }
-      clearInterval(intervalId);
-      clearTimeout(fallbackTimer);
     };
   }, [isHomepage]);
 

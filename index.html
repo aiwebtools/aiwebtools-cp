@@ -178,60 +178,59 @@
       }
     </style>
     <script>
-      let progress = 0;
-      let removed = false;
-      
-      const removeSpinner = () => {
-        if (removed) return;
-        removed = true;
-        const spinner = document.querySelector('.loading-spinner');
-        if (spinner) {
-          spinner.classList.add('fade-out');
-          setTimeout(() => spinner.remove(), 300);
-        }
-      };
-      
-      const updateProgress = (value) => {
-        progress = Math.min(value, 100);
-        const bar = document.getElementById('progress-bar');
-        if (bar) bar.style.width = progress + '%';
-        if (progress >= 100) removeSpinner();
-      };
+      (function() {
+        let progress = 0;
+        let removed = false;
+        
+        const removeSpinner = () => {
+          if (removed) return;
+          removed = true;
+          const spinner = document.querySelector('.loading-spinner');
+          if (spinner) {
+            spinner.classList.add('fade-out');
+            setTimeout(() => spinner.remove(), 300);
+          }
+        };
+        
+        const updateProgress = (value) => {
+          progress = Math.min(value, 100);
+          const bar = document.getElementById('progress-bar');
+          if (bar) bar.style.width = progress + '%';
+          if (progress >= 100) removeSpinner();
+        };
 
-      // Smooth progress animation
-      const startTime = performance.now();
-      const progressInterval = setInterval(() => {
-        const elapsed = performance.now() - startTime;
-        // Smooth curve: fast start, slow at 80%
-        const target = Math.min(85, 85 * (1 - Math.exp(-elapsed / 200)));
-        if (progress < target) updateProgress(target);
-      }, 16);
+        // Smooth progress animation
+        const startTime = performance.now();
+        const progressInterval = setInterval(() => {
+          const elapsed = performance.now() - startTime;
+          const target = Math.min(90, 90 * (1 - Math.exp(-elapsed / 150)));
+          if (progress < target) updateProgress(target);
+        }, 16);
 
-      // Complete on window load
-      window.addEventListener('load', () => {
-        updateProgress(100);
-        clearInterval(progressInterval);
-      });
-      
-      // React detection - wait for actual content
-      const observer = new MutationObserver(() => {
-        const root = document.getElementById('root');
-        if (root && root.children.length > 0 && !document.querySelector('.loading-spinner + *')) {
-          // React rendered
+        // Complete on window load
+        window.addEventListener('load', () => {
           updateProgress(100);
           clearInterval(progressInterval);
-          observer.disconnect();
-        }
-      });
-      if (document.getElementById('root')) {
-        observer.observe(document.getElementById('root'), { childList: true, subtree: true });
-      }
+        });
+        
+        // React detection
+        const observer = new MutationObserver(() => {
+          const root = document.getElementById('root');
+          if (root && root.children.length > 1) {
+            updateProgress(100);
+            clearInterval(progressInterval);
+            observer.disconnect();
+          }
+        });
+        const root = document.getElementById('root');
+        if (root) observer.observe(root, { childList: true });
 
-      // Fallback after 500ms (enough time for smooth animation)
-      setTimeout(() => {
-        updateProgress(100);
-        clearInterval(progressInterval);
-      }, 500);
+        // Fallback - ensure removal
+        setTimeout(() => {
+          updateProgress(100);
+          clearInterval(progressInterval);
+        }, 400);
+      })();
     </script>
     
     <!-- Enhanced Structured Data -->
