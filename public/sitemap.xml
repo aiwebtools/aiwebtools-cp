@@ -5,10 +5,146 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
         xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
   
+  <!-- ==================== AIWEBTOOLS.AI - PRIMARY DOMAIN ==================== -->
+  
+  <!-- HOMEPAGE - MAXIMUM PRIORITY FOR AI TOOLS KEYWORDS -->
+  <url>
+    <loc>https://www.aiwebtools.ai</loc>
+    <lastmod>2025-03-05</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.aiwebtools.ai"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.aiwebtools.ai"/>
+  </url>
+  
+  <url>
+    <loc>https://aiwebtools.ai</loc>
+    <lastmod>2025-03-05</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <!-- AIWEBTOOLS.AI KEY PAGES -->
+  <url>
+    <loc>https://www.aiwebtools.ai/ai-tools</loc>
+    <lastmod>2025-03-05</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.aiwebtools.ai/best-ai-tools</loc>
+    <lastmod>2025-03-05</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.99</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.aiwebtools.ai/free-ai-tools</loc>
+    <lastmod>2025-03-05</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.99</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.aiwebtools.ai/blog</loc>
+    <lastmod>2025-03-05</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.aiwebtools.ai/faq</loc>
+    <lastmod>2025-03-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  
+  <!-- AIWEBTOOLS.AI BLOG POSTS -->
+  <url>
+    <loc>https://www.aiwebtools.ai/blog/best-free-ai-tools-2025-complete-list</loc>
+    <lastmod>2025-03-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.aiwebtools.ai/blog/how-to-use-ai-to-make-money-2025</loc>
+    <lastmod>2025-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.aiwebtools.ai/blog/chatgpt-alternatives-2025-better-options</loc>
+    <lastmod>2025-03-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.aiwebtools.ai/blog/ai-tools-for-small-business-2025</loc>
+    <lastmod>2025-03-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.aiwebtools.ai/blog/ai-image-generator-free-no-sign-up</loc>
+    <lastmod>2025-03-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  
+  <!-- AIWEBTOOLS.AI MAIN CATEGORIES -->
+  <url>
+    <loc>https://www.aiwebtools.ai/main-category/ALL%20AI%20TOOLS</loc>
+    <lastmod>2025-03-05</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.98</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.aiwebtools.ai/main-category/IMAGE%20%26%20DESIGN%20AI%20TOOLS</loc>
+    <lastmod>2025-03-05</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.aiwebtools.ai/main-category/VIDEO%20%26%20MULTIMEDIA%20AI%20TOOLS</loc>
+    <lastmod>2025-03-05</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.aiwebtools.ai/main-category/WRITING%20%26%20CONTENT%20AI%20TOOLS</loc>
+    <lastmod>2025-03-05</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.aiwebtools.ai/main-category/CODING%20%26%20DEVELOPMENT%20AI%20TOOLS</loc>
+    <lastmod>2025-03-05</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.aiwebtools.ai/main-category/BUSINESS%20%26%20PRODUCTIVITY%20AI%20TOOLS</loc>
+    <lastmod>2025-03-05</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+  </url>
+  
+  <!-- ==================== AITOOLS.STUDIO - SECONDARY DOMAIN ==================== -->
+  
   <!-- HOMEPAGE - MAXIMUM PRIORITY FOR AI TOOLS KEYWORDS -->
   <url>
     <loc>https://aitools.studio</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2025-03-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://aitools.studio"/>
