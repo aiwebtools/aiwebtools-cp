@@ -380,7 +380,10 @@ const PinnedVideoPlayer = memo(() => {
             </button>
             <button
               onClick={handleToolClick}
-              className="w-6 h-6 text-[6px] rounded bg-gradient-to-r from-cyan-600 to-purple-600 hover:from-cyan-500 hover:to-purple-500 text-white font-bold"
+              className="w-6 h-6 text-[6px] rounded bg-gradient-to-r from-amber-500 to-yellow-400 hover:from-amber-400 hover:to-yellow-300 text-black font-bold animate-pulse"
+              style={{
+                boxShadow: '0 0 12px rgba(255, 215, 0, 0.8), 0 0 24px rgba(255, 215, 0, 0.5), 0 0 36px rgba(255, 215, 0, 0.3)'
+              }}
             >
               TRY
             </button>
