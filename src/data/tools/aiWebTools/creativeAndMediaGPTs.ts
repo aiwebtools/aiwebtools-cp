@@ -57,6 +57,7 @@ export const creativeAndMediaGPTs: Tool[] = [
     emoji: "✨",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://chatgpt.com/g/g-69176b2f62e481918b21756ccdc5d396-cyber-kabbalah-light-code-translation-engine-gpt/?via=aiwebtools",
+    videoUrl: "https://youtube.com/shorts/8afw8Tq94Pg?si=ykLyaheESCUYBLC5",
     tags: ["encryption", "cipher", "secret communication", "encoding", "cryptography", "light codes", "aiwebtools", "Custom GPT"],
     category: "Security & Privacy",
     rating: 4.6,
