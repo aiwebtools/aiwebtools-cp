@@ -182,6 +182,7 @@ const PinnedVideoPlayer = memo(() => {
   }, []);
 
   // Detect scroll position - only needed on homepage
+  // Use multiple detection methods for maximum browser compatibility
   useEffect(() => {
     // If not on homepage, always show
     if (!isHomepage) {
@@ -189,17 +190,36 @@ const PinnedVideoPlayer = memo(() => {
       return;
     }
     
+    const getScrollY = (): number => {
+      // Try multiple methods for maximum browser compatibility
+      if (typeof window.scrollY === 'number') return window.scrollY;
+      if (typeof window.pageYOffset === 'number') return window.pageYOffset;
+      if (document.documentElement) return document.documentElement.scrollTop;
+      if (document.body) return document.body.scrollTop;
+      return 0;
+    };
+    
     const handleScroll = () => {
-      const scrollY = window.scrollY;
+      const scrollY = getScrollY();
       // Show after scrolling 600px down (past hero and main categories)
       setHasScrolledEnough(scrollY > 600);
     };
 
+    // Listen on multiple targets for maximum compatibility
     window.addEventListener("scroll", handleScroll, { passive: true });
+    document.addEventListener("scroll", handleScroll, { passive: true });
+    
     // Check initial position
     handleScroll();
     
-    return () => window.removeEventListener("scroll", handleScroll);
+    // Also check periodically in case scroll events are missed (some embedded browsers)
+    const intervalId = setInterval(handleScroll, 1000);
+    
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      document.removeEventListener("scroll", handleScroll);
+      clearInterval(intervalId);
+    };
   }, [isHomepage]);
 
   // Auto-advance function
