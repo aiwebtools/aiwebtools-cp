@@ -9,6 +9,12 @@ const SESSION_CLOSED_KEY = "pinned-video-closed";
 const SHUFFLED_TOOLS_KEY = "pinned-video-shuffled-tools";
 const CURRENT_INDEX_KEY = "pinned-video-current-index";
 
+// Detect if device is mobile
+const isMobileDevice = (): boolean => {
+  if (typeof window === 'undefined') return false;
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
+};
+
 // Extract YouTube video ID from various URL formats
 const extractYouTubeId = (url: string): string | null => {
   if (!url) return null;
@@ -88,6 +94,7 @@ const PinnedVideoPlayer = memo(() => {
   const location = useLocation();
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const playerMountedRef = useRef(false);
+  const advanceTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   
   // Check if on homepage
   const isHomepage = location.pathname === "/" || location.pathname === "";
@@ -106,7 +113,9 @@ const PinnedVideoPlayer = memo(() => {
   
   // Persisted current index - survives navigation
   const [currentIndex, setCurrentIndex] = useState(getStoredIndex);
-  const [isMuted, setIsMuted] = useState(true);
+  
+  // Start unmuted on desktop, muted on mobile (browser autoplay policy)
+  const [isMuted, setIsMuted] = useState(() => isMobileDevice());
   
   // Shuffled tools - computed once at module level, never recalculated
   const toolsWithVideos = useMemo(() => getToolsWithVideosCached(), []);
@@ -129,11 +138,17 @@ const PinnedVideoPlayer = memo(() => {
     if (currentVideoId === lastVideoIdRef.current) return;
     
     lastVideoIdRef.current = currentVideoId;
+    const isMobile = isMobileDevice();
     // Use stable origin reference - enable JS API for state change detection
+    // Start muted for mobile (browser requirement), unmuted for desktop
+    const muteParam = isMobile ? '1' : '0';
     const origin = typeof window !== 'undefined' ? window.location.origin : '';
-    const newSrc = `https://www.youtube.com/embed/${currentVideoId}?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&enablejsapi=1&playsinline=1&loop=0&origin=${encodeURIComponent(origin)}&widget_referrer=${encodeURIComponent(origin)}`;
+    const newSrc = `https://www.youtube.com/embed/${currentVideoId}?autoplay=1&mute=${muteParam}&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&enablejsapi=1&playsinline=1&loop=0&origin=${encodeURIComponent(origin)}&widget_referrer=${encodeURIComponent(origin)}`;
     setVideoSrc(newSrc);
     playerMountedRef.current = true;
+    
+    // Update mute state to match
+    setIsMuted(isMobile);
   }, [currentVideoId]);
   
   // Handle mute/unmute via postMessage instead of iframe reload
@@ -187,6 +202,11 @@ const PinnedVideoPlayer = memo(() => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isHomepage]);
 
+  // Auto-advance function
+  const advanceToNextVideo = useCallback(() => {
+    setCurrentIndex(prev => (prev + 1) % toolsWithVideos.length);
+  }, [toolsWithVideos.length]);
+
   // Listen for YouTube iframe API messages to detect video end
   useEffect(() => {
     if (!isVisible || toolsWithVideos.length === 0) return;
@@ -200,18 +220,21 @@ const PinnedVideoPlayer = memo(() => {
         
         // Check for video ended state (state 0 = ended)
         if (data?.event === "onStateChange" && data?.info === 0) {
-          setCurrentIndex(prev => (prev + 1) % toolsWithVideos.length);
+          console.log('[PinnedPlayer] Video ended via onStateChange, advancing...');
+          advanceToNextVideo();
           return;
         }
         
         // Also check for infoDelivery with playerState (0 = ended)
         if (data?.info?.playerState === 0) {
-          setCurrentIndex(prev => (prev + 1) % toolsWithVideos.length);
+          console.log('[PinnedPlayer] Video ended via infoDelivery, advancing...');
+          advanceToNextVideo();
           return;
         }
         
         // Check for onReady event to request state updates
         if (data?.event === "onReady" && iframeRef.current) {
+          console.log('[PinnedPlayer] YouTube player ready, listening for state changes');
           // Request the player to send state updates
           iframeRef.current.contentWindow?.postMessage(
             JSON.stringify({ event: 'listening' }),
@@ -225,18 +248,30 @@ const PinnedVideoPlayer = memo(() => {
 
     window.addEventListener("message", handleMessage);
     return () => window.removeEventListener("message", handleMessage);
-  }, [isVisible, toolsWithVideos.length]);
+  }, [isVisible, toolsWithVideos.length, advanceToNextVideo]);
 
-  // Reliable fallback: auto-advance every 30 seconds (most demo videos are under 30s)
+  // Reliable fallback: auto-advance every 25 seconds to ensure videos cycle
   useEffect(() => {
     if (!isVisible || toolsWithVideos.length === 0) return;
     
-    const timeout = setTimeout(() => {
-      setCurrentIndex(prev => (prev + 1) % toolsWithVideos.length);
-    }, 30000);
+    // Clear any existing timeout
+    if (advanceTimeoutRef.current) {
+      clearTimeout(advanceTimeoutRef.current);
+    }
     
-    return () => clearTimeout(timeout);
-  }, [isVisible, toolsWithVideos.length, currentIndex]);
+    console.log('[PinnedPlayer] Setting 25s auto-advance timer for:', currentTool?.title);
+    
+    advanceTimeoutRef.current = setTimeout(() => {
+      console.log('[PinnedPlayer] Auto-advancing after 25s timeout');
+      advanceToNextVideo();
+    }, 25000);
+    
+    return () => {
+      if (advanceTimeoutRef.current) {
+        clearTimeout(advanceTimeoutRef.current);
+      }
+    };
+  }, [isVisible, toolsWithVideos.length, currentIndex, advanceToNextVideo, currentTool?.title]);
 
   const handleNextVideo = useCallback(() => {
     setCurrentIndex(prev => (prev + 1) % toolsWithVideos.length);
