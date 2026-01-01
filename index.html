@@ -115,7 +115,7 @@
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500;700&family=Dancing+Script:wght@400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet"></noscript>
     
-    <!-- Critical CSS for instant first paint -->
+    <!-- Critical CSS for instant first paint - NO matrix rain for speed -->
     <style>
       body { margin: 0; background: #030712; color: #fff; font-family: system-ui, -apple-system, sans-serif; }
       #root { min-height: 100vh; }
@@ -124,102 +124,56 @@
         align-items: center; 
         justify-content: center; 
         min-height: 100vh; 
-        position: relative;
-        overflow: hidden;
         background: #030712;
       }
-      .matrix-rain { position: absolute; inset: 0; overflow: hidden; z-index: 0; }
-      .m { position: absolute; top: -20%; font: 10px monospace; color: #00ff41; writing-mode: vertical-rl; animation: f linear infinite; will-change: transform; text-shadow: 0 0 5px #00ff41, 0 0 10px #00ff41, 0 0 20px #00ff41, 0 0 40px rgba(0,255,65,0.5); }
-      @keyframes f { 0% { transform: translateY(0); } 100% { transform: translateY(130vh); } }
       .loading-content {
-        position: relative;
-        z-index: 10;
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 16px;
+        gap: 12px;
       }
       .loading-text {
-        display: flex;
-        align-items: center;
         font-family: 'Courier New', monospace;
-        font-size: 16px;
+        font-size: 14px;
         color: #00ff41;
-        text-transform: uppercase;
-        letter-spacing: 3px;
-        text-shadow: 0 0 10px #00ff41, 0 0 20px #00ff41;
+        letter-spacing: 2px;
+        text-shadow: 0 0 8px #00ff41;
       }
-      .dots { display: flex; margin-left: 4px; }
-      .dot { opacity: 0; animation: blink 1.6s infinite; }
-      .dot:nth-child(1) { animation-delay: 0s; }
-      .dot:nth-child(2) { animation-delay: 0.3s; }
-      .dot:nth-child(3) { animation-delay: 0.6s; }
-      .dot:nth-child(4) { animation-delay: 0.9s; }
-      .dot:nth-child(5) { animation-delay: 1.2s; }
-      @keyframes blink { 0%, 20% { opacity: 0; } 40%, 100% { opacity: 1; } }
       .progress-container {
-        width: 280px;
-        height: 4px;
+        width: 240px;
+        height: 3px;
         background: rgba(0, 255, 65, 0.15);
         border-radius: 2px;
         overflow: hidden;
-        box-shadow: 0 0 10px rgba(0, 255, 65, 0.2);
       }
       .progress-bar {
         height: 100%;
         width: 0%;
-        background: linear-gradient(90deg, #00ff41, #00ff9d);
+        background: #00ff41;
         border-radius: 2px;
-        transition: width 0.15s ease-out;
-        box-shadow: 0 0 8px #00ff41, 0 0 16px rgba(0, 255, 65, 0.5);
+        transition: width 0.05s linear;
       }
       .progress-text {
         font-family: 'Courier New', monospace;
-        font-size: 11px;
-        color: rgba(0, 255, 65, 0.7);
-        letter-spacing: 2px;
+        font-size: 10px;
+        color: rgba(0, 255, 65, 0.6);
       }
-      .stage-label {
-        font-family: 'Courier New', monospace;
-        font-size: 12px;
-        color: #00ff41;
-        letter-spacing: 1px;
-        opacity: 0.9;
-        text-shadow: 0 0 8px #00ff41;
-        min-height: 18px;
-        transition: opacity 0.2s ease;
-      }
-      .stage-label.fade { opacity: 0; }
-      .rabbit { 
-        display: inline-block; 
-        animation: hop 0.5s ease-in-out infinite;
-      }
-      @keyframes hop { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
       .loading-spinner.fade-out { 
         opacity: 0; 
-        transition: opacity 0.08s ease-out;
+        transition: opacity 0.05s ease-out;
         pointer-events: none;
       }
     </style>
     <script>
-      // Matrix-themed stage messages - fewer for faster progression
-      const stageMessages = [
-        { threshold: 0, msg: 'Wake up, Neo...' },
-        { threshold: 40, msg: 'Follow the white rabbit 🐇' },
-        { threshold: 80, msg: '✨ Follow The Light...' }
-      ];
-
       let progress = 0;
-      let currentStage = -1;
       const progressBar = () => document.getElementById('progress-bar');
       const progressText = () => document.getElementById('progress-text');
-      const stageLabel = () => document.getElementById('stage-label');
       
       const removeSpinner = () => {
         const spinner = document.querySelector('.loading-spinner');
         if (spinner) {
           spinner.classList.add('fade-out');
-          setTimeout(() => spinner.remove(), 80);
+          setTimeout(() => spinner.remove(), 50);
         }
       };
       
@@ -227,82 +181,52 @@
         progress = Math.min(value, 100);
         const bar = progressBar();
         const text = progressText();
-        const stage = stageLabel();
-        
         if (bar) bar.style.width = progress + '%';
         if (text) text.textContent = Math.round(progress) + '%';
-        
-        // Update stage message
-        if (stage) {
-          const newStage = stageMessages.findIndex((s, i) => 
-            progress >= s.threshold && (i === stageMessages.length - 1 || progress < stageMessages[i + 1].threshold)
-          );
-          if (newStage !== currentStage && newStage >= 0) {
-            currentStage = newStage;
-            stage.innerHTML = stageMessages[newStage].msg;
-          }
-        }
+        if (progress >= 100) removeSpinner();
       };
 
-      // Fast progress simulation - complete in ~200ms
-      let startTime = Date.now();
-      const progressInterval = setInterval(() => {
-        const elapsed = Date.now() - startTime;
-        // Ultra fast ramp - reach 90% in 150ms
-        if (progress < 90) {
-          updateProgress(Math.min(90, elapsed / 1.7));
-        }
-      }, 16);
+      // Real-time progress tracking
+      let resourcesLoaded = 0;
+      let totalResources = 1;
+      
+      // Track performance entries for real progress
+      if (window.PerformanceObserver) {
+        const po = new PerformanceObserver((list) => {
+          resourcesLoaded += list.getEntries().length;
+          updateProgress(Math.min(85, (resourcesLoaded / Math.max(totalResources, resourcesLoaded + 1)) * 85));
+        });
+        try { po.observe({ entryTypes: ['resource'] }); } catch(e) {}
+      }
 
-      // Track actual module loading
+      // Fast initial ramp while waiting for resources
+      const startTime = performance.now();
+      const progressInterval = setInterval(() => {
+        const elapsed = performance.now() - startTime;
+        if (progress < 70) updateProgress(Math.min(70, elapsed / 2));
+      }, 8);
+
+      // Complete on window load
       window.addEventListener('load', () => {
         updateProgress(100);
         clearInterval(progressInterval);
-        removeSpinner();
       });
       
-      // Complete when React takes over
-      const observer = new MutationObserver((mutations) => {
-        for (const mutation of mutations) {
-          if (mutation.addedNodes.length && !document.querySelector('.loading-spinner')) {
-            clearInterval(progressInterval);
-            observer.disconnect();
-            return;
-          }
-        }
-        // React rendered something
-        if (document.querySelector('[data-reactroot], [data-react-helmet]') || 
-            document.querySelector('#root > *:not(.loading-spinner)')) {
+      // React detection
+      const observer = new MutationObserver(() => {
+        if (document.querySelector('#root > *:not(.loading-spinner)')) {
           updateProgress(100);
           clearInterval(progressInterval);
-          removeSpinner();
           observer.disconnect();
         }
       });
       observer.observe(document.getElementById('root'), { childList: true, subtree: true });
 
-      // Fallback: auto-complete after 300ms max (near instant)
+      // Ultra-fast fallback: 200ms max
       setTimeout(() => {
         updateProgress(100);
         clearInterval(progressInterval);
-        removeSpinner();
-      }, 300);
-    </script>
-    <script>
-      // Scramble Matrix characters continuously until React loads
-      const chars = '01アイウエオカキクケコサシスセソ';
-      const scrambleInterval = setInterval(() => {
-        const elements = document.querySelectorAll('.m');
-        if (elements.length === 0) {
-          clearInterval(scrambleInterval); // Stop when React replaces content
-          return;
-        }
-        elements.forEach(el => {
-          let s = '';
-          for (let i = 0; i < 5; i++) s += chars[Math.floor(Math.random() * chars.length)];
-          el.textContent = s;
-        });
-      }, 80);
+      }, 200);
     </script>
     
     <!-- Enhanced Structured Data -->
@@ -373,91 +297,8 @@
   <body>
     <div id="root">
       <div class="loading-spinner">
-        <div class="matrix-rain">
-          <span class="m" style="left:1%;animation-duration:2.5s;opacity:.3">01010</span>
-          <span class="m" style="left:3%;animation-duration:3.2s;animation-delay:.2s;opacity:.4">10110</span>
-          <span class="m" style="left:5%;animation-duration:2.8s;animation-delay:.5s;opacity:.35">01101</span>
-          <span class="m" style="left:7%;animation-duration:3.5s;animation-delay:.1s;opacity:.25">11010</span>
-          <span class="m" style="left:9%;animation-duration:2.9s;animation-delay:.7s;opacity:.4">00101</span>
-          <span class="m" style="left:11%;animation-duration:3.1s;animation-delay:.3s;opacity:.3">10011</span>
-          <span class="m" style="left:13%;animation-duration:2.6s;animation-delay:.6s;opacity:.45">01110</span>
-          <span class="m" style="left:15%;animation-duration:3.3s;animation-delay:.15s;opacity:.35">11001</span>
-          <span class="m" style="left:17%;animation-duration:2.7s;animation-delay:.8s;opacity:.3">00110</span>
-          <span class="m" style="left:19%;animation-duration:3.4s;animation-delay:.4s;opacity:.4">10101</span>
-          <span class="m" style="left:21%;animation-duration:2.5s;animation-delay:.25s;opacity:.35">01011</span>
-          <span class="m" style="left:23%;animation-duration:3s;animation-delay:.55s;opacity:.3">11100</span>
-          <span class="m" style="left:25%;animation-duration:2.8s;animation-delay:.1s;opacity:.45">00011</span>
-          <span class="m" style="left:27%;animation-duration:3.2s;animation-delay:.65s;opacity:.35">10010</span>
-          <span class="m" style="left:29%;animation-duration:2.6s;animation-delay:.35s;opacity:.4">01001</span>
-          <span class="m" style="left:31%;animation-duration:3.1s;animation-delay:.75s;opacity:.3">11011</span>
-          <span class="m" style="left:33%;animation-duration:2.9s;animation-delay:.2s;opacity:.45">00100</span>
-          <span class="m" style="left:35%;animation-duration:3.3s;animation-delay:.5s;opacity:.35">10111</span>
-          <span class="m" style="left:37%;animation-duration:2.7s;animation-delay:.15s;opacity:.4">01100</span>
-          <span class="m" style="left:39%;animation-duration:3.4s;animation-delay:.6s;opacity:.3">11110</span>
-          <span class="m" style="left:41%;animation-duration:2.5s;animation-delay:.45s;opacity:.4">00001</span>
-          <span class="m" style="left:43%;animation-duration:3s;animation-delay:.8s;opacity:.35">10100</span>
-          <span class="m" style="left:45%;animation-duration:2.8s;animation-delay:.3s;opacity:.45">01111</span>
-          <span class="m" style="left:47%;animation-duration:3.2s;animation-delay:.7s;opacity:.3">11101</span>
-          <span class="m" style="left:49%;animation-duration:2.6s;animation-delay:.4s;opacity:.4">00010</span>
-          <span class="m" style="left:51%;animation-duration:3.1s;animation-delay:.9s;opacity:.35">10001</span>
-          <span class="m" style="left:53%;animation-duration:2.9s;animation-delay:.55s;opacity:.3">01010</span>
-          <span class="m" style="left:55%;animation-duration:3.3s;animation-delay:.25s;opacity:.45">11000</span>
-          <span class="m" style="left:57%;animation-duration:2.7s;animation-delay:.65s;opacity:.35">00111</span>
-          <span class="m" style="left:59%;animation-duration:3.4s;animation-delay:.1s;opacity:.4">10110</span>
-          <span class="m" style="left:61%;animation-duration:2.5s;animation-delay:.85s;opacity:.3">01101</span>
-          <span class="m" style="left:63%;animation-duration:3s;animation-delay:.35s;opacity:.4">11010</span>
-          <span class="m" style="left:65%;animation-duration:2.8s;animation-delay:.6s;opacity:.35">00101</span>
-          <span class="m" style="left:67%;animation-duration:3.2s;animation-delay:.75s;opacity:.25">10011</span>
-          <span class="m" style="left:69%;animation-duration:2.6s;animation-delay:.45s;opacity:.4">01110</span>
-          <span class="m" style="left:71%;animation-duration:3.1s;animation-delay:.2s;opacity:.35">11001</span>
-          <span class="m" style="left:73%;animation-duration:2.9s;animation-delay:.9s;opacity:.3">00110</span>
-          <span class="m" style="left:75%;animation-duration:3.3s;animation-delay:.5s;opacity:.45">10101</span>
-          <span class="m" style="left:77%;animation-duration:2.7s;animation-delay:.15s;opacity:.35">01011</span>
-          <span class="m" style="left:79%;animation-duration:3.4s;animation-delay:.7s;opacity:.4">11100</span>
-          <span class="m" style="left:81%;animation-duration:2.5s;animation-delay:.3s;opacity:.3">00011</span>
-          <span class="m" style="left:83%;animation-duration:3s;animation-delay:.8s;opacity:.4">10010</span>
-          <span class="m" style="left:85%;animation-duration:2.8s;animation-delay:.4s;opacity:.35">01001</span>
-          <span class="m" style="left:87%;animation-duration:3.2s;animation-delay:.95s;opacity:.45">11011</span>
-          <span class="m" style="left:89%;animation-duration:2.6s;animation-delay:.55s;opacity:.3">00100</span>
-          <span class="m" style="left:91%;animation-duration:3.1s;animation-delay:.1s;opacity:.4">10111</span>
-          <span class="m" style="left:93%;animation-duration:2.9s;animation-delay:.65s;opacity:.35">01100</span>
-          <span class="m" style="left:95%;animation-duration:3.3s;animation-delay:.25s;opacity:.3">11110</span>
-          <span class="m" style="left:97%;animation-duration:2.7s;animation-delay:.85s;opacity:.4">00001</span>
-          <span class="m" style="left:99%;animation-duration:3.4s;animation-delay:.45s;opacity:.35">10100</span>
-          <span class="m" style="left:2%;animation-duration:3s;animation-delay:.95s;opacity:.25">01111</span>
-          <span class="m" style="left:4%;animation-duration:2.5s;animation-delay:.35s;opacity:.4">11101</span>
-          <span class="m" style="left:6%;animation-duration:3.2s;animation-delay:.75s;opacity:.3">00010</span>
-          <span class="m" style="left:8%;animation-duration:2.8s;animation-delay:.15s;opacity:.35">10001</span>
-          <span class="m" style="left:10%;animation-duration:3.1s;animation-delay:.6s;opacity:.45">01010</span>
-          <span class="m" style="left:12%;animation-duration:2.6s;animation-delay:.9s;opacity:.3">11000</span>
-          <span class="m" style="left:14%;animation-duration:3.3s;animation-delay:.4s;opacity:.4">00111</span>
-          <span class="m" style="left:16%;animation-duration:2.9s;animation-delay:.8s;opacity:.35">10110</span>
-          <span class="m" style="left:18%;animation-duration:3.4s;animation-delay:.2s;opacity:.3">01101</span>
-          <span class="m" style="left:20%;animation-duration:2.7s;animation-delay:.7s;opacity:.45">11010</span>
-          <span class="m" style="left:22%;animation-duration:3s;animation-delay:.3s;opacity:.35">00101</span>
-          <span class="m" style="left:24%;animation-duration:2.5s;animation-delay:.85s;opacity:.4">10011</span>
-          <span class="m" style="left:26%;animation-duration:3.2s;animation-delay:.5s;opacity:.3">01110</span>
-          <span class="m" style="left:28%;animation-duration:2.8s;animation-delay:.95s;opacity:.35">11001</span>
-          <span class="m" style="left:30%;animation-duration:3.1s;animation-delay:.45s;opacity:.45">00110</span>
-          <span class="m" style="left:32%;animation-duration:2.6s;animation-delay:.1s;opacity:.3">10101</span>
-          <span class="m" style="left:34%;animation-duration:3.3s;animation-delay:.65s;opacity:.4">01011</span>
-          <span class="m" style="left:36%;animation-duration:2.9s;animation-delay:.25s;opacity:.35">11100</span>
-          <span class="m" style="left:38%;animation-duration:3.4s;animation-delay:.8s;opacity:.3">00011</span>
-          <span class="m" style="left:40%;animation-duration:2.7s;animation-delay:.4s;opacity:.45">10010</span>
-          <span class="m" style="left:42%;animation-duration:3s;animation-delay:.9s;opacity:.35">01001</span>
-          <span class="m" style="left:44%;animation-duration:2.5s;animation-delay:.55s;opacity:.4">11011</span>
-          <span class="m" style="left:46%;animation-duration:3.2s;animation-delay:.15s;opacity:.3">00100</span>
-          <span class="m" style="left:48%;animation-duration:2.8s;animation-delay:.7s;opacity:.35">10111</span>
-          <span class="m" style="left:50%;animation-duration:3.1s;animation-delay:.35s;opacity:.45">01100</span>
-          <span class="m" style="left:52%;animation-duration:2.6s;animation-delay:.85s;opacity:.3">11110</span>
-          <span class="m" style="left:54%;animation-duration:3.3s;animation-delay:.5s;opacity:.4">00001</span>
-          <span class="m" style="left:56%;animation-duration:2.9s;animation-delay:.95s;opacity:.35">10100</span>
-          <span class="m" style="left:58%;animation-duration:3.4s;animation-delay:.2s;opacity:.3">01111</span>
-          <span class="m" style="left:60%;animation-duration:2.7s;animation-delay:.6s;opacity:.45">11101</span>
-        </div>
         <div class="loading-content">
-          <div class="loading-text">LOADING YOUR AI TOOL EMPIRE<span class="dots"><span class="dot">.</span><span class="dot">.</span><span class="dot">.</span><span class="dot">.</span><span class="dot">.</span></span></div>
-          <div class="stage-label" id="stage-label">Wake up, Neo...</div>
+          <div class="loading-text">LOADING</div>
           <div class="progress-container">
             <div class="progress-bar" id="progress-bar"></div>
           </div>
