@@ -17,6 +17,9 @@ import AutoScaleTitle from "@/components/ui/auto-scale-title";
 const weightedShuffle = <T extends { title: string }>(items: T[]): T[] => {
   // TOP TIER: Dream-conquering, practical tools that help users excel and create
   const dreamConqueringTitles = new Set([
+    // Civic Empowerment & Action
+    "WE THE PEOPLE AI", "Public Testimony Writer GPT", "Legislation Writer GPT",
+    "Social Safety Net GPT", "Global Peace Restoration GPT",
     // Content Creation & Writing
     "BOOK WRITER GPT", "Movie Script Writer GPT", "Movie Maker Studio AI SUITE", 
     "Children's Picture Book Maker GPT", "Coloring Book Generator GPT", "Movie Scene Maker GPT",
@@ -32,14 +35,17 @@ const weightedShuffle = <T extends { title: string }>(items: T[]): T[] => {
     "Restaurant Menu Maker GPT", "Tattoo Designer GPT", "Meme Generator GPT",
     // AI Development & Productivity
     "Customizable GPT Maker", "AIWEBTOOLS GPT CLONER GPT", "GODMODE GPT", "MULTITASKER GPT",
-    "PERFECT PROMPT ENGINE", "Data Research Analysis Report GPT",
+    "PERFECT PROMPT ENGINE", "Data Research Analysis Report GPT", "AI Tools Finder GPT",
     // Career & Professional
     "Resume & Job Finder AI Suite", "Engineering GPT Suite", "PPTx Powerpoint Maker GPT",
     // Entertainment & Gaming
     "Game Design Document / Developer GPT", "Celebrity Chatline GPT", "TRIVIA NIGHT GPT",
     // Specialized Professional Tools
     "Property Data Finder GPT", "Insurance Claims GPT", "HOME RENOVATOR GPT",
-    "AUTOMOBILE GPT", "STAGEMASTER AI SUITE"
+    "AUTOMOBILE GPT", "STAGEMASTER AI SUITE",
+    // Self-Reliance & Empowerment
+    "Self Sufficiency GPT", "Survivalist GPT", "FACT CHECKER GPT", "Fortune Teller GPT",
+    "Cyber Security GPT", "Probability GPT"
   ]);
 
   // SECOND TIER: Other premium tools (spirituality, exploration, history, etc.)
