@@ -326,31 +326,32 @@
           }
         };
         
-        // Check for REAL visible content
+        // Check for ANY real React content - more aggressive detection
         const hasVisibleContent = () => {
           const root = document.getElementById('root');
           if (!root) return false;
           
+          // Check if root has any visible children (not just loading spinner)
           const children = root.children;
-          let hasRealContent = false;
-          
           for (let i = 0; i < children.length; i++) {
             const child = children[i];
-            if (child.classList.contains('loading-spinner')) continue;
-            if (child.offsetHeight > 50) {
-              hasRealContent = true;
-              break;
-            }
+            // Skip the loading spinner itself
+            if (child.classList && child.classList.contains('loading-spinner')) continue;
+            // Any child with actual height means React rendered
+            if (child.offsetHeight > 10) return true;
           }
           
-          const header = document.querySelector('header');
-          const mainContent = document.querySelector('main');
-          const disclaimerGate = document.querySelector('[class*="disclaimer"], [class*="Disclaimer"], [class*="welcome"]');
+          // Also check for common React elements anywhere in root
+          if (root.querySelector('header')) return true;
+          if (root.querySelector('main')) return true;
+          if (root.querySelector('button')) return true;
+          if (root.querySelector('[class*="bg-"]')) return true;
+          if (root.querySelector('div[class*="min-h-screen"]')) return true;
           
-          return hasRealContent && (header || mainContent || disclaimerGate);
+          return false;
         };
 
-        // Fast progress animation - aggressive speed
+        // Fast progress animation
         let width = 10;
         const tick = () => {
           if (removed) return;
@@ -362,12 +363,11 @@
         const progressInterval = setInterval(tick, 50);
         tick();
 
-        // Aggressive content detection - check frequently
+        // Aggressive content detection
         const contentCheck = setInterval(() => {
           if (hasVisibleContent()) {
             clearInterval(contentCheck);
             clearInterval(progressInterval);
-            // Fast finish to 100%
             const finishProgress = setInterval(() => {
               width = Math.min(width + 8, 100);
               if (bar) bar.style.width = width + '%';
@@ -380,7 +380,7 @@
           }
         }, 30);
 
-        // Short fallback - 3 seconds max
+        // Fallback - 3 seconds max
         setTimeout(() => {
           if (removed) return;
           clearInterval(contentCheck);
