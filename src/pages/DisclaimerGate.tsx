@@ -65,7 +65,7 @@ const DisclaimerGate: React.FC = () => {
 
   const handleAccept = () => {
     // Play welcome audio immediately on user gesture (bypasses autoplay restrictions)
-    const audio = new Audio('/welcome-neo.mp3');
+    const audio = new Audio('/welcome-disclaimer.mp3');
     audio.volume = 0.7;
     audio.play().catch(() => {
       // Silently fail if audio can't play
