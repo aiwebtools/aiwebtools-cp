@@ -45,33 +45,9 @@ const AIWritingToolsPage = lazy(() => import("./pages/AIWritingToolsPage"));
 const FloatingCloneButton = lazy(() => import("./components/FloatingCloneButton"));
 const PinnedVideoPlayer = lazy(() => import("./components/PinnedVideoPlayer"));
 
-// Welcome Neo voice - plays when user lands on main site after accepting disclaimer
-const WelcomeNeoVoice = () => {
-  const location = useLocation();
-  const hasPlayedRef = React.useRef(false);
-
-  React.useEffect(() => {
-    const hasAccepted = getConsentAccepted();
-    
-    // Only play on main page ("/"), after disclaimer accepted, once per session
-    if (location.pathname === '/' && hasAccepted && !hasPlayedRef.current) {
-      hasPlayedRef.current = true;
-      
-      // Play as soon as the main page renders
-      setTimeout(() => {
-        const audio = new Audio('/welcome-neo.mp3');
-        audio.volume = 0.7;
-        audio.play().then(() => {
-          console.log('🎵 Playing Welcome Neo audio...');
-        }).catch((err) => {
-          console.log('⏳ Audio requires user interaction:', err);
-        });
-      }, 0);
-    }
-  }, [location.pathname]);
-
-  return null;
-};
+// Welcome Neo voice is now played directly from DisclaimerGate on accept
+// This ensures it plays from user gesture (bypassing autoplay restrictions)
+const WelcomeNeoVoice = () => null;
 
 // NOTE: precomputed category cache is initialized AFTER disclaimer acceptance
 // to keep the /welcome disclaimer gate load instant.

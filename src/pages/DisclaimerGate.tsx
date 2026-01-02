@@ -64,7 +64,14 @@ const DisclaimerGate: React.FC = () => {
   }, [navigate]);
 
   const handleAccept = () => {
-    // INSTANT - set flag and navigate
+    // Play welcome audio immediately on user gesture (bypasses autoplay restrictions)
+    const audio = new Audio('/welcome-neo.mp3');
+    audio.volume = 0.7;
+    audio.play().catch(() => {
+      // Silently fail if audio can't play
+    });
+    
+    // Set consent and navigate
     setConsentAccepted(true);
     navigate("/", { replace: true });
   };
