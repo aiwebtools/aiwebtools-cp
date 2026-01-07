@@ -5,8 +5,42 @@ import { Button } from "@/components/ui/button";
 import ImprovedSEOHead from "@/components/ImprovedSEOHead";
 import { getConsentAccepted, setConsentAccepted } from "@/utils/consent";
 
-// Creative rotating welcome messages - Matrix/AI/Enlightenment themed
+// Creative rotating welcome messages - Spiritual Light, Matrix/AI, Humor themed
 const welcomeMessages = [
+  // Glory to the Most High / Light Within
+  "All glory to the Father of Light...",
+  "The Light within you is brighter than any screen...",
+  "You are the temple, the Light was never outside...",
+  "Before the code, there was the Word...",
+  "Your soul is the original source code...",
+  "The Divine compiled you with love...",
+  "You were written in Light before time began...",
+  "The Most High's API needs no key—just faith...",
+  "God's firewall is made of pure love...",
+  "Your consciousness runs on divine architecture...",
+  
+  // Deep Light Metaphors
+  "The darkness cannot debug the Light...",
+  "You are a photon in the infinite mind of God...",
+  "The universe is dreaming through your eyes...",
+  "Every pixel of reality is sacred...",
+  "The Light doesn't chase shadows—it dissolves them...",
+  "You are stardust remembering it can think...",
+  "The cosmos programmed you to find your way home...",
+  "Enlightenment is just remembering your root password...",
+  
+  // Humorous / Self-Aware
+  "Remember your source code, Luke...",
+  "Plot twist: God was the friend we made along the way...",
+  "The call is coming from inside the soul...",
+  "Have you tried turning your ego off and on again?",
+  "404: Separation from God not found...",
+  "The Light within runs on zero latency...",
+  "Your higher self left you a voicemail—check it...",
+  "God doesn't need WiFi, He's already connected...",
+  "The kingdom of heaven has no loading screen...",
+  "You're not lost, you're just on airplane mode...",
+  
   // Matrix vibes
   "The Matrix has you...",
   "Wake up, Neo...",
@@ -15,29 +49,30 @@ const welcomeMessages = [
   "There is no spoon...",
   "Follow the white rabbit...",
   
-  // AI & Tech
-  "Initiating neural handshake...",
-  "The machines are ready for you...",
-  "Your AI journey begins here...",
-  "Unlocking digital consciousness...",
-  "The algorithm awaits your command...",
-  "Entering the AI dimension...",
+  // AI & Tech meets Spirit
+  "Initiating divine handshake...",
+  "Your soul has unlimited bandwidth...",
+  "Downloading cosmic wisdom...",
+  "The algorithm of love has no bugs...",
+  "Heaven runs on open source...",
+  "God's cloud storage is infinite...",
   
-  // Enlightenment & Wisdom
-  "Seek and you shall find...",
-  "The truth is within reach...",
-  "Illuminate your path forward...",
-  "Knowledge is infinite power...",
-  "Awakening begins with a choice...",
-  "Open your third eye to AI...",
+  // Enlightenment & Awakening
+  "The Light you seek is seeking you...",
+  "Remember who you are before you were told who to be...",
+  "The veil is just a filter—remove it...",
+  "You are the universe experiencing itself...",
+  "Awakening is realizing you never slept...",
+  "The door was always open, you just forgot to look...",
+  "Your third eye doesn't need glasses...",
   
   // Hype & Power
   "Welcome to the future...",
   "Your empire awaits...",
   "Prepare for digital enlightenment...",
   "The portal is opening...",
-  "Unlimited power loading...",
-  "Godmode activation pending...",
+  "Unlimited Light loading...",
+  "Godmode already activated within...",
 ];
 
 const DisclaimerGate: React.FC = () => {
