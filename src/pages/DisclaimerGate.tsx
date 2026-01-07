@@ -83,10 +83,17 @@ const DisclaimerGate: React.FC = () => {
     Math.floor(Math.random() * welcomeMessages.length)
   );
 
-  // Rotate messages
+  // Rotate messages - TRUE random each time (not sequential)
   useEffect(() => {
     const interval = setInterval(() => {
-      setMessageIndex(prev => (prev + 1) % welcomeMessages.length);
+      setMessageIndex(prev => {
+        // Pick a random index that's different from current
+        let newIndex;
+        do {
+          newIndex = Math.floor(Math.random() * welcomeMessages.length);
+        } while (newIndex === prev && welcomeMessages.length > 1);
+        return newIndex;
+      });
     }, 2000);
     return () => clearInterval(interval);
   }, []);
