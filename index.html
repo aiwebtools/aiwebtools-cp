@@ -380,7 +380,7 @@
             }
           }, 10);
 
-          // Extended fallback - 4 seconds (gives cube time to spin ~4 rotations)
+          // Fallback - 2.5 seconds max (cube spins ~2.5 times at 1s/rotation)
           setTimeout(() => {
             if (removed) return;
             clearInterval(contentCheck);
@@ -388,7 +388,7 @@
             if (bar) bar.style.width = '100%';
             if (pct) pct.textContent = '100%';
             removeSpinner();
-          }, 4000);
+          }, 2500);
         };
 
         // Don't wait for DOMContentLoaded (it can be delayed by defer scripts).
