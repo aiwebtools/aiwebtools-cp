@@ -351,36 +351,31 @@
           return false;
         };
 
-        // Fast progress animation
-        let width = 10;
+        // ULTRA FAST progress - start high, move quick
+        let width = 25;
         const tick = () => {
           if (removed) return;
-          width = Math.min(width + (Math.random() * 2.5 + 1), 88);
+          width = Math.min(width + (Math.random() * 4 + 2), 92);
           if (bar) bar.style.width = width + '%';
           if (pct) pct.textContent = Math.round(width) + '%';
         };
         
-        const progressInterval = setInterval(tick, 50);
+        const progressInterval = setInterval(tick, 30);
         tick();
 
-        // Aggressive content detection
+        // INSTANT content detection - check every 10ms
         const contentCheck = setInterval(() => {
           if (hasVisibleContent()) {
             clearInterval(contentCheck);
             clearInterval(progressInterval);
-            const finishProgress = setInterval(() => {
-              width = Math.min(width + 8, 100);
-              if (bar) bar.style.width = width + '%';
-              if (pct) pct.textContent = Math.round(width) + '%';
-              if (width >= 100) {
-                clearInterval(finishProgress);
-                setTimeout(removeSpinner, 80);
-              }
-            }, 15);
+            // Instant finish
+            if (bar) bar.style.width = '100%';
+            if (pct) pct.textContent = '100%';
+            setTimeout(removeSpinner, 50);
           }
-        }, 30);
+        }, 10);
 
-        // Fallback - 3 seconds max
+        // Short fallback - 1.5 seconds max
         setTimeout(() => {
           if (removed) return;
           clearInterval(contentCheck);
@@ -388,7 +383,7 @@
           if (bar) bar.style.width = '100%';
           if (pct) pct.textContent = '100%';
           removeSpinner();
-        }, 3000);
+        }, 1500);
       });
     </script>
     
