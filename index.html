@@ -204,7 +204,7 @@
         width: 50px; height: 50px;
         position: relative;
         transform-style: preserve-3d;
-        animation: rotateCube 2.5s linear infinite;
+        animation: rotateCube 1s linear infinite;
         will-change: transform;
         backface-visibility: visible;
         transform: translateZ(0);
@@ -380,7 +380,7 @@
             }
           }, 10);
 
-          // Short fallback - 1.5 seconds max
+          // Extended fallback - 4 seconds (gives cube time to spin ~4 rotations)
           setTimeout(() => {
             if (removed) return;
             clearInterval(contentCheck);
@@ -388,7 +388,7 @@
             if (bar) bar.style.width = '100%';
             if (pct) pct.textContent = '100%';
             removeSpinner();
-          }, 1500);
+          }, 4000);
         };
 
         // Don't wait for DOMContentLoaded (it can be delayed by defer scripts).
