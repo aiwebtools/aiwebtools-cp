@@ -319,15 +319,16 @@
           started = true;
 
           let removed = false;
-          let contentReady = false;
-          let minTimeReached = false;
           const bar = document.getElementById('progress-bar');
           const pct = document.getElementById('progress-pct');
-          const MIN_DISPLAY_TIME = 4000; // 4 seconds minimum cube spin
 
           const removeSpinner = () => {
             if (removed) return;
             removed = true;
+            clearInterval(contentCheck);
+            clearInterval(progressInterval);
+            if (bar) bar.style.width = '100%';
+            if (pct) pct.textContent = '100%';
             const spinner = document.querySelector('.loading-spinner');
             if (spinner) {
               spinner.classList.add('fade-out');
@@ -335,74 +336,55 @@
             }
           };
 
-          // Try to remove - only works when BOTH conditions met
-          const tryRemove = () => {
-            if (contentReady && minTimeReached) {
-              clearInterval(contentCheck);
-              clearInterval(progressInterval);
-              if (bar) bar.style.width = '100%';
-              if (pct) pct.textContent = '100%';
-              setTimeout(removeSpinner, 50);
-            }
-          };
-
-          // Check for ANY real React content
+          // AGGRESSIVE content detection - check for PAINTED content
           const hasVisibleContent = () => {
             const root = document.getElementById('root');
             if (!root) return false;
-
+            
+            // Check if React has rendered REAL visible content (not just mounting)
             const children = root.children;
             for (let i = 0; i < children.length; i++) {
               const child = children[i];
+              // Skip loading spinner
               if (child.classList && child.classList.contains('loading-spinner')) continue;
-              if (child.offsetHeight > 10) return true;
+              // Must have actual height AND contain real elements
+              if (child.offsetHeight > 50 && child.innerHTML.length > 100) return true;
             }
-
-            if (root.querySelector('header')) return true;
+            
+            // Specific element checks - these ONLY exist when app is fully rendered
+            if (root.querySelector('header[class*="fixed"]')) return true;
             if (root.querySelector('main')) return true;
-            if (root.querySelector('button')) return true;
-            if (root.querySelector('[class*="bg-"]')) return true;
-            if (root.querySelector('div[class*="min-h-screen"]')) return true;
-
+            if (root.querySelector('[data-testid]')) return true;
+            if (root.querySelector('nav')) return true;
+            // DisclaimerGate has specific structure
+            if (root.querySelector('.backdrop-blur-md')) return true;
+            
             return false;
           };
 
-          // Progress animation - slower to fill 4 seconds nicely
+          // Progress animation - continuous motion
           let width = 5;
           const tick = () => {
             if (removed) return;
-            // Slow steady progress over 4 seconds (5% to 95%)
-            width = Math.min(width + 0.6, 95);
+            width = Math.min(width + 0.5, 95);
             if (bar) bar.style.width = width + '%';
             if (pct) pct.textContent = Math.round(width) + '%';
           };
 
-          const progressInterval = setInterval(tick, 40);
+          const progressInterval = setInterval(tick, 50);
           tick();
 
-          // Content detection - marks ready but doesn't remove yet
+          // INSTANT content detection - check every 5ms, remove IMMEDIATELY when ready
           const contentCheck = setInterval(() => {
-            if (hasVisibleContent() && !contentReady) {
-              contentReady = true;
-              tryRemove();
+            if (hasVisibleContent()) {
+              removeSpinner();
             }
-          }, 10);
+          }, 5);
 
-          // Minimum display time - 4 seconds of cube spinning
+          // Hard fallback - 8 seconds max (cube keeps spinning until then)
           setTimeout(() => {
-            minTimeReached = true;
-            tryRemove();
-          }, MIN_DISPLAY_TIME);
-
-          // Hard fallback - 5 seconds absolute max (if content never detected)
-          setTimeout(() => {
-            if (removed) return;
-            clearInterval(contentCheck);
-            clearInterval(progressInterval);
-            if (bar) bar.style.width = '100%';
-            if (pct) pct.textContent = '100%';
-            removeSpinner();
-          }, 5000);
+            if (!removed) removeSpinner();
+          }, 8000);
         };
 
         const tryStart = () => {
