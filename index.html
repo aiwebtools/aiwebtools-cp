@@ -319,8 +319,11 @@
           started = true;
 
           let removed = false;
+          let contentReady = false;
+          let minTimeReached = false;
           const bar = document.getElementById('progress-bar');
           const pct = document.getElementById('progress-pct');
+          const MIN_DISPLAY_TIME = 4000; // 4 seconds minimum cube spin
 
           const removeSpinner = () => {
             if (removed) return;
@@ -332,22 +335,29 @@
             }
           };
 
-          // Check for ANY real React content - more aggressive detection
+          // Try to remove - only works when BOTH conditions met
+          const tryRemove = () => {
+            if (contentReady && minTimeReached) {
+              clearInterval(contentCheck);
+              clearInterval(progressInterval);
+              if (bar) bar.style.width = '100%';
+              if (pct) pct.textContent = '100%';
+              setTimeout(removeSpinner, 50);
+            }
+          };
+
+          // Check for ANY real React content
           const hasVisibleContent = () => {
             const root = document.getElementById('root');
             if (!root) return false;
 
-            // Check if root has any visible children (not just loading spinner)
             const children = root.children;
             for (let i = 0; i < children.length; i++) {
               const child = children[i];
-              // Skip the loading spinner itself
               if (child.classList && child.classList.contains('loading-spinner')) continue;
-              // Any child with actual height means React rendered
               if (child.offsetHeight > 10) return true;
             }
 
-            // Also check for common React elements anywhere in root
             if (root.querySelector('header')) return true;
             if (root.querySelector('main')) return true;
             if (root.querySelector('button')) return true;
@@ -357,30 +367,34 @@
             return false;
           };
 
-          // ULTRA FAST progress - start high, move quick
-          let width = 25;
+          // Progress animation - slower to fill 4 seconds nicely
+          let width = 5;
           const tick = () => {
             if (removed) return;
-            width = Math.min(width + (Math.random() * 4 + 2), 92);
+            // Slow steady progress over 4 seconds (5% to 95%)
+            width = Math.min(width + 0.6, 95);
             if (bar) bar.style.width = width + '%';
             if (pct) pct.textContent = Math.round(width) + '%';
           };
 
-          const progressInterval = setInterval(tick, 30);
+          const progressInterval = setInterval(tick, 40);
           tick();
 
-          // INSTANT content detection - check every 10ms
+          // Content detection - marks ready but doesn't remove yet
           const contentCheck = setInterval(() => {
-            if (hasVisibleContent()) {
-              clearInterval(contentCheck);
-              clearInterval(progressInterval);
-              if (bar) bar.style.width = '100%';
-              if (pct) pct.textContent = '100%';
-              setTimeout(removeSpinner, 50);
+            if (hasVisibleContent() && !contentReady) {
+              contentReady = true;
+              tryRemove();
             }
           }, 10);
 
-          // Fallback - 2.5 seconds max (cube spins ~2.5 times at 1s/rotation)
+          // Minimum display time - 4 seconds of cube spinning
+          setTimeout(() => {
+            minTimeReached = true;
+            tryRemove();
+          }, MIN_DISPLAY_TIME);
+
+          // Hard fallback - 5 seconds absolute max (if content never detected)
           setTimeout(() => {
             if (removed) return;
             clearInterval(contentCheck);
@@ -388,11 +402,9 @@
             if (bar) bar.style.width = '100%';
             if (pct) pct.textContent = '100%';
             removeSpinner();
-          }, 2500);
+          }, 5000);
         };
 
-        // Don't wait for DOMContentLoaded (it can be delayed by defer scripts).
-        // Start as soon as the spinner elements exist.
         const tryStart = () => {
           if (started) return;
           if (document.getElementById('progress-bar') && document.getElementById('progress-pct')) {
