@@ -65,11 +65,19 @@ const DisclaimerGate: React.FC = () => {
 
   const handleAccept = () => {
     // Play welcome audio immediately on user gesture (bypasses autoplay restrictions)
-    const audio = new Audio('/welcome-disclaimer.mp3');
-    audio.volume = 0.7;
-    audio.play().catch(() => {
-      // Silently fail if audio can't play
-    });
+    try {
+      const audio = new Audio('/welcome-disclaimer.mp3');
+      audio.volume = 0.8;
+      audio.preload = 'auto';
+      const playPromise = audio.play();
+      if (playPromise !== undefined) {
+        playPromise.catch((err) => {
+          console.log('Welcome audio playback failed:', err);
+        });
+      }
+    } catch (e) {
+      console.log('Welcome audio error:', e);
+    }
     
     // Set consent and navigate
     setConsentAccepted(true);
