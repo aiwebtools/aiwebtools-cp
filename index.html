@@ -311,80 +311,99 @@
       @keyframes blink { 50% { opacity: 0.5; } }
     </style>
     <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        let removed = false;
-        const bar = document.getElementById('progress-bar');
-        const pct = document.getElementById('progress-pct');
-        
-        const removeSpinner = () => {
-          if (removed) return;
-          removed = true;
-          const spinner = document.querySelector('.loading-spinner');
-          if (spinner) {
-            spinner.classList.add('fade-out');
-            setTimeout(() => spinner.remove(), 300);
-          }
-        };
-        
-        // Check for ANY real React content - more aggressive detection
-        const hasVisibleContent = () => {
-          const root = document.getElementById('root');
-          if (!root) return false;
-          
-          // Check if root has any visible children (not just loading spinner)
-          const children = root.children;
-          for (let i = 0; i < children.length; i++) {
-            const child = children[i];
-            // Skip the loading spinner itself
-            if (child.classList && child.classList.contains('loading-spinner')) continue;
-            // Any child with actual height means React rendered
-            if (child.offsetHeight > 10) return true;
-          }
-          
-          // Also check for common React elements anywhere in root
-          if (root.querySelector('header')) return true;
-          if (root.querySelector('main')) return true;
-          if (root.querySelector('button')) return true;
-          if (root.querySelector('[class*="bg-"]')) return true;
-          if (root.querySelector('div[class*="min-h-screen"]')) return true;
-          
-          return false;
-        };
+      (function () {
+        let started = false;
 
-        // ULTRA FAST progress - start high, move quick
-        let width = 25;
-        const tick = () => {
-          if (removed) return;
-          width = Math.min(width + (Math.random() * 4 + 2), 92);
-          if (bar) bar.style.width = width + '%';
-          if (pct) pct.textContent = Math.round(width) + '%';
-        };
-        
-        const progressInterval = setInterval(tick, 30);
-        tick();
+        const start = () => {
+          if (started) return;
+          started = true;
 
-        // INSTANT content detection - check every 10ms
-        const contentCheck = setInterval(() => {
-          if (hasVisibleContent()) {
+          let removed = false;
+          const bar = document.getElementById('progress-bar');
+          const pct = document.getElementById('progress-pct');
+
+          const removeSpinner = () => {
+            if (removed) return;
+            removed = true;
+            const spinner = document.querySelector('.loading-spinner');
+            if (spinner) {
+              spinner.classList.add('fade-out');
+              setTimeout(() => spinner.remove(), 300);
+            }
+          };
+
+          // Check for ANY real React content - more aggressive detection
+          const hasVisibleContent = () => {
+            const root = document.getElementById('root');
+            if (!root) return false;
+
+            // Check if root has any visible children (not just loading spinner)
+            const children = root.children;
+            for (let i = 0; i < children.length; i++) {
+              const child = children[i];
+              // Skip the loading spinner itself
+              if (child.classList && child.classList.contains('loading-spinner')) continue;
+              // Any child with actual height means React rendered
+              if (child.offsetHeight > 10) return true;
+            }
+
+            // Also check for common React elements anywhere in root
+            if (root.querySelector('header')) return true;
+            if (root.querySelector('main')) return true;
+            if (root.querySelector('button')) return true;
+            if (root.querySelector('[class*="bg-"]')) return true;
+            if (root.querySelector('div[class*="min-h-screen"]')) return true;
+
+            return false;
+          };
+
+          // ULTRA FAST progress - start high, move quick
+          let width = 25;
+          const tick = () => {
+            if (removed) return;
+            width = Math.min(width + (Math.random() * 4 + 2), 92);
+            if (bar) bar.style.width = width + '%';
+            if (pct) pct.textContent = Math.round(width) + '%';
+          };
+
+          const progressInterval = setInterval(tick, 30);
+          tick();
+
+          // INSTANT content detection - check every 10ms
+          const contentCheck = setInterval(() => {
+            if (hasVisibleContent()) {
+              clearInterval(contentCheck);
+              clearInterval(progressInterval);
+              if (bar) bar.style.width = '100%';
+              if (pct) pct.textContent = '100%';
+              setTimeout(removeSpinner, 50);
+            }
+          }, 10);
+
+          // Short fallback - 1.5 seconds max
+          setTimeout(() => {
+            if (removed) return;
             clearInterval(contentCheck);
             clearInterval(progressInterval);
-            // Instant finish
             if (bar) bar.style.width = '100%';
             if (pct) pct.textContent = '100%';
-            setTimeout(removeSpinner, 50);
-          }
-        }, 10);
+            removeSpinner();
+          }, 1500);
+        };
 
-        // Short fallback - 1.5 seconds max
-        setTimeout(() => {
-          if (removed) return;
-          clearInterval(contentCheck);
-          clearInterval(progressInterval);
-          if (bar) bar.style.width = '100%';
-          if (pct) pct.textContent = '100%';
-          removeSpinner();
-        }, 1500);
-      });
+        // Don't wait for DOMContentLoaded (it can be delayed by defer scripts).
+        // Start as soon as the spinner elements exist.
+        const tryStart = () => {
+          if (started) return;
+          if (document.getElementById('progress-bar') && document.getElementById('progress-pct')) {
+            start();
+            return;
+          }
+          requestAnimationFrame(tryStart);
+        };
+
+        tryStart();
+      })();
     </script>
     
     <!-- Enhanced Structured Data -->
