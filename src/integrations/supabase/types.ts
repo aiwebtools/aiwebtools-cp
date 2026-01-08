@@ -127,21 +127,22 @@ export type Database = {
       }
     }
     Views: {
-      tool_popularity_stats: {
-        Row: {
-          avg_load_time_ms: number | null
-          last_interaction: string | null
-          search_appearances: number | null
-          tool_category: string | null
-          tool_title: string | null
-          total_clicks: number | null
-          total_views: number | null
-          unique_sessions: number | null
-        }
-        Relationships: []
-      }
+      [_ in never]: never
     }
     Functions: {
+      get_tool_popularity_stats: {
+        Args: never
+        Returns: {
+          avg_load_time_ms: number
+          last_interaction: string
+          search_appearances: number
+          tool_category: string
+          tool_title: string
+          total_clicks: number
+          total_views: number
+          unique_sessions: number
+        }[]
+      }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]

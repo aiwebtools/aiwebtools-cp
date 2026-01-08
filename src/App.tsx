@@ -40,6 +40,7 @@ const AIToolsPage = lazy(() => import("./pages/AIToolsPage"));
 const BestAIToolsPage = lazy(() => import("./pages/BestAIToolsPage"));
 const FreeAIToolsPage = lazy(() => import("./pages/FreeAIToolsPage"));
 const AIWritingToolsPage = lazy(() => import("./pages/AIWritingToolsPage"));
+const AdminAnalytics = lazy(() => import("./pages/AdminAnalytics"));
 
 // Lazy load non-critical components
 const FloatingCloneButton = lazy(() => import("./components/FloatingCloneButton"));
@@ -128,6 +129,7 @@ const AnimatedRoutes = () => {
         <Route path="/disclaimers" element={<DisclaimersPage />} />
         <Route path="/our-story" element={<OurStoryPage />} />
         <Route path="/submit-tool" element={<ToolSubmission />} />
+        <Route path="/admin/analytics" element={<AdminAnalytics />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Suspense>

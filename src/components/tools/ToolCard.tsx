@@ -7,6 +7,7 @@ import { usePerformanceOptimization } from "@/hooks/usePerformanceOptimization";
 import { createTimePortalEffect } from "@/utils/timeEffects";
 import { prefetchToolData } from "@/utils/toolPrefetcher";
 import { isFreeTool } from "@/utils/freeToolDetection";
+import { trackToolClickEvent } from "@/hooks/useToolAnalytics";
 import ToolCardHeader from "./ToolCardHeader";
 import ToolCardContent from "./ToolCardContent";
 import FavoriteButton from "@/components/favorites/FavoriteButton";
@@ -54,6 +55,8 @@ const ToolCard = memo(({ tool, index = 0 }: ToolCardProps) => {
       e.preventDefault();
       e.stopPropagation();
       console.log('🌀 Tool card clicked - triggering time warp for:', tool.title);
+      // Track click analytics
+      trackToolClickEvent(tool.title, tool.category);
       createTimePortalEffect(tool.directUrl, tool.title);
     }
   };
