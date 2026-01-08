@@ -9,6 +9,7 @@ export const videoPromptGPTs: Tool[] = [
     emoji: "🎬",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://chatgpt.com/g/g-691b5852be7c8191beda5d0429f727bd-meta-ai-video-prompt-generator?via=aiwebtools",
+    imageUrl: "/src/assets/tools/meta-video-prompt-hero.png",
     tags: ["Meta.ai", "video prompts", "prompt generator", "video creation", "storylines", "productivity", "copy paste", "AI video", "Custom GPT"],
     category: "AI Web Tools GPTs",
     rating: 4.8,
