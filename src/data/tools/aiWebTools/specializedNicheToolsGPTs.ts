@@ -126,6 +126,7 @@ export const specializedNicheToolsGPTs: Tool[] = [
     emoji: "🐛",
     color: "from-green-500 to-yellow-600",
     directUrl: "https://chatgpt.com/g/g-683ceca09b388191800a60917e7e6d6c-insect-study-tool-gpt",
+    imageUrl: "/src/assets/tools/insect-study-hero.png",
     tags: ["entomology", "insect identification", "species research", "biological studies", "scientific analysis"],
     category: "Specialized Niche Tools",
     rating: 4.6,
