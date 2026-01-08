@@ -35,6 +35,7 @@ export const writingAndContent: Tool[] = [
     emoji: "🎬",
     color: "from-red-500 to-purple-600",
     directUrl: "https://screenplaywritergpt.lovable.app/?via=aiwebtools",
+    imageUrl: "/src/assets/tools/screenplay-writer-hero.png",
     tags: ["screenplay", "screenwriting", "film writing", "television", "script formatting", "character development", "story structure", "Script Writing", "Creative Writing"],
     category: "Writing & Content",
     rating: 4.7,
