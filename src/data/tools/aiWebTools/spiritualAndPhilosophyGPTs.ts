@@ -1296,5 +1296,19 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     rating: 4.9,
     totalVotes: 1923,
     isFree: true
+  },
+  {
+    icon: BookOpen,
+    title: "ORIGINAL GREEK OLD TESTIMENT GPT (Septuagint)",
+    description: "Expert of the Septuagint & Old Testament in Greek and explains lost meaning through careful translation. By AiWebTools.Ai. Dive deep into the ancient Greek translation of the Hebrew Bible, the foundational text used by early Christians and Hellenistic Jews. Discover nuances, theological insights, and textual differences between the Septuagint and Masoretic texts, unlocking meanings that have been lost in modern translations.",
+    emoji: "📖",
+    color: "from-blue-600 to-purple-700",
+    directUrl: "https://chatgpt.com/g/g-69601deb3a6081919346758dbbab4370-original-greek-old-testiment-gpt-septuagint/?via=aiwebtools",
+    imageUrl: "/src/assets/tools/septuagint-gpt-hero.png",
+    tags: ["septuagint", "greek old testament", "lxx", "koine greek", "hebrew bible", "biblical translation", "ancient greek", "old testament", "biblical scholarship", "masoretic", "hellenistic", "jewish scriptures", "christian scriptures", "textual criticism", "aiwebtools", "Custom GPT"],
+    category: "Spirituality & Philosophy",
+    rating: 4.9,
+    totalVotes: 1500,
+    isFree: true
   }
 ];
