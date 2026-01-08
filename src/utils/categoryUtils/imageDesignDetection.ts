@@ -225,6 +225,9 @@ export const getEnhancedImageDesignTools = (tools: Tool[]): Tool[] => {
     return false;
   });
 
-  console.log(`🎨 Enhanced Image/Design Detection: Found ${imageTools.length} tools`);
+  // Disable noisy logging by default
+  const IMAGE_DEBUG = false;
+  if (IMAGE_DEBUG) console.log(`🎨 Enhanced Image/Design Detection: Found ${imageTools.length} tools`);
+
   return imageTools;
 };
