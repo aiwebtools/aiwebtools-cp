@@ -9,6 +9,7 @@ export const aiSalesCrmTools: Tool[] = [
     emoji: "☁️",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://www.salesforce.com/einstein/?via=aiwebtools",
+    imageUrl: "/src/assets/tools/salesforce-einstein-hero.png",
     tags: ["CRM", "sales automation", "predictive analytics", "customer insights", "AI forecasting", "enterprise", "Sales Agent", "agent", "CRM", "Sales", "Analytics & Reporting"],
     category: "AI Sales & CRM",
     rating: 4.8,
