@@ -21,6 +21,7 @@ export const learningPlatforms: Tool[] = [
     emoji: "💻",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://freecodecamp.org/",
+    imageUrl: "/src/assets/tools/freecodecamp-hero.png",
     tags: ["coding", "programming", "web development", "free", "certifications", "Learning Platform", "Skill Development", "STEM Education"],
     category: "Learning Platforms",
     rating: 4.9,

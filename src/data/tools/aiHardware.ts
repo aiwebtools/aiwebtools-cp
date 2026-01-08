@@ -9,6 +9,7 @@ export const aiHardware: Tool[] = [
     emoji: "🤓",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://meta.com/ai-glasses/referrals/ATRR4FMR6WC4X7NFR3WRNRXTJ/?utm_source=mwa&utm_medium=growth&utm_campaign=rbm_referral",
+    imageUrl: "/src/assets/tools/meta-ai-glasses-hero.png",
     category: "AI Hardware",
     tags: ["smart glasses", "augmented reality", "AI assistant", "wearable tech", "Meta", "hands-free AI"],
     rating: 4.5,

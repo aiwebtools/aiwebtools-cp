@@ -17,6 +17,7 @@ export const aiNoteTakingTools: Tool[] = [
     emoji: "📝",
     color: "from-gray-700 to-gray-900",
     directUrl: "https://www.notion.so/product/ai/?via=aiwebtools",
+    imageUrl: "/src/assets/tools/notion-ai-hero.png",
     tags: ["workspace", "AI writing", "note organization", "knowledge base", "productivity"],
     category: "AI Note-Taking Tools",
     rating: 4.8,
