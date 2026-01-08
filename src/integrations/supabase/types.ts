@@ -14,6 +14,42 @@ export type Database = {
   }
   public: {
     Tables: {
+      tool_analytics: {
+        Row: {
+          created_at: string
+          event_type: string
+          id: string
+          load_time_ms: number | null
+          referrer: string | null
+          session_id: string | null
+          tool_category: string | null
+          tool_title: string
+          user_agent: string | null
+        }
+        Insert: {
+          created_at?: string
+          event_type: string
+          id?: string
+          load_time_ms?: number | null
+          referrer?: string | null
+          session_id?: string | null
+          tool_category?: string | null
+          tool_title: string
+          user_agent?: string | null
+        }
+        Update: {
+          created_at?: string
+          event_type?: string
+          id?: string
+          load_time_ms?: number | null
+          referrer?: string | null
+          session_id?: string | null
+          tool_category?: string | null
+          tool_title?: string
+          user_agent?: string | null
+        }
+        Relationships: []
+      }
       tool_submissions: {
         Row: {
           admin_notes: string | null
@@ -91,7 +127,19 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      tool_popularity_stats: {
+        Row: {
+          avg_load_time_ms: number | null
+          last_interaction: string | null
+          search_appearances: number | null
+          tool_category: string | null
+          tool_title: string | null
+          total_clicks: number | null
+          total_views: number | null
+          unique_sessions: number | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       has_role: {
