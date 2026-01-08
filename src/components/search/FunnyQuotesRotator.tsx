@@ -444,6 +444,9 @@ const funnyQuotes = [
   "A crooked heart cannot pass the gate of Anubis, for its glow falters before Ma'at. 🚪",
   "Seek not the torches of men; seek the fire planted by the gods in your chest. 🔥",
   "He who fears the weighing has already seen his own darkness. ⚫",
+  
+  // Pythagorean / Orphic wisdom
+  "Each soul is a star fallen from its orbit, seeking again its harmony with the Source (The Light). ⭐",
 ];
 
 // Completely isolated component - uses RAF and CSS for zero main thread impact
