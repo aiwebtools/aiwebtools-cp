@@ -111,30 +111,6 @@ export const aiMentalHealthWellnessTools: Tool[] = [
     totalVotes: 8765
   },
   {
-    icon: Smile,
-    title: "Sanvello",
-    description: "AI-driven mental health app combining CBT techniques, peer support, and coaching. Track mood, manage anxiety, and build healthy coping skills.",
-    emoji: "🌱",
-    color: "from-green-400 to-teal-500",
-    directUrl: "https://www.sanvello.com/?via=aiwebtools",
-    tags: ["mental health", "CBT", "peer support", "mood tracking", "anxiety management", "coping skills", "coaching"],
-    category: "AI Mental Health & Wellness",
-    rating: 4.5,
-    totalVotes: 12345
-  },
-  {
-    icon: Sparkles,
-    title: "Happify",
-    description: "Science-based activities and games for emotional wellbeing. AI-personalized programs to reduce stress, overcome negative thoughts, and build resilience.",
-    emoji: "🎯",
-    color: "from-yellow-400 to-orange-500",
-    directUrl: "https://www.happify.com/?via=aiwebtools",
-    tags: ["emotional wellbeing", "positive psychology", "stress reduction", "resilience", "gamified therapy", "science-based"],
-    category: "AI Mental Health & Wellness",
-    rating: 4.4,
-    totalVotes: 9876
-  },
-  {
     icon: Heart,
     title: "Mindshine",
     description: "AI-powered personal trainer for mental fitness. Daily exercises, mood tracking, and personalized programs for stress management and positive thinking.",
