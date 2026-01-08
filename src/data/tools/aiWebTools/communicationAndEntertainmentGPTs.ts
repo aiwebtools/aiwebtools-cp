@@ -49,6 +49,7 @@ export const communicationAndEntertainmentGPTs: Tool[] = [
     emoji: "🎯",
     color: "from-cyan-500 to-purple-600",
     directUrl: "https://chatgpt.com/g/g-68f2d08b33cc8191b4e0fb90fa2cbcbb-gamesaas-gpt?via=aiwebtools",
+    imageUrl: "/src/assets/tools/gamesaas-gpt-hero.png",
     tags: ["game prompts", "vibe coding", "game development", "prompt generator", "game design", "ai coding", "game concepts", "rapid development", "aiwebtools", "Custom GPT"],
     category: "Communication & Entertainment",
     rating: 4.7,
