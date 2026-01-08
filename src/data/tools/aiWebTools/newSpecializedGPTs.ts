@@ -302,6 +302,7 @@ export const newSpecializedGPTs: Tool[] = [
     emoji: "⛏️",
     color: "from-brown-600 to-amber-700",
     directUrl: "https://indianaarchaeologygpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=uf2i_DdaJ7M",
     imageUrl: "/src/assets/tools/indiana-archaeology-hero.png",
     category: "Historical & Cultural",
     tags: ["archaeology", "history", "artifacts", "exploration", "Custom GPT"],
