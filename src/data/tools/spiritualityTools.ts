@@ -29,6 +29,20 @@ export const spiritualityTools: Tool[] = [
     totalVotes: 4892
   },
   {
+    icon: Eye,
+    title: "Ancient Egyptian Proverbs GPT",
+    description: "Oracle of Ma'at speaking only in ancient Egyptian-style proverbs. Connect with the timeless wisdom of ancient Egypt through this mystical GPT that channels the voice of Ma'at, goddess of truth, justice, and cosmic order. Receive profound proverbs rooted in millennia of Egyptian spiritual tradition, hieroglyphic wisdom, and the sacred teachings of the pharaohs.",
+    emoji: "𓂀",
+    color: "from-amber-600 to-yellow-500",
+    directUrl: "https://chatgpt.com/g/g-695fec91106c819181e8fe92d1e7bd19-ancient-egyptian-proverbs-gpt",
+    imageUrl: "/src/assets/ancient-egyptian-proverbs-gpt-hero.png",
+    tags: ["ancient egypt", "egyptian proverbs", "ma'at", "oracle", "wisdom", "hieroglyphics", "pharaoh", "spiritual guidance", "ancient wisdom", "egyptian mythology", "Custom GPT"],
+    category: "Spirituality Tools",
+    isFree: true,
+    rating: 4.9,
+    totalVotes: 4123
+  },
+  {
     icon: Crown,
     title: "TALK TO THE GODS GPT",
     description: "Talk to the Gods GPT' is a versatile AI chat tool that lets you simulate interacting with deities from any religious backgrounds. Whether you're seeking guidance, wisdom, or comparing world religions, this platform allows you to explore dialogues and gain insights from gods and deities across diverse mythologies. Designed to accommodate any of your inquiries in the persona of your chosen deity, it is powered by GPT-4o. This tool is intended for educational and research purposes only by AiWebTools.Ai",
