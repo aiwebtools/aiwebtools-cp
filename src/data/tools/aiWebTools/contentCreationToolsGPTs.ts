@@ -25,6 +25,7 @@ export const contentCreationToolsGPTs: Tool[] = [
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://customgptmaker.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/XSZM8ePQOzY",
+    imageUrl: "/src/assets/tools/custom-gpt-ideas-hero.png",
     tags: ["gpt ideas", "brainstorming", "custom gpt", "ai ideas", "creativity", "assistant", "aiwebtools"],
     category: "Content Creation",
     rating: 4.5,
