@@ -96,6 +96,7 @@ export const creativeAndMediaGPTs: Tool[] = [
     emoji: "🛒",
     color: "from-blue-500 to-green-600",
     directUrl: "https://shoppinggpt.lovable.app/?via=aiwebtools",
+    imageUrl: "/src/assets/tools/shopping-gpt-hero.png",
     tags: ["shopping assistant", "product recommendations", "deal finder", "price comparison", "shopping advice", "product discovery", "aiwebtools", "Custom GPT", "Conversion Optimization", "Lead Generation"],
     category: "Creative & Media",
     rating: 4.4,
