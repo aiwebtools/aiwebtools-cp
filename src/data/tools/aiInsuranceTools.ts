@@ -17,6 +17,7 @@ export const aiInsuranceTools: Tool[] = [
     emoji: "🍋",
     color: "from-pink-500 to-red-600",
     directUrl: "https://www.lemonade.com/?via=aiwebtools",
+    imageUrl: "/src/assets/tools/lemonade-hero.png",
     tags: ["instant quotes", "fast claims", "renters insurance", "homeowners insurance", "pet insurance"],
     category: "AI Insurance Tools",
     rating: 4.5,
