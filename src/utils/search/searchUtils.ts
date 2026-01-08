@@ -656,7 +656,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   if (normalizedSearchTerm === 'audio' || normalizedSearchTerm.includes('audio') || 
       normalizedSearchTerm.includes('music') || normalizedSearchTerm.includes('sound') || 
       normalizedSearchTerm.includes('voice')) {
-    console.log('🎵 AUDIO SEARCH DETECTED - Filtering for audio tools only');
+    debugLog('🎵 AUDIO SEARCH DETECTED - Filtering for audio tools only');
     
     const audioTools = tools.filter(tool => {
       const lowerTitle = tool.title.toLowerCase();
@@ -673,7 +673,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
                                   tag.includes('sound') || tag.includes('voice'));
     });
     
-    console.log(`🎵 Found ${audioTools.length} audio tools:`, audioTools.slice(0, 5).map(t => t.title));
+    debugLog(`🎵 Found ${audioTools.length} audio tools:`, audioTools.slice(0, 5).map(t => t.title));
     
     const sortedAudioTools = audioTools.sort((a, b) => {
       let scoreA = 0, scoreB = 0;
@@ -778,7 +778,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   // CHAT TOOL PRIORITY - Enhanced detection
   if (normalizedSearchTerm === 'chat' || normalizedSearchTerm.includes('chat') ||
       normalizedSearchTerm.includes('conversation') || normalizedSearchTerm.includes('chatbot')) {
-    console.log('💬 CHAT SEARCH DETECTED - Filtering for chat tools only');
+    debugLog('💬 CHAT SEARCH DETECTED - Filtering for chat tools only');
     
     const chatTools = tools.filter(tool => {
       const lowerTitle = tool.title.toLowerCase();
@@ -796,7 +796,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
                                   tag.includes('assistant') || tag.includes('ai'));
     });
     
-    console.log(`💬 Found ${chatTools.length} chat tools:`, chatTools.slice(0, 5).map(t => t.title));
+    debugLog(`💬 Found ${chatTools.length} chat tools:`, chatTools.slice(0, 5).map(t => t.title));
     
     const sortedChatTools = chatTools.sort((a, b) => {
       let scoreA = 0, scoreB = 0;
@@ -820,7 +820,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   // AGENT TOOL PRIORITY - Enhanced detection
   if (normalizedSearchTerm === 'agent' || normalizedSearchTerm.includes('agent') ||
       normalizedSearchTerm.includes('assistant') || normalizedSearchTerm.includes('ai assistant')) {
-    console.log('🤖 AGENT SEARCH DETECTED - Filtering for agent tools only');
+    debugLog('🤖 AGENT SEARCH DETECTED - Filtering for agent tools only');
     
     const agentTools = tools.filter(tool => {
       const lowerTitle = tool.title.toLowerCase();
@@ -837,7 +837,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
                                   tag.includes('ai'));
     });
     
-    console.log(`🤖 Found ${agentTools.length} agent tools:`, agentTools.slice(0, 5).map(t => t.title));
+    debugLog(`🤖 Found ${agentTools.length} agent tools:`, agentTools.slice(0, 5).map(t => t.title));
     
     const sortedAgentTools = agentTools.sort((a, b) => {
       let scoreA = 0, scoreB = 0;
@@ -861,7 +861,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   // RESEARCH TOOL PRIORITY - Enhanced detection
   if (normalizedSearchTerm === 'research' || normalizedSearchTerm.includes('research') ||
       normalizedSearchTerm.includes('analysis') || normalizedSearchTerm.includes('data')) {
-    console.log('🔬 RESEARCH SEARCH DETECTED - Filtering for research tools only');
+    debugLog('🔬 RESEARCH SEARCH DETECTED - Filtering for research tools only');
     
     const researchTools = tools.filter(tool => {
       const lowerTitle = tool.title.toLowerCase();
@@ -881,7 +881,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
                                   tag.includes('data') || tag.includes('science'));
     });
     
-    console.log(`🔬 Found ${researchTools.length} research tools:`, researchTools.slice(0, 5).map(t => t.title));
+    debugLog(`🔬 Found ${researchTools.length} research tools:`, researchTools.slice(0, 5).map(t => t.title));
     
     const sortedResearchTools = researchTools.sort((a, b) => {
       let scoreA = 0, scoreB = 0;
@@ -915,7 +915,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       normalizedSearchTerm.includes('gpt') || normalizedSearchTerm.includes('chatgpt') ||
       normalizedSearchTerm.includes('claude') || normalizedSearchTerm.includes('gemini') ||
       normalizedSearchTerm.includes('ai assistant') || normalizedSearchTerm.includes('custom gpt')) {
-    console.log('🤖 GPT SEARCH DETECTED - Prioritizing all GPTs and AI assistants');
+    debugLog('🤖 GPT SEARCH DETECTED - Prioritizing all GPTs and AI assistants');
     
     const gptTools = tools.filter(tool => {
       const lowerTitle = tool.title.toLowerCase();
@@ -937,7 +937,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
              tool.directUrl?.includes('lovable.app') || tool.directUrl?.includes('aiwebtools');
     });
     
-    console.log(`🤖 Found ${gptTools.length} GPT/AI tools:`, gptTools.slice(0, 5).map(t => t.title));
+    debugLog(`🤖 Found ${gptTools.length} GPT/AI tools:`, gptTools.slice(0, 5).map(t => t.title));
     
     const sortedGPTTools = gptTools.sort((a, b) => {
       let scoreA = 0, scoreB = 0;
@@ -1000,12 +1000,12 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   const isSpiritualSearch = SPIRITUAL_TRIGGERS.some(trigger => normalizedSearchTerm.includes(trigger));
   
   if (isSpiritualSearch) {
-    console.log('🕉️ SPIRITUALITY SEARCH DETECTED - Filtering for spiritual/religious tools');
+    debugLog('🕉️ SPIRITUALITY SEARCH DETECTED - Filtering for spiritual/religious tools');
 
     // Use the centralized detector so we catch: religion, God, light, deities, scripture, philosophy, etc.
     const spiritualTools = tools.filter(isSpiritualityTool);
 
-    console.log(`🕉️ Found ${spiritualTools.length} spiritual tools`);
+    debugLog(`🕉️ Found ${spiritualTools.length} spiritual tools`);
 
     const sortedSpiritualTools = spiritualTools.sort((a, b) => {
       let scoreA = 0, scoreB = 0;
@@ -1087,7 +1087,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   // SCHOOL TOOL PRIORITY - Enhanced detection
   if (normalizedSearchTerm === 'school' || normalizedSearchTerm.includes('school') ||
       normalizedSearchTerm.includes('homeschool') || normalizedSearchTerm.includes('classroom')) {
-    console.log('🏫 SCHOOL SEARCH DETECTED - Filtering for school/education tools');
+    debugLog('🏫 SCHOOL SEARCH DETECTED - Filtering for school/education tools');
     
     const schoolTools = tools.filter(tool => {
       const lowerTitle = tool.title.toLowerCase();
@@ -1105,7 +1105,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
                                   tag.includes('learning'));
     });
     
-    console.log(`🏫 Found ${schoolTools.length} school tools:`, schoolTools.slice(0, 5).map(t => t.title));
+    debugLog(`🏫 Found ${schoolTools.length} school tools:`, schoolTools.slice(0, 5).map(t => t.title));
     
     const sortedSchoolTools = schoolTools.sort((a, b) => {
       let scoreA = 0, scoreB = 0;
@@ -1145,7 +1145,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   ];
   
   if (BUSINESS_TRIGGERS.some(trigger => normalizedSearchTerm.includes(trigger))) {
-    console.log('💼 BUSINESS SEARCH DETECTED - Filtering for business tools');
+    debugLog('💼 BUSINESS SEARCH DETECTED - Filtering for business tools');
     
     const businessTools = tools.filter(tool => {
       const lowerTitle = tool.title.toLowerCase();
@@ -1159,7 +1159,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
              lowerCategory.includes('productivity') || lowerCategory.includes('marketing');
     });
     
-    console.log(`💼 Found ${businessTools.length} business tools`);
+    debugLog(`💼 Found ${businessTools.length} business tools`);
     
     const sortedBusinessTools = businessTools.sort((a, b) => {
       let scoreA = 0, scoreB = 0;
@@ -1264,7 +1264,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   ];
   
   if (IMAGE_TRIGGERS.some(trigger => normalizedSearchTerm.includes(trigger))) {
-    console.log('🖼️ IMAGE SEARCH DETECTED - Filtering for image tools');
+    debugLog('🖼️ IMAGE SEARCH DETECTED - Filtering for image tools');
     
     const imageTools = tools.filter(tool => {
       const lowerTitle = tool.title.toLowerCase();
@@ -1278,7 +1278,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
              lowerCategory.includes('design') || lowerCategory.includes('creative');
     });
     
-    console.log(`🖼️ Found ${imageTools.length} image tools`);
+    debugLog(`🖼️ Found ${imageTools.length} image tools`);
     
     const sortedImageTools = imageTools.sort((a, b) => {
       let scoreA = 0, scoreB = 0;
@@ -1314,7 +1314,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   // DESIGN TOOL PRIORITY - Enhanced detection
   if (normalizedSearchTerm === 'design' || normalizedSearchTerm.includes('design') ||
       normalizedSearchTerm.includes('graphic') || normalizedSearchTerm.includes('logo')) {
-    console.log('🎨 DESIGN SEARCH DETECTED - Filtering for design tools only');
+    debugLog('🎨 DESIGN SEARCH DETECTED - Filtering for design tools only');
     
     const designTools = tools.filter(tool => {
       const lowerTitle = tool.title.toLowerCase();
@@ -2147,9 +2147,9 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   const prioritizedResults = applyAIWebToolsPrioritization(regularSearchResults);
   
   // 🧹 FINAL STEP: Apply search deduplication to remove duplicate tools
-  console.log(`🔍 Before deduplication: ${prioritizedResults.length} results`);
+  debugLog(`🔍 Before deduplication: ${prioritizedResults.length} results`);
   const deduplicatedResults = deduplicateSearchResults(prioritizedResults);
-  console.log(`🔍 After deduplication: ${deduplicatedResults.length} results`);
+  debugLog(`🔍 After deduplication: ${deduplicatedResults.length} results`);
   
   return deduplicatedResults;
 };
@@ -2224,7 +2224,7 @@ const performEnhancedSearch = (
       if (noSpaceTerm.length >= 4 && lowerTitleNoSpace.includes(noSpaceTerm)) {
         matched = true;
         score += 18000; // Very high priority for compound word matches
-        console.log(`🔗 Compound match: "${noSpaceTerm}" found in "${lowerTitle}"`);
+        debugLog(`🔗 Compound match: "${noSpaceTerm}" found in "${lowerTitle}"`);
       }
 
       // AIWEBTOOLS PRIORITY BOOST - Special handling for our custom GPTs (with relevance checking)
