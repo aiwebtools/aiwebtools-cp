@@ -1118,9 +1118,9 @@ export const COMMON_PHRASE_HANDLERS: Record<string, PhraseHandler> = {
 
   // ===== SACRED GEOMETRY =====
   sacredGeometry: {
-    triggers: ['sacred geometry', 'flower of life', 'metatrons cube', 'golden ratio', 'fibonacci', 'platonic solids'],
-    keywords: ['sacred geometry', 'flower of life', 'golden ratio', 'fibonacci', 'pattern', 'divine proportion'],
-    priorityTools: ['Sophia Aeterna AI', 'Algebraic Expression Inventor GPT', 'Alchemist Scientist GPT'],
+    triggers: ['sacred geometry', 'flower of life', 'metatrons cube', 'golden ratio', 'fibonacci', 'platonic solids', 'metatron'],
+    keywords: ['sacred geometry', 'flower of life', 'golden ratio', 'fibonacci', 'pattern', 'divine proportion', 'metatron', 'akashic'],
+    priorityTools: ['METATRON GPT', 'Sophia Aeterna AI', 'Algebraic Expression Inventor GPT', 'Alchemist Scientist GPT'],
     relatedCategories: ['Spirituality & Philosophy', 'Sacred Geometry']
   },
 
