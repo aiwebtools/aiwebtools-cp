@@ -49,6 +49,7 @@ export const entertainmentAndGamingGPTs: Tool[] = [
     emoji: "🃏",
     color: "from-yellow-500 to-red-600",
     directUrl: "https://chatgpt.com/g/g-68cadce3e2f08191a9b8203a32fe8846-1995-illuminati-card-game-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/tools/illuminati-card-game-hero.png",
     tags: ["card game", "illuminati", "strategy game", "1995", "conspiracy", "gaming", "interactive game", "aiwebtools", "Custom GPT"],
     category: "Entertainment & Gaming",
     rating: 4.5,
