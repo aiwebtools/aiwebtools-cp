@@ -238,6 +238,36 @@ const welcomeMessages = [
   "Woe to the soul ruled by appetite — and woe to the body ruled by fear. Let harmony guide both.",
   "They asked when the Kingdom will come. Jesus said: It is not a future event — the Kingdom is spread out upon the earth, but people do not see it.",
   "Peter said: Let Mary leave us. Jesus said: I will guide her, for in Spirit there is neither male nor female — all who unite heart and mind become living children of the Father.",
+
+  // ===== ANCIENT EGYPTIAN PROVERBS (20) =====
+  
+  // Proverbs of Light & Shadow
+  "The light within is the flame that feeds no smoke; it burns in silence, revealing all shadow.",
+  "He who walks with a heavy heart casts no light; his steps vanish beneath him.",
+  "The Father of Light weighs not gold but the glimmer of the heart's truth.",
+  "The eye of Ra sees not flesh but fire; in the weighing hall, only light rises.",
+  "The stone may shine in the sun, but only the just heart shines in the Duat.",
+  
+  // Proverbs of Ma'at & Justice
+  "Those whose hearts are lighter than the feather do not fear the mirror of Osiris.",
+  "The fool chases brightness outside, while his own fire withers unseen.",
+  "The sun within is never eclipsed by the sky's turning—only by the inward veil.",
+  "The Scales do not tremble for the loud; they tilt for those whose silence glows.",
+  "When the ka departs, the heart speaks; and Ma'at listens for the light it gives.",
+  
+  // Proverbs of Judgment & Truth
+  "The scribe writes your deeds in shadow; Ra reads them in flame.",
+  "A heart filled with Isfet cannot reflect the stars; it swallows light like the abyss.",
+  "To polish the heart is to prepare it for the gaze of Ra.",
+  "The soul that carries its own sun will never be lost in the underworld.",
+  "Light is not earned through speech but through the balance of silence and truth.",
+  
+  // Proverbs of the Inner Sun
+  "The hidden sun within rises only when the outer eye is closed.",
+  "The field of reeds welcomes only those who have shone from within.",
+  "A crooked heart cannot pass the gate of Anubis, for its glow falters before Ma'at.",
+  "Seek not the torches of men; seek the fire planted by the gods in your chest.",
+  "He who fears the weighing has already seen his own darkness.",
 ];
 
 const DisclaimerGate: React.FC = () => {
