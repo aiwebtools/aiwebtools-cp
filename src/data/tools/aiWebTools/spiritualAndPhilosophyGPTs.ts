@@ -1305,7 +1305,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     color: "from-blue-600 to-purple-700",
     directUrl: "https://chatgpt.com/g/g-69601deb3a6081919346758dbbab4370-original-greek-old-testiment-gpt-septuagint/?via=aiwebtools",
     imageUrl: "/src/assets/tools/septuagint-gpt-hero.png",
-    tags: ["septuagint", "greek old testament", "lxx", "koine greek", "hebrew bible", "biblical translation", "ancient greek", "old testament", "biblical scholarship", "masoretic", "hellenistic", "jewish scriptures", "christian scriptures", "textual criticism", "aiwebtools", "Custom GPT"],
+    tags: ["septuagint", "greek old testament", "old testiment", "testiment", "lxx", "koine greek", "hebrew bible", "biblical translation", "ancient greek", "old testament", "biblical scholarship", "masoretic", "hellenistic", "jewish scriptures", "christian scriptures", "textual criticism", "aiwebtools", "Custom GPT"],
     category: "Spirituality & Philosophy",
     rating: 4.9,
     totalVotes: 1500,
