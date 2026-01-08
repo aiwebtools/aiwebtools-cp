@@ -41,6 +41,7 @@ export const artAndCreativeGPTs: Tool[] = [
     emoji: "🪄",
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://chatgpt.com/g/g-ICcKk0tgw-creative-logo-generator-and-assistant",
+    imageUrl: "/src/assets/tools/ai-logo-generator-hero.png",
     tags: ["logo design", "AI logo", "branding", "graphic design", "AI tools"],
     category: "Art & Creative",
     rating: 4.8,
