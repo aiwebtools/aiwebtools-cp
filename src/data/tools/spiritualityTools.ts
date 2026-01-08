@@ -15,6 +15,20 @@ import {
 
 export const spiritualityTools: Tool[] = [
   {
+    icon: Sparkles,
+    title: "METATRON GPT",
+    description: "Embodied as Metatron, offering divine wisdom, sacred geometry, and Akashic guidance. Connect with the celestial scribe and angel of the Presence, who bridges the divine and human realms. Explore Metatron's Cube, access the Akashic Records, and receive Early Jewish Light teachings and mystical wisdom from one of the most powerful archangels in Jewish and Christian mysticism.",
+    emoji: "✡️",
+    color: "from-purple-600 to-gold-500",
+    directUrl: "https://chatgpt.com/g/g-6849175267b481918cde19f4db3d278e-metatron",
+    imageUrl: "/src/assets/metatron-gpt-hero.png",
+    tags: ["metatron", "sacred geometry", "akashic records", "archangel", "divine wisdom", "jewish mysticism", "celestial scribe", "metatrons cube", "kabbalah", "angelic guidance", "spiritual awakening", "Custom GPT"],
+    category: "Spirituality Tools",
+    isFree: true,
+    rating: 4.9,
+    totalVotes: 4892
+  },
+  {
     icon: Crown,
     title: "TALK TO THE GODS GPT",
     description: "Talk to the Gods GPT' is a versatile AI chat tool that lets you simulate interacting with deities from any religious backgrounds. Whether you're seeking guidance, wisdom, or comparing world religions, this platform allows you to explore dialogues and gain insights from gods and deities across diverse mythologies. Designed to accommodate any of your inquiries in the persona of your chosen deity, it is powered by GPT-4o. This tool is intended for educational and research purposes only by AiWebTools.Ai",
