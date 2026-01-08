@@ -1240,5 +1240,57 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     rating: 4.9,
     totalVotes: 1567,
     isFree: true
+  },
+  {
+    icon: Flame,
+    title: "GOD IS LIGHT — Jewish Version GPT",
+    description: "A Jewish GPT that teaches how Divine Light functions through Torah and Kabbalah. By AiWebTools.Ai. Explore the profound depths of Jewish mysticism through the lens of divine Light (Or), guided by the teachings of the Torah, Talmud, and Kabbalistic wisdom. Discover how the Light of Ein Sof illuminates creation, the Sefirot, and the path to spiritual transformation and union with the Divine.",
+    emoji: "🕎",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://chatgpt.com/g/g-694c3dc88c4c8191bb70fdba90a9f65b-god-is-light-jewish-version-gpt/?via=aiwebtools",
+    tags: ["god is light", "jewish", "judaism", "torah", "kabbalah", "divine light", "ein sof", "sefirot", "jewish mysticism", "hebrew", "talmud", "spirituality", "light mysticism", "aiwebtools", "Custom GPT"],
+    category: "Spirituality & Philosophy",
+    rating: 4.9,
+    totalVotes: 1890,
+    isFree: true
+  },
+  {
+    icon: Sun,
+    title: "GOD IS LIGHT — Islamic Version GPT",
+    description: "An educational Islamic GPT that teaches reality, ethics, and spirituality through the metaphysics of divine Light (Nūr). By AiWebTools.Ai. Explore the profound Quranic verse 'Allah is the Light of the heavens and the earth' through Islamic theology, Sufi wisdom, and the luminous teachings of scholars like Al-Ghazali. Discover how Nūr illuminates the path to spiritual awakening, ethical living, and union with the Divine.",
+    emoji: "☪️",
+    color: "from-emerald-500 to-teal-600",
+    directUrl: "https://chatgpt.com/g/g-694c3bc9a4388191bfc76a7cbb7c9ef4-god-is-light-islamic-version/?via=aiwebtools",
+    tags: ["god is light", "islamic", "islam", "noor", "nur", "quran", "sufi", "sufism", "divine light", "al-ghazali", "islamic mysticism", "arabic", "spirituality", "light mysticism", "aiwebtools", "Custom GPT"],
+    category: "Spirituality & Philosophy",
+    rating: 4.9,
+    totalVotes: 1845,
+    isFree: true
+  },
+  {
+    icon: Sparkles,
+    title: "ALL IS ONE GPT",
+    description: "A wise, grounded guide uniting insight from science, spirit, and psychology. By AiWebTools.Ai. Explore the universal truth that underlies all existence—the interconnectedness of all things. This GPT bridges scientific understanding, spiritual wisdom, and psychological insight to reveal the fundamental unity of consciousness, matter, and energy. Discover how quantum physics, ancient mysticism, and modern psychology all point to the same truth: All Is One.",
+    emoji: "🌀",
+    color: "from-violet-500 to-indigo-600",
+    directUrl: "https://chatgpt.com/g/g-694c4535e2908191b42ec3c3099c0573-all-is-one-gpt/?via=aiwebtools",
+    tags: ["all is one", "unity", "oneness", "non-duality", "advaita", "quantum physics", "consciousness", "interconnectedness", "holistic", "science and spirit", "psychology", "universal truth", "aiwebtools", "Custom GPT"],
+    category: "Spirituality & Philosophy",
+    rating: 4.9,
+    totalVotes: 1756,
+    isFree: true
+  },
+  {
+    icon: BookOpen,
+    title: "Dead Sea Scrolls GPT",
+    description: "Scholarly, detailed guide to the Dead Sea Scrolls. By AiWebTools.Ai. Explore the ancient manuscripts discovered at Qumran, including the oldest known copies of Hebrew scriptures, sectarian texts, and apocalyptic writings. This comprehensive GPT offers scholarly insights into the Essene community, the Teacher of Righteousness, the War Scroll, Temple Scroll, and the profound impact these discoveries have had on biblical scholarship and our understanding of Second Temple Judaism.",
+    emoji: "📜",
+    color: "from-amber-500 to-orange-600",
+    directUrl: "https://chatgpt.com/g/g-694c64d1c810819181f5f6cf4a35d30f-dead-sea-scrolls-gpt/?via=aiwebtools",
+    tags: ["dead sea scrolls", "qumran", "essenes", "ancient manuscripts", "hebrew scriptures", "second temple", "war scroll", "temple scroll", "teacher of righteousness", "biblical scholarship", "judaism", "archaeology", "aiwebtools", "Custom GPT"],
+    category: "Spirituality & Philosophy",
+    rating: 4.9,
+    totalVotes: 1923,
+    isFree: true
   }
 ];
