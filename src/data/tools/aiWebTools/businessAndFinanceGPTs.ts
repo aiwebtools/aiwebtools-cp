@@ -30,6 +30,7 @@ export const businessAndFinanceGPTs: Tool[] = [
     emoji: "💪",
     color: "from-green-500 to-blue-600",
     directUrl: "https://chatgpt.com/g/g-68ae2ab2c55c8191afdc979301179fa9-poverty-crusher-economic-empowerment-ai/?via=aiwebtools",
+    imageUrl: "/src/assets/tools/poverty-crusher-gpt-hero.png",
     tags: ["poverty reduction", "economic empowerment", "financial literacy", "wealth building", "debt elimination", "income generation", "financial freedom", "budgeting", "investment education", "aiwebtools", "Custom GPT", "Sales Enablement"],
     category: "Business & Finance",
     rating: 4.9,
