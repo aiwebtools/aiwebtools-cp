@@ -252,6 +252,168 @@ const funnyQuotes = [
   "The only limit now is how big you're willing to dream 🌠",
   "Less grinding, more creating. That's the vibe. 🎯",
   "You're not just building projects. You're building legacy. 🏰",
+
+  // ===== GOSPEL OF THOMAS INSPIRED QUOTES (114) =====
+  
+  // Sayings on Seeking & Awakening
+  "Whoever discovers the meaning of these sayings awakens to Life beyond death. 📜",
+  "Let the one who seeks continue seeking until they find. When they find, they will be shaken, then amazed. 🔍",
+  "The Kingdom is inside you and outside you. Know yourself, and you will realize you are children of the Living Father. 👁️",
+  "The elder should not hesitate to learn truth, even from a child — for Life speaks through pure hearts. 👶",
+  "Recognize what is right before your eyes, and what is hidden will be revealed to you. ✨",
+  
+  // Sayings on Truth & Conscience
+  "Be truthful, and do not live in contradiction with your conscience. 🙏",
+  "Blessed is the strength transformed into compassion. But cursed is the heart that devours others. 💔",
+  "The Kingdom is like a fisherman who chose the fish that was alive and strong — and released what was not needed. 🐟",
+  "Only the seed in good soil bore fruit. 🌱",
+  "I have thrown fire upon the world, and I tend it until it becomes light. 🔥",
+  
+  // Sayings on Spirit & Life
+  "What you see will pass — but those who live in the Spirit will not die. 🌟",
+  "Follow the one who lives truthfully. ☀️",
+  "Thomas knew the answer could not be spoken — so Jesus shared the deeper mystery privately. 🤫",
+  "Heal, love, and receive what is given with gratitude — and your heart will know God. ❤️",
+  "When you see one who walks fully in the Spirit, honor them — for they reveal the Father. 🕊️",
+  
+  // Sayings on Peace & Truth
+  "Truth divides illusion from reality. ⚔️",
+  "I will give you what no eye has seen, what no ear has heard, and what no heart has imagined. 💫",
+  "Why seek the end before you understand the beginning? Everything unfolds from the Source. 🌀",
+  "Blessed is the one who awakens to their origin before they leave this world. 🌅",
+  "The Kingdom is like a tiny mustard seed — yet it becomes the greatest of plants. 🌳",
+  
+  // Sayings on Unity & Wholeness
+  "My disciples are like children playing in a field not their own — learning who the true Owner is. 🌾",
+  "When you unite the two — inner and outer, heart and mind, spirit and body — you will enter the Kingdom. 🔗",
+  "Out of many, very few choose to walk in awakening. 🚶",
+  "There is Light within every person — and when it is revealed, it illuminates the world. 💡",
+  "Love your brother and sister as yourself — protect them as you would your own eyes. 👀",
+  
+  // Sayings on Self-Awareness
+  "You notice the speck in another's eye, but ignore the beam in your own — remove yours first. 🪵",
+  "If you fast, fast from cruelty, ego, and fear — and the Kingdom will appear. 🧘",
+  "Many are intoxicated with illusion; few thirst for truth. 🍷",
+  "If body comes from spirit, it is beautiful. If spirit could come from only body, that would be astonishing. ✨",
+  "Where people gather in truth, I am present. 🤝",
+  
+  // Sayings on Recognition & Wisdom
+  "No prophet is truly recognized by their own family or hometown. 🏠",
+  "A city built upon rock cannot fall. 🏔️",
+  "Speak openly what is revealed to you inwardly. 📣",
+  "When the blind lead the blind, they fall together — awaken so you may guide. 👁️‍🗨️",
+  "You cannot enter a strong man's house unless you first weaken fear — then truth prevails. 💪",
+  
+  // Sayings on Simplicity & Presence
+  "Do not be consumed with worry about clothing and appearances. 👗",
+  "You will know your true self when you remove your disguises without shame. 🎭",
+  "Many long to hear this wisdom, yet few open themselves to receive it. 👂",
+  "The scholars have hidden the keys of knowledge — but the keys live within you. 🔑",
+  "Every plant not rooted in the Father will be uprooted. 🌿",
+  
+  // Sayings on Light & Receiving
+  "Whoever has Light will receive more; whoever refuses Light loses even what they thought they had. ☀️",
+  "Be travelers — attached to nothing that imprisons your heart. 🧳",
+  "You hear me speak, but only those who listen with spirit truly know me. 🦻",
+  "Blasphemies may be forgiven — but closing your heart to the Spirit blinds you to truth. 💔",
+  "Do not expect goodness from hatred — fruits reveal the tree. 🍎",
+  
+  // Sayings on Childlike Spirit
+  "Whoever becomes like a child of Light knows the Kingdom. 👶✨",
+  "No one can serve two masters at once. ⚖️",
+  "When two unite in peace within themselves, mountains of fear move. ⛰️",
+  "Blessed are those who journey inward — they will find the Kingdom. 🧭",
+  "If they ask where you came from, say: We came from the Light, from the place where Light was born. 🌟",
+  
+  // Sayings on Recognition & Presence
+  "What you wait for has already come — but you have not yet recognized it. 👀",
+  "The prophets spoke — but their words live in you. 📖",
+  "Transformation happens in the heart. ❤️‍🔥",
+  "Blessed are the poor in spirit — for the Father's Kingdom belongs to them. 🙏",
+  "Love your family — yet place God first when choices must be made. 💕",
+  
+  // Sayings on Vision & Spirit
+  "Seeing only the material world leads to emptiness — but seeing with spirit reveals Life everywhere. 🌍",
+  "The enemy sows weeds in the night — but truth separates them in time. 🌾",
+  "Blessed is the one who suffers yet discovers Life through it. 🌹",
+  "Seek the Living One while you live — do not wait for death to awaken. ⏳",
+  "Compassion recognizes life — respect what breathes, and take only with awareness and gratitude. 🙌",
+  
+  // Sayings on Awakening & Unity
+  "Two lie on one bed — one awakens, while the other remains asleep. I am the One who comes from the undivided. 🛏️",
+  "I reveal mysteries to those whose hearts are ready. 💜",
+  "A rich man stored many things — and lost his life before enjoying them. 💰",
+  "Many are invited — but attachments keep them away from the feast. 🎊",
+  "Tenants killed the servants and even the son — forgetting the vineyard belongs to the Father. 🍇",
+  
+  // Sayings on Foundation & Truth
+  "The rejected stone becomes the cornerstone. 🪨",
+  "Whoever knows much yet feels empty should seek healing in the heart. 💔",
+  "Blessed are those persecuted for truth — for they have truly lived. ⭐",
+  "Blessed are those who struggle within and rise into awareness. 🦋",
+  "What you bring forth from within will save you — what you suppress will harm you. 💎",
+  
+  // Sayings on Building & Purpose
+  "The false house collapses — but the house built on Light endures. 🏛️",
+  "Do not ask me to divide property — I came to heal the heart. ❤️",
+  "The harvest is great — but few truly labor in Spirit. 🌾",
+  "Many drink at the trough — but few draw from the Source. 💧",
+  "Many stand near the door — but only those who dare enter the inner chamber find union. 🚪",
+  
+  // Sayings on Value & Presence
+  "The Kingdom is like a merchant who sold everything to buy one priceless pearl. 📿",
+  "I am the Light of the world — lift any stone, split any piece of wood, and you will find my presence there. 🪵",
+  "Did you come to see a spectacle? Awake instead. 👁️",
+  "Blessed are those who hear and live the word of the Father. 📜",
+  "Whoever recognizes the illusions of the world transcends them. 🌌",
+  
+  // Sayings on Power & Fire
+  "If you have power, use it gently — and if you are rich, be generous. 🤲",
+  "Whoever draws near to truth draws near to a burning, purifying fire. 🔥",
+  "Images appear to the eyes — but the Light within them points to the Father. 👁️‍🗨️",
+  "When you see your true reflection, you rejoice — but seeing the shadows you once created may challenge you. 🪞",
+  "Adam was created with power — yet your calling is greater, for you can awaken. ⚡",
+  
+  // Sayings on Detachment & Care
+  "Foxes have dens and birds have nests — but truth finds no home among those attached to power. 🦊",
+  "Your body is a sacred vessel — care for it, but let spirit guide it. 🏺",
+  "The prophets and angels will remind you of what has always belonged to you. 👼",
+  "Do not polish the outside while neglecting the inner life. 💫",
+  "Come to me — my burden is light, and my teaching is gentle. 🕊️",
+  
+  // Sayings on Reading & Seeking
+  "You can read the sky and soil — but learn also to read the truth standing before you. 🌤️",
+  "Seek, and you will find. 🔍",
+  "Do not give what is holy to those who will trample it — share wisdom wisely. 💎",
+  "Whoever seeks with sincerity will be welcomed. 🤗",
+  "If you lend, give freely, without expecting return. 🎁",
+  
+  // Sayings on Transformation
+  "The Kingdom is like yeast hidden in dough — silent, but transforming everything. 🍞",
+  "The Kingdom is like a woman with a jar of flour — though she lost some, what remained still baked bread. 🥖",
+  "Prepare courage within before confronting what is powerful. 🛡️",
+  "My true family are those who live the Father's will. 👨‍👩‍👧‍👦",
+  "Give Caesar what belongs to Caesar, God what belongs to God — and give your heart to the Light. 💖",
+  
+  // Sayings on Love & Sincerity
+  "Love deeply — but let no attachment pull you away from truth. 💕",
+  "Hypocrisy blocks nourishment — be sincere. 🌿",
+  "Blessed is the one who knows where danger enters and guards the heart. 🛡️",
+  "Do not fast out of performance — live rightly instead. ✨",
+  "Whoever understands the forces shaping their life becomes free from them. 🦅",
+  
+  // Sayings on Wholeness & Eternity
+  "When you unite the divided parts of yourself, you become truly human. 🧩",
+  "A shepherd leaves the ninety-nine to rescue the one — because each soul matters. 🐑",
+  "Whoever drinks deeply of my teaching becomes like me — and I will live in them. 💧",
+  "The Kingdom is like treasure buried in a field — many stand upon it without knowing. 💰",
+  "Whoever becomes rich in the world should also learn to let go. 🎈",
+  
+  // Final Sayings
+  "Heaven and earth will pass — but those born of the Living One will not see death. 🌌",
+  "Woe to the soul ruled by appetite — and woe to the body ruled by fear. Let harmony guide both. ⚖️",
+  "The Kingdom is spread out upon the earth, but people do not see it. 🌍",
+  "In Spirit there is neither male nor female — all who unite heart and mind become living children of the Father. 💜",
 ];
 
 // Completely isolated component - uses RAF and CSS for zero main thread impact
