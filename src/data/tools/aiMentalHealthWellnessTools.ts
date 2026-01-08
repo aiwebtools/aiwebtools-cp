@@ -123,18 +123,6 @@ export const aiMentalHealthWellnessTools: Tool[] = [
     totalVotes: 12345
   },
   {
-    icon: Brain,
-    title: "Moodpath",
-    description: "AI-powered depression and anxiety screening app. Daily check-ins, mental health assessments, and personalized insights to track your emotional wellbeing.",
-    emoji: "📊",
-    color: "from-purple-400 to-pink-500",
-    directUrl: "https://mymoodpath.com/?via=aiwebtools",
-    tags: ["depression screening", "anxiety", "mood tracking", "mental health assessment", "daily check-ins", "emotional wellbeing"],
-    category: "AI Mental Health & Wellness",
-    rating: 4.3,
-    totalVotes: 7654
-  },
-  {
     icon: Sparkles,
     title: "Happify",
     description: "Science-based activities and games for emotional wellbeing. AI-personalized programs to reduce stress, overcome negative thoughts, and build resilience.",
