@@ -1,10 +1,5 @@
-import { Tool } from "@/types/tools";
 
-// Disable noisy logging by default (tool-level console logging causes lag)
-const HEALTH_DEBUG = false;
-const debugLog = (...args: any[]) => {
-  if (HEALTH_DEBUG) console.log(...args);
-};
+import { Tool } from "@/types/tools";
 
 export const isHealthAndWellnessTool = (tool: Tool): boolean => {
   const title = tool.title.toLowerCase();
@@ -14,58 +9,53 @@ export const isHealthAndWellnessTool = (tool: Tool): boolean => {
   // MUCH MORE RESTRICTIVE - Only tools PRIMARILY focused on health/wellness
   const strictHealthKeywords = [
     // Medical & Healthcare (specific)
-    "doctor", "medical", "healthcare", "hospital", "clinic", "physician", "nurse",
-    "diagnosis", "treatment", "therapy", "patient care", "clinical",
-
+    'doctor', 'medical', 'healthcare', 'hospital', 'clinic', 'physician', 'nurse',
+    'diagnosis', 'treatment', 'therapy', 'patient care', 'clinical',
+    
     // Veterinary (specific)
-    "veterinarian", "vet", "pet care", "animal health", "animal doctor",
-
-    // Mental Health (specific)
-    "mental health", "mental wellness", "therapy", "counseling", "psychology",
-    "psychiatry", "depression", "anxiety", "stress management",
-
+    'veterinarian', 'vet', 'pet care', 'animal health', 'animal doctor',
+    
+    // Mental Health (specific)  
+    'mental health', 'mental wellness', 'therapy', 'counseling', 'psychology',
+    'psychiatry', 'depression', 'anxiety', 'stress management',
+    
     // Fitness & Wellness (specific)
-    "fitness", "workout", "exercise", "gym", "training", "nutrition",
-    "diet", "weight loss", "health coach", "wellness coach",
-
+    'fitness', 'workout', 'exercise', 'gym', 'training', 'nutrition',
+    'diet', 'weight loss', 'health coach', 'wellness coach',
+    
     // Pharmaceutical (specific)
-    "pharmaceutical", "pharmacy", "drug", "medication", "prescription",
-    "medicine", "supplement", "vitamin",
-
+    'pharmaceutical', 'pharmacy', 'drug', 'medication', 'prescription',
+    'medicine', 'supplement', 'vitamin',
+    
     // Insurance (specific)
-    "insurance", "health insurance", "medical insurance", "claims"
+    'insurance', 'health insurance', 'medical insurance', 'claims'
   ];
 
   // RESTRICTIVE Health categories - only obviously health-related ones
   const strictHealthCategories = [
-    "health", "healthcare", "medical", "wellness", "fitness",
-    "mental health", "veterinary", "pharmacy", "pharmaceutical",
-    "insurance", "health & wellness", "healthcare professionals"
+    'health', 'healthcare', 'medical', 'wellness', 'fitness',
+    'mental health', 'veterinary', 'pharmacy', 'pharmaceutical',
+    'insurance', 'health & wellness', 'healthcare professionals'
   ];
 
   // Must have STRONG health indicators in title or be clearly health category
-  const hasStrongHealthKeywords = strictHealthKeywords.some((keyword) =>
+  const hasStrongHealthKeywords = strictHealthKeywords.some(keyword =>
     title.includes(keyword) || description.includes(keyword)
   );
 
-  const isStrictlyHealthCategory = strictHealthCategories.some((healthCat) =>
+  const isStrictlyHealthCategory = strictHealthCategories.some(healthCat =>
     category.includes(healthCat) || category === healthCat
   );
 
   // Only count if it's obviously health-related
-  const isObviouslyHealth =
-    title.includes("health") ||
-    title.includes("medical") ||
-    title.includes("doctor") ||
-    title.includes("vet") ||
-    title.includes("fitness") ||
-    title.includes("wellness") ||
-    title.includes("therapy");
+  const isObviouslyHealth = title.includes('health') || title.includes('medical') || 
+    title.includes('doctor') || title.includes('vet') || title.includes('fitness') ||
+    title.includes('wellness') || title.includes('therapy');
 
   const isHealthTool = (hasStrongHealthKeywords && isStrictlyHealthCategory) || isObviouslyHealth;
 
   if (isHealthTool) {
-    debugLog(`🏥 HEALTH & WELLNESS (STRICT): ${tool.title} (${tool.category})`);
+    console.log(`🏥 HEALTH & WELLNESS (STRICT): ${tool.title} (${tool.category})`);
   }
 
   return isHealthTool;

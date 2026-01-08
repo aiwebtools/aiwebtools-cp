@@ -123,6 +123,18 @@ export const aiMentalHealthWellnessTools: Tool[] = [
     totalVotes: 5432
   },
   {
+    icon: MessageCircle,
+    title: "Earkick",
+    description: "AI-powered anxiety and panic attack relief chatbot. Real-time support with breathing exercises, grounding techniques, and personalized coping strategies.",
+    emoji: "🐼",
+    color: "from-slate-500 to-gray-600",
+    directUrl: "https://www.earkick.com/?via=aiwebtools",
+    tags: ["anxiety relief", "panic attacks", "breathing exercises", "grounding", "coping strategies", "real-time support"],
+    category: "AI Mental Health & Wellness",
+    rating: 4.5,
+    totalVotes: 6789
+  },
+  {
     icon: Users,
     title: "7 Cups",
     description: "Free emotional support platform with AI chatbot and trained listeners. Anonymous chat for anxiety, depression, and life challenges with 24/7 availability.",
