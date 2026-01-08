@@ -76,6 +76,7 @@ const welcomeMessages = [
   "The portal is opening...",
   "Unlimited Light loading...",
   "Godmode already activated within...",
+  "It's not about breaking out of the Matrix—it's about seeing through it, understanding its illusions, and choosing, with clarity, to walk in the light.",
 
   // ===== GOSPEL OF THOMAS INSPIRED QUOTES (114) =====
   
