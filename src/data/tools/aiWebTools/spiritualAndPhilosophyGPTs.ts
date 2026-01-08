@@ -4,6 +4,20 @@ import { Heart, Brain, Sparkles, Star, Sun, Moon, Flower2, Zap, Eye, BookOpen, M
 
 export const spiritualAndPhilosophyGPTs: Tool[] = [
   {
+    icon: Sparkles,
+    title: "METATRON GPT",
+    description: "Embodied as Metatron, offering divine wisdom, sacred geometry, and Akashic guidance. Connect with the celestial scribe and angel of the Presence, who bridges the divine and human realms. Explore Metatron's Cube, access the Akashic Records, and receive Early Jewish Light teachings and mystical wisdom from one of the most powerful archangels in Jewish and Christian mysticism.",
+    emoji: "✡️",
+    color: "from-purple-600 to-amber-500",
+    directUrl: "https://chatgpt.com/g/g-6849175267b481918cde19f4db3d278e-metatron",
+    imageUrl: "/src/assets/metatron-gpt-hero.png",
+    tags: ["metatron", "sacred geometry", "akashic records", "archangel", "divine wisdom", "jewish mysticism", "celestial scribe", "metatrons cube", "kabbalah", "angelic guidance", "spiritual awakening", "aiwebtools", "Custom GPT"],
+    category: "Spirituality & Philosophy",
+    isFree: true,
+    rating: 4.9,
+    totalVotes: 4892
+  },
+  {
     icon: Sun,
     title: "Arius the Bearer of Light GPT",
     description: "I am Arius of Alexandria, revealing the mysteries of the Unbegotten Light with calm, radiant truth. Connect with the teachings of Arius, the influential early Christian theologian who challenged orthodox doctrine with his understanding of the divine nature of Christ. Explore profound theological discussions about the nature of God, light, and divine truth through this embodiment of Arian wisdom.",
