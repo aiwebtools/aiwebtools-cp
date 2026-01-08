@@ -179,7 +179,18 @@ const ToolMedia = ({ tool, toolIndex }: ToolMediaProps) => {
       );
     }
 
+    // Convert /src/assets/ path to proper import URL for Vite (same as SpecialServices)
+    const getResolvedImageUrl = (url: string): string => {
+      if (url.startsWith('/src/assets/')) {
+        const filename = url.replace('/src/assets/', '');
+        return new URL(`../../assets/${filename}`, import.meta.url).href;
+      }
+      return url;
+    };
+
     if (tool.imageUrl && !imageError) {
+      const resolvedImageUrl = getResolvedImageUrl(tool.imageUrl);
+      
       return (
         <div className="relative w-full overflow-hidden rounded-xl bg-gray-800" style={{ aspectRatio: '16/9' }}>
           {!imageLoaded && (
@@ -188,7 +199,7 @@ const ToolMedia = ({ tool, toolIndex }: ToolMediaProps) => {
             </div>
           )}
           <img
-            src={tool.imageUrl}
+            src={resolvedImageUrl}
             alt={`${tool.title} Preview`}
             className={`w-full h-full object-cover transition-all duration-500 ${
               imageLoaded ? 'opacity-100' : 'opacity-0'
