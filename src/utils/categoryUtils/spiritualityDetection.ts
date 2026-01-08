@@ -53,7 +53,11 @@ export const isSpiritualityTool = (tool: Tool): boolean => {
     // Indigenous & Ancient wisdom
     "shaman", "shamanic", "native american", "indigenous", "tribal wisdom",
     "ancient wisdom", "ancestral", "pagan", "druid", "celtic", "norse",
-    "yemaya", "quan yin", "kuan yin", "orishas"
+    "yemaya", "quan yin", "kuan yin", "orishas",
+    
+    // Egyptian spirituality
+    "maat", "ma'at", "egyptian proverbs", "ancient egypt", "oracle of maat",
+    "hieroglyphic wisdom", "pharaoh wisdom", "duat", "osiris", "anubis", "ra", "horus"
   ];
 
   // Known AIWebTools spiritual brands / GPT names
@@ -62,7 +66,8 @@ export const isSpiritualityTool = (tool: Tool): boolean => {
     "sophia aeterna", "historical headlines", "native american history time machine",
     "resurrection gpt", "immortalizeme", "god is light", "god is light — roman catholic", "interpretis",
     "phenomenon explorer", "yemaya", "quan yin", "self sufficiency gpt",
-    "alan watts", "carl sagan gpt", "manicheism", "mani gpt", "mingjiao", "catholic mysticism"
+    "alan watts", "carl sagan gpt", "manicheism", "mani gpt", "mingjiao", "catholic mysticism",
+    "ancient egyptian proverbs", "metatron"
   ];
 
   const haystack = `${title} ${description} ${category} ${tags}`;

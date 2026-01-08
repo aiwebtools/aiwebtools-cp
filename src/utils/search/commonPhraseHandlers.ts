@@ -1065,10 +1065,10 @@ export const COMMON_PHRASE_HANDLERS: Record<string, PhraseHandler> = {
 
   // ===== ANCIENT CIVILIZATIONS =====
   ancientEgypt: {
-    triggers: ['ancient egypt', 'egyptian', 'pharaoh', 'pyramids', 'hieroglyphics', 'egypt mysteries', 'egyptain'],
-    keywords: ['egypt', 'egyptian', 'pharaoh', 'pyramid', 'hieroglyphic', 'ancient', 'tomb'],
-    priorityTools: ['Indiana Archeologist GPT', 'Intergalactic Ancient Archivist GPT', 'TALK TO HISTORY GPT'],
-    relatedCategories: ['History', 'Ancient Civilizations']
+    triggers: ['ancient egypt', 'egyptian', 'pharaoh', 'pyramids', 'hieroglyphics', 'egypt mysteries', 'egyptain', 'maat', "ma'at", 'egyptian proverbs', 'egyptian wisdom', 'oracle of maat'],
+    keywords: ['egypt', 'egyptian', 'pharaoh', 'pyramid', 'hieroglyphic', 'ancient', 'tomb', 'maat', 'proverbs', 'oracle'],
+    priorityTools: ['Ancient Egyptian Proverbs GPT', 'Indiana Archeologist GPT', 'Intergalactic Ancient Archivist GPT', 'TALK TO HISTORY GPT'],
+    relatedCategories: ['History', 'Ancient Civilizations', 'Spirituality Tools']
   },
 
   ancientGreece: {

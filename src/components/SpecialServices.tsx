@@ -64,7 +64,8 @@ const weightedShuffle = <T extends { title: string }>(items: T[]): T[] => {
     "Mary Magdalene GPT", "ALAN WATTS GPT", "Albert Einstein GPT", "Nikola Tesla GPT", 
     "Public Defender GPT", "Sophia Aeterna AI", "Carl Sagan GPT", "Manicheism GPT",
     "Oraculum – The Revealer of Hidden Truths", "TALK TO HISTORY GPT", 
-    "Indiana Archeologist GPT", "Illuminous World Data Explorer GPT", "METATRON GPT"
+    "Indiana Archeologist GPT", "Illuminous World Data Explorer GPT", "METATRON GPT",
+    "Ancient Egyptian Proverbs GPT"
   ]);
   
   // Split into tiers
@@ -1296,6 +1297,16 @@ const featuredGPTsUnsorted = [
     directUrl: "https://talktothegodsgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=xoUdjZDgplw",
     emoji: "⚡"
+  },
+  {
+    title: "Ancient Egyptian Proverbs GPT",
+    description: "Oracle of Ma'at speaking only in ancient Egyptian-style proverbs. Connect with timeless wisdom from the goddess of truth, justice, and cosmic order.",
+    badge: "ANCIENT WISDOM",
+    color: "from-amber-600 to-yellow-500",
+    features: ["Egyptian Proverbs", "Ma'at Wisdom", "Ancient Egypt", "Spiritual Guidance"],
+    directUrl: "https://chatgpt.com/g/g-695fec91106c819181e8fe92d1e7bd19-ancient-egyptian-proverbs-gpt",
+    imageUrl: "/src/assets/ancient-egyptian-proverbs-gpt-hero.png",
+    emoji: "𓂀"
   },
   {
     title: "Tattoo Designer GPT",
