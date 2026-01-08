@@ -10,6 +10,7 @@ export const roboticsCompanies: Tool[] = [
     description: "Leading manufacturer of quadruped and humanoid robots including the G1 humanoid robot and Go series quadrupeds. Specializes in advanced robotics for research, education, and commercial applications with cutting-edge AI integration.",
     color: "from-blue-600 to-purple-600",
     directUrl: "https://www.unitree.com/?via=aiwebtools",
+    imageUrl: "/src/assets/tools/unitree-robotics-hero.png",
     rating: 4.8,
     totalVotes: 2341,
     tags: ["humanoid robots", "quadruped robots", "robotics manufacturer", "AI robotics", "commercial robots", "G1 robot", "Go series", "unitree"]
@@ -22,6 +23,7 @@ export const roboticsCompanies: Tool[] = [
     description: "Developing Figure-01 humanoid robot for commercial deployment in manufacturing and logistics. Focus on general-purpose humanoid workers with advanced AI capabilities for workplace automation.",
     color: "from-gray-600 to-green-600",
     directUrl: "https://www.figure.ai/?via=aiwebtools",
+    imageUrl: "/src/assets/tools/figure-ai-hero.png",
     rating: 4.6,
     totalVotes: 1876,
     tags: ["Figure-01", "Figure 01", "commercial humanoid", "manufacturing robots", "general purpose", "workplace automation", "figure ai", "humanoid worker"]
@@ -34,6 +36,7 @@ export const roboticsCompanies: Tool[] = [
     description: "Tesla's humanoid robot project designed for general-purpose tasks. Aims to create affordable humanoid robots for manufacturing and household applications with advanced AI and neural networks.",
     color: "from-gray-600 to-blue-600",
     directUrl: "https://www.tesla.com/AI/?via=aiwebtools",
+    imageUrl: "/src/assets/tools/tesla-bot-hero.png",
     rating: 4.5,
     totalVotes: 3421,
     tags: ["Tesla Bot", "Optimus", "Tesla Optimus", "general purpose robot", "manufacturing automation", "humanoid", "tesla robot", "elon musk robot"]
@@ -46,6 +49,7 @@ export const roboticsCompanies: Tool[] = [
     description: "World-renowned robotics company famous for Atlas humanoid robot, Spot quadruped, and Stretch warehouse robot. Pioneers in dynamic mobility and advanced robotics research.",
     color: "from-orange-600 to-red-600",
     directUrl: "https://www.bostondynamics.com/?via=aiwebtools",
+    imageUrl: "/src/assets/tools/boston-dynamics-hero.png",
     rating: 4.9,
     totalVotes: 4532,
     tags: ["Atlas robot", "Spot robot", "dynamic robotics", "humanoid", "commercial robotics", "boston dynamics"]
@@ -58,6 +62,7 @@ export const roboticsCompanies: Tool[] = [
     description: "Creator of Digit, the bipedal humanoid robot designed for logistics and warehouse automation. Focus on human-robot collaboration in workplace environments.",
     color: "from-green-600 to-blue-600", 
     directUrl: "https://agilityrobotics.com/?via=aiwebtools",
+    imageUrl: "/src/assets/tools/agility-robotics-hero.png",
     rating: 4.7,
     totalVotes: 1987,
     tags: ["Digit robot", "bipedal robot", "warehouse automation", "logistics robotics", "humanoid", "agility robotics"]
@@ -69,7 +74,8 @@ export const roboticsCompanies: Tool[] = [
     category: "Robotics Companies",
     description: "Honda's advanced robotics division, famous for ASIMO humanoid robot. Pioneering research in bipedal locomotion, AI integration, and human-robot interaction.",
     color: "from-red-600 to-orange-600",
-    directUrl: "https://global.honda/innovation/robotics/?via=aiwebtools", 
+    directUrl: "https://global.honda/innovation/robotics/?via=aiwebtools",
+    imageUrl: "/src/assets/tools/honda-robotics-hero.png",
     rating: 4.6,
     totalVotes: 2134,
     tags: ["ASIMO", "bipedal locomotion", "Honda robotics", "humanoid research", "AI integration"]
@@ -82,6 +88,7 @@ export const roboticsCompanies: Tool[] = [
     description: "Creator of Sophia the robot and other social humanoid robots. Specializes in AI-powered social robotics with lifelike expressions and conversational abilities.",
     color: "from-purple-600 to-pink-600",
     directUrl: "https://www.hansonrobotics.com/?via=aiwebtools",
+    imageUrl: "/src/assets/tools/hanson-robotics-hero.png",
     rating: 4.4,
     totalVotes: 1654,
     tags: ["Sophia robot", "social robotics", "AI conversation", "humanoid expressions", "entertainment robots"]
@@ -94,6 +101,7 @@ export const roboticsCompanies: Tool[] = [
     description: "Manufacturer of Pepper and NAO humanoid robots for education, retail, and healthcare. Focus on emotion-sensing and interactive service robots.",
     color: "from-blue-600 to-cyan-600",
     directUrl: "https://www.softbankrobotics.com/?via=aiwebtools",
+    imageUrl: "/src/assets/tools/softbank-robotics-hero.png",
     rating: 4.3,
     totalVotes: 1432,
     tags: ["Pepper robot", "NAO robot", "service robots", "education robotics", "emotion sensing"]
@@ -154,6 +162,7 @@ export const roboticsCompanies: Tool[] = [
     description: "Canadian AI robotics company developing Phoenix humanoid robot with human-like intelligence and dexterity for general-purpose work.",
     color: "from-red-600 to-purple-600",
     directUrl: "https://sanctuary.ai/?via=aiwebtools",
+    imageUrl: "/src/assets/tools/sanctuary-ai-hero.png",
     rating: 4.5,
     totalVotes: 1234,
     tags: ["Phoenix robot", "general intelligence", "human dexterity", "Canadian robotics", "AI workforce"]
@@ -166,6 +175,7 @@ export const roboticsCompanies: Tool[] = [
     description: "UK-based company creating ultra-realistic humanoid robots like Ameca for entertainment, education, and research applications.",
     color: "from-pink-600 to-purple-600",
     directUrl: "https://www.engineeredarts.co.uk/?via=aiwebtools",
+    imageUrl: "/src/assets/tools/engineered-arts-hero.png",
     rating: 4.4,
     totalVotes: 987,
     tags: ["Ameca robot", "realistic humanoids", "entertainment robots", "research platforms", "UK robotics"]
