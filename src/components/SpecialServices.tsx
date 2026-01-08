@@ -64,7 +64,7 @@ const weightedShuffle = <T extends { title: string }>(items: T[]): T[] => {
     "Mary Magdalene GPT", "ALAN WATTS GPT", "Albert Einstein GPT", "Nikola Tesla GPT", 
     "Public Defender GPT", "Sophia Aeterna AI", "Carl Sagan GPT", "Manicheism GPT",
     "Oraculum – The Revealer of Hidden Truths", "TALK TO HISTORY GPT", 
-    "Indiana Archeologist GPT", "Illuminous World Data Explorer GPT"
+    "Indiana Archeologist GPT", "Illuminous World Data Explorer GPT", "METATRON GPT"
   ]);
   
   // Split into tiers
