@@ -11,6 +11,7 @@ import { Play } from "lucide-react";
 import ToolDisclaimerBadges from "@/components/disclaimers/ToolDisclaimerBadges";
 import { generateToolSlug } from "@/utils/urlGenerator";
 import AutoScaleTitle from "@/components/ui/auto-scale-title";
+import { trackToolClickEvent } from "@/hooks/useToolAnalytics";
 
 // Weighted shuffle - keeps high-quality tools near the top but adds randomness
 // PRIORITY: Dream-conquering practical tools FIRST, then spirituality/awakening
@@ -3863,8 +3864,10 @@ const SpecialServices = () => {
     }
   };
   
-  const handleLaunchGPT = (directUrl: string, title: string, e: React.MouseEvent) => {
+  const handleLaunchGPT = (directUrl: string, title: string, category: string, e: React.MouseEvent) => {
     e.stopPropagation();
+    // Track click analytics
+    trackToolClickEvent(title, category);
     createTimePortalEffect(directUrl, title);
   };
 
@@ -4082,7 +4085,7 @@ const SpecialServices = () => {
                 <Button 
                   size="sm"
                   className={`w-full bg-gradient-to-r ${gpt.color} hover:opacity-90 text-white text-[10px] md:text-xs py-1.5 font-medium transition-all duration-300 group-hover:shadow-lg`}
-                  onClick={(e) => handleLaunchGPT(gpt.directUrl, gpt.title, e)}
+                  onClick={(e) => handleLaunchGPT(gpt.directUrl, gpt.title, gpt.badge, e)}
                 >
                   🚀 Launch GPT →
                 </Button>
