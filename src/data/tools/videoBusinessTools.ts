@@ -142,9 +142,3 @@ export const videoBusinessTools: Tool[] = [
     totalVotes: 2234
   }
 ];
-    tags: ["personalized videos", "scale generation", "voice cloning", "avatar technology", "customized", "Video Generator", "Avatar Video"],
-    category: "Video Tools",
-    rating: 4.4,
-    totalVotes: 2234
-  }
-];
