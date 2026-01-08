@@ -447,6 +447,9 @@ const funnyQuotes = [
   
   // Pythagorean / Orphic wisdom
   "Each soul is a star fallen from its orbit, seeking again its harmony with the Source (The Light). ⭐",
+  
+  // Matrix wisdom
+  "It's not about breaking out of the Matrix—it's about seeing through it, understanding its illusions, and choosing, with clarity, to walk in the light. 🔴🔵",
 ];
 
 // Completely isolated component - uses RAF and CSS for zero main thread impact
