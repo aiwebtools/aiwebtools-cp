@@ -40,13 +40,8 @@ const ToolMedia = ({ tool, toolIndex }: ToolMediaProps) => {
     }
   }, []);
 
-  // Listen for pinned player playing event - only when pinned player unmutes
-  useEffect(() => {
-    window.addEventListener('pinnedPlayerPlaying', handlePinnedPlayerPlaying);
-    return () => {
-      window.removeEventListener('pinnedPlayerPlaying', handlePinnedPlayerPlaying);
-    };
-  }, [handlePinnedPlayerPlaying]);
+  // NOTE: Tool pages do not show the pinned player; avoid listening for pinned-player events here
+  // (this was causing occasional unexpected muting on individual tool pages).
 
   // Track last visibility state to prevent redundant events
   const lastVisibilityRef = useRef<boolean | null>(null);
@@ -80,10 +75,17 @@ const ToolMedia = ({ tool, toolIndex }: ToolMediaProps) => {
               setIsVisible(true);
               // When tool video becomes visible, mute the pinned player and unmute this video
               window.dispatchEvent(new CustomEvent('toolVideoPlaying'));
-              // Delay to ensure iframe is loaded before sending unmute command
+              // Try to force immediate sound + playback when it becomes visible
+              // (Autoplay-with-sound may still be blocked until a user gesture in some browsers)
               setTimeout(() => {
                 unmuteToolVideo();
-              }, 500);
+                try {
+                  iframeRef.current?.contentWindow?.postMessage(
+                    JSON.stringify({ event: 'command', func: 'playVideo' }),
+                    'https://www.youtube.com'
+                  );
+                } catch {}
+              }, 0);
             }
           }, 150); // 150ms debounce prevents flickering
         });
