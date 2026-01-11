@@ -100,29 +100,9 @@
     transform: translateZ(0) !important;
   }
   
-  /* Disable problematic CSS properties on Safari tablets */
-  @media (min-width: 768px) and (max-width: 1024px) {
-    /* Remove all filters which cause Safari slowdown */
-    * {
-      filter: none !important;
-      -webkit-filter: none !important;
-    }
-    
-    /* Disable perspective transforms which cause glitches */
-    [style*="perspective"],
-    [class*="perspective"],
-    .perspective-1000 {
-      perspective: none !important;
-      -webkit-perspective: none !important;
-    }
-    
-    /* Simplify transforms */
-    [style*="transform"],
-    [class*="transform"] {
-      transform: none !important;
-      -webkit-transform: none !important;
-    }
-  }
+  /* Safari note: do NOT blanket-disable transforms/filters.
+     It can break Tailwind layouts and cause "black screen" rendering.
+     We only optimize inputs + remove expensive backdrop blur above. */
 }
 
 /* =========================================
