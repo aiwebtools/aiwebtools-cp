@@ -106,15 +106,15 @@ const CloneOfferPopup = () => {
             height="100%"
             src={isOpen ? (
               showCount === 3 
-                ? "https://www.youtube.com/embed/s5lZHJU3y08?autoplay=1&mute=0&controls=1&rel=0&modestbranding=1&playsinline=1&fs=1&vq=hd1080&hd=1&quality=hd1080&enablejsapi=1"
+                ? "https://www.youtube.com/embed/s5lZHJU3y08?autoplay=1&mute=1&controls=1&rel=0&modestbranding=1&playsinline=1&fs=1&vq=hd1080&hd=1&enablejsapi=1"
                 : showCount === 2 
-                  ? "https://www.youtube.com/embed/nG4NqPwNHaw?autoplay=1&mute=0&controls=1&rel=0&modestbranding=1&playsinline=1&fs=1&vq=hd1080&hd=1&quality=hd1080&enablejsapi=1"
-                  : "https://www.youtube.com/embed/lPZVKMfUcrs?autoplay=1&mute=0&controls=1&rel=0&modestbranding=1&playsinline=1&fs=1&vq=hd1080&hd=1&quality=hd1080&enablejsapi=1"
+                  ? "https://www.youtube.com/embed/nG4NqPwNHaw?autoplay=1&mute=1&controls=1&rel=0&modestbranding=1&playsinline=1&fs=1&vq=hd1080&hd=1&enablejsapi=1"
+                  : "https://www.youtube.com/embed/lPZVKMfUcrs?autoplay=1&mute=1&controls=1&rel=0&modestbranding=1&playsinline=1&fs=1&vq=hd1080&hd=1&enablejsapi=1"
             ) : ""}
             key={isOpen ? `playing-${showCount}` : "stopped"}
             title="Clone This Website"
             frameBorder="0"
-            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
             className="w-full h-full"
             loading="eager"
