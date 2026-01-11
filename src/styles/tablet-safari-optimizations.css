@@ -1,0 +1,287 @@
+/* Tablet & iPad Safari Optimizations */
+/* Fixes for glitchy behavior, slow typing, and orientation change issues */
+
+/* =========================================
+   TABLET-SPECIFIC OPTIMIZATIONS (768px - 1024px)
+   ========================================= */
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* Disable ALL animations and transitions for tablets */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0ms !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0ms !important;
+    transition-delay: 0ms !important;
+    animation: none !important;
+  }
+  
+  /* Force instant rendering - no will-change overhead */
+  * {
+    will-change: auto !important;
+    contain: layout style !important;
+  }
+  
+  /* Disable expensive visual effects */
+  .backdrop-blur-sm,
+  .backdrop-blur-md,
+  .backdrop-blur-lg,
+  .backdrop-blur-xl,
+  [class*="backdrop-blur"] {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background-color: rgba(0, 0, 0, 0.9) !important;
+  }
+  
+  /* Simplify all shadows */
+  [class*="shadow"] {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+  }
+  
+  /* Disable glow effects completely */
+  .cyber-glow,
+  .glow-effect,
+  .divine-glow-border,
+  .glow-text-effect,
+  [class*="glow"] {
+    text-shadow: none !important;
+    box-shadow: none !important;
+    filter: none !important;
+  }
+  
+  /* Disable matrix rain and complex backgrounds */
+  .matrix-rain-column,
+  .matrix-canvas,
+  [class*="matrix"] {
+    display: none !important;
+  }
+  
+  /* Optimize scrolling containers */
+  .overflow-auto,
+  .overflow-y-auto,
+  .overflow-x-auto,
+  [class*="overflow"] {
+    -webkit-overflow-scrolling: touch !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* =========================================
+   SAFARI-SPECIFIC FIXES
+   ========================================= */
+@supports (-webkit-touch-callout: none) {
+  /* Safari on iOS/iPadOS detected */
+  
+  /* Fix typing lag - remove all input animations */
+  input,
+  textarea,
+  select,
+  [contenteditable="true"] {
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    -webkit-transform: none !important;
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+    will-change: auto !important;
+    -webkit-font-smoothing: subpixel-antialiased !important;
+    text-rendering: optimizeSpeed !important;
+  }
+  
+  /* Prevent iOS zoom on input focus */
+  input[type="text"],
+  input[type="search"],
+  input[type="email"],
+  input[type="password"],
+  input[type="tel"],
+  input[type="url"],
+  textarea {
+    font-size: 16px !important;
+    touch-action: manipulation !important;
+  }
+  
+  /* Fix Safari rendering glitches */
+  body {
+    -webkit-transform: translateZ(0) !important;
+    transform: translateZ(0) !important;
+  }
+  
+  /* Disable problematic CSS properties on Safari tablets */
+  @media (min-width: 768px) and (max-width: 1024px) {
+    /* Remove all filters which cause Safari slowdown */
+    * {
+      filter: none !important;
+      -webkit-filter: none !important;
+    }
+    
+    /* Disable perspective transforms which cause glitches */
+    [style*="perspective"],
+    [class*="perspective"],
+    .perspective-1000 {
+      perspective: none !important;
+      -webkit-perspective: none !important;
+    }
+    
+    /* Simplify transforms */
+    [style*="transform"],
+    [class*="transform"] {
+      transform: none !important;
+      -webkit-transform: none !important;
+    }
+  }
+}
+
+/* =========================================
+   ORIENTATION CHANGE HANDLING
+   ========================================= */
+/* Prevent layout recalculation flash during rotation */
+@media (min-width: 768px) and (max-width: 1366px) {
+  html {
+    /* Lock dimensions during orientation change */
+    height: 100%;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+  }
+  
+  body {
+    height: 100%;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+    overflow-x: hidden !important;
+    /* Prevent content jumping */
+    position: relative;
+  }
+  
+  /* Smooth orientation transitions */
+  #root,
+  .app-container,
+  main {
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+  }
+}
+
+/* During orientation change - freeze animations */
+.orientation-changing * {
+  animation: none !important;
+  transition: none !important;
+  will-change: auto !important;
+}
+
+/* =========================================
+   TOUCH INPUT OPTIMIZATIONS
+   ========================================= */
+@media (pointer: coarse) and (min-width: 768px) {
+  /* Tablet with touch input */
+  
+  /* Larger, more responsive touch targets */
+  button,
+  a,
+  [role="button"],
+  [tabindex]:not([tabindex="-1"]),
+  .clickable {
+    min-height: 48px !important;
+    min-width: 48px !important;
+    touch-action: manipulation !important;
+    -webkit-tap-highlight-color: transparent !important;
+  }
+  
+  /* Faster touch response for inputs */
+  input,
+  textarea,
+  select {
+    touch-action: manipulation !important;
+    -webkit-user-select: text !important;
+    user-select: text !important;
+  }
+  
+  /* Disable hover states which cause delays on touch */
+  *:hover {
+    transition: none !important;
+  }
+}
+
+/* =========================================
+   PERFORMANCE-CRITICAL ELEMENTS
+   ========================================= */
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* Optimize iframes (videos) */
+  iframe {
+    transform: translateZ(0) !important;
+    -webkit-transform: translateZ(0) !important;
+    will-change: auto !important;
+    contain: strict !important;
+  }
+  
+  /* Reduce paint complexity for cards */
+  .tool-card,
+  .card,
+  [data-card] {
+    transform: none !important;
+    transition: none !important;
+    will-change: auto !important;
+    contain: layout style paint !important;
+  }
+  
+  /* Disable complex grid animations */
+  .tools-grid,
+  .efficient-grid,
+  [class*="grid"] {
+    contain: layout !important;
+    content-visibility: auto !important;
+  }
+  
+  /* Optimize search components */
+  .search-input,
+  .search-container,
+  [class*="search"] {
+    will-change: auto !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  
+  /* Simplify navigation */
+  nav,
+  header,
+  .header,
+  .navigation {
+    position: sticky !important;
+    transform: none !important;
+    will-change: auto !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background-color: hsl(var(--background)) !important;
+  }
+}
+
+/* =========================================
+   KEYBOARD VISIBILITY (prevents layout shift)
+   ========================================= */
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* When virtual keyboard opens, prevent page from jumping */
+  .keyboard-open {
+    position: fixed !important;
+    width: 100% !important;
+    height: 100% !important;
+    overflow: hidden !important;
+  }
+  
+  .keyboard-open main {
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+}
+
+/* =========================================
+   REDUCE MOTION (respects user preference)
+   ========================================= */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
