@@ -5,62 +5,56 @@
    TABLET-SPECIFIC OPTIMIZATIONS (768px - 1024px)
    ========================================= */
 @media (min-width: 768px) and (max-width: 1024px) {
-  /* Disable ALL animations and transitions for tablets */
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0ms !important;
-    animation-delay: 0ms !important;
-    transition-duration: 0ms !important;
-    transition-delay: 0ms !important;
-    animation: none !important;
+  /* Reduce animation speed for tablets - not disable completely */
+  .animate-pulse,
+  .animate-bounce,
+  .animate-spin,
+  [class*="animate-"] {
+    animation-duration: 0.1s !important;
+    animation-iteration-count: 1 !important;
   }
   
-  /* Force instant rendering - no will-change overhead */
-  * {
-    will-change: auto !important;
-    contain: layout style !important;
+  /* Speed up transitions */
+  button,
+  a,
+  input,
+  .tool-card,
+  .card {
+    transition-duration: 0.05s !important;
   }
   
   /* Disable expensive visual effects */
   .backdrop-blur-sm,
   .backdrop-blur-md,
   .backdrop-blur-lg,
-  .backdrop-blur-xl,
-  [class*="backdrop-blur"] {
+  .backdrop-blur-xl {
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
     background-color: rgba(0, 0, 0, 0.9) !important;
   }
   
-  /* Simplify all shadows */
-  [class*="shadow"] {
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+  /* Simplify heavy shadows only */
+  .shadow-2xl,
+  .shadow-xl {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4) !important;
   }
   
-  /* Disable glow effects completely */
+  /* Disable heavy glow effects only */
   .cyber-glow,
-  .glow-effect,
-  .divine-glow-border,
-  .glow-text-effect,
-  [class*="glow"] {
+  .divine-glow-border {
     text-shadow: none !important;
-    box-shadow: none !important;
+    box-shadow: 0 0 4px rgba(0, 255, 255, 0.3) !important;
     filter: none !important;
   }
   
-  /* Disable matrix rain and complex backgrounds */
-  .matrix-rain-column,
-  .matrix-canvas,
-  [class*="matrix"] {
+  /* Hide only matrix rain animation elements (not containers) */
+  .matrix-rain-column {
     display: none !important;
   }
   
   /* Optimize scrolling containers */
   .overflow-auto,
-  .overflow-y-auto,
-  .overflow-x-auto,
-  [class*="overflow"] {
+  .overflow-y-auto {
     -webkit-overflow-scrolling: touch !important;
     scroll-behavior: auto !important;
   }
