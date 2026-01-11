@@ -27,6 +27,15 @@ const setCookie = (name: string, value: string) => {
 };
 
 export const getConsentAccepted = (): boolean => {
+  // In-memory fallback (covers Safari/iOS privacy modes where storage/cookies can be blocked)
+  try {
+    if (typeof window !== "undefined" && (window as any).__AIT_CONSENT_ACCEPTED__ === true) {
+      return true;
+    }
+  } catch {
+    // ignore
+  }
+
   // localStorage
   try {
     if (typeof window !== "undefined" && window.localStorage) {
@@ -54,6 +63,13 @@ export const getConsentAccepted = (): boolean => {
 
 export const setConsentAccepted = (accepted = true) => {
   const v = accepted ? "true" : "";
+
+  // In-memory fallback (works even if storage/cookies are blocked)
+  try {
+    (window as any).__AIT_CONSENT_ACCEPTED__ = accepted;
+  } catch {
+    // ignore
+  }
 
   try {
     window.localStorage?.setItem(CONSENT_KEY, v);
