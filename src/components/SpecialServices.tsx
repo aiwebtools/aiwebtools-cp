@@ -133,7 +133,7 @@ const LazyVideoEmbed = ({ videoUrl, title, height = "h-32" }: { videoUrl: string
   if (!videoId) return null;
   
   const thumbnailUrl = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
-  const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0&controls=1&rel=0&modestbranding=1&playsinline=1&enablejsapi=1`;
+  const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0&controls=1&rel=0&playsinline=1&enablejsapi=1&fs=1&cc_load_policy=0`;
   
   if (isLoaded) {
     return (
