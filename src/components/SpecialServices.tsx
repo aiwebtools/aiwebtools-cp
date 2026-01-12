@@ -133,7 +133,7 @@ const LazyVideoEmbed = ({ videoUrl, title, height = "h-32" }: { videoUrl: string
   if (!videoId) return null;
   
   const thumbnailUrl = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
-  const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0&controls=1&rel=0&modestbranding=1&playsinline=1`;
+  const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0&controls=1&rel=0&modestbranding=1&playsinline=1&enablejsapi=1`;
   
   if (isLoaded) {
     return (
@@ -142,7 +142,7 @@ const LazyVideoEmbed = ({ videoUrl, title, height = "h-32" }: { videoUrl: string
         title={`${title} Demo`}
         className="absolute inset-0 w-full h-full"
         frameBorder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; autoplay"
         allowFullScreen
       />
     );
