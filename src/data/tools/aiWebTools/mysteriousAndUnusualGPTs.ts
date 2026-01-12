@@ -227,7 +227,7 @@ export const mysteriousAndUnusualGPTs: Tool[] = [
     emoji: "🌌",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://chatgpt.com/g/g-68fb8e9c98188191961129f8c4d120b7-the-cosmic-probability-gpt",
-    imageUrl: "/src/assets/tools/cosmic-probability-hero.png",
+    imageUrl: "/src/assets/tools/cosmic-probability-gpt.png",
     tags: ["cosmic probability", "existence analysis", "probability calculation", "universe", "mathematics", "philosophy", "reality decoding", "aiwebtools", "Custom GPT"],
     category: "Mysterious & Unusual",
     rating: 4.8,
