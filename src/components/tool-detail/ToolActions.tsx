@@ -15,8 +15,12 @@ const ToolActions = ({ tool }: ToolActionsProps) => {
   const [showAgeModal, setShowAgeModal] = useState(false);
   const pendingUrlRef = useRef<string | null>(null);
   
-  // Check if tool requires age verification
-  const needsAgeGate = requiresAgeVerification(tool);
+  // Check if tool requires age verification - with explicit debug
+  const needsAgeGate = React.useMemo(() => {
+    const result = requiresAgeVerification(tool);
+    console.log(`🔞 ToolActions: "${tool?.title}" needsAgeGate=${result}, category="${tool?.category}", tags="${tool?.tags?.join(', ')}"`);
+    return result;
+  }, [tool]);
   
   // Handle age verification success
   const handleAgeVerified = useCallback(() => {

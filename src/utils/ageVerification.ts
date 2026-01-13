@@ -4,7 +4,11 @@
  * 
  * SCOPE: Dating apps, AI girlfriends/boyfriends, adult content, couples tools
  * NOT: General productivity tools that happen to mention "love" or "relationship"
+ * 
+ * VERSION: 2.0 - Enhanced detection with debug logging
  */
+
+console.log('🔞 Age Verification System v2.0 loaded');
 
 import { Tool } from "@/types/tools";
 
@@ -67,20 +71,32 @@ const EXCLUSION_PATTERNS = [
  * Smart detection focused specifically on dating/adult/couples tools
  */
 export const requiresAgeVerification = (tool: Tool): boolean => {
-  if (!tool) return false;
+  if (!tool) {
+    console.log('🔞 Age check: No tool provided');
+    return false;
+  }
   
-  const titleLower = tool.title?.toLowerCase() || '';
-  const descLower = tool.description?.toLowerCase() || '';
-  const categoryLower = tool.category?.toLowerCase() || '';
+  const titleLower = (tool.title || '').toLowerCase();
+  const descLower = (tool.description || '').toLowerCase();
+  const categoryLower = (tool.category || '').toLowerCase();
   const tagsLower = (tool.tags || []).map(t => t.toLowerCase()).join(' ');
   
   const combinedText = `${titleLower} ${descLower} ${tagsLower}`;
+  
+  console.log(`🔞 Age check for "${tool.title}":`, {
+    category: categoryLower,
+    tagsLower,
+    titleLower
+  });
   
   // First check exclusions - if tool matches exclusion, it's NOT age restricted
   const isExcluded = EXCLUSION_PATTERNS.some(pattern => 
     combinedText.includes(pattern)
   );
-  if (isExcluded) return false;
+  if (isExcluded) {
+    console.log(`🔞 ${tool.title}: EXCLUDED (matched exclusion pattern)`);
+    return false;
+  }
   
   // Check if category is explicitly age-restricted
   const hasRestrictedCategory = AGE_RESTRICTED_CATEGORIES.some(cat =>
@@ -88,16 +104,22 @@ export const requiresAgeVerification = (tool: Tool): boolean => {
   );
   
   // If category is age-restricted, tool is age-restricted
-  if (hasRestrictedCategory) return true;
+  if (hasRestrictedCategory) {
+    console.log(`🔞 ${tool.title}: RESTRICTED (category match: ${categoryLower})`);
+    return true;
+  }
   
   // Check for primary keywords (strong indicators)
-  const hasPrimaryKeyword = PRIMARY_AGE_RESTRICTED_KEYWORDS.some(keyword => 
+  const matchedKeyword = PRIMARY_AGE_RESTRICTED_KEYWORDS.find(keyword => 
     combinedText.includes(keyword)
   );
-  if (hasPrimaryKeyword) return true;
+  if (matchedKeyword) {
+    console.log(`🔞 ${tool.title}: RESTRICTED (keyword match: "${matchedKeyword}")`);
+    return true;
+  }
   
   // Check for explicit 18+ tag
-  const has18PlusTag = tool.tags?.some(tag => {
+  const matchedTag = tool.tags?.find(tag => {
     const tagLower = tag.toLowerCase();
     return tagLower === '18+' || 
            tagLower === 'adult' || 
@@ -106,7 +128,10 @@ export const requiresAgeVerification = (tool: Tool): boolean => {
            tagLower === 'ai girlfriend' ||
            tagLower === 'ai boyfriend';
   });
-  if (has18PlusTag) return true;
+  if (matchedTag) {
+    console.log(`🔞 ${tool.title}: RESTRICTED (tag match: "${matchedTag}")`);
+    return true;
+  }
   
   // Secondary keywords only if category hints at dating/relationship
   const categoryHintsDating = categoryLower.includes('dating') || 
@@ -114,12 +139,16 @@ export const requiresAgeVerification = (tool: Tool): boolean => {
                                categoryLower.includes('companion');
   
   if (categoryHintsDating) {
-    const hasSecondaryKeyword = SECONDARY_KEYWORDS.some(keyword =>
+    const secondaryMatch = SECONDARY_KEYWORDS.find(keyword =>
       combinedText.includes(keyword)
     );
-    if (hasSecondaryKeyword) return true;
+    if (secondaryMatch) {
+      console.log(`🔞 ${tool.title}: RESTRICTED (secondary match: "${secondaryMatch}")`);
+      return true;
+    }
   }
   
+  console.log(`🔞 ${tool.title}: NOT RESTRICTED`);
   return false;
 };
 
