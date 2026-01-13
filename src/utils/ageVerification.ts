@@ -63,7 +63,12 @@ const EXCLUSION_PATTERNS = [
   'love of learning', // Educational
   'love for music', // General interest
   'i love', // General phrase
-  'beloved' // General adjective
+  'beloved', // General adjective
+  'g-mode gpt', // Productivity AI, not dating companion
+  'godmode gpt', // Legacy name for G-Mode GPT
+  'clarity omni', // General AI assistant
+  'multitasker gpt', // Productivity tool
+  'custom gpt maker' // GPT builder tool
 ];
 
 /**
