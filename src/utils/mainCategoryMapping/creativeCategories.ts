@@ -1,10 +1,49 @@
 
 import { MainCategory } from "./types";
 
-// Note: "CONTENT CREATION & WRITING" and "IMAGE & DESIGN AI TOOLS" are defined in coreCategories.ts
-// to avoid duplicate React keys
-
 export const creativeCategories: MainCategory[] = [
+  {
+    name: "CONTENT CREATION & WRITING",
+    emoji: "✍️",
+    description: "AI writing assistants, content generators, and creative writing tools",
+    subcategories: [
+      "Writing & Content",
+      "Content Creation Tools",
+      "Content Creation & Writing Tools",
+      "Writing & Content Enhancement",
+      "AI Content Generators",
+      "Creative Writing Tools",
+      "Grammar & Writing Assistants",
+      "Transcription & Document Tools",
+      "Blog Writing",
+      "Academic Writing",
+      "Creative Writing"
+    ]
+  },
+  {
+    name: "IMAGE & DESIGN AI TOOLS",
+    emoji: "🎨",
+    description: "AI image generators, design tools, and visual content creation platforms",
+    subcategories: [
+      "AI Art Tools",
+      "Image & Design",
+      "Core Image Generators",
+      "Image Generation Platforms",
+      "Image Editing Tools",
+      "Specialized Image Tools",
+      "Background & Object Tools",
+      "Design & Graphics Tools",
+      "Design Assistant Tools",
+      "Creative Design Tools",
+      "Photo Editing",
+      "Graphic Design",
+      "Creative & Design",
+      "Creative Design",
+      "Creative Platforms",
+      "Creative Services",
+      "Creative Suites"
+    ]
+  },
   {
     name: "VIDEO & MULTIMEDIA",
     emoji: "🎬",

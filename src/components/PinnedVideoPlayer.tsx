@@ -261,8 +261,19 @@ const PinnedVideoPlayer = memo(() => {
   });
   
   // Only require scroll on homepage, show immediately on other pages
-  // Start with false - let the scroll effect determine visibility
-  const [hasScrolledEnough, setHasScrolledEnough] = useState(false);
+  // Check initial scroll position on mount
+  const [hasScrolledEnough, setHasScrolledEnough] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    const getScrollY = (): number => {
+      if (typeof window.scrollY === 'number' && window.scrollY > 0) return window.scrollY;
+      if (typeof window.pageYOffset === 'number' && window.pageYOffset > 0) return window.pageYOffset;
+      if (document.documentElement?.scrollTop > 0) return document.documentElement.scrollTop;
+      if (document.body?.scrollTop > 0) return document.body.scrollTop;
+      return 0;
+    };
+    const threshold = 600;
+    return getScrollY() > threshold;
+  });
   
   // Hide when user is viewing the main tool video on a detail page
   const [isMainVideoVisible, setIsMainVideoVisible] = useState(false);
@@ -422,72 +433,39 @@ const PinnedVideoPlayer = memo(() => {
   // Detect scroll position - required to show
   useEffect(() => {
     const getScrollY = (): number => {
-      // Try multiple methods to get scroll position
-      const methods = [
-        () => window.scrollY,
-        () => window.pageYOffset,
-        () => document.documentElement?.scrollTop,
-        () => document.body?.scrollTop,
-        () => document.scrollingElement?.scrollTop,
-      ];
-      
-      for (const method of methods) {
-        try {
-          const value = method();
-          if (typeof value === 'number' && value > 0) return value;
-        } catch {}
-      }
+      if (typeof window.scrollY === 'number' && window.scrollY > 0) return window.scrollY;
+      if (typeof window.pageYOffset === 'number' && window.pageYOffset > 0) return window.pageYOffset;
+      if (document.documentElement?.scrollTop > 0) return document.documentElement.scrollTop;
+      if (document.body?.scrollTop > 0) return document.body.scrollTop;
+      if (document.scrollingElement?.scrollTop > 0) return document.scrollingElement.scrollTop;
       return 0;
     };
     
-    let ticking = false;
     const handleScroll = () => {
-      if (ticking) return;
-      ticking = true;
-      
-      requestAnimationFrame(() => {
-        const scrollY = getScrollY();
-        // Show after scrolling 600px down on homepage, 200px on other pages
-        const threshold = isHomepage ? 600 : 200;
-        const shouldShow = scrollY > threshold;
-        
-        setHasScrolledEnough(prev => {
-          if (prev !== shouldShow) {
-            console.log('[PinnedPlayer] Scroll:', scrollY, 'Threshold:', threshold, 'Showing:', shouldShow);
-          }
-          return shouldShow;
-        });
-        ticking = false;
-      });
+      const scrollY = getScrollY();
+      // Show after scrolling 600px down on homepage, 200px on other pages
+      const threshold = isHomepage ? 600 : 200;
+      if (scrollY > threshold) {
+        setHasScrolledEnough(true);
+      } else {
+        // Hide again if scrolled back to top
+        setHasScrolledEnough(false);
+      }
     };
 
-    // Use capture phase to ensure we catch scroll events
-    window.addEventListener("scroll", handleScroll, { passive: true, capture: true });
-    document.addEventListener("scroll", handleScroll, { passive: true, capture: true });
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    document.addEventListener("scroll", handleScroll, { passive: true });
     
-    // Also listen on the scrolling element directly
-    const scrollingEl = document.scrollingElement || document.documentElement;
-    scrollingEl?.addEventListener?.("scroll", handleScroll, { passive: true });
-    
-    // Check initial position immediately and with multiple delays for lazy-loaded content
+    // Check initial position immediately and after a short delay (for navigation cases)
     handleScroll();
-    const checks = [0, 50, 100, 250, 500].map(delay => 
-      setTimeout(() => {
-        handleScroll();
-        // Also force a check by reading scroll position directly
-        const scrollY = getScrollY();
-        const threshold = isHomepage ? 600 : 200;
-        if (scrollY > threshold) {
-          setHasScrolledEnough(true);
-        }
-      }, delay)
-    );
+    const immediateCheck = requestAnimationFrame(handleScroll);
+    const delayedCheck = setTimeout(handleScroll, 50);
     
     return () => {
-      window.removeEventListener("scroll", handleScroll, { capture: true });
-      document.removeEventListener("scroll", handleScroll, { capture: true });
-      scrollingEl?.removeEventListener?.("scroll", handleScroll);
-      checks.forEach(clearTimeout);
+      window.removeEventListener("scroll", handleScroll);
+      document.removeEventListener("scroll", handleScroll);
+      cancelAnimationFrame(immediateCheck);
+      clearTimeout(delayedCheck);
     };
   }, [isHomepage, location.pathname]); // Re-run on route change
 
