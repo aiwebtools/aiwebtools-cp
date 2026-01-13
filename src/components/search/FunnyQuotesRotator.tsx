@@ -415,34 +415,34 @@ const funnyQuotes = [
   "The Kingdom is spread out upon the earth, but people do not see it. 🌍",
   "In Spirit there is neither male nor female — all who unite heart and mind become living children of the Father. 💜",
 
-  // ===== ANCIENT EGYPTIAN PROVERBS (20) =====
+  // ===== ANCIENT EGYPTIAN PROVERBS (Wisdom-Focused) =====
   
   // Proverbs of Light & Shadow
   "The light within is the flame that feeds no smoke; it burns in silence, revealing all shadow. 𓂀",
   "He who walks with a heavy heart casts no light; his steps vanish beneath him. 𓁹",
   "The Father of Light weighs not gold but the glimmer of the heart's truth. ⚖️",
-  "The eye of Ra sees not flesh but fire; in the weighing hall, only light rises. 🌞",
-  "The stone may shine in the sun, but only the just heart shines in the Duat. 💎",
+  "The eye of Truth sees not flesh but fire; in the weighing hall, only light rises. 🌞",
+  "The stone may shine in the sun, but only the just heart shines in eternity. 💎",
   
   // Proverbs of Ma'at & Justice
-  "Those whose hearts are lighter than the feather do not fear the mirror of Osiris. 🪶",
+  "Those whose hearts are lighter than the feather do not fear the mirror of Truth. 🪶",
   "The fool chases brightness outside, while his own fire withers unseen. 🔥",
   "The sun within is never eclipsed by the sky's turning—only by the inward veil. 🌅",
   "The Scales do not tremble for the loud; they tilt for those whose silence glows. ⚖️",
   "When the ka departs, the heart speaks; and Ma'at listens for the light it gives. 👂",
   
   // Proverbs of Judgment & Truth
-  "The scribe writes your deeds in shadow; Ra reads them in flame. 📜",
+  "The scribe writes your deeds in shadow; the Light reads them in flame. 📜",
   "A heart filled with Isfet cannot reflect the stars; it swallows light like the abyss. 🌌",
-  "To polish the heart is to prepare it for the gaze of Ra. ✨",
+  "To polish the heart is to prepare it for the gaze of Truth. ✨",
   "The soul that carries its own sun will never be lost in the underworld. ☀️",
   "Light is not earned through speech but through the balance of silence and truth. 🤫",
   
   // Proverbs of the Inner Sun
   "The hidden sun within rises only when the outer eye is closed. 👁️",
   "The field of reeds welcomes only those who have shone from within. 🌾",
-  "A crooked heart cannot pass the gate of Anubis, for its glow falters before Ma'at. 🚪",
-  "Seek not the torches of men; seek the fire planted by the gods in your chest. 🔥",
+  "A crooked heart cannot pass the gate of Truth, for its glow falters before Ma'at. 🚪",
+  "Seek not the torches of men; seek the fire planted by the Divine in your chest. 🔥",
   "He who fears the weighing has already seen his own darkness. ⚫",
   
   // Pythagorean / Orphic wisdom
@@ -452,11 +452,23 @@ const funnyQuotes = [
   "It's not about breaking out of the Matrix—it's about seeing through it, understanding its illusions, and choosing, with clarity, to walk in the light. 🔴🔵",
 ];
 
+// Fisher-Yates shuffle for truly random quote order
+const shuffleArray = (array: string[]): string[] => {
+  const shuffled = [...array];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+};
+
 // Completely isolated component - uses RAF and CSS for zero main thread impact
 const FunnyQuotesRotator = memo(() => {
-  const [currentIndex, setCurrentIndex] = useState(() => 
-    Math.floor(Math.random() * funnyQuotes.length)
+  // Initialize with a fully shuffled copy of quotes for true randomization
+  const [shuffledQuotes, setShuffledQuotes] = useState<string[]>(() => 
+    shuffleArray(funnyQuotes)
   );
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
   const timeoutRef = useRef<number | null>(null);
   const intervalRef = useRef<number | null>(null);
@@ -472,7 +484,15 @@ const FunnyQuotesRotator = memo(() => {
         // Schedule index change with RAF for smooth updates
         setTimeout(() => {
           requestAnimationFrame(() => {
-            setCurrentIndex((prev) => (prev + 1) % funnyQuotes.length);
+            setCurrentIndex((prev) => {
+              const nextIndex = prev + 1;
+              // When we've shown all quotes, reshuffle for fresh random order
+              if (nextIndex >= shuffledQuotes.length) {
+                setShuffledQuotes(shuffleArray(funnyQuotes));
+                return 0;
+              }
+              return nextIndex;
+            });
             setIsVisible(true);
           });
         }, 300);
@@ -485,7 +505,7 @@ const FunnyQuotesRotator = memo(() => {
       if (intervalRef.current) clearInterval(intervalRef.current);
       if (timeoutRef.current) cancelAnimationFrame(timeoutRef.current);
     };
-  }, []);
+  }, [shuffledQuotes.length]);
 
   return (
     <div 
@@ -498,7 +518,7 @@ const FunnyQuotesRotator = memo(() => {
         }`}
         style={{ contain: 'style paint' }}
       >
-        {funnyQuotes[currentIndex]}
+        {shuffledQuotes[currentIndex]}
       </p>
     </div>
   );
