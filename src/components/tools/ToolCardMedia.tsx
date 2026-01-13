@@ -64,13 +64,13 @@ const ToolCardMedia = ({ tool, isFeatured, imageHeight }: ToolCardMediaProps) =>
   };
   
   const getOptimizedEmbedUrl = (url: string) => {
-    // Must start muted for autoplay to work in browsers, user can unmute via controls
+    // Always use HD 1080p quality for best viewing experience
     if (videoId) {
-      return `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&mute=1&controls=1&rel=0&playsinline=1&fs=1`;
+      return `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0&controls=1&rel=0&vq=hd1080&hd=1&quality=hd1080&enablejsapi=1&origin=${encodeURIComponent(window.location.origin)}&playsinline=1&modestbranding=1&fs=1&iv_load_policy=3`;
     }
     if (url.includes('vimeo.com/')) {
       const vimeoId = url.split('vimeo.com/')[1].split('?')[0];
-      return `https://player.vimeo.com/video/${vimeoId}?autoplay=1&muted=1`;
+      return `https://player.vimeo.com/video/${vimeoId}?autoplay=1&quality=1080p&volume=1&muted=0`;
     }
     return url;
   };
@@ -80,15 +80,12 @@ const ToolCardMedia = ({ tool, isFeatured, imageHeight }: ToolCardMediaProps) =>
       ref={containerRef}
       className={`${isFeatured ? 'mb-6' : 'mb-4'} rounded-lg overflow-hidden bg-gradient-to-br from-gray-800 to-gray-900 relative group-hover:scale-105 transition-transform duration-200`}
       style={{ aspectRatio: '16/9' }}
-      data-video-container="true"
-      onClick={(e) => e.stopPropagation()}
     >
       {/* YouTube video with thumbnail lazy loading */}
       {hasVideo && isYouTube && !isVideoLoaded ? (
         <div 
           className="relative w-full h-full cursor-pointer"
           onClick={handlePlayClick}
-          data-video-play-button="true"
         >
           {/* Thumbnail - loads instantly */}
           {isNearViewport && thumbnailUrl ? (
