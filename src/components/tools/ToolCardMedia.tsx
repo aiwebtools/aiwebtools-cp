@@ -26,12 +26,25 @@ const extractYouTubeId = (url: string): string | null => {
   return null;
 };
 
+// Convert /src/assets/ path to proper import URL for Vite
+const getResolvedImageUrl = (url: string): string => {
+  if (!url) return '';
+  if (url.startsWith('/src/assets/')) {
+    const filename = url.replace('/src/assets/', '');
+    return new URL(`../../assets/${filename}`, import.meta.url).href;
+  }
+  return url;
+};
+
 const ToolCardMedia = ({ tool, isFeatured, imageHeight }: ToolCardMediaProps) => {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const [isNearViewport, setIsNearViewport] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   
-  const hasImage = tool.imageUrl && tool.imageUrl.trim() !== '';
+  // Resolve the image URL for Vite asset handling
+  const resolvedImageUrl = tool.imageUrl ? getResolvedImageUrl(tool.imageUrl) : '';
+  
+  const hasImage = resolvedImageUrl && resolvedImageUrl.trim() !== '';
   const hasVideo = tool.videoUrl && tool.videoUrl.trim() !== '';
   const videoId = hasVideo ? extractYouTubeId(tool.videoUrl!) : null;
   const isYouTube = !!videoId;
@@ -136,8 +149,8 @@ const ToolCardMedia = ({ tool, isFeatured, imageHeight }: ToolCardMediaProps) =>
       ) : hasImage ? (
         /* Image display */
         <>
-          <img 
-            src={tool.imageUrl} 
+        <img 
+            src={resolvedImageUrl} 
             alt={`${tool.title} screenshot`}
             className="w-full h-full object-cover"
             loading="lazy"
