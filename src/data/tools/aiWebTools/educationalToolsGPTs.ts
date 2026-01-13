@@ -89,6 +89,7 @@ export const educationalToolsGPTs: Tool[] = [
     emoji: "👨‍🏫",
     color: "from-indigo-500 to-purple-600",
     directUrl: "https://chatgpt.com/g/g-68c049b652f8819195c722dbd4971797-college-professor-gpt",
+    imageUrl: "/src/assets/tools/college-professor-gpt-hero.png",
     tags: ["college professor", "virtual teacher", "academic instruction", "educational exploration", "university level", "personalized learning", "scholarly discussion", "Custom GPT", "Tutoring AI", "College Prep"],
     category: "Educational Tools",
     rating: 4.7,
