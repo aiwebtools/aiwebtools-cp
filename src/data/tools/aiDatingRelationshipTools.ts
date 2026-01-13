@@ -146,7 +146,7 @@ export const aiDatingRelationshipTools: Tool[] = [
     description: "Create your own AI girlfriend for meaningful chat conversations and AI-generated images anytime.",
     emoji: "👫",
     color: "from-rose-500 to-pink-600",
-    directUrl: "https://couple.me/?via=aiwebtools",
+    directUrl: "https://couple.me/aiwebtools?via=ken90",
     imageUrl: "/src/assets/tools/couple-me-hero.png",
     tags: ["AI girlfriend", "chat", "image generation", "virtual relationship", "companion"],
     category: "AI Dating & Relationship Tools",
