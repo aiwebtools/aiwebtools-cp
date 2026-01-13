@@ -3276,7 +3276,7 @@ const featuredGPTsUnsorted = [
     badge: "INSPECTOR",
     color: "from-amber-500 to-stone-600",
     features: ["Mining Safety", "Quarry Inspection", "Hazard Detection", "Compliance"],
-    directUrl: "https://chatgpt.com/g/g-68bb3e9e3d648191b73faa9f96b3cca5-mining-quarry-safety-inspector-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68bb3647814c8191a7286deb722d8e31-ai-mining-quarry-safety-inspector/?via=aiwebtools",
     imageUrl: "/src/assets/mining-quarry-safety-inspector-gpt-hero.jpg",
     emoji: "⛏️"
   },
