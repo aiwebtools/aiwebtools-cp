@@ -7,10 +7,10 @@ const SpiritualReminderPopup: React.FC = () => {
   const [isClosing, setIsClosing] = useState(false);
 
   useEffect(() => {
-    // Show popup after 1 minute (60000ms)
+    // Show popup after 10 minutes (600000ms)
     const timer = setTimeout(() => {
       setIsVisible(true);
-    }, 60000);
+    }, 600000);
 
     return () => clearTimeout(timer);
   }, []);
