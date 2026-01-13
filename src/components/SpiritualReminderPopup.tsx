@@ -92,7 +92,7 @@ const SpiritualReminderPopup: React.FC = () => {
               textShadow: '0 0 20px rgba(255, 215, 0, 0.5), 0 0 40px rgba(255, 140, 0, 0.3)',
             }}
           >
-            "This temple exists within every single person on earth and is connected to the heavens from within to above to our Father of all Light..."
+            "This temple exists within every person on Earth, eternally connected from within to the heavens above—to our Father, the Source of all Light."
           </h2>
           
           <p 
