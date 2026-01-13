@@ -327,12 +327,11 @@ const PinnedVideoPlayer = memo(() => {
       shouldMute = isMuted;
     }
     
-    // Build video URL - on mobile, browser requires mute=1 for autoplay to work
-    // But we'll send unmute command via postMessage after load if user wants unmuted
+    // Build video URL - simplified for reliable playback
     const embedMuteParam = isMobile ? '1' : (shouldMute ? '1' : '0');
-    const origin = typeof window !== 'undefined' ? window.location.origin : '';
-    const newSrc = `https://www.youtube.com/embed/${currentVideoId}?autoplay=1&mute=${embedMuteParam}&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&enablejsapi=1&playsinline=1&loop=0&origin=${encodeURIComponent(origin)}&widget_referrer=${encodeURIComponent(origin)}`;
+    const newSrc = `https://www.youtube.com/embed/${currentVideoId}?autoplay=1&mute=${embedMuteParam}&controls=0&rel=0&playsinline=1&enablejsapi=1`;
     setVideoSrc(newSrc);
+    playerMountedRef.current = true;
     playerMountedRef.current = true;
     
     // Sync UI state with what user wants
