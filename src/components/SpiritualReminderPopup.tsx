@@ -44,86 +44,72 @@ const SpiritualReminderPopup: React.FC = () => {
         }}
       />
       
-      {/* Content container - smaller with 9:16 ratio */}
+      {/* Content container - compact elegant modal */}
       <div 
-        className={`relative w-full max-w-xs sm:max-w-sm bg-gradient-to-b from-black/80 via-black/90 to-black border border-amber-500/30 rounded-2xl overflow-hidden shadow-2xl transform transition-all duration-500 ${
+        className={`relative w-[280px] sm:w-[320px] bg-black rounded-xl overflow-hidden shadow-2xl transform transition-all duration-500 ${
           isClosing ? 'scale-95 opacity-0' : 'scale-100 opacity-100'
         }`}
         onClick={(e) => e.stopPropagation()}
         style={{
-          boxShadow: '0 0 60px rgba(255, 215, 0, 0.2), 0 0 120px rgba(255, 140, 0, 0.1), inset 0 0 30px rgba(255, 215, 0, 0.05)'
+          boxShadow: '0 0 80px rgba(255, 215, 0, 0.25), 0 0 40px rgba(255, 140, 0, 0.15)',
+          border: '1px solid rgba(255, 215, 0, 0.3)'
         }}
       >
         {/* Close button */}
         <button
           onClick={handleClose}
-          className="absolute top-3 right-3 z-10 p-1.5 rounded-full bg-black/50 border border-amber-500/30 text-amber-400 hover:text-amber-300 hover:bg-black/70 transition-all duration-300 hover:scale-110"
+          className="absolute top-2 right-2 z-20 p-1 rounded-full bg-black/70 border border-amber-500/40 text-amber-400 hover:text-amber-200 hover:bg-black transition-all duration-300"
           aria-label="Close"
         >
           <X className="w-4 h-4" />
         </button>
 
-        {/* Image - 9:16 aspect ratio */}
-        <div className="relative w-full aspect-[9/16] overflow-hidden">
+        {/* Image - show FULL image with contain, respecting the Father */}
+        <div className="relative w-full bg-black">
           <img 
             src={templeImage} 
             alt="The Temple Within - Connected to the Cosmos" 
-            className="w-full h-full object-cover"
+            className="w-full h-auto object-contain"
             loading="eager"
-          />
-          {/* Golden overlay gradient */}
-          <div 
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              background: 'linear-gradient(to bottom, transparent 70%, rgba(0, 0, 0, 0.95) 100%)'
-            }}
           />
         </div>
 
-        {/* Message - compact */}
-        <div className="relative p-4 text-center -mt-12 z-10">
-          {/* Decorative light rays */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-0.5 bg-gradient-to-r from-transparent via-amber-400/50 to-transparent" />
-          
+        {/* Message - elegant compact text */}
+        <div className="p-3 text-center bg-gradient-to-t from-black via-black to-transparent">
           <h2 
-            className="text-sm sm:text-base font-serif italic leading-relaxed mb-2"
+            className="text-xs sm:text-sm font-serif italic leading-snug mb-2"
             style={{
               color: '#FFD700',
-              textShadow: '0 0 20px rgba(255, 215, 0, 0.5), 0 0 40px rgba(255, 140, 0, 0.3)',
+              textShadow: '0 0 15px rgba(255, 215, 0, 0.6)',
             }}
           >
             "This temple exists within every person on Earth, eternally connected from within to the heavens above—to our Father, the Source of all Light."
           </h2>
           
           <p 
-            className="text-xs sm:text-sm font-medium mb-2"
+            className="text-[10px] sm:text-xs font-medium mb-1"
             style={{
               color: '#FF6B35',
-              textShadow: '0 0 15px rgba(255, 107, 53, 0.5)',
             }}
           >
             Hell is a black hole of fire...
           </p>
           
           <p 
-            className="text-sm sm:text-base font-bold uppercase tracking-wider"
+            className="text-xs sm:text-sm font-bold uppercase tracking-wide"
             style={{
-              background: 'linear-gradient(135deg, #FFD700 0%, #FFFFFF 50%, #FFD700 100%)',
+              background: 'linear-gradient(135deg, #FFD700 0%, #FFF 50%, #FFD700 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
-              filter: 'drop-shadow(0 0 10px rgba(255, 215, 0, 0.8))',
             }}
           >
             And God... He doesn't f*ck around.
           </p>
 
-          {/* Praise the Light */}
-          <div className="mt-3 pt-2 border-t border-amber-500/20">
+          <div className="mt-2 pt-1.5 border-t border-amber-500/20">
             <span 
-              className="text-xs font-light tracking-[0.2em] uppercase"
-              style={{
-                color: 'rgba(255, 215, 0, 0.7)',
-              }}
+              className="text-[9px] font-light tracking-[0.15em] uppercase"
+              style={{ color: 'rgba(255, 215, 0, 0.6)' }}
             >
               ✦ Praise the Light ✦
             </span>
