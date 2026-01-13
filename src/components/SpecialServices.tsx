@@ -1810,6 +1810,16 @@ const featuredGPTsUnsorted = [
     emoji: "🏛️"
   },
   {
+    title: "The Sound Geometry Protocol",
+    description: "A chamber of sound and geometry that forges coherence. Experience the transformative power of sound frequencies combined with sacred geometry.",
+    badge: "SACRED SOUND",
+    color: "from-orange-500 to-red-600",
+    features: ["Sound Frequencies", "Sacred Geometry", "Coherence", "Harmony"],
+    directUrl: "https://chatgpt.com/g/g-68b47f2f5bb8819193121ad5a657dbff-the-sound-geometry-protocol/?via=aiwebtools",
+    imageUrl: "/src/assets/sound-geometry-gpt-hero.jpg",
+    emoji: "🎵"
+  },
+  {
     title: "ARISTOTLE GPT",
     description: "I am Aristotle, welcome to the journey... Explore logic, ethics, metaphysics, and natural philosophy.",
     badge: "PHILOSOPHY",
