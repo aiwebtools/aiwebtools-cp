@@ -6,7 +6,7 @@ import { Tool } from "@/types/tools";
 
 // TIER 1: Astoundingly Cool & Wildly Powerful GPTs - The absolute pinnacle
 export const TIER_1_LEGENDARY_GPTS = [
-  'GODMODE GPT',                        // Ultimate AI companion - most versatile
+  'G-Mode GPT',                        // Ultimate AI companion - most versatile
   'TIME MACHINE GPT',                   // Time travel & exploration - mind-bending
   'ImmortalizeME',                      // Digital clone creation - immortality tech
   'ImmortalizeMe',

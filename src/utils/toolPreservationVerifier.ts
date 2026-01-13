@@ -44,7 +44,7 @@ const CRITICAL_TOOLS = [
   "ImmortalizeME",
   "Movie Script Writer GPT",
   "Illuminous World Data Explorer GPT",
-  "GODMODE GPT",
+  "G-Mode GPT",
   "Music Video Maker AI Studio",
   "BOOK WRITER GPT",
   "TALK TO HISTORY GPT",

@@ -60,7 +60,7 @@ const INTENT_PATTERNS = {
   },
   technology: {
     triggers: ['ai', 'artificial intelligence', 'machine learning', 'automation', 'coding', 'programming', 'development', 'software', 'tech', 'computer', 'app', 'website'],
-    priority: ['GODMODE GPT', 'Engineering GPT AI Suite', 'MULTITASKER GPT', 'Customizable GPT Maker'],
+    priority: ['G-Mode GPT', 'Engineering GPT AI Suite', 'MULTITASKER GPT', 'Customizable GPT Maker'],
     categories: ['AI & Development', 'Technology Tools', 'Development Tools', 'AI Tools']
   },
   legal: {

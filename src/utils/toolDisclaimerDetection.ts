@@ -8,7 +8,7 @@ const SPIRITUAL_ENTITY_TITLES = [
   "Resurrection GPT",
   "Oraculum",
   "Sophia Aeterna",
-  "GODMODE GPT",
+  "G-Mode GPT",
   "God Is Light GPT",
   "Manicheism GPT",
   "Míngjiào Prophet of Light GPT",

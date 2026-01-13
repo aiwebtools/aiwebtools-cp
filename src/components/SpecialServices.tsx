@@ -41,7 +41,7 @@ const weightedShuffle = <T extends { title: string }>(items: T[]): T[] => {
     "Graphic & Cover Design GPT", "Sketch Artist GPT", "RESTYLE ME GPT",
     "Restaurant Menu Maker GPT", "Tattoo Designer GPT", "Meme Generator GPT",
     // AI Development & Productivity
-    "Customizable GPT Maker", "AIWEBTOOLS GPT CLONER GPT", "GODMODE GPT", "MULTITASKER GPT",
+    "Customizable GPT Maker", "AIWEBTOOLS GPT CLONER GPT", "G-Mode GPT", "MULTITASKER GPT",
     "PERFECT PROMPT ENGINE", "Data Research Analysis Report GPT", "AI Tools Finder GPT",
     // Career & Professional
     "Resume & Job Finder AI Suite", "Engineering GPT Suite", "PPTx Powerpoint Maker GPT",
@@ -600,7 +600,7 @@ const featuredGPTsUnsorted = [
     emoji: "🪨"
   },
   {
-    title: "GODMODE GPT",
+    title: "G-Mode GPT",
     description: "An AI companion so powerful and versatile that it seamlessly transforms to meet every need you have—your ultimate AI transformation tool.",
     badge: "AI POWER",
     color: "from-purple-600 to-gold-600",
@@ -3619,7 +3619,7 @@ const priorityToolTitles = [
   "COLLEGE DEGREE GPT",
   "TALK TO HISTORY GPT",
   "Tattoo GPT",
-  "GODMODE GPT",
+  "G-Mode GPT",
   "Movie Maker Studio",
   "Trader GPT",
   "Survivalist GPT",
