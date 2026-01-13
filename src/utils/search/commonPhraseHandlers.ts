@@ -437,7 +437,7 @@ export const COMMON_PHRASE_HANDLERS: Record<string, PhraseHandler> = {
   chatWithAI: {
     triggers: ['chat with ai', 'talk to ai', 'ai assistant', 'ai chatbot', 'ai help'],
     keywords: ['chat', 'ai', 'assistant', 'chatbot', 'gpt', 'claude'],
-    priorityTools: ['ChatGPT', 'Claude', 'Gemini', 'Perplexity', 'GODMODE GPT'],
+    priorityTools: ['ChatGPT', 'Claude', 'Gemini', 'Perplexity', 'G-Mode GPT'],
     relatedCategories: ['AI Chatbots', 'AI Assistants']
   },
   
@@ -838,7 +838,7 @@ export const COMMON_PHRASE_HANDLERS: Record<string, PhraseHandler> = {
   aiSimulation: {
     triggers: ['ai simulation', 'if ai ruled', 'ai world', 'ai takeover', 'ai future', 'singularity'],
     keywords: ['simulation', 'ai rule', 'future', 'singularity', 'takeover', 'scenario'],
-    priorityTools: ['"IF AI RULED THE WORLD" - AI SIMULATION GPT', 'GODMODE GPT'],
+    priorityTools: ['"IF AI RULED THE WORLD" - AI SIMULATION GPT', 'G-Mode GPT'],
     relatedCategories: ['AI & Technology', 'Simulations']
   },
 

@@ -1365,7 +1365,7 @@ const PHRASE_TO_TOOLS: Record<string, string[]> = {
   "ai helper": ["ChatGPT", "Claude", "Gemini", "Perplexity", "MULTITASKER GPT"],
   "machine learning": ["ChatGPT", "Claude", "Hugging Face", "TensorFlow"],
   "neural": ["ChatGPT", "Claude", "Hugging Face", "Runway"],
-  "gpt": ["ChatGPT", "Claude", "Gemini", "GODMODE GPT"],
+  "gpt": ["ChatGPT", "Claude", "Gemini", "G-Mode GPT"],
   "artificial intelligence": ["ChatGPT", "Claude", "Gemini", "Perplexity"],
   "ai": ["ChatGPT", "Claude", "Gemini", "Perplexity", "Midjourney", "DALL-E 3"],
   

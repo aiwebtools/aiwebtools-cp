@@ -2758,7 +2758,7 @@ Task-Specific Agents focus on single domains like career automation or funding p
 
 ## Explore AI Agents
 
-Browse our curated collection of AI agents in the AI Agents Directory. Featured agents include Multitasker GPT, Custom GPT Maker, and GODMODE GPT for ultimate versatility.
+Browse our curated collection of AI agents in the AI Agents Directory. Featured agents include Multitasker GPT, Custom GPT Maker, and G-Mode GPT for ultimate versatility.
 
 *Last updated: February 9, 2025*
     `
@@ -2975,7 +2975,7 @@ AI agents go beyond simple automation. They can plan multi-step strategies, make
 Featured AI agents from our directory:
 
 - [Multitasker GPT](https://multitaskergpt.lovable.app/?via=aiwebtools) handles multiple unrelated tasks simultaneously
-- [GODMODE GPT](https://godmodegpt.lovable.app/?via=aiwebtools) transforms to meet any automation need
+- [G-Mode GPT](https://godmodegpt.lovable.app/?via=aiwebtools) transforms to meet any automation need
 - [Custom GPT Maker](https://customgptmaker.lovable.app/?via=aiwebtools) builds specialized automation agents
 - [Data Research Analysis Report GPT](https://dataanalysisandreportai.lovable.app/?via=aiwebtools) automates research workflows
 
@@ -3223,7 +3223,7 @@ Winner: Microsoft Copilot. Seamless Office integration and enterprise security f
 
 Beyond general-purpose chatbots, specialized GPTs excel at specific domains:
 
-- [GODMODE GPT](https://godmodegpt.lovable.app/?via=aiwebtools) transforms to meet any need
+- [G-Mode GPT](https://godmodegpt.lovable.app/?via=aiwebtools) transforms to meet any need
 - [Multitasker GPT](https://multitaskergpt.lovable.app/?via=aiwebtools) handles multiple tasks simultaneously  
 - [Perfect Prompt Engine](https://perfectpromptengine.lovable.app/?via=aiwebtools) optimizes your prompts
 - [Clarity Omni GPT](https://clarityomni.lovable.app/?via=aiwebtools) rewrites for clarity

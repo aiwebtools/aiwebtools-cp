@@ -129,7 +129,7 @@ export const verifyToolSearchability = (searchFunction: (tools: Tool[], term: st
     // Test exact title matches for AI Web Tools GPTs
     'TIME MACHINE GPT',
     'BOOK WRITER GPT',
-    'GODMODE GPT',
+    'G-Mode GPT',
     'Movie Maker Studio',
     // Test category searches
     'AI Assistants',

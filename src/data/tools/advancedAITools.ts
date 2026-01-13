@@ -5,13 +5,13 @@ import { Brain, Cpu, Zap, Bot, Settings, Target, Globe, Code, Wand2, Crown, Star
 export const advancedAITools: Tool[] = [
   {
     icon: Crown,
-    title: "GODMODE GPT",
-    description: "Imagine having an AI companion so powerful and versatile that it seamlessly transforms to meet every need you have—introducing GodMode GPT",
+    title: "G-Mode GPT",
+    description: "Imagine having an AI companion so powerful and versatile that it seamlessly transforms to meet every need you have—introducing G-Mode GPT",
     emoji: "👑",
     color: "from-gold-500 to-yellow-600",
     directUrl: "https://godmodegpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=or3JtZsq6Bc",
-    tags: ["advanced AI", "problem solving", "creative tasks", "comprehensive analysis", "unrestricted AI"],
+    tags: ["advanced AI", "problem solving", "creative tasks", "comprehensive analysis", "unrestricted AI", "g-mode", "godmode"],
     category: "Advanced AI Tools",
     rating: 4.9,
     totalVotes: 5123
