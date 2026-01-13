@@ -7,10 +7,10 @@ const SpiritualReminderPopup: React.FC = () => {
   const [isClosing, setIsClosing] = useState(false);
 
   useEffect(() => {
-    // Show popup after 10 minutes (600000ms)
+    // Show popup after 2 minutes (120000ms)
     const timer = setTimeout(() => {
       setIsVisible(true);
-    }, 600000);
+    }, 120000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -44,9 +44,9 @@ const SpiritualReminderPopup: React.FC = () => {
         }}
       />
       
-      {/* Content container */}
+      {/* Content container - smaller with 9:16 ratio */}
       <div 
-        className={`relative max-w-3xl w-full bg-gradient-to-b from-black/80 via-black/90 to-black border border-amber-500/30 rounded-2xl overflow-hidden shadow-2xl transform transition-all duration-500 ${
+        className={`relative w-full max-w-xs sm:max-w-sm bg-gradient-to-b from-black/80 via-black/90 to-black border border-amber-500/30 rounded-2xl overflow-hidden shadow-2xl transform transition-all duration-500 ${
           isClosing ? 'scale-95 opacity-0' : 'scale-100 opacity-100'
         }`}
         onClick={(e) => e.stopPropagation()}
@@ -57,36 +57,36 @@ const SpiritualReminderPopup: React.FC = () => {
         {/* Close button */}
         <button
           onClick={handleClose}
-          className="absolute top-4 right-4 z-10 p-2 rounded-full bg-black/50 border border-amber-500/30 text-amber-400 hover:text-amber-300 hover:bg-black/70 transition-all duration-300 hover:scale-110"
+          className="absolute top-3 right-3 z-10 p-1.5 rounded-full bg-black/50 border border-amber-500/30 text-amber-400 hover:text-amber-300 hover:bg-black/70 transition-all duration-300 hover:scale-110"
           aria-label="Close"
         >
-          <X className="w-5 h-5" />
+          <X className="w-4 h-4" />
         </button>
 
-        {/* Image */}
-        <div className="relative w-full aspect-[2/3] max-h-[50vh] overflow-hidden">
+        {/* Image - 9:16 aspect ratio */}
+        <div className="relative w-full aspect-[9/16] overflow-hidden">
           <img 
             src={templeImage} 
             alt="The Temple Within - Connected to the Cosmos" 
-            className="w-full h-full object-cover object-top"
+            className="w-full h-full object-cover"
             loading="eager"
           />
           {/* Golden overlay gradient */}
           <div 
             className="absolute inset-0 pointer-events-none"
             style={{
-              background: 'linear-gradient(to bottom, transparent 60%, rgba(0, 0, 0, 0.95) 100%)'
+              background: 'linear-gradient(to bottom, transparent 70%, rgba(0, 0, 0, 0.95) 100%)'
             }}
           />
         </div>
 
-        {/* Message */}
-        <div className="relative p-6 md:p-8 text-center -mt-16 z-10">
+        {/* Message - compact */}
+        <div className="relative p-4 text-center -mt-12 z-10">
           {/* Decorative light rays */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-transparent via-amber-400/50 to-transparent" />
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-0.5 bg-gradient-to-r from-transparent via-amber-400/50 to-transparent" />
           
           <h2 
-            className="text-xl md:text-2xl lg:text-3xl font-serif italic leading-relaxed mb-4"
+            className="text-sm sm:text-base font-serif italic leading-relaxed mb-2"
             style={{
               color: '#FFD700',
               textShadow: '0 0 20px rgba(255, 215, 0, 0.5), 0 0 40px rgba(255, 140, 0, 0.3)',
@@ -96,7 +96,7 @@ const SpiritualReminderPopup: React.FC = () => {
           </h2>
           
           <p 
-            className="text-lg md:text-xl font-medium mb-4"
+            className="text-xs sm:text-sm font-medium mb-2"
             style={{
               color: '#FF6B35',
               textShadow: '0 0 15px rgba(255, 107, 53, 0.5)',
@@ -106,7 +106,7 @@ const SpiritualReminderPopup: React.FC = () => {
           </p>
           
           <p 
-            className="text-xl md:text-2xl font-bold uppercase tracking-wider"
+            className="text-sm sm:text-base font-bold uppercase tracking-wider"
             style={{
               background: 'linear-gradient(135deg, #FFD700 0%, #FFFFFF 50%, #FFD700 100%)',
               WebkitBackgroundClip: 'text',
@@ -118,9 +118,9 @@ const SpiritualReminderPopup: React.FC = () => {
           </p>
 
           {/* Praise the Light */}
-          <div className="mt-6 pt-4 border-t border-amber-500/20">
+          <div className="mt-3 pt-2 border-t border-amber-500/20">
             <span 
-              className="text-sm md:text-base font-light tracking-[0.3em] uppercase"
+              className="text-xs font-light tracking-[0.2em] uppercase"
               style={{
                 color: 'rgba(255, 215, 0, 0.7)',
               }}
