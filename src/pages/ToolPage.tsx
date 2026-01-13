@@ -17,7 +17,14 @@ import { generateToolSlug } from "@/utils/urlGenerator";
 import ToolDisclaimerBadges from "@/components/disclaimers/ToolDisclaimerBadges";
 import FullSpiritualDisclaimer from "@/components/disclaimers/FullSpiritualDisclaimer";
 import FullMedicalDisclaimer from "@/components/disclaimers/FullMedicalDisclaimer";
-import { needsSpiritualDisclaimer, needsMedicalDisclaimer } from "@/utils/toolDisclaimerDetection";
+import FullCompanionDisclaimer from "@/components/disclaimers/FullCompanionDisclaimer";
+import FullDivinationDisclaimer from "@/components/disclaimers/FullDivinationDisclaimer";
+import { 
+  needsSpiritualDisclaimer, 
+  needsMedicalDisclaimer,
+  needsCompanionDisclaimer,
+  needsDivinationDisclaimer
+} from "@/utils/toolDisclaimerDetection";
 import ToolCardMedia from "@/components/tools/ToolCardMedia";
 
 const ToolPage = () => {
@@ -128,13 +135,19 @@ const ToolPage = () => {
               </Button>
             </div>
             
-          {/* Full Disclaimers for spiritual/medical tools */}
+          {/* Full Disclaimers for spiritual/medical/companion/divination tools */}
           <div className="max-w-4xl mx-auto space-y-6 mb-8">
             {needsSpiritualDisclaimer(tool) && (
               <FullSpiritualDisclaimer tool={tool} />
             )}
             {needsMedicalDisclaimer(tool) && (
               <FullMedicalDisclaimer tool={tool} />
+            )}
+            {needsCompanionDisclaimer(tool) && (
+              <FullCompanionDisclaimer tool={tool} />
+            )}
+            {needsDivinationDisclaimer(tool) && (
+              <FullDivinationDisclaimer tool={tool} />
             )}
           </div>
 
