@@ -134,8 +134,11 @@ const LazyVideoEmbed = ({ videoUrl, title, height = "h-32" }: { videoUrl: string
   if (!videoId) return null;
   
   const thumbnailUrl = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
-  // Use youtube-nocookie for faster loading and better privacy
-  const embedUrl = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&mute=0&controls=1&rel=0&playsinline=1&enablejsapi=1&fs=1&cc_load_policy=0&modestbranding=1`;
+
+  // IMPORTANT: Autoplay policies vary by browser/device.
+  // Using mute=1 ensures playback starts on the first click (no “double click to play”)
+  // while still giving users full controls to unmute.
+  const embedUrl = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&mute=1&controls=1&rel=0&playsinline=1&enablejsapi=1&fs=1&cc_load_policy=0&modestbranding=1`;
   
   if (isLoaded) {
     return (
@@ -152,7 +155,7 @@ const LazyVideoEmbed = ({ videoUrl, title, height = "h-32" }: { videoUrl: string
           className="absolute inset-0 w-full h-full"
           style={{ opacity: iframeReady ? 1 : 0 }}
           frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
           allowFullScreen
           loading="eager"
           onLoad={() => setIframeReady(true)}
