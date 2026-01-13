@@ -37,10 +37,13 @@ const PRIMARY_AGE_RESTRICTED_KEYWORDS = [
   'flamme app'
 ];
 
-// Secondary keywords - only trigger if category also suggests dating/adult
+// Secondary keywords - only trigger if category ALSO suggests dating/adult
+// These are weaker signals that need category context to confirm
 const SECONDARY_KEYWORDS = [
-  'romance', 'romantic', 'flirt', 'intimacy', 'roleplay',
-  'companion', 'virtual friend', 'emotional connection'
+  'romance', 'romantic', 'flirt', 'flirting', 'intimacy',
+  'virtual friend', 'emotional connection', 'soulmate'
+  // NOTE: Removed 'companion' and 'roleplay' - too many false positives
+  // These words are used in music education, coding, storytelling, etc.
 ];
 
 // Category patterns that are automatically age-restricted
@@ -54,21 +57,70 @@ const AGE_RESTRICTED_CATEGORIES = [
 ];
 
 // Exclusion patterns - tools with these are NOT age restricted (false positives)
+// These tools use words like "companion" or "roleplay" in non-dating contexts
 const EXCLUSION_PATTERNS = [
-  'marriage mender', // Relationship counseling, not dating
+  // Relationship counseling (not dating apps)
+  'marriage mender',
   'marriage counseling',
   'family therapy',
   'parenting',
-  'self-love', // Self-improvement, not dating
-  'love of learning', // Educational
-  'love for music', // General interest
-  'i love', // General phrase
-  'beloved', // General adjective
-  'g-mode gpt', // Productivity AI, not dating companion
-  'godmode gpt', // Legacy name for G-Mode GPT
-  'clarity omni', // General AI assistant
-  'multitasker gpt', // Productivity tool
-  'custom gpt maker' // GPT builder tool
+  
+  // General phrases that don't indicate dating
+  'self-love',
+  'love of learning',
+  'love for music',
+  'i love',
+  'beloved',
+  
+  // AIWebTools productivity/advanced tools (use "companion" generically)
+  'g-mode gpt',
+  'godmode gpt',
+  'clarity omni',
+  'multitasker gpt',
+  'custom gpt maker',
+  'perfect prompt engine',
+  
+  // Music/Education tools (use "companion" for learning)
+  'music melodies',
+  'learn any course',
+  'learn any skill',
+  'homeschool',
+  'home school',
+  'college degree gpt',
+  
+  // Coding tools (use "companion" for pair programming)
+  'code companion',
+  'codewhisperer',
+  'github copilot',
+  'coding assistant',
+  
+  // Spiritual/Philosophy tools (use "companion" metaphorically)
+  'sophia gpt',
+  'sophia aeterna',
+  'alan watts',
+  'talk to the gods',
+  'talk to history',
+  'time machine gpt',
+  'resurrection gpt',
+  'metatron',
+  
+  // Entertainment/Roleplay for storytelling (NOT dating)
+  'character.ai',
+  'celebrity chatline',
+  'playwriter gpt',
+  'movie script',
+  'movie scene',
+  
+  // Travel/Lifestyle (use "companion" for assistance)
+  'travel advisor',
+  'travel agent',
+  'survivalist',
+  'fisherman gpt',
+  
+  // Pet/Animal care
+  'veterinarian gpt',
+  'petcare gpt',
+  'pet advisor'
 ];
 
 /**
