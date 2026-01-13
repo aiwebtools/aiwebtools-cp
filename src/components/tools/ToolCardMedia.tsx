@@ -80,12 +80,15 @@ const ToolCardMedia = ({ tool, isFeatured, imageHeight }: ToolCardMediaProps) =>
       ref={containerRef}
       className={`${isFeatured ? 'mb-6' : 'mb-4'} rounded-lg overflow-hidden bg-gradient-to-br from-gray-800 to-gray-900 relative group-hover:scale-105 transition-transform duration-200`}
       style={{ aspectRatio: '16/9' }}
+      data-video-container="true"
+      onClick={(e) => e.stopPropagation()}
     >
       {/* YouTube video with thumbnail lazy loading */}
       {hasVideo && isYouTube && !isVideoLoaded ? (
         <div 
           className="relative w-full h-full cursor-pointer"
           onClick={handlePlayClick}
+          data-video-play-button="true"
         >
           {/* Thumbnail - loads instantly */}
           {isNearViewport && thumbnailUrl ? (

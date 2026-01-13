@@ -44,9 +44,16 @@ const ToolCard = memo(({ tool, index = 0 }: ToolCardProps) => {
   
   // Handle card click - trigger time warp effect for external tools
   const handleCardClick = (e: React.MouseEvent) => {
-    // Don't trigger if clicking on buttons or interactive elements
+    // Don't trigger if clicking on buttons, interactive elements, or video containers
     const target = e.target as HTMLElement;
-    if (target.tagName === 'BUTTON' || target.closest('button') || target.closest('a')) {
+    if (
+      target.tagName === 'BUTTON' || 
+      target.closest('button') || 
+      target.closest('a') ||
+      target.closest('[data-video-container]') ||
+      target.closest('[data-video-play-button]') ||
+      target.tagName === 'IFRAME'
+    ) {
       return;
     }
     
