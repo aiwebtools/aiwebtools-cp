@@ -26,8 +26,15 @@ import GlobalSearchBar from "@/components/GlobalSearchBar";
 import MoreToolsSection from "@/components/tool-detail/MoreToolsSection";
 import FullSpiritualDisclaimer from "@/components/disclaimers/FullSpiritualDisclaimer";
 import FullMedicalDisclaimer from "@/components/disclaimers/FullMedicalDisclaimer";
+import FullCompanionDisclaimer from "@/components/disclaimers/FullCompanionDisclaimer";
+import FullDivinationDisclaimer from "@/components/disclaimers/FullDivinationDisclaimer";
 import ToolDisclaimerBadges from "@/components/disclaimers/ToolDisclaimerBadges";
-import { needsSpiritualDisclaimer, needsMedicalDisclaimer } from "@/utils/toolDisclaimerDetection";
+import { 
+  needsSpiritualDisclaimer, 
+  needsMedicalDisclaimer,
+  needsCompanionDisclaimer,
+  needsDivinationDisclaimer
+} from "@/utils/toolDisclaimerDetection";
 import { mainCategories } from "@/utils/mainCategoryMapping";
 
 const ToolDetail = () => {
@@ -128,6 +135,8 @@ const ToolDetail = () => {
   // Check for required disclaimers
   const showSpiritualDisclaimer = needsSpiritualDisclaimer(tool);
   const showMedicalDisclaimer = needsMedicalDisclaimer(tool);
+  const showCompanionDisclaimer = needsCompanionDisclaimer(tool);
+  const showDivinationDisclaimer = needsDivinationDisclaimer(tool);
 
   // Find the main category for this tool
   const toolMainCategory = mainCategories.find(cat => 
@@ -188,7 +197,7 @@ const ToolDetail = () => {
 
             <div className="mt-8 space-y-6">
               {/* Show prominent disclaimer badges at top */}
-              {(showSpiritualDisclaimer || showMedicalDisclaimer) && (
+              {(showSpiritualDisclaimer || showMedicalDisclaimer || showCompanionDisclaimer || showDivinationDisclaimer) && (
                 <div className="flex justify-center">
                   <ToolDisclaimerBadges tool={tool} size="md" showFullText={true} />
                 </div>
@@ -202,6 +211,16 @@ const ToolDetail = () => {
               {/* Show full medical disclaimer */}
               {showMedicalDisclaimer && (
                 <FullMedicalDisclaimer tool={tool} />
+              )}
+              
+              {/* Show full AI companion disclaimer - emphasize real human connection */}
+              {showCompanionDisclaimer && (
+                <FullCompanionDisclaimer tool={tool} />
+              )}
+              
+              {/* Show full divination/fortune telling disclaimer */}
+              {showDivinationDisclaimer && (
+                <FullDivinationDisclaimer tool={tool} />
               )}
               
               {/* Show AI Web Tools disclaimer for GPTs created by AI Web Tools LLC */}
