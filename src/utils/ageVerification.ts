@@ -1,41 +1,70 @@
 /**
  * Age Verification System for Adult/Dating/Relationship Tools
  * Detects tools requiring 18+ verification and manages DOB-based age gates
+ * 
+ * SCOPE: Dating apps, AI girlfriends/boyfriends, adult content, couples tools
+ * NOT: General productivity tools that happen to mention "love" or "relationship"
  */
 
 import { Tool } from "@/types/tools";
 
-// Keywords that indicate adult/dating content requiring age verification
-const AGE_RESTRICTED_KEYWORDS = [
-  // Dating & Relationships
-  'dating', 'ai girlfriend', 'ai boyfriend', 'romance', 'romantic',
-  'love simulator', 'virtual relationship', 'companion', 'ai companion',
-  'matchmaking', 'flirt', 'intimacy', 'roleplay', 'couple',
-  'relationship app', 'dating app', 'love',
+// Primary keywords that STRONGLY indicate dating/adult content
+const PRIMARY_AGE_RESTRICTED_KEYWORDS = [
+  // AI Dating & Companion specific
+  'ai girlfriend', 'ai boyfriend', 'virtual girlfriend', 'virtual boyfriend',
+  'love simulator', 'virtual relationship', 'dating app', 'dating platform',
+  'romantic ai', 'ai companion chat', 'ai partner', 'ai lover',
   
-  // Adult/NSFW indicators
-  'adult', 'nsfw', '18+', 'mature', 'explicit',
-  'porn', 'xxx', 'erotic', 'sexy', 'sensual',
+  // Dating platforms
+  'matchmaking app', 'dating service', 'find love', 'online dating',
+  'singles', 'meet singles', 'hookup', 'flirting app',
   
-  // Specific platform indicators
-  'replika', 'candy ai', 'nomi.ai', 'romantic ai',
-  'lover ai', 'couple.me', 'rizz ai', 'dolores',
+  // Adult/NSFW explicit
+  'adult content', 'nsfw', '18+', 'mature content', 'explicit',
+  'porn', 'xxx', 'erotic', 'sensual content', 'adult only',
   
-  // Other age-restricted
-  'gambling', 'casino', 'betting', 'alcohol', 'mixologist',
-  'cannabis', 'marijuana', 'weed', 'firearms', 'gun'
+  // Couples/Relationship apps (romantic context)
+  'couples app', 'relationship app', 'intimacy app', 'romantic roleplay',
+  
+  // Specific known platforms
+  'replika', 'candy ai', 'nomi.ai', 'romantic ai', 'lover ai',
+  'couple.me', 'rizz ai', 'dolores', 'eharmony', 'hinge', 'tinder',
+  'bumble', 'coffee meets bagel', 'keeper ai', 'amoriq', 'maia app',
+  'flamme app'
+];
+
+// Secondary keywords - only trigger if category also suggests dating/adult
+const SECONDARY_KEYWORDS = [
+  'romance', 'romantic', 'flirt', 'intimacy', 'roleplay',
+  'companion', 'virtual friend', 'emotional connection'
 ];
 
 // Category patterns that are automatically age-restricted
 const AGE_RESTRICTED_CATEGORIES = [
   'ai dating',
   'dating & relationship',
+  'ai dating & relationship',
   'adult',
-  'relationship tools'
+  'relationship tools',
+  'dating tools'
+];
+
+// Exclusion patterns - tools with these are NOT age restricted (false positives)
+const EXCLUSION_PATTERNS = [
+  'marriage mender', // Relationship counseling, not dating
+  'marriage counseling',
+  'family therapy',
+  'parenting',
+  'self-love', // Self-improvement, not dating
+  'love of learning', // Educational
+  'love for music', // General interest
+  'i love', // General phrase
+  'beloved' // General adjective
 ];
 
 /**
  * Determines if a tool requires age verification
+ * Smart detection focused specifically on dating/adult/couples tools
  */
 export const requiresAgeVerification = (tool: Tool): boolean => {
   if (!tool) return false;
@@ -45,45 +74,86 @@ export const requiresAgeVerification = (tool: Tool): boolean => {
   const categoryLower = tool.category?.toLowerCase() || '';
   const tagsLower = (tool.tags || []).map(t => t.toLowerCase()).join(' ');
   
-  const combinedText = `${titleLower} ${descLower} ${categoryLower} ${tagsLower}`;
+  const combinedText = `${titleLower} ${descLower} ${tagsLower}`;
   
-  // Check if any age-restricted keyword is present
-  const hasRestrictedKeyword = AGE_RESTRICTED_KEYWORDS.some(keyword => 
-    combinedText.includes(keyword)
+  // First check exclusions - if tool matches exclusion, it's NOT age restricted
+  const isExcluded = EXCLUSION_PATTERNS.some(pattern => 
+    combinedText.includes(pattern)
   );
+  if (isExcluded) return false;
   
-  // Check if category is age-restricted
+  // Check if category is explicitly age-restricted
   const hasRestrictedCategory = AGE_RESTRICTED_CATEGORIES.some(cat =>
     categoryLower.includes(cat)
   );
   
-  // Check for explicit 18+ tag
-  const has18PlusTag = tool.tags?.some(tag => 
-    tag.toLowerCase().includes('18+') || 
-    tag.toLowerCase().includes('adult') ||
-    tag.toLowerCase().includes('nsfw')
-  );
+  // If category is age-restricted, tool is age-restricted
+  if (hasRestrictedCategory) return true;
   
-  return hasRestrictedKeyword || hasRestrictedCategory || has18PlusTag;
+  // Check for primary keywords (strong indicators)
+  const hasPrimaryKeyword = PRIMARY_AGE_RESTRICTED_KEYWORDS.some(keyword => 
+    combinedText.includes(keyword)
+  );
+  if (hasPrimaryKeyword) return true;
+  
+  // Check for explicit 18+ tag
+  const has18PlusTag = tool.tags?.some(tag => {
+    const tagLower = tag.toLowerCase();
+    return tagLower === '18+' || 
+           tagLower === 'adult' || 
+           tagLower === 'nsfw' ||
+           tagLower === 'dating' ||
+           tagLower === 'ai girlfriend' ||
+           tagLower === 'ai boyfriend';
+  });
+  if (has18PlusTag) return true;
+  
+  // Secondary keywords only if category hints at dating/relationship
+  const categoryHintsDating = categoryLower.includes('dating') || 
+                               categoryLower.includes('relationship') ||
+                               categoryLower.includes('companion');
+  
+  if (categoryHintsDating) {
+    const hasSecondaryKeyword = SECONDARY_KEYWORDS.some(keyword =>
+      combinedText.includes(keyword)
+    );
+    if (hasSecondaryKeyword) return true;
+  }
+  
+  return false;
 };
 
-// Storage key for age verification
+// Storage keys for age verification
 const AGE_VERIFIED_KEY = 'aiwebtools_age_verified';
 const AGE_VERIFIED_DOB_KEY = 'aiwebtools_verified_dob';
 const AGE_VERIFIED_TIMESTAMP_KEY = 'aiwebtools_age_verification_time';
 
-// Verification lasts for 30 days
+// Verification lasts for 30 days (30 * 24 * 60 * 60 * 1000 = 2592000000ms)
 const VERIFICATION_DURATION_MS = 30 * 24 * 60 * 60 * 1000;
 
 /**
- * Calculate age from date of birth
+ * Calculate age from date of birth with precise date comparison
+ * Uses actual calendar dates, not just year subtraction
  */
 export const calculateAge = (dob: Date): number => {
   const today = new Date();
-  let age = today.getFullYear() - dob.getFullYear();
-  const monthDiff = today.getMonth() - dob.getMonth();
   
-  if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
+  // Get the date components
+  const birthYear = dob.getFullYear();
+  const birthMonth = dob.getMonth();
+  const birthDay = dob.getDate();
+  
+  const currentYear = today.getFullYear();
+  const currentMonth = today.getMonth();
+  const currentDay = today.getDate();
+  
+  // Calculate base age from years
+  let age = currentYear - birthYear;
+  
+  // Adjust if birthday hasn't occurred this year yet
+  if (currentMonth < birthMonth) {
+    age--;
+  } else if (currentMonth === birthMonth && currentDay < birthDay) {
     age--;
   }
   
@@ -92,13 +162,17 @@ export const calculateAge = (dob: Date): number => {
 
 /**
  * Check if user is 18 or older based on DOB
+ * Must be EXACTLY 18 years old (birthday must have passed)
  */
 export const isAdult = (dob: Date): boolean => {
-  return calculateAge(dob) >= 18;
+  const age = calculateAge(dob);
+  console.log(`🎂 Calculated age: ${age} years old (DOB: ${dob.toDateString()})`);
+  return age >= 18;
 };
 
 /**
  * Check if user has already verified their age
+ * Returns true only if verified AND not expired (30 days)
  */
 export const isAgeVerified = (): boolean => {
   try {
@@ -106,27 +180,35 @@ export const isAgeVerified = (): boolean => {
     const timestamp = localStorage.getItem(AGE_VERIFIED_TIMESTAMP_KEY);
     
     if (verified !== 'true' || !timestamp) {
+      console.log('🔓 No age verification found');
       return false;
     }
     
     // Check if verification has expired
     const verificationTime = parseInt(timestamp, 10);
     const now = Date.now();
+    const elapsedMs = now - verificationTime;
+    const elapsedDays = Math.floor(elapsedMs / (24 * 60 * 60 * 1000));
     
-    if (now - verificationTime > VERIFICATION_DURATION_MS) {
+    if (elapsedMs > VERIFICATION_DURATION_MS) {
       // Expired - clear storage
+      console.log(`🔓 Age verification expired (${elapsedDays} days old)`);
       clearAgeVerification();
       return false;
     }
     
+    const remainingDays = 30 - elapsedDays;
+    console.log(`✅ Age verified (expires in ${remainingDays} days)`);
     return true;
-  } catch {
+  } catch (error) {
+    console.error('Error checking age verification:', error);
     return false;
   }
 };
 
 /**
  * Store age verification with DOB
+ * Only stores if user is actually 18+
  */
 export const setAgeVerified = (dob: Date): void => {
   try {
@@ -138,9 +220,10 @@ export const setAgeVerified = (dob: Date): void => {
     localStorage.setItem(AGE_VERIFIED_DOB_KEY, dob.toISOString());
     localStorage.setItem(AGE_VERIFIED_TIMESTAMP_KEY, Date.now().toString());
     
-    console.log('✅ Age verification stored successfully');
+    console.log('✅ Age verification stored successfully (valid for 30 days)');
   } catch (error) {
     console.error('Failed to store age verification:', error);
+    throw error;
   }
 };
 
@@ -168,5 +251,23 @@ export const getVerifiedDOB = (): Date | null => {
     return new Date(dobString);
   } catch {
     return null;
+  }
+};
+
+/**
+ * Get remaining verification days
+ */
+export const getRemainingVerificationDays = (): number => {
+  try {
+    const timestamp = localStorage.getItem(AGE_VERIFIED_TIMESTAMP_KEY);
+    if (!timestamp) return 0;
+    
+    const verificationTime = parseInt(timestamp, 10);
+    const elapsedMs = Date.now() - verificationTime;
+    const remainingMs = VERIFICATION_DURATION_MS - elapsedMs;
+    
+    return Math.max(0, Math.ceil(remainingMs / (24 * 60 * 60 * 1000)));
+  } catch {
+    return 0;
   }
 };
