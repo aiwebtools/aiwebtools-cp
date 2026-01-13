@@ -1,5 +1,5 @@
 
-import React, { memo, useMemo, useCallback, useRef } from "react";
+import React, { memo, useMemo, useCallback, useRef, useState } from "react";
 import { Tool } from "@/types/tools";
 import { Card } from "@/components/ui/card";
 import { useMobile } from "@/hooks/useMobile";
@@ -8,6 +8,8 @@ import { createTimePortalEffect } from "@/utils/timeEffects";
 import { prefetchToolData } from "@/utils/toolPrefetcher";
 import { isFreeTool } from "@/utils/freeToolDetection";
 import { trackToolClickEvent } from "@/hooks/useToolAnalytics";
+import { requiresAgeVerification, isAgeVerified } from "@/utils/ageVerification";
+import AgeVerificationModal from "@/components/AgeVerificationModal";
 import ToolCardHeader from "./ToolCardHeader";
 import ToolCardContent from "./ToolCardContent";
 import FavoriteButton from "@/components/favorites/FavoriteButton";
@@ -22,11 +24,16 @@ const ToolCard = memo(({ tool, index = 0 }: ToolCardProps) => {
   const { isMobile, isTouch } = useMobile();
   const { enableReducedMotion, getOptimizedStyles } = usePerformanceOptimization();
   const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const [showAgeModal, setShowAgeModal] = useState(false);
+  const pendingUrlRef = useRef<string | null>(null);
   
   // Determine if this is a FREE custom GPT using centralized detection
   const isCustomGPT = useMemo(() => isFreeTool(tool), [tool]);
   
   const isAIWebToolsOriginal = isCustomGPT;
+  
+  // Check if tool requires age verification
+  const needsAgeGate = useMemo(() => requiresAgeVerification(tool), [tool]);
   
   // Prefetch tool detail page on hover (100ms delay to avoid unnecessary prefetches)
   const handleMouseEnter = useCallback(() => {
@@ -42,6 +49,17 @@ const ToolCard = memo(({ tool, index = 0 }: ToolCardProps) => {
     }
   }, []);
   
+  // Handle age verification success
+  const handleAgeVerified = useCallback(() => {
+    setShowAgeModal(false);
+    if (pendingUrlRef.current) {
+      console.log('✅ Age verified - proceeding to:', pendingUrlRef.current);
+      trackToolClickEvent(tool.title, tool.category);
+      createTimePortalEffect(pendingUrlRef.current, tool.title);
+      pendingUrlRef.current = null;
+    }
+  }, [tool.title, tool.category]);
+  
   // Handle card click - trigger time warp effect for external tools
   const handleCardClick = (e: React.MouseEvent) => {
     // Don't trigger if clicking on buttons or interactive elements
@@ -50,10 +68,19 @@ const ToolCard = memo(({ tool, index = 0 }: ToolCardProps) => {
       return;
     }
     
-    // If tool has external URL, trigger time warp effect
+    // If tool has external URL, check age verification first
     if (tool.directUrl) {
       e.preventDefault();
       e.stopPropagation();
+      
+      // Check if age verification is required
+      if (needsAgeGate && !isAgeVerified()) {
+        console.log('🔞 Age verification required for:', tool.title);
+        pendingUrlRef.current = tool.directUrl;
+        setShowAgeModal(true);
+        return;
+      }
+      
       console.log('🌀 Tool card clicked - triggering time warp for:', tool.title);
       // Track click analytics
       trackToolClickEvent(tool.title, tool.category);
@@ -113,50 +140,72 @@ const ToolCard = memo(({ tool, index = 0 }: ToolCardProps) => {
   }, [getOptimizedStyles, isMobile]);
 
   return (
-    <Card 
-      className={`group relative bg-gradient-to-br from-gray-900/80 to-gray-800/60 backdrop-blur-sm border border-gray-700/50 rounded-xl p-3 sm:p-4 lg:p-6 h-full flex flex-col focus-within:border-cyan-400 focus-within:shadow-cyan-400/20 ${
-        enableReducedMotion 
-          ? 'transition-none' 
-          : 'transition-all duration-300'
-      } ${
-        !isTouch 
-          ? 'hover:border-cyan-500/50 hover:shadow-lg hover:shadow-cyan-500/20 hover:scale-105 cursor-pointer' 
-          : 'active:bg-gray-800/70'
-      } ${
-        isMobile ? 'touch-manipulation' : ''
-      }`}
-      style={optimizedStyles}
-      tabIndex={0}
-      role="article"
-      aria-label={`AI Tool: ${tool.title}`}
-      onClick={handleCardClick}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-    >
-      <ToolCardHeader 
-        tool={tool}
-        toolIndex={index}
-        isFeatured={isFeatured}
-        cardSize={cardSize}
-        titleSize={titleSize}
-        isAIWebToolsOriginal={isAIWebToolsOriginal}
-        boostedRating={boostedRating}
-        defaultVotes={defaultVotes}
-      />
+    <>
+      <Card 
+        className={`group relative bg-gradient-to-br from-gray-900/80 to-gray-800/60 backdrop-blur-sm border border-gray-700/50 rounded-xl p-3 sm:p-4 lg:p-6 h-full flex flex-col focus-within:border-cyan-400 focus-within:shadow-cyan-400/20 ${
+          enableReducedMotion 
+            ? 'transition-none' 
+            : 'transition-all duration-300'
+        } ${
+          !isTouch 
+            ? 'hover:border-cyan-500/50 hover:shadow-lg hover:shadow-cyan-500/20 hover:scale-105 cursor-pointer' 
+            : 'active:bg-gray-800/70'
+        } ${
+          isMobile ? 'touch-manipulation' : ''
+        } ${
+          needsAgeGate ? 'ring-1 ring-amber-500/30' : ''
+        }`}
+        style={optimizedStyles}
+        tabIndex={0}
+        role="article"
+        aria-label={`AI Tool: ${tool.title}${needsAgeGate ? ' (18+)' : ''}`}
+        onClick={handleCardClick}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
+        {/* 18+ Badge for age-restricted tools */}
+        {needsAgeGate && (
+          <div className="absolute top-1.5 left-1.5 z-20 px-1.5 py-0.5 bg-amber-500/90 rounded text-[10px] font-bold text-black">
+            🔞 18+
+          </div>
+        )}
+        
+        <ToolCardHeader 
+          tool={tool}
+          toolIndex={index}
+          isFeatured={isFeatured}
+          cardSize={cardSize}
+          titleSize={titleSize}
+          isAIWebToolsOriginal={isAIWebToolsOriginal}
+          boostedRating={boostedRating}
+          defaultVotes={defaultVotes}
+        />
+        
+        {/* Favorite Button */}
+        <FavoriteButton tool={tool} size="sm" className="top-1.5 right-1.5 z-30" />
+        
+        <ToolCardContent 
+          tool={tool}
+          toolIndex={index}
+          isFeatured={isFeatured}
+          buttonSize={buttonSize}
+          isAIWebToolsOriginal={isAIWebToolsOriginal}
+          imageHeight={imageHeight}
+          getDescription={getDescription}
+        />
+      </Card>
       
-      {/* Favorite Button */}
-      <FavoriteButton tool={tool} size="sm" className="top-1.5 right-1.5 z-30" />
-      
-      <ToolCardContent 
-        tool={tool}
-        toolIndex={index}
-        isFeatured={isFeatured}
-        buttonSize={buttonSize}
-        isAIWebToolsOriginal={isAIWebToolsOriginal}
-        imageHeight={imageHeight}
-        getDescription={getDescription}
+      {/* Age Verification Modal */}
+      <AgeVerificationModal
+        isOpen={showAgeModal}
+        onClose={() => {
+          setShowAgeModal(false);
+          pendingUrlRef.current = null;
+        }}
+        onVerified={handleAgeVerified}
+        toolTitle={tool.title}
       />
-    </Card>
+    </>
   );
 }, (prevProps, nextProps) => {
   // Custom comparison function for memo
