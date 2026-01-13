@@ -29,8 +29,6 @@ const extractYouTubeId = (url: string): string | null => {
 const ToolCardMedia = ({ tool, isFeatured, imageHeight }: ToolCardMediaProps) => {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const [isNearViewport, setIsNearViewport] = useState(false);
-  const [showVideoFallback, setShowVideoFallback] = useState(false);
-  const fallbackTimerRef = useRef<number | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   
   const hasImage = tool.imageUrl && tool.imageUrl.trim() !== '';
@@ -63,26 +61,16 @@ const ToolCardMedia = ({ tool, isFeatured, imageHeight }: ToolCardMediaProps) =>
   const handlePlayClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     setIsVideoLoaded(true);
-    setShowVideoFallback(false);
-
-    // If the iframe never finishes loading, offer a reliable fallback.
-    if (fallbackTimerRef.current) {
-      window.clearTimeout(fallbackTimerRef.current);
-    }
-    fallbackTimerRef.current = window.setTimeout(() => {
-      setShowVideoFallback(true);
-    }, 5000);
   };
   
   const getOptimizedEmbedUrl = (url: string) => {
-    // Keep behavior: user clicks play -> start immediately with sound if available.
-    // Use nocookie domain for higher compatibility (still works with standard YouTube URLs).
+    // Always use HD 1080p quality for best viewing experience
     if (videoId) {
-      return `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&mute=0&controls=1&rel=0&playsinline=1&fs=1&enablejsapi=1`;
+      return `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0&controls=1&rel=0&vq=hd1080&hd=1&quality=hd1080&enablejsapi=1&origin=${encodeURIComponent(window.location.origin)}&playsinline=1&modestbranding=1&fs=1&iv_load_policy=3`;
     }
     if (url.includes('vimeo.com/')) {
       const vimeoId = url.split('vimeo.com/')[1].split('?')[0];
-      return `https://player.vimeo.com/video/${vimeoId}?autoplay=1&muted=0`;
+      return `https://player.vimeo.com/video/${vimeoId}?autoplay=1&quality=1080p&volume=1&muted=0`;
     }
     return url;
   };
@@ -120,39 +108,17 @@ const ToolCardMedia = ({ tool, isFeatured, imageHeight }: ToolCardMediaProps) =>
         </div>
       ) : hasVideo && isVideoLoaded ? (
         /* Full video iframe - only loaded after click */
-        <>
-          <iframe
-            width="100%"
-            height="100%"
-            src={getOptimizedEmbedUrl(tool.videoUrl!)}
-            title={`${tool.title} Demo`}
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
-            allowFullScreen
-            className="w-full h-full rounded-lg"
-            style={{ minHeight: '200px' }}
-            onLoad={() => {
-              if (fallbackTimerRef.current) {
-                window.clearTimeout(fallbackTimerRef.current);
-                fallbackTimerRef.current = null;
-              }
-              setShowVideoFallback(false);
-            }}
-          />
-          {showVideoFallback && (
-            <div className="absolute inset-x-0 bottom-2 flex justify-center px-2">
-              <a
-                href={tool.videoUrl!}
-                target="_blank"
-                rel="noreferrer"
-                className="text-xs bg-black/70 text-white px-2 py-1 rounded"
-                onClick={(e) => e.stopPropagation()}
-              >
-                Open video in YouTube
-              </a>
-            </div>
-          )}
-        </>
+        <iframe
+          width="100%"
+          height="100%"
+          src={getOptimizedEmbedUrl(tool.videoUrl!)}
+          title={`${tool.title} Demo`}
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
+          allowFullScreen
+          className="w-full h-full rounded-lg"
+          style={{ minHeight: '200px' }}
+        />
       ) : hasVideo && !isYouTube ? (
         /* Non-YouTube video - load directly but lazy */
         <iframe

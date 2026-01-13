@@ -45,7 +45,6 @@ const AdminAnalytics = lazy(() => import("./pages/AdminAnalytics"));
 // Lazy load non-critical components
 const FloatingCloneButton = lazy(() => import("./components/FloatingCloneButton"));
 const PinnedVideoPlayer = lazy(() => import("./components/PinnedVideoPlayer"));
-const SpiritualReminderPopup = lazy(() => import("./components/SpiritualReminderPopup"));
 
 // Welcome Neo voice - plays when user lands on main site after accepting disclaimer
 const WelcomeNeoVoice = () => {
@@ -217,12 +216,6 @@ const GlobalOverlays: React.FC = () => {
       {show ? (
         <Suspense fallback={null}>
           <FloatingCloneButton />
-        </Suspense>
-      ) : null}
-      {/* Spiritual reminder popup - appears after 1 minute */}
-      {show ? (
-        <Suspense fallback={null}>
-          <SpiritualReminderPopup />
         </Suspense>
       ) : null}
       {/* Pinned rotating video player - lower left corner */}

@@ -133,6 +133,7 @@ export const imageAndDesign: Tool[] = [
     emoji: "👗",
     color: "from-pink-500 to-purple-600",
     directUrl: "https://virtualstylistgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=ElAfvB0yLEI",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/ChatGPT%20Image%20Apr%2027%2C%202025%2C%2007_08_04%20PM.png/:/cr=t:12.5%25,l:0%25,w:100%25,h:75%25/rs=w:1200,h:600,cg:true",
     tags: ["Fashion Design", "Graphic Design", "fashion design", "style recommendations", "AI", "clothing designs"],
     category: "Image & Design",

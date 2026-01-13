@@ -32,8 +32,8 @@ const Index = () => {
 
   const mainVideoRef = useRef<HTMLIFrameElement>(null);
 
-  // Autoplay video MUTED when user scrolls to it
-  // Muted to avoid audio conflict with pinned continuous video player
+  // Autoplay video UNMUTED when user scrolls to it
+  // User already clicked disclaimer button = user interaction = unmuted autoplay allowed
   useEffect(() => {
     const iframe = mainVideoRef.current;
     if (!iframe || hasPlayedOnce) return;
@@ -42,8 +42,8 @@ const Index = () => {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting && !hasPlayedOnce) {
-            // Muted autoplay - pinned player handles audio, this avoids conflict
-            setVideoSrc("https://www.youtube.com/embed/4zflGSSuBcA?autoplay=1&mute=1&controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&vq=hd1080&loop=0&iv_load_policy=3&cc_load_policy=0&fs=1&color=red&theme=dark");
+            // User interaction already happened on disclaimer gate, so unmuted autoplay is allowed
+            setVideoSrc("https://www.youtube.com/embed/4zflGSSuBcA?autoplay=1&mute=0&controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&vq=hd1080&loop=0&iv_load_policy=3&cc_load_policy=0&fs=1&color=red&theme=dark");
             setHasPlayedOnce(true);
             localStorage.setItem('mainVideoPlayed', 'true');
           }
