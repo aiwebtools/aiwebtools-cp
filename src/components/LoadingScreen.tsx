@@ -38,7 +38,7 @@ const loadingMessages = [
   // Power & Hype
   "Summoning unlimited power...",
   "Building your AI empire...",
-  "Unlocking godmode...",
+  "Unlocking limitless potential...",
   "Charging creative superpowers...",
   "Assembling the infinity tools...",
   "Activating beast mode...",
