@@ -8,7 +8,6 @@ const SPIRITUAL_ENTITY_TITLES = [
   "Resurrection GPT",
   "Oraculum",
   "Sophia Aeterna",
-  "Fortune Teller GPT",
   "GODMODE GPT",
   "God Is Light GPT",
   "Manicheism GPT",
@@ -72,6 +71,78 @@ const MEDICAL_TOOL_TITLES = [
   "Apothecary GPT"
 ];
 
+// AI Companion/Dating tools - emphasize real human connection
+const AI_COMPANION_TOOL_TITLES = [
+  "Candy AI",
+  "Replika",
+  "Character.AI",
+  "Chai AI",
+  "Romantic AI",
+  "EVA AI",
+  "Paradot AI",
+  "Anima AI",
+  "Kupid AI",
+  "DreamGF",
+  "Crushon AI",
+  "Intimate AI",
+  "Nectar AI",
+  "Muah AI",
+  "Kindroid",
+  "Nomi AI",
+  "SoulGen",
+  "Fantasy GF",
+  "AI Girlfriend",
+  "AI Boyfriend",
+  "Virtual Companion",
+  "SpicyChat",
+  "Janitor AI",
+  "Talkie AI"
+];
+
+// Keywords that trigger AI companion disclaimer
+const AI_COMPANION_KEYWORDS = [
+  "ai girlfriend",
+  "ai boyfriend",
+  "virtual girlfriend",
+  "virtual boyfriend",
+  "ai companion",
+  "romantic ai",
+  "dating ai",
+  "ai romance",
+  "virtual date",
+  "ai dating",
+  "virtual companion"
+];
+
+// Fortune telling/divination tools - need educational entertainment disclaimer
+const DIVINATION_TOOL_TITLES = [
+  "Fortune Teller GPT",
+  "Tarot GPT",
+  "Astrology GPT",
+  "Horoscope GPT",
+  "Palm Reading GPT",
+  "Numerology GPT",
+  "I Ching GPT",
+  "Crystal Ball GPT",
+  "Psychic GPT",
+  "Probability GPT"
+];
+
+// Keywords that trigger divination disclaimer  
+const DIVINATION_KEYWORDS = [
+  "fortune telling",
+  "fortune teller",
+  "tarot",
+  "horoscope",
+  "astrology reading",
+  "palm reading",
+  "numerology",
+  "psychic reading",
+  "crystal ball",
+  "predict your future",
+  "divination"
+];
+
 /**
  * Checks if a tool simulates or impersonates spiritual/historical entities
  * Returns true ONLY for explicitly listed spiritual and historical simulation tools
@@ -114,14 +185,97 @@ export function needsMedicalDisclaimer(tool: Tool): boolean {
 }
 
 /**
+ * Checks if a tool is an AI companion/dating tool that needs
+ * a reminder about real human connection
+ */
+export function needsCompanionDisclaimer(tool: Tool): boolean {
+  const titleLower = tool.title?.toLowerCase() || "";
+  const descLower = tool.description?.toLowerCase() || "";
+  const categoryLower = tool.category?.toLowerCase() || "";
+  const tagsLower = (tool.tags || []).map(t => t.toLowerCase()).join(" ");
+  const combinedText = `${titleLower} ${descLower} ${tagsLower}`;
+  
+  // Check explicit AI companion titles
+  for (const title of AI_COMPANION_TOOL_TITLES) {
+    if (titleLower === title.toLowerCase() || titleLower.includes(title.toLowerCase())) {
+      return true;
+    }
+  }
+  
+  // Check AI companion keywords
+  for (const keyword of AI_COMPANION_KEYWORDS) {
+    if (combinedText.includes(keyword)) {
+      return true;
+    }
+  }
+  
+  // Check category
+  if (categoryLower.includes("dating") || categoryLower.includes("ai companion") || 
+      categoryLower.includes("relationship") && categoryLower.includes("ai")) {
+    return true;
+  }
+  
+  return false;
+}
+
+/**
+ * Checks if a tool is a fortune telling/divination tool
+ * that needs educational entertainment disclaimer
+ */
+export function needsDivinationDisclaimer(tool: Tool): boolean {
+  const titleLower = tool.title?.toLowerCase() || "";
+  const descLower = tool.description?.toLowerCase() || "";
+  const tagsLower = (tool.tags || []).map(t => t.toLowerCase()).join(" ");
+  const combinedText = `${titleLower} ${descLower} ${tagsLower}`;
+  
+  // Check explicit divination titles
+  for (const title of DIVINATION_TOOL_TITLES) {
+    if (titleLower === title.toLowerCase() || titleLower.includes(title.toLowerCase())) {
+      return true;
+    }
+  }
+  
+  // Check divination keywords
+  for (const keyword of DIVINATION_KEYWORDS) {
+    if (combinedText.includes(keyword)) {
+      return true;
+    }
+  }
+  
+  return false;
+}
+
+/**
  * Get the type of disclaimer needed for a tool
  */
-export function getDisclaimerType(tool: Tool): "spiritual" | "medical" | "both" | "none" {
+export type DisclaimerType = "spiritual" | "medical" | "companion" | "divination" | "both" | "multiple" | "none";
+
+export function getDisclaimerType(tool: Tool): DisclaimerType {
   const needsSpiritual = needsSpiritualDisclaimer(tool);
   const needsMedical = needsMedicalDisclaimer(tool);
+  const needsCompanion = needsCompanionDisclaimer(tool);
+  const needsDivination = needsDivinationDisclaimer(tool);
   
-  if (needsSpiritual && needsMedical) return "both";
+  const count = [needsSpiritual, needsMedical, needsCompanion, needsDivination].filter(Boolean).length;
+  
+  if (count > 1) return "multiple";
   if (needsSpiritual) return "spiritual";
   if (needsMedical) return "medical";
+  if (needsCompanion) return "companion";
+  if (needsDivination) return "divination";
   return "none";
+}
+
+/**
+ * Get all disclaimer types for a tool (for multi-disclaimer display)
+ */
+export function getAllDisclaimerTypes(tool: Tool): DisclaimerType[] {
+  const types: DisclaimerType[] = [];
+  
+  if (needsSpiritualDisclaimer(tool)) types.push("spiritual");
+  if (needsMedicalDisclaimer(tool)) types.push("medical");
+  if (needsCompanionDisclaimer(tool)) types.push("companion");
+  if (needsDivinationDisclaimer(tool)) types.push("divination");
+  
+  return types;
 }

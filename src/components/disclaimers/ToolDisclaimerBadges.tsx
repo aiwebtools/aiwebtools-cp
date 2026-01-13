@@ -1,7 +1,14 @@
 import { Tool } from "@/types/tools";
-import { needsSpiritualDisclaimer, needsMedicalDisclaimer } from "@/utils/toolDisclaimerDetection";
+import { 
+  needsSpiritualDisclaimer, 
+  needsMedicalDisclaimer,
+  needsCompanionDisclaimer,
+  needsDivinationDisclaimer
+} from "@/utils/toolDisclaimerDetection";
 import SpiritualDisclaimerBadge from "./SpiritualDisclaimerBadge";
 import MedicalDisclaimerBadge from "./MedicalDisclaimerBadge";
+import CompanionDisclaimerBadge from "./CompanionDisclaimerBadge";
+import DivinationDisclaimerBadge from "./DivinationDisclaimerBadge";
 import UniversalInfoBadge from "./UniversalInfoBadge";
 import { isAIWebToolsGPT } from "@/utils/aiWebToolsPrioritization";
 
@@ -22,13 +29,15 @@ const ToolDisclaimerBadges = ({
 }: ToolDisclaimerBadgesProps) => {
   const showSpiritual = needsSpiritualDisclaimer(tool);
   const showMedical = needsMedicalDisclaimer(tool);
+  const showCompanion = needsCompanionDisclaimer(tool);
+  const showDivination = needsDivinationDisclaimer(tool);
   const isOurTool = isAIWebToolsGPT(tool);
 
   // Map size to universal badge size
   const universalSize = size === "sm" ? "xs" : size === "md" ? "sm" : "md";
 
   // Only show badges if it's our tool or has specific disclaimers
-  if (!isOurTool && !showSpiritual && !showMedical) {
+  if (!isOurTool && !showSpiritual && !showMedical && !showCompanion && !showDivination) {
     return null;
   }
 
@@ -43,6 +52,12 @@ const ToolDisclaimerBadges = ({
       )}
       {showMedical && (
         <MedicalDisclaimerBadge tool={tool} size={size} showFullText={showFullText} />
+      )}
+      {showCompanion && (
+        <CompanionDisclaimerBadge tool={tool} size={size} showFullText={showFullText} />
+      )}
+      {showDivination && (
+        <DivinationDisclaimerBadge tool={tool} size={size} showFullText={showFullText} />
       )}
     </div>
   );
