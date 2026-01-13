@@ -114,6 +114,7 @@ const weightedShuffle = <T extends { title: string }>(items: T[]): T[] => {
 // Lazy-loading YouTube video component - shows thumbnail until clicked
 const LazyVideoEmbed = ({ videoUrl, title, height = "h-32" }: { videoUrl: string; title: string; height?: string }) => {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [iframeReady, setIframeReady] = useState(false);
   
   // Extract video ID
   const getVideoId = (url: string): string | null => {
@@ -133,18 +134,30 @@ const LazyVideoEmbed = ({ videoUrl, title, height = "h-32" }: { videoUrl: string
   if (!videoId) return null;
   
   const thumbnailUrl = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
-  const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0&controls=1&rel=0&playsinline=1&enablejsapi=1&fs=1&cc_load_policy=0`;
+  // Use youtube-nocookie for faster loading and better privacy
+  const embedUrl = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&mute=0&controls=1&rel=0&playsinline=1&enablejsapi=1&fs=1&cc_load_policy=0&modestbranding=1`;
   
   if (isLoaded) {
     return (
-      <iframe
-        src={embedUrl}
-        title={`${title} Demo`}
-        className="absolute inset-0 w-full h-full"
-        frameBorder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; autoplay"
-        allowFullScreen
-      />
+      <div className="absolute inset-0">
+        {/* Loading spinner shown while iframe loads */}
+        {!iframeReady && (
+          <div className="absolute inset-0 flex items-center justify-center bg-black z-10">
+            <div className="w-12 h-12 border-4 border-cyan-500 border-t-transparent rounded-full animate-spin" />
+          </div>
+        )}
+        <iframe
+          src={embedUrl}
+          title={`${title} Demo`}
+          className="absolute inset-0 w-full h-full"
+          style={{ opacity: iframeReady ? 1 : 0 }}
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+          loading="eager"
+          onLoad={() => setIframeReady(true)}
+        />
+      </div>
     );
   }
   
