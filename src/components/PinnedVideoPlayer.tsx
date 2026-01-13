@@ -251,6 +251,9 @@ const PinnedVideoPlayer = memo(() => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const playerMountedRef = useRef(false);
   const advanceTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const startTimeoutRef = useRef<number | null>(null);
+  const iframeLoadedAtRef = useRef<number>(0);
+  const failedVideoIdsRef = useRef<Set<string>>(new Set());
   
   // Check if on homepage
   const isHomepage = location.pathname === "/" || location.pathname === "";
@@ -308,50 +311,61 @@ const PinnedVideoPlayer = memo(() => {
   useEffect(() => {
     if (!currentVideoId) return;
     if (currentVideoId === lastVideoIdRef.current) return;
-    
+
+    // Clear any pending "start" timeout when switching videos
+    if (startTimeoutRef.current) {
+      window.clearTimeout(startTimeoutRef.current);
+      startTimeoutRef.current = null;
+    }
+
     lastVideoIdRef.current = currentVideoId;
     const isMobile = isMobileDevice();
-    
+
     // First video: desktop = unmuted, mobile = muted (browser requirement for autoplay)
     // Subsequent videos: ALWAYS preserve user's preference regardless of device
     let shouldMute: boolean;
     if (isFirstVideoRef.current) {
-      // First video only - use device default
-      shouldMute = isMobile; // Desktop unmuted, mobile muted (browser requirement)
+      shouldMute = isMobile;
       isFirstVideoRef.current = false;
     } else if (userMutePreferenceRef.current !== null) {
-      // User has explicitly toggled mute - respect their choice on ALL devices
       shouldMute = userMutePreferenceRef.current;
     } else {
-      // No user preference yet, use current state
       shouldMute = isMuted;
     }
-    
-    // Build video URL - simplified for reliable playback
+
+    // If a specific video repeatedly fails, force nocookie embed for that video id.
+    const baseHost = failedVideoIdsRef.current.has(currentVideoId)
+      ? 'https://www.youtube-nocookie.com'
+      : 'https://www.youtube.com';
+
     const embedMuteParam = isMobile ? '1' : (shouldMute ? '1' : '0');
-    const newSrc = `https://www.youtube.com/embed/${currentVideoId}?autoplay=1&mute=${embedMuteParam}&controls=0&rel=0&playsinline=1&enablejsapi=1`;
+    const newSrc = `${baseHost}/embed/${currentVideoId}?autoplay=1&mute=${embedMuteParam}&controls=0&rel=0&playsinline=1&enablejsapi=1`;
+
     setVideoSrc(newSrc);
     playerMountedRef.current = true;
-    playerMountedRef.current = true;
-    
+
     // Sync UI state with what user wants
     setIsMuted(shouldMute);
-    
+
     // On mobile, if user previously unmuted, we need to send unmute command after iframe loads
-    // because we had to use mute=1 in URL for autoplay to work
     if (isMobile && !shouldMute) {
       setTimeout(() => {
         if (iframeRef.current) {
           try {
+            // Try both origins since we may be on nocookie.
             iframeRef.current.contentWindow?.postMessage(
               JSON.stringify({ event: 'command', func: 'unMute' }),
               'https://www.youtube.com'
             );
+            iframeRef.current.contentWindow?.postMessage(
+              JSON.stringify({ event: 'command', func: 'unMute' }),
+              'https://www.youtube-nocookie.com'
+            );
           } catch {}
         }
-      }, 500); // Wait for iframe to load
+      }, 500);
     }
-    
+
     // If unmuted, notify tool page videos to mute
     if (!shouldMute) {
       window.dispatchEvent(new CustomEvent('pinnedPlayerPlaying'));
@@ -489,7 +503,7 @@ const PinnedVideoPlayer = memo(() => {
 
     const handleMessage = (event: MessageEvent) => {
       // YouTube sends messages when video state changes
-      if (event.origin !== "https://www.youtube.com") return;
+      if (event.origin !== "https://www.youtube.com" && event.origin !== "https://www.youtube-nocookie.com") return;
       
       try {
         const data = typeof event.data === "string" ? JSON.parse(event.data) : event.data;
@@ -657,6 +671,17 @@ const PinnedVideoPlayer = memo(() => {
             allowFullScreen
             title={currentTool.title}
             style={{ minHeight: '70px' }}
+            onLoad={() => {
+              iframeLoadedAtRef.current = Date.now();
+              // If the player never reaches "playing", skip quickly instead of spinning forever.
+              if (startTimeoutRef.current) window.clearTimeout(startTimeoutRef.current);
+              startTimeoutRef.current = window.setTimeout(() => {
+                if (!hasReceivedPlayStateRef.current && currentVideoId) {
+                  failedVideoIdsRef.current.add(currentVideoId);
+                  advanceToNextVideo();
+                }
+              }, 6500);
+            }}
           />
         </div>
 
