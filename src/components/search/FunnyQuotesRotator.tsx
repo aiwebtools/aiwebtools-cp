@@ -450,6 +450,141 @@ const funnyQuotes = [
   
   // Matrix wisdom
   "It's not about breaking out of the Matrix—it's about seeing through it, understanding its illusions, and choosing, with clarity, to walk in the light. 🔴🔵",
+
+  // ===== RUMI - THE MYSTIC POET OF LIGHT =====
+  
+  // Rumi on Light & Love
+  "The wound is the place where the Light enters you. — Rumi 🌹",
+  "You are not a drop in the ocean. You are the entire ocean in a drop. — Rumi 🌊",
+  "What you seek is seeking you. — Rumi 🔍",
+  "Let yourself be silently drawn by the strange pull of what you really love. It will not lead you astray. — Rumi 💫",
+  "The lamps are different, but the Light is the same. — Rumi 🪔",
+  "Be like the sun for grace and mercy. Be like the night to cover others' faults. — Rumi ☀️",
+  "Silence is the language of the Divine; all else is poor translation. — Rumi 🤫",
+  "Your task is not to seek for love, but merely to seek and find all the barriers within yourself that you have built against it. — Rumi 💕",
+  "Set your life on fire. Seek those who fan your flames. — Rumi 🔥",
+  "Yesterday I was clever, so I wanted to change the world. Today I am wise, so I am changing myself. — Rumi 🦋",
+  "The morning breeze has secrets to tell you. Do not go back to sleep. — Rumi 🌅",
+  "Out beyond ideas of wrongdoing and rightdoing, there is a field. I'll meet you there. — Rumi 🌾",
+  "Let the beauty of what you love be what you do. — Rumi 🎨",
+  "You were born with wings. Why prefer to crawl through life? — Rumi 🦅",
+  "Lovers don't finally meet somewhere. They're in each other all along. — Rumi 💞",
+  "Raise your words, not your voice. It is rain that grows flowers, not thunder. — Rumi 🌧️",
+  "The soul has been given its own ears to hear things the mind does not understand. — Rumi 👂",
+  "Dance until you shatter yourself. — Rumi 💃",
+  "Stop acting so small. You are the universe in ecstatic motion. — Rumi 🌌",
+  "Ignore those that make you fearful and sad; that degrade you back towards disease and death. — Rumi ✨",
+  "Be grateful for whoever comes, because each has been sent as a guide from beyond. — Rumi 🙏",
+  "The inspiration you seek is already within you. Be silent and listen. — Rumi 🧘",
+  "Knock, and He'll open the door. Vanish, and He'll make you shine like the sun. — Rumi ☀️",
+  "When you do things from your soul, you feel a river moving in you, a joy. — Rumi 🌊",
+  "Close your eyes, fall in love, stay there. — Rumi 💜",
+  "Don't be satisfied with stories of how things have gone with others. Unfold your own myth. — Rumi 📖",
+  "This is love: to fly toward a secret sky, to cause a hundred veils to fall each moment. — Rumi 🕊️",
+  "If light is in your heart, you will find your way home. — Rumi 🏠",
+  "Become the sky. Take an axe to the prison wall. Escape. — Rumi ⛏️",
+  "In your light I learn how to love. In your beauty, how to make poems. — Rumi 📝",
+  "Everything in the universe is within you. Ask all from yourself. — Rumi 💎",
+  "There is a voice that doesn't use words. Listen. — Rumi 🦻",
+  "My soul is from elsewhere, I'm sure of that, and I intend to end up there. — Rumi 🌟",
+  "Sell your cleverness and buy bewilderment. — Rumi 🎭",
+  "I want to sing like the birds sing, not worrying about who hears or what they think. — Rumi 🐦",
+  "Travel brings power and love back into your life. — Rumi ✈️",
+  "You have no need to travel anywhere. Journey within yourself. — Rumi 🧭",
+  "Wherever you stand, be the soul of that place. — Rumi 🌍",
+  "Why should I be unhappy? Every parcel of my being is in full bloom. — Rumi 🌸",
+
+  // ===== OTHER WISDOM TRADITIONS - LIGHT & TRUTH =====
+  
+  // Lao Tzu / Tao Te Ching
+  "Knowing others is intelligence; knowing yourself is true wisdom. — Lao Tzu 🧠",
+  "The truth is not always beautiful, nor beautiful words the truth. — Lao Tzu 📜",
+  "When I let go of what I am, I become what I might be. — Lao Tzu 🦋",
+  "Nature does not hurry, yet everything is accomplished. — Lao Tzu 🍃",
+  "A journey of a thousand miles begins with a single step. — Lao Tzu 👣",
+  "The Tao that can be told is not the eternal Tao. — Lao Tzu 🌀",
+  "Be content with what you have; rejoice in the way things are. — Lao Tzu 🙏",
+  "He who conquers others is strong; he who conquers himself is mighty. — Lao Tzu 💪",
+  "The wise man is one who knows what he does not know. — Lao Tzu 🎓",
+  "Silence is a source of great strength. — Lao Tzu 🤫",
+  
+  // Kahlil Gibran
+  "The deeper that sorrow carves into your being, the more joy you can contain. — Gibran 💧",
+  "Your living is determined not so much by what life brings to you as by the attitude you bring to life. — Gibran 🌅",
+  "Out of suffering have emerged the strongest souls; the most massive characters are seared with scars. — Gibran 💎",
+  "You are far greater than you know, and all is well. — Gibran ✨",
+  "The soul walks not upon a line, neither does it grow like a reed. The soul unfolds itself, like a lotus of countless petals. — Gibran 🪷",
+  "We are all like the bright moon; we still have our darker side. — Gibran 🌙",
+  "Faith is a knowledge within the heart, beyond the reach of proof. — Gibran 💜",
+  "If you love somebody, let them go, for if they return, they were always yours. — Gibran 🕊️",
+  
+  // Meister Eckhart
+  "The eye through which I see the Light is the same eye through which the Light sees me. — Eckhart 👁️",
+  "If the only prayer you ever say is 'thank you,' that would be enough. — Eckhart 🙏",
+  "Be willing to be a beginner every single morning. — Eckhart 🌅",
+  "The seed of the Divine grows in us. If it is tended, it grows toward the Light. — Eckhart 🌱",
+  "Wisdom consists in doing the next thing you have to do, doing it with your whole heart, and finding delight in doing it. — Eckhart 💖",
+  
+  // Sri Ramana Maharshi
+  "Your own Self-Realization is the greatest service you can render the world. — Ramana 🌟",
+  "Happiness is your nature. It is not wrong to desire it. What is wrong is seeking it outside when it is inside. — Ramana ☀️",
+  "Silence is ever-speaking; it is the perennial flow of language. — Ramana 🤫",
+  "The mind is everything. What you think you become. — Ramana 💭",
+  "There is no greater mystery than this: being Reality ourselves, we seek to gain Reality. — Ramana 🔮",
+  
+  // Thich Nhat Hanh
+  "Smile, breathe, and go slowly. — Thich Nhat Hanh 🧘",
+  "The present moment is filled with joy and happiness. If you are attentive, you will see it. — Thich Nhat Hanh 🎁",
+  "Because you are alive, everything is possible. — Thich Nhat Hanh 💫",
+  "No mud, no lotus. — Thich Nhat Hanh 🪷",
+  "Peace in oneself, peace in the world. — Thich Nhat Hanh ☮️",
+  "When another person makes you suffer, it is because he suffers deeply within himself. — Thich Nhat Hanh 💔",
+  
+  // Marcus Aurelius (Stoic wisdom)
+  "The soul becomes dyed with the color of its thoughts. — Marcus Aurelius 🎨",
+  "Very little is needed to make a happy life; it is all within yourself, in your way of thinking. — Marcus Aurelius 💭",
+  "Waste no more time arguing about what a good person should be. Be one. — Marcus Aurelius ⚡",
+  "The impediment to action advances action. What stands in the way becomes the way. — Marcus Aurelius 🚪",
+  "Accept the things to which fate binds you, and love the people with whom fate brings you together. — Marcus Aurelius 💕",
+  
+  // Paramahansa Yogananda
+  "The season of failure is the best time for sowing the seeds of success. — Yogananda 🌱",
+  "Live quietly in the moment and see the beauty of all before you. The future will take care of itself. — Yogananda 🌸",
+  "Be as simple as you can be; you will be astonished to see how uncomplicated and happy your life can become. — Yogananda 😊",
+  "The power of unfulfilled desires is the root of all man's slavery. — Yogananda ⛓️",
+  
+  // St. Francis of Assisi
+  "Start by doing what's necessary; then do what's possible; and suddenly you are doing the impossible. — St. Francis 🌟",
+  "Where there is hatred, let me sow love. Where there is darkness, light. — St. Francis 💡",
+  "It is in giving that we receive. — St. Francis 🎁",
+  "For it is in dying that we are born to eternal life. — St. Francis ✨",
+  
+  // More Light-focused wisdom
+  "The light shines in the darkness, and the darkness has not overcome it. — John 1:5 ☀️",
+  "Walk as children of Light—for the fruit of Light is found in all that is good and right and true. 💫",
+  "Your word is a lamp to my feet and a light to my path. — Psalm 119:105 🪔",
+  "Arise, shine, for your light has come, and the glory of the Father rises upon you. — Isaiah 60:1 🌅",
+  "In Him was life, and the life was the light of all mankind. — John 1:4 ✨",
+  "The Father is light, and in Him there is no darkness at all. — 1 John 1:5 ☀️",
+  "Let your light shine before others, so that they may see your good works and give glory to the Father. — Matthew 5:16 💡",
+  
+  // Universal spiritual truths
+  "Truth is one; paths are many. 🛤️",
+  "The Light within you is stronger than any darkness around you. 💫",
+  "What you are looking for is what is looking. — St. Francis 👁️",
+  "Before enlightenment, chop wood, carry water. After enlightenment, chop wood, carry water. — Zen Proverb 🪵",
+  "When the student is ready, the teacher appears. When the student is truly ready, the teacher disappears. 📚",
+  "Be still and know. 🧘",
+  "The kingdom of heaven is within you. 👑",
+  "As above, so below. As within, so without. ⚖️",
+  "Love is the bridge between you and everything. — Rumi 🌉",
+  "We are not human beings having a spiritual experience. We are spiritual beings having a human experience. — Teilhard de Chardin 🌟",
+  "The only journey is the one within. — Rilke 🧭",
+  "God is a circle whose center is everywhere and circumference nowhere. — Hermes Trismegistus 🔵",
+  "All that we are is the result of what we have thought. — Buddha 💭",
+  "Peace comes from within. Do not seek it without. — Buddha ☮️",
+  "In the end, only three things matter: how much you loved, how gently you lived, and how gracefully you let go. — Buddha 🙏",
+  "The way is not in the sky. The way is in the heart. — Buddha ❤️",
 ];
 
 // Fisher-Yates shuffle for truly random quote order
