@@ -180,7 +180,7 @@ export const isStrictlyHistoricalTimeRelatedTool = (tool: Tool): boolean => {
     'atlantean memory keeper', 'atlantis',
     'mayan dreamspell', 'mayan calendar',
     'emerald signature of thoth', 'thoth',
-    'babylonian star tablet', 'babylon',
+    
     'rune frequency', 'ancient runes',
     'astrotheology revealer',
     'ancient gematria', 'gematria scan',

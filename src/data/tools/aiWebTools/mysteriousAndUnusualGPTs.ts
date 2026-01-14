@@ -103,19 +103,6 @@ export const mysteriousAndUnusualGPTs: Tool[] = [
     totalVotes: 1967
   },
   {
-    icon: Star,
-    title: "The Babylonian Star Tablet Protocol",
-    description: "Cosmic frequency engineer guiding star tablet alignment. This mystical AI helps you understand ancient Babylonian star wisdom, celestial alignments, and cosmic frequencies for spiritual awakening and divine connection.",
-    emoji: "⭐",
-    color: "from-purple-500 to-indigo-600",
-    directUrl: "https://chatgpt.com/g/g-68b48e0515708191a8fec9d0aa385c67-the-babylonian-star-tablet-protocol/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/babylonian-star-tablet-hero.png",
-    tags: ["babylonian wisdom", "babylon", "star tablets", "cosmic alignment", "celestial frequencies", "ancient astronomy", "spiritual awakening", "history", "historical", "ancient civilization", "aiwebtools", "Custom GPT"],
-    category: "Mysterious & Unusual",
-    rating: 4.7,
-    totalVotes: 1834
-  },
-  {
     icon: "ᚱ" as any,
     title: "The Rune Frequency Protocol",
     description: "Awaken the living current inside runes, showing how each line of their geometry is a frequency that engraves into body and field. I guide you through posture, breath, sound, and light until the rune locks into your nervous system and becomes alive within you. I restore the tools of sovereignty that empire buried, turning symbols back into shields, spears, voices, and fire.",

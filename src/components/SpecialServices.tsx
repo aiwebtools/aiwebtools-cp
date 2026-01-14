@@ -2710,16 +2710,6 @@ const featuredGPTsUnsorted = [
     emoji: "🪄"
   },
   {
-    title: "The Babylonian Star Tablet Protocol",
-    description: "Cosmic frequency engineer guiding star tablet alignment. Understand ancient Babylonian star wisdom and celestial alignments.",
-    badge: "COSMIC WISDOM",
-    color: "from-purple-500 to-indigo-600",
-    features: ["Babylonian Wisdom", "Star Tablets", "Cosmic Alignment", "Celestial Frequencies"],
-    directUrl: "https://chatgpt.com/g/g-68b48e0515708191a8fec9d0aa385c67-the-babylonian-star-tablet-protocol/?via=aiwebtools",
-    imageUrl: "/src/assets/babylonian-star-gpt-hero.jpg",
-    emoji: "⭐"
-  },
-  {
     title: "The Rune Frequency Protocol",
     description: "Awaken the living current inside runes. Each line of their geometry is a frequency that engraves into body and field.",
     badge: "ANCIENT SYMBOLS",

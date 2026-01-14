@@ -353,7 +353,7 @@ export const toolTaglines: Record<string, string> = {
   "Atlantean Memory Keeper": "Access lost wisdom of Atlantis. Ancient knowledge restored.",
   "Mayan Dreamspell Matrix": "Decode your galactic signature. Cosmic identity revealed.",
   "Emerald Signature of Thoth": "Access hermetic wisdom and emerald codes. Divine transmission.",
-  "The Babylonian Star Tablet Protocol": "Align with ancient celestial frequencies. Star wisdom.",
+  
   "The Rune Frequency Protocol": "Activate living runes in your body. Ancient power restored.",
   "Reality Splitter GPT": "Explore parallel timelines of your decisions. See all outcomes.",
   "AstroTheology Revealer GPT": "Decode astronomical roots of religion. Celestial truth.",
