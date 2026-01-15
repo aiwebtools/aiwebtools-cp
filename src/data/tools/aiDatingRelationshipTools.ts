@@ -88,32 +88,7 @@ export const aiDatingRelationshipTools: Tool[] = [
     rating: 4.3,
     totalVotes: 1654
   },
-  {
-    icon: Heart,
-    title: "Nomi.ai",
-    description: "AI companion with a soul - create meaningful connections with AI boyfriends, girlfriends, or friends that remember you and evolve.",
-    emoji: "💜",
-    color: "from-violet-500 to-purple-600",
-    directUrl: "https://nomi.ai/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/nomi-ai-hero.png",
-    tags: ["AI companion", "AI girlfriend", "AI boyfriend", "emotional connection", "virtual friend"],
-    category: "AI Dating & Relationship Tools",
-    rating: 4.5,
-    totalVotes: 5234
-  },
-  {
-    icon: Sparkles,
-    title: "Romantic AI",
-    description: "Premium AI girlfriend/boyfriend chat and love simulator with customizable anime avatars and emotional engagement.",
-    emoji: "💕",
-    color: "from-pink-500 to-rose-600",
-    directUrl: "https://romanticai.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/romantic-ai-hero.png",
-    tags: ["AI girlfriend", "AI boyfriend", "anime", "love simulator", "virtual relationship"],
-    category: "AI Dating & Relationship Tools",
-    rating: 4.3,
-    totalVotes: 4567
-  },
+  // Removed: Nomi.ai, Romantic AI, Candy AI, Couple.me - adult/erotica tools not aligned with values
   {
     icon: MessageCircle,
     title: "Replika",
@@ -126,32 +101,6 @@ export const aiDatingRelationshipTools: Tool[] = [
     category: "AI Dating & Relationship Tools",
     rating: 4.4,
     totalVotes: 12456
-  },
-  {
-    icon: Heart,
-    title: "Candy AI",
-    description: "Create your perfect AI girlfriend with customizable personalities, appearances, and immersive roleplay experiences.",
-    emoji: "🍬",
-    color: "from-pink-400 to-fuchsia-600",
-    directUrl: "https://candy.ai/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/candy-ai-hero.png",
-    tags: ["AI girlfriend", "customizable", "roleplay", "virtual companion", "personalized AI"],
-    category: "AI Dating & Relationship Tools",
-    rating: 4.2,
-    totalVotes: 3890
-  },
-  {
-    icon: Users,
-    title: "Couple.me",
-    description: "Create your own AI girlfriend for meaningful chat conversations and AI-generated images anytime.",
-    emoji: "👫",
-    color: "from-rose-500 to-pink-600",
-    directUrl: "https://couple.me/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/couple-me-hero.png",
-    tags: ["AI girlfriend", "chat", "image generation", "virtual relationship", "companion"],
-    category: "AI Dating & Relationship Tools",
-    rating: 4.1,
-    totalVotes: 2345
   },
   {
     icon: HeartHandshake,
