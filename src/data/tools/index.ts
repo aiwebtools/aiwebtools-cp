@@ -308,3 +308,6 @@ export { newWebsiteBuilders2025 } from './newWebsiteBuilders2025';
 
 // Export New Specialized Tools 2025
 export { newSpecializedTools2025 } from './newSpecializedTools2025';
+
+// Export Emerging AI Tools 2025 (Agents, Healthcare AI, Legal AI)
+export { emergingAITools2025 } from './emergingAITools2025';
