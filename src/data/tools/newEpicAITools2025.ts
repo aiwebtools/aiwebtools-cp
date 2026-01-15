@@ -1,0 +1,141 @@
+import { Tool } from "@/types/tools";
+import { 
+  Video, 
+  BarChart, 
+  Search, 
+  FileText, 
+  Type,
+  Music,
+  Image,
+  Palette,
+  Layers,
+  Code
+} from "lucide-react";
+
+export const newEpicAITools2025: Tool[] = [
+  {
+    icon: Video,
+    title: "Captions App",
+    description: "AI-powered video editing app with automatic captions, eye contact correction, and teleprompter. Create viral short-form content with AI that fixes your gaze, adds dynamic captions, and enhances video quality automatically.",
+    emoji: "📹",
+    color: "from-teal-500 to-purple-600",
+    directUrl: "https://www.captions.ai/?via=aiwebtools",
+    imageUrl: "/src/assets/tools/captions-app-hero.png",
+    tags: ["video editing", "auto captions", "eye contact correction", "teleprompter", "AI video", "social media"],
+    category: "AI Video Editing",
+    rating: 4.8,
+    totalVotes: 15234
+  },
+  {
+    icon: BarChart,
+    title: "Julius AI",
+    description: "ChatGPT for data analysis. Upload spreadsheets, CSVs, or databases and ask questions in plain English. Julius creates charts, graphs, statistical analysis, and insights from your data without coding required.",
+    emoji: "📊",
+    color: "from-blue-500 to-gold-600",
+    directUrl: "https://julius.ai/?via=aiwebtools",
+    imageUrl: "/src/assets/tools/julius-ai-hero.png",
+    tags: ["data analysis", "visualization", "charts", "spreadsheets", "statistics", "AI analytics"],
+    category: "Data & Analytics",
+    rating: 4.7,
+    totalVotes: 12456
+  },
+  {
+    icon: Search,
+    title: "Glean AI",
+    description: "Enterprise AI that searches across all your company's knowledge - Slack, Google Drive, Notion, emails, and more. Find anything instantly with AI that understands context and delivers answers, not just links.",
+    emoji: "🔍",
+    color: "from-blue-600 to-indigo-700",
+    directUrl: "https://www.glean.com/?via=aiwebtools",
+    imageUrl: "/src/assets/tools/glean-ai-hero.png",
+    tags: ["enterprise search", "knowledge management", "AI search", "workplace productivity", "company knowledge"],
+    category: "Business & Productivity",
+    rating: 4.6,
+    totalVotes: 8765
+  },
+  {
+    icon: FileText,
+    title: "Granola AI",
+    description: "AI notepad that works while you talk. Take minimal notes during meetings and Granola fills in the rest using meeting audio. Beautiful, organized notes appear after every call without manual transcription.",
+    emoji: "📝",
+    color: "from-amber-400 to-orange-500",
+    directUrl: "https://www.granola.so/?via=aiwebtools",
+    imageUrl: "/src/assets/tools/granola-ai-hero.png",
+    tags: ["meeting notes", "AI notepad", "transcription", "productivity", "meetings", "note taking"],
+    category: "Meeting & Transcription Tools",
+    rating: 4.8,
+    totalVotes: 6543
+  },
+  {
+    icon: Type,
+    title: "TextFX by Google",
+    description: "Creative AI writing tools by Google and Lupe Fiasco. Experiment with language through wordplay, similes, acronyms, and unexpected perspectives. 10 unique AI tools for writers, rappers, and creatives.",
+    emoji: "✨",
+    color: "from-red-500 to-yellow-500",
+    directUrl: "https://textfx.withgoogle.com/?via=aiwebtools",
+    imageUrl: "/src/assets/tools/textfx-hero.png",
+    tags: ["creative writing", "wordplay", "Google AI", "poetry", "lyrics", "language tools"],
+    category: "Writing & Content",
+    rating: 4.5,
+    totalVotes: 9876
+  },
+  {
+    icon: Music,
+    title: "MusicFX by Google",
+    description: "Google's AI music generator. Create original music tracks from text descriptions. Generate instrumentals, beats, and full songs in various genres and styles powered by Google DeepMind's AI.",
+    emoji: "🎵",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://aitestkitchen.withgoogle.com/tools/music-fx/?via=aiwebtools",
+    tags: ["music generation", "AI music", "Google AI", "beats", "instrumentals", "audio generation"],
+    category: "Audio & Music",
+    rating: 4.6,
+    totalVotes: 11234
+  },
+  {
+    icon: Image,
+    title: "ImageFX by Google",
+    description: "Google's AI image generator powered by Imagen 3. Create stunning, photorealistic images from text prompts with Google's most advanced image AI. Free to use in Google AI Test Kitchen.",
+    emoji: "🖼️",
+    color: "from-green-500 to-teal-600",
+    directUrl: "https://aitestkitchen.withgoogle.com/tools/image-fx/?via=aiwebtools",
+    tags: ["image generation", "AI art", "Google AI", "Imagen", "text to image", "photorealistic"],
+    category: "Image & Design",
+    rating: 4.7,
+    totalVotes: 18765
+  },
+  {
+    icon: Palette,
+    title: "Galileo AI",
+    description: "Generate stunning UI designs from text prompts. Describe your interface and Galileo creates production-ready designs with proper layout, components, and styling. AI-powered UI/UX design revolution.",
+    emoji: "🎨",
+    color: "from-violet-500 to-purple-700",
+    directUrl: "https://www.usegalileo.ai/?via=aiwebtools",
+    tags: ["UI design", "UX design", "AI design", "interface design", "product design", "design automation"],
+    category: "Design & UI/UX",
+    rating: 4.6,
+    totalVotes: 7654
+  },
+  {
+    icon: Layers,
+    title: "Visily AI",
+    description: "Transform screenshots and sketches into editable wireframes and designs. Upload any interface image and get fully editable components. AI-powered design tool for rapid prototyping.",
+    emoji: "📐",
+    color: "from-cyan-500 to-blue-600",
+    directUrl: "https://www.visily.ai/?via=aiwebtools",
+    tags: ["wireframing", "screenshot to design", "prototyping", "UI design", "design conversion", "AI design"],
+    category: "Design & UI/UX",
+    rating: 4.5,
+    totalVotes: 5432
+  },
+  {
+    icon: Code,
+    title: "Locofy AI",
+    description: "Convert Figma and Adobe XD designs into production-ready frontend code. AI generates clean React, Next.js, Vue, or HTML/CSS code from your designs with responsive layouts and components.",
+    emoji: "💻",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://www.locofy.ai/?via=aiwebtools",
+    tags: ["design to code", "Figma to code", "frontend development", "React", "code generation", "AI coding"],
+    category: "Developer & Coding Tools",
+    rating: 4.7,
+    totalVotes: 8901
+  }
+];
