@@ -231,6 +231,9 @@ export { aiBotMakingPlatforms } from './aiBotMakingPlatforms';
 // Export AI Dating & Relationship Tools
 export { aiDatingRelationshipTools } from './aiDatingRelationshipTools';
 
+// Export New Epic AI Tools 2025
+export { newEpicAITools2025 } from './newEpicAITools2025';
+
 // Export AI Fitness & Nutrition Tools
 export { aiFitnessNutritionTools } from './aiFitnessNutritionTools';
 
