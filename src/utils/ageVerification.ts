@@ -30,11 +30,9 @@ const PRIMARY_AGE_RESTRICTED_KEYWORDS = [
   // Couples/Relationship apps (romantic context)
   'couples app', 'relationship app', 'intimacy app', 'romantic roleplay',
   
-  // Specific known platforms
-  'replika', 'candy ai', 'nomi.ai', 'romantic ai', 'lover ai',
-  'couple.me', 'rizz ai', 'dolores', 'eharmony', 'hinge', 'tinder',
-  'bumble', 'coffee meets bagel', 'keeper ai', 'amoriq', 'maia app',
-  'flamme app'
+  // Specific known adult/erotica platforms (removed from database)
+  'candy ai', 'nomi.ai', 'romantic ai', 'couple.me',
+  'tinder', 'bumble' // third-party dating apps we don't promote
 ];
 
 // Secondary keywords - only trigger if category ALSO suggests dating/adult
