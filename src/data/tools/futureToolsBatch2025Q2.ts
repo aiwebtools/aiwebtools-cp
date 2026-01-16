@@ -68,6 +68,32 @@ import meta3dGenHero from "@/assets/tools/meta-3d-gen-hero.png";
 import adobeProjectConceptHero from "@/assets/tools/adobe-project-concept-hero.png";
 import xPortrait2Hero from "@/assets/tools/x-portrait-2-hero.png";
 
+// New hero images from screenshots audit
+import waveformsAiHero from "@/assets/tools/waveforms-ai-hero.png";
+import willowGoogleHero from "@/assets/tools/willow-google-hero.png";
+import depthProHero from "@/assets/tools/depth-pro-hero.png";
+import cocoonHero from "@/assets/tools/cocoon-hero.png";
+import gaiaMicrosoftHero from "@/assets/tools/gaia-microsoft-hero.png";
+import ameliaAmazonHero from "@/assets/tools/amelia-amazon-hero.png";
+import adobeGenStudioHero from "@/assets/tools/adobe-genstudio-hero.png";
+import museMicrosoftHero from "@/assets/tools/muse-microsoft-hero.png";
+import googleMusicLMHero from "@/assets/tools/google-musiclm-hero.png";
+import smartCrawlAiHero from "@/assets/tools/smartcrawl-ai-hero.png";
+import linkedInHiringHero from "@/assets/tools/linkedin-hiring-assistant-hero.png";
+import projectAstraHero from "@/assets/tools/project-astra-google-hero.png";
+import mobileDiffusionHero from "@/assets/tools/mobilediffusion-google-hero.png";
+import upscaleAVideoHero from "@/assets/tools/upscale-a-video-hero.png";
+import gingerbreadAdobeHero from "@/assets/tools/gingerbread-adobe-hero.png";
+import willowXHero from "@/assets/tools/willow-x-hero.png";
+import heroAiHero from "@/assets/tools/hero-ai-hero.png";
+import voiceboxMetaHero from "@/assets/tools/voicebox-meta-hero.png";
+import miqu170bHero from "@/assets/tools/miqu-1-70b-hero.png";
+import animateAnyoneHero from "@/assets/tools/animate-anyone-hero.png";
+import ernieX1Hero from "@/assets/tools/ernie-x1-hero.png";
+import earthSpeciesHero from "@/assets/tools/earth-species-project-hero.png";
+import alphaCode2Hero from "@/assets/tools/alphacode-2-deepmind-hero.png";
+import mirageDynamicsHero from "@/assets/tools/mirage-dynamics-lab-hero.png";
+
 export const futureToolsBatch2025Q2: Tool[] = [
   // === GAME AI & SIMULATION ===
   {
