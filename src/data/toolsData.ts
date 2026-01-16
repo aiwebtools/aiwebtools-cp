@@ -89,6 +89,9 @@ import { multiCategoryTools2025 } from "./tools/multiCategoryTools2025";
 // Import Image, Translation & Storytelling Tools 2025
 import { imageTranslationStorytelling2025 } from "./tools/imageTranslationStorytelling2025";
 
+// Import Marketing, Transcriber & Storytelling Tools 2025 (16 new verified tools)
+import { marketingTranscriberStorytelling2025 } from "./tools/marketingTranscriberStorytelling2025";
+
 const allToolCategories = consolidateTools([
   ...getAllToolCategories(),
   ...newAffiliatePlatforms2025,
@@ -164,7 +167,10 @@ const allToolCategories = consolidateTools([
   ...multiCategoryTools2025,
   
   // Image, Translation & Storytelling Tools 2025
-  ...imageTranslationStorytelling2025
+  ...imageTranslationStorytelling2025,
+  
+  // Marketing, Transcriber & Storytelling Tools 2025 (16 new verified tools)
+  ...marketingTranscriberStorytelling2025
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories

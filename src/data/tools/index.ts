@@ -336,3 +336,6 @@ export { multiCategoryTools2025 } from './multiCategoryTools2025';
 
 // Export Image, Translation & Storytelling Tools 2025
 export { imageTranslationStorytelling2025 } from './imageTranslationStorytelling2025';
+
+// Export Marketing, Transcriber & Storytelling Tools 2025 (16 new verified tools)
+export { marketingTranscriberStorytelling2025 } from './marketingTranscriberStorytelling2025';
