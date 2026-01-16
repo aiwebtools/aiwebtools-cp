@@ -390,3 +390,6 @@ export { auditBatch2025Q2Part14Tools } from './auditBatch2025Q2Part14';
 
 // Export Audit Batch Q2 2025 Part 15 (15 new verified tools: LLM Models, Data & Analytics, Assistive Technology, Future Tools)
 export { auditBatch2025Q2Part15Tools } from './auditBatch2025Q2Part15';
+
+// Export Future Tools Batch Q2 2025 (45+ new verified Future Tools)
+export { futureToolsBatch2025Q2 } from './futureToolsBatch2025Q2';

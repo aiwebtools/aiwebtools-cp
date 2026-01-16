@@ -143,6 +143,9 @@ import { auditBatch2025Q2Part14Tools } from "./tools/auditBatch2025Q2Part14";
 // Import Audit Batch Q2 2025 Part 15 (15 new verified tools: LLM Models, Data & Analytics, Assistive Technology, Future Tools)
 import { auditBatch2025Q2Part15Tools } from "./tools/auditBatch2025Q2Part15";
 
+// Import Future Tools Batch Q2 2025 (45+ new verified Future Tools)
+import { futureToolsBatch2025Q2 } from "./tools/futureToolsBatch2025Q2";
+
 const allToolCategories = consolidateTools([
   ...getAllToolCategories(),
   ...newAffiliatePlatforms2025,
@@ -272,7 +275,10 @@ const allToolCategories = consolidateTools([
   ...auditBatch2025Q2Part14Tools,
   
   // Audit Batch Q2 2025 Part 15 (15 new verified tools: LLM Models, Data & Analytics, Assistive Technology, Future Tools)
-  ...auditBatch2025Q2Part15Tools
+  ...auditBatch2025Q2Part15Tools,
+  
+  // Future Tools Batch Q2 2025 (45+ new verified Future Tools)
+  ...futureToolsBatch2025Q2
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories
