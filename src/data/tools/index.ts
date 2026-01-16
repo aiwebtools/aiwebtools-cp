@@ -384,3 +384,6 @@ export { auditBatch2025Q2Part12Tools } from './auditBatch2025Q2Part12';
 
 // Export Audit Batch Q2 2025 Part 13 (6 new verified tools: Real Estate/Architect, Art, Travel)
 export { auditBatch2025Q2Part13Tools } from './auditBatch2025Q2Part13';
+
+// Export Audit Batch Q2 2025 Part 14 (6 new verified tools: Fashion, Dating & Relationships, Healthcare, Automation)
+export { auditBatch2025Q2Part14Tools } from './auditBatch2025Q2Part14';
