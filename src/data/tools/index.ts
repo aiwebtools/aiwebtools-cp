@@ -378,3 +378,6 @@ export { auditBatch2025Q2Part10Tools } from './auditBatch2025Q2Part10';
 
 // Export Audit Batch Q2 2025 Part 11 (12 new verified tools: No Code/Low Code, Assistant Code, Developer Tools, Legal Assistants)
 export { auditBatch2025Q2Part11Tools } from './auditBatch2025Q2Part11';
+
+// Export Audit Batch Q2 2025 Part 12 (4 new verified tools: Business, Prompts & Aids)
+export { auditBatch2025Q2Part12Tools } from './auditBatch2025Q2Part12';
