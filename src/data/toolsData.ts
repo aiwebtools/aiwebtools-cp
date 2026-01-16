@@ -73,6 +73,9 @@ import { healthcareAITools2025Batch2 } from "./tools/healthcareAITools2025Batch2
 // Import Email Productivity Tools 2025
 import { emailProductivityTools2025 } from "./tools/emailProductivityTools2025";
 
+// Import 3D Modeling Tools 2025
+import { threeDModelingTools2025 } from "./tools/threeDModelingTools2025";
+
 const allToolCategories = consolidateTools([
   ...getAllToolCategories(),
   ...newAffiliatePlatforms2025,
@@ -132,7 +135,10 @@ const allToolCategories = consolidateTools([
   ...healthcareAITools2025Batch2,
   
   // Email Productivity Tools 2025
-  ...emailProductivityTools2025
+  ...emailProductivityTools2025,
+  
+  // 3D Modeling Tools 2025
+  ...threeDModelingTools2025
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories
