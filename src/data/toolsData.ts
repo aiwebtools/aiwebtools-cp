@@ -76,6 +76,10 @@ import { emailProductivityTools2025 } from "./tools/emailProductivityTools2025";
 // Import 3D Modeling Tools 2025
 import { threeDModelingTools2025 } from "./tools/threeDModelingTools2025";
 
+// Import AI Agents 2025
+import { aiAgents2025 } from "./tools/aiAgents2025";
+import { aiAgents2025Batch2 } from "./tools/aiAgents2025Batch2";
+
 const allToolCategories = consolidateTools([
   ...getAllToolCategories(),
   ...newAffiliatePlatforms2025,
@@ -138,7 +142,11 @@ const allToolCategories = consolidateTools([
   ...emailProductivityTools2025,
   
   // 3D Modeling Tools 2025
-  ...threeDModelingTools2025
+  ...threeDModelingTools2025,
+  
+  // AI Agents 2025 (85+ new agent tools)
+  ...aiAgents2025,
+  ...aiAgents2025Batch2
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories
