@@ -131,6 +131,9 @@ import { auditBatch2025Q2Part10Tools } from "./tools/auditBatch2025Q2Part10";
 // Import Audit Batch Q2 2025 Part 11 (12 new verified tools: No Code/Low Code, Assistant Code, Developer Tools, Legal Assistants)
 import { auditBatch2025Q2Part11Tools } from "./tools/auditBatch2025Q2Part11";
 
+// Import Audit Batch Q2 2025 Part 12 (4 new verified tools: Business, Prompts & Aids)
+import { auditBatch2025Q2Part12Tools } from "./tools/auditBatch2025Q2Part12";
+
 const allToolCategories = consolidateTools([
   ...getAllToolCategories(),
   ...newAffiliatePlatforms2025,
@@ -248,7 +251,10 @@ const allToolCategories = consolidateTools([
   ...auditBatch2025Q2Part10Tools,
   
   // Audit Batch Q2 2025 Part 11 (12 new verified tools: No Code/Low Code, Assistant Code, Developer Tools, Legal Assistants)
-  ...auditBatch2025Q2Part11Tools
+  ...auditBatch2025Q2Part11Tools,
+  
+  // Audit Batch Q2 2025 Part 12 (4 new verified tools: Business, Prompts & Aids)
+  ...auditBatch2025Q2Part12Tools
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories
