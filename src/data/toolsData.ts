@@ -65,6 +65,10 @@ import { web3DomainsTools } from "./tools/web3DomainsTools";
 // Import SFX Generator Tools
 import { sfxGeneratorTools } from "./tools/sfxGeneratorTools";
 
+// Import Emerging & Healthcare AI Tools 2025
+import { emergingAITools2025 } from "./tools/emergingAITools2025";
+import { healthcareAITools2025 } from "./tools/healthcareAITools2025";
+
 const allToolCategories = consolidateTools([
   ...getAllToolCategories(),
   ...newAffiliatePlatforms2025,
@@ -116,7 +120,11 @@ const allToolCategories = consolidateTools([
   ...videoPromptGPTs,
   
   // SFX Generator Tools
-  ...sfxGeneratorTools
+  ...sfxGeneratorTools,
+  
+  // Emerging & Healthcare AI Tools 2025
+  ...emergingAITools2025,
+  ...healthcareAITools2025
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories
