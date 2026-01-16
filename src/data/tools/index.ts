@@ -1,5 +1,6 @@
 
 // Export all tool categories
+export { emailProductivityTools2025 } from './emailProductivityTools2025';
 export { businessTools } from './businessTools';
 export { aiAssistants } from './aiAssistants';
 export { videoTools } from './videoTools';
