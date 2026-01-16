@@ -381,3 +381,6 @@ export { auditBatch2025Q2Part11Tools } from './auditBatch2025Q2Part11';
 
 // Export Audit Batch Q2 2025 Part 12 (4 new verified tools: Business, Prompts & Aids)
 export { auditBatch2025Q2Part12Tools } from './auditBatch2025Q2Part12';
+
+// Export Audit Batch Q2 2025 Part 13 (6 new verified tools: Real Estate/Architect, Art, Travel)
+export { auditBatch2025Q2Part13Tools } from './auditBatch2025Q2Part13';
