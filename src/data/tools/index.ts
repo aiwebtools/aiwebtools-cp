@@ -354,3 +354,6 @@ export { auditBatch2025Q2Part2Tools } from './auditBatch2025Q2Part2';
 
 // Export Audit Batch Q2 2025 Part 3 (12 new verified tools: AI Chat, Video Gen, TTS, Education)
 export { auditBatch2025Q2Part3 } from './auditBatch2025Q2Part3';
+
+// Export Audit Batch Q2 2025 Part 4 (8 new verified tools: Logo Creation, Website & Design)
+export { auditBatch2025Q2Part4Tools } from './auditBatch2025Q2Part4';
