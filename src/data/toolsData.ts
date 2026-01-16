@@ -95,6 +95,9 @@ import { marketingTranscriberStorytelling2025 } from "./tools/marketingTranscrib
 // Import Verified AI Tools Batch 2025 (20+ new verified tools)
 import { verifiedToolsBatch2025 } from "./tools/verifiedToolsBatch2025";
 
+// Import Missing Tools Batch 2025 (7 new verified tools)
+import { missingToolsBatch2025 } from "./tools/missingToolsBatch2025";
+
 const allToolCategories = consolidateTools([
   ...getAllToolCategories(),
   ...newAffiliatePlatforms2025,
@@ -176,7 +179,10 @@ const allToolCategories = consolidateTools([
   ...marketingTranscriberStorytelling2025,
   
   // Verified AI Tools Batch 2025 (20+ new verified tools)
-  ...verifiedToolsBatch2025
+  ...verifiedToolsBatch2025,
+  
+  // Missing Tools Batch 2025 (7 new verified tools)
+  ...missingToolsBatch2025
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories
