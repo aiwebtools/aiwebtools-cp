@@ -155,7 +155,10 @@ const allToolCategories = consolidateTools([
   ...aiAgents2025Batch2,
   
   // Lifestyle Tools 2025 (Life Assistants, Memory, Face Swap, Finance, Audio)
-  ...lifestyleTools2025
+  ...lifestyleTools2025,
+  
+  // Multi-Category Tools 2025 (Legal, Real Estate, Games, Travel, Fashion, Healthcare, Data, Future Video, Prompts)
+  ...multiCategoryTools2025
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories

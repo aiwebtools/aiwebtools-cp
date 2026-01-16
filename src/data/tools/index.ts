@@ -333,10 +333,3 @@ export { lifestyleTools2025 } from './lifestyleTools2025';
 
 // Export Multi-Category Tools 2025 (Legal, Real Estate, Games, Travel, Fashion, Healthcare, Data, Future Video, Prompts)
 export { multiCategoryTools2025 } from './multiCategoryTools2025';
-export { aiAgents2025 } from './aiAgents2025';
-
-// Export AI Agents 2025 Batch 2 (45+ additional agent tools)
-export { aiAgents2025Batch2 } from './aiAgents2025Batch2';
-
-// Export Lifestyle Tools 2025 (Life Assistants, Memory, Face Swap, Finance, Audio)
-export { lifestyleTools2025 } from './lifestyleTools2025';
