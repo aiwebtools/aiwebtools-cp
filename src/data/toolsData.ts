@@ -80,6 +80,12 @@ import { threeDModelingTools2025 } from "./tools/threeDModelingTools2025";
 import { aiAgents2025 } from "./tools/aiAgents2025";
 import { aiAgents2025Batch2 } from "./tools/aiAgents2025Batch2";
 
+// Import Lifestyle Tools 2025 (Life Assistants, Memory, Face Swap, Finance, Audio)
+import { lifestyleTools2025 } from "./tools/lifestyleTools2025";
+
+// Import Multi-Category Tools 2025 (Legal, Real Estate, Games, Travel, Fashion, Healthcare, Data, Future Video, Prompts)
+import { multiCategoryTools2025 } from "./tools/multiCategoryTools2025";
+
 const allToolCategories = consolidateTools([
   ...getAllToolCategories(),
   ...newAffiliatePlatforms2025,
@@ -146,7 +152,10 @@ const allToolCategories = consolidateTools([
   
   // AI Agents 2025 (85+ new agent tools)
   ...aiAgents2025,
-  ...aiAgents2025Batch2
+  ...aiAgents2025Batch2,
+  
+  // Lifestyle Tools 2025 (Life Assistants, Memory, Face Swap, Finance, Audio)
+  ...lifestyleTools2025
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories
