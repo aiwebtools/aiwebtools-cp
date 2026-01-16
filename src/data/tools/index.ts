@@ -339,3 +339,6 @@ export { imageTranslationStorytelling2025 } from './imageTranslationStorytelling
 
 // Export Marketing, Transcriber & Storytelling Tools 2025 (16 new verified tools)
 export { marketingTranscriberStorytelling2025 } from './marketingTranscriberStorytelling2025';
+
+// Export Verified AI Tools Batch 2025 (20+ new verified tools)
+export { verifiedToolsBatch2025 } from './verifiedToolsBatch2025';
