@@ -70,6 +70,9 @@ import { emergingAITools2025 } from "./tools/emergingAITools2025";
 import { healthcareAITools2025 } from "./tools/healthcareAITools2025";
 import { healthcareAITools2025Batch2 } from "./tools/healthcareAITools2025Batch2";
 
+// Import Email Productivity Tools 2025
+import { emailProductivityTools2025 } from "./tools/emailProductivityTools2025";
+
 const allToolCategories = consolidateTools([
   ...getAllToolCategories(),
   ...newAffiliatePlatforms2025,
@@ -126,7 +129,10 @@ const allToolCategories = consolidateTools([
   // Emerging & Healthcare AI Tools 2025
   ...emergingAITools2025,
   ...healthcareAITools2025,
-  ...healthcareAITools2025Batch2
+  ...healthcareAITools2025Batch2,
+  
+  // Email Productivity Tools 2025
+  ...emailProductivityTools2025
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories
