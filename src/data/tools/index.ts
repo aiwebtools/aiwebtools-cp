@@ -372,3 +372,6 @@ export { auditBatch2025Q2Part8Tools } from './auditBatch2025Q2Part8';
 
 // Export Audit Batch Q2 2025 Part 9 (13 new verified tools: Translation, Marketing, Transcriber, Storytelling Generator)
 export { auditBatch2025Q2Part9Tools } from './auditBatch2025Q2Part9';
+
+// Export Audit Batch Q2 2025 Part 10 (8 new verified tools: ChatBots, Voice Cloning, Avatars, Amazing)
+export { auditBatch2025Q2Part10Tools } from './auditBatch2025Q2Part10';
