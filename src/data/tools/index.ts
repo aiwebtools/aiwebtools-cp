@@ -363,3 +363,6 @@ export { auditBatch2025Q2Part3 } from './auditBatch2025Q2Part3';
 
 // Export Audit Batch Q2 2025 Part 4 (8 new verified tools: Logo Creation, Website & Design)
 export { auditBatch2025Q2Part4Tools } from './auditBatch2025Q2Part4';
+
+// Export Audit Batch Q2 2025 Part 7 (17 new verified tools: Presentation, Files & Spreadsheets, Music, Face Swap)
+export { auditBatch2025Q2Part7Tools } from './auditBatch2025Q2Part7';
