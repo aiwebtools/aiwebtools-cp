@@ -345,3 +345,6 @@ export { verifiedToolsBatch2025 } from './verifiedToolsBatch2025';
 
 // Export Missing Tools Batch 2025 (7 new verified tools: ChatGPT Health, WhatsApp Scheduler, etc.)
 export { missingToolsBatch2025 } from './missingToolsBatch2025';
+
+// Export Audit Batch Q2 2025 (14 new verified tools: TTS, AI Detection, Logo, Email Marketing)
+export { auditBatch2025Q2Tools } from './auditBatch2025Q2';
