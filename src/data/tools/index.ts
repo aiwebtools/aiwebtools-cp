@@ -342,3 +342,6 @@ export { marketingTranscriberStorytelling2025 } from './marketingTranscriberStor
 
 // Export Verified AI Tools Batch 2025 (20+ new verified tools)
 export { verifiedToolsBatch2025 } from './verifiedToolsBatch2025';
+
+// Export Missing Tools Batch 2025 (7 new verified tools: ChatGPT Health, WhatsApp Scheduler, etc.)
+export { missingToolsBatch2025 } from './missingToolsBatch2025';
