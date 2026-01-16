@@ -113,6 +113,9 @@ import { auditBatch2025Q2Part4Tools } from "./tools/auditBatch2025Q2Part4";
 // Import Audit Batch Q2 2025 Part 5 (8 new verified tools: Image Editing, Video Edition, Audio Editing)
 import { auditBatch2025Q2Part5Tools } from "./tools/auditBatch2025Q2Part5";
 
+// Import Audit Batch Q2 2025 Part 6 (16 new verified tools: Extensions ChatGPT, Social Networks, Summarizer, Productivity)
+import { auditBatch2025Q2Part6Tools } from "./tools/auditBatch2025Q2Part6";
+
 const allToolCategories = consolidateTools([
   ...getAllToolCategories(),
   ...newAffiliatePlatforms2025,
@@ -212,7 +215,10 @@ const allToolCategories = consolidateTools([
   ...auditBatch2025Q2Part4Tools,
   
   // Audit Batch Q2 2025 Part 5 (8 new verified tools: Image Editing, Video Edition, Audio Editing)
-  ...auditBatch2025Q2Part5Tools
+  ...auditBatch2025Q2Part5Tools,
+  
+  // Audit Batch Q2 2025 Part 6 (16 new verified tools: Extensions ChatGPT, Social Networks, Summarizer, Productivity)
+  ...auditBatch2025Q2Part6Tools
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories
