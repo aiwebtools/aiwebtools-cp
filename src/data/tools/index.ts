@@ -321,3 +321,9 @@ export { healthcareAITools2025Batch2 } from './healthcareAITools2025Batch2';
 
 // Export 3D Modeling Tools 2025 (30 additional tools)
 export { threeDModelingTools2025 } from './threeDModelingTools2025';
+
+// Export AI Agents 2025 (40+ additional agent tools)
+export { aiAgents2025 } from './aiAgents2025';
+
+// Export AI Agents 2025 Batch 2 (45+ additional agent tools)
+export { aiAgents2025Batch2 } from './aiAgents2025Batch2';
