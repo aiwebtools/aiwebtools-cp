@@ -98,6 +98,9 @@ import { verifiedToolsBatch2025 } from "./tools/verifiedToolsBatch2025";
 // Import Missing Tools Batch 2025 (7 new verified tools)
 import { missingToolsBatch2025 } from "./tools/missingToolsBatch2025";
 
+// Import Audit Batch Q2 2025 (14 new verified tools: TTS, AI Detection, Logo, Email Marketing)
+import { auditBatch2025Q2Tools } from "./tools/auditBatch2025Q2";
+
 const allToolCategories = consolidateTools([
   ...getAllToolCategories(),
   ...newAffiliatePlatforms2025,
@@ -182,7 +185,10 @@ const allToolCategories = consolidateTools([
   ...verifiedToolsBatch2025,
   
   // Missing Tools Batch 2025 (7 new verified tools)
-  ...missingToolsBatch2025
+  ...missingToolsBatch2025,
+  
+  // Audit Batch Q2 2025 (14 new verified tools: TTS, AI Detection, Logo, Email Marketing)
+  ...auditBatch2025Q2Tools
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories
