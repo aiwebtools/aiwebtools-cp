@@ -387,3 +387,6 @@ export { auditBatch2025Q2Part13Tools } from './auditBatch2025Q2Part13';
 
 // Export Audit Batch Q2 2025 Part 14 (6 new verified tools: Fashion, Dating & Relationships, Healthcare, Automation)
 export { auditBatch2025Q2Part14Tools } from './auditBatch2025Q2Part14';
+
+// Export Audit Batch Q2 2025 Part 15 (15 new verified tools: LLM Models, Data & Analytics, Assistive Technology, Future Tools)
+export { auditBatch2025Q2Part15Tools } from './auditBatch2025Q2Part15';
