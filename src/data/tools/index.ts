@@ -333,3 +333,6 @@ export { lifestyleTools2025 } from './lifestyleTools2025';
 
 // Export Multi-Category Tools 2025 (Legal, Real Estate, Games, Travel, Fashion, Healthcare, Data, Future Video, Prompts)
 export { multiCategoryTools2025 } from './multiCategoryTools2025';
+
+// Export Image, Translation & Storytelling Tools 2025
+export { imageTranslationStorytelling2025 } from './imageTranslationStorytelling2025';

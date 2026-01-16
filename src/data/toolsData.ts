@@ -86,6 +86,9 @@ import { lifestyleTools2025 } from "./tools/lifestyleTools2025";
 // Import Multi-Category Tools 2025 (Legal, Real Estate, Games, Travel, Fashion, Healthcare, Data, Future Video, Prompts)
 import { multiCategoryTools2025 } from "./tools/multiCategoryTools2025";
 
+// Import Image, Translation & Storytelling Tools 2025
+import { imageTranslationStorytelling2025 } from "./tools/imageTranslationStorytelling2025";
+
 const allToolCategories = consolidateTools([
   ...getAllToolCategories(),
   ...newAffiliatePlatforms2025,
@@ -158,7 +161,10 @@ const allToolCategories = consolidateTools([
   ...lifestyleTools2025,
   
   // Multi-Category Tools 2025 (Legal, Real Estate, Games, Travel, Fashion, Healthcare, Data, Future Video, Prompts)
-  ...multiCategoryTools2025
+  ...multiCategoryTools2025,
+  
+  // Image, Translation & Storytelling Tools 2025
+  ...imageTranslationStorytelling2025
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories
