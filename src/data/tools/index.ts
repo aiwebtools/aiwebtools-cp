@@ -366,3 +366,6 @@ export { auditBatch2025Q2Part4Tools } from './auditBatch2025Q2Part4';
 
 // Export Audit Batch Q2 2025 Part 7 (17 new verified tools: Presentation, Files & Spreadsheets, Music, Face Swap)
 export { auditBatch2025Q2Part7Tools } from './auditBatch2025Q2Part7';
+
+// Export Audit Batch Q2 2025 Part 8 (7 new verified tools: Finance, Text Generators, Research & Science, Text-to-Video)
+export { auditBatch2025Q2Part8Tools } from './auditBatch2025Q2Part8';
