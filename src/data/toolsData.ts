@@ -104,6 +104,9 @@ import { auditBatch2025Q2Tools } from "./tools/auditBatch2025Q2";
 // Import Audit Batch Q2 2025 Part 2 (20 new verified tools: E-commerce, AI Humanizer, Human Resources)
 import { auditBatch2025Q2Part2Tools } from "./tools/auditBatch2025Q2Part2";
 
+// Import Audit Batch Q2 2025 Part 3 (12 new verified tools: AI Chat, Video Gen, TTS, Education)
+import { auditBatch2025Q2Part3 } from "./tools/auditBatch2025Q2Part3";
+
 const allToolCategories = consolidateTools([
   ...getAllToolCategories(),
   ...newAffiliatePlatforms2025,
@@ -194,7 +197,10 @@ const allToolCategories = consolidateTools([
   ...auditBatch2025Q2Tools,
   
   // Audit Batch Q2 2025 Part 2 (20 new verified tools: E-commerce, AI Humanizer, Human Resources)
-  ...auditBatch2025Q2Part2Tools
+  ...auditBatch2025Q2Part2Tools,
+  
+  // Audit Batch Q2 2025 Part 3 (12 new verified tools: AI Chat, Video Gen, TTS, Education)
+  ...auditBatch2025Q2Part3
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories
