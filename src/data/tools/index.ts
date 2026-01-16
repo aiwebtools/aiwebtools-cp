@@ -314,3 +314,6 @@ export { emergingAITools2025 } from './emergingAITools2025';
 
 // Export Healthcare AI Tools 2025 (Mental Health, Medical, Wellness)
 export { healthcareAITools2025 } from './healthcareAITools2025';
+
+// Export Healthcare AI Tools 2025 Batch 2 (25 additional tools)
+export { healthcareAITools2025Batch2 } from './healthcareAITools2025Batch2';
