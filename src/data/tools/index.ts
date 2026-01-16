@@ -369,3 +369,6 @@ export { auditBatch2025Q2Part7Tools } from './auditBatch2025Q2Part7';
 
 // Export Audit Batch Q2 2025 Part 8 (7 new verified tools: Finance, Text Generators, Research & Science, Text-to-Video)
 export { auditBatch2025Q2Part8Tools } from './auditBatch2025Q2Part8';
+
+// Export Audit Batch Q2 2025 Part 9 (13 new verified tools: Translation, Marketing, Transcriber, Storytelling Generator)
+export { auditBatch2025Q2Part9Tools } from './auditBatch2025Q2Part9';
