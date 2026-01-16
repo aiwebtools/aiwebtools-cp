@@ -134,6 +134,9 @@ import { auditBatch2025Q2Part11Tools } from "./tools/auditBatch2025Q2Part11";
 // Import Audit Batch Q2 2025 Part 12 (4 new verified tools: Business, Prompts & Aids)
 import { auditBatch2025Q2Part12Tools } from "./tools/auditBatch2025Q2Part12";
 
+// Import Audit Batch Q2 2025 Part 13 (6 new verified tools: Real Estate/Architect, Art, Travel)
+import { auditBatch2025Q2Part13Tools } from "./tools/auditBatch2025Q2Part13";
+
 const allToolCategories = consolidateTools([
   ...getAllToolCategories(),
   ...newAffiliatePlatforms2025,
@@ -254,7 +257,10 @@ const allToolCategories = consolidateTools([
   ...auditBatch2025Q2Part11Tools,
   
   // Audit Batch Q2 2025 Part 12 (4 new verified tools: Business, Prompts & Aids)
-  ...auditBatch2025Q2Part12Tools
+  ...auditBatch2025Q2Part12Tools,
+  
+  // Audit Batch Q2 2025 Part 13 (6 new verified tools: Real Estate/Architect, Art, Travel)
+  ...auditBatch2025Q2Part13Tools
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories
