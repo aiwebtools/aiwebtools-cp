@@ -118,6 +118,9 @@ import { auditBatch2025Q2Part6Tools } from "./tools/auditBatch2025Q2Part6";
 
 // Import Audit Batch Q2 2025 Part 7 (17 new verified tools: Presentation, Files & Spreadsheets, Music, Face Swap)
 import { auditBatch2025Q2Part7Tools } from "./tools/auditBatch2025Q2Part7";
+
+// Import Audit Batch Q2 2025 Part 8 (7 new verified tools: Finance, Text Generators, Research & Science, Text-to-Video)
+import { auditBatch2025Q2Part8Tools } from "./tools/auditBatch2025Q2Part8";
 const allToolCategories = consolidateTools([
   ...getAllToolCategories(),
   ...newAffiliatePlatforms2025,
@@ -223,7 +226,10 @@ const allToolCategories = consolidateTools([
   ...auditBatch2025Q2Part6Tools,
   
   // Audit Batch Q2 2025 Part 7 (17 new verified tools: Presentation, Files & Spreadsheets, Music, Face Swap)
-  ...auditBatch2025Q2Part7Tools
+  ...auditBatch2025Q2Part7Tools,
+  
+  // Audit Batch Q2 2025 Part 8 (7 new verified tools: Finance, Text Generators, Research & Science, Text-to-Video)
+  ...auditBatch2025Q2Part8Tools
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories
