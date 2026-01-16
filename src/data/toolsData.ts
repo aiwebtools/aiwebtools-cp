@@ -110,6 +110,9 @@ import { auditBatch2025Q2Part3 } from "./tools/auditBatch2025Q2Part3";
 // Import Audit Batch Q2 2025 Part 4 (8 new verified tools: Logo Creation, Website & Design)
 import { auditBatch2025Q2Part4Tools } from "./tools/auditBatch2025Q2Part4";
 
+// Import Audit Batch Q2 2025 Part 5 (8 new verified tools: Image Editing, Video Edition, Audio Editing)
+import { auditBatch2025Q2Part5Tools } from "./tools/auditBatch2025Q2Part5";
+
 const allToolCategories = consolidateTools([
   ...getAllToolCategories(),
   ...newAffiliatePlatforms2025,
@@ -206,7 +209,10 @@ const allToolCategories = consolidateTools([
   ...auditBatch2025Q2Part3,
   
   // Audit Batch Q2 2025 Part 4 (8 new verified tools: Logo Creation, Website & Design)
-  ...auditBatch2025Q2Part4Tools
+  ...auditBatch2025Q2Part4Tools,
+  
+  // Audit Batch Q2 2025 Part 5 (8 new verified tools: Image Editing, Video Edition, Audio Editing)
+  ...auditBatch2025Q2Part5Tools
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories
