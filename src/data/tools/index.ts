@@ -4,6 +4,9 @@ export { emailProductivityTools2025 } from './emailProductivityTools2025';
 
 // Export Audit Batch Q2 2025 Part 5 (8 new verified tools: Image Editing, Video Edition, Audio Editing)
 export { auditBatch2025Q2Part5Tools } from './auditBatch2025Q2Part5';
+
+// Export Audit Batch Q2 2025 Part 6 (16 new verified tools: Extensions ChatGPT, Social Networks, Summarizer, Productivity)
+export { auditBatch2025Q2Part6Tools } from './auditBatch2025Q2Part6';
 export { businessTools } from './businessTools';
 export { aiAssistants } from './aiAssistants';
 export { videoTools } from './videoTools';
