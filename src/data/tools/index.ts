@@ -311,3 +311,6 @@ export { newSpecializedTools2025 } from './newSpecializedTools2025';
 
 // Export Emerging AI Tools 2025 (Agents, Healthcare AI, Legal AI)
 export { emergingAITools2025 } from './emergingAITools2025';
+
+// Export Healthcare AI Tools 2025 (Mental Health, Medical, Wellness)
+export { healthcareAITools2025 } from './healthcareAITools2025';
