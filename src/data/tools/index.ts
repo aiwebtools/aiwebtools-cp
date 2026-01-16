@@ -351,3 +351,6 @@ export { auditBatch2025Q2Tools } from './auditBatch2025Q2';
 
 // Export Audit Batch Q2 2025 Part 2 (20 new verified tools: E-commerce, AI Humanizer, Human Resources)
 export { auditBatch2025Q2Part2Tools } from './auditBatch2025Q2Part2';
+
+// Export Audit Batch Q2 2025 Part 3 (12 new verified tools: AI Chat, Video Gen, TTS, Education)
+export { auditBatch2025Q2Part3 } from './auditBatch2025Q2Part3';
