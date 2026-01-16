@@ -348,3 +348,6 @@ export { missingToolsBatch2025 } from './missingToolsBatch2025';
 
 // Export Audit Batch Q2 2025 (14 new verified tools: TTS, AI Detection, Logo, Email Marketing)
 export { auditBatch2025Q2Tools } from './auditBatch2025Q2';
+
+// Export Audit Batch Q2 2025 Part 2 (20 new verified tools: E-commerce, AI Humanizer, Human Resources)
+export { auditBatch2025Q2Part2Tools } from './auditBatch2025Q2Part2';
