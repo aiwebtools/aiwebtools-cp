@@ -375,3 +375,6 @@ export { auditBatch2025Q2Part9Tools } from './auditBatch2025Q2Part9';
 
 // Export Audit Batch Q2 2025 Part 10 (8 new verified tools: ChatBots, Voice Cloning, Avatars, Amazing)
 export { auditBatch2025Q2Part10Tools } from './auditBatch2025Q2Part10';
+
+// Export Audit Batch Q2 2025 Part 11 (12 new verified tools: No Code/Low Code, Assistant Code, Developer Tools, Legal Assistants)
+export { auditBatch2025Q2Part11Tools } from './auditBatch2025Q2Part11';

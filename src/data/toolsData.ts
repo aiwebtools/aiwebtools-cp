@@ -128,6 +128,9 @@ import { auditBatch2025Q2Part9Tools } from "./tools/auditBatch2025Q2Part9";
 // Import Audit Batch Q2 2025 Part 10 (8 new verified tools: ChatBots, Voice Cloning, Avatars, Amazing)
 import { auditBatch2025Q2Part10Tools } from "./tools/auditBatch2025Q2Part10";
 
+// Import Audit Batch Q2 2025 Part 11 (12 new verified tools: No Code/Low Code, Assistant Code, Developer Tools, Legal Assistants)
+import { auditBatch2025Q2Part11Tools } from "./tools/auditBatch2025Q2Part11";
+
 const allToolCategories = consolidateTools([
   ...getAllToolCategories(),
   ...newAffiliatePlatforms2025,
@@ -242,7 +245,10 @@ const allToolCategories = consolidateTools([
   ...auditBatch2025Q2Part9Tools,
   
   // Audit Batch Q2 2025 Part 10 (8 new verified tools: ChatBots, Voice Cloning, Avatars, Amazing)
-  ...auditBatch2025Q2Part10Tools
+  ...auditBatch2025Q2Part10Tools,
+  
+  // Audit Batch Q2 2025 Part 11 (12 new verified tools: No Code/Low Code, Assistant Code, Developer Tools, Legal Assistants)
+  ...auditBatch2025Q2Part11Tools
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories
