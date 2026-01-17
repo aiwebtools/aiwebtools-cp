@@ -236,6 +236,16 @@ const sortByTitle = (a: typeof featuredGPTsUnsorted[0], b: typeof featuredGPTsUn
 
 const featuredGPTsUnsorted = [
   {
+    title: "Ancient Bible Recovery",
+    description: "Forensic recovery and translation of ancient biblical and para-biblical texts, exposing original forms through manuscript evidence. Discover hidden meanings through scholarly manuscript analysis.",
+    badge: "BIBLICAL RESEARCH",
+    color: "from-amber-600 to-stone-700",
+    features: ["Manuscript Recovery", "Ancient Translation", "Textual Criticism", "Scripture Analysis"],
+    directUrl: "https://chatgpt.com/g/g-696ae5296bd88191920a7b308dfde1d6-ancient-bible-recovery",
+    imageUrl: "/src/assets/tools/ancient-bible-recovery-hero.png",
+    emoji: "📜"
+  },
+  {
     title: "WE THE PEOPLE AI",
     description: "Empowering citizens with AI-driven tools for political activism, civic engagement, and grassroots organizing. Connect with representatives and make your voice heard.",
     badge: "CIVIC ENGAGEMENT",
