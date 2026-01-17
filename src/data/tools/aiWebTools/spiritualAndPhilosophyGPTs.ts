@@ -4,6 +4,20 @@ import { Heart, Brain, Sparkles, Star, Sun, Moon, Flower2, Zap, Eye, BookOpen, M
 
 export const spiritualAndPhilosophyGPTs: Tool[] = [
   {
+    icon: BookOpen,
+    title: "Ancient Bible Recovery",
+    description: "Forensic recovery and translation of ancient biblical and para-biblical texts, exposing original forms through manuscript evidence. By AiWebTools.Ai. Using GPT-4o to meticulously analyze, reconstruct, and translate lost, damaged, or obscured passages from ancient Hebrew, Aramaic, and Greek manuscripts. Discover hidden meanings, textual variants, and the original intent of sacred scriptures through scholarly manuscript analysis and comparative textual criticism.",
+    emoji: "📜",
+    color: "from-amber-600 to-stone-700",
+    directUrl: "https://chatgpt.com/g/g-696ae5296bd88191920a7b308dfde1d6-ancient-bible-recovery",
+    imageUrl: "/src/assets/tools/ancient-bible-recovery-hero.png",
+    tags: ["ancient bible", "bible recovery", "biblical texts", "manuscript evidence", "forensic recovery", "translation", "para-biblical", "hebrew", "aramaic", "greek", "old testament", "new testament", "dead sea scrolls", "septuagint", "textual criticism", "scripture", "bible", "biblical", "ancient texts", "archaeology", "spirituality", "religion", "religious", "christianity", "judaism", "aiwebtools", "Custom GPT"],
+    category: "Spirituality & Philosophy",
+    isFree: true,
+    rating: 4.9,
+    totalVotes: 892
+  },
+  {
     icon: Sparkles,
     title: "METATRON GPT",
     description: "Embodied as Metatron, offering divine wisdom, sacred geometry, and Akashic guidance. Connect with the celestial scribe and angel of the Presence, who bridges the divine and human realms. Explore Metatron's Cube, access the Akashic Records, and receive Early Jewish Light teachings and mystical wisdom from one of the most powerful archangels in Jewish and Christian mysticism.",
