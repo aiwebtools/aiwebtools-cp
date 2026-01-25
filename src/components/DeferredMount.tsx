@@ -10,20 +10,11 @@ interface DeferredMountProps {
  * Defers mounting of heavy components until after first paint
  * to improve perceived load time and Core Web Vitals (LCP, FID)
  */
-const DeferredMount = ({ children, delay = 0, fallback = null }: DeferredMountProps) => {
-  // For delay=0, mount immediately - no deferral needed
-  const [shouldMount, setShouldMount] = useState(delay === 0);
+const DeferredMount = ({ children, delay = 100, fallback = null }: DeferredMountProps) => {
+  const [shouldMount, setShouldMount] = useState(false);
 
   useEffect(() => {
-    if (delay === 0) return; // Already mounted
-    
-    // For small delays, use RAF for instant mounting
-    if (delay <= 16) {
-      requestAnimationFrame(() => setShouldMount(true));
-      return;
-    }
-    
-    // For larger delays, schedule after idle
+    // Use requestIdleCallback if available, otherwise requestAnimationFrame
     if ('requestIdleCallback' in window) {
       const idleId = (window as any).requestIdleCallback(() => {
         setShouldMount(true);
@@ -31,8 +22,19 @@ const DeferredMount = ({ children, delay = 0, fallback = null }: DeferredMountPr
       
       return () => (window as any).cancelIdleCallback(idleId);
     } else {
-      const timer = setTimeout(() => setShouldMount(true), delay);
-      return () => clearTimeout(timer);
+      // Fallback: use requestAnimationFrame + setTimeout for browsers without requestIdleCallback
+      let mounted = true;
+      requestAnimationFrame(() => {
+        setTimeout(() => {
+          if (mounted) {
+            setShouldMount(true);
+          }
+        }, delay);
+      });
+      
+      return () => {
+        mounted = false;
+      };
     }
   }, [delay]);
 
