@@ -2426,7 +2426,7 @@ const featuredGPTsUnsorted = [
     color: "from-indigo-500 to-purple-600",
     features: ["Pattern Analysis", "Reality Decoding", "Hidden Connections", "Critical Thinking"],
     directUrl: "https://chatgpt.com/g/g-68c1e9e3b488819193744edfeecf7997-world-reality-decoder-gpt",
-    videoUrl: "https://youtu.be/mMs5F8TK64Y",
+    videoUrl: "https://youtu.be/YzGrnpsScH0",
     emoji: "🔍"
   },
   {

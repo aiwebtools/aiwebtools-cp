@@ -141,7 +141,7 @@ export const thirdPriorityFeaturedGPTs: Tool[] = [
     color: "from-indigo-500 to-purple-600",
     category: "Mysterious & Unusual",
     directUrl: "https://chatgpt.com/g/g-68c1e9e3b488819193744edfeecf7997-world-reality-decoder-gpt",
-    videoUrl: "https://youtu.be/mMs5F8TK64Y",
+    videoUrl: "https://youtu.be/YzGrnpsScH0",
     rating: 4.6,
     totalVotes: 1234,
     tags: ["reality decoding", "pattern analysis", "truth seeking", "system analysis", "hidden connections", "critical thinking", "world analysis"]

@@ -148,7 +148,7 @@ export const mysteriousAndUnusualGPTs: Tool[] = [
     emoji: "🔍",
     color: "from-indigo-500 to-purple-600",
     directUrl: "https://chatgpt.com/g/g-68c1e9e3b488819193744edfeecf7997-world-reality-decoder-gpt",
-    videoUrl: "https://youtu.be/mMs5F8TK64Y",
+    videoUrl: "https://youtu.be/YzGrnpsScH0",
     tags: ["reality decoding", "pattern analysis", "truth seeking", "system analysis", "hidden connections", "critical thinking", "world analysis", "Custom GPT"],
     category: "Mysterious & Unusual",
     rating: 4.6,
