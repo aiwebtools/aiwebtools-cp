@@ -53,7 +53,13 @@ const SimilarToolsRecommendation = ({
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
+      <div 
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6"
+        style={{ 
+          touchAction: 'pan-y',
+          WebkitOverflowScrolling: 'touch'
+        }}
+      >
         {similarTools.map((tool, index) => {
           // Highlight your AI Web Tools creations with a special badge
           const isAIWebToolsOriginal = tool.directUrl?.includes('lovable.app');

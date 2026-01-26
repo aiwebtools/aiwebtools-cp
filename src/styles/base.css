@@ -50,7 +50,7 @@
   }
 
   html {
-    scroll-behavior: smooth;
+    scroll-behavior: auto; /* Use auto for instant response - smooth can cause lag */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
@@ -58,6 +58,10 @@
     -moz-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
     text-size-adjust: 100%;
+    
+    /* GPU acceleration for smoother scrolling */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
   }
 
   body {
@@ -70,17 +74,34 @@
     font-display: swap;
     overflow-x: hidden;
 
-    /* Ensure the page can always scroll on touch devices */
-    touch-action: pan-y;
+    /* Enhanced touch scrolling - allow both directions */
+    touch-action: pan-y pan-x;
     -webkit-overflow-scrolling: touch;
     overscroll-behavior-y: auto;
+    overscroll-behavior-x: none;
 
     -webkit-tap-highlight-color: transparent;
     -webkit-touch-callout: none;
+    
+    /* Allow text selection in inputs but not elsewhere */
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    
+    /* GPU acceleration for smoother scrolling */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    will-change: scroll-position;
+  }
+  
+  /* Allow text selection in form elements */
+  input, textarea, [contenteditable] {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+    touch-action: manipulation;
   }
 
   /* Optimized scrollbar */

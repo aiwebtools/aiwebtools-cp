@@ -26,7 +26,16 @@ const SimilarTools = ({ currentTool, currentToolIndex }: SimilarToolsProps) => {
       </h2>
 
       <div className="relative">
-        <div className="flex items-stretch gap-3 overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory touch-pan-x select-none px-1" ref={scrollRef}>
+        {/* touch-action: pan-x pan-y allows both horizontal carousel AND vertical page scroll */}
+        <div 
+          className="flex items-stretch gap-3 overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory px-1" 
+          ref={scrollRef}
+          style={{ 
+            touchAction: 'pan-x pan-y',
+            WebkitOverflowScrolling: 'touch',
+            overscrollBehaviorX: 'contain'
+          }}
+        >
           {recommendations.map((tool, index) => (
             <div key={`sim-${tool.title}-${index}`} className="snap-start shrink-0 basis-4/5 sm:basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5">
               <ToolCard tool={tool} index={index} />
