@@ -28,8 +28,14 @@ const VirtualizedToolsGrid = memo(({
 
   return (
     <>
-      {/* Main filtered tools grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4">
+      {/* Main filtered tools grid - optimized for touch scrolling */}
+      <div 
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4"
+        style={{ 
+          touchAction: 'pan-y',
+          WebkitOverflowScrolling: 'touch'
+        }}
+      >
         {filteredTools.map((tool, index) => (
           <MinimalToolCard
             key={`${tool.title}__${tool.directUrl ?? ""}`}
@@ -75,8 +81,14 @@ const VirtualizedToolsGrid = memo(({
             </div>
           </div>
           
-          {/* Recommended tools grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4">
+          {/* Recommended tools grid - optimized for touch scrolling */}
+          <div 
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4"
+            style={{ 
+              touchAction: 'pan-y',
+              WebkitOverflowScrolling: 'touch'
+            }}
+          >
             {recommendedTools.map((tool, index) => (
               <MinimalToolCard
                 key={`rec__${tool.title}__${tool.directUrl ?? ""}`}
