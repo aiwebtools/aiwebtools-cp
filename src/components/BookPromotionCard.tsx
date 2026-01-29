@@ -4,7 +4,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, Dialog
 import { createTimePortalEffect } from "@/utils/timeEffects";
 import { useState, useRef, useEffect, useCallback } from "react";
 
-// Lazy YouTube component for book section with play state callback
+// Lazy YouTube component for book section with play state callback - optimized for fast loading
 const LazyBookVideo = ({ 
   videoId, 
   title, 
@@ -15,6 +15,7 @@ const LazyBookVideo = ({
   onPlay?: () => void;
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
   const thumbnailUrl = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
 
   const handlePlay = () => {
@@ -25,18 +26,28 @@ const LazyBookVideo = ({
   if (isLoaded) {
     return (
       <iframe
-        src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0&controls=1&rel=0&modestbranding=1&playsinline=1&vq=hd1080&hd=1&quality=hd1080`}
+        src={`https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&mute=1&controls=1&rel=0&modestbranding=1&playsinline=1&fs=1`}
         className="absolute inset-0 w-full h-full"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen
         title={title}
+        loading="eager"
       />
     );
   }
 
   return (
-    <div className="absolute inset-0 cursor-pointer" onClick={handlePlay}>
+    <div 
+      className="absolute inset-0 cursor-pointer" 
+      onClick={handlePlay}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
       <img src={thumbnailUrl} alt={title} className="w-full h-full object-cover" loading="lazy" />
+      {/* Preload iframe on hover for faster playback */}
+      {isHovered && (
+        <link rel="preconnect" href="https://www.youtube-nocookie.com" />
+      )}
       <div className="absolute inset-0 flex items-center justify-center bg-black/30 hover:bg-black/20 transition-colors">
         <div className="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
           <Play className="w-6 h-6 text-white ml-0.5" fill="white" />
