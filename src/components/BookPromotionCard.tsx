@@ -111,6 +111,11 @@ const BookPromotionCard = () => {
       id: "YzGrnpsScH0",
       title: "World Reality Decoder GPT Demo",
       gradient: "from-rose-500/20 to-orange-500/20"
+    },
+    {
+      id: "7HbOz9-gyBo",
+      title: "AI Tools Demo 13",
+      gradient: "from-amber-500/20 to-rose-500/20"
     }
   ];
 
