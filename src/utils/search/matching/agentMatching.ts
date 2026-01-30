@@ -8,10 +8,15 @@ export const matchAgents = (tool: Tool, searchTerm: string): boolean => {
   const lowerCategory = tool.category?.toLowerCase() || '';
   const lowerTags = tool.tags?.map(tag => tag.toLowerCase()) || [];
   
-  if (lowerSearchTerm.includes('agent') || lowerSearchTerm === 'agents') {
-    // Priority AI agent tools (including phone agents and coding agents)
+  if (lowerSearchTerm.includes('agent') || lowerSearchTerm === 'agents' || 
+      lowerSearchTerm.includes('swarm') || lowerSearchTerm.includes('moltbot') || 
+      lowerSearchTerm.includes('clawdbot') || lowerSearchTerm.includes('kimi')) {
+    // Priority AI agent tools (including phone agents, coding agents, and viral agents)
     const priorityAgents = [
       'chatgpt operator',
+      'moltbot',
+      'clawdbot',
+      'kimi k2.5 agent swarm',
       'manus autonomous agent',
       'surf.new web agents',
       'lindy ai automation',
@@ -41,7 +46,9 @@ export const matchAgents = (tool: Tool, searchTerm: string): boolean => {
       'ai steve',
       'ai legion',
       'ai matrix',
-      'private llm agents'
+      'private llm agents',
+      'swarm',
+      'agent swarm'
     ];
     
     if (priorityAgents.some(agent => lowerTitle.includes(agent))) {
@@ -81,8 +88,16 @@ export const scoreAgents = (tool: Tool, searchTerm: string): number => {
   
   let score = 0;
   
-  if (lowerSearchTerm.includes('agent') || lowerSearchTerm === 'agents') {
-    // Top priority AI agent tools (including phone agents and coding agents)
+  if (lowerSearchTerm.includes('agent') || lowerSearchTerm === 'agents' ||
+      lowerSearchTerm.includes('swarm') || lowerSearchTerm.includes('moltbot') || 
+      lowerSearchTerm.includes('clawdbot') || lowerSearchTerm.includes('kimi')) {
+    // Top priority AI agent tools (including phone agents, coding agents, and viral agents)
+    if (lowerTitle.includes('moltbot') || lowerTitle.includes('clawdbot')) {
+      score += 2100; // Viral agent - highest priority
+    }
+    if (lowerTitle.includes('kimi k2.5 agent swarm')) {
+      score += 2050; // Chinese swarm agent - very high priority
+    }
     if (lowerTitle.includes('chatgpt operator')) {
       score += 2000; // Highest priority
     }
