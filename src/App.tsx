@@ -14,6 +14,7 @@ import { useScrollPerformance } from "@/hooks/useScrollPerformance";
 import { usePrefetchRoutes } from "@/hooks/usePrefetch";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import MatrixCursorEffect from "@/components/effects/MatrixCursorEffect";
+import ScrollProgressIndicator from "@/components/ScrollProgressIndicator";
 import { getConsentAccepted } from "@/utils/consent";
 
 // Eager load - critical path (home page AND disclaimer gate for instant first load)
@@ -213,6 +214,7 @@ const GlobalOverlays: React.FC = () => {
 
   return (
     <>
+      {show ? <ScrollProgressIndicator /> : null}
       {show ? <MatrixCursorEffect /> : null}
       {/* Welcome Neo voice - only plays after disclaimer accepted */}
       <WelcomeNeoVoice />
