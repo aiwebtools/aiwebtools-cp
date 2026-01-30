@@ -40,6 +40,7 @@ const AIToolsPage = lazy(() => import("./pages/AIToolsPage"));
 const BestAIToolsPage = lazy(() => import("./pages/BestAIToolsPage"));
 const FreeAIToolsPage = lazy(() => import("./pages/FreeAIToolsPage"));
 const AIWritingToolsPage = lazy(() => import("./pages/AIWritingToolsPage"));
+const AIWebToolsPage = lazy(() => import("./pages/AIWebToolsPage"));
 const AdminAnalytics = lazy(() => import("./pages/AdminAnalytics"));
 
 // Lazy load non-critical components
@@ -125,6 +126,8 @@ const AnimatedRoutes = () => {
         <Route path="/best-ai-tools" element={<BestAIToolsPage />} />
         <Route path="/free-ai-tools" element={<FreeAIToolsPage />} />
         <Route path="/ai-writing-tools" element={<AIWritingToolsPage />} />
+        <Route path="/ai-web-tools" element={<AIWebToolsPage />} />
+        <Route path="/aiwebtools" element={<AIWebToolsPage />} />
         <Route path="/favorites" element={<FavoritesPage />} />
         <Route path="/disclaimers" element={<DisclaimersPage />} />
         <Route path="/our-story" element={<OurStoryPage />} />
