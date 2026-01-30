@@ -303,8 +303,8 @@ const PinnedVideoPlayer = memo(() => {
   // Persisted current index - survives navigation
   const [currentIndex, setCurrentIndex] = useState(getStoredIndex);
   
-  // Start unmuted on desktop, muted on mobile (browser autoplay policy)
-  const [isMuted, setIsMuted] = useState(() => isMobileDevice());
+  // Always start muted to prevent "audio-only" confusion if player is hidden
+  const [isMuted, setIsMuted] = useState(true);
   
   // Shuffled tools - computed once at module level, never recalculated
   const toolsWithVideos = useMemo(() => getToolsWithVideosCached(), []);
