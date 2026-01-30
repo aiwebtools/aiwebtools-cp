@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 type Options = {
   enabled?: boolean;
@@ -25,11 +25,10 @@ const getScrollY = (): number => {
 };
 
 /**
- * Robust scroll threshold detector.
+ * Lightweight scroll threshold detector.
  *
- * Uses BOTH passive scroll listeners and short rAF polling bursts.
- * This prevents edge cases where scroll events don't fire reliably in some
- * browser/iframe/device combinations.
+ * Uses PASSIVE scroll events only (no rAF polling during normal scroll).
+ * Runs a single delayed check after mount to catch initial position.
  */
 export function useScrollThreshold(thresholdPx: number, options: Options = {}) {
   const { enabled = true, allowReset = true } = options;
@@ -39,65 +38,42 @@ export function useScrollThreshold(thresholdPx: number, options: Options = {}) {
     return getScrollY() > thresholdPx;
   });
 
+  // Track last value to avoid unnecessary state updates
+  const lastRef = useRef<boolean>(passed);
+
   useEffect(() => {
     if (!enabled) {
       setPassed(false);
       return;
     }
 
-    let rafId = 0;
-    let pollStopTimeout: number | null = null;
-    let last = -1;
-
     const evaluate = () => {
       const y = getScrollY();
-      if (y === last) return;
-      last = y;
+      const shouldPass = y > thresholdPx;
 
-      if (y > thresholdPx) {
-        setPassed(true);
-      } else if (allowReset) {
-        setPassed(false);
+      // Only update state if value changed
+      if (shouldPass !== lastRef.current) {
+        lastRef.current = shouldPass;
+        if (shouldPass || allowReset) {
+          setPassed(shouldPass);
+        }
       }
     };
 
+    // Passive scroll listener - minimal overhead
     const onScroll = () => evaluate();
-    const onResize = () => {
-      // layout shifts can change scroll position; re-evaluate and briefly poll
-      evaluate();
-      startPolling(600);
-    };
-
-    const startPolling = (ms: number) => {
-      if (pollStopTimeout) window.clearTimeout(pollStopTimeout);
-
-      const tick = () => {
-        evaluate();
-        rafId = window.requestAnimationFrame(tick);
-      };
-
-      rafId = window.requestAnimationFrame(tick);
-      pollStopTimeout = window.setTimeout(() => {
-        window.cancelAnimationFrame(rafId);
-      }, ms);
-    };
-
-    // initial evaluation + short polling burst to catch scroll position after first paint
-    evaluate();
-    startPolling(1200);
 
     window.addEventListener("scroll", onScroll, { passive: true });
     document.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onResize, { passive: true });
-    window.addEventListener("orientationchange", onResize, { passive: true });
+
+    // Initial check + one delayed check for navigation cases
+    evaluate();
+    const delayedCheck = setTimeout(evaluate, 100);
 
     return () => {
       window.removeEventListener("scroll", onScroll);
       document.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onResize);
-      window.removeEventListener("orientationchange", onResize);
-      if (pollStopTimeout) window.clearTimeout(pollStopTimeout);
-      window.cancelAnimationFrame(rafId);
+      clearTimeout(delayedCheck);
     };
   }, [enabled, thresholdPx, allowReset]);
 
