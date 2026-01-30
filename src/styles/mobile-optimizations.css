@@ -36,9 +36,9 @@
     perspective: 1000px;
   }
 
-  /* Optimize touch interactions */
+  /* Optimize touch interactions - pan-y allows vertical scroll on cards */
   .tool-card {
-    touch-action: manipulation;
+    touch-action: pan-y;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   }
 
@@ -163,7 +163,7 @@
   }
 
   .touch-action-optimized {
-    touch-action: manipulation;
+    touch-action: pan-y;
     user-select: none;
     -webkit-user-select: none;
   }

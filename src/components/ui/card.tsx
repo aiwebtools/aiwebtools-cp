@@ -6,13 +6,15 @@ import { cn } from "@/lib/utils"
 const Card = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => (
+>(({ className, style, ...props }, ref) => (
   <div
     ref={ref}
+    data-card
     className={cn(
       "rounded-lg border border-gray-700 bg-gray-800/90 text-white shadow-lg backdrop-blur-sm",
       className
     )}
+    style={{ touchAction: 'pan-y', ...style }}
     {...props}
   />
 ))
