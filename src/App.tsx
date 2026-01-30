@@ -10,6 +10,7 @@ import { FavoritesProvider } from "@/hooks/useFavorites";
 import { VideoManagerProvider } from "@/hooks/useGlobalVideoManager";
 import { useCrossBrowserOptimization } from "@/hooks/useCrossBrowserOptimization";
 import { useChromebookOptimization } from "@/hooks/useChromebookOptimization";
+import { useScrollPerformance } from "@/hooks/useScrollPerformance";
 import { usePrefetchRoutes } from "@/hooks/usePrefetch";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import MatrixCursorEffect from "@/components/effects/MatrixCursorEffect";
@@ -237,6 +238,9 @@ function App() {
 
   // Initialize Chromebook-specific optimizations
   useChromebookOptimization();
+
+  // Scroll performance: adds 'is-scrolling' class during scroll for CSS optimizations
+  useScrollPerformance();
 
   return (
     <ErrorBoundary>
