@@ -5,41 +5,74 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
         xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
   
-  <!-- HOMEPAGE - MAXIMUM PRIORITY FOR AI TOOLS KEYWORDS -->
+  <!-- HOMEPAGE - MAXIMUM PRIORITY FOR AI WEB TOOLS KEYWORDS -->
   <url>
     <loc>https://aitools.studio</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2026-01-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://aitools.studio"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://aitools.studio"/>
   </url>
   
+  <!-- ========================================== -->
+  <!-- MAXIMUM PRIORITY: "AI WEB TOOLS" KEYWORD PAGES -->
+  <!-- These pages target #1 ranking for "AI Web Tools" -->
+  <!-- ========================================== -->
+  
+  <url>
+    <loc>https://aitools.studio/ai-web-tools</loc>
+    <lastmod>2026-01-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <url>
+    <loc>https://aitools.studio/aiwebtools</loc>
+    <lastmod>2026-01-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <url>
+    <loc>https://aiwebtools.ai</loc>
+    <lastmod>2026-01-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <url>
+    <loc>https://aiwebtools.ai/ai-web-tools</loc>
+    <lastmod>2026-01-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
   <!-- CRITICAL SEO LANDING PAGES FOR "AI TOOLS" KEYWORD -->
   <url>
     <loc>https://aitools.studio/ai-tools</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2026-01-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   
   <url>
     <loc>https://aitools.studio/best-ai-tools</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2026-01-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.99</priority>
   </url>
   
   <url>
     <loc>https://aitools.studio/free-ai-tools</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2026-01-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.99</priority>
   </url>
   
   <url>
     <loc>https://aitools.studio/ai-writing-tools</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2026-01-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.99</priority>
   </url>
@@ -47,233 +80,251 @@
   <!-- BLOG SECTION - HIGH PRIORITY FOR ORGANIC TRAFFIC -->
   <url>
     <loc>https://aitools.studio/blog</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2026-01-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.95</priority>
   </url>
   
   <url>
     <loc>https://aitools.studio/ai-tools-hub</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2026-01-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.95</priority>
   </url>
   
   <url>
     <loc>https://aitools.studio/ai-agents-directory</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2026-01-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.95</priority>
   </url>
   
   <url>
     <loc>https://aitools.studio/chatgpt-alternatives</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2026-01-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.95</priority>
   </url>
   
   <url>
     <loc>https://aitools.studio/gaming-entertainment</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2026-01-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
   </url>
   
   <url>
     <loc>https://aitools.studio/faq</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2026-01-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
   </url>
   
   <url>
     <loc>https://aitools.studio/our-story</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2026-01-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
   </url>
   
   <url>
     <loc>https://aitools.studio/disclaimers</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2026-01-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.60</priority>
   </url>
   
   <url>
     <loc>https://aitools.studio/submit-tool</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2026-01-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.70</priority>
   </url>
   
+  <!-- ========================================== -->
   <!-- CRITICAL KEYWORD OPTIMIZED SEARCH PAGES -->
+  <!-- Targeting "AI Web Tools" and variations -->
+  <!-- ========================================== -->
+  
+  <url>
+    <loc>https://aitools.studio/?search=AI%20web%20tools</loc>
+    <lastmod>2026-01-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <url>
+    <loc>https://aitools.studio/?search=aiwebtools</loc>
+    <lastmod>2026-01-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
   <url>
     <loc>https://aitools.studio/?search=AI%20tools</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2026-01-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.99</priority>
+  </url>
+  
+  <url>
+    <loc>https://aitools.studio/?search=best%20AI%20web%20tools</loc>
+    <lastmod>2026-01-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.99</priority>
   </url>
   
   <url>
     <loc>https://aitools.studio/?search=best%20AI%20tools</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2026-01-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.98</priority>
   </url>
   
   <url>
     <loc>https://aitools.studio/?search=free%20AI%20tools</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2026-01-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.98</priority>
   </url>
   
   <url>
-    <loc>https://aitools.studio/?search=AI%20tools%202025</loc>
-    <lastmod>2025-01-17</lastmod>
+    <loc>https://aitools.studio/?search=AI%20tools%202026</loc>
+    <lastmod>2026-01-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.98</priority>
   </url>
   
   <url>
     <loc>https://aitools.studio/?search=chatgpt%20alternatives</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2026-01-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.98</priority>
   </url>
   
   <url>
     <loc>https://aitools.studio/?search=AI%20image%20generator</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2026-01-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.97</priority>
   </url>
   
   <url>
     <loc>https://aitools.studio/?search=AI%20writing%20tools</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2026-01-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.97</priority>
   </url>
   
   <url>
     <loc>https://aitools.studio/?search=AI%20video%20generator</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2026-01-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.97</priority>
   </url>
   
   <url>
     <loc>https://aitools.studio/?search=AI%20coding%20tools</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2026-01-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.97</priority>
-  </url>
-  
-  <url>
-    <loc>https://aitools.studio/?search=aiwebtools</loc>
-    <lastmod>2025-01-17</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.96</priority>
   </url>
   
   <!-- MAIN CATEGORY PAGES - HIGH PRIORITY -->
   <url>
     <loc>https://aitools.studio/main-category/ALL%20AI%20TOOLS</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2026-01-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.95</priority>
   </url>
   
   <url>
     <loc>https://aitools.studio/main-category/AI%20AGENTS</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2026-01-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.95</priority>
   </url>
   
   <url>
     <loc>https://aitools.studio/main-category/IMAGE%20%26%20DESIGN%20AI%20TOOLS</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2026-01-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.95</priority>
   </url>
   
   <url>
     <loc>https://aitools.studio/main-category/VIDEO%20%26%20MULTIMEDIA%20AI%20TOOLS</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2026-01-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.95</priority>
   </url>
   
   <url>
     <loc>https://aitools.studio/main-category/WRITING%20%26%20CONTENT%20AI%20TOOLS</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2026-01-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.95</priority>
   </url>
   
   <url>
     <loc>https://aitools.studio/main-category/BUSINESS%20%26%20PRODUCTIVITY%20AI%20TOOLS</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2026-01-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.95</priority>
   </url>
   
   <url>
     <loc>https://aitools.studio/main-category/CODING%20%26%20DEVELOPMENT%20AI%20TOOLS</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2026-01-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.95</priority>
   </url>
   
   <url>
     <loc>https://aitools.studio/main-category/EDUCATION%20%26%20LEARNING%20AI%20TOOLS</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2026-01-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.95</priority>
   </url>
   
   <url>
     <loc>https://aitools.studio/main-category/HEALTH%20%26%20WELLNESS%20AI%20TOOLS</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2026-01-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.95</priority>
   </url>
   
   <url>
     <loc>https://aitools.studio/main-category/AUDIO%20%26%20MUSIC%20AI%20TOOLS</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2026-01-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.95</priority>
   </url>
   
   <url>
     <loc>https://aitools.studio/main-category/DATA%20%26%20ANALYTICS%20AI%20TOOLS</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2026-01-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.95</priority>
   </url>
   
   <url>
     <loc>https://aitools.studio/main-category/MARKETING%20%26%20SALES%20AI%20TOOLS</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2026-01-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.95</priority>
   </url>
   
   <url>
     <loc>https://aitools.studio/main-category/SECURITY%20%26%20PRIVACY%20AI%20TOOLS</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2026-01-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.95</priority>
   </url>
   
   <url>
     <loc>https://aitools.studio/main-category/GAMING%20%26%20ENTERTAINMENT%20AI%20TOOLS</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2026-01-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.95</priority>
   </url>
