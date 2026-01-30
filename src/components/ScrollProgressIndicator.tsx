@@ -19,7 +19,7 @@ const ScrollProgressIndicator = () => {
 
   return (
     <div 
-      className="fixed top-0 left-0 right-0 h-1 z-[101] bg-black/50"
+      className="fixed top-0 left-0 right-0 h-1 z-[90] bg-black/50"
       style={{ pointerEvents: 'none' }}
     >
       <div 

@@ -585,6 +585,44 @@ const funnyQuotes = [
   "Peace comes from within. Do not seek it without. — Buddha ☮️",
   "In the end, only three things matter: how much you loved, how gently you lived, and how gracefully you let go. — Buddha 🙏",
   "The way is not in the sky. The way is in the heart. — Buddha ❤️",
+  
+  // ===== THE IMPORTANCE OF LOVE TO HOLD SOCIETY TOGETHER =====
+  
+  // Love as the foundation of community
+  "Love is the only force capable of transforming an enemy into a friend. — Martin Luther King Jr. ❤️",
+  "Where there is love, there is life. — Mahatma Gandhi 🌱",
+  "The greatest thing you'll ever learn is just to love and be loved in return. — Eden Ahbez 💞",
+  "Love is the bridge between you and everything. — Rumi 🌉",
+  "A society grows great when old men plant trees whose shade they know they shall never sit in. That is love. 🌳",
+  "We are all connected in the great web of love. What affects one, affects all. 🕸️",
+  "Love is not just a feeling—it is the glue that holds civilization together. 💕",
+  "Without love, intelligence is dangerous. Without intelligence, love is not enough. — Teilhard de Chardin ⚖️",
+  "The measure of a society is found in how it treats its weakest and most helpless members. That measure is love. — Jimmy Carter 🤝",
+  "Love recognizes no barriers. It jumps hurdles, leaps fences, penetrates walls to arrive at its destination full of hope. — Maya Angelou 💫",
+  
+  // Love building community
+  "We must learn to live together as brothers or perish together as fools. — Martin Luther King Jr. 🌍",
+  "In a world where you can be anything, be kind. Be love. 💖",
+  "Love is the master key that opens the gates of happiness and holds society in harmony. — Oliver Wendell Holmes 🔑",
+  "Darkness cannot drive out darkness; only light can do that. Hate cannot drive out hate; only love can do that. — MLK ✨",
+  "The fragrance always remains on the hand that gives the rose. Love given returns to the giver. 🌹",
+  "Love and compassion are necessities, not luxuries. Without them, humanity cannot survive. — Dalai Lama 🙏",
+  "A new command I give you: Love one another. As I have loved you, so you must love one another. — John 13:34 💜",
+  "There is no fear in love. Perfect love drives out fear. — 1 John 4:18 🕊️",
+  "Above all, love each other deeply, because love covers over a multitude of wrongs. — 1 Peter 4:8 💝",
+  "Beloved, let us love one another, for love is from the Father. — 1 John 4:7 ☀️",
+  
+  // Society and interconnection through love
+  "No man is an island. We are all part of the great continent of humanity, bound together by love. 🏝️",
+  "Love is the answer. What was the question? — John Lennon 💭",
+  "When the power of love overcomes the love of power, the world will know peace. — Jimi Hendrix ☮️",
+  "Love is the foundation upon which all lasting societies are built. Without it, they crumble. 🏛️",
+  "The only way to have a friend is to be one. The only way to build a community is to love. — Emerson 🤝",
+  "Love one another and you will be happy. It's as simple and as difficult as that. — Michael Leunig 😊",
+  "A world without love is a world that cannot survive. Love is not optional—it is essential. 🌎",
+  "He who does not love does not know the Light, for the Light is love. — 1 John 4:8 💡",
+  "Faith, hope, and love abide, these three; but the greatest of these is love. — 1 Corinthians 13:13 ✨",
+  "Love builds up. Love holds together. Love is the answer society needs. 🏗️",
 ];
 
 // Fisher-Yates shuffle for truly random quote order
