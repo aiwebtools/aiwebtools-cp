@@ -303,21 +303,26 @@ const PinnedVideoPlayer = memo(() => {
   // Shuffled tools - computed once at module level, never recalculated
   const toolsWithVideos = useMemo(() => getToolsWithVideosCached(), []);
   
-  // Track video src separately to prevent unnecessary iframe reloads
-  const [videoSrc, setVideoSrc] = useState<string>("");
-  const lastVideoIdRef = useRef<string>("");
-
   const currentTool: Tool | undefined = toolsWithVideos[currentIndex];
   const currentVideoId = currentTool ? extractYouTubeId(currentTool.videoUrl || '') : null;
+  
+  // Track if this is the first video load (to set initial mute state)
+  const isFirstVideoRef = useRef(true);
+  const userMutePreferenceRef = useRef<boolean | null>(null);
+  
+  // Track video src separately to prevent unnecessary iframe reloads
+  // Initialize with actual video URL to prevent "null" blocking first render
+  const [videoSrc, setVideoSrc] = useState<string>(() => {
+    if (!currentVideoId) return "";
+    const origin = typeof window !== 'undefined' ? window.location.origin : '';
+    return `https://www.youtube.com/embed/${currentVideoId}?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&enablejsapi=1&playsinline=1&loop=0&origin=${encodeURIComponent(origin)}&widget_referrer=${encodeURIComponent(origin)}`;
+  });
+  const lastVideoIdRef = useRef<string>(currentVideoId || "");
   
   // Persist index changes
   useEffect(() => {
     setStoredIndex(currentIndex);
   }, [currentIndex]);
-  
-  // Track if this is the first video load (to set initial mute state)
-  const isFirstVideoRef = useRef(true);
-  const userMutePreferenceRef = useRef<boolean | null>(null);
   
   // Update video src only when video ID actually changes
   useEffect(() => {
