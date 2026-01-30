@@ -9,6 +9,16 @@ const SESSION_CLOSED_KEY = "pinned-video-closed";
 const SHUFFLED_TOOLS_KEY = "pinned-video-shuffled-tools";
 const CURRENT_INDEX_KEY = "pinned-video-current-index";
 
+// Keep slug behavior consistent across the app
+const slugifyToolTitle = (title: string): string =>
+  title
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
+
+// Fast lookup for /:toolSlug routes (avoid treating /faq, /blog, etc. as tool pages)
+const TOOL_SLUG_SET = new Set(allTools.map(t => slugifyToolTitle(t.title)));
+
 // Detect if device is mobile
 const isMobileDevice = (): boolean => {
   if (typeof window === 'undefined') return false;
@@ -254,6 +264,16 @@ const PinnedVideoPlayer = memo(() => {
   
   // Check if on homepage
   const isHomepage = location.pathname === "/" || location.pathname === "";
+  const isToolDetailPage = useMemo(() => {
+    const p = location.pathname || "";
+    if (p.startsWith("/tool/")) return true;
+
+    // ToolDetail also supports /:toolSlug. Only treat single-segment paths as tool pages
+    // if the segment matches a known tool slug.
+    const segments = p.split("/").filter(Boolean);
+    if (segments.length !== 1) return false;
+    return TOOL_SLUG_SET.has(segments[0]);
+  }, [location.pathname]);
   
   // Check if closed this session
   const [isVisible, setIsVisible] = useState(() => {
@@ -374,8 +394,15 @@ const PinnedVideoPlayer = memo(() => {
   
   // Handle smooth fade animation when main video visibility changes
   useEffect(() => {
+    // Only hide the pinned player when the user is actively viewing a tool's main video
+    // (this event can fire from other embeds on the homepage, causing an "audio-only" bug)
+    if (!isToolDetailPage) {
+      setShouldShow(true);
+      return;
+    }
+
     setShouldShow(!isMainVideoVisible);
-  }, [isMainVideoVisible]);
+  }, [isMainVideoVisible, isToolDetailPage]);
   
   // Mute pinned player when tool page video starts playing
   useEffect(() => {
@@ -404,6 +431,10 @@ const PinnedVideoPlayer = memo(() => {
   
   useEffect(() => {
     const handleToolVideoVisibility = (event: CustomEvent<{ isVisible: boolean }>) => {
+      // Ignore these events unless we're on a tool detail page.
+      // Prevents the pinned player from being hidden on the homepage while still playing audio.
+      if (!isToolDetailPage) return;
+
       const newVisible = event.detail.isVisible;
       
       // Skip if no change
@@ -428,7 +459,7 @@ const PinnedVideoPlayer = memo(() => {
         clearTimeout(visibilityDebounceRef.current);
       }
     };
-  }, []);
+  }, [isToolDetailPage]);
 
   // Detect scroll position - required to show
   useEffect(() => {
@@ -588,10 +619,7 @@ const PinnedVideoPlayer = memo(() => {
     if (!currentTool) return;
     
     // Generate URL slug from tool title
-    const slug = currentTool.title
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/(^-|-$)/g, '');
+    const slug = slugifyToolTitle(currentTool.title);
     
     navigate(`/tool/${slug}`);
   }, [currentTool, navigate]);
