@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { X, SkipForward, SkipBack, Volume2, VolumeX } from "lucide-react";
 import { allTools } from "@/data/toolsData";
 import { Tool } from "@/types/tools";
+import { useScrollThreshold } from "@/hooks/useScrollThreshold";
 
 const SESSION_CLOSED_KEY = "pinned-video-closed";
 const SHUFFLED_TOOLS_KEY = "pinned-video-shuffled-tools";
@@ -282,18 +283,10 @@ const PinnedVideoPlayer = memo(() => {
   });
   
   // Only require scroll on homepage, show immediately on other pages
-  // Check initial scroll position on mount
-  const [hasScrolledEnough, setHasScrolledEnough] = useState(() => {
-    if (typeof window === 'undefined') return false;
-    const getScrollY = (): number => {
-      if (typeof window.scrollY === 'number' && window.scrollY > 0) return window.scrollY;
-      if (typeof window.pageYOffset === 'number' && window.pageYOffset > 0) return window.pageYOffset;
-      if (document.documentElement?.scrollTop > 0) return document.documentElement.scrollTop;
-      if (document.body?.scrollTop > 0) return document.body.scrollTop;
-      return 0;
-    };
-    const threshold = 600;
-    return getScrollY() > threshold;
+  // Robust threshold detection (works even if scroll events are flaky)
+  const hasScrolledEnough = useScrollThreshold(isHomepage ? 600 : 200, {
+    enabled: true,
+    allowReset: true,
   });
   
   // Hide when user is viewing the main tool video on a detail page
@@ -462,44 +455,7 @@ const PinnedVideoPlayer = memo(() => {
     };
   }, [isToolDetailPage]);
 
-  // Detect scroll position - required to show
-  useEffect(() => {
-    const getScrollY = (): number => {
-      if (typeof window.scrollY === 'number' && window.scrollY > 0) return window.scrollY;
-      if (typeof window.pageYOffset === 'number' && window.pageYOffset > 0) return window.pageYOffset;
-      if (document.documentElement?.scrollTop > 0) return document.documentElement.scrollTop;
-      if (document.body?.scrollTop > 0) return document.body.scrollTop;
-      if (document.scrollingElement?.scrollTop > 0) return document.scrollingElement.scrollTop;
-      return 0;
-    };
-    
-    const handleScroll = () => {
-      const scrollY = getScrollY();
-      // Show after scrolling 600px down on homepage, 200px on other pages
-      const threshold = isHomepage ? 600 : 200;
-      if (scrollY > threshold) {
-        setHasScrolledEnough(true);
-      } else {
-        // Hide again if scrolled back to top
-        setHasScrolledEnough(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    document.addEventListener("scroll", handleScroll, { passive: true });
-    
-    // Check initial position immediately and after a short delay (for navigation cases)
-    handleScroll();
-    const immediateCheck = requestAnimationFrame(handleScroll);
-    const delayedCheck = setTimeout(handleScroll, 50);
-    
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      document.removeEventListener("scroll", handleScroll);
-      cancelAnimationFrame(immediateCheck);
-      clearTimeout(delayedCheck);
-    };
-  }, [isHomepage, location.pathname]); // Re-run on route change
+  // NOTE: scroll threshold is handled by useScrollThreshold
 
   // Auto-advance function
   const advanceToNextVideo = useCallback(() => {
@@ -645,10 +601,14 @@ const PinnedVideoPlayer = memo(() => {
 
   const playerUi = (
     <div
-      className={`fixed bottom-3 left-3 w-[160px] sm:w-[150px] md:w-36 ${
+      className={`fixed ${
         shouldShow ? "opacity-100" : "opacity-0 pointer-events-none"
       }`}
       style={{
+        // Responsive sizing & safe-area support (iOS notch, etc.)
+        width: "clamp(148px, 36vw, 208px)",
+        bottom: "calc(0.75rem + env(safe-area-inset-bottom, 0px))",
+        left: "calc(0.75rem + env(safe-area-inset-left, 0px))",
         // Portal + max z-index prevents the "audio-only" bug caused by stacking contexts/overlays.
         zIndex: 2147483647,
         transform: "translateZ(0)",
