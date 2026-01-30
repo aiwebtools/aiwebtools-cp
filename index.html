@@ -199,15 +199,16 @@
         height: 50px; 
         margin-bottom: 10px;
         transform: translateZ(0);
+        will-change: transform;
       }
       .cube {
         width: 50px; height: 50px;
         position: relative;
         transform-style: preserve-3d;
-        animation: rotateCube 1s linear infinite;
+        animation: rotateCube 1.2s linear infinite;
         will-change: transform;
         backface-visibility: visible;
-        transform: translateZ(0);
+        transform-origin: center center;
       }
       .cube-face {
         position: absolute;
@@ -218,7 +219,6 @@
         display: flex; align-items: center; justify-content: center;
         font: bold 16px monospace; color: #00ff41;
         backface-visibility: visible;
-        transform: translateZ(0);
       }
       .cube-face.front { transform: translateZ(25px); }
       .cube-face.back { transform: rotateY(180deg) translateZ(25px); }
@@ -227,8 +227,8 @@
       .cube-face.top { transform: rotateX(90deg) translateZ(25px); }
       .cube-face.bottom { transform: rotateX(-90deg) translateZ(25px); }
       @keyframes rotateCube { 
-        0% { transform: rotateX(0deg) rotateY(0deg) translateZ(0); }
-        100% { transform: rotateX(360deg) rotateY(360deg) translateZ(0); }
+        from { transform: rotateX(0deg) rotateY(0deg); }
+        to { transform: rotateX(360deg) rotateY(360deg); }
       }
       
       /* Glitch text */
@@ -362,16 +362,24 @@
             return false;
           };
 
-          // Progress animation - continuous motion
+          // Progress animation - FASTER and more responsive
           let width = 5;
+          let lastTime = performance.now();
+          
           const tick = () => {
             if (removed) return;
-            width = Math.min(width + 0.5, 95);
+            const now = performance.now();
+            const delta = now - lastTime;
+            lastTime = now;
+            
+            // Faster progression: ~1.5% per 50ms (reaches 95% in ~3 seconds)
+            const increment = Math.min(1.5, delta / 33);
+            width = Math.min(width + increment, 95);
             if (bar) bar.style.width = width + '%';
             if (pct) pct.textContent = Math.round(width) + '%';
           };
 
-          const progressInterval = setInterval(tick, 50);
+          const progressInterval = setInterval(tick, 33); // 30fps for smoother animation
           tick();
 
           // INSTANT content detection - check every 5ms, remove IMMEDIATELY when ready

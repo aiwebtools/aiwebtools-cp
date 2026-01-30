@@ -151,10 +151,8 @@ const ToolCard = memo(({ tool, index = 0 }: ToolCardProps) => {
             ? 'hover:border-cyan-500/50 hover:shadow-lg hover:shadow-cyan-500/20 hover:scale-105 cursor-pointer' 
             : 'active:bg-gray-800/70'
         } ${
-          isMobile ? 'touch-manipulation' : ''
-        } ${
           needsAgeGate ? 'ring-1 ring-amber-500/30' : ''
-        }`}
+        } tool-card`}
         style={optimizedStyles}
         tabIndex={0}
         role="article"

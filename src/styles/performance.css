@@ -32,13 +32,14 @@ button:hover, a:hover, [role="button"]:hover {
   will-change: transform;
 }
 
-/* Optimize cards for scroll performance */
+/* Optimize cards for scroll performance - pan-y allows vertical scroll */
 [data-card], .tool-card, [role="article"] {
   contain: layout style paint;
   content-visibility: auto;
   contain-intrinsic-size: 280px 380px;
   will-change: auto;
   transform: translateZ(0);
+  touch-action: pan-y !important;
 }
 
 /* Smooth scrolling container */

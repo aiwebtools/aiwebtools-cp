@@ -78,10 +78,10 @@
     transform: none;
   }
   
-  /* Optimize scrolling */
+  /* Optimize scrolling - pan-y allows vertical scroll on all elements */
   * {
     -webkit-overflow-scrolling: touch;
-    touch-action: manipulation;
+    touch-action: pan-y;
   }
 }
 

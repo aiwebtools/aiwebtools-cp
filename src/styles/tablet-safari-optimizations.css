@@ -156,11 +156,11 @@
   .clickable {
     min-height: 48px !important;
     min-width: 48px !important;
-    touch-action: manipulation !important;
+    touch-action: pan-y !important;
     -webkit-tap-highlight-color: transparent !important;
   }
   
-  /* Faster touch response for inputs */
+  /* Faster touch response for inputs - keep manipulation for inputs only */
   input,
   textarea,
   select {
@@ -187,7 +187,7 @@
     contain: strict !important;
   }
   
-  /* Reduce paint complexity for cards */
+  /* Reduce paint complexity for cards - allow vertical scroll */
   .tool-card,
   .card,
   [data-card] {
@@ -195,6 +195,7 @@
     transition: none !important;
     will-change: auto !important;
     contain: layout style paint !important;
+    touch-action: pan-y !important;
   }
   
   /* Disable complex grid animations */
