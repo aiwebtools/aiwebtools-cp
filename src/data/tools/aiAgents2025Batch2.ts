@@ -589,5 +589,29 @@ export const aiAgents2025Batch2: Tool[] = [
     imageUrl: "/src/assets/tools/chatarena-hero.png",
     rating: 5.0,
     tags: ["AI Agents", "GitHub Projects", "Multi-Agent", "Language Games", "Simulation"]
+  },
+  {
+    icon: Bot,
+    title: "Moltbot (Clawdbot)",
+    description: "The viral autonomous AI agent that actually does things. Clears your inbox, sends emails, manages your calendar, checks you in for flights—all from WhatsApp, Telegram, or any chat app you already use. Open-source and locally-running for security.",
+    emoji: "🦞",
+    color: "from-orange-500 to-purple-600",
+    category: "AI Agents",
+    directUrl: "https://molt.bot/?via=aiwebtools",
+    imageUrl: "/src/assets/tools/moltbot-ai-agent.jpg",
+    rating: 5.0,
+    tags: ["AI Agents", "Autonomous Agent", "Personal Assistant", "WhatsApp", "Telegram", "Email Automation", "Calendar", "Open Source", "Viral", "Clawdbot", "Lobster Shell"]
+  },
+  {
+    icon: Users,
+    title: "Kimi K2.5 Agent Swarm",
+    description: "Moonshot AI's revolutionary open-source multimodal model with self-directed agent swarm capabilities. Features state-of-the-art coding, vision, and the ability to spawn and orchestrate multiple AI agents to tackle complex tasks collaboratively. The most powerful open-source model beating US AI labs on major benchmarks.",
+    emoji: "🌙",
+    color: "from-indigo-600 to-blue-700",
+    category: "AI Agents",
+    directUrl: "https://www.kimi.com/en?via=aiwebtools",
+    imageUrl: "/src/assets/tools/kimi-k25-agent-swarm.jpg",
+    rating: 5.0,
+    tags: ["AI Agents", "Agent Swarm", "Multi-Agent", "Moonshot AI", "Chinese AI", "Open Source", "Multimodal", "Vision AI", "Coding Agent", "Kimi", "K2.5"]
   }
 ];
