@@ -616,10 +616,15 @@ const PinnedVideoPlayer = memo(() => {
 
   return (
     <div 
-      className={`fixed z-50 bottom-3 left-3 w-[160px] sm:w-[150px] md:w-36 ${
+      className={`fixed bottom-3 left-3 w-[160px] sm:w-[150px] md:w-36 ${
         shouldShow ? "opacity-100" : "opacity-0 pointer-events-none"
       }`}
-      style={{ transform: 'translateZ(0)', transition: 'opacity 0.3s ease-out' }}
+      style={{ 
+        zIndex: 9999, 
+        transform: 'translateZ(0)', 
+        transition: 'opacity 0.3s ease-out',
+        visibility: shouldShow ? 'visible' : 'hidden'
+      }}
     >
       <div 
         className="bg-gray-900/95 backdrop-blur-sm rounded-lg border border-cyan-500/40 overflow-hidden shadow-2xl"
