@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback, useRef, memo, useMemo } from "react";
+import { createPortal } from "react-dom";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { X, SkipForward, SkipBack, Volume2, VolumeX } from "lucide-react";
@@ -642,16 +643,19 @@ const PinnedVideoPlayer = memo(() => {
     return null;
   }
 
-  return (
-    <div 
+  const playerUi = (
+    <div
       className={`fixed bottom-3 left-3 w-[160px] sm:w-[150px] md:w-36 ${
         shouldShow ? "opacity-100" : "opacity-0 pointer-events-none"
       }`}
-      style={{ 
-        zIndex: 9999, 
-        transform: 'translateZ(0)', 
-        transition: 'opacity 0.3s ease-out',
-        visibility: shouldShow ? 'visible' : 'hidden'
+      style={{
+        // Portal + max z-index prevents the "audio-only" bug caused by stacking contexts/overlays.
+        zIndex: 2147483647,
+        transform: "translateZ(0)",
+        transition: "opacity 0.3s ease-out",
+        visibility: shouldShow ? "visible" : "hidden",
+        pointerEvents: shouldShow ? "auto" : "none",
+        isolation: "isolate",
       }}
     >
       <div 
@@ -732,6 +736,10 @@ const PinnedVideoPlayer = memo(() => {
       </div>
     </div>
   );
+
+  // Render via portal to escape any parent stacking context (common cause of hidden UI with audible media)
+  if (typeof document === 'undefined') return null;
+  return createPortal(playerUi, document.body);
 });
 
 PinnedVideoPlayer.displayName = 'PinnedVideoPlayer';
