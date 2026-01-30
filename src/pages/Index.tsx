@@ -30,6 +30,19 @@ const Index = () => {
     "https://www.youtube.com/embed/4zflGSSuBcA?controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&vq=hd1080&iv_load_policy=3&cc_load_policy=0&fs=1&color=red&theme=dark"
   );
 
+  // Force scroll to top on mount - fixes "start at bottom" glitch after disclaimer
+  useEffect(() => {
+    // Immediate scroll reset
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+    
+    // Double-check after a frame (catches async layout issues)
+    requestAnimationFrame(() => {
+      window.scrollTo(0, 0);
+    });
+  }, []);
+
   const mainVideoRef = useRef<HTMLIFrameElement>(null);
 
   // Autoplay video UNMUTED when user scrolls to it

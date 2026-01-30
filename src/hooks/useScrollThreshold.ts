@@ -28,7 +28,7 @@ const getScrollY = (): number => {
  * Lightweight scroll threshold detector.
  *
  * Uses PASSIVE scroll events only (no rAF polling during normal scroll).
- * Runs a single delayed check after mount to catch initial position.
+ * Runs multiple delayed checks after mount to catch initial position reliably.
  */
 export function useScrollThreshold(thresholdPx: number, options: Options = {}) {
   const { enabled = true, allowReset = true } = options;
@@ -65,15 +65,25 @@ export function useScrollThreshold(thresholdPx: number, options: Options = {}) {
 
     window.addEventListener("scroll", onScroll, { passive: true });
     document.addEventListener("scroll", onScroll, { passive: true });
+    
+    // Also listen on scrollingElement directly (catches edge cases)
+    const scrollingEl = document.scrollingElement;
+    if (scrollingEl && scrollingEl !== document.documentElement) {
+      scrollingEl.addEventListener("scroll", onScroll, { passive: true });
+    }
 
-    // Initial check + one delayed check for navigation cases
+    // Initial check + multiple delayed checks for navigation/layout cases
     evaluate();
-    const delayedCheck = setTimeout(evaluate, 100);
+    const delays = [50, 100, 250, 500, 1000];
+    const timeouts = delays.map(delay => setTimeout(evaluate, delay));
 
     return () => {
       window.removeEventListener("scroll", onScroll);
       document.removeEventListener("scroll", onScroll);
-      clearTimeout(delayedCheck);
+      if (scrollingEl && scrollingEl !== document.documentElement) {
+        scrollingEl.removeEventListener("scroll", onScroll);
+      }
+      timeouts.forEach(clearTimeout);
     };
   }, [enabled, thresholdPx, allowReset]);
 
