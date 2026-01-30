@@ -317,6 +317,11 @@ const DisclaimerGate: React.FC = () => {
       console.log('Welcome audio error:', e);
     }
     
+    // Force scroll to top BEFORE navigation to prevent bottom-of-page glitch
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+    
     // Set consent and navigate
     setConsentAccepted(true);
     navigate("/", { replace: true });
