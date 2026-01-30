@@ -279,7 +279,7 @@ const MobileMenu = () => {
                   onClick={(e) => {
                     e.preventDefault();
                     e.stopPropagation();
-                    handleExternalLink('https://lovable.dev/projects/28822f40-e177-4840-8d1a-166c193e1a4b?via=aiwebtools', e);
+                    handleExternalLink('https://lovable.dev/projects/9c6610ab-51df-4741-b8a5-b53fc89d2b1c?via=aiwebtools', e);
                   }}
                   className="group relative w-full overflow-hidden rounded-xl p-4 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
                   style={{
@@ -495,7 +495,7 @@ const MobileMenu = () => {
                   <DropdownMenuItem 
                     onClick={(e) => { 
                       e.preventDefault();
-                      handleExternalLink("https://lovable.dev/projects/28822f40-e177-4840-8d1a-166c193e1a4b?via=aiwebtools", e);
+                      handleExternalLink("https://lovable.dev/projects/9c6610ab-51df-4741-b8a5-b53fc89d2b1c?via=aiwebtools", e);
                     }}
                     className="text-yellow-100 hover:bg-gradient-to-r hover:from-yellow-500/20 hover:to-amber-500/20 mb-2 rounded flex items-center space-x-2 bg-gradient-to-r from-yellow-600/10 to-amber-600/10 border border-yellow-500/30 p-2"
                   >
