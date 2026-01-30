@@ -10,13 +10,20 @@ export const matchAgents = (tool: Tool, searchTerm: string): boolean => {
   
   if (lowerSearchTerm.includes('agent') || lowerSearchTerm === 'agents' || 
       lowerSearchTerm.includes('swarm') || lowerSearchTerm.includes('moltbot') || 
-      lowerSearchTerm.includes('clawdbot') || lowerSearchTerm.includes('kimi')) {
+      lowerSearchTerm.includes('clawdbot') || lowerSearchTerm.includes('kimi') ||
+      lowerSearchTerm.includes('piper') || lowerSearchTerm.includes('rabbit') ||
+      lowerSearchTerm.includes('dust') || lowerSearchTerm.includes('deep research')) {
     // Priority AI agent tools (including phone agents, coding agents, and viral agents)
     const priorityAgents = [
       'chatgpt operator',
       'moltbot',
       'clawdbot',
       'kimi k2.5 agent swarm',
+      'perplexity deep research',
+      'rabbit r1 lam',
+      'dust ai agent platform',
+      'piper voice ai',
+      'piper ai sdr',
       'manus autonomous agent',
       'surf.new web agents',
       'lindy ai automation',
@@ -48,7 +55,8 @@ export const matchAgents = (tool: Tool, searchTerm: string): boolean => {
       'ai matrix',
       'private llm agents',
       'swarm',
-      'agent swarm'
+      'agent swarm',
+      'deep research'
     ];
     
     if (priorityAgents.some(agent => lowerTitle.includes(agent))) {
@@ -90,13 +98,27 @@ export const scoreAgents = (tool: Tool, searchTerm: string): number => {
   
   if (lowerSearchTerm.includes('agent') || lowerSearchTerm === 'agents' ||
       lowerSearchTerm.includes('swarm') || lowerSearchTerm.includes('moltbot') || 
-      lowerSearchTerm.includes('clawdbot') || lowerSearchTerm.includes('kimi')) {
+      lowerSearchTerm.includes('clawdbot') || lowerSearchTerm.includes('kimi') ||
+      lowerSearchTerm.includes('piper') || lowerSearchTerm.includes('rabbit') ||
+      lowerSearchTerm.includes('dust') || lowerSearchTerm.includes('deep research')) {
     // Top priority AI agent tools (including phone agents, coding agents, and viral agents)
     if (lowerTitle.includes('moltbot') || lowerTitle.includes('clawdbot')) {
       score += 2100; // Viral agent - highest priority
     }
     if (lowerTitle.includes('kimi k2.5 agent swarm')) {
       score += 2050; // Chinese swarm agent - very high priority
+    }
+    if (lowerTitle.includes('perplexity deep research')) {
+      score += 2040; // Deep research agent
+    }
+    if (lowerTitle.includes('rabbit r1') || lowerTitle.includes('lam agent')) {
+      score += 2030; // Rabbit R1 LAM
+    }
+    if (lowerTitle.includes('dust ai')) {
+      score += 2020; // Dust AI platform
+    }
+    if (lowerTitle.includes('piper voice') || lowerTitle.includes('piper ai sdr')) {
+      score += 2010; // Piper agents
     }
     if (lowerTitle.includes('chatgpt operator')) {
       score += 2000; // Highest priority

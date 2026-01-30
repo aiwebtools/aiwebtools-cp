@@ -613,5 +613,65 @@ export const aiAgents2025Batch2: Tool[] = [
     imageUrl: "/src/assets/tools/kimi-k25-agent-swarm.jpg",
     rating: 5.0,
     tags: ["AI Agents", "Agent Swarm", "Multi-Agent", "Moonshot AI", "Chinese AI", "Open Source", "Multimodal", "Vision AI", "Coding Agent", "Kimi", "K2.5"]
+  },
+  {
+    icon: Search,
+    title: "Perplexity Deep Research",
+    description: "Autonomous research agent that performs dozens of searches, reads hundreds of sources, and reasons through material to deliver comprehensive multi-page reports. Saves hours of manual research by autonomously diving deep into complex topics with cited sources.",
+    emoji: "🔬",
+    color: "from-teal-500 to-cyan-600",
+    category: "AI Agents",
+    directUrl: "https://www.perplexity.ai/?via=aiwebtools",
+    imageUrl: "/src/assets/tools/perplexity-deep-research.jpg",
+    rating: 5.0,
+    tags: ["AI Agents", "Research Agent", "Deep Research", "Autonomous Research", "Perplexity", "Citations", "Analysis", "Multi-Source"]
+  },
+  {
+    icon: Bot,
+    title: "Rabbit R1 LAM Agent",
+    description: "Revolutionary AI hardware device powered by the Large Action Model (LAM). A personal AI agent in your pocket that can book travel, order food, manage apps, and complete tasks through natural voice commands without needing individual app integrations.",
+    emoji: "🐇",
+    color: "from-orange-500 to-amber-600",
+    category: "AI Agents",
+    directUrl: "https://www.rabbit.tech/?via=aiwebtools",
+    imageUrl: "/src/assets/tools/rabbit-r1-lam.jpg",
+    rating: 4.2,
+    tags: ["AI Agents", "Hardware Agent", "LAM", "Large Action Model", "Personal Assistant", "Voice Agent", "Rabbit", "Consumer AI", "Wearable"]
+  },
+  {
+    icon: Users,
+    title: "Dust AI Agent Platform",
+    description: "The operating system for AI agents. Deploy, orchestrate, and govern fleets of specialized AI agents that work alongside your team, safely connected to your company's knowledge and tools. Trusted by 2,000+ organizations with 80,000+ agents.",
+    emoji: "✨",
+    color: "from-purple-500 to-indigo-600",
+    category: "AI Agents",
+    directUrl: "https://dust.tt/?via=aiwebtools",
+    imageUrl: "/src/assets/tools/dust-ai-platform.jpg",
+    rating: 4.8,
+    tags: ["AI Agents", "Enterprise Agents", "Agent Orchestration", "Multi-Agent", "Dust", "No-Code", "Fleet Management", "Knowledge Base"]
+  },
+  {
+    icon: Mic,
+    title: "Piper Voice AI Phone Agent",
+    description: "Never wait on hold again. Piper is your personal AI phone call agent that handles customer service calls for you. Built by founding engineers from AssemblyAI with leading voice AI since 2017. It makes autonomous phone calls so you can do anything else.",
+    emoji: "📞",
+    color: "from-teal-500 to-green-600",
+    category: "AI Agents",
+    directUrl: "https://pipervoice.com/?via=aiwebtools",
+    imageUrl: "/src/assets/tools/piper-voice-ai.jpg",
+    rating: 4.7,
+    tags: ["AI Agents", "Voice Agent", "Phone Agent", "Call Agent", "Customer Service", "Autonomous Calls", "Piper", "Hold Replacement"]
+  },
+  {
+    icon: Briefcase,
+    title: "Piper AI SDR by Qualified",
+    description: "The #1 ranked AI SDR agent that autonomously nurtures and converts inbound prospects into pipeline 24/7 at hyperscale. The world's first AI SDR Superagent operates across B2B websites and email with 12 groundbreaking innovations for lead conversion.",
+    emoji: "🎯",
+    color: "from-purple-600 to-amber-500",
+    category: "AI Agents",
+    directUrl: "https://www.qualified.com/ai-sdr?via=aiwebtools",
+    imageUrl: "/src/assets/tools/piper-ai-sdr.jpg",
+    rating: 4.9,
+    tags: ["AI Agents", "Sales Agent", "SDR Agent", "Lead Generation", "B2B", "Qualified", "Pipeline", "Inbound Marketing", "Sales Automation"]
   }
 ];
