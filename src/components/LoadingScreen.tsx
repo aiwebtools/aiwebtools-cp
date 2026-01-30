@@ -71,44 +71,31 @@ const LoadingScreen = memo(() => {
     return () => clearInterval(interval);
   }, []);
 
-  // Animate progress bar - smooth illusion that always reaches 100%
+  // Animate progress bar - RELIABLE interval-based animation (never freezes)
   useEffect(() => {
-    const startTime = performance.now();
-    // Total animation: quick to 60%, then slower to 85%, then very slow to 100%
-    const phase1Duration = 800;  // 0-60% in 800ms (fast start)
-    const phase2Duration = 1200; // 60-85% in 1200ms (medium)
-    const phase3Duration = 2000; // 85-100% in 2000ms (slow crawl)
-    const totalDuration = phase1Duration + phase2Duration + phase3Duration;
+    let currentProgress = 0;
     
-    const animate = (currentTime: number) => {
-      const elapsed = currentTime - startTime;
-      
-      let progress: number;
-      
-      if (elapsed < phase1Duration) {
-        // Phase 1: 0-60% with ease-out (fast start)
-        const phaseProgress = elapsed / phase1Duration;
-        const eased = 1 - Math.pow(1 - phaseProgress, 2);
-        progress = eased * 60;
-      } else if (elapsed < phase1Duration + phase2Duration) {
-        // Phase 2: 60-85% with linear
-        const phaseProgress = (elapsed - phase1Duration) / phase2Duration;
-        progress = 60 + (phaseProgress * 25);
+    // Use setInterval for guaranteed updates (requestAnimationFrame can stall)
+    const interval = setInterval(() => {
+      // Smooth easing: fast start, slow finish
+      if (currentProgress < 60) {
+        // Phase 1: 0-60% fast (1.5% per tick)
+        currentProgress += 1.5;
+      } else if (currentProgress < 85) {
+        // Phase 2: 60-85% medium (0.8% per tick)
+        currentProgress += 0.8;
+      } else if (currentProgress < 100) {
+        // Phase 3: 85-100% slow (0.3% per tick)
+        currentProgress += 0.3;
       } else {
-        // Phase 3: 85-100% with ease-in (slow crawl to finish)
-        const phaseProgress = Math.min((elapsed - phase1Duration - phase2Duration) / phase3Duration, 1);
-        const eased = phaseProgress * phaseProgress; // Ease-in for slow finish
-        progress = 85 + (eased * 15);
+        currentProgress = 100;
+        clearInterval(interval);
       }
       
-      setProgress(Math.min(progress, 100));
-      
-      if (elapsed < totalDuration) {
-        requestAnimationFrame(animate);
-      }
-    };
+      setProgress(Math.min(currentProgress, 100));
+    }, 50); // 20fps - smooth and reliable
     
-    requestAnimationFrame(animate);
+    return () => clearInterval(interval);
   }, []);
 
   return (
