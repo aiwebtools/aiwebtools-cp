@@ -153,26 +153,40 @@ const ToolMedia = ({ tool, toolIndex }: ToolMediaProps) => {
       
       return (
         <div className="relative w-full overflow-hidden rounded-xl bg-gray-800" style={{ aspectRatio: '16/9' }}>
-          {/* Always render iframe immediately - no visibility gate for faster loading */}
-          <iframe
-            ref={iframeRef}
-            width="100%"
-            height="100%"
-            src={embedUrl}
-            title={`${tool.title} Demo`}
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
-            allowFullScreen
-            className="w-full h-full rounded-xl"
-            loading="eager"
-            style={{ 
-              border: 'none',
-              willChange: 'transform',
-              transform: 'translateZ(0)',
-              backfaceVisibility: 'hidden'
-            }}
-            onError={handleVideoError}
-          />
+          {/* Only render iframe when visible - prevents autoplay before scroll */}
+          {isVisible ? (
+            <iframe
+              ref={iframeRef}
+              width="100%"
+              height="100%"
+              src={embedUrl}
+              title={`${tool.title} Demo`}
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
+              allowFullScreen
+              className="w-full h-full rounded-xl"
+              loading="eager"
+              style={{ 
+                border: 'none',
+                willChange: 'transform',
+                transform: 'translateZ(0)',
+                backfaceVisibility: 'hidden'
+              }}
+              onError={handleVideoError}
+            />
+          ) : (
+            /* Placeholder until user scrolls to video */
+            <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center">
+              <div className="text-center">
+                <div className="w-16 h-16 md:w-20 md:h-20 bg-red-600 rounded-full flex items-center justify-center shadow-lg mx-auto mb-3">
+                  <svg className="w-8 h-8 md:w-10 md:h-10 text-white ml-1" fill="white" viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z"/>
+                  </svg>
+                </div>
+                <span className="text-gray-400 text-sm">Scroll to play video</span>
+              </div>
+            </div>
+          )}
         </div>
       );
     }
