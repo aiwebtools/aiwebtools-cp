@@ -296,8 +296,9 @@ const PinnedVideoPlayer = memo(() => {
   // Persisted current index - survives navigation
   const [currentIndex, setCurrentIndex] = useState(getStoredIndex);
   
-  // Always start muted to prevent "audio-only" confusion if player is hidden
+  // ALWAYS start muted - browser autoplay policies require it, and prevents audio without video bug
   const [isMuted, setIsMuted] = useState(true);
+  const initialMuteEnforcedRef = useRef(false);
   
   // Shuffled tools - computed once at module level, never recalculated
   const toolsWithVideos = useMemo(() => getToolsWithVideosCached(), []);
@@ -326,35 +327,34 @@ const PinnedVideoPlayer = memo(() => {
     lastVideoIdRef.current = currentVideoId;
     const isMobile = isMobileDevice();
     
-    // First video: desktop = unmuted, mobile = muted (browser requirement for autoplay)
-    // Subsequent videos: ALWAYS preserve user's preference regardless of device
+    // ALWAYS start muted - browser autoplay policies require it on ALL devices
+    // This also prevents the "audio without visible player" bug
+    // User can unmute manually after seeing the player
     let shouldMute: boolean;
     if (isFirstVideoRef.current) {
-      // First video only - use device default
-      shouldMute = isMobile; // Desktop unmuted, mobile muted (browser requirement)
+      // First video - ALWAYS muted (browser autoplay requirement)
+      shouldMute = true;
       isFirstVideoRef.current = false;
     } else if (userMutePreferenceRef.current !== null) {
       // User has explicitly toggled mute - respect their choice on ALL devices
       shouldMute = userMutePreferenceRef.current;
     } else {
-      // No user preference yet, use current state
-      shouldMute = isMuted;
+      // No user preference yet, keep muted
+      shouldMute = true;
     }
     
-    // Build video URL - on mobile, browser requires mute=1 for autoplay to work
-    // But we'll send unmute command via postMessage after load if user wants unmuted
-    const embedMuteParam = isMobile ? '1' : (shouldMute ? '1' : '0');
+    // Build video URL - ALWAYS start with mute=1 for reliable autoplay on ALL browsers
+    // User must explicitly click unmute button to hear audio
     const origin = typeof window !== 'undefined' ? window.location.origin : '';
-    const newSrc = `https://www.youtube.com/embed/${currentVideoId}?autoplay=1&mute=${embedMuteParam}&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&enablejsapi=1&playsinline=1&loop=0&origin=${encodeURIComponent(origin)}&widget_referrer=${encodeURIComponent(origin)}`;
+    const newSrc = `https://www.youtube.com/embed/${currentVideoId}?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&enablejsapi=1&playsinline=1&loop=0&origin=${encodeURIComponent(origin)}&widget_referrer=${encodeURIComponent(origin)}`;
     setVideoSrc(newSrc);
     playerMountedRef.current = true;
     
-    // Sync UI state with what user wants
+    // Sync UI state - always start muted
     setIsMuted(shouldMute);
     
-    // On mobile, if user previously unmuted, we need to send unmute command after iframe loads
-    // because we had to use mute=1 in URL for autoplay to work
-    if (isMobile && !shouldMute) {
+    // If user previously unmuted (userMutePreferenceRef), send unmute command after iframe loads
+    if (!shouldMute && userMutePreferenceRef.current === false) {
       setTimeout(() => {
         if (iframeRef.current) {
           try {
