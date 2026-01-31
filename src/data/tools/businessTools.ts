@@ -22,6 +22,7 @@ export const businessTools: Tool[] = [
     emoji: "💰",
     color: "from-green-500 to-emerald-600",
     directUrl: "https://financialcalculator.ai",
+    imageUrl: "/src/assets/tools/financial-calculator-pro-hero.png",
     tags: ["financial planning", "calculations", "investments", "business finance", "market analysis", "Finance & Accounting", "Task Management"],
     category: "Business Tools",
     rating: 4.7,
