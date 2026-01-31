@@ -609,10 +609,10 @@ const PinnedVideoPlayer = memo(() => {
 
   const playerUi = (
     <div
-      className={`fixed ${
-        shouldShow ? "opacity-100" : "opacity-0 pointer-events-none"
-      }`}
+      className={shouldShow ? "opacity-100" : "opacity-0 pointer-events-none"}
       style={{
+        // CRITICAL: Inline fixed positioning - cannot be overridden by CSS
+        position: 'fixed',
         // Responsive sizing & safe-area support (iOS notch, etc.)
         width: "clamp(148px, 36vw, 208px)",
         bottom: "calc(0.75rem + env(safe-area-inset-bottom, 0px))",

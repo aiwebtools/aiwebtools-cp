@@ -25,13 +25,14 @@ const FloatingCloneButton = () => {
       <div
         style={{
           position: 'fixed',
-          left: '8px',
+          left: '12px',
           // Middle-left: 50% vertical minus half button height for true center
           top: '50%',
           transform: 'translateY(-50%) translateZ(0)',
           zIndex: 2147483646, // Just below pinned player, but above everything else
           pointerEvents: 'auto',
           isolation: 'isolate',
+          willChange: 'transform', // GPU acceleration ensures fixed stays fixed
         }}
       >
         <a
