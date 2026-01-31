@@ -12,24 +12,24 @@ const FooterLinks = () => {
 
   return (
     <div className="md:col-span-2">
-      <h3 className="text-lg font-semibold mb-6 text-cyan-400">Quick Links</h3>
+      <h3 className="text-lg font-semibold mb-6 text-green-400" style={{ textShadow: '0 0 10px rgba(0, 255, 0, 0.4)' }}>Quick Links</h3>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div className="space-y-3">
           <a
             href="/our-story"
-            className="block text-cyan-200 hover:text-cyan-400 transition-colors text-left"
+            className="block text-green-200 hover:text-green-400 transition-colors text-left"
           >
             📖 Our Story
           </a>
           <button
             onClick={(e) => handleExternalLink("https://aitools.company/hire-us-to-build-your-ai-1", e)}
-            className="block text-cyan-200 hover:text-cyan-400 transition-colors text-left"
+            className="block text-green-200 hover:text-green-400 transition-colors text-left"
           >
             🚀 More Services
           </button>
           <button
             onClick={(e) => handleExternalLink("https://docs.google.com/forms/d/e/1FAIpQLSchtKquEqaaKSZM9AWygcY3Uf3uQOpVHZUMayVZMCbDTxfyfQ/viewform?usp=sf_link", e)}
-            className="block text-cyan-200 hover:text-cyan-400 transition-colors text-left"
+            className="block text-green-200 hover:text-green-400 transition-colors text-left"
           >
             🤖 Custom AI Development Request Form
           </button>
@@ -37,31 +37,31 @@ const FooterLinks = () => {
         <div className="space-y-3">
           <a
             href="/submit-tool"
-            className="block text-cyan-200 hover:text-cyan-400 transition-colors text-left"
+            className="block text-green-200 hover:text-green-400 transition-colors text-left"
           >
             ➕ Submit Your AI Tool
           </a>
           <a
             href="/blog"
-            className="block text-cyan-200 hover:text-cyan-400 transition-colors text-left"
+            className="block text-green-200 hover:text-green-400 transition-colors text-left"
           >
             📰 Blog
           </a>
           <button
             onClick={(e) => handleExternalLink("https://aitools.company/privacy-policy", e)}
-            className="block text-cyan-200 hover:text-cyan-400 transition-colors text-left"
+            className="block text-green-200 hover:text-green-400 transition-colors text-left"
           >
             🔒 Privacy Policy
           </button>
           <button
             onClick={(e) => handleExternalLink("https://aitools.company/terms-of-services", e)}
-            className="block text-cyan-200 hover:text-cyan-400 transition-colors text-left"
+            className="block text-green-200 hover:text-green-400 transition-colors text-left"
           >
             📜 Terms of Service
           </button>
           <button
             onClick={(e) => handleExternalLink("https://aitools.company/contact", e)}
-            className="block text-cyan-200 hover:text-cyan-400 transition-colors text-left"
+            className="block text-green-200 hover:text-green-400 transition-colors text-left"
           >
             📞 Contact
           </button>

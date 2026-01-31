@@ -12,15 +12,15 @@ const FooterBottom = ({
       {/* Copyright and Links */}
       <div className="flex flex-col items-center space-y-4">
         <div className="flex flex-col items-center space-y-2">
-          <button onClick={e => handleExternalLink("https://www.aitools.company", e)} className="text-cyan-300 hover:text-cyan-400 transition-colors text-center">
+          <button onClick={e => handleExternalLink("https://www.aitools.company", e)} className="text-green-300 hover:text-green-400 transition-colors text-center" style={{ textShadow: '0 0 8px rgba(0, 255, 0, 0.3)' }}>
             <span className="block">© 2025 AI WEB TOOLS LLC</span>
             <span className="block text-sm md:inline md:ml-1">All Rights Reserved</span>
           </button>
           <div className="flex flex-wrap justify-center gap-4">
-            <button onClick={e => handleExternalLink("https://openai.com/policies/privacy-policy/", e)} className="text-cyan-300 hover:text-cyan-400 transition-colors text-sm">
+            <button onClick={e => handleExternalLink("https://openai.com/policies/privacy-policy/", e)} className="text-green-300 hover:text-green-400 transition-colors text-sm">
               Privacy Policy
             </button>
-            <button onClick={e => handleExternalLink("https://aitools.company/terms-of-services", e)} className="text-cyan-300 hover:text-cyan-400 transition-colors text-sm">
+            <button onClick={e => handleExternalLink("https://aitools.company/terms-of-services", e)} className="text-green-300 hover:text-green-400 transition-colors text-sm">
               Terms of Service
             </button>
           </div>
@@ -32,19 +32,19 @@ const FooterBottom = ({
           </Link>
           <button 
             onClick={() => window.scrollTo({ top: 0, behavior: 'auto' })} 
-            className="text-cyan-300 hover:text-cyan-400 transition-colors text-sm font-medium"
+            className="text-green-300 hover:text-green-400 transition-colors text-sm font-medium"
           >
             ⬆️ TOP OF PAGE
           </button>
           <button 
             onClick={() => window.scrollTo({ top: 0, behavior: 'auto' })} 
-            className="text-cyan-300 hover:text-cyan-400 transition-colors text-sm font-medium"
+            className="text-green-300 hover:text-green-400 transition-colors text-sm font-medium"
           >
             ⬆️ TOP OF PAGE
           </button>
         </div>
-        <div className="flex items-center text-cyan-300">
-          <button onClick={e => handleExternalLink("https://freename.io?ref=olive-ears-obey&utm_source=clipboard", e)} className="flex items-center space-x-2 hover:text-cyan-400 transition-colors cursor-pointer text-sm md:text-base">
+        <div className="flex items-center text-green-300">
+          <button onClick={e => handleExternalLink("https://freename.io?ref=olive-ears-obey&utm_source=clipboard", e)} className="flex items-center space-x-2 hover:text-green-400 transition-colors cursor-pointer text-sm md:text-base">
             <Globe className="w-4 h-4 flex-shrink-0" />
             <span className="text-center">Launch your next idea with .aiwebtools or .ai-tools</span>
           </button>
