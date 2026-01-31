@@ -42,7 +42,7 @@ const FooterActions = ({ handleExternalLink, handleSubmitTool, handleRequestTool
 
   return (
     <div className="text-center mb-16">
-      <h3 className="text-2xl font-bold text-cyan-300 mb-6 cyber-glow">
+      <h3 className="text-2xl font-bold text-green-300 mb-6" style={{ textShadow: '0 0 15px rgba(0, 255, 0, 0.5)' }}>
         🚀 Discover More AI Tools
       </h3>
       <div className="flex flex-col sm:flex-row gap-4 justify-center items-center max-w-5xl mx-auto">
@@ -60,7 +60,7 @@ const FooterActions = ({ handleExternalLink, handleSubmitTool, handleRequestTool
           onClick={handleViewAllTools}
           variant="outline"
           size="lg"
-          className="w-full sm:w-auto border-cyan-500 text-cyan-300 hover:bg-cyan-500/20 hover:text-white transition-all duration-300 sm:min-w-[240px] px-8 sm:px-10 leading-snug sm:whitespace-nowrap"
+          className="w-full sm:w-auto border-green-500 text-green-300 hover:bg-green-500/20 hover:text-white transition-all duration-300 sm:min-w-[240px] px-8 sm:px-10 leading-snug sm:whitespace-nowrap"
         >
           <Search className="mr-2 h-5 w-5" />
           VIEW ALL AI TOOLS
@@ -80,7 +80,7 @@ const FooterActions = ({ handleExternalLink, handleSubmitTool, handleRequestTool
           onClick={handleSubmitTool}
           variant="outline" 
           size="lg"
-          className="w-full sm:w-auto border-green-500 text-green-300 hover:bg-green-500/20 hover:text-white transition-all duration-300 sm:min-w-[240px] px-8 sm:px-10 leading-snug sm:whitespace-nowrap"
+          className="w-full sm:w-auto border-emerald-500 text-emerald-300 hover:bg-emerald-500/20 hover:text-white transition-all duration-300 sm:min-w-[240px] px-8 sm:px-10 leading-snug sm:whitespace-nowrap"
         >
           <Plus className="mr-2 h-5 w-5" />
           SUBMIT YOUR TOOL
@@ -90,7 +90,7 @@ const FooterActions = ({ handleExternalLink, handleSubmitTool, handleRequestTool
           onClick={handleRequestTool}
           variant="outline"
           size="lg" 
-          className="w-full sm:w-auto border-purple-500 text-purple-300 hover:bg-purple-500/20 hover:text-white transition-all duration-300 sm:min-w-[240px] px-8 sm:px-10 leading-snug sm:whitespace-nowrap"
+          className="w-full sm:w-auto border-green-400 text-green-400 hover:bg-green-400/20 hover:text-white transition-all duration-300 sm:min-w-[240px] px-8 sm:px-10 leading-snug sm:whitespace-nowrap"
         >
           <ExternalLink className="mr-2 h-5 w-5" />
           REQUEST CUSTOM TOOL

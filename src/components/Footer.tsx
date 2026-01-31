@@ -128,14 +128,14 @@ Best regards,
   return (
     <>
       {/* Search bar above footer for easy navigation */}
-      <div className="bg-gradient-to-b from-black/50 to-black py-8 border-t border-cyan-500/20">
+      <div className="bg-gradient-to-b from-black/50 to-black py-8 border-t border-green-500/20">
         <div className="container mx-auto px-4">
-          <p className="text-center text-cyan-400 text-sm mb-4 font-medium">🔍 Quick Search - Find Any AI Tool Instantly</p>
+          <p className="text-center text-green-400 text-sm mb-4 font-medium" style={{ textShadow: '0 0 10px rgba(0, 255, 0, 0.5)' }}>🔍 Quick Search - Find Any AI Tool Instantly</p>
           <GlobalSearchBar />
         </div>
       </div>
       
-      <footer className="bg-black text-cyan-100 py-16 border-t border-cyan-500/30">
+      <footer className="bg-black text-green-100 py-16 border-t border-green-500/30">
         <div className="container mx-auto px-4">
         <FooterActions 
           handleExternalLink={handleExternalLink}
@@ -170,13 +170,14 @@ Best regards,
         <div className="flex justify-center mb-16 px-4">
           <button
             onClick={handleDownloadGPTInstructions}
-            className="relative px-4 sm:px-8 md:px-12 py-4 sm:py-5 md:py-6 bg-gradient-to-r from-purple-500 via-pink-500 to-purple-600 text-white font-bold text-sm sm:text-base md:text-lg rounded-full shadow-2xl transform transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-purple-400/50 group overflow-hidden max-w-[90vw] sm:max-w-none"
+            className="relative px-4 sm:px-8 md:px-12 py-4 sm:py-5 md:py-6 bg-gradient-to-r from-green-500 via-emerald-500 to-green-600 text-white font-bold text-sm sm:text-base md:text-lg rounded-full shadow-2xl transform transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-green-400/50 group overflow-hidden max-w-[90vw] sm:max-w-none"
+            style={{ boxShadow: '0 0 30px rgba(0, 255, 0, 0.3)' }}
           >
             {/* Animated background shine */}
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
             
             {/* Pulsing glow effect */}
-            <div className="absolute inset-0 bg-gradient-to-r from-purple-400 to-pink-400 opacity-50 blur-xl animate-pulse"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-emerald-400 opacity-50 blur-xl animate-pulse"></div>
             
             {/* Button content */}
             <span className="relative z-10 flex items-center justify-center gap-2 sm:gap-3 leading-tight flex-wrap">
@@ -195,7 +196,7 @@ Best regards,
           <FooterLinks />
         </div>
         
-        <Separator className="bg-cyan-500/30 mb-8" />
+        <Separator className="bg-green-500/30 mb-8" />
         
         <FooterBottom handleExternalLink={handleExternalLink} />
         </div>

@@ -13,7 +13,7 @@ const FooterCompanyInfo = () => {
     <div className="space-y-4">
       {/* Logo section matching header */}
       <div className="text-center">
-        <div className="text-xl md:text-2xl font-bold bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 bg-clip-text text-transparent glow-text-effect animate-pulse">
+        <div className="text-xl md:text-2xl font-bold bg-gradient-to-r from-green-400 via-emerald-500 to-green-600 bg-clip-text text-transparent animate-pulse" style={{ textShadow: '0 0 20px rgba(0, 255, 0, 0.3)' }}>
           AITOOLS.STUDIO
         </div>
         <div className="text-xs text-gray-300 -mt-1">
@@ -23,7 +23,8 @@ const FooterCompanyInfo = () => {
           Presented by{" "}
           <button 
             onClick={(e) => handleExternalLink("https://www.aitools.company", e)}
-            className="text-cyan-400 hover:text-cyan-300 transition-colors underline"
+            className="text-green-400 hover:text-green-300 transition-colors underline"
+            style={{ textShadow: '0 0 8px rgba(0, 255, 0, 0.4)' }}
           >
             AIWEBTOOLS.AI
           </button>
@@ -31,7 +32,7 @@ const FooterCompanyInfo = () => {
         <div className="text-xs text-gray-500">
           <button 
             onClick={(e) => handleExternalLink("https://www.aitools.company", e)}
-            className="text-gray-500 hover:text-cyan-400 transition-colors"
+            className="text-gray-500 hover:text-green-400 transition-colors"
           >
             An AiTools.Company
           </button>
@@ -40,7 +41,7 @@ const FooterCompanyInfo = () => {
 
       {/* Company information */}
       <div>
-        <h3 className="text-lg font-semibold text-cyan-300 mb-4 glow-text-effect">
+        <h3 className="text-lg font-semibold text-green-300 mb-4" style={{ textShadow: '0 0 10px rgba(0, 255, 0, 0.4)' }}>
           AI WEB TOOLS LLC
         </h3>
         <div className="space-y-2 text-sm text-gray-300">
@@ -48,7 +49,7 @@ const FooterCompanyInfo = () => {
             <span>📧</span>
             <button 
               onClick={(e) => handleExternalLink("mailto:contact@ai-webtools.com", e)}
-              className="text-cyan-400 hover:text-cyan-300 transition-colors"
+              className="text-green-400 hover:text-green-300 transition-colors"
             >
               contact@ai-webtools.com
             </button>
@@ -57,7 +58,7 @@ const FooterCompanyInfo = () => {
             <span>📱</span>
             <button 
               onClick={(e) => handleExternalLink("tel:+14758008096", e)}
-              className="text-cyan-400 hover:text-cyan-300 transition-colors"
+              className="text-green-400 hover:text-green-300 transition-colors"
             >
               475-800-8096
             </button>
@@ -70,7 +71,7 @@ const FooterCompanyInfo = () => {
             <span>🌐</span>
             <button 
               onClick={(e) => handleExternalLink("https://www.aitools.company", e)}
-              className="text-cyan-400 hover:text-cyan-300 transition-colors"
+              className="text-green-400 hover:text-green-300 transition-colors"
             >
               www.aiwebtools.ai
             </button>
