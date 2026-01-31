@@ -1,4 +1,4 @@
-import { useState, useEffect, memo } from "react";
+import { useState, useEffect, memo, useRef } from "react";
 import { Sparkles } from "lucide-react";
 
 // Rotating loading messages - Matrix vibes, AI jokes, enlightenment themes
@@ -62,6 +62,13 @@ const LoadingScreen = memo(() => {
     Math.floor(Math.random() * loadingMessages.length)
   );
   const [progress, setProgress] = useState(0);
+  const [cubeRotation, setCubeRotation] = useState({ x: 0, y: 0 });
+  
+  // Use refs to track animation state even if React re-renders slowly
+  const progressRef = useRef(0);
+  const rotationRef = useRef({ x: 0, y: 0 });
+  const animationFrameRef = useRef<number | null>(null);
+  const lastTimeRef = useRef(Date.now());
 
   // Rotate messages every 1.5s
   useEffect(() => {
@@ -71,35 +78,182 @@ const LoadingScreen = memo(() => {
     return () => clearInterval(interval);
   }, []);
 
-  // Animate progress bar - RELIABLE interval-based animation (never freezes)
+  // Rock-solid animation loop using requestAnimationFrame + setInterval hybrid
+  // This ensures animation NEVER freezes even during heavy main-thread work
   useEffect(() => {
-    let currentProgress = 0;
+    let progressIntervalId: ReturnType<typeof setInterval>;
+    let cubeIntervalId: ReturnType<typeof setInterval>;
+    let rafRunning = true;
     
-    // Use setInterval for guaranteed updates (requestAnimationFrame can stall)
-    const interval = setInterval(() => {
-      // Smooth easing: fast start, slow finish
-      if (currentProgress < 60) {
-        // Phase 1: 0-60% fast (1.5% per tick)
-        currentProgress += 1.5;
-      } else if (currentProgress < 85) {
-        // Phase 2: 60-85% medium (0.8% per tick)
-        currentProgress += 0.8;
-      } else if (currentProgress < 100) {
-        // Phase 3: 85-100% slow (0.3% per tick)
-        currentProgress += 0.3;
+    // Progress animation via setInterval (guaranteed to fire even if main thread busy)
+    progressIntervalId = setInterval(() => {
+      if (progressRef.current < 60) {
+        progressRef.current += 1.5;
+      } else if (progressRef.current < 85) {
+        progressRef.current += 0.8;
+      } else if (progressRef.current < 100) {
+        progressRef.current += 0.3;
       } else {
-        currentProgress = 100;
-        clearInterval(interval);
+        progressRef.current = 100;
+      }
+      setProgress(Math.min(progressRef.current, 100));
+    }, 50);
+    
+    // Cube rotation via setInterval (fallback for when RAF stalls)
+    cubeIntervalId = setInterval(() => {
+      rotationRef.current = {
+        x: rotationRef.current.x + 2,
+        y: rotationRef.current.y + 3,
+      };
+      setCubeRotation({ ...rotationRef.current });
+    }, 32); // ~30fps
+    
+    // Also use RAF for smoother animation when main thread is free
+    const animate = () => {
+      if (!rafRunning) return;
+      
+      const now = Date.now();
+      const delta = now - lastTimeRef.current;
+      
+      // Only update if enough time has passed (prevents double updates)
+      if (delta > 30) {
+        lastTimeRef.current = now;
+        // RAF handles cube rotation smoothly when available
+        rotationRef.current = {
+          x: rotationRef.current.x + 1,
+          y: rotationRef.current.y + 1.5,
+        };
+        setCubeRotation({ ...rotationRef.current });
       }
       
-      setProgress(Math.min(currentProgress, 100));
-    }, 50); // 20fps - smooth and reliable
+      animationFrameRef.current = requestAnimationFrame(animate);
+    };
     
-    return () => clearInterval(interval);
+    animationFrameRef.current = requestAnimationFrame(animate);
+    
+    return () => {
+      rafRunning = false;
+      clearInterval(progressIntervalId);
+      clearInterval(cubeIntervalId);
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
+    };
   }, []);
 
   return (
     <div className="min-h-screen bg-black flex flex-col items-center justify-center px-4">
+      {/* 3D Rotating Cube */}
+      <div 
+        className="mb-8"
+        style={{
+          perspective: '600px',
+          perspectiveOrigin: 'center center',
+        }}
+      >
+        <div
+          style={{
+            width: '60px',
+            height: '60px',
+            position: 'relative',
+            transformStyle: 'preserve-3d',
+            transform: `rotateX(${cubeRotation.x}deg) rotateY(${cubeRotation.y}deg)`,
+            willChange: 'transform',
+          }}
+        >
+          {/* Front face */}
+          <div style={{
+            position: 'absolute',
+            width: '60px',
+            height: '60px',
+            background: 'linear-gradient(135deg, #22c55e 0%, #4ade80 100%)',
+            border: '2px solid rgba(34, 197, 94, 0.8)',
+            boxShadow: '0 0 20px rgba(34, 197, 94, 0.5), inset 0 0 10px rgba(255,255,255,0.1)',
+            transform: 'translateZ(30px)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+            <span style={{ fontSize: '24px', filter: 'drop-shadow(0 0 8px rgba(34, 197, 94, 0.8))' }}>🤖</span>
+          </div>
+          {/* Back face */}
+          <div style={{
+            position: 'absolute',
+            width: '60px',
+            height: '60px',
+            background: 'linear-gradient(135deg, #059669 0%, #10b981 100%)',
+            border: '2px solid rgba(5, 150, 105, 0.8)',
+            boxShadow: '0 0 20px rgba(5, 150, 105, 0.5), inset 0 0 10px rgba(255,255,255,0.1)',
+            transform: 'rotateY(180deg) translateZ(30px)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+            <span style={{ fontSize: '24px' }}>⚡</span>
+          </div>
+          {/* Right face */}
+          <div style={{
+            position: 'absolute',
+            width: '60px',
+            height: '60px',
+            background: 'linear-gradient(135deg, #14b8a6 0%, #2dd4bf 100%)',
+            border: '2px solid rgba(20, 184, 166, 0.8)',
+            boxShadow: '0 0 20px rgba(20, 184, 166, 0.5), inset 0 0 10px rgba(255,255,255,0.1)',
+            transform: 'rotateY(90deg) translateZ(30px)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+            <span style={{ fontSize: '24px' }}>🧠</span>
+          </div>
+          {/* Left face */}
+          <div style={{
+            position: 'absolute',
+            width: '60px',
+            height: '60px',
+            background: 'linear-gradient(135deg, #0d9488 0%, #14b8a6 100%)',
+            border: '2px solid rgba(13, 148, 136, 0.8)',
+            boxShadow: '0 0 20px rgba(13, 148, 136, 0.5), inset 0 0 10px rgba(255,255,255,0.1)',
+            transform: 'rotateY(-90deg) translateZ(30px)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+            <span style={{ fontSize: '24px' }}>🚀</span>
+          </div>
+          {/* Top face */}
+          <div style={{
+            position: 'absolute',
+            width: '60px',
+            height: '60px',
+            background: 'linear-gradient(135deg, #34d399 0%, #6ee7b7 100%)',
+            border: '2px solid rgba(52, 211, 153, 0.8)',
+            boxShadow: '0 0 20px rgba(52, 211, 153, 0.5), inset 0 0 10px rgba(255,255,255,0.1)',
+            transform: 'rotateX(90deg) translateZ(30px)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+            <span style={{ fontSize: '24px' }}>✨</span>
+          </div>
+          {/* Bottom face */}
+          <div style={{
+            position: 'absolute',
+            width: '60px',
+            height: '60px',
+            background: 'linear-gradient(135deg, #047857 0%, #059669 100%)',
+            border: '2px solid rgba(4, 120, 87, 0.8)',
+            boxShadow: '0 0 20px rgba(4, 120, 87, 0.5), inset 0 0 10px rgba(255,255,255,0.1)',
+            transform: 'rotateX(-90deg) translateZ(30px)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+            <span style={{ fontSize: '24px' }}>💡</span>
+          </div>
+        </div>
+      </div>
+      
       {/* Title */}
       <h1 
         className="text-xl md:text-2xl font-bold text-green-400 mb-8 tracking-[0.2em] text-center"
@@ -125,19 +279,23 @@ const LoadingScreen = memo(() => {
       </div>
 
       {/* Animated progress bar */}
-      <div className="w-64 md:w-80 h-2 bg-gray-800 rounded-full overflow-hidden border border-green-500/30">
+      <div className="w-64 md:w-80 h-3 bg-gray-800 rounded-full overflow-hidden border border-green-500/30">
         <div 
-          className="h-full rounded-full transition-all duration-100 ease-out"
+          className="h-full rounded-full"
           style={{ 
             width: `${progress}%`,
             background: 'linear-gradient(90deg, #22c55e, #4ade80, #22c55e)',
-            boxShadow: '0 0 15px rgba(34, 197, 94, 0.6)'
+            boxShadow: '0 0 15px rgba(34, 197, 94, 0.6)',
+            transition: 'width 50ms linear',
           }}
         />
       </div>
 
-      {/* Percentage */}
-      <div className="mt-4 text-green-400/80 font-mono text-sm tracking-wider">
+      {/* Percentage with glow effect */}
+      <div 
+        className="mt-4 text-green-400 font-mono text-lg tracking-wider font-bold"
+        style={{ textShadow: '0 0 10px rgba(34, 197, 94, 0.8)' }}
+      >
         {Math.round(progress)}%
       </div>
     </div>

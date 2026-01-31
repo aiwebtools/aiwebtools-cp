@@ -282,9 +282,10 @@ const PinnedVideoPlayer = memo(() => {
     return sessionStorage.getItem(SESSION_CLOSED_KEY) !== "true";
   });
   
-  // Show player after minimal scroll (25% of viewport = ~270px on most screens)
-  // Lower threshold ensures player appears quickly when user starts exploring
-  const hasScrolledEnough = useScrollThreshold(isHomepage ? 300 : 100, {
+  // Show player after 25% of viewport height scroll
+  // Using Math.max with inner height so works on any screen size
+  const viewportQuarter = typeof window !== 'undefined' ? Math.round(window.innerHeight * 0.25) : 200;
+  const hasScrolledEnough = useScrollThreshold(isHomepage ? viewportQuarter : 100, {
     enabled: true,
     allowReset: false, // Once shown, stay shown
   });
@@ -312,10 +313,11 @@ const PinnedVideoPlayer = memo(() => {
   
   // Track video src separately to prevent unnecessary iframe reloads
   // Initialize with actual video URL to prevent "null" blocking first render
+  // Use youtube-nocookie.com for faster loads and better privacy
   const [videoSrc, setVideoSrc] = useState<string>(() => {
     if (!currentVideoId) return "";
     const origin = typeof window !== 'undefined' ? window.location.origin : '';
-    return `https://www.youtube.com/embed/${currentVideoId}?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&enablejsapi=1&playsinline=1&loop=0&origin=${encodeURIComponent(origin)}&widget_referrer=${encodeURIComponent(origin)}`;
+    return `https://www.youtube-nocookie.com/embed/${currentVideoId}?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&enablejsapi=1&playsinline=1&loop=0&origin=${encodeURIComponent(origin)}&widget_referrer=${encodeURIComponent(origin)}`;
   });
   const lastVideoIdRef = useRef<string>(currentVideoId || "");
   
@@ -350,8 +352,9 @@ const PinnedVideoPlayer = memo(() => {
     
     // Build video URL - ALWAYS start with mute=1 for reliable autoplay on ALL browsers
     // User must explicitly click unmute button to hear audio
+    // Use youtube-nocookie.com for faster loads and better privacy
     const origin = typeof window !== 'undefined' ? window.location.origin : '';
-    const newSrc = `https://www.youtube.com/embed/${currentVideoId}?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&enablejsapi=1&playsinline=1&loop=0&origin=${encodeURIComponent(origin)}&widget_referrer=${encodeURIComponent(origin)}`;
+    const newSrc = `https://www.youtube-nocookie.com/embed/${currentVideoId}?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&enablejsapi=1&playsinline=1&loop=0&origin=${encodeURIComponent(origin)}&widget_referrer=${encodeURIComponent(origin)}`;
     setVideoSrc(newSrc);
     playerMountedRef.current = true;
     
