@@ -57,9 +57,9 @@ const HeroSection = () => {
       {/* Animated background elements - lighter blur for better perf */}
       {animationsReady && (
         <div className="absolute inset-0 overflow-hidden" style={{ willChange: 'auto' }}>
-          <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-cyan-500/10 rounded-full blur-2xl"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-2xl"></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-cyan-500/5 to-blue-500/5 rounded-full blur-2xl"></div>
+          <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-green-500/10 rounded-full blur-2xl"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-emerald-500/5 rounded-full blur-2xl"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-green-500/5 to-emerald-500/5 rounded-full blur-2xl"></div>
         </div>
       )}
 
@@ -93,11 +93,12 @@ const HeroSection = () => {
             {/* Second line with animated word - FIXED width container to prevent jumping */}
             <span className="text-3xl md:text-4xl lg:text-5xl text-white block">
               <span 
-                className="bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 bg-clip-text text-transparent hero-animated-word hero-stroke-text inline-block transitioning-word"
+                className="bg-gradient-to-r from-green-400 via-emerald-500 to-green-600 bg-clip-text text-transparent hero-animated-word hero-stroke-text inline-block transitioning-word"
                 style={{ 
-                  width: '220px', // Adjusted width for shorter words
+                  width: '220px',
                   textAlign: 'center',
-                  display: 'inline-block'
+                  display: 'inline-block',
+                  textShadow: '0 0 20px rgba(0, 255, 0, 0.5)'
                 }}
                 data-text={words[currentWord]}
               >
@@ -109,9 +110,9 @@ const HeroSection = () => {
           
           {/* Clear value proposition subtitle */}
           <div className="mb-8">
-            <p className="text-xl md:text-2xl text-cyan-100 font-medium max-w-4xl mx-auto leading-relaxed hero-white-stroke">
+            <p className="text-xl md:text-2xl text-green-100 font-medium max-w-4xl mx-auto leading-relaxed hero-white-stroke">
               The largest directory of AI tools for productivity, creativity, and business. 
-              <span className="text-cyan-400 font-semibold hero-white-stroke"> Find the perfect AI tool for any task.</span>
+              <span className="text-green-400 font-semibold hero-white-stroke" style={{ textShadow: '0 0 10px rgba(0, 255, 0, 0.5)' }}> Find the perfect AI tool for any task.</span>
             </p>
           </div>
         </div>
@@ -125,7 +126,8 @@ const HeroSection = () => {
         <div className="mb-6">
           <button
             onClick={handleExploreAITools}
-            className="group relative px-10 py-5 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold text-xl rounded-full shadow-2xl shadow-cyan-500/40 hover:shadow-cyan-400/60 transform hover:scale-105 transition-all duration-300 border-2 border-cyan-400 hover:border-cyan-300 cyber-glow"
+            className="group relative px-10 py-5 bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-400 hover:to-emerald-500 text-white font-bold text-xl rounded-full shadow-2xl shadow-green-500/40 hover:shadow-green-400/60 transform hover:scale-105 transition-all duration-300 border-2 border-green-400 hover:border-green-300"
+            style={{ boxShadow: '0 0 30px rgba(0, 255, 0, 0.3)' }}
           >
             <span className="flex items-center space-x-3">
               <Search className="w-7 h-7" />
@@ -137,7 +139,7 @@ const HeroSection = () => {
 
         {/* Secondary CTA - Search hint */}
         <div className="mb-8">
-          <p className="text-cyan-200/80 text-base">
+          <p className="text-green-200/80 text-base">
             💡 Try searching: "ChatGPT", "image generator", "video editor", or any task
           </p>
         </div>
@@ -145,16 +147,16 @@ const HeroSection = () => {
         {/* Stats - updated with new verbiage */}
         <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto">
           <div className="text-center">
-            <div className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">{toolStats.marketing}</div>
-            <div className="text-cyan-200 text-sm">AI TOOLS</div>
+            <div className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-green-400 to-emerald-600 bg-clip-text text-transparent" style={{ textShadow: '0 0 15px rgba(0, 255, 0, 0.3)' }}>{toolStats.marketing}</div>
+            <div className="text-green-200 text-sm">AI TOOLS</div>
           </div>
           <div className="text-center">
-            <div className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">100%</div>
-            <div className="text-cyan-200 text-sm">Free AI Resource</div>
+            <div className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-green-400 to-emerald-600 bg-clip-text text-transparent" style={{ textShadow: '0 0 15px rgba(0, 255, 0, 0.3)' }}>100%</div>
+            <div className="text-green-200 text-sm">Free AI Resource</div>
           </div>
           <div className="text-center">
-            <div className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">24/7</div>
-            <div className="text-cyan-200 text-sm">Availability</div>
+            <div className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-green-400 to-emerald-600 bg-clip-text text-transparent" style={{ textShadow: '0 0 15px rgba(0, 255, 0, 0.3)' }}>24/7</div>
+            <div className="text-green-200 text-sm">Availability</div>
           </div>
         </div>
       </div>
