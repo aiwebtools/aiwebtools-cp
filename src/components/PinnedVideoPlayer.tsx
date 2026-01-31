@@ -282,11 +282,11 @@ const PinnedVideoPlayer = memo(() => {
     return sessionStorage.getItem(SESSION_CLOSED_KEY) !== "true";
   });
   
-  // Only require scroll on homepage, show immediately on other pages
-  // Robust threshold detection (works even if scroll events are flaky)
-  const hasScrolledEnough = useScrollThreshold(isHomepage ? 600 : 200, {
+  // Show player after minimal scroll (25% of viewport = ~270px on most screens)
+  // Lower threshold ensures player appears quickly when user starts exploring
+  const hasScrolledEnough = useScrollThreshold(isHomepage ? 300 : 100, {
     enabled: true,
-    allowReset: true,
+    allowReset: false, // Once shown, stay shown
   });
   
   // Hide when user is viewing the main tool video on a detail page
