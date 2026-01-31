@@ -211,6 +211,22 @@ const BookPromotionCard = () => {
     <section className="py-16 bg-gradient-to-br from-slate-900 to-purple-900">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
+          {/* Cursive Gold Heading */}
+          <h2 
+            className="text-center mb-8 text-3xl md:text-5xl font-light tracking-wide"
+            style={{
+              fontFamily: "'Parisienne', 'Dancing Script', 'Great Vibes', cursive",
+              background: 'linear-gradient(135deg, #FFD700 0%, #FFA500 25%, #FFD700 50%, #DAA520 75%, #FFD700 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+              textShadow: '0 0 30px rgba(255, 215, 0, 0.4), 0 0 60px rgba(255, 165, 0, 0.2)',
+              filter: 'drop-shadow(0 2px 4px rgba(255, 215, 0, 0.3))'
+            }}
+          >
+            Light or Fire - Music For the Soul
+          </h2>
+          
           <div className="bg-gradient-to-r from-purple-900/80 to-blue-900/80 backdrop-blur-sm border border-purple-500/30 rounded-2xl overflow-hidden shadow-2xl">
             <div className="flex flex-col lg:flex-row items-center">
               {/* Book Visual - YouTube Videos */}
