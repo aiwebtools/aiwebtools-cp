@@ -7,6 +7,9 @@ import { allTools } from "@/data/toolsData";
 import { Tool } from "@/types/tools";
 import { useScrollThreshold } from "@/hooks/useScrollThreshold";
 
+const YT_EMBED_ORIGIN = "https://www.youtube-nocookie.com";
+const YT_API_ORIGIN_FALLBACK = "https://www.youtube.com";
+
 const SESSION_CLOSED_KEY = "pinned-video-closed";
 const SHUFFLED_TOOLS_KEY = "pinned-video-shuffled-tools";
 const CURRENT_INDEX_KEY = "pinned-video-current-index";
@@ -353,7 +356,7 @@ const PinnedVideoPlayer = memo(() => {
     // Build video URL - ALWAYS start with mute=1 for reliable autoplay on ALL browsers
     // User must explicitly click unmute button to hear audio
     // Use youtube-nocookie.com for faster loads and better privacy
-    const origin = typeof window !== 'undefined' ? window.location.origin : '';
+     const origin = typeof window !== 'undefined' ? window.location.origin : '';
     const newSrc = `https://www.youtube-nocookie.com/embed/${currentVideoId}?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&enablejsapi=1&playsinline=1&loop=0&origin=${encodeURIComponent(origin)}&widget_referrer=${encodeURIComponent(origin)}`;
     setVideoSrc(newSrc);
     playerMountedRef.current = true;
@@ -368,7 +371,7 @@ const PinnedVideoPlayer = memo(() => {
           try {
             iframeRef.current.contentWindow?.postMessage(
               JSON.stringify({ event: 'command', func: 'unMute' }),
-              'https://www.youtube.com'
+               YT_EMBED_ORIGIN
             );
           } catch {}
         }
@@ -389,7 +392,7 @@ const PinnedVideoPlayer = memo(() => {
       const command = isMuted ? 'mute' : 'unMute';
       iframeRef.current.contentWindow?.postMessage(
         JSON.stringify({ event: 'command', func: command }),
-        'https://www.youtube.com'
+        YT_EMBED_ORIGIN
       );
     } catch {}
   }, [isMuted]);
@@ -415,7 +418,7 @@ const PinnedVideoPlayer = memo(() => {
         try {
           iframeRef.current.contentWindow?.postMessage(
             JSON.stringify({ event: 'command', func: 'mute' }),
-            'https://www.youtube.com'
+            YT_EMBED_ORIGIN
           );
         } catch {}
       }
@@ -486,7 +489,7 @@ const PinnedVideoPlayer = memo(() => {
 
     const handleMessage = (event: MessageEvent) => {
       // YouTube sends messages when video state changes
-      if (event.origin !== "https://www.youtube.com") return;
+      if (event.origin !== YT_EMBED_ORIGIN && event.origin !== YT_API_ORIGIN_FALLBACK) return;
       
       try {
         const data = typeof event.data === "string" ? JSON.parse(event.data) : event.data;
@@ -615,8 +618,8 @@ const PinnedVideoPlayer = memo(() => {
         position: 'fixed',
         // Responsive sizing & safe-area support (iOS notch, etc.)
         width: "clamp(148px, 36vw, 208px)",
-        bottom: "calc(0.75rem + env(safe-area-inset-bottom, 0px))",
-        left: "calc(0.75rem + env(safe-area-inset-left, 0px))",
+        bottom: "calc(0.5rem + env(safe-area-inset-bottom, 0px))",
+        left: "calc(0.5rem + env(safe-area-inset-left, 0px))",
         // Portal + max z-index prevents the "audio-only" bug caused by stacking contexts/overlays.
         zIndex: 2147483647,
         transform: "translateZ(0)",
