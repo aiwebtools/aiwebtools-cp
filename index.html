@@ -160,10 +160,19 @@
       })();
     </script>
     
-    <!-- Critical CSS for instant first paint - Matrix Loading -->
+    <!-- Critical CSS for instant first paint - Matrix Loading - Cross-Browser Optimized -->
     <style>
-      body { margin: 0; background: #030712; color: #fff; font-family: system-ui, -apple-system, sans-serif; }
+      /* Universal resets for consistent rendering */
+      body { 
+        margin: 0; 
+        background: #030712; 
+        color: #fff; 
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
       #root { min-height: 100vh; background: #030712; }
+      
       .loading-spinner { 
         position: fixed;
         inset: 0;
@@ -175,12 +184,39 @@
         opacity: 1;
         transition: opacity 0.3s ease-out;
         overflow: hidden;
+        /* Force GPU layer on all devices */
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
       }
       .loading-spinner.fade-out { opacity: 0; pointer-events: none; }
       
       /* Matrix rain background */
-      .matrix-bg { position: absolute; inset: 0; opacity: 0.15; overflow: hidden; }
-      .matrix-col { position: absolute; top: -100%; font: 10px monospace; color: #00ff41; writing-mode: vertical-rl; animation: fall linear infinite; text-shadow: 0 0 8px #00ff41; }
+      .matrix-bg { 
+        position: absolute; 
+        inset: 0; 
+        opacity: 0.15; 
+        overflow: hidden;
+        /* GPU accelerate the container */
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+      }
+      .matrix-col { 
+        position: absolute; 
+        top: -100%; 
+        font: 10px monospace; 
+        color: #00ff41; 
+        writing-mode: vertical-rl; 
+        -webkit-animation: fall linear infinite;
+        animation: fall linear infinite; 
+        text-shadow: 0 0 8px #00ff41;
+        /* GPU accelerate each column */
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        will-change: transform;
+      }
+      @-webkit-keyframes fall { 0% { -webkit-transform: translateY(0); transform: translateY(0); } 100% { -webkit-transform: translateY(250vh); transform: translateY(250vh); } }
       @keyframes fall { 0% { transform: translateY(0); } 100% { transform: translateY(250vh); } }
       
       .loading-content {
@@ -192,40 +228,67 @@
         gap: 20px;
       }
       
-      /* Rotating cube - GPU accelerated for consistent smooth rotation */
+      /* Rotating cube - MAXIMUM cross-browser GPU acceleration */
       .cube-container { 
+        -webkit-perspective: 200px;
         perspective: 200px; 
         width: 50px; 
         height: 50px; 
         margin-bottom: 10px;
+        /* Force GPU compositing layer */
+        -webkit-transform: translateZ(0);
         transform: translateZ(0);
-        will-change: transform;
+        -webkit-transform-style: preserve-3d;
+        transform-style: preserve-3d;
       }
       .cube {
-        width: 50px; height: 50px;
+        width: 50px; 
+        height: 50px;
         position: relative;
+        -webkit-transform-style: preserve-3d;
         transform-style: preserve-3d;
+        -webkit-animation: rotateCube 1.2s linear infinite;
         animation: rotateCube 1.2s linear infinite;
+        /* Critical: will-change hints browser to GPU accelerate */
         will-change: transform;
+        -webkit-backface-visibility: visible;
         backface-visibility: visible;
+        -webkit-transform-origin: center center;
         transform-origin: center center;
+        /* Force hardware acceleration on mobile */
+        -webkit-transform: translateZ(0) rotateX(0deg) rotateY(0deg);
+        transform: translateZ(0) rotateX(0deg) rotateY(0deg);
       }
       .cube-face {
         position: absolute;
-        width: 50px; height: 50px;
+        width: 50px; 
+        height: 50px;
         border: 2px solid #00ff41;
         background: rgba(0, 255, 65, 0.1);
         box-shadow: 0 0 15px rgba(0, 255, 65, 0.3), inset 0 0 15px rgba(0, 255, 65, 0.1);
-        display: flex; align-items: center; justify-content: center;
-        font: bold 16px monospace; color: #00ff41;
+        display: flex; 
+        align-items: center; 
+        justify-content: center;
+        font: bold 16px monospace; 
+        color: #00ff41;
+        -webkit-backface-visibility: visible;
         backface-visibility: visible;
+        /* GPU accelerate each face */
+        -webkit-transform-style: preserve-3d;
+        transform-style: preserve-3d;
       }
-      .cube-face.front { transform: translateZ(25px); }
-      .cube-face.back { transform: rotateY(180deg) translateZ(25px); }
-      .cube-face.right { transform: rotateY(90deg) translateZ(25px); }
-      .cube-face.left { transform: rotateY(-90deg) translateZ(25px); }
-      .cube-face.top { transform: rotateX(90deg) translateZ(25px); }
-      .cube-face.bottom { transform: rotateX(-90deg) translateZ(25px); }
+      .cube-face.front { -webkit-transform: translateZ(25px); transform: translateZ(25px); }
+      .cube-face.back { -webkit-transform: rotateY(180deg) translateZ(25px); transform: rotateY(180deg) translateZ(25px); }
+      .cube-face.right { -webkit-transform: rotateY(90deg) translateZ(25px); transform: rotateY(90deg) translateZ(25px); }
+      .cube-face.left { -webkit-transform: rotateY(-90deg) translateZ(25px); transform: rotateY(-90deg) translateZ(25px); }
+      .cube-face.top { -webkit-transform: rotateX(90deg) translateZ(25px); transform: rotateX(90deg) translateZ(25px); }
+      .cube-face.bottom { -webkit-transform: rotateX(-90deg) translateZ(25px); transform: rotateX(-90deg) translateZ(25px); }
+      
+      /* Cube rotation - with webkit prefix for Safari/iOS */
+      @-webkit-keyframes rotateCube { 
+        from { -webkit-transform: rotateX(0deg) rotateY(0deg); transform: rotateX(0deg) rotateY(0deg); }
+        to { -webkit-transform: rotateX(360deg) rotateY(360deg); transform: rotateX(360deg) rotateY(360deg); }
+      }
       @keyframes rotateCube { 
         from { transform: rotateX(0deg) rotateY(0deg); }
         to { transform: rotateX(360deg) rotateY(360deg); }
@@ -238,6 +301,7 @@
         letter-spacing: 4px;
         text-shadow: 0 0 20px #00ff41;
         position: relative;
+        -webkit-animation: glitch 0.5s infinite;
         animation: glitch 0.5s infinite;
       }
       .glitch-text::before, .glitch-text::after {
@@ -248,13 +312,24 @@
       }
       .glitch-text::before {
         color: #ff00ff;
+        -webkit-animation: glitchLeft 0.3s infinite;
         animation: glitchLeft 0.3s infinite;
+        -webkit-clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
         clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
       }
       .glitch-text::after {
         color: #00ffff;
+        -webkit-animation: glitchRight 0.3s infinite;
         animation: glitchRight 0.3s infinite;
+        -webkit-clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
         clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
+      }
+      @-webkit-keyframes glitch {
+        0%, 100% { -webkit-transform: translate(0); transform: translate(0); }
+        20% { -webkit-transform: translate(-2px, 1px); transform: translate(-2px, 1px); }
+        40% { -webkit-transform: translate(2px, -1px); transform: translate(2px, -1px); }
+        60% { -webkit-transform: translate(-1px, 2px); transform: translate(-1px, 2px); }
+        80% { -webkit-transform: translate(1px, -2px); transform: translate(1px, -2px); }
       }
       @keyframes glitch {
         0%, 100% { transform: translate(0); }
@@ -263,9 +338,17 @@
         60% { transform: translate(-1px, 2px); }
         80% { transform: translate(1px, -2px); }
       }
+      @-webkit-keyframes glitchLeft {
+        0%, 100% { -webkit-transform: translate(0); transform: translate(0); }
+        50% { -webkit-transform: translate(-3px, 0); transform: translate(-3px, 0); }
+      }
       @keyframes glitchLeft {
         0%, 100% { transform: translate(0); }
         50% { transform: translate(-3px, 0); }
+      }
+      @-webkit-keyframes glitchRight {
+        0%, 100% { -webkit-transform: translate(0); transform: translate(0); }
+        50% { -webkit-transform: translate(3px, 0); transform: translate(3px, 0); }
       }
       @keyframes glitchRight {
         0%, 100% { transform: translate(0); }
@@ -277,11 +360,13 @@
         font: 12px 'Courier New', monospace;
         color: #22d3ee;
         letter-spacing: 2px;
+        -webkit-animation: pulse 1.5s ease-in-out infinite;
         animation: pulse 1.5s ease-in-out infinite;
       }
+      @-webkit-keyframes pulse { 0%, 100% { opacity: 0.7; } 50% { opacity: 1; } }
       @keyframes pulse { 0%, 100% { opacity: 0.7; } 50% { opacity: 1; } }
       
-      /* Progress bar - always moving */
+      /* Progress bar - always moving with GPU acceleration */
       .progress-wrap {
         width: 200px;
         height: 4px;
@@ -289,14 +374,27 @@
         border-radius: 4px;
         overflow: hidden;
         position: relative;
+        /* GPU layer */
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
       }
       .progress-bar {
         height: 100%;
         background: linear-gradient(90deg, #00ff41, #22d3ee, #a855f7, #00ff41);
         background-size: 300% 100%;
         border-radius: 4px;
+        -webkit-animation: progressShimmer 1.5s linear infinite;
         animation: progressShimmer 1.5s linear infinite;
+        -webkit-transition: width 0.1s ease-out;
         transition: width 0.1s ease-out;
+        will-change: width, background-position;
+        /* GPU layer for smooth width changes */
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+      }
+      @-webkit-keyframes progressShimmer {
+        0% { background-position: 100% 0; }
+        100% { background-position: 0% 0; }
       }
       @keyframes progressShimmer {
         0% { background-position: 100% 0; }
@@ -306,9 +404,30 @@
         font: 10px 'Courier New', monospace;
         color: #00ff41;
         margin-top: 8px;
+        -webkit-animation: blink 1s step-end infinite;
         animation: blink 1s step-end infinite;
       }
+      @-webkit-keyframes blink { 50% { opacity: 0.5; } }
       @keyframes blink { 50% { opacity: 0.5; } }
+      
+      /* iOS Safari specific fixes - prevent animation stalling */
+      @supports (-webkit-touch-callout: none) {
+        .cube {
+          -webkit-animation: rotateCube 1.2s linear infinite !important;
+          animation: rotateCube 1.2s linear infinite !important;
+        }
+        .matrix-col {
+          -webkit-animation: fall linear infinite !important;
+          animation: fall linear infinite !important;
+        }
+      }
+      
+      /* Reduced motion preference - still show progress */
+      @media (prefers-reduced-motion: reduce) {
+        .cube { -webkit-animation-duration: 3s; animation-duration: 3s; }
+        .matrix-col { -webkit-animation: none; animation: none; opacity: 0.05; }
+        .glitch-text::before, .glitch-text::after { -webkit-animation: none; animation: none; }
+      }
     </style>
     <script>
       (function () {
