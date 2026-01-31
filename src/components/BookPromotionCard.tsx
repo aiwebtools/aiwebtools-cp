@@ -1,21 +1,36 @@
-import { BookOpen, ExternalLink, Download, Eye, X, ChevronLeft, ChevronRight, Play } from "lucide-react";
+import { BookOpen, ExternalLink, Download, Eye, X, ChevronLeft, ChevronRight, Play, Pause } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogClose } from "@/components/ui/dialog";
 import { createTimePortalEffect } from "@/utils/timeEffects";
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useEffect, useCallback, useMemo } from "react";
 
-// Lazy YouTube component for book section with play state callback - optimized for fast loading
+// Utility function to shuffle array
+const shuffleArray = <T,>(array: T[]): T[] => {
+  const shuffled = [...array];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+};
+
+// Lazy YouTube component for book section with play state callback and end detection
 const LazyBookVideo = ({ 
   videoId, 
   title, 
-  onPlay 
+  onPlay,
+  onEnd,
+  autoPlay = false
 }: { 
   videoId: string; 
   title: string; 
   onPlay?: () => void;
+  onEnd?: () => void;
+  autoPlay?: boolean;
 }) => {
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(autoPlay);
   const [isHovered, setIsHovered] = useState(false);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
   const thumbnailUrl = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
 
   const handlePlay = () => {
@@ -23,9 +38,32 @@ const LazyBookVideo = ({
     onPlay?.();
   };
 
+  // Listen for video end via YouTube iframe API
+  useEffect(() => {
+    if (!isLoaded || !onEnd) return;
+
+    const handleMessage = (event: MessageEvent) => {
+      if (event.origin !== 'https://www.youtube-nocookie.com') return;
+      
+      try {
+        const data = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
+        if (data.event === 'onStateChange' && data.info === 0) {
+          // Video ended (state 0)
+          onEnd();
+        }
+      } catch (e) {
+        // Ignore parse errors
+      }
+    };
+
+    window.addEventListener('message', handleMessage);
+    return () => window.removeEventListener('message', handleMessage);
+  }, [isLoaded, onEnd]);
+
   if (isLoaded) {
     return (
       <iframe
+        ref={iframeRef}
         src={`https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&mute=0&controls=1&rel=0&modestbranding=1&playsinline=1&fs=1&enablejsapi=1`}
         className="absolute inset-0 w-full h-full"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -61,8 +99,10 @@ const BookPromotionCard = () => {
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
   const [desktopIndex, setDesktopIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(false);
   
-  const videos = [
+  // Original videos array
+  const originalVideos = [
     {
       id: "lG1rMaImBNc",
       title: "The Book Of Deployable Robot Prompts",
@@ -130,12 +170,28 @@ const BookPromotionCard = () => {
     }
   ];
 
+  // Randomize videos on component mount
+  const videos = useMemo(() => shuffleArray(originalVideos), []);
+
   const videosPerPage = 3;
   const totalDesktopPages = Math.ceil(videos.length / videosPerPage);
 
+  // Handle video end - auto advance to next video
+  const handleVideoEnd = useCallback(() => {
+    if (!isPaused) {
+      // Loop back to first video when reaching the end
+      setCurrentVideoIndex((prev) => (prev + 1) % videos.length);
+      setDesktopIndex((prev) => {
+        const nextVideoIndex = (currentVideoIndex + 1) % videos.length;
+        return Math.floor(nextVideoIndex / videosPerPage);
+      });
+      setIsAutoPlaying(true);
+    }
+  }, [isPaused, currentVideoIndex, videos.length, videosPerPage]);
+
   // Auto-cycle effect - pauses when video is playing
   useEffect(() => {
-    if (isPaused) return;
+    if (isPaused || isAutoPlaying) return;
     
     const interval = setInterval(() => {
       setDesktopIndex((prev) => (prev + 1) % totalDesktopPages);
@@ -143,10 +199,11 @@ const BookPromotionCard = () => {
     }, 5000); // 5 seconds between transitions
 
     return () => clearInterval(interval);
-  }, [isPaused, totalDesktopPages, videos.length]);
+  }, [isPaused, isAutoPlaying, totalDesktopPages, videos.length]);
 
   const handleVideoPlay = useCallback(() => {
     setIsPaused(true);
+    setIsAutoPlaying(false);
   }, []);
 
   const nextDesktopPage = () => {
@@ -157,10 +214,18 @@ const BookPromotionCard = () => {
     setDesktopIndex((prev) => (prev - 1 + totalDesktopPages) % totalDesktopPages);
   };
 
-  const visibleDesktopVideos = videos.slice(
-    desktopIndex * videosPerPage,
-    desktopIndex * videosPerPage + videosPerPage
-  );
+  // Get visible videos with proper looping
+  const getVisibleDesktopVideos = () => {
+    const startIndex = desktopIndex * videosPerPage;
+    const result = [];
+    for (let i = 0; i < videosPerPage; i++) {
+      const index = (startIndex + i) % videos.length;
+      result.push({ ...videos[index], originalIndex: index });
+    }
+    return result;
+  };
+
+  const visibleDesktopVideos = getVisibleDesktopVideos();
 
   const handleBuyBook = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -275,9 +340,15 @@ const BookPromotionCard = () => {
 
                     <div className="flex justify-center gap-4 transition-all duration-700 ease-in-out">
                       {visibleDesktopVideos.map((video, index) => (
-                        <div key={desktopIndex * videosPerPage + index} className="relative w-48 flex-shrink-0 transition-all duration-700 ease-in-out">
+                        <div key={`${video.originalIndex}-${video.id}`} className="relative w-48 flex-shrink-0 transition-all duration-700 ease-in-out">
                           <div className="relative rounded-xl overflow-hidden shadow-2xl" style={{ aspectRatio: '9/16' }}>
-                            <LazyBookVideo videoId={video.id} title={video.title} onPlay={handleVideoPlay} />
+                            <LazyBookVideo 
+                              videoId={video.id} 
+                              title={video.title} 
+                              onPlay={handleVideoPlay}
+                              onEnd={handleVideoEnd}
+                              autoPlay={isAutoPlaying && video.originalIndex === currentVideoIndex}
+                            />
                           </div>
                           <div className={`absolute -inset-2 bg-gradient-to-r ${video.gradient} rounded-lg blur-xl -z-10`}></div>
                         </div>
@@ -330,6 +401,8 @@ const BookPromotionCard = () => {
                           videoId={videos[currentVideoIndex].id} 
                           title={videos[currentVideoIndex].title} 
                           onPlay={handleVideoPlay}
+                          onEnd={handleVideoEnd}
+                          autoPlay={isAutoPlaying}
                         />
                       </div>
                       <div className={`absolute -inset-2 bg-gradient-to-r ${videos[currentVideoIndex].gradient} rounded-lg blur-xl -z-10 transition-all duration-700`}></div>

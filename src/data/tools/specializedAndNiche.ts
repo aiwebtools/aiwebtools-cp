@@ -119,6 +119,7 @@ export const specializedAndNiche: Tool[] = [
     emoji: "🍄",
     color: "from-brown-500 to-green-600",
     directUrl: "https://fungusgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "/src/assets/tools/fungus-gpt-hero.png",
     tags: ["mycology", "mushroom cultivation", "foraging", "fungi identification", "sustainable practices"],
     category: "Specialized & Niche",
     rating: 4.3,

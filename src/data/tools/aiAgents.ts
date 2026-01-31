@@ -593,6 +593,7 @@ export const aiAgents: Tool[] = [
     emoji: "👥",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://www.crewai.com/?via=aiwebtools",
+    imageUrl: "/src/assets/tools/crewai-hero.png",
     tags: ["Multi-Agent Framework", "orchestration", "CrewAI", "collaborative AI", "autonomous agents", "agent framework", "agent"],
     category: "AI Agents",
     rating: 4.5,
