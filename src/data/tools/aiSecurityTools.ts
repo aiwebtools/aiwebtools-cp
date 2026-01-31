@@ -20,6 +20,7 @@ export const aiSecurityTools: Tool[] = [
     emoji: "🛡️",
     color: "from-red-500 to-blue-600",
     directUrl: "https://chatgpt.com/g/g-Qvat03gmj-hacking-defender-infrastructure-protector-gpt",
+    imageUrl: "/src/assets/tools/hacker-defender-hero.png",
     tags: ["cybersecurity", "hacking defense", "infrastructure protection", "threat detection", "security analysis", "vulnerability assessment", "Cybersecurity", "Threat Detection", "Custom GPT"],
     category: "AI Security Tools",
     rating: 4.8,
