@@ -22,58 +22,55 @@ const FloatingCloneButton = () => {
 
   const content = useMemo(
     () => (
-      <>
-        {/* Ensures true viewport pinning on mobile - optimized for instant response */}
-        <style>{`
-          .floating-clone-btn {
-            position: fixed !important;
-            left: 8px;
-            z-index: 9999;
-            top: 100px;
-            transform: translateZ(0);
-            will-change: auto;
-            contain: layout style;
-          }
-          @media (min-width: 768px) {
-            .floating-clone-btn {
-              top: 192px;
-            }
-          }
-        `}</style>
-
-        <div className="floating-clone-btn">
-          <a
-            href={CLONE_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              createTimePortalEffect(CLONE_URL, "Clone AI Web Tools");
-            }}
-            className="clone-button-container bg-gradient-to-br from-cyan-500 via-blue-500 to-purple-600 text-white 
-              w-14 h-14 md:w-20 md:h-20 
-              rounded-full shadow-lg flex flex-col items-center justify-center relative"
+      <div
+        style={{
+          position: 'fixed',
+          left: '8px',
+          top: '100px',
+          zIndex: 2147483646, // Just below pinned player, but above everything else
+          transform: 'translateZ(0)',
+          pointerEvents: 'auto',
+          isolation: 'isolate',
+        }}
+        className="md:top-48"
+      >
+        <a
+          href={CLONE_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            createTimePortalEffect(CLONE_URL, "Clone AI Web Tools");
+          }}
+          className="bg-gradient-to-br from-cyan-500 via-blue-500 to-purple-600 text-white 
+            w-14 h-14 md:w-20 md:h-20 
+            rounded-full shadow-lg flex flex-col items-center justify-center relative"
+          style={{
+            boxShadow: "0 4px 20px rgba(6, 182, 212, 0.4), 0 0 30px rgba(168, 85, 247, 0.3)",
+            transform: "translateZ(0)",
+            display: 'flex',
+          }}
+          title="Clone This AI Tools Website"
+        >
+          {/* Animated border glow */}
+          <div 
+            className="absolute inset-0 rounded-full border-2 md:border-4 border-cyan-400/70"
             style={{
-              boxShadow: "0 4px 20px rgba(6, 182, 212, 0.4)",
-              transform: "translateZ(0)",
+              boxShadow: '0 0 15px rgba(6, 182, 212, 0.5), inset 0 0 10px rgba(6, 182, 212, 0.2)'
             }}
-            title="Clone This AI Tools Website"
-          >
-            {/* Static border glow - no animation */}
-            <div className="absolute inset-0 rounded-full border-2 md:border-4 border-cyan-400/50" />
+          />
 
-            <div className="relative flex flex-col items-center justify-center text-center">
-              <Copy className="w-4 h-4 md:w-5 md:h-5 mb-0.5" />
-              <div className="text-[7px] md:text-[9px] font-bold leading-tight tracking-wide">
-                <div>CLONE</div>
-                <div>SITE</div>
-                <div className="text-yellow-300">FREE</div>
-              </div>
+          <div className="relative flex flex-col items-center justify-center text-center">
+            <Copy className="w-4 h-4 md:w-5 md:h-5 mb-0.5" />
+            <div className="text-[7px] md:text-[9px] font-bold leading-tight tracking-wide">
+              <div>CLONE</div>
+              <div>SITE</div>
+              <div className="text-yellow-300" style={{ textShadow: '0 0 8px #FFD700' }}>FREE</div>
             </div>
-          </a>
-        </div>
-      </>
+          </div>
+        </a>
+      </div>
     ),
     []
   );
