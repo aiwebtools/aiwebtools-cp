@@ -50,7 +50,7 @@ const CategoryPageSelection = memo(() => {
   return (
     <section className="py-16 px-4 relative">
       <div className="max-w-7xl mx-auto text-center">
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 bg-clip-text text-transparent cyber-glow">
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-green-400 via-emerald-500 to-green-600 bg-clip-text text-transparent" style={{ textShadow: '0 0 30px rgba(0, 255, 0, 0.3)' }}>
           🎯 Choose Your AI Tool Category
         </h2>
         <p className="text-lg text-gray-300 mb-12 max-w-2xl mx-auto">
@@ -72,7 +72,7 @@ const CategoryPageSelection = memo(() => {
                 className={`group relative overflow-hidden transition-all duration-150 transform hover:scale-105 border h-auto py-6 px-3 min-w-0 ${
                   mainCat.name === "ALL AI TOOLS"
                     ? "bg-gradient-to-br from-yellow-600/30 to-orange-600/30 border-yellow-400/50 text-yellow-200 hover:from-yellow-600/40 hover:to-orange-600/40 hover:text-yellow-100 hover:shadow-xl hover:border-yellow-300/60"
-                    : "bg-gradient-to-br from-gray-800/50 to-gray-900/50 border-gray-600/50 text-gray-200 hover:from-cyan-600/20 hover:to-blue-600/20 hover:text-white hover:shadow-lg hover:border-cyan-400/50"
+                    : "bg-gradient-to-br from-gray-800/50 to-gray-900/50 border-green-600/30 text-gray-200 hover:from-green-600/20 hover:to-emerald-600/20 hover:text-white hover:shadow-lg hover:border-green-400/50"
                 }`}
               >
                 <div className="flex flex-col items-center space-y-3 w-full min-w-0">
@@ -83,7 +83,7 @@ const CategoryPageSelection = memo(() => {
                     className={`text-xs relative z-10 flex-shrink-0 ${
                       mainCat.name === "ALL AI TOOLS"
                         ? "bg-yellow-500/20 text-yellow-200 border-yellow-400/40 group-hover:bg-yellow-400/30 group-hover:text-yellow-100 group-hover:border-yellow-300/50"
-                        : "bg-black/30 text-gray-300 border-gray-500/40 group-hover:bg-cyan-500/20 group-hover:text-white group-hover:border-cyan-400/30"
+                        : "bg-black/30 text-gray-300 border-green-500/40 group-hover:bg-green-500/20 group-hover:text-white group-hover:border-green-400/30"
                     }`}
                   >
                     {count} tools

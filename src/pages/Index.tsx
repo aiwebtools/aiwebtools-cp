@@ -95,11 +95,11 @@ const Index = () => {
         
         {/* Featured Video Section */}
         <DeferredMount delay={0} fallback={null}>
-          <section className="py-16 bg-gradient-to-br from-slate-900 to-purple-900">
+          <section className="py-16 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #0a0a0a 0%, #001a00 50%, #0a0a0a 100%)' }}>
             <div className="container mx-auto px-4">
               <div className="text-center mb-8">
                 <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                  <span className="text-cyan-400">AI TOOLS THAT BEND THE FABRIC OF TIME...LITERALLY</span>
+                  <span className="text-green-400" style={{ textShadow: '0 0 20px rgba(0, 255, 0, 0.5)' }}>AI TOOLS THAT BEND THE FABRIC OF TIME...LITERALLY</span>
                 </h2>
               </div>
               
@@ -107,7 +107,7 @@ const Index = () => {
                 <div className="relative w-full aspect-video">
                   <iframe
                     ref={mainVideoRef}
-                    className="absolute inset-0 w-full h-full rounded-xl border border-cyan-500/30 bg-slate-800"
+                    className="absolute inset-0 w-full h-full rounded-xl border border-green-500/30 bg-slate-800"
                     src={videoSrc}
                     title="AI Web Tools Featured Video - 1080p HD"
                     frameBorder="0"
@@ -121,14 +121,15 @@ const Index = () => {
                 <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
                   <Button
                     onClick={() => navigate('/main-category/ALL%20AI%20TOOLS')}
-                    className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold px-8 py-4 text-lg"
+                    className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-bold px-8 py-4 text-lg"
+                    style={{ boxShadow: '0 0 20px rgba(0, 255, 0, 0.3)' }}
                   >
                     🚀 Browse All AI Tools
                   </Button>
                   <Button
                     onClick={() => window.scrollTo({ top: 0, behavior: 'auto' })}
                     variant="outline"
-                    className="border-cyan-500 text-cyan-400 hover:bg-cyan-500/10 font-bold px-8 py-4 text-lg"
+                    className="border-green-500 text-green-400 hover:bg-green-500/10 font-bold px-8 py-4 text-lg"
                   >
                     🔍 Back to Search
                   </Button>
@@ -161,13 +162,13 @@ const Index = () => {
         
         {/* Bottom Search Portal */}
         <DeferredMount delay={0} fallback={null}>
-          <section className="py-16 bg-gradient-to-br from-gray-900 to-black relative">
+          <section className="py-16 relative" style={{ background: 'linear-gradient(135deg, #0a0a0a 0%, #001a00 50%, #0a0a0a 100%)' }}>
             <div className="container mx-auto px-4">
               <div className="text-center mb-12">
                 <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-                  <span className="text-cyan-400">🔍 SEARCH ALL AI TOOLS</span>
+                  <span className="text-green-400" style={{ textShadow: '0 0 20px rgba(0, 255, 0, 0.5)' }}>🔍 SEARCH ALL AI TOOLS</span>
                 </h2>
-                <p className="text-xl text-cyan-200 max-w-3xl mx-auto mb-4">
+                <p className="text-xl text-green-200 max-w-3xl mx-auto mb-4">
                   Explore our complete database of AI tools with advanced search and filtering
                 </p>
               </div>
