@@ -208,8 +208,39 @@ const BookPromotionCard = () => {
   };
 
   return (
-    <section className="py-16 bg-gradient-to-br from-slate-900 to-purple-900">
-      <div className="container mx-auto px-4">
+    <section className="py-16 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #0a0a0a 0%, #001a00 50%, #0a0a0a 100%)' }}>
+      {/* Matrix Rain Background */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {Array.from({ length: 20 }).map((_, i) => (
+          <div
+            key={i}
+            className="absolute text-green-500/30 text-xs font-mono whitespace-nowrap"
+            style={{
+              left: `${i * 5}%`,
+              top: '-100%',
+              animation: `matrixRain ${3 + Math.random() * 4}s linear infinite`,
+              animationDelay: `${Math.random() * 3}s`,
+              textShadow: '0 0 8px #00ff00',
+            }}
+          >
+            {Array.from({ length: 30 }).map((_, j) => (
+              <div key={j} className="leading-4">
+                {String.fromCharCode(0x30A0 + Math.random() * 96)}
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+      
+      {/* Matrix Rain Keyframes */}
+      <style>{`
+        @keyframes matrixRain {
+          0% { transform: translateY(0); }
+          100% { transform: translateY(200%); }
+        }
+      `}</style>
+      
+      <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-6xl mx-auto">
           {/* Cursive Gold Heading */}
           <h2 
@@ -227,7 +258,7 @@ const BookPromotionCard = () => {
             Light or Fire - Music For the Soul
           </h2>
           
-          <div className="bg-gradient-to-r from-purple-900/80 to-blue-900/80 backdrop-blur-sm border border-purple-500/30 rounded-2xl overflow-hidden shadow-2xl">
+          <div className="bg-gradient-to-r from-green-900/60 to-emerald-900/60 backdrop-blur-sm border border-green-500/40 rounded-2xl overflow-hidden shadow-2xl shadow-green-500/10">
             <div className="flex flex-col lg:flex-row items-center">
               {/* Book Visual - YouTube Videos */}
               <div className="lg:w-1/2 p-8">
@@ -236,7 +267,7 @@ const BookPromotionCard = () => {
                   <div className="flex items-center justify-center gap-2">
                     <button
                       onClick={prevDesktopPage}
-                      className="p-2 bg-purple-900/80 rounded-full text-white hover:bg-purple-800 transition-colors z-10"
+                      className="p-2 bg-green-900/80 rounded-full text-green-400 hover:bg-green-800 transition-colors z-10 border border-green-500/30"
                       aria-label="Previous videos"
                     >
                       <ChevronLeft size={24} />
@@ -255,7 +286,7 @@ const BookPromotionCard = () => {
 
                     <button
                       onClick={nextDesktopPage}
-                      className="p-2 bg-purple-900/80 rounded-full text-white hover:bg-purple-800 transition-colors z-10"
+                      className="p-2 bg-green-900/80 rounded-full text-green-400 hover:bg-green-800 transition-colors z-10 border border-green-500/30"
                       aria-label="Next videos"
                     >
                       <ChevronRight size={24} />
@@ -287,7 +318,7 @@ const BookPromotionCard = () => {
                   <div className="flex justify-center items-center">
                     <button
                       onClick={prevVideo}
-                      className="absolute left-0 z-10 p-2 bg-purple-900/80 rounded-full text-white hover:bg-purple-800 transition-colors"
+                      className="absolute left-0 z-10 p-2 bg-green-900/80 rounded-full text-green-400 hover:bg-green-800 transition-colors border border-green-500/30"
                       aria-label="Previous video"
                     >
                       <ChevronLeft size={24} />
@@ -306,7 +337,7 @@ const BookPromotionCard = () => {
 
                     <button
                       onClick={nextVideo}
-                      className="absolute right-0 z-10 p-2 bg-purple-900/80 rounded-full text-white hover:bg-purple-800 transition-colors"
+                      className="absolute right-0 z-10 p-2 bg-green-900/80 rounded-full text-green-400 hover:bg-green-800 transition-colors border border-green-500/30"
                       aria-label="Next video"
                     >
                       <ChevronRight size={24} />
@@ -337,21 +368,21 @@ const BookPromotionCard = () => {
                     </span>
                   </h2>
                   
-                  <p className="text-purple-200 text-lg mb-4">
-                    By <span className="text-cyan-400 font-semibold">AIWebTools.AI</span>
+                  <p className="text-green-200 text-lg mb-4">
+                    By <span className="text-green-400 font-semibold" style={{ textShadow: '0 0 10px #00ff00' }}>AIWebTools.AI</span>
                   </p>
                   
                   <div className="space-y-3 mb-6">
-                    <div className="flex items-center justify-center lg:justify-start gap-2 text-purple-300">
-                      <span className="text-cyan-400">🤖</span>
+                    <div className="flex items-center justify-center lg:justify-start gap-2 text-green-300">
+                      <span className="text-green-400">🤖</span>
                       <span>Over 60 Deployable Robots & Key AI Insights</span>
                     </div>
-                    <div className="flex items-center justify-center lg:justify-start gap-2 text-purple-300">
-                      <span className="text-cyan-400">⚡</span>
+                    <div className="flex items-center justify-center lg:justify-start gap-2 text-green-300">
+                      <span className="text-green-400">⚡</span>
                       <span>Put you ahead of the game with cutting-edge AI</span>
                     </div>
-                    <div className="flex items-center justify-center lg:justify-start gap-2 text-purple-300">
-                      <span className="text-cyan-400">📋</span>
+                    <div className="flex items-center justify-center lg:justify-start gap-2 text-green-300">
+                      <span className="text-green-400">📋</span>
                       <span>Copy & paste ready prompts for personal AI tool deployment</span>
                     </div>
                   </div>
@@ -383,7 +414,7 @@ const BookPromotionCard = () => {
                       <DialogTrigger asChild>
                         <Button
                           size="lg"
-                          className="bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 text-white font-bold px-6 py-3 rounded-xl shadow-lg hover:shadow-purple-500/25 transition-all duration-300 transform hover:scale-105"
+                          className="bg-gradient-to-r from-green-600 to-emerald-700 hover:from-green-700 hover:to-emerald-800 text-white font-bold px-6 py-3 rounded-xl shadow-lg hover:shadow-green-500/25 transition-all duration-300 transform hover:scale-105 border border-green-400/30"
                         >
                           <Eye className="mr-2" size={20} />
                           👁️ View Preview
