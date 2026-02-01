@@ -63,30 +63,53 @@ const LoadingScreen = memo(() => {
   );
   const [progress, setProgress] = useState(0);
   const [cubeRotation, setCubeRotation] = useState({ x: 0, y: 0 });
+  const [forceComplete, setForceComplete] = useState(false);
   
   // Use refs to track animation state even if React re-renders slowly
   const progressRef = useRef(0);
   const rotationRef = useRef({ x: 0, y: 0 });
   const animationFrameRef = useRef<number | null>(null);
   const lastTimeRef = useRef(Date.now());
+  const mountedRef = useRef(true);
+
+  // MOBILE FIX: Force-complete loading after 6 seconds max
+  // This prevents getting stuck on loading screen if component mount stalls
+  useEffect(() => {
+    const forceCompleteTimeout = setTimeout(() => {
+      if (mountedRef.current) {
+        setForceComplete(true);
+        setProgress(100);
+        progressRef.current = 100;
+      }
+    }, 6000);
+    
+    return () => {
+      mountedRef.current = false;
+      clearTimeout(forceCompleteTimeout);
+    };
+  }, []);
 
   // Rotate messages every 1.5s
   useEffect(() => {
+    if (forceComplete) return;
     const interval = setInterval(() => {
       setMessageIndex(prev => (prev + 1) % loadingMessages.length);
     }, 1500);
     return () => clearInterval(interval);
-  }, []);
+  }, [forceComplete]);
 
   // Rock-solid animation loop using requestAnimationFrame + setInterval hybrid
   // This ensures animation NEVER freezes even during heavy main-thread work
   useEffect(() => {
+    if (forceComplete) return;
+    
     let progressIntervalId: ReturnType<typeof setInterval>;
     let cubeIntervalId: ReturnType<typeof setInterval>;
     let rafRunning = true;
     
     // Progress animation via setInterval (guaranteed to fire even if main thread busy)
     progressIntervalId = setInterval(() => {
+      if (!mountedRef.current) return;
       if (progressRef.current < 60) {
         progressRef.current += 1.5;
       } else if (progressRef.current < 85) {
@@ -101,6 +124,7 @@ const LoadingScreen = memo(() => {
     
     // Cube rotation via setInterval (fallback for when RAF stalls)
     cubeIntervalId = setInterval(() => {
+      if (!mountedRef.current) return;
       rotationRef.current = {
         x: rotationRef.current.x + 2,
         y: rotationRef.current.y + 3,
@@ -110,7 +134,7 @@ const LoadingScreen = memo(() => {
     
     // Also use RAF for smoother animation when main thread is free
     const animate = () => {
-      if (!rafRunning) return;
+      if (!rafRunning || !mountedRef.current) return;
       
       const now = Date.now();
       const delta = now - lastTimeRef.current;
@@ -139,7 +163,7 @@ const LoadingScreen = memo(() => {
         cancelAnimationFrame(animationFrameRef.current);
       }
     };
-  }, []);
+  }, [forceComplete]);
 
   return (
     <div className="min-h-screen bg-black flex flex-col items-center justify-center px-4">

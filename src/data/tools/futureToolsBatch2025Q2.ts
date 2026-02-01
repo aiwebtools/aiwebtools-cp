@@ -258,7 +258,7 @@ export const futureToolsBatch2025Q2: Tool[] = [
     description: "An experimental educational tool from Google. Ask questions, upload documents and explore a variety of topics with an AI assistant that simplifies complex subjects.",
     emoji: "📚",
     color: "from-blue-500 to-green-600",
-    directUrl: "https://learning.google/experiments/learn-about/?via=aiwebtools",
+    directUrl: "https://learning.google/",
     imageUrl: learnAboutGoogleHero,
     tags: ["Google", "education", "learning AI", "AI useful", "education/studies", "future tools"],
     category: "Education & Learning",
