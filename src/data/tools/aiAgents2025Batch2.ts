@@ -609,8 +609,8 @@ export const aiAgents2025Batch2: Tool[] = [
     emoji: "🌙",
     color: "from-indigo-600 to-blue-700",
     category: "AI Agents",
-    directUrl: "https://www.kimi.com/en?via=aiwebtools",
-    imageUrl: "/src/assets/tools/kimi-k25-agent-swarm.jpg",
+    directUrl: "https://www.kimi.com/ai-models/kimi-k2-5?via=aiwebtools",
+    imageUrl: "/src/assets/tools/kimi-k25-agent-swarm-hero.png",
     rating: 5.0,
     tags: ["AI Agents", "Agent Swarm", "Multi-Agent", "Moonshot AI", "Chinese AI", "Open Source", "Multimodal", "Vision AI", "Coding Agent", "Kimi", "K2.5"]
   },
