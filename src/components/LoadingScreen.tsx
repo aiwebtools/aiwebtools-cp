@@ -72,7 +72,7 @@ const LoadingScreen = memo(() => {
   const lastTimeRef = useRef(Date.now());
   const mountedRef = useRef(true);
 
-  // MOBILE FIX: Force-complete loading after 6 seconds max
+  // MOBILE FIX: Force-complete loading after 2.5 seconds max
   // This prevents getting stuck on loading screen if component mount stalls
   useEffect(() => {
     const forceCompleteTimeout = setTimeout(() => {
@@ -81,7 +81,7 @@ const LoadingScreen = memo(() => {
         setProgress(100);
         progressRef.current = 100;
       }
-    }, 6000);
+    }, 2500);
     
     return () => {
       mountedRef.current = false;
@@ -107,20 +107,20 @@ const LoadingScreen = memo(() => {
     let cubeIntervalId: ReturnType<typeof setInterval>;
     let rafRunning = true;
     
-    // Progress animation via setInterval (guaranteed to fire even if main thread busy)
+    // Progress animation via setInterval - FAST 2 second completion
     progressIntervalId = setInterval(() => {
       if (!mountedRef.current) return;
-      if (progressRef.current < 60) {
-        progressRef.current += 1.5;
-      } else if (progressRef.current < 85) {
-        progressRef.current += 0.8;
+      if (progressRef.current < 70) {
+        progressRef.current += 5; // Fast start
+      } else if (progressRef.current < 90) {
+        progressRef.current += 3; // Medium pace
       } else if (progressRef.current < 100) {
-        progressRef.current += 0.3;
+        progressRef.current += 2; // Quick finish
       } else {
         progressRef.current = 100;
       }
       setProgress(Math.min(progressRef.current, 100));
-    }, 50);
+    }, 40);
     
     // Cube rotation via setInterval (fallback for when RAF stalls)
     cubeIntervalId = setInterval(() => {
