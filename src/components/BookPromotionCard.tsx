@@ -101,12 +101,17 @@ const BookPromotionCard = () => {
   const [isPaused, setIsPaused] = useState(false);
   const [isAutoPlaying, setIsAutoPlaying] = useState(false);
   
-  // Original videos array
+  // First video is always pinned, rest are shuffled
   const originalVideos = [
     {
-      id: "lG1rMaImBNc",
+      id: "EYnCtw9CsxQ",
       title: "The Book Of Deployable Robot Prompts",
       gradient: "from-purple-500/20 to-blue-500/20"
+    },
+    {
+      id: "lG1rMaImBNc",
+      title: "The Book Of Deployable Robot Prompts 2",
+      gradient: "from-emerald-500/20 to-teal-500/20"
     },
     {
       id: "i0zc0aeRCeI",
@@ -171,7 +176,8 @@ const BookPromotionCard = () => {
   ];
 
   // Randomize videos on component mount
-  const videos = useMemo(() => shuffleArray(originalVideos), []);
+  // Pin first video, shuffle the rest
+  const videos = useMemo(() => [originalVideos[0], ...shuffleArray(originalVideos.slice(1))], []);
 
   const videosPerPage = 3;
   const totalDesktopPages = Math.ceil(videos.length / videosPerPage);
