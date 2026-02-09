@@ -14,7 +14,7 @@ import hingeHero from "@/assets/tools/hinge-hero.jpg";
 import coffeeMeetsBagelHero from "@/assets/tools/coffee-meets-bagel-hero.jpg";
 import keeperHero from "@/assets/tools/keeper-hero.jpg";
 import rizzAiHero from "@/assets/tools/rizz-ai-hero.jpg";
-import relateHero from "@/assets/tools/relate-hero.jpg";
+
 import replikaHero from "@/assets/tools/replika-hero.jpg";
 import maiaHero from "@/assets/tools/maia-hero.jpg";
 import amoriqHero from "@/assets/tools/amoriq-hero.jpg";
@@ -80,26 +80,14 @@ export const aiDatingRelationshipTools: Tool[] = [
     description: "AI conversation assistant for dating apps, providing personalized message suggestions and conversation starters.",
     emoji: "💬",
     color: "from-blue-500 to-purple-600",
-    directUrl: "https://rizzai.com/?via=aiwebtools",
+    directUrl: "https://rizz.app/?via=aiwebtools",
     imageUrl: rizzAiHero,
     tags: ["dating assistant", "conversation AI", "message suggestions", "dating tips", "chat help"],
     category: "AI Dating & Relationship Tools",
     rating: 4.1,
     totalVotes: 2345
   },
-  {
-    icon: Users,
-    title: "Relate",
-    description: "AI relationship counseling and advice platform offering personalized guidance for couples and individuals.",
-    emoji: "🤝",
-    color: "from-teal-500 to-green-600",
-    directUrl: "https://www.relate.com/?via=aiwebtools",
-    imageUrl: relateHero,
-    tags: ["relationship advice", "counseling", "couples therapy", "AI guidance", "relationship health"],
-    category: "AI Dating & Relationship Tools",
-    rating: 4.3,
-    totalVotes: 1654
-  },
+  // Removed: Relate - relate.com is not an AI relationship counseling platform (UK charity / unrelated meeting tool)
   // Removed: Nomi.ai, Romantic AI, Candy AI, Couple.me - adult/erotica tools not aligned with values
   // Removed: Lover AI - fake/non-existent tool
   {
@@ -134,7 +122,7 @@ export const aiDatingRelationshipTools: Tool[] = [
     description: "24/7 AI relationship coach providing instant personalized advice on dating, communication, and relationship growth.",
     emoji: "💡",
     color: "from-amber-500 to-orange-600",
-    directUrl: "https://apps.apple.com/app/amoriq-ai-relationship-advice/id6677054758/?via=aiwebtools",
+    directUrl: "https://amoriq.app/?via=aiwebtools",
     imageUrl: amoriqHero,
     tags: ["relationship coach", "dating advice", "communication", "AI counselor", "love advisor"],
     category: "AI Dating & Relationship Tools",

@@ -1,10 +1,9 @@
 import { Tool } from "@/types/tools";
-import { Package, Truck, Ship, MapPin, TrendingUp, Route } from "lucide-react";
+import { Package, Truck, Ship, MapPin, Route } from "lucide-react";
 import shipbobHero from "@/assets/tools/shipbob-hero.jpg";
 import flexportHero from "@/assets/tools/flexport-hero.jpg";
 import fourkitesHero from "@/assets/tools/fourkites-hero.jpg";
 import project44Hero from "@/assets/tools/project44-hero.jpg";
-import clearmetalHero from "@/assets/tools/clearmetal-hero.jpg";
 import locusHero from "@/assets/tools/locus-hero.jpg";
 
 export const aiLogisticsSupplyChainTools: Tool[] = [
@@ -60,19 +59,7 @@ export const aiLogisticsSupplyChainTools: Tool[] = [
     rating: 4.7,
     totalVotes: 10234
   },
-  {
-    icon: TrendingUp,
-    title: "ClearMetal",
-    description: "AI-powered supply chain optimization with predictive analytics, demand forecasting, and intelligent routing. Reduce costs and improve delivery performance.",
-    emoji: "📈",
-    color: "from-orange-500 to-red-600",
-    directUrl: "https://www.clearmetal.com/?via=aiwebtools",
-    imageUrl: clearmetalHero,
-    tags: ["supply chain optimization", "demand forecasting", "predictive analytics", "intelligent routing", "cost reduction", "logistics AI"],
-    category: "AI Logistics & Supply Chain",
-    rating: 4.5,
-    totalVotes: 6789
-  },
+  // Removed: ClearMetal - acquired by project44 in 2019, website no longer exists
   {
     icon: Route,
     title: "Locus",
