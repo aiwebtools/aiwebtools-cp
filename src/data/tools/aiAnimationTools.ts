@@ -62,7 +62,7 @@ export const aiAnimationTools: Tool[] = [
     description: "AI-powered human motion capture from 2D video without sensors, perfect for animators and game developers needing quick mocap.",
     emoji: "🎥",
     color: "from-orange-500 to-red-600",
-    directUrl: "https://www.movmi.ai/?via=aiwebtools",
+    directUrl: "https://movmi.co/?via=aiwebtools",
     imageUrl: movmiHero,
     tags: ["2D to 3D", "sensorless mocap", "human motion", "game animation", "quick mocap", "Motion Capture", "Animation"],
     category: "AI Animation Tools",

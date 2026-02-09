@@ -27,7 +27,7 @@ export const aiTranslationTools: Tool[] = [
     description: "Free AI-powered translation service supporting 130+ languages. Translate text, documents, websites, and speech with neural machine translation technology.",
     emoji: "🗺️",
     color: "from-green-500 to-emerald-600",
-    directUrl: "https://translate.google.com/?via=aiwebtools",
+    directUrl: "https://translate.google.com/",
     imageUrl: googleTranslateHero,
     tags: ["translation", "multilingual", "speech translation", "document translation", "free", "language AI", "Google", "translator", "ai translate", "language translator", "translate text"],
     category: "AI Translation & Localization",

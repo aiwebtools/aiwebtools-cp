@@ -3,7 +3,6 @@ import { Tool } from "@/types/tools";
 import { 
   Mic, 
   MessageCircle, 
-  Home, 
   Smartphone, 
   Bot,
   Volume2
@@ -33,7 +32,7 @@ export const aiVoiceAssistantTools: Tool[] = [
     description: "Conversational AI assistant integrated across Google devices and services with contextual understanding and smart home integration.",
     emoji: "💬",
     color: "from-green-500 to-teal-600",
-    directUrl: "https://assistant.google.com/?via=aiwebtools",
+    directUrl: "https://assistant.google.com/",
     imageUrl: googleAssistantHero,
     tags: ["Voice Agent", "Conversational Agent", "conversational AI", "Google integration", "smart home", "contextual understanding", "multi-device", "agent"],
     category: "AI Voice Assistant Tools",
@@ -79,17 +78,5 @@ export const aiVoiceAssistantTools: Tool[] = [
     rating: 4.6,
     totalVotes: 4567
   },
-  {
-    icon: Home,
-    title: "Mycroft AI",
-    description: "Open-source voice assistant platform providing privacy-focused, customizable AI assistant technology for developers and enthusiasts.",
-    emoji: "🏠",
-    color: "from-indigo-500 to-purple-600",
-    directUrl: "https://mycroft.ai/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/mycroft-ai-hero.png",
-    tags: ["Voice Agent", "open source", "privacy-focused", "customizable", "developer platform", "voice AI", "agent"],
-    category: "AI Voice Assistant Tools",
-    rating: 4.3,
-    totalVotes: 2345
-  }
+  // Removed: Mycroft AI - company shut down, out of funds, no longer operational
 ];
