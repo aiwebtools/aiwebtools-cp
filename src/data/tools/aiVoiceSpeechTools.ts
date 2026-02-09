@@ -1,6 +1,13 @@
 import { Tool } from "@/types/tools";
 import { Mic, Volume2, Radio, Sparkles, Headphones, Music } from "lucide-react";
 
+import resembleAiHero from "@/assets/tools/resemble-ai-hero.jpg";
+import wellsaidLabsHero from "@/assets/tools/wellsaid-labs-hero.jpg";
+import murfAiHero from "@/assets/tools/murf-ai-hero.jpg";
+import lovoHero from "@/assets/tools/lovo-hero.jpg";
+import playHtHero from "@/assets/tools/play-ht-hero.jpg";
+import speechifyHero from "@/assets/tools/speechify-hero.jpg";
+
 export const aiVoiceSpeechTools: Tool[] = [
   {
     icon: Mic,
@@ -9,6 +16,7 @@ export const aiVoiceSpeechTools: Tool[] = [
     emoji: "🎤",
     color: "from-purple-500 to-indigo-600",
     directUrl: "https://www.resemble.ai/?via=aiwebtools",
+    imageUrl: resembleAiHero,
     tags: ["Voice Cloning", "Text-to-Speech", "voice cloning", "AI voices", "custom voices", "speech synthesis", "real-time voice"],
     category: "AI Voice & Speech",
     rating: 4.7,
@@ -21,6 +29,7 @@ export const aiVoiceSpeechTools: Tool[] = [
     emoji: "🔊",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://wellsaidlabs.com/?via=aiwebtools",
+    imageUrl: wellsaidLabsHero,
     tags: ["Text-to-Speech", "Voice Synthesis", "AI voices", "voice over", "narration", "professional voices", "studio quality"],
     category: "AI Voice & Speech",
     rating: 4.8,
@@ -33,6 +42,7 @@ export const aiVoiceSpeechTools: Tool[] = [
     emoji: "📻",
     color: "from-green-500 to-emerald-600",
     directUrl: "https://murf.ai/?via=aiwebtools",
+    imageUrl: murfAiHero,
     tags: ["Text-to-Speech", "Voice Synthesis", "AI voices", "voice over", "video narration", "realistic voices", "voice generator"],
     category: "AI Voice & Speech",
     rating: 4.7,
@@ -45,6 +55,7 @@ export const aiVoiceSpeechTools: Tool[] = [
     emoji: "🎧",
     color: "from-pink-500 to-rose-600",
     directUrl: "https://www.lovo.ai/?via=aiwebtools",
+    imageUrl: lovoHero,
     tags: ["Text-to-Speech", "Voice Synthesis", "AI voices", "multilingual", "voice generation", "audiobooks", "emotion control"],
     category: "AI Voice & Speech",
     rating: 4.6,
@@ -57,6 +68,7 @@ export const aiVoiceSpeechTools: Tool[] = [
     emoji: "✨",
     color: "from-orange-500 to-red-600",
     directUrl: "https://play.ht/?via=aiwebtools",
+    imageUrl: playHtHero,
     tags: ["Voice Cloning", "Text-to-Speech", "AI voices", "realistic speech", "multilingual", "voice generation"],
     category: "AI Voice & Speech",
     rating: 4.7,
@@ -69,6 +81,7 @@ export const aiVoiceSpeechTools: Tool[] = [
     emoji: "🌊",
     color: "from-blue-600 to-indigo-700",
     directUrl: "https://speechify.com/?via=aiwebtools",
+    imageUrl: speechifyHero,
     tags: ["Text-to-Speech", "audiobooks", "document reader", "listening app", "AI voices", "natural speech"],
     category: "AI Voice & Speech",
     rating: 4.8,

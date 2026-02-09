@@ -5,6 +5,12 @@ import {
   FileText, Briefcase, Settings, Lightbulb, Activity
 } from "lucide-react";
 
+import motionHero from "@/assets/tools/motion-hero.jpg";
+import reclaimAiHero from "@/assets/tools/reclaim-ai-hero.jpg";
+import clickupAiHero from "@/assets/tools/clickup-ai-hero.jpg";
+import notionAiHero from "@/assets/tools/notion-ai-hero.jpg";
+import clockifyAiHero from "@/assets/tools/clockify-ai-hero.jpg";
+
 export const aiProductivitySuite: Tool[] = [
   {
     icon: Zap,
@@ -13,6 +19,7 @@ export const aiProductivitySuite: Tool[] = [
     emoji: "⚡",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://usemotion.com/?via=aiwebtools",
+    imageUrl: motionHero,
     tags: ["AI scheduling", "calendar", "task management", "productivity", "automation"],
     category: "Business & Productivity",
     rating: 4.6,
@@ -25,6 +32,7 @@ export const aiProductivitySuite: Tool[] = [
     emoji: "🎯",
     color: "from-green-500 to-blue-600",
     directUrl: "https://reclaim.ai/?via=aiwebtools",
+    imageUrl: reclaimAiHero,
     tags: ["time blocking", "focus time", "calendar automation", "productivity"],
     category: "Business & Productivity",
     rating: 4.5,
@@ -37,6 +45,7 @@ export const aiProductivitySuite: Tool[] = [
     emoji: "✅",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://clickup.com/ai?via=aiwebtools",
+    imageUrl: clickupAiHero,
     tags: ["project management", "AI assistant", "task automation", "workflow"],
     category: "Business & Productivity",
     rating: 4.4,
@@ -49,6 +58,7 @@ export const aiProductivitySuite: Tool[] = [
     emoji: "💼",
     color: "from-gray-500 to-blue-600",
     directUrl: "https://www.notion.so/product/ai?via=aiwebtools",
+    imageUrl: notionAiHero,
     tags: ["Notion", "AI writing", "workspace", "content creation", "summarization"],
     category: "Business & Productivity",
     rating: 4.3,
@@ -61,6 +71,7 @@ export const aiProductivitySuite: Tool[] = [
     emoji: "📊",
     color: "from-orange-500 to-red-600",
     directUrl: "https://clockify.me/?via=aiwebtools",
+    imageUrl: clockifyAiHero,
     tags: ["time tracking", "productivity analytics", "project management", "team insights"],
     category: "Business & Productivity",
     rating: 4.2,
