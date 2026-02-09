@@ -1,5 +1,11 @@
 import { Tool } from "@/types/tools";
 import { Package, Truck, Ship, MapPin, TrendingUp, Route } from "lucide-react";
+import shipbobHero from "@/assets/tools/shipbob-hero.jpg";
+import flexportHero from "@/assets/tools/flexport-hero.jpg";
+import fourkitesHero from "@/assets/tools/fourkites-hero.jpg";
+import project44Hero from "@/assets/tools/project44-hero.jpg";
+import clearmetalHero from "@/assets/tools/clearmetal-hero.jpg";
+import locusHero from "@/assets/tools/locus-hero.jpg";
 
 export const aiLogisticsSupplyChainTools: Tool[] = [
   {
@@ -9,6 +15,7 @@ export const aiLogisticsSupplyChainTools: Tool[] = [
     emoji: "📦",
     color: "from-blue-500 to-indigo-600",
     directUrl: "https://www.shipbob.com/?via=aiwebtools",
+    imageUrl: shipbobHero,
     tags: ["fulfillment", "logistics", "inventory management", "order fulfillment", "shipping optimization", "ecommerce logistics"],
     category: "AI Logistics & Supply Chain",
     rating: 4.6,
@@ -21,6 +28,7 @@ export const aiLogisticsSupplyChainTools: Tool[] = [
     emoji: "🚢",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://www.flexport.com/?via=aiwebtools",
+    imageUrl: flexportHero,
     tags: ["freight forwarding", "customs", "global shipping", "supply chain visibility", "logistics platform", "international trade"],
     category: "AI Logistics & Supply Chain",
     rating: 4.7,
@@ -33,6 +41,7 @@ export const aiLogisticsSupplyChainTools: Tool[] = [
     emoji: "🚚",
     color: "from-green-500 to-emerald-600",
     directUrl: "https://www.fourkites.com/?via=aiwebtools",
+    imageUrl: fourkitesHero,
     tags: ["supply chain visibility", "real-time tracking", "predictive analytics", "shipment monitoring", "logistics tracking", "transportation"],
     category: "AI Logistics & Supply Chain",
     rating: 4.6,
@@ -45,6 +54,7 @@ export const aiLogisticsSupplyChainTools: Tool[] = [
     emoji: "🗺️",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://www.project44.com/?via=aiwebtools",
+    imageUrl: project44Hero,
     tags: ["supply chain visibility", "predictive ETA", "exception management", "global logistics", "shipment tracking", "real-time visibility"],
     category: "AI Logistics & Supply Chain",
     rating: 4.7,
@@ -57,6 +67,7 @@ export const aiLogisticsSupplyChainTools: Tool[] = [
     emoji: "📈",
     color: "from-orange-500 to-red-600",
     directUrl: "https://www.clearmetal.com/?via=aiwebtools",
+    imageUrl: clearmetalHero,
     tags: ["supply chain optimization", "demand forecasting", "predictive analytics", "intelligent routing", "cost reduction", "logistics AI"],
     category: "AI Logistics & Supply Chain",
     rating: 4.5,
@@ -69,6 +80,7 @@ export const aiLogisticsSupplyChainTools: Tool[] = [
     emoji: "🛣️",
     color: "from-teal-500 to-cyan-600",
     directUrl: "https://locus.sh/?via=aiwebtools",
+    imageUrl: locusHero,
     tags: ["route optimization", "last-mile delivery", "dispatch management", "delivery optimization", "logistics AI", "fleet management"],
     category: "AI Logistics & Supply Chain",
     rating: 4.6,

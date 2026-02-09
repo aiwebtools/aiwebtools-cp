@@ -14,6 +14,7 @@ import {
   Bell,
   Settings
 } from "lucide-react";
+import superhumanHero from "@/assets/tools/superhuman-hero.jpg";
 
 export const emailManagementTools: Tool[] = [
   {
@@ -23,6 +24,7 @@ export const emailManagementTools: Tool[] = [
     emoji: "⚡",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://superhuman.com/",
+    imageUrl: superhumanHero,
     tags: ["Email Agent", "email client", "inbox zero", "productivity", "AI triage", "smart scheduling", "agent"],
     category: "Email Management Tools",
     rating: 4.6,

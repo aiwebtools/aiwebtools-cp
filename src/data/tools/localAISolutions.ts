@@ -3,6 +3,7 @@ import { Tool } from "@/types/tools";
 import { 
   Cpu, Download, Brain
 } from "lucide-react";
+import ollamaHero from "@/assets/tools/ollama-hero.jpg";
 
 export const localAISolutions: Tool[] = [
   {
@@ -51,6 +52,7 @@ export const localAISolutions: Tool[] = [
     emoji: "🦙",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://ollama.com/?via=aiwebtools",
+    imageUrl: ollamaHero,
     tags: ["local AI", "local models", "LLM", "Llama", "offline AI", "privacy", "model management", "self-hosted"],
     category: "Local AI Solutions",
     rating: 4.8,
