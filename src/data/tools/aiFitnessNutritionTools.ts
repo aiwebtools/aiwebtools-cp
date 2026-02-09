@@ -9,6 +9,13 @@ import {
   TrendingUp
 } from "lucide-react";
 
+import myfitnesspalHero from "@/assets/tools/myfitnesspal-hero.jpg";
+import noomHero from "@/assets/tools/noom-hero.jpg";
+import fitbodHero from "@/assets/tools/fitbod-hero.jpg";
+import strongrFastrHero from "@/assets/tools/strongr-fastr-hero.jpg";
+import freeleticsHero from "@/assets/tools/freeletics-hero.jpg";
+import whoopHero from "@/assets/tools/whoop-hero.jpg";
+
 export const aiFitnessNutritionTools: Tool[] = [
   {
     icon: Apple,
@@ -17,6 +24,7 @@ export const aiFitnessNutritionTools: Tool[] = [
     emoji: "🍎",
     color: "from-green-500 to-blue-600",
     directUrl: "https://www.myfitnesspal.com/?via=aiwebtools",
+    imageUrl: myfitnesspalHero,
     tags: ["nutrition", "calorie tracking", "meal planning", "fitness tracking", "health"],
     category: "AI Fitness & Nutrition Tools",
     rating: 4.5,
@@ -29,6 +37,7 @@ export const aiFitnessNutritionTools: Tool[] = [
     emoji: "🎯",
     color: "from-orange-500 to-red-600",
     directUrl: "https://www.noom.com/?via=aiwebtools",
+    imageUrl: noomHero,
     tags: ["weight loss", "wellness", "coaching", "psychology", "behavior change"],
     category: "AI Fitness & Nutrition Tools",
     rating: 4.4,
@@ -41,6 +50,7 @@ export const aiFitnessNutritionTools: Tool[] = [
     emoji: "💪",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://www.fitbod.me/?via=aiwebtools",
+    imageUrl: fitbodHero,
     tags: ["workout planning", "personal training", "strength training", "fitness AI", "exercise"],
     category: "AI Fitness & Nutrition Tools",
     rating: 4.6,
@@ -53,6 +63,7 @@ export const aiFitnessNutritionTools: Tool[] = [
     emoji: "🏋️",
     color: "from-red-500 to-orange-600",
     directUrl: "https://strongrfastr.com/?via=aiwebtools",
+    imageUrl: strongrFastrHero,
     tags: ["meal planning", "workout generator", "fitness", "nutrition", "custom programs"],
     category: "AI Fitness & Nutrition Tools",
     rating: 4.3,
@@ -65,6 +76,7 @@ export const aiFitnessNutritionTools: Tool[] = [
     emoji: "❤️",
     color: "from-pink-500 to-red-600",
     directUrl: "https://www.freeletics.com/?via=aiwebtools",
+    imageUrl: freeleticsHero,
     tags: ["HIIT", "personal training", "adaptive workouts", "fitness coaching", "bodyweight training"],
     category: "AI Fitness & Nutrition Tools",
     rating: 4.5,
@@ -77,6 +89,7 @@ export const aiFitnessNutritionTools: Tool[] = [
     emoji: "📈",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://www.whoop.com/?via=aiwebtools",
+    imageUrl: whoopHero,
     tags: ["fitness tracking", "recovery", "sleep analysis", "performance optimization", "health monitoring"],
     category: "AI Fitness & Nutrition Tools",
     rating: 4.6,

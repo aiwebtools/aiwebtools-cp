@@ -9,6 +9,10 @@ import {
   Volume2
 } from "lucide-react";
 
+import amazonAlexaHero from "@/assets/tools/amazon-alexa-hero.jpg";
+import googleAssistantHero from "@/assets/tools/google-assistant-hero.jpg";
+import appleSiriHero from "@/assets/tools/apple-siri-hero.jpg";
+
 export const aiVoiceAssistantTools: Tool[] = [
   {
     icon: Volume2,
@@ -17,6 +21,7 @@ export const aiVoiceAssistantTools: Tool[] = [
     emoji: "🔊",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://developer.amazon.com/alexa?via=aiwebtools",
+    imageUrl: amazonAlexaHero,
     tags: ["Voice Agent", "voice assistant", "smart home", "skills platform", "Echo devices", "natural language", "agent"],
     category: "AI Voice Assistant Tools",
     rating: 4.5,
@@ -29,6 +34,7 @@ export const aiVoiceAssistantTools: Tool[] = [
     emoji: "💬",
     color: "from-green-500 to-teal-600",
     directUrl: "https://assistant.google.com/?via=aiwebtools",
+    imageUrl: googleAssistantHero,
     tags: ["Voice Agent", "Conversational Agent", "conversational AI", "Google integration", "smart home", "contextual understanding", "multi-device", "agent"],
     category: "AI Voice Assistant Tools",
     rating: 4.6,
@@ -41,6 +47,7 @@ export const aiVoiceAssistantTools: Tool[] = [
     emoji: "📱",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://www.apple.com/siri/?via=aiwebtools",
+    imageUrl: appleSiriHero,
     tags: ["Voice Agent", "Apple assistant", "on-device AI", "shortcuts", "iOS integration", "privacy-focused", "agent"],
     category: "AI Voice Assistant Tools",
     rating: 4.4,
