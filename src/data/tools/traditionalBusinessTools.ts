@@ -11,6 +11,16 @@ import {
   Calculator 
 } from "lucide-react";
 
+import bardeenHero from "@/assets/tools/bardeen-hero.jpg";
+import otterAiHero from "@/assets/tools/otter-ai-hero.jpg";
+import jasperAiHero from "@/assets/tools/jasper-ai-hero.jpg";
+import firefliesHero from "@/assets/tools/fireflies-hero.jpg";
+import clockwiseHero from "@/assets/tools/clockwise-hero.jpg";
+import notionAiHero from "@/assets/tools/notion-ai-hero.jpg";
+import mondayHero from "@/assets/tools/monday-hero.jpg";
+import slackAiHero from "@/assets/tools/slack-ai-hero.jpg";
+import quickbooksHero from "@/assets/tools/quickbooks-hero.jpg";
+
 export const traditionalBusinessTools: Tool[] = [
   {
     icon: Briefcase,
@@ -19,7 +29,7 @@ export const traditionalBusinessTools: Tool[] = [
     emoji: "🤖",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://www.bardeen.ai/",
-    imageUrl: "/src/assets/tools/bardeen-hero.png",
+    imageUrl: bardeenHero,
     tags: ["automation", "workflow", "productivity", "integrations"],
     category: "Business & Productivity",
     rating: 4.7,
@@ -32,7 +42,7 @@ export const traditionalBusinessTools: Tool[] = [
     emoji: "📝",
     color: "from-green-500 to-blue-600",
     directUrl: "https://otter.ai/",
-    imageUrl: "/src/assets/tools/otter-ai-hero.png",
+    imageUrl: otterAiHero,
     tags: ["transcription", "meeting notes", "summarization", "productivity"],
     category: "Business & Productivity",
     rating: 4.6,
@@ -45,7 +55,7 @@ export const traditionalBusinessTools: Tool[] = [
     emoji: "💡",
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://jasper.ai/",
-    imageUrl: "/src/assets/tools/jasper-ai-hero.png",
+    imageUrl: jasperAiHero,
     tags: ["content creation", "AI writing", "marketing copy", "blogging"],
     category: "Business & Productivity",
     rating: 4.5,
@@ -58,7 +68,7 @@ export const traditionalBusinessTools: Tool[] = [
     emoji: "💬",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://fireflies.ai/",
-    imageUrl: "/src/assets/tools/fireflies-hero.png",
+    imageUrl: firefliesHero,
     tags: ["meeting recording", "transcription", "summarization", "productivity"],
     category: "Business & Productivity",
     rating: 4.4,
@@ -71,7 +81,7 @@ export const traditionalBusinessTools: Tool[] = [
     emoji: "⏰",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://clockwise.ai/",
-    imageUrl: "/src/assets/tools/clockwise-hero.png",
+    imageUrl: clockwiseHero,
     tags: ["time management", "scheduling", "productivity", "AI optimization"],
     category: "Business & Productivity",
     rating: 4.3,
@@ -84,7 +94,7 @@ export const traditionalBusinessTools: Tool[] = [
     emoji: "📝",
     color: "from-gray-600 to-blue-600",
     directUrl: "https://notion.so/",
-    imageUrl: "/src/assets/tools/notion-ai-hero.png",
+    imageUrl: notionAiHero,
     tags: ["workspace", "collaboration", "AI writing", "productivity"],
     category: "Business & Productivity",
     rating: 4.6,
@@ -97,7 +107,7 @@ export const traditionalBusinessTools: Tool[] = [
     emoji: "📊",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://monday.com/",
-    imageUrl: "/src/assets/tools/monday-hero.png",
+    imageUrl: mondayHero,
     tags: ["project management", "team collaboration", "workflow automation", "business intelligence"],
     category: "Business & Productivity",
     rating: 4.4,
@@ -110,7 +120,7 @@ export const traditionalBusinessTools: Tool[] = [
     emoji: "💬",
     color: "from-green-500 to-blue-600",
     directUrl: "https://slack.com/",
-    imageUrl: "/src/assets/tools/slack-ai-hero.png",
+    imageUrl: slackAiHero,
     tags: ["team communication", "AI summarization", "workflow automation", "collaboration"],
     category: "Business & Productivity",
     rating: 4.3,
@@ -123,7 +133,7 @@ export const traditionalBusinessTools: Tool[] = [
     emoji: "💰",
     color: "from-blue-500 to-green-600",
     directUrl: "https://quickbooks.intuit.com/",
-    imageUrl: "/src/assets/tools/quickbooks-hero.png",
+    imageUrl: quickbooksHero,
     tags: ["accounting", "financial management", "AI automation", "business intelligence"],
     category: "Business & Productivity",
     rating: 4.2,

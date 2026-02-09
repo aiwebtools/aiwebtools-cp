@@ -10,6 +10,15 @@ import {
   Layers
 } from "lucide-react";
 
+import grammarlyHero from "@/assets/tools/grammarly-hero.jpg";
+import notionAiHero from "@/assets/tools/notion-ai-hero.jpg";
+import jasperAiHero from "@/assets/tools/jasper-ai-hero.jpg";
+import copyAiHero from "@/assets/tools/copy-ai-hero.jpg";
+import wordtuneHero from "@/assets/tools/wordtune-hero.jpg";
+import quillbotHero from "@/assets/tools/quillbot-hero.jpg";
+import writesonicHero from "@/assets/tools/writesonic-hero.jpg";
+import canvaAiHero from "@/assets/tools/canva-ai-hero.jpg";
+
 export const topProductivityWriting: Tool[] = [
   {
     icon: CheckCircle,
@@ -18,7 +27,7 @@ export const topProductivityWriting: Tool[] = [
     emoji: "✅",
     color: "from-green-500 to-teal-600",
     directUrl: "https://www.grammarly.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/grammarly-hero.png",
+    imageUrl: grammarlyHero,
     tags: ["Grammarly", "writing assistant", "grammar", "spelling", "tone", "clarity", "plagiarism", "popular", "Grammar & Editing"],
     category: "AI Writing & Productivity",
     rating: 4.8,
@@ -31,7 +40,7 @@ export const topProductivityWriting: Tool[] = [
     emoji: "📓",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://www.notion.so/product/ai?via=aiwebtools",
-    imageUrl: "/src/assets/tools/notion-ai-hero.png",
+    imageUrl: notionAiHero,
     tags: ["Notion AI", "workspace AI", "note-taking", "organization", "brainstorming", "productivity", "integrated", "Content Strategy"],
     category: "AI Writing & Productivity",
     rating: 4.7,
@@ -44,7 +53,7 @@ export const topProductivityWriting: Tool[] = [
     emoji: "✨",
     color: "from-orange-500 to-red-600",
     directUrl: "https://www.jasper.ai/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/jasper-ai-hero.png",
+    imageUrl: jasperAiHero,
     tags: ["Jasper", "marketing copy", "content creation", "enterprise", "brand voice", "team collaboration", "scale", "Blog Writing", "Copywriting", "Social Media Writing"],
     category: "AI Writing & Productivity",
     rating: 4.6,
@@ -57,7 +66,7 @@ export const topProductivityWriting: Tool[] = [
     emoji: "⚡",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://www.copy.ai/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/copy-ai-hero.png",
+    imageUrl: copyAiHero,
     tags: ["Copy.ai", "copywriting", "marketing", "sales", "templates", "ads", "small business", "Copywriting", "Email Writing", "Social Media Writing"],
     category: "AI Writing & Productivity",
     rating: 4.5,
@@ -70,7 +79,7 @@ export const topProductivityWriting: Tool[] = [
     emoji: "✍️",
     color: "from-indigo-500 to-purple-600",
     directUrl: "https://www.wordtune.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/wordtune-hero.png",
+    imageUrl: wordtuneHero,
     tags: ["Wordtune", "rewriting", "rephrasing", "clarity", "tone", "summarization", "writing improvement", "Grammar & Editing"],
     category: "AI Writing & Productivity",
     rating: 4.6,
@@ -83,7 +92,7 @@ export const topProductivityWriting: Tool[] = [
     emoji: "🖋️",
     color: "from-green-600 to-emerald-600",
     directUrl: "https://quillbot.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/quillbot-hero.png",
+    imageUrl: quillbotHero,
     tags: ["QuillBot", "paraphrasing", "summarization", "grammar", "plagiarism", "citations", "students", "Grammar & Editing", "Academic Writing"],
     category: "AI Writing & Productivity",
     rating: 4.7,
@@ -96,7 +105,7 @@ export const topProductivityWriting: Tool[] = [
     emoji: "📝",
     color: "from-pink-500 to-rose-600",
     directUrl: "https://writesonic.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/writesonic-hero.png",
+    imageUrl: writesonicHero,
     tags: ["Writesonic", "content creation", "SEO", "articles", "landing pages", "GPT-4", "brand voice", "SEO Content", "Blog Writing", "Copywriting"],
     category: "AI Writing & Productivity",
     rating: 4.5,
@@ -109,7 +118,7 @@ export const topProductivityWriting: Tool[] = [
     emoji: "🎨",
     color: "from-blue-600 to-purple-600",
     directUrl: "https://www.canva.com/ai-image-generator/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/canva-ai-hero.png",
+    imageUrl: canvaAiHero,
     tags: ["Canva", "design AI", "Magic Write", "graphics", "presentations", "marketing", "text-to-image", "Social Media Writing"],
     category: "AI Design & Productivity",
     rating: 4.8,

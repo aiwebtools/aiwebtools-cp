@@ -9,6 +9,18 @@ import {
   Coffee
 } from "lucide-react";
 
+import eharmonyHero from "@/assets/tools/eharmony-hero.jpg";
+import hingeHero from "@/assets/tools/hinge-hero.jpg";
+import coffeeMeetsBagelHero from "@/assets/tools/coffee-meets-bagel-hero.jpg";
+import keeperHero from "@/assets/tools/keeper-hero.jpg";
+import rizzAiHero from "@/assets/tools/rizz-ai-hero.jpg";
+import relateHero from "@/assets/tools/relate-hero.jpg";
+import replikaHero from "@/assets/tools/replika-hero.jpg";
+import maiaHero from "@/assets/tools/maia-hero.jpg";
+import amoriqHero from "@/assets/tools/amoriq-hero.jpg";
+import doloresHero from "@/assets/tools/dolores-hero.jpg";
+import flammeHero from "@/assets/tools/flamme-hero.jpg";
+
 export const aiDatingRelationshipTools: Tool[] = [
   {
     icon: Heart,
@@ -17,7 +29,7 @@ export const aiDatingRelationshipTools: Tool[] = [
     emoji: "💕",
     color: "from-pink-500 to-red-600",
     directUrl: "https://www.eharmony.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/eharmony-hero.png",
+    imageUrl: eharmonyHero,
     tags: ["dating", "matchmaking", "compatibility", "relationships", "AI matching"],
     category: "AI Dating & Relationship Tools",
     rating: 4.3,
@@ -30,7 +42,7 @@ export const aiDatingRelationshipTools: Tool[] = [
     emoji: "✨",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://hinge.co/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/hinge-hero.png",
+    imageUrl: hingeHero,
     tags: ["dating", "AI matching", "prompts", "relationships", "meaningful connections"],
     category: "AI Dating & Relationship Tools",
     rating: 4.4,
@@ -43,7 +55,7 @@ export const aiDatingRelationshipTools: Tool[] = [
     emoji: "☕",
     color: "from-amber-500 to-orange-600",
     directUrl: "https://coffeemeetsbagel.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/coffee-meets-bagel-hero.png",
+    imageUrl: coffeeMeetsBagelHero,
     tags: ["dating", "curated matches", "daily matches", "AI recommendations", "quality dating"],
     category: "AI Dating & Relationship Tools",
     rating: 4.2,
@@ -56,7 +68,7 @@ export const aiDatingRelationshipTools: Tool[] = [
     emoji: "💍",
     color: "from-red-500 to-pink-600",
     directUrl: "https://keeper.ai/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/keeper-hero.png",
+    imageUrl: keeperHero,
     tags: ["matchmaking", "marriage", "serious relationships", "AI matching", "relationship coaching"],
     category: "AI Dating & Relationship Tools",
     rating: 4.5,
@@ -69,7 +81,7 @@ export const aiDatingRelationshipTools: Tool[] = [
     emoji: "💬",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://rizzai.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/rizz-ai-hero.png",
+    imageUrl: rizzAiHero,
     tags: ["dating assistant", "conversation AI", "message suggestions", "dating tips", "chat help"],
     category: "AI Dating & Relationship Tools",
     rating: 4.1,
@@ -82,13 +94,14 @@ export const aiDatingRelationshipTools: Tool[] = [
     emoji: "🤝",
     color: "from-teal-500 to-green-600",
     directUrl: "https://www.relate.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/relate-hero.png",
+    imageUrl: relateHero,
     tags: ["relationship advice", "counseling", "couples therapy", "AI guidance", "relationship health"],
     category: "AI Dating & Relationship Tools",
     rating: 4.3,
     totalVotes: 1654
   },
   // Removed: Nomi.ai, Romantic AI, Candy AI, Couple.me - adult/erotica tools not aligned with values
+  // Removed: Lover AI - fake/non-existent tool
   {
     icon: MessageCircle,
     title: "Replika",
@@ -96,7 +109,7 @@ export const aiDatingRelationshipTools: Tool[] = [
     emoji: "🤖",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://replika.ai/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/replika-hero.png",
+    imageUrl: replikaHero,
     tags: ["AI companion", "emotional support", "conversation", "mental wellness", "virtual friend"],
     category: "AI Dating & Relationship Tools",
     rating: 4.4,
@@ -109,7 +122,7 @@ export const aiDatingRelationshipTools: Tool[] = [
     emoji: "💑",
     color: "from-emerald-500 to-teal-600",
     directUrl: "https://www.ourmaia.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/maia-hero.png",
+    imageUrl: maiaHero,
     tags: ["couples app", "relationship healing", "stay together", "AI counseling", "relationship health"],
     category: "AI Dating & Relationship Tools",
     rating: 4.6,
@@ -122,7 +135,7 @@ export const aiDatingRelationshipTools: Tool[] = [
     emoji: "💡",
     color: "from-amber-500 to-orange-600",
     directUrl: "https://apps.apple.com/app/amoriq-ai-relationship-advice/id6677054758/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/amoriq-hero.png",
+    imageUrl: amoriqHero,
     tags: ["relationship coach", "dating advice", "communication", "AI counselor", "love advisor"],
     category: "AI Dating & Relationship Tools",
     rating: 4.4,
@@ -135,24 +148,11 @@ export const aiDatingRelationshipTools: Tool[] = [
     emoji: "🌸",
     color: "from-purple-500 to-indigo-600",
     directUrl: "https://dolores.app/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/dolores-hero.png",
+    imageUrl: doloresHero,
     tags: ["AI companion", "evolving personality", "chat history", "virtual friend", "generative agent"],
     category: "AI Dating & Relationship Tools",
     rating: 4.3,
     totalVotes: 2123
-  },
-  {
-    icon: Heart,
-    title: "Lover AI",
-    description: "24/7 text and voice AI companionship with realistic conversations from personas who listen and care.",
-    emoji: "💋",
-    color: "from-red-500 to-rose-600",
-    directUrl: "https://loverai.fun/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/lover-ai-hero.png",
-    tags: ["voice chat", "AI companion", "text chat", "emotional support", "always available"],
-    category: "AI Dating & Relationship Tools",
-    rating: 4.2,
-    totalVotes: 1876
   },
   {
     icon: HeartHandshake,
@@ -161,7 +161,7 @@ export const aiDatingRelationshipTools: Tool[] = [
     emoji: "🔥",
     color: "from-orange-500 to-red-600",
     directUrl: "https://www.flamme.app/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/flamme-hero.png",
+    imageUrl: flammeHero,
     tags: ["couples app", "relationship games", "daily questions", "connection building", "relationship growth"],
     category: "AI Dating & Relationship Tools",
     rating: 4.5,
