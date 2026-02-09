@@ -521,5 +521,19 @@ export const aiAgents2025: Tool[] = [
     category: "AI Agents",
     rating: 4.6,
     totalVotes: 590
+  },
+  {
+    icon: Bot,
+    title: "ZO Computer Agent",
+    description: "ZO Computer Agent works for you 24/7 — scheduling meetings, clearing your inbox, and building apps and automations in minutes. Your tireless AI employee that never sleeps.",
+    emoji: "🤖",
+    color: "from-blue-500 to-indigo-600",
+    directUrl: "https://www.zo.computer/?via=aiwebtools",
+    imageUrl: "/src/assets/zo-computer-agent-hero.jpg",
+    tags: ["AI Agents", "Automation Agent", "Web Tasks Agent", "Scheduling", "Email Management", "App Builder", "Productivity", "24/7 Assistant", "inbox", "meetings", "automations"],
+    category: "AI Agents",
+    rating: 4.8,
+    totalVotes: 920,
+    tagline: "Your AI employee that works 24/7 building apps and clearing your inbox"
   }
 ];
