@@ -8,6 +8,11 @@ import {
   Sparkles,
   Network
 } from "lucide-react";
+import memHero from "@/assets/tools/mem-hero.jpg";
+import reflectHero from "@/assets/tools/reflect-hero.jpg";
+import obsidianHero from "@/assets/tools/obsidian-hero.jpg";
+import craftHero from "@/assets/tools/craft-hero.jpg";
+import roamResearchHero from "@/assets/tools/roam-research-hero.jpg";
 
 export const aiNoteTakingTools: Tool[] = [
   {
@@ -30,6 +35,7 @@ export const aiNoteTakingTools: Tool[] = [
     emoji: "🧠",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://mem.ai/?via=aiwebtools",
+    imageUrl: memHero,
     tags: ["self-organizing", "AI search", "contextual", "automatic connections", "knowledge management"],
     category: "AI Note-Taking Tools",
     rating: 4.5,
@@ -42,6 +48,7 @@ export const aiNoteTakingTools: Tool[] = [
     emoji: "✨",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://reflect.app/?via=aiwebtools",
+    imageUrl: reflectHero,
     tags: ["networked notes", "backlinking", "encryption", "AI assistant", "privacy"],
     category: "AI Note-Taking Tools",
     rating: 4.6,
@@ -54,6 +61,7 @@ export const aiNoteTakingTools: Tool[] = [
     emoji: "🔮",
     color: "from-purple-600 to-pink-600",
     directUrl: "https://obsidian.md/?via=aiwebtools",
+    imageUrl: obsidianHero,
     tags: ["local-first", "markdown", "plugins", "knowledge graph", "privacy", "extensible"],
     category: "AI Note-Taking Tools",
     rating: 4.7,
@@ -66,6 +74,7 @@ export const aiNoteTakingTools: Tool[] = [
     emoji: "⚡",
     color: "from-orange-500 to-red-600",
     directUrl: "https://www.craft.do/?via=aiwebtools",
+    imageUrl: craftHero,
     tags: ["native app", "AI templates", "collaboration", "beautiful design", "cross-platform"],
     category: "AI Note-Taking Tools",
     rating: 4.5,
@@ -78,6 +87,7 @@ export const aiNoteTakingTools: Tool[] = [
     emoji: "🕸️",
     color: "from-green-500 to-teal-600",
     directUrl: "https://roamresearch.com/?via=aiwebtools",
+    imageUrl: roamResearchHero,
     tags: ["knowledge graph", "bidirectional linking", "networked thinking", "graph view", "Zettelkasten"],
     category: "AI Note-Taking Tools",
     rating: 4.4,

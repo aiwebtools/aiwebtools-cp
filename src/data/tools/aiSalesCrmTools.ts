@@ -1,5 +1,8 @@
 import { Tool } from "@/types/tools";
 import { TrendingUp, Users, Phone, MessageSquare, Target, BarChart3 } from "lucide-react";
+import hubspotAiHero from "@/assets/tools/hubspot-ai-hero.jpg";
+import clariHero from "@/assets/tools/clari-hero.jpg";
+import pipedriveHero from "@/assets/tools/pipedrive-hero.jpg";
 
 export const aiSalesCrmTools: Tool[] = [
   {
@@ -22,6 +25,7 @@ export const aiSalesCrmTools: Tool[] = [
     emoji: "🧲",
     color: "from-orange-500 to-red-600",
     directUrl: "https://www.hubspot.com/?via=aiwebtools",
+    imageUrl: hubspotAiHero,
     tags: ["CRM", "marketing automation", "sales automation", "lead scoring", "inbound marketing", "AI insights", "Sales Agent", "agent", "CRM", "Marketing", "Sales"],
     category: "AI Sales & CRM",
     rating: 4.7,
@@ -70,6 +74,7 @@ export const aiSalesCrmTools: Tool[] = [
     emoji: "📊",
     color: "from-teal-500 to-cyan-600",
     directUrl: "https://www.clari.com/?via=aiwebtools",
+    imageUrl: clariHero,
     tags: ["revenue operations", "sales forecasting", "pipeline management", "deal tracking", "AI predictions", "sales analytics", "Sales Agent", "agent", "Sales", "Analytics & Reporting", "Business Intelligence"],
     category: "AI Sales & CRM",
     rating: 4.7,
@@ -82,6 +87,7 @@ export const aiSalesCrmTools: Tool[] = [
     emoji: "🔄",
     color: "from-green-600 to-teal-700",
     directUrl: "https://www.pipedrive.com/?via=aiwebtools",
+    imageUrl: pipedriveHero,
     tags: ["CRM", "pipeline management", "sales automation", "AI assistant", "contact management", "visual sales", "Sales Agent", "agent", "CRM", "Sales"],
     category: "AI Sales & CRM",
     rating: 4.6,
