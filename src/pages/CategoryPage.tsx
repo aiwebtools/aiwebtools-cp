@@ -135,7 +135,7 @@ const CategoryPage = () => {
   return (
     <div className="min-h-screen bg-black relative overflow-x-hidden">
       <SEOHead
-        title={`${standardizedCategory} AI Tools - Best ${standardizedCategory} Tools 2025`}
+        title={`${standardizedCategory} AI Tools - Best ${standardizedCategory} Tools 2026`}
         description={`Discover ${categoryTools.length} premium ${standardizedCategory.toLowerCase()} AI tools. Find the best artificial intelligence solutions for ${standardizedCategory.toLowerCase()} tasks and workflows.`}
         keywords={[
           `${standardizedCategory.toLowerCase()} ai tools`,
@@ -144,7 +144,7 @@ const CategoryPage = () => {
           `ai ${standardizedCategory.toLowerCase()} software`,
           "ai tools directory",
           "artificial intelligence tools",
-          "ai tools 2025"
+          "ai tools 2026"
         ]}
         url={`/category/${encodeURIComponent(standardizedCategory)}`}
         structuredData={categoryStructuredData}

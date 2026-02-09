@@ -1,6 +1,6 @@
 
 # Enhanced Robots.txt for Maximum SEO Performance and #1 Ranking
-# AI WEB TOOLS - Best AI Tools Directory 2025
+# AI WEB TOOLS - Best AI Tools Directory 2026
 # Optimized for "aiwebtools.ai" and "ai web tools" keywords
 
 User-agent: *

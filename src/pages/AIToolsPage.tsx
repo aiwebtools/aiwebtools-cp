@@ -15,7 +15,7 @@ const AIToolsPage = () => {
   const itemListSchema = {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    "name": "AI Tools Directory - Complete List of AI Tools 2025",
+    "name": "AI Tools Directory - Complete List of AI Tools 2026",
     "description": `Comprehensive directory of ${toolCount}+ AI tools for productivity, creativity, business, and more.`,
     "numberOfItems": toolCount,
     "itemListElement": allTools.slice(0, 100).map((tool, index) => ({
@@ -57,10 +57,10 @@ const AIToolsPage = () => {
       },
       {
         "@type": "Question",
-        "name": "What are the best AI tools in 2025?",
+        "name": "What are the best AI tools in 2026?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "The best AI tools in 2025 include ChatGPT for conversational AI, Midjourney for image generation, Claude for advanced reasoning, and many specialized tools for specific industries. Our directory helps you discover and compare them all."
+          "text": "The best AI tools in 2026 include ChatGPT for conversational AI, Midjourney for image generation, Claude for advanced reasoning, and many specialized tools for specific industries. Our directory helps you discover and compare them all."
         }
       }
     ]
@@ -69,19 +69,19 @@ const AIToolsPage = () => {
   return (
     <>
       <Helmet>
-        <title>AI Tools - Complete Directory of {toolCount}+ Best AI Tools 2025 | Free AI Tools Database</title>
+        <title>AI Tools - Complete Directory of {toolCount}+ Best AI Tools 2026 | Free AI Tools Database</title>
         <meta name="description" content={`Discover ${toolCount}+ AI tools in our comprehensive AI tools directory. Find the best AI tools for writing, design, coding, business, and productivity. Free AI tools database updated daily.`} />
-        <meta name="keywords" content="AI tools, ai tools, artificial intelligence tools, best AI tools, free AI tools, AI tools directory, AI tools 2025, AI software, AI applications, machine learning tools, AI productivity tools, AI business tools, AI writing tools, AI design tools, AI coding tools" />
+        <meta name="keywords" content="AI tools, ai tools, artificial intelligence tools, best AI tools, free AI tools, AI tools directory, AI tools 2026, AI software, AI applications, machine learning tools, AI productivity tools, AI business tools, AI writing tools, AI design tools, AI coding tools" />
         <link rel="canonical" href="https://aitools.studio/ai-tools" />
         
         {/* Open Graph */}
-        <meta property="og:title" content={`AI Tools - ${toolCount}+ Best AI Tools Directory 2025`} />
+        <meta property="og:title" content={`AI Tools - ${toolCount}+ Best AI Tools Directory 2026`} />
         <meta property="og:description" content={`Complete directory of ${toolCount}+ AI tools. Find the best AI tools for any task - writing, design, coding, business & more.`} />
         <meta property="og:url" content="https://aitools.studio/ai-tools" />
         <meta property="og:type" content="website" />
         
         {/* Twitter */}
-        <meta name="twitter:title" content={`AI Tools - ${toolCount}+ Best AI Tools Directory 2025`} />
+        <meta name="twitter:title" content={`AI Tools - ${toolCount}+ Best AI Tools Directory 2026`} />
         <meta name="twitter:description" content={`Complete directory of ${toolCount}+ AI tools. Find the best AI tools for any task.`} />
         
         {/* Structured Data */}
@@ -209,9 +209,9 @@ const AIToolsPage = () => {
               </div>
               
               <div className="bg-card border border-border/50 rounded-lg p-6">
-                <h3 className="text-lg font-semibold mb-2">What are the best AI tools in 2025?</h3>
+                <h3 className="text-lg font-semibold mb-2">What are the best AI tools in 2026?</h3>
                 <p className="text-muted-foreground">
-                  The best AI tools in 2025 include ChatGPT for conversational AI, Midjourney for image generation, 
+                  The best AI tools in 2026 include ChatGPT for conversational AI, Midjourney for image generation, 
                   Claude for advanced reasoning, Runway for video AI, and many specialized tools for specific industries. 
                   Our directory helps you discover and compare them all.
                 </p>

@@ -87,10 +87,10 @@ export const generateEnhancedSitemap = () => {
       sitemap += `    <video:video>
       <video:thumbnail_loc>${tool.imageUrl || `${baseUrl}/placeholder.svg`}</video:thumbnail_loc>
       <video:title>${tool.title} Demo - Complete AI Tool Review | AI WEB TOOLS</video:title>
-      <video:description>Complete guide and review of ${tool.title} - ${tool.description} | Best AI Tools 2025</video:description>
+      <video:description>Complete guide and review of ${tool.title} - ${tool.description} | Best AI Tools 2026</video:description>
       <video:content_loc>${tool.videoUrl}</video:content_loc>
       <video:category>${tool.category}</video:category>
-      <video:tag>AI tool, ${tool.tags?.join(', ') || tool.category}, best AI tools 2025, ${tool.title} review</video:tag>
+      <video:tag>AI tool, ${tool.tags?.join(', ') || tool.category}, best AI tools 2026, ${tool.title} review</video:tag>
       <video:family_friendly>yes</video:family_friendly>
       <video:duration>300</video:duration>
       <video:publication_date>${currentDate}</video:publication_date>
@@ -105,7 +105,7 @@ export const generateEnhancedSitemap = () => {
   // High-priority competitive search terms for ranking against Toolify and competitors
   const competitiveSearchTerms = [
     // Primary competitive terms
-    'AI WEB TOOLS', 'best ai tools 2025', 'ai tools directory', 'comprehensive ai tools',
+    'AI WEB TOOLS', 'best ai tools 2026', 'ai tools directory', 'comprehensive ai tools',
     'verified ai tools', 'toolify alternative', 'better than toolify', 'complete ai tools list',
     
     // High-volume AI terms
@@ -126,13 +126,13 @@ export const generateEnhancedSitemap = () => {
     'top ai tools ranking', 'professional ai tools', 'free ai tools directory',
     
     // Trending AI concepts
-    'ai agents 2025', 'multimodal ai tools', 'generative ai tools', 'ai workflow automation',
+    'ai agents 2026', 'multimodal ai tools', 'generative ai tools', 'ai workflow automation',
     'artificial intelligence directory', 'ai tools marketplace', 'curated ai tools'
   ];
 
   competitiveSearchTerms.forEach(term => {
     const searchUrl = `${baseUrl}/?search=${encodeURIComponent(term)}`;
-    const isHighVolume = ['AI WEB TOOLS', 'best ai tools 2025', 'chatgpt alternatives', 'ai tools directory'].includes(term);
+    const isHighVolume = ['AI WEB TOOLS', 'best ai tools 2026', 'chatgpt alternatives', 'ai tools directory'].includes(term);
     const priority = isHighVolume ? priorities.highVolumeSearch : priorities.search;
     
     sitemap += `  <url>

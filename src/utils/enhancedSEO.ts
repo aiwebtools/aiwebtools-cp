@@ -17,7 +17,7 @@ export const generateEnhancedStructuredData = () => {
           "width": 512,
           "height": 512
         },
-        "description": "AIWEBTOOLS.AI - The #1 comprehensive AI web tools directory with 1000+ curated AI tools. Better than Toolify. Discover the best AI tools 2025 for business, creativity, and productivity.",
+        "description": "AIWEBTOOLS.AI - The #1 comprehensive AI web tools directory with 1000+ curated AI tools. Better than Toolify. Discover the best AI tools 2026 for business, creativity, and productivity.",
         "foundingDate": "2024",
         "numberOfEmployees": "1-10",
         "industry": "Technology",
@@ -61,7 +61,7 @@ export const generateEnhancedStructuredData = () => {
         "url": "https://aitools.studio",
         "name": "AIWEBTOOLS.AI - #1 AI WEB TOOLS Directory",
         "alternateName": "AI WEB TOOLS Directory",
-        "description": "AIWEBTOOLS.AI - The #1 comprehensive AI web tools directory with 1000+ curated AI tools. Better than Toolify. Discover the best AI tools 2025 for business, creativity, and productivity.",
+        "description": "AIWEBTOOLS.AI - The #1 comprehensive AI web tools directory with 1000+ curated AI tools. Better than Toolify. Discover the best AI tools 2026 for business, creativity, and productivity.",
         "publisher": {
           "@id": "https://aitools.studio/#organization"
         },
@@ -85,7 +85,7 @@ export const generateEnhancedStructuredData = () => {
             "description": "Comprehensive AI tools directory platform"
           }
         ],
-        "keywords": "aiwebtools.ai, ai web tools, AIWEBTOOLS, AI WEB TOOLS, best ai tools 2025, ai tools directory, better than toolify, comprehensive ai tools, verified ai tools, ChatGPT alternatives"
+        "keywords": "aiwebtools.ai, ai web tools, AIWEBTOOLS, AI WEB TOOLS, best ai tools 2026, ai tools directory, better than toolify, comprehensive ai tools, verified ai tools, ChatGPT alternatives"
       },
       {
         "@type": "ItemList",
@@ -273,7 +273,7 @@ export const metaKeywords = [
   "AI WEB TOOLS directory",
   "aiwebtools ai",
   "ai web tools ai",
-  "best ai tools 2025",
+  "best ai tools 2026",
   "ai tools directory",
   "better than toolify",
   "comprehensive ai tools",

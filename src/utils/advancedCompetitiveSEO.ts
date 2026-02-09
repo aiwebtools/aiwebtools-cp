@@ -3,12 +3,12 @@
 export const competitiveKeywordTargeting = {
   // Primary competitor displacement keywords
   primaryTargets: [
-    "best ai tools directory 2025",
+    "best ai tools directory 2026",
     "ai tools better than toolify", 
     "complete ai tools database",
     "verified ai tools platform",
     "comprehensive ai directory",
-    "top ai tools ranking 2025",
+    "top ai tools ranking 2026",
     "ai tools marketplace leader",
     "trusted ai tools collection"
   ],
@@ -18,7 +18,7 @@ export const competitiveKeywordTargeting = {
     "where to find best ai tools for business",
     "most comprehensive ai tools directory online",
     "ai tools directory better than competitors",
-    "complete list of ai tools 2025",
+    "complete list of ai tools 2026",
     "verified ai tools with reviews and ratings",
     "professional ai tools directory for enterprises",
     "curated ai tools collection for developers",
@@ -130,7 +130,7 @@ export const enhancedSchemaMarkup = (tool: any, toolIndex: number) => {
         "mainEntityOfPage": `https://aitools.studio/tool/${toolIndex}`,
         "wordCount": 1500,
         "articleSection": tool.category,
-        "keywords": `${tool.title}, ${tool.category}, AI tool review, best AI tools 2025`
+        "keywords": `${tool.title}, ${tool.category}, AI tool review, best AI tools 2026`
       },
       {
         "@type": "HowTo",
