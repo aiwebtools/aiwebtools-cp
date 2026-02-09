@@ -99,7 +99,7 @@ const EnhancedSEOHead = ({
       <meta name="classification" content="Technology, AI Tools, Software Directory" />
       <meta name="designer" content="AI WEB TOOLS LLC" />
       <meta name="owner" content="AI WEB TOOLS LLC" />
-      <meta name="copyright" content="© 2025 AI WEB TOOLS LLC. All rights reserved." />
+      <meta name="copyright" content="© 2026 AI WEB TOOLS LLC. All rights reserved." />
       <meta name="language" content="English" />
       <meta name="coverage" content="Worldwide" />
       <meta name="distribution" content="Global" />

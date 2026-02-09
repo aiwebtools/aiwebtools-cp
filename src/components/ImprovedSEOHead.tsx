@@ -246,7 +246,7 @@ const ImprovedSEOHead: React.FC<ImprovedSEOHeadProps> = ({
       {/* Additional SEO Meta */}
       <meta name="author" content="AI Web Tools" />
       <meta name="publisher" content="AI Web Tools" />
-      <meta name="copyright" content="© 2025 AI Web Tools. All rights reserved." />
+      <meta name="copyright" content="© 2026 AI Web Tools. All rights reserved." />
       <meta name="language" content="English" />
       <meta name="revisit-after" content="1 day" />
       <meta name="distribution" content="global" />

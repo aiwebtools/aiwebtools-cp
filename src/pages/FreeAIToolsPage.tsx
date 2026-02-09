@@ -17,7 +17,7 @@ const FreeAIToolsPage = () => {
   const itemListSchema = {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    "name": "Free AI Tools - No Cost AI Tools Directory 2025",
+    "name": "Free AI Tools - No Cost AI Tools Directory 2026",
     "description": `Collection of ${freeTools.length}+ completely free AI tools for writing, design, productivity, and more.`,
     "numberOfItems": freeTools.length,
     "itemListElement": freeTools.slice(0, 50).map((tool, index) => ({
@@ -32,9 +32,9 @@ const FreeAIToolsPage = () => {
   return (
     <>
       <Helmet>
-        <title>Free AI Tools - {freeTools.length}+ No-Cost AI Tools | 100% Free AI Tools Directory 2025</title>
+        <title>Free AI Tools - {freeTools.length}+ No-Cost AI Tools | 100% Free AI Tools Directory 2026</title>
         <meta name="description" content={`Discover ${freeTools.length}+ completely free AI tools. No signup, no credit card, no hidden costs. Free AI tools for writing, design, coding, and productivity.`} />
-        <meta name="keywords" content="free AI tools, free AI, no cost AI tools, free artificial intelligence, free AI software, free AI apps, free chatgpt, free AI writing tools, free AI image generator, free AI tools 2025, AI tools without payment" />
+        <meta name="keywords" content="free AI tools, free AI, no cost AI tools, free artificial intelligence, free AI software, free AI apps, free chatgpt, free AI writing tools, free AI image generator, free AI tools 2026, AI tools without payment" />
         <link rel="canonical" href="https://aitools.studio/free-ai-tools" />
         
         <meta property="og:title" content={`Free AI Tools - ${freeTools.length}+ No-Cost AI Tools`} />

@@ -18,7 +18,7 @@ export const competitiveAdvantage = {
     "better than futurepedia", 
     "toolify alternative",
     "futurepedia alternative",
-    "best ai tools directory 2025",
+    "best ai tools directory 2026",
     "most comprehensive ai directory",
     "verified ai tools platform",
     "trusted ai tools collection"
@@ -26,7 +26,7 @@ export const competitiveAdvantage = {
 
   // Volume-driven keywords for traffic capture
   highVolumeTargets: [
-    "best ai tools 2025",
+    "best ai tools 2026",
     "free ai tools",
     "ai tools for business",
     "chatgpt alternatives",
@@ -39,7 +39,7 @@ export const competitiveAdvantage = {
   // Long-tail conversion keywords
   conversionFocused: [
     "where to find best ai tools",
-    "complete list of ai tools 2025",
+    "complete list of ai tools 2026",
     "professional ai tools directory",
     "enterprise ai solutions",
     "ai tools with reviews and ratings",
