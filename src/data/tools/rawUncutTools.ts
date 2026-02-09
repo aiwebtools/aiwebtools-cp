@@ -2,6 +2,17 @@
 import { Tool } from "@/types/tools";
 import { Zap, Eye, Brain, Target, Shield, Flame, Diamond, Crown, Star, Sparkles } from "lucide-react";
 
+import unfilteredTruthHero from "@/assets/tools/unfiltered-truth-teller-hero.jpg";
+import realityCheckHero from "@/assets/tools/reality-check-analyst-hero.jpg";
+import contrarianHero from "@/assets/tools/contrarian-thinker-hero.jpg";
+import straightShooterHero from "@/assets/tools/straight-shooter-hero.jpg";
+import ethicsJudgeHero from "@/assets/tools/ethics-judge-hero.jpg";
+import rawDataHero from "@/assets/tools/raw-data-interpreter-hero.jpg";
+import harshCoachHero from "@/assets/tools/harsh-life-coach-hero.jpg";
+import unpolishedGeniusHero from "@/assets/tools/unpolished-genius-hero.jpg";
+import uncomfortableQuestionsHero from "@/assets/tools/uncomfortable-questions-hero.jpg";
+import zeroFilterHero from "@/assets/tools/zero-filter-consultant-hero.jpg";
+
 export const rawUncutTools: Tool[] = [
   {
     icon: Flame,
@@ -10,6 +21,7 @@ export const rawUncutTools: Tool[] = [
     emoji: "🔥",
     color: "from-red-500 to-orange-600",
     directUrl: "https://unfilteredtruthgpt.lovable.app/?via=aiwebtools",
+    imageUrl: unfilteredTruthHero,
     tags: ["unfiltered", "honest feedback", "reality check", "direct communication", "truth telling"],
     category: "Raw & Uncut Tools",
     rating: 4.6,
@@ -22,6 +34,7 @@ export const rawUncutTools: Tool[] = [
     emoji: "👁️",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://realitycheckanalystgpt.lovable.app/?via=aiwebtools",
+    imageUrl: realityCheckHero,
     tags: ["reality check", "unbiased analysis", "logical reasoning", "fact checking", "critical thinking"],
     category: "Raw & Uncut Tools",
     rating: 4.7,
@@ -34,6 +47,7 @@ export const rawUncutTools: Tool[] = [
     emoji: "🧠",
     color: "from-gray-500 to-slate-600",
     directUrl: "https://contrarianthinker.lovable.app/?via=aiwebtools",
+    imageUrl: contrarianHero,
     tags: ["contrarian thinking", "devil's advocate", "alternative perspectives", "critical analysis", "assumption challenging"],
     category: "Raw & Uncut Tools",
     rating: 4.5,
@@ -46,6 +60,7 @@ export const rawUncutTools: Tool[] = [
     emoji: "🎯",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://straightshooterbusinessgpt.lovable.app/?via=aiwebtools",
+    imageUrl: straightShooterHero,
     tags: ["business advice", "honest assessment", "no-nonsense", "direct feedback", "strategy analysis"],
     category: "Raw & Uncut Tools",
     rating: 4.6,
@@ -58,6 +73,7 @@ export const rawUncutTools: Tool[] = [
     emoji: "⚖️",
     color: "from-green-500 to-emerald-600",
     directUrl: "https://uncompromisingethicsjudgegpt.lovable.app/?via=aiwebtools",
+    imageUrl: ethicsJudgeHero,
     tags: ["ethics analysis", "moral guidance", "uncompromising standards", "ethical decision making", "moral philosophy"],
     category: "Raw & Uncut Tools",
     rating: 4.4,
@@ -70,6 +86,7 @@ export const rawUncutTools: Tool[] = [
     emoji: "💎",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://rawdatainterpreter.lovable.app/?via=aiwebtools",
+    imageUrl: rawDataHero,
     tags: ["raw data analysis", "unbiased interpretation", "data insights", "statistical analysis", "pattern recognition"],
     category: "Raw & Uncut Tools",
     rating: 4.8,
@@ -82,6 +99,7 @@ export const rawUncutTools: Tool[] = [
     emoji: "👑",
     color: "from-yellow-500 to-amber-600",
     directUrl: "https://harshlifecoachgpt.lovable.app/?via=aiwebtools",
+    imageUrl: harshCoachHero,
     tags: ["tough love coaching", "accountability", "personal growth", "hard truths", "no excuses"],
     category: "Raw & Uncut Tools",
     rating: 4.5,
@@ -94,6 +112,7 @@ export const rawUncutTools: Tool[] = [
     emoji: "⭐",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://unpolishedgeniusgpt.lovable.app/?via=aiwebtools",
+    imageUrl: unpolishedGeniusHero,
     tags: ["raw intelligence", "unpolished insights", "creative solutions", "intellectual power", "problem solving"],
     category: "Raw & Uncut Tools",
     rating: 4.7,
@@ -106,6 +125,7 @@ export const rawUncutTools: Tool[] = [
     emoji: "✨",
     color: "from-indigo-500 to-purple-600",
     directUrl: "https://uncomfortablequestionsgpt.lovable.app/?via=aiwebtools",
+    imageUrl: uncomfortableQuestionsHero,
     tags: ["uncomfortable questions", "deep probing", "hidden problems", "difficult conversations", "revealing insights"],
     category: "Raw & Uncut Tools",
     rating: 4.6,
@@ -118,6 +138,7 @@ export const rawUncutTools: Tool[] = [
     emoji: "⚡",
     color: "from-orange-500 to-red-600",
     directUrl: "https://zerofilterconsultantgpt.lovable.app/?via=aiwebtools",
+    imageUrl: zeroFilterHero,
     tags: ["zero filter", "direct consulting", "undiplomatic advice", "real solutions", "actionable guidance"],
     category: "Raw & Uncut Tools",
     rating: 4.5,

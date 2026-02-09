@@ -12,6 +12,21 @@ import {
   Globe
 } from "lucide-react";
 
+import nucleusHero from "@/assets/tools/nucleus-ai-hero.jpg";
+import blandHero from "@/assets/tools/bland-ai-hero.jpg";
+import vapiHero from "@/assets/tools/vapi-ai-hero.jpg";
+import synthflowHero from "@/assets/tools/synthflow-hero.jpg";
+import aircallHero from "@/assets/tools/aircall-ai-hero.jpg";
+import outreachHero from "@/assets/tools/outreach-io-hero.jpg";
+import salesloftHero from "@/assets/tools/salesloft-hero.jpg";
+import apolloHero from "@/assets/tools/apollo-io-hero.jpg";
+import gongHero from "@/assets/tools/gong-io-hero.jpg";
+import chorusHero from "@/assets/tools/chorus-hero.jpg";
+import clayHero from "@/assets/tools/clay-hero.jpg";
+import instantlyHero from "@/assets/tools/instantly-ai-hero.jpg";
+import lemlistHero from "@/assets/tools/lemlist-hero.jpg";
+import smartleadHero from "@/assets/tools/smartlead-hero.jpg";
+
 export const communicationTools: Tool[] = [
   {
     icon: Phone,
@@ -21,7 +36,7 @@ export const communicationTools: Tool[] = [
     color: "from-blue-500 to-purple-600",
     category: "Communication & Collaboration AI Tools",
     directUrl: "https://nucleus.ai/?via=aiwebtools",
-    imageUrl: "/placeholder.svg?height=180&width=320",
+    imageUrl: nucleusHero,
     tags: ["Voice Agent", "phone agents", "call center", "inbound calls", "customer service", "ai phone system", "agent"],
     rating: 4.7,
     totalVotes: 1890
@@ -34,7 +49,7 @@ export const communicationTools: Tool[] = [
     color: "from-green-500 to-blue-600",
     category: "Communication & Collaboration AI Tools",
     directUrl: "https://bland.ai/?via=aiwebtools",
-    imageUrl: "/placeholder.svg?height=180&width=320",
+    imageUrl: blandHero,
     tags: ["Voice Agent", "phone agents", "voice ai", "outbound calls", "appointment scheduling", "sales calls", "agent"],
     rating: 4.6,
     totalVotes: 1654
@@ -47,7 +62,7 @@ export const communicationTools: Tool[] = [
     color: "from-purple-500 to-pink-600",
     category: "Communication & Collaboration AI Tools",
     directUrl: "https://vapi.ai/?via=aiwebtools",
-    imageUrl: "/placeholder.svg?height=180&width=320",
+    imageUrl: vapiHero,
     tags: ["Voice Agent", "voice ai", "phone automation", "conversational ai", "call handling", "voice assistants", "agent"],
     rating: 4.5,
     totalVotes: 1423
@@ -60,7 +75,7 @@ export const communicationTools: Tool[] = [
     color: "from-cyan-500 to-blue-600",
     category: "Communication & Collaboration AI Tools",
     directUrl: "https://synthflow.ai/?via=aiwebtools",
-    imageUrl: "/placeholder.svg?height=180&width=320",
+    imageUrl: synthflowHero,
     tags: ["Voice Agent", "no-code", "voice assistants", "phone automation", "workflow builder", "voice ai", "agent"],
     rating: 4.3,
     totalVotes: 1156
@@ -73,7 +88,7 @@ export const communicationTools: Tool[] = [
     color: "from-blue-500 to-green-600",
     category: "Communication & Collaboration AI Tools",
     directUrl: "https://aircall.io/?via=aiwebtools",
-    imageUrl: "/placeholder.svg?height=180&width=320",
+    imageUrl: aircallHero,
     tags: ["cloud phone", "call analytics", "call routing", "team communication", "phone system"],
     rating: 4.5,
     totalVotes: 2134
@@ -86,7 +101,7 @@ export const communicationTools: Tool[] = [
     color: "from-indigo-500 to-purple-600",
     category: "Communication & Collaboration AI Tools",
     directUrl: "https://outreach.io/?via=aiwebtools",
-    imageUrl: "/placeholder.svg?height=180&width=320",
+    imageUrl: outreachHero,
     tags: ["sales outreach", "email automation", "sales engagement", "multi-channel", "lead generation"],
     rating: 4.6,
     totalVotes: 3245
@@ -99,7 +114,7 @@ export const communicationTools: Tool[] = [
     color: "from-yellow-500 to-orange-600",
     category: "Communication & Collaboration AI Tools",
     directUrl: "https://salesloft.com/?via=aiwebtools",
-    imageUrl: "/placeholder.svg?height=180&width=320",
+    imageUrl: salesloftHero,
     tags: ["sales automation", "revenue intelligence", "outreach automation", "sales communication", "crm integration"],
     rating: 4.5,
     totalVotes: 2876
@@ -112,7 +127,7 @@ export const communicationTools: Tool[] = [
     color: "from-teal-500 to-blue-600",
     category: "Communication & Collaboration AI Tools",
     directUrl: "https://apollo.io/?via=aiwebtools",
-    imageUrl: "/placeholder.svg?height=180&width=320",
+    imageUrl: apolloHero,
     tags: ["sales intelligence", "prospecting", "outreach automation", "lead generation", "contact database"],
     rating: 4.4,
     totalVotes: 2567
@@ -125,7 +140,7 @@ export const communicationTools: Tool[] = [
     color: "from-purple-500 to-blue-600",
     category: "Communication & Collaboration AI Tools",
     directUrl: "https://gong.io/?via=aiwebtools",
-    imageUrl: "/placeholder.svg?height=180&width=320",
+    imageUrl: gongHero,
     tags: ["revenue intelligence", "call analysis", "sales insights", "conversation analytics", "sales coaching"],
     rating: 4.7,
     totalVotes: 3456
@@ -138,7 +153,7 @@ export const communicationTools: Tool[] = [
     color: "from-green-500 to-teal-600",
     category: "Communication & Collaboration AI Tools",
     directUrl: "https://chorus.ai/?via=aiwebtools",
-    imageUrl: "/placeholder.svg?height=180&width=320",
+    imageUrl: chorusHero,
     tags: ["conversation intelligence", "call recording", "sales analytics", "meeting insights", "sales training"],
     rating: 4.5,
     totalVotes: 2234
@@ -151,7 +166,7 @@ export const communicationTools: Tool[] = [
     color: "from-pink-500 to-purple-600",
     category: "Communication & Collaboration AI Tools",
     directUrl: "https://clay.com/?via=aiwebtools",
-    imageUrl: "/placeholder.svg?height=180&width=320",
+    imageUrl: clayHero,
     tags: ["data enrichment", "prospect research", "outreach automation", "lead generation", "sales automation"],
     rating: 4.6,
     totalVotes: 1876
@@ -164,7 +179,7 @@ export const communicationTools: Tool[] = [
     color: "from-blue-500 to-cyan-600",
     category: "Communication & Collaboration AI Tools",
     directUrl: "https://instantly.ai/?via=aiwebtools",
-    imageUrl: "/placeholder.svg?height=180&width=320",
+    imageUrl: instantlyHero,
     tags: ["cold email", "email automation", "deliverability", "outreach campaigns", "email marketing"],
     rating: 4.4,
     totalVotes: 1654
@@ -177,7 +192,7 @@ export const communicationTools: Tool[] = [
     color: "from-orange-500 to-pink-600",
     category: "Communication & Collaboration AI Tools",
     directUrl: "https://lemlist.com/?via=aiwebtools",
-    imageUrl: "/placeholder.svg?height=180&width=320",
+    imageUrl: lemlistHero,
     tags: ["multi-channel outreach", "email campaigns", "linkedin automation", "personalization", "sales outreach"],
     rating: 4.3,
     totalVotes: 1432
@@ -190,7 +205,7 @@ export const communicationTools: Tool[] = [
     color: "from-green-500 to-blue-600",
     category: "Communication & Collaboration AI Tools",
     directUrl: "https://smartlead.ai/?via=aiwebtools",
-    imageUrl: "/placeholder.svg?height=180&width=320",
+    imageUrl: smartleadHero,
     tags: ["cold email", "unlimited mailboxes", "email deliverability", "outbound campaigns", "email warming"],
     rating: 4.5,
     totalVotes: 1789
