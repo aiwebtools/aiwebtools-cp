@@ -1,0 +1,33 @@
+/* Pure CSS 3D Cube Animation — GPU-accelerated, zero JS */
+@keyframes cube-spin {
+  0%   { transform: rotateX(0deg) rotateY(0deg); }
+  100% { transform: rotateX(360deg) rotateY(540deg); }
+}
+
+.loading-cube {
+  width: 60px;
+  height: 60px;
+  position: relative;
+  transform-style: preserve-3d;
+  animation: cube-spin 4s linear infinite;
+  will-change: transform;
+}
+
+.loading-cube-face {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  border: 2px solid rgba(34, 197, 94, 0.6);
+  box-shadow: 0 0 15px rgba(34, 197, 94, 0.4), inset 0 0 8px rgba(255,255,255,0.08);
+}
+
+.loading-cube-front  { background: linear-gradient(135deg, #22c55e, #4ade80); transform: translateZ(30px); }
+.loading-cube-back   { background: linear-gradient(135deg, #059669, #10b981); transform: rotateY(180deg) translateZ(30px); }
+.loading-cube-right  { background: linear-gradient(135deg, #14b8a6, #2dd4bf); transform: rotateY(90deg) translateZ(30px); }
+.loading-cube-left   { background: linear-gradient(135deg, #0d9488, #14b8a6); transform: rotateY(-90deg) translateZ(30px); }
+.loading-cube-top    { background: linear-gradient(135deg, #34d399, #6ee7b7); transform: rotateX(90deg) translateZ(30px); }
+.loading-cube-bottom { background: linear-gradient(135deg, #047857, #059669); transform: rotateX(-90deg) translateZ(30px); }

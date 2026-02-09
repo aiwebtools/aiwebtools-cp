@@ -14,6 +14,7 @@ import { useScrollPerformance } from "@/hooks/useScrollPerformance";
 import { usePrefetchRoutes } from "@/hooks/usePrefetch";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import MatrixCursorEffect from "@/components/effects/MatrixCursorEffect";
+import "@/styles/loading-cube.css";
 import ScrollProgressIndicator from "@/components/ScrollProgressIndicator";
 import { getConsentAccepted } from "@/utils/consent";
 
