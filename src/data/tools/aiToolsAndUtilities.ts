@@ -27,6 +27,9 @@ import {
   Building
 } from "lucide-react";
 
+import perplexityAiHero from "@/assets/tools/perplexity-ai-hero.jpg";
+import promptBoxHero from "@/assets/tools/prompt-box-hero.jpg";
+
 export const aiToolsAndUtilities: Tool[] = [
   {
     icon: Search,
@@ -35,6 +38,7 @@ export const aiToolsAndUtilities: Tool[] = [
     emoji: "🔍",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://www.perplexity.ai/?via=aiwebtools",
+    imageUrl: perplexityAiHero,
     tags: ["AI search", "search engine", "research", "citations", "real-time"],
     category: "AI Tools & Utilities",
     rating: 4.8,
@@ -59,6 +63,7 @@ export const aiToolsAndUtilities: Tool[] = [
     emoji: "💡",
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://promptbox.lovable.app/?via=aiwebtools",
+    imageUrl: promptBoxHero,
     tags: ["prompt generator", "AI prompts", "chatbots", "AI models", "prompt engineering"],
     category: "AI Tools To Run LOCALLY",
     rating: 4.1,
