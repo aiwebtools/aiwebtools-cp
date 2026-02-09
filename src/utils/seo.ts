@@ -2,11 +2,11 @@
 export const seoConfig = {
   siteName: "AI WEB TOOLS",
   siteUrl: "https://aitools.studio",
-  description: "🏆 #1 Free AI Tools Directory with 2195+ verified tools. Better than Toolify, Futurepedia & competitors. ChatGPT alternatives, custom GPTs, productivity AI, creative tools. Trusted by 100K+ professionals 2025.",
+  description: "🏆 #1 Free AI Tools Directory with 2195+ verified tools. Better than Toolify, Futurepedia & competitors. ChatGPT alternatives, custom GPTs, productivity AI, creative tools. Trusted by 100K+ professionals 2026.",
   keywords: [
     "AI WEB TOOLS",
     "free ai tools",
-    "best ai tools 2025",
+    "best ai tools 2026",
     "ai tools directory",
     "chatgpt alternatives",
     "custom gpts",
@@ -49,7 +49,7 @@ export const generateStructuredData = (page: string = "homepage") => {
     },
     "mainEntity": {
       "@type": "ItemList",
-      "name": "Best AI Tools Directory 2025",
+      "name": "Best AI Tools Directory 2026",
       "description": "Comprehensive collection of 1000+ verified AI tools",
       "numberOfItems": 1000
     },

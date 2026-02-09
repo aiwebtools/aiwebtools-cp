@@ -86,7 +86,7 @@ const ToolPage = () => {
           tool.category || "AI tool",
           `${tool.title} review`,
           `${tool.title} alternatives`,
-          "AI tools 2025",
+          "AI tools 2026",
           ...(tool.tags || [])
         ]}
         image={tool.imageUrl}
