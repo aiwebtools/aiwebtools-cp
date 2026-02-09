@@ -1,5 +1,10 @@
 import { Tool } from "@/types/tools";
 import { Gamepad2, Sparkles, Users, Wand2, Bot, Dice5 } from "lucide-react";
+import leonardoAiHero from "@/assets/tools/leonardo-ai-hero.jpg";
+import streamlabsHero from "@/assets/tools/streamlabs-hero.jpg";
+import obsStudioHero from "@/assets/tools/obs-studio-hero.jpg";
+import rpgMakerHero from "@/assets/tools/rpg-maker-hero.jpg";
+import vrchatHero from "@/assets/tools/vrchat-hero.jpg";
 
 export const aiGamingTools: Tool[] = [
   {
@@ -74,6 +79,7 @@ export const aiGamingTools: Tool[] = [
     emoji: "✨",
     color: "from-orange-500 to-red-600",
     directUrl: "https://leonardo.ai/?via=aiwebtools",
+    imageUrl: leonardoAiHero,
     tags: ["game art", "concept art", "AI generation", "game assets", "visual content", "style consistency", "Game Asset Generator", "video game", "video game generator", "ai to make video games"],
     category: "AI Gaming & Game Development",
     rating: 4.7,
@@ -125,6 +131,7 @@ export const aiGamingTools: Tool[] = [
     emoji: "📺",
     color: "from-green-500 to-teal-600",
     directUrl: "https://streamlabs.com/?via=aiwebtools",
+    imageUrl: streamlabsHero,
     tags: ["streaming", "twitch", "youtube", "content creator", "live stream", "overlays", "Streaming Tools"],
     category: "AI Gaming & Game Development",
     rating: 4.6,
@@ -137,6 +144,7 @@ export const aiGamingTools: Tool[] = [
     emoji: "🎬",
     color: "from-gray-700 to-gray-900",
     directUrl: "https://obsproject.com/?via=aiwebtools",
+    imageUrl: obsStudioHero,
     tags: ["streaming", "recording", "broadcasting", "open source", "video capture", "Streaming Tools"],
     category: "AI Gaming & Game Development",
     rating: 4.8,
@@ -149,6 +157,7 @@ export const aiGamingTools: Tool[] = [
     emoji: "⚔️",
     color: "from-red-500 to-orange-600",
     directUrl: "https://www.rpgmakerweb.com/?via=aiwebtools",
+    imageUrl: rpgMakerHero,
     tags: ["rpg maker", "game development", "no-code", "rpg games", "storytelling", "Game Development", "video game", "video game generator", "make video games", "create video games"],
     category: "AI Gaming & Game Development",
     rating: 4.5,
@@ -161,6 +170,7 @@ export const aiGamingTools: Tool[] = [
     emoji: "🌐",
     color: "from-purple-500 to-indigo-600",
     directUrl: "https://hello.vrchat.com/?via=aiwebtools",
+    imageUrl: vrchatHero,
     tags: ["virtual worlds", "VR", "social VR", "avatars", "metaverse", "Virtual Worlds"],
     category: "AI Gaming & Game Development",
     rating: 4.6,

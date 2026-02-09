@@ -9,6 +9,12 @@ import {
   Radio,
   Video
 } from "lucide-react";
+import descriptHero from "@/assets/tools/descript-hero.jpg";
+import riversideFmHero from "@/assets/tools/riverside-fm-hero.jpg";
+import podcastleHero from "@/assets/tools/podcastle-hero.jpg";
+import cleanvoiceHero from "@/assets/tools/cleanvoice-hero.jpg";
+import auphonicHero from "@/assets/tools/auphonic-hero.jpg";
+import anchorSpotifyHero from "@/assets/tools/anchor-spotify-hero.jpg";
 
 export const aiPodcastTools: Tool[] = [
   {
@@ -18,6 +24,7 @@ export const aiPodcastTools: Tool[] = [
     emoji: "🎙️",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://www.descript.com/?via=aiwebtools",
+    imageUrl: descriptHero,
     tags: ["Podcast Tools", "Audio Editing", "podcast editing", "text-based editing", "AI audio", "transcription", "filler word removal"],
     category: "AI Podcast Tools",
     rating: 4.7,
@@ -30,6 +37,7 @@ export const aiPodcastTools: Tool[] = [
     emoji: "🎬",
     color: "from-blue-500 to-green-600",
     directUrl: "https://riverside.fm/?via=aiwebtools",
+    imageUrl: riversideFmHero,
     tags: ["Podcast Tools", "podcast recording", "video recording", "studio quality", "remote interviews", "live streaming"],
     category: "AI Podcast Tools",
     rating: 4.8,
@@ -42,6 +50,7 @@ export const aiPodcastTools: Tool[] = [
     emoji: "🎧",
     color: "from-orange-500 to-red-600",
     directUrl: "https://podcastle.ai/?via=aiwebtools",
+    imageUrl: podcastleHero,
     tags: ["Podcast Tools", "Audio Enhancement", "podcast creation", "audio enhancement", "collaborative editing", "podcast hosting", "AI editing"],
     category: "AI Podcast Tools",
     rating: 4.5,
@@ -54,6 +63,7 @@ export const aiPodcastTools: Tool[] = [
     emoji: "✨",
     color: "from-green-500 to-blue-600",
     directUrl: "https://cleanvoice.ai/?via=aiwebtools",
+    imageUrl: cleanvoiceHero,
     tags: ["Podcast Tools", "Audio Enhancement", "audio cleanup", "filler removal", "podcast editing", "AI audio processing", "noise reduction"],
     category: "AI Podcast Tools",
     rating: 4.6,
@@ -66,6 +76,7 @@ export const aiPodcastTools: Tool[] = [
     emoji: "🎵",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://auphonic.com/?via=aiwebtools",
+    imageUrl: auphonicHero,
     tags: ["Podcast Tools", "Audio Enhancement", "audio leveling", "noise reduction", "post-production", "multitrack", "audio optimization"],
     category: "AI Podcast Tools",
     rating: 4.4,
@@ -78,6 +89,7 @@ export const aiPodcastTools: Tool[] = [
     emoji: "📻",
     color: "from-green-500 to-blue-600",
     directUrl: "https://podcasters.spotify.com/?via=aiwebtools",
+    imageUrl: anchorSpotifyHero,
     tags: ["Podcast Tools", "podcast hosting", "free platform", "distribution", "monetization", "Spotify"],
     category: "AI Podcast Tools",
     rating: 4.5,
