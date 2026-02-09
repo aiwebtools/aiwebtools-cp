@@ -6,6 +6,10 @@ import {
   Globe
 } from "lucide-react";
 
+import firebaseHero from "@/assets/tools/firebase-hero.jpg";
+import herokuHero from "@/assets/tools/heroku-hero.jpg";
+import cloudflareHero from "@/assets/tools/cloudflare-hero.jpg";
+
 export const cloudServices: Tool[] = [
   {
     icon: Database,
@@ -14,6 +18,7 @@ export const cloudServices: Tool[] = [
     emoji: "🔥",
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://firebase.google.com/",
+    imageUrl: firebaseHero,
     tags: ["Database", "Backend", "Cloud Platform", "backend", "real-time database", "authentication", "hosting", "Google"],
     category: "Cloud & Infrastructure",
     rating: 4.6,
@@ -26,6 +31,7 @@ export const cloudServices: Tool[] = [
     emoji: "☁️",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://heroku.com/",
+    imageUrl: herokuHero,
     tags: ["Cloud Platform", "DevOps", "cloud hosting", "deployment", "scaling", "multiple languages", "PaaS"],
     category: "Cloud & Infrastructure",
     rating: 4.4,
@@ -38,6 +44,7 @@ export const cloudServices: Tool[] = [
     emoji: "🌐",
     color: "from-orange-500 to-red-600",
     directUrl: "https://cloudflare.com/",
+    imageUrl: cloudflareHero,
     tags: ["Security", "Cloud Platform", "CDN", "security", "DNS", "DDoS protection", "performance"],
     category: "Cloud & Infrastructure",
     rating: 4.7,

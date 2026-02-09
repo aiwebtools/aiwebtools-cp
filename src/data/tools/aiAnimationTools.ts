@@ -9,6 +9,13 @@ import {
   Play
 } from "lucide-react";
 
+import cascadeurHero from "@/assets/tools/cascadeur-hero.jpg";
+import deepmotionHero from "@/assets/tools/deepmotion-hero.jpg";
+import plaskHero from "@/assets/tools/plask-hero.jpg";
+import movmiHero from "@/assets/tools/movmi-hero.jpg";
+import wonderDynamicsHero from "@/assets/tools/wonder-dynamics-hero.jpg";
+import krikeyAiHero from "@/assets/tools/krikey-ai-hero.jpg";
+
 export const aiAnimationTools: Tool[] = [
   {
     icon: User,
@@ -17,6 +24,7 @@ export const aiAnimationTools: Tool[] = [
     emoji: "🎭",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://cascadeur.com/?via=aiwebtools",
+    imageUrl: cascadeurHero,
     tags: ["3D animation", "character animation", "physics-based", "keyframe animation", "motion design", "Animation", "3D Animation"],
     category: "AI Animation Tools",
     rating: 4.7,
@@ -29,6 +37,7 @@ export const aiAnimationTools: Tool[] = [
     emoji: "🎬",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://www.deepmotion.com/?via=aiwebtools",
+    imageUrl: deepmotionHero,
     tags: ["motion capture", "markerless tracking", "video-to-3D", "animation AI", "VR animation", "Motion Capture", "3D Animation"],
     category: "AI Animation Tools",
     rating: 4.6,
@@ -41,6 +50,7 @@ export const aiAnimationTools: Tool[] = [
     emoji: "⚡",
     color: "from-green-500 to-teal-600",
     directUrl: "https://plask.ai/?via=aiwebtools",
+    imageUrl: plaskHero,
     tags: ["browser mocap", "video-to-animation", "character rigging", "quick animation", "web-based", "Motion Capture", "Animation"],
     category: "AI Animation Tools",
     rating: 4.5,
@@ -53,6 +63,7 @@ export const aiAnimationTools: Tool[] = [
     emoji: "🎥",
     color: "from-orange-500 to-red-600",
     directUrl: "https://www.movmi.ai/?via=aiwebtools",
+    imageUrl: movmiHero,
     tags: ["2D to 3D", "sensorless mocap", "human motion", "game animation", "quick mocap", "Motion Capture", "Animation"],
     category: "AI Animation Tools",
     rating: 4.4,
@@ -65,6 +76,7 @@ export const aiAnimationTools: Tool[] = [
     emoji: "🎞️",
     color: "from-purple-600 to-pink-600",
     directUrl: "https://wonderdynamics.com/?via=aiwebtools",
+    imageUrl: wonderDynamicsHero,
     tags: ["CG animation", "auto-compositing", "live-action VFX", "character animation", "automated workflow", "Live Action VFX", "3D Animation"],
     category: "AI Animation Tools",
     rating: 4.8,
@@ -77,6 +89,7 @@ export const aiAnimationTools: Tool[] = [
     emoji: "▶️",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://www.krikey.ai/?via=aiwebtools",
+    imageUrl: krikeyAiHero,
     tags: ["text-to-animation", "3D avatars", "gesture control", "custom animations", "no-code animation", "Animation", "3D Animation"],
     category: "AI Animation Tools",
     rating: 4.3,
