@@ -21,7 +21,7 @@ const GoogleRankingBooster = ({ pageType = 'homepage', toolData, category }: Goo
       "foundingDate": "2023",
       "keywords": competitiveAdvantage.brandDominance.join(", ") + ", ai web tools, best ai web tools, ai web tools directory, find ai web tools, compare ai web tools",
       "slogan": "#1 AI Web Tools Directory - Find & Compare 2,195+ AI Web Tools",
-      "awards": ["#1 AI Web Tools Directory 2025", "Most Comprehensive AI Web Tools Database", "Trusted by 100K+ Users"],
+      "awards": ["#1 AI Web Tools Directory 2026", "Most Comprehensive AI Web Tools Database", "Trusted by 100K+ Users"],
       "knowsAbout": [
         "AI Web Tools",
         "AI Web Tools Directory",
@@ -129,7 +129,7 @@ const GoogleRankingBooster = ({ pageType = 'homepage', toolData, category }: Goo
       },
       {
         question: "How often are new AI web tools added to the directory?",
-        answer: "AI WEB TOOLS directory is updated daily with new AI web tools and reviews. Our team continuously discovers, tests, and adds the latest AI web tools to ensure you have access to the most current and innovative AI web tools available in 2025."
+        answer: "AI WEB TOOLS directory is updated daily with new AI web tools and reviews. Our team continuously discovers, tests, and adds the latest AI web tools to ensure you have access to the most current and innovative AI web tools available in 2026."
       }
     ];
 
@@ -154,7 +154,7 @@ const GoogleRankingBooster = ({ pageType = 'homepage', toolData, category }: Goo
     return {
       "@context": "https://schema.org",
       "@type": "HowTo",
-      "name": `How to Use ${toolData.title} - Complete Guide 2025`,
+      "name": `How to Use ${toolData.title} - Complete Guide 2026`,
       "description": `Step-by-step guide to using ${toolData.title} effectively. Expert tips and best practices from AI WEB TOOLS.`,
       "image": "https://aitools.studio/placeholder.svg",
       "totalTime": "PT10M",
@@ -261,7 +261,7 @@ const GoogleRankingBooster = ({ pageType = 'homepage', toolData, category }: Goo
       {/* Content Freshness Signals */}
       <meta name="last-modified" content={new Date().toISOString()} />
       <meta name="date" content={new Date().toISOString().split('T')[0]} />
-      <meta name="news_keywords" content="AI tools 2025, best AI software, artificial intelligence directory, ChatGPT, Claude, Gemini, AI productivity" />
+      <meta name="news_keywords" content="AI tools 2026, best AI software, artificial intelligence directory, ChatGPT, Claude, Gemini, AI productivity" />
       
       {/* Additional Resource Hints for Speed */}
       <link rel="dns-prefetch" href="//www.google-analytics.com" />

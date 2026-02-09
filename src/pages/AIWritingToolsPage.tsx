@@ -90,7 +90,7 @@ const AIWritingToolsPage = () => {
   const itemListSchema = {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    "name": "AI Writing Tools Directory 2025",
+    "name": "AI Writing Tools Directory 2026",
     "description": `Complete directory of ${writingToolCount}+ AI writing tools including book writers, script writers, blog tools, and more.`,
     "numberOfItems": featuredWritingGPTs.length,
     "itemListElement": featuredWritingGPTs.map((tool, index) => ({
@@ -116,7 +116,7 @@ const AIWritingToolsPage = () => {
       },
       {
         "@type": "Question",
-        "name": "What is the best AI writing tool in 2025?",
+        "name": "What is the best AI writing tool in 2026?",
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "The best AI writing tool depends on your needs. For books, Book Writer GPT excels at long-form content. For marketing, tools like Jasper AI work well. For general writing, ChatGPT and Claude offer versatility. Our directory helps you find the perfect tool for your specific writing needs."
@@ -144,19 +144,19 @@ const AIWritingToolsPage = () => {
   return (
     <>
       <Helmet>
-        <title>AI Writing Tools - Best AI Writers, Book Writers & Content Generators 2025</title>
+        <title>AI Writing Tools - Best AI Writers, Book Writers & Content Generators 2026</title>
         <meta name="description" content={`Discover ${writingToolCount}+ AI writing tools for books, scripts, blogs, and marketing. Free AI writers including Book Writer GPT, Script Writer GPT, and more. The ultimate AI writing tools directory.`} />
         <meta name="keywords" content="AI writing tools, AI writer, AI content generator, AI book writer, AI script writer, AI blog writer, best AI writing tool, free AI writing tools, AI copywriting, AI content creation, writing assistant AI" />
         <link rel="canonical" href="https://aitools.studio/ai-writing-tools" />
         
         {/* Open Graph */}
-        <meta property="og:title" content="AI Writing Tools - Best AI Writers & Content Generators 2025" />
+        <meta property="og:title" content="AI Writing Tools - Best AI Writers & Content Generators 2026" />
         <meta property="og:description" content={`${writingToolCount}+ AI writing tools for books, scripts, blogs & more. Find the perfect AI writer for your needs.`} />
         <meta property="og:url" content="https://aitools.studio/ai-writing-tools" />
         <meta property="og:type" content="website" />
         
         {/* Twitter */}
-        <meta name="twitter:title" content="AI Writing Tools - Best AI Writers 2025" />
+        <meta name="twitter:title" content="AI Writing Tools - Best AI Writers 2026" />
         <meta name="twitter:description" content={`${writingToolCount}+ AI writing tools. Free book writers, script writers, blog tools & more.`} />
         
         {/* Structured Data */}
@@ -317,7 +317,7 @@ const AIWritingToolsPage = () => {
               </div>
               
               <div className="bg-card border border-border/50 rounded-lg p-6">
-                <h3 className="text-lg font-semibold mb-2">What is the best AI writing tool in 2025?</h3>
+                <h3 className="text-lg font-semibold mb-2">What is the best AI writing tool in 2026?</h3>
                 <p className="text-muted-foreground">
                   The best AI writing tool depends on your specific needs. For book writing, our <strong>Book Writer GPT</strong> excels 
                   at long-form content with proper structure. For screenplays, <strong>Movie Script Writer GPT</strong> provides 

@@ -27,7 +27,7 @@ const EnhancedSEOHead = ({
   toolData,
   pageType = 'homepage'
 }: EnhancedSEOHeadProps) => {
-  const fullTitle = title ? `${title} | AI WEB TOOLS - #1 AI Tools Directory 2025 | Better Than Toolify & Futurepedia` : "AI WEB TOOLS - #1 AI Tools Directory | 1000+ Best AI Tools 2025 | Better Than Toolify & Futurepedia | Trusted by 100K+ Users";
+  const fullTitle = title ? `${title} | AI WEB TOOLS - #1 AI Tools Directory 2026 | Better Than Toolify & Futurepedia` : "AI WEB TOOLS - #1 AI Tools Directory | 1000+ Best AI Tools 2026 | Better Than Toolify & Futurepedia | Trusted by 100K+ Users";
   const canonical = url.startsWith('http') ? url : `${seoConfig.siteUrl}${url}`;
   
   // Get proper Open Graph image for tool pages
@@ -60,18 +60,18 @@ const EnhancedSEOHead = ({
     // Brand-specific competitive terms
     "aiwebtools", "aiwebtools.ai", "AI WEB TOOLS", "AI WEB TOOLS LLC", "aitools.studio", "aitoolwebsites.com", "AItoolwebsites.com",
     // Primary competitive displacement keywords
-    "best ai tools directory 2025", "ai tools better than toolify", "ai tools better than futurepedia",
+    "best ai tools directory 2026", "ai tools better than toolify", "ai tools better than futurepedia",
     "complete ai tools database", "verified ai tools platform", "comprehensive ai directory",
-    "top ai tools ranking 2025", "ai tools marketplace leader", "trusted ai tools collection",
+    "top ai tools ranking 2026", "ai tools marketplace leader", "trusted ai tools collection",
     "1000+ ai tools directory", "curated ai tools platform", "professional ai tools database",
     // Long-tail competitive keywords
     "where to find best ai tools for business", "most comprehensive ai tools directory online",
-    "ai tools directory better than competitors", "complete list of ai tools 2025",
+    "ai tools directory better than competitors", "complete list of ai tools 2026",
     "verified ai tools with reviews and ratings", "professional ai tools directory for enterprises",
     // Category-specific competitive terms
     ...(category ? [
       `${category} AI tools`, `best ${category.toLowerCase()} AI`, `${category.toLowerCase()} artificial intelligence`,
-      `top ${category.toLowerCase()} AI tools 2025`, `${category.toLowerCase()} AI tools directory`,
+      `top ${category.toLowerCase()} AI tools 2026`, `${category.toLowerCase()} AI tools directory`,
       `professional ${category.toLowerCase()} AI solutions`, `verified ${category.toLowerCase()} AI tools`
     ] : []),
     // Tool-specific competitive terms
@@ -93,7 +93,7 @@ const EnhancedSEOHead = ({
       
       {/* Enhanced Meta Tags for Competitive Edge */}
       <meta name="application-name" content="AI WEB TOOLS" />
-      <meta name="subject" content="Best AI Tools Directory 2025 - Better Than Toolify" />
+      <meta name="subject" content="Best AI Tools Directory 2026 - Better Than Toolify" />
       <meta name="topic" content="AI Tools, Artificial Intelligence, ChatGPT Alternatives, Best AI Directory" />
       <meta name="summary" content="The world's #1 most comprehensive AI tools directory with 1000+ curated AI applications. Better than Toolify, Futurepedia, and all competitors. Trusted by 100K+ professionals worldwide." />
       <meta name="classification" content="Technology, AI Tools, Software Directory" />

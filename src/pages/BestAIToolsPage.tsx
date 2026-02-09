@@ -27,8 +27,8 @@ const BestAIToolsPage = () => {
   const itemListSchema = {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    "name": "Best AI Tools 2025 - Top Rated AI Tools Directory",
-    "description": "Curated list of the best AI tools in 2025, ranked by user ratings and expert reviews.",
+    "name": "Best AI Tools 2026 - Top Rated AI Tools Directory",
+    "description": "Curated list of the best AI tools in 2026, ranked by user ratings and expert reviews.",
     "numberOfItems": topTools.length,
     "itemListElement": topTools.slice(0, 30).map((tool, index) => ({
       "@type": "ListItem",
@@ -42,13 +42,13 @@ const BestAIToolsPage = () => {
   return (
     <>
       <Helmet>
-        <title>Best AI Tools 2025 - Top {topTools.length} Highest Rated AI Tools | AI Tools Directory</title>
-        <meta name="description" content={`Discover the best AI tools of 2025. Our curated list of ${topTools.length}+ top-rated AI tools includes ChatGPT, Midjourney, Claude, and more. Find the perfect AI tool for your needs.`} />
-        <meta name="keywords" content="best AI tools, top AI tools, best AI tools 2025, highest rated AI tools, AI tools ranking, best artificial intelligence tools, top rated AI software, best AI apps, AI tools comparison, best free AI tools" />
+        <title>Best AI Tools 2026 - Top {topTools.length} Highest Rated AI Tools | AI Tools Directory</title>
+        <meta name="description" content={`Discover the best AI tools of 2026. Our curated list of ${topTools.length}+ top-rated AI tools includes ChatGPT, Midjourney, Claude, and more. Find the perfect AI tool for your needs.`} />
+        <meta name="keywords" content="best AI tools, top AI tools, best AI tools 2026, highest rated AI tools, AI tools ranking, best artificial intelligence tools, top rated AI software, best AI apps, AI tools comparison, best free AI tools" />
         <link rel="canonical" href="https://aitools.studio/best-ai-tools" />
         
-        <meta property="og:title" content="Best AI Tools 2025 - Top Rated AI Tools Directory" />
-        <meta property="og:description" content={`Discover the best AI tools of 2025. Curated list of ${topTools.length}+ top-rated AI tools.`} />
+        <meta property="og:title" content="Best AI Tools 2026 - Top Rated AI Tools Directory" />
+        <meta property="og:description" content={`Discover the best AI tools of 2026. Curated list of ${topTools.length}+ top-rated AI tools.`} />
         <meta property="og:url" content="https://aitools.studio/best-ai-tools" />
         
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
@@ -64,14 +64,14 @@ const BestAIToolsPage = () => {
               <Trophy className="w-16 h-16 text-yellow-500" />
             </div>
             <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 bg-clip-text text-transparent">
-              Best AI Tools 2025
+              Best AI Tools 2026
             </h1>
             <p className="text-xl text-muted-foreground mb-4">
               Top {topTools.length} Highest Rated AI Tools
             </p>
             <p className="text-lg text-muted-foreground/80 max-w-3xl mx-auto">
               Our curated list of the <strong>best AI tools</strong> ranked by user ratings, expert reviews, 
-              and real-world performance. Updated regularly to bring you the <strong>top AI tools</strong> of 2025.
+              and real-world performance. Updated regularly to bring you the <strong>top AI tools</strong> of 2026.
             </p>
           </div>
         </section>
