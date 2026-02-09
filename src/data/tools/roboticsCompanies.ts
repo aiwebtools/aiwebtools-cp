@@ -1,5 +1,10 @@
 import { Tool } from "@/types/tools";
 import { Bot, Cpu, Zap, Building, Users, Wrench, Gamepad2, Brain, Eye, Factory, Star, Dna, Activity, Palette, Gauge } from "lucide-react";
+import palRoboticsHero from "@/assets/tools/pal-robotics-hero.jpg";
+import ubtechRoboticsHero from "@/assets/tools/ubtech-robotics-hero.jpg";
+import oneXTechHero from "@/assets/tools/1x-tech-hero.jpg";
+import cloneRoboticsHero from "@/assets/tools/clone-robotics-hero.jpg";
+import apptronikHero from "@/assets/tools/apptronik-hero.jpg";
 
 export const roboticsCompanies: Tool[] = [
   {
@@ -114,6 +119,7 @@ export const roboticsCompanies: Tool[] = [
     description: "European robotics company creating TALOS, REEM, and TIAGo humanoid robots for research and service applications. Focus on mobile manipulation and AI.",
     color: "from-indigo-600 to-purple-600",
     directUrl: "https://pal-robotics.com/?via=aiwebtools",
+    imageUrl: palRoboticsHero,
     rating: 4.5,
     totalVotes: 987,
     tags: ["TALOS robot", "REEM robot", "research robotics", "mobile manipulation", "European robotics"]
@@ -126,6 +132,7 @@ export const roboticsCompanies: Tool[] = [
     description: "Chinese robotics company producing Walker humanoid robots and Alpha educational robots. Focuses on AI education and entertainment robotics.",
     color: "from-yellow-600 to-orange-600",
     directUrl: "https://www.ubtrobot.com/?via=aiwebtools",
+    imageUrl: ubtechRoboticsHero,
     rating: 4.2,
     totalVotes: 876,
     tags: ["Walker robot", "Alpha robot", "education robotics", "entertainment robots", "AI learning"]
@@ -138,6 +145,7 @@ export const roboticsCompanies: Tool[] = [
     description: "Norwegian robotics company developing NEO and EVE humanoid robots for home and workplace assistance. Focus on safe human-robot coexistence.",
     color: "from-teal-600 to-blue-600",
     directUrl: "https://www.1x.tech/?via=aiwebtools",
+    imageUrl: oneXTechHero,
     rating: 4.4,
     totalVotes: 765,
     tags: ["NEO robot", "EVE robot", "home assistance", "workplace robots", "human-robot coexistence"]
@@ -150,6 +158,7 @@ export const roboticsCompanies: Tool[] = [
     description: "Advanced humanoid robotics company focusing on bio-inspired artificial muscles and human-like dexterity. Developing next-generation humanoid robots.",
     color: "from-purple-600 to-blue-600",
     directUrl: "https://www.clone-robotics.com/?via=aiwebtools",
+    imageUrl: cloneRoboticsHero,
     rating: 4.3,
     totalVotes: 543,
     tags: ["bio-inspired robotics", "artificial muscles", "human dexterity", "advanced humanoids", "biomimetics"]
@@ -188,6 +197,7 @@ export const roboticsCompanies: Tool[] = [
     description: "Texas-based robotics company developing Apollo humanoid robot for logistics and manufacturing. Focus on practical commercial applications.",
     color: "from-orange-600 to-yellow-600",
     directUrl: "https://apptronik.com/?via=aiwebtools",
+    imageUrl: apptronikHero,
     rating: 4.3,
     totalVotes: 654,
     tags: ["Apollo robot", "logistics automation", "manufacturing robots", "commercial humanoids", "Texas robotics"]

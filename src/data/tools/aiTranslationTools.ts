@@ -1,5 +1,11 @@
 import { Tool } from "@/types/tools";
 import { Languages, Globe, FileText, MessageSquare, Sparkles } from "lucide-react";
+import deeplHero from "@/assets/tools/deepl-hero.jpg";
+import googleTranslateHero from "@/assets/tools/google-translate-hero.jpg";
+import smartlingHero from "@/assets/tools/smartling-hero.jpg";
+import lokaliseHero from "@/assets/tools/lokalise-hero.jpg";
+import phraseHero from "@/assets/tools/phrase-hero.jpg";
+import microsoftTranslatorHero from "@/assets/tools/microsoft-translator-hero.jpg";
 
 export const aiTranslationTools: Tool[] = [
   {
@@ -9,6 +15,7 @@ export const aiTranslationTools: Tool[] = [
     emoji: "🌐",
     color: "from-blue-500 to-indigo-600",
     directUrl: "https://www.deepl.com/?via=aiwebtools",
+    imageUrl: deeplHero,
     tags: ["translation", "AI translation", "document translation", "multilingual", "neural translation", "language AI", "translator", "ai translate", "language translator", "translate text", "translation tool"],
     category: "AI Translation & Localization",
     rating: 4.9,
@@ -21,6 +28,7 @@ export const aiTranslationTools: Tool[] = [
     emoji: "🗺️",
     color: "from-green-500 to-emerald-600",
     directUrl: "https://translate.google.com/?via=aiwebtools",
+    imageUrl: googleTranslateHero,
     tags: ["translation", "multilingual", "speech translation", "document translation", "free", "language AI", "Google", "translator", "ai translate", "language translator", "translate text"],
     category: "AI Translation & Localization",
     rating: 4.7,
@@ -33,6 +41,7 @@ export const aiTranslationTools: Tool[] = [
     emoji: "📄",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://www.smartling.com/?via=aiwebtools",
+    imageUrl: smartlingHero,
     tags: ["localization", "translation management", "enterprise translation", "workflow automation", "content localization", "TMS"],
     category: "AI Translation & Localization",
     rating: 4.6,
@@ -45,6 +54,7 @@ export const aiTranslationTools: Tool[] = [
     emoji: "💬",
     color: "from-orange-500 to-red-600",
     directUrl: "https://lokalise.com/?via=aiwebtools",
+    imageUrl: lokaliseHero,
     tags: ["localization", "app translation", "website localization", "collaboration", "translation automation", "developer tools"],
     category: "AI Translation & Localization",
     rating: 4.7,
@@ -57,6 +67,7 @@ export const aiTranslationTools: Tool[] = [
     emoji: "✨",
     color: "from-teal-500 to-cyan-600",
     directUrl: "https://phrase.com/?via=aiwebtools",
+    imageUrl: phraseHero,
     tags: ["translation management", "localization", "neural MT", "workflow automation", "enterprise", "TMS"],
     category: "AI Translation & Localization",
     rating: 4.6,
@@ -69,6 +80,7 @@ export const aiTranslationTools: Tool[] = [
     emoji: "🔷",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://www.microsoft.com/en-us/translator/?via=aiwebtools",
+    imageUrl: microsoftTranslatorHero,
     tags: ["translation", "real-time translation", "Microsoft", "conversation translation", "multilingual", "speech translation"],
     category: "AI Translation & Localization",
     rating: 4.5,
