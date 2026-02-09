@@ -13,6 +13,9 @@ import {
   Paintbrush
 } from "lucide-react";
 
+import midjourneyHero from "@/assets/tools/midjourney-hero.jpg";
+import ideogramHero from "@/assets/tools/ideogram-hero.jpg";
+
 export const aiImageGeneration: Tool[] = [
   {
     icon: Wand2,
@@ -22,6 +25,7 @@ export const aiImageGeneration: Tool[] = [
     color: "from-purple-500 to-pink-600",
     directUrl: "https://www.midjourney.com/home?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=5deYUaqwreo",
+    imageUrl: midjourneyHero,
     tags: ["Image Generator", "AI Art", "image generation", "AI art", "text-to-image", "creative AI", "digital art", "artwork creation"],
     category: "AI Image Generation",
     rating: 4.8,
@@ -35,6 +39,7 @@ export const aiImageGeneration: Tool[] = [
     color: "from-blue-500 to-purple-600",
     directUrl: "https://ideogram.ai/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=USSpwbe3Rxk",
+    imageUrl: ideogramHero,
     tags: ["Image Generator", "Logo Design", "image generation", "typography", "text integration", "logo design", "AI design", "creative tools"],
     category: "AI Image Generation",
     rating: 4.6,

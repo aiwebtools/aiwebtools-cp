@@ -1,6 +1,7 @@
-
 import { Tool } from "@/types/tools";
 import { Brain, Box } from "lucide-react";
+
+import threeDPrintGptHero from "@/assets/tools/3d-print-gpt-hero.jpg";
 
 export const aiProductivityTools: Tool[] = [
   {
@@ -10,6 +11,7 @@ export const aiProductivityTools: Tool[] = [
     emoji: "🖨️",
     color: "from-orange-500 to-red-600",
     directUrl: "https://3dprintgpt.lovable.app/?via=aiwebtools",
+    imageUrl: threeDPrintGptHero,
     tags: ["3D printing", "design optimization", "troubleshooting", "materials", "printing guidance", "Automation Platform", "Task Management"],
     category: "AI Productivity Tools",
     rating: 4.3,

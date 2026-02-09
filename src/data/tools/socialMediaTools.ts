@@ -10,6 +10,8 @@ import {
   Music
 } from "lucide-react";
 
+import socialMediaSonicHero from "@/assets/tools/socialmedia-sonic-generated-hero.jpg";
+
 export const socialMediaTools: Tool[] = [
   {
     icon: Music,
@@ -18,7 +20,7 @@ export const socialMediaTools: Tool[] = [
     emoji: "🎵",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://socialsonic.com/?ref=aiwebtoolss",
-    imageUrl: "/src/assets/tools/socialmedia-sonic-hero.png",
+    imageUrl: socialMediaSonicHero,
     tags: ["social media management", "content creation", "AI-powered", "scheduling", "analytics", "automation"],
     category: "Social Media & Marketing",
     rating: 4.6,

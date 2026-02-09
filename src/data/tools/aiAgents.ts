@@ -1,6 +1,15 @@
 import { Bot, Globe, Code, Wand2, Zap, Brain, Github, Rocket, Settings, Monitor, Server, HardDrive, Users, Settings2, Database as DatabaseIcon, Terminal as TerminalIcon, Cpu as CpuIcon, Layers, Smartphone, Video, Sparkles, Workflow, Link } from "lucide-react";
 import { Tool } from "@/types/tools";
 
+import claudeComputerUseHero from "@/assets/tools/claude-computer-use-hero.jpg";
+import perplexityCometHero from "@/assets/tools/perplexity-comet-hero.jpg";
+import surfNewHero from "@/assets/tools/surf-new-hero.jpg";
+import lovableAiHero from "@/assets/tools/lovable-ai-hero.jpg";
+import base44Hero from "@/assets/tools/base44-hero.jpg";
+import replitAgentHero from "@/assets/tools/replit-agent-hero.jpg";
+import githubCopilotAgentHero from "@/assets/tools/github-copilot-agent-hero.jpg";
+import tabnineCodingHero from "@/assets/tools/tabnine-coding-hero.jpg";
+
 export const aiAgents: Tool[] = [
   // ========================================
   // AI AGENT DIRECTORIES & DATABASES
@@ -114,6 +123,7 @@ export const aiAgents: Tool[] = [
     directUrl: "https://claude.ai/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=ODaHJzOyVCQ",
     tags: ["Web Tasks Agent", "computer use", "Anthropic", "autonomous browsing", "desktop control", "Claude", "task automation"],
+    imageUrl: claudeComputerUseHero,
     category: "AI Agents",
     rating: 4.9,
     totalVotes: 9654
@@ -127,6 +137,7 @@ export const aiAgents: Tool[] = [
     directUrl: "https://pplx.ai/kgmasterbic1853",
     videoUrl: "https://youtu.be/7ZsZ0DAbW-E?si=ej4X9bvRgzWyexBB",
     tags: ["Web Tasks Agent", "web browsing", "research agent", "autonomous search", "Perplexity", "Comet", "internet agent"],
+    imageUrl: perplexityCometHero,
     category: "AI Agents",
     rating: 4.8,
     totalVotes: 4890
@@ -154,6 +165,7 @@ export const aiAgents: Tool[] = [
     directUrl: "https://surf.new",
     videoUrl: "https://www.youtube.com/watch?v=MieyLy_6N40",
     tags: ["Web Tasks Agent", "web scraping", "browser automation", "data extraction", "Steel.dev", "autonomous browsing"],
+    imageUrl: surfNewHero,
     category: "AI Agents",
     rating: 4.5,
     totalVotes: 2890
@@ -171,6 +183,7 @@ export const aiAgents: Tool[] = [
     directUrl: "https://lovable.dev/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=xDwR1_vrIg8",
     tags: ["Vibe Coding Agent", "Coding Agent", "vibe coding", "web builder", "full-stack agent", "no-code agent", "Lovable", "app development"],
+    imageUrl: lovableAiHero,
     category: "AI Agents",
     rating: 4.9,
     totalVotes: 7234
@@ -198,6 +211,7 @@ export const aiAgents: Tool[] = [
     directUrl: "https://base44.com/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=fgRRdefBc4c",
     tags: ["Vibe Coding Agent", "Coding Agent", "vibe coding", "app builder", "full-stack agent", "Base44", "development agent", "code generation"],
+    imageUrl: base44Hero,
     category: "AI Agents",
     rating: 4.7,
     totalVotes: 4456
@@ -225,6 +239,7 @@ export const aiAgents: Tool[] = [
     directUrl: "https://replit.com/agent?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=4FxNXFOdt6w",
     tags: ["Coding Agent", "browser IDE", "autonomous coding", "Replit", "full-stack agent", "deployment agent", "app builder"],
+    imageUrl: replitAgentHero,
     category: "AI Agents",
     rating: 4.8,
     totalVotes: 5234
@@ -238,6 +253,7 @@ export const aiAgents: Tool[] = [
     directUrl: "https://github.com/features/copilot?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=onVn-lnHZ9s",
     tags: ["Coding Agent", "pair programming", "code completion", "GitHub", "multi-language", "real-time coding", "Copilot"],
+    imageUrl: githubCopilotAgentHero,
     category: "AI Agents",
     rating: 4.9,
     totalVotes: 10900
@@ -314,7 +330,7 @@ export const aiAgents: Tool[] = [
     emoji: "⌨️",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://www.tabnine.com/?via=aiwebtools",
-    tags: ["Coding Agent", "code completion", "privacy-focused", "offline", "Tabnine", "team collaboration", "pattern learning"],
+    imageUrl: tabnineCodingHero,
     category: "AI Agents",
     rating: 4.6,
     totalVotes: 3987
