@@ -455,7 +455,7 @@ const MobileMenu = () => {
                 </CollapsibleTrigger>
                 <CollapsibleContent className="mt-1 space-y-1 pl-2">
                   <DropdownMenuItem onClick={() => { navigate('/our-story'); setIsMenuOpen(false); }} className="text-cyan-100 hover:bg-cyan-500/20 mb-1 rounded text-sm">
-                    📖 About AI Web Tools LLC
+                    📖 About AI Web Tools
                   </DropdownMenuItem>
                   <DropdownMenuItem onClick={(e) => handleExternalLink('https://linktr.ee/aiwebtools', e)} className="text-cyan-100 hover:bg-cyan-500/20 mb-1 rounded text-sm">
                     <Trees className="w-3 h-3 mr-2" /> Linktree

@@ -34,7 +34,7 @@ Thank you!`);
     window.location.href = mailtoUrl;
   };
 
-  // Check if this is an AI Web Tools LLC original tool (has lovable.app in the URL)
+  // Check if this is an AI Web Tools original tool (has lovable.app in the URL)
   const isAIWebToolsOriginal = tool.directUrl?.includes('lovable.app') || false;
 
   return (

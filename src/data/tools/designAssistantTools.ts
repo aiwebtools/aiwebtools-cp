@@ -460,7 +460,7 @@ export const designAssistantTools: Tool[] = [
     description: "Design digital products, mobile apps, website mockups, and wireframes in minutes with Uizard, the world's first AI-powered design tool! Sign up today and transform your design process with artificial intelligence.",
     emoji: "🎨",
     color: "from-purple-500 to-pink-600",
-    directUrl: "https://uizard.io/?transaction_id=102a5f0a69393a767ecb22245af103&offer_id=3&affiliate_id=109&utm_campaign=affiliates&utm_term=AI+WEB+TOOLS+LLC&utm_source=affilate_&utm_medium=affiliate&via=aiwebtools",
+    directUrl: "https://uizard.io/?transaction_id=102a5f0a69393a767ecb22245af103&offer_id=3&affiliate_id=109&utm_campaign=affiliates&utm_term=AI+WEB+TOOLS&utm_source=affilate_&utm_medium=affiliate&via=aiwebtools",
     tags: ["design tool", "mockups", "wireframes", "AI design", "app design", "freemium"],
     category: "Design AI",
     rating: 4.2,
