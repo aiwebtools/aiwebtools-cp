@@ -344,8 +344,5 @@ export const runQuickToolVerification = () => {
   return toolPreservationVerifier.quickVerify();
 };
 
-// Auto-run verification on import (can be disabled if needed)
-console.log(`🔍 Auto-running tool preservation verification...`);
-setTimeout(() => {
-  toolPreservationVerifier.quickVerify();
-}, 1000);
+// Auto-run verification disabled for production performance
+// To run manually in console: toolPreservationVerifier.quickVerify()
