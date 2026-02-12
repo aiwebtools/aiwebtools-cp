@@ -120,13 +120,13 @@ const DisclaimersPage = () => {
               <CardHeader>
                 <CardTitle className="text-2xl text-cyan-400 flex items-center">
                   <FileText className="w-6 h-6 mr-3" />
-                  AI Web Tools LLC Terms of Service
+                  AI Web Tools Terms of Service
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4 text-gray-300">
                 <div>
                   <h3 className="text-lg font-semibold text-cyan-400 mb-2">Service Overview</h3>
-                  <p>AI Web Tools LLC operates a directory service connecting users to AI tools and applications. We create original GPT tools and list third-party services for user convenience.</p>
+                  <p>AI Web Tools operates a directory service connecting users to AI tools and applications. We create original GPT tools and list third-party services for user convenience.</p>
                 </div>
                 
                 <div>
@@ -141,7 +141,7 @@ const DisclaimersPage = () => {
 
                 <div>
                   <h3 className="text-lg font-semibold text-cyan-400 mb-2">Limitation of Liability</h3>
-                  <p>AI Web Tools LLC provides services "as is" without warranties. We are not liable for any direct, indirect, incidental, or consequential damages arising from use of our services or listed tools.</p>
+                  <p>AI Web Tools provides services "as is" without warranties. We are not liable for any direct, indirect, incidental, or consequential damages arising from use of our services or listed tools.</p>
                 </div>
 
                 <div>
@@ -294,7 +294,7 @@ const DisclaimersPage = () => {
 
                 <div>
                   <h3 className="text-lg font-semibold text-green-400 mb-2">Governing Law</h3>
-                  <p>These terms are governed by the laws of the jurisdiction where AI Web Tools LLC is incorporated, without regard to conflict of law principles.</p>
+                  <p>These terms are governed by the laws of the jurisdiction where AI Web Tools is incorporated, without regard to conflict of law principles.</p>
                 </div>
 
                 <div className="border-t border-green-500/30 pt-4 mt-4">

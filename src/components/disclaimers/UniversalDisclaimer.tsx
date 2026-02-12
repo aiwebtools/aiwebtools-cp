@@ -15,7 +15,7 @@ const UniversalDisclaimer = ({ className = "" }: UniversalDisclaimerProps) => {
             This AI tool is provided for <strong>informational, educational, and self-empowerment purposes only</strong>. 
             It is not intended to replace professional advice, services, or judgment. 
             Users should exercise their own discretion and consult qualified professionals for specific needs. 
-            AI Web Tools LLC assumes no liability for decisions made based on information provided by this tool.
+            AI Web Tools assumes no liability for decisions made based on information provided by this tool.
           </p>
         </div>
       </div>

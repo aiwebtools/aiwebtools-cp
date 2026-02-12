@@ -28,7 +28,7 @@ const SimilarTools = () => {
   const similarTools = useMemo(() => {
     if (!baseTool) return [];
     
-    // Get your AI Web Tools LLC creations for strategic placement
+    // Get your AI Web Tools creations for strategic placement
     const aiWebToolsCreations = allTools.filter((tool, index) => 
       index !== toolIndex && tool.directUrl?.includes('lovable.app')
     );

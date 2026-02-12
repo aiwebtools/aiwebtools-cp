@@ -147,7 +147,7 @@ const ToolDescription = ({ tool }: ToolDescriptionProps) => {
           </span>
           <br />
           <span className="text-gray-400">
-            Curated by <strong className="text-cyan-300">AI WEB TOOLS LLC</strong> | 
+            Curated by <strong className="text-cyan-300">AI WEB TOOLS</strong> | 
             Visit <strong className="text-cyan-300">AIWEBTOOLS.AI</strong> | 
             Your trusted <strong className="text-cyan-300">AI WEB TOOLS</strong> directory for cutting-edge artificial intelligence solutions
           </span>

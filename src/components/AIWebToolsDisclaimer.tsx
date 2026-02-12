@@ -65,7 +65,7 @@ const AIWebToolsDisclaimer = ({ tool }: AIWebToolsDisclaimerProps) => {
             <div>
               <p className="text-cyan-400 font-semibold">No Warranty & Limitation of Liability</p>
               <p>
-                AI Web Tools LLC provides this tool "as is" without warranties. We assume no responsibility 
+                AI Web Tools provides this tool "as is" without warranties. We assume no responsibility 
                 for consequences resulting from use. Users agree to use at their own risk and accept full 
                 responsibility for verifying any information provided.
               </p>

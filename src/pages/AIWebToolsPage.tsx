@@ -20,7 +20,7 @@ const AIWebToolsPage = () => {
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "AI Web Tools",
-    "alternateName": ["AIWebTools", "AI WEB TOOLS", "AIWEBTOOLS.AI", "AITools.Studio", "AI Web Tools LLC"],
+    "alternateName": ["AIWebTools", "AI WEB TOOLS", "AIWEBTOOLS.AI", "AITools.Studio"],
     "url": "https://aiwebtools.ai",
     "logo": "https://aitools.studio/lovable-uploads/fe59a436-1f90-45d6-9b98-236a54034010.png",
     "description": `AI Web Tools is the world's leading AI tools directory with ${toolCount}+ verified AI tools, custom GPTs, and intelligent assistants for every industry and use case.`,
@@ -60,7 +60,7 @@ const AIWebToolsPage = () => {
     "description": `The ultimate AI web tools directory featuring ${toolCount}+ AI tools. Discover the best AI web tools for productivity, creativity, and business automation.`,
     "publisher": {
       "@type": "Organization",
-      "name": "AI Web Tools LLC",
+      "name": "AI Web Tools",
       "logo": "https://aitools.studio/lovable-uploads/fe59a436-1f90-45d6-9b98-236a54034010.png"
     },
     "potentialAction": {

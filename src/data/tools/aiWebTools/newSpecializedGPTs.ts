@@ -272,7 +272,7 @@ export const newSpecializedGPTs: Tool[] = [
   {
     icon: Home,
     title: "Property Data Finder GPT",
-    description: "Property Data Finder GPT by Ai Web Tools LLC delivers unparalleled, precise, and current information about properties. Discover everything from market value and topography to living area, year built, estimated facing direction, geocoordinates, and beyond. Unlock a wealth of property insights like never before!",
+    description: "Property Data Finder GPT by Ai Web Tools delivers unparalleled, precise, and current information about properties. Discover everything from market value and topography to living area, year built, estimated facing direction, geocoordinates, and beyond. Unlock a wealth of property insights like never before!",
     emoji: "🏠",
     color: "from-blue-600 to-green-700",
     directUrl: "https://propertydatafindergpt.lovable.app/?via=aiwebtools",

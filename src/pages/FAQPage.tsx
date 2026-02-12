@@ -82,7 +82,7 @@ const FAQPage = () => {
     },
     "publisher": {
       "@type": "Organization",
-      "name": "AI WEB TOOLS LLC",
+      "name": "AI WEB TOOLS",
       "url": "https://aitools.studio"
     }
   };

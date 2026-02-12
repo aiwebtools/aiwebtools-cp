@@ -25,7 +25,7 @@ export const seoConfig = {
     "ai writing tools",
     "ai tools finder"
   ],
-  author: "AI WEB TOOLS LLC",
+  author: "AI WEB TOOLS",
   twitterHandle: "@aiwebtools",
   facebookAppId: "ai-web-tools-facebook-app-id",
   linkedinCompany: "ai-web-tools-llc"
@@ -114,7 +114,7 @@ export const generateLocalBusinessStructuredData = () => {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "AI WEB TOOLS LLC",
+    "name": "AI WEB TOOLS",
     "alternateName": "AI WEB TOOLS",
     "url": seoConfig.siteUrl,
     "logo": `${seoConfig.siteUrl}/favicon.ico`,

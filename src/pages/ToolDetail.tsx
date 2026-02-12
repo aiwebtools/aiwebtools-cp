@@ -129,7 +129,7 @@ const ToolDetail = () => {
     { name: tool.title, url: `https://aitools.studio/${generateToolSlug(tool.title)}` }
   ];
 
-  // Check if this is an AI Web Tools LLC GPT (has lovable.app in the URL)
+  // Check if this is an AI Web Tools GPT (has lovable.app in the URL)
   const isAIWebToolsGPT = tool.directUrl?.includes('lovable.app') || false;
   
   // Check for required disclaimers
@@ -223,7 +223,7 @@ const ToolDetail = () => {
                 <FullDivinationDisclaimer tool={tool} />
               )}
               
-              {/* Show AI Web Tools disclaimer for GPTs created by AI Web Tools LLC */}
+              {/* Show AI Web Tools disclaimer for GPTs created by AI Web Tools */}
               {isAIWebToolsGPT && (
                 <AIWebToolsDisclaimer tool={tool} />
               )}
