@@ -300,7 +300,7 @@ combinedTools = combinedTools.map(tool => {
       ...tool,
       directUrl: "https://propertydatafindergpt.lovable.app/?via=aiwebtools",
       category: tool.category || "Real Estate & Property",
-      description: tool.description || "Property Data Finder GPT by Ai Web Tools LLC delivers unparalleled, precise, and current information about properties."
+      description: tool.description || "Property Data Finder GPT by Ai Web Tools delivers unparalleled, precise, and current information about properties."
     };
   }
   if (tool.title === "Manicheism GPT") {

@@ -275,7 +275,7 @@ const ImprovedSEOHead: React.FC<ImprovedSEOHeadProps> = ({
       <meta name="DC.creator" content="AI Web Tools" />
       <meta name="DC.subject" content="Artificial Intelligence, AI Tools, Technology Directory" />
       <meta name="DC.description" content={getDescription()} />
-      <meta name="DC.publisher" content="AI Web Tools LLC" />
+      <meta name="DC.publisher" content="AI Web Tools" />
       <meta name="DC.type" content="InteractiveResource" />
       <meta name="DC.format" content="text/html" />
       <meta name="DC.language" content="en" />

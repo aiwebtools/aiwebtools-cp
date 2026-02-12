@@ -342,7 +342,7 @@ const DesktopMenu = () => {
                 <CollapsibleContent className="mt-1 mb-3">
                   <div className="bg-gray-900/50 rounded border border-white/5 p-2 space-y-1">
                     <DropdownMenuItem onClick={() => { navigate('/our-story'); setIsMenuOpen(false); }} className="text-cyan-100 hover:bg-cyan-500/20 rounded text-sm px-2 py-1.5">
-                      📖 About AI Web Tools LLC
+                      📖 About AI Web Tools
                     </DropdownMenuItem>
                     <DropdownMenuItem onClick={(e) => handleExternalLink('https://linktr.ee/aiwebtools', e)} className="text-cyan-100 hover:bg-cyan-500/20 rounded text-sm px-2 py-1.5">
                       <Trees className="w-3 h-3 mr-2" /> Connect with us

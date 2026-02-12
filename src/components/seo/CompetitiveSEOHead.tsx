@@ -30,7 +30,7 @@ const CompetitiveSEOHead = ({ tool, toolIndex, category, isHomepage }: Competiti
         <link rel="canonical" href="https://aitools.studio" />
         <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
         <meta name="revisit-after" content="1 days" />
-        <meta name="author" content="AI WEB TOOLS LLC" />
+        <meta name="author" content="AI WEB TOOLS" />
         
         {/* Advanced competitive meta */}
         <meta name="subject" content="World's Most Comprehensive AI Tools Directory - Better Than Any Competitor" />

@@ -71,7 +71,7 @@ export const aiToolsAndUtilities: Tool[] = [
   },
   {
     icon: Building,
-    title: "AI WEB TOOLS LLC",
+    title: "AI WEB TOOLS",
     description: "Comprehensive AI Tool Directory & Portfolio showcasing the latest and most innovative AI tools and technologies across all categories.",
     emoji: "🏢",
     color: "from-cyan-500 to-blue-600",

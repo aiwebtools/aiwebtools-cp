@@ -64,7 +64,7 @@ const SEOHead = ({
     "curated ai tools",
     "aitools studio",
     "ai tools company",
-    "ai web tools llc",
+    "ai web tools",
     "1000 ai tools",
     "free ai tools",
     "premium ai tools",
@@ -198,7 +198,7 @@ const SEOHead = ({
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
       <meta name="keywords" content={competitiveKeywords.join(', ')} />
-      <meta name="author" content="AI WEB TOOLS LLC" />
+      <meta name="author" content="AI WEB TOOLS" />
       <link rel="canonical" href={canonical} />
       
       {/* ENHANCED COMPETITIVE META TAGS FOR #1 RANKING */}
@@ -207,8 +207,8 @@ const SEOHead = ({
       <meta name="topic" content="aiwebtools.ai, ai web tools, AIWEBTOOLS, AI WEB TOOLS, best ai tools 2026, artificial intelligence, ChatGPT alternatives, comprehensive ai directory, better than toolify" />
       <meta name="summary" content="AIWEBTOOLS.AI - The #1 comprehensive AI web tools directory with 1000+ curated AI tools. Better than Toolify. Discover the best AI tools 2026 for business, creativity, and productivity." />
       <meta name="classification" content="Technology, AI Tools, Software Directory" />
-      <meta name="designer" content="AI WEB TOOLS LLC" />
-      <meta name="owner" content="AI WEB TOOLS LLC" />
+      <meta name="designer" content="AI WEB TOOLS" />
+      <meta name="owner" content="AI WEB TOOLS" />
       <meta name="directory" content="submission" />
       <meta name="pagename" content={fullTitle} />
       <meta name="category" content="AIWEBTOOLS.AI - AI WEB TOOLS Directory" />
@@ -220,12 +220,12 @@ const SEOHead = ({
       <meta name="audience" content="Business Professionals, Content Creators, Developers, Entrepreneurs, Students" />
       <meta name="language" content="English" />
       <meta name="doc-type" content="AIWEBTOOLS.AI - AI WEB TOOLS Directory" />
-      <meta name="doc-rights" content="AI WEB TOOLS LLC" />
+      <meta name="doc-rights" content="AI WEB TOOLS" />
       <meta name="doc-class" content="Living Document" />
       
       {/* CRITICAL BRAND AND COMPETITIVE EDGE META TAGS */}
       <meta name="brand" content="AIWEBTOOLS.AI" />
-      <meta name="company" content="AI WEB TOOLS LLC" />
+      <meta name="company" content="AI WEB TOOLS" />
       <meta name="expertise" content="AI WEB TOOLS Curation, AIWEBTOOLS.AI Platform, AI Tools Recommendations, Technology Reviews" />
       <meta name="specialty" content="AIWEBTOOLS.AI - Artificial Intelligence WEB TOOLS Directory" />
       <meta name="focus" content="aiwebtools.ai, ai web tools, best AI tools 2026, ChatGPT alternatives, professional AI solutions, better than toolify" />
@@ -327,7 +327,7 @@ const SEOHead = ({
       
       {/* Article and Content Meta */}
       <meta property="article:publisher" content="https://aitoolwebsites.com" />
-      <meta property="article:author" content="AI WEB TOOLS LLC" />
+      <meta property="article:author" content="AI WEB TOOLS" />
       <meta property="article:published_time" content="2024-01-01T00:00:00Z" />
       <meta property="article:modified_time" content={new Date().toISOString()} />
       <meta property="article:section" content={category || "AI Tools Directory"} />

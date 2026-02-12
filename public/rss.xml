@@ -10,11 +10,11 @@
     <lastBuildDate>Mon, 27 Jan 2025 12:00:00 GMT</lastBuildDate>
     <pubDate>Mon, 27 Jan 2025 12:00:00 GMT</pubDate>
     <ttl>1440</ttl>
-    <managingEditor>Contact@ai-webtools.com (AI WEB TOOLS LLC)</managingEditor>
-    <webMaster>Contact@ai-webtools.com (AI WEB TOOLS LLC)</webMaster>
-    <copyright>Copyright 2025 AI WEB TOOLS LLC</copyright>
+    <managingEditor>Contact@ai-webtools.com (AI WEB TOOLS)</managingEditor>
+    <webMaster>Contact@ai-webtools.com (AI WEB TOOLS)</webMaster>
+    <copyright>Copyright 2026 AI WEB TOOLS</copyright>
     <category>Technology</category>
-    <generator>AI WEB TOOLS LLC RSS Generator</generator>
+    <generator>AI WEB TOOLS RSS Generator</generator>
     <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
     <image>
       <url>https://aitools.studio/favicon.ico</url>
@@ -30,7 +30,7 @@
       <link>https://aitools.studio</link>
       <guid isPermaLink="true">https://aitools.studio</guid>
       <pubDate>Mon, 27 Jan 2025 12:00:00 GMT</pubDate>
-      <dc:creator>AI WEB TOOLS LLC</dc:creator>
+      <dc:creator>AI WEB TOOLS</dc:creator>
       <category>AI Tools</category>
     </item>
     
@@ -40,7 +40,7 @@
       <link>https://aitools.studio/category/AI%20Assistants</link>
       <guid isPermaLink="true">https://aitools.studio/category/AI%20Assistants</guid>
       <pubDate>Mon, 27 Jan 2025 11:00:00 GMT</pubDate>
-      <dc:creator>AI WEB TOOLS LLC</dc:creator>
+      <dc:creator>AI WEB TOOLS</dc:creator>
       <category>AI Assistants</category>
     </item>
     
@@ -50,7 +50,7 @@
       <link>https://aitools.studio/category/Image%20Generation</link>
       <guid isPermaLink="true">https://aitools.studio/category/Image%20Generation</guid>
       <pubDate>Mon, 27 Jan 2025 10:00:00 GMT</pubDate>
-      <dc:creator>AI WEB TOOLS LLC</dc:creator>
+      <dc:creator>AI WEB TOOLS</dc:creator>
       <category>Image Generation</category>
     </item>
   </channel>

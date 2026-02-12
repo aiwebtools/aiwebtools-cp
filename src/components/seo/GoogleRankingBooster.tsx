@@ -13,7 +13,7 @@ const GoogleRankingBooster = ({ pageType = 'homepage', toolData, category }: Goo
   const generateCompetitiveSchema = () => {
     const organizationSchema = {
       "@type": "Organization",
-      "name": "AI WEB TOOLS LLC",
+      "name": "AI WEB TOOLS",
       "alternateName": ["AI WEB TOOLS", "AIWebTools", "AITools.Studio"],
       "url": "https://aitools.studio",
       "logo": "https://aitools.studio/favicon.ico",

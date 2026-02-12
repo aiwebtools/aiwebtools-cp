@@ -42,7 +42,7 @@ const FooterCompanyInfo = () => {
       {/* Company information */}
       <div>
         <h3 className="text-lg font-semibold text-green-300 mb-4" style={{ textShadow: '0 0 10px rgba(0, 255, 0, 0.4)' }}>
-          AI WEB TOOLS LLC
+          AI WEB TOOLS
         </h3>
         <div className="space-y-2 text-sm text-gray-300">
           <div className="flex items-center space-x-2">

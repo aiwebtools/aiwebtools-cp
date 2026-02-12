@@ -45,7 +45,7 @@ const ToolDisclaimer = ({ tool }: ToolDisclaimerProps) => {
 
             <p>
               <strong className="text-yellow-400">Independent Service:</strong> {tool.title} is an independent AI tool. 
-              AI Web Tools LLC does not own, operate, or control this external service.
+              AI Web Tools does not own, operate, or control this external service.
             </p>
             
             <p>

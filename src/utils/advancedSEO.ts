@@ -8,12 +8,12 @@ export const generateArticleStructuredData = (tool: any, toolIndex: number) => {
     "image": `https://aitools.studio/placeholder.svg`,
     "author": {
       "@type": "Organization",
-      "name": "AI WEB TOOLS LLC",
+      "name": "AI WEB TOOLS",
       "url": "https://aitools.studio"
     },
     "publisher": {
       "@type": "Organization",
-      "name": "AI WEB TOOLS LLC",
+      "name": "AI WEB TOOLS",
       "logo": {
         "@type": "ImageObject",
         "url": "https://aitools.studio/favicon.ico"
@@ -91,7 +91,7 @@ export const generateVideoObjectStructuredData = (tool: any) => {
     "embedUrl": `https://aitools.studio/tool/${tool.title}#video`,
     "publisher": {
       "@type": "Organization",
-      "name": "AI WEB TOOLS LLC",
+      "name": "AI WEB TOOLS",
       "logo": {
         "@type": "ImageObject",
         "url": "https://aitools.studio/favicon.ico"
@@ -103,7 +103,7 @@ export const generateVideoObjectStructuredData = (tool: any) => {
 export const generateAdvancedMetaTags = (tool: any, toolIndex: number) => {
   return {
     // Enhanced product meta
-    "product:brand": "AI WEB TOOLS LLC",
+    "product:brand": "AI WEB TOOLS",
     "product:availability": "in stock",
     "product:condition": "new",
     "product:price:amount": "0.00",
@@ -127,8 +127,8 @@ export const generateAdvancedMetaTags = (tool: any, toolIndex: number) => {
     "DC.title": tool.title,
     "DC.description": tool.description,
     "DC.subject": tool.category,
-    "DC.creator": "AI WEB TOOLS LLC",
-    "DC.publisher": "AI WEB TOOLS LLC",
+    "DC.creator": "AI WEB TOOLS",
+    "DC.publisher": "AI WEB TOOLS",
     "DC.date": new Date().toISOString().split('T')[0],
     "DC.type": "Software",
     "DC.language": "en",
@@ -138,7 +138,7 @@ export const generateAdvancedMetaTags = (tool: any, toolIndex: number) => {
     "pinterest:url": `https://aitools.studio/tool/${toolIndex}`,
     
     // LinkedIn meta
-    "linkedin:owner": "AI WEB TOOLS LLC",
+    "linkedin:owner": "AI WEB TOOLS",
     
     // Additional Open Graph
     "og:determiner": "the",
