@@ -42,7 +42,7 @@ export const getStandardizedCategoriesWithCounts = (): Record<string, number> =>
     standardizedCategories[standardizedTitle] = (standardizedCategories[standardizedTitle] || 0) + count;
   });
   
-  console.log('New consolidated category structure applied:', standardizedCategories);
+  // Category structure logging disabled for performance
   
   return standardizedCategories;
 };
