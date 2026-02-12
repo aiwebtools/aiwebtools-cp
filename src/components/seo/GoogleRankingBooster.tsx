@@ -46,7 +46,7 @@ const GoogleRankingBooster = ({ pageType = 'homepage', toolData, category }: Goo
       "description": "Discover 2,195+ AI web tools in the most comprehensive AI web tools directory. Find and compare the best AI web tools with expert reviews, ratings, and detailed analysis. Your trusted source for AI web tools.",
       "publisher": {
         "@type": "Organization",
-        "name": "AI WEB TOOLS LLC"
+        "name": "AI WEB TOOLS"
       },
       "potentialAction": {
         "@type": "SearchAction",

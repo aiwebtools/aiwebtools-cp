@@ -88,7 +88,7 @@ export const enhancedSchemaMarkup = (tool: any, toolIndex: number) => {
           "availability": "https://schema.org/InStock",
           "seller": {
             "@type": "Organization",
-            "name": "AI WEB TOOLS LLC"
+            "name": "AI WEB TOOLS"
           }
         },
         "aggregateRating": {
@@ -123,7 +123,7 @@ export const enhancedSchemaMarkup = (tool: any, toolIndex: number) => {
         },
         "publisher": {
           "@type": "Organization",
-          "name": "AI WEB TOOLS LLC"
+          "name": "AI WEB TOOLS"
         },
         "datePublished": "2024-01-01",
         "dateModified": new Date().toISOString().split('T')[0],

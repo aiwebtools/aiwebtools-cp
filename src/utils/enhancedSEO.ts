@@ -8,7 +8,7 @@ export const generateEnhancedStructuredData = () => {
       {
         "@type": "Organization",
         "@id": "https://aitools.studio/#organization",
-        "name": "AI WEB TOOLS LLC",
+        "name": "AI WEB TOOLS",
         "alternateName": ["AIWEBTOOLS.AI", "AI WEB TOOLS", "AIWEBTOOLS", "AITools.Studio"],
         "url": "https://aitools.studio",
         "logo": {
@@ -193,7 +193,7 @@ export const generateToolStructuredData = (tool: any) => {
     },
     "publisher": {
       "@type": "Organization",
-      "name": "AI WEB TOOLS LLC",
+      "name": "AI WEB TOOLS",
       "url": "https://aitools.studio"
     }
   };
@@ -289,5 +289,5 @@ export const metaKeywords = [
   "curated ai tools",
   "aitools studio",
   "ai tools company",
-  "ai web tools llc"
+  "ai web tools"
 ];

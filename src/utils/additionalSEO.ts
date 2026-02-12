@@ -144,7 +144,7 @@ export const enhancedFAQs = [
 export const eatOptimization = {
   expertise: {
     authorBio: "Expert AI Tools Curator & Analyst",
-    credentials: "Verified by AI WEB TOOLS LLC",
+    credentials: "Verified by AI WEB TOOLS",
     experience: "5+ years in AI technology evaluation"
   },
   
@@ -233,7 +233,7 @@ export const richSnippetsOptimization = {
   
   // Brand snippet
   brand: {
-    name: "AI WEB TOOLS LLC",
+    name: "AI WEB TOOLS",
     logo: "https://aitools.studio/favicon.ico",
     url: "https://aitools.studio"
   }

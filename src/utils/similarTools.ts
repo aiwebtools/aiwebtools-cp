@@ -9,7 +9,7 @@ export const getSimilarTools = (currentTools: Tool[], allTools: Tool[], minRecom
 
   const currentToolTitles = new Set(currentTools.map(tool => tool.title));
   
-  // Get your AI Web Tools LLC creations for strategic placement
+  // Get your AI Web Tools creations for strategic placement
   const aiWebToolsCreations = allTools.filter(tool => 
     tool.directUrl?.includes('lovable.app') && 
     !currentToolTitles.has(tool.title)

@@ -58,7 +58,7 @@ const EnhancedSEOHead = ({
     ...seoConfig.keywords,
     ...keywords,
     // Brand-specific competitive terms
-    "aiwebtools", "aiwebtools.ai", "AI WEB TOOLS", "AI WEB TOOLS LLC", "aitools.studio", "aitoolwebsites.com", "AItoolwebsites.com",
+    "aiwebtools", "aiwebtools.ai", "AI WEB TOOLS", "aitools.studio", "aitoolwebsites.com", "AItoolwebsites.com",
     // Primary competitive displacement keywords
     "best ai tools directory 2026", "ai tools better than toolify", "ai tools better than futurepedia",
     "complete ai tools database", "verified ai tools platform", "comprehensive ai directory",
@@ -97,9 +97,9 @@ const EnhancedSEOHead = ({
       <meta name="topic" content="AI Tools, Artificial Intelligence, ChatGPT Alternatives, Best AI Directory" />
       <meta name="summary" content="The world's #1 most comprehensive AI tools directory with 1000+ curated AI applications. Better than Toolify, Futurepedia, and all competitors. Trusted by 100K+ professionals worldwide." />
       <meta name="classification" content="Technology, AI Tools, Software Directory" />
-      <meta name="designer" content="AI WEB TOOLS LLC" />
-      <meta name="owner" content="AI WEB TOOLS LLC" />
-      <meta name="copyright" content="© 2026 AI WEB TOOLS LLC. All rights reserved." />
+      <meta name="designer" content="AI WEB TOOLS" />
+      <meta name="owner" content="AI WEB TOOLS" />
+      <meta name="copyright" content="© 2026 AI WEB TOOLS. All rights reserved." />
       <meta name="language" content="English" />
       <meta name="coverage" content="Worldwide" />
       <meta name="distribution" content="Global" />
@@ -109,7 +109,7 @@ const EnhancedSEOHead = ({
       
       {/* Competitive Advantage Meta Tags */}
       <meta name="brand" content="AI WEB TOOLS" />
-      <meta name="company" content="AI WEB TOOLS LLC" />
+      <meta name="company" content="AI WEB TOOLS" />
       <meta name="expertise" content="AI Tools Curation, Software Recommendations, Technology Reviews" />
       <meta name="specialty" content="Artificial Intelligence Tools Directory" />
       <meta name="competitive-advantage" content="Most comprehensive AI directory, better than Toolify & Futurepedia, 1000+ verified tools, trusted by 100K+ users" />
@@ -172,7 +172,7 @@ const EnhancedSEOHead = ({
       
       {/* Article Meta */}
       <meta property="article:publisher" content="https://aitoolwebsites.com" />
-      <meta property="article:author" content="AI WEB TOOLS LLC" />
+      <meta property="article:author" content="AI WEB TOOLS" />
       <meta property="article:published_time" content="2024-01-01T00:00:00Z" />
       <meta property="article:modified_time" content={new Date().toISOString()} />
       <meta property="article:section" content={category || "AI Tools Directory"} />
