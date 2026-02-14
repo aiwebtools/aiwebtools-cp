@@ -14,6 +14,12 @@ import {
   HardHat
 } from "lucide-react";
 
+import itSupportHero from "@/assets/tools/it-support-gpt-hero.jpg";
+import securityConsultantHero from "@/assets/tools/security-consultant-gpt-hero.jpg";
+import urbanPlannerHero from "@/assets/tools/urban-planner-gpt-hero.jpg";
+import logisticsManagerHero from "@/assets/tools/logistics-manager-gpt-hero.jpg";
+import safetyInspectorHero from "@/assets/tools/safety-inspector-gpt-hero.jpg";
+
 export const businessTools: Tool[] = [
   {
     icon: Calculator,
@@ -59,7 +65,7 @@ export const businessTools: Tool[] = [
     emoji: "🔧",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://chatgpt.com/g/g-683b97eb3ac081918a1755a261409586-it-support-gpt",
-    tags: ["IT support", "troubleshooting", "technical assistance", "system maintenance", "technology solutions", "Customer Support", "Workflow Optimization"],
+    imageUrl: itSupportHero,
     category: "Business Tools",
     rating: 4.6,
     totalVotes: 4321
@@ -71,7 +77,7 @@ export const businessTools: Tool[] = [
     emoji: "🛡️",
     color: "from-red-500 to-orange-600",
     directUrl: "https://chatgpt.com/g/g-683b98ddf8708191a5a25fc94d0f0d32-security-consultant-gpt",
-    tags: ["cybersecurity", "security consulting", "risk assessment", "threat analysis", "digital protection", "Analytics & Reporting", "Task Management"],
+    imageUrl: securityConsultantHero,
     category: "Business Tools",
     rating: 4.7,
     totalVotes: 3987
@@ -83,7 +89,7 @@ export const businessTools: Tool[] = [
     emoji: "🏙️",
     color: "from-green-500 to-blue-600",
     directUrl: "https://chatgpt.com/g/g-68bba6576cb881918abbcf39ac5d6c7b-urban-planner-gpt",
-    tags: ["urban planning", "city development", "zoning", "community development", "sustainable planning", "Project Management", "Checklist & Planning"],
+    imageUrl: urbanPlannerHero,
     category: "Business Tools",
     rating: 4.5,
     totalVotes: 3456
@@ -95,7 +101,7 @@ export const businessTools: Tool[] = [
     emoji: "📦",
     color: "from-orange-500 to-red-600",
     directUrl: "https://chatgpt.com/g/g-683b9a863cdc81919593479698ad685e-logistics-manager-gpt",
-    tags: ["logistics management", "supply chain", "inventory optimization", "shipping", "warehouse management", "Automation Platform", "Workflow Optimization"],
+    imageUrl: logisticsManagerHero,
     category: "Business Tools",
     rating: 4.6,
     totalVotes: 4123
@@ -107,7 +113,7 @@ export const businessTools: Tool[] = [
     emoji: "🦺",
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://chatgpt.com/g/g-683b9c463ec48191bd96a0013905aa97-safety-inspector-gpt",
-    tags: ["safety inspection", "compliance", "workplace safety", "risk assessment", "regulatory guidance", "HR & Recruitment", "Checklist & Planning"],
+    imageUrl: safetyInspectorHero,
     category: "Business Tools",
     rating: 4.5,
     totalVotes: 3789
