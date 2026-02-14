@@ -16,6 +16,22 @@ import {
   TrendingUp
 } from "lucide-react";
 
+import elevenlabsHero from "@/assets/tools/elevenlabs-hero.jpg";
+import blandAiHero from "@/assets/tools/bland-ai-hero.jpg";
+import vapiAiHero from "@/assets/tools/vapi-ai-hero.jpg";
+import retellAiHero from "@/assets/tools/retell-ai-hero.jpg";
+import airAiHero from "@/assets/tools/air-ai-hero.jpg";
+import synthflowAiHero from "@/assets/tools/synthflow-ai-hero.jpg";
+import murfAiHero from "@/assets/tools/murf-ai-hero.jpg";
+import speechifyHero from "@/assets/tools/speechify-hero.jpg";
+import descriptHero from "@/assets/tools/descript-hero.jpg";
+import aivaHero from "@/assets/tools/aiva-hero.jpg";
+import resembleAiHero from "@/assets/tools/resemble-ai-hero.jpg";
+import replicaStudiosHero from "@/assets/tools/replica-studios-hero.jpg";
+import audiogenHero from "@/assets/tools/audiogen-hero.jpg";
+import cleanvoiceHero from "@/assets/tools/cleanvoice-hero.jpg";
+import humeAiHero from "@/assets/tools/hume-ai-hero.jpg";
+
 export const audioAndVoiceTools: Tool[] = [
   {
     icon: Mic,
@@ -24,6 +40,7 @@ export const audioAndVoiceTools: Tool[] = [
     emoji: "🎙️",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://try.elevenlabs.io/aiwebtools",
+    imageUrl: elevenlabsHero,
     tags: ["Voice Cloning", "Text-to-Speech", "voice generation", "voice cloning", "AI voices", "audio production"],
     category: "Audio & Voice",
     rating: 4.8,
@@ -36,6 +53,7 @@ export const audioAndVoiceTools: Tool[] = [
     emoji: "📞",
     color: "from-blue-500 to-indigo-600",
     directUrl: "https://www.bland.ai/?via=aiwebtools",
+    imageUrl: blandAiHero,
     tags: ["Voice Agent", "phone agents", "call agents", "voice agents", "AI phone", "phone automation", "call automation", "inbound calls", "outbound calls", "conversational AI", "agent"],
     category: "Phone & Voice Agents",
     rating: 4.7,
@@ -48,6 +66,7 @@ export const audioAndVoiceTools: Tool[] = [
     emoji: "☎️",
     color: "from-violet-500 to-purple-600",
     directUrl: "https://vapi.ai/?via=aiwebtools",
+    imageUrl: vapiAiHero,
     tags: ["Voice Agent", "phone agents", "voice agents", "call agents", "AI phone", "voice AI", "phone automation", "conversational AI", "customer support", "sales calls", "agent"],
     category: "Phone & Voice Agents",
     rating: 4.6,
@@ -60,6 +79,7 @@ export const audioAndVoiceTools: Tool[] = [
     emoji: "📱",
     color: "from-cyan-500 to-teal-600",
     directUrl: "https://www.retellai.com/?via=aiwebtools",
+    imageUrl: retellAiHero,
     tags: ["Voice Agent", "phone agents", "voice agents", "call agents", "AI phone", "conversational AI", "voice AI", "phone automation", "call center", "inbound", "outbound", "agent"],
     category: "Phone & Voice Agents",
     rating: 4.6,
@@ -72,6 +92,7 @@ export const audioAndVoiceTools: Tool[] = [
     emoji: "🤖",
     color: "from-emerald-500 to-green-600",
     directUrl: "https://www.air.ai/?via=aiwebtools",
+    imageUrl: airAiHero,
     tags: ["Voice Agent", "Autonomous Agent", "phone agents", "voice agents", "call agents", "AI phone", "autonomous agents", "sales calls", "customer service", "phone automation", "conversational AI", "agent"],
     category: "Phone & Voice Agents",
     rating: 4.5,
@@ -84,6 +105,7 @@ export const audioAndVoiceTools: Tool[] = [
     emoji: "📞",
     color: "from-green-500 to-blue-600",
     directUrl: "https://synthflow.ai/?via=aiwebtools",
+    imageUrl: synthflowAiHero,
     tags: ["Voice Agent", "phone agents", "voice AI", "customer service", "appointment booking", "business automation", "agent"],
     category: "Phone & Voice Agents",
     rating: 4.6,
@@ -168,6 +190,7 @@ export const audioAndVoiceTools: Tool[] = [
     emoji: "🔊",
     color: "from-orange-500 to-red-600",
     directUrl: "https://get.murf.ai/1uvb0e8dznua",
+    imageUrl: murfAiHero,
     tags: ["Text-to-Speech", "Voice Synthesis", "voiceover", "podcast", "audio content", "voice synthesis"],
     category: "Audio & Voice",
     rating: 4.5,
@@ -180,6 +203,7 @@ export const audioAndVoiceTools: Tool[] = [
     emoji: "💬",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://speechify.com/?via=aiwebtools",
+    imageUrl: speechifyHero,
     tags: ["Text-to-Speech", "accessibility", "reading", "productivity", "audio conversion"],
     category: "Audio & Voice",
     rating: 4.4,
@@ -192,6 +216,7 @@ export const audioAndVoiceTools: Tool[] = [
     emoji: "🎧",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://www.descript.com/?via=aiwebtools",
+    imageUrl: descriptHero,
     tags: ["Audio Editing", "Podcast Tools", "video editing", "transcription", "podcasting", "screen recording"],
     category: "Audio & Voice",
     rating: 4.7,
@@ -204,6 +229,7 @@ export const audioAndVoiceTools: Tool[] = [
     emoji: "🎵",
     color: "from-indigo-500 to-purple-600",
     directUrl: "https://www.aiva.ai/?via=aiwebtools",
+    imageUrl: aivaHero,
     tags: ["Music Generator", "AI composition", "soundtrack", "background music", "creative AI"],
     category: "Audio & Voice",
     rating: 4.3,
@@ -216,6 +242,7 @@ export const audioAndVoiceTools: Tool[] = [
     emoji: "📻",
     color: "from-red-500 to-orange-600",
     directUrl: "https://www.resemble.ai/?via=aiwebtools",
+    imageUrl: resembleAiHero,
     tags: ["Voice Cloning", "Voice Synthesis", "speech synthesis", "custom voices", "emotional AI", "real-time"],
     category: "Audio & Voice",
     rating: 4.2,
@@ -228,6 +255,7 @@ export const audioAndVoiceTools: Tool[] = [
     emoji: "🔈",
     color: "from-teal-500 to-green-600",
     directUrl: "https://replicastudios.com/?via=aiwebtools",
+    imageUrl: replicaStudiosHero,
     tags: ["Voice Synthesis", "voice acting", "game audio", "film audio", "digital voices", "media production"],
     category: "Audio & Voice",
     rating: 4.1,
@@ -240,6 +268,7 @@ export const audioAndVoiceTools: Tool[] = [
     emoji: "💽",
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://www.audiogen.co/?via=aiwebtools",
+    imageUrl: audiogenHero,
     tags: ["Sound Effects", "Music Generator", "ambient audio", "AI audio", "music generation", "audio production"],
     category: "Audio & Voice",
     rating: 4.0,
@@ -252,6 +281,7 @@ export const audioAndVoiceTools: Tool[] = [
     emoji: "🧹",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://cleanvoice.ai/?via=aiwebtools",
+    imageUrl: cleanvoiceHero,
     tags: ["Audio Enhancement", "Podcast Tools", "noise removal", "filler words", "podcast editing", "audio cleanup"],
     category: "Audio & Voice",
     rating: 4.4,
@@ -264,6 +294,7 @@ export const audioAndVoiceTools: Tool[] = [
     emoji: "🎭",
     color: "from-indigo-500 to-purple-600",
     directUrl: "https://www.hume.ai/?via=aiwebtools",
+    imageUrl: humeAiHero,
     tags: ["Voice Synthesis", "emotional AI", "lifelike voice", "conversational AI", "voice interaction", "emotion recognition", "natural speech"],
     category: "Audio & Voice",
     rating: 4.6,
