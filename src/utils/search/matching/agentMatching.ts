@@ -15,6 +15,11 @@ export const matchAgents = (tool: Tool, searchTerm: string): boolean => {
       lowerSearchTerm.includes('dust') || lowerSearchTerm.includes('deep research')) {
     // Priority AI agent tools (including phone agents, coding agents, and viral agents)
     const priorityAgents = [
+      'dify',
+      'coze',
+      'flowise',
+      'letta',
+      'agno',
       'chatgpt operator',
       'moltbot',
       'clawdbot',
