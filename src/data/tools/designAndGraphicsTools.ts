@@ -1,6 +1,12 @@
 import { PenTool, FileText, Mic, Music, BookOpen, Edit, Type, Megaphone, Image, Palette, Wand2, Sparkles, Camera, Brush, Settings } from "lucide-react";
 import { Tool } from "@/types/tools";
 
+import canvaHero from "@/assets/tools/canva-hero.jpg";
+import adobePhotoshopHero from "@/assets/tools/adobe-photoshop-hero.jpg";
+import adobeIllustratorHero from "@/assets/tools/adobe-illustrator-hero.jpg";
+import figmaHero from "@/assets/tools/figma-hero.jpg";
+import coreldrawHero from "@/assets/tools/coreldraw-hero.jpg";
+
 export const designAndGraphicsTools: Tool[] = [
   {
     icon: PenTool,
@@ -9,6 +15,7 @@ export const designAndGraphicsTools: Tool[] = [
     emoji: "🎨",
     color: "from-blue-400 to-purple-500",
     directUrl: "https://www.canva.com/?via=aiwebtools",
+    imageUrl: canvaHero,
     tags: ["Graphic Design", "design", "templates", "social media", "presentations", "graphics"],
     category: "Design & Graphics Tools",
     rating: 4.8,
@@ -21,6 +28,7 @@ export const designAndGraphicsTools: Tool[] = [
     emoji: "🖼️",
     color: "from-green-400 to-teal-500",
     directUrl: "https://www.adobe.com/products/photoshop.html?via=aiwebtools",
+    imageUrl: adobePhotoshopHero,
     tags: ["Photo Editor", "Graphic Design", "photo editing", "graphic design", "image editing", "web design", "print design"],
     category: "Design & Graphics Tools",
     rating: 4.7,
@@ -33,6 +41,7 @@ export const designAndGraphicsTools: Tool[] = [
     emoji: "✒️",
     color: "from-orange-400 to-red-500",
     directUrl: "https://www.adobe.com/products/illustrator.html?via=aiwebtools",
+    imageUrl: adobeIllustratorHero,
     tags: ["Graphic Design", "Logo Design", "Illustration", "vector graphics", "illustrations", "logos", "icons", "typography"],
     category: "Design & Graphics Tools",
     rating: 4.6,
@@ -45,6 +54,7 @@ export const designAndGraphicsTools: Tool[] = [
     emoji: "🤝",
     color: "from-purple-400 to-indigo-500",
     directUrl: "https://www.figma.com/?via=aiwebtools",
+    imageUrl: figmaHero,
     tags: ["UI/UX Design", "Graphic Design", "collaboration", "design", "prototypes", "mockups", "user interfaces"],
     category: "Design & Graphics Tools",
     rating: 4.5,
@@ -81,6 +91,7 @@ export const designAndGraphicsTools: Tool[] = [
     emoji: "⭐",
     color: "from-yellow-400 to-orange-500",
     directUrl: "https://www.coreldraw.com/?via=aiwebtools",
+    imageUrl: coreldrawHero,
     tags: ["Graphic Design", "Logo Design", "Illustration", "vector graphics", "illustrations", "logos", "brochures", "professional design"],
     category: "Design & Graphics Tools",
     rating: 4.2,

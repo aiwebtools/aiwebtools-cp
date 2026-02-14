@@ -13,6 +13,14 @@ import {
   Target
 } from "lucide-react";
 
+import zapierHero from "@/assets/tools/zapier-hero.jpg";
+import makeHero from "@/assets/tools/make-integromat-hero.jpg";
+import n8nHero from "@/assets/tools/n8n-hero.jpg";
+import powerAutomateHero from "@/assets/tools/power-automate-hero.jpg";
+import githubActionsHero from "@/assets/tools/github-actions-hero.jpg";
+import iftttHero from "@/assets/tools/ifttt-hero.jpg";
+import browseAiHero from "@/assets/tools/browse-ai-hero.jpg";
+
 export const automationAndWorkflowTools: Tool[] = [
   {
     icon: Zap,
@@ -21,6 +29,7 @@ export const automationAndWorkflowTools: Tool[] = [
     emoji: "⚡",
     color: "from-orange-500 to-red-600",
     directUrl: "https://zapier.com/",
+    imageUrl: zapierHero,
     tags: ["Automation Agent", "automation", "workflow", "app integration", "productivity", "no-code", "agent", "Automation", "Workflow Automation"],
     category: "Automation & Workflow Tools",
     rating: 4.8,
@@ -33,6 +42,7 @@ export const automationAndWorkflowTools: Tool[] = [
     emoji: "🤖",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://www.make.com/",
+    imageUrl: makeHero,
     tags: ["Automation Agent", "visual automation", "workflow builder", "integration", "scenarios", "advanced automation", "agent", "Automation", "Workflow Automation"],
     category: "Automation & Workflow Tools",
     rating: 4.7,
@@ -45,6 +55,7 @@ export const automationAndWorkflowTools: Tool[] = [
     emoji: "🔗",
     color: "from-green-500 to-purple-600",
     directUrl: "https://n8n.io/",
+    imageUrl: n8nHero,
     tags: ["Automation Agent", "open source", "workflow automation", "self-hosted", "visual builder", "free automation", "agent", "Automation", "Workflow Automation"],
     category: "Automation & Workflow Tools",
     rating: 4.6,
@@ -57,6 +68,7 @@ export const automationAndWorkflowTools: Tool[] = [
     emoji: "⚙️",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://powerautomate.microsoft.com/",
+    imageUrl: powerAutomateHero,
     tags: ["Automation Agent", "Microsoft", "business automation", "workflow", "enterprise", "process automation", "agent", "Automation", "Workflow Automation"],
     category: "Automation & Workflow Tools",
     rating: 4.4,
@@ -69,6 +81,7 @@ export const automationAndWorkflowTools: Tool[] = [
     emoji: "🔀",
     color: "from-gray-500 to-blue-600",
     directUrl: "https://github.com/features/actions",
+    imageUrl: githubActionsHero,
     tags: ["Automation Agent", "CI/CD", "GitHub", "software automation", "deployment", "development workflow", "agent", "Automation"],
     category: "Automation & Workflow Tools",
     rating: 4.7,
@@ -81,6 +94,7 @@ export const automationAndWorkflowTools: Tool[] = [
     emoji: "🔗",
     color: "from-green-500 to-blue-600",
     directUrl: "https://ifttt.com/",
+    imageUrl: iftttHero,
     tags: ["Automation Agent", "conditional automation", "IoT", "smart home", "simple automation", "applets", "agent", "Automation"],
     category: "Automation & Workflow Tools",
     rating: 4.2,
@@ -93,6 +107,7 @@ export const automationAndWorkflowTools: Tool[] = [
     emoji: "🕸️",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://www.browse.ai/?via=aiwebtools",
+    imageUrl: browseAiHero,
     tags: ["Web Tasks Agent", "web scraping", "data extraction", "monitoring", "automation", "no-code", "bots", "agent", "Automation", "Analytics & Reporting"],
     category: "Automation & Workflow Tools",
     rating: 4.6,
