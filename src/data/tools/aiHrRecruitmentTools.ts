@@ -1,5 +1,13 @@
+
 import { Tool } from "@/types/tools";
 import { Users, Briefcase, Target, UserCheck, Search } from "lucide-react";
+
+import hirevueHero from "@/assets/tools/hirevue-hero.jpg";
+import pymetricsHero from "@/assets/tools/pymetrics-hero.jpg";
+import eightfoldAiHero from "@/assets/tools/eightfold-ai-hero.jpg";
+import paradoxOliviaHero from "@/assets/tools/paradox-olivia-hero.jpg";
+import seekoutHero from "@/assets/tools/seekout-hero.jpg";
+import workdayRecruitingHero from "@/assets/tools/workday-recruiting-hero.jpg";
 
 export const aiHrRecruitmentTools: Tool[] = [
   {
@@ -9,6 +17,7 @@ export const aiHrRecruitmentTools: Tool[] = [
     emoji: "🎥",
     color: "from-blue-500 to-indigo-600",
     directUrl: "https://www.hirevue.com/?via=aiwebtools",
+    imageUrl: hirevueHero,
     tags: ["Automation Agent", "video interviews", "candidate assessment", "AI hiring", "recruitment", "talent acquisition", "interview analysis", "agent", "HR & Recruitment"],
     category: "AI HR & Recruitment",
     rating: 4.6,
@@ -21,6 +30,7 @@ export const aiHrRecruitmentTools: Tool[] = [
     emoji: "🧠",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://www.pymetrics.ai/?via=aiwebtools",
+    imageUrl: pymetricsHero,
     tags: ["Automation Agent", "talent matching", "behavioral assessment", "AI recruitment", "candidate evaluation", "skills assessment", "neuroscience", "agent", "HR & Recruitment"],
     category: "AI HR & Recruitment",
     rating: 4.5,
@@ -33,6 +43,7 @@ export const aiHrRecruitmentTools: Tool[] = [
     emoji: "🎯",
     color: "from-green-500 to-emerald-600",
     directUrl: "https://eightfold.ai/?via=aiwebtools",
+    imageUrl: eightfoldAiHero,
     tags: ["Automation Agent", "talent intelligence", "workforce planning", "AI recruitment", "career pathing", "retention", "skills matching", "agent", "HR & Recruitment", "Analytics & Reporting"],
     category: "AI HR & Recruitment",
     rating: 4.7,
@@ -45,6 +56,7 @@ export const aiHrRecruitmentTools: Tool[] = [
     emoji: "🤖",
     color: "from-orange-500 to-red-600",
     directUrl: "https://www.paradox.ai/?via=aiwebtools",
+    imageUrl: paradoxOliviaHero,
     tags: ["Chatbot Agent", "Automation Agent", "AI chatbot", "candidate screening", "interview scheduling", "recruitment automation", "conversational AI", "hiring assistant", "agent", "HR & Recruitment", "Automation"],
     category: "AI HR & Recruitment",
     rating: 4.6,
@@ -57,6 +69,7 @@ export const aiHrRecruitmentTools: Tool[] = [
     emoji: "🔍",
     color: "from-teal-500 to-cyan-600",
     directUrl: "https://www.seekout.com/?via=aiwebtools",
+    imageUrl: seekoutHero,
     tags: ["Research Agent", "talent sourcing", "candidate search", "diversity hiring", "recruitment", "talent pipeline", "AI search", "agent", "HR & Recruitment"],
     category: "AI HR & Recruitment",
     rating: 4.5,
@@ -69,6 +82,7 @@ export const aiHrRecruitmentTools: Tool[] = [
     emoji: "💼",
     color: "from-indigo-500 to-purple-600",
     directUrl: "https://www.workday.com/en-us/products/human-capital-management/recruiting.html?via=aiwebtools",
+    imageUrl: workdayRecruitingHero,
     tags: ["Automation Agent", "ATS", "talent management", "workforce planning", "recruitment", "enterprise HR", "predictive analytics", "agent", "HR & Recruitment", "Analytics & Reporting"],
     category: "AI HR & Recruitment",
     rating: 4.6,

@@ -3,6 +3,9 @@ import { TrendingUp, Users, Phone, MessageSquare, Target, BarChart3 } from "luci
 import hubspotAiHero from "@/assets/tools/hubspot-ai-hero.jpg";
 import clariHero from "@/assets/tools/clari-hero.jpg";
 import pipedriveHero from "@/assets/tools/pipedrive-hero.jpg";
+import gongIoHero from "@/assets/tools/gong-io-hero.jpg";
+import chorusAiHero from "@/assets/tools/chorus-ai-hero.jpg";
+import outreachHero from "@/assets/tools/outreach-hero.jpg";
 
 export const aiSalesCrmTools: Tool[] = [
   {
