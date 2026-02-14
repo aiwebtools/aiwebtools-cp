@@ -94,11 +94,7 @@
     touch-action: manipulation !important;
   }
   
-  /* Fix Safari rendering glitches */
-  body {
-    -webkit-transform: translateZ(0) !important;
-    transform: translateZ(0) !important;
-  }
+  /* Safari rendering: transform on body removed — it breaks position:fixed (clone btn, pinned video) */
   
   /* Safari note: do NOT blanket-disable transforms/filters.
      It can break Tailwind layouts and cause "black screen" rendering.
