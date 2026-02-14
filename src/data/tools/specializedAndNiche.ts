@@ -4,6 +4,9 @@ import {
   Mountain, Compass, FlaskConical, Atom, TreePine, Eye, Droplets
 } from "lucide-react";
 
+import materiumorHero from "@/assets/tools/materiumor-hero.jpg";
+import desalinizationSentinelHero from "@/assets/tools/desalinization-sentinel-hero.jpg";
+
 export const specializedAndNiche: Tool[] = [
   {
     icon: Car,
@@ -146,6 +149,7 @@ export const specializedAndNiche: Tool[] = [
     emoji: "💎",
     color: "from-purple-500 to-cyan-600",
     directUrl: "https://materialvaluationgpt.lovable.app/?via=aiwebtools",
+    imageUrl: materiumorHero,
     tags: ["material valuation", "precious metals", "gemstones", "asset assessment", "market analysis"],
     category: "Specialized & Niche",
     rating: 4.2,
@@ -172,6 +176,7 @@ export const specializedAndNiche: Tool[] = [
     emoji: "💧",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://chatgpt.com/g/g-68e5c8e372c4819190c7d247847c908b-desalinization-sentinel-gpt/?via=aiwebtools",
+    imageUrl: desalinizationSentinelHero,
     tags: ["desalination", "water sustainability", "water security", "environmental planning", "water management", "sustainability", "clean water", "water technology", "earth", "planetary", "aiwebtools"],
     category: "Specialized & Niche",
     rating: 4.5,

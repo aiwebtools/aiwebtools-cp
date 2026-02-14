@@ -19,6 +19,8 @@ import {
   User
 } from "lucide-react";
 
+import languageTutorAiHero from "@/assets/tools/language-tutor-ai-hero.jpg";
+
 export const learningAndEducation: Tool[] = [
   {
     icon: GraduationCap,
@@ -212,6 +214,7 @@ export const learningAndEducation: Tool[] = [
     emoji: "🎯",
     color: "from-orange-500 to-red-600",
     directUrl: "https://chatgpt.com/g/g-683dc2a086948191b1714340631f2012-language-tutor-ai",
+    imageUrl: languageTutorAiHero,
     tags: ["language learning", "AI tutoring", "grammar", "vocabulary"],
     category: "Educational & Research",
     rating: 4.4,

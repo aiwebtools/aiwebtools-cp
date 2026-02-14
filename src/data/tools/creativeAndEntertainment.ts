@@ -21,6 +21,8 @@ import {
   Lightbulb
 } from "lucide-react";
 
+import gimpHero from "@/assets/tools/gimp-hero.jpg";
+
 export const creativeAndEntertainment: Tool[] = [
   {
     icon: Palette,
@@ -29,6 +31,7 @@ export const creativeAndEntertainment: Tool[] = [
     emoji: "🎨",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://www.gimp.org/",
+    imageUrl: gimpHero,
     tags: ["image editing", "photo retouching", "graphic design", "open source", "free"],
     category: "Creative & Entertainment",
     rating: 4.5,
