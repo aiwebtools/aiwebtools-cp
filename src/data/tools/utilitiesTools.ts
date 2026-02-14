@@ -13,6 +13,11 @@ import {
   Settings
 } from "lucide-react";
 
+import smallpdfHero from "@/assets/tools/smallpdf-hero.jpg";
+import tinypngHero from "@/assets/tools/tinypng-hero.jpg";
+import virustotalHero from "@/assets/tools/virustotal-hero.jpg";
+import waybackMachineHero from "@/assets/tools/wayback-machine-hero.jpg";
+
 export const utilitiesTools: Tool[] = [
   {
     icon: FileText,
@@ -21,6 +26,7 @@ export const utilitiesTools: Tool[] = [
     emoji: "📄",
     color: "from-red-500 to-pink-600",
     directUrl: "https://smallpdf.com/?via=aiwebtools",
+    imageUrl: smallpdfHero,
     tags: ["PDF", "compression", "conversion", "editing", "document tools"],
     category: "Productivity & Utilities",
     rating: 4.6,
@@ -33,6 +39,7 @@ export const utilitiesTools: Tool[] = [
     emoji: "🖼️",
     color: "from-green-500 to-blue-600",
     directUrl: "https://tinypng.com/?via=aiwebtools",
+    imageUrl: tinypngHero,
     tags: ["image compression", "PNG", "JPEG", "optimization", "file size"],
     category: "Productivity & Utilities",
     rating: 4.7,
@@ -57,6 +64,7 @@ export const utilitiesTools: Tool[] = [
     emoji: "🛡️",
     color: "from-red-500 to-orange-600",
     directUrl: "https://virustotal.com/?via=aiwebtools",
+    imageUrl: virustotalHero,
     tags: ["virus scanning", "malware detection", "file analysis", "security"],
     category: "Productivity & Utilities",
     rating: 4.8,
@@ -69,6 +77,7 @@ export const utilitiesTools: Tool[] = [
     emoji: "🕰️",
     color: "from-indigo-500 to-purple-600",
     directUrl: "https://archive.org/?via=aiwebtools",
+    imageUrl: waybackMachineHero,
     tags: ["web archive", "historical websites", "digital preservation", "research"],
     category: "Productivity & Utilities",
     rating: 4.9,

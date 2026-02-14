@@ -15,6 +15,16 @@ import {
   Palette
 } from "lucide-react";
 
+import vercelV0Hero from "@/assets/tools/vercel-v0-hero.jpg";
+import netlifyHero from "@/assets/tools/netlify-hero.jpg";
+import supabaseHero from "@/assets/tools/supabase-hero.jpg";
+import replitHero from "@/assets/tools/replit-hero.jpg";
+import framerHero from "@/assets/tools/framer-hero.jpg";
+import boltNewHero from "@/assets/tools/bolt-new-hero.jpg";
+import webflowHero from "@/assets/tools/webflow-hero.jpg";
+import builderIoHero from "@/assets/tools/builder-io-hero.jpg";
+import railwayHero from "@/assets/tools/railway-hero.jpg";
+
 export const webDevelopmentTools: Tool[] = [
   {
     icon: Code,
@@ -23,6 +33,7 @@ export const webDevelopmentTools: Tool[] = [
     emoji: "⚡",
     color: "from-black to-gray-600",
     directUrl: "https://v0.dev/",
+    imageUrl: vercelV0Hero,
     tags: ["No-Code/Low-Code", "Frontend", "React components", "AI coding", "web development", "Vercel", "code generation"],
     category: "DEVELOPMENT & CODING",
     rating: 4.7,
@@ -35,6 +46,7 @@ export const webDevelopmentTools: Tool[] = [
     emoji: "🌐",
     color: "from-teal-500 to-blue-600",
     directUrl: "https://www.netlify.com/",
+    imageUrl: netlifyHero,
     tags: ["Cloud Platform", "DevOps", "web platform", "automatic deployment", "serverless", "JAMstack", "modern web"],
     category: "DEVELOPMENT & CODING",
     rating: 4.6,
@@ -47,6 +59,7 @@ export const webDevelopmentTools: Tool[] = [
     emoji: "🗄️",
     color: "from-green-500 to-teal-600",
     directUrl: "https://supabase.com/",
+    imageUrl: supabaseHero,
     tags: ["Database", "Backend", "backend-as-a-service", "PostgreSQL", "authentication", "real-time", "open source"],
     category: "DEVELOPMENT & CODING",
     rating: 4.5,
@@ -71,6 +84,7 @@ export const webDevelopmentTools: Tool[] = [
     emoji: "💻",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://replit.com/",
+    imageUrl: replitHero,
     tags: ["IDE", "Cloud Platform", "online IDE", "collaboration", "browser coding", "AI assistance", "deployment"],
     category: "DEVELOPMENT & CODING",
     rating: 4.3,
@@ -83,6 +97,7 @@ export const webDevelopmentTools: Tool[] = [
     emoji: "🎨",
     color: "from-pink-500 to-purple-600",
     directUrl: "https://www.framer.com/",
+    imageUrl: framerHero,
     tags: ["No-Code/Low-Code", "Frontend", "website builder", "design tool", "responsive", "animations", "interactive"],
     category: "DEVELOPMENT & CODING",
     rating: 4.5,
@@ -95,6 +110,7 @@ export const webDevelopmentTools: Tool[] = [
     emoji: "⚡",
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://bolt.new/",
+    imageUrl: boltNewHero,
     tags: ["No-Code/Low-Code", "Frontend", "Backend", "full-stack development", "natural language", "complete applications", "AI platform", "deployment"],
     category: "DEVELOPMENT & CODING",
     rating: 4.6,
@@ -107,6 +123,7 @@ export const webDevelopmentTools: Tool[] = [
     emoji: "🖥️",
     color: "from-blue-500 to-indigo-600",
     directUrl: "https://webflow.com/",
+    imageUrl: webflowHero,
     tags: ["No-Code/Low-Code", "Frontend", "visual development", "no-code", "responsive design", "CMS", "web design"],
     category: "DEVELOPMENT & CODING",
     rating: 4.4,
@@ -119,6 +136,7 @@ export const webDevelopmentTools: Tool[] = [
     emoji: "📱",
     color: "from-green-500 to-blue-600",
     directUrl: "https://www.builder.io/",
+    imageUrl: builderIoHero,
     tags: ["No-Code/Low-Code", "Mobile Development", "visual development", "mobile apps", "drag-and-drop", "code generation", "cross-platform"],
     category: "DEVELOPMENT & CODING",
     rating: 4.2,
@@ -131,6 +149,7 @@ export const webDevelopmentTools: Tool[] = [
     emoji: "🚂",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://railway.app/",
+    imageUrl: railwayHero,
     tags: ["Cloud Platform", "DevOps", "cloud platform", "zero configuration", "automatic scaling", "infrastructure", "deployment"],
     category: "DEVELOPMENT & CODING",
     rating: 4.3,

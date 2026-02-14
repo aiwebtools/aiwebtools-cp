@@ -15,6 +15,10 @@ import {
   Settings
 } from "lucide-react";
 import superhumanHero from "@/assets/tools/superhuman-hero.jpg";
+import convertKitHero from "@/assets/tools/convertkit-hero.jpg";
+import klaviyoHero from "@/assets/tools/klaviyo-hero.jpg";
+import boomerangHero from "@/assets/tools/boomerang-hero.jpg";
+import saneboxHero from "@/assets/tools/sanebox-hero.jpg";
 
 export const emailManagementTools: Tool[] = [
   {
@@ -49,6 +53,7 @@ export const emailManagementTools: Tool[] = [
     emoji: "🎯",
     color: "from-pink-500 to-red-600",
     directUrl: "https://convertkit.com/",
+    imageUrl: convertKitHero,
     tags: ["Marketing Agent", "creator focused", "automation", "audience building", "segmentation", "email sequences", "agent"],
     category: "Email Management Tools",
     rating: 4.4,
@@ -85,6 +90,7 @@ export const emailManagementTools: Tool[] = [
     emoji: "📊",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://www.klaviyo.com/",
+    imageUrl: klaviyoHero,
     tags: ["Marketing Agent", "email marketing", "SMS marketing", "predictive analytics", "personalization", "segmentation", "agent"],
     category: "Email Management Tools",
     rating: 4.5,
@@ -109,6 +115,7 @@ export const emailManagementTools: Tool[] = [
     emoji: "🪃",
     color: "from-green-500 to-teal-600",
     directUrl: "https://www.boomeranggmail.com/",
+    imageUrl: boomerangHero,
     tags: ["email scheduling", "follow-up reminders", "response tracking", "Gmail", "Outlook"],
     category: "Email Management Tools",
     rating: 4.1,
@@ -121,6 +128,7 @@ export const emailManagementTools: Tool[] = [
     emoji: "📥",
     color: "from-orange-500 to-red-600",
     directUrl: "https://www.sanebox.com/",
+    imageUrl: saneboxHero,
     tags: ["email filtering", "smart notifications", "automated organization", "scheduled delivery", "productivity"],
     category: "Email Management Tools",
     rating: 4.0,
