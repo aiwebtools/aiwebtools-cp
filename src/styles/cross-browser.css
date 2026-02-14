@@ -1,10 +1,9 @@
 /* Cross-browser compatibility styles */
 /* Browser-specific fixes */
 .is-ios {
-  /* iOS Safari specific fixes */
+  /* iOS Safari specific fixes — no blanket transform, it breaks position:fixed */
   * {
     -webkit-overflow-scrolling: touch;
-    -webkit-transform: translateZ(0);
   }
   
   input, textarea, select {

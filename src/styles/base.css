@@ -59,9 +59,7 @@
     -ms-text-size-adjust: 100%;
     text-size-adjust: 100%;
     
-    /* GPU acceleration for smoother scrolling */
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
+    /* Note: transform on html/body breaks position:fixed — removed for clone btn & pinned video */
   }
 
   body {
@@ -89,9 +87,7 @@
     -ms-user-select: none;
     user-select: none;
     
-    /* GPU acceleration for smoother scrolling */
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
+    /* Note: transform on body breaks position:fixed — removed for clone btn & pinned video */
     will-change: scroll-position;
   }
   
