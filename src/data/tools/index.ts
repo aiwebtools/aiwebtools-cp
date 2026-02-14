@@ -396,3 +396,6 @@ export { futureToolsBatch2025Q2 } from './futureToolsBatch2025Q2';
 
 // Export Top AI Agent Platforms 2026 (Dify, Coze, Flowise, Letta, Agno)
 export { topAgentPlatforms2026 } from './topAgentPlatforms2026';
+
+// Export Top AI Agent Platforms 2026 Batch 2 (Wordware, Composio, SmythOS, MindPal, AgentOps)
+export { topAgentPlatforms2026Batch2 } from './topAgentPlatforms2026Batch2';

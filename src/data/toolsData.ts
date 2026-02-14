@@ -152,6 +152,9 @@ import { trendingToolsBatch2025 } from "./tools/trendingToolsBatch2025";
 // Import Top AI Agent Platforms 2026 (Dify, Coze, Flowise, Letta, Agno)
 import { topAgentPlatforms2026 } from "./tools/topAgentPlatforms2026";
 
+// Import Top AI Agent Platforms 2026 Batch 2 (Wordware, Composio, SmythOS, MindPal, AgentOps)
+import { topAgentPlatforms2026Batch2 } from "./tools/topAgentPlatforms2026Batch2";
+
 const allToolCategories = consolidateTools([
   ...getAllToolCategories(),
   ...newAffiliatePlatforms2025,
@@ -290,7 +293,10 @@ const allToolCategories = consolidateTools([
   ...trendingToolsBatch2025,
   
   // Top AI Agent Platforms 2026 (Dify, Coze, Flowise, Letta, Agno)
-  ...topAgentPlatforms2026
+  ...topAgentPlatforms2026,
+  
+  // Top AI Agent Platforms 2026 Batch 2 (Wordware, Composio, SmythOS, MindPal, AgentOps)
+  ...topAgentPlatforms2026Batch2
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories
