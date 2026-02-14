@@ -1,10 +1,6 @@
 import { Tool } from "@/types/tools";
 import { TrendingUp, Mic, Palette } from "lucide-react";
 
-import quadencyHero from "@/assets/tools/quadency-hero.jpg";
-import audiosonicHero from "@/assets/tools/audiosonic-hero.jpg";
-import stitchGoogleHero from "@/assets/tools/stitch-google-hero.jpg";
-
 export const newSpecializedTools2025: Tool[] = [
   {
     icon: TrendingUp,
@@ -13,7 +9,6 @@ export const newSpecializedTools2025: Tool[] = [
     emoji: "📈",
     color: "from-green-500 to-emerald-600",
     directUrl: "https://quadency.com?r=3d7f741ffc82e1e4d44f9c65",
-    imageUrl: quadencyHero,
     tags: ["crypto trading", "AI trading bots", "portfolio tracking", "multi-exchange", "trading automation", "blockchain"],
     category: "Crypto & Trading",
     rating: 4.6,
@@ -26,7 +21,6 @@ export const newSpecializedTools2025: Tool[] = [
     emoji: "🎙️",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://writesonic.com/ai-voice-generator?via=aiwebtools",
-    imageUrl: audiosonicHero,
     tags: ["text-to-speech", "AI voice", "audio generation", "multilingual", "content creation", "voiceover"],
     category: "Audio & Voice Tools",
     rating: 4.7,
@@ -39,7 +33,6 @@ export const newSpecializedTools2025: Tool[] = [
     emoji: "🎨",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://stitch.withgoogle.com/?via=aiwebtools",
-    imageUrl: stitchGoogleHero,
     tags: ["UI design", "wireframing", "app design", "prototyping", "Google", "design agent"],
     category: "AI Agents",
     rating: 4.8,

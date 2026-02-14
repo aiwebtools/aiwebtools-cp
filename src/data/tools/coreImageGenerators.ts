@@ -1,7 +1,5 @@
 import { Image, Palette, Wand2, Sparkles, Camera, Brush, Star, Crown, Zap, Bot } from "lucide-react";
 import { Tool } from "@/types/tools";
-import seelabAiHero from "@/assets/tools/seelab-ai-hero.jpg";
-import leonardoAiCoreHero from "@/assets/tools/leonardo-ai-core-hero.jpg";
 
 export const coreImageGenerators: Tool[] = [
   {
