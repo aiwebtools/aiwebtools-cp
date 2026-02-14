@@ -149,6 +149,9 @@ import { futureToolsBatch2025Q2 } from "./tools/futureToolsBatch2025Q2";
 // Import Trending Tools Batch 2025 (11 new trending tools: Face Shape, Photo Editor, Seedance, Wan2.6, MiniMax, etc.)
 import { trendingToolsBatch2025 } from "./tools/trendingToolsBatch2025";
 
+// Import Top AI Agent Platforms 2026 (Dify, Coze, Flowise, Letta, Agno)
+import { topAgentPlatforms2026 } from "./tools/topAgentPlatforms2026";
+
 const allToolCategories = consolidateTools([
   ...getAllToolCategories(),
   ...newAffiliatePlatforms2025,
@@ -284,7 +287,10 @@ const allToolCategories = consolidateTools([
   ...futureToolsBatch2025Q2,
   
   // Trending Tools Batch 2025 (11 new trending tools from industry rankings)
-  ...trendingToolsBatch2025
+  ...trendingToolsBatch2025,
+  
+  // Top AI Agent Platforms 2026 (Dify, Coze, Flowise, Letta, Agno)
+  ...topAgentPlatforms2026
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories
