@@ -119,17 +119,5 @@ export const newMarketingTools2025: Tool[] = [
     category: "MARKETING & SALES SOLUTIONS",
     rating: 4.5,
     totalVotes: 2850
-  },
-  {
-    icon: Search,
-    title: "Zevi",
-    description: "Site search and product discovery engine for e-commerce that improves customer shopping experience.",
-    emoji: "🛍️",
-    color: "from-emerald-500 to-green-500",
-    directUrl: "https://www.zevi.ai/?via=aiwebtools",
-    tags: ["E-commerce", "Search", "Product Discovery", "Shopping", "Conversion Optimization", "Analytics & Tracking"],
-    category: "MARKETING & SALES SOLUTIONS",
-    rating: 4.3,
-    totalVotes: 1420
   }
 ];
