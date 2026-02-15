@@ -3,6 +3,9 @@ import { TrendingUp, Users, Phone, MessageSquare, Target, BarChart3 } from "luci
 import hubspotAiHero from "@/assets/tools/hubspot-ai-hero.jpg";
 import clariHero from "@/assets/tools/clari-hero.jpg";
 import pipedriveHero from "@/assets/tools/pipedrive-hero.jpg";
+import gongIoHero from "@/assets/tools/gong-io-hero.jpg";
+import chorusAiHero from "@/assets/tools/chorus-ai-hero.jpg";
+import outreachHero from "@/assets/tools/outreach-hero.jpg";
 
 export const aiSalesCrmTools: Tool[] = [
   {
@@ -38,6 +41,7 @@ export const aiSalesCrmTools: Tool[] = [
     emoji: "🎯",
     color: "from-purple-500 to-indigo-600",
     directUrl: "https://www.gong.io/?via=aiwebtools",
+    imageUrl: gongIoHero,
     tags: ["conversation intelligence", "revenue intelligence", "sales coaching", "call analysis", "deal insights", "AI analytics", "Sales Agent", "agent", "Sales", "Analytics & Reporting"],
     category: "AI Sales & CRM",
     rating: 4.8,
@@ -50,6 +54,7 @@ export const aiSalesCrmTools: Tool[] = [
     emoji: "💬",
     color: "from-green-500 to-emerald-600",
     directUrl: "https://www.chorus.ai/?via=aiwebtools",
+    imageUrl: chorusAiHero,
     tags: ["conversation intelligence", "call recording", "sales coaching", "transcription", "deal insights", "ZoomInfo", "Sales Agent", "agent", "Sales", "Analytics & Reporting"],
     category: "AI Sales & CRM",
     rating: 4.7,
@@ -62,6 +67,7 @@ export const aiSalesCrmTools: Tool[] = [
     emoji: "📧",
     color: "from-blue-600 to-indigo-700",
     directUrl: "https://www.outreach.io/?via=aiwebtools",
+    imageUrl: outreachHero,
     tags: ["sales engagement", "email automation", "sales sequencing", "pipeline management", "AI optimization", "outbound sales", "Sales Agent", "agent", "Sales", "Automation"],
     category: "AI Sales & CRM",
     rating: 4.6,

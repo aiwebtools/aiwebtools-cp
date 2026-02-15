@@ -1,6 +1,13 @@
 import { Tool } from "@/types/tools";
 import { GraduationCap, BookOpen, Brain, Sparkles, Users, School, Calculator, Globe, FileText, Video, Lightbulb, PenTool } from "lucide-react";
 
+import cogniiHero from "@/assets/tools/cognii-hero.jpg";
+import gradescopeHero from "@/assets/tools/gradescope-hero.jpg";
+import squirrelAiHero from "@/assets/tools/squirrel-ai-hero.jpg";
+import anthologyHero from "@/assets/tools/anthology-hero.jpg";
+import classcraftHero from "@/assets/tools/classcraft-hero.jpg";
+import edmodoHero from "@/assets/tools/edmodo-hero.jpg";
+
 export const aiEducationalTools: Tool[] = [
   {
     icon: GraduationCap,
@@ -87,6 +94,7 @@ export const aiEducationalTools: Tool[] = [
     emoji: "✨",
     color: "from-indigo-500 to-purple-600",
     directUrl: "https://www.cognii.com/?via=aiwebtools",
+    imageUrl: cogniiHero,
     tags: ["virtual tutor", "essay grading", "K-12", "higher education", "personalized learning", "automated feedback", "Tutoring AI", "Academic Writing"],
     category: "AI Educational Tools",
     rating: 4.5,
@@ -151,6 +159,7 @@ export const aiEducationalTools: Tool[] = [
     emoji: "📝",
     color: "from-green-600 to-emerald-700",
     directUrl: "https://www.gradescope.com/?via=aiwebtools",
+    imageUrl: gradescopeHero,
     tags: ["grading", "assessment", "teachers", "automated grading", "feedback", "education technology", "Quiz Maker", "Study Tools"],
     category: "AI Educational Tools",
     rating: 4.6,
@@ -163,6 +172,7 @@ export const aiEducationalTools: Tool[] = [
     emoji: "🐿️",
     color: "from-orange-400 to-yellow-500",
     directUrl: "https://squirrelai.com/?via=aiwebtools",
+    imageUrl: squirrelAiHero,
     tags: ["adaptive learning", "personalized education", "K-12", "AI tutor", "learning analytics", "students", "Learning Platform", "Tutoring AI"],
     category: "AI Educational Tools",
     rating: 4.5,
@@ -175,6 +185,7 @@ export const aiEducationalTools: Tool[] = [
     emoji: "📚",
     color: "from-gray-700 to-gray-900",
     directUrl: "https://www.anthology.com/?via=aiwebtools",
+    imageUrl: anthologyHero,
     tags: ["LMS", "learning management", "higher education", "predictive analytics", "institutional", "teachers", "Learning Platform", "College Prep"],
     category: "AI Educational Tools",
     rating: 4.4,
@@ -200,6 +211,7 @@ export const aiEducationalTools: Tool[] = [
     emoji: "🎮",
     color: "from-purple-600 to-indigo-700",
     directUrl: "https://www.classcraft.com/?via=aiwebtools",
+    imageUrl: classcraftHero,
     tags: ["classroom management", "gamification", "student engagement", "teachers", "K-12", "behavioral management", "Learning Platform", "Study Tools"],
     category: "AI Educational Tools",
     rating: 4.5,
@@ -212,6 +224,7 @@ export const aiEducationalTools: Tool[] = [
     emoji: "🏛️",
     color: "from-blue-600 to-indigo-600",
     directUrl: "https://www.edmodo.com/?via=aiwebtools",
+    imageUrl: edmodoHero,
     tags: ["educational network", "classroom communication", "teachers", "students", "parents", "K-12", "homework", "Learning Platform", "Study Tools"],
     category: "AI Educational Tools",
     rating: 4.3,
