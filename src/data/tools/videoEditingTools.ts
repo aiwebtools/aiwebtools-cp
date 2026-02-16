@@ -8,6 +8,9 @@ import {
   Wand2
 } from "lucide-react";
 
+import munchHero from "@/assets/tools/munch-hero.jpg";
+import vadooHero from "@/assets/tools/vadoo-hero.jpg";
+
 export const videoEditingTools: Tool[] = [
   {
     icon: Edit,
@@ -81,6 +84,7 @@ export const videoEditingTools: Tool[] = [
     emoji: "🍽️",
     color: "from-orange-500 to-yellow-600",
     directUrl: "https://www.getmunch.com/",
+    imageUrl: munchHero,
     tags: ["video repurposing", "engaging moments", "short clips", "social optimization", "automatic", "Video Editor", "Short Form Video"],
     category: "Video Tools",
     rating: 4.1,
@@ -93,6 +97,7 @@ export const videoEditingTools: Tool[] = [
     emoji: "🪄",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://vadoo.tv/",
+    imageUrl: vadooHero,
     tags: ["automatic captions", "highlights creation", "social optimization", "raw footage", "instant editing", "Video Editor"],
     category: "Video Tools",
     rating: 4.2,
