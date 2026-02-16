@@ -1,6 +1,14 @@
 import { Tool } from "@/types/tools";
 import { Globe, Sparkles, Zap, Wand2, Layout, Code } from "lucide-react";
 
+import mixoHero from "@/assets/tools/mixo-hero.jpg";
+import pineappleaiHero from "@/assets/tools/pineappleai-hero.jpg";
+import tenWebHero from "@/assets/tools/10web-hero.jpg";
+import kleapaiHero from "@/assets/tools/kleapai-hero.jpg";
+import heyLeiaHero from "@/assets/tools/hey-leia-hero.jpg";
+import doraAiHero from "@/assets/tools/dora-ai-hero.jpg";
+import unicornPlatformHero from "@/assets/tools/unicorn-platform-hero.jpg";
+
 export const newWebsiteBuilders2025: Tool[] = [
   {
     icon: Globe,
@@ -9,6 +17,7 @@ export const newWebsiteBuilders2025: Tool[] = [
     emoji: "🚀",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://mixo.io/?via=aiwebtools",
+    imageUrl: mixoHero,
     tags: ["website builder", "AI website", "landing pages", "startup", "pre-launch", "subscriber management"],
     category: "Website Builders",
     rating: 4.6,
@@ -21,6 +30,7 @@ export const newWebsiteBuilders2025: Tool[] = [
     emoji: "🍍",
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://www.pineapplebuilder.com/?via=aiwebtools",
+    imageUrl: pineappleaiHero,
     tags: ["website builder", "AI generator", "business websites", "templates", "SEO", "responsive design"],
     category: "Website Builders",
     rating: 4.5,
@@ -33,6 +43,7 @@ export const newWebsiteBuilders2025: Tool[] = [
     emoji: "⚡",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://10web.io/?_from=aiwebtools",
+    imageUrl: tenWebHero,
     tags: ["wordpress builder", "AI website", "Google Cloud", "automated hosting", "PageSpeed", "marketing tools"],
     category: "Website Builders",
     rating: 4.7,
@@ -57,6 +68,7 @@ export const newWebsiteBuilders2025: Tool[] = [
     emoji: "📱",
     color: "from-green-500 to-teal-600",
     directUrl: "https://kleap.co/?via=aiwebtools",
+    imageUrl: kleapaiHero,
     tags: ["website builder", "mobile first", "AI content", "quick launch", "e-commerce", "instant setup"],
     category: "Website Builders",
     rating: 4.4,
@@ -69,6 +81,7 @@ export const newWebsiteBuilders2025: Tool[] = [
     emoji: "👋",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://heyleia.com/",
+    imageUrl: heyLeiaHero,
     tags: ["website builder", "AI generator", "free", "instant publish", "custom design", "no-code"],
     category: "Website Builders",
     rating: 4.3,
@@ -81,6 +94,7 @@ export const newWebsiteBuilders2025: Tool[] = [
     emoji: "🎨",
     color: "from-pink-500 to-red-600",
     directUrl: "https://www.dora.run/ai_launch/85KKW8UVA",
+    imageUrl: doraAiHero,
     tags: ["3D websites", "AI builder", "no-code", "animations", "website generator", "3D design"],
     category: "Website Builders",
     rating: 4.6,
@@ -93,6 +107,7 @@ export const newWebsiteBuilders2025: Tool[] = [
     emoji: "🦄",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://unicornplatform.com/?via=aiwebtools",
+    imageUrl: unicornPlatformHero,
     tags: ["landing pages", "no-code", "GPT-4", "startup", "SaaS", "drag-and-drop"],
     category: "Website Builders",
     rating: 4.5,
