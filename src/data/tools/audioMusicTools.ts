@@ -17,6 +17,13 @@ import {
   Film
 } from "lucide-react";
 
+import murfAiHero from "@/assets/tools/murf-ai-hero.jpg";
+import lalalAiMusicHero from "@/assets/tools/lalal-ai-music-hero.jpg";
+import beatovenHero from "@/assets/tools/beatoven-hero.jpg";
+import beatbotHero from "@/assets/tools/beatbot-hero.jpg";
+import specterrHero from "@/assets/tools/specterr-hero.jpg";
+import sounddrawHero from "@/assets/tools/sounddraw-hero.jpg";
+
 export const audioMusicTools: Tool[] = [
   {
     icon: Mic,
@@ -285,9 +292,10 @@ export const audioMusicTools: Tool[] = [
     description: "Versatile AI voice generator that empowers creators to transform text into lifelike speech with studio-quality voiceovers. With a wide selection of over 120+ AI voices available in 20+ languages, offers the perfect voice for every creative need.",
     emoji: "🎤",
     color: "from-purple-500 to-blue-600",
-    directUrl: "https://get.murf.ai/1uvb0e8dznua",
-    tags: ["Text-to-Speech", "Voice Synthesis", "120+ AI voices", "20+ languages", "studio-quality", "voiceovers", "marketing", "education"],
-    category: "Audio & Music Tools",
+     directUrl: "https://get.murf.ai/1uvb0e8dznua",
+      imageUrl: murfAiHero,
+     tags: ["Text-to-Speech", "Voice Synthesis", "120+ AI voices", "20+ languages", "studio-quality", "voiceovers", "marketing", "education"],
+     category: "Audio & Music Tools",
     rating: 4.7,
     totalVotes: 5234
   },
@@ -297,9 +305,10 @@ export const audioMusicTools: Tool[] = [
     description: "Innovative music source separation service that leverages advanced AI technology to swiftly and accurately extract vocal and instrument tracks from audio and video files while preserving high-quality audio.",
     emoji: "🎵",
     color: "from-green-500 to-blue-600",
-    directUrl: "https://www.lalal.ai/?fp_ref=aiwebtools",
-    tags: ["Stem Separation", "Audio Editing", "vocal extraction", "instrument tracks", "batch upload", "fast processing", "high-quality audio"],
-    category: "Audio & Music Tools",
+     directUrl: "https://www.lalal.ai/?fp_ref=aiwebtools",
+      imageUrl: lalalAiMusicHero,
+     tags: ["Stem Separation", "Audio Editing", "vocal extraction", "instrument tracks", "batch upload", "fast processing", "high-quality audio"],
+     category: "Audio & Music Tools",
     rating: 4.6,
     totalVotes: 4567
   },
@@ -309,9 +318,10 @@ export const audioMusicTools: Tool[] = [
     description: "User-friendly AI-powered tool designed to help content creators easily produce royalty-free background music that complements their narratives. Select genre/style, make cuts, choose from 16 moods.",
     emoji: "🎼",
     color: "from-orange-500 to-red-600",
-    directUrl: "https://www.beatoven.ai/",
-    tags: ["Music Generator", "royalty-free music", "16 moods", "content creators", "background music", "YouTube", "podcasts"],
-    category: "Audio & Music Tools",
+     directUrl: "https://www.beatoven.ai/",
+      imageUrl: beatovenHero,
+     tags: ["Music Generator", "royalty-free music", "16 moods", "content creators", "background music", "YouTube", "podcasts"],
+     category: "Audio & Music Tools",
     rating: 4.5,
     totalVotes: 3789
   },
@@ -321,9 +331,10 @@ export const audioMusicTools: Tool[] = [
     description: "AI-powered music creation tool that democratizes music production by making it accessible to a wide range of users. User-friendly interface with pre-made beats, melodies, and chords.",
     emoji: "🤖",
     color: "from-cyan-500 to-purple-600",
-    directUrl: "https://beatbot.fm/",
-    tags: ["music creation", "AI generation", "beats", "melodies", "accessible", "no expertise required"],
-    category: "Audio & Music Tools",
+     directUrl: "https://beatbot.fm/",
+      imageUrl: beatbotHero,
+     tags: ["music creation", "AI generation", "beats", "melodies", "accessible", "no expertise required"],
+     category: "Audio & Music Tools",
     rating: 4.3,
     totalVotes: 2876
   },
@@ -333,9 +344,10 @@ export const audioMusicTools: Tool[] = [
     description: "Online platform that simplifies the creation of custom music visualizers and video content to help artists and creators grow their audience. Web-based editor with cloud rendering.",
     emoji: "🎨",
     color: "from-purple-500 to-pink-600",
-    directUrl: "https://specterr.com/?via=aiwebtools",
-    tags: ["music visualizers", "video content", "cloud rendering", "unlimited storage", "YouTube", "TikTok"],
-    category: "Audio & Music Tools",
+     directUrl: "https://specterr.com/?via=aiwebtools",
+      imageUrl: specterrHero,
+     tags: ["music visualizers", "video content", "cloud rendering", "unlimited storage", "YouTube", "TikTok"],
+     category: "Audio & Music Tools",
     rating: 4.4,
     totalVotes: 3234
   },
@@ -345,9 +357,10 @@ export const audioMusicTools: Tool[] = [
     description: "Revolutionizes music creation with AI, offering an expansive range of genres and moods. True royalty-free music with enduring licenses to eliminate copyright concerns.",
     emoji: "🎹",
     color: "from-blue-500 to-green-600",
-    directUrl: "https://soundraw.io/",
-    tags: ["AI music creation", "royalty-free", "multiple genres", "customization", "Hip Hop", "R&B"],
-    category: "Audio & Music Tools",
+     directUrl: "https://soundraw.io/",
+      imageUrl: sounddrawHero,
+     tags: ["AI music creation", "royalty-free", "multiple genres", "customization", "Hip Hop", "R&B"],
+     category: "Audio & Music Tools",
     rating: 4.6,
     totalVotes: 4123
   },
