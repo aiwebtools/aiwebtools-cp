@@ -15,6 +15,10 @@ import {
   Settings
 } from "lucide-react";
 
+import huggingfaceSpacesHero from "@/assets/tools/huggingface-spaces-hero.jpg";
+import copycoderHero from "@/assets/tools/copycoder-hero.jpg";
+import gumloopHero from "@/assets/tools/gumloop-hero.jpg";
+
 export const platformsAndDevelopment: Tool[] = [
   {
     icon: Bot,
@@ -127,6 +131,7 @@ export const platformsAndDevelopment: Tool[] = [
     emoji: "🤗",
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://huggingface.co/spaces",
+    imageUrl: huggingfaceSpacesHero,
     tags: ["community platform", "AI applications", "Gradio", "Streamlit", "open source ML", "Multi-Tool Platform", "Team Collaboration"],
     category: "DEVELOPMENT & CODING",
     rating: 4.8,
@@ -139,6 +144,7 @@ export const platformsAndDevelopment: Tool[] = [
     emoji: "📸",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://copycoder.ai/",
+    imageUrl: copycoderHero,
     tags: ["UI screenshots", "code generation", "AI prompts", "development tools", "automation", "Automation Platform", "Code Assistant"],
     category: "DEVELOPMENT & CODING",
     rating: 4.4,
@@ -163,6 +169,7 @@ export const platformsAndDevelopment: Tool[] = [
     emoji: "🔄",
     color: "from-cyan-500 to-purple-600",
     directUrl: "https://www.gumloop.com/",
+    imageUrl: gumloopHero,
     tags: ["no-code automation", "drag-and-drop", "data extraction", "platform integrations", "self-hosting", "Automation Platform", "Multi-Tool Platform"],
     category: "DEVELOPMENT & CODING",
     rating: 4.5,

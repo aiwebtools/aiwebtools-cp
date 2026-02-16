@@ -14,6 +14,9 @@ import {
   Wrench
 } from "lucide-react";
 
+import githubCopilotDevHero from "@/assets/tools/github-copilot-dev-hero.jpg";
+import lmStudioHero from "@/assets/tools/lm-studio-hero.jpg";
+
 export const aiDevelopmentTools: Tool[] = [
   {
     icon: Wrench,
@@ -36,6 +39,7 @@ export const aiDevelopmentTools: Tool[] = [
     color: "from-green-500 to-blue-600",
     directUrl: "https://lmstudio.ai/",
     videoUrl: "https://www.youtube.com/watch?v=yBI1nPep72Q",
+    imageUrl: lmStudioHero,
     tags: ["Backend", "local AI", "LLM deployment", "offline AI", "model hosting", "AI development", "desktop AI", "local models"],
     category: "DEVELOPMENT & CODING",
     rating: 4.7,
@@ -48,6 +52,7 @@ export const aiDevelopmentTools: Tool[] = [
     emoji: "🤖",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://github.com/features/copilot",
+    imageUrl: githubCopilotDevHero,
     tags: ["Code Assistant", "Coding Agent", "AI coding", "code completion", "pair programming", "developer tools", "GitHub", "agent"],
     category: "DEVELOPMENT & CODING",
     rating: 4.9,
