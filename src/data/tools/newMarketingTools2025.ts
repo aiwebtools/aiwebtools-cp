@@ -5,6 +5,11 @@ import {
   Smartphone, Bot, Globe, Zap, Star
 } from "lucide-react";
 
+import koreAiHero from "@/assets/tools/kore-ai-hero.jpg";
+import ocoyaHero from "@/assets/tools/ocoya-hero.jpg";
+import surferAiHero from "@/assets/tools/surfer-ai-hero.jpg";
+import tweethunterHero from "@/assets/tools/tweethunter-hero.jpg";
+
 export const newMarketingTools2025: Tool[] = [
   {
     icon: TrendingUp,
@@ -13,7 +18,7 @@ export const newMarketingTools2025: Tool[] = [
     emoji: "🤖",
     color: "from-blue-600 to-purple-600",
     directUrl: "https://www.kore.ai/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/kore-ai-hero.png",
+    imageUrl: koreAiHero,
     tags: ["AI", "Chatbots", "Enterprise", "Automation", "Marketing Automation", "CRM & Sales"],
     category: "MARKETING & SALES SOLUTIONS",
     rating: 4.5,
@@ -26,7 +31,7 @@ export const newMarketingTools2025: Tool[] = [
     emoji: "📱",
     color: "from-pink-500 to-rose-500",
     directUrl: "https://ocoya.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/ocoya-hero.png",
+    imageUrl: ocoyaHero,
     tags: ["Social Media", "Content Creation", "Marketing", "Scheduling", "Social Media Marketing", "Content Marketing"],
     category: "MARKETING & SALES SOLUTIONS",
     rating: 4.3,
@@ -51,7 +56,6 @@ export const newMarketingTools2025: Tool[] = [
     emoji: "💬",
     color: "from-green-500 to-teal-500",
     directUrl: "https://quickchat.ai/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/quickchat-hero.png",
     tags: ["Customer Support", "Chatbot", "AI", "Automation", "CRM & Sales", "Marketing Automation"],
     category: "MARKETING & SALES SOLUTIONS",
     rating: 4.4,
@@ -88,7 +92,7 @@ export const newMarketingTools2025: Tool[] = [
     emoji: "🔍",
     color: "from-cyan-500 to-blue-500",
     directUrl: "https://surferseo.com/ai/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/surfer-ai-hero.png",
+    imageUrl: surferAiHero,
     tags: ["SEO", "Content Writing", "Optimization", "Marketing", "SEO Tools", "Content Marketing"],
     category: "MARKETING & SALES SOLUTIONS",
     rating: 4.7,
@@ -101,7 +105,7 @@ export const newMarketingTools2025: Tool[] = [
     emoji: "🐦",
     color: "from-sky-500 to-blue-500",
     directUrl: "https://tweethunter.io/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/tweethunter-hero.png",
+    imageUrl: tweethunterHero,
     tags: ["Twitter", "Social Media", "Content Ideas", "Growth", "Social Media Marketing", "Content Marketing"],
     category: "MARKETING & SALES SOLUTIONS",
     rating: 4.4,
@@ -114,7 +118,6 @@ export const newMarketingTools2025: Tool[] = [
     emoji: "🌐",
     color: "from-purple-500 to-pink-500",
     directUrl: "https://unbounce.com/smart-copy/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/unbounce-hero.png",
     tags: ["Landing Pages", "Copywriting", "Marketing", "Conversion", "Conversion Optimization", "Content Marketing"],
     category: "MARKETING & SALES SOLUTIONS",
     rating: 4.5,
