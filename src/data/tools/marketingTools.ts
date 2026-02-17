@@ -4,13 +4,14 @@ import {
   Target, 
   BarChart3, 
   Search, 
-  Globe,
-  Megaphone,
-  TrendingUp,
-  Eye,
-  MousePointer,
-  Zap
+  Globe
 } from "lucide-react";
+
+import mailchimpHero from "@/assets/tools/mailchimp-hero.jpg";
+import hubspotHero from "@/assets/tools/hubspot-hero.jpg";
+import googleAnalyticsHero from "@/assets/tools/google-analytics-hero.jpg";
+import semrushHero from "@/assets/tools/semrush-hero.jpg";
+import ahrefsHero from "@/assets/tools/ahrefs-hero.jpg";
 
 export const marketingTools: Tool[] = [
   {
@@ -20,7 +21,7 @@ export const marketingTools: Tool[] = [
     emoji: "📧",
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://mailchimp.com/",
-    imageUrl: "/src/assets/tools/mailchimp-hero.png",
+    imageUrl: mailchimpHero,
     tags: ["email marketing", "automation", "newsletters", "campaigns", "analytics"],
     category: "Marketing & Analytics",
     rating: 4.5,
@@ -33,7 +34,7 @@ export const marketingTools: Tool[] = [
     emoji: "🎯",
     color: "from-orange-500 to-red-600",
     directUrl: "https://hubspot.com/",
-    imageUrl: "/src/assets/tools/hubspot-hero.png",
+    imageUrl: hubspotHero,
     tags: ["CRM", "marketing automation", "lead generation", "sales", "analytics"],
     category: "Marketing & Analytics",
     rating: 4.6,
@@ -46,7 +47,7 @@ export const marketingTools: Tool[] = [
     emoji: "📊",
     color: "from-blue-500 to-green-600",
     directUrl: "https://analytics.google.com/",
-    imageUrl: "/src/assets/tools/google-analytics-hero.png",
+    imageUrl: googleAnalyticsHero,
     tags: ["web analytics", "traffic analysis", "conversion tracking", "SEO"],
     category: "Marketing & Analytics",
     rating: 4.7,
@@ -59,7 +60,7 @@ export const marketingTools: Tool[] = [
     emoji: "🌐",
     color: "from-green-500 to-blue-600",
     directUrl: "https://semrush.com/",
-    imageUrl: "/src/assets/tools/semrush-hero.png",
+    imageUrl: semrushHero,
     tags: ["SEO", "keyword research", "competitive analysis", "PPC", "content marketing"],
     category: "Marketing & Analytics",
     rating: 4.4,
@@ -72,7 +73,7 @@ export const marketingTools: Tool[] = [
     emoji: "📈",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://ahrefs.com/",
-    imageUrl: "/src/assets/tools/ahrefs-hero.png",
+    imageUrl: ahrefsHero,
     tags: ["SEO", "backlink analysis", "keyword research", "rank tracking"],
     category: "Marketing & Analytics",
     rating: 4.5,
