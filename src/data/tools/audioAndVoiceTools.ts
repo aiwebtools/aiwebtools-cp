@@ -31,6 +31,9 @@ import replicaStudiosHero from "@/assets/tools/replica-studios-hero.jpg";
 import audiogenHero from "@/assets/tools/audiogen-hero.jpg";
 import cleanvoiceHero from "@/assets/tools/cleanvoice-hero.jpg";
 import humeAiHero from "@/assets/tools/hume-ai-hero.jpg";
+import voiceflowHero from "@/assets/tools/voiceflow-hero.jpg";
+import fakeyouHero from "@/assets/tools/fakeyou-hero.jpg";
+import respeecherHero from "@/assets/tools/respeecher-hero.jpg";
 
 export const audioAndVoiceTools: Tool[] = [
   {
@@ -142,6 +145,7 @@ export const audioAndVoiceTools: Tool[] = [
     emoji: "🎨",
     color: "from-cyan-600 to-blue-600",
     directUrl: "https://www.voiceflow.com/?via=aiwebtools",
+    imageUrl: voiceflowHero,
     tags: ["Voice Agent", "conversational AI", "voice assistant", "chatbot builder", "no-code", "conversation design", "prototyping", "agent"],
     category: "Phone & Voice Agents",
     rating: 4.6,
@@ -452,6 +456,7 @@ export const audioAndVoiceTools: Tool[] = [
     emoji: "🎭",
     color: "from-red-500 to-orange-600",
     directUrl: "https://fakeyou.com/?via=aiwebtools",
+    imageUrl: fakeyouHero,
     tags: ["Text-to-Speech", "Voice Cloning", "celebrity voices", "character voices", "deep fake", "voice generation", "entertainment"],
     category: "Audio & Voice",
     rating: 4.3,
@@ -488,6 +493,7 @@ export const audioAndVoiceTools: Tool[] = [
     emoji: "🎥",
     color: "from-amber-500 to-red-600",
     directUrl: "https://www.respeecher.com/?via=aiwebtools",
+    imageUrl: respeecherHero,
     tags: ["Voice Cloning", "film production", "dubbing", "de-aging", "Hollywood", "professional voice", "speech-to-speech"],
     category: "Audio & Voice",
     rating: 4.8,

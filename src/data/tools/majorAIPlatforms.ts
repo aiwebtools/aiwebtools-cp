@@ -8,6 +8,13 @@ import {
   Globe
 } from "lucide-react";
 
+import chatgptHero from "@/assets/tools/chatgpt-hero.jpg";
+import claudeHero from "@/assets/tools/claude-hero.jpg";
+import geminiHero from "@/assets/tools/gemini-hero.jpg";
+import perplexityHero from "@/assets/tools/perplexity-hero.jpg";
+import grokHero from "@/assets/tools/grok-hero.jpg";
+import microsoftCopilotHero from "@/assets/tools/microsoft-copilot-hero.jpg";
+
 export const majorAIPlatforms: Tool[] = [
   {
     icon: MessageSquare,
@@ -16,7 +23,7 @@ export const majorAIPlatforms: Tool[] = [
     emoji: "💬",
     color: "from-green-500 to-teal-600",
     directUrl: "https://chat.openai.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/chatgpt-hero.png",
+    imageUrl: chatgptHero,
     tags: ["ChatGPT", "OpenAI", "GPT-4", "GPT-5", "conversational AI", "chatbot", "writing", "coding", "analysis"],
     category: "AI Chat & Assistants",
     rating: 4.9,
@@ -29,7 +36,7 @@ export const majorAIPlatforms: Tool[] = [
     emoji: "🧠",
     color: "from-orange-500 to-amber-600",
     directUrl: "https://claude.ai/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/claude-hero.png",
+    imageUrl: claudeHero,
     tags: ["Claude", "Anthropic", "AI assistant", "long context", "reasoning", "coding", "analysis", "creative writing"],
     category: "AI Chat & Assistants",
     rating: 4.9,
@@ -42,7 +49,7 @@ export const majorAIPlatforms: Tool[] = [
     emoji: "✨",
     color: "from-blue-500 to-indigo-600",
     directUrl: "https://gemini.google.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/gemini-hero.png",
+    imageUrl: geminiHero,
     tags: ["Google Gemini", "multimodal AI", "Google AI", "workspace integration", "reasoning", "productivity"],
     category: "AI Chat & Assistants",
     rating: 4.7,
@@ -55,7 +62,7 @@ export const majorAIPlatforms: Tool[] = [
     emoji: "🔍",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://www.perplexity.ai/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/perplexity-hero.png",
+    imageUrl: perplexityHero,
     tags: ["AI search", "answer engine", "research", "fact-checking", "citations", "real-time search"],
     category: "AI Chat & Assistants",
     rating: 4.8,
@@ -68,7 +75,7 @@ export const majorAIPlatforms: Tool[] = [
     emoji: "⚡",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://x.ai/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/grok-hero.png",
+    imageUrl: grokHero,
     tags: ["Grok", "xAI", "Elon Musk", "real-time data", "Twitter integration", "chatbot"],
     category: "AI Chat & Assistants",
     rating: 4.5,
@@ -81,7 +88,7 @@ export const majorAIPlatforms: Tool[] = [
     emoji: "🤖",
     color: "from-blue-600 to-cyan-600",
     directUrl: "https://copilot.microsoft.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/microsoft-copilot-hero.png",
+    imageUrl: microsoftCopilotHero,
     tags: ["Microsoft Copilot", "GPT-4", "Office 365", "Windows AI", "productivity", "enterprise AI"],
     category: "AI Chat & Assistants",
     rating: 4.6,

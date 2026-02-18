@@ -16,6 +16,8 @@ import {
   Fish
 } from "lucide-react";
 
+import elevenlabsHeroImg from "@/assets/tools/elevenlabs-hero.jpg";
+
 export const coreAudioVoiceTools: Tool[] = [
   {
     icon: Music,
@@ -24,7 +26,7 @@ export const coreAudioVoiceTools: Tool[] = [
     emoji: "🎼",
     color: "from-orange-500 to-red-600",
     directUrl: "https://www.udio.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/udio-hero.png",
+    imageUrl: elevenlabsHeroImg,
     tags: ["music generation", "ai music", "song creation", "vocals", "instruments", "audio production", "music ai", "udio"],
     category: "Audio & Voice Tools",
     rating: 4.8,
@@ -36,7 +38,7 @@ export const coreAudioVoiceTools: Tool[] = [
     description: "Leading AI voice platform offering advanced text-to-speech, conversational AI agents, voice cloning, dubbing, speech-to-text transcription, and ElevenReader for audiobook creation. Generate realistic human voices, create AI conversations, clone voices, and produce professional audio content for any project.",
     emoji: "🎤",
     color: "from-purple-500 to-blue-600",
-    imageUrl: "/src/assets/tools/elevenlabs-hero.png",
+    imageUrl: elevenlabsHeroImg,
     directUrl: "https://try.elevenlabs.io/aiwebtools",
     tags: ["text to speech", "tts", "conversational ai", "voice cloning", "dubbing", "speech to text", "elevenreader", "voice generation", "sound effects", "ai voice", "speech synthesis", "eleven labs", "elevenlabs", "music generation", "sound generation", "audio ai", "voice ai", "speech ai", "professional voice", "realistic voice", "human voice", "voice over", "narration", "audio production", "audiobook", "ai conversation", "voice chat", "ai dubbing", "transcription"],
     category: "Audio & Voice Tools",
@@ -50,7 +52,7 @@ export const coreAudioVoiceTools: Tool[] = [
     emoji: "🐠",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://fish.audio/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/fish-audio-hero.png",
+    imageUrl: elevenlabsHeroImg,
     tags: ["text to speech", "realistic voice", "voice synthesis", "ai voice", "speech generation", "voice cloning", "audio generation", "natural voice", "voice ai", "tts platform"],
     category: "Audio & Voice Tools",
     rating: 4.7,
@@ -75,7 +77,7 @@ export const coreAudioVoiceTools: Tool[] = [
     emoji: "📢",
     color: "from-green-500 to-blue-600",
     directUrl: "https://speechify.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/speechify-hero.png",
+    imageUrl: elevenlabsHeroImg,
     tags: ["text-to-speech", "natural voices", "articles", "documents", "books"],
     category: "Audio & Voice Tools",
     rating: 4.4,
@@ -100,7 +102,7 @@ export const coreAudioVoiceTools: Tool[] = [
     emoji: "📻",
     color: "from-red-500 to-orange-600",
     directUrl: "https://podcast.adobe.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/adobe-podcast-hero.png",
+    imageUrl: elevenlabsHeroImg,
     tags: ["audio enhancement", "noise removal", "echo reduction", "voice clarity", "Adobe"],
     category: "Audio & Voice Tools",
     rating: 4.3,
@@ -137,7 +139,7 @@ export const coreAudioVoiceTools: Tool[] = [
     emoji: "✨",
     color: "from-yellow-500 to-green-600",
     directUrl: "https://boomy.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/boomy-hero.png",
+    imageUrl: elevenlabsHeroImg,
     tags: ["music creation", "original songs", "quick generation", "monetization", "streaming"],
     category: "Audio & Voice Tools",
     rating: 4.2,

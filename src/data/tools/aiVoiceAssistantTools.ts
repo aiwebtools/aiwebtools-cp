@@ -11,6 +11,8 @@ import {
 import amazonAlexaHero from "@/assets/tools/amazon-alexa-hero.jpg";
 import googleAssistantHero from "@/assets/tools/google-assistant-hero.jpg";
 import appleSiriHero from "@/assets/tools/apple-siri-hero.jpg";
+import voiceflowHero from "@/assets/tools/voiceflow-hero.jpg";
+import dialogflowHero from "@/assets/tools/dialogflow-hero.jpg";
 
 export const aiVoiceAssistantTools: Tool[] = [
   {
@@ -59,7 +61,7 @@ export const aiVoiceAssistantTools: Tool[] = [
     emoji: "🤖",
     color: "from-orange-500 to-red-600",
     directUrl: "https://www.voiceflow.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/voiceflow-hero.png",
+    imageUrl: voiceflowHero,
     tags: ["Voice Agent", "Chatbot Agent", "custom assistants", "chatbot builder", "visual design", "integrations", "deployment platform", "agent"],
     category: "AI Voice Assistant Tools",
     rating: 4.5,
@@ -72,7 +74,7 @@ export const aiVoiceAssistantTools: Tool[] = [
     emoji: "🎤",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://cloud.google.com/dialogflow?via=aiwebtools",
-    imageUrl: "/src/assets/tools/dialogflow-hero.png",
+    imageUrl: dialogflowHero,
     tags: ["Voice Agent", "Conversational Agent", "conversational AI", "NLU", "chatbot platform", "voice interfaces", "Google Cloud", "agent"],
     category: "AI Voice Assistant Tools",
     rating: 4.6,
