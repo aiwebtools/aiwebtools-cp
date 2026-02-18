@@ -19,6 +19,10 @@ import convertKitHero from "@/assets/tools/convertkit-hero.jpg";
 import klaviyoHero from "@/assets/tools/klaviyo-hero.jpg";
 import boomerangHero from "@/assets/tools/boomerang-hero.jpg";
 import saneboxHero from "@/assets/tools/sanebox-hero.jpg";
+import gmailSmartComposeHero from "@/assets/tools/gmail-smart-compose-hero.jpg";
+import constantContactHero from "@/assets/tools/constant-contact-hero.jpg";
+import proofpointHero from "@/assets/tools/proofpoint-hero.jpg";
+import mixmaxHero from "@/assets/tools/mixmax-hero.jpg";
 
 export const emailManagementTools: Tool[] = [
   {
@@ -66,6 +70,7 @@ export const emailManagementTools: Tool[] = [
     emoji: "📬",
     color: "from-red-500 to-orange-600",
     directUrl: "https://mail.google.com/",
+    imageUrl: gmailSmartComposeHero,
     tags: ["Gmail", "smart compose", "writing assistance", "auto-complete", "productivity"],
     category: "Email Management Tools",
     rating: 4.3,
@@ -78,6 +83,7 @@ export const emailManagementTools: Tool[] = [
     emoji: "👥",
     color: "from-blue-500 to-green-600",
     directUrl: "https://www.constantcontact.com/",
+    imageUrl: constantContactHero,
     tags: ["email marketing", "subject line optimization", "send time optimization", "content suggestions", "automation"],
     category: "Email Management Tools",
     rating: 4.2,
@@ -103,6 +109,7 @@ export const emailManagementTools: Tool[] = [
     emoji: "🛡️",
     color: "from-gray-500 to-blue-600",
     directUrl: "https://www.proofpoint.com/",
+    imageUrl: proofpointHero,
     tags: ["email security", "phishing protection", "malware detection", "threat detection", "data loss prevention"],
     category: "Email Management Tools",
     rating: 4.4,
@@ -141,6 +148,7 @@ export const emailManagementTools: Tool[] = [
     emoji: "🔔",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://mixmax.com/",
+    imageUrl: mixmaxHero,
     tags: ["Sales Agent", "sales engagement", "email sequences", "tracking", "automation", "sales workflows", "agent"],
     category: "Email Management Tools",
     rating: 4.2,
