@@ -18,6 +18,8 @@ import { trackToolClickEvent } from "@/hooks/useToolAnalytics";
 const weightedShuffle = <T extends { title: string }>(items: T[]): T[] => {
   // TOP TIER: Dream-conquering, practical tools that help users excel and create
   const dreamConqueringTitles = new Set([
+    // Time Travel & History (moved to top tier for maximum visibility)
+    "TIME MACHINE GPT",
     // Civic Empowerment & Action
     "WE THE PEOPLE AI", "Public Testimony Writer GPT", "Legislation Writer GPT",
     "Social Safety Net GPT", "Global Peace Restoration GPT",
@@ -60,7 +62,7 @@ const weightedShuffle = <T extends { title: string }>(items: T[]): T[] => {
 
   // SECOND TIER: Other premium tools (spirituality, exploration, history, etc.)
   const premiumTitles = new Set([
-    "TIME MACHINE GPT", "Talk to the Gods GPT", "Stellaris: 🚀AI Space Explorer",
+    "Talk to the Gods GPT", "Stellaris: 🚀AI Space Explorer",
     "Criminologist GPT", "Phenomenon Explorer AI Suite", "ImmortalizeME™", "Resurrection GPT", 
     "Mary Magdalene GPT", "ALAN WATTS GPT", "Albert Einstein GPT", "Nikola Tesla GPT", 
     "Public Defender GPT", "Sophia Aeterna AI", "Carl Sagan GPT", "Manicheism GPT",
