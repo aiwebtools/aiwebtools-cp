@@ -367,14 +367,7 @@ const PinnedVideoPlayer = memo(() => {
     // If user previously unmuted (userMutePreferenceRef), send unmute command after iframe loads
     if (!shouldMute && userMutePreferenceRef.current === false) {
       setTimeout(() => {
-        if (iframeRef.current) {
-          try {
-            iframeRef.current.contentWindow?.postMessage(
-              JSON.stringify({ event: 'command', func: 'unMute' }),
-               YT_EMBED_ORIGIN
-            );
-          } catch {}
-        }
+        sendYTCommand('unMute');
       }, 500); // Wait for iframe to load
     }
     
@@ -385,17 +378,27 @@ const PinnedVideoPlayer = memo(() => {
   }, [currentVideoId]); // Only depend on video ID, not mute state
   
   // Handle mute/unmute via postMessage instead of iframe reload
+  // Send to ALL possible YouTube origins + wildcard for maximum mobile compatibility
+  const sendYTCommand = useCallback((command: string) => {
+    if (!iframeRef.current?.contentWindow) return;
+    const msg = JSON.stringify({ event: 'command', func: command });
+    try {
+      // Send to both origins — mobile Chrome often only responds to one
+      iframeRef.current.contentWindow.postMessage(msg, YT_EMBED_ORIGIN);
+      iframeRef.current.contentWindow.postMessage(msg, YT_API_ORIGIN_FALLBACK);
+      // Wildcard fallback for edge cases (cross-origin redirects inside YT embed)
+      iframeRef.current.contentWindow.postMessage(msg, '*');
+    } catch {}
+  }, []);
+
   useEffect(() => {
     if (!iframeRef.current || !playerMountedRef.current) return;
-    
-    try {
-      const command = isMuted ? 'mute' : 'unMute';
-      iframeRef.current.contentWindow?.postMessage(
-        JSON.stringify({ event: 'command', func: command }),
-        YT_EMBED_ORIGIN
-      );
-    } catch {}
-  }, [isMuted]);
+    const command = isMuted ? 'mute' : 'unMute';
+    // Send immediately + retry after short delay for mobile reliability
+    sendYTCommand(command);
+    const retry = setTimeout(() => sendYTCommand(command), 300);
+    return () => clearTimeout(retry);
+  }, [isMuted, sendYTCommand]);
   
   // Handle smooth fade animation when main video visibility changes
   useEffect(() => {
@@ -414,14 +417,7 @@ const PinnedVideoPlayer = memo(() => {
     const handleToolVideoPlaying = () => {
       // Mute pinned player when tool video plays - use postMessage for immediate effect
       setIsMuted(true);
-      if (iframeRef.current) {
-        try {
-          iframeRef.current.contentWindow?.postMessage(
-            JSON.stringify({ event: 'command', func: 'mute' }),
-            YT_EMBED_ORIGIN
-          );
-        } catch {}
-      }
+      sendYTCommand('mute');
     };
     
     window.addEventListener('toolVideoPlaying', handleToolVideoPlaying);
@@ -601,9 +597,16 @@ const PinnedVideoPlayer = memo(() => {
       if (!newMuted) {
         window.dispatchEvent(new CustomEvent('pinnedPlayerPlaying'));
       }
+      // Force-send command immediately on user gesture (critical for mobile Chrome)
+      // User gesture context is required for unmuting on mobile browsers
+      const command = newMuted ? 'mute' : 'unMute';
+      sendYTCommand(command);
+      // Extra retry specifically for mobile — gesture window is short
+      setTimeout(() => sendYTCommand(command), 100);
+      setTimeout(() => sendYTCommand(command), 500);
       return newMuted;
     });
-  }, []);
+  }, [sendYTCommand]);
 
   // Don't render if not on homepage, permanently closed, no tools, or haven't scrolled past hero yet
   if (!isHomepage || !isVisible || !hasScrolledEnough || toolsWithVideos.length === 0 || !currentTool || !currentVideoId || !videoSrc) {
