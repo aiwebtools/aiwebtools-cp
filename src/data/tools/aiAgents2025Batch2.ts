@@ -1,5 +1,6 @@
 import { Bot, Globe, Code, Zap, Brain, Rocket, Settings, Users, Sparkles, Video, Mic, Shield, Search, Briefcase, FileText, MessageSquare } from "lucide-react";
 import { Tool } from "@/types/tools";
+import openclawHero from "@/assets/tools/openclaw-ai-hero.jpg";
 
 export const aiAgents2025Batch2: Tool[] = [
   {
@@ -592,15 +593,17 @@ export const aiAgents2025Batch2: Tool[] = [
   },
   {
     icon: Bot,
-    title: "Moltbot (Clawdbot)",
-    description: "The viral autonomous AI agent that actually does things. Clears your inbox, sends emails, manages your calendar, checks you in for flights—all from WhatsApp, Telegram, or any chat app you already use. Open-source and locally-running for security.",
+    title: "OpenClaw AI Agent",
+    description: "The viral open-source autonomous AI personal assistant formerly known as Moltbot and Clawdbot. Runs locally on your machine and connects through WhatsApp, Telegram, Discord, or any messaging app you already use. Autonomously handles real tasks—clears your inbox, sends emails, manages calendars, checks you in for flights, books reservations, and executes complex multi-step workflows. Features persistent memory, self-editing capabilities, and VirusTotal-integrated skill security. No cloud dependency—your data stays on your machine.",
     emoji: "🦞",
-    color: "from-orange-500 to-purple-600",
+    color: "from-orange-500 to-cyan-600",
     category: "AI Agents",
-    directUrl: "https://molt.bot/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/moltbot-ai-agent.jpg",
+    directUrl: "https://openclaw.ai/?via=aiwebtools",
+    imageUrl: openclawHero,
     rating: 5.0,
-    tags: ["AI Agents", "Autonomous Agent", "Personal Assistant", "WhatsApp", "Telegram", "Email Automation", "Calendar", "Open Source", "Viral", "Clawdbot", "Lobster Shell"]
+    totalVotes: 4200,
+    tags: ["AI Agents", "Autonomous Agent", "Personal Assistant", "WhatsApp", "Telegram", "Discord", "Email Automation", "Calendar", "Open Source", "Viral", "Clawdbot", "Moltbot", "OpenClaw", "Self-Hosted", "Local AI", "Voice Agent"],
+    tagline: "The viral open-source AI agent that actually does your work"
   },
   {
     icon: Users,
