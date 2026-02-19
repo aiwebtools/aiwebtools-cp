@@ -10,7 +10,8 @@ export const matchAgents = (tool: Tool, searchTerm: string): boolean => {
   
   if (lowerSearchTerm.includes('agent') || lowerSearchTerm === 'agents' || 
       lowerSearchTerm.includes('swarm') || lowerSearchTerm.includes('moltbot') || 
-      lowerSearchTerm.includes('clawdbot') || lowerSearchTerm.includes('kimi') ||
+      lowerSearchTerm.includes('clawdbot') || lowerSearchTerm.includes('openclaw') ||
+      lowerSearchTerm.includes('kimi') ||
       lowerSearchTerm.includes('piper') || lowerSearchTerm.includes('rabbit') ||
       lowerSearchTerm.includes('dust') || lowerSearchTerm.includes('deep research')) {
     // Priority AI agent tools (including phone agents, coding agents, and viral agents)
@@ -28,6 +29,8 @@ export const matchAgents = (tool: Tool, searchTerm: string): boolean => {
       'chatgpt operator',
       'moltbot',
       'clawdbot',
+      'openclaw ai agent',
+      'openclaw',
       'kimi k2.5 agent swarm',
       'perplexity deep research',
       'rabbit r1 lam',
@@ -108,11 +111,12 @@ export const scoreAgents = (tool: Tool, searchTerm: string): number => {
   
   if (lowerSearchTerm.includes('agent') || lowerSearchTerm === 'agents' ||
       lowerSearchTerm.includes('swarm') || lowerSearchTerm.includes('moltbot') || 
-      lowerSearchTerm.includes('clawdbot') || lowerSearchTerm.includes('kimi') ||
+      lowerSearchTerm.includes('clawdbot') || lowerSearchTerm.includes('openclaw') ||
+      lowerSearchTerm.includes('kimi') ||
       lowerSearchTerm.includes('piper') || lowerSearchTerm.includes('rabbit') ||
       lowerSearchTerm.includes('dust') || lowerSearchTerm.includes('deep research')) {
     // Top priority AI agent tools (including phone agents, coding agents, and viral agents)
-    if (lowerTitle.includes('moltbot') || lowerTitle.includes('clawdbot')) {
+    if (lowerTitle.includes('moltbot') || lowerTitle.includes('clawdbot') || lowerTitle.includes('openclaw')) {
       score += 2100; // Viral agent - highest priority
     }
     if (lowerTitle.includes('kimi k2.5 agent swarm')) {
