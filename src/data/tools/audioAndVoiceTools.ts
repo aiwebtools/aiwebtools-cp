@@ -34,6 +34,18 @@ import humeAiHero from "@/assets/tools/hume-ai-hero.jpg";
 import voiceflowHero from "@/assets/tools/voiceflow-hero.jpg";
 import fakeyouHero from "@/assets/tools/fakeyou-hero.jpg";
 import respeecherHero from "@/assets/tools/respeecher-hero.jpg";
+import cognigyHero from "@/assets/tools/cognigy-hero.jpg";
+import gongIoHero from "@/assets/tools/gong-io-hero.jpg";
+import chorusAiHero from "@/assets/tools/chorus-ai-hero.jpg";
+import callrailHero from "@/assets/tools/callrail-hero.jpg";
+import goodcallHero from "@/assets/tools/goodcall-hero.jpg";
+import cartesiaAiHero from "@/assets/tools/cartesia-ai-hero.jpg";
+import lindyAiHero from "@/assets/tools/lindy-ai-hero.jpg";
+import typecastHero from "@/assets/tools/typecast-hero.jpg";
+import listnrHero from "@/assets/tools/listnr-hero.jpg";
+import podcastAiHero from "@/assets/tools/podcast-ai-hero.jpg";
+import dialoraAiHero from "@/assets/tools/dialora-ai-hero.jpg";
+import callpodAiHero from "@/assets/tools/callpod-ai-hero.jpg";
 
 export const audioAndVoiceTools: Tool[] = [
   {
@@ -121,6 +133,7 @@ export const audioAndVoiceTools: Tool[] = [
     emoji: "🤖",
     color: "from-blue-600 to-indigo-600",
     directUrl: "https://www.cognigy.com/?via=aiwebtools",
+    imageUrl: cognigyHero,
     tags: ["Voice Agent", "conversational AI", "chatbot platform", "voice agents", "customer service", "enterprise AI", "NLU", "dialog management", "agent"],
     category: "Phone & Voice Agents",
     rating: 4.5,
@@ -158,6 +171,7 @@ export const audioAndVoiceTools: Tool[] = [
     emoji: "📊",
     color: "from-orange-600 to-red-600",
     directUrl: "https://www.gong.io/?via=aiwebtools",
+    imageUrl: gongIoHero,
     tags: ["call analytics", "conversation intelligence", "sales analytics", "revenue intelligence", "call recording", "AI insights"],
     category: "Phone & Voice Agents",
     rating: 4.7,
@@ -170,6 +184,7 @@ export const audioAndVoiceTools: Tool[] = [
     emoji: "📈",
     color: "from-green-600 to-teal-600",
     directUrl: "https://www.chorus.ai/?via=aiwebtools",
+    imageUrl: chorusAiHero,
     tags: ["call analytics", "conversation intelligence", "sales coaching", "call recording", "AI analysis", "sales enablement"],
     category: "Phone & Voice Agents",
     rating: 4.6,
@@ -182,6 +197,7 @@ export const audioAndVoiceTools: Tool[] = [
     emoji: "📞",
     color: "from-blue-600 to-purple-600",
     directUrl: "https://www.callrail.com/?via=aiwebtools",
+    imageUrl: callrailHero,
     tags: ["call tracking", "call analytics", "conversation intelligence", "marketing analytics", "call recording", "AI insights"],
     category: "Phone & Voice Agents",
     rating: 4.5,
@@ -408,6 +424,7 @@ export const audioAndVoiceTools: Tool[] = [
     emoji: "📞",
     color: "from-green-500 to-teal-600",
     directUrl: "https://www.goodcall.com/?via=aiwebtools",
+    imageUrl: goodcallHero,
     tags: ["Voice Agent", "phone agents", "AI receptionist", "appointment booking", "small business", "no-code", "customer service", "inbound calls", "agent"],
     category: "Phone & Voice Agents",
     rating: 4.5,
@@ -420,6 +437,7 @@ export const audioAndVoiceTools: Tool[] = [
     emoji: "⚡",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://cartesia.ai/?via=aiwebtools",
+    imageUrl: cartesiaAiHero,
     tags: ["Voice Synthesis", "Text-to-Speech", "voice cloning", "low latency", "real-time", "speech-to-text", "multilingual", "expressive voices"],
     category: "Audio & Voice",
     rating: 4.7,
@@ -444,6 +462,7 @@ export const audioAndVoiceTools: Tool[] = [
     emoji: "🤖",
     color: "from-indigo-500 to-blue-600",
     directUrl: "https://www.lindy.ai/?via=aiwebtools",
+    imageUrl: lindyAiHero,
     tags: ["Voice Agent", "phone agents", "AI employee", "call automation", "appointment booking", "CRM integration", "conversational AI", "agent"],
     category: "Phone & Voice Agents",
     rating: 4.6,
@@ -481,6 +500,7 @@ export const audioAndVoiceTools: Tool[] = [
     emoji: "🎙️",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://typecast.ai/?via=aiwebtools",
+    imageUrl: typecastHero,
     tags: ["Text-to-Speech", "voice actors", "AI avatars", "video content", "marketing", "presentations", "virtual humans"],
     category: "Audio & Voice",
     rating: 4.4,
@@ -506,6 +526,7 @@ export const audioAndVoiceTools: Tool[] = [
     emoji: "🎧",
     color: "from-green-500 to-emerald-600",
     directUrl: "https://www.listnr.tech/?via=aiwebtools",
+    imageUrl: listnrHero,
     tags: ["Text-to-Speech", "podcast creation", "audiobooks", "voiceovers", "multilingual", "emotion control", "audio editing"],
     category: "Audio & Voice",
     rating: 4.4,
@@ -518,6 +539,7 @@ export const audioAndVoiceTools: Tool[] = [
     emoji: "🎙️",
     color: "from-purple-600 to-indigo-600",
     directUrl: "https://podcast.ai/?via=aiwebtools",
+    imageUrl: podcastAiHero,
     tags: ["Podcast Tools", "AI podcast", "audio generation", "show notes", "content creation", "AI hosts", "automated podcasting"],
     category: "Audio & Voice",
     rating: 4.3,
@@ -530,6 +552,7 @@ export const audioAndVoiceTools: Tool[] = [
     emoji: "📲",
     color: "from-teal-500 to-cyan-600",
     directUrl: "https://www.dialora.ai/?via=aiwebtools",
+    imageUrl: dialoraAiHero,
     tags: ["Voice Agent", "phone agents", "call automation", "sales calls", "customer support", "appointment booking", "conversational AI", "agent"],
     category: "Phone & Voice Agents",
     rating: 4.5,
@@ -542,6 +565,7 @@ export const audioAndVoiceTools: Tool[] = [
     emoji: "☎️",
     color: "from-blue-600 to-indigo-600",
     directUrl: "https://www.callpod.ai/?via=aiwebtools",
+    imageUrl: callpodAiHero,
     tags: ["Voice Agent", "phone agents", "enterprise", "call center", "lead qualification", "customer service", "high volume", "agent"],
     category: "Phone & Voice Agents",
     rating: 4.4,

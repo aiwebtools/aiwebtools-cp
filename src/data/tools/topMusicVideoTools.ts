@@ -9,6 +9,8 @@ import {
   Wand2,
   Users
 } from "lucide-react";
+import sunoAiHero from "@/assets/tools/suno-ai-hero.jpg";
+import udioHero from "@/assets/tools/udio-hero.jpg";
 
 export const topMusicVideoTools: Tool[] = [
   // Music Generation
@@ -19,6 +21,7 @@ export const topMusicVideoTools: Tool[] = [
     emoji: "🎵",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://suno.com/?via=aiwebtools",
+    imageUrl: sunoAiHero,
     tags: ["Suno", "AI music", "music generation", "vocals", "lyrics", "full songs", "genre music"],
     category: "AI Music Generation",
     rating: 4.9,
@@ -31,6 +34,7 @@ export const topMusicVideoTools: Tool[] = [
     emoji: "🎤",
     color: "from-orange-500 to-red-600",
     directUrl: "https://www.udio.com/?via=aiwebtools",
+    imageUrl: udioHero,
     tags: ["Udio", "AI music", "music creation", "vocals", "DeepMind", "professional music", "editing"],
     category: "AI Music Generation",
     rating: 4.8,
