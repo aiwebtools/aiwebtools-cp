@@ -1,6 +1,14 @@
 import { Tool } from "@/types/tools";
 import tripoAiHero from "@/assets/tools/tripo-ai-hero.jpg";
 import sloydAiHero from "@/assets/tools/sloyd-ai-hero.jpg";
+import blenderHero from "@/assets/tools/blender-hero.jpg";
+import csmAiHero from "@/assets/tools/csm-ai-hero.jpg";
+import scenarioAiHero from "@/assets/tools/scenario-ai-hero.jpg";
+import threeDaiStudioHero from "@/assets/tools/3d-ai-studio-hero.jpg";
+import hyper3dHero from "@/assets/tools/hyper-3d-hero.jpg";
+import masterpiecexHero from "@/assets/tools/masterpiecex-hero.jpg";
+import splineHero from "@/assets/tools/spline-hero.jpg";
+import polycamHero from "@/assets/tools/polycam-hero.jpg";
 import { 
   Box, 
   Package, 
@@ -100,6 +108,7 @@ export const threeDAndVisualizationTools: Tool[] = [
     emoji: "🏭",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://3daistudio.com/?via=aiwebtools",
+    imageUrl: threeDaiStudioHero,
     tags: ["3D studio", "AI 3D creation", "professional tools", "3D editing", "workflow optimization"],
     category: "3D & VISUALIZATION",
     rating: 4.4,
@@ -112,6 +121,7 @@ export const threeDAndVisualizationTools: Tool[] = [
     emoji: "⚡",
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://hyper3d.ai/?via=aiwebtools",
+    imageUrl: hyper3dHero,
     tags: ["high-performance 3D", "fast 3D generation", "professional 3D", "AI modeling", "quality 3D"],
     category: "3D & VISUALIZATION",
     rating: 4.3,
@@ -124,6 +134,7 @@ export const threeDAndVisualizationTools: Tool[] = [
     emoji: "🎨",
     color: "from-gold-500 to-purple-600",
     directUrl: "https://masterpiece.studio/?via=aiwebtools",
+    imageUrl: masterpiecexHero,
     tags: ["premium 3D", "masterpiece quality", "professional 3D", "AI creation", "advanced tools"],
     category: "3D & VISUALIZATION",
     rating: 4.6,
@@ -148,6 +159,7 @@ export const threeDAndVisualizationTools: Tool[] = [
     emoji: "📦",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://spline.design/",
+    imageUrl: splineHero,
     tags: ["3D design", "web 3D", "interactive", "collaboration", "browser-based"],
     category: "3D & Visualization Tools",
     rating: 4.6,
@@ -172,6 +184,7 @@ export const threeDAndVisualizationTools: Tool[] = [
     emoji: "👁️",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://poly.cam/",
+    imageUrl: polycamHero,
     tags: ["3D scanning", "photo-to-3D", "mobile scanning", "3D reconstruction", "photogrammetry"],
     category: "3D & Visualization Tools",
     rating: 4.4,
@@ -184,6 +197,7 @@ export const threeDAndVisualizationTools: Tool[] = [
     emoji: "🌐",
     color: "from-orange-500 to-red-600",
     directUrl: "https://www.blender.org/",
+    imageUrl: blenderHero,
     tags: ["3D modeling", "animation", "rendering", "open source", "free", "professional"],
     category: "3D & Visualization Tools",
     rating: 4.8,
@@ -220,6 +234,7 @@ export const threeDAndVisualizationTools: Tool[] = [
     emoji: "🎮",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://csm.ai/?via=aiwebtools",
+    imageUrl: csmAiHero,
     tags: ["game-ready 3D", "text to 3D", "rigging", "texturing", "animation", "game development"],
     category: "3D & VISUALIZATION",
     rating: 4.6,
@@ -232,6 +247,7 @@ export const threeDAndVisualizationTools: Tool[] = [
     emoji: "🎨",
     color: "from-orange-500 to-red-600",
     directUrl: "https://www.scenario.com/?via=aiwebtools",
+    imageUrl: scenarioAiHero,
     tags: ["game assets", "character design", "AI art", "style consistency", "game development", "textures"],
     category: "3D & VISUALIZATION",
     rating: 4.7,

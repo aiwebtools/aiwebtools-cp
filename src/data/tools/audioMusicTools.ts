@@ -1,5 +1,8 @@
 
 import { Tool } from "@/types/tools";
+import mubertHero from "@/assets/tools/mubert-hero.jpg";
+import playHtHero from "@/assets/tools/play-ht-hero.jpg";
+import adobePodcastHero from "@/assets/tools/adobe-podcast-hero.jpg";
 import { 
   Music, 
   Mic, 
@@ -371,6 +374,7 @@ export const audioMusicTools: Tool[] = [
     emoji: "🌊",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://mubert.com/?via=aiwebtools",
+    imageUrl: mubertHero,
     tags: ["generative music", "API", "Adobe integration", "royalty-free", "personalized music", "content creators"],
     category: "Audio & Music Tools",
     rating: 4.5,
@@ -383,6 +387,7 @@ export const audioMusicTools: Tool[] = [
     emoji: "▶️",
     color: "from-green-500 to-cyan-600",
     directUrl: "https://www.play.ht/?via=Aiwebtools",
+    imageUrl: playHtHero,
     tags: ["Text-to-Speech", "Voice Synthesis", "800+ AI voices", "142 languages", "ultra-realistic TTS", "commercial compliance", "video narration", "e-learning"],
     category: "Audio & Music Tools",
     rating: 4.7,
@@ -395,6 +400,7 @@ export const audioMusicTools: Tool[] = [
     emoji: "🎙️",
     color: "from-red-500 to-orange-600",
     directUrl: "https://podcast.adobe.com/enhance",
+    imageUrl: adobePodcastHero,
     tags: ["Podcast Tools", "Audio Enhancement", "enhance speech", "professional audio", "free account", "bulk uploading", "mic check", "browser-based"],
     category: "Audio & Music Tools",
     rating: 4.6,

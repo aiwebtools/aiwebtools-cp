@@ -44,6 +44,7 @@ export const businessAndFinanceGPTs: Tool[] = [
     color: "from-green-500 to-yellow-600",
     directUrl: "https://tradergpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=Izs80Fak4hQ",
+    imageUrl: "/src/assets/tools/trader-gpt-hero.jpg",
     tags: ["day trading", "market analysis", "trading signals", "technical analysis", "investing", "stocks", "aiwebtools", "Custom GPT"],
     category: "Business & Finance",
     rating: 4.7,

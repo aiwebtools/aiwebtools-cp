@@ -73,6 +73,7 @@ export const creativeAndMediaGPTs: Tool[] = [
     emoji: "📢",
     color: "from-orange-500 to-red-600",
     directUrl: "https://chatgpt.com/g/g-6810ea3238888191a084c4f20b40225f-ad-maker-gpt",
+    imageUrl: "/src/assets/tools/ad-maker-gpt-hero.jpg",
     tags: ["advertisement creation", "marketing banners", "promotional graphics", "visual ads", "marketing campaigns", "advertising design", "Custom GPT", "Advertising & PPC", "Content Marketing", "Brand Management"],
     category: "Creative & Media",
     rating: 4.6,
