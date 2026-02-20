@@ -10,6 +10,15 @@ import {
   Box
 } from "lucide-react";
 
+import githubCopilotHero from "@/assets/tools/github-copilot-hero.jpg";
+import cursorHero from "@/assets/tools/cursor-ai-hero.jpg";
+import codeiumHero from "@/assets/tools/codeium-hero.jpg";
+import windsurfHero from "@/assets/tools/windsurf-hero.jpg";
+import v0VercelHero from "@/assets/tools/v0-vercel-hero.jpg";
+import sourcegraphCodyHero from "@/assets/tools/sourcegraph-cody-hero.jpg";
+import tabnineHero from "@/assets/tools/tabnine-hero.jpg";
+import warpAiHero from "@/assets/tools/warp-ai-hero.jpg";
+
 export const developerProductivityAI: Tool[] = [
   {
     icon: GitBranch,
@@ -18,7 +27,7 @@ export const developerProductivityAI: Tool[] = [
     emoji: "🤖",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://github.com/features/copilot?via=aiwebtools",
-    imageUrl: "/src/assets/tools/github-copilot-hero.png",
+    imageUrl: githubCopilotHero,
     tags: ["Code Assistant", "GitHub Copilot", "code completion", "AI coding", "pair programming", "GPT-4", "IDE integration", "OpenAI", "All-in-One Suite"],
     category: "Developer Tools",
     rating: 4.8,
@@ -31,7 +40,7 @@ export const developerProductivityAI: Tool[] = [
     emoji: "✨",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://cursor.sh/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/cursor-hero.png",
+    imageUrl: cursorHero,
     tags: ["IDE", "Code Assistant", "Cursor", "AI code editor", "codebase chat", "multi-file editing", "GPT-4", "productivity", "intelligent IDE", "All-in-One Suite"],
     category: "Developer Tools",
     rating: 4.9,
@@ -44,7 +53,7 @@ export const developerProductivityAI: Tool[] = [
     emoji: "⚡",
     color: "from-green-500 to-teal-600",
     directUrl: "https://codeium.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/codeium-hero.png",
+    imageUrl: codeiumHero,
     tags: ["Code Assistant", "Codeium", "free AI coding", "code completion", "70+ languages", "autocomplete", "code search", "free alternative", "Multi-Tool Platform"],
     category: "Developer Tools",
     rating: 4.7,
@@ -70,7 +79,7 @@ export const developerProductivityAI: Tool[] = [
     emoji: "🔧",
     color: "from-indigo-500 to-blue-600",
     directUrl: "https://www.tabnine.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/tabnine-hero.png",
+    imageUrl: tabnineHero,
     tags: ["Code Assistant", "Tabnine", "AI assistant", "code completion", "privacy", "local AI", "enterprise", "pattern learning", "Workflow Optimization"],
     category: "Developer Tools",
     rating: 4.5,
@@ -96,7 +105,7 @@ export const developerProductivityAI: Tool[] = [
     emoji: "🧠",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://sourcegraph.com/cody?via=aiwebtools",
-    imageUrl: "/src/assets/tools/cody-hero.png",
+    imageUrl: sourcegraphCodyHero,
     tags: ["Code Assistant", "Testing", "Cody", "Sourcegraph", "codebase understanding", "unit tests", "bug fixing", "repository analysis", "context-aware", "Workflow Optimization"],
     category: "Developer Tools",
     rating: 4.6,
@@ -109,7 +118,7 @@ export const developerProductivityAI: Tool[] = [
     emoji: "🌊",
     color: "from-blue-600 to-cyan-600",
     directUrl: "https://codeium.com/windsurf?via=aiwebtools",
-    imageUrl: "/src/assets/tools/windsurf-hero.png",
+    imageUrl: windsurfHero,
     tags: ["IDE", "Code Assistant", "Windsurf", "AI editor", "flow state", "productivity", "code editor", "intelligent suggestions", "distraction-free", "All-in-One Suite"],
     category: "Developer Tools",
     rating: 4.7,
@@ -122,7 +131,7 @@ export const developerProductivityAI: Tool[] = [
     emoji: "⚡",
     color: "from-purple-600 to-pink-600",
     directUrl: "https://v0.dev/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/v0-vercel-hero.png",
+    imageUrl: v0VercelHero,
     tags: ["No-Code/Low-Code", "Frontend", "v0", "Vercel", "UI generation", "React components", "shadcn/ui", "text-to-UI", "production code", "Automation Platform"],
     category: "Developer Tools",
     rating: 4.8,
@@ -135,7 +144,7 @@ export const developerProductivityAI: Tool[] = [
     emoji: "🚀",
     color: "from-green-600 to-emerald-600",
     directUrl: "https://www.warp.dev/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/warp-ai-hero.png",
+    imageUrl: warpAiHero,
     tags: ["IDE", "Code Assistant", "Warp", "AI terminal", "command suggestions", "debugging", "GPT-4", "modern terminal", "developer tools", "Workflow Optimization"],
     category: "Developer Tools",
     rating: 4.6,
