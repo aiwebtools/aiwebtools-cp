@@ -1,4 +1,6 @@
 import { Tool } from "@/types/tools";
+import tripoAiHero from "@/assets/tools/tripo-ai-hero.jpg";
+import sloydAiHero from "@/assets/tools/sloyd-ai-hero.jpg";
 import { 
   Box, 
   Package, 
