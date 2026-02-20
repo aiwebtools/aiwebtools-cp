@@ -11,6 +11,13 @@ import {
 } from "lucide-react";
 import sunoAiHero from "@/assets/tools/suno-ai-hero.jpg";
 import udioHero from "@/assets/tools/udio-hero.jpg";
+import soraOpenAiHero from "@/assets/tools/sora-openai-hero.jpg";
+import runwayGen3Hero from "@/assets/tools/runway-gen3-hero.jpg";
+import pikaAiHero from "@/assets/tools/pika-ai-hero.jpg";
+import lumaDreamMachineHero from "@/assets/tools/luma-dream-machine-hero.jpg";
+import heygenHero from "@/assets/tools/heygen-hero.jpg";
+import synthesiaHero from "@/assets/tools/synthesia-hero.jpg";
+import dIdHero from "@/assets/tools/d-id-hero.jpg";
 
 export const topMusicVideoTools: Tool[] = [
   // Music Generation
@@ -49,6 +56,7 @@ export const topMusicVideoTools: Tool[] = [
     emoji: "🎬",
     color: "from-green-500 to-teal-600",
     directUrl: "https://openai.com/sora?via=aiwebtools",
+    imageUrl: soraOpenAiHero,
     tags: ["Sora", "OpenAI", "text-to-video", "AI video", "realistic video", "60 seconds", "groundbreaking"],
     category: "AI Video Generation",
     rating: 4.9,
@@ -61,6 +69,7 @@ export const topMusicVideoTools: Tool[] = [
     emoji: "🎥",
     color: "from-blue-500 to-indigo-600",
     directUrl: "https://runwayml.com/?via=aiwebtools",
+    imageUrl: runwayGen3Hero,
     tags: ["Runway", "Gen-3", "AI video", "cinematic", "professional", "motion control", "text-to-video"],
     category: "AI Video Generation",
     rating: 4.8,
@@ -73,6 +82,7 @@ export const topMusicVideoTools: Tool[] = [
     emoji: "▶️",
     color: "from-pink-500 to-purple-600",
     directUrl: "https://pika.art/?via=aiwebtools",
+    imageUrl: pikaAiHero,
     tags: ["Pika", "AI video", "fast generation", "social media", "character consistency", "quick videos"],
     category: "AI Video Generation",
     rating: 4.7,
@@ -85,6 +95,7 @@ export const topMusicVideoTools: Tool[] = [
     emoji: "✨",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://lumalabs.ai/dream-machine?via=aiwebtools",
+    imageUrl: lumaDreamMachineHero,
     tags: ["Luma", "Dream Machine", "fast video", "AI video", "quick generation", "Ray2", "experimentation"],
     category: "AI Video Generation",
     rating: 4.7,
@@ -97,6 +108,7 @@ export const topMusicVideoTools: Tool[] = [
     emoji: "👤",
     color: "from-green-600 to-teal-600",
     directUrl: "https://www.heygen.com/?via=aiwebtools",
+    imageUrl: heygenHero,
     tags: ["HeyGen", "AI avatars", "talking head", "lip-sync", "multilingual", "marketing videos", "personalized"],
     category: "AI Video Generation",
     rating: 4.8,
@@ -109,6 +121,7 @@ export const topMusicVideoTools: Tool[] = [
     emoji: "🎭",
     color: "from-blue-600 to-indigo-600",
     directUrl: "https://www.synthesia.io/?via=aiwebtools",
+    imageUrl: synthesiaHero,
     tags: ["Synthesia", "enterprise video", "AI avatars", "training videos", "corporate", "120 languages", "professional"],
     category: "AI Video Generation",
     rating: 4.7,
@@ -121,6 +134,7 @@ export const topMusicVideoTools: Tool[] = [
     emoji: "🪄",
     color: "from-purple-600 to-pink-600",
     directUrl: "https://www.d-id.com/?via=aiwebtools",
+    imageUrl: dIdHero,
     tags: ["D-ID", "talking avatars", "digital humans", "photo animation", "personalized videos", "AI faces"],
     category: "AI Video Generation",
     rating: 4.6,
