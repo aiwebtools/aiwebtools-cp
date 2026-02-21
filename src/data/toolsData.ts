@@ -155,6 +155,9 @@ import { topAgentPlatforms2026 } from "./tools/topAgentPlatforms2026";
 // Import Top AI Agent Platforms 2026 Batch 2 (Wordware, Composio, SmythOS, MindPal, AgentOps)
 import { topAgentPlatforms2026Batch2 } from "./tools/topAgentPlatforms2026Batch2";
 
+// Import New AI Agents 2026 (15 verified: MultiOn, CodeRabbit, Phind, Induced, BrowserBase, LangGraph, Beam AI, Fixie, Sweep, Fine.dev, Adept, OpenHands, Dia Browser, Axiom, Ottogrid)
+import { newAIAgents2026 } from "./tools/newAIAgents2026";
+
 const allToolCategories = consolidateTools([
   ...getAllToolCategories(),
   ...newAffiliatePlatforms2025,
@@ -296,7 +299,10 @@ const allToolCategories = consolidateTools([
   ...topAgentPlatforms2026,
   
   // Top AI Agent Platforms 2026 Batch 2 (Wordware, Composio, SmythOS, MindPal, AgentOps)
-  ...topAgentPlatforms2026Batch2
+  ...topAgentPlatforms2026Batch2,
+  
+  // New AI Agents 2026 (15 verified: MultiOn, CodeRabbit, Phind, Induced, BrowserBase, LangGraph, Beam AI, Fixie, Sweep, Fine.dev, Adept, OpenHands, Dia Browser, Axiom, Ottogrid)
+  ...newAIAgents2026
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories
