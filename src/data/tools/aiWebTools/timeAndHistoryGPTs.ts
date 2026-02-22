@@ -10,8 +10,11 @@ import {
   Ship,
   Users,
   BookOpen,
-  Search
+  Search,
+  PenTool
 } from "lucide-react";
+
+import paleographyGptHero from "@/assets/tools/paleography-gpt-hero.jpg";
 
 export const timeAndHistoryGPTs: Tool[] = [
   {
@@ -147,6 +150,20 @@ export const timeAndHistoryGPTs: Tool[] = [
       category: "Time & History",
       rating: 4.9,
       totalVotes: 1234,
+      isFree: true
+    },
+    {
+      icon: PenTool,
+      title: "Paleography GPT",
+      description: "A professional AI manuscript analyst specializing in the study of historical handwriting. Provides careful transcription of historical scripts from images, identification of script type and writing tradition, dating documents based on paleographic features, assessing geographic and cultural origin, analyzing scribal habits, abbreviations, ligatures, and letterforms, distinguishing original hands from later additions, detecting anachronisms or signs of forgery, and providing contextual historical interpretation grounded in evidence.",
+      emoji: "✍️",
+      color: "from-amber-600 to-brown-700",
+      directUrl: "https://chatgpt.com/g/g-699a79dbd9708191ad3001061b80c63a-paleography-gpt",
+      imageUrl: paleographyGptHero,
+      tags: ["paleography", "manuscript analysis", "historical handwriting", "transcription", "script identification", "document dating", "scribal habits", "forgery detection", "ancient manuscripts", "medieval scripts", "calligraphy analysis", "historical documents", "aiwebtools", "Custom GPT", "Simulation"],
+      category: "Time & History",
+      rating: 4.8,
+      totalVotes: 1876,
       isFree: true
     }
 ];
