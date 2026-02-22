@@ -1,6 +1,10 @@
 import { Tool } from "@/types/tools";
 import { BookOpen, GraduationCap, Brain, Calculator, Globe, Languages, Music, Palette, Code, Microscope, Heart, Users, Building, FileText, Award } from "lucide-react";
 
+import universalSpeechMasteryHero from "@/assets/tools/universal-speech-mastery-hero.jpg";
+import educationalTutorHero from "@/assets/tools/educational-tutor-hero.jpg";
+import cursiveTeacherHero from "@/assets/tools/cursive-teacher-hero.jpg";
+
 export const educationAndLearningGPTs: Tool[] = [
   {
     icon: Languages,
@@ -9,7 +13,7 @@ export const educationAndLearningGPTs: Tool[] = [
     emoji: "🗣️",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://chatgpt.com/g/g-68ae26360d448191b25842afb8d2f66b-lingua-champion-universal-speech-mastery-ai/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/universal-speech-mastery-hero.png",
+    imageUrl: universalSpeechMasteryHero,
     tags: ["language learning", "multilingual", "speech mastery", "foreign languages", "conversation practice", "fluency training", "lingua champion", "universal speech", "language education", "communication skills", "Language Learning", "Tutoring AI"],
     category: "Education & Learning",
     rating: 4.8,
@@ -114,7 +118,7 @@ export const educationAndLearningGPTs: Tool[] = [
     emoji: "👨‍🏫",
     color: "from-green-500 to-blue-600",
     directUrl: "https://chatgpt.com/g/g-68bb71f1dca88191866a1a0bfdff7ca0-educational-tutor-gpt/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/educational-tutor-hero.png",
+    imageUrl: educationalTutorHero,
     tags: ["tutoring", "personalized learning", "education", "learning support", "academic help", "study assistance", "aiwebtools", "Tutoring AI", "Study Tools"],
     category: "Education & Learning",
     rating: 4.8,
@@ -127,7 +131,7 @@ export const educationAndLearningGPTs: Tool[] = [
     emoji: "✍️",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://chatgpt.com/g/g-68cb403167a88191ae07062124d32bbb-cursive-teacher-gpt/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/cursive-teacher-hero.png",
+    imageUrl: cursiveTeacherHero,
     tags: ["cursive writing", "handwriting", "education", "penmanship", "writing skills", "learning", "teaching", "aiwebtools", "Skill Development", "Tutoring AI"],
     category: "Education & Learning",
     rating: 4.6,

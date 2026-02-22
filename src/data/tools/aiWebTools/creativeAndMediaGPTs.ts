@@ -24,6 +24,13 @@ import {
   FileText
 } from "lucide-react";
 
+import sora2PromptMakerHero from "@/assets/tools/sora2-prompt-maker-hero.jpg";
+import bobRossGptHero from "@/assets/tools/bob-ross-gpt-hero.jpg";
+import adMakerGptHero from "@/assets/tools/ad-maker-gpt-hero.jpg";
+import shoppingGptHero from "@/assets/tools/shopping-gpt-hero.jpg";
+import commercialSceneGeneratorHero from "@/assets/tools/commercial-scene-generator-hero.jpg";
+import logoAdGeneratorHero from "@/assets/tools/logo-ad-generator-hero.jpg";
+
 export const creativeAndMediaGPTs: Tool[] = [
   {
     icon: Video,
@@ -32,7 +39,7 @@ export const creativeAndMediaGPTs: Tool[] = [
     emoji: "🎬",
     color: "from-red-500 to-orange-600",
     directUrl: "https://chatgpt.com/g/g-69326acb5f348191a2f85c2cdc848c4d-0ra2-text-to-video-prompt-maker?via=aiwebtools",
-    imageUrl: "/src/assets/tools/sora2-prompt-maker-hero.png",
+    imageUrl: sora2PromptMakerHero,
     tags: ["sora", "text to video", "video prompts", "ai video", "cinematic", "prompt engineering", "runway", "pika", "video generation", "aiwebtools", "Custom GPT"],
     category: "Creative & Media",
     rating: 4.9,
@@ -45,7 +52,7 @@ export const creativeAndMediaGPTs: Tool[] = [
     emoji: "🎨",
     color: "from-green-500 to-blue-600",
     directUrl: "https://chatgpt.com/g/g-69157380e63c819188de5c09bdf23ef7-bob-ross-gpt/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/bob-ross-gpt-hero.png",
+    imageUrl: bobRossGptHero,
     tags: ["art teaching", "painting", "creativity", "calm guidance", "Bob Ross", "aiwebtools", "Custom GPT"],
     category: "Creative & Media",
     rating: 4.8,
@@ -73,7 +80,7 @@ export const creativeAndMediaGPTs: Tool[] = [
     emoji: "📢",
     color: "from-orange-500 to-red-600",
     directUrl: "https://chatgpt.com/g/g-6810ea3238888191a084c4f20b40225f-ad-maker-gpt",
-    imageUrl: "/src/assets/tools/ad-maker-gpt-hero.jpg",
+    imageUrl: adMakerGptHero,
     tags: ["advertisement creation", "marketing banners", "promotional graphics", "visual ads", "marketing campaigns", "advertising design", "Custom GPT", "Advertising & PPC", "Content Marketing", "Brand Management"],
     category: "Creative & Media",
     rating: 4.6,
@@ -99,7 +106,7 @@ export const creativeAndMediaGPTs: Tool[] = [
     emoji: "🛒",
     color: "from-blue-500 to-green-600",
     directUrl: "https://shoppinggpt.lovable.app/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/shopping-gpt-hero.png",
+    imageUrl: shoppingGptHero,
     tags: ["shopping assistant", "product recommendations", "deal finder", "price comparison", "shopping advice", "product discovery", "aiwebtools", "Custom GPT", "Conversion Optimization", "Lead Generation"],
     category: "Creative & Media",
     rating: 4.4,
@@ -112,6 +119,7 @@ export const creativeAndMediaGPTs: Tool[] = [
     emoji: "🎬",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://chatgpt.com/g/g-681a201fe69c8191b99e1636be90139e-commercial-scene-maker-gpt",
+    imageUrl: commercialSceneGeneratorHero,
     tags: ["commercial photography", "scene generation", "marketing visuals", "advertising imagery", "product photography", "commercial design", "Custom GPT", "Advertising & PPC", "Content Marketing", "Brand Management"],
     category: "Creative & Media",
     rating: 4.7,
@@ -137,6 +145,7 @@ export const creativeAndMediaGPTs: Tool[] = [
     emoji: "🎨",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://adandlogomakergpt.lovable.app/?via=aiwebtools",
+    imageUrl: logoAdGeneratorHero,
     tags: ["logo design", "advertisement creation", "branding", "marketing materials", "visual design", "brand identity", "aiwebtools", "Custom GPT", "Brand Management", "Advertising & PPC", "Content Marketing"],
     category: "Creative & Media",
     rating: 4.7,
