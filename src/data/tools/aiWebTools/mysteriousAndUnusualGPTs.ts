@@ -9,6 +9,8 @@ import {
   BookOpen
 } from "lucide-react";
 
+import mindReaderGptHero from "@/assets/tools/mind-reader-gpt-hero.jpg";
+
 export const mysteriousAndUnusualGPTs: Tool[] = [
   {
     icon: "🧠" as any,
@@ -17,7 +19,7 @@ export const mysteriousAndUnusualGPTs: Tool[] = [
     emoji: "🧠",
     color: "from-purple-600 to-indigo-700",
     directUrl: "https://chatgpt.com/g/g-N5bWo8m4p-mirror-mind-gpt",
-    imageUrl: "/src/assets/tools/mind-reader-gpt-hero.png",
+    imageUrl: mindReaderGptHero,
     tags: ["mind reading", "psychology", "consciousness", "telepathy", "mysterious", "Custom GPT"],
     category: "Mysterious & Unusual",
     rating: 4.1,

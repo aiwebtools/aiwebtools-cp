@@ -22,6 +22,11 @@ import {
   Zap
 } from "lucide-react";
 
+import povertyCrusherHero from "@/assets/tools/poverty-crusher-gpt-hero.jpg";
+import businessPlanArchitectHero from "@/assets/tools/business-plan-architect-hero.jpg";
+import competitorComparisonHero from "@/assets/tools/competitor-comparison-hero.jpg";
+import sideHustlePlannerHero from "@/assets/tools/side-hustle-planner-hero.jpg";
+
 export const businessAndFinanceGPTs: Tool[] = [
   {
     icon: DollarSign,
@@ -30,7 +35,7 @@ export const businessAndFinanceGPTs: Tool[] = [
     emoji: "💪",
     color: "from-green-500 to-blue-600",
     directUrl: "https://chatgpt.com/g/g-68ae2ab2c55c8191afdc979301179fa9-poverty-crusher-economic-empowerment-ai/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/poverty-crusher-gpt-hero.png",
+    imageUrl: povertyCrusherHero,
     tags: ["poverty reduction", "economic empowerment", "financial literacy", "wealth building", "debt elimination", "income generation", "financial freedom", "budgeting", "investment education", "aiwebtools", "Custom GPT", "Sales Enablement"],
     category: "Business & Finance",
     rating: 4.9,
@@ -70,7 +75,7 @@ export const businessAndFinanceGPTs: Tool[] = [
     emoji: "🏢",
     color: "from-red-500 to-pink-600",
     directUrl: "https://businessplanandtrainai.lovable.app/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/business-plan-architect-hero.png",
+    imageUrl: businessPlanArchitectHero,
     tags: ["business plan", "market analysis", "financial projections", "strategy", "Custom GPT"],
     category: "Business & Finance",
     rating: 4.4,
@@ -252,6 +257,7 @@ export const businessAndFinanceGPTs: Tool[] = [
     emoji: "🎯",
     color: "from-red-500 to-orange-600",
     directUrl: "https://chatgpt.com/g/g-68bb9109085c8191a5ffbe9ed6d339f5-competitor-comparison-gpt/?via=aiwebtools",
+    imageUrl: competitorComparisonHero,
     tags: ["competitor analysis", "business intelligence", "market research", "competitive strategy", "business comparison", "aiwebtools", "Custom GPT", "Market Research", "Analytics & Tracking"],
     category: "Business & Finance",
     rating: 4.8,
@@ -264,6 +270,7 @@ export const businessAndFinanceGPTs: Tool[] = [
     emoji: "💼",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://chatgpt.com/g/g-68bb8ba059ec81919253d369d0899f9c-side-hustle-microbusiness-planner-gpt/?via=aiwebtools",
+    imageUrl: sideHustlePlannerHero,
     tags: ["side hustle", "microbusiness", "entrepreneurship", "business planning", "startup strategy", "aiwebtools", "Custom GPT", "Sales Enablement"],
     category: "Business & Finance",
     rating: 4.7,
