@@ -101,12 +101,12 @@ const CloneOfferPopup = () => {
         </DialogHeader>
         
         {/* Media Section - Image on first popup, video on subsequent */}
-        <div className="w-full aspect-video rounded-lg overflow-hidden mb-4 bg-black border border-gray-700">
+        <div className="w-full rounded-lg overflow-hidden mb-4 bg-black border border-gray-700">
           {showCount <= 1 ? (
             <img
               src={cloneKingdomImage}
               alt="Inner Cosmos - Inner Temple - Light Within - Your AI Empire Awaits"
-              className="w-full h-full object-cover"
+              className="w-full h-auto max-h-[50vh] object-contain mx-auto"
             />
           ) : (
             <iframe
