@@ -130,35 +130,21 @@ const CloneOfferPopup = () => {
           )}
         </div>
 
-        <div className="flex flex-col gap-4 py-4">
-          <p className="text-sm text-gray-400">
-            Click below to claim it by cloning it now and start building your own AI tools directory!
-          </p>
-          
-          {/* Main Clone Button - Solid, High Contrast */}
+        <div className="flex gap-3 justify-center">
           <Button
             onClick={handleClone}
-            className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold py-6 text-lg shadow-lg hover:shadow-cyan-500/30 transition-all duration-300 border-0 cursor-pointer select-none"
-            style={{ 
-              position: 'relative', 
-              zIndex: 10,
-              pointerEvents: 'auto'
-            }}
+            className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold px-4 py-2 text-sm shadow-lg hover:shadow-cyan-500/30 transition-all duration-300 border-0 cursor-pointer select-none"
+            style={{ position: 'relative', zIndex: 10, pointerEvents: 'auto' }}
           >
-            <Copy className="w-5 h-5 mr-2" />
-            Clone This Website Now
+            <Copy className="w-4 h-4 mr-1" />
+            Clone Now
           </Button>
           
-          {/* Maybe Later Button - Solid Background */}
           <Button
             onClick={() => setIsOpen(false)}
             variant="outline"
-            className="w-full bg-gray-800 hover:bg-gray-700 text-gray-300 hover:text-white border-gray-600 hover:border-gray-500 font-medium py-3 cursor-pointer select-none"
-            style={{ 
-              position: 'relative', 
-              zIndex: 10,
-              pointerEvents: 'auto'
-            }}
+            className="bg-gray-800 hover:bg-gray-700 text-gray-300 hover:text-white border-gray-600 hover:border-gray-500 font-medium px-4 py-2 text-sm cursor-pointer select-none"
+            style={{ position: 'relative', zIndex: 10, pointerEvents: 'auto' }}
           >
             Maybe Later
           </Button>
