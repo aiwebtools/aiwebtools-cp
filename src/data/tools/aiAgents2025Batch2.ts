@@ -1,7 +1,12 @@
 import { Bot, Globe, Code, Zap, Brain, Rocket, Settings, Users, Sparkles, Video, Mic, Shield, Search, Briefcase, FileText, MessageSquare } from "lucide-react";
 import { Tool } from "@/types/tools";
 import openclawHero from "@/assets/tools/openclaw-ai-hero.jpg";
-
+import wordfareHero from "@/assets/tools/wordfare-ai-hero.jpg";
+import convergenceHero from "@/assets/tools/convergence-ai-hero.jpg";
+import abacusHero from "@/assets/tools/abacus-ai-hero.jpg";
+import emergenceHero from "@/assets/tools/emergence-ai-hero.jpg";
+import zapierAgentsHero from "@/assets/tools/zapier-agents-hero.jpg";
+import kaneaiHero from "@/assets/tools/kaneai-hero.jpg";
 export const aiAgents2025Batch2: Tool[] = [
   {
     icon: Code,
@@ -11,7 +16,7 @@ export const aiAgents2025Batch2: Tool[] = [
     color: "from-blue-500 to-purple-600",
     category: "AI Agents",
     directUrl: "https://wordfare.ai/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/wordfare-ai-hero.png",
+    imageUrl: wordfareHero,
     rating: 4.6,
     tags: ["AI Agents", "Developer Tools", "Automation", "IDE", "Natural Language Programming", "API"]
   },
@@ -35,7 +40,7 @@ export const aiAgents2025Batch2: Tool[] = [
     color: "from-teal-500 to-blue-600",
     category: "AI Agents",
     directUrl: "https://convergence.ai/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/convergence-ai-hero.png",
+    imageUrl: convergenceHero,
     rating: 5.0,
     tags: ["AI Agents", "Automation", "Virtual Assistant", "Email", "Task Automation"]
   },
@@ -47,7 +52,7 @@ export const aiAgents2025Batch2: Tool[] = [
     color: "from-indigo-500 to-purple-600",
     category: "AI Agents",
     directUrl: "https://abacus.ai/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/abacus-ai-hero.png",
+    imageUrl: abacusHero,
     rating: 4.5,
     tags: ["AI Agents", "Developer Tools", "Large-Scale AI", "Chatbots", "Platform"]
   },
@@ -59,7 +64,7 @@ export const aiAgents2025Batch2: Tool[] = [
     color: "from-cyan-500 to-green-600",
     category: "AI Agents",
     directUrl: "https://emergence.ai/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/emergence-ai-hero.png",
+    imageUrl: emergenceHero,
     rating: 4.6,
     tags: ["AI Agents", "Automation", "Web Agents", "Business Automation", "Agent E"]
   },
@@ -119,7 +124,7 @@ export const aiAgents2025Batch2: Tool[] = [
     color: "from-orange-500 to-red-600",
     category: "AI Agents",
     directUrl: "https://zapier.com/agents?via=aiwebtools",
-    imageUrl: "/src/assets/tools/zapier-agents-hero.png",
+    imageUrl: zapierAgentsHero,
     rating: 4.6,
     tags: ["AI Agents", "Automation", "Zapier", "No-Code", "Workflow Automation"]
   },
@@ -143,7 +148,7 @@ export const aiAgents2025Batch2: Tool[] = [
     color: "from-purple-500 to-blue-600",
     category: "AI Agents",
     directUrl: "https://www.lambdatest.com/kane-ai?via=aiwebtools",
-    imageUrl: "/src/assets/tools/kaneai-hero.png",
+    imageUrl: kaneaiHero,
     rating: 5.0,
     tags: ["AI Agents", "Automation", "Testing", "QA", "Natural Language", "End-to-End"]
   },

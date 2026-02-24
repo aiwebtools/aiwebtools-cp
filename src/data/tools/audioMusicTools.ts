@@ -26,6 +26,13 @@ import beatovenHero from "@/assets/tools/beatoven-hero.jpg";
 import beatbotHero from "@/assets/tools/beatbot-hero.jpg";
 import specterrHero from "@/assets/tools/specterr-hero.jpg";
 import sounddrawHero from "@/assets/tools/sounddraw-hero.jpg";
+import udioHero from "@/assets/tools/udio-hero.jpg";
+import stableAudioHero from "@/assets/tools/stable-audio-hero.jpg";
+import voicemodHero from "@/assets/tools/voicemod-hero.jpg";
+import splashProHero from "@/assets/tools/splash-pro-hero.jpg";
+import coquiTtsHero from "@/assets/tools/coqui-tts-hero.jpg";
+import soundfulHero from "@/assets/tools/soundful-hero.jpg";
+import respeecherHero from "@/assets/tools/respeecher-hero.jpg";
 
 export const audioMusicTools: Tool[] = [
   {
@@ -35,7 +42,7 @@ export const audioMusicTools: Tool[] = [
     emoji: "🎙️",
     color: "from-emerald-500 to-teal-600",
     directUrl: "https://udio.com/",
-    imageUrl: "/src/assets/tools/udio-hero.png",
+    imageUrl: udioHero,
     tags: ["Music Generator", "udio", "high-fidelity audio", "natural vocals", "text to music", "original compositions", "AI instruments", "music generator", "ai music", "make music", "create music", "song generator", "music maker"],
     category: "Audio & Music Tools",
     rating: 4.7,
@@ -62,7 +69,7 @@ export const audioMusicTools: Tool[] = [
     emoji: "🔊",
     color: "from-violet-500 to-purple-600",
     directUrl: "https://stableaudio.com/",
-    imageUrl: "/src/assets/tools/stable-audio-hero.png",
+    imageUrl: stableAudioHero,
     tags: ["Music Generator", "Sound Effects", "Stability AI", "ambient audio", "variable length", "text descriptions", "high quality", "music generator", "ai music", "make music", "create music", "song generator"],
     category: "Audio & Music Tools",
     rating: 4.6,
@@ -101,7 +108,7 @@ export const audioMusicTools: Tool[] = [
     emoji: "🎭",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://www.voicemod.net/",
-    imageUrl: "/src/assets/tools/voicemod-hero.png",
+    imageUrl: voicemodHero,
     tags: ["Voice Synthesis", "voice transformation", "celebrity voices", "character voices", "real-time", "streaming", "gaming", "voice generator", "text to speech", "ai voice", "voice cloning"],
     category: "Audio & Music Tools",
     rating: 4.3,
@@ -114,7 +121,7 @@ export const audioMusicTools: Tool[] = [
     emoji: "🌊",
     color: "from-teal-500 to-cyan-600",
     directUrl: "https://www.splashmusic.com/",
-    imageUrl: "/src/assets/tools/splash-pro-hero.png",
+    imageUrl: splashProHero,
     tags: ["Music Generator", "beats generation", "melodies", "collaborative tools", "DAW integration", "professional production", "AI composition", "music generator", "ai music", "make music", "create music", "song generator", "music maker"],
     category: "Audio & Music Tools",
     rating: 4.2,
@@ -127,7 +134,7 @@ export const audioMusicTools: Tool[] = [
     emoji: "🗣️",
     color: "from-green-500 to-emerald-600",
     directUrl: "https://coqui.ai/",
-    imageUrl: "/src/assets/tools/coqui-tts-hero.png",
+    imageUrl: coquiTtsHero,
     tags: ["Text-to-Speech", "Voice Cloning", "open source", "multilingual", "real-time synthesis", "custom voices", "TTS", "voice generator", "text to speech", "ai voice", "voice cloning", "speech generator"],
     category: "Audio & Music Tools",
     rating: 4.5,
@@ -140,7 +147,7 @@ export const audioMusicTools: Tool[] = [
     emoji: "🎼",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://soundful.com/",
-    imageUrl: "/src/assets/tools/soundful-hero.png",
+    imageUrl: soundfulHero,
     tags: ["Music Generator", "royalty-free", "background music", "content creators", "mood-based", "videos", "podcasts", "music generator", "ai music", "make music", "create music"],
     category: "Audio & Music Tools",
     rating: 4.3,
@@ -153,7 +160,7 @@ export const audioMusicTools: Tool[] = [
     emoji: "🎬",
     color: "from-red-500 to-orange-600",
     directUrl: "https://www.respeecher.com/",
-    imageUrl: "/src/assets/tools/respeecher-hero.png",
+    imageUrl: respeecherHero,
     tags: ["Voice Cloning", "Voice Synthesis", "professional voice cloning", "filmmakers", "dubbing", "localization", "ultra-realistic", "voice transformation", "voice generator", "ai voice", "voice cloning"],
     category: "Audio & Music Tools",
     rating: 4.6,
