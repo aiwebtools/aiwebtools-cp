@@ -7,8 +7,7 @@ import {
   Brain, 
   Rocket,
   Coins,
-  LineChart,
-  ShieldCheck
+  LineChart
 } from "lucide-react";
 
 import threeCommasHero from "@/assets/tools/3commas-hero.jpg";
@@ -16,7 +15,6 @@ import cryptohopperHero from "@/assets/tools/cryptohopper-hero.jpg";
 import pionexHero from "@/assets/tools/pionex-hero.jpg";
 import tradesantaHero from "@/assets/tools/tradesanta-hero.jpg";
 import bitsgapHero from "@/assets/tools/bitsgap-hero.jpg";
-import shrimpyHero from "@/assets/tools/shrimpy-hero.jpg";
 import nansenHero from "@/assets/tools/nansen-hero.jpg";
 
 export const aiCryptoTradingTools: Tool[] = [
@@ -84,19 +82,6 @@ export const aiCryptoTradingTools: Tool[] = [
     category: "AI Crypto & Trading Tools",
     rating: 4.4,
     totalVotes: 3456
-  },
-  {
-    icon: ShieldCheck,
-    title: "Shrimpy",
-    description: "AI-powered crypto portfolio management and trading automation with rebalancing and social trading features.",
-    emoji: "🛡️",
-    color: "from-blue-500 to-cyan-600",
-    directUrl: "https://www.shrimpy.io/?via=aiwebtools",
-    imageUrl: shrimpyHero,
-    tags: ["portfolio management", "rebalancing", "social trading", "automation", "crypto management"],
-    category: "AI Crypto & Trading Tools",
-    rating: 4.3,
-    totalVotes: 2765
   },
   {
     icon: Rocket,
