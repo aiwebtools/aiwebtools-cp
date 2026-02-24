@@ -9,6 +9,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Copy, Sparkles } from "lucide-react";
 import { createTimePortalEffect } from "@/utils/timeEffects";
+import cloneKingdomImage from "@/assets/clone-kingdom.jpg";
 
 const CloneOfferPopup = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -99,26 +100,34 @@ const CloneOfferPopup = () => {
           </DialogDescription>
         </DialogHeader>
         
-        {/* Video Section - Different video on each popup */}
+        {/* Media Section - Image on first popup, video on subsequent */}
         <div className="w-full aspect-video rounded-lg overflow-hidden mb-4 bg-black border border-gray-700">
-          <iframe
-            width="100%"
-            height="100%"
-            src={isOpen ? (
-              showCount === 3 
-                ? "https://www.youtube.com/embed/s5lZHJU3y08?autoplay=1&mute=1&controls=1&rel=0&modestbranding=1&playsinline=1&fs=1&vq=hd1080&hd=1&enablejsapi=1"
-                : showCount === 2 
-                  ? "https://www.youtube.com/embed/nG4NqPwNHaw?autoplay=1&mute=1&controls=1&rel=0&modestbranding=1&playsinline=1&fs=1&vq=hd1080&hd=1&enablejsapi=1"
-                  : "https://www.youtube.com/embed/lPZVKMfUcrs?autoplay=1&mute=1&controls=1&rel=0&modestbranding=1&playsinline=1&fs=1&vq=hd1080&hd=1&enablejsapi=1"
-            ) : ""}
-            key={isOpen ? `playing-${showCount}` : "stopped"}
-            title="Clone This Website"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowFullScreen
-            className="w-full h-full"
-            loading="eager"
-          ></iframe>
+          {showCount <= 1 ? (
+            <img
+              src={cloneKingdomImage}
+              alt="Inner Cosmos - Inner Temple - Light Within - Your AI Empire Awaits"
+              className="w-full h-full object-cover"
+            />
+          ) : (
+            <iframe
+              width="100%"
+              height="100%"
+              src={isOpen ? (
+                showCount === 3 
+                  ? "https://www.youtube.com/embed/s5lZHJU3y08?autoplay=1&mute=1&controls=1&rel=0&modestbranding=1&playsinline=1&fs=1&vq=hd1080&hd=1&enablejsapi=1"
+                  : showCount === 2 
+                    ? "https://www.youtube.com/embed/nG4NqPwNHaw?autoplay=1&mute=1&controls=1&rel=0&modestbranding=1&playsinline=1&fs=1&vq=hd1080&hd=1&enablejsapi=1"
+                    : "https://www.youtube.com/embed/lPZVKMfUcrs?autoplay=1&mute=1&controls=1&rel=0&modestbranding=1&playsinline=1&fs=1&vq=hd1080&hd=1&enablejsapi=1"
+              ) : ""}
+              key={isOpen ? `playing-${showCount}` : "stopped"}
+              title="Clone This Website"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+              className="w-full h-full"
+              loading="eager"
+            ></iframe>
+          )}
         </div>
 
         <div className="flex flex-col gap-4 py-4">
