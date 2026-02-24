@@ -1,6 +1,12 @@
 import { Image, Palette, Wand2, Sparkles, Camera, Brush, Star, Crown, Zap, Bot } from "lucide-react";
 import { Tool } from "@/types/tools";
 
+import gpt4oImageGenHero from "@/assets/tools/gpt4o-image-gen-hero.jpg";
+import googleWhiskHero from "@/assets/tools/google-whisk-hero.jpg";
+import imageFxHero from "@/assets/tools/image-fx-hero.jpg";
+import kreaAiHero from "@/assets/tools/krea-ai-hero.jpg";
+import midjourneyHero from "@/assets/tools/midjourney-hero.jpg";
+
 export const coreImageGenerators: Tool[] = [
   {
     icon: Bot,
@@ -9,7 +15,7 @@ export const coreImageGenerators: Tool[] = [
     emoji: "🤖",
     color: "from-emerald-500 to-blue-600",
     directUrl: "https://graphicdesigngpt.lovable.app/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/dalle3-hero.png",
+    imageUrl: gpt4oImageGenHero,
     tags: ["Image Generator", "GPT-4o", "OpenAI", "image generation", "text-to-image", "AI art", "advanced model"],
     category: "Core Image Generators",
     rating: 4.9,
@@ -22,7 +28,7 @@ export const coreImageGenerators: Tool[] = [
     emoji: "🎨",
     color: "from-blue-500 to-green-600",
     directUrl: "https://labs.google/fx/tools/whisk?via=aiwebtools",
-    imageUrl: "/src/assets/tools/google-whisk-hero.png",
+    imageUrl: googleWhiskHero,
     tags: ["Image Generator", "image prompts", "Google Labs", "Imagen 3", "visual exploration", "creative"],
     category: "Core Image Generators",
     rating: 4.8,
@@ -35,7 +41,7 @@ export const coreImageGenerators: Tool[] = [
     emoji: "🖼️",
     color: "from-red-500 to-pink-600",
     directUrl: "https://labs.google/fx/tools/image-fx?via=aiwebtools",
-    imageUrl: "/src/assets/tools/image-fx-hero.png",
+    imageUrl: imageFxHero,
     tags: ["Image Generator", "Google Labs", "text-to-image", "AI models", "creative tools", "image generation"],
     category: "Core Image Generators",
     rating: 4.7,
@@ -48,7 +54,7 @@ export const coreImageGenerators: Tool[] = [
     emoji: "✨",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://www.krea.ai/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/krea-ai-hero.png",
+    imageUrl: kreaAiHero,
     tags: ["Image Generator", "Image Upscaler", "image generation", "video AI", "upscaling", "free platform", "creative tools"],
     category: "Core Image Generators",
     rating: 4.6,
@@ -125,7 +131,7 @@ export const coreImageGenerators: Tool[] = [
     emoji: "⭐",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://www.midjourney.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/midjourney-hero.png",
+    imageUrl: midjourneyHero,
     tags: ["Image Generator", "AI Art", "AI art", "artistic style", "premium quality", "community", "text-to-image"],
     category: "Core Image Generators",
     rating: 4.9,

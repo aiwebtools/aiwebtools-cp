@@ -1,5 +1,9 @@
 
 import { Tool } from "@/types/tools";
+import landrHero from "@/assets/tools/landr-hero.jpg";
+import spliceHero from "@/assets/tools/splice-hero.jpg";
+import soundrawHero from "@/assets/tools/soundraw-hero.jpg";
+import amperHero from "@/assets/tools/amper-hero.jpg";
 import { 
   Music, 
   Mic, 
@@ -17,7 +21,7 @@ export const aiMusicProductionTools: Tool[] = [
     emoji: "🎵",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://www.landr.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/landr-hero.png",
+    imageUrl: landrHero,
     tags: ["Music Mastering", "Audio Editing", "mastering", "distribution", "AI audio", "music production", "collaboration"],
     category: "AI Music Production Tools",
     rating: 4.5,
@@ -30,7 +34,7 @@ export const aiMusicProductionTools: Tool[] = [
     emoji: "🎧",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://splice.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/splice-hero.png",
+    imageUrl: spliceHero,
     tags: ["Music Generator", "Sound Effects", "samples", "sound library", "music creation", "royalty-free", "AI recommendations"],
     category: "AI Music Production Tools",
     rating: 4.6,
@@ -55,7 +59,7 @@ export const aiMusicProductionTools: Tool[] = [
     emoji: "📻",
     color: "from-green-500 to-teal-600",
     directUrl: "https://soundraw.io/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/soundraw-hero.png",
+    imageUrl: soundrawHero,
     tags: ["Music Generator", "AI music", "royalty-free", "background music", "customizable", "commercial use"],
     category: "AI Music Production Tools",
     rating: 4.4,
@@ -80,7 +84,7 @@ export const aiMusicProductionTools: Tool[] = [
     emoji: "💿",
     color: "from-indigo-500 to-purple-600",
     directUrl: "https://www.shutterstock.com/discover/ampermusic?via=aiwebtools",
-    imageUrl: "/src/assets/tools/amper-hero.png",
+    imageUrl: amperHero,
     tags: ["Music Generator", "soundtracks", "adaptive music", "composition", "custom music", "AI composer"],
     category: "AI Music Production Tools",
     rating: 4.3,

@@ -10,6 +10,8 @@ import {
 
 import munchHero from "@/assets/tools/munch-hero.jpg";
 import vadooHero from "@/assets/tools/vadoo-hero.jpg";
+import descriptHero from "@/assets/tools/descript-hero.jpg";
+import kapwingHero from "@/assets/tools/kapwing-hero.jpg";
 
 export const videoEditingTools: Tool[] = [
   {
@@ -19,7 +21,7 @@ export const videoEditingTools: Tool[] = [
     emoji: "✂️",
     color: "from-green-500 to-blue-600",
     directUrl: "https://www.descript.com/",
-    imageUrl: "/src/assets/tools/descript-hero.png",
+    imageUrl: descriptHero,
     tags: ["text-based editing", "filler word removal", "voice cloning", "audio editing", "transcription", "Video Editor"],
     category: "Video Tools",
     rating: 4.7,
@@ -32,7 +34,7 @@ export const videoEditingTools: Tool[] = [
     emoji: "⚡",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://www.kapwing.com/",
-    imageUrl: "/src/assets/tools/kapwing-hero.png",
+    imageUrl: kapwingHero,
     tags: ["online editor", "auto-subtitles", "background removal", "smart cropping", "collaborative", "Video Editor"],
     category: "Video Tools",
     rating: 4.4,
