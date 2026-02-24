@@ -85,13 +85,13 @@ const CloneOfferPopup = () => {
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogContent className="sm:max-w-2xl max-w-[95vw] bg-gray-900 border-2 border-cyan-500/50 max-h-[90vh] overflow-y-auto z-[9999] shadow-2xl shadow-cyan-500/20">
+      <DialogContent className="sm:max-w-xl max-w-[95vw] bg-gray-900 border-2 border-cyan-500/50 max-h-[90vh] overflow-y-auto z-[9999] shadow-2xl shadow-cyan-500/20 p-4 sm:p-6">
         <DialogHeader>
-          <DialogTitle className="flex items-center gap-2 text-2xl text-white">
-            <Sparkles className="w-6 h-6 text-cyan-400 animate-pulse" />
+          <DialogTitle className="flex items-center gap-2 text-lg sm:text-2xl text-white">
+            <Sparkles className="w-5 h-5 sm:w-6 sm:h-6 text-cyan-400 animate-pulse" />
             Your AI Empire Awaits!
           </DialogTitle>
-          <DialogDescription className="text-base pt-2 text-gray-300">
+          <DialogDescription className="text-sm sm:text-base pt-1 sm:pt-2 text-gray-300">
             {showCount === 1 ? (
               <>Hey, we're glad you like this website. <span className="text-cyan-400 font-semibold">It's actually yours</span> — you just don't know it yet.</>
             ) : (
@@ -101,32 +101,34 @@ const CloneOfferPopup = () => {
         </DialogHeader>
         
         {/* Media Section - Image on first popup, video on subsequent */}
-        <div className="w-full rounded-lg overflow-hidden mb-4 bg-black border border-gray-700">
+        <div className="w-full rounded-lg overflow-hidden bg-black border border-gray-700">
           {showCount <= 1 ? (
             <img
               src={cloneKingdomImage}
               alt="Inner Cosmos - Inner Temple - Light Within - Your AI Empire Awaits"
-              className="w-full h-auto max-h-[50vh] object-contain mx-auto"
+              className="w-full h-auto max-h-[45vh] object-contain mx-auto"
             />
           ) : (
-            <iframe
-              width="100%"
-              height="100%"
-              src={isOpen ? (
-                showCount === 3 
-                  ? "https://www.youtube.com/embed/s5lZHJU3y08?autoplay=1&mute=1&controls=1&rel=0&modestbranding=1&playsinline=1&fs=1&vq=hd1080&hd=1&enablejsapi=1"
-                  : showCount === 2 
-                    ? "https://www.youtube.com/embed/nG4NqPwNHaw?autoplay=1&mute=1&controls=1&rel=0&modestbranding=1&playsinline=1&fs=1&vq=hd1080&hd=1&enablejsapi=1"
-                    : "https://www.youtube.com/embed/lPZVKMfUcrs?autoplay=1&mute=1&controls=1&rel=0&modestbranding=1&playsinline=1&fs=1&vq=hd1080&hd=1&enablejsapi=1"
-              ) : ""}
-              key={isOpen ? `playing-${showCount}` : "stopped"}
-              title="Clone This Website"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-              className="w-full h-full"
-              loading="eager"
-            ></iframe>
+            <div className="aspect-video">
+              <iframe
+                width="100%"
+                height="100%"
+                src={isOpen ? (
+                  showCount === 3 
+                    ? "https://www.youtube.com/embed/s5lZHJU3y08?autoplay=1&mute=1&controls=1&rel=0&modestbranding=1&playsinline=1&fs=1&vq=hd1080&hd=1&enablejsapi=1"
+                    : showCount === 2 
+                      ? "https://www.youtube.com/embed/nG4NqPwNHaw?autoplay=1&mute=1&controls=1&rel=0&modestbranding=1&playsinline=1&fs=1&vq=hd1080&hd=1&enablejsapi=1"
+                      : "https://www.youtube.com/embed/lPZVKMfUcrs?autoplay=1&mute=1&controls=1&rel=0&modestbranding=1&playsinline=1&fs=1&vq=hd1080&hd=1&enablejsapi=1"
+                ) : ""}
+                key={isOpen ? `playing-${showCount}` : "stopped"}
+                title="Clone This Website"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+                className="w-full h-full"
+                loading="eager"
+              ></iframe>
+            </div>
           )}
         </div>
 
