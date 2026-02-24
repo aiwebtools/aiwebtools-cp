@@ -2,6 +2,11 @@
 import { Tool } from "@/types/tools";
 import { Video, Film, Play, Wand2, Camera, Sparkles, Monitor, Zap, Edit3, Type, BookOpen } from "lucide-react";
 
+import runwayHero from "@/assets/tools/runway-hero.jpg";
+import pikaHero from "@/assets/tools/pika-hero.jpg";
+import lumaDreamMachineHero from "@/assets/tools/luma-dream-machine-hero.jpg";
+import synthesiaHero from "@/assets/tools/synthesia-hero.jpg";
+
 export const videoGenerationTools: Tool[] = [
   {
     icon: Video,
@@ -10,7 +15,7 @@ export const videoGenerationTools: Tool[] = [
     emoji: "🚀",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://runwayml.com/gen2/",
-    imageUrl: "/src/assets/tools/runway-hero.png",
+    imageUrl: runwayHero,
     tags: ["text-to-video", "AI generation", "video editing", "creative tools", "machine learning", "Video Generator", "Video Editor"],
     category: "Video Generation",
     rating: 4.8,
@@ -23,7 +28,7 @@ export const videoGenerationTools: Tool[] = [
     emoji: "🌟",
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://pika.art/",
-    imageUrl: "/src/assets/tools/pika-hero.png",
+    imageUrl: pikaHero,
     tags: ["AI video editing", "video creation", "creative AI", "machine learning", "video effects", "Video Generator", "Video Editor"],
     category: "Video Generation",
     rating: 4.7,
@@ -36,7 +41,7 @@ export const videoGenerationTools: Tool[] = [
     emoji: "✨",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://lumalabs.ai/dream-machine",
-    imageUrl: "/src/assets/tools/luma-dream-machine-hero.png",
+    imageUrl: lumaDreamMachineHero,
     tags: ["text-to-video", "image-to-video", "physics simulation", "realistic motion", "AI video", "Video Generator", "Animation"],
     category: "Video Generation",
     rating: 4.8,
@@ -49,7 +54,7 @@ export const videoGenerationTools: Tool[] = [
     emoji: "✍️",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://www.synthesia.io/",
-    imageUrl: "/src/assets/tools/synthesia-hero.png",
+    imageUrl: synthesiaHero,
     tags: ["AI video generation", "text-to-video", "professional videos", "AI avatars", "video marketing", "Video Generator", "Avatar Video"],
     category: "Video Generation",
     rating: 4.5,
