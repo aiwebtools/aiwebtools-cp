@@ -11,6 +11,14 @@ import {
   ShieldCheck
 } from "lucide-react";
 
+import threeCommasHero from "@/assets/tools/3commas-hero.jpg";
+import cryptohopperHero from "@/assets/tools/cryptohopper-hero.jpg";
+import pionexHero from "@/assets/tools/pionex-hero.jpg";
+import tradesantaHero from "@/assets/tools/tradesanta-hero.jpg";
+import bitsgapHero from "@/assets/tools/bitsgap-hero.jpg";
+import shrimpyHero from "@/assets/tools/shrimpy-hero.jpg";
+import nansenHero from "@/assets/tools/nansen-hero.jpg";
+
 export const aiCryptoTradingTools: Tool[] = [
   {
     icon: Bot,
@@ -19,7 +27,7 @@ export const aiCryptoTradingTools: Tool[] = [
     emoji: "🤖",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://3commas.io/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/3commas-hero.png",
+    imageUrl: threeCommasHero,
     tags: ["crypto trading", "trading bots", "portfolio management", "automated trading", "DCA bots"],
     category: "AI Crypto & Trading Tools",
     rating: 4.5,
@@ -32,7 +40,7 @@ export const aiCryptoTradingTools: Tool[] = [
     emoji: "🧠",
     color: "from-green-500 to-teal-600",
     directUrl: "https://www.cryptohopper.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/cryptohopper-hero.png",
+    imageUrl: cryptohopperHero,
     tags: ["crypto bot", "automated trading", "trading strategies", "market making", "social trading"],
     category: "AI Crypto & Trading Tools",
     rating: 4.4,
@@ -45,7 +53,7 @@ export const aiCryptoTradingTools: Tool[] = [
     emoji: "⚡",
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://www.pionex.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/pionex-hero.png",
+    imageUrl: pionexHero,
     tags: ["crypto exchange", "free bots", "grid trading", "arbitrage", "automated strategies"],
     category: "AI Crypto & Trading Tools",
     rating: 4.3,
@@ -58,7 +66,7 @@ export const aiCryptoTradingTools: Tool[] = [
     emoji: "📈",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://tradesanta.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/tradesanta-hero.png",
+    imageUrl: tradesantaHero,
     tags: ["trading automation", "technical indicators", "long/short trading", "cloud trading", "crypto bot"],
     category: "AI Crypto & Trading Tools",
     rating: 4.2,
@@ -71,7 +79,7 @@ export const aiCryptoTradingTools: Tool[] = [
     emoji: "📊",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://bitsgap.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/bitsgap-hero.png",
+    imageUrl: bitsgapHero,
     tags: ["trading terminal", "portfolio tracking", "crypto bots", "arbitrage", "unified trading"],
     category: "AI Crypto & Trading Tools",
     rating: 4.4,
@@ -84,7 +92,7 @@ export const aiCryptoTradingTools: Tool[] = [
     emoji: "🛡️",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://www.shrimpy.io/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/shrimpy-hero.png",
+    imageUrl: shrimpyHero,
     tags: ["portfolio management", "rebalancing", "social trading", "automation", "crypto management"],
     category: "AI Crypto & Trading Tools",
     rating: 4.3,
@@ -110,7 +118,7 @@ export const aiCryptoTradingTools: Tool[] = [
     emoji: "🪙",
     color: "from-indigo-500 to-purple-600",
     directUrl: "https://www.nansen.ai/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/nansen-hero.png",
+    imageUrl: nansenHero,
     tags: ["blockchain analytics", "on-chain data", "smart money", "DeFi analytics", "crypto intelligence"],
     category: "AI Crypto & Trading Tools",
     rating: 4.6,

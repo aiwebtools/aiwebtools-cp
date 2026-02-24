@@ -5,6 +5,9 @@ import {
   CreditCard, Wallet, Building, Target, Zap
 } from "lucide-react";
 
+import kenshoHero from "@/assets/tools/kensho-hero.jpg";
+import alphasenseHero from "@/assets/tools/alphasense-hero.jpg";
+
 export const aiFinanceTools: Tool[] = [
   {
     icon: TrendingUp,
@@ -13,7 +16,7 @@ export const aiFinanceTools: Tool[] = [
     emoji: "📈",
     color: "from-green-500 to-blue-600",
     directUrl: "https://www.kensho.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/kensho-hero.png",
+    imageUrl: kenshoHero,
     tags: ["financial analytics", "market insights", "investment", "predictive analytics"],
     category: "Professional Services",
     rating: 4.6,
@@ -26,7 +29,7 @@ export const aiFinanceTools: Tool[] = [
     emoji: "📊",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://www.alpha-sense.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/alphasense-hero.png",
+    imageUrl: alphasenseHero,
     tags: ["market intelligence", "investment research", "document analysis", "financial data"],
     category: "Professional Services",
     rating: 4.5,
