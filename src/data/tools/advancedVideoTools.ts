@@ -1,6 +1,7 @@
 import { Video, Play, Film, Camera, Zap, Wand2, Edit, Monitor, Sparkles } from "lucide-react";
 import { Tool } from "@/types/tools";
-
+import veo3Hero from "@/assets/tools/veo3-hero.jpg";
+import soraHero from "@/assets/tools/sora-hero.jpg";
 export const advancedVideoTools: Tool[] = [
   {
     icon: Sparkles,
@@ -9,7 +10,7 @@ export const advancedVideoTools: Tool[] = [
     emoji: "🎵",
     color: "from-green-500 to-blue-600",
     directUrl: "https://labs.google/fx/tools/flow",
-    imageUrl: "/src/assets/tools/veo3-hero.png",
+    imageUrl: veo3Hero,
     tags: ["Google Labs", "Veo 3", "picture and sound", "audio generation", "next-gen AI"],
     category: "Advanced Video Tools",
     rating: 4.9,
@@ -35,7 +36,7 @@ export const advancedVideoTools: Tool[] = [
     emoji: "🎬",
     color: "from-green-500 to-emerald-600",
     directUrl: "https://openai.com/sora",
-    imageUrl: "/src/assets/tools/sora-hero.png",
+    imageUrl: soraHero,
     tags: ["text-to-video", "OpenAI", "AI video generation", "realistic videos", "creative AI"],
     category: "Advanced Video Tools",
     rating: 4.9,
@@ -48,7 +49,7 @@ export const advancedVideoTools: Tool[] = [
     emoji: "🎥",
     color: "from-emerald-500 to-teal-600",
     directUrl: "https://sora.chatgpt.com/explore/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/sora-hero.png",
+    imageUrl: soraHero,
     tags: ["text-to-video", "OpenAI", "SORA 2", "next-gen AI", "video generation", "advanced AI"],
     category: "Advanced Video Tools",
     rating: 5.0,
