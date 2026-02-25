@@ -46,6 +46,14 @@ import listnrHero from "@/assets/tools/listnr-hero.jpg";
 import podcastAiHero from "@/assets/tools/podcast-ai-hero.jpg";
 import dialoraAiHero from "@/assets/tools/dialora-ai-hero.jpg";
 import callpodAiHero from "@/assets/tools/callpod-ai-hero.jpg";
+import koreAiHero from "@/assets/tools/kore-ai-hero.jpg";
+import omakaseHero from "@/assets/tools/omakase-hero.jpg";
+import assemblyaiHero from "@/assets/tools/assemblyai-hero.jpg";
+import deepgramHero from "@/assets/tools/deepgram-hero.jpg";
+import openaiWhisperHero from "@/assets/tools/openai-whisper-hero.jpg";
+import revAiHero from "@/assets/tools/rev-ai-hero.jpg";
+import sonixHero from "@/assets/tools/sonix-hero.jpg";
+import happyScribeHero from "@/assets/tools/happy-scribe-hero.jpg";
 
 export const audioAndVoiceTools: Tool[] = [
   {
@@ -146,7 +154,7 @@ export const audioAndVoiceTools: Tool[] = [
     emoji: "💼",
     color: "from-purple-600 to-pink-600",
     directUrl: "https://kore.ai/?via=aiwebtools",
-    tags: ["Voice Agent", "conversational AI", "virtual assistant", "chatbot", "voice agents", "enterprise AI", "multi-channel", "agent"],
+    imageUrl: koreAiHero,
     category: "Phone & Voice Agents",
     rating: 4.4,
     totalVotes: 2650
@@ -327,7 +335,7 @@ export const audioAndVoiceTools: Tool[] = [
     emoji: "🗣️",
     color: "from-blue-500 to-indigo-600",
     directUrl: "https://www.omakase.ai/?via=aiwebtools",
-    tags: ["Voice Agent", "website voice agents", "voice AI", "lead capture", "customer support", "website assistant", "conversational AI", "agent"],
+    imageUrl: omakaseHero,
     category: "Phone & Voice Agents",
     rating: 4.5,
     totalVotes: 120
@@ -339,7 +347,7 @@ export const audioAndVoiceTools: Tool[] = [
     emoji: "🎤",
     color: "from-blue-600 to-indigo-600",
     directUrl: "https://www.assemblyai.com/?via=aiwebtools",
-    tags: ["Speech-to-Text", "Transcription", "transcription API", "real-time", "speaker diarization", "sentiment analysis", "developer tools"],
+    imageUrl: assemblyaiHero,
     category: "Audio & Voice",
     rating: 4.8,
     totalVotes: 5240
@@ -351,7 +359,7 @@ export const audioAndVoiceTools: Tool[] = [
     emoji: "⚡",
     color: "from-cyan-600 to-blue-600",
     directUrl: "https://deepgram.com/?via=aiwebtools",
-    tags: ["Speech-to-Text", "Transcription", "speech recognition", "transcription API", "real-time transcription", "enterprise AI", "custom models", "voice AI"],
+    imageUrl: deepgramHero,
     category: "Audio & Voice",
     rating: 4.7,
     totalVotes: 4560
@@ -363,7 +371,7 @@ export const audioAndVoiceTools: Tool[] = [
     emoji: "🌐",
     color: "from-purple-600 to-pink-600",
     directUrl: "https://openai.com/research/whisper",
-    tags: ["Speech-to-Text", "Transcription", "open source", "multilingual", "transcription", "translation", "99 languages"],
+    imageUrl: openaiWhisperHero,
     category: "Audio & Voice",
     rating: 4.9,
     totalVotes: 8920
@@ -375,7 +383,7 @@ export const audioAndVoiceTools: Tool[] = [
     emoji: "🔴",
     color: "from-red-600 to-orange-600",
     directUrl: "https://www.rev.ai/?via=aiwebtools",
-    tags: ["Speech-to-Text", "Transcription", "transcription API", "streaming transcription", "custom vocabulary", "developer API", "accurate"],
+    imageUrl: revAiHero,
     category: "Audio & Voice",
     rating: 4.6,
     totalVotes: 3780
@@ -387,7 +395,7 @@ export const audioAndVoiceTools: Tool[] = [
     emoji: "📝",
     color: "from-green-600 to-teal-600",
     directUrl: "https://sonix.ai/?via=aiwebtools",
-    tags: ["Transcription", "Speech-to-Text", "40+ languages", "subtitle generation", "translation", "editing tools", "fast"],
+    imageUrl: sonixHero,
     category: "Audio & Voice",
     rating: 4.5,
     totalVotes: 4120
@@ -399,7 +407,7 @@ export const audioAndVoiceTools: Tool[] = [
     emoji: "✍️",
     color: "from-yellow-600 to-orange-600",
     directUrl: "https://www.happyscribe.com/?via=aiwebtools",
-    tags: ["Transcription", "Speech-to-Text", "subtitling", "120+ languages", "human + AI", "accurate", "multilingual"],
+    imageUrl: happyScribeHero,
     category: "Audio & Voice",
     rating: 4.7,
     totalVotes: 5340
