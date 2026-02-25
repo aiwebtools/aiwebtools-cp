@@ -4,6 +4,18 @@ import {
   Speaker, Radio, Headphones, Mic2, FileAudio
 } from "lucide-react";
 
+import adobePodcastAiHero from "@/assets/tools/adobe-podcast-ai-hero.jpg";
+import soundlyHero from "@/assets/tools/soundly-hero.jpg";
+import boomLibraryHero from "@/assets/tools/boom-library-hero.jpg";
+import spliceSoundsHero from "@/assets/tools/splice-sounds-hero.jpg";
+import artlistSfxHero from "@/assets/tools/artlist-sfx-hero.jpg";
+import epidemicSoundHero from "@/assets/tools/epidemic-sound-hero.jpg";
+import zapsplatHero from "@/assets/tools/zapsplat-hero.jpg";
+import freesoundHero from "@/assets/tools/freesound-hero.jpg";
+import soundsnapHero from "@/assets/tools/soundsnap-hero.jpg";
+import bbcSoundEffectsHero from "@/assets/tools/bbc-sound-effects-hero.jpg";
+import storyblocksAudioHero from "@/assets/tools/storyblocks-audio-hero.jpg";
+
 export const sfxGeneratorTools: Tool[] = [
   {
     icon: Volume2,
@@ -12,6 +24,7 @@ export const sfxGeneratorTools: Tool[] = [
     emoji: "🎧",
     color: "from-red-500 to-orange-600",
     directUrl: "https://podcast.adobe.com/?via=aiwebtools",
+    imageUrl: adobePodcastAiHero,
     tags: ["Sound Effects", "Voice Enhancement", "Noise Reduction", "Adobe", "Podcast", "Audio Production", "AI Audio"],
     category: "AUDIO & VOICE TOOLS",
     rating: 4.7,
@@ -24,6 +37,7 @@ export const sfxGeneratorTools: Tool[] = [
     emoji: "🔊",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://getsoundly.com/?via=aiwebtools",
+    imageUrl: soundlyHero,
     tags: ["Sound Effects", "SFX Library", "Filmmaking", "Game Audio", "Content Creation", "Sound Design"],
     category: "AUDIO & VOICE TOOLS",
     rating: 4.6,
@@ -36,6 +50,7 @@ export const sfxGeneratorTools: Tool[] = [
     emoji: "💥",
     color: "from-orange-500 to-red-600",
     directUrl: "https://www.boomlibrary.com/?via=aiwebtools",
+    imageUrl: boomLibraryHero,
     tags: ["Sound Effects", "SFX Library", "Cinematic", "Film Audio", "Game Sound", "Premium SFX"],
     category: "AUDIO & VOICE TOOLS",
     rating: 4.8,
@@ -48,6 +63,7 @@ export const sfxGeneratorTools: Tool[] = [
     emoji: "⚡",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://splice.com/sounds/?via=aiwebtools",
+    imageUrl: spliceSoundsHero,
     tags: ["Sound Effects", "Samples", "Loops", "Royalty-Free", "Music Production", "Sound Design"],
     category: "AUDIO & VOICE TOOLS",
     rating: 4.7,
@@ -60,6 +76,7 @@ export const sfxGeneratorTools: Tool[] = [
     emoji: "🎬",
     color: "from-teal-500 to-green-600",
     directUrl: "https://artlist.io/sfx/?via=aiwebtools",
+    imageUrl: artlistSfxHero,
     tags: ["Sound Effects", "Foley", "Ambience", "Cinematic SFX", "Unlimited Downloads", "Content Creation"],
     category: "AUDIO & VOICE TOOLS",
     rating: 4.6,
@@ -72,6 +89,7 @@ export const sfxGeneratorTools: Tool[] = [
     emoji: "📻",
     color: "from-indigo-500 to-purple-600",
     directUrl: "https://www.epidemicsound.com/sound-effects/?via=aiwebtools",
+    imageUrl: epidemicSoundHero,
     tags: ["Sound Effects", "Royalty-Free", "YouTube Audio", "Podcast SFX", "Professional", "Music Library"],
     category: "AUDIO & VOICE TOOLS",
     rating: 4.5,
@@ -84,6 +102,7 @@ export const sfxGeneratorTools: Tool[] = [
     emoji: "💫",
     color: "from-yellow-500 to-orange-500",
     directUrl: "https://www.zapsplat.com/?via=aiwebtools",
+    imageUrl: zapsplatHero,
     tags: ["Sound Effects", "Free SFX", "Indie Audio", "Sound Library", "Creative Commons"],
     category: "AUDIO & VOICE TOOLS",
     rating: 4.4,
@@ -96,6 +115,7 @@ export const sfxGeneratorTools: Tool[] = [
     emoji: "🌍",
     color: "from-green-500 to-teal-500",
     directUrl: "https://freesound.org/?via=aiwebtools",
+    imageUrl: freesoundHero,
     tags: ["Sound Effects", "Creative Commons", "Community", "Free Audio", "Sound Database"],
     category: "AUDIO & VOICE TOOLS",
     rating: 4.3,
@@ -108,6 +128,7 @@ export const sfxGeneratorTools: Tool[] = [
     emoji: "🎙️",
     color: "from-red-600 to-rose-500",
     directUrl: "https://www.soundsnap.com/?via=aiwebtools",
+    imageUrl: soundsnapHero,
     tags: ["Sound Effects", "Professional SFX", "Studio Quality", "Film Audio", "Advertising"],
     category: "AUDIO & VOICE TOOLS",
     rating: 4.6,
@@ -168,6 +189,7 @@ export const sfxGeneratorTools: Tool[] = [
     emoji: "📺",
     color: "from-black to-gray-700",
     directUrl: "https://sound-effects.bbcrewind.co.uk/?via=aiwebtools",
+    imageUrl: bbcSoundEffectsHero,
     tags: ["Sound Effects", "BBC", "Archive", "Free SFX", "Historical Audio", "Educational"],
     category: "AUDIO & VOICE TOOLS",
     rating: 4.6,
@@ -180,6 +202,7 @@ export const sfxGeneratorTools: Tool[] = [
     emoji: "📚",
     color: "from-blue-600 to-indigo-600",
     directUrl: "https://www.storyblocks.com/audio/?via=aiwebtools",
+    imageUrl: storyblocksAudioHero,
     tags: ["Sound Effects", "Royalty-Free", "Unlimited Downloads", "Video Audio", "Stock Audio"],
     category: "AUDIO & VOICE TOOLS",
     rating: 4.5,

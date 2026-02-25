@@ -17,6 +17,10 @@ import {
 } from "lucide-react";
 
 import elevenlabsHeroImg from "@/assets/tools/elevenlabs-hero.jpg";
+import murfAiCoreHero from "@/assets/tools/murf-ai-core-hero.jpg";
+import descriptCoreHero from "@/assets/tools/descript-core-hero.jpg";
+import krispCoreHero from "@/assets/tools/krisp-core-hero.jpg";
+import resembleAiCoreHero from "@/assets/tools/resemble-ai-core-hero.jpg";
 
 export const coreAudioVoiceTools: Tool[] = [
   {
@@ -65,7 +69,7 @@ export const coreAudioVoiceTools: Tool[] = [
     emoji: "🔊",
     color: "from-blue-500 to-green-600",
     directUrl: "https://get.murf.ai/1uvb0e8dznua",
-    tags: ["voiceovers", "text-to-speech", "120+ voices", "20+ languages", "professional"],
+    imageUrl: murfAiCoreHero,
     category: "Audio & Voice Tools",
     rating: 4.6,
     totalVotes: 3456
@@ -90,6 +94,7 @@ export const coreAudioVoiceTools: Tool[] = [
     emoji: "🎧",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://www.descript.com/?via=aiwebtools",
+    imageUrl: descriptCoreHero,
     tags: ["audio editing", "transcription", "overdub", "studio sound", "text editing"],
     category: "Audio & Voice Tools",
     rating: 4.6,
@@ -115,6 +120,7 @@ export const coreAudioVoiceTools: Tool[] = [
     emoji: "🔇",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://krisp.ai/?via=aiwebtools",
+    imageUrl: krispCoreHero,
     tags: ["noise cancellation", "background noise removal", "voice clarity", "calls", "real-time"],
     category: "Audio & Voice Tools",
     rating: 4.5,
@@ -127,6 +133,7 @@ export const coreAudioVoiceTools: Tool[] = [
     emoji: "🤖",
     color: "from-indigo-500 to-purple-600",
     directUrl: "https://www.resemble.ai/?via=aiwebtools",
+    imageUrl: resembleAiCoreHero,
     tags: ["voice cloning", "speech synthesis", "custom voices", "real-time", "applications"],
     category: "Audio & Voice Tools",
     rating: 4.4,

@@ -4,6 +4,8 @@ import landrHero from "@/assets/tools/landr-hero.jpg";
 import spliceHero from "@/assets/tools/splice-hero.jpg";
 import soundrawHero from "@/assets/tools/soundraw-hero.jpg";
 import amperHero from "@/assets/tools/amper-hero.jpg";
+import udioMusicHero from "@/assets/tools/udio-music-hero.jpg";
+import boomyHero from "@/assets/tools/boomy-hero.jpg";
 import { 
   Music, 
   Mic, 
@@ -47,7 +49,7 @@ export const aiMusicProductionTools: Tool[] = [
     emoji: "🎤",
     color: "from-orange-500 to-red-600",
     directUrl: "https://www.udio.com/?via=aiwebtools",
-    tags: ["Music Generator", "AI music generation", "text-to-music", "vocals", "full songs", "AI composition"],
+    imageUrl: udioMusicHero,
     category: "AI Music Production Tools",
     rating: 4.7,
     totalVotes: 6789
@@ -72,7 +74,7 @@ export const aiMusicProductionTools: Tool[] = [
     emoji: "🔊",
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://boomy.com/?via=aiwebtools",
-    tags: ["Music Generator", "instant music", "song creation", "monetization", "streaming", "AI composition"],
+    imageUrl: boomyHero,
     category: "AI Music Production Tools",
     rating: 4.2,
     totalVotes: 4321
