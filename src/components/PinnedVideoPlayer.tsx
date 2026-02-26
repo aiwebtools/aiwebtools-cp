@@ -364,11 +364,16 @@ const PinnedVideoPlayer = memo(() => {
     // Sync UI state - always start muted
     setIsMuted(shouldMute);
     
-    // If user previously unmuted (userMutePreferenceRef), send unmute command after iframe loads
+    // If user previously unmuted, aggressively retry unmute after iframe reloads
+    // The iframe always loads with mute=1, so we must send unmute commands
+    // Multiple retries needed because iframe load time varies
     if (!shouldMute && userMutePreferenceRef.current === false) {
-      setTimeout(() => {
-        sendYTCommand('unMute');
-      }, 500); // Wait for iframe to load
+      const retryDelays = [300, 600, 1000, 1500, 2500];
+      const timers = retryDelays.map(delay =>
+        setTimeout(() => sendYTCommand('unMute'), delay)
+      );
+      // Cleanup in case video changes again quickly
+      return () => timers.forEach(clearTimeout);
     }
     
     // If unmuted, notify tool page videos to mute
@@ -391,14 +396,24 @@ const PinnedVideoPlayer = memo(() => {
     } catch {}
   }, []);
 
+  // Sync mute state to iframe whenever isMuted changes
   useEffect(() => {
     if (!iframeRef.current || !playerMountedRef.current) return;
     const command = isMuted ? 'mute' : 'unMute';
-    // Send immediately + retry after short delay for mobile reliability
     sendYTCommand(command);
     const retry = setTimeout(() => sendYTCommand(command), 300);
     return () => clearTimeout(retry);
   }, [isMuted, sendYTCommand]);
+
+  // When video ID changes and user wants unmuted, force-send unmute
+  // (covers the case where isMuted is already false so the above effect doesn't re-fire)
+  useEffect(() => {
+    if (!currentVideoId || !playerMountedRef.current) return;
+    if (userMutePreferenceRef.current === false) {
+      const timers = [800, 1500, 2500].map(d => setTimeout(() => sendYTCommand('unMute'), d));
+      return () => timers.forEach(clearTimeout);
+    }
+  }, [currentVideoId, sendYTCommand]);
   
   // Handle smooth fade animation when main video visibility changes
   useEffect(() => {
