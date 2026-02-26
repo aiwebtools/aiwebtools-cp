@@ -5,6 +5,9 @@ import {
   Calculator, Globe, MessageSquare, Award, Zap, Star
 } from "lucide-react";
 
+import homeworkHelperBotHero from "@/assets/tools/homework-helper-bot-hero.jpg";
+import aiEssayWriterHero from "@/assets/tools/ai-essay-writer-hero.jpg";
+
 export const aiEducationTools: Tool[] = [
   {
     icon: Calculator,
@@ -65,7 +68,7 @@ export const aiEducationTools: Tool[] = [
     emoji: "💡",
     color: "from-yellow-500 to-green-600",
     directUrl: "https://chatgpt.com/g/g-683dc3e1898481918c41e1d6007d7a76-homework-helper-bot",
-    imageUrl: "/src/assets/tools/homework-helper-bot-hero.png",
+    imageUrl: homeworkHelperBotHero,
     tags: ["homework help", "study guide", "AI assistance", "education", "Homework Help", "Study Tools", "Tutoring AI"],
     category: "Education & Learning",
     rating: 4.3,
@@ -78,7 +81,7 @@ export const aiEducationTools: Tool[] = [
     emoji: "💬",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://chatgpt.com/g/g-683dc6b3725c81918a85c801f894dd19-ai-essay-writer-gpt",
-    imageUrl: "/src/assets/tools/ai-essay-writer-hero.png",
+    imageUrl: aiEssayWriterHero,
     tags: ["essay writing", "content generation", "research", "citations", "Academic Writing", "Study Tools"],
     category: "Education & Learning",
     rating: 4.2,

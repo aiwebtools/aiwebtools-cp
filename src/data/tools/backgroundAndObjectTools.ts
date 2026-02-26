@@ -17,6 +17,22 @@ import {
   Sparkles
 } from "lucide-react";
 
+import aiOrNotHero from "@/assets/tools/ai-or-not-hero.jpg";
+import autodrawHero from "@/assets/tools/autodraw-hero.jpg";
+import backgroundLolHero from "@/assets/tools/background-lol-hero.jpg";
+import craiyonHero from "@/assets/tools/craiyon-hero.jpg";
+import cutoutProHero from "@/assets/tools/cutout-pro-hero.jpg";
+import flairAiHero from "@/assets/tools/flair-ai-hero.jpg";
+import kartivHero from "@/assets/tools/kartiv-hero.jpg";
+import mageSpaceHero from "@/assets/tools/mage-space-hero.jpg";
+import khromaHero from "@/assets/tools/khroma-hero.jpg";
+import letsEnhanceHero from "@/assets/tools/lets-enhance-hero.jpg";
+import magicStudioHero from "@/assets/tools/magic-studio-hero.jpg";
+import clickMajicHero from "@/assets/tools/clickmajic-hero.jpg";
+import rembgHero from "@/assets/tools/rembg-hero.jpg";
+import objectRemoverHero from "@/assets/tools/objectremover-hero.jpg";
+import watermarkRemoverHero from "@/assets/tools/watermarkremover-hero.jpg";
+
 export const backgroundAndObjectTools: Tool[] = [
   {
     icon: Target,
@@ -25,6 +41,7 @@ export const backgroundAndObjectTools: Tool[] = [
     emoji: "🎯",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://www.aiornot.com/",
+    imageUrl: aiOrNotHero,
     tags: ["AI detection", "image authenticity", "Stable Diffusion", "MidJourney", "DALL-E", "Chrome extension", "Photo Editor"],
     category: "Image Generation Platforms",
     rating: 4.6,
@@ -37,6 +54,7 @@ export const backgroundAndObjectTools: Tool[] = [
     emoji: "✏️",
     color: "from-blue-500 to-green-600",
     directUrl: "https://www.autodraw.com/",
+    imageUrl: autodrawHero,
     tags: ["Google Creative Lab", "machine learning", "doodle improvement", "any device", "free tool", "drawing assistance", "Graphic Design", "AI Art"],
     category: "Image Generation Platforms",
     rating: 4.1,
@@ -49,6 +67,7 @@ export const backgroundAndObjectTools: Tool[] = [
     emoji: "🖼️",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://www.background.lol/",
+    imageUrl: backgroundLolHero,
     tags: ["free cover images", "AI-powered", "social media", "presentations", "quick generation", "eye-catching"],
     category: "Image Generation Platforms",
     rating: 4.0,
@@ -61,6 +80,7 @@ export const backgroundAndObjectTools: Tool[] = [
     emoji: "🖍️",
     color: "from-rainbow-500 to-purple-600",
     directUrl: "https://www.craiyon.com/",
+    imageUrl: craiyonHero,
     tags: ["text icons", "loading icons", "free-form drawings", "versatile styles", "customizable", "stunning AI art"],
     category: "Image Generation Platforms",
     rating: 4.1,
@@ -73,6 +93,7 @@ export const backgroundAndObjectTools: Tool[] = [
     emoji: "✂️",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://www.cutout.pro/?vsource=cutout_share-406567850369093",
+    imageUrl: cutoutProHero,
     tags: ["25k+ businesses", "background removal", "photo enhancer", "API integration", "visual design", "computer vision", "Photo Editor", "Background Remover"],
     category: "Image Generation Platforms",
     rating: 4.4,
@@ -85,6 +106,7 @@ export const backgroundAndObjectTools: Tool[] = [
     emoji: "🎯",
     color: "from-orange-500 to-yellow-600",
     directUrl: "https://flair.ai/",
+    imageUrl: flairAiHero,
     tags: ["branded content", "product photos", "smart prompting", "branded content", "content creators", "AI-assisted design"],
     category: "Image Generation Platforms",
     rating: 4.5,
@@ -97,6 +119,7 @@ export const backgroundAndObjectTools: Tool[] = [
     emoji: "🎯",
     color: "from-orange-500 to-red-600",
     directUrl: "https://www.kartiv.com/",
+    imageUrl: kartivHero,
     tags: ["words to visuals", "no design knowledge", "AI interpretation", "auto-resizing", "collaboration features", "design renaissance"],
     category: "Image Generation Platforms",
     rating: 4.4,
@@ -109,6 +132,7 @@ export const backgroundAndObjectTools: Tool[] = [
     emoji: "🎯",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://www.mage.space/",
+    imageUrl: mageSpaceHero,
     tags: ["60+ AI models", "text-to-GIF", "2048x2048 upscaling", "stable diffusion", "free online", "captivating art"],
     category: "Image Generation Platforms",
     rating: 4.5,
@@ -121,6 +145,7 @@ export const backgroundAndObjectTools: Tool[] = [
     emoji: "🎨",
     color: "from-rainbow-500 to-purple-600",
     directUrl: "https://www.khroma.co/",
+    imageUrl: khromaHero,
     tags: ["color preferences", "neural network", "limitless palettes", "typography", "gradients", "WCAG accessibility"],
     category: "Image Generation Platforms",
     rating: 4.5,
@@ -133,6 +158,7 @@ export const backgroundAndObjectTools: Tool[] = [
     emoji: "✨",
     color: "from-green-500 to-blue-600",
     directUrl: "https://letsenhance.io/ai-image-generation/",
+    imageUrl: letsEnhanceHero,
     tags: ["text to artwork", "prompt builder", "2048x2048 pixels", "16x enlargement", "prints", "digital assets"],
     category: "Image Generation Platforms",
     rating: 4.7,
@@ -145,6 +171,7 @@ export const backgroundAndObjectTools: Tool[] = [
     emoji: "✂️",
     color: "from-red-500 to-orange-600",
     directUrl: "https://magicstudio.com/?via=aiwebtools",
+    imageUrl: magicStudioHero,
     tags: ["drag-and-drop", "no signup", "unwanted removal", "PRO version", "bulk editing", "real estate", "Photo Editor", "Background Remover", "magic eraser"],
     category: "Image Generation Platforms",
     rating: 4.6,
@@ -157,6 +184,7 @@ export const backgroundAndObjectTools: Tool[] = [
     emoji: "🪄",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://clickmajic.com/",
+    imageUrl: clickMajicHero,
     tags: ["background removal", "1000+ images", "API integration", "complex scenarios", "transparent backgrounds", "marketing materials", "Photo Editor", "Background Remover"],
     category: "Image Generation Platforms",
     rating: 4.5,
@@ -169,6 +197,7 @@ export const backgroundAndObjectTools: Tool[] = [
     emoji: "🖼️",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://www.rembg.pics/",
+    imageUrl: rembgHero,
     tags: ["background removal", "AI-powered", "transparent foreground", "quick processing", "e-commerce", "graphics"],
     category: "Image Generation Platforms",
     rating: 4.4,
@@ -181,6 +210,7 @@ export const backgroundAndObjectTools: Tool[] = [
     emoji: "🧹",
     color: "from-red-500 to-pink-600",
     directUrl: "https://objectremover.com/image-cleaner",
+    imageUrl: objectRemoverHero,
     tags: ["object removal", "text removal", "watermark removal", "AI technology", "natural results", "fast processing", "Photo Editor"],
     category: "Image Generation Platforms",
     rating: 4.5,
@@ -193,6 +223,7 @@ export const backgroundAndObjectTools: Tool[] = [
     emoji: "💧",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://www.watermarkremover.io/",
+    imageUrl: watermarkRemoverHero,
     tags: ["watermark removal", "translucent watermarks", "original quality", "automatic detection", "bulk processing", "commercial use"],
     category: "Image Generation Platforms",
     rating: 4.6,
@@ -205,6 +236,7 @@ export const backgroundAndObjectTools: Tool[] = [
     emoji: "🌅",
     color: "from-rainbow-500 to-purple-600",
     directUrl: "https://www.background.lol/",
+    imageUrl: backgroundLolHero,
     tags: ["AI wallpapers", "anime themes", "4K upscaling", "futuristic", "forest themes", "seconds generation"],
     category: "Image Generation Platforms",
     rating: 4.3,
