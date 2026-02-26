@@ -21,6 +21,7 @@ import {
 } from "lucide-react";
 
 import openaiApiHero from "@/assets/tools/openai-api-hero.jpg";
+import uberHero from "@/assets/tools/uber-hero.jpg";
 import pineconeHero from "@/assets/tools/pinecone-hero.jpg";
 import huggingFaceHero from "@/assets/tools/hugging-face-hero.jpg";
 import roboflowHero from "@/assets/tools/roboflow-hero.jpg";
@@ -130,6 +131,7 @@ export const specializedTools: Tool[] = [
     emoji: "🚗",
     color: "from-black-500 to-gray-600",
     directUrl: "https://www.uber.com/",
+    imageUrl: uberHero,
     tags: ["ride sharing", "AI optimization", "transportation", "delivery"],
     category: "Transportation",
     rating: 4.2,

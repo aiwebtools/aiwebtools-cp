@@ -1,6 +1,15 @@
 import { Tool } from "@/types/tools";
 import { Heart, Zap, Target, Sun, Brain, Sparkles, Dumbbell } from "lucide-react";
 
+import gratitudeGuideGptHero from "@/assets/tools/gratitude-guide-gpt-hero.jpg";
+import passionIgniterGptHero from "@/assets/tools/passion-igniter-gpt-hero.jpg";
+import habitBuilderGptHero from "@/assets/tools/habit-builder-gpt-hero.jpg";
+import stoicGuideGptHero from "@/assets/tools/stoic-guide-gpt-hero.jpg";
+import stressReliefCoachGptHero from "@/assets/tools/stress-relief-coach-gpt-hero.jpg";
+import creativeSparkGptHero from "@/assets/tools/creative-spark-gpt-hero.jpg";
+import selfEsteemBoosterGptHero from "@/assets/tools/self-esteem-booster-gpt-hero.jpg";
+import manifestationMentorGptHero from "@/assets/tools/manifestation-mentor-gpt-hero.jpg";
+
 export const newPersonalDevelopmentTools: Tool[] = [
   {
     icon: Heart,
@@ -9,6 +18,7 @@ export const newPersonalDevelopmentTools: Tool[] = [
     emoji: "🙏",
     color: "from-yellow-400 to-green-500",
     directUrl: "https://chatgpt.com/g/g-68af9eecd0048191a7ce93eddfd47559-gratitude-guide-gpt",
+    imageUrl: gratitudeGuideGptHero,
     tags: ["gratitude", "appreciation", "positive emotions", "well-being", "perspective"],
     category: "Personal Development & Self-Discovery",
     rating: 4.4,
@@ -21,6 +31,7 @@ export const newPersonalDevelopmentTools: Tool[] = [
     emoji: "🔥",
     color: "from-red-400 to-orange-500",
     directUrl: "https://chatgpt.com/g/g-68af9fd685a88191bbf7cc964509beef-passion-igniter",
+    imageUrl: passionIgniterGptHero,
     tags: ["passion discovery", "life purpose", "motivation", "goal setting", "personal growth"],
     category: "Personal Development & Self-Discovery",
     rating: 4.3,
@@ -33,6 +44,7 @@ export const newPersonalDevelopmentTools: Tool[] = [
     emoji: "🎯",
     color: "from-blue-400 to-purple-500",
     directUrl: "https://chatgpt.com/g/g-68afa1c541cc8191be3360351f28eeda-habit-builder-gpt",
+    imageUrl: habitBuilderGptHero,
     tags: ["habit formation", "routine building", "behavior change", "self-discipline", "consistency"],
     category: "Personal Development & Self-Discovery",
     rating: 4.5,
@@ -58,6 +70,7 @@ export const newPersonalDevelopmentTools: Tool[] = [
     emoji: "🏛️",
     color: "from-gray-400 to-blue-500",
     directUrl: "https://chatgpt.com/g/g-68afa48b90c88191b2dbb03b479efdd7-stoic-guide-gpt",
+    imageUrl: stoicGuideGptHero,
     tags: ["stoicism", "philosophy", "resilience", "emotional control", "wisdom"],
     category: "Personal Development & Self-Discovery",
     rating: 4.7,
@@ -70,6 +83,7 @@ export const newPersonalDevelopmentTools: Tool[] = [
     emoji: "😌",
     color: "from-green-400 to-teal-500",
     directUrl: "https://chatgpt.com/g/g-68afa584de708191855d6b9dc660e169-stress-relief-coach",
+    imageUrl: stressReliefCoachGptHero,
     tags: ["stress management", "relaxation", "coping strategies", "well-being", "mental health"],
     category: "Personal Development & Self-Discovery",
     rating: 4.4,
@@ -82,6 +96,7 @@ export const newPersonalDevelopmentTools: Tool[] = [
     emoji: "💡",
     color: "from-purple-400 to-pink-500",
     directUrl: "https://chatgpt.com/g/g-68afa6ce4ae88191ae0166741c7b760f-creative-spark-gpt",
+    imageUrl: creativeSparkGptHero,
     tags: ["creativity", "innovation", "artistic development", "idea generation", "creative blocks"],
     category: "Personal Development & Self-Discovery",
     rating: 4.5,
@@ -94,6 +109,7 @@ export const newPersonalDevelopmentTools: Tool[] = [
     emoji: "💪",
     color: "from-pink-400 to-red-500",
     directUrl: "https://chatgpt.com/g/g-68afa7de4eb481919e890a26b4655b49-self-esteem-booster",
+    imageUrl: selfEsteemBoosterGptHero,
     tags: ["self-esteem", "confidence", "self-worth", "positive self-image", "personal empowerment"],
     category: "Personal Development & Self-Discovery",
     rating: 4.3,
@@ -106,6 +122,7 @@ export const newPersonalDevelopmentTools: Tool[] = [
     emoji: "✨",
     color: "from-purple-400 to-blue-500",
     directUrl: "https://chatgpt.com/g/g-68afa9073e0081919c1ef87d9fdcf00d-yogi-manifestation-mentor",
+    imageUrl: manifestationMentorGptHero,
     tags: ["manifestation", "visualization", "law of attraction", "goal achievement", "mindfulness"],
     category: "Personal Development & Self-Discovery",
     rating: 4.2,
