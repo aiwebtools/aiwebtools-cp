@@ -13,7 +13,7 @@ import {
   Globe,
   Bot,
   Sparkles,
-  Car,
+  
   Bug,
   Apple,
   Wheat,
@@ -21,7 +21,7 @@ import {
 } from "lucide-react";
 
 import openaiApiHero from "@/assets/tools/openai-api-hero.jpg";
-import uberHero from "@/assets/tools/uber-hero.jpg";
+// Uber removed - not an AI tool
 import pineconeHero from "@/assets/tools/pinecone-hero.jpg";
 import huggingFaceHero from "@/assets/tools/hugging-face-hero.jpg";
 import roboflowHero from "@/assets/tools/roboflow-hero.jpg";
@@ -123,19 +123,6 @@ export const specializedTools: Tool[] = [
     category: "Specialized AI Tools",
     rating: 4.3,
     totalVotes: 2876
-  },
-  {
-    icon: Car,
-    title: "Uber",
-    description: "Ride-sharing and delivery platform with AI-powered route optimization and demand prediction.",
-    emoji: "🚗",
-    color: "from-black-500 to-gray-600",
-    directUrl: "https://www.uber.com/",
-    imageUrl: uberHero,
-    tags: ["ride sharing", "AI optimization", "transportation", "delivery"],
-    category: "Transportation",
-    rating: 4.2,
-    totalVotes: 15643
   },
   {
     icon: Globe,

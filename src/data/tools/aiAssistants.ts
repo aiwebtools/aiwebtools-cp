@@ -27,6 +27,10 @@ import {
   Sprout
 } from "lucide-react";
 
+import githubCopilotHero from "@/assets/tools/github-copilot-hero.jpg";
+import tabnineHero from "@/assets/tools/tabnine-hero.jpg";
+import openaiCodexHero from "@/assets/tools/openai-codex-hero.jpg";
+
 export const aiAssistants: Tool[] = [
   {
     icon: Lightbulb,

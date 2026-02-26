@@ -15,6 +15,16 @@ import {
   Layers
 } from "lucide-react";
 
+import mongodbAtlasHero from "@/assets/tools/mongodb-atlas-hero.jpg";
+import awsHero from "@/assets/tools/aws-hero.jpg";
+import datadogHero from "@/assets/tools/datadog-hero.jpg";
+import dockerHero from "@/assets/tools/docker-hero.jpg";
+import kubernetesHero from "@/assets/tools/kubernetes-hero.jpg";
+import hashicorpVaultHero from "@/assets/tools/hashicorp-vault-hero.jpg";
+import terraformHero from "@/assets/tools/terraform-hero.jpg";
+import redisHero from "@/assets/tools/redis-hero.jpg";
+import elasticsearchHero from "@/assets/tools/elasticsearch-hero.jpg";
+
 export const technicalAndUtilityTools: Tool[] = [
   {
     icon: Database,
@@ -23,6 +33,7 @@ export const technicalAndUtilityTools: Tool[] = [
     emoji: "🍃",
     color: "from-green-500 to-teal-600",
     directUrl: "https://www.mongodb.com/atlas",
+    imageUrl: mongodbAtlasHero,
     tags: ["cloud database", "performance optimization", "automated scaling", "NoSQL", "modern applications"],
     category: "DEVELOPMENT & CODING",
     rating: 4.5,
@@ -35,6 +46,7 @@ export const technicalAndUtilityTools: Tool[] = [
     emoji: "☁️",
     color: "from-orange-500 to-yellow-600",
     directUrl: "https://aws.amazon.com/",
+    imageUrl: awsHero,
     tags: ["cloud computing", "AI/ML services", "serverless", "automation", "scalable"],
     category: "DEVELOPMENT & CODING",
     rating: 4.6,
@@ -47,6 +59,7 @@ export const technicalAndUtilityTools: Tool[] = [
     emoji: "🛡️",
     color: "from-orange-500 to-red-600",
     directUrl: "https://www.cloudflare.com/",
+    imageUrl: "/src/assets/tools/cloudflare-hero.png",
     tags: ["web security", "DDoS protection", "performance optimization", "edge computing", "CDN"],
     category: "DEVELOPMENT & CODING",
     rating: 4.7,
@@ -59,6 +72,7 @@ export const technicalAndUtilityTools: Tool[] = [
     emoji: "📊",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://www.datadoghq.com/",
+    imageUrl: datadogHero,
     tags: ["monitoring", "anomaly detection", "analytics", "performance insights", "alerting"],
     category: "DEVELOPMENT & CODING",
     rating: 4.4,
@@ -71,6 +85,7 @@ export const technicalAndUtilityTools: Tool[] = [
     emoji: "🐳",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://www.docker.com/",
+    imageUrl: dockerHero,
     tags: ["containerization", "deployment optimization", "automated scaling", "resource management", "DevOps"],
     category: "DEVELOPMENT & CODING",
     rating: 4.5,
@@ -83,6 +98,7 @@ export const technicalAndUtilityTools: Tool[] = [
     emoji: "⚙️",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://kubernetes.io/",
+    imageUrl: kubernetesHero,
     tags: ["container orchestration", "auto-scaling", "workload distribution", "cluster management", "cloud native"],
     category: "DEVELOPMENT & CODING",
     rating: 4.3,
@@ -95,6 +111,7 @@ export const technicalAndUtilityTools: Tool[] = [
     emoji: "🔐",
     color: "from-gray-500 to-blue-600",
     directUrl: "https://www.vaultproject.io/",
+    imageUrl: hashicorpVaultHero,
     tags: ["secrets management", "threat detection", "credential rotation", "access policies", "security"],
     category: "DEVELOPMENT & CODING",
     rating: 4.2,
@@ -107,6 +124,7 @@ export const technicalAndUtilityTools: Tool[] = [
     emoji: "🏗️",
     color: "from-purple-500 to-indigo-600",
     directUrl: "https://www.terraform.io/",
+    imageUrl: terraformHero,
     tags: ["infrastructure as code", "configuration optimization", "automated provisioning", "resource planning", "HashiCorp"],
     category: "DEVELOPMENT & CODING",
     rating: 4.4,
@@ -119,6 +137,7 @@ export const technicalAndUtilityTools: Tool[] = [
     emoji: "🔴",
     color: "from-red-500 to-orange-600",
     directUrl: "https://redis.io/",
+    imageUrl: redisHero,
     tags: ["in-memory database", "caching optimization", "data persistence", "performance tuning", "real-time"],
     category: "DEVELOPMENT & CODING",
     rating: 4.3,
@@ -131,6 +150,7 @@ export const technicalAndUtilityTools: Tool[] = [
     emoji: "🔍",
     color: "from-yellow-500 to-green-600",
     directUrl: "https://www.elastic.co/",
+    imageUrl: elasticsearchHero,
     tags: ["search engine", "analytics", "relevance tuning", "indexing optimization", "query suggestions"],
     category: "DEVELOPMENT & CODING",
     rating: 4.2,
