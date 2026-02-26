@@ -1,6 +1,14 @@
 import { Tool } from "@/types/tools";
 import { Calculator, DollarSign, CreditCard, TrendingUp, FileText, PieChart } from "lucide-react";
 
+import quickbooksAiHero from "@/assets/tools/quickbooks-ai-hero.jpg";
+import xeroAiHero from "@/assets/tools/xero-ai-hero.jpg";
+import billComHero from "@/assets/tools/bill-com-hero.jpg";
+import rampHero from "@/assets/tools/ramp-hero.jpg";
+import expensifyHero from "@/assets/tools/expensify-hero.jpg";
+import brexHero from "@/assets/tools/brex-hero.jpg";
+import freshbooksHero from "@/assets/tools/freshbooks-hero.jpg";
+
 export const aiAccountingFinanceTools: Tool[] = [
   {
     icon: Calculator,
@@ -9,6 +17,7 @@ export const aiAccountingFinanceTools: Tool[] = [
     emoji: "📊",
     color: "from-green-500 to-emerald-600",
     directUrl: "https://quickbooks.intuit.com/?via=aiwebtools",
+    imageUrl: quickbooksAiHero,
     tags: ["accounting", "bookkeeping", "invoicing", "expense tracking", "financial management", "small business", "Intuit"],
     category: "AI Accounting & Finance",
     rating: 4.7,
@@ -21,6 +30,7 @@ export const aiAccountingFinanceTools: Tool[] = [
     emoji: "📈",
     color: "from-blue-500 to-indigo-600",
     directUrl: "https://www.xero.com/?via=aiwebtools",
+    imageUrl: xeroAiHero,
     tags: ["cloud accounting", "bank reconciliation", "invoicing", "expense management", "financial reports", "small business"],
     category: "AI Accounting & Finance",
     rating: 4.6,
@@ -33,6 +43,7 @@ export const aiAccountingFinanceTools: Tool[] = [
     emoji: "💳",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://www.bill.com/?via=aiwebtools",
+    imageUrl: billComHero,
     tags: ["AP automation", "AR automation", "bill payment", "invoice management", "workflow automation", "payment processing"],
     category: "AI Accounting & Finance",
     rating: 4.6,
@@ -45,6 +56,7 @@ export const aiAccountingFinanceTools: Tool[] = [
     emoji: "🚀",
     color: "from-indigo-500 to-purple-600",
     directUrl: "https://ramp.com/?via=aiwebtools",
+    imageUrl: rampHero,
     tags: ["corporate card", "spend management", "expense automation", "financial insights", "cost savings", "expense tracking"],
     category: "AI Accounting & Finance",
     rating: 4.8,
@@ -57,6 +69,7 @@ export const aiAccountingFinanceTools: Tool[] = [
     emoji: "💰",
     color: "from-green-600 to-teal-700",
     directUrl: "https://www.expensify.com/?via=aiwebtools",
+    imageUrl: expensifyHero,
     tags: ["expense management", "receipt scanning", "expense reports", "reimbursements", "travel expenses", "automation"],
     category: "AI Accounting & Finance",
     rating: 4.5,
@@ -69,6 +82,7 @@ export const aiAccountingFinanceTools: Tool[] = [
     emoji: "💼",
     color: "from-blue-600 to-cyan-700",
     directUrl: "https://www.brex.com/?via=aiwebtools",
+    imageUrl: brexHero,
     tags: ["corporate card", "business banking", "spend management", "expense automation", "financial platform", "rewards"],
     category: "AI Accounting & Finance",
     rating: 4.7,
@@ -81,6 +95,7 @@ export const aiAccountingFinanceTools: Tool[] = [
     emoji: "📚",
     color: "from-orange-500 to-red-600",
     directUrl: "https://www.freshbooks.com/?via=aiwebtools",
+    imageUrl: freshbooksHero,
     tags: ["accounting", "invoicing", "freelancers", "time tracking", "expense tracking", "small business", "financial reports"],
     category: "AI Accounting & Finance",
     rating: 4.6,

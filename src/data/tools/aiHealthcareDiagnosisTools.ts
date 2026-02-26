@@ -1,8 +1,13 @@
 import { Tool } from "@/types/tools";
 import { Heart, Activity, Stethoscope, Pill, HeartPulse, Thermometer } from "lucide-react";
 
+import adaHealthHero from "@/assets/tools/ada-health-hero.jpg";
+import buoyHealthHero from "@/assets/tools/buoy-health-hero.jpg";
+import kHealthHero from "@/assets/tools/k-health-hero.jpg";
+import healthilyHero from "@/assets/tools/healthily-hero.jpg";
+import infermedicaHero from "@/assets/tools/infermedica-hero.jpg";
+
 export const aiHealthcareDiagnosisTools: Tool[] = [
-  // Babylon Health removed - not a real tool
   {
     icon: Activity,
     title: "Ada Health",
@@ -10,6 +15,7 @@ export const aiHealthcareDiagnosisTools: Tool[] = [
     emoji: "💊",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://ada.com/?via=aiwebtools",
+    imageUrl: adaHealthHero,
     tags: ["symptom checker", "health assessment", "medical AI", "diagnosis assistant", "health guidance", "symptom analysis"],
     category: "AI Healthcare Diagnosis",
     rating: 4.7,
@@ -22,6 +28,7 @@ export const aiHealthcareDiagnosisTools: Tool[] = [
     emoji: "❤️",
     color: "from-red-500 to-pink-600",
     directUrl: "https://www.buoyhealth.com/?via=aiwebtools",
+    imageUrl: buoyHealthHero,
     tags: ["symptom checker", "health navigation", "treatment guidance", "medical AI", "care finder", "health assistant"],
     category: "AI Healthcare Diagnosis",
     rating: 4.6,
@@ -34,6 +41,7 @@ export const aiHealthcareDiagnosisTools: Tool[] = [
     emoji: "💉",
     color: "from-green-500 to-emerald-600",
     directUrl: "https://www.khealth.com/?via=aiwebtools",
+    imageUrl: kHealthHero,
     tags: ["primary care", "symptom checker", "prescriptions", "virtual doctor", "health AI", "telemedicine", "treatment plans"],
     category: "AI Healthcare Diagnosis",
     rating: 4.7,
@@ -46,6 +54,7 @@ export const aiHealthcareDiagnosisTools: Tool[] = [
     emoji: "💗",
     color: "from-pink-500 to-rose-600",
     directUrl: "https://www.healthily.com/?via=aiwebtools",
+    imageUrl: healthilyHero,
     tags: ["symptom checker", "health information", "medical guidance", "health assistant", "wellness app", "AI diagnosis"],
     category: "AI Healthcare Diagnosis",
     rating: 4.5,
@@ -58,6 +67,7 @@ export const aiHealthcareDiagnosisTools: Tool[] = [
     emoji: "🌡️",
     color: "from-orange-500 to-red-600",
     directUrl: "https://infermedica.com/?via=aiwebtools",
+    imageUrl: infermedicaHero,
     tags: ["symptom analysis", "triage", "preliminary diagnosis", "healthcare providers", "medical AI", "health assessment"],
     category: "AI Healthcare Diagnosis",
     rating: 4.6,

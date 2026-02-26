@@ -1,6 +1,10 @@
 import { Tool } from "@/types/tools";
 import { Heart, Brain, Smile, MessageCircle, Sparkles, Users } from "lucide-react";
 
+import betterHelpHero from "@/assets/tools/betterhelp-hero.jpg";
+import headspaceHero from "@/assets/tools/headspace-hero.jpg";
+import calmHero from "@/assets/tools/calm-hero.jpg";
+
 export const aiMentalHealthWellnessTools: Tool[] = [
   {
     icon: Brain,
@@ -74,6 +78,7 @@ export const aiMentalHealthWellnessTools: Tool[] = [
     emoji: "🤝",
     color: "from-orange-500 to-red-600",
     directUrl: "https://www.betterhelp.com/?via=aiwebtools",
+    imageUrl: betterHelpHero,
     tags: ["online therapy", "licensed therapists", "mental health", "counseling", "teletherapy", "therapy platform", "professional help"],
     category: "AI Mental Health & Wellness",
     rating: 4.7,
@@ -86,6 +91,7 @@ export const aiMentalHealthWellnessTools: Tool[] = [
     emoji: "🧘",
     color: "from-orange-400 to-yellow-500",
     directUrl: "https://www.headspace.com/?via=aiwebtools",
+    imageUrl: headspaceHero,
     tags: ["meditation", "mindfulness", "sleep", "stress relief", "mental wellness", "guided meditation", "relaxation"],
     category: "AI Mental Health & Wellness",
     rating: 4.8,
@@ -98,6 +104,7 @@ export const aiMentalHealthWellnessTools: Tool[] = [
     emoji: "😌",
     color: "from-blue-400 to-indigo-500",
     directUrl: "https://www.calm.com/?via=aiwebtools",
+    imageUrl: calmHero,
     tags: ["sleep", "meditation", "relaxation", "mindfulness", "stress relief", "sleep stories", "breathing exercises"],
     category: "AI Mental Health & Wellness",
     rating: 4.8,
