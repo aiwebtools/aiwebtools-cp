@@ -15,6 +15,7 @@ import {
   Settings
 } from "lucide-react";
 import superhumanHero from "@/assets/tools/superhuman-hero.jpg";
+import mailchimpEmailHero from "@/assets/tools/mailchimp-email-hero.jpg";
 import convertKitHero from "@/assets/tools/convertkit-hero.jpg";
 import klaviyoHero from "@/assets/tools/klaviyo-hero.jpg";
 import boomerangHero from "@/assets/tools/boomerang-hero.jpg";
@@ -45,6 +46,7 @@ export const emailManagementTools: Tool[] = [
     emoji: "🐵",
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://mailchimp.com/",
+    imageUrl: mailchimpEmailHero,
     tags: ["Marketing Agent", "email marketing", "automated campaigns", "predictive analytics", "smart recommendations", "engagement", "agent"],
     category: "Email Management Tools",
     rating: 4.5,

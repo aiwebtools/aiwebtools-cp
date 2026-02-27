@@ -14,6 +14,16 @@ import {
   Building
 } from "lucide-react";
 
+import hubspotSalesHero from "@/assets/tools/hubspot-sales-hero.jpg";
+import salesforceHero from "@/assets/tools/salesforce-hero.jpg";
+import pipedriveHero from "@/assets/tools/pipedrive-hero.jpg";
+import intercomHero from "@/assets/tools/intercom-hero.jpg";
+import gongHero from "@/assets/tools/gong-hero.jpg";
+import outreachHero from "@/assets/tools/outreach-hero.jpg";
+import calendlyHero from "@/assets/tools/calendly-hero.jpg";
+import zoominfoHero from "@/assets/tools/zoominfo-hero.jpg";
+import mondayComHero from "@/assets/tools/monday-com-hero.jpg";
+
 export const businessSalesTools: Tool[] = [
   {
     icon: Users,
@@ -22,6 +32,7 @@ export const businessSalesTools: Tool[] = [
     emoji: "🏢",
     color: "from-orange-500 to-red-600",
     directUrl: "https://www.hubspot.com/?via=aiwebtools",
+    imageUrl: hubspotSalesHero,
     tags: ["CRM", "sales automation", "marketing", "customer service", "workflows", "CRM", "Marketing", "Sales", "CRM & Sales", "Marketing Automation", "Lead Generation"],
     category: "Business & Sales Tools",
     rating: 4.7,
@@ -34,6 +45,7 @@ export const businessSalesTools: Tool[] = [
     emoji: "📈",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://www.salesforce.com/?via=aiwebtools",
+    imageUrl: salesforceHero,
     tags: ["CRM", "Einstein AI", "sales pipelines", "customer data", "enterprise", "CRM", "Sales", "Analytics & Reporting", "CRM & Sales", "Sales Enablement", "Analytics & Tracking"],
     category: "Business & Sales Tools",
     rating: 4.6,
@@ -46,6 +58,7 @@ export const businessSalesTools: Tool[] = [
     emoji: "🎯",
     color: "from-green-500 to-blue-600",
     directUrl: "https://www.pipedrive.com/?via=aiwebtools",
+    imageUrl: pipedriveHero,
     tags: ["sales CRM", "pipeline management", "SMB", "AI insights", "automation", "CRM", "Sales", "CRM & Sales", "Sales Enablement"],
     category: "Business & Sales Tools",
     rating: 4.5,
@@ -58,6 +71,7 @@ export const businessSalesTools: Tool[] = [
     emoji: "💬",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://www.intercom.com/?via=aiwebtools",
+    imageUrl: intercomHero,
     tags: ["customer messaging", "AI chatbots", "support automation", "customer engagement", "lifecycle", "Customer Support", "Sales", "CRM & Sales", "Marketing Automation"],
     category: "Business & Sales Tools",
     rating: 4.4,
@@ -70,6 +84,7 @@ export const businessSalesTools: Tool[] = [
     emoji: "📞",
     color: "from-indigo-500 to-purple-600",
     directUrl: "https://www.gong.io/?via=aiwebtools",
+    imageUrl: gongHero,
     tags: ["revenue intelligence", "sales conversations", "AI insights", "deal outcomes", "team performance", "Sales", "Analytics & Reporting", "Analytics & Tracking", "Sales Enablement"],
     category: "Business & Sales Tools",
     rating: 4.6,
@@ -82,6 +97,7 @@ export const businessSalesTools: Tool[] = [
     emoji: "📧",
     color: "from-red-500 to-pink-600",
     directUrl: "https://www.outreach.io/?via=aiwebtools",
+    imageUrl: outreachHero,
     tags: ["sales engagement", "prospect engagement", "sequence optimization", "AI-powered", "efficiency", "Sales", "Automation", "Lead Generation", "Marketing Automation", "Sales Enablement"],
     category: "Business & Sales Tools",
     rating: 4.3,
@@ -94,6 +110,7 @@ export const businessSalesTools: Tool[] = [
     emoji: "📅",
     color: "from-blue-500 to-green-600",
     directUrl: "https://calendly.com/?via=aiwebtools",
+    imageUrl: calendlyHero,
     tags: ["automated scheduling", "meeting scheduling", "workflow automation", "integrations", "efficiency", "Meeting & Scheduling", "Automation", "Sales Enablement"],
     category: "Business & Sales Tools",
     rating: 4.5,
@@ -106,6 +123,7 @@ export const businessSalesTools: Tool[] = [
     emoji: "📊",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://www.zoominfo.com/?via=aiwebtools",
+    imageUrl: zoominfoHero,
     tags: ["B2B database", "sales intelligence", "prospect finding", "contact data", "company data", "Sales", "Business Intelligence", "Lead Generation", "Market Research", "Sales Enablement"],
     category: "Business & Sales Tools",
     rating: 4.4,
@@ -118,6 +136,7 @@ export const businessSalesTools: Tool[] = [
     emoji: "🏗️",
     color: "from-orange-500 to-yellow-600",
     directUrl: "https://monday.com/?via=aiwebtools",
+    imageUrl: mondayComHero,
     tags: ["work OS", "project management", "CRM", "team collaboration", "workflow automation", "Project Management", "Team Collaboration", "CRM", "CRM & Sales", "Marketing Automation"],
     category: "Business & Sales Tools",
     rating: 4.3,

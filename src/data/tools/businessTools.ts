@@ -1,12 +1,6 @@
 
 import { Tool } from "@/types/tools";
 import { 
-  Briefcase, 
-  Calculator, 
-  TrendingUp, 
-  Users, 
-  Target, 
-  BarChart3,
   Shield,
   Wrench,
   MapPin,
@@ -21,43 +15,6 @@ import logisticsManagerHero from "@/assets/tools/logistics-manager-gpt-hero.jpg"
 import safetyInspectorHero from "@/assets/tools/safety-inspector-gpt-hero.jpg";
 
 export const businessTools: Tool[] = [
-  {
-    icon: Calculator,
-    title: "Financial Calculator Pro",
-    description: "Advanced financial calculations for business planning, investments, loans, and complex financial modeling with real-time market data integration.",
-    emoji: "💰",
-    color: "from-green-500 to-emerald-600",
-    directUrl: "https://financialcalculator.ai",
-    imageUrl: "/src/assets/tools/financial-calculator-pro-hero.png",
-    tags: ["financial planning", "calculations", "investments", "business finance", "market analysis", "Finance & Accounting", "Task Management"],
-    category: "Business Tools",
-    rating: 4.7,
-    totalVotes: 3456
-  },
-  {
-    icon: TrendingUp,
-    title: "Market Analysis Suite",
-    description: "Comprehensive market research and competitive analysis tools for strategic business decision making and market positioning.",
-    emoji: "📈",
-    color: "from-blue-500 to-purple-600",
-    directUrl: "https://marketanalysis.pro",
-    tags: ["market research", "competitive analysis", "business intelligence", "strategic planning", "Analytics & Reporting", "Business Intelligence", "All-in-One Suite"],
-    category: "Business Tools",
-    rating: 4.8,
-    totalVotes: 4123
-  },
-  {
-    icon: Users,
-    title: "Team Management Hub",
-    description: "Advanced team collaboration and project management platform with AI-powered productivity insights and workflow optimization.",
-    emoji: "👥",
-    color: "from-purple-500 to-pink-600",
-    directUrl: "https://teamhub.ai",
-    tags: ["team management", "collaboration", "project management", "productivity", "workflow", "Team Collaboration", "Project Management", "Task Management"],
-    category: "Business Tools",
-    rating: 4.6,
-    totalVotes: 3789
-  },
   {
     icon: Wrench,
     title: "IT SUPPORT GPT",
