@@ -9,6 +9,13 @@ import {
   FileText
 } from "lucide-react";
 
+import lemonadeHero from "@/assets/tools/lemonade-hero.jpg";
+import rootInsuranceHero from "@/assets/tools/root-insurance-hero.jpg";
+import metromileHero from "@/assets/tools/metromile-hero.jpg";
+import oscarHealthHero from "@/assets/tools/oscar-health-hero.jpg";
+import kinInsuranceHero from "@/assets/tools/kin-insurance-hero.jpg";
+import policygeniusHero from "@/assets/tools/policygenius-hero.jpg";
+
 export const aiInsuranceTools: Tool[] = [
   {
     icon: Shield,
@@ -17,7 +24,7 @@ export const aiInsuranceTools: Tool[] = [
     emoji: "🍋",
     color: "from-pink-500 to-red-600",
     directUrl: "https://www.lemonade.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/lemonade-hero.png",
+    imageUrl: lemonadeHero,
     tags: ["instant quotes", "fast claims", "renters insurance", "homeowners insurance", "pet insurance"],
     category: "AI Insurance Tools",
     rating: 4.5,
@@ -30,7 +37,7 @@ export const aiInsuranceTools: Tool[] = [
     emoji: "🚗",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://www.joinroot.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/root-insurance-hero.png",
+    imageUrl: rootInsuranceHero,
     tags: ["car insurance", "driving behavior", "telematics", "usage-based insurance", "fair pricing"],
     category: "AI Insurance Tools",
     rating: 4.4,
@@ -43,7 +50,7 @@ export const aiInsuranceTools: Tool[] = [
     emoji: "⚡",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://www.metromile.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/metromile-hero.png",
+    imageUrl: metromileHero,
     tags: ["pay-per-mile", "car insurance", "mileage tracking", "AI pricing", "low-mileage drivers"],
     category: "AI Insurance Tools",
     rating: 4.3,
@@ -56,7 +63,7 @@ export const aiInsuranceTools: Tool[] = [
     emoji: "❤️",
     color: "from-green-500 to-teal-600",
     directUrl: "https://www.hioscar.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/oscar-health-hero.png",
+    imageUrl: oscarHealthHero,
     tags: ["health insurance", "care navigation", "telemedicine", "transparent pricing", "healthcare access"],
     category: "AI Insurance Tools",
     rating: 4.4,
@@ -69,7 +76,7 @@ export const aiInsuranceTools: Tool[] = [
     emoji: "🏠",
     color: "from-orange-500 to-red-600",
     directUrl: "https://www.kin.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/kin-insurance-hero.png",
+    imageUrl: kinInsuranceHero,
     tags: ["home insurance", "smart coverage", "instant quotes", "claims experience", "homeowners"],
     category: "AI Insurance Tools",
     rating: 4.2,
@@ -82,7 +89,7 @@ export const aiInsuranceTools: Tool[] = [
     emoji: "📋",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://www.policygenius.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/policygenius-hero.png",
+    imageUrl: policygeniusHero,
     tags: ["insurance marketplace", "quote comparison", "life insurance", "expert guidance", "multiple policies"],
     category: "AI Insurance Tools",
     rating: 4.5,

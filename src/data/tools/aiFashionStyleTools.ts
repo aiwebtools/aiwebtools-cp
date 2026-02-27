@@ -1,6 +1,13 @@
 import { Tool } from "@/types/tools";
 import { Shirt, Sparkles, Scissors, Palette, ShoppingBag, Users } from "lucide-react";
 
+import stitchFixHero from "@/assets/tools/stitch-fix-hero.jpg";
+import threadHero from "@/assets/tools/thread-hero.jpg";
+import trueFitHero from "@/assets/tools/true-fit-hero.jpg";
+import vueAiHero from "@/assets/tools/vue-ai-hero.jpg";
+import lookletHero from "@/assets/tools/looklet-hero.jpg";
+import heuritechHero from "@/assets/tools/heuritech-hero.jpg";
+
 export const aiFashionStyleTools: Tool[] = [
   {
     icon: Shirt,
@@ -9,7 +16,7 @@ export const aiFashionStyleTools: Tool[] = [
     emoji: "👔",
     color: "from-pink-500 to-rose-600",
     directUrl: "https://www.stitchfix.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/stitch-fix-hero.png",
+    imageUrl: stitchFixHero,
     tags: ["personal styling", "fashion AI", "clothing recommendations", "style curation", "subscription box", "personalized fashion"],
     category: "AI Fashion & Style",
     rating: 4.5,
@@ -22,7 +29,7 @@ export const aiFashionStyleTools: Tool[] = [
     emoji: "🧵",
     color: "from-blue-500 to-indigo-600",
     directUrl: "https://www.thread.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/thread-hero.png",
+    imageUrl: threadHero,
     tags: ["personal stylist", "outfit recommendations", "fashion AI", "style assistant", "menswear", "clothing suggestions"],
     category: "AI Fashion & Style",
     rating: 4.4,
@@ -35,7 +42,7 @@ export const aiFashionStyleTools: Tool[] = [
     emoji: "📏",
     color: "from-green-500 to-emerald-600",
     directUrl: "https://www.truefit.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/true-fit-hero.png",
+    imageUrl: trueFitHero,
     tags: ["size prediction", "fit technology", "sizing AI", "virtual fitting", "size recommendations", "reduce returns"],
     category: "AI Fashion & Style",
     rating: 4.6,
@@ -48,7 +55,7 @@ export const aiFashionStyleTools: Tool[] = [
     emoji: "✨",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://vue.ai/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/vue-ai-hero.png",
+    imageUrl: vueAiHero,
     tags: ["virtual try-on", "fashion retail", "product recommendations", "catalog automation", "visual AI", "ecommerce fashion"],
     category: "AI Fashion & Style",
     rating: 4.5,
@@ -61,7 +68,7 @@ export const aiFashionStyleTools: Tool[] = [
     emoji: "🛍️",
     color: "from-orange-500 to-red-600",
     directUrl: "https://www.looklet.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/looklet-hero.png",
+    imageUrl: lookletHero,
     tags: ["visual merchandising", "fashion photography", "product styling", "outfit creation", "ecommerce images", "automated styling"],
     category: "AI Fashion & Style",
     rating: 4.3,
@@ -74,7 +81,7 @@ export const aiFashionStyleTools: Tool[] = [
     emoji: "🎨",
     color: "from-teal-500 to-cyan-600",
     directUrl: "https://www.heuritech.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/heuritech-hero.png",
+    imageUrl: heuritechHero,
     tags: ["trend forecasting", "fashion analytics", "predictive AI", "market insights", "fashion trends", "data-driven fashion"],
     category: "AI Fashion & Style",
     rating: 4.4,
