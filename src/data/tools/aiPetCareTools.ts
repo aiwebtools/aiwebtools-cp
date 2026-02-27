@@ -9,6 +9,13 @@ import {
   Bone
 } from "lucide-react";
 
+import petcubeHero from "@/assets/tools/petcube-hero.jpg";
+import furboHero from "@/assets/tools/furbo-hero.jpg";
+import whistleHero from "@/assets/tools/whistle-hero.jpg";
+import fiCollarHero from "@/assets/tools/fi-collar-hero.jpg";
+import petpaceHero from "@/assets/tools/petpace-hero.jpg";
+import pawpHero from "@/assets/tools/pawp-hero.jpg";
+
 export const aiPetCareTools: Tool[] = [
   {
     icon: Camera,
@@ -17,7 +24,7 @@ export const aiPetCareTools: Tool[] = [
     emoji: "📹",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://petcube.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/petcube-hero.png",
+    imageUrl: petcubeHero,
     tags: ["pet camera", "remote monitoring", "pet care", "activity tracking", "smart home"],
     category: "AI Pet Care Tools",
     rating: 4.5,
@@ -30,7 +37,7 @@ export const aiPetCareTools: Tool[] = [
     emoji: "🐕",
     color: "from-orange-500 to-red-600",
     directUrl: "https://shopus.furbo.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/furbo-hero.png",
+    imageUrl: furboHero,
     tags: ["dog camera", "bark detection", "treat dispenser", "pet monitoring", "smart alerts"],
     category: "AI Pet Care Tools",
     rating: 4.4,
@@ -43,7 +50,7 @@ export const aiPetCareTools: Tool[] = [
     emoji: "📡",
     color: "from-green-500 to-teal-600",
     directUrl: "https://www.whistle.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/whistle-hero.png",
+    imageUrl: whistleHero,
     tags: ["GPS tracking", "health monitoring", "activity tracking", "pet wellness", "location alerts"],
     category: "AI Pet Care Tools",
     rating: 4.6,
@@ -56,7 +63,7 @@ export const aiPetCareTools: Tool[] = [
     emoji: "🗺️",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://tryfi.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/fi-collar-hero.png",
+    imageUrl: fiCollarHero,
     tags: ["smart collar", "GPS tracking", "escape alerts", "activity monitor", "pet safety"],
     category: "AI Pet Care Tools",
     rating: 4.5,
@@ -69,7 +76,7 @@ export const aiPetCareTools: Tool[] = [
     emoji: "❤️",
     color: "from-red-500 to-pink-600",
     directUrl: "https://petpace.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/petpace-hero.png",
+    imageUrl: petpaceHero,
     tags: ["health monitoring", "vital signs", "veterinary grade", "illness detection", "behavior tracking"],
     category: "AI Pet Care Tools",
     rating: 4.4,
@@ -82,7 +89,7 @@ export const aiPetCareTools: Tool[] = [
     emoji: "🦴",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://www.pawp.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/pawp-hero.png",
+    imageUrl: pawpHero,
     tags: ["pet telehealth", "virtual vet", "24/7 support", "emergency coverage", "health guidance"],
     category: "AI Pet Care Tools",
     rating: 4.3,

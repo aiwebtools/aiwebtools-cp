@@ -1,6 +1,13 @@
 import { Tool } from "@/types/tools";
 import { Home, Building, MapPin, TrendingUp, Search, DollarSign } from "lucide-react";
 
+import zillowHero from "@/assets/tools/zillow-hero.jpg";
+import redfinHero from "@/assets/tools/redfin-hero.jpg";
+import compassHero from "@/assets/tools/compass-hero.jpg";
+import reonomyHero from "@/assets/tools/reonomy-hero.jpg";
+import realtorComHero from "@/assets/tools/realtor-com-hero.jpg";
+import opendoorHero from "@/assets/tools/opendoor-hero.jpg";
+
 export const aiRealEstateTools: Tool[] = [
   {
     icon: Home,
@@ -9,7 +16,7 @@ export const aiRealEstateTools: Tool[] = [
     emoji: "🏠",
     color: "from-blue-500 to-indigo-600",
     directUrl: "https://www.zillow.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/zillow-hero.png",
+    imageUrl: zillowHero,
     tags: ["real estate", "home valuation", "property search", "market analysis", "Zestimate", "housing market"],
     category: "AI Real Estate",
     rating: 4.7,
@@ -22,7 +29,7 @@ export const aiRealEstateTools: Tool[] = [
     emoji: "🏢",
     color: "from-red-500 to-orange-600",
     directUrl: "https://www.redfin.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/redfin-hero.png",
+    imageUrl: redfinHero,
     tags: ["real estate", "property search", "home valuation", "virtual tours", "market insights", "real estate agent"],
     category: "AI Real Estate",
     rating: 4.6,
@@ -35,7 +42,7 @@ export const aiRealEstateTools: Tool[] = [
     emoji: "🧭",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://www.compass.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/compass-hero.png",
+    imageUrl: compassHero,
     tags: ["luxury real estate", "property search", "predictive analytics", "exclusive listings", "smart search", "property intelligence"],
     category: "AI Real Estate",
     rating: 4.5,
@@ -48,7 +55,7 @@ export const aiRealEstateTools: Tool[] = [
     emoji: "📊",
     color: "from-green-500 to-emerald-600",
     directUrl: "https://www.reonomy.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/reonomy-hero.png",
+    imageUrl: reonomyHero,
     tags: ["commercial real estate", "property data", "market intelligence", "investment analysis", "CRE", "property insights"],
     category: "AI Real Estate",
     rating: 4.6,
@@ -61,7 +68,7 @@ export const aiRealEstateTools: Tool[] = [
     emoji: "🔍",
     color: "from-blue-600 to-cyan-700",
     directUrl: "https://www.realtor.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/realtor-com-hero.png",
+    imageUrl: realtorComHero,
     tags: ["real estate", "property search", "MLS listings", "market trends", "home finder", "real-time data"],
     category: "AI Real Estate",
     rating: 4.5,
@@ -74,7 +81,7 @@ export const aiRealEstateTools: Tool[] = [
     emoji: "💰",
     color: "from-teal-500 to-cyan-600",
     directUrl: "https://www.opendoor.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/opendoor-hero.png",
+    imageUrl: opendoorHero,
     tags: ["iBuying", "instant offers", "home selling", "real estate", "quick sale", "automated valuation"],
     category: "AI Real Estate",
     rating: 4.4,

@@ -1,6 +1,7 @@
 import { Bot, Globe, Code, Zap, Brain, Rocket, Settings, Users, Sparkles, Video, Mic, Shield, Search, Briefcase, FileText, MessageSquare } from "lucide-react";
 import { Tool } from "@/types/tools";
 import openclawHero from "@/assets/tools/openclaw-ai-hero.jpg";
+import openclawGithubHero from "@/assets/tools/openclaw-github-hero.jpg";
 import wordfareHero from "@/assets/tools/wordfare-ai-hero.jpg";
 import convergenceHero from "@/assets/tools/convergence-ai-hero.jpg";
 import abacusHero from "@/assets/tools/abacus-ai-hero.jpg";
@@ -609,6 +610,20 @@ export const aiAgents2025Batch2: Tool[] = [
     totalVotes: 4200,
     tags: ["AI Agents", "Autonomous Agent", "Personal Assistant", "WhatsApp", "Telegram", "Discord", "Email Automation", "Calendar", "Open Source", "Viral", "Clawdbot", "Moltbot", "OpenClaw", "Self-Hosted", "Local AI", "Voice Agent"],
     tagline: "The viral open-source AI agent that actually does your work"
+  },
+  {
+    icon: Code,
+    title: "OpenClaw AI (GitHub)",
+    description: "The official open-source GitHub repository for OpenClaw AI Agent with 230K+ stars. Browse the TypeScript source code, contribute to development, report issues, and deploy your own self-hosted instance. MIT licensed—fully free and open for the community.",
+    emoji: "🦞",
+    color: "from-gray-700 to-gray-900",
+    category: "AI Agents",
+    directUrl: "https://github.com/openclaw/openclaw",
+    imageUrl: openclawGithubHero,
+    rating: 5.0,
+    totalVotes: 4500,
+    tags: ["AI Agents", "Open Source", "GitHub", "TypeScript", "Self-Hosted", "MIT License", "OpenClaw", "Moltbot", "Clawdbot", "Developer Tools", "Coding Agent"],
+    tagline: "230K+ stars — the most viral open-source AI agent on GitHub"
   },
   {
     icon: Users,
