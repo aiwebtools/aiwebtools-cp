@@ -5,13 +5,11 @@ import {
   Car, 
   Heart, 
   Home, 
-  Zap,
   FileText
 } from "lucide-react";
 
 import lemonadeHero from "@/assets/tools/lemonade-hero.jpg";
 import rootInsuranceHero from "@/assets/tools/root-insurance-hero.jpg";
-import metromileHero from "@/assets/tools/metromile-hero.jpg";
 import oscarHealthHero from "@/assets/tools/oscar-health-hero.jpg";
 import kinInsuranceHero from "@/assets/tools/kin-insurance-hero.jpg";
 import policygeniusHero from "@/assets/tools/policygenius-hero.jpg";
@@ -43,19 +41,7 @@ export const aiInsuranceTools: Tool[] = [
     rating: 4.4,
     totalVotes: 3987
   },
-  {
-    icon: Zap,
-    title: "Metromile",
-    description: "Pay-per-mile car insurance with AI-driven pricing based on actual miles driven, perfect for low-mileage drivers.",
-    emoji: "⚡",
-    color: "from-purple-500 to-pink-600",
-    directUrl: "https://www.metromile.com/?via=aiwebtools",
-    imageUrl: metromileHero,
-    tags: ["pay-per-mile", "car insurance", "mileage tracking", "AI pricing", "low-mileage drivers"],
-    category: "AI Insurance Tools",
-    rating: 4.3,
-    totalVotes: 3234
-  },
+  // Metromile removed - acquired by Lemonade in 2022, website redirects
   {
     icon: Heart,
     title: "Oscar Health",

@@ -9,6 +9,13 @@ import {
   MapPin
 } from "lucide-react";
 
+import cargurusHero from "@/assets/tools/cargurus-hero.jpg";
+import carvanaHero from "@/assets/tools/carvana-hero.jpg";
+import autotraderHero from "@/assets/tools/autotrader-hero.jpg";
+import truecarHero from "@/assets/tools/truecar-hero.jpg";
+import edmundsHero from "@/assets/tools/edmunds-hero.jpg";
+import carsComHero from "@/assets/tools/cars-com-hero.jpg";
+
 export const aiAutomotiveTools: Tool[] = [
   {
     icon: Search,
@@ -17,7 +24,7 @@ export const aiAutomotiveTools: Tool[] = [
     emoji: "🔍",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://www.cargurus.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/cargurus-hero.png",
+    imageUrl: cargurusHero,
     tags: ["car shopping", "price analysis", "dealer ratings", "car listings", "fair pricing"],
     category: "AI Automotive Tools",
     rating: 4.6,
@@ -30,7 +37,7 @@ export const aiAutomotiveTools: Tool[] = [
     emoji: "🚗",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://www.carvana.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/carvana-hero.png",
+    imageUrl: carvanaHero,
     tags: ["online car buying", "virtual tours", "instant financing", "home delivery", "used cars"],
     category: "AI Automotive Tools",
     rating: 4.4,
@@ -43,7 +50,7 @@ export const aiAutomotiveTools: Tool[] = [
     emoji: "📈",
     color: "from-green-500 to-teal-600",
     directUrl: "https://www.autotrader.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/autotrader-hero.png",
+    imageUrl: autotraderHero,
     tags: ["car marketplace", "smart search", "price predictions", "dealer inventory", "vehicle research"],
     category: "AI Automotive Tools",
     rating: 4.5,
@@ -56,7 +63,7 @@ export const aiAutomotiveTools: Tool[] = [
     emoji: "💰",
     color: "from-orange-500 to-red-600",
     directUrl: "https://www.truecar.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/truecar-hero.png",
+    imageUrl: truecarHero,
     tags: ["car pricing", "guaranteed savings", "price transparency", "certified dealers", "car buying"],
     category: "AI Automotive Tools",
     rating: 4.3,
@@ -69,7 +76,7 @@ export const aiAutomotiveTools: Tool[] = [
     emoji: "✅",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://www.edmunds.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/edmunds-hero.png",
+    imageUrl: edmundsHero,
     tags: ["automotive research", "expert reviews", "pricing analysis", "comparison tools", "car guides"],
     category: "AI Automotive Tools",
     rating: 4.5,
@@ -82,7 +89,7 @@ export const aiAutomotiveTools: Tool[] = [
     emoji: "📍",
     color: "from-indigo-500 to-purple-600",
     directUrl: "https://www.cars.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/cars-com-hero.png",
+    imageUrl: carsComHero,
     tags: ["automotive marketplace", "local inventory", "dealer connections", "personalized recommendations", "car search"],
     category: "AI Automotive Tools",
     rating: 4.4,

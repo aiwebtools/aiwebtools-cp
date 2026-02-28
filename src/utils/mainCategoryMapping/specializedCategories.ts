@@ -91,14 +91,19 @@ export const specializedCategories: MainCategory[] = [
     ]
   },
   {
-    name: "ROBOTICS & HARDWARE",
+    name: "AI GADGETS, ROBOTS & DEVICES",
     emoji: "🤖",
-    description: "Robotics companies, hardware tools, and IoT platforms",
+    description: "AI-powered gadgets, robots, smart devices, wearables, pet tech, and IoT platforms",
     subcategories: [
+      "AI Gadgets & Devices",
       "Robotics Companies",
       "Hardware Tools",
       "IoT Platforms",
-      "Smart Devices"
+      "Smart Devices",
+      "Pet Gadgets",
+      "Wearable Tech",
+      "Smart Glasses",
+      "AI Hardware"
     ]
   },
   {

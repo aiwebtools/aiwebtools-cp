@@ -9,6 +9,13 @@ import {
   Satellite
 } from "lucide-react";
 
+import farmlogsHero from "@/assets/tools/farmlogs-hero.jpg";
+import granularHero from "@/assets/tools/granular-hero.jpg";
+import farmersEdgeHero from "@/assets/tools/farmers-edge-hero.jpg";
+import climateFieldviewHero from "@/assets/tools/climate-fieldview-hero.jpg";
+import cropioHero from "@/assets/tools/cropio-hero.jpg";
+import taranisHero from "@/assets/tools/taranis-hero.jpg";
+
 export const aiAgricultureTools: Tool[] = [
   {
     icon: Sprout,
@@ -17,7 +24,7 @@ export const aiAgricultureTools: Tool[] = [
     emoji: "🌱",
     color: "from-green-500 to-teal-600",
     directUrl: "https://farmlogs.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/farmlogs-hero.png",
+    imageUrl: farmlogsHero,
     tags: ["farm management", "crop planning", "precision agriculture", "profitability", "field insights"],
     category: "AI Agriculture Tools",
     rating: 4.5,
@@ -30,7 +37,7 @@ export const aiAgricultureTools: Tool[] = [
     emoji: "📊",
     color: "from-blue-500 to-green-600",
     directUrl: "https://granular.ag/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/granular-hero.png",
+    imageUrl: granularHero,
     tags: ["farm analytics", "crop performance", "financial planning", "data-driven farming", "agribusiness"],
     category: "AI Agriculture Tools",
     rating: 4.4,
@@ -43,7 +50,7 @@ export const aiAgricultureTools: Tool[] = [
     emoji: "🛰️",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://www.farmersedge.ca/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/farmers-edge-hero.png",
+    imageUrl: farmersEdgeHero,
     tags: ["precision agriculture", "satellite imagery", "weather prediction", "crop optimization", "predictive analytics"],
     category: "AI Agriculture Tools",
     rating: 4.6,
@@ -56,7 +63,7 @@ export const aiAgricultureTools: Tool[] = [
     emoji: "☁️",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://www.climate.com/fieldview?via=aiwebtools",
-    imageUrl: "/src/assets/tools/climate-fieldview-hero.png",
+    imageUrl: climateFieldviewHero,
     tags: ["digital farming", "yield analysis", "field mapping", "prescription planting", "crop insights"],
     category: "AI Agriculture Tools",
     rating: 4.5,
@@ -69,7 +76,7 @@ export const aiAgricultureTools: Tool[] = [
     emoji: "📈",
     color: "from-green-500 to-yellow-600",
     directUrl: "https://about.cropio.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/cropio-hero.png",
+    imageUrl: cropioHero,
     tags: ["satellite monitoring", "crop management", "weather forecasting", "vegetation analysis", "smart farming"],
     category: "AI Agriculture Tools",
     rating: 4.3,
@@ -82,7 +89,7 @@ export const aiAgricultureTools: Tool[] = [
     emoji: "🗺️",
     color: "from-orange-500 to-red-600",
     directUrl: "https://www.taranis.ag/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/taranis-hero.png",
+    imageUrl: taranisHero,
     tags: ["crop intelligence", "aerial imagery", "threat detection", "yield optimization", "deep learning"],
     category: "AI Agriculture Tools",
     rating: 4.4,

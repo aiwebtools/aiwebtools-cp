@@ -9,6 +9,13 @@ import {
   Calendar
 } from "lucide-react";
 
+import procoreHero from "@/assets/tools/procore-hero.jpg";
+import buildertrendHero from "@/assets/tools/buildertrend-hero.jpg";
+import plangridHero from "@/assets/tools/plangrid-hero.jpg";
+import fieldwireHero from "@/assets/tools/fieldwire-hero.jpg";
+import coconstructHero from "@/assets/tools/coconstruct-hero.jpg";
+import smartsheetConstructionHero from "@/assets/tools/smartsheet-construction-hero.jpg";
+
 export const aiConstructionTools: Tool[] = [
   {
     icon: Building,
@@ -17,7 +24,7 @@ export const aiConstructionTools: Tool[] = [
     emoji: "🏗️",
     color: "from-orange-500 to-red-600",
     directUrl: "https://www.procore.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/procore-hero.png",
+    imageUrl: procoreHero,
     tags: ["construction management", "project tracking", "document management", "collaboration", "building software"],
     category: "AI Construction Tools",
     rating: 4.6,
@@ -30,7 +37,7 @@ export const aiConstructionTools: Tool[] = [
     emoji: "👷",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://buildertrend.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/buildertrend-hero.png",
+    imageUrl: buildertrendHero,
     tags: ["project management", "scheduling", "budget tracking", "client communication", "construction software"],
     category: "AI Construction Tools",
     rating: 4.5,
@@ -43,7 +50,7 @@ export const aiConstructionTools: Tool[] = [
     emoji: "📋",
     color: "from-green-500 to-teal-600",
     directUrl: "https://www.plangrid.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/plangrid-hero.png",
+    imageUrl: plangridHero,
     tags: ["blueprints", "field reports", "documentation", "construction productivity", "digital plans"],
     category: "AI Construction Tools",
     rating: 4.4,
@@ -56,7 +63,7 @@ export const aiConstructionTools: Tool[] = [
     emoji: "👥",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://www.fieldwire.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/fieldwire-hero.png",
+    imageUrl: fieldwireHero,
     tags: ["job site management", "task scheduling", "punch lists", "team coordination", "workflow management"],
     category: "AI Construction Tools",
     rating: 4.5,
@@ -69,7 +76,7 @@ export const aiConstructionTools: Tool[] = [
     emoji: "🔨",
     color: "from-orange-500 to-yellow-600",
     directUrl: "https://www.coconstruct.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/coconstruct-hero.png",
+    imageUrl: coconstructHero,
     tags: ["custom building", "estimating", "project scheduling", "client management", "remodeling"],
     category: "AI Construction Tools",
     rating: 4.3,
@@ -82,7 +89,7 @@ export const aiConstructionTools: Tool[] = [
     emoji: "📅",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://www.smartsheet.com/industries/construction?via=aiwebtools",
-    imageUrl: "/src/assets/tools/smartsheet-construction-hero.png",
+    imageUrl: smartsheetConstructionHero,
     tags: ["work execution", "automated workflows", "resource management", "portfolio tracking", "construction planning"],
     category: "AI Construction Tools",
     rating: 4.4,
