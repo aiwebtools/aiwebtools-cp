@@ -248,7 +248,10 @@ import { newWebsiteBuilders2025 } from './tools/newWebsiteBuilders2025';
 import { newSpecializedTools2025 } from './tools/newSpecializedTools2025';
 
 
-// Import AI Hardware
+// Import AI Gadgets & Devices (pet gadgets, smart glasses, wearables)
+import { aiGadgetsDevicesTools } from './tools/aiGadgetsDevicesTools';
+
+// Import AI Hardware (legacy - moved to gadgets)
 import { aiHardware } from './tools/aiHardware';
 
 // Combine all tool categories - REORGANIZED FOR BETTER PRIORITY
@@ -518,6 +521,7 @@ export const getAllToolCategories = (): Tool[] => {
     ...threeDAndVisualizationTools,
     ...newsAndInformationTools,
     ...roboticsCompanies,
+    ...aiGadgetsDevicesTools,
     ...aiHardware,
     
     // NEW 2025: Additional tools

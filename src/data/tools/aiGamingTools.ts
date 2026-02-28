@@ -5,6 +5,14 @@ import streamlabsHero from "@/assets/tools/streamlabs-hero.jpg";
 import obsStudioHero from "@/assets/tools/obs-studio-hero.jpg";
 import rpgMakerHero from "@/assets/tools/rpg-maker-hero.jpg";
 import vrchatHero from "@/assets/tools/vrchat-hero.jpg";
+import scenarioAiHero from "@/assets/tools/scenario-ai-hero.jpg";
+import ludoAiHero from "@/assets/tools/ludo-ai-hero.jpg";
+import inworldAiHero from "@/assets/tools/inworld-ai-hero.jpg";
+import rosebudAiHero from "@/assets/tools/rosebud-ai-hero.jpg";
+import convaiHero from "@/assets/tools/convai-hero.jpg";
+import unityHero from "@/assets/tools/unity-hero.jpg";
+import unrealEngineHero from "@/assets/tools/unreal-engine-hero.jpg";
+import godotHero from "@/assets/tools/godot-hero.jpg";
 
 export const aiGamingTools: Tool[] = [
   {
@@ -14,7 +22,7 @@ export const aiGamingTools: Tool[] = [
     emoji: "🎮",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://www.scenario.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/scenario-ai-hero.png",
+    imageUrl: scenarioAiHero,
     tags: ["game assets", "AI art", "game development", "character design", "environment art", "asset generation", "Game Asset Generator", "video game", "video game generator", "ai to make video games", "make video games"],
     category: "AI Gaming & Game Development",
     rating: 4.7,
@@ -27,7 +35,7 @@ export const aiGamingTools: Tool[] = [
     emoji: "🎲",
     color: "from-blue-500 to-indigo-600",
     directUrl: "https://ludo.ai/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/ludo-ai-hero.png",
+    imageUrl: ludoAiHero,
     tags: ["game design", "game concepts", "ideation", "game mechanics", "design documents", "AI assistant", "Game Design", "video game", "video game generator", "ai to make video games", "make video games"],
     category: "AI Gaming & Game Development",
     rating: 4.6,
@@ -40,7 +48,7 @@ export const aiGamingTools: Tool[] = [
     emoji: "👥",
     color: "from-green-500 to-emerald-600",
     directUrl: "https://www.inworld.ai/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/inworld-ai-hero.png",
+    imageUrl: inworldAiHero,
     tags: ["AI NPCs", "character AI", "conversational AI", "game characters", "interactive experiences", "intelligent agents", "NPC & Character AI", "video game", "video game generator", "ai to make video games"],
     category: "AI Gaming & Game Development",
     rating: 4.8,
@@ -53,7 +61,7 @@ export const aiGamingTools: Tool[] = [
     emoji: "🪄",
     color: "from-pink-500 to-rose-600",
     directUrl: "https://www.rosebud.ai/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/rosebud-ai-hero.png",
+    imageUrl: rosebudAiHero,
     tags: ["game development", "no-code games", "AI game creation", "natural language", "game builder", "rapid prototyping", "Game Development", "video game", "video game generator", "ai to make video games", "make video games", "create video games"],
     category: "AI Gaming & Game Development",
     rating: 4.5,
@@ -66,7 +74,7 @@ export const aiGamingTools: Tool[] = [
     emoji: "🤖",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://www.convai.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/convai-hero.png",
+    imageUrl: convaiHero,
     tags: ["conversational AI", "game NPCs", "voice AI", "virtual characters", "interactive dialogue", "game AI", "NPC & Character AI", "video game", "video game generator", "ai to make video games"],
     category: "AI Gaming & Game Development",
     rating: 4.6,
@@ -92,7 +100,7 @@ export const aiGamingTools: Tool[] = [
     emoji: "🎮",
     color: "from-gray-600 to-gray-800",
     directUrl: "https://unity.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/unity-hero.png",
+    imageUrl: unityHero,
     tags: ["game engine", "3D games", "2D games", "VR", "AR", "cross-platform", "Game Engine", "video game", "video game generator", "make video games", "create video games"],
     category: "AI Gaming & Game Development",
     rating: 4.8,
@@ -105,7 +113,7 @@ export const aiGamingTools: Tool[] = [
     emoji: "🎮",
     color: "from-blue-600 to-purple-700",
     directUrl: "https://www.unrealengine.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/unreal-engine-hero.png",
+    imageUrl: unrealEngineHero,
     tags: ["game engine", "3D games", "AAA games", "visual scripting", "photorealistic", "Game Engine", "video game", "video game generator", "make video games", "create video games"],
     category: "AI Gaming & Game Development",
     rating: 4.9,
@@ -118,7 +126,7 @@ export const aiGamingTools: Tool[] = [
     emoji: "🤖",
     color: "from-blue-400 to-cyan-500",
     directUrl: "https://godotengine.org/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/godot-hero.png",
+    imageUrl: godotHero,
     tags: ["game engine", "open source", "2D games", "3D games", "indie games", "GDScript", "Game Engine", "video game", "video game generator", "make video games", "create video games"],
     category: "AI Gaming & Game Development",
     rating: 4.7,
