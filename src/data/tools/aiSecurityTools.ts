@@ -12,6 +12,20 @@ import {
   Globe
 } from "lucide-react";
 
+import crowdstrikeHero from "@/assets/tools/crowdstrike-hero.jpg";
+import darktraceHero from "@/assets/tools/darktrace-hero.jpg";
+import sentineloneHero from "@/assets/tools/sentinelone-hero.jpg";
+import vectraHero from "@/assets/tools/vectra-hero.jpg";
+import snykHero from "@/assets/tools/snyk-hero.jpg";
+import cortexXdrHero from "@/assets/tools/cortex-xdr-hero.jpg";
+import onePasswordHero from "@/assets/tools/1password-hero.jpg";
+import nordvpnHero from "@/assets/tools/nordvpn-hero.jpg";
+import oktaHero from "@/assets/tools/okta-hero.jpg";
+import vantaHero from "@/assets/tools/vanta-hero.jpg";
+import shodanHero from "@/assets/tools/shodan-hero.jpg";
+import bitwardenHero from "@/assets/tools/bitwarden-hero.jpg";
+import malwarebytesHero from "@/assets/tools/malwarebytes-hero.jpg";
+
 export const aiSecurityTools: Tool[] = [
   {
     icon: Shield,
@@ -20,7 +34,7 @@ export const aiSecurityTools: Tool[] = [
     emoji: "🛡️",
     color: "from-red-500 to-blue-600",
     directUrl: "https://chatgpt.com/g/g-Qvat03gmj-hacking-defender-infrastructure-protector-gpt",
-    imageUrl: "/src/assets/tools/hacker-defender-hero.png",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-3d-render-of-a-robot-with-a-large-shield-tha.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
     tags: ["cybersecurity", "hacking defense", "infrastructure protection", "threat detection", "security analysis", "vulnerability assessment", "Cybersecurity", "Threat Detection", "Custom GPT"],
     category: "AI Security Tools",
     rating: 4.8,
@@ -46,7 +60,7 @@ export const aiSecurityTools: Tool[] = [
     emoji: "👁️",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://vectra.ai/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/vectra-hero.png",
+    imageUrl: vectraHero,
     tags: ["network security", "threat hunting", "behavioral analysis", "NDR", "VPN & Network Security", "Threat Detection"],
     category: "AI Security Tools",
     rating: 4.6,
@@ -59,7 +73,7 @@ export const aiSecurityTools: Tool[] = [
     emoji: "🐛",
     color: "from-green-500 to-blue-600",
     directUrl: "https://snyk.io/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/snyk-hero.png",
+    imageUrl: snykHero,
     tags: ["code security", "vulnerability scanning", "developer tools", "DevSecOps", "Vulnerability Scanner", "Cybersecurity"],
     category: "AI Security Tools",
     rating: 4.5,
@@ -72,7 +86,7 @@ export const aiSecurityTools: Tool[] = [
     emoji: "🔍",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://snyk.io/product/snyk-code/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/deepcode-hero.png",
+    imageUrl: snykHero,
     tags: ["static analysis", "code review", "security scanning", "AI analysis", "Vulnerability Scanner", "Cybersecurity"],
     category: "AI Security Tools",
     rating: 4.4,
@@ -85,7 +99,7 @@ export const aiSecurityTools: Tool[] = [
     emoji: "🦅",
     color: "from-orange-500 to-red-600",
     directUrl: "https://www.crowdstrike.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/crowdstrike-hero.png",
+    imageUrl: crowdstrikeHero,
     tags: ["endpoint protection", "threat intelligence", "incident response", "AI security", "Endpoint Protection", "Threat Detection"],
     category: "AI Security Tools",
     rating: 4.8,
@@ -98,24 +112,11 @@ export const aiSecurityTools: Tool[] = [
     emoji: "🔍",
     color: "from-red-500 to-orange-600",
     directUrl: "https://shodan.io/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/shodan-hero.png",
+    imageUrl: shodanHero,
     tags: ["search engine", "IoT devices", "cybersecurity research", "network scanning", "connected devices", "Vulnerability Scanner", "Penetration Testing"],
     category: "AI Security Tools",
     rating: 4.4,
     totalVotes: 2890
-  },
-  {
-    icon: Eye,
-    title: "FotoForensics",
-    description: "An online tool for forensic image analysis to detect edits, manipulations, and authenticity issues in photos. Analyze digital images for tampering and forensic evidence.",
-    emoji: "🔬",
-    color: "from-purple-500 to-blue-600",
-    directUrl: "https://fotoforensics.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/fotoforensics-hero.png",
-    tags: ["image forensics", "photo analysis", "tampering detection", "authenticity", "digital forensics", "Forensics & Investigation"],
-    category: "AI Security Tools",
-    rating: 4.3,
-    totalVotes: 1567
   },
   {
     icon: Globe,
@@ -124,13 +125,12 @@ export const aiSecurityTools: Tool[] = [
     emoji: "👁️",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://zoomeye.ai/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/zoomeye-hero.png",
+    imageUrl: shodanHero,
     tags: ["cyberspace search", "network reconnaissance", "vulnerability discovery", "digital assets", "security research", "Vulnerability Scanner", "Penetration Testing"],
     category: "AI Security Tools",
     rating: 4.5,
     totalVotes: 2234
   },
-  // Additional Security & Privacy Tools
   {
     icon: Lock,
     title: "1Password",
@@ -138,7 +138,7 @@ export const aiSecurityTools: Tool[] = [
     emoji: "🔐",
     color: "from-blue-600 to-indigo-700",
     directUrl: "https://1password.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/1password-hero.png",
+    imageUrl: onePasswordHero,
     tags: ["password manager", "credential vault", "security", "team sharing", "Password Management", "Identity Protection"],
     category: "AI Security Tools",
     rating: 4.9,
@@ -151,7 +151,7 @@ export const aiSecurityTools: Tool[] = [
     emoji: "🔑",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://bitwarden.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/bitwarden-hero.png",
+    imageUrl: bitwardenHero,
     tags: ["password manager", "open source", "encryption", "cross-platform", "Password Management", "Encryption Tools"],
     category: "AI Security Tools",
     rating: 4.8,
@@ -164,7 +164,7 @@ export const aiSecurityTools: Tool[] = [
     emoji: "🌐",
     color: "from-indigo-500 to-purple-600",
     directUrl: "https://nordvpn.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/nordvpn-hero.png",
+    imageUrl: nordvpnHero,
     tags: ["VPN", "privacy", "encryption", "malware protection", "VPN & Network Security", "Privacy Tools"],
     category: "AI Security Tools",
     rating: 4.7,
@@ -177,7 +177,7 @@ export const aiSecurityTools: Tool[] = [
     emoji: "🛡️",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://protonvpn.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/protonvpn-hero.png",
+    imageUrl: nordvpnHero,
     tags: ["VPN", "privacy", "no-logs", "secure core", "VPN & Network Security", "Privacy Tools"],
     category: "AI Security Tools",
     rating: 4.7,
@@ -190,7 +190,7 @@ export const aiSecurityTools: Tool[] = [
     emoji: "💬",
     color: "from-blue-500 to-cyan-500",
     directUrl: "https://signal.org/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/signal-hero.png",
+    imageUrl: bitwardenHero,
     tags: ["encrypted messaging", "privacy", "end-to-end encryption", "secure chat", "Encryption Tools", "Privacy Tools"],
     category: "AI Security Tools",
     rating: 4.9,
@@ -203,7 +203,7 @@ export const aiSecurityTools: Tool[] = [
     emoji: "⚔️",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://www.sentinelone.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/sentinelone-hero.png",
+    imageUrl: sentineloneHero,
     tags: ["endpoint security", "autonomous protection", "cloud security", "threat prevention", "AI detection", "EDR", "Endpoint Protection", "Threat Detection"],
     category: "AI Security Tools",
     rating: 4.8,
@@ -216,7 +216,7 @@ export const aiSecurityTools: Tool[] = [
     emoji: "🔥",
     color: "from-orange-500 to-red-600",
     directUrl: "https://www.paloaltonetworks.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/cortex-xdr-hero.png",
+    imageUrl: cortexXdrHero,
     tags: ["XDR", "threat detection", "security automation", "endpoint protection", "network security", "Endpoint Protection", "Threat Detection"],
     category: "AI Security Tools",
     rating: 4.7,
@@ -229,7 +229,7 @@ export const aiSecurityTools: Tool[] = [
     emoji: "🛡️",
     color: "from-red-500 to-orange-600",
     directUrl: "https://darktrace.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/darktrace-hero.png",
+    imageUrl: darktraceHero,
     tags: ["AI security", "threat detection", "autonomous response", "network security", "zero-day protection", "Cybersecurity", "Threat Detection"],
     category: "AI Security Tools",
     rating: 4.8,
@@ -242,7 +242,7 @@ export const aiSecurityTools: Tool[] = [
     emoji: "📊",
     color: "from-green-500 to-teal-600",
     directUrl: "https://www.qualys.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/qualys-hero.png",
+    imageUrl: vantaHero,
     tags: ["vulnerability management", "compliance", "web scanning", "continuous monitoring", "Vulnerability Scanner", "Compliance & Audit"],
     category: "AI Security Tools",
     rating: 4.6,
@@ -255,7 +255,7 @@ export const aiSecurityTools: Tool[] = [
     emoji: "🐛",
     color: "from-orange-400 to-red-500",
     directUrl: "https://portswigger.net/burp?via=aiwebtools",
-    imageUrl: "/src/assets/tools/burpsuite-hero.png",
+    imageUrl: snykHero,
     tags: ["penetration testing", "web security", "vulnerability scanner", "security testing", "Penetration Testing", "Vulnerability Scanner"],
     category: "AI Security Tools",
     rating: 4.8,
@@ -268,7 +268,7 @@ export const aiSecurityTools: Tool[] = [
     emoji: "🔍",
     color: "from-teal-500 to-green-600",
     directUrl: "https://www.tenable.com/products/nessus?via=aiwebtools",
-    imageUrl: "/src/assets/tools/nessus-hero.png",
+    imageUrl: vectraHero,
     tags: ["vulnerability assessment", "network scanning", "compliance", "security audit", "Vulnerability Scanner", "Compliance & Audit"],
     category: "AI Security Tools",
     rating: 4.7,
@@ -281,7 +281,7 @@ export const aiSecurityTools: Tool[] = [
     emoji: "🔓",
     color: "from-blue-500 to-indigo-600",
     directUrl: "https://www.okta.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/okta-hero.png",
+    imageUrl: oktaHero,
     tags: ["identity management", "SSO", "MFA", "access control", "authentication", "Identity Protection", "Password Management"],
     category: "AI Security Tools",
     rating: 4.7,
@@ -294,7 +294,7 @@ export const aiSecurityTools: Tool[] = [
     emoji: "📋",
     color: "from-indigo-500 to-purple-600",
     directUrl: "https://www.vanta.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/vanta-hero.png",
+    imageUrl: vantaHero,
     tags: ["compliance automation", "SOC 2", "HIPAA", "ISO 27001", "security audit", "Compliance & Audit"],
     category: "AI Security Tools",
     rating: 4.8,
@@ -307,7 +307,7 @@ export const aiSecurityTools: Tool[] = [
     emoji: "🦡",
     color: "from-red-500 to-orange-500",
     directUrl: "https://privacybadger.org/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/privacybadger-hero.png",
+    imageUrl: nordvpnHero,
     tags: ["tracker blocker", "privacy", "browser extension", "anti-tracking", "Privacy Tools"],
     category: "AI Security Tools",
     rating: 4.5,
@@ -320,7 +320,7 @@ export const aiSecurityTools: Tool[] = [
     emoji: "🦠",
     color: "from-blue-600 to-cyan-600",
     directUrl: "https://www.malwarebytes.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/malwarebytes-hero.png",
+    imageUrl: malwarebytesHero,
     tags: ["anti-malware", "ransomware protection", "endpoint security", "threat detection", "Endpoint Protection", "Cybersecurity"],
     category: "AI Security Tools",
     rating: 4.6,

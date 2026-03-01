@@ -6,6 +6,7 @@ import pipedriveHero from "@/assets/tools/pipedrive-hero.jpg";
 import gongIoHero from "@/assets/tools/gong-io-hero.jpg";
 import chorusAiHero from "@/assets/tools/chorus-ai-hero.jpg";
 import outreachHero from "@/assets/tools/outreach-hero.jpg";
+import salesforceEinsteinHero from "@/assets/tools/salesforce-einstein-hero.jpg";
 
 export const aiSalesCrmTools: Tool[] = [
   {
@@ -15,7 +16,7 @@ export const aiSalesCrmTools: Tool[] = [
     emoji: "☁️",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://www.salesforce.com/einstein/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/salesforce-einstein-hero.png",
+    imageUrl: salesforceEinsteinHero,
     tags: ["CRM", "sales automation", "predictive analytics", "customer insights", "AI forecasting", "enterprise", "Sales Agent", "agent", "CRM", "Sales", "Analytics & Reporting"],
     category: "AI Sales & CRM",
     rating: 4.8,
