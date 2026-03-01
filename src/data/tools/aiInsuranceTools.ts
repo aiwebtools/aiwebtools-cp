@@ -1,33 +1,16 @@
 
 import { Tool } from "@/types/tools";
 import { 
-  Shield, 
   Car, 
   Heart, 
-  Home, 
-  FileText
+  Home
 } from "lucide-react";
 
-import lemonadeHero from "@/assets/tools/lemonade-hero.jpg";
 import rootInsuranceHero from "@/assets/tools/root-insurance-hero.jpg";
 import oscarHealthHero from "@/assets/tools/oscar-health-hero.jpg";
 import kinInsuranceHero from "@/assets/tools/kin-insurance-hero.jpg";
-import policygeniusHero from "@/assets/tools/policygenius-hero.jpg";
 
 export const aiInsuranceTools: Tool[] = [
-  {
-    icon: Shield,
-    title: "Lemonade AI",
-    description: "AI-powered insurance company offering instant quotes, fast claims processing, and transparent coverage for renters, homeowners, and pet insurance.",
-    emoji: "🍋",
-    color: "from-pink-500 to-red-600",
-    directUrl: "https://www.lemonade.com/?via=aiwebtools",
-    imageUrl: lemonadeHero,
-    tags: ["instant quotes", "fast claims", "renters insurance", "homeowners insurance", "pet insurance"],
-    category: "AI Insurance Tools",
-    rating: 4.5,
-    totalVotes: 4567
-  },
   {
     icon: Car,
     title: "Root Insurance",
@@ -41,7 +24,6 @@ export const aiInsuranceTools: Tool[] = [
     rating: 4.4,
     totalVotes: 3987
   },
-  // Metromile removed - acquired by Lemonade in 2022, website redirects
   {
     icon: Heart,
     title: "Oscar Health",
@@ -67,18 +49,5 @@ export const aiInsuranceTools: Tool[] = [
     category: "AI Insurance Tools",
     rating: 4.2,
     totalVotes: 2876
-  },
-  {
-    icon: FileText,
-    title: "Policygenius",
-    description: "AI insurance marketplace comparing quotes from top insurers for life, home, auto, and disability insurance with expert guidance.",
-    emoji: "📋",
-    color: "from-cyan-500 to-blue-600",
-    directUrl: "https://www.policygenius.com/?via=aiwebtools",
-    imageUrl: policygeniusHero,
-    tags: ["insurance marketplace", "quote comparison", "life insurance", "expert guidance", "multiple policies"],
-    category: "AI Insurance Tools",
-    rating: 4.5,
-    totalVotes: 3456
   }
 ];
