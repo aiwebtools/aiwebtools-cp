@@ -6,13 +6,15 @@ import soundrawHero from "@/assets/tools/soundraw-hero.jpg";
 import amperHero from "@/assets/tools/amper-hero.jpg";
 import udioMusicHero from "@/assets/tools/udio-music-hero.jpg";
 import boomyHero from "@/assets/tools/boomy-hero.jpg";
+import lyriaHero from "@/assets/tools/lyria-deepmind-hero.jpg";
 import { 
   Music, 
   Mic, 
   Radio, 
   Headphones, 
   Volume2,
-  Disc
+  Disc,
+  Sparkles
 } from "lucide-react";
 
 export const aiMusicProductionTools: Tool[] = [
@@ -91,5 +93,18 @@ export const aiMusicProductionTools: Tool[] = [
     category: "AI Music Production Tools",
     rating: 4.3,
     totalVotes: 2987
+  },
+  {
+    icon: Sparkles,
+    title: "Lyria (Google DeepMind's Text to Music Generator)",
+    description: "Google DeepMind's groundbreaking AI music model integrated into Gemini, generating high-quality music from text descriptions with professional instrumentation, vocals, and mixing.",
+    emoji: "🎶",
+    color: "from-blue-500 to-teal-600",
+    directUrl: "https://gemini.google.com/music",
+    imageUrl: lyriaHero,
+    tags: ["Music Generator", "text to music", "AI music", "Google DeepMind", "Gemini", "Lyria", "music generation", "AI composer", "Gemini Gem"],
+    category: "AI Music Production Tools",
+    rating: 4.8,
+    totalVotes: 7200
   }
 ];
