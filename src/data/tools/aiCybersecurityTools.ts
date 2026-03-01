@@ -1,6 +1,13 @@
 import { Tool } from "@/types/tools";
 import { Shield, Lock, AlertTriangle, Eye, Zap, ShieldCheck } from "lucide-react";
 
+import darktraceHero from "@/assets/tools/darktrace-hero.jpg";
+import crowdstrikeHero from "@/assets/tools/crowdstrike-hero.jpg";
+import sentineloneHero from "@/assets/tools/sentinelone-hero.jpg";
+import vectraHero from "@/assets/tools/vectra-hero.jpg";
+import cortexXdrHero from "@/assets/tools/cortex-xdr-hero.jpg";
+import cylanceHero from "@/assets/tools/cylance-hero.jpg";
+
 export const aiCybersecurityTools: Tool[] = [
   {
     icon: Shield,
@@ -9,7 +16,7 @@ export const aiCybersecurityTools: Tool[] = [
     emoji: "🛡️",
     color: "from-red-500 to-orange-600",
     directUrl: "https://darktrace.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/darktrace-hero.png",
+    imageUrl: darktraceHero,
     tags: ["Security", "cybersecurity", "threat detection", "AI security", "zero-day protection", "autonomous response", "network security", "Cybersecurity", "Threat Detection"],
     category: "AI Cybersecurity",
     rating: 4.8,
@@ -22,7 +29,7 @@ export const aiCybersecurityTools: Tool[] = [
     emoji: "🦅",
     color: "from-blue-500 to-indigo-600",
     directUrl: "https://www.crowdstrike.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/crowdstrike-hero.png",
+    imageUrl: crowdstrikeHero,
     tags: ["Security", "endpoint security", "threat intelligence", "EDR", "incident response", "cloud security", "AI protection", "Endpoint Protection", "Threat Detection"],
     category: "AI Cybersecurity",
     rating: 4.9,
@@ -35,7 +42,7 @@ export const aiCybersecurityTools: Tool[] = [
     emoji: "⚔️",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://www.sentinelone.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/sentinelone-hero.png",
+    imageUrl: sentineloneHero,
     tags: ["Security", "endpoint security", "autonomous protection", "cloud security", "threat prevention", "AI detection", "EDR", "Endpoint Protection", "Cybersecurity"],
     category: "AI Cybersecurity",
     rating: 4.8,
@@ -48,7 +55,7 @@ export const aiCybersecurityTools: Tool[] = [
     emoji: "👁️",
     color: "from-teal-500 to-cyan-600",
     directUrl: "https://www.vectra.ai/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/vectra-hero.png",
+    imageUrl: vectraHero,
     tags: ["Security", "network security", "threat detection", "NDR", "behavioral analysis", "cloud security", "AI monitoring", "VPN & Network Security", "Threat Detection"],
     category: "AI Cybersecurity",
     rating: 4.7,
@@ -61,7 +68,7 @@ export const aiCybersecurityTools: Tool[] = [
     emoji: "🔥",
     color: "from-orange-500 to-red-600",
     directUrl: "https://www.paloaltonetworks.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/cortex-xdr-hero.png",
+    imageUrl: cortexXdrHero,
     tags: ["Security", "XDR", "threat detection", "security automation", "endpoint protection", "network security", "AI analytics", "Endpoint Protection", "Threat Detection"],
     category: "AI Cybersecurity",
     rating: 4.7,
@@ -74,7 +81,7 @@ export const aiCybersecurityTools: Tool[] = [
     emoji: "⚡",
     color: "from-green-500 to-emerald-600",
     directUrl: "https://www.blackberry.com/us/en/products/cylance-endpoint-security?via=aiwebtools",
-    imageUrl: "/src/assets/tools/cylance-hero.png",
+    imageUrl: cylanceHero,
     tags: ["Security", "endpoint protection", "predictive security", "threat prevention", "AI detection", "machine learning", "lightweight", "Endpoint Protection", "Cybersecurity"],
     category: "AI Cybersecurity",
     rating: 4.6,
