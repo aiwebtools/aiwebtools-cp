@@ -9,6 +9,13 @@ import {
   Calendar
 } from "lucide-react";
 
+import firefliesAiHero from "@/assets/tools/fireflies-ai-hero.jpg";
+import fathomHero from "@/assets/tools/fathom-hero.jpg";
+import avomaHero from "@/assets/tools/avoma-hero.jpg";
+import grainHero from "@/assets/tools/grain-hero.jpg";
+import semblyAiHero from "@/assets/tools/sembly-ai-hero.jpg";
+import tactiqHero from "@/assets/tools/tactiq-hero.jpg";
+
 export const aiMeetingAssistants: Tool[] = [
   {
     icon: Video,
@@ -17,7 +24,7 @@ export const aiMeetingAssistants: Tool[] = [
     emoji: "🔥",
     color: "from-orange-500 to-red-600",
     directUrl: "https://fireflies.ai/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/fireflies-ai-hero.png",
+    imageUrl: firefliesAiHero,
     tags: ["Meeting Agent", "Automation Agent", "meeting recording", "transcription", "voice analytics", "action items", "team collaboration", "agent"],
     category: "AI Meeting Assistants",
     rating: 4.7,
@@ -30,7 +37,7 @@ export const aiMeetingAssistants: Tool[] = [
     emoji: "🧠",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://fathom.video/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/fathom-hero.png",
+    imageUrl: fathomHero,
     tags: ["Meeting Agent", "Automation Agent", "free meeting notes", "no bot", "CRM sync", "highlights", "summaries", "agent"],
     category: "AI Meeting Assistants",
     rating: 4.8,
@@ -43,7 +50,7 @@ export const aiMeetingAssistants: Tool[] = [
     emoji: "💬",
     color: "from-blue-500 to-green-600",
     directUrl: "https://www.avoma.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/avoma-hero.png",
+    imageUrl: avomaHero,
     tags: ["Meeting Agent", "Automation Agent", "conversation intelligence", "CRM integration", "sales meetings", "customer success", "revenue optimization", "agent"],
     category: "AI Meeting Assistants",
     rating: 4.6,
@@ -56,7 +63,7 @@ export const aiMeetingAssistants: Tool[] = [
     emoji: "🎯",
     color: "from-green-500 to-teal-600",
     directUrl: "https://grain.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/grain-hero.png",
+    imageUrl: grainHero,
     tags: ["Meeting Agent", "Automation Agent", "revenue teams", "customer insights", "highlight reels", "sales enablement", "AI summaries", "agent"],
     category: "AI Meeting Assistants",
     rating: 4.5,
@@ -69,7 +76,7 @@ export const aiMeetingAssistants: Tool[] = [
     emoji: "📅",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://www.sembly.ai/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/sembly-ai-hero.png",
+    imageUrl: semblyAiHero,
     tags: ["Meeting Agent", "Automation Agent", "automated attendance", "comprehensive notes", "multi-meeting insights", "follow-ups", "productivity", "agent"],
     category: "AI Meeting Assistants",
     rating: 4.4,
@@ -82,7 +89,7 @@ export const aiMeetingAssistants: Tool[] = [
     emoji: "👥",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://tactiq.io/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/tactiq-hero.png",
+    imageUrl: tactiqHero,
     tags: ["Meeting Agent", "Automation Agent", "real-time transcription", "privacy focused", "action items", "custom AI prompts", "local processing", "agent"],
     category: "AI Meeting Assistants",
     rating: 4.6,

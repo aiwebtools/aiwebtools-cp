@@ -1,6 +1,13 @@
 import { Tool } from "@/types/tools";
 import { BarChart3, TrendingUp, Database, Sparkles, PieChart } from "lucide-react";
 
+import tableauAiHero from "@/assets/tools/tableau-ai-hero.jpg";
+import powerBiCopilotHero from "@/assets/tools/power-bi-copilot-hero.jpg";
+import thoughtspotHero from "@/assets/tools/thoughtspot-hero.jpg";
+import polymerHero from "@/assets/tools/polymer-hero.jpg";
+import lookerGcloudHero from "@/assets/tools/looker-gcloud-hero.jpg";
+import qlikSenseAiHero from "@/assets/tools/qlik-sense-ai-hero.jpg";
+
 export const aiDataAnalyticsTools: Tool[] = [
   {
     icon: BarChart3,
@@ -9,7 +16,7 @@ export const aiDataAnalyticsTools: Tool[] = [
     emoji: "📊",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://www.tableau.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/tableau-ai-hero.png",
+    imageUrl: tableauAiHero,
     tags: ["Data Agent", "data visualization", "business intelligence", "AI analytics", "dashboards", "data insights", "BI platform", "agent", "Data Visualization", "Business Intelligence", "Dashboard"],
     category: "AI Data Analytics & BI",
     rating: 4.8,
@@ -22,7 +29,7 @@ export const aiDataAnalyticsTools: Tool[] = [
     emoji: "📈",
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://powerbi.microsoft.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/power-bi-copilot-hero.png",
+    imageUrl: powerBiCopilotHero,
     tags: ["Data Agent", "business intelligence", "data visualization", "AI copilot", "Microsoft", "analytics", "dashboards", "data insights", "agent", "Data Visualization", "Business Intelligence", "Reporting"],
     category: "AI Data Analytics & BI",
     rating: 4.9,
@@ -35,7 +42,7 @@ export const aiDataAnalyticsTools: Tool[] = [
     emoji: "✨",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://www.thoughtspot.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/thoughtspot-hero.png",
+    imageUrl: thoughtspotHero,
     tags: ["Data Agent", "AI analytics", "search analytics", "business intelligence", "data insights", "natural language", "self-service BI", "agent", "AI Analytics", "Business Intelligence"],
     category: "AI Data Analytics & BI",
     rating: 4.7,
@@ -48,7 +55,7 @@ export const aiDataAnalyticsTools: Tool[] = [
     emoji: "🔮",
     color: "from-indigo-500 to-purple-600",
     directUrl: "https://www.polymersearch.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/polymer-hero.png",
+    imageUrl: polymerHero,
     tags: ["Data Agent", "data analysis", "spreadsheet analytics", "no-code", "AI insights", "data visualization", "automated dashboards", "agent", "Data Visualization", "Dashboard", "Data Analysis"],
     category: "AI Data Analytics & BI",
     rating: 4.6,
@@ -61,7 +68,7 @@ export const aiDataAnalyticsTools: Tool[] = [
     emoji: "🥧",
     color: "from-green-500 to-teal-600",
     directUrl: "https://cloud.google.com/looker?via=aiwebtools",
-    imageUrl: "/src/assets/tools/looker-gcloud-hero.png",
+    imageUrl: lookerGcloudHero,
     tags: ["Data Agent", "business intelligence", "data analytics", "Google Cloud", "data modeling", "enterprise BI", "data insights", "agent", "Business Intelligence", "Reporting", "Data Visualization"],
     category: "AI Data Analytics & BI",
     rating: 4.7,
@@ -74,7 +81,7 @@ export const aiDataAnalyticsTools: Tool[] = [
     emoji: "📉",
     color: "from-emerald-500 to-green-600",
     directUrl: "https://www.qlik.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/qlik-sense-ai-hero.png",
+    imageUrl: qlikSenseAiHero,
     tags: ["Data Agent", "analytics", "business intelligence", "AI insights", "data discovery", "enterprise analytics", "data visualization", "agent", "Business Intelligence", "Data Visualization", "AI Analytics"],
     category: "AI Data Analytics & BI",
     rating: 4.6,

@@ -1,6 +1,13 @@
 import { Tool } from "@/types/tools";
 import { ShoppingCart, TrendingUp, Target, Star, Package, Sparkles } from "lucide-react";
 
+import shopifyAiHero from "@/assets/tools/shopify-ai-hero.jpg";
+import bigcommerceHero from "@/assets/tools/bigcommerce-hero.jpg";
+import nostoHero from "@/assets/tools/nosto-hero.jpg";
+import bazaarvoiceHero from "@/assets/tools/bazaarvoice-hero.jpg";
+import algoliaHero from "@/assets/tools/algolia-hero.jpg";
+import dynamicYieldHero from "@/assets/tools/dynamic-yield-hero.jpg";
+
 export const aiEcommerceTools: Tool[] = [
   {
     icon: ShoppingCart,
@@ -9,7 +16,7 @@ export const aiEcommerceTools: Tool[] = [
     emoji: "🛒",
     color: "from-green-500 to-emerald-600",
     directUrl: "https://www.shopify.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/shopify-ai-hero.png",
+    imageUrl: shopifyAiHero,
     tags: ["e-commerce", "online store", "AI recommendations", "inventory management", "marketing automation", "shopping cart"],
     category: "AI E-commerce",
     rating: 4.8,
@@ -22,7 +29,7 @@ export const aiEcommerceTools: Tool[] = [
     emoji: "📦",
     color: "from-blue-500 to-indigo-600",
     directUrl: "https://www.bigcommerce.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/bigcommerce-hero.png",
+    imageUrl: bigcommerceHero,
     tags: ["e-commerce", "enterprise", "personalization", "omnichannel", "merchandising", "AI insights"],
     category: "AI E-commerce",
     rating: 4.7,
@@ -35,7 +42,7 @@ export const aiEcommerceTools: Tool[] = [
     emoji: "🎯",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://www.nosto.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/nosto-hero.png",
+    imageUrl: nostoHero,
     tags: ["personalization", "product recommendations", "behavioral targeting", "conversion optimization", "AI commerce", "dynamic content"],
     category: "AI E-commerce",
     rating: 4.6,
@@ -48,7 +55,7 @@ export const aiEcommerceTools: Tool[] = [
     emoji: "⭐",
     color: "from-orange-500 to-red-600",
     directUrl: "https://www.bazaarvoice.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/bazaarvoice-hero.png",
+    imageUrl: bazaarvoiceHero,
     tags: ["reviews", "ratings", "user content", "social proof", "customer feedback", "trust building", "UGC"],
     category: "AI E-commerce",
     rating: 4.5,
@@ -61,7 +68,7 @@ export const aiEcommerceTools: Tool[] = [
     emoji: "🔍",
     color: "from-blue-600 to-cyan-700",
     directUrl: "https://www.algolia.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/algolia-hero.png",
+    imageUrl: algoliaHero,
     tags: ["search", "discovery", "e-commerce search", "personalization", "merchandising", "AI search"],
     category: "AI E-commerce",
     rating: 4.7,
@@ -74,7 +81,7 @@ export const aiEcommerceTools: Tool[] = [
     emoji: "📈",
     color: "from-teal-500 to-green-600",
     directUrl: "https://www.dynamicyield.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/dynamic-yield-hero.png",
+    imageUrl: dynamicYieldHero,
     tags: ["personalization", "optimization", "recommendations", "customer experience", "A/B testing", "merchandising"],
     category: "AI E-commerce",
     rating: 4.6,

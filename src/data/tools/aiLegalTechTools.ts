@@ -1,6 +1,7 @@
 import { Tool } from "@/types/tools";
 import { Scale, FileText, Search, Brain, BookOpen, Gavel } from "lucide-react";
 
+import harveyAiHero from "@/assets/tools/harvey-ai-hero.jpg";
 export const aiLegalTechTools: Tool[] = [
   {
     icon: Scale,
@@ -9,7 +10,7 @@ export const aiLegalTechTools: Tool[] = [
     emoji: "⚖️",
     color: "from-blue-500 to-indigo-600",
     directUrl: "https://www.harvey.ai/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/harvey-ai-hero.png",
+    imageUrl: harveyAiHero,
     tags: ["legal AI", "contract analysis", "legal research", "document drafting", "law firms", "legal assistant"],
     category: "AI Legal Tech",
     rating: 4.8,
