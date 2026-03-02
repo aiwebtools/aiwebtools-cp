@@ -119,6 +119,11 @@ const BookPromotionCard = () => {
       gradient: "from-cyan-500/20 to-purple-500/20"
     },
     {
+      id: "IHY7AlYJhUc",
+      title: "AI Web Tools Showcase",
+      gradient: "from-gold-500/20 to-amber-500/20"
+    },
+    {
       id: "i9e3pRXyP8s",
       title: "Book Deployable Robot Prompts Showcase",
       gradient: "from-orange-500/20 to-pink-500/20"
@@ -177,7 +182,14 @@ const BookPromotionCard = () => {
 
   // Randomize videos on component mount
   // Pin first video, shuffle the rest
-  const videos = useMemo(() => [originalVideos[0], ...shuffleArray(originalVideos.slice(1))], []);
+  const videos = useMemo(() => {
+    const pinned1 = originalVideos[0]; // Always first
+    const pinned4 = originalVideos[3]; // Always fourth (IHY7AlYJhUc)
+    const rest = originalVideos.filter((_, i) => i !== 0 && i !== 3);
+    const shuffled = shuffleArray(rest);
+    // Insert pinned4 at index 3 (4th position)
+    return [pinned1, shuffled[0], shuffled[1], pinned4, ...shuffled.slice(2)];
+  }, []);
 
   const videosPerPage = 3;
   const totalDesktopPages = Math.ceil(videos.length / videosPerPage);
