@@ -9,6 +9,13 @@ import {
   Palette
 } from "lucide-react";
 
+import luminarNeoHero from "@/assets/tools/luminar-neo-hero.jpg";
+import topazPhotoAiHero from "@/assets/tools/topaz-photo-ai-hero.jpg";
+import skylumHero from "@/assets/tools/skylum-hero.jpg";
+import on1PhotoRawHero from "@/assets/tools/on1-photo-raw-hero.jpg";
+import dxoPhotolabHero from "@/assets/tools/dxo-photolab-hero.jpg";
+import evotoAiHero from "@/assets/tools/evoto-ai-hero.jpg";
+
 export const aiPhotographyTools: Tool[] = [
   {
     icon: Sparkles,
@@ -17,6 +24,7 @@ export const aiPhotographyTools: Tool[] = [
     emoji: "✨",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://skylum.com/luminar?via=aiwebtools",
+    imageUrl: luminarNeoHero,
     tags: ["Photo Editor", "photo editing", "AI enhancement", "sky replacement", "portrait editing", "professional editing"],
     category: "AI Photography Tools",
     rating: 4.7,
@@ -29,6 +37,7 @@ export const aiPhotographyTools: Tool[] = [
     emoji: "⚡",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://www.topazlabs.com/topaz-photo-ai?via=aiwebtools",
+    imageUrl: topazPhotoAiHero,
     tags: ["Photo Editor", "Image Upscaler", "AI enhancement", "noise reduction", "upscaling", "sharpening", "image quality"],
     category: "AI Photography Tools",
     rating: 4.8,
@@ -41,6 +50,7 @@ export const aiPhotographyTools: Tool[] = [
     emoji: "📷",
     color: "from-green-500 to-teal-600",
     directUrl: "https://skylum.com/?via=aiwebtools",
+    imageUrl: skylumHero,
     tags: ["Photo Editor", "creative tools", "workflow automation", "AI effects", "photo software", "professional editing"],
     category: "AI Photography Tools",
     rating: 4.6,
@@ -53,6 +63,7 @@ export const aiPhotographyTools: Tool[] = [
     emoji: "🖼️",
     color: "from-orange-500 to-red-600",
     directUrl: "https://www.on1.com/?via=aiwebtools",
+    imageUrl: on1PhotoRawHero,
     tags: ["Photo Editor", "photo editing", "RAW processing", "AI masking", "photo organization", "non-destructive editing"],
     category: "AI Photography Tools",
     rating: 4.5,
@@ -65,6 +76,7 @@ export const aiPhotographyTools: Tool[] = [
     emoji: "🪄",
     color: "from-indigo-500 to-purple-600",
     directUrl: "https://www.dxo.com/dxo-photolab/?via=aiwebtools",
+    imageUrl: dxoPhotolabHero,
     tags: ["Photo Editor", "RAW editing", "noise reduction", "lens corrections", "color science", "professional tools"],
     category: "AI Photography Tools",
     rating: 4.7,
@@ -77,6 +89,7 @@ export const aiPhotographyTools: Tool[] = [
     emoji: "🎨",
     color: "from-pink-500 to-red-600",
     directUrl: "https://www.evoto.ai/?via=aiwebtools",
+    imageUrl: evotoAiHero,
     tags: ["Photo Editor", "batch editing", "portrait retouching", "one-click enhancement", "professional workflow", "AI automation"],
     category: "AI Photography Tools",
     rating: 4.4,
