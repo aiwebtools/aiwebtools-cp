@@ -291,7 +291,7 @@ const BookPromotionCard = () => {
   };
 
   return (
-    <section className="py-16 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #0a0a0a 0%, #001a00 50%, #0a0a0a 100%)' }}>
+    <section className="py-6 md:py-8 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #0a0a0a 0%, #001a00 50%, #0a0a0a 100%)' }}>
       {/* Matrix Rain Background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {Array.from({ length: 20 }).map((_, i) => (
@@ -327,7 +327,7 @@ const BookPromotionCard = () => {
         <div className="max-w-6xl mx-auto">
           {/* Cursive Gold Heading */}
           <h2 
-            className="text-center mb-8 text-3xl md:text-5xl font-light tracking-wide"
+            className="text-center mb-3 text-2xl md:text-4xl font-light tracking-wide"
             style={{
               fontFamily: "'Parisienne', 'Dancing Script', 'Great Vibes', cursive",
               background: 'linear-gradient(135deg, #FFD700 0%, #FFA500 25%, #FFD700 50%, #DAA520 75%, #FFD700 100%)',
@@ -344,7 +344,7 @@ const BookPromotionCard = () => {
           <div className="bg-gradient-to-r from-green-900/60 to-emerald-900/60 backdrop-blur-sm border border-green-500/40 rounded-2xl overflow-hidden shadow-2xl shadow-green-500/10">
             <div className="flex flex-col lg:flex-row items-center">
               {/* Book Visual - YouTube Videos */}
-              <div className="lg:w-1/2 p-8">
+                <div className="lg:w-1/2 p-3 md:p-5">
                 {/* Desktop: Carousel showing 3 videos at a time */}
                 <div className="hidden md:block relative">
                   <div className="flex items-center justify-center gap-2">
@@ -451,19 +451,19 @@ const BookPromotionCard = () => {
               </div>
 
               {/* Content */}
-              <div className="lg:w-1/2 p-8">
+              <div className="lg:w-1/2 p-3 md:p-5">
                 <div className="text-center lg:text-left">
-                  <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                  <h2 className="text-xl md:text-2xl font-bold text-white mb-2">
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">
                       The Book Of Deployable Robot Prompts
                     </span>
                   </h2>
                   
-                  <p className="text-green-200 text-lg mb-4">
+                  <p className="text-green-200 text-sm mb-2">
                     By <span className="text-green-400 font-semibold" style={{ textShadow: '0 0 10px #00ff00' }}>AIWebTools.AI</span>
                   </p>
                   
-                  <div className="space-y-3 mb-6">
+                  <div className="space-y-1 mb-3 text-sm">
                     <div className="flex items-center justify-center lg:justify-start gap-2 text-green-300">
                       <span className="text-green-400">🤖</span>
                       <span>Over 60 Deployable Robots & Key AI Insights</span>
@@ -478,36 +478,36 @@ const BookPromotionCard = () => {
                     </div>
                   </div>
 
-                  <div className="flex flex-col gap-4">
-                    <div className="flex flex-col sm:flex-row gap-4">
+                  <div className="flex flex-col gap-2">
+                    <div className="flex flex-col sm:flex-row gap-2">
                       <Button
                         onClick={handleBuyBook}
-                        size="lg"
-                        className="bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold px-8 py-4 rounded-xl text-lg shadow-lg hover:shadow-orange-500/25 transition-all duration-300 transform hover:scale-105"
+                        size="sm"
+                        className="bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold px-4 py-2 rounded-lg text-sm shadow-lg hover:shadow-orange-500/25 transition-all duration-300 transform hover:scale-105"
                       >
-                        <BookOpen className="mr-2" size={20} />
+                        <BookOpen className="mr-1.5" size={16} />
                         📖 Buy on Amazon
-                        <ExternalLink className="ml-2" size={16} />
+                        <ExternalLink className="ml-1.5" size={14} />
                       </Button>
 
                       <Button
                         onClick={handleDownloadBook}
-                        size="lg"
-                        className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold px-6 py-4 rounded-xl text-base shadow-lg hover:shadow-cyan-500/25 transition-all duration-300 transform hover:scale-105"
+                        size="sm"
+                        className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold px-4 py-2 rounded-lg text-sm shadow-lg hover:shadow-cyan-500/25 transition-all duration-300 transform hover:scale-105"
                       >
-                        <Download className="mr-2" size={20} />
-                        📥 Download Free Copy (DOCX)
-                        <ExternalLink className="ml-2" size={16} />
+                        <Download className="mr-1.5" size={16} />
+                        📥 Free Copy (DOCX)
+                        <ExternalLink className="ml-1.5" size={14} />
                       </Button>
                     </div>
 
                     <Dialog>
                       <DialogTrigger asChild>
                         <Button
-                          size="lg"
-                          className="bg-gradient-to-r from-green-600 to-emerald-700 hover:from-green-700 hover:to-emerald-800 text-white font-bold px-6 py-3 rounded-xl shadow-lg hover:shadow-green-500/25 transition-all duration-300 transform hover:scale-105 border border-green-400/30"
+                          size="sm"
+                          className="bg-gradient-to-r from-green-600 to-emerald-700 hover:from-green-700 hover:to-emerald-800 text-white font-bold px-4 py-2 rounded-lg text-sm shadow-lg hover:shadow-green-500/25 transition-all duration-300 transform hover:scale-105 border border-green-400/30"
                         >
-                          <Eye className="mr-2" size={20} />
+                          <Eye className="mr-1.5" size={16} />
                           👁️ View Preview
                         </Button>
                       </DialogTrigger>
