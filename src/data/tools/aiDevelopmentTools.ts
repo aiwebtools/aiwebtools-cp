@@ -16,6 +16,11 @@ import {
 
 import githubCopilotDevHero from "@/assets/tools/github-copilot-dev-hero.jpg";
 import lmStudioHero from "@/assets/tools/lm-studio-hero.jpg";
+import tabnineHero from "@/assets/tools/tabnine-hero.jpg";
+import mutableAiHero from "@/assets/tools/mutable-ai-hero.jpg";
+import sourcegraphHero from "@/assets/tools/sourcegraph-hero.jpg";
+import deepcodeHero from "@/assets/tools/deepcode-hero.jpg";
+import browseractHero from "@/assets/tools/browseract-hero.jpg";
 
 export const aiDevelopmentTools: Tool[] = [
   {
@@ -65,7 +70,7 @@ export const aiDevelopmentTools: Tool[] = [
     emoji: "⌨️",
     color: "from-green-500 to-cyan-600",
     directUrl: "https://www.tabnine.com/",
-    imageUrl: "/src/assets/tools/tabnine-hero.png",
+    imageUrl: tabnineHero,
     tags: ["Code Assistant", "Coding Agent", "AI coding", "code completion", "deep learning", "IDE integration", "developer tools", "agent"],
     category: "DEVELOPMENT & CODING",
     rating: 4.7,
@@ -78,7 +83,7 @@ export const aiDevelopmentTools: Tool[] = [
     emoji: "⚙️",
     color: "from-orange-500 to-red-600",
     directUrl: "https://mutable.ai/",
-    imageUrl: "/src/assets/tools/mutable-ai-hero.png",
+    imageUrl: mutableAiHero,
     tags: ["Code Assistant", "Testing", "Coding Agent", "AI code generation", "automated testing", "code evolution", "developer tools", "AI platform", "agent"],
     category: "DEVELOPMENT & CODING",
     rating: 4.6,
@@ -91,7 +96,7 @@ export const aiDevelopmentTools: Tool[] = [
     emoji: "🔍",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://sourcegraph.com/",
-    imageUrl: "/src/assets/tools/sourcegraph-hero.png",
+    imageUrl: sourcegraphHero,
     tags: ["Code Assistant", "CI/CD", "code search", "code intelligence", "automation", "developer tools", "CI/CD integration"],
     category: "DEVELOPMENT & CODING",
     rating: 4.5,
@@ -104,7 +109,7 @@ export const aiDevelopmentTools: Tool[] = [
     emoji: "🛡️",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://www.deepcode.ai/",
-    imageUrl: "/src/assets/tools/deepcode-hero.png",
+    imageUrl: deepcodeHero,
     tags: ["Security", "Testing", "code review", "bug detection", "vulnerability analysis", "security", "AI analysis"],
     category: "DEVELOPMENT & CODING",
     rating: 4.4,
@@ -157,7 +162,7 @@ export const aiDevelopmentTools: Tool[] = [
     emoji: "🌐",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://browseract.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/browseract-hero.png",
+    imageUrl: browseractHero,
     tags: ["API Tools", "Web Tasks Agent", "web scraping", "automation", "data extraction", "browser automation", "no-code", "AI automation", "agent"],
     category: "DEVELOPMENT & CODING",
     rating: 4.4,

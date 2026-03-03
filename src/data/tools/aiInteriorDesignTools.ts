@@ -14,7 +14,7 @@ import planner5dHero from "@/assets/tools/planner-5d-hero.jpg";
 import homestylerHero from "@/assets/tools/homestyler-hero.jpg";
 import coohomHero from "@/assets/tools/coohom-hero.jpg";
 import roomvoHero from "@/assets/tools/roomvo-hero.jpg";
-import modsyHero from "@/assets/tools/modsy-hero.jpg";
+
 
 export const aiInteriorDesignTools: Tool[] = [
   {
@@ -81,18 +81,5 @@ export const aiInteriorDesignTools: Tool[] = [
     category: "AI Interior Design Tools",
     rating: 4.2,
     totalVotes: 1876
-  },
-  {
-    icon: Sofa,
-    title: "Modsy",
-    description: "AI interior design service creating photorealistic 3D renderings of your space with curated furniture.",
-    emoji: "🛋️",
-    color: "from-indigo-500 to-purple-600",
-    directUrl: "https://www.modsy.com/?via=aiwebtools",
-    imageUrl: modsyHero,
-    tags: ["Interior Design", "3D Modeling", "3D rendering", "interior design", "furniture curation", "room redesign", "virtual design"],
-    category: "AI Interior Design Tools",
-    rating: 4.4,
-    totalVotes: 2654
   }
 ];

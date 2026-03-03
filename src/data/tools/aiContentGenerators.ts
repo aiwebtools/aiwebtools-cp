@@ -9,6 +9,12 @@ import {
   Crown
 } from "lucide-react";
 
+import jasperAiContentHero from "@/assets/tools/jasper-ai-content-hero.jpg";
+import writesonicContentHero from "@/assets/tools/writesonic-content-hero.jpg";
+import rytrHero from "@/assets/tools/rytr-hero.jpg";
+import chatgptPlusHero from "@/assets/tools/chatgpt-plus-hero.jpg";
+import claudeProHero from "@/assets/tools/claude-pro-hero.jpg";
+
 export const aiContentGenerators: Tool[] = [
   {
     icon: Brain,
@@ -17,7 +23,7 @@ export const aiContentGenerators: Tool[] = [
     emoji: "🧠",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://www.jasper.ai/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/jasper-ai-hero.png",
+    imageUrl: jasperAiContentHero,
     tags: ["content generation", "marketing copy", "blog posts", "social media", "ads", "Blog Writing", "Copywriting", "Social Media Writing"],
     category: "Writing & Content Enhancement",
     rating: 4.6,
@@ -30,7 +36,7 @@ export const aiContentGenerators: Tool[] = [
     emoji: "📝",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://writesonic.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/writesonic-hero.png",
+    imageUrl: writesonicContentHero,
     tags: ["AI writing", "articles", "ads", "product descriptions", "SEO optimization", "SEO Content", "Article Writing", "Copywriting"],
     category: "Writing & Content Enhancement",
     rating: 4.4,
@@ -43,7 +49,7 @@ export const aiContentGenerators: Tool[] = [
     emoji: "🎯",
     color: "from-orange-500 to-red-600",
     directUrl: "https://rytr.me/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/rytr-hero.png",
+    imageUrl: rytrHero,
     tags: ["content creation", "emails", "blogs", "ads", "tone customization", "Blog Writing", "Email Writing", "Copywriting"],
     category: "Writing & Content Enhancement",
     rating: 4.3,
@@ -56,7 +62,7 @@ export const aiContentGenerators: Tool[] = [
     emoji: "🤖",
     color: "from-green-500 to-blue-600",
     directUrl: "https://chat.openai.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/chatgpt-plus-hero.png",
+    imageUrl: chatgptPlusHero,
     tags: ["ChatGPT", "OpenAI", "GPT-4", "conversational AI", "content creation", "Creative Writing", "Prompt Engineering"],
     category: "Writing & Content Enhancement",
     rating: 4.8,
@@ -69,7 +75,7 @@ export const aiContentGenerators: Tool[] = [
     emoji: "👑",
     color: "from-orange-500 to-red-600",
     directUrl: "https://claude.ai/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/claude-pro-hero.png",
+    imageUrl: claudeProHero,
     tags: ["Claude", "Anthropic", "long-form writing", "context understanding", "advanced AI", "Creative Writing", "Book Writing", "Article Writing"],
     category: "Writing & Content Enhancement",
     rating: 4.8,
