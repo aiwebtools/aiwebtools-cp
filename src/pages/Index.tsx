@@ -152,13 +152,13 @@ const Index = () => {
           <LazyFeaturedTools onToolsLoaded={(count) => {}} />
         </DeferredMount>
         
-        {/* Custom GPTs Video Section - render immediately */}
-        <SpecialServices />
-        
-        {/* Book of Deployable Robots - positioned above search */}
+        {/* Book of Deployable Robots - positioned above Custom GPTs */}
         <DeferredMount delay={0} fallback={null}>
           <BookPromotionCard />
         </DeferredMount>
+        
+        {/* Custom GPTs Video Section - render immediately */}
+        <SpecialServices />
         
         {/* Bottom Search Portal */}
         <DeferredMount delay={0} fallback={null}>
