@@ -30,6 +30,13 @@ import {
 import githubCopilotHero from "@/assets/tools/github-copilot-hero.jpg";
 import tabnineHero from "@/assets/tools/tabnine-hero.jpg";
 import openaiCodexHero from "@/assets/tools/openai-codex-hero.jpg";
+import siriHero from "@/assets/tools/siri-hero.jpg";
+import googleAssistantHero from "@/assets/tools/google-assistant-hero.jpg";
+import amazonAlexaHero from "@/assets/tools/amazon-alexa-hero.jpg";
+import cortanaHero from "@/assets/tools/cortana-hero.jpg";
+import otterAiHero from "@/assets/tools/otter-ai-hero.jpg";
+import notionAiHero from "@/assets/tools/notion-ai-hero.jpg";
+import grammarlyHero from "@/assets/tools/grammarly-hero.jpg";
 
 export const aiAssistants: Tool[] = [
   {
@@ -143,7 +150,7 @@ export const aiAssistants: Tool[] = [
     emoji: "🍎",
     color: "from-blue-500 to-indigo-600",
     directUrl: "https://apple.com/siri",
-    imageUrl: "/src/assets/tools/siri-hero.png",
+    imageUrl: siriHero,
     category: "AI Voice Assistants",
     tags: ["Voice Agent", "voice assistant", "ios", "apple", "smart home", "agent"],
     rating: 4.2,
@@ -156,7 +163,7 @@ export const aiAssistants: Tool[] = [
     emoji: "🎯",
     color: "from-green-500 to-blue-600",
     directUrl: "https://assistant.google.com",
-    imageUrl: "/src/assets/tools/google-assistant-hero.png",
+    imageUrl: googleAssistantHero,
     category: "AI Voice Assistants",
     tags: ["Voice Agent", "voice assistant", "google", "smart home", "android", "agent"],
     rating: 4.3,
@@ -169,7 +176,7 @@ export const aiAssistants: Tool[] = [
     emoji: "🔊",
     color: "from-orange-500 to-blue-600",
     directUrl: "https://alexa.amazon.com",
-    imageUrl: "/src/assets/tools/amazon-alexa-hero.png",
+    imageUrl: amazonAlexaHero,
     category: "AI Voice Assistants",
     tags: ["Voice Agent", "voice assistant", "amazon", "echo", "smart home", "agent"],
     rating: 4.1,
@@ -182,7 +189,7 @@ export const aiAssistants: Tool[] = [
     emoji: "🪟",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://cortana.microsoft.com",
-    imageUrl: "/src/assets/tools/cortana-hero.png",
+    imageUrl: cortanaHero,
     category: "AI Voice Assistants",
     tags: ["Voice Agent", "Productivity Agent", "voice assistant", "microsoft", "windows", "productivity", "agent"],
     rating: 3.8,
@@ -195,7 +202,7 @@ export const aiAssistants: Tool[] = [
     emoji: "🦦",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://otter.ai",
-    imageUrl: "/src/assets/tools/otter-ai-hero.png",
+    imageUrl: otterAiHero,
     category: "AI Meeting Assistants",
     tags: ["Meeting Agent", "transcription", "meetings", "notes", "collaboration", "agent"],
     rating: 4.4,
@@ -208,7 +215,7 @@ export const aiAssistants: Tool[] = [
     emoji: "📝",
     color: "from-gray-600 to-blue-600",
     directUrl: "https://notion.so/ai",
-    imageUrl: "/src/assets/tools/notion-ai-workspace-hero.png",
+    imageUrl: notionAiHero,
     category: "AI Writing Assistants",
     tags: ["Writing Agent", "Productivity Agent", "writing", "productivity", "workspace", "collaboration", "agent", "writing assistant", "ai writer", "content writer", "write for me"],
     rating: 4.5,
@@ -234,7 +241,7 @@ export const aiAssistants: Tool[] = [
     emoji: "✅",
     color: "from-green-500 to-blue-600",
     directUrl: "https://grammarly.com",
-    imageUrl: "/src/assets/tools/grammarly-hero.png",
+    imageUrl: grammarlyHero,
     category: "AI Writing Assistants",
     tags: ["Writing Agent", "grammar", "writing", "proofreading", "style", "agent", "writing assistant", "ai writer", "content writer"],
     rating: 4.6,

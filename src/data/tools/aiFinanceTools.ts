@@ -7,6 +7,10 @@ import {
 
 import kenshoHero from "@/assets/tools/kensho-hero.jpg";
 import alphasenseHero from "@/assets/tools/alphasense-hero.jpg";
+import zestAiHero from "@/assets/tools/zest-ai-hero.jpg";
+import personalCapitalHero from "@/assets/tools/personal-capital-hero.jpg";
+import robinhoodHero from "@/assets/tools/robinhood-hero.jpg";
+import mintHero from "@/assets/tools/mint-hero.jpg";
 
 export const aiFinanceTools: Tool[] = [
   {
@@ -42,7 +46,7 @@ export const aiFinanceTools: Tool[] = [
     emoji: "🏢",
     color: "from-orange-500 to-red-600",
     directUrl: "https://www.zest.ai/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/zest-ai-hero.png",
+    imageUrl: zestAiHero,
     tags: ["credit scoring", "lending", "underwriting", "financial AI"],
     category: "Professional Services",
     rating: 4.4,
@@ -55,7 +59,7 @@ export const aiFinanceTools: Tool[] = [
     emoji: "🥧",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://www.personalcapital.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/personal-capital-hero.png",
+    imageUrl: personalCapitalHero,
     tags: ["wealth management", "financial planning", "portfolio analysis", "investment tracking"],
     category: "Professional Services",
     rating: 4.3,
@@ -68,7 +72,7 @@ export const aiFinanceTools: Tool[] = [
     emoji: "🎯",
     color: "from-green-500 to-teal-600",
     directUrl: "https://robinhood.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/robinhood-hero.png",
+    imageUrl: robinhoodHero,
     tags: ["investing", "trading", "portfolio management", "market analysis"],
     category: "Professional Services",
     rating: 4.2,
@@ -81,7 +85,7 @@ export const aiFinanceTools: Tool[] = [
     emoji: "💰",
     color: "from-green-500 to-cyan-600",
     directUrl: "https://mint.intuit.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/mint-hero.png",
+    imageUrl: mintHero,
     tags: ["personal finance", "budgeting", "expense tracking", "financial planning"],
     category: "Professional Services",
     rating: 4.2,
