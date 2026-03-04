@@ -30,6 +30,17 @@ import {
   Home
 } from "lucide-react";
 
+import cannabisFacilityHero from "@/assets/tools/cannabis-facility-inspector-hero.jpg";
+import hospitalFacilityHero from "@/assets/tools/hospital-facility-inspector-hero.jpg";
+import shippingContainerHero from "@/assets/tools/shipping-container-inspector-hero.jpg";
+import foodProcessingHero from "@/assets/tools/food-processing-inspector-hero.jpg";
+import chemicalPlantHero from "@/assets/tools/chemical-plant-inspector-hero.jpg";
+import factoryProductionHero from "@/assets/tools/factory-production-inspector-hero.jpg";
+import warehouseHero from "@/assets/tools/warehouse-inspector-hero.jpg";
+import solarFarmHero from "@/assets/tools/solar-farm-inspector-hero.jpg";
+import windTurbineHero from "@/assets/tools/wind-turbine-inspector-hero.jpg";
+import waterTreatmentHero from "@/assets/tools/water-treatment-inspector-hero.jpg";
+
 export const inspectorAndSafetyGPTs: Tool[] = [
   {
     icon: Shield,
@@ -38,7 +49,7 @@ export const inspectorAndSafetyGPTs: Tool[] = [
     emoji: "🌿",
     color: "from-green-500 to-teal-600",
     directUrl: "https://chatgpt.com/g/g-68bb6f9b87748191a376eb2fd427365d-ai-cannabis-facility-safety-inspector/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/cannabis-facility-inspector-hero.png",
+    imageUrl: cannabisFacilityHero,
     tags: ["cannabis inspection", "facility safety", "compliance audit", "safety inspector", "cannabis industry", "aiwebtools"],
     category: "Inspector & Safety",
     rating: 4.6,
@@ -51,7 +62,7 @@ export const inspectorAndSafetyGPTs: Tool[] = [
     emoji: "🏥",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://chatgpt.com/g/g-68bb6ea0898c8191b61de70d8c5d52a3-ai-hospital-facility-safety-inspector/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/hospital-facility-inspector-hero.png",
+    imageUrl: hospitalFacilityHero,
     tags: ["hospital inspection", "healthcare safety", "medical facility", "compliance audit", "healthcare inspector", "aiwebtools"],
     category: "Inspector & Safety",
     rating: 4.8,
@@ -64,7 +75,7 @@ export const inspectorAndSafetyGPTs: Tool[] = [
     emoji: "📦",
     color: "from-blue-500 to-green-600",
     directUrl: "https://chatgpt.com/g/g-68bb6c04f7208191bdf1ee0ba3c31aeb-ai-shipping-container-inspector/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/shipping-container-inspector-hero.png",
+    imageUrl: shippingContainerHero,
     tags: ["container inspection", "shipping inspection", "cargo inspection", "maritime safety", "logistics inspector", "aiwebtools"],
     category: "Inspector & Safety",
     rating: 4.5,
@@ -77,7 +88,7 @@ export const inspectorAndSafetyGPTs: Tool[] = [
     emoji: "🏭",
     color: "from-orange-500 to-red-600",
     directUrl: "https://chatgpt.com/g/g-68bb62c66ea081919d6d283576fda730-food-processing-plant-inspector-gpt/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/food-processing-inspector-hero.png",
+    imageUrl: foodProcessingHero,
     tags: ["food safety", "plant inspection", "food processing", "safety audit", "food industry", "aiwebtools"],
     category: "Inspector & Safety",
     rating: 4.7,
@@ -103,7 +114,7 @@ export const inspectorAndSafetyGPTs: Tool[] = [
     emoji: "⚗️",
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://chatgpt.com/g/g-68bb5f0d5a488191a58dd3e6d9e6a4b9-chemical-plant-inspector-gpt/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/chemical-plant-inspector-hero.png",
+    imageUrl: chemicalPlantHero,
     tags: ["chemical inspection", "plant safety", "refinery inspection", "chemical safety", "industrial inspector", "aiwebtools"],
     category: "Inspector & Safety",
     rating: 4.8,
@@ -116,7 +127,7 @@ export const inspectorAndSafetyGPTs: Tool[] = [
     emoji: "🏭",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://chatgpt.com/g/g-68bb5dcec6b08191aceaa0202f5b926d-factory-production-line-inspector-gpt/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/factory-production-inspector-hero.png",
+    imageUrl: factoryProductionHero,
     tags: ["factory inspection", "production line", "manufacturing safety", "industrial inspector", "quality control", "aiwebtools"],
     category: "Inspector & Safety",
     rating: 4.5,
@@ -129,7 +140,7 @@ export const inspectorAndSafetyGPTs: Tool[] = [
     emoji: "🏢",
     color: "from-gray-500 to-blue-600",
     directUrl: "https://chatgpt.com/g/g-68bb5c67ee54819197ea5ae2df25ac69-warehouse-inspector-gpt/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/warehouse-inspector-hero.png",
+    imageUrl: warehouseHero,
     tags: ["warehouse inspection", "storage safety", "logistics safety", "warehouse compliance", "storage inspector", "aiwebtools"],
     category: "Inspector & Safety",
     rating: 4.4,
@@ -233,7 +244,7 @@ export const inspectorAndSafetyGPTs: Tool[] = [
     emoji: "💧",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://chatgpt.com/g/g-68bb4f7738c48191b8d2ed34b11279cc-ai-water-treatment-plant-inspector-gpt/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/water-treatment-inspector-hero.png",
+    imageUrl: waterTreatmentHero,
     tags: ["water treatment", "wastewater inspection", "water safety", "treatment plant", "water quality", "aiwebtools"],
     category: "Inspector & Safety",
     rating: 4.6,
@@ -246,7 +257,7 @@ export const inspectorAndSafetyGPTs: Tool[] = [
     emoji: "☀️",
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://chatgpt.com/g/g-68bb4ea28fec819196a157b74750be21-solar-farm-inspector-gpt/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/solar-farm-inspector-hero.png",
+    imageUrl: solarFarmHero,
     tags: ["solar inspection", "renewable energy", "solar farm", "pv inspection", "green energy", "aiwebtools"],
     category: "Inspector & Safety",
     rating: 4.7,
@@ -259,7 +270,7 @@ export const inspectorAndSafetyGPTs: Tool[] = [
     emoji: "💨",
     color: "from-blue-500 to-green-600",
     directUrl: "https://chatgpt.com/g/g-68bb4d76cb3081918d1e8f0cc2ce7e59-ai-wind-turbine-inspector/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/wind-turbine-inspector-hero.png",
+    imageUrl: windTurbineHero,
     tags: ["wind turbine", "wind energy", "renewable inspection", "turbine safety", "wind power", "aiwebtools"],
     category: "Inspector & Safety",
     rating: 4.6,
