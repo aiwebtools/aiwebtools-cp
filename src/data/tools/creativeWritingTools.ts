@@ -8,6 +8,10 @@ import {
   Zap
 } from "lucide-react";
 
+import scalenutHero from "@/assets/tools/scalenut-hero.jpg";
+import simplifiedHero from "@/assets/tools/simplified-hero.jpg";
+import ebookCreatorHero from "@/assets/tools/ebook-creator-hero.jpg";
+
 export const creativeWritingTools: Tool[] = [
   {
     icon: FileText,
@@ -55,7 +59,7 @@ export const creativeWritingTools: Tool[] = [
     emoji: "📚",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://go2.designrr.io/wordgenie2?affiliate=aiwebtools",
-    imageUrl: "/src/assets/tools/ebook-creator-hero.png",
+    imageUrl: ebookCreatorHero,
     tags: ["ebook creation", "publishing", "design", "templates", "content creation", "Book Writing"],
     category: "Writing & Content Enhancement",
     rating: 4.3,
@@ -68,7 +72,7 @@ export const creativeWritingTools: Tool[] = [
     emoji: "⌨️",
     color: "from-orange-500 to-yellow-600",
     directUrl: "https://www.scalenut.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/scalenut-hero.png",
+    imageUrl: scalenutHero,
     tags: ["SEO", "content marketing", "content planning", "keyword research", "AI writing", "SEO Content", "Content Strategy"],
     category: "Writing & Content Enhancement",
     rating: 4.6,
@@ -81,7 +85,7 @@ export const creativeWritingTools: Tool[] = [
     emoji: "⚡",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://simplified.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/simplified-hero.png",
+    imageUrl: simplifiedHero,
     tags: ["AI marketing", "content creation", "brand scaling", "social media", "design", "Social Media Writing", "Copywriting"],
     category: "Writing & Content Enhancement",
     rating: 4.4,
