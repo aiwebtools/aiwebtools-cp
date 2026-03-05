@@ -420,3 +420,15 @@ export { frontierInfraBatch2026B2 } from './frontierInfraBatch2026B2';
 
 // Export Frontier Infrastructure Batch 2026 B3 (21 tools: Aphra, Flora, Morgen, Fyxer AI, Akiflow, Limitless AI, Goose, Observer AI, Breeze, Kompas AI, Tidio Lyro, Canvas AI, Reef.ai, Avery, Wiser, AgentDock, Faktory, nventr, TeamPal, Upsonic, CustomGPT.ai)
 export { frontierInfraBatch2026B3 } from './frontierInfraBatch2026B3';
+
+// Export Frontier Infrastructure Batch 2026 C1 (20 tools: AWS Bedrock, Tray.ai, Dynamics 365, UserJot, CheckThat, Perfect Interview, Montee, Glinky, Perplexity Comet, Deepchecks, LangSmith, TruLens, Giskard, PromptFlow, DeepSource, Cerebras, Modal, RunPod, Nebius, Vast.ai)
+export { frontierInfraBatch2026C1 } from './frontierInfraBatch2026C1';
+
+// Export Frontier Infrastructure Batch 2026 C2 (20 tools: Fly.io, Yapper, Teammates.ai, TheLibrarian, Mailmodo, Stedi, Moveworks, Aisera, Paper, Vibe Otter, AIMakeSong, 7Taps, Handinger, AARENA, Blocks Team, DSPy, Seedream, Operator, MightyBot, Lumio AI)
+export { frontierInfraBatch2026C2 } from './frontierInfraBatch2026C2';
+
+// Export Frontier Infrastructure Batch 2026 C3 (6 tools: LoopOS, AdaptAI, Monity AI, Acrobat Studio, Cognigy, CausaLens)
+export { frontierInfraBatch2026C3 } from './frontierInfraBatch2026C3';
+
+// Export Frontier Infrastructure Batch 2026 C4 (11 tools: Vellum AI, Codium AI, Hume AI, Vapi, Nano Banana, Jason AI, Reclaim.ai, Yellow.ai, Capacity, Granola, Cognosys)
+export { frontierInfraBatch2026C4 } from './frontierInfraBatch2026C4';
