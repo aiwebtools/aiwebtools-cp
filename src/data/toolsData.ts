@@ -161,6 +161,9 @@ import { newAIAgents2026 } from "./tools/newAIAgents2026";
 // Import Enterprise Agents 2026 (26 tools: Salesforce Agentforce, Vertex AI, Ema, Decagon, Sierra, etc.)
 import { enterpriseAgents2026 } from "./tools/enterpriseAgents2026";
 
+// Import Advanced Agents Batch 2026 (25 tools: Agent Zero, Vercel AI SDK, OpenRouter, Langfuse, Haystack, etc.)
+import { advancedAgentsBatch2026 } from "./tools/advancedAgentsBatch2026";
+
 const allToolCategories = consolidateTools([
   ...getAllToolCategories(),
   ...newAffiliatePlatforms2025,
@@ -307,8 +310,11 @@ const allToolCategories = consolidateTools([
   // New AI Agents 2026 (15 verified: MultiOn, CodeRabbit, Phind, Induced, BrowserBase, LangGraph, Beam AI, Fixie, Sweep, Fine.dev, Adept, OpenHands, Dia Browser, Axiom, Ottogrid)
   ...newAIAgents2026,
   
-  // Enterprise Agents 2026 (26 tools: Salesforce Agentforce, Vertex AI, Ema, Decagon, Sierra, Zapier Central, ServiceNow, Oracle AI, Claude Code, RooCode, Gojiberry, Abnormal AI, Torq Socrates, Ramp AI, Intercom Fin, Sully.ai, NullClaw, CoPaw, Groq, Vellum AI, LobeChat, Fabric, Stack AI, Retool AI, Voca AI, MCP)
-  ...enterpriseAgents2026
+  // Enterprise Agents 2026
+  ...enterpriseAgents2026,
+  
+  // Advanced Agents Batch 2026 (25 tools: Agent Zero, Vercel AI SDK, OpenRouter, Langfuse, Haystack, Semantic Kernel, Agentverse, Otterly.AI, SignalHero, Tektonic AI, Echovane, causaLens, Vic.ai, SAS Viya, Hugo AI, StartClaw, Jan AI, Self-Operating Computer, ProxAI, Valyu, Brave Search API, Unstructured.io, Pi, CourseHero AI, Mentra)
+  ...advancedAgentsBatch2026
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories
