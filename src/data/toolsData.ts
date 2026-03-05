@@ -183,6 +183,8 @@ import { frontierBatchD1 } from "./tools/frontierBatchD1";
 import { frontierBatchD2 } from "./tools/frontierBatchD2";
 import { frontierBatchD3 } from "./tools/frontierBatchD3";
 import { frontierBatchD4 } from "./tools/frontierBatchD4";
+import { frontierBatchE1 } from "./tools/frontierBatchE1";
+import { frontierBatchE2 } from "./tools/frontierBatchE2";
 
 const allToolCategories = consolidateTools([
   ...getAllToolCategories(),
