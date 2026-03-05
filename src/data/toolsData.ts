@@ -164,6 +164,9 @@ import { enterpriseAgents2026 } from "./tools/enterpriseAgents2026";
 // Import Advanced Agents Batch 2026 (25 tools: Agent Zero, Vercel AI SDK, OpenRouter, Langfuse, Haystack, etc.)
 import { advancedAgentsBatch2026 } from "./tools/advancedAgentsBatch2026";
 
+// Import Frontier Agents Batch 2026 (20 tools: Wayve, Mojo, Pinecone Canopy, Weaviate Verba, Heptabase, Readwise Reader, EvenUp, Osmo, Atomic AI, Formstack AI, Arthur Shield, Lasso Security, Protect AI, HiddenLayer, WhyLabs, Humane AI, NVIDIA Isaac, Hailo, BrainChip, Skyfire)
+import { frontierAgentsBatch2026 } from "./tools/frontierAgentsBatch2026";
+
 const allToolCategories = consolidateTools([
   ...getAllToolCategories(),
   ...newAffiliatePlatforms2025,
@@ -314,7 +317,10 @@ const allToolCategories = consolidateTools([
   ...enterpriseAgents2026,
   
   // Advanced Agents Batch 2026 (25 tools: Agent Zero, Vercel AI SDK, OpenRouter, Langfuse, Haystack, Semantic Kernel, Agentverse, Otterly.AI, SignalHero, Tektonic AI, Echovane, causaLens, Vic.ai, SAS Viya, Hugo AI, StartClaw, Jan AI, Self-Operating Computer, ProxAI, Valyu, Brave Search API, Unstructured.io, Pi, CourseHero AI, Mentra)
-  ...advancedAgentsBatch2026
+  ...advancedAgentsBatch2026,
+  
+  // Frontier Agents Batch 2026
+  ...frontierAgentsBatch2026
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories

@@ -408,3 +408,6 @@ export { enterpriseAgents2026 } from './enterpriseAgents2026';
 
 // Export Advanced Agents Batch 2026 (25 tools: Agent Zero, Vercel AI SDK, OpenRouter, Langfuse, Haystack, Semantic Kernel, Agentverse, Otterly.AI, SignalHero, Tektonic AI, Echovane, causaLens, Vic.ai, SAS Viya, Hugo AI, StartClaw, Jan AI, Self-Operating Computer, ProxAI, Valyu, Brave Search API, Unstructured.io, Pi, CourseHero AI, Mentra)
 export { advancedAgentsBatch2026 } from './advancedAgentsBatch2026';
+
+// Export Frontier Agents Batch 2026 (20 tools: Wayve, Mojo, Pinecone Canopy, Weaviate Verba, Heptabase, Readwise Reader, EvenUp, Osmo, Atomic AI, Formstack AI, Arthur Shield, Lasso Security, Protect AI, HiddenLayer, WhyLabs, Humane AI, NVIDIA Isaac, Hailo, BrainChip, Skyfire)
+export { frontierAgentsBatch2026 } from './frontierAgentsBatch2026';
