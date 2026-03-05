@@ -411,3 +411,12 @@ export { advancedAgentsBatch2026 } from './advancedAgentsBatch2026';
 
 // Export Frontier Agents Batch 2026 (20 tools: Wayve, Mojo, Pinecone Canopy, Weaviate Verba, Heptabase, Readwise Reader, EvenUp, Osmo, Atomic AI, Formstack AI, Arthur Shield, Lasso Security, Protect AI, HiddenLayer, WhyLabs, Humane AI, NVIDIA Isaac, Hailo, BrainChip, Skyfire)
 export { frontierAgentsBatch2026 } from './frontierAgentsBatch2026';
+
+// Export Frontier Infrastructure Batch 2026 (23 tools: Token Security, FlowHunt, NoimosAI, FlowFlow, NoClick, Mercor, Ashby AI, Darwinbox, Findem, Humanly, PydanticAI, VoltAgent, Anchor Browser, HappyCapy, Warp Dev, Albert.ai, Superdom AI, Maven AGI, Parloa, Zip, Basis, Rillet, Docyt)
+export { frontierInfraBatch2026 } from './frontierInfraBatch2026';
+
+// Export Frontier Infrastructure Batch 2026 B2 (23 tools: Nominal, Wispr, Saner.ai, Mulerun, GraphRAG, Braid, Llama 4, MS Agent Framework, Vstorm, Lyzr AI, Addlly AI, Louisa AI, Bloks, Ruh AI, Airtop, Arcade, Paragon, Merge, Aikido Security, Cycode, Checkmarx One, Semgrep, Guardrails AI)
+export { frontierInfraBatch2026B2 } from './frontierInfraBatch2026B2';
+
+// Export Frontier Infrastructure Batch 2026 B3 (21 tools: Aphra, Flora, Morgen, Fyxer AI, Akiflow, Limitless AI, Goose, Observer AI, Breeze, Kompas AI, Tidio Lyro, Canvas AI, Reef.ai, Avery, Wiser, AgentDock, Faktory, nventr, TeamPal, Upsonic, CustomGPT.ai)
+export { frontierInfraBatch2026B3 } from './frontierInfraBatch2026B3';
