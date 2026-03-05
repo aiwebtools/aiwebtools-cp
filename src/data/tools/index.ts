@@ -402,3 +402,6 @@ export { topAgentPlatforms2026Batch2 } from './topAgentPlatforms2026Batch2';
 
 // Export New AI Agents 2026 (15 verified: MultiOn, CodeRabbit, Phind, Induced, BrowserBase, LangGraph, Beam AI, Fixie, Sweep, Fine.dev, Adept, OpenHands, Dia Browser, Axiom, Ottogrid)
 export { newAIAgents2026 } from './newAIAgents2026';
+
+// Export Enterprise Agents 2026 (26 tools: Salesforce Agentforce, Vertex AI, Ema, Decagon, Sierra, Zapier Central, ServiceNow, Oracle AI, Claude Code, RooCode, Gojiberry, Abnormal AI, Torq Socrates, Ramp AI, Intercom Fin, Sully.ai, NullClaw, CoPaw, Groq, Vellum AI, LobeChat, Fabric, Stack AI, Retool AI, Voca AI, MCP)
+export { enterpriseAgents2026 } from './enterpriseAgents2026';
