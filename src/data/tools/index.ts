@@ -472,3 +472,6 @@ export { phoneAgentsBatch2026 } from './phoneAgentsBatch2026';
 
 // Export Robotics Batch 2026 (5 tools: Noetix Bumi, Mirokaï, Fourier GR-2, AGIBOT, Standard Bots RO1)
 export { roboticsBatch2026 } from './roboticsBatch2026';
+
+// Export Niche Batch 2026 (6 tools: FeedHive, Relay.app, Obviously AI, LeadIQ, Rose AI, Perception AI)
+export { nicheBatch2026 } from './nicheBatch2026';
