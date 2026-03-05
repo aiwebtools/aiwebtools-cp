@@ -190,6 +190,8 @@ import { specializedAgentsBatch2026 } from "./tools/specializedAgentsBatch2026";
 import { voiceAgentsBatch2026 } from "./tools/voiceAgentsBatch2026";
 import { productivityAgentsBatch2026 } from "./tools/productivityAgentsBatch2026";
 import { digitalHumansBatch2026 } from "./tools/digitalHumansBatch2026";
+import { enterpriseOrchBatch2026 } from "./tools/enterpriseOrchBatch2026";
+import { phoneAgentsBatch2026 } from "./tools/phoneAgentsBatch2026";
 
 const allToolCategories = consolidateTools([
   ...getAllToolCategories(),
@@ -380,7 +382,13 @@ const allToolCategories = consolidateTools([
   ...productivityAgentsBatch2026,
 
   // Digital Humans Batch 2026 (11 tools: UneeQ, NVIDIA ACE, Leadde, InfiniteTalk, DaveAI, Crescendo.ai, Observe.AI, Yuma AI, Workbeaver, Marketecs Engine, Pod AI)
-  ...digitalHumansBatch2026
+  ...digitalHumansBatch2026,
+
+  // Enterprise Orchestration Batch 2026 (18 tools: FloTorch, Wizr AI, Shakudo, LuMay AI, GoSearch, Twin, Parabola, Text Blaze, Prophet Security, LoOper, Averi, StoryChief, Ardigen, AccuKnox, Open WebUI, ChromaDB, Qdrant, Whisper.cpp)
+  ...enterpriseOrchBatch2026,
+
+  // Phone Agents Batch 2026 (15 tools: Aloware, Nooks, SquadStack, Koncert, Orum, SalesAPE, NLPearl, Dialzara, Slang.ai, Rosie, Smith.ai, My AI Front Desk, Leaping AI, CallBotics, Allo)
+  ...phoneAgentsBatch2026
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories

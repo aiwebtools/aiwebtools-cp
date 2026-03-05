@@ -463,3 +463,9 @@ export { productivityAgentsBatch2026 } from './productivityAgentsBatch2026';
 
 // Export Digital Humans Batch 2026 (11 tools: UneeQ, NVIDIA ACE, Leadde, InfiniteTalk, DaveAI, Crescendo.ai, Observe.AI, Yuma AI, Workbeaver, Marketecs Engine, Pod AI)
 export { digitalHumansBatch2026 } from './digitalHumansBatch2026';
+
+// Export Enterprise Orchestration Batch 2026 (18 tools: FloTorch, Wizr AI, Shakudo, LuMay AI, GoSearch, Twin, Parabola, Text Blaze, Prophet Security, LoOper, Averi, StoryChief, Ardigen, AccuKnox, Open WebUI, ChromaDB, Qdrant, Whisper.cpp)
+export { enterpriseOrchBatch2026 } from './enterpriseOrchBatch2026';
+
+// Export Phone Agents Batch 2026 (15 tools: Aloware, Nooks, SquadStack, Koncert, Orum, SalesAPE, NLPearl, Dialzara, Slang.ai, Rosie, Smith.ai, My AI Front Desk, Leaping AI, CallBotics, Allo)
+export { phoneAgentsBatch2026 } from './phoneAgentsBatch2026';
