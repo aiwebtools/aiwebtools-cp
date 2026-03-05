@@ -158,6 +158,9 @@ import { topAgentPlatforms2026Batch2 } from "./tools/topAgentPlatforms2026Batch2
 // Import New AI Agents 2026 (15 verified: MultiOn, CodeRabbit, Phind, Induced, BrowserBase, LangGraph, Beam AI, Fixie, Sweep, Fine.dev, Adept, OpenHands, Dia Browser, Axiom, Ottogrid)
 import { newAIAgents2026 } from "./tools/newAIAgents2026";
 
+// Import Enterprise Agents 2026 (26 tools: Salesforce Agentforce, Vertex AI, Ema, Decagon, Sierra, etc.)
+import { enterpriseAgents2026 } from "./tools/enterpriseAgents2026";
+
 const allToolCategories = consolidateTools([
   ...getAllToolCategories(),
   ...newAffiliatePlatforms2025,
@@ -302,7 +305,10 @@ const allToolCategories = consolidateTools([
   ...topAgentPlatforms2026Batch2,
   
   // New AI Agents 2026 (15 verified: MultiOn, CodeRabbit, Phind, Induced, BrowserBase, LangGraph, Beam AI, Fixie, Sweep, Fine.dev, Adept, OpenHands, Dia Browser, Axiom, Ottogrid)
-  ...newAIAgents2026
+  ...newAIAgents2026,
+  
+  // Enterprise Agents 2026 (26 tools: Salesforce Agentforce, Vertex AI, Ema, Decagon, Sierra, Zapier Central, ServiceNow, Oracle AI, Claude Code, RooCode, Gojiberry, Abnormal AI, Torq Socrates, Ramp AI, Intercom Fin, Sully.ai, NullClaw, CoPaw, Groq, Vellum AI, LobeChat, Fabric, Stack AI, Retool AI, Voca AI, MCP)
+  ...enterpriseAgents2026
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories
