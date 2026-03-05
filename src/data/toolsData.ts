@@ -192,6 +192,7 @@ import { productivityAgentsBatch2026 } from "./tools/productivityAgentsBatch2026
 import { digitalHumansBatch2026 } from "./tools/digitalHumansBatch2026";
 import { enterpriseOrchBatch2026 } from "./tools/enterpriseOrchBatch2026";
 import { phoneAgentsBatch2026 } from "./tools/phoneAgentsBatch2026";
+import { roboticsBatch2026 } from "./tools/roboticsBatch2026";
 
 const allToolCategories = consolidateTools([
   ...getAllToolCategories(),
@@ -388,7 +389,10 @@ const allToolCategories = consolidateTools([
   ...enterpriseOrchBatch2026,
 
   // Phone Agents Batch 2026 (15 tools: Aloware, Nooks, SquadStack, Koncert, Orum, SalesAPE, NLPearl, Dialzara, Slang.ai, Rosie, Smith.ai, My AI Front Desk, Leaping AI, CallBotics, Allo)
-  ...phoneAgentsBatch2026
+  ...phoneAgentsBatch2026,
+
+  // Robotics Batch 2026 (5 tools: Noetix Bumi, Mirokaï, Fourier GR-2, AGIBOT, Standard Bots RO1)
+  ...roboticsBatch2026
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories

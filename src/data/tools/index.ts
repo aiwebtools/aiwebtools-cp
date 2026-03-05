@@ -469,3 +469,6 @@ export { enterpriseOrchBatch2026 } from './enterpriseOrchBatch2026';
 
 // Export Phone Agents Batch 2026 (15 tools: Aloware, Nooks, SquadStack, Koncert, Orum, SalesAPE, NLPearl, Dialzara, Slang.ai, Rosie, Smith.ai, My AI Front Desk, Leaping AI, CallBotics, Allo)
 export { phoneAgentsBatch2026 } from './phoneAgentsBatch2026';
+
+// Export Robotics Batch 2026 (5 tools: Noetix Bumi, Mirokaï, Fourier GR-2, AGIBOT, Standard Bots RO1)
+export { roboticsBatch2026 } from './roboticsBatch2026';
