@@ -1,0 +1,342 @@
+import { Tool } from "@/types/tools";
+import { Bot, Code, TrendingUp, Search, Brain, Workflow, Shield, Globe, Cpu, Database, FileText, Users, Briefcase, Monitor, Truck, Heart, GraduationCap } from "lucide-react";
+
+import agentZeroHero from "@/assets/tools/agent-zero-hero.jpg";
+import vercelAiSdkHero from "@/assets/tools/vercel-ai-sdk-hero.jpg";
+import openrouterHero from "@/assets/tools/openrouter-hero.jpg";
+import langfuseHero from "@/assets/tools/langfuse-hero.jpg";
+import haystackAgentsHero from "@/assets/tools/haystack-agents-hero.jpg";
+import semanticKernelHero from "@/assets/tools/semantic-kernel-hero.jpg";
+import agentverseHero from "@/assets/tools/agentverse-hero.jpg";
+import otterlyAiHero from "@/assets/tools/otterly-ai-hero.jpg";
+import signalheroHero from "@/assets/tools/signalhero-hero.jpg";
+import tektonicAiHero from "@/assets/tools/tektonic-ai-hero.jpg";
+import echovaneHero from "@/assets/tools/echovane-hero.jpg";
+import causalensHero from "@/assets/tools/causalens-hero.jpg";
+import vicAiHero from "@/assets/tools/vic-ai-hero.jpg";
+import sasViyaHero from "@/assets/tools/sas-viya-hero.jpg";
+import hugoAiHero from "@/assets/tools/hugo-ai-hero.jpg";
+import startclawHero from "@/assets/tools/startclaw-hero.jpg";
+import janAiHero from "@/assets/tools/jan-ai-hero.jpg";
+import selfOperatingComputerHero from "@/assets/tools/self-operating-computer-hero.jpg";
+import proxaiLogisticsHero from "@/assets/tools/proxai-logistics-hero.jpg";
+import valyuHero from "@/assets/tools/valyu-hero.jpg";
+import braveSearchApiHero from "@/assets/tools/brave-search-api-hero.jpg";
+import unstructuredIoHero from "@/assets/tools/unstructured-io-hero.jpg";
+import piInflectionHero from "@/assets/tools/pi-inflection-hero.jpg";
+import courseheroAiHero from "@/assets/tools/coursehero-ai-hero.jpg";
+import mentraHero from "@/assets/tools/mentra-hero.jpg";
+
+export const advancedAgentsBatch2026: Tool[] = [
+  // === DEVELOPER FRAMEWORKS & MLOps ===
+  {
+    icon: Bot,
+    title: "Agent Zero",
+    description: "A free, self-contained autonomous AI agent framework designed to run completely locally with high autonomy. Build digital helpers that operate independently on your own hardware without cloud dependencies.",
+    emoji: "🤖",
+    color: "from-gray-700 to-gray-900",
+    directUrl: "https://github.com/frdel/agent-zero/?via=aiwebtools",
+    imageUrl: agentZeroHero,
+    tags: ["AI Agents", "Multi-Agent Framework", "open source", "local AI", "autonomous agent", "self-hosted", "framework", "agent"],
+    category: "AI Agents",
+    rating: 4.6,
+  },
+  {
+    icon: Code,
+    title: "Vercel AI SDK",
+    description: "The developer standard for building streaming AI interfaces that are provider-agnostic. Switch between Claude, GPT, Llama, and other models without rewriting code. Build production-ready AI apps with React, Next.js, and more.",
+    emoji: "▲",
+    color: "from-black to-gray-800",
+    directUrl: "https://sdk.vercel.ai/?via=aiwebtools",
+    imageUrl: vercelAiSdkHero,
+    tags: ["AI Agents", "developer tools", "SDK", "streaming AI", "provider-agnostic", "React", "Next.js", "framework", "Coding Agent"],
+    category: "AI Agents",
+    rating: 4.8,
+  },
+  {
+    icon: Globe,
+    title: "OpenRouter",
+    description: "A unified API gateway that allows agents to access dozens of AI models (Claude, GPT, Llama, Gemini) with a single integration and optimized pricing. Route requests to the best model for each task automatically.",
+    emoji: "🔀",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://openrouter.ai/?via=aiwebtools",
+    imageUrl: openrouterHero,
+    tags: ["AI Agents", "API gateway", "multi-model", "LLM routing", "Claude", "GPT", "Llama", "unified API", "developer tools"],
+    category: "AI Agents",
+    rating: 4.7,
+  },
+  {
+    icon: Search,
+    title: "Langfuse",
+    description: "An open-source observability platform designed specifically to trace, debug, and monitor complex multi-agent logic. Track LLM calls, evaluate outputs, and optimize agent performance with detailed analytics.",
+    emoji: "🔍",
+    color: "from-blue-600 to-indigo-700",
+    directUrl: "https://langfuse.com/?via=aiwebtools",
+    imageUrl: langfuseHero,
+    tags: ["AI Agents", "observability", "debugging", "monitoring", "open source", "LLM tracing", "MLOps", "agent analytics"],
+    category: "AI Agents",
+    rating: 4.6,
+  },
+  {
+    icon: Workflow,
+    title: "Haystack Agents",
+    description: "A modular framework by deepset where agents are treated as pipelines, allowing one agent's output to serve as a high-precision tool for another. Build sophisticated NLP and RAG pipelines with composable components.",
+    emoji: "🌾",
+    color: "from-amber-500 to-orange-600",
+    directUrl: "https://haystack.deepset.ai/?via=aiwebtools",
+    imageUrl: haystackAgentsHero,
+    tags: ["AI Agents", "Multi-Agent Framework", "NLP pipeline", "RAG", "modular", "open source", "deepset", "framework"],
+    category: "AI Agents",
+    rating: 4.5,
+  },
+  {
+    icon: Cpu,
+    title: "Semantic Kernel",
+    description: "Microsoft's production-grade SDK that allows developers to 'plugin' existing C# or Python functions into an AI agent's reasoning loop. Enterprise-ready orchestration for building intelligent agents with existing codebases.",
+    emoji: "🧩",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://github.com/microsoft/semantic-kernel/?via=aiwebtools",
+    imageUrl: semanticKernelHero,
+    tags: ["AI Agents", "Microsoft", "SDK", "C#", "Python", "enterprise", "plugin architecture", "Multi-Agent Framework"],
+    category: "AI Agents",
+    rating: 4.6,
+  },
+  {
+    icon: Globe,
+    title: "Agentverse",
+    description: "A decentralized platform by Fetch.ai for creating AI agents that can discover, negotiate, and transact with other agents on a blockchain-backed network. Build autonomous economic agents for the decentralized web.",
+    emoji: "🌐",
+    color: "from-purple-600 to-blue-700",
+    directUrl: "https://fetch.ai/?via=aiwebtools",
+    imageUrl: agentverseHero,
+    tags: ["AI Agents", "blockchain", "decentralized", "Fetch.ai", "autonomous agents", "Web3", "agent marketplace", "Multi-Agent Framework"],
+    category: "AI Agents",
+    rating: 4.4,
+  },
+
+  // === MARKETING & RevOps AGENTS ===
+  {
+    icon: TrendingUp,
+    title: "Otterly.AI",
+    description: "An autonomous marketing agent that tracks social media trends and proactively suggests real-time campaign pivots. Monitor brand mentions, competitor activity, and emerging trends with AI-powered insights.",
+    emoji: "🦦",
+    color: "from-teal-500 to-cyan-600",
+    directUrl: "https://otterly.ai/?via=aiwebtools",
+    imageUrl: otterlyAiHero,
+    tags: ["Marketing", "social media", "trend tracking", "campaign optimization", "AI marketing", "brand monitoring", "Sales Agent"],
+    category: "Marketing & Sales",
+    rating: 4.4,
+  },
+  {
+    icon: TrendingUp,
+    title: "SignalHero",
+    description: "A sales agent that scours intent signals—like a prospect visiting your pricing page—to trigger instant, personalized outreach. Convert buyer intent into pipeline with real-time signal detection.",
+    emoji: "📡",
+    color: "from-red-500 to-pink-600",
+    directUrl: "https://signalhero.com/?via=aiwebtools",
+    imageUrl: signalheroHero,
+    tags: ["Sales Agent", "intent signals", "sales automation", "personalized outreach", "lead generation", "pipeline", "AI sales"],
+    category: "Marketing & Sales",
+    rating: 4.3,
+  },
+  {
+    icon: Users,
+    title: "Tektonic AI",
+    description: "Replaces rigid sales playbooks with 'dynamic' agents that adapt their negotiation strategy based on real-time buyer feedback. AI-powered sales execution that evolves with every conversation.",
+    emoji: "🔧",
+    color: "from-orange-500 to-amber-600",
+    directUrl: "https://tektonic.ai/?via=aiwebtools",
+    imageUrl: tektonicAiHero,
+    tags: ["Sales Agent", "dynamic sales", "negotiation AI", "sales automation", "adaptive strategy", "AI sales", "revenue operations"],
+    category: "Marketing & Sales",
+    rating: 4.3,
+  },
+  {
+    icon: TrendingUp,
+    title: "Echovane",
+    description: "A specialized agent for performance marketing that autonomously optimizes ad spend across 10+ platforms simultaneously. Maximize ROAS with AI-driven cross-platform campaign management.",
+    emoji: "📊",
+    color: "from-indigo-500 to-blue-600",
+    directUrl: "https://echovane.com/?via=aiwebtools",
+    imageUrl: echovaneHero,
+    tags: ["Marketing", "ad optimization", "performance marketing", "ROAS", "cross-platform", "campaign management", "AI marketing"],
+    category: "Marketing & Sales",
+    rating: 4.4,
+  },
+
+  // === FINANCE, LEGAL & COMPLIANCE ===
+  {
+    icon: Brain,
+    title: "causaLens",
+    description: "A 'Decision AI' agent that focuses on causality rather than just correlation, crucial for high-stakes financial forecasting. Understand why things happen, not just what happened, for better business decisions.",
+    emoji: "🔬",
+    color: "from-emerald-500 to-teal-600",
+    directUrl: "https://causalens.com/?via=aiwebtools",
+    imageUrl: causalensHero,
+    tags: ["Finance", "causal AI", "financial forecasting", "decision intelligence", "data analytics", "predictive modeling", "enterprise"],
+    category: "Data & Analytics",
+    rating: 4.5,
+  },
+  {
+    icon: FileText,
+    title: "Vic.ai",
+    description: "An autonomous accounting agent that handles the entire 'invoice-to-pay' cycle without human data entry. Automate accounts payable with AI that learns your approval workflows and coding patterns.",
+    emoji: "💳",
+    color: "from-green-500 to-emerald-600",
+    directUrl: "https://vic.ai/?via=aiwebtools",
+    imageUrl: vicAiHero,
+    tags: ["Finance", "accounting automation", "accounts payable", "invoice processing", "AP automation", "enterprise finance", "AI accounting"],
+    category: "AI Accounting & Finance",
+    rating: 4.5,
+  },
+  {
+    icon: Shield,
+    title: "SAS Viya Agent",
+    description: "A fraud detection agent that provides a transparent 'lineage' for its decisions, allowing humans to audit why a transaction was blocked. Enterprise-grade analytics with explainable AI for compliance.",
+    emoji: "🛡️",
+    color: "from-blue-700 to-indigo-800",
+    directUrl: "https://www.sas.com/viya/?via=aiwebtools",
+    imageUrl: sasViyaHero,
+    tags: ["Finance", "fraud detection", "explainable AI", "compliance", "enterprise analytics", "SAS", "audit trail", "risk management"],
+    category: "Data & Analytics",
+    rating: 4.6,
+  },
+
+  // === PRODUCTIVITY & WORKSPACE AGENTS ===
+  {
+    icon: Monitor,
+    title: "Hugo AI",
+    description: "A smart customer support agent that lives in your browser and helps your team respond to tickets using internal documentation. Instant answers from your knowledge base without switching tabs.",
+    emoji: "🧑‍💻",
+    color: "from-purple-500 to-pink-500",
+    directUrl: "https://hugo.ai/?via=aiwebtools",
+    imageUrl: hugoAiHero,
+    tags: ["customer support", "browser agent", "knowledge base", "ticket resolution", "helpdesk AI", "internal docs", "productivity"],
+    category: "Customer Support AI",
+    rating: 4.3,
+  },
+  {
+    icon: Bot,
+    title: "StartClaw",
+    description: "A cloud-based 'AI employee' that stays active 24/7 to handle routine data tasks while you are offline. Automate repetitive work like data entry, report generation, and file organization around the clock.",
+    emoji: "🦀",
+    color: "from-red-500 to-rose-600",
+    directUrl: "https://startclaw.com/?via=aiwebtools",
+    imageUrl: startclawHero,
+    tags: ["AI Agents", "Automation Agent", "24/7 automation", "data tasks", "cloud AI", "virtual employee", "productivity"],
+    category: "AI Agents",
+    rating: 4.2,
+  },
+  {
+    icon: Cpu,
+    title: "Jan AI",
+    description: "A private, open-source alternative to ChatGPT that allows you to run a 'local first' agent directly on your hardware. Full privacy, no data leaves your machine, with support for multiple open-source models.",
+    emoji: "🏠",
+    color: "from-blue-600 to-indigo-700",
+    directUrl: "https://jan.ai/?via=aiwebtools",
+    imageUrl: janAiHero,
+    tags: ["AI chat", "open source", "local AI", "privacy-first", "ChatGPT alternative", "offline AI", "desktop AI", "LLM Models"],
+    category: "AI Chat & Assistants",
+    rating: 4.5,
+  },
+  {
+    icon: Monitor,
+    title: "Self-Operating Computer",
+    description: "An open-source framework that allows an AI model to 'see' your screen and move your mouse/keyboard like a human. Automate any desktop task by letting AI operate your computer visually.",
+    emoji: "🖥️",
+    color: "from-gray-700 to-gray-900",
+    directUrl: "https://github.com/OthersideAI/self-operating-computer/?via=aiwebtools",
+    imageUrl: selfOperatingComputerHero,
+    tags: ["AI Agents", "Web Tasks Agent", "computer vision", "desktop automation", "screen AI", "open source", "mouse control", "autonomous"],
+    category: "AI Agents",
+    rating: 4.4,
+  },
+
+  // === INFRASTRUCTURE & LOGISTICS ===
+  {
+    icon: Truck,
+    title: "ProxAI Logistics",
+    description: "A specialized agent that bridges the gap between digital AI and physical logistics, managing warehouse robots and inventory. Optimize supply chain operations with AI-driven warehouse automation.",
+    emoji: "🏭",
+    color: "from-amber-600 to-orange-700",
+    directUrl: "https://proxai.com/?via=aiwebtools",
+    imageUrl: proxaiLogisticsHero,
+    tags: ["logistics", "warehouse automation", "supply chain", "robotics", "inventory management", "IoT", "enterprise", "Automation Agent"],
+    category: "Automation & Workflow",
+    rating: 4.3,
+  },
+  {
+    icon: Database,
+    title: "Valyu",
+    description: "A high-quality 'Agent-Ready' search API designed specifically for LLMs to use as a primary data source for deep research. Provide your AI agents with structured, reliable data for better reasoning.",
+    emoji: "💎",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://valyu.com/?via=aiwebtools",
+    imageUrl: valyuHero,
+    tags: ["AI Agents", "search API", "LLM data", "research API", "agent infrastructure", "data source", "developer tools"],
+    category: "AI Agents",
+    rating: 4.3,
+  },
+  {
+    icon: Search,
+    title: "Brave Search API",
+    description: "A privacy-first search engine API used by thousands of agents to access current web data without tracking user behavior. Independent web index with no Big Tech dependencies for AI agent integration.",
+    emoji: "🦁",
+    color: "from-orange-500 to-red-500",
+    directUrl: "https://brave.com/search/api/?via=aiwebtools",
+    imageUrl: braveSearchApiHero,
+    tags: ["search API", "privacy-first", "web search", "agent tools", "no tracking", "independent index", "developer tools"],
+    category: "AI Agents",
+    rating: 4.5,
+  },
+  {
+    icon: FileText,
+    title: "Unstructured.io",
+    description: "A critical 'pre-processing' tool that helps agents read and understand messy PDF, PPT, and HTML files. Transform unstructured documents into clean, structured data ready for AI pipelines and RAG systems.",
+    emoji: "📄",
+    color: "from-violet-500 to-purple-600",
+    directUrl: "https://unstructured.io/?via=aiwebtools",
+    imageUrl: unstructuredIoHero,
+    tags: ["data processing", "document parsing", "PDF extraction", "RAG", "data pipeline", "ETL", "developer tools", "AI infrastructure"],
+    category: "Data & Analytics",
+    rating: 4.5,
+  },
+
+  // === HUMAN-CENTRIC & TRAINING AGENTS ===
+  {
+    icon: Heart,
+    title: "Pi by Inflection",
+    description: "An 'Empathetic Agent' designed specifically for mental support, wellness coaching, and supportive companionship. Have thoughtful, kind conversations with an AI that genuinely listens and cares.",
+    emoji: "🧡",
+    color: "from-orange-400 to-amber-500",
+    directUrl: "https://pi.ai/?via=aiwebtools",
+    imageUrl: piInflectionHero,
+    tags: ["AI companion", "mental wellness", "empathetic AI", "conversational AI", "wellness coaching", "emotional support", "personal AI"],
+    category: "AI Mental Health & Wellness",
+    rating: 4.6,
+  },
+  {
+    icon: GraduationCap,
+    title: "CourseHero AI",
+    description: "A personalized 'tutor agent' that adapts its teaching style based on a student's specific learning gaps. Get homework help, study guides, and explanations tailored to your level and pace.",
+    emoji: "🎓",
+    color: "from-teal-500 to-green-600",
+    directUrl: "https://www.coursehero.com/?via=aiwebtools",
+    imageUrl: courseheroAiHero,
+    tags: ["education", "AI tutor", "personalized learning", "homework help", "study guides", "adaptive learning", "student AI", "Learning Platform"],
+    category: "Education & Learning",
+    rating: 4.4,
+  },
+  {
+    icon: Briefcase,
+    title: "Mentra",
+    description: "An agentic job-matching platform that represents the user, negotiating with company-side agents to find the best career fit. AI-powered employment that advocates for neurodivergent and underrepresented talent.",
+    emoji: "🤝",
+    color: "from-red-500 to-rose-600",
+    directUrl: "https://mentra.ai/?via=aiwebtools",
+    imageUrl: mentraHero,
+    tags: ["job matching", "AI recruiting", "neurodiversity", "career AI", "employment", "talent platform", "HR tech", "inclusive hiring"],
+    category: "HR & Recruitment",
+    rating: 4.4,
+  },
+];

@@ -405,3 +405,6 @@ export { newAIAgents2026 } from './newAIAgents2026';
 
 // Export Enterprise Agents 2026 (26 tools: Salesforce Agentforce, Vertex AI, Ema, Decagon, Sierra, Zapier Central, ServiceNow, Oracle AI, Claude Code, RooCode, Gojiberry, Abnormal AI, Torq Socrates, Ramp AI, Intercom Fin, Sully.ai, NullClaw, CoPaw, Groq, Vellum AI, LobeChat, Fabric, Stack AI, Retool AI, Voca AI, MCP)
 export { enterpriseAgents2026 } from './enterpriseAgents2026';
+
+// Export Advanced Agents Batch 2026 (25 tools: Agent Zero, Vercel AI SDK, OpenRouter, Langfuse, Haystack, Semantic Kernel, Agentverse, Otterly.AI, SignalHero, Tektonic AI, Echovane, causaLens, Vic.ai, SAS Viya, Hugo AI, StartClaw, Jan AI, Self-Operating Computer, ProxAI, Valyu, Brave Search API, Unstructured.io, Pi, CourseHero AI, Mentra)
+export { advancedAgentsBatch2026 } from './advancedAgentsBatch2026';
