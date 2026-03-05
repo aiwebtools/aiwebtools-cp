@@ -444,3 +444,7 @@ export { frontierBatchD3 } from './frontierBatchD3';
 
 // Export Frontier Batch D4 (Agencies & Consultancies - 12 tools: Azumo, Diffco, Geomotiv, Digital Scientists, ELEKS, Techanic, A3Logics, Emerline, Kanerika, scandiweb, Intuz, SoluLab)
 export { frontierBatchD4 } from './frontierBatchD4';
+
+// Export Frontier Batch E1-E2 (40 new tools: Artisan, 11x, Vendr, Skyvern, JetBrains Junie, Phidata, Snowflake Cortex, Cognigy, Procore, etc.)
+export { frontierBatchE1 } from './frontierBatchE1';
+export { frontierBatchE2 } from './frontierBatchE2';
