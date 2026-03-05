@@ -167,6 +167,11 @@ import { advancedAgentsBatch2026 } from "./tools/advancedAgentsBatch2026";
 // Import Frontier Agents Batch 2026 (20 tools: Wayve, Mojo, Pinecone Canopy, Weaviate Verba, Heptabase, Readwise Reader, EvenUp, Osmo, Atomic AI, Formstack AI, Arthur Shield, Lasso Security, Protect AI, HiddenLayer, WhyLabs, Humane AI, NVIDIA Isaac, Hailo, BrainChip, Skyfire)
 import { frontierAgentsBatch2026 } from "./tools/frontierAgentsBatch2026";
 
+// Import Frontier Infrastructure Batches 2026 (67 tools: Security, No-Code, HR, Dev Infra, Sales, Finance, Productivity)
+import { frontierInfraBatch2026 } from "./tools/frontierInfraBatch2026";
+import { frontierInfraBatch2026B2 } from "./tools/frontierInfraBatch2026B2";
+import { frontierInfraBatch2026B3 } from "./tools/frontierInfraBatch2026B3";
+
 const allToolCategories = consolidateTools([
   ...getAllToolCategories(),
   ...newAffiliatePlatforms2025,
@@ -320,7 +325,12 @@ const allToolCategories = consolidateTools([
   ...advancedAgentsBatch2026,
   
   // Frontier Agents Batch 2026
-  ...frontierAgentsBatch2026
+  ...frontierAgentsBatch2026,
+  
+  // Frontier Infrastructure Batches 2026 (67 tools)
+  ...frontierInfraBatch2026,
+  ...frontierInfraBatch2026B2,
+  ...frontierInfraBatch2026B3
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories
