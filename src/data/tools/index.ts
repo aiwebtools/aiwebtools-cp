@@ -448,3 +448,6 @@ export { frontierBatchD4 } from './frontierBatchD4';
 // Export Frontier Batch E1-E2 (40 new tools: Artisan, 11x, Vendr, Skyvern, JetBrains Junie, Phidata, Snowflake Cortex, Cognigy, Procore, etc.)
 export { frontierBatchE1 } from './frontierBatchE1';
 export { frontierBatchE2 } from './frontierBatchE2';
+
+// Export Video Tools Batch 2026 (7 tools: Magic Hour, Flova, Envato VideoGen, Hedra Character-3, Mochi-1, Grok Imagine, LM Arena Video)
+export { videoToolsBatch2026 } from './videoToolsBatch2026';
