@@ -460,3 +460,6 @@ export { voiceAgentsBatch2026 } from './voiceAgentsBatch2026';
 
 // Export Productivity Agents Batch 2026 (12 tools: Gladly, Freshworks Freddy AI, Front AI, Sprinklr, Jotform AI Agent, Circleback, Shortwave, Motion, Infobip AgentOS, Microsoft Copilot Studio, Everything AI, Exa)
 export { productivityAgentsBatch2026 } from './productivityAgentsBatch2026';
+
+// Export Digital Humans Batch 2026 (11 tools: UneeQ, NVIDIA ACE, Leadde, InfiniteTalk, DaveAI, Crescendo.ai, Observe.AI, Yuma AI, Workbeaver, Marketecs Engine, Pod AI)
+export { digitalHumansBatch2026 } from './digitalHumansBatch2026';

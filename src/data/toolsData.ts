@@ -189,6 +189,7 @@ import { videoToolsBatch2026 } from "./tools/videoToolsBatch2026";
 import { specializedAgentsBatch2026 } from "./tools/specializedAgentsBatch2026";
 import { voiceAgentsBatch2026 } from "./tools/voiceAgentsBatch2026";
 import { productivityAgentsBatch2026 } from "./tools/productivityAgentsBatch2026";
+import { digitalHumansBatch2026 } from "./tools/digitalHumansBatch2026";
 
 const allToolCategories = consolidateTools([
   ...getAllToolCategories(),
@@ -376,7 +377,10 @@ const allToolCategories = consolidateTools([
   ...voiceAgentsBatch2026,
 
   // Productivity Agents Batch 2026 (12 tools: Gladly, Freshworks Freddy, Front AI, Sprinklr, Jotform AI, Circleback, Shortwave, Motion, Infobip, Copilot Studio, Everything AI, Exa)
-  ...productivityAgentsBatch2026
+  ...productivityAgentsBatch2026,
+
+  // Digital Humans Batch 2026 (11 tools: UneeQ, NVIDIA ACE, Leadde, InfiniteTalk, DaveAI, Crescendo.ai, Observe.AI, Yuma AI, Workbeaver, Marketecs Engine, Pod AI)
+  ...digitalHumansBatch2026
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories
