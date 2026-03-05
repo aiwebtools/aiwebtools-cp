@@ -186,6 +186,7 @@ import { frontierBatchD4 } from "./tools/frontierBatchD4";
 import { frontierBatchE1 } from "./tools/frontierBatchE1";
 import { frontierBatchE2 } from "./tools/frontierBatchE2";
 import { videoToolsBatch2026 } from "./tools/videoToolsBatch2026";
+import { specializedAgentsBatch2026 } from "./tools/specializedAgentsBatch2026";
 
 const allToolCategories = consolidateTools([
   ...getAllToolCategories(),
@@ -364,7 +365,10 @@ const allToolCategories = consolidateTools([
   ...frontierBatchE2,
 
   // Video Tools Batch 2026 (7 tools: Magic Hour, Flova, Envato VideoGen, Hedra Character-3, Mochi-1, Grok Imagine, LM Arena Video)
-  ...videoToolsBatch2026
+  ...videoToolsBatch2026,
+
+  // Specialized Agents Batch 2026 (10 tools: IBM watsonx.ai, Conversica, Nexi, Hunters AI, MS Defender XDR, Claude Co-Work, Jinba Flow, I/ONX HPC, Micro-Therapist, AI Event Coordinator)
+  ...specializedAgentsBatch2026
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories
