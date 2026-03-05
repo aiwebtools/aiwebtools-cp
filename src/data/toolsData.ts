@@ -178,6 +178,12 @@ import { frontierInfraBatch2026C2 } from "./tools/frontierInfraBatch2026C2";
 import { frontierInfraBatch2026C3 } from "./tools/frontierInfraBatch2026C3";
 import { frontierInfraBatch2026C4 } from "./tools/frontierInfraBatch2026C4";
 
+// Import Frontier Batch D1-D4 (70 tools: Healthcare, Finance, Security, Enterprise, Agencies)
+import { frontierBatchD1 } from "./tools/frontierBatchD1";
+import { frontierBatchD2 } from "./tools/frontierBatchD2";
+import { frontierBatchD3 } from "./tools/frontierBatchD3";
+import { frontierBatchD4 } from "./tools/frontierBatchD4";
+
 const allToolCategories = consolidateTools([
   ...getAllToolCategories(),
   ...newAffiliatePlatforms2025,
@@ -342,7 +348,13 @@ const allToolCategories = consolidateTools([
   ...frontierInfraBatch2026C1,
   ...frontierInfraBatch2026C2,
   ...frontierInfraBatch2026C3,
-  ...frontierInfraBatch2026C4
+  ...frontierInfraBatch2026C4,
+
+  // Frontier Batch D1-D4 (70 tools: Healthcare, Finance, Security, Enterprise, Agencies)
+  ...frontierBatchD1,
+  ...frontierBatchD2,
+  ...frontierBatchD3,
+  ...frontierBatchD4
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories
