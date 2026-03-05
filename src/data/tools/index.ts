@@ -451,3 +451,6 @@ export { frontierBatchE2 } from './frontierBatchE2';
 
 // Export Video Tools Batch 2026 (7 tools: Magic Hour, Flova, Envato VideoGen, Hedra Character-3, Mochi-1, Grok Imagine, LM Arena Video)
 export { videoToolsBatch2026 } from './videoToolsBatch2026';
+
+// Export Specialized Agents Batch 2026 (10 tools: IBM watsonx.ai, Conversica, Nexi, Hunters AI, MS Defender XDR, Claude Co-Work, Jinba Flow, I/ONX HPC, Micro-Therapist, AI Event Coordinator)
+export { specializedAgentsBatch2026 } from './specializedAgentsBatch2026';
