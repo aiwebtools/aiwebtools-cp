@@ -354,7 +354,11 @@ const allToolCategories = consolidateTools([
   ...frontierBatchD1,
   ...frontierBatchD2,
   ...frontierBatchD3,
-  ...frontierBatchD4
+  ...frontierBatchD4,
+
+  // Frontier Batch E1-E2 (40 new tools: Sales, Browser, Dev Frameworks, Industrial, Finance, Agencies)
+  ...frontierBatchE1,
+  ...frontierBatchE2
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories
