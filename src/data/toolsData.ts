@@ -172,6 +172,12 @@ import { frontierInfraBatch2026 } from "./tools/frontierInfraBatch2026";
 import { frontierInfraBatch2026B2 } from "./tools/frontierInfraBatch2026B2";
 import { frontierInfraBatch2026B3 } from "./tools/frontierInfraBatch2026B3";
 
+// Import Frontier Infrastructure Batches 2026 C1-C4 (57 tools: Orchestration, Evaluation, Hosting, Voice, Industry, Productivity)
+import { frontierInfraBatch2026C1 } from "./tools/frontierInfraBatch2026C1";
+import { frontierInfraBatch2026C2 } from "./tools/frontierInfraBatch2026C2";
+import { frontierInfraBatch2026C3 } from "./tools/frontierInfraBatch2026C3";
+import { frontierInfraBatch2026C4 } from "./tools/frontierInfraBatch2026C4";
+
 const allToolCategories = consolidateTools([
   ...getAllToolCategories(),
   ...newAffiliatePlatforms2025,
@@ -330,7 +336,13 @@ const allToolCategories = consolidateTools([
   // Frontier Infrastructure Batches 2026 (67 tools)
   ...frontierInfraBatch2026,
   ...frontierInfraBatch2026B2,
-  ...frontierInfraBatch2026B3
+  ...frontierInfraBatch2026B3,
+  
+  // Frontier Infrastructure Batches 2026 C1-C4 (57 tools: Orchestration, Evaluation, Hosting, Voice, Industry, Productivity)
+  ...frontierInfraBatch2026C1,
+  ...frontierInfraBatch2026C2,
+  ...frontierInfraBatch2026C3,
+  ...frontierInfraBatch2026C4
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories
