@@ -454,3 +454,9 @@ export { videoToolsBatch2026 } from './videoToolsBatch2026';
 
 // Export Specialized Agents Batch 2026 (10 tools: IBM watsonx.ai, Conversica, Nexi, Hunters AI, MS Defender XDR, Claude Co-Work, Jinba Flow, I/ONX HPC, Micro-Therapist, AI Event Coordinator)
 export { specializedAgentsBatch2026 } from './specializedAgentsBatch2026';
+
+// Export Voice Agents Batch 2026 (16 tools: PolyAI, Five9, NICE CXone, Huawei AICC, Talkdesk, AgentVoice, Noca, CloudTalk, Insighto.ai, Smallest.ai, Qwen3-TTS, Regal.ai, Calldesk, Dialpad, RingCentral, Nextiva)
+export { voiceAgentsBatch2026 } from './voiceAgentsBatch2026';
+
+// Export Productivity Agents Batch 2026 (12 tools: Gladly, Freshworks Freddy AI, Front AI, Sprinklr, Jotform AI Agent, Circleback, Shortwave, Motion, Infobip AgentOS, Microsoft Copilot Studio, Everything AI, Exa)
+export { productivityAgentsBatch2026 } from './productivityAgentsBatch2026';
