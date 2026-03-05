@@ -468,6 +468,7 @@ export { digitalHumansBatch2026 } from './digitalHumansBatch2026';
 export { enterpriseOrchBatch2026 } from './enterpriseOrchBatch2026';
 
 // Export Phone Agents Batch 2026 (15 tools: Aloware, Nooks, SquadStack, Koncert, Orum, SalesAPE, NLPearl, Dialzara, Slang.ai, Rosie, Smith.ai, My AI Front Desk, Leaping AI, CallBotics, Allo)
+
 export { phoneAgentsBatch2026 } from './phoneAgentsBatch2026';
 
 // Export Robotics Batch 2026 (5 tools: Noetix Bumi, Mirokaï, Fourier GR-2, AGIBOT, Standard Bots RO1)
@@ -475,3 +476,9 @@ export { roboticsBatch2026 } from './roboticsBatch2026';
 
 // Export Niche Batch 2026 (6 tools: FeedHive, Relay.app, Obviously AI, LeadIQ, Rose AI, Perception AI)
 export { nicheBatch2026 } from './nicheBatch2026';
+
+// Export Niche Specialty 2026 B1 (16 tools: Lerty AI, Abridge, Mintlify, Outbond AI, Revio, Buddy Pro, Lavender, 6sense, Luma Genie, Vidio AI, Mokker, Humata, Eightify, Genei, Scribbr, Whisper Flow)
+export { nicheSpecialty2026B1 } from './nicheSpecialty2026B1';
+
+// Export Niche Specialty 2026 B2 (15 tools: Speechelo, Estimatic AI, ChefGPT, Komo, YourAtlas, Crayo, Storylane, Coveo, Guru, LanguageTool, Doclingo, Unbabel, Weglot, Localazy, Pairaphrase)
+export { nicheSpecialty2026B2 } from './nicheSpecialty2026B2';

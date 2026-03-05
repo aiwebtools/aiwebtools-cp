@@ -194,6 +194,8 @@ import { enterpriseOrchBatch2026 } from "./tools/enterpriseOrchBatch2026";
 import { phoneAgentsBatch2026 } from "./tools/phoneAgentsBatch2026";
 import { roboticsBatch2026 } from "./tools/roboticsBatch2026";
 import { nicheBatch2026 } from "./tools/nicheBatch2026";
+import { nicheSpecialty2026B1 } from "./tools/nicheSpecialty2026B1";
+import { nicheSpecialty2026B2 } from "./tools/nicheSpecialty2026B2";
 
 const allToolCategories = consolidateTools([
   ...getAllToolCategories(),
@@ -396,7 +398,13 @@ const allToolCategories = consolidateTools([
   ...roboticsBatch2026,
 
   // Niche Batch 2026 (6 tools: FeedHive, Relay.app, Obviously AI, LeadIQ, Rose AI, Perception AI)
-  ...nicheBatch2026
+  ...nicheBatch2026,
+
+  // Niche Specialty 2026 B1 (16 tools: Lerty AI, Abridge, Mintlify, Outbond AI, Revio, Buddy Pro, Lavender, 6sense, Luma Genie, Vidio AI, Mokker, Humata, Eightify, Genei, Scribbr, Whisper Flow)
+  ...nicheSpecialty2026B1,
+
+  // Niche Specialty 2026 B2 (15 tools: Speechelo, Estimatic AI, ChefGPT, Komo, YourAtlas, Crayo, Storylane, Coveo, Guru, LanguageTool, Doclingo, Unbabel, Weglot, Localazy, Pairaphrase)
+  ...nicheSpecialty2026B2
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories
