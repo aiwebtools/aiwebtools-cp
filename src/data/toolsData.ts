@@ -187,6 +187,8 @@ import { frontierBatchE1 } from "./tools/frontierBatchE1";
 import { frontierBatchE2 } from "./tools/frontierBatchE2";
 import { videoToolsBatch2026 } from "./tools/videoToolsBatch2026";
 import { specializedAgentsBatch2026 } from "./tools/specializedAgentsBatch2026";
+import { voiceAgentsBatch2026 } from "./tools/voiceAgentsBatch2026";
+import { productivityAgentsBatch2026 } from "./tools/productivityAgentsBatch2026";
 
 const allToolCategories = consolidateTools([
   ...getAllToolCategories(),
@@ -368,7 +370,13 @@ const allToolCategories = consolidateTools([
   ...videoToolsBatch2026,
 
   // Specialized Agents Batch 2026 (10 tools: IBM watsonx.ai, Conversica, Nexi, Hunters AI, MS Defender XDR, Claude Co-Work, Jinba Flow, I/ONX HPC, Micro-Therapist, AI Event Coordinator)
-  ...specializedAgentsBatch2026
+  ...specializedAgentsBatch2026,
+
+  // Voice Agents Batch 2026 (16 tools: PolyAI, Five9, NICE CXone, Huawei AICC, Talkdesk, AgentVoice, Noca, CloudTalk, Insighto.ai, Smallest.ai, Qwen3-TTS, Regal.ai, Calldesk, Dialpad, RingCentral, Nextiva)
+  ...voiceAgentsBatch2026,
+
+  // Productivity Agents Batch 2026 (12 tools: Gladly, Freshworks Freddy, Front AI, Sprinklr, Jotform AI, Circleback, Shortwave, Motion, Infobip, Copilot Studio, Everything AI, Exa)
+  ...productivityAgentsBatch2026
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories
