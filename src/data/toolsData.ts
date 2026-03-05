@@ -185,6 +185,7 @@ import { frontierBatchD3 } from "./tools/frontierBatchD3";
 import { frontierBatchD4 } from "./tools/frontierBatchD4";
 import { frontierBatchE1 } from "./tools/frontierBatchE1";
 import { frontierBatchE2 } from "./tools/frontierBatchE2";
+import { videoToolsBatch2026 } from "./tools/videoToolsBatch2026";
 
 const allToolCategories = consolidateTools([
   ...getAllToolCategories(),
@@ -360,7 +361,10 @@ const allToolCategories = consolidateTools([
 
   // Frontier Batch E1-E2 (40 new tools: Sales, Browser, Dev Frameworks, Industrial, Finance, Agencies)
   ...frontierBatchE1,
-  ...frontierBatchE2
+  ...frontierBatchE2,
+
+  // Video Tools Batch 2026 (7 tools: Magic Hour, Flova, Envato VideoGen, Hedra Character-3, Mochi-1, Grok Imagine, LM Arena Video)
+  ...videoToolsBatch2026
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories
