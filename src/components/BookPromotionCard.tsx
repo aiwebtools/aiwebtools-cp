@@ -349,13 +349,13 @@ const BookPromotionCard = () => {
           <div className="bg-gradient-to-r from-green-900/60 to-emerald-900/60 backdrop-blur-sm border border-green-500/40 rounded-2xl overflow-hidden shadow-2xl shadow-green-500/10">
             <div className="flex flex-col lg:flex-row items-center">
               {/* Book Visual - YouTube Videos */}
-                <div className="lg:w-1/2 p-3 md:p-5">
+                <div className="lg:w-1/2 p-3 md:p-5 overflow-visible">
                 {/* Desktop: Carousel showing 3 videos at a time */}
-                <div className="hidden md:block relative">
-                  <div className="flex items-center justify-center gap-2">
+                <div className="hidden md:block relative overflow-visible">
+                  <div className="flex items-center justify-center gap-3">
                     <button
                       onClick={prevDesktopPage}
-                      className="p-2 bg-green-900/80 rounded-full text-green-400 hover:bg-green-800 transition-colors z-10 border border-green-500/30"
+                      className="flex-shrink-0 p-2 bg-green-900/80 rounded-full text-green-400 hover:bg-green-800 transition-colors z-10 border border-green-500/30"
                       aria-label="Previous videos"
                     >
                       <ChevronLeft size={24} />
@@ -380,7 +380,7 @@ const BookPromotionCard = () => {
 
                     <button
                       onClick={nextDesktopPage}
-                      className="p-2 bg-green-900/80 rounded-full text-green-400 hover:bg-green-800 transition-colors z-10 border border-green-500/30"
+                      className="flex-shrink-0 p-2 bg-green-900/80 rounded-full text-green-400 hover:bg-green-800 transition-colors z-10 border border-green-500/30"
                       aria-label="Next videos"
                     >
                       <ChevronRight size={24} />
