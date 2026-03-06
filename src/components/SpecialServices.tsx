@@ -53,6 +53,7 @@ const weightedShuffle = <T extends { title: string }>(items: T[]): T[] => {
     "Property Data Finder GPT", "Insurance Claims GPT", "HOME RENOVATOR GPT",
     "AUTOMOBILE GPT", "STAGEMASTER AI SUITE", "FISHERMAN GPT", "Chef Sizzle AI Culinary Assistant",
     "Mixologist GPT", "Travel Advisor GPT", "Agronomus AI Farming Expert",
+    "FREE FARMING & COMMUNITY PLOTS FINDER GPT",
     // Self-Reliance & Empowerment
     "Self Sufficiency GPT", "Survivalist GPT", "FACT CHECKER GPT", "Fortune Teller GPT",
     "Cyber Security GPT", "Probability GPT", "FOOD QUALITY INSPECTOR GPT",
