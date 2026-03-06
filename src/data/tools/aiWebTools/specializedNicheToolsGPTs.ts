@@ -1,5 +1,6 @@
 import { Tool } from "@/types/tools";
 import { Sprout, Hammer, MapPin, Calculator, DollarSign, Users, Building, Zap, Leaf, Dna, Gamepad, CreditCard, User, Palette, Clock, Megaphone, Shield, Bug } from "lucide-react";
+import freeFarmingHero from "@/assets/tools/free-farming-plots-finder-hero.jpg";
 
 export const specializedNicheToolsGPTs: Tool[] = [
   {
@@ -131,5 +132,19 @@ export const specializedNicheToolsGPTs: Tool[] = [
     category: "Specialized Niche Tools",
     rating: 4.6,
     totalVotes: 3456
+  },
+  {
+    icon: Sprout,
+    title: "FREE FARMING & COMMUNITY PLOTS FINDER GPT",
+    description: "FREE FARMING & COMMUNITY PLOTS FINDER GPT helps people find free or very low-cost land near them to grow food for individual self sufficiency and offers gardening tips & plant health analysis. Whether you're looking for community gardens, vacant lots, urban farming programs, or government-sponsored agricultural plots, this AI tool locates opportunities in your area so you can start growing your own food. It also provides expert guidance on soil preparation, crop selection, companion planting, pest management, and seasonal planning to maximize your harvest. Perfect for anyone who wants to grow food but doesn't know where to start or where to find available land. Plant the seed of self-sufficiency today. - PLANT THE SEED-KB",
+    emoji: "🌱",
+    color: "from-green-500 to-emerald-600",
+    directUrl: "https://chatgpt.com/g/g-69a86216d1f8819189f1a0ea96b7c3cb-free-farming-community-plots-finder-gpt",
+    imageUrl: freeFarmingHero,
+    tags: ["farming", "community gardens", "free land", "gardening", "self sufficiency", "food growing", "urban farming", "plant health", "agriculture", "community plots", "free farming", "grow food", "Custom GPT"],
+    category: "Specialized Niche Tools",
+    isFree: true,
+    rating: 4.9,
+    totalVotes: 5200
   }
 ];
