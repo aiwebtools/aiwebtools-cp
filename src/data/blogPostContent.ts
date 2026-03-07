@@ -2442,7 +2442,7 @@ With AI Web Tools, you can.
 3. Customize Your Version
 4. Deploy with one click
 
-[Clone AI Web Tools →](https://lovable.dev/projects/74526e1d-83e8-4f40-80f3-de623c3f220f?via=aiwebtools)
+[Clone AI Web Tools →](https://lovable.dev/projects/a54b5496-7692-4c19-94b1-fe414e634bbe?via=aiwebtools)
 
 *Building the future of AI discovery, together.*
     `

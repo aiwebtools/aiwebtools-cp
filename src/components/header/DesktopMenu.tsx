@@ -396,7 +396,7 @@ const DesktopMenu = () => {
                       💾 Source Code
                     </DropdownMenuItem>
                     <DropdownMenuItem 
-                      onClick={(e) => { e.preventDefault(); handleExternalLink("https://lovable.dev/projects/74526e1d-83e8-4f40-80f3-de623c3f220f?via=aiwebtools", e); }}
+                      onClick={(e) => { e.preventDefault(); handleExternalLink("https://lovable.dev/projects/a54b5496-7692-4c19-94b1-fe414e634bbe?via=aiwebtools", e); }}
                       className="text-yellow-100 hover:bg-yellow-500/20 rounded text-sm px-2 py-1.5 bg-yellow-600/10 border border-yellow-500/30"
                     >
                       <Copy className="w-3 h-3 mr-2" />
