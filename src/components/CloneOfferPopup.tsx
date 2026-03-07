@@ -10,6 +10,19 @@ import { Button } from "@/components/ui/button";
 import { Copy, Sparkles } from "lucide-react";
 import { createTimePortalEffect } from "@/utils/timeEffects";
 import cloneKingdomImage from "@/assets/clone-kingdom.jpg";
+import clonePopup4 from "@/assets/clone-popup-4.jpg";
+import clonePopup5 from "@/assets/clone-popup-5.jpg";
+import clonePopup6 from "@/assets/clone-popup-6.jpg";
+import clonePopup7 from "@/assets/clone-popup-7.jpg";
+import clonePopup8 from "@/assets/clone-popup-8.jpg";
+
+const popupImages: Record<number, string> = {
+  4: clonePopup4,
+  5: clonePopup5,
+  6: clonePopup6,
+  7: clonePopup7,
+  8: clonePopup8,
+};
 
 const CloneOfferPopup = () => {
   const [isOpen, setIsOpen] = useState(false);
