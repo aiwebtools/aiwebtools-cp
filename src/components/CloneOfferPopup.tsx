@@ -113,12 +113,18 @@ const CloneOfferPopup = () => {
           </DialogDescription>
         </DialogHeader>
         
-        {/* Media Section - Image on first popup, video on subsequent */}
+        {/* Media Section - Image on first popup, video on 2-3, images on 4-8 */}
         <div className="w-full rounded-lg overflow-hidden bg-black border border-gray-700">
           {showCount <= 1 ? (
             <img
               src={cloneKingdomImage}
               alt="Inner Cosmos - Inner Temple - Light Within - Your AI Empire Awaits"
+              className="w-full h-auto max-h-[45vh] object-contain mx-auto"
+            />
+          ) : showCount >= 4 && popupImages[showCount] ? (
+            <img
+              src={popupImages[showCount]}
+              alt="I AM the truth hidden in plain sight - Your AI Empire Awaits - AIWebTools.ai"
               className="w-full h-auto max-h-[45vh] object-contain mx-auto"
             />
           ) : (
