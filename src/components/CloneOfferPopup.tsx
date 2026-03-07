@@ -65,13 +65,13 @@ const CloneOfferPopup = () => {
     const shownCount = parseInt(sessionStorage.getItem('cloneOfferShowCount') || '0');
     setShowCount(shownCount);
 
-    // If already shown 4 times, don't show again
-    if (shownCount >= 4) {
+    // If already shown 9 times (indices 0-8), don't show again
+    if (shownCount >= 9) {
       return;
     }
 
-    // Determine the delay: 7, 12, and 20 minutes (starting at 7 min)
-    const delays = [420000, 720000, 1200000, 1500000]; // 7min, 12min, 20min, 25min in ms
+    // Delays: 7min, 12min, 20min, 25min, then every 7min after
+    const delays = [420000, 720000, 1200000, 1500000, 1920000, 2340000, 2760000, 3180000, 3600000];
     const delay = delays[shownCount] || delays[delays.length - 1];
 
     const timer = setTimeout(() => {
