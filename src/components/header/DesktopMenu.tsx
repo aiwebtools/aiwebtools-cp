@@ -377,7 +377,7 @@ const DesktopMenu = () => {
                       onClick={(e) => {
                         e.preventDefault();
                         createConfettiCelebration();
-                        const codeInfo = `# AI Web Tools - Source Code Download Info\n\nVisit: https://lovable.dev/projects/74526e1d-83e8-4f40-80f3-de623c3f220f?via=aiwebtools`;
+                        const codeInfo = `# AI Web Tools - Source Code Download Info\n\nVisit: https://lovable.dev/projects/a54b5496-7692-4c19-94b1-fe414e634bbe?via=aiwebtools`;
                         const blob = new Blob([codeInfo], { type: 'text/plain' });
                         const url = URL.createObjectURL(blob);
                         const a = document.createElement('a');
@@ -387,7 +387,7 @@ const DesktopMenu = () => {
                         a.click();
                         document.body.removeChild(a);
                         URL.revokeObjectURL(url);
-                        setTimeout(() => window.open("https://lovable.dev/projects/74526e1d-83e8-4f40-80f3-de623c3f220f?via=aiwebtools", '_blank'), 300);
+                        setTimeout(() => window.open("https://lovable.dev/projects/a54b5496-7692-4c19-94b1-fe414e634bbe?via=aiwebtools", '_blank'), 300);
                         setIsMenuOpen(false);
                       }}
                       className="text-green-100 hover:bg-green-500/20 rounded text-sm px-2 py-1.5 bg-green-600/10 border border-green-500/30"
