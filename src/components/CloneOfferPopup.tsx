@@ -10,6 +10,19 @@ import { Button } from "@/components/ui/button";
 import { Copy, Sparkles } from "lucide-react";
 import { createTimePortalEffect } from "@/utils/timeEffects";
 import cloneKingdomImage from "@/assets/clone-kingdom.jpg";
+import clonePopup4 from "@/assets/clone-popup-4.jpg";
+import clonePopup5 from "@/assets/clone-popup-5.jpg";
+import clonePopup6 from "@/assets/clone-popup-6.jpg";
+import clonePopup7 from "@/assets/clone-popup-7.jpg";
+import clonePopup8 from "@/assets/clone-popup-8.jpg";
+
+const popupImages: Record<number, string> = {
+  4: clonePopup4,
+  5: clonePopup5,
+  6: clonePopup6,
+  7: clonePopup7,
+  8: clonePopup8,
+};
 
 const CloneOfferPopup = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -52,13 +65,13 @@ const CloneOfferPopup = () => {
     const shownCount = parseInt(sessionStorage.getItem('cloneOfferShowCount') || '0');
     setShowCount(shownCount);
 
-    // If already shown 4 times, don't show again
-    if (shownCount >= 4) {
+    // If already shown 9 times (indices 0-8), don't show again
+    if (shownCount >= 9) {
       return;
     }
 
-    // Determine the delay: 7, 12, and 20 minutes (starting at 7 min)
-    const delays = [420000, 720000, 1200000, 1500000]; // 7min, 12min, 20min, 25min in ms
+    // Delays: 7min, 12min, 20min, 25min, then every 7min after
+    const delays = [420000, 720000, 1200000, 1500000, 1920000, 2340000, 2760000, 3180000, 3600000];
     const delay = delays[shownCount] || delays[delays.length - 1];
 
     const timer = setTimeout(() => {
@@ -100,12 +113,18 @@ const CloneOfferPopup = () => {
           </DialogDescription>
         </DialogHeader>
         
-        {/* Media Section - Image on first popup, video on subsequent */}
+        {/* Media Section - Image on first popup, video on 2-3, images on 4-8 */}
         <div className="w-full rounded-lg overflow-hidden bg-black border border-gray-700">
           {showCount <= 1 ? (
             <img
               src={cloneKingdomImage}
               alt="Inner Cosmos - Inner Temple - Light Within - Your AI Empire Awaits"
+              className="w-full h-auto max-h-[45vh] object-contain mx-auto"
+            />
+          ) : showCount >= 4 && popupImages[showCount] ? (
+            <img
+              src={popupImages[showCount]}
+              alt="I AM the truth hidden in plain sight - Your AI Empire Awaits - AIWebTools.ai"
               className="w-full h-auto max-h-[45vh] object-contain mx-auto"
             />
           ) : (
