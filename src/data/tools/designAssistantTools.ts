@@ -184,6 +184,7 @@ export const designAssistantTools: Tool[] = [
     emoji: "📊",
     color: "from-green-500 to-cyan-600",
     directUrl: "https://www.askcsv.com/?via=aiwebtools",
+    imageUrl: askcsvHero,
     tags: ["data analysis", "CSV analysis", "ChatGPT integration", "secure analysis", "freemium"],
     category: "Data Analysis",
     rating: 4.0,
