@@ -145,6 +145,7 @@ export const aiArtTools: Tool[] = [
     emoji: "🎨",
     color: "from-blue-500 to-green-500",
     directUrl: "https://www.canva.com/ai-image-generator/?via=aiwebtools",
+    imageUrl: "/src/assets/tools/canva-ai-hero.jpg",
     tags: ["canva integration", "presentations", "social media", "marketing", "design platform"],
     category: "AI Art",
     rating: 4.4,
