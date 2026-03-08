@@ -16,6 +16,16 @@ import {
   Globe
 } from "lucide-react";
 
+import seeleHero from "@/assets/tools/seele-hero.jpg";
+import mirage2Hero from "@/assets/tools/mirage-2-hero.jpg";
+import scenarioHero from "@/assets/tools/scenario-hero.jpg";
+import leonardoGameArtHero from "@/assets/tools/leonardo-game-art-hero.jpg";
+import ludoAiHero from "@/assets/tools/ludo-ai-hero.jpg";
+import charismaAiHero from "@/assets/tools/charisma-ai-hero.jpg";
+import prometheanAiHero from "@/assets/tools/promethean-ai-hero.jpg";
+import soundrawAiHero from "@/assets/tools/soundraw-ai-hero.jpg";
+import inworldAiHero from "@/assets/tools/inworld-ai-hero.jpg";
+
 export const gameDesignAndDevelopment: Tool[] = [
   {
     icon: FileText,
