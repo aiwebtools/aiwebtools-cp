@@ -73,6 +73,7 @@ export const gameDesignAndDevelopment: Tool[] = [
     emoji: "🎨",
     color: "from-orange-500 to-red-600",
     directUrl: "https://www.scenario.com/?via=aiwebtools",
+    imageUrl: scenarioHero,
     tags: ["game assets", "character design", "AI art", "style consistency", "custom models", "game development"],
     category: "GAME DESIGN & DEVELOPMENT",
     rating: 4.7,
