@@ -24,6 +24,8 @@ import boltNewHero from "@/assets/tools/bolt-new-hero.jpg";
 import webflowHero from "@/assets/tools/webflow-hero.jpg";
 import builderIoHero from "@/assets/tools/builder-io-hero.jpg";
 import railwayHero from "@/assets/tools/railway-hero.jpg";
+import cloudflareWorkersHero from "@/assets/tools/cloudflare-workers-ai-hero.jpg";
+import relumeHero from "@/assets/tools/relume-hero.jpg";
 
 export const webDevelopmentTools: Tool[] = [
   {
@@ -72,6 +74,7 @@ export const webDevelopmentTools: Tool[] = [
     emoji: "☁️",
     color: "from-orange-500 to-red-600",
     directUrl: "https://www.cloudflare.com/products/workers-ai/",
+    imageUrl: cloudflareWorkersHero,
     tags: ["Cloud Platform", "Backend", "serverless AI", "edge computing", "global deployment", "low latency", "performance"],
     category: "DEVELOPMENT & CODING",
     rating: 4.4,
@@ -162,6 +165,7 @@ export const webDevelopmentTools: Tool[] = [
     emoji: "🧩",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://www.relume.io/?via=aiwebtools",
+    imageUrl: relumeHero,
     tags: ["No-Code/Low-Code", "Frontend", "website generator", "AI site builder", "wireframe", "sitemap", "copywriting", "Webflow"],
     category: "DEVELOPMENT & CODING",
     rating: 4.5,

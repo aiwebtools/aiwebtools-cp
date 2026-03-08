@@ -20,6 +20,11 @@ import {
   Image,
   Edit
 } from "lucide-react";
+import flikiHero from "@/assets/tools/fliki-hero.jpg";
+import logoaiHero from "@/assets/tools/logoai-hero.jpg";
+import cre8tiveaiHero from "@/assets/tools/cre8tiveai-hero.jpg";
+import aiprmHero from "@/assets/tools/aiprm-hero.jpg";
+import fiberyHero from "@/assets/tools/fibery-hero.jpg";
 
 export const designAssistantTools: Tool[] = [
   {
@@ -29,6 +34,7 @@ export const designAssistantTools: Tool[] = [
     emoji: "🎬",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://fliki.ai/?via=aiwebtools",
+    imageUrl: flikiHero,
     tags: ["video creation", "text to speech", "content creation", "AI voices", "freemium"],
     category: "Video Creation",
     rating: 4.4,
@@ -41,6 +47,7 @@ export const designAssistantTools: Tool[] = [
     emoji: "🎨",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://logo.com/?via=aiwebtools",
+    imageUrl: logoaiHero,
     tags: ["logo design", "branding", "AI design", "business", "freemium"],
     category: "Design AI",
     rating: 4.2,
@@ -89,6 +96,7 @@ export const designAssistantTools: Tool[] = [
     emoji: "🎭",
     color: "from-pink-500 to-purple-600",
     directUrl: "https://cre8tiveai.com/?via=aiwebtools",
+    imageUrl: cre8tiveaiHero,
     tags: ["photo editing", "anime creation", "creative AI", "image enhancement", "freemium"],
     category: "Creative AI",
     rating: 4.2,
@@ -101,6 +109,7 @@ export const designAssistantTools: Tool[] = [
     emoji: "⚡",
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://chrome.google.com/webstore/detail/aiprm-for-chatgpt/ojnbohmppadfgpejeebfnmnknjdlckgj?via=aiwebtools",
+    imageUrl: aiprmHero,
     tags: ["ChatGPT enhancement", "prompt templates", "productivity", "chrome extension", "free"],
     category: "Productivity",
     rating: 4.6,
@@ -221,6 +230,7 @@ export const designAssistantTools: Tool[] = [
     emoji: "🏢",
     color: "from-indigo-500 to-purple-600",
     directUrl: "https://fibery.io/?via=aiwebtools",
+    imageUrl: fiberyHero,
     tags: ["startup platform", "workflow management", "CRM", "knowledge management", "freemium"],
     category: "Business Tools",
     rating: 4.1,
