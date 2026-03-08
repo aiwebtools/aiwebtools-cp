@@ -81,6 +81,7 @@ export const aiArtTools: Tool[] = [
     emoji: "💫",
     color: "from-indigo-500 to-pink-500",
     directUrl: "https://beta.dreamstudio.ai/?via=aiwebtools",
+    imageUrl: "/src/assets/tools/dreamstudio-hero.jpg",
     tags: ["dreamstudio", "stability AI", "customization", "professional", "advanced", "image generator", "ai image", "generate images", "create images", "ai art generator"],
     category: "AI Art",
     rating: 4.5,
