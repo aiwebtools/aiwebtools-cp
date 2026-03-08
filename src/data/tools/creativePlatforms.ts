@@ -13,6 +13,12 @@ import {
   Film
 } from "lucide-react";
 
+import gimpHero from "@/assets/tools/gimp-hero.jpg";
+import openshotHero from "@/assets/tools/openshot-hero.jpg";
+import audacityHero from "@/assets/tools/audacity-hero.jpg";
+import kritaHero from "@/assets/tools/krita-hero.jpg";
+import darktableHero from "@/assets/tools/darktable-hero.jpg";
+
 export const creativePlatforms: Tool[] = [
   {
     icon: Palette,
