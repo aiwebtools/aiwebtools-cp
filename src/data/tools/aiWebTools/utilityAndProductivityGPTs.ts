@@ -22,6 +22,18 @@ import {
   Binary
 } from "lucide-react";
 
+import aiToolExpertHero from "@/assets/tools/ai-tool-expert-hero.jpg";
+import aiCalculatorHero from "@/assets/tools/ai-calculator-hero.jpg";
+import universalTranslatorHero from "@/assets/tools/universal-translator-hero.jpg";
+import codeCompanionHero from "@/assets/tools/code-companion-hero.jpg";
+import dataVisualizerHero from "@/assets/tools/data-visualizer-hero.jpg";
+import mobileOptimizerHero from "@/assets/tools/mobile-optimizer-hero.jpg";
+import emailAssistantHero from "@/assets/tools/email-assistant-hero.jpg";
+import checklistCreatorHero from "@/assets/tools/checklist-creator-hero.jpg";
+import progressTrackerHero from "@/assets/tools/progress-tracker-hero.jpg";
+import workflowOptimizerHero from "@/assets/tools/workflow-optimizer-hero.jpg";
+import aiLanguageTranslatorHero from "@/assets/tools/ai-language-translator-hero.jpg";
+
 export const utilityAndProductivityGPTs: Tool[] = [
   {
     icon: Search,
@@ -30,6 +42,7 @@ export const utilityAndProductivityGPTs: Tool[] = [
     emoji: "🔍",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://chatgpt.com/g/g-8t4uyWOrI-ai-tools-expert-finder-gpt",
+    imageUrl: aiToolExpertHero,
     tags: ["AI tools", "tool discovery", "expert recommendations", "implementation guides", "AI solutions", "productivity", "ai tool expert", "tool finder", "ai expert", "Custom GPT", "All-in-One Suite", "Multi-Tool Platform"],
     category: "Utility & Productivity",
     rating: 4.8,
@@ -43,6 +56,7 @@ export const utilityAndProductivityGPTs: Tool[] = [
     color: "from-blue-500 to-green-600",
     directUrl: "https://chatgpt.com/g/g-683cd0e910bc819195cf96b2b252c7c5-ai-language-translator-gpt",
     videoUrl: "https://youtu.be/mko9NgC1vrU",
+    imageUrl: aiLanguageTranslatorHero,
     tags: ["language translation", "multilingual", "real-time translation", "cultural context", "international communication", "aiwebtools", "translator", "language", "translate", "Custom GPT", "Translation & Language"],
     category: "Utility & Productivity",
     rating: 4.8,
@@ -55,6 +69,7 @@ export const utilityAndProductivityGPTs: Tool[] = [
     emoji: "🧮",
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://algebraicexpressioninventor.lovable.app/?via=aiwebtools",
+    imageUrl: aiCalculatorHero,
     tags: ["mathematical calculations", "scientific computations", "problem-solving", "step-by-step solutions", "AI assistance", "Custom GPT", "Data Conversion", "Task Management"],
     category: "Utility & Productivity",
     rating: 4.5,
@@ -67,6 +82,7 @@ export const utilityAndProductivityGPTs: Tool[] = [
     emoji: "🌍",
     color: "from-blue-500 to-green-600",
     directUrl: "https://chat.openai.com/g/g-Cd5QdQ9Kt-universal-translator",
+    imageUrl: universalTranslatorHero,
     tags: ["language translation", "real-time interpretation", "multilingual support", "global communication", "Custom GPT", "Translation & Language"],
     category: "Utility & Productivity",
     rating: 4.7,
@@ -79,6 +95,7 @@ export const utilityAndProductivityGPTs: Tool[] = [
     emoji: "💻",
     color: "from-gray-500 to-blue-600",
     directUrl: "https://chatgpt.com/g/g-j49Jok77O-code-companion",
+    imageUrl: codeCompanionHero,
     tags: ["code generation", "debugging", "code explanation", "documentation", "AI coding assistant", "Custom GPT", "Code Assistant"],
     category: "Utility & Productivity",
     rating: 4.9,
@@ -91,6 +108,7 @@ export const utilityAndProductivityGPTs: Tool[] = [
     emoji: "📊",
     color: "from-blue-500 to-green-600",
     directUrl: "https://chat.openai.com/g/g-6qDKdddio-data-visualizer",
+    imageUrl: dataVisualizerHero,
     tags: ["data visualization", "trend analysis", "pattern identification", "raw data processing", "Custom GPT", "Data Conversion", "Task Management"],
     category: "Utility & Productivity",
     rating: 4.7,
@@ -103,6 +121,7 @@ export const utilityAndProductivityGPTs: Tool[] = [
     emoji: "📱",
     color: "from-green-500 to-teal-600",
     directUrl: "https://chat.openai.com/g/g-hfddkJjdh-mobile-optimizer",
+    imageUrl: mobileOptimizerHero,
     tags: ["mobile optimization", "website optimization", "application optimization", "user experience", "Custom GPT", "Workflow Optimization"],
     category: "Utility & Productivity",
     rating: 4.5,
@@ -115,6 +134,7 @@ export const utilityAndProductivityGPTs: Tool[] = [
     emoji: "📧",
     color: "from-red-500 to-pink-600",
     directUrl: "https://chat.openai.com/g/g-m08jT4l9x-email-assistant",
+    imageUrl: emailAssistantHero,
     tags: ["email drafting", "inbox management", "message prioritization", "professional emails", "Custom GPT", "Email Management", "Email Marketing"],
     category: "Utility & Productivity",
     rating: 4.6,
@@ -127,6 +147,7 @@ export const utilityAndProductivityGPTs: Tool[] = [
     emoji: "✅",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://chat.openai.com/g/g-dmAGMBmAn-checklist-creator",
+    imageUrl: checklistCreatorHero,
     tags: ["checklist generation", "task management", "project thoroughness", "customizable checklists", "Custom GPT", "Checklist & Planning", "Task Management"],
     category: "Utility & Productivity",
     rating: 4.4,
@@ -139,6 +160,7 @@ export const utilityAndProductivityGPTs: Tool[] = [
     emoji: "📈",
     color: "from-gray-500 to-blue-600",
     directUrl: "https://chat.openai.com/g/g-6sFbiExGx-progress-tracker",
+    imageUrl: progressTrackerHero,
     tags: ["progress tracking", "goal achievement", "visual representation", "project monitoring", "Custom GPT", "Progress Tracking", "Task Management"],
     category: "Utility & Productivity",
     rating: 4.8,
@@ -151,6 +173,7 @@ export const utilityAndProductivityGPTs: Tool[] = [
     emoji: "🔄",
     color: "from-blue-500 to-green-600",
     directUrl: "https://chat.openai.com/g/g-gzi92f3kt-workflow-optimizer",
+    imageUrl: workflowOptimizerHero,
     tags: ["workflow analysis", "streamlined operations", "efficiency improvements", "process optimization", "Custom GPT", "Workflow Optimization", "Automation Platform"],
     category: "Utility & Productivity",
     rating: 4.5,

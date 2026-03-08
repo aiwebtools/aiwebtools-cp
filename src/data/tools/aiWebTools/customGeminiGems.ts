@@ -1,6 +1,12 @@
 import { Tool } from "@/types/tools";
 import { BookOpen, Clock, FileText, History, Globe, Video } from "lucide-react";
 
+import bookWriterGeminiHero from "@/assets/tools/book-writer-gemini-hero.jpg";
+import blackHistoryTimeMachineHero from "@/assets/tools/black-history-time-machine-hero.jpg";
+import nativeAmericanGeminiHero from "@/assets/tools/native-american-gemini-hero.jpg";
+import ogTimeMachineGeminiHero from "@/assets/tools/og-time-machine-gemini-hero.jpg";
+import veo3PromptMakerHero from "@/assets/tools/veo3-prompt-maker-hero.jpg";
+
 export const customGeminiGems: Tool[] = [
   {
     icon: BookOpen,
@@ -11,6 +17,7 @@ export const customGeminiGems: Tool[] = [
     category: "Custom Gemini Gems",
     directUrl: "https://gemini.google.com/gem/ac3de7972849",
     videoUrl: "https://youtu.be/xNQi8wuM3DQ",
+    imageUrl: bookWriterGeminiHero,
     rating: 4.7,
     totalVotes: 2156,
     tags: ["gemini", "custom gem", "Gemini Gem", "book writing", "novel creation", "storytelling", "google gemini"]
@@ -23,6 +30,7 @@ export const customGeminiGems: Tool[] = [
     color: "from-amber-500 to-red-600",
     category: "Custom Gemini Gems",
     directUrl: "https://gemini.google.com/gem/4e45b3038f6c",
+    imageUrl: blackHistoryTimeMachineHero,
     rating: 4.8,
     totalVotes: 1892,
     tags: ["gemini", "custom gem", "Gemini Gem", "time travel", "time machine", "black history", "education", "history", "google gemini"]
@@ -48,6 +56,7 @@ export const customGeminiGems: Tool[] = [
     color: "from-orange-500 to-red-600",
     category: "Custom Gemini Gems",
     directUrl: "https://gemini.google.com/gem/8410bdacd80e",
+    imageUrl: nativeAmericanGeminiHero,
     rating: 4.9,
     totalVotes: 2341,
     tags: ["gemini", "custom gem", "Gemini Gem", "time travel", "time machine", "native american", "history", "education", "google gemini"]
@@ -60,6 +69,7 @@ export const customGeminiGems: Tool[] = [
     color: "from-purple-500 to-blue-600",
     category: "Custom Gemini Gems",
     directUrl: "https://gemini.google.com/gem/18b868221ea1",
+    imageUrl: ogTimeMachineGeminiHero,
     rating: 4.8,
     totalVotes: 3127,
     tags: ["gemini", "custom gem", "Gemini Gem", "time travel", "history", "education", "father time", "google gemini"]
@@ -72,6 +82,7 @@ export const customGeminiGems: Tool[] = [
     color: "from-pink-500 to-purple-600",
     category: "Custom Gemini Gems",
     directUrl: "https://gemini.google.com/gem/64b77a9fe1e8",
+    imageUrl: veo3PromptMakerHero,
     rating: 4.7,
     totalVotes: 1876,
     tags: ["gemini", "custom gem", "Gemini Gem", "veo3", "prompt engineering", "video generation", "ai video", "google gemini"]
