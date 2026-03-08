@@ -12,6 +12,22 @@ import {
   Building, Crown, Diamond, Headphones, Gamepad2, Film
 } from "lucide-react";
 
+import vwoHero from "@/assets/tools/vwo-hero.jpg";
+import podcastleHero from "@/assets/tools/podcastle-hero.jpg";
+import spinrewriterHero from "@/assets/tools/spinrewriter-hero.jpg";
+import simplifiedHero from "@/assets/tools/simplified-hero.jpg";
+import windsorHero from "@/assets/tools/windsor-hero.jpg";
+import comparHero from "@/assets/tools/compar-hero.jpg";
+import colossyanHero from "@/assets/tools/colossyan-hero.jpg";
+import paragraphaiHero from "@/assets/tools/paragraphai-hero.jpg";
+import ideabuddyHero from "@/assets/tools/ideabuddy-hero.jpg";
+import convaiHero from "@/assets/tools/convai-hero.jpg";
+import yippityHero from "@/assets/tools/yippity-hero.jpg";
+import tinywowHero from "@/assets/tools/tinywow-hero.jpg";
+import deepmotionHero from "@/assets/tools/deepmotion-hero.jpg";
+import elephasHero from "@/assets/tools/elephas-hero.jpg";
+import predisHero from "@/assets/tools/predis-hero.jpg";
+
 export const comprehensiveAITools: Tool[] = [
   // VWO - A/B Testing & Conversion Optimization
   {
@@ -21,6 +37,7 @@ export const comprehensiveAITools: Tool[] = [
     emoji: "🎯",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://vwo.com/",
+    imageUrl: vwoHero,
     tags: ["A/B testing", "conversion optimization", "experimentation", "personalization", "analytics"],
     category: "Design Assistant Tools",
     rating: 4.6,
@@ -35,6 +52,7 @@ export const comprehensiveAITools: Tool[] = [
     emoji: "🎙️",
     color: "from-red-500 to-orange-600",
     directUrl: "https://podcastle.ai/?ref=ywywywq",
+    imageUrl: podcastleHero,
     tags: ["podcast", "recording", "AI editing", "broadcast", "storytelling"],
     category: "Audio & Voice Tools",
     rating: 4.5,
@@ -49,6 +67,7 @@ export const comprehensiveAITools: Tool[] = [
     emoji: "🔄",
     color: "from-green-500 to-blue-600",
     directUrl: "https://www.spinrewriter.com/",
+    imageUrl: spinrewriterHero,
     tags: ["content spinning", "SEO", "article rewriting", "ENL technology", "content generation"],
     category: "Writing & Content Creation",
     rating: 4.3,
@@ -63,6 +82,7 @@ export const comprehensiveAITools: Tool[] = [
     emoji: "✍️",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://simplified.com/?fpr=kenneth81",
+    imageUrl: simplifiedHero,
     tags: ["AI writing", "copywriting", "content generation", "social media", "marketing"],
     category: "Writing & Content Creation",
     rating: 4.4,
@@ -77,6 +97,7 @@ export const comprehensiveAITools: Tool[] = [
     emoji: "📹",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://windsor.io/?via=aiwebtools",
+    imageUrl: windsorHero,
     tags: ["personalized video", "marketing", "customer engagement", "brand recognition", "automation"],
     category: "Video & Content Creation",
     rating: 4.2,
@@ -91,6 +112,7 @@ export const comprehensiveAITools: Tool[] = [
     emoji: "📊",
     color: "from-orange-500 to-red-600",
     directUrl: "https://compar.ai/",
+    imageUrl: comparHero,
     tags: ["content analysis", "AI analytics", "performance tracking", "insights", "optimization"],
     category: "Data & Analytics",
     rating: 4.1,
@@ -105,6 +127,7 @@ export const comprehensiveAITools: Tool[] = [
     emoji: "🎬",
     color: "from-indigo-500 to-purple-600",
     directUrl: "https://www.colossyan.com/?via=aiwebtools",
+    imageUrl: colossyanHero,
     tags: ["AI video", "real actors", "video creation", "fast production", "professional videos"],
     category: "Video & Content Creation",
     rating: 4.3,
@@ -119,6 +142,7 @@ export const comprehensiveAITools: Tool[] = [
     emoji: "📝",
     color: "from-green-500 to-teal-600",
     directUrl: "https://paragraphai.com/?ref=aiwebtools",
+    imageUrl: paragraphaiHero,
     tags: ["AI writing", "grammar check", "content clarity", "error-free writing", "productivity"],
     category: "Writing & Content Creation",
     rating: 4.2,
@@ -133,6 +157,7 @@ export const comprehensiveAITools: Tool[] = [
     emoji: "💡",
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://ideabuddy.com/?via=Aiwebtools",
+    imageUrl: ideabuddyHero,
     tags: ["business planning", "idea development", "startup", "business strategy", "entrepreneurship"],
     category: "Business & Productivity",
     rating: 4.4,
@@ -147,6 +172,7 @@ export const comprehensiveAITools: Tool[] = [
     emoji: "🗣️",
     color: "from-blue-500 to-indigo-600",
     directUrl: "https://convai.com/",
+    imageUrl: convaiHero,
     tags: ["conversational AI", "speech recognition", "game development", "character design", "voice AI"],
     category: "AI Development Tools",
     rating: 4.5,
@@ -161,6 +187,7 @@ export const comprehensiveAITools: Tool[] = [
     emoji: "📚",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://yippity.io/",
+    imageUrl: yippityHero,
     tags: ["flashcards", "study tool", "education", "question generation", "learning"],
     category: "Education & Learning",
     rating: 4.3,
@@ -175,6 +202,7 @@ export const comprehensiveAITools: Tool[] = [
     emoji: "🔧",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://tinywow.com/",
+    imageUrl: tinywowHero,
     tags: ["utility tools", "PDF tools", "file conversion", "image tools", "productivity"],
     category: "Utilities & Productivity",
     rating: 4.2,
@@ -189,6 +217,7 @@ export const comprehensiveAITools: Tool[] = [
     emoji: "🎭",
     color: "from-red-500 to-purple-600",
     directUrl: "https://www.deepmotion.com/animate-3d?gad=1&gclid=Cj0KCQjwxYOiBhC9ARIsANiEIfaFSs89mduH1Un8tCZbmV2s_uSfz8lkFg7zCKoYSnLrbsF74fcc-VoaAqB4EALw_wcB",
+    imageUrl: deepmotionHero,
     tags: ["3D animation", "motion capture", "body tracking", "AR/VR", "game development"],
     category: "3D & Animation",
     rating: 4.4,
@@ -203,6 +232,7 @@ export const comprehensiveAITools: Tool[] = [
     emoji: "🐘",
     color: "from-gray-500 to-blue-600",
     directUrl: "https://elephas.app/",
+    imageUrl: elephasHero,
     tags: ["Mac integration", "AI writing", "cross-platform", "productivity", "Apple ecosystem"],
     category: "Writing & Content Creation",
     rating: 4.3,
@@ -217,6 +247,7 @@ export const comprehensiveAITools: Tool[] = [
     emoji: "📱",
     color: "from-pink-500 to-red-600",
     directUrl: "https://predis.ai/?ref=aiwebtools",
+    imageUrl: predisHero,
     tags: ["social media", "content generation", "engagement prediction", "hashtags", "marketing"],
     category: "Marketing & Social Media",
     rating: 4.5,

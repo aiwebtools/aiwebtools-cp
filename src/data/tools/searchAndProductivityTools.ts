@@ -15,6 +15,12 @@ import {
   Users
 } from "lucide-react";
 
+import gptgoHero from "@/assets/tools/gptgo-hero.jpg";
+import globeAiHero from "@/assets/tools/globe-ai-hero.jpg";
+import gptWorkspaceHero from "@/assets/tools/gpt-workspace-hero.jpg";
+import merlinBrowserHero from "@/assets/tools/merlin-browser-hero.jpg";
+import notebooklmBrandedHero from "@/assets/tools/notebooklm-branded-hero.jpg";
+
 export const searchAndProductivityTools: Tool[] = [
   {
     icon: Search,
@@ -23,6 +29,7 @@ export const searchAndProductivityTools: Tool[] = [
     emoji: "🔍",
     color: "from-blue-500 to-green-600",
     directUrl: "https://gptgo.ai/?hl=en&via=aiwebtools",
+    imageUrl: gptgoHero,
     tags: ["ChatGPT", "search engine", "multilingual", "free", "web search", "conversational AI"],
     category: "Search & Productivity",
     rating: 4.2,
@@ -35,6 +42,7 @@ export const searchAndProductivityTools: Tool[] = [
     emoji: "📄",
     color: "from-green-500 to-blue-600",
     directUrl: "https://gpt.space/?via=aiwebtools",
+    imageUrl: gptWorkspaceHero,
     tags: ["Google Workspace", "productivity", "ChatGPT integration", "documents", "email", "collaboration"],
     category: "Search & Productivity",
     rating: 4.5,
@@ -60,7 +68,7 @@ export const searchAndProductivityTools: Tool[] = [
     emoji: "⚡",
     color: "from-yellow-500 to-red-600",
     directUrl: "https://app.getmerlin.in/plans?ref=mte1mgu4",
-    imageUrl: "/src/assets/tools/merlin-hero.png",
+    imageUrl: merlinBrowserHero,
     tags: ["browser extension", "ChatGPT enhancement", "Gmail", "YouTube", "productivity", "GPT-4 access"],
     category: "Search & Productivity",
     rating: 4.4,
@@ -73,6 +81,7 @@ export const searchAndProductivityTools: Tool[] = [
     emoji: "🌍",
     color: "from-green-500 to-teal-600",
     directUrl: "https://explorer.globe.engineer/?via=aiwebtools",
+    imageUrl: globeAiHero,
     tags: ["visual learning", "education", "free", "charts", "images", "database"],
     category: "Search & Productivity",
     rating: 4.3,
@@ -98,7 +107,7 @@ export const searchAndProductivityTools: Tool[] = [
     emoji: "📓",
     color: "from-red-500 to-orange-600",
     directUrl: "https://notebooklm.google.com/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/notebooklm-hero.png",
+    imageUrl: notebooklmBrandedHero,
     tags: ["Google", "document analysis", "podcast generation", "summarization", "education", "creative learning"],
     category: "Search & Productivity",
     rating: 4.7,
