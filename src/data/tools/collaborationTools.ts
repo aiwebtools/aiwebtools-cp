@@ -13,6 +13,7 @@ export const collaborationTools: Tool[] = [
     emoji: "📄",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://bit.ai/?deal=aiwebtools",
+    imageUrl: bitAiHero,
     tags: ["document collaboration", "knowledge management", "wikis", "client portals", "team workspace", "content management"],
     category: "Collaboration Tools",
     rating: 4.5,
