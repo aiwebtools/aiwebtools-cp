@@ -993,6 +993,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     emoji: "🔥",
     color: "from-orange-500 to-red-600",
     directUrl: "https://chatgpt.com/g/g-6924f7cdc6c88191adca2a902655cf70-saint-catherine-of-siena-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/tools/saint-catherine-siena-hero.jpg",
     tags: ["catherine of siena", "doctor of the church", "mysticism", "divine dialogue", "church reform", "dominican", "spiritual marriage", "medieval mystic", "spirituality", "religion", "religious", "saint", "catholic", "christian", "aiwebtools"],
     category: "Spirituality & Philosophy",
     rating: 4.9,
