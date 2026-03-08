@@ -980,6 +980,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     emoji: "✝️",
     color: "from-red-500 to-brown-600",
     directUrl: "https://chatgpt.com/g/g-6924f6f3c570819181a978f9fabe1826-saint-padre-pio-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/tools/saint-padre-pio-hero.jpg",
     tags: ["padre pio", "padre", "pio", "stigmata", "capuchin", "mysticism", "suffering", "intercession", "miracles", "divine wounds", "spirituality", "religion", "religious", "saint", "catholic", "christian", "aiwebtools"],
     category: "Spirituality & Philosophy",
     rating: 4.9,
