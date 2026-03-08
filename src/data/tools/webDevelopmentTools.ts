@@ -74,6 +74,7 @@ export const webDevelopmentTools: Tool[] = [
     emoji: "☁️",
     color: "from-orange-500 to-red-600",
     directUrl: "https://www.cloudflare.com/products/workers-ai/",
+    imageUrl: cloudflareWorkersHero,
     tags: ["Cloud Platform", "Backend", "serverless AI", "edge computing", "global deployment", "low latency", "performance"],
     category: "DEVELOPMENT & CODING",
     rating: 4.4,
