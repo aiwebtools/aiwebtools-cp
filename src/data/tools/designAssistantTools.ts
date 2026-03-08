@@ -236,6 +236,7 @@ export const designAssistantTools: Tool[] = [
     emoji: "🧹",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://www.sweephy.com/?via=aiwebtools",
+    imageUrl: sweephyHero,
     tags: ["data cleaning", "machine learning", "no-code", "data organization", "freemium"],
     category: "Data AI",
     rating: 4.0,
