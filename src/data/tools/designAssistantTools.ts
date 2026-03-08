@@ -340,6 +340,7 @@ export const designAssistantTools: Tool[] = [
     emoji: "📸",
     color: "from-pink-500 to-purple-600",
     directUrl: "https://pixlr.com/?via=aiwebtools",
+    imageUrl: pixlrHero,
     tags: ["photo editing", "cloud-based", "browser editing", "image manipulation", "freemium"],
     category: "Photo Editing",
     rating: 4.3,
