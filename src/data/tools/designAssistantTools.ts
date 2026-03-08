@@ -275,6 +275,7 @@ export const designAssistantTools: Tool[] = [
     emoji: "📹",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://workspace-9joqkpl.vowel.com/home?via=aiwebtools",
+    imageUrl: vowelHero,
     tags: ["video conferencing", "meeting summaries", "transcription", "collaboration", "freemium"],
     category: "Video Conferencing",
     rating: 4.2,
