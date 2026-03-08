@@ -53,6 +53,7 @@ export const creativePlatforms: Tool[] = [
     emoji: "🎵",
     color: "from-red-500 to-purple-600",
     directUrl: "https://audacity.sourceforge.io/",
+    imageUrl: audacityHero,
     tags: ["audio editing", "recording", "open source", "multi-track", "free"],
     category: "Creative Platforms",
     rating: 4.6,
