@@ -838,6 +838,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     emoji: "🦅",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://chatgpt.com/g/g-6924ebe2ae108191ac310184bbb1aa61-black-elk-vision-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/tools/black-elk-vision-hero.jpg",
     tags: ["black elk", "lakota wisdom", "native american spirituality", "vision quest", "sacred hoop", "indigenous wisdom", "prayer", "spiritual vision", "aiwebtools"],
     category: "Spirituality & Philosophy",
     rating: 4.9,
