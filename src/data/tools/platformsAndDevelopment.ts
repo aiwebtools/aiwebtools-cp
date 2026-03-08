@@ -158,6 +158,7 @@ export const platformsAndDevelopment: Tool[] = [
     emoji: "🔗",
     color: "from-green-500 to-blue-600",
     directUrl: "https://n8n.io/",
+    imageUrl: n8nHero,
     tags: ["workflow automation", "open source", "no-code", "self-hosted", "app integration", "Automation Platform", "Workflow Optimization"],
     category: "DEVELOPMENT & CODING",
     rating: 4.6,

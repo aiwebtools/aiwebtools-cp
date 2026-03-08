@@ -230,6 +230,7 @@ export const designAssistantTools: Tool[] = [
     emoji: "🏢",
     color: "from-indigo-500 to-purple-600",
     directUrl: "https://fibery.io/?via=aiwebtools",
+    imageUrl: fiberyHero,
     tags: ["startup platform", "workflow management", "CRM", "knowledge management", "freemium"],
     category: "Business Tools",
     rating: 4.1,

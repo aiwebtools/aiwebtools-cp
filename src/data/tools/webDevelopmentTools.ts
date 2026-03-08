@@ -165,6 +165,7 @@ export const webDevelopmentTools: Tool[] = [
     emoji: "🧩",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://www.relume.io/?via=aiwebtools",
+    imageUrl: relumeHero,
     tags: ["No-Code/Low-Code", "Frontend", "website generator", "AI site builder", "wireframe", "sitemap", "copywriting", "Webflow"],
     category: "DEVELOPMENT & CODING",
     rating: 4.5,
