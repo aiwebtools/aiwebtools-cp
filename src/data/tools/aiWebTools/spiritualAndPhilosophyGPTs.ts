@@ -955,6 +955,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     emoji: "🌸",
     color: "from-green-500 to-purple-600",
     directUrl: "https://chatgpt.com/g/g-6924f58d2f048191a3d5fb1d52fec634-saint-hildegard-of-bingen-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/tools/saint-hildegard-bingen-hero.jpg",
     tags: ["hildegard of bingen", "hildegard", "bingen", "medieval mystic", "visionary", "sacred music", "herbal medicine", "living light", "viriditas", "prophetic visions", "spirituality", "religion", "religious", "saint", "catholic", "christian", "aiwebtools"],
     category: "Spirituality & Philosophy",
     rating: 4.9,
