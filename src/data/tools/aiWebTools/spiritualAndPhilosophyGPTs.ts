@@ -786,6 +786,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     emoji: "🦅",
     color: "from-red-500 to-brown-600",
     directUrl: "https://chatgpt.com/g/g-6924cd74aecc8191b2f2d0ca6ed71dd4-chief-crazy-horse-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/tools/chief-crazy-horse-hero.jpg",
     tags: ["crazy horse", "lakota wisdom", "native american", "warrior spirit", "prophecy", "indigenous philosophy", "spiritual vision", "resistance", "aiwebtools"],
     category: "Spirituality & Philosophy",
     rating: 4.9,
