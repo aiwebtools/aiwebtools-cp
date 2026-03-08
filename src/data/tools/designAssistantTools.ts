@@ -353,6 +353,7 @@ export const designAssistantTools: Tool[] = [
     emoji: "📚",
     color: "from-blue-500 to-indigo-600",
     directUrl: "https://www.theneo.io/?via=aiwebtools",
+    imageUrl: theneoHero,
     tags: ["API documentation", "technical writing", "developer tools", "documentation AI", "freemium"],
     category: "Developer Tools",
     rating: 4.2,
