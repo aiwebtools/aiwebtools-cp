@@ -903,6 +903,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     emoji: "⛪",
     color: "from-amber-500 to-brown-600",
     directUrl: "https://chatgpt.com/g/g-6924f0cf77ec819184db2d7840387e37-abba-anthony-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/tools/abba-anthony-hero.jpg",
     tags: ["anthony the great", "abba anthony", "abba", "anthony", "desert fathers", "monasticism", "asceticism", "spiritual warfare", "egyptian christianity", "contemplation", "hermit", "aiwebtools"],
     category: "Spirituality & Philosophy",
     rating: 4.8,
