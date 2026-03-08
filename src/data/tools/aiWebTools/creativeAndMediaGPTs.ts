@@ -341,6 +341,7 @@ export const creativeAndMediaGPTs: Tool[] = [
     emoji: "🎨",
     color: "from-pink-500 to-purple-600",
     directUrl: "https://leonardo.ai",
+    imageUrl: "/src/assets/tools/leonardo-ai-hero.jpg",
     tags: ["ai art", "image generation", "digital art", "concept design", "illustrations", "creative design"],
     category: "Creative & Media",
     rating: 4.6,
