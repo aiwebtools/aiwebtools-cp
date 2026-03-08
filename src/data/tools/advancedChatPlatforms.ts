@@ -16,6 +16,10 @@ import {
   Sparkles
 } from "lucide-react";
 
+import chatgptHero from "@/assets/tools/chatgpt-hero.jpg";
+import perplexityAiHero from "@/assets/tools/perplexity-ai-hero.jpg";
+import poeHero from "@/assets/tools/poe-hero.jpg";
+
 export const advancedChatPlatforms: Tool[] = [
   {
     icon: MessageSquare,
@@ -24,6 +28,7 @@ export const advancedChatPlatforms: Tool[] = [
     emoji: "💬",
     color: "from-green-500 to-blue-600",
     directUrl: "https://chat.openai.com/?via=aiwebtools",
+    imageUrl: chatgptHero,
     tags: ["conversation", "writing", "coding", "analysis"],
     category: "Advanced Chat Platforms",
     rating: 4.8,
@@ -114,6 +119,7 @@ export const advancedChatPlatforms: Tool[] = [
     emoji: "🔍",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://www.perplexity.ai/?via=aiwebtools",
+    imageUrl: perplexityAiHero,
     tags: ["AI search", "real-time information", "content detection", "research", "knowledge engine"],
     category: "Advanced Chat Platforms",
     rating: 4.6,
@@ -139,6 +145,7 @@ export const advancedChatPlatforms: Tool[] = [
     emoji: "🤖",
     color: "from-green-500 to-blue-600",
     directUrl: "https://poe.com/AI-Tools-GPT/?via=aiwebtools",
+    imageUrl: poeHero,
     tags: ["AI chat", "multiple models", "iOS app", "subscription options", "convenient access"],
     category: "Advanced Chat Platforms",
     rating: 4.2,
