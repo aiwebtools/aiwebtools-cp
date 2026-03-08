@@ -68,16 +68,29 @@ export const technologyInnovationGPTs: Tool[] = [
     rating: 4.5,
     totalVotes: 3456
   },
-  {
-    icon: Cpu,
-    title: "CipherEncrypt GPT",
-    description: "CipherEncrypt GPT by AiWebTools.Ai is a sophisticated AI-powered encryption and translation engine that converts between multiple formats with perfect fidelity. This advanced tool seamlessly translates between natural language, Morse code, binary, audio signals, and image data, maintaining complete accuracy throughout the conversion process. Whether you're encrypting sensitive information, decoding mysterious messages, converting data between formats, or exploring cryptography, this GPT provides professional-grade encryption and translation capabilities. Features include multi-format conversion, encryption/decryption tools, Morse code translation, binary encoding/decoding, audio-to-text conversion, and image-based data encoding. Perfect for security professionals, cryptography enthusiasts, data analysts, and anyone working with secure communications and data format conversions.",
-    emoji: "🔐",
-    color: "from-indigo-500 to-purple-600",
-    directUrl: "https://chatgpt.com/g/g-68fc6039822c8191a13c8ab8a66270ef-cipherencrypt-gpt",
-    tags: ["encryption", "cryptography", "morse code", "binary", "translation", "data conversion", "security", "encoding", "aiwebtools", "Custom GPT"],
-    category: "Technology & Innovation",
-    rating: 4.6,
-    totalVotes: 2134
-  }
-];
+   {
+     icon: Cpu,
+     title: "CipherEncrypt GPT",
+     description: "CipherEncrypt GPT by AiWebTools.Ai is a sophisticated AI-powered encryption and translation engine that converts between multiple formats with perfect fidelity. This advanced tool seamlessly translates between natural language, Morse code, binary, audio signals, and image data, maintaining complete accuracy throughout the conversion process. Whether you're encrypting sensitive information, decoding mysterious messages, converting data between formats, or exploring cryptography, this GPT provides professional-grade encryption and translation capabilities. Features include multi-format conversion, encryption/decryption tools, Morse code translation, binary encoding/decoding, audio-to-text conversion, and image-based data encoding. Perfect for security professionals, cryptography enthusiasts, data analysts, and anyone working with secure communications and data format conversions.",
+     emoji: "🔐",
+     color: "from-indigo-500 to-purple-600",
+     directUrl: "https://chatgpt.com/g/g-68fc6039822c8191a13c8ab8a66270ef-cipherencrypt-gpt",
+     tags: ["encryption", "cryptography", "morse code", "binary", "translation", "data conversion", "security", "encoding", "aiwebtools", "Custom GPT"],
+     category: "Technology & Innovation",
+     rating: 4.6,
+     totalVotes: 2134
+   },
+   {
+     icon: Code,
+     title: "Software Engineer GPT",
+     description: "Software Engineer GPT by AI Web Tools is your advanced AI-powered software development partner, providing expert guidance across all aspects of software engineering, from architectural design and code implementation to debugging, testing, and deployment optimization. This comprehensive tool transforms software development by combining architectural expertise, coding best practices, and problem-solving capabilities that accelerate development cycles and ensure code quality. Whether you're building full-stack applications, optimizing algorithms, designing scalable systems, or solving complex engineering challenges, this AI provides professional-grade software engineering support. Features include code generation and review, architectural design consultation, debugging assistance, performance optimization, testing strategies, API design guidance, and comprehensive development workflow support. Perfect for software engineers seeking expert guidance, development teams improving code quality, startups building products, and anyone looking to level up their software development capabilities.",
+     emoji: "💻",
+     color: "from-slate-600 to-blue-600",
+     directUrl: "https://chatgpt.com/g/g-69ace71471808191bd4ce6d412e1a1b6-software-engineer-gpt",
+     tags: ["software engineering", "coding", "development", "programming", "architecture", "debugging", "aiwebtools", "Custom GPT"],
+     category: "Technology & Innovation",
+     rating: 4.7,
+     totalVotes: 4234,
+     isFree: true
+   }
+ ];
