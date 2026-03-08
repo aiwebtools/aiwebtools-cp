@@ -80,6 +80,7 @@ export const designAssistantTools: Tool[] = [
     emoji: "🗺️",
     color: "from-green-500 to-blue-600",
     directUrl: "https://chat.mymap.ai/?via=aiwebtools",
+    imageUrl: chatmapHero,
     tags: ["conversational AI", "chat interface", "interactive", "branching conversations", "freemium"],
     category: "AI Chat",
     rating: 4.1,
