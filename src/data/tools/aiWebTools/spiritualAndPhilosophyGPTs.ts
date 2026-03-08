@@ -942,6 +942,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     emoji: "🌙",
     color: "from-indigo-500 to-purple-600",
     directUrl: "https://chatgpt.com/g/g-6924f40f2fd88191bbe2b27996987744-saint-john-of-the-cross-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/tools/saint-john-cross-hero.jpg",
     tags: ["john of the cross", "dark night of the soul", "mystical poetry", "carmelite", "spiritual purification", "divine union", "contemplation", "spanish mystic", "spirituality", "religion", "religious", "saint", "catholic", "christian", "aiwebtools"],
     category: "Spirituality & Philosophy",
     rating: 4.9,
