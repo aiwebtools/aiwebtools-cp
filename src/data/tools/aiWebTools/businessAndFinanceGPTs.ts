@@ -283,6 +283,7 @@ export const businessAndFinanceGPTs: Tool[] = [
     emoji: "🧾",
     color: "from-green-500 to-teal-600",
     directUrl: "https://chatgpt.com/g/g-68bb7e4c16b881918baeff03dfe97c3a-business-expense-deduction-optimizer-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/tools/business-expense-deduction-hero.jpg",
     tags: ["tax deductions", "business expenses", "tax optimization", "financial planning", "expense management", "aiwebtools", "Custom GPT"],
     category: "Business & Finance",
     rating: 4.6,
