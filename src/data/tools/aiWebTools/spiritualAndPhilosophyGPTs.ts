@@ -890,6 +890,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     emoji: "🕉️",
     color: "from-orange-500 to-yellow-600",
     directUrl: "https://chatgpt.com/g/g-6924f00609208191a1d49abe5c2d3527-paramahansa-nityananda-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/tools/paramahansa-nityananda-hero.jpg",
     tags: ["nityananda", "paramahansa", "indian saint", "divine presence", "bliss", "silence", "kundalini", "spiritual transmission", "siddha yoga", "aiwebtools"],
     category: "Spirituality & Philosophy",
     rating: 4.8,
