@@ -366,6 +366,7 @@ export const designAssistantTools: Tool[] = [
     emoji: "👁️",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://imagga.com/?via=aiwebtools",
+    imageUrl: imaggaHero,
     tags: ["image recognition", "visual search", "content moderation", "API", "freemium"],
     category: "Image AI",
     rating: 4.1,
