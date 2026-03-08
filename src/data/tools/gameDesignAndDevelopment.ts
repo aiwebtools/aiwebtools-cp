@@ -47,6 +47,7 @@ export const gameDesignAndDevelopment: Tool[] = [
     emoji: "🎮",
     color: "from-cyan-500 to-purple-600",
     directUrl: "https://www.seeles.ai/home?via=aiwebtools",
+    imageUrl: seeleHero,
     tags: ["3D games", "text to game", "AI game creation", "no coding", "metaverse", "3D worlds"],
     category: "GAME DESIGN & DEVELOPMENT",
     rating: 4.6,
