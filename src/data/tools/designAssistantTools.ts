@@ -25,6 +25,26 @@ import logoaiHero from "@/assets/tools/logoai-hero.jpg";
 import cre8tiveaiHero from "@/assets/tools/cre8tiveai-hero.jpg";
 import aiprmHero from "@/assets/tools/aiprm-hero.jpg";
 import fiberyHero from "@/assets/tools/fibery-hero.jpg";
+import chatmapHero from "@/assets/tools/chatmap-hero.jpg";
+import detangleaiHero from "@/assets/tools/detangleai-hero.jpg";
+import chatshapeHero from "@/assets/tools/chatshape-hero.jpg";
+import dictanoteHero from "@/assets/tools/dictanote-hero.jpg";
+import audionotesHero from "@/assets/tools/audionotes-hero.jpg";
+import filechatHero from "@/assets/tools/filechat-hero.jpg";
+import askcsvHero from "@/assets/tools/askcsv-hero.jpg";
+import koffyHero from "@/assets/tools/koffy-hero.jpg";
+import click2magicHero from "@/assets/tools/click2magic-hero.jpg";
+import coinscreenerHero from "@/assets/tools/coinscreener-hero.jpg";
+import sweephyHero from "@/assets/tools/sweephy-hero.jpg";
+import kiveHero from "@/assets/tools/kive-hero.jpg";
+import vowelHero from "@/assets/tools/vowel-hero.jpg";
+import planableHero from "@/assets/tools/planable-hero.jpg";
+import trickleHero from "@/assets/tools/trickle-hero.jpg";
+import xpeachoHero from "@/assets/tools/xpeacho-hero.jpg";
+import miroHero from "@/assets/tools/miro-hero.jpg";
+import pixlrHero from "@/assets/tools/pixlr-hero.jpg";
+import theneoHero from "@/assets/tools/theneo-hero.jpg";
+import imaggaHero from "@/assets/tools/imagga-hero.jpg";
 
 export const designAssistantTools: Tool[] = [
   {
@@ -60,6 +80,7 @@ export const designAssistantTools: Tool[] = [
     emoji: "🗺️",
     color: "from-green-500 to-blue-600",
     directUrl: "https://chat.mymap.ai/?via=aiwebtools",
+    imageUrl: chatmapHero,
     tags: ["conversational AI", "chat interface", "interactive", "branching conversations", "freemium"],
     category: "AI Chat",
     rating: 4.1,
@@ -72,6 +93,7 @@ export const designAssistantTools: Tool[] = [
     emoji: "⚖️",
     color: "from-gray-500 to-blue-600",
     directUrl: "https://detangle.ai/?via=aiwebtools",
+    imageUrl: detangleaiHero,
     tags: ["legal AI", "document analysis", "summaries", "legal tech", "freemium"],
     category: "Legal AI",
     rating: 4.3,
@@ -84,6 +106,7 @@ export const designAssistantTools: Tool[] = [
     emoji: "🤖",
     color: "from-orange-500 to-red-600",
     directUrl: "https://www.chatshape.com/?via=aiwebtools",
+    imageUrl: chatshapeHero,
     tags: ["custom chatbot", "website integration", "AI training", "customer service", "freemium"],
     category: "Chatbot Creation",
     rating: 4.0,
@@ -122,6 +145,7 @@ export const designAssistantTools: Tool[] = [
     emoji: "🗣️",
     color: "from-blue-500 to-green-600",
     directUrl: "https://dictanote.co/?via=aiwebtools",
+    imageUrl: dictanoteHero,
     tags: ["speech to text", "note taking", "voice typing", "transcription", "freemium"],
     category: "Productivity",
     rating: 4.1,
@@ -134,6 +158,7 @@ export const designAssistantTools: Tool[] = [
     emoji: "🎧",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://www.audionotes.app/?gr_pk=VQ1w&gr_uid=5q8A&via=aiwebtools",
+    imageUrl: audionotesHero,
     tags: ["voice notes", "transcription", "note organization", "AI compilation", "freemium"],
     category: "Productivity",
     rating: 4.4,
@@ -146,6 +171,7 @@ export const designAssistantTools: Tool[] = [
     emoji: "📄",
     color: "from-red-500 to-pink-600",
     directUrl: "https://filechatai.com/?via=aiwebtools",
+    imageUrl: filechatHero,
     tags: ["document AI", "PDF analysis", "question answering", "file exploration", "freemium"],
     category: "Document AI",
     rating: 4.2,
@@ -158,6 +184,7 @@ export const designAssistantTools: Tool[] = [
     emoji: "📊",
     color: "from-green-500 to-cyan-600",
     directUrl: "https://www.askcsv.com/?via=aiwebtools",
+    imageUrl: askcsvHero,
     tags: ["data analysis", "CSV analysis", "ChatGPT integration", "secure analysis", "freemium"],
     category: "Data Analysis",
     rating: 4.0,
@@ -170,6 +197,7 @@ export const designAssistantTools: Tool[] = [
     emoji: "☕",
     color: "from-orange-500 to-yellow-600",
     directUrl: "https://koffy.finance/?via=aiwebtools",
+    imageUrl: koffyHero,
     tags: ["cryptocurrency", "AI news", "market analysis", "fintech", "freemium"],
     category: "Finance AI",
     rating: 3.9,
@@ -182,6 +210,7 @@ export const designAssistantTools: Tool[] = [
     emoji: "💬",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://www.click2magic.com/?via=aiwebtools",
+    imageUrl: click2magicHero,
     tags: ["customer support", "live chat", "customer service", "communication", "freemium"],
     category: "Customer Service",
     rating: 4.1,
@@ -194,6 +223,7 @@ export const designAssistantTools: Tool[] = [
     emoji: "🪙",
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://www.coinscreener.ai/?via=aiwebtools",
+    imageUrl: coinscreenerHero,
     tags: ["cryptocurrency", "trading signals", "AI analysis", "market data", "freemium"],
     category: "Finance AI",
     rating: 4.2,
@@ -206,6 +236,7 @@ export const designAssistantTools: Tool[] = [
     emoji: "🧹",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://www.sweephy.com/?via=aiwebtools",
+    imageUrl: sweephyHero,
     tags: ["data cleaning", "machine learning", "no-code", "data organization", "freemium"],
     category: "Data AI",
     rating: 4.0,
@@ -218,6 +249,7 @@ export const designAssistantTools: Tool[] = [
     emoji: "🗂️",
     color: "from-pink-500 to-red-600",
     directUrl: "https://www.kive.ai/?via=aiwebtools",
+    imageUrl: kiveHero,
     tags: ["creative collaboration", "image search", "content management", "visual search", "freemium"],
     category: "Creative Tools",
     rating: 4.3,
@@ -243,6 +275,7 @@ export const designAssistantTools: Tool[] = [
     emoji: "📹",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://workspace-9joqkpl.vowel.com/home?via=aiwebtools",
+    imageUrl: vowelHero,
     tags: ["video conferencing", "meeting summaries", "transcription", "collaboration", "freemium"],
     category: "Video Conferencing",
     rating: 4.2,
@@ -255,6 +288,7 @@ export const designAssistantTools: Tool[] = [
     emoji: "📅",
     color: "from-green-500 to-blue-600",
     directUrl: "https://planable.io/?via=aiwebtools",
+    imageUrl: planableHero,
     tags: ["social media management", "content planning", "team collaboration", "scheduling", "freemium"],
     category: "Social Media",
     rating: 4.4,
@@ -267,6 +301,7 @@ export const designAssistantTools: Tool[] = [
     emoji: "💧",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://www.trickle.so/?via=aiwebtools",
+    imageUrl: trickleHero,
     tags: ["team collaboration", "AI assistants", "communication", "project management", "freemium"],
     category: "Collaboration",
     rating: 4.0,
@@ -279,6 +314,7 @@ export const designAssistantTools: Tool[] = [
     emoji: "🎙️",
     color: "from-orange-500 to-red-600",
     directUrl: "https://xpeacho.com/?via=aiwebtools",
+    imageUrl: xpeachoHero,
     tags: ["text to speech", "voiceover", "video creation", "AI voice", "freemium"],
     category: "Audio Generation",
     rating: 4.1,
@@ -291,6 +327,7 @@ export const designAssistantTools: Tool[] = [
     emoji: "🗂️",
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://miro.com/?via=aiwebtools",
+    imageUrl: miroHero,
     tags: ["collaborative whiteboard", "brainstorming", "visual collaboration", "team work", "freemium"],
     category: "Collaboration",
     rating: 4.5,
@@ -303,6 +340,7 @@ export const designAssistantTools: Tool[] = [
     emoji: "📸",
     color: "from-pink-500 to-purple-600",
     directUrl: "https://pixlr.com/?via=aiwebtools",
+    imageUrl: pixlrHero,
     tags: ["photo editing", "cloud-based", "browser editing", "image manipulation", "freemium"],
     category: "Photo Editing",
     rating: 4.3,
@@ -315,6 +353,7 @@ export const designAssistantTools: Tool[] = [
     emoji: "📚",
     color: "from-blue-500 to-indigo-600",
     directUrl: "https://www.theneo.io/?via=aiwebtools",
+    imageUrl: theneoHero,
     tags: ["API documentation", "technical writing", "developer tools", "documentation AI", "freemium"],
     category: "Developer Tools",
     rating: 4.2,
@@ -327,6 +366,7 @@ export const designAssistantTools: Tool[] = [
     emoji: "👁️",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://imagga.com/?via=aiwebtools",
+    imageUrl: imaggaHero,
     tags: ["image recognition", "visual search", "content moderation", "API", "freemium"],
     category: "Image AI",
     rating: 4.1,
