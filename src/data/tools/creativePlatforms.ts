@@ -13,6 +13,12 @@ import {
   Film
 } from "lucide-react";
 
+import gimpHero from "@/assets/tools/gimp-hero.jpg";
+import openshotHero from "@/assets/tools/openshot-hero.jpg";
+import audacityHero from "@/assets/tools/audacity-hero.jpg";
+import kritaHero from "@/assets/tools/krita-hero.jpg";
+import darktableHero from "@/assets/tools/darktable-hero.jpg";
+
 export const creativePlatforms: Tool[] = [
   {
     icon: Palette,
@@ -21,6 +27,7 @@ export const creativePlatforms: Tool[] = [
     emoji: "🎨",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://gimp.org/",
+    imageUrl: gimpHero,
     tags: ["image editing", "photo retouching", "graphic design", "open source", "free"],
     category: "Creative Platforms",
     rating: 4.5,
@@ -33,6 +40,7 @@ export const creativePlatforms: Tool[] = [
     emoji: "🎬",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://openshot.org/",
+    imageUrl: openshotHero,
     tags: ["video editing", "open source", "free", "effects", "unlimited tracks"],
     category: "Creative Platforms",
     rating: 4.3,
@@ -45,6 +53,7 @@ export const creativePlatforms: Tool[] = [
     emoji: "🎵",
     color: "from-red-500 to-purple-600",
     directUrl: "https://audacity.sourceforge.io/",
+    imageUrl: audacityHero,
     tags: ["audio editing", "recording", "open source", "multi-track", "free"],
     category: "Creative Platforms",
     rating: 4.6,
@@ -57,6 +66,7 @@ export const creativePlatforms: Tool[] = [
     emoji: "🖌️",
     color: "from-orange-500 to-red-600",
     directUrl: "https://krita.org/",
+    imageUrl: kritaHero,
     tags: ["digital painting", "illustration", "concept art", "open source", "brushes"],
     category: "Creative Platforms",
     rating: 4.7,
@@ -69,6 +79,7 @@ export const creativePlatforms: Tool[] = [
     emoji: "📷",
     color: "from-gray-500 to-blue-600",
     directUrl: "https://darktable.org/",
+    imageUrl: darktableHero,
     tags: ["RAW processing", "photography", "color correction", "open source", "workflow"],
     category: "Creative Platforms",
     rating: 4.4,
