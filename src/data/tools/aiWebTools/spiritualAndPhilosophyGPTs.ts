@@ -1006,6 +1006,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     emoji: "📚",
     color: "from-amber-500 to-brown-600",
     directUrl: "https://chatgpt.com/g/g-6924f85e53448191bf0eca62731d3e50-saint-augustine-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/tools/saint-augustine-hero.jpg",
     tags: ["augustine", "confessions", "city of god", "church father", "neoplatonism", "grace", "conversion", "western christianity", "aiwebtools"],
     category: "Spirituality & Philosophy",
     rating: 4.9,
