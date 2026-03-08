@@ -18,6 +18,7 @@ import {
 import huggingfaceSpacesHero from "@/assets/tools/huggingface-spaces-hero.jpg";
 import copycoderHero from "@/assets/tools/copycoder-hero.jpg";
 import gumloopHero from "@/assets/tools/gumloop-hero.jpg";
+import n8nHero from "@/assets/tools/n8n-hero.jpg";
 
 export const platformsAndDevelopment: Tool[] = [
   {
