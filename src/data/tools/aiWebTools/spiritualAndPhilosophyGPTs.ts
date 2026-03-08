@@ -812,6 +812,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     emoji: "☀️",
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://chatgpt.com/g/g-6924e98e3cb48191b734c751addb66ed-sri-aurobindo-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/tools/sri-aurobindo-hero.jpg",
     tags: ["sri aurobindo", "aurobindo", "sri", "integral yoga", "spiritual evolution", "indian philosophy", "divine life", "supramental consciousness", "mysticism", "transformation", "aiwebtools"],
     category: "Spirituality & Philosophy",
     rating: 4.9,
