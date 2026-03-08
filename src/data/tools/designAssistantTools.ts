@@ -327,6 +327,7 @@ export const designAssistantTools: Tool[] = [
     emoji: "🗂️",
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://miro.com/?via=aiwebtools",
+    imageUrl: miroHero,
     tags: ["collaborative whiteboard", "brainstorming", "visual collaboration", "team work", "freemium"],
     category: "Collaboration",
     rating: 4.5,
