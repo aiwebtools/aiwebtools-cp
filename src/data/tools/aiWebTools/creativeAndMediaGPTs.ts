@@ -289,6 +289,7 @@ export const creativeAndMediaGPTs: Tool[] = [
     emoji: "🎬",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://runwayml.com",
+    imageUrl: "/src/assets/tools/runway-ml-hero.jpg",
     tags: ["video generation", "ai video", "creative tools", "motion capture", "video editing", "content creation"],
     category: "Creative & Media",
     rating: 4.8,
