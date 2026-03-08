@@ -138,6 +138,7 @@ export const gameDesignAndDevelopment: Tool[] = [
     emoji: "🎵",
     color: "from-pink-500 to-rose-600",
     directUrl: "https://soundraw.io/?via=aiwebtools",
+    imageUrl: soundrawAiHero,
     tags: ["game music", "soundtrack generation", "AI music", "royalty-free", "background music", "audio"],
     category: "GAME DESIGN & DEVELOPMENT",
     rating: 4.4,
