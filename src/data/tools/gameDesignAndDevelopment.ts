@@ -125,6 +125,7 @@ export const gameDesignAndDevelopment: Tool[] = [
     emoji: "🌎",
     color: "from-green-500 to-emerald-600",
     directUrl: "https://www.prometheanai.com/?via=aiwebtools",
+    imageUrl: prometheanAiHero,
     tags: ["world building", "environment design", "3D environments", "asset placement", "game development", "automation"],
     category: "GAME DESIGN & DEVELOPMENT",
     rating: 4.7,
