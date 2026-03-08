@@ -145,6 +145,7 @@ export const advancedChatPlatforms: Tool[] = [
     emoji: "🤖",
     color: "from-green-500 to-blue-600",
     directUrl: "https://poe.com/AI-Tools-GPT/?via=aiwebtools",
+    imageUrl: poeHero,
     tags: ["AI chat", "multiple models", "iOS app", "subscription options", "convenient access"],
     category: "Advanced Chat Platforms",
     rating: 4.2,
