@@ -106,6 +106,7 @@ export const designAssistantTools: Tool[] = [
     emoji: "🤖",
     color: "from-orange-500 to-red-600",
     directUrl: "https://www.chatshape.com/?via=aiwebtools",
+    imageUrl: chatshapeHero,
     tags: ["custom chatbot", "website integration", "AI training", "customer service", "freemium"],
     category: "Chatbot Creation",
     rating: 4.0,
