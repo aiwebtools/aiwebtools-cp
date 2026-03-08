@@ -60,6 +60,7 @@ export const gameDesignAndDevelopment: Tool[] = [
     emoji: "🌍",
     color: "from-green-500 to-teal-600",
     directUrl: "https://demo.dynamicslab.ai/",
+    imageUrl: mirage2Hero,
     tags: ["world generation", "procedural generation", "research demo", "AI worlds", "game environments", "experimental"],
     category: "GAME DESIGN & DEVELOPMENT",
     rating: 4.4,
