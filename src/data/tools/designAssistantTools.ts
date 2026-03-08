@@ -301,6 +301,7 @@ export const designAssistantTools: Tool[] = [
     emoji: "💧",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://www.trickle.so/?via=aiwebtools",
+    imageUrl: trickleHero,
     tags: ["team collaboration", "AI assistants", "communication", "project management", "freemium"],
     category: "Collaboration",
     rating: 4.0,
