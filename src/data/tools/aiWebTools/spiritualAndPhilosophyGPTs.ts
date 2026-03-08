@@ -825,6 +825,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     emoji: "🧘",
     color: "from-orange-500 to-amber-600",
     directUrl: "https://chatgpt.com/g/g-6924ea968a80819195661b81efe0cd4a-ramana-maharshi-reborn-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/tools/ramana-maharshi-hero.jpg",
     tags: ["ramana maharshi", "ramana", "maharshi", "self-inquiry", "advaita vedanta", "awareness", "meditation", "arunachala", "silence", "indian sage", "aiwebtools"],
     category: "Spirituality & Philosophy",
     rating: 4.9,
