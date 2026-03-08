@@ -314,6 +314,7 @@ export const designAssistantTools: Tool[] = [
     emoji: "🎙️",
     color: "from-orange-500 to-red-600",
     directUrl: "https://xpeacho.com/?via=aiwebtools",
+    imageUrl: xpeachoHero,
     tags: ["text to speech", "voiceover", "video creation", "AI voice", "freemium"],
     category: "Audio Generation",
     rating: 4.1,
