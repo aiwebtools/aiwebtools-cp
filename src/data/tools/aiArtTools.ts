@@ -11,6 +11,7 @@ export const aiArtTools: Tool[] = [
     emoji: "🍌",
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://aistudio.google.com/",
+    imageUrl: "/src/assets/tools/google-ai-studio-hero.jpg",
     tags: ["Google AI", "image generation", "AI Studio", "visual content", "Google Labs", "image creation", "Image Generator", "AI Art", "image generator", "ai image", "generate images", "create images", "picture generator", "ai art generator"],
     category: "AI Art"
   },
