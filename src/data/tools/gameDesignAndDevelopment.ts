@@ -151,6 +151,7 @@ export const gameDesignAndDevelopment: Tool[] = [
     emoji: "🤖",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://www.inworld.ai/?via=aiwebtools",
+    imageUrl: inworldAiHero,
     tags: ["AI NPCs", "interactive characters", "game AI", "conversational AI", "character intelligence", "game development"],
     category: "GAME DESIGN & DEVELOPMENT",
     rating: 4.7,
