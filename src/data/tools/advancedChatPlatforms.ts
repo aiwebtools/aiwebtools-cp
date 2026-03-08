@@ -16,6 +16,10 @@ import {
   Sparkles
 } from "lucide-react";
 
+import chatgptHero from "@/assets/tools/chatgpt-hero.jpg";
+import perplexityAiHero from "@/assets/tools/perplexity-ai-hero.jpg";
+import poeHero from "@/assets/tools/poe-hero.jpg";
+
 export const advancedChatPlatforms: Tool[] = [
   {
     icon: MessageSquare,
@@ -24,6 +28,7 @@ export const advancedChatPlatforms: Tool[] = [
     emoji: "💬",
     color: "from-green-500 to-blue-600",
     directUrl: "https://chat.openai.com/?via=aiwebtools",
+    imageUrl: chatgptHero,
     tags: ["conversation", "writing", "coding", "analysis"],
     category: "Advanced Chat Platforms",
     rating: 4.8,
