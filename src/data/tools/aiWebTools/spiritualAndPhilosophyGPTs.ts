@@ -1058,6 +1058,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     emoji: "⚡",
     color: "from-amber-500 via-orange-500 to-red-600",
     directUrl: "https://chatgpt.com/g/g-69250b509ae88191a316ab0fa3d68e08-moses-gpt?via=aiwebtools",
+    imageUrl: "/src/assets/tools/moses-hero.jpg",
     tags: ["moses", "spirituality", "philosophy", "wisdom", "biblical", "judaism", "christianity", "liberation", "ten commandments", "exodus", "aiwebtools"],
     category: "Spirituality & Philosophy",
     rating: 4.9,
