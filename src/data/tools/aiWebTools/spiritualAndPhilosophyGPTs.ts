@@ -851,6 +851,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     emoji: "🔥",
     color: "from-red-500 to-orange-600",
     directUrl: "https://chatgpt.com/g/g-6924edc8f54c81919227604a9ca501fd-mansur-al-hallaj-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/tools/mansur-al-hallaj-hero.jpg",
     tags: ["al-hallaj", "hallaj", "mansur", "sufism", "divine union", "mysticism", "islamic mysticism", "martyrdom", "ana al-haqq", "spiritual ecstasy", "aiwebtools"],
     category: "Spirituality & Philosophy",
     rating: 4.8,
