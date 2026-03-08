@@ -112,6 +112,7 @@ export const gameDesignAndDevelopment: Tool[] = [
     emoji: "🎭",
     color: "from-indigo-500 to-purple-600",
     directUrl: "https://charisma.ai/?via=aiwebtools",
+    imageUrl: charismaAiHero,
     tags: ["interactive storytelling", "game dialogue", "virtual characters", "AI NPCs", "narrative design", "game development"],
     category: "GAME DESIGN & DEVELOPMENT",
     rating: 4.6,
