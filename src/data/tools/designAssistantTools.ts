@@ -288,6 +288,7 @@ export const designAssistantTools: Tool[] = [
     emoji: "📅",
     color: "from-green-500 to-blue-600",
     directUrl: "https://planable.io/?via=aiwebtools",
+    imageUrl: planableHero,
     tags: ["social media management", "content planning", "team collaboration", "scheduling", "freemium"],
     category: "Social Media",
     rating: 4.4,
