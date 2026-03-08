@@ -296,6 +296,7 @@ export const businessAndFinanceGPTs: Tool[] = [
     emoji: "🤲",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://chatgpt.com/g/g-68bb7c9e5a78819184e03d06d63483f8-nonprofit-fundraising-builder-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/tools/nonprofit-fundraising-builder-hero.jpg",
     tags: ["nonprofit", "fundraising", "grants", "charity", "nonprofit management", "aiwebtools", "Custom GPT"],
     category: "Business & Finance",
     rating: 4.5,
