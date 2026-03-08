@@ -864,6 +864,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     emoji: "🧘",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://chatgpt.com/g/g-6924ecc4318481919554b12bf3d9f34d-mooji-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/tools/mooji-hero.jpg",
     tags: ["mooji", "advaita", "self-inquiry", "awareness", "presence", "consciousness", "spiritual awakening", "non-duality", "aiwebtools"],
     category: "Spirituality & Philosophy",
     rating: 4.9,
