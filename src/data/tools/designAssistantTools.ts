@@ -249,6 +249,7 @@ export const designAssistantTools: Tool[] = [
     emoji: "🗂️",
     color: "from-pink-500 to-red-600",
     directUrl: "https://www.kive.ai/?via=aiwebtools",
+    imageUrl: kiveHero,
     tags: ["creative collaboration", "image search", "content management", "visual search", "freemium"],
     category: "Creative Tools",
     rating: 4.3,
