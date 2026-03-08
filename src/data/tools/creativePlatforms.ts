@@ -40,6 +40,7 @@ export const creativePlatforms: Tool[] = [
     emoji: "🎬",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://openshot.org/",
+    imageUrl: openshotHero,
     tags: ["video editing", "open source", "free", "effects", "unlimited tracks"],
     category: "Creative Platforms",
     rating: 4.3,
