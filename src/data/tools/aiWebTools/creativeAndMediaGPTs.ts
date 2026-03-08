@@ -302,6 +302,7 @@ export const creativeAndMediaGPTs: Tool[] = [
     emoji: "🎤",
     color: "from-green-500 to-blue-600",
     directUrl: "https://try.elevenlabs.io/aiwebtools",
+    imageUrl: "/src/assets/tools/elevenlabs-hero.jpg",
     tags: ["voice generation", "ai voice", "speech synthesis", "voice cloning", "audio content", "text to speech"],
     category: "Creative & Media",
     rating: 4.7,
