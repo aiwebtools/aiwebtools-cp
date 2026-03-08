@@ -66,6 +66,7 @@ export const creativePlatforms: Tool[] = [
     emoji: "🖌️",
     color: "from-orange-500 to-red-600",
     directUrl: "https://krita.org/",
+    imageUrl: kritaHero,
     tags: ["digital painting", "illustration", "concept art", "open source", "brushes"],
     category: "Creative Platforms",
     rating: 4.7,
