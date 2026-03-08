@@ -119,6 +119,7 @@ export const advancedChatPlatforms: Tool[] = [
     emoji: "🔍",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://www.perplexity.ai/?via=aiwebtools",
+    imageUrl: perplexityAiHero,
     tags: ["AI search", "real-time information", "content detection", "research", "knowledge engine"],
     category: "Advanced Chat Platforms",
     rating: 4.6,
