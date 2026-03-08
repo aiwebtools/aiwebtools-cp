@@ -34,6 +34,7 @@ export const designAssistantTools: Tool[] = [
     emoji: "🎬",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://fliki.ai/?via=aiwebtools",
+    imageUrl: flikiHero,
     tags: ["video creation", "text to speech", "content creation", "AI voices", "freemium"],
     category: "Video Creation",
     rating: 4.4,
