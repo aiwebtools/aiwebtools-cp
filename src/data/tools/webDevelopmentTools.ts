@@ -24,6 +24,8 @@ import boltNewHero from "@/assets/tools/bolt-new-hero.jpg";
 import webflowHero from "@/assets/tools/webflow-hero.jpg";
 import builderIoHero from "@/assets/tools/builder-io-hero.jpg";
 import railwayHero from "@/assets/tools/railway-hero.jpg";
+import cloudflareWorkersHero from "@/assets/tools/cloudflare-workers-ai-hero.jpg";
+import relumeHero from "@/assets/tools/relume-hero.jpg";
 
 export const webDevelopmentTools: Tool[] = [
   {
