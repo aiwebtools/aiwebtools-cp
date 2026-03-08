@@ -1,6 +1,7 @@
 
 import { Tool } from "@/types/tools";
 import { Zap, Rocket, Cpu, Database, Network, Code, Monitor, Smartphone, Wifi, Cloud } from "lucide-react";
+import softwareEngineerGptHero from "@/assets/software-engineer-gpt-hero.jpg";
 
 export const technologyInnovationGPTs: Tool[] = [
   {
@@ -87,7 +88,8 @@ export const technologyInnovationGPTs: Tool[] = [
      emoji: "💻",
      color: "from-slate-600 to-blue-600",
      directUrl: "https://chatgpt.com/g/g-69ace71471808191bd4ce6d412e1a1b6-software-engineer-gpt",
-     tags: ["software engineering", "coding", "development", "programming", "architecture", "debugging", "aiwebtools", "Custom GPT"],
+     imageUrl: softwareEngineerGptHero,
+     tags: ["software engineering", "coding", "development", "programming", "architecture", "debugging", "full stack", "algorithms", "API design", "code review", "aiwebtools", "Custom GPT"],
      category: "Technology & Innovation",
      rating: 4.7,
      totalVotes: 4234,

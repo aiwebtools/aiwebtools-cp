@@ -45,6 +45,7 @@ const weightedShuffle = <T extends { title: string }>(items: T[]): T[] => {
     // AI Development & Productivity
     "Customizable GPT Maker", "AIWEBTOOLS GPT CLONER GPT", "G-Mode GPT", "MULTITASKER GPT",
     "PERFECT PROMPT ENGINE", "Data Research Analysis Report GPT", "AI Tools Finder GPT",
+    "Software Engineer GPT",
     // Career & Professional
     "Resume & Job Finder AI Suite", "Engineering GPT Suite", "PPTx Powerpoint Maker GPT",
     // Entertainment & Gaming
