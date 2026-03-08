@@ -109,6 +109,7 @@ export const designAssistantTools: Tool[] = [
     emoji: "⚡",
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://chrome.google.com/webstore/detail/aiprm-for-chatgpt/ojnbohmppadfgpejeebfnmnknjdlckgj?via=aiwebtools",
+    imageUrl: aiprmHero,
     tags: ["ChatGPT enhancement", "prompt templates", "productivity", "chrome extension", "free"],
     category: "Productivity",
     rating: 4.6,
