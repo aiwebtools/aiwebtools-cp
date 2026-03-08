@@ -145,6 +145,7 @@ export const designAssistantTools: Tool[] = [
     emoji: "🗣️",
     color: "from-blue-500 to-green-600",
     directUrl: "https://dictanote.co/?via=aiwebtools",
+    imageUrl: dictanoteHero,
     tags: ["speech to text", "note taking", "voice typing", "transcription", "freemium"],
     category: "Productivity",
     rating: 4.1,
