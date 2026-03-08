@@ -3,6 +3,8 @@ import {
   FileText
 } from "lucide-react";
 
+import bitAiHero from "@/assets/tools/bit-ai-hero.jpg";
+
 export const collaborationTools: Tool[] = [
   {
     icon: FileText,
