@@ -119,6 +119,7 @@ export const aiArtTools: Tool[] = [
     emoji: "⚡",
     color: "from-yellow-500 to-orange-500",
     directUrl: "https://www.krea.ai/?via=aiwebtools",
+    imageUrl: "/src/assets/tools/krea-ai-hero.jpg",
     tags: ["real-time", "live preview", "instant editing", "advanced capabilities", "interactive"],
     category: "AI Art",
     rating: 4.4,
