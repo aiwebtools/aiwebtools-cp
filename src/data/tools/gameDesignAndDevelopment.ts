@@ -99,6 +99,7 @@ export const gameDesignAndDevelopment: Tool[] = [
     emoji: "🎲",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://ludo.ai/?via=aiwebtools",
+    imageUrl: ludoAiHero,
     tags: ["game design", "game research", "trend analysis", "ideation", "competitive analysis", "AI assistant"],
     category: "GAME DESIGN & DEVELOPMENT",
     rating: 4.5,
