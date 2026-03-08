@@ -929,6 +929,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     emoji: "🌹",
     color: "from-pink-500 to-purple-600",
     directUrl: "https://chatgpt.com/g/g-6924f34ef6dc8191849721e54f8f97ad-saint-therese-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/tools/saint-therese-hero.jpg",
     tags: ["therese of lisieux", "therese", "lisieux", "little flower", "little way", "spiritual childhood", "carmelite", "divine love", "humble path", "french mystic", "spirituality", "religion", "religious", "saint", "catholic", "christian", "aiwebtools"],
     category: "Spirituality & Philosophy",
     rating: 4.9,
