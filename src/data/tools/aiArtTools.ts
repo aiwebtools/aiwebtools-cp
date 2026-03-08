@@ -158,6 +158,7 @@ export const aiArtTools: Tool[] = [
     emoji: "🎪",
     color: "from-pink-500 to-cyan-500",
     directUrl: "https://playgroundai.com/?via=aiwebtools",
+    imageUrl: "/src/assets/tools/playground-ai-hero.jpg",
     tags: ["user-friendly", "editing tools", "intuitive interface", "artwork refinement", "creative editing"],
     category: "AI Art",
     rating: 4.3,
