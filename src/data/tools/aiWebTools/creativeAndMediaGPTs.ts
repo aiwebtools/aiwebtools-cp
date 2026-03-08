@@ -367,6 +367,7 @@ export const creativeAndMediaGPTs: Tool[] = [
     emoji: "👕",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://chatgpt.com/g/g-68f255a7c1f88191a88b5d91850b3b73-epic-tee-designer-gpt?via=aiwebtools",
+    imageUrl: "/src/assets/tools/epic-tee-designer-hero.jpg",
     tags: ["t-shirt design", "clothing design", "fashion design", "apparel graphics", "custom designs", "print on demand", "fashion technology", "design assistant", "wearable art", "aiwebtools"],
     category: "Creative & Media",
     rating: 4.6,

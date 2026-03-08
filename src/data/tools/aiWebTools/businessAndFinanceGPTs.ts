@@ -322,6 +322,7 @@ export const businessAndFinanceGPTs: Tool[] = [
     emoji: "💳",
     color: "from-teal-500 to-blue-600",
     directUrl: "https://chatgpt.com/g/g-68bb77efb08819185d5363cdd1a9cac-financial-aid-tax-credit-navigator-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/tools/financial-aid-tax-credit-hero.jpg",
     tags: ["financial aid", "tax credits", "financial assistance", "tax planning", "financial navigation", "aiwebtools", "Custom GPT"],
     category: "Business & Finance",
     rating: 4.7,

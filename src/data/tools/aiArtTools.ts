@@ -184,6 +184,7 @@ export const aiArtTools: Tool[] = [
     emoji: "💎",
     color: "from-red-500 to-purple-500",
     directUrl: "https://neural.love/?via=aiwebtools",
+    imageUrl: "/src/assets/tools/neural-love-hero.jpg",
     tags: ["premium quality", "commercial licensing", "high-resolution", "professional use", "artistic excellence"],
     category: "AI Art",
     rating: 4.3,
