@@ -309,6 +309,7 @@ export const businessAndFinanceGPTs: Tool[] = [
     emoji: "🏢",
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://chatgpt.com/g/g-68bb7aa89f808191ae0bb377d00d1f13-local-business-grant-permit-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/tools/local-business-grant-permit-hero.jpg",
     tags: ["business grants", "permits", "compliance", "local business", "business licensing", "aiwebtools", "Custom GPT"],
     category: "Business & Finance",
     rating: 4.4,
