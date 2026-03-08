@@ -328,6 +328,7 @@ export const creativeAndMediaGPTs: Tool[] = [
     emoji: "👥",
     color: "from-orange-500 to-red-600",
     directUrl: "https://synthesia.io",
+    imageUrl: "/src/assets/tools/synthesia-hero.jpg",
     tags: ["ai avatars", "video creation", "virtual presenters", "training videos", "marketing content", "educational videos"],
     category: "Creative & Media",
     rating: 4.7,
