@@ -132,6 +132,7 @@ export const aiArtTools: Tool[] = [
     emoji: "✂️",
     color: "from-orange-500 to-red-500",
     directUrl: "https://clipdrop.co/?via=aiwebtools",
+    imageUrl: "/src/assets/tools/clipdrop-hero.jpg",
     tags: ["visual editing", "background removal", "object manipulation", "professional tools", "creators"],
     category: "AI Art",
     rating: 4.4,
