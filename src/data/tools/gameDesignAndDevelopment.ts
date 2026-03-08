@@ -86,6 +86,7 @@ export const gameDesignAndDevelopment: Tool[] = [
     emoji: "🎮",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://leonardo.ai/?via=aiwebtools",
+    imageUrl: leonardoGameArtHero,
     tags: ["game art", "character design", "concept art", "AI generation", "game development", "creative"],
     category: "GAME DESIGN & DEVELOPMENT",
     rating: 4.6,
