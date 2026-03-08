@@ -25,6 +25,26 @@ import logoaiHero from "@/assets/tools/logoai-hero.jpg";
 import cre8tiveaiHero from "@/assets/tools/cre8tiveai-hero.jpg";
 import aiprmHero from "@/assets/tools/aiprm-hero.jpg";
 import fiberyHero from "@/assets/tools/fibery-hero.jpg";
+import chatmapHero from "@/assets/tools/chatmap-hero.jpg";
+import detangleaiHero from "@/assets/tools/detangleai-hero.jpg";
+import chatshapeHero from "@/assets/tools/chatshape-hero.jpg";
+import dictanoteHero from "@/assets/tools/dictanote-hero.jpg";
+import audionotesHero from "@/assets/tools/audionotes-hero.jpg";
+import filechatHero from "@/assets/tools/filechat-hero.jpg";
+import askcsvHero from "@/assets/tools/askcsv-hero.jpg";
+import koffyHero from "@/assets/tools/koffy-hero.jpg";
+import click2magicHero from "@/assets/tools/click2magic-hero.jpg";
+import coinscreenerHero from "@/assets/tools/coinscreener-hero.jpg";
+import sweephyHero from "@/assets/tools/sweephy-hero.jpg";
+import kiveHero from "@/assets/tools/kive-hero.jpg";
+import vowelHero from "@/assets/tools/vowel-hero.jpg";
+import planableHero from "@/assets/tools/planable-hero.jpg";
+import trickleHero from "@/assets/tools/trickle-hero.jpg";
+import xpeachoHero from "@/assets/tools/xpeacho-hero.jpg";
+import miroHero from "@/assets/tools/miro-hero.jpg";
+import pixlrHero from "@/assets/tools/pixlr-hero.jpg";
+import theneoHero from "@/assets/tools/theneo-hero.jpg";
+import imaggaHero from "@/assets/tools/imagga-hero.jpg";
 
 export const designAssistantTools: Tool[] = [
   {
