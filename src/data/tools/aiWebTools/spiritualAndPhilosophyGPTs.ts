@@ -916,6 +916,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     emoji: "🕊️",
     color: "from-green-500 to-brown-600",
     directUrl: "https://chatgpt.com/g/g-6924f21bb1f48191bcdd0a4f40ea356f-saint-francis-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/tools/saint-francis-hero.jpg",
     tags: ["saint francis", "franciscan spirituality", "poverty", "animals", "nature", "simplicity", "compassion", "peace", "spirituality", "religion", "religious", "saint", "catholic", "christian", "aiwebtools"],
     category: "Spirituality & Philosophy",
     rating: 4.9,
