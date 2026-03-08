@@ -96,6 +96,7 @@ export const designAssistantTools: Tool[] = [
     emoji: "🎭",
     color: "from-pink-500 to-purple-600",
     directUrl: "https://cre8tiveai.com/?via=aiwebtools",
+    imageUrl: cre8tiveaiHero,
     tags: ["photo editing", "anime creation", "creative AI", "image enhancement", "freemium"],
     category: "Creative AI",
     rating: 4.2,
