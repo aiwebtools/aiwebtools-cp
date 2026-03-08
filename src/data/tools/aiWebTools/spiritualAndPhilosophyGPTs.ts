@@ -1019,6 +1019,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     emoji: "🕊️",
     color: "from-brown-500 to-yellow-600",
     directUrl: "https://chatgpt.com/g/g-6924f916ff208191aa8378924c3e17a0-saint-josephine-bakhita-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/tools/saint-josephine-bakhita-hero.jpg",
     tags: ["josephine bakhita", "josephine", "bakhita", "slavery", "forgiveness", "freedom", "sudanese saint", "compassion", "redemption", "african saint", "aiwebtools"],
     category: "Spirituality & Philosophy",
     rating: 4.9,
