@@ -315,6 +315,7 @@ export const creativeAndMediaGPTs: Tool[] = [
     emoji: "💫",
     color: "from-cyan-500 to-purple-600",
     directUrl: "https://lumalabs.ai",
+    imageUrl: "/src/assets/tools/luma-dream-machine-hero.jpg",
     tags: ["video generation", "3d video", "visual effects", "ai video creation", "creative technology", "content production"],
     category: "Creative & Media",
     rating: 4.6,
