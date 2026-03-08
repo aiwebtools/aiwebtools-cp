@@ -158,6 +158,7 @@ export const designAssistantTools: Tool[] = [
     emoji: "🎧",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://www.audionotes.app/?gr_pk=VQ1w&gr_uid=5q8A&via=aiwebtools",
+    imageUrl: audionotesHero,
     tags: ["voice notes", "transcription", "note organization", "AI compilation", "freemium"],
     category: "Productivity",
     rating: 4.4,
