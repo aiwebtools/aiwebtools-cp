@@ -1032,6 +1032,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     emoji: "☀️",
     color: "from-yellow-500 to-cyan-600",
     directUrl: "https://chatgpt.com/g/g-6924f9ba59808191af9d3d5affd3d95b-saint-seraphim-of-sarov-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/tools/saint-seraphim-sarov-hero.jpg",
     tags: ["seraphim of sarov", "seraphim", "sarov", "eastern orthodoxy", "orthodox", "uncreated light", "hesychasm", "russian spirituality", "transfiguration", "divine peace", "mystical theology", "aiwebtools"],
     category: "Spirituality & Philosophy",
     rating: 4.9,
