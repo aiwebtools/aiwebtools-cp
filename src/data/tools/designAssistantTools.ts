@@ -210,6 +210,7 @@ export const designAssistantTools: Tool[] = [
     emoji: "💬",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://www.click2magic.com/?via=aiwebtools",
+    imageUrl: click2magicHero,
     tags: ["customer support", "live chat", "customer service", "communication", "freemium"],
     category: "Customer Service",
     rating: 4.1,
