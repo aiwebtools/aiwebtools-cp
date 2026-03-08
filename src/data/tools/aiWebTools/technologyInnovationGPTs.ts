@@ -2,6 +2,7 @@
 import { Tool } from "@/types/tools";
 import { Zap, Rocket, Cpu, Database, Network, Code, Monitor, Smartphone, Wifi, Cloud } from "lucide-react";
 import softwareEngineerGptHero from "@/assets/software-engineer-gpt-hero.jpg";
+import cipherEncryptHero from "@/assets/tools/cipherencrypt-gpt-hero.jpg";
 
 export const technologyInnovationGPTs: Tool[] = [
   {
@@ -76,6 +77,7 @@ export const technologyInnovationGPTs: Tool[] = [
      emoji: "🔐",
      color: "from-indigo-500 to-purple-600",
      directUrl: "https://chatgpt.com/g/g-68fc6039822c8191a13c8ab8a66270ef-cipherencrypt-gpt",
+     imageUrl: cipherEncryptHero,
      tags: ["encryption", "cryptography", "morse code", "binary", "translation", "data conversion", "security", "encoding", "aiwebtools", "Custom GPT"],
      category: "Technology & Innovation",
      rating: 4.6,
