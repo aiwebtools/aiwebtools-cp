@@ -171,6 +171,7 @@ export const designAssistantTools: Tool[] = [
     emoji: "📄",
     color: "from-red-500 to-pink-600",
     directUrl: "https://filechatai.com/?via=aiwebtools",
+    imageUrl: filechatHero,
     tags: ["document AI", "PDF analysis", "question answering", "file exploration", "freemium"],
     category: "Document AI",
     rating: 4.2,
