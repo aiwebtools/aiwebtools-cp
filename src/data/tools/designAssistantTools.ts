@@ -197,6 +197,7 @@ export const designAssistantTools: Tool[] = [
     emoji: "☕",
     color: "from-orange-500 to-yellow-600",
     directUrl: "https://koffy.finance/?via=aiwebtools",
+    imageUrl: koffyHero,
     tags: ["cryptocurrency", "AI news", "market analysis", "fintech", "freemium"],
     category: "Finance AI",
     rating: 3.9,
