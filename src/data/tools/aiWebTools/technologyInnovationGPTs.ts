@@ -1,6 +1,7 @@
 
 import { Tool } from "@/types/tools";
 import { Zap, Rocket, Cpu, Database, Network, Code, Monitor, Smartphone, Wifi, Cloud } from "lucide-react";
+import softwareEngineerGptHero from "@/assets/software-engineer-gpt-hero.jpg";
 
 export const technologyInnovationGPTs: Tool[] = [
   {
