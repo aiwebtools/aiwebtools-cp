@@ -17,6 +17,7 @@ import smallpdfHero from "@/assets/tools/smallpdf-hero.jpg";
 import tinypngHero from "@/assets/tools/tinypng-hero.jpg";
 import virustotalHero from "@/assets/tools/virustotal-hero.jpg";
 import waybackMachineHero from "@/assets/tools/wayback-machine-hero.jpg";
+import clipconverterHero from "@/assets/tools/clipconverter-hero.jpg";
 
 export const utilitiesTools: Tool[] = [
   {
@@ -52,6 +53,7 @@ export const utilitiesTools: Tool[] = [
     emoji: "📹",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://clipconverter.cc/?via=aiwebtools",
+    imageUrl: clipconverterHero,
     tags: ["video conversion", "YouTube downloader", "media converter", "editing"],
     category: "Productivity & Utilities",
     rating: 4.3,

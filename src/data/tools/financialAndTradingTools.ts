@@ -15,6 +15,9 @@ import {
   Atom
 } from "lucide-react";
 
+import forexEaHero from "@/assets/tools/forex-ea-hero.jpg";
+import dwaveHero from "@/assets/tools/dwave-hero.jpg";
+
 export const financialAndTradingTools: Tool[] = [
   {
     icon: DollarSign,
@@ -49,6 +52,7 @@ export const financialAndTradingTools: Tool[] = [
     emoji: "💹",
     color: "from-green-500 to-blue-600",
     directUrl: "https://www.buyforexeaonline.com/",
+    imageUrl: forexEaHero,
     tags: ["Forex trading", "Expert Advisors", "AI-powered", "$6T daily market", "risk management", "Automation Agent", "Trading Agent"],
     category: "Financial & Trading Tools",
     rating: 4.2,
@@ -61,6 +65,7 @@ export const financialAndTradingTools: Tool[] = [
     emoji: "⚛️",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://www.dwavesys.com/",
+    imageUrl: dwaveHero,
     tags: ["quantum computing", "Advantage system", "Leap solver", "enterprise solutions", "quantum ROI", "Predictive Analytics"],
     category: "Financial & Trading Tools",
     rating: 4.4,
