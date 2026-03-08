@@ -77,6 +77,7 @@ export const technologyInnovationGPTs: Tool[] = [
      emoji: "🔐",
      color: "from-indigo-500 to-purple-600",
      directUrl: "https://chatgpt.com/g/g-68fc6039822c8191a13c8ab8a66270ef-cipherencrypt-gpt",
+     imageUrl: cipherEncryptHero,
      tags: ["encryption", "cryptography", "morse code", "binary", "translation", "data conversion", "security", "encoding", "aiwebtools", "Custom GPT"],
      category: "Technology & Innovation",
      rating: 4.6,
