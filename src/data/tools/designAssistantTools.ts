@@ -93,6 +93,7 @@ export const designAssistantTools: Tool[] = [
     emoji: "⚖️",
     color: "from-gray-500 to-blue-600",
     directUrl: "https://detangle.ai/?via=aiwebtools",
+    imageUrl: detangleaiHero,
     tags: ["legal AI", "document analysis", "summaries", "legal tech", "freemium"],
     category: "Legal AI",
     rating: 4.3,
