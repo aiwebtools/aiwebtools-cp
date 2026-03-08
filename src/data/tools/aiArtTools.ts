@@ -171,6 +171,7 @@ export const aiArtTools: Tool[] = [
     emoji: "🧮",
     color: "from-cyan-500 to-blue-500",
     directUrl: "https://tensor.art/?via=aiwebtools",
+    imageUrl: "/src/assets/tools/tensor-art-hero.jpg",
     tags: ["model training", "custom models", "professional", "specialized styles", "community platform"],
     category: "AI Art",
     rating: 4.3,
