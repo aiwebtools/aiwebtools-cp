@@ -47,6 +47,7 @@ export const designAssistantTools: Tool[] = [
     emoji: "🎨",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://logo.com/?via=aiwebtools",
+    imageUrl: logoaiHero,
     tags: ["logo design", "branding", "AI design", "business", "freemium"],
     category: "Design AI",
     rating: 4.2,
