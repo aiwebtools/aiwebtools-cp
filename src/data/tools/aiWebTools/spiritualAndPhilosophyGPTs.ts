@@ -1045,6 +1045,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     emoji: "🧠",
     color: "from-purple-500 via-indigo-500 to-violet-600",
     directUrl: "https://chatgpt.com/g/g-692666b5c4d881918a7984e8e9f46e8d-carl-jung-gpt?via=aiwebtools",
+    imageUrl: "/src/assets/tools/carl-jung-hero.jpg",
     tags: ["carl jung", "psychology", "spirituality", "philosophy", "wisdom", "jungian", "archetypes", "consciousness", "collective unconscious", "individuation", "aiwebtools"],
     category: "Spirituality & Philosophy",
     rating: 4.9,
