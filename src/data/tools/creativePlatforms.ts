@@ -79,6 +79,7 @@ export const creativePlatforms: Tool[] = [
     emoji: "📷",
     color: "from-gray-500 to-blue-600",
     directUrl: "https://darktable.org/",
+    imageUrl: darktableHero,
     tags: ["RAW processing", "photography", "color correction", "open source", "workflow"],
     category: "Creative Platforms",
     rating: 4.4,
