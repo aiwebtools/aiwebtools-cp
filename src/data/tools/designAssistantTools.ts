@@ -20,6 +20,11 @@ import {
   Image,
   Edit
 } from "lucide-react";
+import flikiHero from "@/assets/tools/fliki-hero.jpg";
+import logoaiHero from "@/assets/tools/logoai-hero.jpg";
+import cre8tiveaiHero from "@/assets/tools/cre8tiveai-hero.jpg";
+import aiprmHero from "@/assets/tools/aiprm-hero.jpg";
+import fiberyHero from "@/assets/tools/fibery-hero.jpg";
 
 export const designAssistantTools: Tool[] = [
   {
