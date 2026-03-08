@@ -223,6 +223,7 @@ export const designAssistantTools: Tool[] = [
     emoji: "🪙",
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://www.coinscreener.ai/?via=aiwebtools",
+    imageUrl: coinscreenerHero,
     tags: ["cryptocurrency", "trading signals", "AI analysis", "market data", "freemium"],
     category: "Finance AI",
     rating: 4.2,
