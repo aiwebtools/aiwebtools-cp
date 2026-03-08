@@ -409,6 +409,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     emoji: "🧠",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://chatgpt.com/g/g-n7yvUUmoT-free-thought-liberator/?via=aiwebtools",
+    imageUrl: "/src/assets/tools/free-thought-liberator-hero.jpg",
     tags: ["critical thinking", "philosophy", "free thought", "intellectual exploration", "socratic method", "independent thinking", "reasoning", "aiwebtools"],
     category: "Spirituality & Philosophy",
     rating: 4.6,
