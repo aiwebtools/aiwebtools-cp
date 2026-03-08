@@ -106,6 +106,7 @@ export const aiArtTools: Tool[] = [
     emoji: "🌟",
     color: "from-cyan-500 to-purple-500",
     directUrl: "https://stablediffusionweb.com/?via=aiwebtools",
+    imageUrl: "/src/assets/tools/stable-diffusion-online-hero.jpg",
     tags: ["stable diffusion", "free", "online", "text to image", "high quality", "image generator", "ai image", "generate images", "create images", "ai art generator"],
     category: "AI Art",
     rating: 4.4,
