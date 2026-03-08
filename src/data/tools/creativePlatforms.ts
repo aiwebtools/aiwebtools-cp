@@ -27,6 +27,7 @@ export const creativePlatforms: Tool[] = [
     emoji: "🎨",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://gimp.org/",
+    imageUrl: gimpHero,
     tags: ["image editing", "photo retouching", "graphic design", "open source", "free"],
     category: "Creative Platforms",
     rating: 4.5,
