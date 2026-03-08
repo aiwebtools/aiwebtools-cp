@@ -5,6 +5,11 @@ import {
   FileText, Image, Video, Mic, Code, Settings, Globe
 } from "lucide-react";
 
+import gpt4TurboHero from "@/assets/tools/gpt4-turbo-hero.jpg";
+import claude3OpusHero from "@/assets/tools/claude-3-opus-hero.jpg";
+import stableDiffusionXlHero from "@/assets/tools/stable-diffusion-xl-hero.jpg";
+import musiclmHero from "@/assets/tools/musiclm-hero.jpg";
+
 export const aiGenerativeTools: Tool[] = [
   {
     icon: Brain,
@@ -13,6 +18,7 @@ export const aiGenerativeTools: Tool[] = [
     emoji: "🧠",
     color: "from-green-500 to-blue-600",
     directUrl: "https://openai.com/gpt-4?via=aiwebtools",
+    imageUrl: gpt4TurboHero,
     tags: ["GPT-4", "language model", "OpenAI", "multimodal", "reasoning"],
     category: "Advanced AI Tools",
     rating: 4.9,
@@ -25,6 +31,7 @@ export const aiGenerativeTools: Tool[] = [
     emoji: "✨",
     color: "from-orange-500 to-red-600",
     directUrl: "https://claude.ai/?via=aiwebtools",
+    imageUrl: claude3OpusHero,
     tags: ["Claude", "Anthropic", "reasoning", "safety", "analysis"],
     category: "Advanced AI Tools",
     rating: 4.8,
@@ -37,6 +44,7 @@ export const aiGenerativeTools: Tool[] = [
     emoji: "🎨",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://stability.ai/stable-diffusion?via=aiwebtools",
+    imageUrl: stableDiffusionXlHero,
     tags: ["Stable Diffusion", "image generation", "open source", "AI art"],
     category: "Image & Design Tools",
     rating: 4.6,
@@ -49,6 +57,7 @@ export const aiGenerativeTools: Tool[] = [
     emoji: "🎵",
     color: "from-pink-500 to-purple-600",
     directUrl: "https://google-research.github.io/seanet/musiclm/examples/?via=aiwebtools",
+    imageUrl: musiclmHero,
     tags: ["music generation", "Google", "AI music", "text-to-music"],
     category: "Audio & Voice Tools",
     rating: 4.5,

@@ -2,6 +2,16 @@
 import { Tool } from "@/types/tools";
 import { BookOpen, Youtube } from "lucide-react";
 
+import runwaymlHero from "@/assets/tools/runwayml-hero.jpg";
+import leonardoAiArtHero from "@/assets/tools/leonardo-ai-art-hero.jpg";
+import jasperArtHero from "@/assets/tools/jasper-art-hero.jpg";
+import artbreederHero from "@/assets/tools/artbreeder-hero.jpg";
+import deepaiHero from "@/assets/tools/deepai-hero.jpg";
+import nightcafeHero from "@/assets/tools/nightcafe-hero.jpg";
+import fotorAiHero from "@/assets/tools/fotor-ai-hero.jpg";
+import bluewillowHero from "@/assets/tools/bluewillow-hero.jpg";
+import womboDreamHero from "@/assets/tools/wombo-dream-hero.jpg";
+
 export const aiArtTools: Tool[] = [
   // Priority: Your image-related GPTs at the top
   {

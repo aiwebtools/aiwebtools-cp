@@ -15,6 +15,10 @@ import freesoundHero from "@/assets/tools/freesound-hero.jpg";
 import soundsnapHero from "@/assets/tools/soundsnap-hero.jpg";
 import bbcSoundEffectsHero from "@/assets/tools/bbc-sound-effects-hero.jpg";
 import storyblocksAudioHero from "@/assets/tools/storyblocks-audio-hero.jpg";
+import sonnissHero from "@/assets/tools/sonniss-hero.jpg";
+import proSoundEffectsHero from "@/assets/tools/pro-sound-effects-hero.jpg";
+import aSoundEffectHero from "@/assets/tools/a-sound-effect-hero.jpg";
+import audioJungleHero from "@/assets/tools/audio-jungle-hero.jpg";
 
 export const sfxGeneratorTools: Tool[] = [
   {
@@ -141,6 +145,7 @@ export const sfxGeneratorTools: Tool[] = [
     emoji: "🎮",
     color: "from-violet-500 to-purple-600",
     directUrl: "https://sonniss.com/?via=aiwebtools",
+    imageUrl: sonnissHero,
     tags: ["Sound Effects", "Game Audio", "Royalty-Free", "Game Development", "SFX Bundle"],
     category: "AUDIO & VOICE TOOLS",
     rating: 4.5,
@@ -153,6 +158,7 @@ export const sfxGeneratorTools: Tool[] = [
     emoji: "🎥",
     color: "from-slate-600 to-gray-700",
     directUrl: "https://www.prosoundeffects.com/?via=aiwebtools",
+    imageUrl: proSoundEffectsHero,
     tags: ["Sound Effects", "Hollywood Audio", "Premium SFX", "Film Production", "Professional"],
     category: "AUDIO & VOICE TOOLS",
     rating: 4.7,
@@ -165,6 +171,7 @@ export const sfxGeneratorTools: Tool[] = [
     emoji: "🎭",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://www.asoundeffect.com/?via=aiwebtools",
+    imageUrl: aSoundEffectHero,
     tags: ["Sound Effects", "Indie SFX", "Marketplace", "Sound Design", "Unique Sounds"],
     category: "AUDIO & VOICE TOOLS",
     rating: 4.4,
@@ -177,6 +184,7 @@ export const sfxGeneratorTools: Tool[] = [
     emoji: "🌴",
     color: "from-green-600 to-emerald-500",
     directUrl: "https://audiojungle.net/?via=aiwebtools",
+    imageUrl: audioJungleHero,
     tags: ["Sound Effects", "Envato", "Royalty-Free", "Affordable SFX", "Marketplace"],
     category: "AUDIO & VOICE TOOLS",
     rating: 4.5,
