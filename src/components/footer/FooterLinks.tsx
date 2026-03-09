@@ -48,7 +48,7 @@ const FooterLinks = () => {
             📰 Blog
           </a>
           <button
-            onClick={(e) => handleExternalLink("https://aitools.company/privacy-policy", e)}
+            onClick={(e) => handleExternalLink("https://ai-webtools.com/privacy-policy", e)}
             className="block text-green-200 hover:text-green-400 transition-colors text-left"
           >
             🔒 Privacy Policy
