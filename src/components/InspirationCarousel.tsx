@@ -66,7 +66,7 @@ const InspirationCarousel = () => {
 
   return (
     <section
-      className="py-12 md:py-16 relative overflow-hidden"
+      className="pt-4 pb-12 md:pt-6 md:pb-16 relative overflow-hidden"
       style={{
         background: "linear-gradient(180deg, #0a0a0a 0%, #0d1a0d 30%, #0a0f0a 70%, #0a0a0a 100%)",
       }}
