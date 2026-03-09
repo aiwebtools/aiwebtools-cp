@@ -22,7 +22,7 @@ const FooterLinks = () => {
             📖 Our Story
           </a>
           <button
-            onClick={(e) => handleExternalLink("https://aitools.company/hire-us-to-build-your-ai-1", e)}
+            onClick={(e) => handleExternalLink("https://ai-webtools.com/hire-us-to-build-your-ai-1", e)}
             className="block text-green-200 hover:text-green-400 transition-colors text-left"
           >
             🚀 More Services
@@ -48,19 +48,19 @@ const FooterLinks = () => {
             📰 Blog
           </a>
           <button
-            onClick={(e) => handleExternalLink("https://aitools.company/privacy-policy", e)}
+            onClick={(e) => handleExternalLink("https://ai-webtools.com/privacy-policy", e)}
             className="block text-green-200 hover:text-green-400 transition-colors text-left"
           >
             🔒 Privacy Policy
           </button>
           <button
-            onClick={(e) => handleExternalLink("https://aitools.company/terms-of-services", e)}
+            onClick={(e) => handleExternalLink("https://ai-webtools.com/terms-of-services", e)}
             className="block text-green-200 hover:text-green-400 transition-colors text-left"
           >
             📜 Terms of Service
           </button>
           <button
-            onClick={(e) => handleExternalLink("https://aitools.company/contact", e)}
+            onClick={(e) => handleExternalLink("https://ai-webtools.com/contact", e)}
             className="block text-green-200 hover:text-green-400 transition-colors text-left"
           >
             📞 Contact

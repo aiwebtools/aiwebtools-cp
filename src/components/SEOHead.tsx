@@ -305,7 +305,7 @@ const SEOHead = ({
       <meta property="og:locale:alternate" content="en_GB" />
       <meta property="og:determiner" content="the" />
       <meta property="og:updated_time" content={new Date().toISOString()} />
-      <meta property="og:see_also" content="https://aitools.company" />
+      <meta property="og:see_also" content="https://ai-webtools.com" />
       <meta property="og:see_also" content="https://www.aiwebtools.ai" />
       <meta property="og:see_also" content="https://AItoolwebsites.com" />
       <meta property="fb:app_id" content={seoConfig.facebookAppId} />
@@ -355,7 +355,7 @@ const SEOHead = ({
       {/* Enhanced DNS Prefetch and Preconnect */}
       <link rel="dns-prefetch" href="//fonts.googleapis.com" />
       <link rel="dns-prefetch" href="//fonts.gstatic.com" />
-      <link rel="dns-prefetch" href="//aitools.company" />
+      <link rel="dns-prefetch" href="//ai-webtools.com" />
       <link rel="dns-prefetch" href="//www.aiwebtools.ai" />
       <link rel="dns-prefetch" href="//aitoolwebsites.com" />
       <link rel="dns-prefetch" href="//www.google.com" />
@@ -365,7 +365,7 @@ const SEOHead = ({
       
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-      <link rel="preconnect" href="https://aitools.company" />
+      <link rel="preconnect" href="https://ai-webtools.com" />
       <link rel="preconnect" href="https://www.aiwebtools.ai" />
       <link rel="preconnect" href="https://aitoolwebsites.com" />
       

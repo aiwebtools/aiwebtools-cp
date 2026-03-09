@@ -60,7 +60,7 @@ export const generateStructuredData = (page: string = "homepage") => {
       "bestRating": "5"
     },
     "sameAs": [
-      "https://aitools.company",
+      "https://ai-webtools.com",
       "https://www.aiwebtools.ai",
       "https://aitoolwebsites.com"
     ]
@@ -148,7 +148,7 @@ export const generateLocalBusinessStructuredData = () => {
       "availableLanguage": "English"
     },
     "sameAs": [
-      "https://aitools.company",
+      "https://ai-webtools.com",
       "https://www.aiwebtools.ai",
       "https://aitoolwebsites.com"
     ]

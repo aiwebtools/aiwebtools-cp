@@ -21,7 +21,7 @@ const FooterActions = ({ handleExternalLink, handleSubmitTool, handleRequestTool
 
   const handleViewPortfolio = (e: React.MouseEvent) => {
     e.preventDefault();
-    handleExternalLink('https://www.aitools.company', e);
+    handleExternalLink('https://www.ai-webtools.com', e);
   };
 
   const handleDownloadAIList = (e: React.MouseEvent) => {

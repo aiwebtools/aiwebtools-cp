@@ -99,7 +99,7 @@ const CompetitiveSEOHead = ({ tool, toolIndex, category, isHomepage }: Competiti
               "bestRating": "5"
             },
             "sameAs": [
-              "https://aitools.company",
+              "https://ai-webtools.com",
               "https://www.aiwebtools.ai"
             ]
           })}
