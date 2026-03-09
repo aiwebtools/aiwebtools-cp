@@ -1358,5 +1358,19 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     rating: 4.9,
     totalVotes: 1500,
     isFree: true
+  },
+  {
+    icon: Sparkles,
+    title: "Cosmic Code Simulator",
+    description: "Cosmic Source Light Code — A Pre-Projection GPT. Step beyond the veil of ordinary consciousness and into the luminous architecture of pre-creation itself. This AI simulator channels cosmic source light codes, sacred geometry, and pre-projection frequency patterns to guide you through immersive explorations of reality before manifestation. Decode the blueprint of existence, access pre-birth light transmissions, and experience the raw creative force that precedes all form.",
+    emoji: "🌌",
+    color: "from-indigo-600 to-violet-500",
+    directUrl: "https://chatgpt.com/g/g-69176b2f62e481918b21756ccdc5d396-cosmic-source-light-code-a-pre-projection-gpt",
+    imageUrl: "/src/assets/tools/cosmic-code-simulator-hero.jpg",
+    tags: ["cosmic code", "source light", "pre-projection", "simulation", "sacred geometry", "light codes", "consciousness", "cosmic simulator", "manifestation", "frequency", "spiritual", "metaphysical", "cosmic wisdom", "reality creation", "aiwebtools", "Custom GPT"],
+    category: "Spirituality & Philosophy",
+    isFree: true,
+    rating: 4.8,
+    totalVotes: 1200
   }
 ];
