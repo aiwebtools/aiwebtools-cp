@@ -305,7 +305,7 @@ const SEOHead = ({
       <meta property="og:locale:alternate" content="en_GB" />
       <meta property="og:determiner" content="the" />
       <meta property="og:updated_time" content={new Date().toISOString()} />
-      <meta property="og:see_also" content="https://aitools.company" />
+      <meta property="og:see_also" content="https://ai-webtools.com" />
       <meta property="og:see_also" content="https://www.aiwebtools.ai" />
       <meta property="og:see_also" content="https://AItoolwebsites.com" />
       <meta property="fb:app_id" content={seoConfig.facebookAppId} />
