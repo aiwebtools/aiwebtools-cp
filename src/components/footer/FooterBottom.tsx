@@ -12,7 +12,7 @@ const FooterBottom = ({
       {/* Copyright and Links */}
       <div className="flex flex-col items-center space-y-4">
         <div className="flex flex-col items-center space-y-2">
-          <button onClick={e => handleExternalLink("https://www.aitools.company", e)} className="text-green-300 hover:text-green-400 transition-colors text-center" style={{ textShadow: '0 0 8px rgba(0, 255, 0, 0.3)' }}>
+          <button onClick={e => handleExternalLink("https://www.ai-webtools.com", e)} className="text-green-300 hover:text-green-400 transition-colors text-center" style={{ textShadow: '0 0 8px rgba(0, 255, 0, 0.3)' }}>
             <span className="block">© 2026 AI WEB TOOLS</span>
             <span className="block text-sm md:inline md:ml-1">All Rights Reserved</span>
           </button>
