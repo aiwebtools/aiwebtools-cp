@@ -31,10 +31,10 @@ const FooterCompanyInfo = () => {
         </div>
         <div className="text-xs text-gray-500">
           <button 
-            onClick={(e) => handleExternalLink("https://www.aitools.company", e)}
+            onClick={(e) => handleExternalLink("https://www.ai-webtools.com", e)}
             className="text-gray-500 hover:text-green-400 transition-colors"
           >
-            An AiTools.Company
+            An AI-WebTools.com
           </button>
         </div>
       </div>
