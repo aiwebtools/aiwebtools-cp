@@ -2,40 +2,23 @@ import { useState, useCallback, useRef, TouchEvent } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-import worldPeace from "@/assets/inspiration-carousel/world-peace.jpg";
-import mirrorReflection from "@/assets/inspiration-carousel/mirror-reflection.jpg";
-import iAmTruth from "@/assets/inspiration-carousel/i-am-truth.jpg";
-import thankfulFarmer from "@/assets/inspiration-carousel/thankful-farmer.jpg";
-import sacredLightCode from "@/assets/inspiration-carousel/sacred-light-code.jpg";
-import cosmicTemple from "@/assets/inspiration-carousel/cosmic-temple.jpg";
-import antiWar from "@/assets/inspiration-carousel/anti-war.jpg";
-import humansForgot from "@/assets/inspiration-carousel/humans-forgot.jpg";
-import linkedToSource from "@/assets/inspiration-carousel/linked-to-source.jpg";
-import taleTwoFutures from "@/assets/inspiration-carousel/tale-two-futures.jpg";
-import interconnectionGod from "@/assets/inspiration-carousel/interconnection-god.jpg";
-import multidimensional from "@/assets/inspiration-carousel/multidimensional.jpg";
-import angelicRaces from "@/assets/inspiration-carousel/angelic-races.jpg";
-import metaphysicalBeings from "@/assets/inspiration-carousel/metaphysical-beings.jpg";
-import perspective from "@/assets/inspiration-carousel/perspective.jpg";
-import lightScrabble from "@/assets/inspiration-carousel/light-scrabble.jpg";
-
 const images = [
-  { src: worldPeace, alt: "World Peace - Put the guns down and the fear of each other away" },
-  { src: mirrorReflection, alt: "Mirror Reflection - Be proud of yourself for balancing it all" },
-  { src: iAmTruth, alt: "I AM the truth hidden in plain sight - Look within" },
-  { src: thankfulFarmer, alt: "Thankful farmer - Everything coded into my experience I am thankful for" },
-  { src: sacredLightCode, alt: "Sacred Light Code - Reality itself is cosmic in nature" },
-  { src: cosmicTemple, alt: "Cosmic Temple - Let the inner cosmic temple of God shine within you" },
-  { src: antiWar, alt: "There is nothing I hate more than watching war" },
-  { src: humansForgot, alt: "Humans forgot who they are - Still searching outside for what already exists within" },
-  { src: linkedToSource, alt: "Every time you operate out of love you are directly linked to the source" },
-  { src: taleTwoFutures, alt: "The Tale of Two Futures - Choose your path" },
-  { src: interconnectionGod, alt: "The Interconnection all people have to God - The Divine Light is Within" },
-  { src: multidimensional, alt: "What you see with your iris is only a small percentage of what is truly floating around you" },
-  { src: angelicRaces, alt: "The Two Angelic Races - Angels of the Kingdom of Light vs Fallen Angels" },
-  { src: metaphysicalBeings, alt: "We are metaphysical beings in a physical world" },
-  { src: perspective, alt: "You're the only guy that could look into hell and still smile after - Everything is perspective" },
-  { src: lightScrabble, alt: "Quran and Bible both speak of Light - Humans argue over letters" },
+  { src: "/images/inspiration/world-peace.jpg", alt: "World Peace - Put the guns down and the fear of each other away" },
+  { src: "/images/inspiration/mirror-reflection.jpg", alt: "Mirror Reflection - Be proud of yourself for balancing it all" },
+  { src: "/images/inspiration/i-am-truth.jpg", alt: "I AM the truth hidden in plain sight - Look within" },
+  { src: "/images/inspiration/thankful-farmer.jpg", alt: "Thankful farmer - Everything coded into my experience I am thankful for" },
+  { src: "/images/inspiration/sacred-light-code.jpg", alt: "Sacred Light Code - Reality itself is cosmic in nature" },
+  { src: "/images/inspiration/cosmic-temple.jpg", alt: "Cosmic Temple - Let the inner cosmic temple of God shine within you" },
+  { src: "/images/inspiration/anti-war.jpg", alt: "There is nothing I hate more than watching war" },
+  { src: "/images/inspiration/humans-forgot.jpg", alt: "Humans forgot who they are - Still searching outside for what already exists within" },
+  { src: "/images/inspiration/linked-to-source.jpg", alt: "Every time you operate out of love you are directly linked to the source" },
+  { src: "/images/inspiration/tale-two-futures.jpg", alt: "The Tale of Two Futures - Choose your path" },
+  { src: "/images/inspiration/interconnection-god.jpg", alt: "The Interconnection all people have to God - The Divine Light is Within" },
+  { src: "/images/inspiration/multidimensional.jpg", alt: "What you see with your iris is only a small percentage of what is truly floating around you" },
+  { src: "/images/inspiration/angelic-races.jpg", alt: "The Two Angelic Races - Angels of the Kingdom of Light vs Fallen Angels" },
+  { src: "/images/inspiration/metaphysical-beings.jpg", alt: "We are metaphysical beings in a physical world" },
+  { src: "/images/inspiration/perspective.jpg", alt: "You're the only guy that could look into hell and still smile after - Everything is perspective" },
+  { src: "/images/inspiration/light-scrabble.jpg", alt: "Quran and Bible both speak of Light - Humans argue over letters" },
 ];
 
 const InspirationCarousel = () => {
@@ -96,15 +79,15 @@ const InspirationCarousel = () => {
         <div className="relative group">
           {/* Image Display with swipe support */}
           <div
-            className="relative w-full aspect-video rounded-xl overflow-hidden border border-green-500/30 shadow-[0_0_30px_rgba(0,255,0,0.15)] cursor-grab active:cursor-grabbing"
+            className="relative w-full rounded-xl overflow-hidden border border-green-500/30 shadow-[0_0_30px_rgba(0,255,0,0.15)] cursor-grab active:cursor-grabbing"
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
+            style={{ minHeight: '300px' }}
           >
             <img
               src={images[currentIndex].src}
               alt={images[currentIndex].alt}
-              className="w-full h-full object-cover transition-opacity duration-500"
-              loading="lazy"
+              className="w-full h-auto block transition-opacity duration-500"
               draggable={false}
             />
             {/* Image counter */}
@@ -131,7 +114,7 @@ const InspirationCarousel = () => {
             <ChevronRight className="h-5 w-5" />
           </Button>
 
-          {/* Dot Indicators - scrollable on mobile */}
+          {/* Dot Indicators */}
           <div className="flex justify-center gap-1.5 mt-4 overflow-x-auto px-4 pb-1">
             {images.map((_, idx) => (
               <button
