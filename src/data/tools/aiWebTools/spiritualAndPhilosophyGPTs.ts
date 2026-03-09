@@ -1366,6 +1366,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     emoji: "🌌",
     color: "from-indigo-600 to-violet-500",
     directUrl: "https://chatgpt.com/g/g-69176b2f62e481918b21756ccdc5d396-cosmic-source-light-code-a-pre-projection-gpt",
+    videoUrl: "https://youtu.be/us8qYI2plqg",
     imageUrl: "/src/assets/tools/cosmic-code-simulator-hero.jpg",
     tags: ["cosmic code", "source light", "pre-projection", "simulation", "sacred geometry", "light codes", "consciousness", "cosmic simulator", "manifestation", "frequency", "spiritual", "metaphysical", "cosmic wisdom", "reality creation", "aiwebtools", "Custom GPT"],
     category: "Spirituality & Philosophy",

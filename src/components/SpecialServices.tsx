@@ -60,7 +60,8 @@ const weightedShuffle = <T extends { title: string }>(items: T[]): T[] => {
     "Cyber Security GPT", "Probability GPT", "FOOD QUALITY INSPECTOR GPT",
     "Cannabis GPT", "MATERIAL VALUATION GPT (MATERIUMOR)", "COLLECTIBLES APPRAISAL GPT",
     "Artwork & Vintage Appraisal GPT", "Sport Card Appraisal GPT",
-    "Paleography GPT"
+    "Paleography GPT",
+    "Cosmic Code Simulator"
   ]);
 
   // SECOND TIER: Other premium tools (spirituality, exploration, history, etc.)
