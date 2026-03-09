@@ -29,7 +29,7 @@ const AIWebToolsPage = () => {
       "https://aitools.studio",
       "https://aiwebtools.ai",
       "https://www.aiwebtools.ai",
-      "https://aitools.company"
+      "https://ai-webtools.com"
     ],
     "contactPoint": {
       "@type": "ContactPoint",

@@ -20,7 +20,7 @@ const FooterBottom = ({
             <button onClick={e => handleExternalLink("https://openai.com/policies/privacy-policy/", e)} className="text-green-300 hover:text-green-400 transition-colors text-sm">
               Privacy Policy
             </button>
-            <button onClick={e => handleExternalLink("https://aitools.company/terms-of-services", e)} className="text-green-300 hover:text-green-400 transition-colors text-sm">
+            <button onClick={e => handleExternalLink("https://ai-webtools.com/terms-of-services", e)} className="text-green-300 hover:text-green-400 transition-colors text-sm">
               Terms of Service
             </button>
           </div>

@@ -148,7 +148,7 @@ export const generateLocalBusinessStructuredData = () => {
       "availableLanguage": "English"
     },
     "sameAs": [
-      "https://aitools.company",
+      "https://ai-webtools.com",
       "https://www.aiwebtools.ai",
       "https://aitoolwebsites.com"
     ]

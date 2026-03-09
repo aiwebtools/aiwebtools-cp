@@ -365,7 +365,7 @@ const SEOHead = ({
       
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-      <link rel="preconnect" href="https://aitools.company" />
+      <link rel="preconnect" href="https://ai-webtools.com" />
       <link rel="preconnect" href="https://www.aiwebtools.ai" />
       <link rel="preconnect" href="https://aitoolwebsites.com" />
       

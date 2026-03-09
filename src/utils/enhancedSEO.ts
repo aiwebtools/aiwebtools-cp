@@ -33,7 +33,7 @@ export const generateEnhancedStructuredData = () => {
           "ChatGPT alternatives"
         ],
         "sameAs": [
-          "https://aitools.company",
+          "https://ai-webtools.com",
           "https://www.aiwebtools.ai",
           "https://linktr.ee/aiwebtools",
           "https://www.tiktok.com/@aiwebtools"
