@@ -355,7 +355,7 @@ const SEOHead = ({
       {/* Enhanced DNS Prefetch and Preconnect */}
       <link rel="dns-prefetch" href="//fonts.googleapis.com" />
       <link rel="dns-prefetch" href="//fonts.gstatic.com" />
-      <link rel="dns-prefetch" href="//aitools.company" />
+      <link rel="dns-prefetch" href="//ai-webtools.com" />
       <link rel="dns-prefetch" href="//www.aiwebtools.ai" />
       <link rel="dns-prefetch" href="//aitoolwebsites.com" />
       <link rel="dns-prefetch" href="//www.google.com" />
