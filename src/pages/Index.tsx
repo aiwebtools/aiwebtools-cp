@@ -18,6 +18,7 @@ import CloneOfferPopup from "@/components/CloneOfferPopup";
 import AIWebToolsSEOSection from "@/components/seo/AIWebToolsSEOSection";
 import DeferredMount from "@/components/DeferredMount";
 import EthicalAIQuoteSection from "@/components/EthicalAIQuoteSection";
+import InspirationCarousel from "@/components/InspirationCarousel";
 
 
 // Removed loading spinner - causes perceived slowness on refresh
