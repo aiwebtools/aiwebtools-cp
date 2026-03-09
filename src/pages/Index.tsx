@@ -158,6 +158,11 @@ const Index = () => {
           <BookPromotionCard />
         </DeferredMount>
         
+        {/* Inspiration Carousel - Sarah Connor Quote - right under Book Promotion */}
+        <DeferredMount delay={0} fallback={null}>
+          <InspirationCarousel />
+        </DeferredMount>
+        
         {/* Custom GPTs Video Section - render immediately */}
         <SpecialServices />
         
@@ -183,11 +188,6 @@ const Index = () => {
         {/* Ethical AI Quote Section */}
         <DeferredMount delay={0} fallback={null}>
           <EthicalAIQuoteSection />
-        </DeferredMount>
-        
-        {/* Inspiration Carousel - Sarah Connor Quote */}
-        <DeferredMount delay={0} fallback={null}>
-          <InspirationCarousel />
         </DeferredMount>
         
         <ScrollToTop />
