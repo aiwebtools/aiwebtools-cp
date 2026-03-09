@@ -185,6 +185,11 @@ const Index = () => {
           <EthicalAIQuoteSection />
         </DeferredMount>
         
+        {/* Inspiration Carousel - Sarah Connor Quote */}
+        <DeferredMount delay={0} fallback={null}>
+          <InspirationCarousel />
+        </DeferredMount>
+        
         <ScrollToTop />
         <Footer />
       </div>
