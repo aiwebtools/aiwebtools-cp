@@ -239,6 +239,7 @@ export const moreRealAITools: Tool[] = [
     emoji: "🤖",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://huggingface.co/Salesforce/codet5p-16b/?via=aiwebtools",
+    imageUrl: codet5Hero,
     tags: ["code generation", "programming AI", "code understanding", "documentation", "developer tools"],
     category: "Developer Tools",
     rating: 4.4,
