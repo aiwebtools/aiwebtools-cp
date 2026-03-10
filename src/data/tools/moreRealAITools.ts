@@ -66,6 +66,7 @@ export const moreRealAITools: Tool[] = [
     emoji: "🤖",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://contentbot.ai/?via=aiwebtools",
+    imageUrl: contentbotHero,
     tags: ["content automation", "blog posts", "social media", "marketing", "AI writing"],
     category: "Content Creation",
     rating: 4.2,
