@@ -78,7 +78,7 @@ const InspirationCarousel = () => {
         background: "linear-gradient(180deg, #0a0a0a 0%, #0d1a0d 30%, #0a0f0a 70%, #0a0a0a 100%)",
       }}
     >
-      <div className="container mx-auto px-4 max-w-5xl">
+      <div className="container mx-auto px-4 max-w-5xl md:max-w-2xl lg:max-w-3xl">
         {/* Quote Section */}
         <div className="text-center mb-8 md:mb-10">
           <p
