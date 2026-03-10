@@ -212,6 +212,7 @@ export const moreRealAITools: Tool[] = [
     emoji: "🎵",
     color: "from-orange-500 to-red-600",
     directUrl: "https://ampermusic.com/?via=aiwebtools",
+    imageUrl: amperMusicHero,
     tags: ["music composition", "royalty-free music", "content creation", "AI composer", "background music"],
     category: "Audio & Music",
     rating: 4.2,
