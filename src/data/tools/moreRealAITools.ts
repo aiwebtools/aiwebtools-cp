@@ -119,6 +119,7 @@ export const moreRealAITools: Tool[] = [
     emoji: "📷",
     color: "from-blue-500 to-green-600",
     directUrl: "https://fotor.com/?via=aiwebtools",
+    imageUrl: fotorAiHero,
     tags: ["photo editing", "AI enhancement", "filters", "image processing", "photography"],
     category: "Image Editing",
     rating: 4.4,
