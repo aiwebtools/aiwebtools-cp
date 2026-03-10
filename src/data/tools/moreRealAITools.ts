@@ -199,6 +199,7 @@ export const moreRealAITools: Tool[] = [
     emoji: "🎼",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://aiva.ai/?via=aiwebtools",
+    imageUrl: aivaHero,
     tags: ["AI composer", "music generation", "film music", "game music", "original compositions"],
     category: "Audio & Music",
     rating: 4.4,
