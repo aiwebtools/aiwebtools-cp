@@ -133,6 +133,7 @@ export const moreRealAITools: Tool[] = [
     emoji: "🎬",
     color: "from-red-500 to-pink-600",
     directUrl: "https://pictory.ai/?via=aiwebtools",
+    imageUrl: pictoryHero,
     tags: ["video creation", "script-to-video", "AI video", "content marketing", "automation"],
     category: "Video Generation",
     rating: 4.5,
