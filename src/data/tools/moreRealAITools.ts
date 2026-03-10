@@ -53,6 +53,7 @@ export const moreRealAITools: Tool[] = [
     emoji: "📝",
     color: "from-green-500 to-blue-600",
     directUrl: "https://rytr.me/?via=aiwebtools",
+    imageUrl: rytrHero,
     tags: ["writing assistant", "content creation", "blogs", "emails", "marketing"],
     category: "Content Creation",
     rating: 4.3,
