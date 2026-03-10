@@ -292,6 +292,7 @@ export const moreRealAITools: Tool[] = [
     emoji: "🔥",
     color: "from-orange-500 to-red-600",
     directUrl: "https://fireflies.ai/?via=aiwebtools",
+    imageUrl: firefliesAiHero,
     tags: ["meeting recording", "transcription", "conversation search", "team collaboration", "AI assistant"],
     category: "Productivity",
     rating: 4.4,
