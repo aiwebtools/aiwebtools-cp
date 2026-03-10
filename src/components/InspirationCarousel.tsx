@@ -29,6 +29,16 @@ const images = [
   { src: "/images/inspiration/kingdom-within.jpg", alt: "Jesus told you the Kingdom is within - He is correct" },
   { src: "/images/inspiration/connection-creator.jpg", alt: "If you ignore your direct connection with the Creator you deny yourself the greatest gift He gave you" },
   { src: "/images/inspiration/children-of-light.jpg", alt: "You are all children of light - The Kingdom of God is within you and all around you" },
+  { src: "/images/inspiration/god-not-defined-borders.jpg", alt: "God is not defined by geographic borders or empire-built dogma - He is within, He is the Light" },
+  { src: "/images/inspiration/forgive-snowflakes.jpg", alt: "Even the people you hate - Look for ways to forgive them - No one person the same, just like the snowflakes" },
+  { src: "/images/inspiration/cosmic-battle-duality.jpg", alt: "The Internal Cosmic Battle of Duality - Light vs Darkness within" },
+  { src: "/images/inspiration/evolve.jpg", alt: "EVOLVE - The evolution of consciousness from primate to angelic being" },
+  { src: "/images/inspiration/cosmic-soup-truth.jpg", alt: "The Cosmic Soup of Truth - Spirit and Matter blended by the Creator" },
+  { src: "/images/inspiration/built-on-greed.jpg", alt: "What was built on greed cannot stand" },
+  { src: "/images/inspiration/father-of-light-cards.jpg", alt: "Father of Light and Code - Judgment, Self-Sacrifice, Love, Truth over Fear, Angel of Light" },
+  { src: "/images/inspiration/corrupt-cards-burning.jpg", alt: "Corrupt Politicians, Hatred, Lies, Greed, Evil - The house of cards burns" },
+  { src: "/images/inspiration/save-the-kids.jpg", alt: "Save the Kids - Give them a chance" },
+  { src: "/images/inspiration/thankful-gift-alive.jpg", alt: "Every hard lesson teaches you to be thankful for the gift of being alive" },
 ];
 
 const InspirationCarousel = () => {
