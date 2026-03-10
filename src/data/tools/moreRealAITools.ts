@@ -80,6 +80,7 @@ export const moreRealAITools: Tool[] = [
     emoji: "🎨",
     color: "from-pink-500 to-purple-600",
     directUrl: "https://artbreeder.com/?via=aiwebtools",
+    imageUrl: artbreederHero,
     tags: ["AI art", "image evolution", "collaborative creation", "genetic algorithms", "creativity"],
     category: "AI Image Generation",
     rating: 4.4,
