@@ -146,6 +146,7 @@ export const moreRealAITools: Tool[] = [
     emoji: "🎥",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://lumen5.com/?via=aiwebtools",
+    imageUrl: lumen5Hero,
     tags: ["video creation", "blog-to-video", "social media videos", "AI automation", "marketing"],
     category: "Video Generation",
     rating: 4.3,
