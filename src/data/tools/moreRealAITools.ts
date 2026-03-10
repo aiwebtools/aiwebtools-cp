@@ -93,6 +93,7 @@ export const moreRealAITools: Tool[] = [
     emoji: "🌙",
     color: "from-indigo-500 to-purple-600",
     directUrl: "https://creator.nightcafe.studio/?via=aiwebtools",
+    imageUrl: nightcafeHero,
     tags: ["AI art", "neural networks", "text-to-image", "art generation", "creativity"],
     category: "AI Image Generation",
     rating: 4.3,
