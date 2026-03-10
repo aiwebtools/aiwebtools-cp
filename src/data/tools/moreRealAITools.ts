@@ -10,6 +10,27 @@ import {
   Headphones, Eye, Scissors, Smartphone, Pen, Map
 } from "lucide-react";
 
+import writesonicHero from "@/assets/tools/writesonic-hero.jpg";
+import rytrHero from "@/assets/tools/rytr-hero.jpg";
+import contentbotHero from "@/assets/tools/contentbot-hero.jpg";
+import artbreederHero from "@/assets/tools/artbreeder-hero.jpg";
+import nightcafeHero from "@/assets/tools/nightcafe-hero.jpg";
+import photosonicHero from "@/assets/tools/photosonic-hero.jpg";
+import fotorAiHero from "@/assets/tools/fotor-ai-hero.jpg";
+import pictoryHero from "@/assets/tools/pictory-hero.jpg";
+import lumen5Hero from "@/assets/tools/lumen5-hero.jpg";
+import invideoAiHero from "@/assets/tools/invideo-ai-hero.jpg";
+import murfAiHero from "@/assets/tools/murf-ai-hero.jpg";
+import resembleAiHero from "@/assets/tools/resemble-ai-hero.jpg";
+import aivaHero from "@/assets/tools/aiva-hero.jpg";
+import amperMusicHero from "@/assets/tools/amper-music-hero.jpg";
+import tabnineHero from "@/assets/tools/tabnine-hero.jpg";
+import codet5Hero from "@/assets/tools/codet5-hero.jpg";
+import codexOpenaiHero from "@/assets/tools/codex-openai-hero.jpg";
+import notionAiHero from "@/assets/tools/notion-ai-hero.jpg";
+import otterAiHero from "@/assets/tools/otter-ai-hero.jpg";
+import firefliesAiHero from "@/assets/tools/fireflies-ai-hero.jpg";
+
 export const moreRealAITools: Tool[] = [
   // AI Writing & Content Tools
   {
@@ -19,6 +40,7 @@ export const moreRealAITools: Tool[] = [
     emoji: "✍️",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://writesonic.com/?via=aiwebtools",
+    imageUrl: writesonicHero,
     tags: ["writing", "marketing copy", "blog posts", "content creation", "copywriting"],
     category: "Content Creation",
     rating: 4.5,
@@ -31,6 +53,7 @@ export const moreRealAITools: Tool[] = [
     emoji: "📝",
     color: "from-green-500 to-blue-600",
     directUrl: "https://rytr.me/?via=aiwebtools",
+    imageUrl: rytrHero,
     tags: ["writing assistant", "content creation", "blogs", "emails", "marketing"],
     category: "Content Creation",
     rating: 4.3,
@@ -43,6 +66,7 @@ export const moreRealAITools: Tool[] = [
     emoji: "🤖",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://contentbot.ai/?via=aiwebtools",
+    imageUrl: contentbotHero,
     tags: ["content automation", "blog posts", "social media", "marketing", "AI writing"],
     category: "Content Creation",
     rating: 4.2,
@@ -56,6 +80,7 @@ export const moreRealAITools: Tool[] = [
     emoji: "🎨",
     color: "from-pink-500 to-purple-600",
     directUrl: "https://artbreeder.com/?via=aiwebtools",
+    imageUrl: artbreederHero,
     tags: ["AI art", "image evolution", "collaborative creation", "genetic algorithms", "creativity"],
     category: "AI Image Generation",
     rating: 4.4,
@@ -68,6 +93,7 @@ export const moreRealAITools: Tool[] = [
     emoji: "🌙",
     color: "from-indigo-500 to-purple-600",
     directUrl: "https://creator.nightcafe.studio/?via=aiwebtools",
+    imageUrl: nightcafeHero,
     tags: ["AI art", "neural networks", "text-to-image", "art generation", "creativity"],
     category: "AI Image Generation",
     rating: 4.3,
@@ -80,6 +106,7 @@ export const moreRealAITools: Tool[] = [
     emoji: "📸",
     color: "from-orange-500 to-red-600",
     directUrl: "https://photosonic.writesonic.com/?via=aiwebtools",
+    imageUrl: photosonicHero,
     tags: ["image generation", "AI photos", "text-to-image", "artwork", "visual content"],
     category: "AI Image Generation",
     rating: 4.2,
@@ -92,6 +119,7 @@ export const moreRealAITools: Tool[] = [
     emoji: "📷",
     color: "from-blue-500 to-green-600",
     directUrl: "https://fotor.com/?via=aiwebtools",
+    imageUrl: fotorAiHero,
     tags: ["photo editing", "AI enhancement", "filters", "image processing", "photography"],
     category: "Image Editing",
     rating: 4.4,
@@ -105,6 +133,7 @@ export const moreRealAITools: Tool[] = [
     emoji: "🎬",
     color: "from-red-500 to-pink-600",
     directUrl: "https://pictory.ai/?via=aiwebtools",
+    imageUrl: pictoryHero,
     tags: ["video creation", "script-to-video", "AI video", "content marketing", "automation"],
     category: "Video Generation",
     rating: 4.5,
@@ -117,6 +146,7 @@ export const moreRealAITools: Tool[] = [
     emoji: "🎥",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://lumen5.com/?via=aiwebtools",
+    imageUrl: lumen5Hero,
     tags: ["video creation", "blog-to-video", "social media videos", "AI automation", "marketing"],
     category: "Video Generation",
     rating: 4.3,
@@ -129,6 +159,7 @@ export const moreRealAITools: Tool[] = [
     emoji: "✂️",
     color: "from-green-500 to-teal-600",
     directUrl: "https://invideo.io/?via=aiwebtools",
+    imageUrl: invideoAiHero,
     tags: ["video editing", "AI templates", "text-to-video", "professional videos", "automation"],
     category: "Video Editing",
     rating: 4.4,
@@ -142,6 +173,7 @@ export const moreRealAITools: Tool[] = [
     emoji: "🎤",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://get.murf.ai/1uvb0e8dznua",
+    imageUrl: murfAiHero,
     tags: ["voice generation", "text-to-speech", "voiceovers", "podcasts", "AI voices"],
     category: "Audio & Voice",
     rating: 4.6,
@@ -154,6 +186,7 @@ export const moreRealAITools: Tool[] = [
     emoji: "🎧",
     color: "from-green-500 to-blue-600",
     directUrl: "https://resemble.ai/?via=aiwebtools",
+    imageUrl: resembleAiHero,
     tags: ["voice cloning", "synthetic voices", "audio generation", "personalization", "AI audio"],
     category: "Audio & Voice",
     rating: 4.5,
@@ -166,6 +199,7 @@ export const moreRealAITools: Tool[] = [
     emoji: "🎼",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://aiva.ai/?via=aiwebtools",
+    imageUrl: aivaHero,
     tags: ["AI composer", "music generation", "film music", "game music", "original compositions"],
     category: "Audio & Music",
     rating: 4.4,
@@ -178,6 +212,7 @@ export const moreRealAITools: Tool[] = [
     emoji: "🎵",
     color: "from-orange-500 to-red-600",
     directUrl: "https://ampermusic.com/?via=aiwebtools",
+    imageUrl: amperMusicHero,
     tags: ["music composition", "royalty-free music", "content creation", "AI composer", "background music"],
     category: "Audio & Music",
     rating: 4.2,
@@ -191,6 +226,7 @@ export const moreRealAITools: Tool[] = [
     emoji: "💻",
     color: "from-blue-500 to-green-600",
     directUrl: "https://tabnine.com/?via=aiwebtools",
+    imageUrl: tabnineHero,
     tags: ["code completion", "programming", "AI coding", "development", "autocomplete"],
     category: "Developer Tools",
     rating: 4.6,
@@ -203,6 +239,7 @@ export const moreRealAITools: Tool[] = [
     emoji: "🤖",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://huggingface.co/Salesforce/codet5p-16b/?via=aiwebtools",
+    imageUrl: codet5Hero,
     tags: ["code generation", "programming AI", "code understanding", "documentation", "developer tools"],
     category: "Developer Tools",
     rating: 4.4,
@@ -215,6 +252,7 @@ export const moreRealAITools: Tool[] = [
     emoji: "⚡",
     color: "from-green-500 to-blue-600",
     directUrl: "https://openai.com/blog/openai-codex/?via=aiwebtools",
+    imageUrl: codexOpenaiHero,
     tags: ["code generation", "natural language to code", "programming AI", "OpenAI", "developer tools"],
     category: "Developer Tools",
     rating: 4.7,
@@ -228,6 +266,7 @@ export const moreRealAITools: Tool[] = [
     emoji: "📊",
     color: "from-gray-500 to-blue-600",
     directUrl: "https://notion.so/product/ai/?via=aiwebtools",
+    imageUrl: notionAiHero,
     tags: ["productivity", "writing assistant", "brainstorming", "workspace", "organization"],
     category: "Productivity",
     rating: 4.5,
@@ -240,6 +279,7 @@ export const moreRealAITools: Tool[] = [
     emoji: "🦦",
     color: "from-blue-400 to-cyan-600",
     directUrl: "https://otter.ai/?via=aiwebtools",
+    imageUrl: otterAiHero,
     tags: ["meeting transcription", "AI notes", "conversation analysis", "productivity", "collaboration"],
     category: "Productivity",
     rating: 4.6,
@@ -252,6 +292,7 @@ export const moreRealAITools: Tool[] = [
     emoji: "🔥",
     color: "from-orange-500 to-red-600",
     directUrl: "https://fireflies.ai/?via=aiwebtools",
+    imageUrl: firefliesAiHero,
     tags: ["meeting recording", "transcription", "conversation search", "team collaboration", "AI assistant"],
     category: "Productivity",
     rating: 4.4,
