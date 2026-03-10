@@ -226,6 +226,7 @@ export const moreRealAITools: Tool[] = [
     emoji: "💻",
     color: "from-blue-500 to-green-600",
     directUrl: "https://tabnine.com/?via=aiwebtools",
+    imageUrl: tabnineHero,
     tags: ["code completion", "programming", "AI coding", "development", "autocomplete"],
     category: "Developer Tools",
     rating: 4.6,
