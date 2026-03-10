@@ -10,6 +10,27 @@ import {
   Headphones, Eye, Scissors, Smartphone, Pen, Map
 } from "lucide-react";
 
+import writesonicHero from "@/assets/tools/writesonic-hero.jpg";
+import rytrHero from "@/assets/tools/rytr-hero.jpg";
+import contentbotHero from "@/assets/tools/contentbot-hero.jpg";
+import artbreederHero from "@/assets/tools/artbreeder-hero.jpg";
+import nightcafeHero from "@/assets/tools/nightcafe-hero.jpg";
+import photosonicHero from "@/assets/tools/photosonic-hero.jpg";
+import fotorAiHero from "@/assets/tools/fotor-ai-hero.jpg";
+import pictoryHero from "@/assets/tools/pictory-hero.jpg";
+import lumen5Hero from "@/assets/tools/lumen5-hero.jpg";
+import invideoAiHero from "@/assets/tools/invideo-ai-hero.jpg";
+import murfAiHero from "@/assets/tools/murf-ai-hero.jpg";
+import resembleAiHero from "@/assets/tools/resemble-ai-hero.jpg";
+import aivaHero from "@/assets/tools/aiva-hero.jpg";
+import amperMusicHero from "@/assets/tools/amper-music-hero.jpg";
+import tabnineHero from "@/assets/tools/tabnine-hero.jpg";
+import codet5Hero from "@/assets/tools/codet5-hero.jpg";
+import codexOpenaiHero from "@/assets/tools/codex-openai-hero.jpg";
+import notionAiHero from "@/assets/tools/notion-ai-hero.jpg";
+import otterAiHero from "@/assets/tools/otter-ai-hero.jpg";
+import firefliesAiHero from "@/assets/tools/fireflies-ai-hero.jpg";
+
 export const moreRealAITools: Tool[] = [
   // AI Writing & Content Tools
   {
