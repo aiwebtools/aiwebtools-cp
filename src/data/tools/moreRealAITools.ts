@@ -266,6 +266,7 @@ export const moreRealAITools: Tool[] = [
     emoji: "📊",
     color: "from-gray-500 to-blue-600",
     directUrl: "https://notion.so/product/ai/?via=aiwebtools",
+    imageUrl: notionAiHero,
     tags: ["productivity", "writing assistant", "brainstorming", "workspace", "organization"],
     category: "Productivity",
     rating: 4.5,
