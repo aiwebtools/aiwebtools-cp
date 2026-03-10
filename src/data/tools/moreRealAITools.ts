@@ -159,6 +159,7 @@ export const moreRealAITools: Tool[] = [
     emoji: "✂️",
     color: "from-green-500 to-teal-600",
     directUrl: "https://invideo.io/?via=aiwebtools",
+    imageUrl: invideoAiHero,
     tags: ["video editing", "AI templates", "text-to-video", "professional videos", "automation"],
     category: "Video Editing",
     rating: 4.4,
