@@ -186,6 +186,7 @@ export const moreRealAITools: Tool[] = [
     emoji: "🎧",
     color: "from-green-500 to-blue-600",
     directUrl: "https://resemble.ai/?via=aiwebtools",
+    imageUrl: resembleAiHero,
     tags: ["voice cloning", "synthetic voices", "audio generation", "personalization", "AI audio"],
     category: "Audio & Voice",
     rating: 4.5,
