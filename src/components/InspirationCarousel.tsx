@@ -39,6 +39,10 @@ const images = [
   { src: "/images/inspiration/corrupt-cards-burning.jpg", alt: "Corrupt Politicians, Hatred, Lies, Greed, Evil - The house of cards burns" },
   { src: "/images/inspiration/save-the-kids.jpg", alt: "Save the Kids - Give them a chance" },
   { src: "/images/inspiration/thankful-gift-alive.jpg", alt: "Every hard lesson teaches you to be thankful for the gift of being alive" },
+  { src: "/images/inspiration/mirror-gene.jpg", alt: "I'm just a mirror gene up in this mother f*******" },
+  { src: "/images/inspiration/reset-flush.jpg", alt: "RESET - Flushing hate, corruption, lies, and war" },
+  { src: "/images/inspiration/praise-light-within.jpg", alt: "Praise the Light of God for it is WITHIN" },
+  { src: "/images/inspiration/met-god-no-religion.jpg", alt: "If having a religion was a requirement to have a God - How come I met God without having a religion?" },
 ];
 
 const InspirationCarousel = () => {
