@@ -173,6 +173,7 @@ export const moreRealAITools: Tool[] = [
     emoji: "🎤",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://get.murf.ai/1uvb0e8dznua",
+    imageUrl: murfAiHero,
     tags: ["voice generation", "text-to-speech", "voiceovers", "podcasts", "AI voices"],
     category: "Audio & Voice",
     rating: 4.6,
