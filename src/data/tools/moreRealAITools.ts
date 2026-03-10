@@ -279,6 +279,7 @@ export const moreRealAITools: Tool[] = [
     emoji: "🦦",
     color: "from-blue-400 to-cyan-600",
     directUrl: "https://otter.ai/?via=aiwebtools",
+    imageUrl: otterAiHero,
     tags: ["meeting transcription", "AI notes", "conversation analysis", "productivity", "collaboration"],
     category: "Productivity",
     rating: 4.6,
