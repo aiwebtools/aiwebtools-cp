@@ -252,6 +252,7 @@ export const moreRealAITools: Tool[] = [
     emoji: "⚡",
     color: "from-green-500 to-blue-600",
     directUrl: "https://openai.com/blog/openai-codex/?via=aiwebtools",
+    imageUrl: codexOpenaiHero,
     tags: ["code generation", "natural language to code", "programming AI", "OpenAI", "developer tools"],
     category: "Developer Tools",
     rating: 4.7,
