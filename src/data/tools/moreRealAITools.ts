@@ -106,6 +106,7 @@ export const moreRealAITools: Tool[] = [
     emoji: "📸",
     color: "from-orange-500 to-red-600",
     directUrl: "https://photosonic.writesonic.com/?via=aiwebtools",
+    imageUrl: photosonicHero,
     tags: ["image generation", "AI photos", "text-to-image", "artwork", "visual content"],
     category: "AI Image Generation",
     rating: 4.2,
