@@ -40,6 +40,7 @@ export const moreRealAITools: Tool[] = [
     emoji: "✍️",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://writesonic.com/?via=aiwebtools",
+    imageUrl: writesonicHero,
     tags: ["writing", "marketing copy", "blog posts", "content creation", "copywriting"],
     category: "Content Creation",
     rating: 4.5,
