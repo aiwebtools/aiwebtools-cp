@@ -51,6 +51,7 @@ export const fourthPriorityFeaturedGPTs: Tool[] = [
     category: "Legal & Government AI Tools",
     directUrl: "https://chatgpt.com/g/g-Y8u3YrS1p-contract-review-bot",
     videoUrl: "https://youtu.be/12jsM2-Yfho",
+    imageUrl: contractReviewBotHero,
     rating: 4.6,
     totalVotes: 3400,
     tags: ["legal", "contracts", "review", "risk analysis", "legal assistant"]
