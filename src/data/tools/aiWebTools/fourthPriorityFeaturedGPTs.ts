@@ -79,6 +79,7 @@ export const fourthPriorityFeaturedGPTs: Tool[] = [
     category: "Industry-Specific Solutions",
     directUrl: "https://firearmsafetyeducationgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/S0uJrukJsBA",
+    imageUrl: firearmsSafetyGptHero,
     rating: 4.5,
     totalVotes: 3200,
     tags: ["firearms safety", "gun education", "safety training", "legal compliance", "instructor"]
