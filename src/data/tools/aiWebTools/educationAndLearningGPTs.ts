@@ -42,6 +42,7 @@ export const educationAndLearningGPTs: Tool[] = [
     color: "from-blue-500 to-green-600",
     directUrl: "https://learnanycourse.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=98fLvWZy9wI",
+    imageUrl: learnAnyCourseGptHero,
     tags: ["education", "learning", "courses", "tutoring", "self-learning", "aiwebtools", "Learning Platform", "Course Creator", "Tutoring AI"],
     category: "Education & Learning",
     rating: 4.7,

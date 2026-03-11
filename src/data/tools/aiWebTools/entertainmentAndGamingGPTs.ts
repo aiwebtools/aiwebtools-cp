@@ -40,6 +40,7 @@ export const entertainmentAndGamingGPTs: Tool[] = [
     color: "from-blue-500 to-purple-600",
     directUrl: "https://algebraicexpressioninventor.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/aFuAxVNXBvg",
+    imageUrl: kingBlueberryGptHero,
     tags: ["operational instructions", "algebraic conversion", "process optimization", "variable mapping", "instruction translation", "Custom GPT"],
     category: "Business & Productivity",
     rating: 4.3,
