@@ -36,6 +36,7 @@ export const fourthPriorityFeaturedGPTs: Tool[] = [
     color: "from-green-500 to-blue-600",
     directUrl: "https://socialsafetynetgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=pXXqMe97GDg",
+    imageUrl: socialSafetyNetGptHero,
     rating: 4.8,
     totalVotes: 4200,
     tags: ["social services", "community support", "assistance", "resources", "social impact", "aiwebtools"],
