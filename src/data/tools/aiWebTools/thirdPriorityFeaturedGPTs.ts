@@ -60,6 +60,7 @@ export const thirdPriorityFeaturedGPTs: Tool[] = [
     category: "Data Science & Analytics",
     directUrl: "https://dataanalysisandreportai.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=idxjOwUAD_I",
+    imageUrl: dataResearchAnalysisHero,
     rating: 4.9,
     totalVotes: 5500,
     tags: ["data analysis", "research", "reports", "statistics", "insights"]
