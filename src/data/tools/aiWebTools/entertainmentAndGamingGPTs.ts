@@ -3,6 +3,7 @@ import { Tool } from "@/types/tools";
 import { Camera, Star, Sparkles, Crown } from "lucide-react";
 
 import illuminatiCardGameHero from "@/assets/tools/illuminati-card-game-hero.jpg";
+import kingBlueberryGptHero from "@/assets/tools/king-blueberry-gpt-hero.jpg";
 
 export const entertainmentAndGamingGPTs: Tool[] = [
   {
@@ -39,6 +40,7 @@ export const entertainmentAndGamingGPTs: Tool[] = [
     color: "from-blue-500 to-purple-600",
     directUrl: "https://algebraicexpressioninventor.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/aFuAxVNXBvg",
+    imageUrl: kingBlueberryGptHero,
     tags: ["operational instructions", "algebraic conversion", "process optimization", "variable mapping", "instruction translation", "Custom GPT"],
     category: "Business & Productivity",
     rating: 4.3,

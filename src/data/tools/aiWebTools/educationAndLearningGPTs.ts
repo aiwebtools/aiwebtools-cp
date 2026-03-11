@@ -4,6 +4,7 @@ import { BookOpen, GraduationCap, Brain, Calculator, Globe, Languages, Music, Pa
 import universalSpeechMasteryHero from "@/assets/tools/universal-speech-mastery-hero.jpg";
 import educationalTutorHero from "@/assets/tools/educational-tutor-hero.jpg";
 import cursiveTeacherHero from "@/assets/tools/cursive-teacher-hero.jpg";
+import learnAnyCourseGptHero from "@/assets/tools/learn-any-course-gpt-hero.jpg";
 
 export const educationAndLearningGPTs: Tool[] = [
   {
@@ -41,6 +42,7 @@ export const educationAndLearningGPTs: Tool[] = [
     color: "from-blue-500 to-green-600",
     directUrl: "https://learnanycourse.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=98fLvWZy9wI",
+    imageUrl: learnAnyCourseGptHero,
     tags: ["education", "learning", "courses", "tutoring", "self-learning", "aiwebtools", "Learning Platform", "Course Creator", "Tutoring AI"],
     category: "Education & Learning",
     rating: 4.7,

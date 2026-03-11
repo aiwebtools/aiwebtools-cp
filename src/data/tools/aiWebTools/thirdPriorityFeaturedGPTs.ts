@@ -2,6 +2,13 @@
 import { Tool } from "@/types/tools";
 import { BookOpen, User, Sun, BarChart, Briefcase, Drama, Settings, FlaskConical, Home, Pill, Search } from "lucide-react";
 
+import alanWattsGptHero from "@/assets/tools/alan-watts-gpt-hero.jpg";
+import solarLandAssessorGptHero from "@/assets/tools/solar-land-assessor-gpt-hero.jpg";
+import dataResearchAnalysisHero from "@/assets/tools/data-research-analysis-hero.jpg";
+import playwriterGptHero from "@/assets/tools/playwriter-gpt-hero.jpg";
+import customGptMakerHero from "@/assets/tools/custom-gpt-maker-hero.jpg";
+import worldRealityDecoderHero from "@/assets/tools/world-reality-decoder-hero.jpg";
+
 export const thirdPriorityFeaturedGPTs: Tool[] = [
   {
     icon: BookOpen,
@@ -25,6 +32,7 @@ export const thirdPriorityFeaturedGPTs: Tool[] = [
     category: "Spiritual & Philosophy AI Tools",
     directUrl: "https://alanwattsgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=zdKfwsQwOLE",
+    imageUrl: alanWattsGptHero,
     rating: 4.8,
     totalVotes: 4800,
     tags: ["philosophy", "alan watts", "spirituality", "wisdom", "consciousness"]
@@ -38,6 +46,7 @@ export const thirdPriorityFeaturedGPTs: Tool[] = [
     category: "Industry-Specific Solutions",
     directUrl: "https://solarlandgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=CEca8C2GIpY",
+    imageUrl: solarLandAssessorGptHero,
     rating: 4.5,
     totalVotes: 2800,
     tags: ["solar", "land assessment", "renewable energy", "solar panels", "environmental"]
@@ -51,6 +60,7 @@ export const thirdPriorityFeaturedGPTs: Tool[] = [
     category: "Data Science & Analytics",
     directUrl: "https://dataanalysisandreportai.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=idxjOwUAD_I",
+    imageUrl: dataResearchAnalysisHero,
     rating: 4.9,
     totalVotes: 5500,
     tags: ["data analysis", "research", "reports", "statistics", "insights"]
@@ -77,6 +87,7 @@ export const thirdPriorityFeaturedGPTs: Tool[] = [
     category: "Creative & Entertainment (General & Gaming)",
     directUrl: "https://playwritergpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/_QQ-oYYSFlw",
+    imageUrl: playwriterGptHero,
     rating: 4.6,
     totalVotes: 3400,
     tags: ["playwriting", "theater", "drama", "scripts", "creative writing"]
@@ -90,6 +101,7 @@ export const thirdPriorityFeaturedGPTs: Tool[] = [
     category: "AI Development & Platforms",
     directUrl: "https://customgptmaker.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=SmBXfGqXfco",
+    imageUrl: customGptMakerHero,
     rating: 4.8,
     totalVotes: 4600,
     tags: ["custom gpt", "ai development", "customization", "gpt maker", "ai tools"]
@@ -142,6 +154,7 @@ export const thirdPriorityFeaturedGPTs: Tool[] = [
     category: "Mysterious & Unusual",
     directUrl: "https://chatgpt.com/g/g-68c1e9e3b488819193744edfeecf7997-world-reality-decoder-gpt",
     videoUrl: "https://youtu.be/YzGrnpsScH0",
+    imageUrl: worldRealityDecoderHero,
     rating: 4.6,
     totalVotes: 1234,
     tags: ["reality decoding", "pattern analysis", "truth seeking", "system analysis", "hidden connections", "critical thinking", "world analysis"]

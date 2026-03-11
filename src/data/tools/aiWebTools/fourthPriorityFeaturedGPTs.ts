@@ -2,6 +2,17 @@
 import { Tool } from "@/types/tools";
 import { FileText, Palette, Shield, Video, Crown, FlaskConical, Martini, ChefHat, Scissors, Phone, Flame, Binary, Users, Heart, Leaf } from "lucide-react";
 
+import talkToHistoryGptHero from "@/assets/tools/talk-to-history-gpt-hero.jpg";
+import socialSafetyNetGptHero from "@/assets/tools/social-safety-net-gpt-hero.jpg";
+import contractReviewBotHero from "@/assets/tools/contract-review-bot-hero.jpg";
+import tattooDesignerGptHero from "@/assets/tools/tattoo-designer-gpt-hero.jpg";
+import firearmsSafetyGptHero from "@/assets/tools/firearms-safety-gpt-hero.jpg";
+import kingBlueberryGptHero from "@/assets/tools/king-blueberry-gpt-hero.jpg";
+import chefSizzleGptHero from "@/assets/tools/chef-sizzle-gpt-hero.jpg";
+import restyleMeGptHero from "@/assets/tools/restyle-me-gpt-hero.jpg";
+import firefighterGptHero from "@/assets/tools/firefighter-gpt-hero.jpg";
+import sustainableFuturesGptHero from "@/assets/tools/sustainable-futures-gpt-hero.jpg";
+
 export const fourthPriorityFeaturedGPTs: Tool[] = [
   {
     icon: Users,
@@ -11,6 +22,7 @@ export const fourthPriorityFeaturedGPTs: Tool[] = [
     color: "from-amber-500 to-orange-600",
     directUrl: "https://talk-to-history-gpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/HQGNMR7oXXY",
+    imageUrl: talkToHistoryGptHero,
     rating: 4.7,
     totalVotes: 5432,
     tags: ["historical conversations", "historical figures", "educational tool", "history learning", "interactive history", "aiwebtools"],
@@ -24,6 +36,7 @@ export const fourthPriorityFeaturedGPTs: Tool[] = [
     color: "from-green-500 to-blue-600",
     directUrl: "https://socialsafetynetgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=pXXqMe97GDg",
+    imageUrl: socialSafetyNetGptHero,
     rating: 4.8,
     totalVotes: 4200,
     tags: ["social services", "community support", "assistance", "resources", "social impact", "aiwebtools"],
@@ -38,6 +51,7 @@ export const fourthPriorityFeaturedGPTs: Tool[] = [
     category: "Legal & Government AI Tools",
     directUrl: "https://chatgpt.com/g/g-Y8u3YrS1p-contract-review-bot",
     videoUrl: "https://youtu.be/12jsM2-Yfho",
+    imageUrl: contractReviewBotHero,
     rating: 4.6,
     totalVotes: 3400,
     tags: ["legal", "contracts", "review", "risk analysis", "legal assistant"]
@@ -51,6 +65,7 @@ export const fourthPriorityFeaturedGPTs: Tool[] = [
     category: "Creative & Entertainment (General & Gaming)",
     directUrl: "https://tattoogpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=3dtGbNqXdPY",
+    imageUrl: tattooDesignerGptHero,
     rating: 4.7,
     totalVotes: 4100,
     tags: ["tattoo design", "body art", "creative design", "piercing", "tattoo business"]
@@ -64,6 +79,7 @@ export const fourthPriorityFeaturedGPTs: Tool[] = [
     category: "Industry-Specific Solutions",
     directUrl: "https://firearmsafetyeducationgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/S0uJrukJsBA",
+    imageUrl: firearmsSafetyGptHero,
     rating: 4.5,
     totalVotes: 3200,
     tags: ["firearms safety", "gun education", "safety training", "legal compliance", "instructor"]
@@ -90,6 +106,7 @@ export const fourthPriorityFeaturedGPTs: Tool[] = [
     category: "Science & Research AI Tools",
     directUrl: "https://algebraicexpressioninventor.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/aFuAxVNXBvg",
+    imageUrl: kingBlueberryGptHero,
     rating: 4.4,
     totalVotes: 2900,
     tags: ["algebraic expressions", "mathematics", "operational instructions", "variables", "problem solving"]
@@ -129,6 +146,7 @@ export const fourthPriorityFeaturedGPTs: Tool[] = [
     category: "Food & Hospitality AI Tools",
     directUrl: "https://chefgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=89u14Jld7uA",
+    imageUrl: chefSizzleGptHero,
     rating: 4.8,
     totalVotes: 4200,
     tags: ["cooking", "recipes", "culinary", "chef", "food preparation"]
@@ -142,6 +160,7 @@ export const fourthPriorityFeaturedGPTs: Tool[] = [
     category: "Image & Design Generation",
     directUrl: "https://restylemegpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/MG0Zl2KL_Wk",
+    imageUrl: restyleMeGptHero,
     rating: 4.7,
     totalVotes: 4000,
     tags: ["image transformation", "artistic styles", "photo editing", "ai art", "style transfer"]
@@ -168,6 +187,7 @@ export const fourthPriorityFeaturedGPTs: Tool[] = [
     category: "Industry-Specific Solutions",
     directUrl: "https://firefightergpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/kDu2SSP9Glw?si=RDSEgewVsQYFRt3S",
+    imageUrl: firefighterGptHero,
     rating: 4.6,
     totalVotes: 3600,
     tags: ["firefighting", "wildfire management", "emergency response", "fire safety", "disaster management"]
@@ -193,6 +213,7 @@ export const fourthPriorityFeaturedGPTs: Tool[] = [
     color: "from-green-600 to-emerald-700",
     directUrl: "https://sustainablefuturesgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/aPg82f-RCO8?si=IJIJ1aLCaJ_P7b-Y",
+    imageUrl: sustainableFuturesGptHero,
     category: "Environmental & Sustainability",
     tags: ["sustainability", "environment", "green technology", "future", "climate data", "environmental impact"],
     rating: 4.6,

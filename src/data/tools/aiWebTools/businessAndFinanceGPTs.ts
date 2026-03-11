@@ -26,6 +26,9 @@ import povertyCrusherHero from "@/assets/tools/poverty-crusher-gpt-hero.jpg";
 import businessPlanArchitectHero from "@/assets/tools/business-plan-architect-hero.jpg";
 import competitorComparisonHero from "@/assets/tools/competitor-comparison-hero.jpg";
 import sideHustlePlannerHero from "@/assets/tools/side-hustle-planner-hero.jpg";
+import startupIdeaGeneratorHero from "@/assets/tools/startup-idea-generator-hero.jpg";
+import taxFilingAssistantHero from "@/assets/tools/tax-filing-assistant-hero.jpg";
+import fiatToCryptoHero from "@/assets/tools/fiat-to-crypto-hero.jpg";
 
 export const businessAndFinanceGPTs: Tool[] = [
   {
@@ -63,6 +66,7 @@ export const businessAndFinanceGPTs: Tool[] = [
     color: "from-orange-500 to-red-600",
     directUrl: "https://chat.openai.com/g/g-Gt1j2GZMm-startup-idea-generator",
     videoUrl: "https://youtu.be/P4J0ErIVXgY",
+    imageUrl: startupIdeaGeneratorHero,
     tags: ["startup ideas", "business ventures", "market trends", "innovation"],
     category: "Business & Finance",
     rating: 4.6,
@@ -115,6 +119,7 @@ export const businessAndFinanceGPTs: Tool[] = [
     color: "from-cyan-500 to-teal-600",
     directUrl: "https://taxesgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=xkcsSVbBhf4",
+    imageUrl: taxFilingAssistantHero,
     tags: ["tax preparation", "tax filing", "tax laws", "deductions"],
     category: "Business & Finance",
     rating: 4.5,
@@ -245,6 +250,7 @@ export const businessAndFinanceGPTs: Tool[] = [
     color: "from-orange-500 to-yellow-600",
     directUrl: "https://chatgpt.com/g/g-68b5b20784788191acd980be0388935d-fiat-to-crypto-ai-value-calculator-for-businesses/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=k0NlolajEYs",
+    imageUrl: fiatToCryptoHero,
     tags: ["cryptocurrency", "fiat currency", "exchange calculator", "business finance", "crypto conversion", "investment analysis", "aiwebtools", "Custom GPT"],
     category: "Business & Finance",
     rating: 4.7,
