@@ -160,6 +160,7 @@ export const fourthPriorityFeaturedGPTs: Tool[] = [
     category: "Image & Design Generation",
     directUrl: "https://restylemegpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/MG0Zl2KL_Wk",
+    imageUrl: restyleMeGptHero,
     rating: 4.7,
     totalVotes: 4000,
     tags: ["image transformation", "artistic styles", "photo editing", "ai art", "style transfer"]
