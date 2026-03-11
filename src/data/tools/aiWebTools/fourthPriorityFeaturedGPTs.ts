@@ -106,6 +106,7 @@ export const fourthPriorityFeaturedGPTs: Tool[] = [
     category: "Science & Research AI Tools",
     directUrl: "https://algebraicexpressioninventor.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/aFuAxVNXBvg",
+    imageUrl: kingBlueberryGptHero,
     rating: 4.4,
     totalVotes: 2900,
     tags: ["algebraic expressions", "mathematics", "operational instructions", "variables", "problem solving"]
