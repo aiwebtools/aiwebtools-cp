@@ -146,6 +146,7 @@ export const fourthPriorityFeaturedGPTs: Tool[] = [
     category: "Food & Hospitality AI Tools",
     directUrl: "https://chefgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=89u14Jld7uA",
+    imageUrl: chefSizzleGptHero,
     rating: 4.8,
     totalVotes: 4200,
     tags: ["cooking", "recipes", "culinary", "chef", "food preparation"]
