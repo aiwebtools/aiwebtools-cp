@@ -119,6 +119,7 @@ export const businessAndFinanceGPTs: Tool[] = [
     color: "from-cyan-500 to-teal-600",
     directUrl: "https://taxesgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=xkcsSVbBhf4",
+    imageUrl: taxFilingAssistantHero,
     tags: ["tax preparation", "tax filing", "tax laws", "deductions"],
     category: "Business & Finance",
     rating: 4.5,
