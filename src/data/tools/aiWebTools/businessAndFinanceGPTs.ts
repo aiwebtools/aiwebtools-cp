@@ -26,6 +26,9 @@ import povertyCrusherHero from "@/assets/tools/poverty-crusher-gpt-hero.jpg";
 import businessPlanArchitectHero from "@/assets/tools/business-plan-architect-hero.jpg";
 import competitorComparisonHero from "@/assets/tools/competitor-comparison-hero.jpg";
 import sideHustlePlannerHero from "@/assets/tools/side-hustle-planner-hero.jpg";
+import startupIdeaGeneratorHero from "@/assets/tools/startup-idea-generator-hero.jpg";
+import taxFilingAssistantHero from "@/assets/tools/tax-filing-assistant-hero.jpg";
+import fiatToCryptoHero from "@/assets/tools/fiat-to-crypto-hero.jpg";
 
 export const businessAndFinanceGPTs: Tool[] = [
   {
