@@ -213,6 +213,7 @@ export const fourthPriorityFeaturedGPTs: Tool[] = [
     color: "from-green-600 to-emerald-700",
     directUrl: "https://sustainablefuturesgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/aPg82f-RCO8?si=IJIJ1aLCaJ_P7b-Y",
+    imageUrl: sustainableFuturesGptHero,
     category: "Environmental & Sustainability",
     tags: ["sustainability", "environment", "green technology", "future", "climate data", "environmental impact"],
     rating: 4.6,
