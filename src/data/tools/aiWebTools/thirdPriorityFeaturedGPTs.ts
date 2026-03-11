@@ -2,6 +2,13 @@
 import { Tool } from "@/types/tools";
 import { BookOpen, User, Sun, BarChart, Briefcase, Drama, Settings, FlaskConical, Home, Pill, Search } from "lucide-react";
 
+import alanWattsGptHero from "@/assets/tools/alan-watts-gpt-hero.jpg";
+import solarLandAssessorGptHero from "@/assets/tools/solar-land-assessor-gpt-hero.jpg";
+import dataResearchAnalysisHero from "@/assets/tools/data-research-analysis-hero.jpg";
+import playwriterGptHero from "@/assets/tools/playwriter-gpt-hero.jpg";
+import customGptMakerHero from "@/assets/tools/custom-gpt-maker-hero.jpg";
+import worldRealityDecoderHero from "@/assets/tools/world-reality-decoder-hero.jpg";
+
 export const thirdPriorityFeaturedGPTs: Tool[] = [
   {
     icon: BookOpen,
