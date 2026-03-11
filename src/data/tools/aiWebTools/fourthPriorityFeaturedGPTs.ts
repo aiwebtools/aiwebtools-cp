@@ -2,6 +2,17 @@
 import { Tool } from "@/types/tools";
 import { FileText, Palette, Shield, Video, Crown, FlaskConical, Martini, ChefHat, Scissors, Phone, Flame, Binary, Users, Heart, Leaf } from "lucide-react";
 
+import talkToHistoryGptHero from "@/assets/tools/talk-to-history-gpt-hero.jpg";
+import socialSafetyNetGptHero from "@/assets/tools/social-safety-net-gpt-hero.jpg";
+import contractReviewBotHero from "@/assets/tools/contract-review-bot-hero.jpg";
+import tattooDesignerGptHero from "@/assets/tools/tattoo-designer-gpt-hero.jpg";
+import firearmsSafetyGptHero from "@/assets/tools/firearms-safety-gpt-hero.jpg";
+import kingBlueberryGptHero from "@/assets/tools/king-blueberry-gpt-hero.jpg";
+import chefSizzleGptHero from "@/assets/tools/chef-sizzle-gpt-hero.jpg";
+import restyleMeGptHero from "@/assets/tools/restyle-me-gpt-hero.jpg";
+import firefighterGptHero from "@/assets/tools/firefighter-gpt-hero.jpg";
+import sustainableFuturesGptHero from "@/assets/tools/sustainable-futures-gpt-hero.jpg";
+
 export const fourthPriorityFeaturedGPTs: Tool[] = [
   {
     icon: Users,
