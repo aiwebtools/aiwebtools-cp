@@ -46,6 +46,7 @@ export const thirdPriorityFeaturedGPTs: Tool[] = [
     category: "Industry-Specific Solutions",
     directUrl: "https://solarlandgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=CEca8C2GIpY",
+    imageUrl: solarLandAssessorGptHero,
     rating: 4.5,
     totalVotes: 2800,
     tags: ["solar", "land assessment", "renewable energy", "solar panels", "environmental"]
