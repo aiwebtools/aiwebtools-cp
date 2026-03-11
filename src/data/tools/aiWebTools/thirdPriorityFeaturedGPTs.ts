@@ -32,6 +32,7 @@ export const thirdPriorityFeaturedGPTs: Tool[] = [
     category: "Spiritual & Philosophy AI Tools",
     directUrl: "https://alanwattsgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=zdKfwsQwOLE",
+    imageUrl: alanWattsGptHero,
     rating: 4.8,
     totalVotes: 4800,
     tags: ["philosophy", "alan watts", "spirituality", "wisdom", "consciousness"]
