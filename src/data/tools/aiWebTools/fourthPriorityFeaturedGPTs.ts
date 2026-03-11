@@ -22,6 +22,7 @@ export const fourthPriorityFeaturedGPTs: Tool[] = [
     color: "from-amber-500 to-orange-600",
     directUrl: "https://talk-to-history-gpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/HQGNMR7oXXY",
+    imageUrl: talkToHistoryGptHero,
     rating: 4.7,
     totalVotes: 5432,
     tags: ["historical conversations", "historical figures", "educational tool", "history learning", "interactive history", "aiwebtools"],
