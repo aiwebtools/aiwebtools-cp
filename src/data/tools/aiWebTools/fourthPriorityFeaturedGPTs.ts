@@ -187,6 +187,7 @@ export const fourthPriorityFeaturedGPTs: Tool[] = [
     category: "Industry-Specific Solutions",
     directUrl: "https://firefightergpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/kDu2SSP9Glw?si=RDSEgewVsQYFRt3S",
+    imageUrl: firefighterGptHero,
     rating: 4.6,
     totalVotes: 3600,
     tags: ["firefighting", "wildfire management", "emergency response", "fire safety", "disaster management"]
