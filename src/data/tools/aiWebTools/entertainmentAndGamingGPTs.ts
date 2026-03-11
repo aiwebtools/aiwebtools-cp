@@ -3,6 +3,7 @@ import { Tool } from "@/types/tools";
 import { Camera, Star, Sparkles, Crown } from "lucide-react";
 
 import illuminatiCardGameHero from "@/assets/tools/illuminati-card-game-hero.jpg";
+import kingBlueberryGptHero from "@/assets/tools/king-blueberry-gpt-hero.jpg";
 
 export const entertainmentAndGamingGPTs: Tool[] = [
   {
