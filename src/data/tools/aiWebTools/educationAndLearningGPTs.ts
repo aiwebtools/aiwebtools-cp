@@ -4,6 +4,7 @@ import { BookOpen, GraduationCap, Brain, Calculator, Globe, Languages, Music, Pa
 import universalSpeechMasteryHero from "@/assets/tools/universal-speech-mastery-hero.jpg";
 import educationalTutorHero from "@/assets/tools/educational-tutor-hero.jpg";
 import cursiveTeacherHero from "@/assets/tools/cursive-teacher-hero.jpg";
+import learnAnyCourseGptHero from "@/assets/tools/learn-any-course-gpt-hero.jpg";
 
 export const educationAndLearningGPTs: Tool[] = [
   {
