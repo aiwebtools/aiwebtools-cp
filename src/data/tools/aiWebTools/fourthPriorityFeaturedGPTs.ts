@@ -65,6 +65,7 @@ export const fourthPriorityFeaturedGPTs: Tool[] = [
     category: "Creative & Entertainment (General & Gaming)",
     directUrl: "https://tattoogpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=3dtGbNqXdPY",
+    imageUrl: tattooDesignerGptHero,
     rating: 4.7,
     totalVotes: 4100,
     tags: ["tattoo design", "body art", "creative design", "piercing", "tattoo business"]
