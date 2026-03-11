@@ -101,6 +101,7 @@ export const thirdPriorityFeaturedGPTs: Tool[] = [
     category: "AI Development & Platforms",
     directUrl: "https://customgptmaker.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=SmBXfGqXfco",
+    imageUrl: customGptMakerHero,
     rating: 4.8,
     totalVotes: 4600,
     tags: ["custom gpt", "ai development", "customization", "gpt maker", "ai tools"]
