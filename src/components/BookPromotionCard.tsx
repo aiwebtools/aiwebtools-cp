@@ -360,10 +360,10 @@ const BookPromotionCard = () => {
                   <div className="flex items-center justify-center gap-3">
                     <button
                       onClick={prevDesktopPage}
-                      className="flex-shrink-0 p-2 bg-green-900/80 rounded-full text-green-400 hover:bg-green-800 transition-colors z-10 border border-green-500/30"
+                      className="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-green-900/80 rounded-full text-green-400 border border-green-500/30 transition-colors duration-150 hover:bg-green-800 active:bg-green-700 focus:outline-none"
                       aria-label="Previous videos"
                     >
-                      <ChevronLeft size={24} />
+                      <ChevronLeft size={24} className="pointer-events-none" />
                     </button>
 
                     <div className="flex justify-center gap-4 transition-all duration-700 ease-in-out">
@@ -385,10 +385,10 @@ const BookPromotionCard = () => {
 
                     <button
                       onClick={nextDesktopPage}
-                      className="flex-shrink-0 p-2 bg-green-900/80 rounded-full text-green-400 hover:bg-green-800 transition-colors z-10 border border-green-500/30"
+                      className="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-green-900/80 rounded-full text-green-400 border border-green-500/30 transition-colors duration-150 hover:bg-green-800 active:bg-green-700 focus:outline-none"
                       aria-label="Next videos"
                     >
-                      <ChevronRight size={24} />
+                      <ChevronRight size={24} className="pointer-events-none" />
                     </button>
                   </div>
 
@@ -417,10 +417,10 @@ const BookPromotionCard = () => {
                   <div className="flex justify-center items-center">
                     <button
                       onClick={prevVideo}
-                      className="absolute left-0 z-10 p-2 bg-green-900/80 rounded-full text-green-400 hover:bg-green-800 transition-colors border border-green-500/30"
+                      className="absolute left-0 z-10 w-10 h-10 flex items-center justify-center bg-green-900/80 rounded-full text-green-400 border border-green-500/30 transition-colors duration-150 hover:bg-green-800 active:bg-green-700 focus:outline-none"
                       aria-label="Previous video"
                     >
-                      <ChevronLeft size={24} />
+                      <ChevronLeft size={24} className="pointer-events-none" />
                     </button>
 
                     <div className="relative w-48 flex-shrink-0 mx-auto transition-all duration-700 ease-in-out">
@@ -438,10 +438,10 @@ const BookPromotionCard = () => {
 
                     <button
                       onClick={nextVideo}
-                      className="absolute right-0 z-10 p-2 bg-green-900/80 rounded-full text-green-400 hover:bg-green-800 transition-colors border border-green-500/30"
+                      className="absolute right-0 z-10 w-10 h-10 flex items-center justify-center bg-green-900/80 rounded-full text-green-400 border border-green-500/30 transition-colors duration-150 hover:bg-green-800 active:bg-green-700 focus:outline-none"
                       aria-label="Next video"
                     >
-                      <ChevronRight size={24} />
+                      <ChevronRight size={24} className="pointer-events-none" />
                     </button>
                   </div>
 

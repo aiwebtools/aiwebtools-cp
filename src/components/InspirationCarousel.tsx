@@ -1,6 +1,5 @@
 import { useState, useCallback, useRef, TouchEvent } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 const images = [
   { src: "/images/inspiration/world-peace.jpg", alt: "World Peace - Put the guns down and the fear of each other away" },
@@ -103,7 +102,6 @@ const InspirationCarousel = () => {
             className="relative w-full rounded-xl overflow-hidden border border-green-500/30 shadow-[0_0_30px_rgba(0,255,0,0.15)] cursor-grab active:cursor-grabbing"
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
-            style={{ minHeight: '300px' }}
           >
             <img
               src={images[currentIndex].src}
@@ -117,23 +115,23 @@ const InspirationCarousel = () => {
             </div>
           </div>
 
-          {/* Navigation Arrows */}
-          <Button
-            variant="outline"
-            size="icon"
+          {/* Navigation Arrows - fixed position, no transforms on hover to prevent glitch */}
+          <button
             onClick={scrollPrev}
-            className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full bg-black/60 border-green-500/50 text-green-400 hover:bg-green-500/20 hover:text-white backdrop-blur-sm z-10"
+            className="absolute left-2 md:left-4 top-1/2 z-10 flex items-center justify-center w-10 h-10 rounded-full bg-black/60 border border-green-500/50 text-green-400 backdrop-blur-sm transition-colors duration-150 hover:bg-green-500/30 hover:text-white active:bg-green-500/40 focus:outline-none"
+            style={{ transform: 'translateY(-50%)' }}
+            aria-label="Previous image"
           >
-            <ChevronLeft className="h-5 w-5" />
-          </Button>
-          <Button
-            variant="outline"
-            size="icon"
+            <ChevronLeft className="h-5 w-5 pointer-events-none" />
+          </button>
+          <button
             onClick={scrollNext}
-            className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full bg-black/60 border-green-500/50 text-green-400 hover:bg-green-500/20 hover:text-white backdrop-blur-sm z-10"
+            className="absolute right-2 md:right-4 top-1/2 z-10 flex items-center justify-center w-10 h-10 rounded-full bg-black/60 border border-green-500/50 text-green-400 backdrop-blur-sm transition-colors duration-150 hover:bg-green-500/30 hover:text-white active:bg-green-500/40 focus:outline-none"
+            style={{ transform: 'translateY(-50%)' }}
+            aria-label="Next image"
           >
-            <ChevronRight className="h-5 w-5" />
-          </Button>
+            <ChevronRight className="h-5 w-5 pointer-events-none" />
+          </button>
 
           {/* Dot Indicators */}
           <div className="flex justify-center gap-1.5 mt-4 overflow-x-auto px-4 pb-1">
