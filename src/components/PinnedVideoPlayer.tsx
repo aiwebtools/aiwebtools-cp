@@ -487,11 +487,14 @@ const PinnedVideoPlayer = memo(() => {
   // Track when video started to prevent premature skipping
   const videoStartTimeRef = useRef<number>(Date.now());
   const hasReceivedPlayStateRef = useRef(false);
+  // Dynamic duration detection from YouTube iframe API
+  const detectedDurationRef = useRef<number | null>(null);
   
   // Reset timing when video changes
   useEffect(() => {
     videoStartTimeRef.current = Date.now();
     hasReceivedPlayStateRef.current = false;
+    detectedDurationRef.current = null; // Reset so we pick up new video's duration
   }, [currentVideoId]);
 
   // Listen for YouTube iframe API messages to detect video end
@@ -504,6 +507,13 @@ const PinnedVideoPlayer = memo(() => {
       
       try {
         const data = typeof event.data === "string" ? JSON.parse(event.data) : event.data;
+        
+        // Capture video duration from YouTube's infoDelivery messages
+        // YouTube automatically sends these with {currentTime, duration, ...}
+        if (data?.info?.duration && data.info.duration > 0 && !detectedDurationRef.current) {
+          detectedDurationRef.current = data.info.duration;
+          console.log('[PinnedPlayer] Detected video duration:', data.info.duration, 'seconds for', currentTool?.title);
+        }
         
         // Track when we receive a "playing" state (state 1)
         if (data?.event === "onStateChange" && data?.info === 1) {
@@ -558,7 +568,7 @@ const PinnedVideoPlayer = memo(() => {
     return () => window.removeEventListener("message", handleMessage);
   }, [isVisible, toolsWithVideos.length, advanceToNextVideo, currentVideoId]);
 
-  // Reliable fallback: auto-advance every 20 seconds to ensure videos cycle
+  // Dynamic fallback: use detected video duration, or poll until duration is known
   useEffect(() => {
     if (!isVisible || toolsWithVideos.length === 0) return;
     
@@ -567,12 +577,53 @@ const PinnedVideoPlayer = memo(() => {
       clearTimeout(advanceTimeoutRef.current);
     }
     
-    console.log('[PinnedPlayer] Setting 20s auto-advance timer for:', currentTool?.title);
+    // Function to set the auto-advance timer based on detected duration
+    const setDurationTimer = () => {
+      const duration = detectedDurationRef.current;
+      if (duration && duration > 0) {
+        // Use the full video duration + 3s buffer for loading/transition
+        const timeoutMs = (duration + 3) * 1000;
+        console.log('[PinnedPlayer] Setting auto-advance timer for', duration, 'seconds (full video) for:', currentTool?.title);
+        advanceTimeoutRef.current = setTimeout(() => {
+          console.log('[PinnedPlayer] Auto-advancing after full video duration:', duration, 's');
+          advanceToNextVideo();
+        }, timeoutMs);
+        return true;
+      }
+      return false;
+    };
     
-    advanceTimeoutRef.current = setTimeout(() => {
-      console.log('[PinnedPlayer] Auto-advancing after 20s timeout');
-      advanceToNextVideo();
-    }, 20000);
+    // Try to set timer immediately if duration already known
+    if (!setDurationTimer()) {
+      // Duration not yet known - poll every 2s until YouTube reports it
+      // Meanwhile set a generous fallback of 5 minutes (no video is longer)
+      console.log('[PinnedPlayer] Waiting for duration detection for:', currentTool?.title);
+      
+      const pollInterval = setInterval(() => {
+        if (detectedDurationRef.current) {
+          clearInterval(pollInterval);
+          // Clear old fallback and set real timer
+          if (advanceTimeoutRef.current) {
+            clearTimeout(advanceTimeoutRef.current);
+          }
+          setDurationTimer();
+        }
+      }, 2000);
+      
+      // Ultimate fallback: 5 minutes if duration never detected
+      advanceTimeoutRef.current = setTimeout(() => {
+        clearInterval(pollInterval);
+        console.log('[PinnedPlayer] Ultimate fallback: advancing after 5 min (duration never detected)');
+        advanceToNextVideo();
+      }, 300000);
+      
+      return () => {
+        clearInterval(pollInterval);
+        if (advanceTimeoutRef.current) {
+          clearTimeout(advanceTimeoutRef.current);
+        }
+      };
+    }
     
     return () => {
       if (advanceTimeoutRef.current) {
