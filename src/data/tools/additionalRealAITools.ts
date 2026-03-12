@@ -409,6 +409,7 @@ export const additionalRealAITools: Tool[] = [
     emoji: "💪",
     color: "from-green-500 to-blue-600",
     directUrl: "https://fitbod.me/?via=aiwebtools",
+    imageUrl: fitnessAiHero,
     tags: ["fitness", "workout plans", "personal trainer", "AI fitness", "health"],
     category: "Health & Fitness",
     rating: 4.4,
