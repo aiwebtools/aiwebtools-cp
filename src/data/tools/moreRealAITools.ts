@@ -28,6 +28,8 @@ import tabnineHero from "@/assets/tools/tabnine-hero.jpg";
 import codet5Hero from "@/assets/tools/codet5-hero.jpg";
 import codexOpenaiHero from "@/assets/tools/codex-openai-hero.jpg";
 import notionAiHero from "@/assets/tools/notion-ai-hero.jpg";
+import originPilotOsHero from "@/assets/tools/origin-pilot-os-hero.jpg";
+import seeleAiHero from "@/assets/tools/seele-ai-hero.jpg";
 import otterAiHero from "@/assets/tools/otter-ai-hero.jpg";
 import firefliesAiHero from "@/assets/tools/fireflies-ai-hero.jpg";
 
