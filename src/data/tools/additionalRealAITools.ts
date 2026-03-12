@@ -296,6 +296,7 @@ export const additionalRealAITools: Tool[] = [
     emoji: "🛡️",
     color: "from-red-500 to-purple-600",
     directUrl: "https://darktrace.com/?via=aiwebtools",
+    imageUrl: darktraceHero,
     tags: ["cybersecurity", "threat detection", "AI security", "protection", "enterprise"],
     category: "Security & Privacy",
     rating: 4.5,
