@@ -196,6 +196,8 @@ import { roboticsBatch2026 } from "./tools/roboticsBatch2026";
 import { nicheBatch2026 } from "./tools/nicheBatch2026";
 import { nicheSpecialty2026B1 } from "./tools/nicheSpecialty2026B1";
 import { nicheSpecialty2026B2 } from "./tools/nicheSpecialty2026B2";
+import { toolifyBatch2026 } from "./tools/toolifyBatch2026";
+import { toolifyBatch2026B2 } from "./tools/toolifyBatch2026B2";
 
 const allToolCategories = consolidateTools([
   ...getAllToolCategories(),
