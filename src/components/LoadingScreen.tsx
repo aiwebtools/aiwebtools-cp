@@ -64,17 +64,17 @@ const LoadingScreen = memo(() => {
     };
   }, []);
 
-  // Single clean progress interval
+  // Single clean progress interval - faster
   useEffect(() => {
     if (progress >= 100) return;
     const id = setInterval(() => {
       setProgress(prev => {
         if (prev >= 100) return 100;
-        if (prev < 70) return prev + 5;
-        if (prev < 90) return prev + 3;
-        return prev + 2;
+        if (prev < 70) return prev + 8;
+        if (prev < 90) return prev + 5;
+        return prev + 3;
       });
-    }, 40);
+    }, 30);
     return () => clearInterval(id);
   }, [progress >= 100]);
 

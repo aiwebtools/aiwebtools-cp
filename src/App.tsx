@@ -79,10 +79,14 @@ const WelcomeNeoVoice = () => {
 // NOTE: precomputed category cache is initialized AFTER disclaimer acceptance
 // to keep the /welcome disclaimer gate load instant.
 
-// Loading screen with rotating messages and animated progress
-import LoadingScreen from "@/components/LoadingScreen";
-
-const PageLoader = () => <LoadingScreen />;
+// Lightweight page loader for Suspense - minimal to avoid clashing with HTML loader
+const PageLoader = () => (
+  <div className="min-h-screen bg-black flex items-center justify-center">
+    <div className="text-green-400 font-mono text-sm animate-pulse" style={{ textShadow: '0 0 10px rgba(34, 197, 94, 0.5)' }}>
+      Loading...
+    </div>
+  </div>
+);
 
 const queryClient = new QueryClient({
   defaultOptions: {

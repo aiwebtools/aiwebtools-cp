@@ -508,10 +508,10 @@
             }
           }, 5);
 
-          // Hard fallback - 8 seconds max (cube keeps spinning until then)
+          // Hard fallback - 3 seconds max (fast load guarantee)
           setTimeout(() => {
             if (!removed) removeSpinner();
-          }, 8000);
+          }, 3000);
         };
 
         const tryStart = () => {
