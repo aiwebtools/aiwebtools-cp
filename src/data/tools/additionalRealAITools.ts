@@ -137,6 +137,7 @@ export const additionalRealAITools: Tool[] = [
     emoji: "🖼️",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://midjourney.com/?via=aiwebtools",
+    imageUrl: midjourneyHero,
     tags: ["AI art", "image generation", "creative", "design", "artistic"],
     category: "AI Image Generation",
     rating: 4.8,
