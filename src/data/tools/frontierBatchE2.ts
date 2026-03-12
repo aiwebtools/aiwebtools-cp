@@ -136,11 +136,11 @@ export const frontierBatchE2: Tool[] = [
     tags: ["AI Agents", "cloud", "cross-platform", "business processes", "enterprise", "cloud-native"], category: "AI Agents", rating: 4.2,
   },
   {
-    icon: Workflow, title: "Zazz UX Agents",
-    description: "Specializes in 'UX-Driven' AI automation, ensuring that the agent's interaction design feels natural and context-aware. Beautiful, intuitive interfaces for autonomous systems.",
+    icon: Workflow, title: "Zazz",
+    description: "Enterprise IT services company offering AI-powered software development, cybersecurity solutions, cloud engineering, and digital transformation services. Helps businesses modernize core systems and launch new platforms with scalable technology.",
     emoji: "✨", color: "from-cyan-400 to-blue-500",
     directUrl: "https://zazz.io/?via=aiwebtools", imageUrl: zazzHero,
-    tags: ["AI Agents", "UX design", "automation", "interaction design", "context-aware", "user experience"], category: "AI Agents", rating: 4.2,
+    tags: ["IT Services", "Software Development", "Digital Transformation", "Cybersecurity", "Cloud Engineering", "Enterprise"], category: "Business & Productivity", rating: 4.2,
   },
   {
     icon: Brain, title: "LeewayHertz Custom Reasoning",
