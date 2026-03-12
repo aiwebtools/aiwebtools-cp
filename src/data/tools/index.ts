@@ -500,3 +500,6 @@ export { toolifyBatch2026B5 } from './toolifyBatch2026B5';
 
 // Export Toolify Batch 2026 B6 (25 tools: SyntrofAI, VidFlux, WhiteRank, VISBOOM, Diagrimo, RemakePic, BlogSEO, ChartGen.ai, Protaigé, GSong.ai, Contenov, Falva, Kodey AI, LearnFlux, TimeTuna, WayinVideo, Lensgo AI, SpikApp, Spectrahertz, FlowLens, VibeCodePrompts, ZestyGen, Hooktok, Noiz Agent, BigIdeasDB)
 export { toolifyBatch2026B6 } from './toolifyBatch2026B6';
+
+// Export Toolify Batch 2026 B7 (25 tools: Managelify, Ripplica, Agenta, DebuggAI, To3D.AI, MuseVideo, Dreamlux, Whisper Thunder, Hocha AI, ReelMate AI, DeHome, Aivvid AI, InterviewFlowAI, ValidateIdea.io, Klariqo, Nodejam, EchoSnap, Haxiom, Motionik, TinyCommand, Didoo AI, Monetize.ai, DesignLumo, BrandJet AI, MediaPET)
+export { toolifyBatch2026B7 } from './toolifyBatch2026B7';
