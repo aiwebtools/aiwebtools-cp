@@ -136,13 +136,6 @@ export const frontierBatchE1: Tool[] = [
     tags: ["AI Agents", "Voice Agent", "lead qualification", "call handling", "bookings", "sales automation"], category: "Sales & CRM Tools", rating: 4.3,
   },
   {
-    icon: Building, title: "Dark Matter Mortgage Agent",
-    description: "A compliant agent framework specifically for mortgage lenders to automate auditable loan processing within Empower LOS. Handles document collection, underwriting prep, and compliance checks.",
-    emoji: "🏠", color: "from-gray-700 to-gray-900",
-    directUrl: "https://nationalmortgageprofessional.com/?via=aiwebtools", imageUrl: darkMatterHero,
-    tags: ["AI Agents", "mortgage", "lending", "compliance", "loan processing", "financial services", "real estate"], category: "Finance AI Tools", rating: 4.2,
-  },
-  {
     icon: BarChart3, title: "Rilla",
     description: "The leader in Conversation Intelligence for offline commerce. Uses agents to analyze in-person sales and service interactions, coaching reps to close more deals based on real conversation data.",
     emoji: "🎙️", color: "from-orange-500 to-red-500",

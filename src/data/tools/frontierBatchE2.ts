@@ -101,13 +101,6 @@ export const frontierBatchE2: Tool[] = [
     tags: ["AI Agents", "HR & Recruitment", "payroll", "talent", "workforce", "compliance", "benefits"], category: "AI HR & Recruitment", rating: 4.3,
   },
   {
-    icon: Shield, title: "MI9 Proposal Framework",
-    description: "A control plane providing semantic telemetry, continuous authorization, and graduated containment when agents go 'off-policy.' The enterprise governance layer for safe autonomous AI deployment.",
-    emoji: "🛡️", color: "from-gray-700 to-gray-900",
-    directUrl: "https://eweek.com/?via=aiwebtools", imageUrl: mi9Hero,
-    tags: ["AI Agents", "Security & Privacy", "governance", "control plane", "telemetry", "containment", "enterprise safety"], category: "Security & Privacy", rating: 4.3,
-  },
-  {
     icon: Cpu, title: "Dell AI Factory with NVIDIA",
     description: "An end-to-end stack designed to help organizations operationalize agentic AI at massive scale across data centers. Pre-configured hardware and software for deploying enterprise AI agents.",
     emoji: "🖥️", color: "from-blue-600 to-blue-800",
