@@ -102,10 +102,10 @@ export const frontierBatchE1: Tool[] = [
   },
   {
     icon: Bot, title: "SuperAgent",
-    description: "An open-source framework focused on 'Rapid Prototyping,' allowing developers to add memory, API routing, and tool use to an agent in minutes. The fastest path from idea to working agent.",
+    description: "Y Combinator-backed AI red teaming and security testing platform. Deploys specialized attack agents against your production AI systems to surface data leaks, harmful outputs, and unwanted actions before your users encounter them. Black-box adversarial testing for AI agents.",
     emoji: "⚡", color: "from-yellow-500 to-orange-600",
     directUrl: "https://superagent.sh/?via=aiwebtools", imageUrl: superagentHero,
-    tags: ["AI Agents", "Multi-Agent Framework", "open-source", "rapid prototyping", "memory", "API routing", "developer tools"], category: "AI Agents", rating: 4.4,
+    tags: ["AI Security", "Red Teaming", "Adversarial Testing", "AI Safety", "Agent Security", "Y Combinator"], category: "Security & Privacy", rating: 4.4,
   },
   {
     icon: Cpu, title: "Snowflake Cortex Agents",
