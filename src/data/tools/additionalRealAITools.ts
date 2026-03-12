@@ -371,6 +371,7 @@ export const additionalRealAITools: Tool[] = [
     emoji: "🪄",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://magiceraser.io/?via=aiwebtools",
+    imageUrl: magiceraserHero,
     tags: ["photo editing", "object removal", "AI editing", "image cleanup", "photography", "Background Removal"],
     category: "Image Editing",
     rating: 4.4,
