@@ -603,6 +603,7 @@ export const additionalRealAITools: Tool[] = [
     emoji: "🧠",
     color: "from-blue-600 to-blue-800",
     directUrl: "https://ibm.com/watson/?via=aiwebtools",
+    imageUrl: ibmWatsonHero,
     tags: ["enterprise AI", "NLP", "machine learning", "business AI", "cloud AI"],
     category: "Enterprise AI",
     rating: 4.5,
