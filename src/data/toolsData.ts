@@ -202,6 +202,7 @@ import { toolifyBatch2026B3 } from "./tools/toolifyBatch2026B3";
 import { toolifyBatch2026B4 } from "./tools/toolifyBatch2026B4";
 import { toolifyBatch2026B5 } from "./tools/toolifyBatch2026B5";
 import { toolifyBatch2026B6 } from "./tools/toolifyBatch2026B6";
+import { toolifyBatch2026B7 } from "./tools/toolifyBatch2026B7";
 
 const allToolCategories = consolidateTools([
   ...getAllToolCategories(),
@@ -428,7 +429,10 @@ const allToolCategories = consolidateTools([
   ...toolifyBatch2026B5,
 
   // Toolify Batch 2026 B6 (25 tools: SyntrofAI, VidFlux, WhiteRank, VISBOOM, Diagrimo, RemakePic, BlogSEO, ChartGen.ai, Protaigé, GSong.ai, Contenov, Falva, Kodey AI, LearnFlux, TimeTuna, WayinVideo, Lensgo AI, SpikApp, Spectrahertz, FlowLens, VibeCodePrompts, ZestyGen, Hooktok, Noiz Agent, BigIdeasDB)
-  ...toolifyBatch2026B6
+  ...toolifyBatch2026B6,
+
+  // Toolify Batch 2026 B7 (25 tools: Managelify, Ripplica, Agenta, DebuggAI, To3D.AI, MuseVideo, Dreamlux, Whisper Thunder, Hocha AI, ReelMate AI, DeHome, Aivvid AI, InterviewFlowAI, ValidateIdea.io, Klariqo, Nodejam, EchoSnap, Haxiom, Motionik, TinyCommand, Didoo AI, Monetize.ai, DesignLumo, BrandJet AI, MediaPET)
+  ...toolifyBatch2026B7
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories
