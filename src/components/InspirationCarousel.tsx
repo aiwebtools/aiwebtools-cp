@@ -1,6 +1,5 @@
 import { useState, useCallback, useRef, TouchEvent } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 const images = [
   { src: "/images/inspiration/world-peace.jpg", alt: "World Peace - Put the guns down and the fear of each other away" },
