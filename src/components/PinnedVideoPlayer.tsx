@@ -508,6 +508,13 @@ const PinnedVideoPlayer = memo(() => {
       try {
         const data = typeof event.data === "string" ? JSON.parse(event.data) : event.data;
         
+        // Capture video duration from YouTube's infoDelivery messages
+        // YouTube automatically sends these with {currentTime, duration, ...}
+        if (data?.info?.duration && data.info.duration > 0 && !detectedDurationRef.current) {
+          detectedDurationRef.current = data.info.duration;
+          console.log('[PinnedPlayer] Detected video duration:', data.info.duration, 'seconds for', currentTool?.title);
+        }
+        
         // Track when we receive a "playing" state (state 1)
         if (data?.event === "onStateChange" && data?.info === 1) {
           hasReceivedPlayStateRef.current = true;
