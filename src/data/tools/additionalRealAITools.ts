@@ -664,6 +664,7 @@ export const additionalRealAITools: Tool[] = [
     emoji: "🎨",
     color: "from-orange-500 to-red-600",
     directUrl: "https://leonardo.ai/?via=aiwebtools",
+    imageUrl: leonardoAiHero,
     tags: ["AI art", "game assets", "concept art", "illustration", "creative design"],
     category: "AI Art & Design",
     rating: 4.4,
