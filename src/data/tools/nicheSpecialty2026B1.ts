@@ -61,11 +61,11 @@ export const nicheSpecialty2026B1: Tool[] = [
   },
   {
     icon: Users, title: "Buddy Pro",
-    description: "AI-powered hiring copilot that conducts behavioral interviews and screens candidates automatically. Evaluates soft skills, cultural fit, and competencies to streamline your recruitment pipeline.",
+    description: "AI platform for experts and coaches to clone their expertise into 24/7 AI coaching bots. Turn your knowledge into a personalized AI assistant that delivers tailored advice to unlimited clients, creating recurring revenue while maintaining your unique methodology.",
     emoji: "🤝", color: "from-yellow-500 to-orange-600",
     directUrl: "https://buddypro.ai/?via=aiwebtools", imageUrl: buddyProHero,
-    tags: ["HR & Recruitment", "hiring", "interview AI", "candidate screening", "behavioral assessment", "recruitment automation"],
-    category: "AI HR & Recruitment", rating: 4.2,
+    tags: ["AI Coaching", "Expert AI", "Knowledge Cloning", "AI Assistant", "Recurring Revenue", "SaaS"],
+    category: "Business & Productivity", rating: 4.2,
   },
   {
     icon: Mail, title: "Lavender",

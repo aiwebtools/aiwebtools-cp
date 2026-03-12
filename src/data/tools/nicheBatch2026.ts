@@ -76,13 +76,13 @@ export const nicheBatch2026: Tool[] = [
   {
     icon: Eye,
     title: "Perception AI",
-    description: "Advanced AI platform for analyzing human emotions and body language in video. Detect micro-expressions, sentiment, and behavioral patterns to gain deep insights for research, UX testing, marketing, and human interaction analysis.",
+    description: "AI-powered color palette generator and design intelligence platform using color psychology research. Create stunning color schemes instantly, analyze existing palettes for emotional impact, and receive AI recommendations to enhance your creative designs and branding.",
     emoji: "👁️",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://perception.io/?via=aiwebtools",
     imageUrl: perceptionAiHero,
-    tags: ["emotion detection", "body language analysis", "sentiment analysis", "video analytics", "micro-expressions", "UX research", "behavioral AI", "Data & Analytics"],
-    category: "Data & Analytics",
+    tags: ["color palette", "color psychology", "design AI", "branding", "creative tools", "color generator", "Image & Design Tools"],
+    category: "Image & Design Tools",
     rating: 4.2,
     totalVotes: 876
   }
