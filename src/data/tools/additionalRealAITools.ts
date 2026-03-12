@@ -346,6 +346,7 @@ export const additionalRealAITools: Tool[] = [
     emoji: "🔥",
     color: "from-red-500 to-orange-600",
     directUrl: "https://firefly.adobe.com/?via=aiwebtools",
+    imageUrl: adobeFireflyHero,
     tags: ["AI art", "design", "creative suite", "image generation", "Adobe"],
     category: "Design & Graphics",
     rating: 4.6,
