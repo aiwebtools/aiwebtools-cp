@@ -39,6 +39,7 @@ export const additionalRealAITools: Tool[] = [
     emoji: "✍️",
     color: "from-green-500 to-blue-600",
     directUrl: "https://grammarly.com/?via=aiwebtools",
+    imageUrl: grammarlyHero,
     tags: ["writing", "grammar", "editing", "content", "proofreading"],
     category: "Content Creation",
     rating: 4.6,
