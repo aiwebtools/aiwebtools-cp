@@ -108,7 +108,7 @@ export const imageAndDesign: Tool[] = [
     description: "Create viral memes with AI-generated captions and image suggestions for engaging social media content.",
     emoji: "😂",
     color: "from-yellow-500 to-orange-600",
-    directUrl: "https://mememachinegpt.lovable.app/?via=aiwebtools",
+    directUrl: "https://memegeneratorgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/Myg8P8wg294",
     imageUrl: "https://ideogram.ai/assets/image/lossless/response/h2Lp-rLMScaWK6A-mrFZQA",
     tags: ["Image Generator", "Graphic Design", "meme generation", "social media", "AI", "content creation"],
