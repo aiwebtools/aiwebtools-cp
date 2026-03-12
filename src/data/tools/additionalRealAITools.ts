@@ -677,6 +677,7 @@ export const additionalRealAITools: Tool[] = [
     emoji: "👤",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://synthesia.io/?via=aiwebtools",
+    imageUrl: synthesiaHero,
     tags: ["AI video", "avatars", "text-to-video", "corporate training", "multilingual"],
     category: "AI Video Production",
     rating: 4.5,
