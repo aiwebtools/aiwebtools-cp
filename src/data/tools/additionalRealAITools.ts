@@ -566,6 +566,7 @@ export const additionalRealAITools: Tool[] = [
     emoji: "🎧",
     color: "from-blue-500 to-green-600",
     directUrl: "https://krisp.ai/?via=aiwebtools",
+    imageUrl: krispAiHero,
     tags: ["noise cancellation", "audio", "calls", "productivity", "remote work"],
     category: "Audio Tools",
     rating: 4.6,
