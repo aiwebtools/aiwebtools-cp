@@ -22,7 +22,7 @@ const FooterLinks = () => {
             📖 Our Story
           </a>
           <button
-            onClick={(e) => handleExternalLink("https://ai-webtools.com/hire-us-to-build-your-ai-1", e)}
+            onClick={(e) => handleExternalLink("https://aiwebtools.lovable.app/hire-us-to-build-your-ai-1?via=aiwebtools", e)}
             className="block text-green-200 hover:text-green-400 transition-colors text-left"
           >
             🚀 More Services
@@ -48,19 +48,19 @@ const FooterLinks = () => {
             📰 Blog
           </a>
           <button
-            onClick={(e) => handleExternalLink("https://ai-webtools.com/privacy-policy", e)}
+            onClick={(e) => handleExternalLink("https://aiwebtools.lovable.app/privacy-policy?via=aiwebtools", e)}
             className="block text-green-200 hover:text-green-400 transition-colors text-left"
           >
             🔒 Privacy Policy
           </button>
           <button
-            onClick={(e) => handleExternalLink("https://ai-webtools.com/terms-of-services", e)}
+            onClick={(e) => handleExternalLink("https://aiwebtools.lovable.app/terms-of-services?via=aiwebtools", e)}
             className="block text-green-200 hover:text-green-400 transition-colors text-left"
           >
             📜 Terms of Service
           </button>
           <button
-            onClick={(e) => handleExternalLink("https://ai-webtools.com/contact", e)}
+            onClick={(e) => handleExternalLink("https://aiwebtools.lovable.app/contact?via=aiwebtools", e)}
             className="block text-green-200 hover:text-green-400 transition-colors text-left"
           >
             📞 Contact
