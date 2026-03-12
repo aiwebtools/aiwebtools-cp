@@ -320,7 +320,7 @@ const PinnedVideoPlayer = memo(() => {
   const [videoSrc, setVideoSrc] = useState<string>(() => {
     if (!currentVideoId) return "";
     const origin = typeof window !== 'undefined' ? window.location.origin : '';
-    return `https://www.youtube-nocookie.com/embed/${currentVideoId}?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&enablejsapi=1&playsinline=1&loop=0&origin=${encodeURIComponent(origin)}&widget_referrer=${encodeURIComponent(origin)}`;
+    return `https://www.youtube.com/embed/${currentVideoId}?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&enablejsapi=1&playsinline=1&loop=0&origin=${encodeURIComponent(origin)}&widget_referrer=${encodeURIComponent(origin)}`;
   });
   const lastVideoIdRef = useRef<string>(currentVideoId || "");
   
