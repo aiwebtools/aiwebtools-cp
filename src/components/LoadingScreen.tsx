@@ -53,28 +53,28 @@ const LoadingScreen = memo(() => {
   const [progress, setProgress] = useState(0);
   const mountedRef = useRef(true);
 
-  // Force-complete after 2.5s max
+  // Force-complete after 1.2s max
   useEffect(() => {
     const timeout = setTimeout(() => {
       if (mountedRef.current) setProgress(100);
-    }, 2500);
+    }, 1200);
     return () => {
       mountedRef.current = false;
       clearTimeout(timeout);
     };
   }, []);
 
-  // Single clean progress interval
+  // Single clean progress interval - faster
   useEffect(() => {
     if (progress >= 100) return;
     const id = setInterval(() => {
       setProgress(prev => {
         if (prev >= 100) return 100;
-        if (prev < 70) return prev + 5;
-        if (prev < 90) return prev + 3;
-        return prev + 2;
+        if (prev < 70) return prev + 8;
+        if (prev < 90) return prev + 5;
+        return prev + 3;
       });
-    }, 40);
+    }, 30);
     return () => clearInterval(id);
   }, [progress >= 100]);
 

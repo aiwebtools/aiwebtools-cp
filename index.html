@@ -491,8 +491,8 @@
             const delta = now - lastTime;
             lastTime = now;
             
-            // Faster progression: ~1.5% per 50ms (reaches 95% in ~3 seconds)
-            const increment = Math.min(1.5, delta / 33);
+            // Faster progression: ~3% per 33ms (reaches 95% in ~1 second)
+            const increment = Math.min(3, delta / 16);
             width = Math.min(width + increment, 95);
             if (bar) bar.style.width = width + '%';
             if (pct) pct.textContent = Math.round(width) + '%';
@@ -508,10 +508,10 @@
             }
           }, 5);
 
-          // Hard fallback - 8 seconds max (cube keeps spinning until then)
+          // Hard fallback - 3 seconds max (fast load guarantee)
           setTimeout(() => {
             if (!removed) removeSpinner();
-          }, 8000);
+          }, 3000);
         };
 
         const tryStart = () => {
