@@ -420,7 +420,10 @@ const allToolCategories = consolidateTools([
   ...toolifyBatch2026B3,
 
   // Toolify Batch 2026 B4 (25 tools: GLM 5, TemVideo, AITextTune, GenPPT AI, Crun AI, OutdoorBrite, etc.)
-  ...toolifyBatch2026B4
+  ...toolifyBatch2026B4,
+
+  // Toolify Batch 2026 B5 (24 tools: ContentPod, Anirole, Voiceley, Studioify, CiteTrue, Fizzly AI, GlowVideo, Surfn, playmix.ai, Editly, Neolemon, TarotAI, GoCrazyAI, Tubeletter, Ricebowl AI, SwingVision, Creaibo, SocialPost, RoomX AI, ColorPage Lab, Inspix AI, ReelMuse.ai, Manga Translator, CogVideo AI)
+  ...toolifyBatch2026B5
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories
