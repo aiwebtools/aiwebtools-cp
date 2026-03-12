@@ -101,13 +101,6 @@ export const frontierBatchE2: Tool[] = [
     tags: ["AI Agents", "HR & Recruitment", "payroll", "talent", "workforce", "compliance", "benefits"], category: "AI HR & Recruitment", rating: 4.3,
   },
   {
-    icon: Shield, title: "MI9 Proposal Framework",
-    description: "A control plane providing semantic telemetry, continuous authorization, and graduated containment when agents go 'off-policy.' The enterprise governance layer for safe autonomous AI deployment.",
-    emoji: "🛡️", color: "from-gray-700 to-gray-900",
-    directUrl: "https://eweek.com/?via=aiwebtools", imageUrl: mi9Hero,
-    tags: ["AI Agents", "Security & Privacy", "governance", "control plane", "telemetry", "containment", "enterprise safety"], category: "Security & Privacy", rating: 4.3,
-  },
-  {
     icon: Cpu, title: "Dell AI Factory with NVIDIA",
     description: "An end-to-end stack designed to help organizations operationalize agentic AI at massive scale across data centers. Pre-configured hardware and software for deploying enterprise AI agents.",
     emoji: "🖥️", color: "from-blue-600 to-blue-800",
@@ -122,18 +115,11 @@ export const frontierBatchE2: Tool[] = [
     tags: ["AI Agents", "personal finance", "budgeting", "savings", "overdraft protection", "spending analysis"], category: "Finance AI Tools", rating: 4.4,
   },
   {
-    icon: Code, title: "Ardor AI",
-    description: "An agentic platform for automating the entire software development lifecycle (SDLC). From planning and coding to testing and deployment—autonomous engineering at every stage.",
-    emoji: "🔥", color: "from-orange-500 to-red-600",
-    directUrl: "https://ardor.ai/?via=aiwebtools", imageUrl: ardorHero,
-    tags: ["AI Agents", "Coding Agent", "SDLC", "software development", "automation", "testing", "deployment"], category: "AI Agents", rating: 4.3,
-  },
-  {
-    icon: Globe, title: "Fullestop Pocial",
-    description: "Architected to handle 'geo-aware' blog generation and drip campaigns for businesses needing localized marketing. Creates region-specific content optimized for local SEO and cultural relevance.",
+    icon: Globe, title: "Fullestop",
+    description: "Award-winning IT solutions and software development company with 25+ years experience and 7100+ completed projects. Offers AI-powered digital solutions, data analytics, web and mobile development, and enterprise technology consulting for businesses worldwide.",
     emoji: "🌐", color: "from-blue-500 to-green-600",
     directUrl: "https://fullestop.com/?via=aiwebtools", imageUrl: fullestopHero,
-    tags: ["AI Agents", "Marketing & Sales", "geo-aware", "blog generation", "drip campaigns", "localized marketing", "SEO"], category: "Marketing & Sales", rating: 4.2,
+    tags: ["IT Services", "Software Development", "Data Analytics", "Digital Solutions", "Enterprise", "Consulting"], category: "Business & Productivity", rating: 4.2,
   },
   {
     icon: Briefcase, title: "Talentica Software",
@@ -150,11 +136,11 @@ export const frontierBatchE2: Tool[] = [
     tags: ["AI Agents", "cloud", "cross-platform", "business processes", "enterprise", "cloud-native"], category: "AI Agents", rating: 4.2,
   },
   {
-    icon: Workflow, title: "Zazz UX Agents",
-    description: "Specializes in 'UX-Driven' AI automation, ensuring that the agent's interaction design feels natural and context-aware. Beautiful, intuitive interfaces for autonomous systems.",
+    icon: Workflow, title: "Zazz",
+    description: "Enterprise IT services company offering AI-powered software development, cybersecurity solutions, cloud engineering, and digital transformation services. Helps businesses modernize core systems and launch new platforms with scalable technology.",
     emoji: "✨", color: "from-cyan-400 to-blue-500",
     directUrl: "https://zazz.io/?via=aiwebtools", imageUrl: zazzHero,
-    tags: ["AI Agents", "UX design", "automation", "interaction design", "context-aware", "user experience"], category: "AI Agents", rating: 4.2,
+    tags: ["IT Services", "Software Development", "Digital Transformation", "Cybersecurity", "Cloud Engineering", "Enterprise"], category: "Business & Productivity", rating: 4.2,
   },
   {
     icon: Brain, title: "LeewayHertz Custom Reasoning",

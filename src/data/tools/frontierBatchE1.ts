@@ -52,13 +52,6 @@ export const frontierBatchE1: Tool[] = [
     tags: ["AI Agents", "Web Tasks Agent", "browser automation", "visual reasoning", "form filling", "web scraping", "autonomous"], category: "AI Agents", rating: 4.6,
   },
   {
-    icon: Brain, title: "Molly AI",
-    description: "A personal assistant agent built with 'infinite memory' of your data and preferences. Learns your habits, remembers conversations, and proactively manages tasks with persistent long-term context.",
-    emoji: "🧠", color: "from-pink-500 to-purple-600",
-    directUrl: "https://molly.com/?via=aiwebtools", imageUrl: mollyHero,
-    tags: ["AI Agents", "personal assistant", "infinite memory", "task management", "proactive AI", "long-term memory"], category: "AI Agents", rating: 4.3,
-  },
-  {
     icon: Search, title: "Linkup",
     description: "A high-accuracy search API designed specifically for AI agents to query the real-time web. Returns structured, verified data that agents can act on—not raw HTML or ads.",
     emoji: "🔗", color: "from-blue-500 to-cyan-600",
@@ -109,10 +102,10 @@ export const frontierBatchE1: Tool[] = [
   },
   {
     icon: Bot, title: "SuperAgent",
-    description: "An open-source framework focused on 'Rapid Prototyping,' allowing developers to add memory, API routing, and tool use to an agent in minutes. The fastest path from idea to working agent.",
+    description: "Y Combinator-backed AI red teaming and security testing platform. Deploys specialized attack agents against your production AI systems to surface data leaks, harmful outputs, and unwanted actions before your users encounter them. Black-box adversarial testing for AI agents.",
     emoji: "⚡", color: "from-yellow-500 to-orange-600",
     directUrl: "https://superagent.sh/?via=aiwebtools", imageUrl: superagentHero,
-    tags: ["AI Agents", "Multi-Agent Framework", "open-source", "rapid prototyping", "memory", "API routing", "developer tools"], category: "AI Agents", rating: 4.4,
+    tags: ["AI Security", "Red Teaming", "Adversarial Testing", "AI Safety", "Agent Security", "Y Combinator"], category: "Security & Privacy", rating: 4.4,
   },
   {
     icon: Cpu, title: "Snowflake Cortex Agents",
@@ -120,13 +113,6 @@ export const frontierBatchE1: Tool[] = [
     emoji: "❄️", color: "from-blue-400 to-blue-700",
     directUrl: "https://snowflake.com/cortex/?via=aiwebtools", imageUrl: snowflakeHero,
     tags: ["AI Agents", "Data & Analytics", "data cloud", "enterprise data", "SQL", "analytics", "data warehouse"], category: "Data & Analytics", rating: 4.6,
-  },
-  {
-    icon: Workflow, title: "Persynio Orchestra",
-    description: "A visual canvas that avoids 'loop nightmares' by strictly regulating how specialized sub-agents report back to a master agent. Orchestrate complex multi-agent workflows visually.",
-    emoji: "🎵", color: "from-purple-500 to-indigo-600",
-    directUrl: "https://persynio.ai/?via=aiwebtools", imageUrl: persynioHero,
-    tags: ["AI Agents", "Multi-Agent Framework", "orchestration", "visual builder", "sub-agents", "workflow management"], category: "AI Agents", rating: 4.3,
   },
   {
     icon: Globe, title: "OverseerOS",
@@ -148,13 +134,6 @@ export const frontierBatchE1: Tool[] = [
     emoji: "📱", color: "from-green-500 to-teal-600",
     directUrl: "https://neyox.com/?via=aiwebtools", imageUrl: neyoxHero,
     tags: ["AI Agents", "Voice Agent", "lead qualification", "call handling", "bookings", "sales automation"], category: "Sales & CRM Tools", rating: 4.3,
-  },
-  {
-    icon: Building, title: "Dark Matter Mortgage Agent",
-    description: "A compliant agent framework specifically for mortgage lenders to automate auditable loan processing within Empower LOS. Handles document collection, underwriting prep, and compliance checks.",
-    emoji: "🏠", color: "from-gray-700 to-gray-900",
-    directUrl: "https://nationalmortgageprofessional.com/?via=aiwebtools", imageUrl: darkMatterHero,
-    tags: ["AI Agents", "mortgage", "lending", "compliance", "loan processing", "financial services", "real estate"], category: "Finance AI Tools", rating: 4.2,
   },
   {
     icon: BarChart3, title: "Rilla",
