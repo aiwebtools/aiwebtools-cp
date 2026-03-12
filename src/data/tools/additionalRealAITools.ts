@@ -52,6 +52,7 @@ export const additionalRealAITools: Tool[] = [
     emoji: "🪶",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://quillbot.com/?via=aiwebtools",
+    imageUrl: quillbotHero,
     tags: ["paraphrasing", "rewriting", "summarizing", "grammar", "research"],
     category: "Content Creation",
     rating: 4.4,
