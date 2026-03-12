@@ -150,6 +150,7 @@ export const additionalRealAITools: Tool[] = [
     emoji: "🎭",
     color: "from-green-400 to-blue-500",
     directUrl: "https://stability.ai/stable-diffusion/?via=aiwebtools",
+    imageUrl: stableDiffusionHero,
     tags: ["image generation", "open source", "AI art", "customizable", "free"],
     category: "AI Image Generation",
     rating: 4.5,
