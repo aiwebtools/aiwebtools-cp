@@ -1,4 +1,4 @@
-import { useState, useEffect, memo, useRef } from "react";
+import { useState, useEffect, memo } from "react";
 import { Sparkles } from "lucide-react";
 
 const loadingMessages = [
@@ -50,42 +50,14 @@ const LoadingScreen = memo(() => {
   const [messageIndex, setMessageIndex] = useState(() =>
     Math.floor(Math.random() * loadingMessages.length)
   );
-  const [progress, setProgress] = useState(0);
-  const mountedRef = useRef(true);
 
-  // Force-complete after 1.2s max
+  // Rotate messages via JS (lightweight, won't freeze visuals)
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      if (mountedRef.current) setProgress(100);
-    }, 1200);
-    return () => {
-      mountedRef.current = false;
-      clearTimeout(timeout);
-    };
-  }, []);
-
-  // Single clean progress interval - faster
-  useEffect(() => {
-    if (progress >= 100) return;
-    const id = setInterval(() => {
-      setProgress(prev => {
-        if (prev >= 100) return 100;
-        if (prev < 70) return prev + 8;
-        if (prev < 90) return prev + 5;
-        return prev + 3;
-      });
-    }, 30);
-    return () => clearInterval(id);
-  }, [progress >= 100]);
-
-  // Rotate messages
-  useEffect(() => {
-    if (progress >= 100) return;
     const id = setInterval(() => {
       setMessageIndex(prev => (prev + 1) % loadingMessages.length);
     }, 1500);
     return () => clearInterval(id);
-  }, [progress >= 100]);
+  }, []);
 
   return (
     <div className="min-h-screen bg-black flex flex-col items-center justify-center px-4">
@@ -121,24 +93,21 @@ const LoadingScreen = memo(() => {
         </span>
       </div>
 
+      {/* Progress bar uses pure CSS animation — GPU-driven, never freezes */}
       <div className="w-64 md:w-80 h-3 bg-gray-800 rounded-full overflow-hidden border border-green-500/30">
         <div
-          className="h-full rounded-full"
+          className="h-full rounded-full loading-progress-bar"
           style={{
-            width: `${progress}%`,
             background: 'linear-gradient(90deg, #22c55e, #4ade80, #22c55e)',
             boxShadow: '0 0 15px rgba(34, 197, 94, 0.6)',
-            transition: 'width 50ms linear',
           }}
         />
       </div>
 
       <div
-        className="mt-4 text-green-400 font-mono text-lg tracking-wider font-bold"
+        className="mt-4 text-green-400 font-mono text-lg tracking-wider font-bold loading-progress-text"
         style={{ textShadow: '0 0 10px rgba(34, 197, 94, 0.8)' }}
-      >
-        {Math.round(progress)}%
-      </div>
+      />
     </div>
   );
 });
