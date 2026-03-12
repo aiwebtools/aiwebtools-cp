@@ -31,7 +31,7 @@ const FooterCompanyInfo = () => {
         </div>
         <div className="text-xs text-gray-500">
           <button 
-            onClick={(e) => handleExternalLink("https://www.ai-webtools.com", e)}
+            onClick={(e) => handleExternalLink("https://aiwebtools.lovable.app/?via=aiwebtools", e)}
             className="text-gray-500 hover:text-green-400 transition-colors"
           >
             An AI-WebTools.com
