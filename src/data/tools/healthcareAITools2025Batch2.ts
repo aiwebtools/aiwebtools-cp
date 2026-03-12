@@ -366,5 +366,20 @@ export const healthcareAITools2025Batch2: Tool[] = [
     category: "Research & Academic",
     rating: 4.7,
     totalVotes: 1876
+  },
+
+  // ANTIBIOTICS ACCESS RESOURCE
+  {
+    icon: Pill,
+    title: "Antibiotics Without A Prescription",
+    description: "Ozio provides accessible over-the-counter antibiotics for individuals who may not have health insurance or immediate access to a doctor. The maker of AIWebTools.ai believes everyone should have access to essential antibiotics regardless of insurance status — this is a vital preparedness and wellness resource. Tested and verified by the AIWebTools.ai team. Use promo code PREPPER for 10% off your order. Disclaimer: This resource is for informational purposes. Always consult a qualified healthcare professional before taking any medication.",
+    emoji: "💊",
+    color: "from-blue-500 to-teal-600",
+    directUrl: "https://ozio.com",
+    imageUrl: antibioticsOzioHero,
+    tags: ["antibiotics", "prescription-free", "healthcare access", "preparedness", "wellness", "medication", "pharmacy", "over-the-counter", "health resource", "no insurance", "emergency preparedness", "prepper", "health information help"],
+    category: "Health, Wellness & Personal Lifestyle",
+    rating: 4.7,
+    totalVotes: 1245
   }
 ];
