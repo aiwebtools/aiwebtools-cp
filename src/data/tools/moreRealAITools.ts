@@ -835,6 +835,32 @@ export const moreRealAITools: Tool[] = [
     category: "Automation",
     rating: 4.4,
     totalVotes: 3456
+  },
+  {
+    icon: Cpu,
+    title: "Origin Pilot OS",
+    description: "Origin Pilot is China's first independently developed quantum computer operating system, created by Origin Quantum. Launched for public download, it serves as the operations and scheduling hub for quantum computers—unifying multi-architecture quantum hardware, connecting to cloud and applications, and orchestrating with HPC, AI, and classical computing for stable, scalable quantum services. Origin Pilot integrates with the WuKong superconducting quantum computer and supports quantum circuit design, algorithm development, and quantum-classical hybrid computing workflows. It significantly lowers the barrier for quantum computing development and research.",
+    emoji: "⚛️",
+    color: "from-blue-700 to-cyan-500",
+    directUrl: "https://originqc.com.cn/en/?via=aiwebtools",
+    imageUrl: originPilotOsHero,
+    tags: ["quantum computing", "quantum OS", "operating system", "Origin Quantum", "WuKong", "quantum processor", "quantum development", "quantum programming", "quantum circuits", "HPC", "quantum cloud", "China quantum", "open source quantum"],
+    category: "AI Development & Platforms",
+    rating: 4.7,
+    totalVotes: 3890
+  },
+  {
+    icon: Sparkles,
+    title: "Seele AI",
+    description: "Seele AI is the world's best AI game generator that lets you build any 2D or 3D game just by chatting. Turn text into playable games instantly with this no-code AI game maker—describe your game concept and watch it come to life. Seele generates complete game worlds including sprites, 3D models, animations, audio, and game logic from simple text prompts. Export your creations to Unity, Three.js, or Unreal Engine. Supporting FPS, racing, simulation, RPG, and more genres, Seele AI democratizes game development for creators of all skill levels.",
+    emoji: "🎮",
+    color: "from-purple-600 to-pink-500",
+    directUrl: "https://www.seeles.ai/?via=aiwebtools",
+    imageUrl: seeleAiHero,
+    tags: ["AI game maker", "no-code game development", "game generator", "text to game", "3D game creation", "2D game creation", "Unity export", "Unreal Engine", "game design", "indie game development", "AI game engine", "prompt to game"],
+    category: "Gaming & Entertainment",
+    rating: 4.8,
+    totalVotes: 5120
   }
 ];
 
