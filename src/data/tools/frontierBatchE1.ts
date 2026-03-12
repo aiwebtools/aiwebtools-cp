@@ -52,13 +52,6 @@ export const frontierBatchE1: Tool[] = [
     tags: ["AI Agents", "Web Tasks Agent", "browser automation", "visual reasoning", "form filling", "web scraping", "autonomous"], category: "AI Agents", rating: 4.6,
   },
   {
-    icon: Brain, title: "Molly AI",
-    description: "A personal assistant agent built with 'infinite memory' of your data and preferences. Learns your habits, remembers conversations, and proactively manages tasks with persistent long-term context.",
-    emoji: "🧠", color: "from-pink-500 to-purple-600",
-    directUrl: "https://molly.com/?via=aiwebtools", imageUrl: mollyHero,
-    tags: ["AI Agents", "personal assistant", "infinite memory", "task management", "proactive AI", "long-term memory"], category: "AI Agents", rating: 4.3,
-  },
-  {
     icon: Search, title: "Linkup",
     description: "A high-accuracy search API designed specifically for AI agents to query the real-time web. Returns structured, verified data that agents can act on—not raw HTML or ads.",
     emoji: "🔗", color: "from-blue-500 to-cyan-600",
