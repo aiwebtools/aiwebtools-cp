@@ -22,7 +22,7 @@ const FooterLinks = () => {
             📖 Our Story
           </a>
           <button
-            onClick={(e) => handleExternalLink("https://ai-webtools.com/hire-us-to-build-your-ai-1", e)}
+            onClick={(e) => handleExternalLink("https://aiwebtools.lovable.app/hire-us-to-build-your-ai-1?via=aiwebtools", e)}
             className="block text-green-200 hover:text-green-400 transition-colors text-left"
           >
             🚀 More Services
