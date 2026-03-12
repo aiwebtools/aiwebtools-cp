@@ -158,7 +158,7 @@ const TabletMenu = () => {
               
               {/* Footer */}
               <div className="space-y-1">
-                <DropdownMenuItem onClick={(e) => { e.preventDefault(); createTimePortalEffect('https://www.ai-webtools.com'); }} className="text-cyan-100 hover:bg-cyan-500/20 rounded">
+                <DropdownMenuItem onClick={(e) => { e.preventDefault(); createTimePortalEffect('https://aiwebtools.lovable.app/?via=aiwebtools'); }} className="text-cyan-100 hover:bg-cyan-500/20 rounded">
                   ABOUT AI WEB TOOLS
                 </DropdownMenuItem>
                 

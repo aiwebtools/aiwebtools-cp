@@ -51,7 +51,7 @@ const Logo = ({ compact = false }: { compact?: boolean }) => {
         <div className={`${compact ? 'text-[8px]' : 'text-[9px] sm:text-[10px] md:text-xs'} text-gray-400 mt-0`}>
           BY{" "}
           <button 
-            onClick={(e) => handleExternalLink("https://www.aiwebtools.ai", e)}
+            onClick={(e) => handleExternalLink("https://aiwebtools.lovable.app/?via=aiwebtools", e)}
             className="text-cyan-400 hover:text-cyan-300 transition-all duration-200 hover:text-shadow-glow font-medium tracking-wide"
           >
             AIWEBTOOLS.AI

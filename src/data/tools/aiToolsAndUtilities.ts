@@ -75,7 +75,7 @@ export const aiToolsAndUtilities: Tool[] = [
     description: "Comprehensive AI Tool Directory & Portfolio showcasing the latest and most innovative AI tools and technologies across all categories.",
     emoji: "🏢",
     color: "from-cyan-500 to-blue-600",
-    directUrl: "https://www.aiwebtools.ai",
+    directUrl: "https://aiwebtools.lovable.app/?via=aiwebtools",
     tags: ["AI directory", "portfolio", "tools collection", "AI resources", "comprehensive", "innovation"],
     category: "AI Tools & Utilities",
     rating: 4.8,
