@@ -812,6 +812,7 @@ export const additionalRealAITools: Tool[] = [
     emoji: "💚",
     color: "from-green-500 to-blue-600",
     directUrl: "https://woebot.io/?via=aiwebtools",
+    imageUrl: woebotHero,
     tags: ["mental health", "therapy", "CBT", "wellness", "emotional support"],
     category: "Mental Health AI",
     rating: 4.2,
