@@ -1,5 +1,5 @@
 import { Tool } from "@/types/tools";
-import { Video, Brain, Home, Shield, MessageSquare, Mic, Camera, Code, Search, Layers, BookOpen, Mail, Database, Bot, Cube, Volume2, Sparkles, Palette, FileText, Eye } from "lucide-react";
+import { Video, Brain, Home, Shield, MessageSquare, Mic, Camera, Code, Search, Layers, BookOpen, Mail, Database, Bot, Box, Volume2, Sparkles, Palette, FileText, Eye } from "lucide-react";
 
 import kovvidAiHero from "@/assets/tools/kovvid-ai-hero.jpg";
 import cDanceAiHero from "@/assets/tools/c-dance-ai-hero.jpg";
