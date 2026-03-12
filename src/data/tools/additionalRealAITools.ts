@@ -321,6 +321,7 @@ export const additionalRealAITools: Tool[] = [
     emoji: "💖",
     color: "from-pink-500 to-red-600",
     directUrl: "https://replika.ai/?via=aiwebtools",
+    imageUrl: replikaHero,
     tags: ["AI companion", "emotional support", "conversation", "mental health", "friendship"],
     category: "Lifestyle & Personal",
     rating: 4.3,
