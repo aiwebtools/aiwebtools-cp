@@ -487,11 +487,14 @@ const PinnedVideoPlayer = memo(() => {
   // Track when video started to prevent premature skipping
   const videoStartTimeRef = useRef<number>(Date.now());
   const hasReceivedPlayStateRef = useRef(false);
+  // Dynamic duration detection from YouTube iframe API
+  const detectedDurationRef = useRef<number | null>(null);
   
   // Reset timing when video changes
   useEffect(() => {
     videoStartTimeRef.current = Date.now();
     hasReceivedPlayStateRef.current = false;
+    detectedDurationRef.current = null; // Reset so we pick up new video's duration
   }, [currentVideoId]);
 
   // Listen for YouTube iframe API messages to detect video end
