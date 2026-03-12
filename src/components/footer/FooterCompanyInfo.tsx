@@ -22,7 +22,7 @@ const FooterCompanyInfo = () => {
         <div className="text-xs md:text-sm text-gray-400">
           Presented by{" "}
           <button 
-            onClick={(e) => handleExternalLink("https://www.ai-webtools.com", e)}
+            onClick={(e) => handleExternalLink("https://aiwebtools.lovable.app/?via=aiwebtools", e)}
             className="text-green-400 hover:text-green-300 transition-colors underline"
             style={{ textShadow: '0 0 8px rgba(0, 255, 0, 0.4)' }}
           >
