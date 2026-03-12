@@ -53,11 +53,11 @@ const LoadingScreen = memo(() => {
   const [progress, setProgress] = useState(0);
   const mountedRef = useRef(true);
 
-  // Force-complete after 2.5s max
+  // Force-complete after 1.2s max
   useEffect(() => {
     const timeout = setTimeout(() => {
       if (mountedRef.current) setProgress(100);
-    }, 2500);
+    }, 1200);
     return () => {
       mountedRef.current = false;
       clearTimeout(timeout);
