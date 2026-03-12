@@ -12,15 +12,19 @@
   width: 60px;
   height: 60px;
   position: relative;
-  -webkit-transform-style: preserve-3d;
-  transform-style: preserve-3d;
-  -webkit-animation: cube-spin 4s linear infinite;
-  animation: cube-spin 4s linear infinite;
+  -webkit-transform-style: preserve-3d !important;
+  transform-style: preserve-3d !important;
+  -webkit-animation: cube-spin 4s linear infinite !important;
+  animation: cube-spin 4s linear infinite !important;
   will-change: transform;
   -webkit-backface-visibility: visible;
   backface-visibility: visible;
   -webkit-transform-origin: center center;
   transform-origin: center center;
+}
+
+.loading-cube-face {
+  -webkit-animation: none !important;
 }
 
 .loading-cube-face {

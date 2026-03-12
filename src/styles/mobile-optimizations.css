@@ -1,10 +1,10 @@
 /* Mobile Performance Optimizations */
 
-/* Instant dropdown/menu opening on mobile */
+/* Instant dropdown/menu opening on mobile — excludes loading cube */
 @media (max-width: 768px) {
   [data-radix-popper-content-wrapper],
-  [data-state="open"],
-  [data-state="closed"],
+  [data-state="open"]:not(.loading-cube):not(.loading-cube-face),
+  [data-state="closed"]:not(.loading-cube):not(.loading-cube-face),
   [role="menu"],
   [role="dialog"] {
     animation-duration: 0ms !important;
