@@ -9,6 +9,27 @@ import {
   Edit, Wand2, Sparkles, BookOpen, GraduationCap, Building
 } from "lucide-react";
 
+import grammarlyHero from "@/assets/tools/grammarly-hero.jpg";
+import quillbotHero from "@/assets/tools/quillbot-hero.jpg";
+import midjourneyHero from "@/assets/tools/midjourney-hero.jpg";
+import stableDiffusionHero from "@/assets/tools/stable-diffusion-hero.jpg";
+import perplexityAiHero from "@/assets/tools/perplexity-ai-hero.jpg";
+import darktraceHero from "@/assets/tools/darktrace-hero.jpg";
+import replikaHero from "@/assets/tools/replika-hero.jpg";
+import adobeFireflyHero from "@/assets/tools/adobe-firefly-hero.jpg";
+import leonardoAiHero from "@/assets/tools/leonardo-ai-hero.jpg";
+import synthesiaHero from "@/assets/tools/synthesia-hero.jpg";
+import beautifulAiHero from "@/assets/tools/beautiful-ai-hero.jpg";
+import woebotHero from "@/assets/tools/woebot-hero.jpg";
+import ibmWatsonHero from "@/assets/tools/ibm-watson-hero.jpg";
+import krispAiHero from "@/assets/tools/krisp-ai-hero.jpg";
+import originalityAiHero from "@/assets/tools/originality-ai-hero.jpg";
+import scaleAiHero from "@/assets/tools/scale-ai-hero.jpg";
+import magiceraserHero from "@/assets/tools/magiceraser-hero.jpg";
+import tomeHero from "@/assets/tools/tome-hero.jpg";
+import fitnessAiHero from "@/assets/tools/fitness-ai-hero.jpg";
+import wordtuneHero from "@/assets/tools/wordtune-hero.jpg";
+
 export const additionalRealAITools: Tool[] = [
   // AI Writing & Content Creation Tools
   {
