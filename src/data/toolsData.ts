@@ -198,6 +198,8 @@ import { nicheSpecialty2026B1 } from "./tools/nicheSpecialty2026B1";
 import { nicheSpecialty2026B2 } from "./tools/nicheSpecialty2026B2";
 import { toolifyBatch2026 } from "./tools/toolifyBatch2026";
 import { toolifyBatch2026B2 } from "./tools/toolifyBatch2026B2";
+import { toolifyBatch2026B3 } from "./tools/toolifyBatch2026B3";
+import { toolifyBatch2026B4 } from "./tools/toolifyBatch2026B4";
 
 const allToolCategories = consolidateTools([
   ...getAllToolCategories(),
@@ -412,7 +414,13 @@ const allToolCategories = consolidateTools([
   ...toolifyBatch2026,
 
   // Toolify Batch 2026 B2 (20 tools: Kovvid AI, C Dance AI, Doctor Handwriting Reader AI, HousesDecorate, etc.)
-  ...toolifyBatch2026B2
+  ...toolifyBatch2026B2,
+
+  // Toolify Batch 2026 B3 (25 tools: Artedge AI, Wallnora, Pine AI, Pixwit, Hitem3D, Vidu AI, etc.)
+  ...toolifyBatch2026B3,
+
+  // Toolify Batch 2026 B4 (25 tools: GLM 5, TemVideo, AITextTune, GenPPT AI, Crun AI, OutdoorBrite, etc.)
+  ...toolifyBatch2026B4
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories
