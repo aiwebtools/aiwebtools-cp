@@ -494,3 +494,6 @@ export { toolifyBatch2026B3 } from './toolifyBatch2026B3';
 
 // Export Toolify Batch 2026 B4 (25 tools: GLM 5, TemVideo, AITextTune, GenPPT AI, Crun AI, OutdoorBrite, Listnr AI, ZeroRank AI, EverFold, Verdent AI, Kubrix, FragCut, Blobu.ai, NeatScribe, Orphiq, Kolva, Archimyst, Storyship, FaceFinder, Fimo, Drumics, Interactpitch, Gistilo, VFast AI, Leadde AI)
 export { toolifyBatch2026B4 } from './toolifyBatch2026B4';
+
+// Export Toolify Batch 2026 B5 (24 tools: ContentPod, Anirole, Voiceley, Studioify, CiteTrue, Fizzly AI, GlowVideo, Surfn, playmix.ai, Editly, Neolemon, TarotAI, GoCrazyAI, Tubeletter, Ricebowl AI, SwingVision, Creaibo, SocialPost, RoomX AI, ColorPage Lab, Inspix AI, ReelMuse.ai, Manga Translator, CogVideo AI)
+export { toolifyBatch2026B5 } from './toolifyBatch2026B5';
