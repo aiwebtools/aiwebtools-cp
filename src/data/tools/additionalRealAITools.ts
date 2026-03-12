@@ -384,6 +384,7 @@ export const additionalRealAITools: Tool[] = [
     emoji: "💡",
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://tome.app/?via=aiwebtools",
+    imageUrl: tomeHero,
     tags: ["presentations", "AI presentation", "slides", "storytelling", "design"],
     category: "Presentation Tools",
     rating: 4.5,
