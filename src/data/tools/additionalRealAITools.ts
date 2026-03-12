@@ -690,6 +690,7 @@ export const additionalRealAITools: Tool[] = [
     emoji: "🎵",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://wordtune.com/?via=aiwebtools",
+    imageUrl: wordtuneHero,
     tags: ["writing assistant", "rewriting", "tone adjustment", "clarity", "communication"],
     category: "Writing Enhancement",
     rating: 4.3,
