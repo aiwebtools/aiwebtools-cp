@@ -482,3 +482,6 @@ export { nicheSpecialty2026B1 } from './nicheSpecialty2026B1';
 
 // Export Niche Specialty 2026 B2 (15 tools: Speechelo, Estimatic AI, ChefGPT, Komo, YourAtlas, Crayo, Storylane, Coveo, Guru, LanguageTool, Doclingo, Unbabel, Weglot, Localazy, Pairaphrase)
 export { nicheSpecialty2026B2 } from './nicheSpecialty2026B2';
+
+// Export Toolify Batch 2026 (23 tools: CrePal, Gobii, EverMemOS, Paperclip, NemoClaw, Rekam AI, ace.me, Runable, WUI.AI, Kumoo, Hermes Agent, Cashflowy, Obsess AI, NemoVideo, Elser AI, Sup AI, Flowith 2.0, Mexty, SocialKit, JoyFun AI, Ima Studio Claw, Stable Commerce, Petclaw AI)
+export { toolifyBatch2026 } from './toolifyBatch2026';
