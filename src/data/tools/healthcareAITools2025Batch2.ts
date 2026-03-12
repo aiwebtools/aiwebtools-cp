@@ -20,6 +20,8 @@ import {
   TreeDeciduous
 } from "lucide-react";
 
+import antibioticsOzioHero from "@/assets/tools/antibiotics-ozio-hero.jpg";
+
 export const healthcareAITools2025Batch2: Tool[] = [
   // MENTAL HEALTH & ADDICTION RECOVERY
   {
