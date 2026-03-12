@@ -357,7 +357,7 @@ const PinnedVideoPlayer = memo(() => {
     // User must explicitly click unmute button to hear audio
     // Use youtube-nocookie.com for faster loads and better privacy
      const origin = typeof window !== 'undefined' ? window.location.origin : '';
-    const newSrc = `https://www.youtube-nocookie.com/embed/${currentVideoId}?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&enablejsapi=1&playsinline=1&loop=0&origin=${encodeURIComponent(origin)}&widget_referrer=${encodeURIComponent(origin)}`;
+    const newSrc = `https://www.youtube.com/embed/${currentVideoId}?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&enablejsapi=1&playsinline=1&loop=0&origin=${encodeURIComponent(origin)}&widget_referrer=${encodeURIComponent(origin)}`;
     setVideoSrc(newSrc);
     playerMountedRef.current = true;
     
