@@ -163,6 +163,7 @@ export const additionalRealAITools: Tool[] = [
     emoji: "🔍",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://perplexity.ai/?via=aiwebtools",
+    imageUrl: perplexityAiHero,
     tags: ["search", "research", "AI answers", "citations", "information"],
     category: "Research & Analysis",
     rating: 4.6,
