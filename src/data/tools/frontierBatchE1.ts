@@ -115,13 +115,6 @@ export const frontierBatchE1: Tool[] = [
     tags: ["AI Agents", "Data & Analytics", "data cloud", "enterprise data", "SQL", "analytics", "data warehouse"], category: "Data & Analytics", rating: 4.6,
   },
   {
-    icon: Workflow, title: "Persynio Orchestra",
-    description: "A visual canvas that avoids 'loop nightmares' by strictly regulating how specialized sub-agents report back to a master agent. Orchestrate complex multi-agent workflows visually.",
-    emoji: "🎵", color: "from-purple-500 to-indigo-600",
-    directUrl: "https://persynio.ai/?via=aiwebtools", imageUrl: persynioHero,
-    tags: ["AI Agents", "Multi-Agent Framework", "orchestration", "visual builder", "sub-agents", "workflow management"], category: "AI Agents", rating: 4.3,
-  },
-  {
     icon: Globe, title: "OverseerOS",
     description: "The 'World's First OS for Creators'—reverse-engineer any YouTube channel's strategy in seconds using autonomous research agents. Analyze content performance, audience demographics, and growth patterns.",
     emoji: "👁️", color: "from-red-500 to-red-700",
