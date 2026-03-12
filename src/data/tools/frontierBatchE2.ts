@@ -115,11 +115,11 @@ export const frontierBatchE2: Tool[] = [
     tags: ["AI Agents", "personal finance", "budgeting", "savings", "overdraft protection", "spending analysis"], category: "Finance AI Tools", rating: 4.4,
   },
   {
-    icon: Globe, title: "Fullestop Pocial",
-    description: "Architected to handle 'geo-aware' blog generation and drip campaigns for businesses needing localized marketing. Creates region-specific content optimized for local SEO and cultural relevance.",
+    icon: Globe, title: "Fullestop",
+    description: "Award-winning IT solutions and software development company with 25+ years experience and 7100+ completed projects. Offers AI-powered digital solutions, data analytics, web and mobile development, and enterprise technology consulting for businesses worldwide.",
     emoji: "🌐", color: "from-blue-500 to-green-600",
     directUrl: "https://fullestop.com/?via=aiwebtools", imageUrl: fullestopHero,
-    tags: ["AI Agents", "Marketing & Sales", "geo-aware", "blog generation", "drip campaigns", "localized marketing", "SEO"], category: "Marketing & Sales", rating: 4.2,
+    tags: ["IT Services", "Software Development", "Data Analytics", "Digital Solutions", "Enterprise", "Consulting"], category: "Business & Productivity", rating: 4.2,
   },
   {
     icon: Briefcase, title: "Talentica Software",

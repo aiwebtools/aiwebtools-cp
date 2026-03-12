@@ -53,10 +53,10 @@ export const nicheSpecialty2026B1: Tool[] = [
   },
   {
     icon: Target, title: "Revio",
-    description: "AI-powered lead prediction platform that analyzes behavioral signals to predict which leads are most likely to convert. Helps sales teams focus energy on high-probability opportunities for maximum ROI.",
+    description: "AI-powered Sales CRM that turns your social media followers into revenue. Revio qualifies prospects, books appointments using a fine-tuned AI engine, and helps you land more sales through automated social selling workflows.",
     emoji: "🎯", color: "from-indigo-500 to-purple-600",
     directUrl: "https://getrevio.com/?via=aiwebtools", imageUrl: revioHero,
-    tags: ["lead scoring", "sales prediction", "conversion optimization", "AI analytics", "sales intelligence"],
+    tags: ["Sales CRM", "social selling", "AI sales", "lead qualification", "appointment booking", "revenue optimization"],
     category: "Marketing & Sales", rating: 4.3,
   },
   {
