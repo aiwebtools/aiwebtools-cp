@@ -787,6 +787,7 @@ export const additionalRealAITools: Tool[] = [
     emoji: "⭐",
     color: "from-pink-500 to-purple-600",
     directUrl: "https://beautiful.ai/?via=aiwebtools",
+    imageUrl: beautifulAiHero,
     tags: ["presentations", "automatic design", "AI slides", "business presentations", "design automation"],
     category: "Presentation AI",
     rating: 4.3,
