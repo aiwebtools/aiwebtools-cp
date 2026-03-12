@@ -246,7 +246,7 @@ export const professionalServicesGPTs: Tool[] = [
     description: "Real-time supply-chain resilience engine using live data and calm, factual analysis. This AI tool by AiWebTools.Ai monitors global supply chains, identifies vulnerabilities, and provides strategic insights for business continuity planning. Using GPT-4o, it analyzes disruption patterns, logistics bottlenecks, and economic indicators to help organizations prepare for and navigate supply chain challenges with data-driven decision making.",
     emoji: "📉",
     color: "from-red-500 to-orange-600",
-    directUrl: "https://chatgpt.com/g/g-6927fd0087548191b724cf0dff94e5f4-global-supply-chain-collapse-gpt?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-6927fd0087548191b724cf0dff94e5f4-global-supply-chain-collapse-gpt",
     imageUrl: "/src/assets/tools/supply-chain-gpt-hero.png",
     tags: ["supply chain", "logistics", "business continuity", "risk management", "resilience", "data analysis", "crisis management", "global trade", "professional services", "aiwebtools", "Custom GPT", "Analytics & Tracking", "Market Research"],
     category: "Professional Services",
