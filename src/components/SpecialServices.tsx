@@ -2061,7 +2061,7 @@ const featuredGPTsUnsorted = [
     badge: "ECONOMICS",
     color: "from-red-500 to-orange-600",
     features: ["Supply Chain", "Risk Analysis", "Economic Resilience", "Strategic Planning"],
-    directUrl: "https://supplychaingpt.lovable.app/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-6927fd0087548191b724cf0dff94e5f4-global-supply-chain-collapse-gpt",
     imageUrl: "/src/assets/supply-chain-gpt-hero.jpg",
     emoji: "🔗"
   },
