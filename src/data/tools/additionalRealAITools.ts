@@ -825,6 +825,7 @@ export const additionalRealAITools: Tool[] = [
     emoji: "🔍",
     color: "from-red-500 to-pink-600",
     directUrl: "https://originality.ai/?via=aiwebtools",
+    imageUrl: originalityAiHero,
     tags: ["AI detection", "plagiarism checker", "content authenticity", "academic integrity", "verification"],
     category: "Content Verification",
     rating: 4.4,
