@@ -122,13 +122,6 @@ export const frontierBatchE2: Tool[] = [
     tags: ["AI Agents", "personal finance", "budgeting", "savings", "overdraft protection", "spending analysis"], category: "Finance AI Tools", rating: 4.4,
   },
   {
-    icon: Code, title: "Ardor AI",
-    description: "An agentic platform for automating the entire software development lifecycle (SDLC). From planning and coding to testing and deployment—autonomous engineering at every stage.",
-    emoji: "🔥", color: "from-orange-500 to-red-600",
-    directUrl: "https://ardor.ai/?via=aiwebtools", imageUrl: ardorHero,
-    tags: ["AI Agents", "Coding Agent", "SDLC", "software development", "automation", "testing", "deployment"], category: "AI Agents", rating: 4.3,
-  },
-  {
     icon: Globe, title: "Fullestop Pocial",
     description: "Architected to handle 'geo-aware' blog generation and drip campaigns for businesses needing localized marketing. Creates region-specific content optimized for local SEO and cultural relevance.",
     emoji: "🌐", color: "from-blue-500 to-green-600",
