@@ -160,7 +160,7 @@ export const toolifyBatch2026B2: Tool[] = [
     category: "AI Agents", rating: 4.5, totalVotes: 2678,
   },
   {
-    icon: Cube, title: "Tripo AI",
+    icon: Box, title: "Tripo AI",
     description: "The best AI 3D workspace — transform texts, images, or sketches into production-ready 3D assets in seconds. Tripo AI is trusted by Tencent, NetEase Games, Bambu Lab, HTC, Sony, and Stability AI for creating high-fidelity 3D models with an all-in-one seamless workflow.",
     emoji: "🧊", color: "from-green-500 to-teal-700",
     directUrl: "https://www.tripo3d.ai/?via=aiwebtools", imageUrl: tripoAiHero,
