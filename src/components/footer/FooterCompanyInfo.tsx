@@ -70,7 +70,7 @@ const FooterCompanyInfo = () => {
           <div className="flex items-center space-x-2">
             <span>🌐</span>
             <button 
-              onClick={(e) => handleExternalLink("https://www.ai-webtools.com", e)}
+              onClick={(e) => handleExternalLink("https://aiwebtools.lovable.app/?via=aiwebtools", e)}
               className="text-green-400 hover:text-green-300 transition-colors"
             >
               www.aiwebtools.ai
