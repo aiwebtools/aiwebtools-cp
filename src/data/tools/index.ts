@@ -488,3 +488,9 @@ export { toolifyBatch2026 } from './toolifyBatch2026';
 
 // Export Toolify Batch 2026 B2 (20 tools: Kovvid AI, C Dance AI, Doctor Handwriting Reader AI, HousesDecorate, Financial Fitness Passport, MiocAI, Cheetu AI, AIReel, Speclint, MixMemo, Reflct, Marketogen, Getbeel, OGImagen, Kita, Termo, MaxClaw, Tripo AI, Speakoala, Kling 2.6 Motion Control)
 export { toolifyBatch2026B2 } from './toolifyBatch2026B2';
+
+// Export Toolify Batch 2026 B3 (25 tools: Artedge AI, Wallnora, Pine AI, Pixwit, Hitem3D, Vidu AI, Liminary, Scriptmine, Falconer, Polsia, Dictato, RaceBrain, Settle, Cuto, Vidduo, Rebolt, Overlead, Macaly, Tended.ai, LiftSell, YTVidHub, SkillKit, Key Visual, Reloop, BayesLab)
+export { toolifyBatch2026B3 } from './toolifyBatch2026B3';
+
+// Export Toolify Batch 2026 B4 (25 tools: GLM 5, TemVideo, AITextTune, GenPPT AI, Crun AI, OutdoorBrite, Listnr AI, ZeroRank AI, EverFold, Verdent AI, Kubrix, FragCut, Blobu.ai, NeatScribe, Orphiq, Kolva, Archimyst, Storyship, FaceFinder, Fimo, Drumics, Interactpitch, Gistilo, VFast AI, Leadde AI)
+export { toolifyBatch2026B4 } from './toolifyBatch2026B4';
