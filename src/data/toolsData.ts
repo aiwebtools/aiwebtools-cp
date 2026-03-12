@@ -406,7 +406,13 @@ const allToolCategories = consolidateTools([
   ...nicheSpecialty2026B1,
 
   // Niche Specialty 2026 B2 (15 tools: Speechelo, Estimatic AI, ChefGPT, Komo, YourAtlas, Crayo, Storylane, Coveo, Guru, LanguageTool, Doclingo, Unbabel, Weglot, Localazy, Pairaphrase)
-  ...nicheSpecialty2026B2
+  ...nicheSpecialty2026B2,
+
+  // Toolify Batch 2026 (23 tools: CrePal, Gobii, EverMemOS, Paperclip, NemoClaw, etc.)
+  ...toolifyBatch2026,
+
+  // Toolify Batch 2026 B2 (20 tools: Kovvid AI, C Dance AI, Doctor Handwriting Reader AI, HousesDecorate, etc.)
+  ...toolifyBatch2026B2
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories
