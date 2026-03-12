@@ -775,6 +775,7 @@ export const additionalRealAITools: Tool[] = [
     emoji: "🚀",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://scale.com/?via=aiwebtools",
+    imageUrl: scaleAiHero,
     tags: ["training data", "machine learning", "data labeling", "AI platform", "model training"],
     category: "AI Data Platform",
     rating: 4.6,
