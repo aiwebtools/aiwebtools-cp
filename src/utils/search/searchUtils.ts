@@ -179,9 +179,12 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
     return deduplicateSearchResults(prioritized);
   }
 
-  // Performance guard - only fall back to simple search for very long gibberish
+  // Performance guard - fall back to simple search for long queries to prevent freezing
   const trimmed = searchTerm.trim();
-  if (trimmed.length > 50 || (trimmed.length > 30 && !/^[a-zA-Z\s]{3,}/.test(trimmed))) {
+  if (trimmed.length > 40) {
+    return performSimpleSearch(tools, searchTerm);
+  }
+  if (trimmed.length > 25 && !/^[a-zA-Z\s]{3,}/.test(trimmed)) {
     return performSimpleSearch(tools, searchTerm);
   }
 
