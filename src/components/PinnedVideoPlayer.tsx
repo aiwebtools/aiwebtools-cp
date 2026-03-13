@@ -577,53 +577,13 @@ const PinnedVideoPlayer = memo(() => {
       clearTimeout(advanceTimeoutRef.current);
     }
     
-    // Function to set the auto-advance timer based on detected duration
-    const setDurationTimer = () => {
-      const duration = detectedDurationRef.current;
-      if (duration && duration > 0) {
-        // Use the full video duration + 3s buffer for loading/transition
-        const timeoutMs = (duration + 3) * 1000;
-        console.log('[PinnedPlayer] Setting auto-advance timer for', duration, 'seconds (full video) for:', currentTool?.title);
-        advanceTimeoutRef.current = setTimeout(() => {
-          console.log('[PinnedPlayer] Auto-advancing after full video duration:', duration, 's');
-          advanceToNextVideo();
-        }, timeoutMs);
-        return true;
-      }
-      return false;
-    };
-    
-    // Try to set timer immediately if duration already known
-    if (!setDurationTimer()) {
-      // Duration not yet known - poll every 2s until YouTube reports it
-      // Meanwhile set a generous fallback of 5 minutes (no video is longer)
-      console.log('[PinnedPlayer] Waiting for duration detection for:', currentTool?.title);
-      
-      const pollInterval = setInterval(() => {
-        if (detectedDurationRef.current) {
-          clearInterval(pollInterval);
-          // Clear old fallback and set real timer
-          if (advanceTimeoutRef.current) {
-            clearTimeout(advanceTimeoutRef.current);
-          }
-          setDurationTimer();
-        }
-      }, 2000);
-      
-      // Ultimate fallback: 5 minutes if duration never detected
-      advanceTimeoutRef.current = setTimeout(() => {
-        clearInterval(pollInterval);
-        console.log('[PinnedPlayer] Ultimate fallback: advancing after 5 min (duration never detected)');
-        advanceToNextVideo();
-      }, 300000);
-      
-      return () => {
-        clearInterval(pollInterval);
-        if (advanceTimeoutRef.current) {
-          clearTimeout(advanceTimeoutRef.current);
-        }
-      };
-    }
+    // Simple 10-second auto-advance for preview-style continuous playback
+    const AUTO_SKIP_MS = 10000; // 10 seconds per video preview
+    console.log('[PinnedPlayer] Setting 10s auto-advance for:', currentTool?.title);
+    advanceTimeoutRef.current = setTimeout(() => {
+      console.log('[PinnedPlayer] Auto-advancing after 10s preview');
+      advanceToNextVideo();
+    }, AUTO_SKIP_MS);
     
     return () => {
       if (advanceTimeoutRef.current) {

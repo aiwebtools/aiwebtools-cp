@@ -503,3 +503,6 @@ export { toolifyBatch2026B6 } from './toolifyBatch2026B6';
 
 // Export Toolify Batch 2026 B7 (25 tools: Managelify, Ripplica, Agenta, DebuggAI, To3D.AI, MuseVideo, Dreamlux, Whisper Thunder, Hocha AI, ReelMate AI, DeHome, Aivvid AI, InterviewFlowAI, ValidateIdea.io, Klariqo, Nodejam, EchoSnap, Haxiom, Motionik, TinyCommand, Didoo AI, Monetize.ai, DesignLumo, BrandJet AI, MediaPET)
 export { toolifyBatch2026B7 } from './toolifyBatch2026B7';
+
+// Export Toolify Batch 2026 B8 (22 tools: Ezswap, SimpleClean, BananaPro AI, UniMusic AI, aicofounder, ShareSpeak, MethodsAgent, Loova, The Bean.AI, HumanText Pro, Imgezy, GenZWrite, PitchFit, Twee, DeepSwapFace, TruGen AI, Ponder, Freudly, Vidofy AI, Gavel Exec, Mixboard, Kirkify AI)
+export { toolifyBatch2026B8 } from './toolifyBatch2026B8';

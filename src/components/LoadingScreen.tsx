@@ -62,7 +62,7 @@ const LoadingScreen = memo(() => {
   return (
     <div className="min-h-screen bg-black flex flex-col items-center justify-center px-4">
       {/* CSS-only 3D Rotating Cube — zero JS, pure GPU */}
-      <div className="mb-8" style={{ perspective: '600px' }}>
+      <div className="mb-8" style={{ perspective: '600px', WebkitPerspective: '600px', transformStyle: 'preserve-3d', WebkitTransformStyle: 'preserve-3d' as any }}>
         <div className="loading-cube">
           <div className="loading-cube-face loading-cube-front"><span>🤖</span></div>
           <div className="loading-cube-face loading-cube-back"><span>⚡</span></div>
