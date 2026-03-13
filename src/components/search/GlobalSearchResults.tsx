@@ -66,14 +66,16 @@ const GlobalSearchResults = ({
       <div 
         ref={scrollRef}
         data-scroll-container
-        className="absolute top-full left-0 right-0 mt-2 bg-black border border-cyan-500/30 shadow-2xl shadow-cyan-500/20 z-[9999] max-h-[60vh] overflow-y-auto overflow-x-hidden rounded-lg" 
+        className="absolute top-full left-0 right-0 mt-2 bg-black border border-cyan-500/30 shadow-2xl shadow-cyan-500/20 z-[9999] max-h-[60vh] overflow-y-scroll overflow-x-hidden rounded-lg" 
         onScroll={onScroll}
         style={{ 
           overscrollBehavior: 'contain',
           WebkitOverflowScrolling: 'touch',
-          touchAction: 'pan-y',
+          touchAction: 'auto',
           scrollbarWidth: 'thin',
-          scrollbarColor: 'rgb(6 182 212 / 0.5) rgb(31 41 55)'
+          scrollbarColor: 'rgb(6 182 212 / 0.5) rgb(31 41 55)',
+          cursor: 'grab',
+          pointerEvents: 'auto',
         }}
       >
         <div className="p-0" style={{ transform: 'translateZ(0)' }}>
