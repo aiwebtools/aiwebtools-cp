@@ -188,38 +188,47 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
     return performSimpleSearch(tools, searchTerm);
   }
 
-  // SINGLE LETTER SEARCH - Show all tools starting with that letter alphabetically
+  // SINGLE LETTER SEARCH - Show tools starting with that letter AND tools containing it as a standalone word
   if (trimmed.length === 1 && /^[a-zA-Z]$/.test(trimmed)) {
     const letter = trimmed.toLowerCase();
-    debugLog(`🔤 SINGLE LETTER SEARCH: "${letter}" - Finding all tools starting with this letter`);
+    debugLog(`🔤 SINGLE LETTER SEARCH: "${letter}" - Finding all tools starting with or containing this letter as a word`);
     
-    const matchingTools = tools.filter(tool => {
+    // Priority 1: Tools where the letter is a standalone word in the title (e.g., "Q" in "I Am Q I AM You GPT")
+    const standaloneWordMatch = tools.filter(tool => {
       if (EXCLUDED_TOOLS.includes(tool.title)) return false;
-      
-      // Get the alphabetical sort key (strips emojis) and check first letter
+      const titleWords = tool.title.toLowerCase().split(/[\s\-–—]+/);
+      return titleWords.includes(letter);
+    });
+    
+    // Priority 2: Tools starting with the letter
+    const startsWithTools = tools.filter(tool => {
+      if (EXCLUDED_TOOLS.includes(tool.title)) return false;
+      if (standaloneWordMatch.includes(tool)) return false;
       const sortKey = getAlphabeticalSortKey(tool.title);
       return sortKey.startsWith(letter);
     });
     
-    // Sort alphabetically
-    const sortedTools = matchingTools.sort((a, b) => {
+    // Sort each group alphabetically
+    const sortAlpha = (a: Tool, b: Tool) => {
       const keyA = getAlphabeticalSortKey(a.title);
       const keyB = getAlphabeticalSortKey(b.title);
       return keyA.localeCompare(keyB);
-    });
+    };
     
-    debugLog(`🔤 Found ${sortedTools.length} tools starting with "${letter}"`);
+    standaloneWordMatch.sort(sortAlpha);
+    startsWithTools.sort(sortAlpha);
     
-    // Return matching tools first, then remaining tools (also alphabetically for consistency)
+    const matchingTools = [...standaloneWordMatch, ...startsWithTools];
+    
+    debugLog(`🔤 Found ${matchingTools.length} tools for "${letter}" (${standaloneWordMatch.length} standalone word matches)`);
+    
+    // Return matching tools first, then remaining tools
+    const matchingSet = new Set(matchingTools.map(t => t.title));
     const remainingTools = tools.filter(tool => 
-      !EXCLUDED_TOOLS.includes(tool.title) && !matchingTools.includes(tool)
-    ).sort((a, b) => {
-      const keyA = getAlphabeticalSortKey(a.title);
-      const keyB = getAlphabeticalSortKey(b.title);
-      return keyA.localeCompare(keyB);
-    });
+      !EXCLUDED_TOOLS.includes(tool.title) && !matchingSet.has(tool.title)
+    ).sort(sortAlpha);
     
-    return deduplicateSearchResults([...sortedTools, ...remainingTools]);
+    return deduplicateSearchResults([...matchingTools, ...remainingTools]);
   }
 
   // Normalize compound words (e.g., "CHAT GPT" → "chatgpt")
