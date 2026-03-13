@@ -512,3 +512,9 @@ export { toolifyBatch2026B9 } from './toolifyBatch2026B9';
 
 // Export Toolify Batch 2026 B10 (22 tools: FalcoCut, MyEdit, IdeaApe, OutlierKit, Korgi, Rezzy, Medeo, Feen AI, ZOER, ImgCreator.AI, ArtGuru, MotionExcel, DeepBrain AI, ChatUp AI, Polymer DSPM, Vectorizer.AI, X-Pilot, Dewy Chat, Hemleion, VidGuru, InVidiai, Pixcap)
 export { toolifyBatch2026B10 } from './toolifyBatch2026B10';
+
+// Export Toolify Batch 2026 B11 (11 tools: Gencraft, Flot.ai, Caveduck, Somny, Arcads, VisionStory AI, Miragic SalesPilot, Easy-Peasy.AI, AI Interview Copilot, CodeDesign.ai, Textero.ai)
+export { toolifyBatch2026B11 } from './toolifyBatch2026B11';
+
+// Export Toolify Batch 2026 B12 (11 tools: Code Arena, Moltbook, Duck.ai, Use AI, RentAHuman.ai, Chaport, Mureka, WizGenerator, Zara AI Recruiter, Studocu, Course Hero)
+export { toolifyBatch2026B12 } from './toolifyBatch2026B12';

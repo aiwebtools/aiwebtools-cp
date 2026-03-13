@@ -206,6 +206,8 @@ import { toolifyBatch2026B7 } from "./tools/toolifyBatch2026B7";
 import { toolifyBatch2026B8 } from "./tools/toolifyBatch2026B8";
 import { toolifyBatch2026B9 } from "./tools/toolifyBatch2026B9";
 import { toolifyBatch2026B10 } from "./tools/toolifyBatch2026B10";
+import { toolifyBatch2026B11 } from "./tools/toolifyBatch2026B11";
+import { toolifyBatch2026B12 } from "./tools/toolifyBatch2026B12";
 
 const allToolCategories = consolidateTools([
   ...getAllToolCategories(),
@@ -444,7 +446,13 @@ const allToolCategories = consolidateTools([
   ...toolifyBatch2026B9,
 
   // Toolify Batch 2026 B10 (22 tools: FalcoCut, MyEdit, IdeaApe, OutlierKit, Korgi, Rezzy, Medeo, Feen AI, ZOER, ImgCreator.AI, ArtGuru, MotionExcel, DeepBrain AI, ChatUp AI, Polymer DSPM, Vectorizer.AI, X-Pilot, Dewy Chat, Hemleion, VidGuru, InVidiai, Pixcap)
-  ...toolifyBatch2026B10
+  ...toolifyBatch2026B10,
+
+  // Toolify Batch 2026 B11 (11 tools: Gencraft, Flot.ai, Caveduck, Somny, Arcads, VisionStory AI, Miragic SalesPilot, Easy-Peasy.AI, AI Interview Copilot, CodeDesign.ai, Textero.ai)
+  ...toolifyBatch2026B11,
+
+  // Toolify Batch 2026 B12 (11 tools: Code Arena, Moltbook, Duck.ai, Use AI, RentAHuman.ai, Chaport, Mureka, WizGenerator, Zara AI Recruiter, Studocu, Course Hero)
+  ...toolifyBatch2026B12
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories
