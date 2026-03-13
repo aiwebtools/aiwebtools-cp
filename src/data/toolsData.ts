@@ -204,6 +204,7 @@ import { toolifyBatch2026B5 } from "./tools/toolifyBatch2026B5";
 import { toolifyBatch2026B6 } from "./tools/toolifyBatch2026B6";
 import { toolifyBatch2026B7 } from "./tools/toolifyBatch2026B7";
 import { toolifyBatch2026B8 } from "./tools/toolifyBatch2026B8";
+import { toolifyBatch2026B9 } from "./tools/toolifyBatch2026B9";
 
 const allToolCategories = consolidateTools([
   ...getAllToolCategories(),
@@ -436,7 +437,10 @@ const allToolCategories = consolidateTools([
   ...toolifyBatch2026B7,
 
   // Toolify Batch 2026 B8 (22 tools: Ezswap, SimpleClean, BananaPro AI, UniMusic AI, aicofounder, ShareSpeak, MethodsAgent, Loova, The Bean.AI, HumanText Pro, Imgezy, GenZWrite, PitchFit, Twee, DeepSwapFace, TruGen AI, Ponder, Freudly, Vidofy AI, Gavel Exec, Mixboard, Kirkify AI)
-  ...toolifyBatch2026B8
+  ...toolifyBatch2026B8,
+
+  // Toolify Batch 2026 B9 (22 tools: Bright Data, Limecube, Loamly, Jet Admin, Rankpilot, SongR, TurboScribe, PicLumen, WriteHuman, Trickle Magic Canvas, Floyo, Adsturbo, SlidesGPT, Vocol AI, Redesignr AI, Nume, LINER AI, SocialDude, Chaindesk, Samurai AI, StoryNest.ai, CometAPI)
+  ...toolifyBatch2026B9
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories
