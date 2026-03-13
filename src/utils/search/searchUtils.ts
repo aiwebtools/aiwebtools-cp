@@ -236,7 +236,8 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
 
   // Use advanced search for most queries - intent matching needs this!
   // IMPORTANT: allow digits + dots so queries like "web3", "web 3", ".worldtrade" still get full intelligence.
-  const shouldUseAdvancedSearch = trimmed.length <= 30 && /^[a-zA-Z0-9\s.]{1,}$/.test(trimmed);
+  // Cap at 25 chars for advanced search to prevent lag on long queries
+  const shouldUseAdvancedSearch = trimmed.length <= 25 && /^[a-zA-Z0-9\s.]{1,}$/.test(trimmed);
 
   // CRITICAL: Never typo-correct very short prefixes (e.g., "lea" → "health")
   // Short prefixes must behave as literal partial matching.
