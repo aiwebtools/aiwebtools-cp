@@ -515,3 +515,6 @@ export { toolifyBatch2026B10 } from './toolifyBatch2026B10';
 
 // Export Toolify Batch 2026 B11 (11 tools: Gencraft, Flot.ai, Caveduck, Somny, Arcads, VisionStory AI, Miragic SalesPilot, Easy-Peasy.AI, AI Interview Copilot, CodeDesign.ai, Textero.ai)
 export { toolifyBatch2026B11 } from './toolifyBatch2026B11';
+
+// Export Toolify Batch 2026 B12 (11 tools: Code Arena, Moltbook, Duck.ai, Use AI, RentAHuman.ai, Chaport, Mureka, WizGenerator, Zara AI Recruiter, Studocu, Course Hero)
+export { toolifyBatch2026B12 } from './toolifyBatch2026B12';
