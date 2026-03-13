@@ -2240,13 +2240,18 @@ const performEnhancedSearch = (
         debugLog(`🔗 Compound match: "${noSpaceTerm}" found in "${lowerTitle}"`);
       }
 
-      // AIWEBTOOLS PRIORITY BOOST - Special handling for our custom GPTs (with relevance checking)
+      // AIWEBTOOLS PRIORITY BOOST - Our custom GPTs appear first when they match
+      const isOurGPT = tool.directUrl?.includes('lovable.app') || tool.directUrl?.includes('aiwebtools') || tool.directUrl?.includes('chatgpt.com/g/g-');
       const aiWebToolsPriorityScore = getAIWebToolsPriorityScore(tool, searchTerm);
       if (aiWebToolsPriorityScore > 0) {
         score += aiWebToolsPriorityScore;
         if (lowerTitle.includes(finalNormalizedTerm)) {
-          score += 3000; // Additional boost for matching AI Web Tools
+          score += 5000; // Strong boost for matching AI Web Tools GPTs
         }
+      }
+      // Extra boost: if our GPT matches the search at all, push it above third-party equivalents
+      if (isOurGPT && matched) {
+        score += 8000;
       }
 
       // INTELLIGENT TASK-BASED SCORING: Boost tools that match detected user tasks
