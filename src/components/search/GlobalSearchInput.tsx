@@ -54,9 +54,11 @@ const GlobalSearchInput = memo(({
       }
 
       // Defer search work until AFTER paint to avoid "letters lag"
+      // Use progressively longer delay for longer queries to keep typing buttery smooth
+      const delay = next.length > 20 ? 80 : next.length > 10 ? 30 : 0;
       searchUpdateRef.current = window.setTimeout(() => {
         onSearchChange(next);
-      }, 0);
+      }, delay);
     },
     [onSearchChange]
   );
