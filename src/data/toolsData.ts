@@ -441,7 +441,10 @@ const allToolCategories = consolidateTools([
   ...toolifyBatch2026B8,
 
   // Toolify Batch 2026 B9 (22 tools: Bright Data, Limecube, Loamly, Jet Admin, Rankpilot, SongR, TurboScribe, PicLumen, WriteHuman, Trickle Magic Canvas, Floyo, Adsturbo, SlidesGPT, Vocol AI, Redesignr AI, Nume, LINER AI, SocialDude, Chaindesk, Samurai AI, StoryNest.ai, CometAPI)
-  ...toolifyBatch2026B9
+  ...toolifyBatch2026B9,
+
+  // Toolify Batch 2026 B10 (22 tools: FalcoCut, MyEdit, IdeaApe, OutlierKit, Korgi, Rezzy, Medeo, Feen AI, ZOER, ImgCreator.AI, ArtGuru, MotionExcel, DeepBrain AI, ChatUp AI, Polymer DSPM, Vectorizer.AI, X-Pilot, Dewy Chat, Hemleion, VidGuru, InVidiai, Pixcap)
+  ...toolifyBatch2026B10
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories
