@@ -8,9 +8,7 @@ import {
   Volume2
 } from "lucide-react";
 
-import amazonAlexaHero from "@/assets/tools/amazon-alexa-hero.jpg";
-import googleAssistantHero from "@/assets/tools/google-assistant-hero.jpg";
-import appleSiriHero from "@/assets/tools/apple-siri-hero.jpg";
+// Removed: amazonAlexaHero, googleAssistantHero, appleSiriHero - native phone assistants removed
 import voiceflowHero from "@/assets/tools/voiceflow-hero.jpg";
 import dialogflowHero from "@/assets/tools/dialogflow-hero.jpg";
 

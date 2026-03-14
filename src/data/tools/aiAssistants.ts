@@ -30,10 +30,7 @@ import {
 import githubCopilotHero from "@/assets/tools/github-copilot-hero.jpg";
 import tabnineHero from "@/assets/tools/tabnine-hero.jpg";
 import openaiCodexHero from "@/assets/tools/openai-codex-hero.jpg";
-import siriHero from "@/assets/tools/siri-hero.jpg";
-import googleAssistantHero from "@/assets/tools/google-assistant-hero.jpg";
-import amazonAlexaHero from "@/assets/tools/amazon-alexa-hero.jpg";
-import cortanaHero from "@/assets/tools/cortana-hero.jpg";
+// Removed: siriHero, googleAssistantHero, amazonAlexaHero, cortanaHero - native phone assistants removed
 import otterAiHero from "@/assets/tools/otter-ai-hero.jpg";
 import notionAiHero from "@/assets/tools/notion-ai-hero.jpg";
 import grammarlyHero from "@/assets/tools/grammarly-hero.jpg";
