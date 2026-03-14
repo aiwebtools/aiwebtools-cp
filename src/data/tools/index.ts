@@ -518,3 +518,6 @@ export { toolifyBatch2026B11 } from './toolifyBatch2026B11';
 
 // Export Toolify Batch 2026 B12 (11 tools: Code Arena, Moltbook, Duck.ai, Use AI, RentAHuman.ai, Chaport, Mureka, WizGenerator, Zara AI Recruiter, Studocu, Course Hero)
 export { toolifyBatch2026B12 } from './toolifyBatch2026B12';
+
+// Export Toolify Batch 2026 B13 (12 tools: Clawdbot, Dokie AI, ParakeetAI, Postel, Browser Cash, Viyou AI, VideoCompress, Revvie AI, FLORA AI, Nana Banana AI, Mammouth, Videoinu)
+export { toolifyBatch2026B13 } from './toolifyBatch2026B13';

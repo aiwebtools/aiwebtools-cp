@@ -30,10 +30,7 @@ import {
 import githubCopilotHero from "@/assets/tools/github-copilot-hero.jpg";
 import tabnineHero from "@/assets/tools/tabnine-hero.jpg";
 import openaiCodexHero from "@/assets/tools/openai-codex-hero.jpg";
-import siriHero from "@/assets/tools/siri-hero.jpg";
-import googleAssistantHero from "@/assets/tools/google-assistant-hero.jpg";
-import amazonAlexaHero from "@/assets/tools/amazon-alexa-hero.jpg";
-import cortanaHero from "@/assets/tools/cortana-hero.jpg";
+// Removed: siriHero, googleAssistantHero, amazonAlexaHero, cortanaHero - native phone assistants removed
 import otterAiHero from "@/assets/tools/otter-ai-hero.jpg";
 import notionAiHero from "@/assets/tools/notion-ai-hero.jpg";
 import grammarlyHero from "@/assets/tools/grammarly-hero.jpg";
@@ -143,58 +140,7 @@ export const aiAssistants: Tool[] = [
     rating: 4.7,
     totalVotes: 5432
   },
-  {
-    icon: Bot,
-    title: "Siri",
-    description: "Apple's voice-activated AI assistant for iOS, macOS, and other Apple devices.",
-    emoji: "🍎",
-    color: "from-blue-500 to-indigo-600",
-    directUrl: "https://apple.com/siri",
-    imageUrl: siriHero,
-    category: "AI Voice Assistants",
-    tags: ["Voice Agent", "voice assistant", "ios", "apple", "smart home", "agent"],
-    rating: 4.2,
-    totalVotes: 8950
-  },
-  {
-    icon: MessageSquare,
-    title: "Google Assistant",
-    description: "Google's AI-powered virtual assistant available across multiple platforms and devices.",
-    emoji: "🎯",
-    color: "from-green-500 to-blue-600",
-    directUrl: "https://assistant.google.com",
-    imageUrl: googleAssistantHero,
-    category: "AI Voice Assistants",
-    tags: ["Voice Agent", "voice assistant", "google", "smart home", "android", "agent"],
-    rating: 4.3,
-    totalVotes: 11200
-  },
-  {
-    icon: Mic,
-    title: "Alexa",
-    description: "Amazon's voice-controlled AI assistant for Echo devices and smart home integration.",
-    emoji: "🔊",
-    color: "from-orange-500 to-blue-600",
-    directUrl: "https://alexa.amazon.com",
-    imageUrl: amazonAlexaHero,
-    category: "AI Voice Assistants",
-    tags: ["Voice Agent", "voice assistant", "amazon", "echo", "smart home", "agent"],
-    rating: 4.1,
-    totalVotes: 9780
-  },
-  {
-    icon: Calendar,
-    title: "Cortana",
-    description: "Microsoft's AI assistant integrated with Windows and Office productivity suite.",
-    emoji: "🪟",
-    color: "from-blue-500 to-purple-600",
-    directUrl: "https://cortana.microsoft.com",
-    imageUrl: cortanaHero,
-    category: "AI Voice Assistants",
-    tags: ["Voice Agent", "Productivity Agent", "voice assistant", "microsoft", "windows", "productivity", "agent"],
-    rating: 3.8,
-    totalVotes: 5670
-  },
+  // Removed: Siri, Google Assistant, Alexa, Cortana - native phone/device assistants, not standalone AI tools
   {
     icon: Mail,
     title: "Otter.ai",
