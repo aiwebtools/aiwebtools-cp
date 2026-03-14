@@ -453,7 +453,10 @@ const allToolCategories = consolidateTools([
   ...toolifyBatch2026B11,
 
   // Toolify Batch 2026 B12 (11 tools: Code Arena, Moltbook, Duck.ai, Use AI, RentAHuman.ai, Chaport, Mureka, WizGenerator, Zara AI Recruiter, Studocu, Course Hero)
-  ...toolifyBatch2026B12
+  ...toolifyBatch2026B12,
+
+  // Toolify Batch 2026 B13 (12 tools: Clawdbot, Dokie AI, ParakeetAI, Postel, Browser Cash, Viyou AI, VideoCompress, Revvie AI, FLORA AI, Nana Banana AI, Mammouth, Videoinu)
+  ...toolifyBatch2026B13
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories
