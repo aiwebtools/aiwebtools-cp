@@ -209,6 +209,7 @@ import { toolifyBatch2026B10 } from "./tools/toolifyBatch2026B10";
 import { toolifyBatch2026B11 } from "./tools/toolifyBatch2026B11";
 import { toolifyBatch2026B12 } from "./tools/toolifyBatch2026B12";
 import { toolifyBatch2026B13 } from "./tools/toolifyBatch2026B13";
+import { toolifyBatch2026B14 } from "./tools/toolifyBatch2026B14";
 
 const allToolCategories = consolidateTools([
   ...getAllToolCategories(),
@@ -456,7 +457,10 @@ const allToolCategories = consolidateTools([
   ...toolifyBatch2026B12,
 
   // Toolify Batch 2026 B13 (12 tools: Clawdbot, Dokie AI, ParakeetAI, Postel, Browser Cash, Viyou AI, VideoCompress, Revvie AI, FLORA AI, Nana Banana AI, Mammouth, Videoinu)
-  ...toolifyBatch2026B13
+  ...toolifyBatch2026B13,
+
+  // Toolify Batch 2026 B14 (10 tools: WeShop, Pencil, Kula AI, Atoms, Typeframes, Crisp, Dubverse, Marblism, Yutori Scouts, Kimi Slides)
+  ...toolifyBatch2026B14
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories

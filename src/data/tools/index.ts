@@ -521,3 +521,6 @@ export { toolifyBatch2026B12 } from './toolifyBatch2026B12';
 
 // Export Toolify Batch 2026 B13 (12 tools: Clawdbot, Dokie AI, ParakeetAI, Postel, Browser Cash, Viyou AI, VideoCompress, Revvie AI, FLORA AI, Nana Banana AI, Mammouth, Videoinu)
 export { toolifyBatch2026B13 } from './toolifyBatch2026B13';
+
+// Export Toolify Batch 2026 B14 (10 tools: WeShop, Pencil, Kula AI, Atoms, Typeframes, Crisp, Dubverse, Marblism, Yutori Scouts, Kimi Slides)
+export { toolifyBatch2026B14 } from './toolifyBatch2026B14';
