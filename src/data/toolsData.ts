@@ -209,6 +209,7 @@ import { toolifyBatch2026B10 } from "./tools/toolifyBatch2026B10";
 import { toolifyBatch2026B11 } from "./tools/toolifyBatch2026B11";
 import { toolifyBatch2026B12 } from "./tools/toolifyBatch2026B12";
 import { toolifyBatch2026B13 } from "./tools/toolifyBatch2026B13";
+import { toolifyBatch2026B14 } from "./tools/toolifyBatch2026B14";
 
 const allToolCategories = consolidateTools([
   ...getAllToolCategories(),
