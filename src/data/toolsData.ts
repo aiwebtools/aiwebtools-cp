@@ -461,7 +461,10 @@ const allToolCategories = consolidateTools([
   ...toolifyBatch2026B13,
 
   // Toolify Batch 2026 B14 (10 tools: WeShop, Pencil, Kula AI, Atoms, Typeframes, Crisp, Dubverse, Marblism, Yutori Scouts, Kimi Slides)
-  ...toolifyBatch2026B14
+  ...toolifyBatch2026B14,
+
+  // Toolify Batch 2026 B15 (24 tools: Sondo AI, Musicful, ElevenLabs Music, DistroKid, Higgsfield, Wanderboat AI, Stitch, Raccoon AI, Morph Studio, Memories.ai, Astra AI, PlantIn, Knowt, Weavy, Skywork.ai, Kiro, GPT Researcher, HiFun, Flash.co, Studydrive, Google Antigravity, Stackie.AI, Sitefire, Listen Labs)
+  ...toolifyBatch2026B15
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories
