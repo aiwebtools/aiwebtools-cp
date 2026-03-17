@@ -211,6 +211,7 @@ import { toolifyBatch2026B12 } from "./tools/toolifyBatch2026B12";
 import { toolifyBatch2026B13 } from "./tools/toolifyBatch2026B13";
 import { toolifyBatch2026B14 } from "./tools/toolifyBatch2026B14";
 import { toolifyBatch2026B15 } from "./tools/toolifyBatch2026B15";
+import { toolifyBatch2026B16 } from "./tools/toolifyBatch2026B16";
 
 const allToolCategories = consolidateTools([
   ...getAllToolCategories(),
@@ -464,7 +465,10 @@ const allToolCategories = consolidateTools([
   ...toolifyBatch2026B14,
 
   // Toolify Batch 2026 B15 (24 tools: Sondo AI, Musicful, ElevenLabs Music, DistroKid, Higgsfield, Wanderboat AI, Stitch, Raccoon AI, Morph Studio, Memories.ai, Astra AI, PlantIn, Knowt, Weavy, Skywork.ai, Kiro, GPT Researcher, HiFun, Flash.co, Studydrive, Google Antigravity, Stackie.AI, Sitefire, Listen Labs)
-  ...toolifyBatch2026B15
+  ...toolifyBatch2026B15,
+
+  // Toolify Batch 2026 B16 (25 tools: Pollo AI, RevisionDojo, Typecast AI, Sider AI, Napkin AI, Gamma AI, PromeAI, ThumbnailCreator, EverMemOS, Trae, Bolt.new, Devin AI, Beautiful.ai, Tome, Pictory, Luma AI, Monica AI, Merlin AI, MaxAI, Harpa AI, i10X, Rubii, Miro AI, Notion AI, Cuty AI)
+  ...toolifyBatch2026B16
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories

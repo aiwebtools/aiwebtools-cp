@@ -527,3 +527,6 @@ export { toolifyBatch2026B14 } from './toolifyBatch2026B14';
 
 // Export Toolify Batch 2026 B15 (24 tools: Sondo AI, Musicful, ElevenLabs Music, DistroKid, Higgsfield, Wanderboat AI, Stitch, Raccoon AI, Morph Studio, Memories.ai, Astra AI, PlantIn, Knowt, Weavy, Skywork.ai, Kiro, GPT Researcher, HiFun, Flash.co, Studydrive, Google Antigravity, Stackie.AI, Sitefire, Listen Labs)
 export { toolifyBatch2026B15 } from './toolifyBatch2026B15';
+
+// Export Toolify Batch 2026 B16 (25 tools: Pollo AI, RevisionDojo, Typecast AI, Sider AI, Napkin AI, Gamma AI, PromeAI, ThumbnailCreator, EverMemOS, Trae, Bolt.new, Devin AI, Beautiful.ai, Tome, Pictory, Luma AI, Monica AI, Merlin AI, MaxAI, Harpa AI, i10X, Rubii, Miro AI, Notion AI, Cuty AI)
+export { toolifyBatch2026B16 } from './toolifyBatch2026B16';
