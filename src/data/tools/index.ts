@@ -530,3 +530,6 @@ export { toolifyBatch2026B15 } from './toolifyBatch2026B15';
 
 // Export Toolify Batch 2026 B16 (25 tools: Pollo AI, RevisionDojo, Typecast AI, Sider AI, Napkin AI, Gamma AI, PromeAI, ThumbnailCreator, EverMemOS, Trae, Bolt.new, Devin AI, Beautiful.ai, Tome, Pictory, Luma AI, Monica AI, Merlin AI, MaxAI, Harpa AI, i10X, Rubii, Miro AI, Notion AI, Cuty AI)
 export { toolifyBatch2026B16 } from './toolifyBatch2026B16';
+
+// Export Toolify Batch 2026 B17 (25 tools: Seedance 2.0, Genspark, ZeroGPT, Manus, Base44, Emergent, Fathom 2.0, Cognito, Packback, Coddy, PixelBin.io, Otter AI, MathGPT, Veo Sports Camera, Tilda Publishing, Polsia, Semantic Scholar, Gizmo AI, Phrasly, MaxClaw, Prezi, Accio, Answer Overflow, Type AI, Video Transcriber AI)
+export { toolifyBatch2026B17 } from './toolifyBatch2026B17';
