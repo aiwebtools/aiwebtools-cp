@@ -213,6 +213,8 @@ import { toolifyBatch2026B14 } from "./tools/toolifyBatch2026B14";
 import { toolifyBatch2026B15 } from "./tools/toolifyBatch2026B15";
 import { toolifyBatch2026B16 } from "./tools/toolifyBatch2026B16";
 import { toolifyBatch2026B17 } from "./tools/toolifyBatch2026B17";
+import { toolifyBatch2026B18 } from "./tools/toolifyBatch2026B18";
+import { toolifyBatch2026B19 } from "./tools/toolifyBatch2026B19";
 
 const allToolCategories = consolidateTools([
   ...getAllToolCategories(),
@@ -472,7 +474,10 @@ const allToolCategories = consolidateTools([
   ...toolifyBatch2026B16,
 
   // Toolify Batch 2026 B17 (25 tools: Seedance 2.0, Genspark, ZeroGPT, Manus, Base44, Emergent, Fathom 2.0, Cognito, Packback, Coddy, PixelBin.io, Otter AI, MathGPT, Veo Sports Camera, Tilda Publishing, Polsia, Semantic Scholar, Gizmo AI, Phrasly, MaxClaw, Prezi, Accio, Answer Overflow, Type AI, Video Transcriber AI)
-  ...toolifyBatch2026B17
+  ...toolifyBatch2026B17,
+
+  // Toolify Batch 2026 B18 (25 tools: OpenSwarm, Enia Code, Vercel Agent Browser, ZeroClaw, ScienceClaw, OpenBrowserClaw, ClawTank, Van Gogh AI, Together AI, LiveKit Agents, Retune, UBOS, Tabby, Julep AI, BrowserBird, Instructor, Marvin AI, ControlFlow, On-Device Browser Agent, AgentDesk, Agent Harness, Weights & Biases, Anyscale, Potpie AI, Faros AI)
+  ...toolifyBatch2026B18
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories
