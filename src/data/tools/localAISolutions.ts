@@ -1,9 +1,10 @@
 
 import { Tool } from "@/types/tools";
 import { 
-  Cpu, Download, Brain
+  Cpu, Download, Brain, Smartphone
 } from "lucide-react";
 import ollamaHero from "@/assets/tools/ollama-hero.jpg";
+import pocketpalAiHero from "@/assets/tools/pocketpal-ai-hero.jpg";
 
 export const localAISolutions: Tool[] = [
   {
@@ -57,5 +58,19 @@ export const localAISolutions: Tool[] = [
     category: "Local AI Solutions",
     rating: 4.8,
     totalVotes: 5678
+  },
+  {
+    icon: Smartphone,
+    title: "PocketPal AI – Mobile Offline AI",
+    description: "Run powerful AI language models directly on your phone with complete privacy — no cloud, no internet required. Supports GGUF models from Hugging Face, works 100% offline on both Android and iOS. Over 1.2 million downloads worldwide. Open source and fully transparent.",
+    emoji: "📱",
+    color: "from-cyan-500 to-blue-600",
+    directUrl: "https://play.google.com/store/apps/details?id=com.pocketpalai",
+    imageUrl: pocketpalAiHero,
+    tags: ["local AI", "mobile AI", "offline AI", "Android", "iOS", "privacy", "local models", "LLM", "on-device AI", "Hugging Face", "GGUF", "open source", "mobile app", "phone AI", "pocket AI"],
+    category: "Local AI Solutions",
+    rating: 4.6,
+    totalVotes: 4890,
+    tagline: "AI in your pocket — no internet, no cloud, no compromise"
   }
 ];
