@@ -477,7 +477,10 @@ const allToolCategories = consolidateTools([
   ...toolifyBatch2026B17,
 
   // Toolify Batch 2026 B18 (25 tools: OpenSwarm, Enia Code, Vercel Agent Browser, ZeroClaw, ScienceClaw, OpenBrowserClaw, ClawTank, Van Gogh AI, Together AI, LiveKit Agents, Retune, UBOS, Tabby, Julep AI, BrowserBird, Instructor, Marvin AI, ControlFlow, On-Device Browser Agent, AgentDesk, Agent Harness, Weights & Biases, Anyscale, Potpie AI, Faros AI)
-  ...toolifyBatch2026B18
+  ...toolifyBatch2026B18,
+
+  // Toolify Batch 2026 B19 (25 tools: Groq, Lindy AI, Windsurf, Cline, Aider, Glean, Stagehand, Browserbase, Supermaven, Amazon Q Developer, Qodo, Augment Code, JetBrains AI, v0 by Vercel, Pieces, Continue, AgentDiscuss, Banyan AI, AI Auto Browser, Cody AI, Tusk AI, Codestory, Opera Browser AI, Wordware, CodeRabbit)
+  ...toolifyBatch2026B19
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories
