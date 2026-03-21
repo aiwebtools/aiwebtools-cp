@@ -539,3 +539,6 @@ export { toolifyBatch2026B18 } from './toolifyBatch2026B18';
 
 // Export Toolify Batch 2026 B19 (25 tools: Groq, Lindy AI, Windsurf, Cline, Aider, Glean, Stagehand, Browserbase, Supermaven, Amazon Q Developer, Qodo, Augment Code, JetBrains AI, v0 by Vercel, Pieces for Developers, Continue, AgentDiscuss, Banyan AI, AI Auto Browser, Cody AI, Tusk AI, Codestory, Opera Browser AI, Wordware, CodeRabbit)
 export { toolifyBatch2026B19 } from './toolifyBatch2026B19';
+
+// Export Toolify Batch 2026 B20 (25 tools: Mastra, CrewAI, Mem0, Meshy, OpusClip, Recraft, MAI-Image-2, ComfyUI, RunComfy, fal.ai, Lovable, Tempo Labs, Greptile, Cosine Genie, Val Town, Marimo, Firecrawl, Trigger.dev, Inngest, Cal.com, Raycast, Arc Browser, Jan, tldraw, Perfectly)
+export { toolifyBatch2026B20 } from './toolifyBatch2026B20';

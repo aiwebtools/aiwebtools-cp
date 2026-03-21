@@ -215,6 +215,7 @@ import { toolifyBatch2026B16 } from "./tools/toolifyBatch2026B16";
 import { toolifyBatch2026B17 } from "./tools/toolifyBatch2026B17";
 import { toolifyBatch2026B18 } from "./tools/toolifyBatch2026B18";
 import { toolifyBatch2026B19 } from "./tools/toolifyBatch2026B19";
+import { toolifyBatch2026B20 } from "./tools/toolifyBatch2026B20";
 
 const allToolCategories = consolidateTools([
   ...getAllToolCategories(),
@@ -480,7 +481,10 @@ const allToolCategories = consolidateTools([
   ...toolifyBatch2026B18,
 
   // Toolify Batch 2026 B19 (25 tools: Groq, Lindy AI, Windsurf, Cline, Aider, Glean, Stagehand, Browserbase, Supermaven, Amazon Q Developer, Qodo, Augment Code, JetBrains AI, v0 by Vercel, Pieces, Continue, AgentDiscuss, Banyan AI, AI Auto Browser, Cody AI, Tusk AI, Codestory, Opera Browser AI, Wordware, CodeRabbit)
-  ...toolifyBatch2026B19
+  ...toolifyBatch2026B19,
+
+  // Toolify Batch 2026 B20 (25 tools: Mastra, CrewAI, Mem0, Meshy, OpusClip, Recraft, MAI-Image-2, ComfyUI, RunComfy, fal.ai, Lovable, Tempo Labs, Greptile, Cosine Genie, Val Town, Marimo, Firecrawl, Trigger.dev, Inngest, Cal.com, Raycast, Arc Browser, Jan, tldraw, Perfectly)
+  ...toolifyBatch2026B20
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories
