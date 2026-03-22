@@ -485,7 +485,10 @@ const allToolCategories = consolidateTools([
   ...toolifyBatch2026B19,
 
   // Toolify Batch 2026 B20 (25 tools: Mastra, CrewAI, Mem0, Meshy, OpusClip, Recraft, MAI-Image-2, ComfyUI, RunComfy, fal.ai, Lovable, Tempo Labs, Greptile, Cosine Genie, Val Town, Marimo, Firecrawl, Trigger.dev, Inngest, Cal.com, Raycast, Arc Browser, Jan, tldraw, Perfectly)
-  ...toolifyBatch2026B20
+  ...toolifyBatch2026B20,
+
+  // Toolify Batch 2026 B21 (25 tools: Chronicle, Tango, tl;dv, LMNT, Loom AI, SimilarWeb, SpyFu, PhantomBuster, Mangools, Coda AI, Linear, Height AI, Fellow, Spinach AI, Jamie AI, Genially, Mentimeter, Amie, Todoist AI, Supernormal, Screenpipe, Labelbox, Snorkel AI, DagsHub, Hunchly)
+  ...toolifyBatch2026B21
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories

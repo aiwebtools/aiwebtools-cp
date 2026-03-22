@@ -542,3 +542,6 @@ export { toolifyBatch2026B19 } from './toolifyBatch2026B19';
 
 // Export Toolify Batch 2026 B20 (25 tools: Mastra, CrewAI, Mem0, Meshy, OpusClip, Recraft, MAI-Image-2, ComfyUI, RunComfy, fal.ai, Lovable, Tempo Labs, Greptile, Cosine Genie, Val Town, Marimo, Firecrawl, Trigger.dev, Inngest, Cal.com, Raycast, Arc Browser, Jan, tldraw, Perfectly)
 export { toolifyBatch2026B20 } from './toolifyBatch2026B20';
+
+// Export Toolify Batch 2026 B21 (25 tools: Chronicle, Tango, tl;dv, LMNT, Loom AI, SimilarWeb, SpyFu, PhantomBuster, Mangools, Coda AI, Linear, Height AI, Fellow, Spinach AI, Jamie AI, Genially, Mentimeter, Amie, Todoist AI, Supernormal, Screenpipe, Labelbox, Snorkel AI, DagsHub, Hunchly)
+export { toolifyBatch2026B21 } from './toolifyBatch2026B21';
