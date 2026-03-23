@@ -545,3 +545,6 @@ export { toolifyBatch2026B20 } from './toolifyBatch2026B20';
 
 // Export Toolify Batch 2026 B21 (25 tools: Chronicle, Tango, tl;dv, LMNT, Loom AI, SimilarWeb, SpyFu, PhantomBuster, Mangools, Coda AI, Linear, Height AI, Fellow, Spinach AI, Jamie AI, Genially, Mentimeter, Amie, Todoist AI, Supernormal, Screenpipe, Labelbox, Snorkel AI, DagsHub, Hunchly)
 export { toolifyBatch2026B21 } from './toolifyBatch2026B21';
+
+// Export Apocalypse Survival Batch 2026 (25 tools: Project NOMAD, Kiwix, OsmAnd, Organic Maps, Meshtastic, Briar, Zello, Bunkers App, Offline Survival Manual, Private LLM, Windy, KoBoToolbox, MAPS.ME, Bridgefy, Red Cross First Aid, what3words, Avenza Maps, iNaturalist, PlantNet, Star Walk, Outdooractive, KoboldCPP, LocalSend, Syncthing, Gaia GPS)
+export { apocalypseSurvivalBatch2026 } from './apocalypseSurvivalBatch2026';
