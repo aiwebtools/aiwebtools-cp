@@ -488,7 +488,10 @@ const allToolCategories = consolidateTools([
   ...toolifyBatch2026B20,
 
   // Toolify Batch 2026 B21 (25 tools: Chronicle, Tango, tl;dv, LMNT, Loom AI, SimilarWeb, SpyFu, PhantomBuster, Mangools, Coda AI, Linear, Height AI, Fellow, Spinach AI, Jamie AI, Genially, Mentimeter, Amie, Todoist AI, Supernormal, Screenpipe, Labelbox, Snorkel AI, DagsHub, Hunchly)
-  ...toolifyBatch2026B21
+  ...toolifyBatch2026B21,
+
+  // Apocalypse Survival Batch 2026 (25 tools: Project NOMAD, Kiwix, OsmAnd, Organic Maps, Meshtastic, Briar, Zello, Bunkers App, Offline Survival Manual, Private LLM, Windy, KoBoToolbox, MAPS.ME, Bridgefy, Red Cross First Aid, what3words, Avenza Maps, iNaturalist, PlantNet, Star Walk, Outdooractive, KoboldCPP, LocalSend, Syncthing, Gaia GPS)
+  ...apocalypseSurvivalBatch2026
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories
