@@ -218,6 +218,7 @@ import { toolifyBatch2026B19 } from "./tools/toolifyBatch2026B19";
 import { toolifyBatch2026B20 } from "./tools/toolifyBatch2026B20";
 import { toolifyBatch2026B21 } from "./tools/toolifyBatch2026B21";
 import { apocalypseSurvivalBatch2026 } from "./tools/apocalypseSurvivalBatch2026";
+import { apocalypseSurvivalBatch2026B2 } from "./tools/apocalypseSurvivalBatch2026B2";
 
 const allToolCategories = consolidateTools([
   ...getAllToolCategories(),
