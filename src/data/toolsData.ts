@@ -492,7 +492,10 @@ const allToolCategories = consolidateTools([
   ...toolifyBatch2026B21,
 
   // Apocalypse Survival Batch 2026 (25 tools: Project NOMAD, Kiwix, OsmAnd, Organic Maps, Meshtastic, Briar, Zello, Bunkers App, Offline Survival Manual, Private LLM, Windy, KoBoToolbox, MAPS.ME, Bridgefy, Red Cross First Aid, what3words, Avenza Maps, iNaturalist, PlantNet, Star Walk, Outdooractive, KoboldCPP, LocalSend, Syncthing, Gaia GPS)
-  ...apocalypseSurvivalBatch2026
+  ...apocalypseSurvivalBatch2026,
+
+  // Apocalypse Survival Batch 2026 B2 (25 tools: HAVEN, PrepGPT, BunkerVault, Survival AI: The Ark, Trail Sense, AllTrails, FEMA App, APRSdroid, PinPoint APRS, Tails OS, F-Droid, llama.cpp, Prepper AI, Komoot, Locus Map, BackCountry Navigator, Knots 3D, CHIRP Radio, Cairn, Emergency Alerts, SAS Survival Guide, Garmin Explore, Open Camera, Morse Mania, PeakVisor)
+  ...apocalypseSurvivalBatch2026B2
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories
