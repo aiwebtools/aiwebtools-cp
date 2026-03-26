@@ -686,10 +686,14 @@ const FunnyQuotesRotator = memo(() => {
       aria-hidden="true"
     >
       <p
-        className={`text-xs sm:text-sm text-muted-foreground/70 italic text-center will-change-transform transition-all duration-300 leading-tight ${
-          isVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2"
-        }`}
-        style={{ contain: 'style paint' }}
+        className="text-xs sm:text-sm text-muted-foreground/70 italic text-center leading-tight"
+        style={{ 
+          contain: 'style paint',
+          opacity: isVisible ? 1 : 0,
+          transform: isVisible ? 'translateY(0)' : 'translateY(-8px)',
+          transition: 'opacity 0.3s ease-out, transform 0.3s ease-out',
+          willChange: 'opacity, transform'
+        }}
       >
         {shuffledQuotes[currentIndex]}
       </p>

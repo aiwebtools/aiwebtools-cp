@@ -1,4 +1,4 @@
-import { useState, useEffect, memo } from "react";
+import { useState, useEffect, memo, useRef } from "react";
 import { Sparkles } from "lucide-react";
 
 const loadingMessages = [
@@ -50,6 +50,7 @@ const LoadingScreen = memo(() => {
   const [messageIndex, setMessageIndex] = useState(() =>
     Math.floor(Math.random() * loadingMessages.length)
   );
+  const [progress, setProgress] = useState(0);
 
   // Rotate messages via JS (lightweight, won't freeze visuals)
   useEffect(() => {
@@ -57,6 +58,22 @@ const LoadingScreen = memo(() => {
       setMessageIndex(prev => (prev + 1) % loadingMessages.length);
     }, 1500);
     return () => clearInterval(id);
+  }, []);
+
+  // JS-driven progress counter for universal browser support
+  // (CSS content animation doesn't work in all browsers)
+  useEffect(() => {
+    const start = performance.now();
+    const duration = 1200; // Match CSS progress bar duration
+    let raf: number;
+    const tick = () => {
+      const elapsed = performance.now() - start;
+      const pct = Math.min(100, Math.round((elapsed / duration) * 100));
+      setProgress(pct);
+      if (pct < 100) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
   }, []);
 
   return (
@@ -104,10 +121,13 @@ const LoadingScreen = memo(() => {
         />
       </div>
 
+      {/* JS-driven percentage for universal browser support */}
       <div
-        className="mt-4 text-green-400 font-mono text-lg tracking-wider font-bold loading-progress-text"
+        className="mt-4 text-green-400 font-mono text-lg tracking-wider font-bold"
         style={{ textShadow: '0 0 10px rgba(34, 197, 94, 0.8)' }}
-      />
+      >
+        {progress}%
+      </div>
     </div>
   );
 });

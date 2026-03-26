@@ -2324,7 +2324,7 @@ export const useGlobalSearch = () => {
 
         setSearchResults(spreadResults);
         setDisplayedCount(50);
-      }, 50); // 50ms debounce - ultra fast refinement
+      }, isRapidTyping ? 120 : 50); // Adaptive debounce: 120ms for rapid typing, 50ms normal
     }
   }, [quickSearch]);
   
