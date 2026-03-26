@@ -1939,6 +1939,7 @@ export const useGlobalSearch = () => {
   const searchIdRef = useRef(0);
   const quickRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const fullRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const lastInputTimeRef = useRef(0);
 
   // INSTANT typing - defer ALL search work so input never blocks
   const setSearchTerm = useCallback((value: string) => {
