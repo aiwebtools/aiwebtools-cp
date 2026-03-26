@@ -220,6 +220,7 @@ import { toolifyBatch2026B21 } from "./tools/toolifyBatch2026B21";
 import { apocalypseSurvivalBatch2026 } from "./tools/apocalypseSurvivalBatch2026";
 import { apocalypseSurvivalBatch2026B2 } from "./tools/apocalypseSurvivalBatch2026B2";
 import { researchedToolsBatch2026 } from "./tools/researchedToolsBatch2026";
+import { newVerifiedBatch2026 } from "./tools/newVerifiedBatch2026";
 
 const allToolCategories = consolidateTools([
   ...getAllToolCategories(),
@@ -497,7 +498,13 @@ const allToolCategories = consolidateTools([
   ...apocalypseSurvivalBatch2026,
 
   // Apocalypse Survival Batch 2026 B2 (25 tools: HAVEN, PrepGPT, BunkerVault, Survival AI: The Ark, Trail Sense, AllTrails, FEMA App, APRSdroid, PinPoint APRS, Tails OS, F-Droid, llama.cpp, Prepper AI, Komoot, Locus Map, BackCountry Navigator, Knots 3D, CHIRP Radio, Cairn, Emergency Alerts, SAS Survival Guide, Garmin Explore, Open Camera, Morse Mania, PeakVisor)
-  ...apocalypseSurvivalBatch2026B2
+  ...apocalypseSurvivalBatch2026B2,
+
+  // Researched Tools Batch 2026 (10 tools: Rask AI, Typeface AI, Coframe, Collov AI, ScreenApp, Vizcom, RenderNet AI, Delphi AI, Stockimg AI, Exactly AI)
+  ...researchedToolsBatch2026,
+
+  // New Verified Batch 2026 (5 tools: Sim AI, AI Crucible, Twain AI, Twineo, CAMEL AI)
+  ...newVerifiedBatch2026
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories

@@ -554,3 +554,6 @@ export { apocalypseSurvivalBatch2026B2 } from './apocalypseSurvivalBatch2026B2';
 
 // Export Researched Tools Batch 2026 (10 tools: Rask AI, Typeface AI, Coframe, Collov AI, ScreenApp, Vizcom, RenderNet AI, Delphi AI, Stockimg AI, Exactly AI)
 export { researchedToolsBatch2026 } from './researchedToolsBatch2026';
+
+// Export New Verified Batch 2026 (5 tools: Sim AI, AI Crucible, Twain AI, Twineo, CAMEL AI)
+export { newVerifiedBatch2026 } from './newVerifiedBatch2026';
