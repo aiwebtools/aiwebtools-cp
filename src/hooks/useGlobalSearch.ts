@@ -1955,11 +1955,19 @@ export const useGlobalSearch = () => {
       setSearchResults([]);
       setIsOpen(false);
       setDisplayedCount(50);
+      lastInputTimeRef.current = 0;
       return;
     }
 
     setIsOpen(true);
     const currentId = ++searchIdRef.current;
+
+    // Detect rapid typing/deletion — add adaptive delay to prevent lag
+    const now = performance.now();
+    const timeSinceLastInput = now - lastInputTimeRef.current;
+    lastInputTimeRef.current = now;
+    const isRapidTyping = timeSinceLastInput < 80; // Rapid keystrokes < 80ms apart
+    const quickDelay = isRapidTyping ? 30 : 0; // Small delay for rapid input, instant otherwise
 
     // 3) Check cache FIRST - if hit, apply results in next frame (zero compute)
     const fullCacheKey = `${SEARCH_CACHE_VERSION}:full:${t.toLowerCase().trim()}`;
@@ -1975,13 +1983,13 @@ export const useGlobalSearch = () => {
     }
 
     // 4) Run quick search AFTER paint to prevent any typing lag
-    // (queueMicrotask was fast but could block rendering on slower devices)
+    // Adaptive delay: rapid typing gets 30ms batch, normal typing is instant
     quickRef.current = setTimeout(() => {
       if (currentId !== searchIdRef.current) return;
       const fast = quickSearch(t);
       setSearchResults(fast);
       setDisplayedCount(50);
-    }, 0);
+    }, quickDelay);
 
     // 5) Full intelligent ranking for 3+ chars - only 50ms debounce for near-instant refinement
     if (t.length >= 3) {
