@@ -501,7 +501,10 @@ const allToolCategories = consolidateTools([
   ...apocalypseSurvivalBatch2026B2,
 
   // Researched Tools Batch 2026 (10 tools: Rask AI, Typeface AI, Coframe, Collov AI, ScreenApp, Vizcom, RenderNet AI, Delphi AI, Stockimg AI, Exactly AI)
-  ...researchedToolsBatch2026
+  ...researchedToolsBatch2026,
+
+  // New Verified Batch 2026 (5 tools: Sim AI, AI Crucible, Twain AI, Twineo, CAMEL AI)
+  ...newVerifiedBatch2026
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories
