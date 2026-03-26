@@ -220,6 +220,7 @@ import { toolifyBatch2026B21 } from "./tools/toolifyBatch2026B21";
 import { apocalypseSurvivalBatch2026 } from "./tools/apocalypseSurvivalBatch2026";
 import { apocalypseSurvivalBatch2026B2 } from "./tools/apocalypseSurvivalBatch2026B2";
 import { researchedToolsBatch2026 } from "./tools/researchedToolsBatch2026";
+import { newVerifiedBatch2026 } from "./tools/newVerifiedBatch2026";
 
 const allToolCategories = consolidateTools([
   ...getAllToolCategories(),
