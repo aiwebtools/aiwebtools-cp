@@ -509,7 +509,10 @@ const allToolCategories = consolidateTools([
   ...newVerifiedBatch2026,
 
   // Medicus GPT (FREE Personal Medical GPT)
-  ...medicusGPT
+  ...medicusGPT,
+
+  // Hormuz Crisis Impact Prediction Engine GPT
+  ...hormuzCrisisGPT
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories

@@ -560,3 +560,6 @@ export { newVerifiedBatch2026 } from './newVerifiedBatch2026';
 
 // Export Medicus GPT (FREE Personal Medical GPT)
 export { medicusGPT } from './medicusGPT';
+
+// Export Hormuz Crisis Impact Prediction Engine GPT
+export { hormuzCrisisGPT } from './hormuzCrisisGPT';
