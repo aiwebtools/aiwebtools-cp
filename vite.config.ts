@@ -14,6 +14,7 @@ export default defineConfig(({ mode }) => ({
     react(),
     mode === 'development' &&
     componentTagger(),
+    mode === 'production' && viteOGManifest(),
   ].filter(Boolean),
   resolve: {
     alias: {
