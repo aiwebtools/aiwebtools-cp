@@ -57,6 +57,7 @@ const weightedShuffle = <T extends { title: string }>(items: T[]): T[] => {
     "FREE FARMING & COMMUNITY PLOTS FINDER GPT",
     // Self-Reliance & Empowerment
     "Self Sufficiency GPT", "Survivalist GPT", "FACT CHECKER GPT", "Fortune Teller GPT",
+    "Hormuz Crisis Impact Prediction Engine GPT",
     "Cyber Security GPT", "Probability GPT", "FOOD QUALITY INSPECTOR GPT",
     "Cannabis GPT", "MATERIAL VALUATION GPT (MATERIUMOR)", "COLLECTIBLES APPRAISAL GPT",
     "Artwork & Vintage Appraisal GPT", "Sport Card Appraisal GPT",
