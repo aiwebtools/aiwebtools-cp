@@ -15,7 +15,13 @@ const GAME_KEYWORDS = [
   'level design', 'game assets', 'game art', 'game graphics',
   'game audio', 'game music', 'game sound', 'game soundtrack',
   'playable', 'interactive', 'immersive', 'engaging gameplay',
-  'text to game', 'prompt to game', 'ai game', 'procedural generation'
+  'text to game', 'prompt to game', 'ai game', 'procedural generation',
+  'npc', 'npc ai', 'game character', 'game characters',
+  'text-to-game', 'no-code game', 'drag and drop game',
+  'skybox', '360 panorama', 'vr world', 'world generation',
+  'game ideation', 'game concept', 'gdd',
+  'ai dungeon', 'infinite craft', 'gameer', 'gdevelop', 'buildbox', 'construct',
+  'scenario', 'inworld', 'ludo ai', 'decart oasis'
 ];
 
 // Game-related tools and their variations
