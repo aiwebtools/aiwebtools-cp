@@ -139,16 +139,16 @@ export const hotNewBatch2026March: Tool[] = [
   },
   {
     icon: Megaphone,
-    title: "Omnia",
-    description: "Become the brand AI recommends. Omnia optimizes your digital presence so AI chatbots, search engines, and recommendation systems actively suggest your brand to users asking questions.",
-    emoji: "🎯",
+    title: "Jasper AI",
+    description: "Enterprise AI marketing platform for creating on-brand content at scale. Generate ads, blogs, social posts, and marketing copy with brand voice consistency and team collaboration.",
+    emoji: "✨",
     color: "from-purple-600 to-pink-600",
-    directUrl: "https://omniaresults.com/?via=aiwebtools",
+    directUrl: "https://www.jasper.ai/?via=aiwebtools",
     imageUrl: omniaHero,
-    tags: ["SEO", "AI Optimization", "Brand Marketing", "GEO", "Growth Hacking", "AI Discovery", "Digital Marketing"],
+    tags: ["AI Marketing", "Content Generation", "Brand Voice", "Copywriting", "Enterprise", "Team Collaboration", "Ads"],
     category: "Marketing & Sales",
-    rating: 4.6,
-    totalVotes: 1780
+    rating: 4.7,
+    totalVotes: 15800
   },
   {
     icon: MessageSquare,
