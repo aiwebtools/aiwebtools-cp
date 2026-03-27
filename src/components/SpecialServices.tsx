@@ -2075,6 +2075,16 @@ const featuredGPTsUnsorted = [
     emoji: "🔗"
   },
   {
+    title: "Hormuz Crisis Impact Prediction Engine GPT",
+    description: "Real-time oil crisis survival countdown by country, with shock-impact scenarios. Analyze how long nations could sustain if the Strait of Hormuz shut down.",
+    badge: "CRISIS PREDICTION",
+    color: "from-red-600 to-amber-700",
+    features: ["Oil Crisis Simulation", "Country Countdown", "Geopolitical Analysis", "Energy Disruption"],
+    directUrl: "https://chatgpt.com/g/g-69c5edc44cf481919bf1605933d97003-hormuz-crisis-impact-prediction-engine-gpt",
+    imageUrl: "/src/assets/tools/hormuz-crisis-gpt-hero.jpg",
+    emoji: "🛢️"
+  },
+  {
     title: "Home-Schooling Assistant GPT",
     description: "AI-powered assistant for homeschooling with state-specific legal guidance and educational resources.",
     badge: "HOMESCHOOL",
