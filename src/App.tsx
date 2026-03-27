@@ -79,13 +79,10 @@ const WelcomeNeoVoice = () => {
 // NOTE: precomputed category cache is initialized AFTER disclaimer acceptance
 // to keep the /welcome disclaimer gate load instant.
 
-// Lightweight page loader for Suspense - minimal to avoid clashing with HTML loader
+// Minimal page loader for Suspense — just a black screen, no second loading animation
+// Tools load near-instantly since chunks are small; this prevents white flash
 const PageLoader = () => (
-  <div className="min-h-screen bg-black flex items-center justify-center">
-    <div className="text-green-400 font-mono text-sm animate-pulse" style={{ textShadow: '0 0 10px rgba(34, 197, 94, 0.5)' }}>
-      Loading...
-    </div>
-  </div>
+  <div className="min-h-screen bg-black" />
 );
 
 const queryClient = new QueryClient({
