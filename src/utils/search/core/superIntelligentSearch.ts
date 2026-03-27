@@ -156,7 +156,17 @@ const PARTIAL_PATTERNS: Record<string, string[]> = {
   "develop": ["development", "developer"],
   "automation": ["automate", "automatic"],
   "communication": ["chat", "messaging"],
-  "productivity": ["productive", "efficiency"]
+  "productivity": ["productive", "efficiency"],
+  
+  // Crisis & Geopolitical
+  "hor": ["hormuz", "hormuz crisis"],
+  "horm": ["hormuz", "hormuz crisis"],
+  "hormu": ["hormuz", "hormuz crisis"],
+  "hormuz": ["hormuz crisis", "oil crisis", "strait of hormuz"],
+  "strait": ["strait of hormuz", "hormuz"],
+  "oil": ["oil crisis", "petroleum", "energy", "hormuz"],
+  "crisis": ["oil crisis", "hormuz crisis", "crisis prediction", "crisis management"],
+  "ormuz": ["hormuz", "hormuz crisis"]
 };
 
 // Advanced fuzzy matching with Levenshtein distance
