@@ -25,6 +25,11 @@ import elicitHero from "@/assets/tools/elicit-hero.jpg";
 import infiniteCraftHero from "@/assets/tools/infinite-craft-hero.jpg";
 import aiDungeonHero from "@/assets/tools/ai-dungeon-hero.jpg";
 import storiqueHero from "@/assets/tools/storique-hero.jpg";
+import scenarioHero from "@/assets/tools/scenario-hero.jpg";
+import meshyGameHero from "@/assets/tools/meshy-game-hero.jpg";
+import kaedimHero from "@/assets/tools/kaedim-hero.jpg";
+import inworldAiHero from "@/assets/tools/inworld-ai-hero.jpg";
+import thisPersonHero from "@/assets/tools/thispersondoesnotexist-hero.jpg";
 
 export const gameVR3DBatch2026: Tool[] = [
   // === TEXT-TO-GAME & GAME CREATION ===
