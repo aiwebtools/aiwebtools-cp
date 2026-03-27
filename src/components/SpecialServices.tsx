@@ -24,7 +24,7 @@ const weightedShuffle = <T extends { title: string }>(items: T[]): T[] => {
     "WE THE PEOPLE AI", "Public Testimony Writer GPT", "Legislation Writer GPT",
     "Social Safety Net GPT", "Global Peace Restoration GPT",
     // Health & Wellness
-    "Personalized DR. GPT (Doctor GPT)", "Mental Wellness GPT (CBT)", "VETERINARIAN GPT",
+    "Personalized DR. GPT (Doctor GPT)", "Medicus - the FREE Personal Medical GPT", "Mental Wellness GPT (CBT)", "VETERINARIAN GPT",
     "Dental GPT Expert", "Pharmaceutical Assistant GPT", "Historical Apothecary GPT",
     "Genome GPT", "Dream Interpreter GPT", "Friend GPT", "Marriage Mender GPT",
     // Content Creation & Writing
