@@ -465,36 +465,92 @@ export const taskToToolMapping: Record<string, { keywords: string[], priority: s
 
   // Medical Tasks
   'health_advice': {
-    keywords: ['health', 'medical', 'doctor', 'wellness', 'symptoms', 'diagnosis', 'medicine', 'healthcare'],
-    priority: ['Personalized DR. GPT (Doctor GPT)', 'Mental Wellness GPT', 'Veterinarian GPT', 'Pharmaceutical Assistant GPT'],
+    keywords: ['health', 'medical', 'doctor', 'wellness', 'symptoms', 'diagnosis', 'medicine', 'healthcare', 'sick', 'pain', 'illness', 'hospital', 'prescription', 'pharmacy', 'checkup'],
+    priority: ['Medicus - The FREE Personal Medical GPT', 'Personalized DR. GPT (Doctor GPT)', 'Mental Wellness GPT', 'Veterinarian GPT', 'Pharmaceutical Assistant GPT', 'PHARMA RESEARCH PRO', 'Genome GPT'],
     score: 2400
   },
 
   // Legal Tasks
   'legal_help': {
-    keywords: ['legal', 'law', 'lawyer', 'attorney', 'contract', 'legislation', 'legal advice', 'lawsuit'],
-    priority: ['Legal Draftsmith GPT', 'Public Defender GPT', 'Contract Review Bot', 'Legislation Writer GPT'],
+    keywords: ['legal', 'law', 'lawyer', 'attorney', 'contract', 'legislation', 'legal advice', 'lawsuit', 'court', 'defense', 'sue', 'rights', 'testimony'],
+    priority: ['Legal Draftsmith GPT', 'Public Defender GPT', 'Contract Review Bot', 'Legislation Writer GPT', 'Public Testimony Writer GPT'],
     score: 2300
   },
 
   // Financial Tasks
   'money_management': {
-    keywords: ['money', 'finance', 'investment', 'trading', 'budget', 'financial', 'wealth', 'savings', 'taxes'],
-    priority: ['Trader GPT', 'Taxes GPT', 'Insurance Claims GPT', 'Material Valuation GPT'],
+    keywords: ['money', 'finance', 'investment', 'trading', 'budget', 'financial', 'wealth', 'savings', 'taxes', 'credit', 'stock', 'crypto', 'bitcoin', 'portfolio'],
+    priority: ['Trader GPT', 'Taxes GPT', 'Insurance Claims GPT', 'MATERIAL VALUATION GPT (MATERIUMOR)', 'Predictive Credit Score Checker GPT'],
     score: 2200
   },
 
   // Entertainment Tasks
   'create_content': {
-    keywords: ['video', 'movie', 'music', 'entertainment', 'content creation', 'social media', 'youtube'],
-    priority: ['Movie Maker Studio AI SUITE', 'Music Video Maker AI Studio', 'Podcast Script Writer GPT'],
+    keywords: ['video', 'movie', 'music', 'entertainment', 'content creation', 'social media', 'youtube', 'film', 'cinema', 'trailer'],
+    priority: ['Movie Maker Studio AI SUITE', 'Music Video Maker AI Studio', 'Movie Script Writer GPT', 'Movie Scene Maker GPT', 'Podcast Script Writer GPT'],
     score: 2100
   },
 
   // Travel Tasks
   'plan_travel': {
-    keywords: ['travel', 'vacation', 'trip', 'tourism', 'adventure', 'destination', 'travel planning'],
-    priority: ['Travel Advisor GPT'],
+    keywords: ['travel', 'vacation', 'trip', 'tourism', 'adventure', 'destination', 'travel planning', 'flight', 'hotel'],
+    priority: ['Travel Advisor GPT', 'Imagination Traveler GPT'],
+    score: 2000
+  },
+
+  // Survival & Crisis Tasks
+  'survival_prep': {
+    keywords: ['survive', 'survival', 'apocalypse', 'grid down', 'off grid', 'prepper', 'emergency', 'shtf', 'crisis', 'oil crisis', 'hormuz', 'doomsday', 'collapse', 'disaster'],
+    priority: ['Survivalist GPT', 'Hormuz Crisis Impact Prediction Engine GPT', 'Global Supply Chain Collapse GPT', 'Firefighter GPT', 'Agronomus AI Farming Expert'],
+    score: 2500
+  },
+
+  // Cooking & Food Tasks
+  'cooking_food': {
+    keywords: ['cook', 'recipe', 'food', 'meal', 'kitchen', 'chef', 'restaurant', 'menu', 'bake', 'drink', 'cocktail', 'bartender'],
+    priority: ['Chef "Sizzle" AI Culinary Assistant', 'Mixologist GPT', 'Restaurant Menu Maker GPT', 'FOOD QUALITY INSPECTOR GPT', 'Cannabis GPT'],
+    score: 2000
+  },
+
+  // Music Tasks
+  'make_music': {
+    keywords: ['music', 'song', 'beat', 'melody', 'instrument', 'guitar', 'piano', 'music production', 'compose', 'lyrics'],
+    priority: ['Music Video Maker AI Studio', 'Music Melodies & Lessons GPT'],
+    score: 2100
+  },
+
+  // Gaming Tasks
+  'make_game': {
+    keywords: ['game', 'video game', 'game design', 'game development', 'gaming', 'unity', 'unreal', 'game document'],
+    priority: ['Game Design Document / Developer GPT', 'Trivia Night GPT'],
+    score: 2000
+  },
+
+  // Real Estate Tasks
+  'real_estate': {
+    keywords: ['property', 'real estate', 'house', 'home', 'land', 'mortgage', 'renovation', 'solar', 'appraisal'],
+    priority: ['Property Data Finder GPT', 'Home Renovator GPT', 'Solar Land Assessor GPT'],
+    score: 2000
+  },
+
+  // Cybersecurity Tasks
+  'cybersecurity': {
+    keywords: ['hack', 'hacker', 'security', 'cyber', 'cybersecurity', 'protect', 'firewall', 'malware', 'virus', 'encrypt'],
+    priority: ['Cyber Security GPT'],
+    score: 2200
+  },
+
+  // Pet & Animal Tasks
+  'pet_care': {
+    keywords: ['pet', 'dog', 'cat', 'animal', 'vet', 'veterinary', 'puppy', 'kitten', 'fish', 'fishing'],
+    priority: ['Veterinarian GPT', 'Fisherman GPT'],
+    score: 2000
+  },
+
+  // Tattoo & Body Art
+  'body_art': {
+    keywords: ['tattoo', 'piercing', 'body art', 'ink', 'tattoo design'],
+    priority: ['Tattoo Designer GPT'],
     score: 2000
   }
 };
