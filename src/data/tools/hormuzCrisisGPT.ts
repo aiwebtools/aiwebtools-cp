@@ -2,7 +2,7 @@
 import { Tool } from "@/types/tools";
 import { AlertTriangle } from "lucide-react";
 
-import hormuzCrisisGptHero from "@/assets/tools/hormuz-crisis-gpt-hero.jpg";
+import hormuzCrisisGptHero from "@/assets/tools/hormuz-crisis-gpt-hero.png";
 
 export const hormuzCrisisGPT: Tool[] = [
   {
