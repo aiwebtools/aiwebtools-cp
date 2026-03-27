@@ -1161,7 +1161,7 @@ const featuredGPTsUnsorted = [
     badge: "HEALTH",
     color: "from-blue-500 to-green-600",
     features: ["Health Info", "Confidential", "Personalized", "24/7 Support"],
-    directUrl: "https://aidoctorgpt.lovable.app/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-69c4da4473b0819185462889b7348a28-medicus-wellcheck-gpt",
     videoUrl: "https://youtu.be/jwjNOKP5mf4",
     emoji: "👨‍⚕️"
   },
