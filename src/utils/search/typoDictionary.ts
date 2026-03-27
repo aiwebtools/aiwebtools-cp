@@ -399,5 +399,14 @@ export const TYPO_DICTIONARY: Record<string, string> = {
   "comfo": "comfort",
   "comfor": "comfort",
   "comfrt": "comfort",
-  "comfert": "comfort"
+  "comfert": "comfort",
+
+  // Crisis & Geopolitical - prevent typo correction
+  "ormuz": "hormuz",
+  "hormz": "hormuz",
+  "hormux": "hormuz",
+  "hormus": "hormuz",
+  "hurmuz": "hormuz",
+  "hormoz": "hormuz",
+  "strait": "strait"
 };
