@@ -563,3 +563,6 @@ export { medicusGPT } from './medicusGPT';
 
 // Export Hormuz Crisis Impact Prediction Engine GPT
 export { hormuzCrisisGPT } from './hormuzCrisisGPT';
+
+// Export Game, VR & 3D Creation Batch 2026 (30 tools: Gameer, GDevelop, Buildbox, Construct 3, Core, AI Dungeon, Infinite Craft, Blockade Labs, Genie 3, Meta WorldGen, Promethean AI, Rodin Gen-1, SelfCAD, Anything World, Ready Player Me, Avaturn, Didimo, Rive, Decart Oasis, Ludo AI, Mochi Diffusion, Hypothetical, Elicit, Storique AI, Scenario, Meshy, Kaedim, Inworld AI, This Person Does Not Exist)
+export { gameVR3DBatch2026 } from './gameVR3DBatch2026';

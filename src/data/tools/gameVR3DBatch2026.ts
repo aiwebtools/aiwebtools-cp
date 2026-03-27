@@ -356,5 +356,72 @@ export const gameVR3DBatch2026: Tool[] = [
     category: "Writing & Content",
     rating: 4.7,
     totalVotes: 4500
+  },
+
+  // === 5 ADDITIONAL TOOLS (completing 30-count batch) ===
+  {
+    icon: Gamepad2,
+    title: "Scenario",
+    description: "AI-powered game asset generation platform. Create consistent, style-controlled game art, characters, props, and textures using custom-trained AI models. Trusted by AAA studios and indie devs for production-quality 2D game assets at scale.",
+    emoji: "🎨",
+    color: "from-emerald-500 to-teal-600",
+    directUrl: "https://www.scenario.com/?via=aiwebtools",
+    imageUrl: scenarioHero,
+    tags: ["game assets", "AI art", "character design", "texture generation", "game art", "custom AI models", "2D art", "game development", "games"],
+    category: "Gaming & Entertainment",
+    rating: 4.8,
+    totalVotes: 9200
+  },
+  {
+    icon: Box,
+    title: "Meshy",
+    description: "Leading AI 3D model generator — turn text prompts or images into textured 3D models in minutes. Supports PBR textures, multiple export formats (FBX, OBJ, GLTF), and AI texturing of existing models. Perfect for game devs and 3D artists.",
+    emoji: "🧊",
+    color: "from-violet-500 to-blue-600",
+    directUrl: "https://www.meshy.ai/?via=aiwebtools",
+    imageUrl: meshyGameHero,
+    tags: ["text-to-3D", "3D model generator", "AI 3D", "PBR textures", "game assets", "FBX", "OBJ", "3D printing", "game development"],
+    category: "3D & Visualization",
+    rating: 4.7,
+    totalVotes: 15600
+  },
+  {
+    icon: Box,
+    title: "Kaedim",
+    description: "Transform 2D images into production-ready 3D models using AI. Upload concept art, photos, or sketches and get clean, game-ready 3D assets with proper topology. Used by game studios for rapid asset pipeline acceleration.",
+    emoji: "📐",
+    color: "from-cyan-500 to-blue-600",
+    directUrl: "https://www.kaedim3d.com/?via=aiwebtools",
+    imageUrl: kaedimHero,
+    tags: ["image-to-3D", "3D modeling", "game assets", "concept art", "topology", "AI 3D", "production pipeline", "game development"],
+    category: "3D & Visualization",
+    rating: 4.6,
+    totalVotes: 5800
+  },
+  {
+    icon: Users,
+    title: "Inworld AI",
+    description: "Create intelligent AI-powered NPCs with personalities, memories, and contextual awareness for games. Build characters that think, react, and converse naturally — used by major game studios for next-gen interactive storytelling and gameplay.",
+    emoji: "🤖",
+    color: "from-purple-600 to-pink-600",
+    directUrl: "https://inworld.ai/?via=aiwebtools",
+    imageUrl: inworldAiHero,
+    tags: ["NPC AI", "game characters", "AI dialogue", "interactive storytelling", "game AI", "character behavior", "game development", "games"],
+    category: "Gaming & Entertainment",
+    rating: 4.8,
+    totalVotes: 7400
+  },
+  {
+    icon: Eye,
+    title: "This Person Does Not Exist",
+    description: "Mind-bending AI that generates hyper-realistic human faces that don't exist in reality. Every refresh creates a brand new, unique face using generative adversarial networks. A mesmerizing demonstration of AI's creative power — and a window into the uncanny valley.",
+    emoji: "👁️",
+    color: "from-gray-700 to-slate-900",
+    directUrl: "https://thispersondoesnotexist.com/",
+    imageUrl: thisPersonHero,
+    tags: ["face generation", "GAN", "AI faces", "deepfake", "generative AI", "weird AI", "mind-blowing", "AI art", "synthetic media"],
+    category: "Image & Design",
+    rating: 4.9,
+    totalVotes: 125000
   }
 ];
