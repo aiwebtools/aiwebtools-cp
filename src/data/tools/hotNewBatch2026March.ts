@@ -113,16 +113,16 @@ export const hotNewBatch2026March: Tool[] = [
   },
   {
     icon: Eye,
-    title: "SuperPowers AI",
-    description: "Real-time ambient visual agents for phones and wearables. Claude-grade AI agents that see what you see — solve visual problems instantly on your phone or smart glasses, no coding needed.",
-    emoji: "👓",
+    title: "Ultralytics YOLOv8",
+    description: "State-of-the-art real-time object detection, segmentation, and classification AI. Deploy computer vision models in seconds with the most popular open-source vision AI framework used by millions.",
+    emoji: "👁️",
     color: "from-cyan-500 to-blue-600",
-    directUrl: "https://superpowers.ai/?via=aiwebtools",
+    directUrl: "https://ultralytics.com/?via=aiwebtools",
     imageUrl: superpowersAiHero,
-    tags: ["Visual AI", "Wearables", "Augmented Reality", "Phone AI", "Computer Vision", "Smart Glasses", "Real-Time"],
+    tags: ["Computer Vision", "Object Detection", "YOLO", "Image Classification", "Segmentation", "Open Source", "Real-Time"],
     category: "AI Agents",
-    rating: 4.7,
-    totalVotes: 1920
+    rating: 4.8,
+    totalVotes: 9200
   },
   {
     icon: Globe,
