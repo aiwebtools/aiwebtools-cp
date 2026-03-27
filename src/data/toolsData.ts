@@ -218,6 +218,7 @@ import { toolifyBatch2026B19 } from "./tools/toolifyBatch2026B19";
 import { toolifyBatch2026B20 } from "./tools/toolifyBatch2026B20";
 import { toolifyBatch2026B21 } from "./tools/toolifyBatch2026B21";
 import { apocalypseSurvivalBatch2026 } from "./tools/apocalypseSurvivalBatch2026";
+import { hotNewBatch2026March } from "./tools/hotNewBatch2026March";
 import { apocalypseSurvivalBatch2026B2 } from "./tools/apocalypseSurvivalBatch2026B2";
 import { researchedToolsBatch2026 } from "./tools/researchedToolsBatch2026";
 import { newVerifiedBatch2026 } from "./tools/newVerifiedBatch2026";
@@ -512,7 +513,10 @@ const allToolCategories = consolidateTools([
   ...medicusGPT,
 
   // Hormuz Crisis Impact Prediction Engine GPT
-  ...hormuzCrisisGPT
+  ...hormuzCrisisGPT,
+
+  // Hot New Batch March 2026 (25 tools: MuleRun, Aident AI, Onyx Security, DataGrail Vera, MiroThinker H1, Perfectly AI, SuperPowers AI, Anything API, Omnia, Sierra AI, Writer Enterprise AI, Poolside AI, Fireworks AI, Helicone, Portkey AI, Arize AI, Comet ML, LangSmith, Dust.tt, Fixie AI, Reka AI, Hammer AI, ComfyUI, CivitAI, Tensor.Art)
+  ...hotNewBatch2026March
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories
