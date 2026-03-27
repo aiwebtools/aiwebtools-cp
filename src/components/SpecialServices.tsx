@@ -2082,7 +2082,7 @@ const featuredGPTsUnsorted = [
     color: "from-red-600 to-amber-700",
     features: ["Oil Crisis Simulation", "Country Countdown", "Geopolitical Analysis", "Energy Disruption"],
     directUrl: "https://chatgpt.com/g/g-69c5edc44cf481919bf1605933d97003-hormuz-crisis-impact-prediction-engine-gpt",
-    imageUrl: "/src/assets/tools/hormuz-crisis-gpt-hero.jpg",
+    imageUrl: "/src/assets/tools/hormuz-crisis-gpt-hero.png",
     emoji: "🛢️"
   },
   {
