@@ -224,6 +224,7 @@ import { researchedToolsBatch2026 } from "./tools/researchedToolsBatch2026";
 import { newVerifiedBatch2026 } from "./tools/newVerifiedBatch2026";
 import { medicusGPT } from "./tools/medicusGPT";
 import { hormuzCrisisGPT } from "./tools/hormuzCrisisGPT";
+import { gameVR3DBatch2026 } from "./tools/gameVR3DBatch2026";
 
 const allToolCategories = consolidateTools([
   ...getAllToolCategories(),
@@ -515,8 +516,11 @@ const allToolCategories = consolidateTools([
   // Hormuz Crisis Impact Prediction Engine GPT
   ...hormuzCrisisGPT,
 
-  // Hot New Batch March 2026 (25 tools: MuleRun, Aident AI, Onyx Security, DataGrail Vera, MiroThinker H1, Perfectly AI, SuperPowers AI, Anything API, Omnia, Sierra AI, Writer Enterprise AI, Poolside AI, Fireworks AI, Helicone, Portkey AI, Arize AI, Comet ML, LangSmith, Dust.tt, Fixie AI, Reka AI, Hammer AI, ComfyUI, CivitAI, Tensor.Art)
-  ...hotNewBatch2026March
+  // Hot New Batch March 2026 (25 tools)
+  ...hotNewBatch2026March,
+
+  // Game, VR & 3D Creation Batch 2026 (30 tools: Gameer, GDevelop, Buildbox, Construct 3, Core, AI Dungeon, Infinite Craft, Blockade Labs, Genie 3, Meta WorldGen, Promethean AI, Rodin Gen-1, SelfCAD, Anything World, Ready Player Me, Avaturn, Didimo, Rive, Decart Oasis, Ludo AI, Mochi Diffusion, Hypothetical, Elicit, Storique AI, Scenario, Meshy, Kaedim, Inworld AI, This Person Does Not Exist)
+  ...gameVR3DBatch2026
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories
