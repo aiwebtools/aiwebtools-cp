@@ -282,16 +282,16 @@ export const hotNewBatch2026March: Tool[] = [
   },
   {
     icon: Sparkles,
-    title: "Fixie AI",
-    description: "Platform for building AI-powered applications with natural language interfaces. Create conversational AI agents that can take actions, query databases, and integrate with your existing tools.",
-    emoji: "🔧",
+    title: "Ultravox",
+    description: "Speech-native voice AI platform for building human-like conversational agents. Developer-friendly APIs with sub-200ms latency, agentic-ready primitives, and natural turn-taking for real-time voice experiences.",
+    emoji: "🎙️",
     color: "from-pink-500 to-rose-600",
-    directUrl: "https://fixie.ai/?via=aiwebtools",
+    directUrl: "https://www.ultravox.ai/?via=aiwebtools",
     imageUrl: fixieHero,
-    tags: ["AI Platform", "Conversational AI", "Agent Builder", "Natural Language", "Integration", "Developer Tools"],
-    category: "Coding & Development",
-    rating: 4.4,
-    totalVotes: 1320
+    tags: ["Voice AI", "Speech AI", "Conversational AI", "Real-Time", "Voice Agent", "Developer Tools", "API"],
+    category: "AI Agents",
+    rating: 4.6,
+    totalVotes: 2340
   },
   {
     icon: Brain,
