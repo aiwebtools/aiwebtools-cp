@@ -222,6 +222,7 @@ import { apocalypseSurvivalBatch2026B2 } from "./tools/apocalypseSurvivalBatch20
 import { researchedToolsBatch2026 } from "./tools/researchedToolsBatch2026";
 import { newVerifiedBatch2026 } from "./tools/newVerifiedBatch2026";
 import { medicusGPT } from "./tools/medicusGPT";
+import { hormuzCrisisGPT } from "./tools/hormuzCrisisGPT";
 
 const allToolCategories = consolidateTools([
   ...getAllToolCategories(),
@@ -508,7 +509,10 @@ const allToolCategories = consolidateTools([
   ...newVerifiedBatch2026,
 
   // Medicus GPT (FREE Personal Medical GPT)
-  ...medicusGPT
+  ...medicusGPT,
+
+  // Hormuz Crisis Impact Prediction Engine GPT
+  ...hormuzCrisisGPT
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories

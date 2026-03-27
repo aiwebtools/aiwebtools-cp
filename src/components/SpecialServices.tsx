@@ -57,6 +57,7 @@ const weightedShuffle = <T extends { title: string }>(items: T[]): T[] => {
     "FREE FARMING & COMMUNITY PLOTS FINDER GPT",
     // Self-Reliance & Empowerment
     "Self Sufficiency GPT", "Survivalist GPT", "FACT CHECKER GPT", "Fortune Teller GPT",
+    "Hormuz Crisis Impact Prediction Engine GPT",
     "Cyber Security GPT", "Probability GPT", "FOOD QUALITY INSPECTOR GPT",
     "Cannabis GPT", "MATERIAL VALUATION GPT (MATERIUMOR)", "COLLECTIBLES APPRAISAL GPT",
     "Artwork & Vintage Appraisal GPT", "Sport Card Appraisal GPT",
@@ -2073,6 +2074,16 @@ const featuredGPTsUnsorted = [
     directUrl: "https://chatgpt.com/g/g-6927fd0087548191b724cf0dff94e5f4-global-supply-chain-collapse-gpt",
     imageUrl: "/src/assets/supply-chain-gpt-hero.jpg",
     emoji: "🔗"
+  },
+  {
+    title: "Hormuz Crisis Impact Prediction Engine GPT",
+    description: "Real-time oil crisis survival countdown by country, with shock-impact scenarios. Analyze how long nations could sustain if the Strait of Hormuz shut down.",
+    badge: "CRISIS PREDICTION",
+    color: "from-red-600 to-amber-700",
+    features: ["Oil Crisis Simulation", "Country Countdown", "Geopolitical Analysis", "Energy Disruption"],
+    directUrl: "https://chatgpt.com/g/g-69c5edc44cf481919bf1605933d97003-hormuz-crisis-impact-prediction-engine-gpt",
+    imageUrl: "/src/assets/tools/hormuz-crisis-gpt-hero.jpg",
+    emoji: "🛢️"
   },
   {
     title: "Home-Schooling Assistant GPT",
