@@ -513,7 +513,10 @@ const allToolCategories = consolidateTools([
   ...medicusGPT,
 
   // Hormuz Crisis Impact Prediction Engine GPT
-  ...hormuzCrisisGPT
+  ...hormuzCrisisGPT,
+
+  // Hot New Batch March 2026 (25 tools: MuleRun, Aident AI, Onyx Security, DataGrail Vera, MiroThinker H1, Perfectly AI, SuperPowers AI, Anything API, Omnia, Sierra AI, Writer Enterprise AI, Poolside AI, Fireworks AI, Helicone, Portkey AI, Arize AI, Comet ML, LangSmith, Dust.tt, Fixie AI, Reka AI, Hammer AI, ComfyUI, CivitAI, Tensor.Art)
+  ...hotNewBatch2026March
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories
