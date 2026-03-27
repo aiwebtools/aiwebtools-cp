@@ -2,7 +2,7 @@
 import { Tool } from "@/types/tools";
 import { AlertTriangle } from "lucide-react";
 
-import hormuzCrisisGptHero from "@/assets/tools/hormuz-crisis-gpt-hero.jpg";
+import hormuzCrisisGptHero from "@/assets/tools/hormuz-crisis-gpt-hero.png";
 
 export const hormuzCrisisGPT: Tool[] = [
   {
@@ -14,12 +14,16 @@ export const hormuzCrisisGPT: Tool[] = [
     directUrl: "https://chatgpt.com/g/g-69c5edc44cf481919bf1605933d97003-hormuz-crisis-impact-prediction-engine-gpt",
     imageUrl: hormuzCrisisGptHero,
     tags: [
-      "oil crisis", "Hormuz", "Strait of Hormuz", "geopolitical analysis", "energy crisis",
-      "oil supply", "crisis prediction", "survival countdown", "oil reserves", "energy disruption",
-      "supply chain", "petroleum", "OPEC", "oil embargo", "fuel shortage",
-      "geopolitics", "crisis management", "prediction engine", "risk assessment", "national security",
-      "oil shock", "energy independence", "strategic reserves", "global trade", "crisis simulation",
-      "Custom GPT", "simulation"
+      "oil crisis", "Hormuz", "hormuz", "Strait of Hormuz", "strait of hormuz",
+      "geopolitical analysis", "energy crisis", "oil supply", "crisis prediction",
+      "survival countdown", "oil reserves", "energy disruption", "supply chain",
+      "petroleum", "OPEC", "oil embargo", "fuel shortage", "geopolitics",
+      "crisis management", "prediction engine", "risk assessment", "national security",
+      "oil shock", "energy independence", "strategic reserves", "global trade",
+      "crisis simulation", "Custom GPT", "simulation", "hormuz crisis",
+      "oil countdown", "oil prediction", "crisis GPT", "oil GPT", "energy GPT",
+      "Hormuz Crisis Impact", "prediction", "oil crisis prediction", "war",
+      "middle east", "iran", "strait", "crisis impact"
     ],
     category: "Professional Services",
     rating: 4.8,
