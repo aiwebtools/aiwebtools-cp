@@ -62,6 +62,7 @@ const LoadingScreen = memo(() => {
 
   // JS-driven progress counter for universal browser support
   // (CSS content animation doesn't work in all browsers)
+  const welcomeSoundPlayedRef = useRef(false);
   useEffect(() => {
     const start = performance.now();
     const duration = 1200; // Match CSS progress bar duration
@@ -70,6 +71,13 @@ const LoadingScreen = memo(() => {
       const elapsed = performance.now() - start;
       const pct = Math.min(100, Math.round((elapsed / duration) * 100));
       setProgress(pct);
+      // Play welcome sound once at ~12% — non-blocking fire-and-forget
+      if (pct >= 12 && !welcomeSoundPlayedRef.current) {
+        welcomeSoundPlayedRef.current = true;
+        const audio = new Audio('/welcome-aiwebtools.mp3');
+        audio.volume = 0.8;
+        audio.play().catch(() => {});
+      }
       if (pct < 100) raf = requestAnimationFrame(tick);
     };
     raf = requestAnimationFrame(tick);
