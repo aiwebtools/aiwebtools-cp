@@ -401,12 +401,135 @@ export const TYPO_DICTIONARY: Record<string, string> = {
   "comfrt": "comfort",
   "comfert": "comfort",
 
-  // Crisis & Geopolitical - prevent typo correction
+  // Crisis & Geopolitical
   "ormuz": "hormuz",
   "hormz": "hormuz",
   "hormux": "hormuz",
   "hormus": "hormuz",
   "hurmuz": "hormuz",
   "hormoz": "hormuz",
-  "strait": "strait"
+  "strait": "strait",
+
+  // Survival & Crisis
+  "survial": "survival",
+  "survivel": "survival",
+  "survivl": "survival",
+  "survvial": "survival",
+  "survivalist": "survivalist",
+  "survivalst": "survivalist",
+  "apocolypse": "apocalypse",
+  "apocalpyse": "apocalypse",
+  "apocylpse": "apocalypse",
+  "apokalypse": "apocalypse",
+  "prepar": "prepper",
+  "preppr": "prepper",
+  "emergancy": "emergency",
+  "emergeny": "emergency",
+  "emrgency": "emergency",
+
+  // Movie & Film
+  "moive": "movie",
+  "mvie": "movie",
+  "movei": "movie",
+  "moovie": "movie",
+  "scrpt": "script",
+  "scirpt": "script",
+  "sript": "script",
+  "flim": "film",
+  "fillm": "film",
+
+  // Cooking & Food
+  "recpe": "recipe",
+  "recipie": "recipe",
+  "recepie": "recipe",
+  "reciep": "recipe",
+  "cheff": "chef",
+  "chfe": "chef",
+  "resturant": "restaurant",
+  "restraunt": "restaurant",
+  "restarant": "restaurant",
+  "restuarant": "restaurant",
+  "cocktial": "cocktail",
+  "cockatil": "cocktail",
+
+  // Gaming
+  "gaem": "game",
+  "gmae": "game",
+  "videogame": "video game",
+  "vidoegame": "video game",
+
+  // Security
+  "hackr": "hacker",
+  "hackng": "hacking",
+  "cybr": "cyber",
+  "cybre": "cyber",
+  "securty": "security",
+  "secuirty": "security",
+  "secrurity": "security",
+
+  // Real Estate
+  "proprty": "property",
+  "properety": "property",
+  "prperty": "property",
+  "realestate": "real estate",
+  "real-estate": "real estate",
+  "renovaton": "renovation",
+  "renovatin": "renovation",
+
+  // Tattoo
+  "tatoo": "tattoo",
+  "tattooo": "tattoo",
+  "tattu": "tattoo",
+  "tatto": "tattoo",
+
+  // Pets & Animals
+  "vetrinarian": "veterinarian",
+  "veternarian": "veterinarian",
+  "vetinary": "veterinary",
+  "vetrinary": "veterinary",
+
+  // Music
+  "musci": "music",
+  "mucis": "music",
+  "muscic": "music",
+  "melodi": "melody",
+  "melodie": "melody",
+
+  // Image & Art
+  "imge": "image",
+  "imag": "image",
+  "pictue": "picture",
+  "pictre": "picture",
+  "picutre": "picture",
+  "artst": "artist",
+  "artits": "artist",
+
+  // ChatGPT common typos
+  "chatgtp": "chatgpt",
+  "chat gtp": "chatgpt",
+  "cahtgpt": "chatgpt",
+  "chtgpt": "chatgpt",
+  "chatgp": "chatgpt",
+  "chagpt": "chatgpt",
+  "chatgbt": "chatgpt",
+  "chatgot": "chatgpt",
+
+  // Claude & other AI
+  "clude": "claude",
+  "cladue": "claude",
+  "claud": "claude",
+  "midjourny": "midjourney",
+  "midjorney": "midjourney",
+  "midjouney": "midjourney",
+  "middlejourny": "middlejourney",
+
+  // Common sentence intent shortcuts
+  "i want to write": "write",
+  "i want to build": "build",
+  "i want to learn": "learn",
+  "i want to make": "make",
+  "i want to create": "create",
+  "i need a": "need",
+  "how to": "how to",
+  "help me": "help"
 };
