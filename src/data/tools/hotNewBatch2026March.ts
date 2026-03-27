@@ -113,16 +113,16 @@ export const hotNewBatch2026March: Tool[] = [
   },
   {
     icon: Eye,
-    title: "SuperPowers AI",
-    description: "Real-time ambient visual agents for phones and wearables. Claude-grade AI agents that see what you see — solve visual problems instantly on your phone or smart glasses, no coding needed.",
-    emoji: "👓",
+    title: "Ultralytics YOLOv8",
+    description: "State-of-the-art real-time object detection, segmentation, and classification AI. Deploy computer vision models in seconds with the most popular open-source vision AI framework used by millions.",
+    emoji: "👁️",
     color: "from-cyan-500 to-blue-600",
-    directUrl: "https://superpowers.ai/?via=aiwebtools",
+    directUrl: "https://ultralytics.com/?via=aiwebtools",
     imageUrl: superpowersAiHero,
-    tags: ["Visual AI", "Wearables", "Augmented Reality", "Phone AI", "Computer Vision", "Smart Glasses", "Real-Time"],
+    tags: ["Computer Vision", "Object Detection", "YOLO", "Image Classification", "Segmentation", "Open Source", "Real-Time"],
     category: "AI Agents",
-    rating: 4.7,
-    totalVotes: 1920
+    rating: 4.8,
+    totalVotes: 9200
   },
   {
     icon: Globe,
@@ -139,16 +139,16 @@ export const hotNewBatch2026March: Tool[] = [
   },
   {
     icon: Megaphone,
-    title: "Omnia",
-    description: "Become the brand AI recommends. Omnia optimizes your digital presence so AI chatbots, search engines, and recommendation systems actively suggest your brand to users asking questions.",
-    emoji: "🎯",
+    title: "Jasper AI",
+    description: "Enterprise AI marketing platform for creating on-brand content at scale. Generate ads, blogs, social posts, and marketing copy with brand voice consistency and team collaboration.",
+    emoji: "✨",
     color: "from-purple-600 to-pink-600",
-    directUrl: "https://omniaresults.com/?via=aiwebtools",
+    directUrl: "https://www.jasper.ai/?via=aiwebtools",
     imageUrl: omniaHero,
-    tags: ["SEO", "AI Optimization", "Brand Marketing", "GEO", "Growth Hacking", "AI Discovery", "Digital Marketing"],
+    tags: ["AI Marketing", "Content Generation", "Brand Voice", "Copywriting", "Enterprise", "Team Collaboration", "Ads"],
     category: "Marketing & Sales",
-    rating: 4.6,
-    totalVotes: 1780
+    rating: 4.7,
+    totalVotes: 15800
   },
   {
     icon: MessageSquare,
@@ -282,16 +282,16 @@ export const hotNewBatch2026March: Tool[] = [
   },
   {
     icon: Sparkles,
-    title: "Fixie AI",
-    description: "Platform for building AI-powered applications with natural language interfaces. Create conversational AI agents that can take actions, query databases, and integrate with your existing tools.",
-    emoji: "🔧",
+    title: "Ultravox",
+    description: "Speech-native voice AI platform for building human-like conversational agents. Developer-friendly APIs with sub-200ms latency, agentic-ready primitives, and natural turn-taking for real-time voice experiences.",
+    emoji: "🎙️",
     color: "from-pink-500 to-rose-600",
-    directUrl: "https://fixie.ai/?via=aiwebtools",
+    directUrl: "https://www.ultravox.ai/?via=aiwebtools",
     imageUrl: fixieHero,
-    tags: ["AI Platform", "Conversational AI", "Agent Builder", "Natural Language", "Integration", "Developer Tools"],
-    category: "Coding & Development",
-    rating: 4.4,
-    totalVotes: 1320
+    tags: ["Voice AI", "Speech AI", "Conversational AI", "Real-Time", "Voice Agent", "Developer Tools", "API"],
+    category: "AI Agents",
+    rating: 4.6,
+    totalVotes: 2340
   },
   {
     icon: Brain,
@@ -308,16 +308,16 @@ export const hotNewBatch2026March: Tool[] = [
   },
   {
     icon: Wand2,
-    title: "Hammer AI",
-    description: "AI-powered browser automation agent that completes web tasks for you. Fill forms, extract data, book appointments, and navigate complex websites — all with natural language commands.",
+    title: "Bardeen AI",
+    description: "AI-powered browser automation that builds workflows from natural language. Automate repetitive tasks across web apps — scrape data, fill forms, sync tools, and schedule actions without code.",
     emoji: "🔨",
     color: "from-yellow-600 to-amber-700",
-    directUrl: "https://hammerai.com/?via=aiwebtools",
+    directUrl: "https://www.bardeen.ai/?via=aiwebtools",
     imageUrl: hammerHero,
-    tags: ["Browser Automation", "Web Agent", "Task Automation", "Data Extraction", "Form Filling", "RPA", "AI Agent"],
+    tags: ["Browser Automation", "No-Code", "Web Scraping", "Workflow Automation", "Task Automation", "RPA", "AI Agent"],
     category: "AI Agents",
-    rating: 4.5,
-    totalVotes: 1450
+    rating: 4.6,
+    totalVotes: 5670
   },
   {
     icon: Layers,
