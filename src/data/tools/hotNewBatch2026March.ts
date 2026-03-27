@@ -308,16 +308,16 @@ export const hotNewBatch2026March: Tool[] = [
   },
   {
     icon: Wand2,
-    title: "Hammer AI",
-    description: "AI-powered browser automation agent that completes web tasks for you. Fill forms, extract data, book appointments, and navigate complex websites — all with natural language commands.",
+    title: "Bardeen AI",
+    description: "AI-powered browser automation that builds workflows from natural language. Automate repetitive tasks across web apps — scrape data, fill forms, sync tools, and schedule actions without code.",
     emoji: "🔨",
     color: "from-yellow-600 to-amber-700",
-    directUrl: "https://hammerai.com/?via=aiwebtools",
+    directUrl: "https://www.bardeen.ai/?via=aiwebtools",
     imageUrl: hammerHero,
-    tags: ["Browser Automation", "Web Agent", "Task Automation", "Data Extraction", "Form Filling", "RPA", "AI Agent"],
+    tags: ["Browser Automation", "No-Code", "Web Scraping", "Workflow Automation", "Task Automation", "RPA", "AI Agent"],
     category: "AI Agents",
-    rating: 4.5,
-    totalVotes: 1450
+    rating: 4.6,
+    totalVotes: 5670
   },
   {
     icon: Layers,
