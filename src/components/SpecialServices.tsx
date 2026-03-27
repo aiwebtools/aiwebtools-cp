@@ -24,7 +24,7 @@ const weightedShuffle = <T extends { title: string }>(items: T[]): T[] => {
     "WE THE PEOPLE AI", "Public Testimony Writer GPT", "Legislation Writer GPT",
     "Social Safety Net GPT", "Global Peace Restoration GPT",
     // Health & Wellness
-    "Personalized DR. GPT (Doctor GPT)", "Mental Wellness GPT (CBT)", "VETERINARIAN GPT",
+    "Personalized DR. GPT (Doctor GPT)", "Medicus - the FREE Personal Medical GPT", "Mental Wellness GPT (CBT)", "VETERINARIAN GPT",
     "Dental GPT Expert", "Pharmaceutical Assistant GPT", "Historical Apothecary GPT",
     "Genome GPT", "Dream Interpreter GPT", "Friend GPT", "Marriage Mender GPT",
     // Content Creation & Writing
@@ -1161,9 +1161,18 @@ const featuredGPTsUnsorted = [
     badge: "HEALTH",
     color: "from-blue-500 to-green-600",
     features: ["Health Info", "Confidential", "Personalized", "24/7 Support"],
-    directUrl: "https://aidoctorgpt.lovable.app/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-69c4da4473b0819185462889b7348a28-medicus-wellcheck-gpt",
     videoUrl: "https://youtu.be/jwjNOKP5mf4",
     emoji: "👨‍⚕️"
+  },
+  {
+    title: "Medicus - the FREE Personal Medical GPT",
+    description: "Your FREE AI doctor in your pocket — comprehensive health information, symptom analysis, and personalized wellness guidance powered by advanced AI.",
+    badge: "FREE MEDICAL AI",
+    color: "from-teal-500 to-blue-600",
+    features: ["Free Access", "Symptom Analysis", "Wellness Guide", "Confidential"],
+    directUrl: "https://chatgpt.com/g/g-69c4da4473b0819185462889b7348a28-medicus-wellcheck-gpt",
+    emoji: "🏥"
   },
   {
     title: "Phenomenon Explorer AI Suite",

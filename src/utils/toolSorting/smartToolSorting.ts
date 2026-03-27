@@ -40,7 +40,7 @@ const CATEGORY_SORT_CONFIG: Record<string, CategorySortConfig> = {
   // HEALTH & WELLNESS - Medical/wellness GPTs and health platforms first
   "health": {
     prioritized: [
-      'doctor gpt', 'personalized dr', 'veterinarian gpt', 'pet care', 'mental wellness',
+      'doctor gpt', 'personalized dr', 'medicus', 'veterinarian gpt', 'pet care', 'mental wellness',
       'pharmaceutical', 'pharma research', 'food quality', 'cannabis gpt', 'genome gpt',
       'fitness', 'nutrition', 'meditation', 'therapy', 'counseling', 'healthcare',
       'medical', 'wellness', 'mindfulness', 'calm', 'headspace', 'betterhelp',

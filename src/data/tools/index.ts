@@ -557,3 +557,6 @@ export { researchedToolsBatch2026 } from './researchedToolsBatch2026';
 
 // Export New Verified Batch 2026 (5 tools: Sim AI, AI Crucible, Twain AI, Twineo, CAMEL AI)
 export { newVerifiedBatch2026 } from './newVerifiedBatch2026';
+
+// Export Medicus GPT (FREE Personal Medical GPT)
+export { medicusGPT } from './medicusGPT';
