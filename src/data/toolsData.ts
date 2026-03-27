@@ -505,7 +505,10 @@ const allToolCategories = consolidateTools([
   ...researchedToolsBatch2026,
 
   // New Verified Batch 2026 (5 tools: Sim AI, AI Crucible, Twain AI, Twineo, CAMEL AI)
-  ...newVerifiedBatch2026
+  ...newVerifiedBatch2026,
+
+  // Medicus GPT (FREE Personal Medical GPT)
+  ...medicusGPT
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories
