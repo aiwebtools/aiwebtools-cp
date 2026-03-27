@@ -1166,6 +1166,15 @@ const featuredGPTsUnsorted = [
     emoji: "👨‍⚕️"
   },
   {
+    title: "Medicus - the FREE Personal Medical GPT",
+    description: "Your FREE AI doctor in your pocket — comprehensive health information, symptom analysis, and personalized wellness guidance powered by advanced AI.",
+    badge: "FREE MEDICAL AI",
+    color: "from-teal-500 to-blue-600",
+    features: ["Free Access", "Symptom Analysis", "Wellness Guide", "Confidential"],
+    directUrl: "https://chatgpt.com/g/g-69c4da4473b0819185462889b7348a28-medicus-wellcheck-gpt",
+    emoji: "🏥"
+  },
+  {
     title: "Phenomenon Explorer AI Suite",
     description: "Unveil the unexplained with AI precision—UFO Investigation, Supernatural Myths, Cryptozoology, and Ghost Hunting tools.",
     badge: "PARANORMAL",
