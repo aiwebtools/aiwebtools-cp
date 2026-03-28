@@ -2354,7 +2354,14 @@ export const useGlobalSearch = () => {
   const handleToolClick = useCallback((toolIndex: number) => {
     setIsOpen(false);
     setSearchTermInternal("");
-    navigate(`/tool/${toolIndex}`);
+    // Use slug-based navigation directly to avoid redirect delay
+    const tool = allTools[toolIndex];
+    if (tool) {
+      const { generateToolSlug } = require("@/utils/urlGenerator");
+      navigate(`/${generateToolSlug(tool.title)}`);
+    } else {
+      navigate(`/tool/${toolIndex}`);
+    }
   }, [navigate]);
 
   const handleDirectAccess = useCallback((tool: any, e: React.MouseEvent) => {

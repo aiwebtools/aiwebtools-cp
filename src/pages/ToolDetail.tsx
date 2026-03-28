@@ -100,17 +100,7 @@ const ToolDetail = () => {
     handleToolsLoaded
   } = useToolDetail(toolIndex);
 
-  // Debug logging to trace the tool issue
-  console.log(`🔍 DEBUG: Tool at index ${toolIndex}:`, tool);
-  console.log(`🔍 DEBUG: Tool title: "${tool?.title}"`);
-  console.log(`🔍 DEBUG: Tool directUrl: "${tool?.directUrl}"`);
-  
-  // Check if this is the Financial Calculator Pro
-  if (tool?.title === "Financial Calculator Pro") {
-    console.log(`🚨 FOUND Financial Calculator Pro at index ${toolIndex}`);
-    console.log(`🚨 Current URL: ${tool.directUrl}`);
-    console.log(`🚨 Expected URL: https://chatgpt.com/g/g-683cfb6951308191abb310d5d2fa8238-financial-calculator-pro?via=aiwebtools`);
-  }
+  // Debug logging removed for production performance
 
   if (!tool) {
     return <ToolNotFound toolIndex={toolIndex} totalTools={allTools.length} />;
