@@ -1998,13 +1998,17 @@ export const useGlobalSearch = () => {
       setDisplayedCount(50);
     }, quickDelay);
 
-    // 5) Full intelligent ranking for 3+ chars - only 50ms debounce for near-instant refinement
-    if (t.length >= 3) {
+    // 5) Full intelligent ranking for 3+ chars - adaptive debounce
+    if (cappedT.length >= 3) {
+      // Longer queries and rapid typing get more debounce to prevent cursor freezing
+      const fullDelay = isRapidTyping 
+        ? (cappedT.length > 15 ? 200 : 150) 
+        : (cappedT.length > 15 ? 120 : 80);
       fullRef.current = setTimeout(() => {
         if (currentId !== searchIdRef.current) return;
         
         // Run search SYNCHRONOUSLY - no requestIdleCallback delays
-        const results = searchTools(allTools, t);
+        const results = searchTools(allTools, cappedT);
 
         // Keep full intelligence, but ensure literal prefix matches never get buried
         const q = t.toLowerCase().trim();
