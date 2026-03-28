@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { allTools } from "@/data/toolsData";
 import { searchTools } from "@/utils/searchUtils";
 import { createTimePortalEffect } from "@/utils/timeEffects";
+import { generateToolSlug } from "@/utils/urlGenerator";
 import { getCurrentToolCount } from "@/utils/toolCounter";
 import { 
   CATEGORY_TITLE_KEYWORDS, 
@@ -1963,6 +1964,9 @@ export const useGlobalSearch = () => {
       return;
     }
 
+    // Cap query length to prevent main-thread freezing on very long inputs
+    const cappedT = t.length > 40 ? t.substring(0, 40) : t;
+
     setIsOpen(true);
     const currentId = ++searchIdRef.current;
 
@@ -1970,38 +1974,41 @@ export const useGlobalSearch = () => {
     const now = performance.now();
     const timeSinceLastInput = now - lastInputTimeRef.current;
     lastInputTimeRef.current = now;
-    const isRapidTyping = timeSinceLastInput < 80; // Rapid keystrokes < 80ms apart
-    const quickDelay = isRapidTyping ? 30 : 0; // Small delay for rapid input, instant otherwise
+    const isRapidTyping = timeSinceLastInput < 100; // Rapid keystrokes < 100ms apart
+    // Longer delay for rapid typing to batch keystrokes; also scale with query length
+    const quickDelay = isRapidTyping ? (cappedT.length > 15 ? 60 : 30) : 0;
 
     // 3) Check cache FIRST - if hit, apply results in next frame (zero compute)
-    const fullCacheKey = `${SEARCH_CACHE_VERSION}:full:${t.toLowerCase().trim()}`;
+    const fullCacheKey = `${SEARCH_CACHE_VERSION}:full:${cappedT.toLowerCase().trim()}`;
     const cachedFull = searchCache.get(fullCacheKey);
     if (cachedFull) {
-      // Cache hit - apply in next animation frame for zero blocking
-      requestAnimationFrame(() => {
-        if (currentId !== searchIdRef.current) return;
+      // Cache hit - apply immediately for zero blocking
+      if (currentId === searchIdRef.current) {
         setSearchResults(cachedFull);
         setDisplayedCount(50);
-      });
+      }
       return;
     }
 
     // 4) Run quick search AFTER paint to prevent any typing lag
-    // Adaptive delay: rapid typing gets 30ms batch, normal typing is instant
     quickRef.current = setTimeout(() => {
       if (currentId !== searchIdRef.current) return;
-      const fast = quickSearch(t);
+      const fast = quickSearch(cappedT);
       setSearchResults(fast);
       setDisplayedCount(50);
     }, quickDelay);
 
-    // 5) Full intelligent ranking for 3+ chars - only 50ms debounce for near-instant refinement
-    if (t.length >= 3) {
+    // 5) Full intelligent ranking for 3+ chars - adaptive debounce
+    if (cappedT.length >= 3) {
+      // Longer queries and rapid typing get more debounce to prevent cursor freezing
+      const fullDelay = isRapidTyping 
+        ? (cappedT.length > 15 ? 200 : 150) 
+        : (cappedT.length > 15 ? 120 : 80);
       fullRef.current = setTimeout(() => {
         if (currentId !== searchIdRef.current) return;
         
         // Run search SYNCHRONOUSLY - no requestIdleCallback delays
-        const results = searchTools(allTools, t);
+        const results = searchTools(allTools, cappedT);
 
         // Keep full intelligence, but ensure literal prefix matches never get buried
         const q = t.toLowerCase().trim();
@@ -2328,7 +2335,7 @@ export const useGlobalSearch = () => {
 
         setSearchResults(spreadResults);
         setDisplayedCount(50);
-      }, isRapidTyping ? 120 : 50); // Adaptive debounce: 120ms for rapid typing, 50ms normal
+      }, fullDelay);
     }
   }, [quickSearch]);
   
@@ -2354,7 +2361,13 @@ export const useGlobalSearch = () => {
   const handleToolClick = useCallback((toolIndex: number) => {
     setIsOpen(false);
     setSearchTermInternal("");
-    navigate(`/tool/${toolIndex}`);
+    // Use slug-based navigation directly to avoid redirect delay
+    const tool = allTools[toolIndex];
+    if (tool) {
+      navigate(`/${generateToolSlug(tool.title)}`);
+    } else {
+      navigate(`/tool/${toolIndex}`);
+    }
   }, [navigate]);
 
   const handleDirectAccess = useCallback((tool: any, e: React.MouseEvent) => {
