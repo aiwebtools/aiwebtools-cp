@@ -366,7 +366,7 @@
       @-webkit-keyframes pulse { 0%, 100% { opacity: 0.7; } 50% { opacity: 1; } }
       @keyframes pulse { 0%, 100% { opacity: 0.7; } 50% { opacity: 1; } }
       
-      /* Progress bar - always moving with GPU acceleration */
+      /* Progress bar - pure CSS animation, never freezes on mobile */
       .progress-wrap {
         width: 200px;
         height: 4px;
@@ -374,7 +374,6 @@
         border-radius: 4px;
         overflow: hidden;
         position: relative;
-        /* GPU layer */
         -webkit-transform: translateZ(0);
         transform: translateZ(0);
       }
@@ -383,12 +382,11 @@
         background: linear-gradient(90deg, #00ff41, #22d3ee, #a855f7, #00ff41);
         background-size: 300% 100%;
         border-radius: 4px;
-        -webkit-animation: progressShimmer 1.5s linear infinite;
-        animation: progressShimmer 1.5s linear infinite;
-        -webkit-transition: width 0.1s ease-out;
-        transition: width 0.1s ease-out;
+        /* CSS-driven width animation - runs on GPU, never blocked by JS */
+        width: 5%;
+        -webkit-animation: progressShimmer 1.5s linear infinite, progressGrow 2.5s ease-out forwards;
+        animation: progressShimmer 1.5s linear infinite, progressGrow 2.5s ease-out forwards;
         will-change: width, background-position;
-        /* GPU layer for smooth width changes */
         -webkit-transform: translateZ(0);
         transform: translateZ(0);
       }
@@ -400,6 +398,20 @@
         0% { background-position: 100% 0; }
         100% { background-position: 0% 0; }
       }
+      @-webkit-keyframes progressGrow {
+        0% { width: 5%; }
+        30% { width: 40%; }
+        60% { width: 70%; }
+        80% { width: 85%; }
+        100% { width: 95%; }
+      }
+      @keyframes progressGrow {
+        0% { width: 5%; }
+        30% { width: 40%; }
+        60% { width: 70%; }
+        80% { width: 85%; }
+        100% { width: 95%; }
+      }
       .progress-text {
         font: 10px 'Courier New', monospace;
         color: #00ff41;
@@ -409,6 +421,21 @@
       }
       @-webkit-keyframes blink { 50% { opacity: 0.5; } }
       @keyframes blink { 50% { opacity: 0.5; } }
+      /* CSS counter animation for percentage text */
+      @-webkit-keyframes countUp {
+        0% { --pct: 5; }
+        30% { --pct: 40; }
+        60% { --pct: 70; }
+        80% { --pct: 85; }
+        100% { --pct: 95; }
+      }
+      @keyframes countUp {
+        0% { --pct: 5; }
+        30% { --pct: 40; }
+        60% { --pct: 70; }
+        80% { --pct: 85; }
+        100% { --pct: 95; }
+      }
       
       /* iOS Safari specific fixes - prevent animation stalling */
       @supports (-webkit-touch-callout: none) {
@@ -440,12 +467,11 @@
           let removed = false;
           const bar = document.getElementById('progress-bar');
           const pct = document.getElementById('progress-pct');
+          const startTime = performance.now();
 
           const removeSpinner = () => {
             if (removed) return;
             removed = true;
-            clearInterval(contentCheck);
-            clearInterval(progressInterval);
             if (bar) bar.style.width = '100%';
             if (pct) pct.textContent = '100%';
             const spinner = document.querySelector('.loading-spinner');
@@ -455,61 +481,47 @@
             }
           };
 
-          // AGGRESSIVE content detection - check for PAINTED content
+          // AGGRESSIVE content detection
           const hasVisibleContent = () => {
             const root = document.getElementById('root');
             if (!root) return false;
-            
-            // Check if React has rendered REAL visible content (not just mounting)
-            const children = root.children;
-            for (let i = 0; i < children.length; i++) {
-              const child = children[i];
-              // Skip loading spinner
+            var children = root.children;
+            for (var i = 0; i < children.length; i++) {
+              var child = children[i];
               if (child.classList && child.classList.contains('loading-spinner')) continue;
-              // Must have actual height AND contain real elements
               if (child.offsetHeight > 50 && child.innerHTML.length > 100) return true;
             }
-            
-            // Specific element checks - these ONLY exist when app is fully rendered
             if (root.querySelector('header[class*="fixed"]')) return true;
             if (root.querySelector('main')) return true;
-            if (root.querySelector('[data-testid]')) return true;
             if (root.querySelector('nav')) return true;
-            // DisclaimerGate has specific structure
             if (root.querySelector('.backdrop-blur-md')) return true;
-            
             return false;
           };
 
-          // Progress animation - FASTER and more responsive
-          let width = 5;
-          let lastTime = performance.now();
-          
-          const tick = () => {
+          // RAF-based percentage counter (syncs with CSS animation timing)
+          const updatePct = () => {
             if (removed) return;
-            const now = performance.now();
-            const delta = now - lastTime;
-            lastTime = now;
-            
-            // Faster progression: ~3% per 33ms (reaches 95% in ~1 second)
-            const increment = Math.min(3, delta / 16);
-            width = Math.min(width + increment, 95);
-            if (bar) bar.style.width = width + '%';
-            if (pct) pct.textContent = Math.round(width) + '%';
+            var elapsed = performance.now() - startTime;
+            var duration = 2500; // matches CSS progressGrow duration
+            var t = Math.min(elapsed / duration, 1);
+            // Ease-out curve matching CSS
+            var p;
+            if (t < 0.3) p = 5 + (35 * (t / 0.3));
+            else if (t < 0.6) p = 40 + (30 * ((t - 0.3) / 0.3));
+            else if (t < 0.8) p = 70 + (15 * ((t - 0.6) / 0.2));
+            else p = 85 + (10 * ((t - 0.8) / 0.2));
+            if (pct) pct.textContent = Math.round(p) + '%';
+            requestAnimationFrame(updatePct);
           };
+          requestAnimationFrame(updatePct);
 
-          const progressInterval = setInterval(tick, 33); // 30fps for smoother animation
-          tick();
-
-          // INSTANT content detection - check every 5ms, remove IMMEDIATELY when ready
-          const contentCheck = setInterval(() => {
-            if (hasVisibleContent()) {
-              removeSpinner();
-            }
+          // Content detection every 5ms
+          var contentCheck = setInterval(function() {
+            if (hasVisibleContent()) removeSpinner();
           }, 5);
 
-          // Hard fallback - 3 seconds max (fast load guarantee)
-          setTimeout(() => {
+          // Hard fallback - 3 seconds max
+          setTimeout(function() {
             if (!removed) removeSpinner();
           }, 3000);
         };
