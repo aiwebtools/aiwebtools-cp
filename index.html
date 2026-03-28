@@ -467,12 +467,11 @@
           let removed = false;
           const bar = document.getElementById('progress-bar');
           const pct = document.getElementById('progress-pct');
+          const startTime = performance.now();
 
           const removeSpinner = () => {
             if (removed) return;
             removed = true;
-            clearInterval(contentCheck);
-            clearInterval(progressInterval);
             if (bar) bar.style.width = '100%';
             if (pct) pct.textContent = '100%';
             const spinner = document.querySelector('.loading-spinner');
@@ -482,61 +481,47 @@
             }
           };
 
-          // AGGRESSIVE content detection - check for PAINTED content
+          // AGGRESSIVE content detection
           const hasVisibleContent = () => {
             const root = document.getElementById('root');
             if (!root) return false;
-            
-            // Check if React has rendered REAL visible content (not just mounting)
-            const children = root.children;
-            for (let i = 0; i < children.length; i++) {
-              const child = children[i];
-              // Skip loading spinner
+            var children = root.children;
+            for (var i = 0; i < children.length; i++) {
+              var child = children[i];
               if (child.classList && child.classList.contains('loading-spinner')) continue;
-              // Must have actual height AND contain real elements
               if (child.offsetHeight > 50 && child.innerHTML.length > 100) return true;
             }
-            
-            // Specific element checks - these ONLY exist when app is fully rendered
             if (root.querySelector('header[class*="fixed"]')) return true;
             if (root.querySelector('main')) return true;
-            if (root.querySelector('[data-testid]')) return true;
             if (root.querySelector('nav')) return true;
-            // DisclaimerGate has specific structure
             if (root.querySelector('.backdrop-blur-md')) return true;
-            
             return false;
           };
 
-          // Progress animation - FASTER and more responsive
-          let width = 5;
-          let lastTime = performance.now();
-          
-          const tick = () => {
+          // RAF-based percentage counter (syncs with CSS animation timing)
+          const updatePct = () => {
             if (removed) return;
-            const now = performance.now();
-            const delta = now - lastTime;
-            lastTime = now;
-            
-            // Faster progression: ~3% per 33ms (reaches 95% in ~1 second)
-            const increment = Math.min(3, delta / 16);
-            width = Math.min(width + increment, 95);
-            if (bar) bar.style.width = width + '%';
-            if (pct) pct.textContent = Math.round(width) + '%';
+            var elapsed = performance.now() - startTime;
+            var duration = 2500; // matches CSS progressGrow duration
+            var t = Math.min(elapsed / duration, 1);
+            // Ease-out curve matching CSS
+            var p;
+            if (t < 0.3) p = 5 + (35 * (t / 0.3));
+            else if (t < 0.6) p = 40 + (30 * ((t - 0.3) / 0.3));
+            else if (t < 0.8) p = 70 + (15 * ((t - 0.6) / 0.2));
+            else p = 85 + (10 * ((t - 0.8) / 0.2));
+            if (pct) pct.textContent = Math.round(p) + '%';
+            requestAnimationFrame(updatePct);
           };
+          requestAnimationFrame(updatePct);
 
-          const progressInterval = setInterval(tick, 33); // 30fps for smoother animation
-          tick();
-
-          // INSTANT content detection - check every 5ms, remove IMMEDIATELY when ready
-          const contentCheck = setInterval(() => {
-            if (hasVisibleContent()) {
-              removeSpinner();
-            }
+          // Content detection every 5ms
+          var contentCheck = setInterval(function() {
+            if (hasVisibleContent()) removeSpinner();
           }, 5);
 
-          // Hard fallback - 3 seconds max (fast load guarantee)
-          setTimeout(() => {
+          // Hard fallback - 3 seconds max
+          setTimeout(function() {
             if (!removed) removeSpinner();
           }, 3000);
         };
