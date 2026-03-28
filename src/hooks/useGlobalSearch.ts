@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { allTools } from "@/data/toolsData";
 import { searchTools } from "@/utils/searchUtils";
 import { createTimePortalEffect } from "@/utils/timeEffects";
+import { generateToolSlug } from "@/utils/urlGenerator";
 import { getCurrentToolCount } from "@/utils/toolCounter";
 import { 
   CATEGORY_TITLE_KEYWORDS, 
