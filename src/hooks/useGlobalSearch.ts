@@ -2358,7 +2358,6 @@ export const useGlobalSearch = () => {
     // Use slug-based navigation directly to avoid redirect delay
     const tool = allTools[toolIndex];
     if (tool) {
-      const { generateToolSlug } = require("@/utils/urlGenerator");
       navigate(`/${generateToolSlug(tool.title)}`);
     } else {
       navigate(`/tool/${toolIndex}`);
