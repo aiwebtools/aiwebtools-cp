@@ -366,7 +366,7 @@
       @-webkit-keyframes pulse { 0%, 100% { opacity: 0.7; } 50% { opacity: 1; } }
       @keyframes pulse { 0%, 100% { opacity: 0.7; } 50% { opacity: 1; } }
       
-      /* Progress bar - always moving with GPU acceleration */
+      /* Progress bar - pure CSS animation, never freezes on mobile */
       .progress-wrap {
         width: 200px;
         height: 4px;
@@ -374,7 +374,6 @@
         border-radius: 4px;
         overflow: hidden;
         position: relative;
-        /* GPU layer */
         -webkit-transform: translateZ(0);
         transform: translateZ(0);
       }
@@ -383,12 +382,11 @@
         background: linear-gradient(90deg, #00ff41, #22d3ee, #a855f7, #00ff41);
         background-size: 300% 100%;
         border-radius: 4px;
-        -webkit-animation: progressShimmer 1.5s linear infinite;
-        animation: progressShimmer 1.5s linear infinite;
-        -webkit-transition: width 0.1s ease-out;
-        transition: width 0.1s ease-out;
+        /* CSS-driven width animation - runs on GPU, never blocked by JS */
+        width: 5%;
+        -webkit-animation: progressShimmer 1.5s linear infinite, progressGrow 2.5s ease-out forwards;
+        animation: progressShimmer 1.5s linear infinite, progressGrow 2.5s ease-out forwards;
         will-change: width, background-position;
-        /* GPU layer for smooth width changes */
         -webkit-transform: translateZ(0);
         transform: translateZ(0);
       }
@@ -400,6 +398,20 @@
         0% { background-position: 100% 0; }
         100% { background-position: 0% 0; }
       }
+      @-webkit-keyframes progressGrow {
+        0% { width: 5%; }
+        30% { width: 40%; }
+        60% { width: 70%; }
+        80% { width: 85%; }
+        100% { width: 95%; }
+      }
+      @keyframes progressGrow {
+        0% { width: 5%; }
+        30% { width: 40%; }
+        60% { width: 70%; }
+        80% { width: 85%; }
+        100% { width: 95%; }
+      }
       .progress-text {
         font: 10px 'Courier New', monospace;
         color: #00ff41;
@@ -409,6 +421,21 @@
       }
       @-webkit-keyframes blink { 50% { opacity: 0.5; } }
       @keyframes blink { 50% { opacity: 0.5; } }
+      /* CSS counter animation for percentage text */
+      @-webkit-keyframes countUp {
+        0% { --pct: 5; }
+        30% { --pct: 40; }
+        60% { --pct: 70; }
+        80% { --pct: 85; }
+        100% { --pct: 95; }
+      }
+      @keyframes countUp {
+        0% { --pct: 5; }
+        30% { --pct: 40; }
+        60% { --pct: 70; }
+        80% { --pct: 85; }
+        100% { --pct: 95; }
+      }
       
       /* iOS Safari specific fixes - prevent animation stalling */
       @supports (-webkit-touch-callout: none) {
