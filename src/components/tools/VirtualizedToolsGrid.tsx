@@ -30,7 +30,7 @@ const VirtualizedToolsGrid = memo(({
     <>
       {/* Main filtered tools grid - optimized for touch scrolling */}
       <div 
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4"
+        className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4"
         style={{ 
           touchAction: 'pan-y',
           WebkitOverflowScrolling: 'touch'
@@ -48,9 +48,7 @@ const VirtualizedToolsGrid = memo(({
       {/* Separator and Recommended tools */}
       {hasRecommendations && recommendedTools.length > 0 && (
         <>
-          {/* Visual Separator - End of Category Section */}
           <div className="w-full flex flex-col items-center justify-center my-12 px-4">
-            {/* End of category indicator */}
             <div className="flex items-center gap-4 mb-4">
               <div className="w-24 h-[1px] bg-gradient-to-r from-transparent to-cyan-500"></div>
               <div className="text-cyan-400 text-sm font-medium">
@@ -59,7 +57,6 @@ const VirtualizedToolsGrid = memo(({
               <div className="w-24 h-[1px] bg-gradient-to-l from-transparent to-cyan-500"></div>
             </div>
             
-            {/* Recommendations banner */}
             <div className="flex items-center space-x-4 bg-gradient-to-r from-purple-900/50 via-indigo-900/50 to-purple-900/50 backdrop-blur-md rounded-2xl px-10 py-6 border border-purple-500/40 shadow-2xl shadow-purple-500/20">
               <div className="w-24 h-[2px] bg-gradient-to-r from-transparent via-purple-400 to-cyan-400"></div>
               <div className="text-center">
@@ -81,9 +78,8 @@ const VirtualizedToolsGrid = memo(({
             </div>
           </div>
           
-          {/* Recommended tools grid - optimized for touch scrolling */}
           <div 
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4"
+            className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4"
             style={{ 
               touchAction: 'pan-y',
               WebkitOverflowScrolling: 'touch'

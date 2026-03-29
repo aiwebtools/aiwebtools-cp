@@ -77,13 +77,13 @@ const Index = () => {
     <div className="min-h-screen bg-black relative overflow-x-hidden">
       <ImprovedSEOHead pageType="homepage" />
       
-      {/* SEO booster - minimal delay */}
-      <DeferredMount delay={0}>
+      {/* SEO booster - keep off the first paint path */}
+      <DeferredMount delay={250}>
         <GoogleRankingBooster pageType="homepage" />
       </DeferredMount>
       
-      {/* Background effects - render immediately */}
-      <DeferredMount delay={0}>
+      {/* Background effects - defer slightly so the hero appears faster on mobile */}
+      <DeferredMount delay={120}>
         <InteractiveMatrixBackground />
         <AnimatedBackground />
       </DeferredMount>
@@ -95,7 +95,7 @@ const Index = () => {
         <HeroSection />
         
         {/* Featured Video Section */}
-        <DeferredMount delay={0} fallback={null}>
+        <DeferredMount delay={220} fallback={null}>
           <section className="py-16 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #0a0a0a 0%, #001a00 50%, #0a0a0a 100%)' }}>
             <div className="container mx-auto px-4">
               <div className="text-center mb-8">
@@ -118,7 +118,6 @@ const Index = () => {
                   ></iframe>
                 </div>
                 
-                {/* Quick Action Buttons */}
                 <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
                   <Button
                     onClick={() => navigate('/main-category/ALL%20AI%20TOOLS')}
@@ -140,34 +139,31 @@ const Index = () => {
           </section>
         </DeferredMount>
         
-        {/* Category Selection - Tools First */}
         <div id="categories-section">
           <CategoryPageSelection />
         </div>
         
-        {/* SEO-optimized AI Web Tools section - Compact version for SEO only */}
-        <AIWebToolsSEOSection />
+        <DeferredMount delay={320} fallback={null}>
+          <AIWebToolsSEOSection />
+        </DeferredMount>
    
-        {/* Featured Tools Section - no loading spinner, renders when ready */}
-        <DeferredMount delay={0} fallback={null}>
+        <DeferredMount delay={380} fallback={null}>
           <LazyFeaturedTools onToolsLoaded={(count) => {}} />
         </DeferredMount>
         
-        {/* Book of Deployable Robots - positioned above Custom GPTs */}
-        <DeferredMount delay={0} fallback={null}>
+        <DeferredMount delay={520} fallback={null}>
           <BookPromotionCard />
         </DeferredMount>
         
-        {/* Inspiration Carousel - Sarah Connor Quote - right under Book Promotion */}
-        <DeferredMount delay={0} fallback={null}>
+        <DeferredMount delay={620} fallback={null}>
           <InspirationCarousel />
         </DeferredMount>
         
-        {/* Custom GPTs Video Section - render immediately */}
-        <SpecialServices />
+        <DeferredMount delay={460} fallback={null}>
+          <SpecialServices />
+        </DeferredMount>
         
-        {/* Bottom Search Portal */}
-        <DeferredMount delay={0} fallback={null}>
+        <DeferredMount delay={720} fallback={null}>
           <section className="py-16 relative" style={{ background: 'linear-gradient(135deg, #0a0a0a 0%, #001a00 50%, #0a0a0a 100%)' }}>
             <div className="container mx-auto px-4">
               <div className="text-center mb-12">
@@ -179,14 +175,12 @@ const Index = () => {
                 </p>
               </div>
               
-              {/* Search Portal Component */}
               <LazySearchPortal />
             </div>
           </section>
         </DeferredMount>
         
-        {/* Ethical AI Quote Section */}
-        <DeferredMount delay={0} fallback={null}>
+        <DeferredMount delay={860} fallback={null}>
           <EthicalAIQuoteSection />
         </DeferredMount>
         
