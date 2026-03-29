@@ -515,15 +515,15 @@
           };
           requestAnimationFrame(updatePct);
 
-          // Content detection every 5ms
+          // Content detection every frame-ish without burning extra CPU on mobile
           var contentCheck = setInterval(function() {
             if (hasVisibleContent()) removeSpinner();
-          }, 5);
+          }, 16);
 
-          // Hard fallback - 3 seconds max
+          // Hard fallback - finish sooner if React has not reported visible content yet
           setTimeout(function() {
             if (!removed) removeSpinner();
-          }, 3000);
+          }, 1800);
         };
 
         const tryStart = () => {

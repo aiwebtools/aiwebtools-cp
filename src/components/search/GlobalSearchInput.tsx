@@ -24,12 +24,10 @@ const GlobalSearchInput = memo(({
   onAcceptPrediction,
 }: GlobalSearchInputProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
-  
-  // 100% INSTANT typing - completely decoupled from search
-  const [localValue, setLocalValue] = useState(searchTerm);
+  const queuedSearchIdRef = useRef(0);
 
-  // Defer search updates so typing never lags
-  const searchUpdateRef = useRef<number | null>(null);
+  // Keep visual typing fully local and instant
+  const [localValue, setLocalValue] = useState(searchTerm);
 
   // Sync external changes (clear, navigation, prediction accept)
   useEffect(() => {
@@ -39,43 +37,22 @@ const GlobalSearchInput = memo(({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchTerm]);
 
-  // LIGHTNING-FAST onChange - instant paint, defer search to next tick
+  // Zero-delay local paint, then hand off search work in a microtask
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const next = e.target.value;
+      const requestId = ++queuedSearchIdRef.current;
 
-      // INSTANT paint (this is what user feels)
       setLocalValue(next);
 
-      // Cancel any queued search update
-      if (searchUpdateRef.current !== null) {
-        clearTimeout(searchUpdateRef.current);
-        searchUpdateRef.current = null;
-      }
-
-      // Defer search work until AFTER paint to avoid "letters lag"
-      // Scale delay with query length to keep typing buttery smooth
-      const delay = next.length > 25 ? 120 : next.length > 15 ? 60 : next.length > 8 ? 20 : 0;
-      if (delay === 0) {
-        // For short queries, fire immediately via microtask
-        queueMicrotask(() => onSearchChange(next));
-      } else {
-        searchUpdateRef.current = window.setTimeout(() => {
+      queueMicrotask(() => {
+        if (queuedSearchIdRef.current === requestId) {
           onSearchChange(next);
-        }, delay);
-      }
+        }
+      });
     },
     [onSearchChange]
   );
-
-  // Cleanup timeout on unmount
-  useEffect(() => {
-    return () => {
-      if (searchUpdateRef.current !== null) {
-        clearTimeout(searchUpdateRef.current);
-      }
-    };
-  }, []);
 
   // Handle Tab key to accept prediction
   const handleKeyDown = useCallback(
@@ -91,20 +68,18 @@ const GlobalSearchInput = memo(({
     [prediction, onAcceptPrediction, onKeyDown]
   );
 
-  // Calculate the ghost text (prediction minus what user typed)
   const ghostText =
     prediction && localValue && prediction.toLowerCase().startsWith(localValue.toLowerCase())
       ? prediction.slice(localValue.length)
       : null;
 
-  // Instant focus when clicking anywhere on the container
   const handleContainerClick = useCallback(() => {
     inputRef.current?.focus();
   }, []);
 
-  // Handle clear with instant local update
   const handleClear = useCallback((e: React.MouseEvent) => {
     e.stopPropagation();
+    queuedSearchIdRef.current += 1;
     setLocalValue("");
     onClear();
   }, [onClear]);
@@ -113,7 +88,6 @@ const GlobalSearchInput = memo(({
     <div className="relative rounded-lg border border-border cursor-text gpu-accelerated" onClick={handleContainerClick} style={{ transform: 'translateZ(0)', willChange: 'contents' }}>
       <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-300 w-4 h-4 pointer-events-none z-10" />
 
-      {/* Ghost text prediction layer */}
       {ghostText && (
         <div className="absolute inset-0 flex items-center pointer-events-none">
           <span className="pl-10 text-transparent">{localValue}</span>
@@ -141,7 +115,6 @@ const GlobalSearchInput = memo(({
         aria-describedby="search-help"
       />
 
-      {/* Hidden helper text for screen readers */}
       <div id="search-help" className="sr-only">
         Use arrow keys to navigate results, Enter to open, Tab to accept suggestion, Escape to close
       </div>
