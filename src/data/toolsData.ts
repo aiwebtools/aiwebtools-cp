@@ -225,6 +225,7 @@ import { newVerifiedBatch2026 } from "./tools/newVerifiedBatch2026";
 import { medicusGPT } from "./tools/medicusGPT";
 import { hormuzCrisisGPT } from "./tools/hormuzCrisisGPT";
 import { gameVR3DBatch2026 } from "./tools/gameVR3DBatch2026";
+import { robotSafetyGPTs2026 } from "./tools/robotSafetyGPTs2026";
 
 const allToolCategories = consolidateTools([
   ...getAllToolCategories(),
