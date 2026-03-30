@@ -245,7 +245,7 @@ const TYPO_MAP: Record<string, string> = {
   "agricultrue": "agriculture", "agriculutre": "agriculture", "agriclture": "agriculture",
 
   // Robot Safety / Passport
-  "pasport": "passport", "passpoort": "passport", "passpot": "passport", "passort": "passport",
+  "passpoort": "passport", "passpot": "passport", "passort": "passport",
   "robott": "robot", "roboot": "robot", "rbot": "robot",
   "rougue": "rouge", "rogu": "rogue",
   "disabel": "disable", "disalbe": "disable", "diasble": "disable", "diable": "disable",
