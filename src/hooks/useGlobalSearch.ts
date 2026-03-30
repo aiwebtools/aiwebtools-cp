@@ -246,10 +246,10 @@ const TYPO_MAP: Record<string, string> = {
 
   // Robot Safety / Passport
   "pasport": "passport", "passpoort": "passport", "passpot": "passport", "passort": "passport",
-  "robo": "robot", "robott": "robot", "roboot": "robot", "rbot": "robot",
-  "rougue": "rouge", "rogu": "rogue", "rouge robot": "rouge robot",
+  "robott": "robot", "roboot": "robot", "rbot": "robot",
+  "rougue": "rouge", "rogu": "rogue",
   "disabel": "disable", "disalbe": "disable", "diasble": "disable", "diable": "disable",
-  "survivlaist": "survivalist", "suvivalist": "survivalist", "survalist": "survivalist",
+  "suvivalist": "survivalist", "survalist": "survivalist",
   "identifer": "identifier", "identfier": "identifier", "identifyer": "identifier",
 
   // ==================== EXPANDED TYPO COVERAGE ====================
