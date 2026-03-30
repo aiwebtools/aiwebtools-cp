@@ -244,6 +244,14 @@ const TYPO_MAP: Record<string, string> = {
   "solra": "solar", "soalr": "solar", "solor": "solar",
   "agricultrue": "agriculture", "agriculutre": "agriculture", "agriclture": "agriculture",
 
+  // Robot Safety / Passport
+  "passpoort": "passport", "passpot": "passport", "passort": "passport",
+  "robott": "robot", "roboot": "robot", "rbot": "robot",
+  "rougue": "rouge", "rogu": "rogue",
+  "disabel": "disable", "disalbe": "disable", "diasble": "disable", "diable": "disable",
+  "suvivalist": "survivalist", "survalist": "survivalist",
+  "identifer": "identifier", "identfier": "identifier", "identifyer": "identifier",
+
   // ==================== EXPANDED TYPO COVERAGE ====================
   
   // Technology & Computing
@@ -2002,12 +2010,16 @@ export const useGlobalSearch = () => {
     if (cappedT.length >= 3) {
       // Longer queries and rapid typing get more debounce to prevent cursor freezing
       const fullDelay = isRapidTyping 
-        ? (cappedT.length > 15 ? 200 : 150) 
-        : (cappedT.length > 15 ? 120 : 80);
+        ? (cappedT.length > 15 ? 320 : 200) 
+        : (cappedT.length > 15 ? 200 : 120);
       fullRef.current = setTimeout(() => {
         if (currentId !== searchIdRef.current) return;
         
-        // Run search SYNCHRONOUSLY - no requestIdleCallback delays
+        // Yield to browser FIRST so any pending paint/input events flush
+        requestAnimationFrame(() => {
+        if (currentId !== searchIdRef.current) return;
+        
+        // Run search
         const results = searchTools(allTools, cappedT);
 
         // Keep full intelligence, but ensure literal prefix matches never get buried
@@ -2335,6 +2347,7 @@ export const useGlobalSearch = () => {
 
         setSearchResults(spreadResults);
         setDisplayedCount(50);
+        }); // end requestAnimationFrame
       }, fullDelay);
     }
   }, [quickSearch]);

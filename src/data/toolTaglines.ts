@@ -381,7 +381,13 @@ export const toolTaglines: Record<string, string> = {
   ".aitoolscompany Domain": "Build your AI empire. Premium Web3 domain for AI startups.",
   ".robotsales Domain": "Own the robotics marketplace. Premium Web3 domain for automation.",
   ".robotshop Domain": "The future of robot retail. Premium Web3 domain minted as NFT.",
-  ".robotstore Domain": "Premier robotics destination. Premium Web3 domain for robot commerce."
+  ".robotstore Domain": "Premier robotics destination. Premium Web3 domain for robot commerce.",
+  
+  // Robot Safety & Utility GPTs
+  "Passport Photo Maker GPT": "Turn any selfie into a perfect passport photo — skip the photo booth forever.",
+  "Disable That Robot GPT": "When machines go rogue — your emergency robot shutdown survival guide.",
+  "Rouge Robot Disabler GPT": "Tactical robot neutralization protocols for when AI goes sideways.",
+  "Robot Identifier and Disabler Survivalist GPT": "Identify any robot, find its weakness, shut it down — survive the machine age."
 };
 
 // Function to get tagline for a tool (falls back to short description)

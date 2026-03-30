@@ -62,7 +62,10 @@ const weightedShuffle = <T extends { title: string }>(items: T[]): T[] => {
     "Cannabis GPT", "MATERIAL VALUATION GPT (MATERIUMOR)", "COLLECTIBLES APPRAISAL GPT",
     "Artwork & Vintage Appraisal GPT", "Sport Card Appraisal GPT",
     "Paleography GPT",
-    "Cosmic Code Simulator"
+    "Cosmic Code Simulator",
+    // Robot Safety & Utility
+    "Passport Photo Maker GPT", "Disable That Robot GPT", "Rouge Robot Disabler GPT",
+    "Robot Identifier and Disabler Survivalist GPT"
   ]);
 
   // SECOND TIER: Other premium tools (spirituality, exploration, history, etc.)
@@ -1173,6 +1176,7 @@ const featuredGPTsUnsorted = [
     color: "from-teal-500 to-blue-600",
     features: ["Free Access", "Symptom Analysis", "Wellness Guide", "Confidential"],
     directUrl: "https://chatgpt.com/g/g-69c4da4473b0819185462889b7348a28-medicus-wellcheck-gpt",
+    imageUrl: "/src/assets/tools/medicus-wellcheck-gpt-hero.jpg",
     emoji: "🏥"
   },
   {
@@ -3635,6 +3639,46 @@ const featuredGPTsUnsorted = [
     directUrl: "https://chatgpt.com/g/g-6940afff17008191897e30cc94be7b27-essene-master-gpt/?via=aiwebtools",
     videoUrl: "https://youtu.be/Kyve-l7OA_M",
     emoji: "📜"
+  },
+  {
+    title: "Passport Photo Maker GPT",
+    description: "Create passport photos from selfies and save money on photo services. AI-powered tool transforms casual selfies into compliant, professional passport photos.",
+    badge: "PHOTO TOOLS",
+    color: "from-blue-500 to-cyan-600",
+    features: ["Passport Photos", "Selfie Converter", "ID Photos", "Visa Photos"],
+    directUrl: "https://chatgpt.com/g/g-69c9b803f5c0819197b62a84caf1b410-passport-photo-maker-gpt",
+    imageUrl: "/src/assets/tools/passport-photo-maker-gpt-hero.jpg",
+    emoji: "📸"
+  },
+  {
+    title: "Disable That Robot GPT",
+    description: "Guides safe emergency shutdown of rogue robots with precise, step-by-step instructions. Expert-level guidance for disabling malfunctioning robotic systems.",
+    badge: "ROBOT SAFETY",
+    color: "from-red-600 to-orange-700",
+    features: ["Emergency Shutdown", "Robot Safety", "Safety Protocols", "Containment"],
+    directUrl: "https://chatgpt.com/g/g-69c9b28b20148191bbddae43c87c430f-disable-that-robot-gpt",
+    imageUrl: "/src/assets/tools/disable-that-robot-gpt-hero.jpg",
+    emoji: "🤖"
+  },
+  {
+    title: "Rouge Robot Disabler GPT",
+    description: "Specialized AI safety companion focused on neutralizing rogue robotic threats through systematic disabling procedures and tactical approaches.",
+    badge: "ROBOT SAFETY",
+    color: "from-purple-600 to-red-700",
+    features: ["Robot Neutralization", "EMP Countermeasures", "Override Protocols", "Threat Assessment"],
+    directUrl: "https://chatgpt.com/g/g-69c9adb28a0c81919ffd49556388f683-rouge-robot-disabler-gpt",
+    imageUrl: "/src/assets/tools/rouge-robot-disabler-gpt-hero.jpg",
+    emoji: "⚡"
+  },
+  {
+    title: "Robot Identifier and Disabler Survivalist GPT",
+    description: "The ultimate survivalist companion for identifying and safely disabling any type of robot encountered. Combines robot identification with tactical shutdown procedures.",
+    badge: "SURVIVALIST",
+    color: "from-amber-600 to-stone-700",
+    features: ["Robot Identification", "Tactical Shutdown", "Field Survival", "Weak Point Analysis"],
+    directUrl: "https://chatgpt.com/g/g-69c9be4c1cd4819186035cc0da423c6f-robot-identifier-and-disabler-survivalist-gpt",
+    imageUrl: "/src/assets/tools/robot-identifier-disabler-survivalist-gpt-hero.jpg",
+    emoji: "🎯"
   },
 ];
 
