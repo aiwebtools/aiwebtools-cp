@@ -519,8 +519,11 @@ const allToolCategories = consolidateTools([
   // Hot New Batch March 2026 (25 tools)
   ...hotNewBatch2026March,
 
-  // Game, VR & 3D Creation Batch 2026 (30 tools: Gameer, GDevelop, Buildbox, Construct 3, Core, AI Dungeon, Infinite Craft, Blockade Labs, Genie 3, Meta WorldGen, Promethean AI, Rodin Gen-1, SelfCAD, Anything World, Ready Player Me, Avaturn, Didimo, Rive, Decart Oasis, Ludo AI, Mochi Diffusion, Hypothetical, Elicit, Storique AI, Scenario, Meshy, Kaedim, Inworld AI, This Person Does Not Exist)
-  ...gameVR3DBatch2026
+  // Game, VR & 3D Creation Batch 2026 (30 tools)
+  ...gameVR3DBatch2026,
+
+  // Robot Safety GPTs 2026 (4 tools: Passport Photo Maker, Disable That Robot, Rouge Robot Disabler, Robot Identifier and Disabler Survivalist)
+  ...robotSafetyGPTs2026
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories
