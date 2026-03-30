@@ -1173,6 +1173,7 @@ const featuredGPTsUnsorted = [
     color: "from-teal-500 to-blue-600",
     features: ["Free Access", "Symptom Analysis", "Wellness Guide", "Confidential"],
     directUrl: "https://chatgpt.com/g/g-69c4da4473b0819185462889b7348a28-medicus-wellcheck-gpt",
+    imageUrl: "/src/assets/tools/medicus-wellcheck-gpt-hero.jpg",
     emoji: "🏥"
   },
   {

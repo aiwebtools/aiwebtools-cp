@@ -2002,12 +2002,16 @@ export const useGlobalSearch = () => {
     if (cappedT.length >= 3) {
       // Longer queries and rapid typing get more debounce to prevent cursor freezing
       const fullDelay = isRapidTyping 
-        ? (cappedT.length > 15 ? 200 : 150) 
-        : (cappedT.length > 15 ? 120 : 80);
+        ? (cappedT.length > 15 ? 320 : 200) 
+        : (cappedT.length > 15 ? 200 : 120);
       fullRef.current = setTimeout(() => {
         if (currentId !== searchIdRef.current) return;
         
-        // Run search SYNCHRONOUSLY - no requestIdleCallback delays
+        // Yield to browser FIRST so any pending paint/input events flush
+        requestAnimationFrame(() => {
+        if (currentId !== searchIdRef.current) return;
+        
+        // Run search
         const results = searchTools(allTools, cappedT);
 
         // Keep full intelligence, but ensure literal prefix matches never get buried
