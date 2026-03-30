@@ -2339,6 +2339,7 @@ export const useGlobalSearch = () => {
 
         setSearchResults(spreadResults);
         setDisplayedCount(50);
+        }); // end requestAnimationFrame
       }, fullDelay);
     }
   }, [quickSearch]);
