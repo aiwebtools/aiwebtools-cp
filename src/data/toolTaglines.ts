@@ -387,7 +387,26 @@ export const toolTaglines: Record<string, string> = {
   "Passport Photo Maker GPT": "Turn any selfie into a perfect passport photo — skip the photo booth forever.",
   "Disable That Robot GPT": "When machines go rogue — your emergency robot shutdown survival guide.",
   "Rouge Robot Disabler GPT": "Tactical robot neutralization protocols for when AI goes sideways.",
-  "Robot Identifier and Disabler Survivalist GPT": "Identify any robot, find its weakness, shut it down — survive the machine age."
+  "Robot Identifier and Disabler Survivalist GPT": "Identify any robot, find its weakness, shut it down — survive the machine age.",
+  
+  // Preparedness & Scholars Batch 2026
+  "Rouge Robot Disabler GEM (Unrestricted)": "Unrestricted Gemini Gem — no guardrails, full robot shutdown protocols unleashed.",
+  "Fallout Shelter Locator GPT": "Find the nearest fallout shelter before the flash — your survival starts here.",
+  "Solar Power Personal Companion GPT": "Design your complete solar power system from scratch — energy freedom.",
+  "Garden Starter GPT": "Plant the perfect garden for YOUR climate — nature's blueprint, AI-optimized.",
+  "Nuclear Event Preparedness Survival System GPT": "Nuclear event? This GPT could save your life with survival protocols.",
+  "Geiger Counter Analyst GPT": "Read radiation levels like a nuclear physicist — instant Geiger analysis.",
+  "Emergency Preparedness GPT": "Your digital survivalist — first aid, food storage, crisis readiness.",
+  "Off Grid Planner GPT": "Design your complete off-grid homestead — power, water, food, freedom.",
+  "Alternative History Explorer GPT": "The history they didn't teach you — uncover what was hidden.",
+  "Ancient Wisdom Archive GPT": "Where sacred texts meet quantum physics — the bridge of ages.",
+  "Sir Isaac Newton GPT": "Think like Newton — discover gravity, calculus, and universal laws.",
+  "Johannes Kepler GPT": "The cosmos through Kepler's geometry — planetary harmony revealed.",
+  "James Clerk Maxwell GPT": "The man who unified light, electricity, and magnetism — brought to life.",
+  "Whats The Plot Twist Chat?": "Give any scenario — get a plot twist that'll blow your mind.",
+  "Zoroastrian Text Recovery Studies GPT": "Recover the original words of Zarathustra — line by line, truth by truth.",
+  "Cursive Writing Worksheet Maker GPT": "Master the lost art of cursive — beautiful worksheets instantly.",
+  "Rastafari Lifestyles GPT": "One love, one heart — experience Rastafari truth through Bob Marley's spirit."
 };
 
 // Function to get tagline for a tool (falls back to short description)

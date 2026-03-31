@@ -1,11 +1,12 @@
 import { Tool } from "@/types/tools";
-import { BookOpen, Clock, FileText, History, Globe, Video } from "lucide-react";
+import { BookOpen, Clock, FileText, History, Globe, Video, Bot } from "lucide-react";
 
 import bookWriterGeminiHero from "@/assets/tools/book-writer-gemini-hero.jpg";
 import blackHistoryTimeMachineHero from "@/assets/tools/black-history-time-machine-hero.jpg";
 import nativeAmericanGeminiHero from "@/assets/tools/native-american-gemini-hero.jpg";
 import ogTimeMachineGeminiHero from "@/assets/tools/og-time-machine-gemini-hero.jpg";
 import veo3PromptMakerHero from "@/assets/tools/veo3-prompt-maker-hero.jpg";
+import rogueRobotDisablerGemHero from "@/assets/tools/rouge-robot-disabler-gem-hero.jpg";
 
 export const customGeminiGems: Tool[] = [
   {
@@ -86,5 +87,18 @@ export const customGeminiGems: Tool[] = [
     rating: 4.7,
     totalVotes: 1876,
     tags: ["gemini", "custom gem", "Gemini Gem", "veo3", "prompt engineering", "video generation", "ai video", "google gemini"]
+  },
+  {
+    icon: Bot,
+    title: "Rouge Robot Disabler GEM (Unrestricted)",
+    description: "Unrestricted Gemini Gem version of the Rouge Robot Disabler — providing complete, unfiltered emergency shutdown protocols for rogue robotic systems. This custom Gemini Gem delivers advanced tactical neutralization strategies, EMP countermeasure guidance, manual override procedures, and field-expedient disabling techniques without the safety guardrails of standard AI. When machines go rogue, this is your unrestricted survival companion.",
+    emoji: "🤖",
+    color: "from-red-600 to-purple-700",
+    category: "Custom Gemini Gems",
+    directUrl: "https://gemini.google.com/gem/1tNIzWmO6zaypjnyIiXMwKTDGBQV3cnmM",
+    imageUrl: rogueRobotDisablerGemHero,
+    rating: 4.9,
+    totalVotes: 2450,
+    tags: ["gemini", "custom gem", "Gemini Gem", "robot disabler", "rouge robot", "robot safety", "unrestricted", "emergency shutdown", "AI safety", "tactical", "survival", "robotics", "EMP", "google gemini", "aiwebtools"]
   }
 ];

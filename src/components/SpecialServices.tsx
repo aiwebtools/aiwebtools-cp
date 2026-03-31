@@ -65,7 +65,16 @@ const weightedShuffle = <T extends { title: string }>(items: T[]): T[] => {
     "Cosmic Code Simulator",
     // Robot Safety & Utility
     "Passport Photo Maker GPT", "Disable That Robot GPT", "Rouge Robot Disabler GPT",
-    "Robot Identifier and Disabler Survivalist GPT"
+    "Robot Identifier and Disabler Survivalist GPT",
+    // Preparedness & Scholars Batch 2026
+    "Rouge Robot Disabler GEM (Unrestricted)",
+    "Fallout Shelter Locator GPT", "Solar Power Personal Companion GPT", "Garden Starter GPT",
+    "Nuclear Event Preparedness Survival System GPT", "Geiger Counter Analyst GPT",
+    "Emergency Preparedness GPT", "Off Grid Planner GPT", "Alternative History Explorer GPT",
+    "Ancient Wisdom Archive GPT", "Sir Isaac Newton GPT", "Johannes Kepler GPT",
+    "James Clerk Maxwell GPT", "Whats The Plot Twist Chat?",
+    "Zoroastrian Text Recovery Studies GPT", "Cursive Writing Worksheet Maker GPT",
+    "Rastafari Lifestyles GPT"
   ]);
 
   // SECOND TIER: Other premium tools (spirituality, exploration, history, etc.)
