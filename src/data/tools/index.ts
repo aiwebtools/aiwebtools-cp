@@ -569,3 +569,6 @@ export { gameVR3DBatch2026 } from './gameVR3DBatch2026';
 
 // Export Robot Safety GPTs 2026 (4 tools: Passport Photo Maker, Disable That Robot, Rouge Robot Disabler, Robot Identifier and Disabler Survivalist)
 export { robotSafetyGPTs2026 } from './robotSafetyGPTs2026';
+
+// Export Preparedness & Scholars Batch 2026 (17 tools: Fallout Shelter Locator, Solar Power Companion, Garden Starter, Nuclear Event Preparedness, Geiger Counter Analyst, Emergency Preparedness, Off Grid Planner, Alternative History Explorer, Ancient Wisdom Archive, Sir Isaac Newton, Johannes Kepler, James Clerk Maxwell, Whats The Plot Twist, Zoroastrian Text Recovery Studies, Cursive Writing Worksheet Maker, Rastafari Lifestyles)
+export { preparednessAndScholarsBatch2026 } from './preparednessAndScholarsBatch2026';
