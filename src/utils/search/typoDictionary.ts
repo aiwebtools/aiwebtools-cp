@@ -598,8 +598,6 @@ export const TYPO_DICTIONARY: Record<string, string> = {
   "radation": "radiation",
   "radition": "radiation",
   "radiaton": "radiation",
-  "emergancy": "emergency",
-  "emergeny": "emergency",
   "emergenci": "emergency",
   "prepardness": "preparedness",
   "preparednes": "preparedness",
