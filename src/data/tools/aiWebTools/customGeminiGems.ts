@@ -6,6 +6,7 @@ import blackHistoryTimeMachineHero from "@/assets/tools/black-history-time-machi
 import nativeAmericanGeminiHero from "@/assets/tools/native-american-gemini-hero.jpg";
 import ogTimeMachineGeminiHero from "@/assets/tools/og-time-machine-gemini-hero.jpg";
 import veo3PromptMakerHero from "@/assets/tools/veo3-prompt-maker-hero.jpg";
+import rogueRobotDisablerGemHero from "@/assets/tools/rouge-robot-disabler-gem-hero.jpg";
 
 export const customGeminiGems: Tool[] = [
   {
