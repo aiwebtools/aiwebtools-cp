@@ -1,5 +1,5 @@
 import { Tool } from "@/types/tools";
-import { BookOpen, Clock, FileText, History, Globe, Video } from "lucide-react";
+import { BookOpen, Clock, FileText, History, Globe, Video, Bot } from "lucide-react";
 
 import bookWriterGeminiHero from "@/assets/tools/book-writer-gemini-hero.jpg";
 import blackHistoryTimeMachineHero from "@/assets/tools/black-history-time-machine-hero.jpg";
