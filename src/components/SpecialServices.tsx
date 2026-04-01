@@ -74,7 +74,10 @@ const weightedShuffle = <T extends { title: string }>(items: T[]): T[] => {
     "Ancient Wisdom Archive GPT", "Sir Isaac Newton GPT", "Johannes Kepler GPT",
     "James Clerk Maxwell GPT", "Whats The Plot Twist Chat?",
     "Zoroastrian Text Recovery Studies GPT", "Cursive Writing Worksheet Maker GPT",
-    "Rastafari Lifestyles GPT"
+    "Rastafari Lifestyles GPT",
+    // Scholarly & Spiritual batch
+    "Ancient Bible Recovery", "ORIGINAL GREEK OLD TESTIMENT GPT (Septuagint)",
+    "Dead Sea Scrolls GPT", "ALL IS ONE GPT", "Ancient Egyptian Proverbs GPT"
   ]);
 
   // SECOND TIER: Other premium tools (spirituality, exploration, history, etc.)
@@ -85,7 +88,7 @@ const weightedShuffle = <T extends { title: string }>(items: T[]): T[] => {
     "Public Defender GPT", "Sophia Aeterna AI", "Carl Sagan GPT", "Manicheism GPT",
     "Oraculum – The Revealer of Hidden Truths", "TALK TO HISTORY GPT", 
     "Indiana Archeologist GPT", "Illuminous World Data Explorer GPT", "METATRON GPT",
-    "Ancient Egyptian Proverbs GPT"
+    
   ]);
   
   // Split into tiers
