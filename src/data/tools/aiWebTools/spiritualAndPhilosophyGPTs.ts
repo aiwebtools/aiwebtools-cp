@@ -1373,5 +1373,19 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     isFree: true,
     rating: 4.8,
     totalVotes: 1200
+  },
+  {
+    icon: BookOpen,
+    title: "Quran & Islamic Studies GPT",
+    description: "Deep scholarly exploration of the Quran and Islamic tradition. By AiWebTools.Ai. This GPT provides verse-by-verse Quranic analysis with classical tafsir (exegesis), Arabic linguistic breakdowns, and historical context from the Prophetic era. Study Hadith collections, Islamic jurisprudence (fiqh), Sufi mysticism, and the rich intellectual heritage of Islamic civilization. Whether you are a student of comparative religion, an academic researcher, or a seeker of spiritual truth, this tool offers reverent, scholarly access to one of the world's most influential sacred texts and its vast interpretive tradition.",
+    emoji: "☪️",
+    color: "from-emerald-500 to-green-700",
+    directUrl: "https://chatgpt.com/g/g-69cc6c1cf4fc8191aea808f0129a046d-original-quran-gpt",
+    imageUrl: "/src/assets/tools/quran-islamic-studies-gpt-hero.jpg",
+    tags: ["quran", "islamic studies", "islam", "muslim", "tafsir", "hadith", "fiqh", "sufi", "arabic", "prophet muhammad", "mosque", "prayer", "ramadan", "spiritual", "religion", "sacred text", "theology", "comparative religion", "quranic studies", "islamic civilization", "aiwebtools", "Custom GPT"],
+    category: "Spirituality & Philosophy",
+    isFree: true,
+    rating: 4.9,
+    totalVotes: 980
   }
 ];

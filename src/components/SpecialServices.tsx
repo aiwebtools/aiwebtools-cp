@@ -77,7 +77,8 @@ const weightedShuffle = <T extends { title: string }>(items: T[]): T[] => {
     "Rastafari Lifestyles GPT",
     // Scholarly & Spiritual batch
     "Ancient Bible Recovery", "ORIGINAL GREEK OLD TESTIMENT GPT (Septuagint)",
-    "Dead Sea Scrolls GPT", "ALL IS ONE GPT", "Ancient Egyptian Proverbs GPT"
+    "Dead Sea Scrolls GPT", "ALL IS ONE GPT", "Ancient Egyptian Proverbs GPT",
+    "Quran & Islamic Studies GPT"
   ]);
 
   // SECOND TIER: Other premium tools (spirituality, exploration, history, etc.)
