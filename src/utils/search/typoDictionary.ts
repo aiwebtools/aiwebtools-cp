@@ -643,7 +643,6 @@ export const TYPO_DICTIONARY: Record<string, string> = {
   "koran": "quran",
   "koraan": "quran",
   "islm": "islam",
-  "islaam": "islam",
   "islamc": "islamic",
   "islmic": "islamic",
   "muslem": "muslim",
