@@ -406,7 +406,8 @@ export const toolTaglines: Record<string, string> = {
   "Whats The Plot Twist Chat?": "Give any scenario — get a plot twist that'll blow your mind.",
   "Zoroastrian Text Recovery Studies GPT": "Recover the original words of Zarathustra — line by line, truth by truth.",
   "Cursive Writing Worksheet Maker GPT": "Master the lost art of cursive — beautiful worksheets instantly.",
-  "Rastafari Lifestyles GPT": "One love, one heart — experience Rastafari truth through Bob Marley's spirit."
+  "Rastafari Lifestyles GPT": "One love, one heart — experience Rastafari truth through Bob Marley's spirit.",
+  "Quran & Islamic Studies GPT": "Unlock the divine word — verse by verse, truth by truth, light upon light."
 };
 
 // Function to get tagline for a tool (falls back to short description)
