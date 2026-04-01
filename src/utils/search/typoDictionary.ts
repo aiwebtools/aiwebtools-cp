@@ -635,6 +635,27 @@ export const TYPO_DICTIONARY: Record<string, string> = {
   "handwritting": "handwriting",
   "rastafri": "rastafari",
   "rastafarian": "rastafari",
-  "rastafarai": ""
+  "rastafarai": "rastafari",
+  "quran": "quran",
+  "quraan": "quran",
+  "quarn": "quran",
+  "qoran": "quran",
+  "koran": "quran",
+  "koraan": "quran",
+  "islm": "islam",
+  "islaam": "islam",
+  "islamc": "islamic",
+  "islmic": "islamic",
+  "muslem": "muslim",
+  "muslin": "muslim",
+  "tafseer": "tafsir",
+  "tafser": "tafsir",
+  "hadth": "hadith",
+  "hadeeth": "hadith",
+  "sufism": "sufi",
+  "sufii": "sufi",
+  "muhammed": "muhammad",
+  "mohamad": "muhammad",
+  "mohammud": "muhammad"
 };
 
