@@ -78,7 +78,16 @@ const weightedShuffle = <T extends { title: string }>(items: T[]): T[] => {
     // Scholarly & Spiritual batch
     "Ancient Bible Recovery", "ORIGINAL GREEK OLD TESTIMENT GPT (Septuagint)",
     "Dead Sea Scrolls GPT", "ALL IS ONE GPT", "Ancient Egyptian Proverbs GPT",
-    "Quran & Islamic Studies GPT"
+    "Quran & Islamic Studies GPT",
+    // Civic Transparency Batch 2026
+    "Monopoly Reality Awakening GPT", "Government Corruption Prediction Engine GPT",
+    "Govt Table Flipper Influence Investigator GPT", "Election Truth Scanner GPT",
+    "Government Spending Investigator GPT", "Freedom Impact Simulator GPT",
+    "Narrative Manipulation Detector GPT", "Government Contract Analyzer GPT",
+    "Policy Transparency GPT", "Rights Defender GPT", "Local Government Watchdog GPT",
+    "Media Manipulation Scanner GPT", "Voting Truth GPT", "Whistleblower Shield GPT",
+    "Influence Network Investigator GPT", "Policy Impact Simulator GPT",
+    "CITIZEN AUDIT GPT", "Follow the Money Corruption Insights GPT"
   ]);
 
   // SECOND TIER: Other premium tools (spirituality, exploration, history, etc.)
