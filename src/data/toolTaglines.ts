@@ -407,7 +407,27 @@ export const toolTaglines: Record<string, string> = {
   "Zoroastrian Text Recovery Studies GPT": "Recover the original words of Zarathustra — line by line, truth by truth.",
   "Cursive Writing Worksheet Maker GPT": "Master the lost art of cursive — beautiful worksheets instantly.",
   "Rastafari Lifestyles GPT": "One love, one heart — experience Rastafari truth through Bob Marley's spirit.",
-  "Quran & Islamic Studies GPT": "Unlock the divine word — verse by verse, truth by truth, light upon light."
+  "Quran & Islamic Studies GPT": "Unlock the divine word — verse by verse, truth by truth, light upon light.",
+  
+  // Civic Transparency Batch 2026
+  "Monopoly Reality Awakening GPT": "See the board they don't want you to see — money, power, control decoded.",
+  "Government Corruption Prediction Engine GPT": "Predict corruption before it happens — AI-powered political risk analysis.",
+  "Govt Table Flipper Influence Investigator GPT": "Flip the table on hidden influence — follow the dark money trail.",
+  "Election Truth Scanner GPT": "Scan any election for fraud signals — democracy's digital watchdog.",
+  "Government Spending Investigator GPT": "Track every taxpayer dollar — expose wasteful government spending.",
+  "Freedom Impact Simulator GPT": "Simulate how any law affects YOUR freedom — before it passes.",
+  "Narrative Manipulation Detector GPT": "See through propaganda — detect hidden persuasion in any message.",
+  "Government Contract Analyzer GPT": "Expose who really profits from government contracts — follow the paper trail.",
+  "Policy Transparency GPT": "Decode any law — reveal hidden clauses and who truly benefits.",
+  "Rights Defender GPT": "Your AI civil rights advocate — know your rights, defend your freedom.",
+  "Local Government Watchdog GPT": "Your city hall watchdog — accountability starts at the local level.",
+  "Media Manipulation Scanner GPT": "Scan any news for bias, framing, and emotional manipulation — truth revealed.",
+  "Voting Truth GPT": "Know your candidates — funding, votes, influence, no spin, just truth.",
+  "Whistleblower Shield GPT": "Protect your identity while exposing the truth — safe pathways to justice.",
+  "Influence Network Investigator GPT": "Map the hidden web of political power — who controls whom, revealed.",
+  "Policy Impact Simulator GPT": "Simulate any policy's real-world effects — winners, losers, hidden incentives.",
+  "CITIZEN AUDIT GPT": "Audit your government — lawful, ethical citizen oversight powered by AI.",
+  "Follow the Money Corruption Insights GPT": "Follow every dollar through the maze — corruption has nowhere to hide."
 };
 
 // Function to get tagline for a tool (falls back to short description)
