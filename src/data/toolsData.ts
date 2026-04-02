@@ -227,6 +227,7 @@ import { hormuzCrisisGPT } from "./tools/hormuzCrisisGPT";
 import { gameVR3DBatch2026 } from "./tools/gameVR3DBatch2026";
 import { robotSafetyGPTs2026 } from "./tools/robotSafetyGPTs2026";
 import { preparednessAndScholarsBatch2026 } from "./tools/preparednessAndScholarsBatch2026";
+import { civicTransparencyBatch2026 } from "./tools/civicTransparencyBatch2026";
 
 const allToolCategories = consolidateTools([
   ...getAllToolCategories(),
@@ -528,7 +529,10 @@ const allToolCategories = consolidateTools([
   ...robotSafetyGPTs2026,
 
   // Preparedness & Scholars Batch 2026 (17 tools: Fallout Shelter, Solar Power, Garden Starter, Nuclear Event, Geiger Counter, Emergency Prep, Off Grid, Alt History, Ancient Wisdom, Newton, Kepler, Maxwell, Plot Twist, Zoroastrian Text Recovery, Cursive Writing, Rastafari)
-  ...preparednessAndScholarsBatch2026
+  ...preparednessAndScholarsBatch2026,
+
+  // Civic Transparency Batch 2026 (18 tools: Monopoly Reality Awakening, Govt Corruption Prediction, Table Flipper, Election Truth Scanner, Govt Spending Investigator, Freedom Impact Simulator, Narrative Manipulation Detector, Govt Contract Analyzer, Policy Transparency, Rights Defender, Local Govt Watchdog, Media Manipulation Scanner, Voting Truth, Whistleblower Shield, Influence Network Investigator, Policy Impact Simulator, Citizen Audit, Follow the Money)
+  ...civicTransparencyBatch2026
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories

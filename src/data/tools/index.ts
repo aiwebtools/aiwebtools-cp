@@ -572,3 +572,6 @@ export { robotSafetyGPTs2026 } from './robotSafetyGPTs2026';
 
 // Export Preparedness & Scholars Batch 2026 (17 tools: Fallout Shelter Locator, Solar Power Companion, Garden Starter, Nuclear Event Preparedness, Geiger Counter Analyst, Emergency Preparedness, Off Grid Planner, Alternative History Explorer, Ancient Wisdom Archive, Sir Isaac Newton, Johannes Kepler, James Clerk Maxwell, Whats The Plot Twist, Zoroastrian Text Recovery Studies, Cursive Writing Worksheet Maker, Rastafari Lifestyles)
 export { preparednessAndScholarsBatch2026 } from './preparednessAndScholarsBatch2026';
+
+// Export Civic Transparency Batch 2026 (18 tools: Monopoly Reality Awakening, Govt Corruption Prediction, Table Flipper, Election Truth Scanner, Govt Spending Investigator, Freedom Impact Simulator, Narrative Manipulation Detector, Govt Contract Analyzer, Policy Transparency, Rights Defender, Local Govt Watchdog, Media Manipulation Scanner, Voting Truth, Whistleblower Shield, Influence Network Investigator, Policy Impact Simulator, Citizen Audit, Follow the Money)
+export { civicTransparencyBatch2026 } from './civicTransparencyBatch2026';
