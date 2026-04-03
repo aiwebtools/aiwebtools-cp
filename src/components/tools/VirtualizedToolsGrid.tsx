@@ -30,7 +30,7 @@ const VirtualizedToolsGrid = memo(({
     <>
       {/* Main filtered tools grid - optimized for touch scrolling */}
       <div 
-        className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4"
+        className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-3 gap-4"
         style={{ 
           touchAction: 'pan-y',
           WebkitOverflowScrolling: 'touch'
@@ -79,7 +79,7 @@ const VirtualizedToolsGrid = memo(({
           </div>
           
           <div 
-            className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4"
+            className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-3 gap-4"
             style={{ 
               touchAction: 'pan-y',
               WebkitOverflowScrolling: 'touch'

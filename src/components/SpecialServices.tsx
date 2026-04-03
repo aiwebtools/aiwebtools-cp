@@ -12,6 +12,8 @@ import ToolDisclaimerBadges from "@/components/disclaimers/ToolDisclaimerBadges"
 import { generateToolSlug } from "@/utils/urlGenerator";
 import AutoScaleTitle from "@/components/ui/auto-scale-title";
 import { trackToolClickEvent } from "@/hooks/useToolAnalytics";
+import { civicTransparencyBatch2026 } from "@/data/tools/civicTransparencyBatch2026";
+import { toFeatureLabels } from "@/utils/search/featuredCardHelpers";
 
 // Weighted shuffle - keeps high-quality tools near the top but adds randomness
 // PRIORITY: Dream-conquering practical tools FIRST, then spirituality/awakening
@@ -266,7 +268,19 @@ const sortByTitle = (a: typeof featuredGPTsUnsorted[0], b: typeof featuredGPTsUn
   return cleanTitle(a.title).localeCompare(cleanTitle(b.title));
 };
 
+const civicTransparencyFeaturedGPTs = civicTransparencyBatch2026.map((tool) => ({
+  title: tool.title,
+  description: tool.description,
+  badge: "CIVIC OVERSIGHT",
+  color: tool.color || "from-blue-600 to-red-600",
+  features: toFeatureLabels(tool.tags, ["Civic Analysis", "Public Accountability", "Government Oversight", "Transparency"]),
+  directUrl: tool.directUrl,
+  imageUrl: tool.imageUrl,
+  emoji: tool.emoji || "🏛️"
+}));
+
 const featuredGPTsUnsorted = [
+  ...civicTransparencyFeaturedGPTs,
   {
     title: "Ancient Bible Recovery",
     description: "Forensic recovery and translation of ancient biblical and para-biblical texts, exposing original forms through manuscript evidence. Discover hidden meanings through scholarly manuscript analysis.",
@@ -3871,7 +3885,8 @@ const FILTER_CATEGORIES = {
     "REALITY SPLITTER", "WORLD RESOURCE", "DECLASSIFIED", "HIDDEN HISTORIES"
   ],
   "PROFESSIONAL & CIVIC": [
-    "CIVIC", "GOVERNMENT", "LEGISLATION", "LEGISLATOR", "POLITICS", "DEMOCRACY", "ACTIVIST", "WE THE PEOPLE",
+    "CIVIC", "GOVERNMENT", "LEGISLATION", "LEGISLATOR", "POLITICS", "DEMOCRACY", "ACTIVIST", "WE THE PEOPLE", "CORRUPTION",
+    "WHISTLEBLOWER", "TRANSPARENCY", "ELECTION", "VOTING", "POLICY", "RIGHTS DEFENDER", "CONTRACT ANALYZER",
     "BUSINESS PLAN", "BUSINESS", "FINANCE", "TRADING", "TRADER", "INSURANCE", "TAX", "REAL ESTATE", "PROPERTY DATA",
     "AGRICULTURE", "FARMING", "AGRONOMUS", "SUSTAINABILITY", "SUSTAINABLE", "ENVIRONMENT", "SOLAR LAND", "ENERGY", "SOLAR",
     "CAREER", "RESUME", "JOB FINDER", "INSPECTOR", "APPRAISAL", "STARTUP", "SOCIAL SAFETY", "PUBLIC SERVICE",
