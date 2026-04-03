@@ -319,7 +319,10 @@ const runFullSearch = (rawQuery: string): number[] => {
     .filter((index): index is number => typeof index === "number");
 };
 
-const workerScope = self as DedicatedWorkerGlobalScope;
+const workerScope = globalThis as typeof globalThis & {
+  onmessage: ((event: MessageEvent<SearchRequest>) => void) | null;
+  postMessage: (message: SearchResponse) => void;
+};
 
 workerScope.onmessage = (event: MessageEvent<SearchRequest>) => {
   const { id, query } = event.data;

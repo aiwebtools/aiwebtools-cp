@@ -262,13 +262,26 @@ const HeroImage = ({
 // CLEANED VERSION - NO DUPLICATES, NO FAKE TOOLS
 // =============================================================================
 
+type FeaturedSpecialService = {
+  title: string;
+  description: string;
+  badge: string;
+  color: string;
+  features: string[];
+  directUrl: string;
+  imageUrl?: string;
+  videoUrl?: string;
+  emoji?: string;
+  blockchain?: string;
+};
+
 // Sort featuredGPTs alphabetically by title (ignoring emojis and special characters at start)
-const sortByTitle = (a: typeof featuredGPTsUnsorted[0], b: typeof featuredGPTsUnsorted[0]) => {
+const sortByTitle = (a: FeaturedSpecialService, b: FeaturedSpecialService) => {
   const cleanTitle = (title: string) => title.replace(/^[^\w\s]+\s*/, '').toLowerCase();
   return cleanTitle(a.title).localeCompare(cleanTitle(b.title));
 };
 
-const civicTransparencyFeaturedGPTs = civicTransparencyBatch2026.map((tool) => ({
+const civicTransparencyFeaturedGPTs: FeaturedSpecialService[] = civicTransparencyBatch2026.map((tool) => ({
   title: tool.title,
   description: tool.description,
   badge: "CIVIC OVERSIGHT",
@@ -279,7 +292,7 @@ const civicTransparencyFeaturedGPTs = civicTransparencyBatch2026.map((tool) => (
   emoji: tool.emoji || "🏛️"
 }));
 
-const featuredGPTsUnsorted = [
+const featuredGPTsUnsorted: FeaturedSpecialService[] = [
   ...civicTransparencyFeaturedGPTs,
   {
     title: "Ancient Bible Recovery",
