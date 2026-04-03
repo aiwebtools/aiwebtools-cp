@@ -273,6 +273,7 @@ type FeaturedSpecialService = {
   videoUrl?: string;
   emoji?: string;
   blockchain?: string;
+  tags?: string[];
 };
 
 // Sort featuredGPTs alphabetically by title (ignoring emojis and special characters at start)
