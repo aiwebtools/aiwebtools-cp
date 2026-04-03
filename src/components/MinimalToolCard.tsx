@@ -22,10 +22,10 @@ const MinimalToolCard = memo(({ tool, index = 0 }: MinimalToolCardProps) => {
 
   const previewDescription = (() => {
     const description = tool.description?.trim() || "Powerful AI tool for enhanced productivity.";
-    if (description.length <= 155) return description;
-    const truncated = description.slice(0, 155);
+    if (description.length <= 220) return description;
+    const truncated = description.slice(0, 220);
     const lastSpace = truncated.lastIndexOf(" ");
-    return `${truncated.slice(0, lastSpace > 110 ? lastSpace : 155)}...`;
+    return `${truncated.slice(0, lastSpace > 150 ? lastSpace : 220)}...`;
   })();
   
   const handleMouseEnter = useCallback(() => {
@@ -86,7 +86,7 @@ const MinimalToolCard = memo(({ tool, index = 0 }: MinimalToolCardProps) => {
             >
               <AutoScaleTitle title={tool.title} baseSize="sm" />
             </h3>
-            <p className="text-xs text-gray-300 leading-relaxed line-clamp-3 min-h-[3.75rem] sm:min-h-[4.25rem]">
+            <p className="text-xs text-gray-300 leading-relaxed line-clamp-4 min-h-[5rem] sm:min-h-[5.5rem]">
               {previewDescription}
             </p>
             {tool.category && (
