@@ -1952,34 +1952,7 @@ export const useGlobalSearch = () => {
   const searchIdRef = useRef(0);
   const quickRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const fullRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const fullSearchWorkerRef = useRef<Worker | null>(null);
   const lastInputTimeRef = useRef(0);
-
-  const ensureFullSearchWorker = useCallback(() => {
-    if (typeof Worker === "undefined") return null;
-    if (fullSearchWorkerRef.current) return fullSearchWorkerRef.current;
-
-    const worker = new Worker(new URL("../workers/globalSearchWorker.ts", import.meta.url), {
-      type: "module",
-    });
-
-    worker.onmessage = (event: MessageEvent<{ id: number; query: string; indices: number[] }>) => {
-      const { id, query, indices } = event.data;
-      if (id !== searchIdRef.current) return;
-
-      const results = indices.map((index) => allTools[index]).filter(Boolean);
-      searchCache.set(`${SEARCH_CACHE_VERSION}:full:${query.toLowerCase().trim()}`, results);
-      setSearchResults(results);
-      setDisplayedCount(50);
-    };
-
-    worker.onerror = () => {
-      console.warn("Full search worker failed; falling back to main-thread search.");
-    };
-
-    fullSearchWorkerRef.current = worker;
-    return worker;
-  }, []);
 
   // INSTANT typing - defer ALL search work so input never blocks
   const setSearchTerm = useCallback((value: string) => {
@@ -2033,45 +2006,40 @@ export const useGlobalSearch = () => {
       setDisplayedCount(50);
     }, quickDelay);
 
-    // 5) Full intelligent ranking for 3+ chars - adaptive debounce
+    // 5) Full intelligent ranking for 3+ chars - adaptive debounce (main thread with requestIdleCallback)
     if (cappedT.length >= 3) {
-      const worker = ensureFullSearchWorker();
-
       const fullDelay = isRapidTyping 
         ? (cappedT.length > 15 ? 180 : 120) 
         : (cappedT.length > 15 ? 120 : 80);
 
       fullRef.current = setTimeout(() => {
         if (currentId !== searchIdRef.current) return;
-        if (worker) {
-          worker.postMessage({ id: currentId, query: cappedT });
-          return;
-        }
 
-        const fallbackResults = searchTools(allTools, cappedT);
-        searchCache.set(fullCacheKey, fallbackResults);
-        setSearchResults(fallbackResults);
-        setDisplayedCount(50);
+        // Use requestIdleCallback to avoid blocking typing
+        const runSearch = () => {
+          if (currentId !== searchIdRef.current) return;
+          const fallbackResults = searchTools(allTools, cappedT);
+          searchCache.set(fullCacheKey, fallbackResults);
+          setSearchResults(fallbackResults);
+          setDisplayedCount(50);
+        };
+
+        if ('requestIdleCallback' in window) {
+          (window as any).requestIdleCallback(runSearch, { timeout: 300 });
+        } else {
+          runSearch();
+        }
       }, fullDelay);
     }
-  }, [ensureFullSearchWorker, quickSearch]);
+  }, [quickSearch]);
   
   // Cleanup on unmount
   useEffect(() => {
-    const warmWorker = window.setTimeout(() => {
-      ensureFullSearchWorker();
-    }, 600);
-
     return () => {
-      window.clearTimeout(warmWorker);
       if (quickRef.current) clearTimeout(quickRef.current);
       if (fullRef.current) clearTimeout(fullRef.current);
-      if (fullSearchWorkerRef.current) {
-        fullSearchWorkerRef.current.terminate();
-        fullSearchWorkerRef.current = null;
-      }
     };
-  }, [ensureFullSearchWorker]);
+  }, []);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
