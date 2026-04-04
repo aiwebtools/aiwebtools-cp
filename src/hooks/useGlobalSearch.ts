@@ -1952,34 +1952,7 @@ export const useGlobalSearch = () => {
   const searchIdRef = useRef(0);
   const quickRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const fullRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const fullSearchWorkerRef = useRef<Worker | null>(null);
   const lastInputTimeRef = useRef(0);
-
-  const ensureFullSearchWorker = useCallback(() => {
-    if (typeof Worker === "undefined") return null;
-    if (fullSearchWorkerRef.current) return fullSearchWorkerRef.current;
-
-    const worker = new Worker(new URL("../workers/globalSearchWorker.ts", import.meta.url), {
-      type: "module",
-    });
-
-    worker.onmessage = (event: MessageEvent<{ id: number; query: string; indices: number[] }>) => {
-      const { id, query, indices } = event.data;
-      if (id !== searchIdRef.current) return;
-
-      const results = indices.map((index) => allTools[index]).filter(Boolean);
-      searchCache.set(`${SEARCH_CACHE_VERSION}:full:${query.toLowerCase().trim()}`, results);
-      setSearchResults(results);
-      setDisplayedCount(50);
-    };
-
-    worker.onerror = () => {
-      console.warn("Full search worker failed; falling back to main-thread search.");
-    };
-
-    fullSearchWorkerRef.current = worker;
-    return worker;
-  }, []);
 
   // INSTANT typing - defer ALL search work so input never blocks
   const setSearchTerm = useCallback((value: string) => {
