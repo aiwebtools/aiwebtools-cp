@@ -532,8 +532,11 @@ const allToolCategories = consolidateTools([
   // Preparedness & Scholars Batch 2026 (17 tools: Fallout Shelter, Solar Power, Garden Starter, Nuclear Event, Geiger Counter, Emergency Prep, Off Grid, Alt History, Ancient Wisdom, Newton, Kepler, Maxwell, Plot Twist, Zoroastrian Text Recovery, Cursive Writing, Rastafari)
   ...preparednessAndScholarsBatch2026,
 
-  // Civic Transparency Batch 2026 (18 tools: Monopoly Reality Awakening, Govt Corruption Prediction, Table Flipper, Election Truth Scanner, Govt Spending Investigator, Freedom Impact Simulator, Narrative Manipulation Detector, Govt Contract Analyzer, Policy Transparency, Rights Defender, Local Govt Watchdog, Media Manipulation Scanner, Voting Truth, Whistleblower Shield, Influence Network Investigator, Policy Impact Simulator, Citizen Audit, Follow the Money)
-  ...civicTransparencyBatch2026
+  // Civic Transparency Batch 2026 (18 tools)
+  ...civicTransparencyBatch2026,
+
+  // Must-Have Tools Batch 2026 (25 tools: Dataiku, E2B, Promptfoo, Msty, LibreChat, Nomic, PearAI, Bolt DIY, AnythingLLM, LocalAI, Llamafile, LiteLLM, vLLM, MLX, Google IDX, Gitpod, LobeChat, MLflow, Neptune, Langtrace, Pezzo, LastMile, Twilio, Sendbird, Dagster)
+  ...mustHaveToolsBatch2026
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories

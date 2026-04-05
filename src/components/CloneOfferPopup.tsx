@@ -74,8 +74,8 @@ const CloneOfferPopup = () => {
       return;
     }
 
-    // Delays: 7min, 12min, 20min, 25min, then every 7min after
-    const delays = [420000, 720000, 1200000, 1500000, 1920000, 2340000, 2760000, 3180000, 3600000];
+    // Delays: 7min, 9min, 12min, 20min, 25min, then every 7min after
+    const delays = [420000, 540000, 720000, 1200000, 1500000, 1920000, 2340000, 2760000, 3180000, 3600000, 4020000];
     const delay = delays[shownCount] || delays[delays.length - 1];
 
     const timer = setTimeout(() => {
