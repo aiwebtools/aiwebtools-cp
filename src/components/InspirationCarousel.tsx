@@ -39,6 +39,11 @@ const images = [
   { src: "/images/inspiration/praise-light-within.jpg", alt: "Praise the Light of God for it is WITHIN" },
   { src: "/images/inspiration/met-god-no-religion.jpg", alt: "If having a religion was a requirement to have a God - How come I met God without having a religion?" },
   { src: "/images/inspiration/declaration-cosmic-light.png", alt: "Declaration of Cosmic Light Within All People on Earth - The Inner Cosmos Monk of Humanity" },
+  { src: "/images/inspiration/no-room-for-hate.png", alt: "NO ROOM FOR HATE - As above so below, as within so without - Corpus Hermeticum - We share one divine inner light" },
+  { src: "/images/inspiration/world-designed-for-you.png", alt: "That feeling like the world was literally designed for you and this moment" },
+  { src: "/images/inspiration/all-i-desire-is-peace.png", alt: "All I desire is peace - A man holding truth in the desert wilderness" },
+  { src: "/images/inspiration/god-is-cosmic-light.png", alt: "We live inside of God - God is Cosmic LIGHT Source Code - And God lives inside of us - The cosmos is within" },
+  { src: "/images/inspiration/i-am-what-i-am.png", alt: "I AM WHAT I AM - Aren't you embarrassed? People will kill you for saying that! - I AM WHAT I AM" },
 ];
 
 const InspirationCarousel = () => {
