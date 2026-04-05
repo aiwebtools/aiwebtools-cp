@@ -15,6 +15,8 @@ import clonePopup5 from "@/assets/clone-popup-5.jpg";
 import clonePopup6 from "@/assets/clone-popup-6.jpg";
 import clonePopup7 from "@/assets/clone-popup-7.jpg";
 import clonePopup8 from "@/assets/clone-popup-8.jpg";
+import clonePopup9 from "@/assets/clone-popup-9.png";
+import clonePopup10 from "@/assets/clone-popup-10.png";
 
 const popupImages: Record<number, string> = {
   4: clonePopup4,
@@ -22,6 +24,8 @@ const popupImages: Record<number, string> = {
   6: clonePopup6,
   7: clonePopup7,
   8: clonePopup8,
+  9: clonePopup9,
+  10: clonePopup10,
 };
 
 const CloneOfferPopup = () => {
