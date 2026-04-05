@@ -1,11 +1,9 @@
 /**
- * Vite plugin that generates an og-manifest.json during build.
- * This manifest contains minimal tool data (title, description, image, category)
- * needed by the post-build OG page generator script.
+ * Vite plugin that generates static HTML pages with tool-specific OG meta tags
+ * for social media previews (Facebook, Twitter, LinkedIn, etc.).
  * 
- * The manifest is written to dist/og-manifest.json and consumed by
- * scripts/generate-og-pages.ts to create static HTML files with
- * tool-specific OG meta tags for social media previews.
+ * Each tool gets its own static page with unique title, description, and image
+ * so sharing a direct tool URL shows the correct preview thumbnail.
  */
 
 import type { Plugin } from 'vite';
@@ -17,13 +15,10 @@ export function viteOGManifest(): Plugin {
     name: 'vite-og-manifest',
     apply: 'build',
     
-    // Use generateBundle to inject a virtual module that exports tool data
-    // Instead, we use a simpler approach: write a manifest from the source data
     closeBundle() {
-      console.log('📋 OG Manifest: Generating tool manifest for social sharing...');
+      console.log('📋 OG Manifest: Generating tool-specific social sharing pages...');
       
       try {
-        // Read all tool source files to extract tool data
         const toolsDir = path.resolve(process.cwd(), 'src/data/tools');
         const toolEntries: Array<{
           title: string;
@@ -32,7 +27,6 @@ export function viteOGManifest(): Plugin {
           category?: string;
         }> = [];
         
-        // Recursively find all .ts files in the tools directory
         const findToolFiles = (dir: string): string[] => {
           const files: string[] = [];
           if (!fs.existsSync(dir)) return files;
@@ -53,24 +47,64 @@ export function viteOGManifest(): Plugin {
         for (const filePath of toolFiles) {
           const content = fs.readFileSync(filePath, 'utf-8');
           
-          // Extract tool objects using regex - look for title and description fields
-          const toolRegex = /\{\s*(?:[^{}]*?)title:\s*["'`]([^"'`]+)["'`]\s*,\s*(?:[^{}]*?)description:\s*["'`]([^"'`]+)["'`]/gs;
+          // Build a map of import variable names to their source paths
+          const importMap: Record<string, string> = {};
+          const importRegex = /import\s+(\w+)\s+from\s+["']([^"']+)["']/g;
+          let importMatch;
+          while ((importMatch = importRegex.exec(content)) !== null) {
+            const varName = importMatch[1];
+            const importPath = importMatch[2];
+            // Only map asset imports
+            if (importPath.includes('/assets/') || importPath.includes('lovable-uploads')) {
+              importMap[varName] = importPath;
+            }
+          }
           
-          let match;
-          while ((match = toolRegex.exec(content)) !== null) {
-            const title = match[1];
-            const description = match[2];
+          // Extract tool objects - match title, description, imageUrl, category
+          // Use a block-based approach: find each { ... } tool object
+          const toolBlockRegex = /\{\s*\n(?:[^{}]*?\n)*?\s*title:\s*["'`]([^"'`]+)["'`]/gs;
+          
+          let blockMatch;
+          while ((blockMatch = toolBlockRegex.exec(content)) !== null) {
+            const title = blockMatch[1];
+            const blockStart = blockMatch.index;
             
-            // Try to find category
-            const categoryMatch = content.match(new RegExp(
-              title.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + 
-              `[\\s\\S]{0,500}category:\\s*["'\`]([^"'\`]+)["'\`]`
-            ));
+            // Find the end of this object block (approximate - find next },\n or end)
+            let depth = 0;
+            let blockEnd = blockStart;
+            for (let i = blockStart; i < content.length; i++) {
+              if (content[i] === '{') depth++;
+              if (content[i] === '}') { depth--; if (depth === 0) { blockEnd = i; break; } }
+            }
+            const block = content.substring(blockStart, blockEnd + 1);
+            
+            // Extract description
+            const descMatch = block.match(/description:\s*["'`]([^"'`]+)["'`]/);
+            const description = descMatch ? descMatch[1] : '';
+            
+            // Extract category
+            const catMatch = block.match(/category:\s*["'`]([^"'`]+)["'`]/);
+            const category = catMatch ? catMatch[1] : 'AI Tool';
+            
+            // Extract imageUrl - could be a string literal or an imported variable
+            let imageUrl: string | undefined;
+            const imageStringMatch = block.match(/imageUrl:\s*["'`]([^"'`]+)["'`]/);
+            const imageVarMatch = block.match(/imageUrl:\s*(\w+)/);
+            
+            if (imageStringMatch) {
+              imageUrl = imageStringMatch[1];
+            } else if (imageVarMatch && importMap[imageVarMatch[1]]) {
+              // Resolve imported variable to a path
+              const assetPath = importMap[imageVarMatch[1]];
+              // Convert @/assets/tools/xyz.jpg to /src/assets/tools/xyz.jpg for build resolution
+              imageUrl = assetPath.replace('@/', '/src/');
+            }
             
             toolEntries.push({
               title,
               description: description.substring(0, 300),
-              category: categoryMatch ? categoryMatch[1] : 'AI Tool',
+              imageUrl,
+              category,
             });
           }
         }
@@ -81,6 +115,19 @@ export function viteOGManifest(): Plugin {
           fs.mkdirSync(distDir, { recursive: true });
         }
         
+        // Try to build a map of source asset paths to their hashed output filenames
+        const assetMap: Record<string, string> = {};
+        const assetsDir = path.join(distDir, 'assets');
+        if (fs.existsSync(assetsDir)) {
+          for (const file of fs.readdirSync(assetsDir)) {
+            // Match patterns like "sora2-prompt-maker-hero-AbCdEf.jpg"
+            const match = file.match(/^(.+?)-[a-zA-Z0-9]{6,12}\.(jpg|png|webp|jpeg|svg)$/);
+            if (match) {
+              assetMap[match[1]] = `/assets/${file}`;
+            }
+          }
+        }
+        
         fs.writeFileSync(
           path.join(distDir, 'og-manifest.json'),
           JSON.stringify(toolEntries, null, 2),
@@ -89,12 +136,10 @@ export function viteOGManifest(): Plugin {
         
         console.log(`📋 OG Manifest: Found ${toolEntries.length} tools.`);
         
-        // Now generate the OG pages directly
-        generateOGPages(toolEntries, distDir);
+        generateOGPages(toolEntries, distDir, assetMap);
         
       } catch (error) {
         console.error('⚠️ OG Manifest generation error:', error);
-        // Non-fatal - build continues without OG pages
       }
     }
   };
@@ -107,7 +152,7 @@ function generateToolSlug(title: string): string {
     .replace(/\s+/g, '-')
     .replace(/-+/g, '-')
     .replace(/^-|-$/g, '')
-    .substring(0, 50);
+    .substring(0, 80);
 }
 
 function escapeHtml(text: string): string {
@@ -118,9 +163,40 @@ function escapeHtml(text: string): string {
     .replace(/>/g, '&gt;');
 }
 
+function resolveImageUrl(
+  imageUrl: string | undefined,
+  assetMap: Record<string, string>,
+  siteUrl: string,
+  defaultImage: string
+): string {
+  if (!imageUrl) return defaultImage;
+  
+  // External URLs - use directly
+  if (imageUrl.startsWith('http://') || imageUrl.startsWith('https://')) {
+    return imageUrl;
+  }
+  
+  // Lovable uploads - make absolute
+  if (imageUrl.startsWith('/lovable-uploads/')) {
+    return `${siteUrl}${imageUrl}`;
+  }
+  
+  // Local asset imports - try to find hashed version in dist
+  if (imageUrl.includes('/assets/tools/')) {
+    const filename = imageUrl.split('/').pop() || '';
+    const baseName = filename.replace(/\.(jpg|png|webp|jpeg|svg)$/, '');
+    if (assetMap[baseName]) {
+      return `${siteUrl}${assetMap[baseName]}`;
+    }
+  }
+  
+  return defaultImage;
+}
+
 function generateOGPages(
-  tools: Array<{ title: string; description: string; category?: string }>,
-  distDir: string
+  tools: Array<{ title: string; description: string; imageUrl?: string; category?: string }>,
+  distDir: string,
+  assetMap: Record<string, string>
 ) {
   const SITE_URL = 'https://aitools.studio';
   const SITE_NAME = 'AIWEBTOOLS.AI - #1 AI Tools Directory';
@@ -128,6 +204,7 @@ function generateOGPages(
   
   const usedSlugs = new Set<string>();
   let generated = 0;
+  let withCustomImage = 0;
 
   for (const tool of tools) {
     let slug = generateToolSlug(tool.title);
@@ -142,19 +219,17 @@ function generateOGPages(
     usedSlugs.add(uniqueSlug);
 
     const toolDir = path.join(distDir, uniqueSlug);
-    
-    // Don't overwrite if SPA already created this path
     const indexPath = path.join(toolDir, 'index.html');
-    if (fs.existsSync(indexPath)) {
-      // Read existing and inject OG tags if missing
-      continue;
-    }
+    if (fs.existsSync(indexPath)) continue;
 
     fs.mkdirSync(toolDir, { recursive: true });
 
     const pageUrl = `${SITE_URL}/${uniqueSlug}`;
     const title = `${tool.title} - AI Web Tools | AIWEBTOOLS.AI`;
     const desc = tool.description.substring(0, 160);
+    const ogImage = resolveImageUrl(tool.imageUrl, assetMap, SITE_URL, DEFAULT_IMAGE);
+    
+    if (ogImage !== DEFAULT_IMAGE) withCustomImage++;
 
     const html = `<!DOCTYPE html>
 <html lang="en" prefix="og: https://ogp.me/ns#">
@@ -169,10 +244,10 @@ function generateOGPages(
 <meta property="og:url" content="${pageUrl}">
 <meta property="og:title" content="${escapeHtml(title)}">
 <meta property="og:description" content="${escapeHtml(desc)}">
-<meta property="og:image" content="${DEFAULT_IMAGE}">
+<meta property="og:image" content="${escapeHtml(ogImage)}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="${escapeHtml(tool.title)}">
+<meta property="og:image:alt" content="${escapeHtml(tool.title)} - AI Tool">
 <meta property="og:site_name" content="${SITE_NAME}">
 <meta property="og:locale" content="en_US">
 
@@ -181,7 +256,7 @@ function generateOGPages(
 <meta name="twitter:url" content="${pageUrl}">
 <meta name="twitter:title" content="${escapeHtml(title)}">
 <meta name="twitter:description" content="${escapeHtml(desc)}">
-<meta name="twitter:image" content="${DEFAULT_IMAGE}">
+<meta name="twitter:image" content="${escapeHtml(ogImage)}">
 <meta name="twitter:site" content="@aiwebtools">
 
 <link rel="canonical" href="${pageUrl}">
@@ -196,7 +271,8 @@ ${JSON.stringify({
   url: pageUrl,
   applicationCategory: tool.category || "AI Tool",
   operatingSystem: "Web Browser",
-  publisher: { "@type": "Organization", name: "AI WEB TOOLS", url: SITE_URL }
+  image: ogImage,
+  publisher: { "@type": "Organization", name: "AI WEB TOOLS LLC", url: SITE_URL }
 })}
 </script>
 
@@ -214,5 +290,5 @@ ${JSON.stringify({
     generated++;
   }
 
-  console.log(`✅ OG Pages: Generated ${generated} social sharing preview pages.`);
+  console.log(`✅ OG Pages: Generated ${generated} social sharing pages (${withCustomImage} with custom images).`);
 }
