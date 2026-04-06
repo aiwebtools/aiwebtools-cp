@@ -35,7 +35,7 @@ export default defineConfig(({ mode }) => ({
           if (id.includes('node_modules')) return 'vendor-misc';
 
           // Split tool data into multiple chunks by pattern
-          if (id.includes('/data/tools/aiWebTools/')) return 'tools-gpts';
+          if (id.includes('/data/tools/aiWebTools')) return 'tools-gpts';
           if (id.includes('/data/tools/toolifyBatch2026B1') ||
               id.includes('/data/tools/toolifyBatch2026B2') ||
               id.includes('/data/tools/toolifyBatch2026B3') ||
@@ -126,6 +126,92 @@ export default defineConfig(({ mode }) => ({
               id.includes('/data/tools/personal') ||
               id.includes('/data/tools/spiritual') ||
               id.includes('/data/tools/timeAndHistory')) return 'tools-lifestyle';
+          // NEW: Additional tool data splits to break up tools-misc
+          if (id.includes('/data/tools/additional') ||
+              id.includes('/data/tools/moreReal') ||
+              id.includes('/data/tools/rawUncut') ||
+              id.includes('/data/tools/mindBlowing') ||
+              id.includes('/data/tools/comprehensiveAI') ||
+              id.includes('/data/tools/advancedAI') ||
+              id.includes('/data/tools/advancedVideo') ||
+              id.includes('/data/tools/newEpic')) return 'tools-expanded';
+          if (id.includes('/data/tools/business') ||
+              id.includes('/data/tools/ecommerce') ||
+              id.includes('/data/tools/marketing') ||
+              id.includes('/data/tools/email') ||
+              id.includes('/data/tools/newMarketing') ||
+              id.includes('/data/tools/newAffiliate')) return 'tools-biz-mktg';
+          if (id.includes('/data/tools/creative') ||
+              id.includes('/data/tools/design') ||
+              id.includes('/data/tools/image') ||
+              id.includes('/data/tools/background') ||
+              id.includes('/data/tools/coreImage') ||
+              id.includes('/data/tools/content')) return 'tools-design';
+          if (id.includes('/data/tools/developer') ||
+              id.includes('/data/tools/platform') ||
+              id.includes('/data/tools/automation') ||
+              id.includes('/data/tools/cloud') ||
+              id.includes('/data/tools/openSource') ||
+              id.includes('/data/tools/local') ||
+              id.includes('/data/tools/aiInference') ||
+              id.includes('/data/tools/aiTool') ||
+              id.includes('/data/tools/aiHardware') ||
+              id.includes('/data/tools/aiGadgets')) return 'tools-devplatforms';
+          if (id.includes('/data/tools/document') ||
+              id.includes('/data/tools/grammar') ||
+              id.includes('/data/tools/research') ||
+              id.includes('/data/tools/learning') ||
+              id.includes('/data/tools/resume') ||
+              id.includes('/data/tools/meeting') ||
+              id.includes('/data/tools/aiNote') ||
+              id.includes('/data/tools/aiPresent') ||
+              id.includes('/data/tools/aiProduct') ||
+              id.includes('/data/tools/aiProject') ||
+              id.includes('/data/tools/aiTranslat')) return 'tools-productivity';
+          if (id.includes('/data/tools/entertainment') ||
+              id.includes('/data/tools/game') ||
+              id.includes('/data/tools/aiGaming') ||
+              id.includes('/data/tools/aiSport') ||
+              id.includes('/data/tools/lifestyle') ||
+              id.includes('/data/tools/news') ||
+              id.includes('/data/tools/aiTravel') ||
+              id.includes('/data/tools/aiInsurance') ||
+              id.includes('/data/tools/aiReal') ||
+              id.includes('/data/tools/legal') ||
+              id.includes('/data/tools/aiPodcast') ||
+              id.includes('/data/tools/aiPhoto') ||
+              id.includes('/data/tools/aiConstruct') ||
+              id.includes('/data/tools/aiLogistic') ||
+              id.includes('/data/tools/aiShipping') ||
+              id.includes('/data/tools/aiAgricul') ||
+              id.includes('/data/tools/aiAutomot') ||
+              id.includes('/data/tools/aiInterior') ||
+              id.includes('/data/tools/aiMental') ||
+              id.includes('/data/tools/aiMeeting') ||
+              id.includes('/data/tools/aiRecruit') ||
+              id.includes('/data/tools/aiResearch') ||
+              id.includes('/data/tools/aiSecurity') ||
+              id.includes('/data/tools/aiSeo') ||
+              id.includes('/data/tools/aiTranscript')) return 'tools-services';
+          if (id.includes('/data/tools/professional') ||
+              id.includes('/data/tools/specialized') ||
+              id.includes('/data/tools/emergency') ||
+              id.includes('/data/tools/healthcare') ||
+              id.includes('/data/tools/historical') ||
+              id.includes('/data/tools/communication') ||
+              id.includes('/data/tools/collaboration') ||
+              id.includes('/data/tools/financial') ||
+              id.includes('/data/tools/multi') ||
+              id.includes('/data/tools/emerging') ||
+              id.includes('/data/tools/new') ||
+              id.includes('/data/tools/artAnd') ||
+              id.includes('/data/tools/nameInsight') ||
+              id.includes('/data/tools/topProduct') ||
+              id.includes('/data/tools/topMusic') ||
+              id.includes('/data/tools/utilit') ||
+              id.includes('/data/tools/technicalAnd') ||
+              id.includes('/data/tools/core') ||
+              id.includes('/data/tools/example')) return 'tools-professional';
           if (id.includes('/data/tools/ai') ||
               id.includes('/data/tools/major') ||
               id.includes('/data/tools/top')) return 'tools-platforms';
@@ -140,6 +226,38 @@ export default defineConfig(({ mode }) => ({
           if (id.includes('/components/search/') || id.includes('/components/navigation/') || id.includes('/components/header/')) return 'app-nav-search';
           if (id.includes('/components/footer/') || id.includes('/components/favorites/') || id.includes('/components/tool-detail/')) return 'app-detail-ui';
           if (id.includes('/components/ui/')) return 'app-ui-lib';
+          // NEW: Split root components into functional groups
+          if (id.includes('/components/HeroSection') ||
+              id.includes('/components/Header') ||
+              id.includes('/components/LoadingScreen') ||
+              id.includes('/components/AnimatedBackground') ||
+              id.includes('/components/InteractiveMatrix') ||
+              id.includes('/components/WelcomeVoice') ||
+              id.includes('/components/ScrollProgress')) return 'app-hero';
+          if (id.includes('/components/SpecialServices') ||
+              id.includes('/components/FeaturedTools') ||
+              id.includes('/components/LazyFeatured') ||
+              id.includes('/components/MinimalToolCard') ||
+              id.includes('/components/SimilarTools') ||
+              id.includes('/components/CategoryPage') ||
+              id.includes('/components/BookPromotion') ||
+              id.includes('/components/EthicalAI')) return 'app-featured';
+          if (id.includes('/components/CloneOffer') ||
+              id.includes('/components/FloatingClone') ||
+              id.includes('/components/PinnedVideo') ||
+              id.includes('/components/InspirationCarousel') ||
+              id.includes('/components/AgeVerification') ||
+              id.includes('/components/ConsentBanner')) return 'app-popups';
+          if (id.includes('/components/Search') ||
+              id.includes('/components/GlobalSearch') ||
+              id.includes('/components/LazySearch')) return 'app-search';
+          if (id.includes('/components/SEO') ||
+              id.includes('/components/AdvancedSEO') ||
+              id.includes('/components/ImprovedSEO') ||
+              id.includes('/components/BreadcrumbSEO') ||
+              id.includes('/components/Footer') ||
+              id.includes('/components/ToolDisclaimer') ||
+              id.includes('/components/AIWebToolsDisclaimer')) return 'app-seo-footer';
           if (id.includes('/components/')) return 'app-components';
           // Split pages
           if (id.includes('/pages/')) return 'app-pages';
