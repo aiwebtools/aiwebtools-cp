@@ -45,8 +45,8 @@ export default defineConfig(({ mode }) => ({
               id.includes('/data/tools/toolifyBatch2026B7') ||
               id.includes('/data/tools/toolifyBatch2026B8')) return 'tools-toolify-a';
           if (id.includes('/data/tools/toolifyBatch2026B9') ||
-              id.includes('/data/tools/toolifyBatch2026B1') || // B10-B15
-              id.includes('/data/tools/toolifyBatch2026B2') || // B20-B21
+              id.includes('/data/tools/toolifyBatch2026B1') ||
+              id.includes('/data/tools/toolifyBatch2026B2') ||
               id.includes('/data/tools/toolifyBatch2026')) return 'tools-toolify-b';
           if (id.includes('/data/tools/frontier') ||
               id.includes('/data/tools/frontierBatch') ||
@@ -72,13 +72,60 @@ export default defineConfig(({ mode }) => ({
               id.includes('/data/tools/medicus') ||
               id.includes('/data/tools/hormuz') ||
               id.includes('/data/tools/researched') ||
-              id.includes('/data/tools/newVerified') ||
-              id.includes('/data/tools/video')) return 'tools-specialty';
+              id.includes('/data/tools/newVerified')) return 'tools-specialty';
+          if (id.includes('/data/tools/video') ||
+              id.includes('/data/tools/sfx') ||
+              id.includes('/data/tools/music') ||
+              id.includes('/data/tools/audio')) return 'tools-media';
           if (id.includes('/data/tools/audit') ||
               id.includes('/data/tools/future') ||
               id.includes('/data/tools/trending') ||
               id.includes('/data/tools/verified') ||
               id.includes('/data/tools/missing')) return 'tools-audit';
+          if (id.includes('/data/tools/aiArt') ||
+              id.includes('/data/tools/aiAnimation') ||
+              id.includes('/data/tools/ai3D') ||
+              id.includes('/data/tools/aiGenerat') ||
+              id.includes('/data/tools/threeD') ||
+              id.includes('/data/tools/specializedImage') ||
+              id.includes('/data/tools/topImage')) return 'tools-creative';
+          if (id.includes('/data/tools/aiChat') ||
+              id.includes('/data/tools/aiAssistant') ||
+              id.includes('/data/tools/aiBot') ||
+              id.includes('/data/tools/advancedChat') ||
+              id.includes('/data/tools/aiGpt') ||
+              id.includes('/data/tools/aiVoice')) return 'tools-chat';
+          if (id.includes('/data/tools/aiDev') ||
+              id.includes('/data/tools/aiCyber') ||
+              id.includes('/data/tools/webDev') ||
+              id.includes('/data/tools/aiData') ||
+              id.includes('/data/tools/web3')) return 'tools-dev';
+          if (id.includes('/data/tools/aiEdu') ||
+              id.includes('/data/tools/aiContent') ||
+              id.includes('/data/tools/writing') ||
+              id.includes('/data/tools/transcription') ||
+              id.includes('/data/tools/search')) return 'tools-content';
+          if (id.includes('/data/tools/aiFinance') ||
+              id.includes('/data/tools/aiAccount') ||
+              id.includes('/data/tools/aiCrypto') ||
+              id.includes('/data/tools/aiEcommerce') ||
+              id.includes('/data/tools/traditional')) return 'tools-finance';
+          if (id.includes('/data/tools/aiCustomer') ||
+              id.includes('/data/tools/aiMarketing') ||
+              id.includes('/data/tools/socialMedia') ||
+              id.includes('/data/tools/aiSales') ||
+              id.includes('/data/tools/aiHR') ||
+              id.includes('/data/tools/aiLegal')) return 'tools-business';
+          if (id.includes('/data/tools/aiFitness') ||
+              id.includes('/data/tools/aiHealth') ||
+              id.includes('/data/tools/health') ||
+              id.includes('/data/tools/aiPet') ||
+              id.includes('/data/tools/aiDating') ||
+              id.includes('/data/tools/aiFashion') ||
+              id.includes('/data/tools/aiFood') ||
+              id.includes('/data/tools/personal') ||
+              id.includes('/data/tools/spiritual') ||
+              id.includes('/data/tools/timeAndHistory')) return 'tools-lifestyle';
           if (id.includes('/data/tools/ai') ||
               id.includes('/data/tools/major') ||
               id.includes('/data/tools/top')) return 'tools-platforms';
@@ -87,8 +134,12 @@ export default defineConfig(({ mode }) => ({
 
           // Split utils
           if (id.includes('/utils/')) return 'app-utils';
-          // Split components
+          // Split components - granular
           if (id.includes('/components/tools/') || id.includes('/components/category/')) return 'app-tools-ui';
+          if (id.includes('/components/effects/') || id.includes('/components/seo/') || id.includes('/components/disclaimers/')) return 'app-effects-seo';
+          if (id.includes('/components/search/') || id.includes('/components/navigation/') || id.includes('/components/header/')) return 'app-nav-search';
+          if (id.includes('/components/footer/') || id.includes('/components/favorites/') || id.includes('/components/tool-detail/')) return 'app-detail-ui';
+          if (id.includes('/components/ui/')) return 'app-ui-lib';
           if (id.includes('/components/')) return 'app-components';
           // Split pages
           if (id.includes('/pages/')) return 'app-pages';
