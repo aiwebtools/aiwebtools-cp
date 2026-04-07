@@ -578,3 +578,6 @@ export { civicTransparencyBatch2026 } from './civicTransparencyBatch2026';
 
 // Export Must-Have Tools Batch 2026 (25 tools: Dataiku, E2B, Promptfoo, Msty, LibreChat, Nomic AI, PearAI, Bolt DIY, AnythingLLM, LocalAI, Llamafile, LiteLLM, vLLM, MLX, Google IDX, Gitpod, LobeChat, MLflow, Neptune AI, Langtrace, Pezzo AI, LastMile AI, Twilio AI, Sendbird AI Chatbot, Dagster)
 export { mustHaveToolsBatch2026 } from './mustHaveToolsBatch2026';
+
+// Export Agents & Creators Batch 2026 (25 tools: Rotor Videos, Artlist AI, TaskWeaver, Glif, Respell, Leap AI, AG2, SwarmClaw AI, ControlFlow, Star AI Game Generator, Jenova AI, Latitude, Hyper3D Rodin Gen-2, SPAR3D, Tripo 2.0, Luma Photon, CoreWeave, Hyperstack AI, Lepton AI, DeepInfra, Baseten, Brev.dev, FluidStack, Banana Dev, Paperspace)
+export { agentsAndCreatorsBatch2026 } from './agentsAndCreatorsBatch2026';
