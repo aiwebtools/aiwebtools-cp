@@ -584,3 +584,6 @@ export { agentsAndCreatorsBatch2026 } from './agentsAndCreatorsBatch2026';
 
 // Export Trending Platforms Batch 2026 (10 tools: CREAO, Orchestra Research, Gamma, Tome, Bolt.new, v0.dev, Cursor, Replit Agent, Granola AI, WebSim AI)
 export { trendingPlatformsBatch2026 } from './trendingPlatformsBatch2026';
+
+// Export AI Infrastructure Batch 2026 (10 tools: Langflow, Stack AI, Vectara, Craft Docs, Pi by Inflection, scite.ai, Chai AI, Ragie, Zep AI, LlamaIndex Cloud)
+export { aiInfraBatch2026 } from './aiInfraBatch2026';
