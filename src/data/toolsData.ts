@@ -216,6 +216,8 @@ const allToolCategories = consolidateTools([
   ...trendingPlatformsBatch2026,
   ...aiInfraBatch2026,
   ...essentialToolsBatch2026
+]);
+
 // Apply deduplication to remove tools that appear in multiple categories
 const deduplicatedTools = deduplicateTools(allToolCategories);
 
