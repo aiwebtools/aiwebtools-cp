@@ -588,3 +588,4 @@ export { trendingPlatformsBatch2026 } from './trendingPlatformsBatch2026';
 // Export AI Infrastructure Batch 2026 (10 tools: Langflow, Stack AI, Vectara, Craft Docs, Pi by Inflection, scite.ai, Chai AI, Ragie, Zep AI, LlamaIndex Cloud)
 export { aiInfraBatch2026 } from './aiInfraBatch2026';
 export { essentialToolsBatch2026 } from './essentialToolsBatch2026';
+export { appBuildDiy2026 } from './appBuildDiy2026';
