@@ -101,11 +101,12 @@ const AnimatedRoutes = () => {
   const location = useLocation();
   
   // Critical paths render without Suspense for instant load
-  if (location.pathname === '/' || location.pathname === '/welcome') {
+  if (location.pathname === '/' || location.pathname === '/index' || location.pathname === '/welcome') {
     return (
       <>
         <Routes location={location}>
           <Route path="/welcome" element={<DisclaimerGate />} />
+          <Route path="/index" element={<Navigate to="/" replace />} />
           <Route path="/" element={<Index />} />
         </Routes>
         <AppReadySignal />
@@ -121,7 +122,6 @@ const AnimatedRoutes = () => {
           <Route path="/category/:categoryName" element={<CategoryPage />} />
           <Route path="/main-category/:mainCategoryName" element={<MainCategoryPage />} />
           <Route path="/tool/:toolId" element={<ToolDetail />} />
-          <Route path="/:toolSlug" element={<ToolDetail />} />
           <Route path="/similar-tools/:toolId" element={<SimilarToolsPage />} />
           <Route path="/ai-tools-hub" element={<AIToolsHub />} />
           <Route path="/ai-agents-directory" element={<AIAgentsDirectory />} />
@@ -141,6 +141,7 @@ const AnimatedRoutes = () => {
           <Route path="/our-story" element={<OurStoryPage />} />
           <Route path="/submit-tool" element={<ToolSubmission />} />
           <Route path="/admin/analytics" element={<AdminAnalytics />} />
+          <Route path="/:toolSlug" element={<ToolDetail />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <AppReadySignal />
