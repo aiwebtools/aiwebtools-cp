@@ -1,4 +1,5 @@
 import { Tool } from "@/types/tools";
+import openartWorldsHero from "@/assets/tools/openart-worlds-hero.jpg";
 import { Gamepad2, Globe, Layers, Box, Users, Wand2, Sparkles, Eye, Cpu, Package, Film, Zap, Brain, Search, BookOpen } from "lucide-react";
 
 import gameerHero from "@/assets/tools/gameer-hero.jpg";
