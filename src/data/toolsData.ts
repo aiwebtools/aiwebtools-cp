@@ -105,6 +105,7 @@ import { robotSafetyGPTs2026 } from "./tools/robotSafetyGPTs2026";
 import { preparednessAndScholarsBatch2026 } from "./tools/preparednessAndScholarsBatch2026";
 import { civicTransparencyBatch2026 } from "./tools/civicTransparencyBatch2026";
 import { mustHaveToolsBatch2026 } from "./tools/mustHaveToolsBatch2026";
+import { agentsAndCreatorsBatch2026 } from "./tools/agentsAndCreatorsBatch2026";
 
 // Consolidate ALL tools from toolsCollection + additional batches not in toolsCollection
 const allToolCategories = consolidateTools([
