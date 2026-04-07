@@ -1,0 +1,306 @@
+import { Tool } from "@/types/tools";
+import { PenTool, FileText, Search, TrendingUp, Share2, BarChart3, Mail, Target, Users, Calendar, MessageCircle, Edit3, Zap, Globe, Eye, Megaphone, Hash, Layers, Send, Star } from "lucide-react";
+
+import prowritingaidHero from "@/assets/tools/prowritingaid-hero.jpg";
+import narratoHero from "@/assets/tools/narrato-hero.jpg";
+import writecreamHero from "@/assets/tools/writecream-hero.jpg";
+import peppertypeHero from "@/assets/tools/peppertype-hero.jpg";
+import flickHero from "@/assets/tools/flick-hero.jpg";
+import repurposeIoHero from "@/assets/tools/repurpose-io-hero.jpg";
+import missinglettrHero from "@/assets/tools/missinglettr-hero.jpg";
+import crowdfireHero from "@/assets/tools/crowdfire-hero.jpg";
+import tailwindHero from "@/assets/tools/tailwind-hero.jpg";
+import loomlyHero from "@/assets/tools/loomly-hero.jpg";
+import ubersuggestHero from "@/assets/tools/ubersuggest-hero.jpg";
+import serpstatHero from "@/assets/tools/serpstat-hero.jpg";
+import growthbarHero from "@/assets/tools/growthbar-hero.jpg";
+import dashwordHero from "@/assets/tools/dashword-hero.jpg";
+import seoAiHero from "@/assets/tools/seo-ai-hero.jpg";
+import agorapulseHero from "@/assets/tools/agorapulse-hero.jpg";
+import iconosquareHero from "@/assets/tools/iconosquare-hero.jpg";
+import storychiefHero from "@/assets/tools/storychief-hero.jpg";
+import snovIoHero from "@/assets/tools/snov-io-hero.jpg";
+import hypeauditorHero from "@/assets/tools/hypeauditor-hero.jpg";
+
+export const writingMarketingSEO2026: Tool[] = [
+  {
+    icon: Edit3,
+    title: "ProWritingAid",
+    description: "Advanced AI writing assistant and grammar checker with in-depth style analysis, readability reports, and 20+ writing reports. Free plan includes core grammar and style checks for web editor use.",
+    emoji: "✏️",
+    color: "from-teal-500 to-blue-600",
+    directUrl: "https://prowritingaid.com/?via=aiwebtools",
+    imageUrl: prowritingaidHero,
+    tags: ["grammar checker", "writing assistant", "style analysis", "readability", "proofreading", "editing", "Grammar & Editing", "Blog Writing", "Article Writing"],
+    category: "Writing & Content Enhancement",
+    rating: 4.7,
+    totalVotes: 5432,
+    isFree: false
+  },
+  {
+    icon: Layers,
+    title: "Narrato",
+    description: "AI content workspace for teams — plan, create, collaborate, and publish content at scale. Features AI writing, content briefs, SEO optimization, and workflow automation. Free plan available for individuals.",
+    emoji: "📋",
+    color: "from-purple-500 to-indigo-600",
+    directUrl: "https://narrato.io/?via=aiwebtools",
+    imageUrl: narratoHero,
+    tags: ["content workspace", "AI writing", "content planning", "team collaboration", "SEO optimization", "workflow", "Content Strategy", "Blog Writing", "Content Marketing"],
+    category: "Writing & Content Enhancement",
+    rating: 4.5,
+    totalVotes: 3210,
+    isFree: false
+  },
+  {
+    icon: Mail,
+    title: "Writecream",
+    description: "AI-powered copywriting and personalization platform for cold emails, LinkedIn outreach, ads, blog posts, and more. Generous free tier with 40+ AI tools and voice-over generation included.",
+    emoji: "🍦",
+    color: "from-pink-400 to-coral-500",
+    directUrl: "https://www.writecream.com/?via=aiwebtools",
+    imageUrl: writecreamHero,
+    tags: ["AI copywriting", "cold email", "LinkedIn outreach", "ad copy", "personalization", "free AI writer", "Copywriting", "Email Writing", "Marketing Automation"],
+    category: "Writing & Content Enhancement",
+    rating: 4.4,
+    totalVotes: 2987,
+    isFree: false
+  },
+  {
+    icon: Zap,
+    title: "Peppertype AI",
+    description: "AI content generation platform by Pepper Content for creating blog posts, social media captions, ad copy, and product descriptions. Smart templates and brand voice training for consistent output.",
+    emoji: "🌶️",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://www.peppertype.ai/?via=aiwebtools",
+    imageUrl: peppertypeHero,
+    tags: ["content generation", "blog posts", "social media captions", "ad copy", "brand voice", "AI templates", "Copywriting", "Social Media Writing", "Content Marketing"],
+    category: "Writing & Content Enhancement",
+    rating: 4.3,
+    totalVotes: 2654,
+    isFree: false
+  },
+  {
+    icon: Hash,
+    title: "Flick",
+    description: "AI social media marketing platform with hashtag research, content scheduling, caption writing, and analytics. Find viral hashtags, schedule posts, and write captions with AI — free 7-day trial.",
+    emoji: "📸",
+    color: "from-pink-500 to-purple-600",
+    directUrl: "https://www.flick.social/?via=aiwebtools",
+    imageUrl: flickHero,
+    tags: ["hashtag research", "social media scheduling", "AI captions", "Instagram analytics", "content planning", "social media marketing", "Social Media Marketing", "Analytics & Tracking", "Content Marketing"],
+    category: "AI Social Media Management Tools",
+    rating: 4.6,
+    totalVotes: 4123,
+    isFree: false
+  },
+  {
+    icon: Share2,
+    title: "Repurpose.io",
+    description: "Automated content repurposing platform — turn one piece of content into dozens across YouTube, TikTok, Instagram, LinkedIn, Twitter, and podcasts. Set it once and let automation distribute everywhere.",
+    emoji: "🔄",
+    color: "from-blue-500 to-green-600",
+    directUrl: "https://repurpose.io/?via=aiwebtools",
+    imageUrl: repurposeIoHero,
+    tags: ["content repurposing", "automation", "multi-platform", "video distribution", "social media automation", "cross-posting", "Content Marketing", "Social Media Marketing", "Marketing Automation"],
+    category: "AI Social Media Management Tools",
+    rating: 4.5,
+    totalVotes: 3876,
+    isFree: false
+  },
+  {
+    icon: Calendar,
+    title: "MissingLettr",
+    description: "AI-powered social media drip campaign tool that automatically creates 12 months of social posts from your blog content. Content curation, scheduling, and analytics with a generous free plan.",
+    emoji: "💌",
+    color: "from-orange-500 to-amber-600",
+    directUrl: "https://missinglettr.com/?via=aiwebtools",
+    imageUrl: missinglettrHero,
+    tags: ["drip campaigns", "blog promotion", "social media automation", "content scheduling", "AI social posts", "evergreen content", "Social Media Marketing", "Content Marketing", "Marketing Automation"],
+    category: "AI Social Media Management Tools",
+    rating: 4.3,
+    totalVotes: 2876,
+    isFree: false
+  },
+  {
+    icon: Globe,
+    title: "Crowdfire",
+    description: "Social media management app for content curation, scheduling, and analytics. AI-powered article and image recommendations, plus e-commerce integrations. Free plan for up to 3 accounts.",
+    emoji: "🔥",
+    color: "from-red-500 to-orange-600",
+    directUrl: "https://www.crowdfireapp.com/?via=aiwebtools",
+    imageUrl: crowdfireHero,
+    tags: ["social media management", "content curation", "scheduling", "analytics", "e-commerce", "multi-platform", "Social Media Marketing", "Analytics & Tracking", "Content Marketing"],
+    category: "AI Social Media Management Tools",
+    rating: 4.2,
+    totalVotes: 3456,
+    isFree: false
+  },
+  {
+    icon: Calendar,
+    title: "Tailwind",
+    description: "AI-powered social media scheduler built for Pinterest and Instagram with smart scheduling, hashtag finder, and Tailwind Create for auto-generating designs. Free forever plan available.",
+    emoji: "🌀",
+    color: "from-teal-500 to-orange-500",
+    directUrl: "https://www.tailwindapp.com/?via=aiwebtools",
+    imageUrl: tailwindHero,
+    tags: ["Pinterest scheduler", "Instagram scheduler", "smart scheduling", "hashtag finder", "AI design", "visual planning", "Social Media Marketing", "Analytics & Tracking"],
+    category: "AI Social Media Management Tools",
+    rating: 4.5,
+    totalVotes: 4567,
+    isFree: false
+  },
+  {
+    icon: Megaphone,
+    title: "Loomly",
+    description: "Brand success platform for social media management with post ideas, content calendar, approval workflows, ad management, and advanced analytics. Free 15-day trial for all features.",
+    emoji: "📢",
+    color: "from-blue-600 to-indigo-700",
+    directUrl: "https://www.loomly.com/?via=aiwebtools",
+    imageUrl: loomlyHero,
+    tags: ["brand management", "content calendar", "approval workflow", "ad management", "social analytics", "team collaboration", "Social Media Marketing", "Brand Management", "Marketing Automation"],
+    category: "AI Social Media Management Tools",
+    rating: 4.4,
+    totalVotes: 3234,
+    isFree: false
+  },
+  {
+    icon: Search,
+    title: "Ubersuggest",
+    description: "Free SEO tool by Neil Patel for keyword research, site audits, backlink analysis, and content ideas. Offers 3 free searches per day with comprehensive keyword data and competitor insights.",
+    emoji: "🔍",
+    color: "from-orange-500 to-red-500",
+    directUrl: "https://neilpatel.com/ubersuggest/?via=aiwebtools",
+    imageUrl: ubersuggestHero,
+    tags: ["keyword research", "SEO audit", "backlink analysis", "content ideas", "competitor analysis", "free SEO tool", "SEO Tools", "SEO Content", "Content Strategy"],
+    category: "AI SEO & Content Marketing",
+    rating: 4.5,
+    totalVotes: 7654,
+    isFree: false
+  },
+  {
+    icon: BarChart3,
+    title: "Serpstat",
+    description: "All-in-one SEO platform for keyword research, rank tracking, site audit, backlink analysis, and competitor research. Freemium model with daily free searches and comprehensive SERP analytics.",
+    emoji: "📊",
+    color: "from-green-500 to-emerald-600",
+    directUrl: "https://serpstat.com/?via=aiwebtools",
+    imageUrl: serpstatHero,
+    tags: ["SEO platform", "keyword research", "rank tracking", "site audit", "backlink analysis", "competitor research", "SEO Tools", "SEO Content", "Analytics & Tracking"],
+    category: "AI SEO & Content Marketing",
+    rating: 4.5,
+    totalVotes: 5432,
+    isFree: false
+  },
+  {
+    icon: TrendingUp,
+    title: "GrowthBar",
+    description: "AI SEO tool that writes blog content, builds content outlines, and provides keyword research — all powered by GPT. Chrome extension for instant SEO insights on any SERP. Free trial available.",
+    emoji: "📈",
+    color: "from-green-400 to-emerald-500",
+    directUrl: "https://www.growthbarseo.com/?via=aiwebtools",
+    imageUrl: growthbarHero,
+    tags: ["AI blog writer", "SEO content", "keyword research", "content outlines", "Chrome extension", "SERP analysis", "SEO Tools", "SEO Content", "Blog Writing"],
+    category: "AI SEO & Content Marketing",
+    rating: 4.4,
+    totalVotes: 3876,
+    isFree: false
+  },
+  {
+    icon: FileText,
+    title: "Dashword",
+    description: "AI content optimization tool that helps you create SEO-optimized content briefs and articles. Analyzes top-ranking pages, suggests keywords, and provides real-time content scoring.",
+    emoji: "📝",
+    color: "from-blue-500 to-cyan-600",
+    directUrl: "https://www.dashword.com/?via=aiwebtools",
+    imageUrl: dashwordHero,
+    tags: ["content optimization", "SEO briefs", "content scoring", "keyword suggestions", "SERP analysis", "content marketing", "SEO Tools", "SEO Content", "Content Strategy"],
+    category: "AI SEO & Content Marketing",
+    rating: 4.4,
+    totalVotes: 2987,
+    isFree: false
+  },
+  {
+    icon: Target,
+    title: "SEO.ai",
+    description: "AI-first SEO content creation platform that generates, optimizes, and scores content for search rankings. Uses NLP and SERP analysis to help you create content that ranks on page one.",
+    emoji: "🎯",
+    color: "from-purple-600 to-blue-700",
+    directUrl: "https://seo.ai/?via=aiwebtools",
+    imageUrl: seoAiHero,
+    tags: ["AI SEO writing", "content optimization", "NLP analysis", "SERP scoring", "content generation", "rank optimization", "SEO Tools", "SEO Content", "Content Marketing"],
+    category: "AI SEO & Content Marketing",
+    rating: 4.5,
+    totalVotes: 3456,
+    isFree: false
+  },
+  {
+    icon: Users,
+    title: "Agorapulse",
+    description: "Social media management with unified inbox, publishing, reporting, and social listening. ROI tracking and team collaboration features. Free plan for 3 social profiles with core features.",
+    emoji: "🏛️",
+    color: "from-blue-500 to-indigo-600",
+    directUrl: "https://www.agorapulse.com/?via=aiwebtools",
+    imageUrl: agorapulseHero,
+    tags: ["social inbox", "publishing", "social listening", "ROI tracking", "team collaboration", "reporting", "Social Media Marketing", "Analytics & Tracking", "Marketing Automation"],
+    category: "AI Social Media Management Tools",
+    rating: 4.5,
+    totalVotes: 4321,
+    isFree: false
+  },
+  {
+    icon: Eye,
+    title: "Iconosquare",
+    description: "Advanced social media analytics and management platform for Instagram, Facebook, Twitter, LinkedIn, and TikTok. Deep engagement analytics, competitor tracking, and industry benchmarks.",
+    emoji: "📐",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://www.iconosquare.com/?via=aiwebtools",
+    imageUrl: iconosquareHero,
+    tags: ["social analytics", "Instagram analytics", "competitor tracking", "benchmarks", "engagement metrics", "multi-platform", "Social Media Marketing", "Analytics & Tracking"],
+    category: "AI Social Media Management Tools",
+    rating: 4.4,
+    totalVotes: 3654,
+    isFree: false
+  },
+  {
+    icon: Send,
+    title: "StoryChief",
+    description: "Content marketing platform for multi-channel publishing — write once, distribute to your blog, social media, newsletters, and content hubs simultaneously. SEO scoring and collaboration built in.",
+    emoji: "📡",
+    color: "from-green-500 to-teal-600",
+    directUrl: "https://storychief.io/?via=aiwebtools",
+    imageUrl: storychiefHero,
+    tags: ["multi-channel publishing", "content distribution", "SEO scoring", "collaboration", "content marketing", "newsletter", "Content Marketing", "Content Strategy", "Blog Writing"],
+    category: "Writing & Content Enhancement",
+    rating: 4.4,
+    totalVotes: 2876,
+    isFree: false
+  },
+  {
+    icon: Mail,
+    title: "Snov.io",
+    description: "AI-powered email outreach and lead generation platform. Find verified emails, build drip campaigns, verify contacts, and manage your CRM — all in one tool. Free plan with 50 monthly credits.",
+    emoji: "📧",
+    color: "from-blue-500 to-cyan-600",
+    directUrl: "https://snov.io/?via=aiwebtools",
+    imageUrl: snovIoHero,
+    tags: ["email finder", "lead generation", "drip campaigns", "email verification", "CRM", "cold outreach", "Email Writing", "Marketing Automation", "Sales Tools"],
+    category: "Business & Productivity",
+    rating: 4.5,
+    totalVotes: 4567,
+    isFree: false
+  },
+  {
+    icon: Star,
+    title: "HypeAuditor",
+    description: "AI-powered influencer marketing analytics platform for discovering influencers, detecting fake followers, analyzing audience quality, and measuring campaign ROI. Free influencer search available.",
+    emoji: "⭐",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://hypeauditor.com/?via=aiwebtools",
+    imageUrl: hypeauditorHero,
+    tags: ["influencer marketing", "fake follower detection", "audience analytics", "campaign ROI", "influencer discovery", "social media analytics", "Social Media Marketing", "Analytics & Tracking", "Marketing Automation"],
+    category: "AI Social Media Management Tools",
+    rating: 4.5,
+    totalVotes: 3987,
+    isFree: false
+  }
+];
