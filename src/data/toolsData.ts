@@ -212,7 +212,8 @@ const allToolCategories = consolidateTools([
   ...civicTransparencyBatch2026,
   ...mustHaveToolsBatch2026,
   ...agentsAndCreatorsBatch2026,
-  ...trendingPlatformsBatch2026
+  ...trendingPlatformsBatch2026,
+  ...aiInfraBatch2026
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories
