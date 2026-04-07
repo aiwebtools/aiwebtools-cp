@@ -107,6 +107,7 @@ import { civicTransparencyBatch2026 } from "./tools/civicTransparencyBatch2026";
 import { mustHaveToolsBatch2026 } from "./tools/mustHaveToolsBatch2026";
 import { agentsAndCreatorsBatch2026 } from "./tools/agentsAndCreatorsBatch2026";
 import { trendingPlatformsBatch2026 } from "./tools/trendingPlatformsBatch2026";
+import { aiInfraBatch2026 } from "./tools/aiInfraBatch2026";
 
 // Consolidate ALL tools from toolsCollection + additional batches not in toolsCollection
 const allToolCategories = consolidateTools([
@@ -211,7 +212,8 @@ const allToolCategories = consolidateTools([
   ...civicTransparencyBatch2026,
   ...mustHaveToolsBatch2026,
   ...agentsAndCreatorsBatch2026,
-  ...trendingPlatformsBatch2026
+  ...trendingPlatformsBatch2026,
+  ...aiInfraBatch2026
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories
