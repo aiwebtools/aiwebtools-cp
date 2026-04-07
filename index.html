@@ -460,71 +460,91 @@
       (function () {
         let started = false;
 
-        const start = () => {
-          if (started) return;
-          started = true;
+          const start = () => {
+            if (started) return;
+            started = true;
 
-          let removed = false;
-          const bar = document.getElementById('progress-bar');
-          const pct = document.getElementById('progress-pct');
-          const startTime = performance.now();
+            let removed = false;
+            const bar = document.getElementById('progress-bar');
+            const pct = document.getElementById('progress-pct');
+            const startTime = performance.now();
+            const MIN_VISIBLE_MS = 1600;
+            const MAX_WAIT_MS = 10000;
+            let contentCheck;
+            let maxWaitTimeout;
 
-          const removeSpinner = () => {
-            if (removed) return;
-            removed = true;
-            if (bar) bar.style.width = '100%';
-            if (pct) pct.textContent = '100%';
-            const spinner = document.querySelector('.loading-spinner');
-            if (spinner) {
-              spinner.classList.add('fade-out');
-              setTimeout(() => spinner.remove(), 300);
+            const cleanup = () => {
+              if (contentCheck) clearInterval(contentCheck);
+              if (maxWaitTimeout) clearTimeout(maxWaitTimeout);
+              window.removeEventListener('ait:app-ready', maybeRemoveSpinner);
+              window.removeEventListener('load', maybeRemoveSpinner);
+              document.removeEventListener('readystatechange', maybeRemoveSpinner);
+            };
+
+            const removeSpinner = () => {
+              if (removed) return;
+              removed = true;
+              cleanup();
+              if (bar) bar.style.width = '100%';
+              if (pct) pct.textContent = '100%';
+              const spinner = document.querySelector('.loading-spinner');
+              if (spinner) {
+                spinner.classList.add('fade-out');
+                setTimeout(() => spinner.remove(), 300);
+              }
+            };
+
+            const isAppReady = () => {
+              return !!window.__AIT_APP_READY__ || document.documentElement.getAttribute('data-app-ready') === 'true';
+            };
+
+            const hasVisibleContent = () => {
+              const root = document.getElementById('root');
+              if (!root) return false;
+              const visibleTargets = root.querySelectorAll('header, main, nav, button, h1, h2, [role="main"], [data-radix-popper-content-wrapper]');
+              for (var i = 0; i < visibleTargets.length; i++) {
+                var rect = visibleTargets[i].getBoundingClientRect();
+                if (rect.width > 24 && rect.height > 24) return true;
+              }
+              var text = (root.textContent || '').replace(/\s+/g, ' ').trim();
+              return text.length > 80;
+            };
+
+            const canDismiss = () => {
+              return (performance.now() - startTime) >= MIN_VISIBLE_MS && (isAppReady() || hasVisibleContent());
+            };
+
+            function maybeRemoveSpinner() {
+              if (!removed && canDismiss()) {
+                removeSpinner();
+              }
             }
-          };
 
-          // AGGRESSIVE content detection
-          const hasVisibleContent = () => {
-            const root = document.getElementById('root');
-            if (!root) return false;
-            var children = root.children;
-            for (var i = 0; i < children.length; i++) {
-              var child = children[i];
-              if (child.classList && child.classList.contains('loading-spinner')) continue;
-              if (child.offsetHeight > 10 && child.innerHTML.length > 50) return true;
-            }
-            if (root.querySelector('header')) return true;
-            if (root.querySelector('main')) return true;
-            if (root.querySelector('nav')) return true;
-            if (root.querySelector('button')) return true;
-            if (root.querySelector('[data-reactroot]')) return true;
-            return false;
-          };
-
-          // RAF-based percentage counter (syncs with CSS animation timing)
-          const updatePct = () => {
-            if (removed) return;
-            var elapsed = performance.now() - startTime;
-            var duration = 1800;
-            var t = Math.min(elapsed / duration, 1);
-            var p;
-            if (t < 0.3) p = 5 + (35 * (t / 0.3));
-            else if (t < 0.6) p = 40 + (30 * ((t - 0.3) / 0.3));
-            else if (t < 0.8) p = 70 + (15 * ((t - 0.6) / 0.2));
-            else p = 85 + (10 * ((t - 0.8) / 0.2));
-            if (pct) pct.textContent = Math.round(p) + '%';
+            // RAF-based percentage counter (syncs with CSS animation timing)
+            const updatePct = () => {
+              if (removed) return;
+              var elapsed = performance.now() - startTime;
+              var duration = 2200;
+              var t = Math.min(elapsed / duration, 1);
+              var p;
+              if (t < 0.3) p = 5 + (35 * (t / 0.3));
+              else if (t < 0.6) p = 40 + (30 * ((t - 0.3) / 0.3));
+              else if (t < 0.8) p = 70 + (15 * ((t - 0.6) / 0.2));
+              else p = 85 + (10 * ((t - 0.8) / 0.2));
+              if (pct) pct.textContent = Math.round(p) + '%';
+              requestAnimationFrame(updatePct);
+            };
             requestAnimationFrame(updatePct);
+
+            contentCheck = setInterval(maybeRemoveSpinner, 50);
+            window.addEventListener('ait:app-ready', maybeRemoveSpinner);
+            window.addEventListener('load', maybeRemoveSpinner);
+            document.addEventListener('readystatechange', maybeRemoveSpinner);
+
+            maxWaitTimeout = setTimeout(function() {
+              if (!removed) removeSpinner();
+            }, MAX_WAIT_MS);
           };
-          requestAnimationFrame(updatePct);
-
-          // Content detection - check frequently
-          var contentCheck = setInterval(function() {
-            if (hasVisibleContent()) removeSpinner();
-          }, 16);
-
-          // Hard fallback - FAST dismissal
-          setTimeout(function() {
-            if (!removed) removeSpinner();
-          }, 1200);
-        };
 
         const tryStart = () => {
           if (started) return;

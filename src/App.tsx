@@ -14,6 +14,7 @@ import { useScrollPerformance } from "@/hooks/useScrollPerformance";
 import { usePrefetchRoutes } from "@/hooks/usePrefetch";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import MatrixCursorEffect from "@/components/effects/MatrixCursorEffect";
+import AppReadySignal from "@/components/AppReadySignal";
 import "@/styles/loading-cube.css";
 import ScrollProgressIndicator from "@/components/ScrollProgressIndicator";
 import { getConsentAccepted } from "@/utils/consent";
@@ -100,44 +101,51 @@ const AnimatedRoutes = () => {
   const location = useLocation();
   
   // Critical paths render without Suspense for instant load
-  if (location.pathname === '/' || location.pathname === '/welcome') {
+  if (location.pathname === '/' || location.pathname === '/index' || location.pathname === '/welcome') {
     return (
-      <Routes location={location}>
-        <Route path="/welcome" element={<DisclaimerGate />} />
-        <Route path="/" element={<Index />} />
-      </Routes>
+      <>
+        <Routes location={location}>
+          <Route path="/welcome" element={<DisclaimerGate />} />
+          <Route path="/index" element={<Navigate to="/" replace />} />
+          <Route path="/" element={<Index />} />
+        </Routes>
+        <AppReadySignal />
+      </>
     );
   }
   
   // Secondary pages use Suspense for lazy loading
   return (
     <Suspense fallback={<PageLoader />}>
-      <Routes location={location}>
-        <Route path="/category/:categoryName" element={<CategoryPage />} />
-        <Route path="/main-category/:mainCategoryName" element={<MainCategoryPage />} />
-        <Route path="/tool/:toolId" element={<ToolDetail />} />
-        <Route path="/:toolSlug" element={<ToolDetail />} />
-        <Route path="/similar-tools/:toolId" element={<SimilarToolsPage />} />
-        <Route path="/ai-tools-hub" element={<AIToolsHub />} />
-        <Route path="/ai-agents-directory" element={<AIAgentsDirectory />} />
-        <Route path="/chatgpt-alternatives" element={<ChatGPTAlternatives />} />
-        <Route path="/blog" element={<BlogPage />} />
-        <Route path="/blog/:slug" element={<BlogPostPage />} />
-        <Route path="/gaming-entertainment" element={<GamingEntertainmentPage />} />
-        <Route path="/faq" element={<FAQPage />} />
-        <Route path="/ai-tools" element={<AIToolsPage />} />
-        <Route path="/best-ai-tools" element={<BestAIToolsPage />} />
-        <Route path="/free-ai-tools" element={<FreeAIToolsPage />} />
-        <Route path="/ai-writing-tools" element={<AIWritingToolsPage />} />
-        <Route path="/ai-web-tools" element={<AIWebToolsPage />} />
-        <Route path="/aiwebtools" element={<AIWebToolsPage />} />
-        <Route path="/favorites" element={<FavoritesPage />} />
-        <Route path="/disclaimers" element={<DisclaimersPage />} />
-        <Route path="/our-story" element={<OurStoryPage />} />
-        <Route path="/submit-tool" element={<ToolSubmission />} />
-        <Route path="/admin/analytics" element={<AdminAnalytics />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      <>
+        <Routes location={location}>
+          <Route path="/category/:categoryName" element={<CategoryPage />} />
+          <Route path="/main-category/:mainCategoryName" element={<MainCategoryPage />} />
+          <Route path="/tool/:toolId" element={<ToolDetail />} />
+          <Route path="/similar-tools/:toolId" element={<SimilarToolsPage />} />
+          <Route path="/ai-tools-hub" element={<AIToolsHub />} />
+          <Route path="/ai-agents-directory" element={<AIAgentsDirectory />} />
+          <Route path="/chatgpt-alternatives" element={<ChatGPTAlternatives />} />
+          <Route path="/blog" element={<BlogPage />} />
+          <Route path="/blog/:slug" element={<BlogPostPage />} />
+          <Route path="/gaming-entertainment" element={<GamingEntertainmentPage />} />
+          <Route path="/faq" element={<FAQPage />} />
+          <Route path="/ai-tools" element={<AIToolsPage />} />
+          <Route path="/best-ai-tools" element={<BestAIToolsPage />} />
+          <Route path="/free-ai-tools" element={<FreeAIToolsPage />} />
+          <Route path="/ai-writing-tools" element={<AIWritingToolsPage />} />
+          <Route path="/ai-web-tools" element={<AIWebToolsPage />} />
+          <Route path="/aiwebtools" element={<AIWebToolsPage />} />
+          <Route path="/favorites" element={<FavoritesPage />} />
+          <Route path="/disclaimers" element={<DisclaimersPage />} />
+          <Route path="/our-story" element={<OurStoryPage />} />
+          <Route path="/submit-tool" element={<ToolSubmission />} />
+          <Route path="/admin/analytics" element={<AdminAnalytics />} />
+          <Route path="/:toolSlug" element={<ToolDetail />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+        <AppReadySignal />
+      </>
     </Suspense>
   );
 };
