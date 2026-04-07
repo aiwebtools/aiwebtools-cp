@@ -25,12 +25,24 @@ export default defineConfig(({ mode }) => ({
     rollupOptions: {
       output: {
         manualChunks(id) {
-          // Vendor chunks
-          if (id.includes('node_modules/react-dom')) return 'vendor-react';
-          if (id.includes('node_modules/react/')) return 'vendor-react';
+          // Vendor chunks — keep React together with its dependents to avoid
+          // "Cannot read properties of undefined (reading 'forwardRef')" when
+          // a chunk that calls React.forwardRef loads before the React chunk.
+          if (id.includes('node_modules/react-dom') ||
+              id.includes('node_modules/react/') ||
+              id.includes('node_modules/scheduler')) return 'vendor-react';
           if (id.includes('node_modules/react-router')) return 'vendor-router';
           if (id.includes('node_modules/@tanstack')) return 'vendor-query';
-          if (id.includes('node_modules/@radix-ui')) return 'vendor-ui';
+          if (id.includes('node_modules/@radix-ui') ||
+              id.includes('node_modules/@floating-ui') ||
+              id.includes('node_modules/class-variance-authority') ||
+              id.includes('node_modules/clsx') ||
+              id.includes('node_modules/cmdk') ||
+              id.includes('node_modules/lucide-react') ||
+              id.includes('node_modules/react-day-picker') ||
+              id.includes('node_modules/sonner') ||
+              id.includes('node_modules/recharts') ||
+              id.includes('node_modules/react-resizable-panels')) return 'vendor-ui';
           if (id.includes('node_modules/framer-motion')) return 'vendor-motion';
           if (id.includes('node_modules')) return 'vendor-misc';
 
