@@ -110,6 +110,7 @@ import { trendingPlatformsBatch2026 } from "./tools/trendingPlatformsBatch2026";
 import { aiInfraBatch2026 } from "./tools/aiInfraBatch2026";
 import { essentialToolsBatch2026 } from "./tools/essentialToolsBatch2026";
 import { appBuildDiy2026 } from "./tools/appBuildDiy2026";
+import { writingMarketingSEO2026 } from "./tools/writingMarketingSEO2026";
 
 // Consolidate ALL tools from toolsCollection + additional batches not in toolsCollection
 const allToolCategories = consolidateTools([
