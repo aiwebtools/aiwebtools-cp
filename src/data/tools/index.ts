@@ -581,3 +581,6 @@ export { mustHaveToolsBatch2026 } from './mustHaveToolsBatch2026';
 
 // Export Agents & Creators Batch 2026 (25 tools: Rotor Videos, Artlist AI, TaskWeaver, Glif, Respell, Leap AI, AG2, SwarmClaw AI, ControlFlow, Star AI Game Generator, Jenova AI, Latitude, Hyper3D Rodin Gen-2, SPAR3D, Tripo 2.0, Luma Photon, CoreWeave, Hyperstack AI, Lepton AI, DeepInfra, Baseten, Brev.dev, FluidStack, Banana Dev, Paperspace)
 export { agentsAndCreatorsBatch2026 } from './agentsAndCreatorsBatch2026';
+
+// Export Trending Platforms Batch 2026 (10 tools: CREAO, Orchestra Research, Gamma, Tome, Bolt.new, v0.dev, Cursor, Replit Agent, Granola AI, WebSim AI)
+export { trendingPlatformsBatch2026 } from './trendingPlatformsBatch2026';
