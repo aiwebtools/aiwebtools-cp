@@ -589,3 +589,4 @@ export { trendingPlatformsBatch2026 } from './trendingPlatformsBatch2026';
 export { aiInfraBatch2026 } from './aiInfraBatch2026';
 export { essentialToolsBatch2026 } from './essentialToolsBatch2026';
 export { appBuildDiy2026 } from './appBuildDiy2026';
+export { writingMarketingSEO2026 } from './writingMarketingSEO2026';
