@@ -25,14 +25,10 @@ export default defineConfig(({ mode }) => ({
     rollupOptions: {
       output: {
         manualChunks(id) {
-          // Vendor chunks
-          if (id.includes('node_modules/react-dom')) return 'vendor-react';
-          if (id.includes('node_modules/react/')) return 'vendor-react';
-          if (id.includes('node_modules/react-router')) return 'vendor-router';
-          if (id.includes('node_modules/@tanstack')) return 'vendor-query';
-          if (id.includes('node_modules/@radix-ui')) return 'vendor-ui';
-          if (id.includes('node_modules/framer-motion')) return 'vendor-motion';
-          if (id.includes('node_modules')) return 'vendor-misc';
+          // IMPORTANT: let Rollup/Vite manage node_modules chunking automatically.
+          // Our previous vendor-react/vendor-misc split created a circular dependency
+          // in production, which caused React.forwardRef to be undefined on the live site.
+          // We keep the app/tool data splits below, but avoid forcing vendor boundaries.
 
           // Split tool data into multiple chunks by pattern
           if (id.includes('/data/tools/aiWebTools')) return 'tools-gpts';
