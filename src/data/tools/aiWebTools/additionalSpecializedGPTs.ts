@@ -133,5 +133,18 @@ export const additionalSpecializedGPTs: Tool[] = [
     category: "Additional Specialized",
     rating: 4.7,
     totalVotes: 5432
+  },
+  {
+    icon: Brain,
+    title: "Fortune Teller GPT",
+    description: "Fortune Teller GPT is an advanced AI-powered analytical tool designed to predict trends, analyze data, and provide insights based on real-world patterns. It combines web searches, statistical modeling, and Python-driven calculations to generate data-backed forecasts on various topics, including economics, technology, resource management, and geopolitical shifts. Unlike traditional fortune-telling, Fortune Teller GPT relies on factual data, historical patterns, and predictive algorithms to uncover likely future outcomes.",
+    emoji: "🔮",
+    color: "from-indigo-500 to-purple-600",
+    directUrl: "https://fortunetellergpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-fortune-teller-gpt-_kRpji.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
+    tags: ["fortune telling", "predictions", "data analysis", "trend forecasting", "statistical modeling", "predictive analytics", "Custom GPT"],
+    category: "Additional Specialized",
+    rating: 4.7,
+    totalVotes: 4876
   }
 ];
