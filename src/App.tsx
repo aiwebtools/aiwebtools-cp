@@ -96,17 +96,27 @@ const queryClient = new QueryClient({
   },
 });
 
-// Routes wrapper - eager pages render instantly, lazy pages show loader
+// Routes wrapper - disclaimer gate renders instantly, everything else uses Suspense
 const AnimatedRoutes = () => {
   const location = useLocation();
   
-  // Critical paths render without Suspense for instant load
-  if (location.pathname === '/' || location.pathname === '/welcome') {
+  // Disclaimer gate is eager-loaded — render without Suspense for instant load
+  if (location.pathname === '/welcome') {
     return (
       <Routes location={location}>
         <Route path="/welcome" element={<DisclaimerGate />} />
-        <Route path="/" element={<Index />} />
       </Routes>
+    );
+  }
+  
+  // All other pages (including Index) use Suspense for lazy loading
+  if (location.pathname === '/') {
+    return (
+      <Suspense fallback={<PageLoader />}>
+        <Routes location={location}>
+          <Route path="/" element={<Index />} />
+        </Routes>
+      </Suspense>
     );
   }
   
