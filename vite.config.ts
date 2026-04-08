@@ -33,6 +33,10 @@ export default defineConfig(({ mode }) => ({
               id.includes('node_modules/scheduler')) return 'vendor-react';
           if (id.includes('node_modules/react-router')) return 'vendor-router';
           if (id.includes('node_modules/@tanstack')) return 'vendor-query';
+
+          // Let Rollup keep the UI dependency graph in a safe order.
+          // Forcing Radix/floating/ui-adjacent packages into one shared chunk
+          // caused a production-only TDZ crash: `Cannot access ... before initialization`.
           if (id.includes('node_modules/@radix-ui') ||
               id.includes('node_modules/@floating-ui') ||
               id.includes('node_modules/class-variance-authority') ||
@@ -42,7 +46,14 @@ export default defineConfig(({ mode }) => ({
               id.includes('node_modules/react-day-picker') ||
               id.includes('node_modules/sonner') ||
               id.includes('node_modules/recharts') ||
-              id.includes('node_modules/react-resizable-panels')) return 'vendor-ui';
+              id.includes('node_modules/react-resizable-panels') ||
+              id.includes('node_modules/vaul') ||
+              id.includes('node_modules/embla-carousel-react') ||
+              id.includes('node_modules/input-otp') ||
+              id.includes('node_modules/tailwind-merge')) {
+            return;
+          }
+
           if (id.includes('node_modules/framer-motion')) return 'vendor-motion';
           if (id.includes('node_modules')) return 'vendor-misc';
 
