@@ -80,9 +80,45 @@ const WelcomeNeoVoice = () => {
 // NOTE: precomputed category cache is initialized AFTER disclaimer acceptance
 // to keep the /welcome disclaimer gate load instant.
 
-// Minimal page loader for Suspense — near-invisible for direct URL visits
+// Page loader for Suspense — shows Matrix-style loading indicator while lazy pages load
 const PageLoader = () => (
-  <div className="min-h-screen bg-black" />
+  <div className="min-h-screen bg-black flex flex-col items-center justify-center">
+    <div className="mb-6" style={{ perspective: '200px' }}>
+      <div
+        style={{
+          width: 50, height: 50, position: 'relative',
+          transformStyle: 'preserve-3d',
+          animation: 'rotateCube 1.2s linear infinite',
+        }}
+      >
+        {[
+          { transform: 'translateZ(25px)' },
+          { transform: 'rotateY(180deg) translateZ(25px)' },
+          { transform: 'rotateY(90deg) translateZ(25px)' },
+          { transform: 'rotateY(-90deg) translateZ(25px)' },
+          { transform: 'rotateX(90deg) translateZ(25px)' },
+          { transform: 'rotateX(-90deg) translateZ(25px)' },
+        ].map((s, i) => (
+          <div
+            key={i}
+            style={{
+              position: 'absolute', width: 50, height: 50,
+              border: '2px solid #00ff41',
+              background: 'rgba(0,255,65,0.1)',
+              boxShadow: '0 0 15px rgba(0,255,65,0.3)',
+              ...s,
+            }}
+          />
+        ))}
+      </div>
+    </div>
+    <p
+      className="text-green-400 font-mono text-lg tracking-widest animate-pulse"
+      style={{ textShadow: '0 0 20px rgba(0,255,65,0.5)' }}
+    >
+      LOADING...
+    </p>
+  </div>
 );
 
 const queryClient = new QueryClient({
