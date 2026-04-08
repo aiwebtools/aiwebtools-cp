@@ -1,5 +1,4 @@
 import { Tool } from "@/types/tools";
-import openartWorldsHero from "@/assets/tools/openart-worlds-hero.jpg";
 import { Gamepad2, Globe, Layers, Box, Users, Wand2, Sparkles, Eye, Cpu, Package, Film, Zap, Brain, Search, BookOpen } from "lucide-react";
 
 import gameerHero from "@/assets/tools/gameer-hero.jpg";
@@ -424,20 +423,5 @@ export const gameVR3DBatch2026: Tool[] = [
     category: "Image & Design",
     rating: 4.9,
     totalVotes: 125000
-  },
-
-  // === OPENART WORLDS – 3D WORLD CREATION ===
-  {
-    icon: Globe,
-    title: "OpenArt Worlds",
-    description: "OpenArt Worlds transforms a single image or text prompt into a fully navigable, persistent 3D environment powered by World Labs spatial AI. Explore immersive landscapes, capture production-ready shots from any angle, and build consistent worlds for games, film, architecture, and creative projects — no 3D software or design experience required.",
-    emoji: "🌍",
-    color: "from-emerald-500 to-cyan-500",
-    directUrl: "https://openart.ai/feature/openart-worlds?via=aiwebtools",
-    imageUrl: openartWorldsHero,
-    tags: ["3D world creation", "openart", "openart worlds", "spatial AI", "world generation", "3D environment", "text-to-3D", "image-to-3D", "virtual world", "3D scene", "world labs", "immersive", "game design", "architecture visualization", "3D landscape"],
-    category: "3D & World Creation",
-    rating: 4.8,
-    totalVotes: 8500
   }
 ];
