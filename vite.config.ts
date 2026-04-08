@@ -252,7 +252,9 @@ export default defineConfig(({ mode }) => ({
           if (id.includes('/components/tools/') || id.includes('/components/category/')) return 'app-tools-ui';
           if (id.includes('/components/effects/') || id.includes('/components/seo/') || id.includes('/components/disclaimers/')) return 'app-effects-seo';
           if (id.includes('/components/search/') || id.includes('/components/navigation/') || id.includes('/components/header/')) return 'app-nav-search';
-          if (id.includes('/components/footer/') || id.includes('/components/favorites/') || id.includes('/components/tool-detail/')) return 'app-detail-ui';
+          // Do not force a separate detail chunk here.
+          // In production, icon modules can get hoisted into this bucket and
+          // then tool-data chunks end up importing from app code, causing a TDZ cycle.
           if (id.includes('/components/ui/')) return 'app-ui-lib';
           // NEW: Split root components into functional groups
           if (id.includes('/components/HeroSection') ||
