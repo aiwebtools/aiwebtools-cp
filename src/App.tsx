@@ -17,10 +17,11 @@ import MatrixCursorEffect from "@/components/effects/MatrixCursorEffect";
 import "@/styles/loading-cube.css";
 import ScrollProgressIndicator from "@/components/ScrollProgressIndicator";
 import { getConsentAccepted } from "@/utils/consent";
-
-// Eager load - critical path (home page AND disclaimer gate for instant first load)
-import Index from "./pages/Index";
+// Eager load - ONLY the disclaimer gate (lightweight, no heavy tool imports)
 import DisclaimerGate from "./pages/DisclaimerGate";
+
+// Lazy load Index - it pulls in 3000+ tool images which block initial render
+const Index = lazy(() => import("./pages/Index"));
 
 // Lazy load - secondary pages for faster initial load
 const CategoryPage = lazy(() => import("./pages/CategoryPage"));
@@ -95,17 +96,27 @@ const queryClient = new QueryClient({
   },
 });
 
-// Routes wrapper - eager pages render instantly, lazy pages show loader
+// Routes wrapper - disclaimer gate renders instantly, everything else uses Suspense
 const AnimatedRoutes = () => {
   const location = useLocation();
   
-  // Critical paths render without Suspense for instant load
-  if (location.pathname === '/' || location.pathname === '/welcome') {
+  // Disclaimer gate is eager-loaded — render without Suspense for instant load
+  if (location.pathname === '/welcome') {
     return (
       <Routes location={location}>
         <Route path="/welcome" element={<DisclaimerGate />} />
-        <Route path="/" element={<Index />} />
       </Routes>
+    );
+  }
+  
+  // All other pages (including Index) use Suspense for lazy loading
+  if (location.pathname === '/') {
+    return (
+      <Suspense fallback={<PageLoader />}>
+        <Routes location={location}>
+          <Route path="/" element={<Index />} />
+        </Routes>
+      </Suspense>
     );
   }
   
