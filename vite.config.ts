@@ -34,15 +34,20 @@ export default defineConfig(({ mode }) => ({
           if (id.includes('node_modules/react-router')) return 'vendor-router';
           if (id.includes('node_modules/@tanstack')) return 'vendor-query';
 
-          // Let Rollup keep the UI dependency graph in a safe order.
+          // Keep lucide isolated from app chunks.
+          // If lucide lands inside an app chunk, tool-data chunks can end up
+          // importing icon symbols from that app chunk, which creates a
+          // production-only initialization cycle and a black screen.
+          if (id.includes('node_modules/lucide-react')) return 'vendor-icons';
+
+          // Let Rollup keep the rest of the UI dependency graph in a safe order.
           // Forcing Radix/floating/ui-adjacent packages into one shared chunk
-          // caused a production-only TDZ crash: `Cannot access ... before initialization`.
+          // previously caused a production-only TDZ crash.
           if (id.includes('node_modules/@radix-ui') ||
               id.includes('node_modules/@floating-ui') ||
               id.includes('node_modules/class-variance-authority') ||
               id.includes('node_modules/clsx') ||
               id.includes('node_modules/cmdk') ||
-              id.includes('node_modules/lucide-react') ||
               id.includes('node_modules/react-day-picker') ||
               id.includes('node_modules/sonner') ||
               id.includes('node_modules/recharts') ||
@@ -247,7 +252,9 @@ export default defineConfig(({ mode }) => ({
           if (id.includes('/components/tools/') || id.includes('/components/category/')) return 'app-tools-ui';
           if (id.includes('/components/effects/') || id.includes('/components/seo/') || id.includes('/components/disclaimers/')) return 'app-effects-seo';
           if (id.includes('/components/search/') || id.includes('/components/navigation/') || id.includes('/components/header/')) return 'app-nav-search';
-          if (id.includes('/components/footer/') || id.includes('/components/favorites/') || id.includes('/components/tool-detail/')) return 'app-detail-ui';
+          // Do not force a separate detail chunk here.
+          // In production, icon modules can get hoisted into this bucket and
+          // then tool-data chunks end up importing from app code, causing a TDZ cycle.
           if (id.includes('/components/ui/')) return 'app-ui-lib';
           // NEW: Split root components into functional groups
           if (id.includes('/components/HeroSection') ||
