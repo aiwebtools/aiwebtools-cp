@@ -30,8 +30,8 @@ export default defineConfig(({ mode }) => ({
           // a chunk that calls React.forwardRef loads before the React chunk.
           if (id.includes('node_modules/react-dom') ||
               id.includes('node_modules/react/') ||
+              id.includes('node_modules/react-router') ||
               id.includes('node_modules/scheduler')) return 'vendor-react';
-          if (id.includes('node_modules/react-router')) return 'vendor-router';
           if (id.includes('node_modules/@tanstack')) return 'vendor-query';
 
           // Keep lucide isolated from app chunks.
