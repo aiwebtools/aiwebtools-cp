@@ -60,78 +60,54 @@ export function viteOGManifest(): Plugin {
             }
           }
           
-          // Faster tool extraction: search for title fields directly, then expand to the
-          // nearest containing object block. This avoids a catastrophic full-file regex scan
-          // across the entire tool corpus during production publish.
-          const titleRegex = /title:\s*["'`]([^"'`]+)["'`]/g;
-
-          let titleMatch;
-          while ((titleMatch = titleRegex.exec(content)) !== null) {
-            const title = titleMatch[1];
-            const titleIndex = titleMatch.index;
-            const blockStart = content.lastIndexOf('{', titleIndex);
-            if (blockStart === -1) continue;
-
+          // Extract tool objects - match title, description, imageUrl, category
+          // Use a block-based approach: find each { ... } tool object
+          const toolBlockRegex = /\{\s*\n(?:[^{}]*?\n)*?\s*title:\s*["'`]([^"'`]+)["'`]/gs;
+          
+          let blockMatch;
+          while ((blockMatch = toolBlockRegex.exec(content)) !== null) {
+            const title = blockMatch[1];
+            const blockStart = blockMatch.index;
+            
+            // Find the end of this object block (approximate - find next },\n or end)
             let depth = 0;
-            let blockEnd = -1;
+            let blockEnd = blockStart;
             for (let i = blockStart; i < content.length; i++) {
               if (content[i] === '{') depth++;
-              else if (content[i] === '}') {
-                depth--;
-                if (depth === 0) {
-                  blockEnd = i;
-                  break;
-                }
-              }
+              if (content[i] === '}') { depth--; if (depth === 0) { blockEnd = i; break; } }
             }
-
-            if (blockEnd === -1) continue;
-
             const block = content.substring(blockStart, blockEnd + 1);
-
+            
+            // Extract description
             const descMatch = block.match(/description:\s*["'`]([^"'`]+)["'`]/);
             const description = descMatch ? descMatch[1] : '';
-
+            
+            // Extract category
             const catMatch = block.match(/category:\s*["'`]([^"'`]+)["'`]/);
             const category = catMatch ? catMatch[1] : 'AI Tool';
-
+            
+            // Extract imageUrl - could be a string literal or an imported variable
             let imageUrl: string | undefined;
             const imageStringMatch = block.match(/imageUrl:\s*["'`]([^"'`]+)["'`]/);
             const imageVarMatch = block.match(/imageUrl:\s*(\w+)/);
-
+            
             if (imageStringMatch) {
               imageUrl = imageStringMatch[1];
             } else if (imageVarMatch && importMap[imageVarMatch[1]]) {
-              imageUrl = importMap[imageVarMatch[1]].replace('@/', '/src/');
+              // Resolve imported variable to a path
+              const assetPath = importMap[imageVarMatch[1]];
+              // Convert @/assets/tools/xyz.jpg to /src/assets/tools/xyz.jpg for build resolution
+              imageUrl = assetPath.replace('@/', '/src/');
             }
-
+            
             toolEntries.push({
               title,
               description: description.substring(0, 300),
               imageUrl,
               category,
             });
-
-            titleRegex.lastIndex = Math.max(titleRegex.lastIndex, blockEnd + 1);
           }
         }
-
-        const dedupedToolEntries = Array.from(
-          toolEntries.reduce((map, entry) => {
-            const existing = map.get(entry.title);
-            if (!existing) {
-              map.set(entry.title, entry);
-              return map;
-            }
-
-            if (!existing.imageUrl && entry.imageUrl) {
-              map.set(entry.title, entry);
-            }
-
-            return map;
-          }, new Map<string, { title: string; description: string; imageUrl?: string; category?: string }>())
-          .values()
-        );
 
         // Write manifest
         const distDir = path.resolve(process.cwd(), 'dist');
@@ -154,13 +130,13 @@ export function viteOGManifest(): Plugin {
         
         fs.writeFileSync(
           path.join(distDir, 'og-manifest.json'),
-          JSON.stringify(dedupedToolEntries, null, 2),
+          JSON.stringify(toolEntries, null, 2),
           'utf-8'
         );
         
-        console.log(`📋 OG Manifest: Found ${dedupedToolEntries.length} tools.`);
+        console.log(`📋 OG Manifest: Found ${toolEntries.length} tools.`);
         
-        generateOGPages(dedupedToolEntries, distDir, assetMap);
+        generateOGPages(toolEntries, distDir, assetMap);
         
       } catch (error) {
         console.error('⚠️ OG Manifest generation error:', error);
