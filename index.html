@@ -384,8 +384,8 @@
         border-radius: 4px;
         /* CSS-driven width animation - runs on GPU, never blocked by JS */
         width: 5%;
-        -webkit-animation: progressShimmer 1.5s linear infinite, progressGrow 1.8s ease-out forwards;
-        animation: progressShimmer 1.5s linear infinite, progressGrow 1.8s ease-out forwards;
+        -webkit-animation: progressShimmer 1.5s linear infinite, progressGrow 2.5s ease-out forwards;
+        animation: progressShimmer 1.5s linear infinite, progressGrow 2.5s ease-out forwards;
         will-change: width, background-position;
         -webkit-transform: translateZ(0);
         transform: translateZ(0);
@@ -489,13 +489,12 @@
             for (var i = 0; i < children.length; i++) {
               var child = children[i];
               if (child.classList && child.classList.contains('loading-spinner')) continue;
-              if (child.offsetHeight > 10 && child.innerHTML.length > 50) return true;
+              if (child.offsetHeight > 50 && child.innerHTML.length > 100) return true;
             }
-            if (root.querySelector('header')) return true;
+            if (root.querySelector('header[class*="fixed"]')) return true;
             if (root.querySelector('main')) return true;
             if (root.querySelector('nav')) return true;
-            if (root.querySelector('button')) return true;
-            if (root.querySelector('[data-reactroot]')) return true;
+            if (root.querySelector('.backdrop-blur-md')) return true;
             return false;
           };
 
@@ -503,8 +502,9 @@
           const updatePct = () => {
             if (removed) return;
             var elapsed = performance.now() - startTime;
-            var duration = 1800;
+            var duration = 2500; // matches CSS progressGrow duration
             var t = Math.min(elapsed / duration, 1);
+            // Ease-out curve matching CSS
             var p;
             if (t < 0.3) p = 5 + (35 * (t / 0.3));
             else if (t < 0.6) p = 40 + (30 * ((t - 0.3) / 0.3));
@@ -515,15 +515,15 @@
           };
           requestAnimationFrame(updatePct);
 
-          // Content detection - check frequently
+          // Content detection every frame-ish without burning extra CPU on mobile
           var contentCheck = setInterval(function() {
             if (hasVisibleContent()) removeSpinner();
           }, 16);
 
-          // Hard fallback - FAST dismissal
+          // Hard fallback - finish sooner if React has not reported visible content yet
           setTimeout(function() {
             if (!removed) removeSpinner();
-          }, 1200);
+          }, 1800);
         };
 
         const tryStart = () => {

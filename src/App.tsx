@@ -17,11 +17,10 @@ import MatrixCursorEffect from "@/components/effects/MatrixCursorEffect";
 import "@/styles/loading-cube.css";
 import ScrollProgressIndicator from "@/components/ScrollProgressIndicator";
 import { getConsentAccepted } from "@/utils/consent";
-// Eager load - ONLY the disclaimer gate (lightweight, no heavy tool imports)
-import DisclaimerGate from "./pages/DisclaimerGate";
 
-// Lazy load Index - it pulls in 3000+ tool images which block initial render
-const Index = lazy(() => import("./pages/Index"));
+// Eager load - critical path (home page AND disclaimer gate for instant first load)
+import Index from "./pages/Index";
+import DisclaimerGate from "./pages/DisclaimerGate";
 
 // Lazy load - secondary pages for faster initial load
 const CategoryPage = lazy(() => import("./pages/CategoryPage"));
@@ -80,9 +79,14 @@ const WelcomeNeoVoice = () => {
 // NOTE: precomputed category cache is initialized AFTER disclaimer acceptance
 // to keep the /welcome disclaimer gate load instant.
 
-// Minimal page loader for Suspense — near-invisible for direct URL visits
+// Minimal page loader for Suspense — sleek loading indicator, prevents black screen
 const PageLoader = () => (
-  <div className="min-h-screen bg-black" />
+  <div className="min-h-screen bg-black flex items-center justify-center">
+    <div className="flex flex-col items-center gap-4">
+      <div className="w-8 h-8 border-2 border-green-500/30 border-t-green-400 rounded-full animate-spin" />
+      <span className="text-green-400/70 text-sm font-mono tracking-wider">Loading...</span>
+    </div>
+  </div>
 );
 
 const queryClient = new QueryClient({
@@ -96,27 +100,17 @@ const queryClient = new QueryClient({
   },
 });
 
-// Routes wrapper - disclaimer gate renders instantly, everything else uses Suspense
+// Routes wrapper - eager pages render instantly, lazy pages show loader
 const AnimatedRoutes = () => {
   const location = useLocation();
   
-  // Disclaimer gate is eager-loaded — render without Suspense for instant load
-  if (location.pathname === '/welcome') {
+  // Critical paths render without Suspense for instant load
+  if (location.pathname === '/' || location.pathname === '/welcome') {
     return (
       <Routes location={location}>
         <Route path="/welcome" element={<DisclaimerGate />} />
+        <Route path="/" element={<Index />} />
       </Routes>
-    );
-  }
-  
-  // All other pages (including Index) use Suspense for lazy loading
-  if (location.pathname === '/') {
-    return (
-      <Suspense fallback={<PageLoader />}>
-        <Routes location={location}>
-          <Route path="/" element={<Index />} />
-        </Routes>
-      </Suspense>
     );
   }
   
