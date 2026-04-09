@@ -246,44 +246,6 @@ const GlobalOverlays: React.FC = () => {
   );
 };
 
-const RouteScrollManager: React.FC = () => {
-  const location = useLocation();
-
-  React.useEffect(() => {
-    if (typeof window === "undefined" || !("scrollRestoration" in window.history)) {
-      return;
-    }
-
-    const previous = window.history.scrollRestoration;
-    window.history.scrollRestoration = "manual";
-
-    return () => {
-      window.history.scrollRestoration = previous;
-    };
-  }, []);
-
-  React.useLayoutEffect(() => {
-    if (typeof window === "undefined") return;
-
-    const resetScroll = () => {
-      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
-      document.documentElement.scrollTop = 0;
-      document.body.scrollTop = 0;
-    };
-
-    resetScroll();
-    const rafId = window.requestAnimationFrame(resetScroll);
-    const timeoutId = window.setTimeout(resetScroll, 80);
-
-    return () => {
-      window.cancelAnimationFrame(rafId);
-      window.clearTimeout(timeoutId);
-    };
-  }, [location.pathname]);
-
-  return null;
-};
-
 function App() {
   // Initialize cross-browser optimizations
   useCrossBrowserOptimization();
@@ -303,7 +265,6 @@ function App() {
               <TooltipProvider>
                 <Toaster />
                 <BrowserRouter>
-                  <RouteScrollManager />
                   <RouteGuard />
                   <PostAcceptBoot />
                   <GlobalOverlays />
