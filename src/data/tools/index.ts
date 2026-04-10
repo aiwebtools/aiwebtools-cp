@@ -575,6 +575,3 @@ export { preparednessAndScholarsBatch2026 } from './preparednessAndScholarsBatch
 
 // Export Civic Transparency Batch 2026 (18 tools: Monopoly Reality Awakening, Govt Corruption Prediction, Table Flipper, Election Truth Scanner, Govt Spending Investigator, Freedom Impact Simulator, Narrative Manipulation Detector, Govt Contract Analyzer, Policy Transparency, Rights Defender, Local Govt Watchdog, Media Manipulation Scanner, Voting Truth, Whistleblower Shield, Influence Network Investigator, Policy Impact Simulator, Citizen Audit, Follow the Money)
 export { civicTransparencyBatch2026 } from './civicTransparencyBatch2026';
-
-// Export Must-Have Tools Batch 2026 (25 tools: Dataiku, E2B, Promptfoo, Msty, LibreChat, Nomic AI, PearAI, Bolt DIY, AnythingLLM, LocalAI, Llamafile, LiteLLM, vLLM, MLX, Google IDX, Gitpod, LobeChat, MLflow, Neptune AI, Langtrace, Pezzo AI, LastMile AI, Twilio AI, Sendbird AI Chatbot, Dagster)
-export { mustHaveToolsBatch2026 } from './mustHaveToolsBatch2026';

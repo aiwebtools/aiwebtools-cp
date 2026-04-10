@@ -427,34 +427,7 @@ export const toolTaglines: Record<string, string> = {
   "Influence Network Investigator GPT": "Map the hidden web of political power — who controls whom, revealed.",
   "Policy Impact Simulator GPT": "Simulate any policy's real-world effects — winners, losers, hidden incentives.",
   "CITIZEN AUDIT GPT": "Audit your government — lawful, ethical citizen oversight powered by AI.",
-  "Follow the Money Corruption Insights GPT": "Follow every dollar through the maze — corruption has nowhere to hide.",
-
-  // Must-Have Tools Batch 2026
-  "Dataiku": "Enterprise AI platform — from data science to production ML at Fortune 500 scale.",
-  "E2B": "Cloud sandboxes for AI code execution — run untrusted code safely in milliseconds.",
-  "Promptfoo": "Test and evaluate your LLM prompts — catch regressions before they ship.",
-  "Msty": "Run any AI model locally — private, fast, no cloud dependency needed.",
-  "LibreChat": "Open-source ChatGPT alternative — use any model, own your conversations.",
-  "Nomic AI": "Open-source embeddings and data visualization — see your data in new dimensions.",
-  "PearAI": "AI-native code editor — write code faster with intelligent AI pair programming.",
-  "Bolt DIY": "Self-hosted AI app builder — generate full-stack apps from prompts, your server.",
-  "AnythingLLM": "All-in-one AI desktop app — RAG, agents, any model, fully private.",
-  "LocalAI": "Run AI models locally with OpenAI-compatible API — free, private, no GPU required.",
-  "Llamafile": "One-file executable AI — download and run any LLM instantly, zero setup.",
-  "LiteLLM": "Universal LLM gateway — one API for 100+ models, unified interface.",
-  "vLLM": "Blazing-fast LLM inference engine — production-grade serving at massive scale.",
-  "MLX": "Apple Silicon ML framework — train and run models natively on Mac hardware.",
-  "Google IDX": "Google's cloud IDE — AI-powered full-stack dev environment in your browser.",
-  "Gitpod": "Cloud dev environments — code from anywhere with instant, automated workspaces.",
-  "LobeChat": "Open-source AI chat framework — beautiful UI, plugin ecosystem, any model.",
-  "MLflow": "Open-source ML lifecycle platform — track experiments, deploy models, manage workflows.",
-  "Neptune AI": "ML experiment tracking — visualize, compare, and collaborate on model training.",
-  "Langtrace": "Open-source LLM observability — trace, debug, and optimize your AI applications.",
-  "Pezzo AI": "AI development toolkit — manage prompts, track costs, optimize LLM operations.",
-  "LastMile AI": "AI workbench for prototyping — build and evaluate AI apps visually.",
-  "Twilio AI": "Programmable AI communications — voice, messaging, and video powered by AI.",
-  "Sendbird AI Chatbot": "In-app AI chatbot — enterprise chat with knowledge base integration.",
-  "Dagster": "Data orchestration platform — build, test, and deploy data pipelines with AI."
+  "Follow the Money Corruption Insights GPT": "Follow every dollar through the maze — corruption has nowhere to hide."
 };
 
 // Function to get tagline for a tool (falls back to short description)

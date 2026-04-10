@@ -15,8 +15,6 @@ import clonePopup5 from "@/assets/clone-popup-5.jpg";
 import clonePopup6 from "@/assets/clone-popup-6.jpg";
 import clonePopup7 from "@/assets/clone-popup-7.jpg";
 import clonePopup8 from "@/assets/clone-popup-8.jpg";
-import clonePopup9 from "@/assets/clone-popup-9.png";
-import clonePopup10 from "@/assets/clone-popup-10.png";
 
 const popupImages: Record<number, string> = {
   4: clonePopup4,
@@ -24,8 +22,6 @@ const popupImages: Record<number, string> = {
   6: clonePopup6,
   7: clonePopup7,
   8: clonePopup8,
-  9: clonePopup9,
-  10: clonePopup10,
 };
 
 const CloneOfferPopup = () => {
@@ -69,13 +65,13 @@ const CloneOfferPopup = () => {
     const shownCount = parseInt(sessionStorage.getItem('cloneOfferShowCount') || '0');
     setShowCount(shownCount);
 
-    // If already shown 11 times (indices 0-10), don't show again
-    if (shownCount >= 11) {
+    // If already shown 9 times (indices 0-8), don't show again
+    if (shownCount >= 9) {
       return;
     }
 
-    // Delays: 7min, 9min, 12min, 20min, 25min, then every 7min after
-    const delays = [420000, 540000, 720000, 1200000, 1500000, 1920000, 2340000, 2760000, 3180000, 3600000, 4020000];
+    // Delays: 7min, 12min, 20min, 25min, then every 7min after
+    const delays = [420000, 720000, 1200000, 1500000, 1920000, 2340000, 2760000, 3180000, 3600000];
     const delay = delays[shownCount] || delays[delays.length - 1];
 
     const timer = setTimeout(() => {
