@@ -228,6 +228,7 @@ import { gameVR3DBatch2026 } from "./tools/gameVR3DBatch2026";
 import { robotSafetyGPTs2026 } from "./tools/robotSafetyGPTs2026";
 import { preparednessAndScholarsBatch2026 } from "./tools/preparednessAndScholarsBatch2026";
 import { civicTransparencyBatch2026 } from "./tools/civicTransparencyBatch2026";
+import { mustHaveToolsBatch2026 } from "./tools/mustHaveToolsBatch2026";
 
 const allToolCategories = consolidateTools([
   ...getAllToolCategories(),
