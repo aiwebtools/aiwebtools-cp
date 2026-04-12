@@ -1,4 +1,4 @@
-import { useRef, useEffect, useMemo } from "react";
+import { useRef, useEffect, useMemo, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { ChevronUp, ChevronDown } from "lucide-react";
@@ -49,6 +49,28 @@ const GlobalSearchResults = ({
     }
   }, [searchResults]);
 
+  // Touch-drag detection: only fire navigation if finger didn't move much
+  const touchStartRef = useRef<{ x: number; y: number } | null>(null);
+  const TOUCH_SLOP = 12; // px threshold – prevents scroll from triggering click
+
+  const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    const t = e.touches[0];
+    touchStartRef.current = { x: t.clientX, y: t.clientY };
+  }, []);
+
+  const handleTouchEnd = useCallback((e: React.TouchEvent, toolIdx: number) => {
+    const start = touchStartRef.current;
+    if (!start) return;
+    const t = e.changedTouches[0];
+    const dx = Math.abs(t.clientX - start.x);
+    const dy = Math.abs(t.clientY - start.y);
+    if (dx < TOUCH_SLOP && dy < TOUCH_SLOP) {
+      e.preventDefault();
+      onToolClick(toolIdx);
+    }
+    touchStartRef.current = null;
+  }, [onToolClick]);
+
   const scrollToTop = () => {
     if (scrollRef.current) {
       scrollRef.current.scrollTo({ top: 0, behavior: 'smooth' });
@@ -94,7 +116,8 @@ const GlobalSearchResults = ({
               <div 
                 className={`flex items-center space-x-3 p-3 rounded-lg hover:bg-cyan-500/10 cursor-pointer group border border-transparent hover:border-cyan-500/30 ${isRecommendation ? 'opacity-90' : ''}`}
                 onMouseDown={(e) => { e.preventDefault(); onToolClick(toolIndex); }}
-                onTouchEnd={(e) => { e.preventDefault(); onToolClick(toolIndex); }}
+                onTouchStart={handleTouchStart}
+                onTouchEnd={(e) => handleTouchEnd(e, toolIndex)}
                 style={{ transform: 'translateZ(0)' }}
               >
                 {/* Category color-coded icon */}
