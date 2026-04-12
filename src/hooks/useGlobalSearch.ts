@@ -2053,15 +2053,21 @@ export const useGlobalSearch = () => {
   }, []);
 
   const handleToolClick = useCallback((toolIndex: number) => {
-    setIsOpen(false);
-    setSearchTermInternal("");
-    // Use slug-based navigation directly to avoid redirect delay
+    // Navigate FIRST before clearing state to avoid re-render blocking navigation
     const tool = allTools[toolIndex];
-    if (tool) {
-      navigate(`/${generateToolSlug(tool.title)}`);
-    } else {
-      navigate(`/tool/${toolIndex}`);
-    }
+    const path = tool ? `/${generateToolSlug(tool.title)}` : `/tool/${toolIndex}`;
+    
+    // Cancel any pending search work immediately
+    if (quickRef.current) clearTimeout(quickRef.current);
+    if (fullRef.current) clearTimeout(fullRef.current);
+    
+    // Navigate synchronously - no RAF wrapper
+    navigate(path);
+    
+    // Clear state AFTER navigation is queued (non-blocking)
+    setIsOpen(false);
+    setSearchResults([]);
+    setSearchTermInternal("");
   }, [navigate]);
 
   const handleDirectAccess = useCallback((tool: any, e: React.MouseEvent) => {
@@ -2083,18 +2089,23 @@ export const useGlobalSearch = () => {
 
   const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
     if (e.key === 'Escape') {
+      if (quickRef.current) clearTimeout(quickRef.current);
+      if (fullRef.current) clearTimeout(fullRef.current);
       setIsOpen(false);
+      setSearchResults([]);
       setSearchTermInternal("");
       setDisplayedCount(50);
     } else if (e.key === 'Enter' && searchTerm.trim()) {
       if (searchResults.length > 0) {
         const topResult = searchResults[0];
-        const toolIndex = allTools.findIndex(t => t.title === topResult.title);
-        if (toolIndex !== -1) {
-          setIsOpen(false);
-          setSearchTermInternal("");
-          navigate(`/tool/${toolIndex}`);
-        }
+        // Cancel pending searches
+        if (quickRef.current) clearTimeout(quickRef.current);
+        if (fullRef.current) clearTimeout(fullRef.current);
+        // Navigate using slug directly - no O(n) findIndex
+        navigate(`/${generateToolSlug(topResult.title)}`);
+        setIsOpen(false);
+        setSearchResults([]);
+        setSearchTermInternal("");
       }
     }
   }, [searchTerm, searchResults, navigate]);
