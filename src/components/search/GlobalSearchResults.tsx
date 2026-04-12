@@ -93,7 +93,8 @@ const GlobalSearchResults = ({
             const toolItem = (
               <div 
                 className={`flex items-center space-x-3 p-3 rounded-lg hover:bg-cyan-500/10 cursor-pointer group border border-transparent hover:border-cyan-500/30 ${isRecommendation ? 'opacity-90' : ''}`}
-                onClick={() => onToolClick(toolIndex)}
+                onMouseDown={(e) => { e.preventDefault(); onToolClick(toolIndex); }}
+                onTouchEnd={(e) => { e.preventDefault(); onToolClick(toolIndex); }}
                 style={{ transform: 'translateZ(0)' }}
               >
                 {/* Category color-coded icon */}
