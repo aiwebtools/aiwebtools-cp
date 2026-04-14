@@ -542,7 +542,25 @@ const allToolCategories = consolidateTools([
   ...civicTransparencyBatch2026,
 
   // Must-Have Tools Batch 2026 (25 tools: Dataiku, E2B, Promptfoo, Msty, LibreChat, Nomic AI, PearAI, Bolt DIY, AnythingLLM, LocalAI, Llamafile, LiteLLM, vLLM, MLX, Google IDX, Gitpod, LobeChat, MLflow, Neptune AI, Langtrace, Pezzo AI, LastMile AI, Twilio AI, Sendbird AI Chatbot, Dagster)
-  ...mustHaveToolsBatch2026
+  ...mustHaveToolsBatch2026,
+
+  // Agents & Creators Batch 2026 (25 tools)
+  ...agentsAndCreatorsBatch2026,
+
+  // Trending Platforms Batch 2026 (10 tools)
+  ...trendingPlatformsBatch2026,
+
+  // AI Infrastructure Batch 2026 (10 tools)
+  ...aiInfraBatch2026,
+
+  // Essential Tools Batch 2026 (25 tools)
+  ...essentialToolsBatch2026,
+
+  // AppBuild.diy 2026
+  ...appBuildDiy2026,
+
+  // Writing, Marketing & SEO Batch 2026 (20 tools)
+  ...writingMarketingSEO2026
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories
