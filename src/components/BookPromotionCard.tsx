@@ -197,6 +197,11 @@ const BookPromotionCard = () => {
       id: "w7udrbcW_4M",
       title: "Book Promotion Feature 17",
       gradient: "from-cyan-500/20 to-blue-500/20"
+    },
+    {
+      id: "LHaPL2oBUmY",
+      title: "AI Web Tools Showcase 18",
+      gradient: "from-emerald-500/20 to-lime-500/20"
     }
   ];
 

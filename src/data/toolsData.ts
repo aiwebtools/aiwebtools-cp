@@ -229,6 +229,12 @@ import { robotSafetyGPTs2026 } from "./tools/robotSafetyGPTs2026";
 import { preparednessAndScholarsBatch2026 } from "./tools/preparednessAndScholarsBatch2026";
 import { civicTransparencyBatch2026 } from "./tools/civicTransparencyBatch2026";
 import { mustHaveToolsBatch2026 } from "./tools/mustHaveToolsBatch2026";
+import { agentsAndCreatorsBatch2026 } from "./tools/agentsAndCreatorsBatch2026";
+import { trendingPlatformsBatch2026 } from "./tools/trendingPlatformsBatch2026";
+import { aiInfraBatch2026 } from "./tools/aiInfraBatch2026";
+import { essentialToolsBatch2026 } from "./tools/essentialToolsBatch2026";
+import { appBuildDiy2026 } from "./tools/appBuildDiy2026";
+import { writingMarketingSEO2026 } from "./tools/writingMarketingSEO2026";
 
 const allToolCategories = consolidateTools([
   ...getAllToolCategories(),
@@ -536,7 +542,25 @@ const allToolCategories = consolidateTools([
   ...civicTransparencyBatch2026,
 
   // Must-Have Tools Batch 2026 (25 tools: Dataiku, E2B, Promptfoo, Msty, LibreChat, Nomic AI, PearAI, Bolt DIY, AnythingLLM, LocalAI, Llamafile, LiteLLM, vLLM, MLX, Google IDX, Gitpod, LobeChat, MLflow, Neptune AI, Langtrace, Pezzo AI, LastMile AI, Twilio AI, Sendbird AI Chatbot, Dagster)
-  ...mustHaveToolsBatch2026
+  ...mustHaveToolsBatch2026,
+
+  // Agents & Creators Batch 2026 (25 tools)
+  ...agentsAndCreatorsBatch2026,
+
+  // Trending Platforms Batch 2026 (10 tools)
+  ...trendingPlatformsBatch2026,
+
+  // AI Infrastructure Batch 2026 (10 tools)
+  ...aiInfraBatch2026,
+
+  // Essential Tools Batch 2026 (25 tools)
+  ...essentialToolsBatch2026,
+
+  // AppBuild.diy 2026
+  ...appBuildDiy2026,
+
+  // Writing, Marketing & SEO Batch 2026 (20 tools)
+  ...writingMarketingSEO2026
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories

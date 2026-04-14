@@ -578,3 +578,21 @@ export { civicTransparencyBatch2026 } from './civicTransparencyBatch2026';
 
 // Export Must-Have Tools Batch 2026 (25 tools: Dataiku, E2B, Promptfoo, Msty, LibreChat, Nomic AI, PearAI, Bolt DIY, AnythingLLM, LocalAI, Llamafile, LiteLLM, vLLM, MLX, Google IDX, Gitpod, LobeChat, MLflow, Neptune AI, Langtrace, Pezzo AI, LastMile AI, Twilio AI, Sendbird AI Chatbot, Dagster)
 export { mustHaveToolsBatch2026 } from './mustHaveToolsBatch2026';
+
+// Export Agents & Creators Batch 2026 (25 tools: Rotor Videos, TaskWeaver, AG2, CoreWeave, etc.)
+export { agentsAndCreatorsBatch2026 } from './agentsAndCreatorsBatch2026';
+
+// Export Trending Platforms Batch 2026 (10 tools: Gamma, Cursor, v0.dev, Replit Agent, etc.)
+export { trendingPlatformsBatch2026 } from './trendingPlatformsBatch2026';
+
+// Export AI Infrastructure Batch 2026 (10 tools: Langflow, Vectara, Zep AI, etc.)
+export { aiInfraBatch2026 } from './aiInfraBatch2026';
+
+// Export Essential Tools Batch 2026 (25 tools: ElevenLabs, Perplexity, Devin, Runway Gen-4, etc.)
+export { essentialToolsBatch2026 } from './essentialToolsBatch2026';
+
+// Export AppBuild.diy 2026 (1 tool: AppBuild.diy)
+export { appBuildDiy2026 } from './appBuildDiy2026';
+
+// Export Writing, Marketing & SEO Batch 2026 (20 tools: ProWritingAid, Ubersuggest, SEO.ai, etc.)
+export { writingMarketingSEO2026 } from './writingMarketingSEO2026';
