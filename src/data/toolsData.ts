@@ -229,6 +229,12 @@ import { robotSafetyGPTs2026 } from "./tools/robotSafetyGPTs2026";
 import { preparednessAndScholarsBatch2026 } from "./tools/preparednessAndScholarsBatch2026";
 import { civicTransparencyBatch2026 } from "./tools/civicTransparencyBatch2026";
 import { mustHaveToolsBatch2026 } from "./tools/mustHaveToolsBatch2026";
+import { agentsAndCreatorsBatch2026 } from "./tools/agentsAndCreatorsBatch2026";
+import { trendingPlatformsBatch2026 } from "./tools/trendingPlatformsBatch2026";
+import { aiInfraBatch2026 } from "./tools/aiInfraBatch2026";
+import { essentialToolsBatch2026 } from "./tools/essentialToolsBatch2026";
+import { appBuildDiy2026 } from "./tools/appBuildDiy2026";
+import { writingMarketingSEO2026 } from "./tools/writingMarketingSEO2026";
 
 const allToolCategories = consolidateTools([
   ...getAllToolCategories(),
