@@ -1,6 +1,11 @@
 import { Tool } from "@/types/tools";
 import { Bot, Sparkles, Presentation, BookOpen, Zap, Code, Cpu, Globe, FileText, Layout } from "lucide-react";
 
+import creaoHero from "@/assets/tools/creao-hero.jpg";
+import orchestraResearchHero from "@/assets/tools/orchestra-research-hero.jpg";
+import gammaHero from "@/assets/tools/gamma-hero.jpg";
+import tomeHero from "@/assets/tools/tome-hero.jpg";
+import boltNewHero from "@/assets/tools/bolt-new-hero.jpg";
 
 export const trendingPlatformsBatch2026: Tool[] = [
   {
@@ -9,7 +14,7 @@ export const trendingPlatformsBatch2026: Tool[] = [
     description: "CREAO is an AI super agent platform where you chat with a powerful AI that delivers real output in real time. Execute any task, turn conversations into autonomous agents that run on their own, and automate complex multi-step workflows with one unified interface.",
     emoji: "🤖",
     color: "from-purple-500 to-blue-600",
-    imageUrl: "/placeholder.svg",
+    imageUrl: creaoHero,
     directUrl: "https://creao.ai/?via=aiwebtools",
     category: "AI Agents & Automation",
     tags: ["AI agent", "super agent", "automation", "autonomous AI", "task execution", "workflow automation", "CREAO", "AI assistant", "no-code agent", "multi-agent"],
@@ -21,7 +26,7 @@ export const trendingPlatformsBatch2026: Tool[] = [
     description: "Orchestra Research is the first AI-native research IDE designed for serious researchers. It supports the full research lifecycle—searching, reading, brainstorming, executing, and interpreting—with deep AI integration that goes beyond simple auto-research to provide genuine depth and rigor.",
     emoji: "🎼",
     color: "from-amber-600 to-yellow-500",
-    imageUrl: "/placeholder.svg",
+    imageUrl: orchestraResearchHero,
     directUrl: "https://www.orchestra-research.com/?via=aiwebtools",
     category: "Research & Analysis",
     tags: ["research IDE", "AI research", "academic research", "literature review", "scientific analysis", "Orchestra Research", "research assistant", "deep research", "knowledge synthesis"],
@@ -33,7 +38,7 @@ export const trendingPlatformsBatch2026: Tool[] = [
     description: "Gamma is an AI-powered presentation platform that generates beautiful, professional slides, documents, and webpages from simple text prompts. Skip the blank page—Gamma creates polished content with smart layouts, embedded media, and one-click redesign that looks stunning on any device.",
     emoji: "🎨",
     color: "from-pink-500 to-orange-400",
-    imageUrl: "/placeholder.svg",
+    imageUrl: gammaHero,
     directUrl: "https://gamma.app/?via=aiwebtools",
     category: "Business & Productivity",
     tags: ["AI presentations", "slide maker", "presentation AI", "Gamma", "document creator", "AI slides", "pitch deck", "business presentations", "content generation", "no-design needed"],
@@ -45,7 +50,7 @@ export const trendingPlatformsBatch2026: Tool[] = [
     description: "Tome is an AI-native storytelling and presentation platform that transforms ideas into compelling visual narratives. Create entire presentations, one-pagers, and pitch decks with AI-generated text, images, and layouts—perfect for sales teams, founders, and creative professionals.",
     emoji: "📖",
     color: "from-amber-700 to-yellow-600",
-    imageUrl: "/placeholder.svg",
+    imageUrl: tomeHero,
     directUrl: "https://tome.app/?via=aiwebtools",
     category: "Business & Productivity",
     tags: ["AI storytelling", "presentation maker", "Tome", "pitch deck", "AI narrative", "visual storytelling", "sales deck", "content creation", "AI document", "startup pitch"],
@@ -57,7 +62,7 @@ export const trendingPlatformsBatch2026: Tool[] = [
     description: "Bolt.new by StackBlitz is a revolutionary AI-powered full-stack web app builder that lets you prompt, run, edit, and deploy applications directly in the browser. Build complete React, Next.js, and Node.js apps from a single prompt with instant preview and one-click deployment.",
     emoji: "⚡",
     color: "from-yellow-500 to-amber-600",
-    imageUrl: "/placeholder.svg",
+    imageUrl: boltNewHero,
     directUrl: "https://bolt.new/?via=aiwebtools",
     category: "Developer Tools & APIs",
     tags: ["AI app builder", "vibe coding", "Bolt.new", "full-stack AI", "web app generator", "code generation", "StackBlitz", "instant deploy", "prompt to app", "AI development"],
