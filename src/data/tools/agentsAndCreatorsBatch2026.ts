@@ -1,9 +1,33 @@
 import { Tool } from "@/types/tools";
 import { Music, Film, Wand2, Bot, Cpu, Globe, Box, Layers, Zap, Server, Cloud, Gamepad2, Sparkles } from "lucide-react";
 
+import rotorVideosHero from "@/assets/tools/rotor-videos-hero.jpg";
+import artlistAiHero from "@/assets/tools/artlist-ai-hero.jpg";
+import taskweaverHero from "@/assets/tools/taskweaver-hero.jpg";
+import glifHero from "@/assets/tools/glif-hero.jpg";
+import respellHero from "@/assets/tools/respell-hero.jpg";
+import leapAiHero from "@/assets/tools/leap-ai-hero.jpg";
+import ag2Hero from "@/assets/tools/ag2-hero.jpg";
+import swarmclawHero from "@/assets/tools/swarmclaw-hero.jpg";
+import controlflowHero from "@/assets/tools/controlflow-hero.jpg";
+import starGameHero from "@/assets/tools/star-game-hero.jpg";
+import jenovaAiHero from "@/assets/tools/jenova-ai-hero.jpg";
+import latitudeHero from "@/assets/tools/latitude-hero.jpg";
+import hyper3dHero from "@/assets/tools/hyper3d-hero.jpg";
+import spar3dHero from "@/assets/tools/spar3d-hero.jpg";
+import tripoHero from "@/assets/tools/tripo-hero.jpg";
+import lumaPhotonHero from "@/assets/tools/luma-photon-hero.jpg";
+import coreweaveHero from "@/assets/tools/coreweave-hero.jpg";
+import hyperstackHero from "@/assets/tools/hyperstack-hero.jpg";
+import leptonAiHero from "@/assets/tools/lepton-ai-hero.jpg";
+import deepinfraHero from "@/assets/tools/deepinfra-hero.jpg";
+import basetenHero from "@/assets/tools/baseten-hero.jpg";
+import brevDevHero from "@/assets/tools/brev-dev-hero.jpg";
+import fluidstackHero from "@/assets/tools/fluidstack-hero.jpg";
+import bananaDevHero from "@/assets/tools/banana-dev-hero.jpg";
+import paperspaceHero from "@/assets/tools/paperspace-hero.jpg";
 
 export const agentsAndCreatorsBatch2026: Tool[] = [
-  // === MUSIC VIDEO & CREATIVE TOOLS ===
   {
     icon: Music,
     title: "Rotor Videos",
@@ -11,7 +35,7 @@ export const agentsAndCreatorsBatch2026: Tool[] = [
     emoji: "🎬",
     color: "from-purple-600 to-pink-500",
     directUrl: "https://rotorvideos.com/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: rotorVideosHero,
     tags: ["music video maker", "rotor videos", "lyric video", "spotify canvas", "music visuals", "AI music video", "video creation", "artist tools", "music promotion", "auto-sync"],
     category: "Video & Multimedia",
     rating: 4.6,
@@ -24,14 +48,12 @@ export const agentsAndCreatorsBatch2026: Tool[] = [
     emoji: "🎞️",
     color: "from-blue-600 to-orange-500",
     directUrl: "https://artlist.io/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: artlistAiHero,
     tags: ["artlist", "royalty-free music", "stock footage", "sound effects", "video templates", "filmmaking", "creative assets", "content creation", "music licensing", "video production"],
     category: "Video & Multimedia",
     rating: 4.8,
     totalVotes: 45000
   },
-
-  // === AI AGENTS & SWARMS ===
   {
     icon: Bot,
     title: "TaskWeaver",
@@ -39,7 +61,7 @@ export const agentsAndCreatorsBatch2026: Tool[] = [
     emoji: "🕸️",
     color: "from-teal-500 to-blue-600",
     directUrl: "https://microsoft.github.io/TaskWeaver/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: taskweaverHero,
     tags: ["taskweaver", "microsoft", "code-first agent", "data analytics", "AI agent framework", "multi-agent", "automation", "python agent", "plugin system", "code generation"],
     category: "AI Agents",
     rating: 4.5,
@@ -52,7 +74,7 @@ export const agentsAndCreatorsBatch2026: Tool[] = [
     emoji: "✨",
     color: "from-purple-500 to-cyan-500",
     directUrl: "https://glif.app/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: glifHero,
     tags: ["glif", "AI workflow", "visual programming", "creative automation", "no-code AI", "model chaining", "AI pipeline", "generative art", "workflow builder", "creative tools"],
     category: "AI Agents",
     rating: 4.6,
@@ -65,7 +87,7 @@ export const agentsAndCreatorsBatch2026: Tool[] = [
     emoji: "🪄",
     color: "from-purple-700 to-amber-500",
     directUrl: "https://respell.ai/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: respellHero,
     tags: ["respell", "no-code agent", "AI automation", "workflow builder", "spells", "business automation", "AI agent builder", "process automation", "API integration", "visual builder"],
     category: "AI Agents",
     rating: 4.4,
@@ -78,7 +100,7 @@ export const agentsAndCreatorsBatch2026: Tool[] = [
     emoji: "⚡",
     color: "from-blue-500 to-white",
     directUrl: "https://tryleap.ai/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: leapAiHero,
     tags: ["leap ai", "model training", "fine-tuning", "custom AI", "image generation", "API", "developer tools", "machine learning", "model deployment", "cloud AI"],
     category: "Coding & Development",
     rating: 4.5,
@@ -91,7 +113,7 @@ export const agentsAndCreatorsBatch2026: Tool[] = [
     emoji: "🤖",
     color: "from-green-500 to-green-800",
     directUrl: "https://ag2.ai/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: ag2Hero,
     tags: ["ag2", "autogen", "multi-agent", "agent framework", "microsoft", "conversational agents", "AI collaboration", "agent teams", "open source", "swarm intelligence", "group chat agents"],
     category: "AI Agents",
     rating: 4.7,
@@ -104,7 +126,7 @@ export const agentsAndCreatorsBatch2026: Tool[] = [
     emoji: "🦀",
     color: "from-red-600 to-gray-700",
     directUrl: "https://github.com/swarmclawai/swarmclaw?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: swarmclawHero,
     tags: ["swarmclaw", "agent swarm", "autonomous agents", "orchestration", "multi-agent", "open source", "TypeScript", "agent memory", "agent skills", "delegation", "swarm intelligence"],
     category: "AI Agents",
     rating: 4.3,
@@ -117,14 +139,12 @@ export const agentsAndCreatorsBatch2026: Tool[] = [
     emoji: "🔀",
     color: "from-blue-700 to-amber-500",
     directUrl: "https://controlflow.ai/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: controlflowHero,
     tags: ["controlflow", "prefect", "AI workflow", "agent orchestration", "python framework", "structured agents", "task automation", "observable AI", "production agents", "declarative AI"],
     category: "AI Agents",
     rating: 4.4,
     totalVotes: 5200
   },
-
-  // === GAME GENERATION ===
   {
     icon: Gamepad2,
     title: "Star - AI Game Generator",
@@ -132,7 +152,7 @@ export const agentsAndCreatorsBatch2026: Tool[] = [
     emoji: "⭐",
     color: "from-yellow-500 to-blue-900",
     directUrl: "https://buildwithstar.com/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: starGameHero,
     tags: ["star", "AI game generator", "text-to-game", "no-code games", "browser games", "game creation", "instant games", "buildwithstar", "Y Combinator", "game maker"],
     category: "Gaming & Entertainment",
     rating: 4.7,
@@ -145,7 +165,7 @@ export const agentsAndCreatorsBatch2026: Tool[] = [
     emoji: "🎮",
     color: "from-green-500 to-purple-700",
     directUrl: "https://www.jenova.ai/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: jenovaAiHero,
     tags: ["jenova", "AI game creation", "text-to-game", "adventure generator", "RPG creator", "NPC AI", "game development", "interactive storytelling", "world generation", "game AI"],
     category: "Gaming & Entertainment",
     rating: 4.6,
@@ -158,14 +178,12 @@ export const agentsAndCreatorsBatch2026: Tool[] = [
     emoji: "🏰",
     color: "from-amber-600 to-blue-800",
     directUrl: "https://latitude.io/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: latitudeHero,
     tags: ["latitude", "AI dungeon", "interactive fiction", "text adventure", "AI storytelling", "procedural generation", "RPG", "choose your own adventure", "game AI", "narrative AI"],
     category: "Gaming & Entertainment",
     rating: 4.7,
     totalVotes: 85000
   },
-
-  // === 3D GENERATION ===
   {
     icon: Box,
     title: "Hyper3D Rodin Gen-2",
@@ -173,7 +191,7 @@ export const agentsAndCreatorsBatch2026: Tool[] = [
     emoji: "🗿",
     color: "from-blue-500 to-silver",
     directUrl: "https://hyper3d.ai/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: hyper3dHero,
     tags: ["hyper3d", "rodin gen-2", "3D generation", "text-to-3D", "image-to-3D", "3D modeling", "game assets", "VFX", "product visualization", "AI 3D"],
     category: "3D & World Creation",
     rating: 4.7,
@@ -186,7 +204,7 @@ export const agentsAndCreatorsBatch2026: Tool[] = [
     emoji: "💎",
     color: "from-purple-600 to-white",
     directUrl: "https://stability.ai/news/spar3d?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: spar3dHero,
     tags: ["stability ai", "spar3d", "3D reconstruction", "image-to-3D", "3D mesh", "rapid prototyping", "e-commerce 3D", "open source", "game assets", "3D scanning"],
     category: "3D & World Creation",
     rating: 4.5,
@@ -199,14 +217,12 @@ export const agentsAndCreatorsBatch2026: Tool[] = [
     emoji: "🔺",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://www.tripo3d.ai/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: tripoHero,
     tags: ["tripo", "tripo 2.0", "3D generation", "text-to-3D", "image-to-3D", "PBR materials", "game assets", "3D modeling", "product design", "rapid 3D"],
     category: "3D & World Creation",
     rating: 4.6,
     totalVotes: 16500
   },
-
-  // === AI IMAGE GENERATION ===
   {
     icon: Sparkles,
     title: "Luma Photon",
@@ -214,14 +230,12 @@ export const agentsAndCreatorsBatch2026: Tool[] = [
     emoji: "📸",
     color: "from-amber-500 to-black",
     directUrl: "https://lumalabs.ai/photon?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: lumaPhotonHero,
     tags: ["luma photon", "luma labs", "image generation", "photorealistic AI", "text-to-image", "AI art", "high quality", "photography AI", "realistic images", "creative AI"],
     category: "Image & Design",
     rating: 4.8,
     totalVotes: 28000
   },
-
-  // === GPU CLOUD & AI INFRASTRUCTURE ===
   {
     icon: Server,
     title: "CoreWeave",
@@ -229,7 +243,7 @@ export const agentsAndCreatorsBatch2026: Tool[] = [
     emoji: "🖥️",
     color: "from-blue-900 to-blue-500",
     directUrl: "https://coreweave.com/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: coreweaveHero,
     tags: ["coreweave", "GPU cloud", "AI infrastructure", "NVIDIA GPU", "model training", "AI hyperscaler", "cloud computing", "inference", "machine learning", "enterprise AI"],
     category: "Coding & Development",
     rating: 4.7,
@@ -242,7 +256,7 @@ export const agentsAndCreatorsBatch2026: Tool[] = [
     emoji: "📊",
     color: "from-teal-500 to-purple-600",
     directUrl: "https://www.hyperstack.cloud/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: hyperstackHero,
     tags: ["hyperstack", "GPU cloud", "AI computing", "NVIDIA", "model training", "cloud GPU", "high-performance computing", "AI infrastructure", "on-demand GPU", "ML training"],
     category: "Coding & Development",
     rating: 4.4,
@@ -255,7 +269,7 @@ export const agentsAndCreatorsBatch2026: Tool[] = [
     emoji: "⚛️",
     color: "from-amber-500 to-black",
     directUrl: "https://www.lepton.ai/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: leptonAiHero,
     tags: ["lepton ai", "model deployment", "cloud inference", "AI API", "serverless AI", "auto-scaling", "developer tools", "open source models", "GPU inference", "cost-effective AI"],
     category: "Coding & Development",
     rating: 4.5,
@@ -268,7 +282,7 @@ export const agentsAndCreatorsBatch2026: Tool[] = [
     emoji: "🏗️",
     color: "from-blue-700 to-orange-500",
     directUrl: "https://deepinfra.com/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: deepinfraHero,
     tags: ["deepinfra", "AI inference", "serverless", "open source models", "llama", "mistral", "stable diffusion", "API", "model hosting", "cloud AI"],
     category: "Coding & Development",
     rating: 4.6,
@@ -281,7 +295,7 @@ export const agentsAndCreatorsBatch2026: Tool[] = [
     emoji: "🧱",
     color: "from-blue-500 to-blue-200",
     directUrl: "https://baseten.co/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: basetenHero,
     tags: ["baseten", "ML deployment", "model API", "Truss", "autoscaling", "GPU inference", "production ML", "model serving", "developer tools", "machine learning"],
     category: "Coding & Development",
     rating: 4.5,
@@ -294,7 +308,7 @@ export const agentsAndCreatorsBatch2026: Tool[] = [
     emoji: "💻",
     color: "from-green-700 to-black",
     directUrl: "https://brev.dev/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: brevDevHero,
     tags: ["brev", "fine-tuning", "GPU development", "AI deployment", "dev environments", "model training", "cloud GPU", "developer tools", "machine learning", "infrastructure"],
     category: "Coding & Development",
     rating: 4.4,
@@ -307,7 +321,7 @@ export const agentsAndCreatorsBatch2026: Tool[] = [
     emoji: "🌊",
     color: "from-cyan-500 to-blue-800",
     directUrl: "https://fluidstack.io/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: fluidstackHero,
     tags: ["fluidstack", "distributed GPU", "cloud computing", "AI training", "cheap GPU", "NVIDIA H100", "A100", "AI infrastructure", "cost-effective", "distributed computing"],
     category: "Coding & Development",
     rating: 4.3,
@@ -320,7 +334,7 @@ export const agentsAndCreatorsBatch2026: Tool[] = [
     emoji: "🍌",
     color: "from-yellow-400 to-yellow-600",
     directUrl: "https://banana.dev/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: bananaDevHero,
     tags: ["banana dev", "serverless GPU", "AI inference", "model deployment", "pay-per-use", "GPU computing", "developer tools", "machine learning", "scalable AI", "production inference"],
     category: "Coding & Development",
     rating: 4.3,
@@ -333,7 +347,7 @@ export const agentsAndCreatorsBatch2026: Tool[] = [
     emoji: "📄",
     color: "from-blue-500 to-blue-700",
     directUrl: "https://www.paperspace.com/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: paperspaceHero,
     tags: ["paperspace", "digitalocean", "GPU cloud", "gradient", "jupyter notebooks", "ML platform", "model training", "cloud computing", "AI development", "NVIDIA GPU"],
     category: "Coding & Development",
     rating: 4.6,
