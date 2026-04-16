@@ -1,6 +1,11 @@
 import { Tool } from "@/types/tools";
 import { Mic, Video, Search, Code, Zap, Layout, Brain, Wand2, Volume2, Bot, Workflow, Sparkles, Monitor } from "lucide-react";
 
+import elevenlabsHero from "@/assets/tools/elevenlabs-hero.jpg";
+import perplexityHero from "@/assets/tools/perplexity-hero.jpg";
+import notebooklmHero from "@/assets/tools/notebooklm-hero.jpg";
+import devinHero from "@/assets/tools/devin-hero.jpg";
+import hailuoAiHero from "@/assets/tools/hailuo-ai-hero.jpg";
 
 export const essentialToolsBatch2026: Tool[] = [
   {
@@ -10,7 +15,7 @@ export const essentialToolsBatch2026: Tool[] = [
     emoji: "🎙️",
     color: "from-purple-600 to-indigo-700",
     directUrl: "https://elevenlabs.io/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: elevenlabsHero,
     tags: ["text to speech", "voice cloning", "AI voice", "voiceover", "dubbing", "audiobook", "voice synthesis", "speech generation", "voice AI", "audio AI"],
     category: "Audio & Music",
     rating: 4.9,
@@ -23,7 +28,7 @@ export const essentialToolsBatch2026: Tool[] = [
     emoji: "🔍",
     color: "from-teal-500 to-cyan-600",
     directUrl: "https://perplexity.ai/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: perplexityHero,
     tags: ["AI search", "answer engine", "research", "citations", "web search", "question answering", "real-time search", "knowledge engine", "fact finding"],
     category: "Research & Academic",
     rating: 4.9,
@@ -36,7 +41,7 @@ export const essentialToolsBatch2026: Tool[] = [
     emoji: "📓",
     color: "from-blue-500 to-green-500",
     directUrl: "https://notebooklm.google.com",
-    imageUrl: "/placeholder.svg",
+    imageUrl: notebooklmHero,
     tags: ["Google AI", "research assistant", "document analysis", "audio overview", "podcast", "note-taking", "study tool", "knowledge base", "PDF analysis"],
     category: "Research & Academic",
     rating: 4.8,
@@ -49,7 +54,7 @@ export const essentialToolsBatch2026: Tool[] = [
     emoji: "🤖",
     color: "from-green-600 to-emerald-700",
     directUrl: "https://devin.ai/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: devinHero,
     tags: ["autonomous coding", "AI engineer", "software development", "code generation", "debugging", "full-stack AI", "Cognition", "AI agent", "coding agent"],
     category: "Coding & Development",
     rating: 4.7,
@@ -62,7 +67,7 @@ export const essentialToolsBatch2026: Tool[] = [
     emoji: "🎬",
     color: "from-amber-500 to-orange-600",
     directUrl: "https://hailuoai.video/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: hailuoAiHero,
     tags: ["text to video", "AI video", "video generation", "cinematic AI", "MiniMax", "image to video", "video creator", "motion generation"],
     category: "Video & Animation Tools",
     rating: 4.8,
