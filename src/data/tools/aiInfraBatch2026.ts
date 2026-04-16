@@ -1,6 +1,17 @@
 import { Tool } from "@/types/tools";
 import { Layers, Bot, Globe, FileText, MessageCircle, Search, Database, Brain, Cloud, Workflow } from "lucide-react";
 
+import langflowHero from "@/assets/tools/langflow-hero.jpg";
+import stackAiHero from "@/assets/tools/stack-ai-hero.jpg";
+import vectaraHero from "@/assets/tools/vectara-hero.jpg";
+import craftDocsHero from "@/assets/tools/craft-docs-hero.jpg";
+import piInflectionHero from "@/assets/tools/pi-inflection-hero.jpg";
+import sciteAiHero from "@/assets/tools/scite-ai-hero.jpg";
+import chaiAiHero from "@/assets/tools/chai-ai-hero.jpg";
+import ragieHero from "@/assets/tools/ragie-hero.jpg";
+import zepAiHero from "@/assets/tools/zep-ai-hero.jpg";
+import llamaindexCloudHero from "@/assets/tools/llamaindex-cloud-hero.jpg";
+
 
 export const aiInfraBatch2026: Tool[] = [
   {
