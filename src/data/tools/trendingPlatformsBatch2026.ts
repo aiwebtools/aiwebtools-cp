@@ -6,6 +6,11 @@ import orchestraResearchHero from "@/assets/tools/orchestra-research-hero.jpg";
 import gammaHero from "@/assets/tools/gamma-hero.jpg";
 import tomeHero from "@/assets/tools/tome-hero.jpg";
 import boltNewHero from "@/assets/tools/bolt-new-hero.jpg";
+import v0DevHero from "@/assets/tools/v0-dev-hero.jpg";
+import cursorHero from "@/assets/tools/cursor-hero.jpg";
+import replitAgentHero from "@/assets/tools/replit-agent-hero.jpg";
+import granolaAiHero from "@/assets/tools/granola-ai-hero.jpg";
+import websimAiHero from "@/assets/tools/websim-ai-hero.jpg";
 
 export const trendingPlatformsBatch2026: Tool[] = [
   {
@@ -74,7 +79,7 @@ export const trendingPlatformsBatch2026: Tool[] = [
     description: "v0 by Vercel is an AI-powered UI component generator that creates production-ready React components from text descriptions and images. Generate beautiful, accessible UI with Tailwind CSS and shadcn/ui, then copy the code directly into your project.",
     emoji: "🎯",
     color: "from-gray-800 to-blue-600",
-    imageUrl: "/placeholder.svg",
+    imageUrl: v0DevHero,
     directUrl: "https://v0.dev/?via=aiwebtools",
     category: "Developer Tools & APIs",
     tags: ["AI UI generator", "React components", "v0", "Vercel", "frontend AI", "UI design", "component generator", "Tailwind CSS", "shadcn", "code generation", "vibe coding"],
@@ -86,7 +91,7 @@ export const trendingPlatformsBatch2026: Tool[] = [
     description: "Cursor is the AI-first code editor built for speed and productivity. Powered by frontier AI models, it offers intelligent code completion, multi-file editing, codebase-aware chat, and natural language commands that let you write, refactor, and debug code faster than ever.",
     emoji: "🖱️",
     color: "from-slate-700 to-cyan-500",
-    imageUrl: "/placeholder.svg",
+    imageUrl: cursorHero,
     directUrl: "https://cursor.com/?via=aiwebtools",
     category: "Developer Tools & APIs",
     tags: ["AI code editor", "Cursor", "intelligent IDE", "code completion", "AI coding", "pair programming", "vibe coding", "code refactoring", "developer tools", "AI-first editor"],
@@ -98,7 +103,7 @@ export const trendingPlatformsBatch2026: Tool[] = [
     description: "Replit Agent is an autonomous AI app builder that takes your idea from description to deployed application. It plans, codes, debugs, and deploys complete web apps in the cloud—handling databases, APIs, and hosting automatically so you can build without coding.",
     emoji: "🚀",
     color: "from-orange-500 to-blue-700",
-    imageUrl: "/placeholder.svg",
+    imageUrl: replitAgentHero,
     directUrl: "https://replit.com/?via=aiwebtools",
     category: "Developer Tools & APIs",
     tags: ["AI app builder", "Replit", "autonomous coding", "cloud IDE", "vibe coding", "no-code", "app deployment", "AI agent", "web app builder", "instant deploy"],
@@ -110,7 +115,7 @@ export const trendingPlatformsBatch2026: Tool[] = [
     description: "Granola is an AI-powered meeting notepad that automatically transcribes, summarizes, and organizes your meetings. It captures everything said, generates structured notes with action items, and integrates with your calendar—so you can focus on the conversation, not the keyboard.",
     emoji: "📝",
     color: "from-green-700 to-emerald-500",
-    imageUrl: "/placeholder.svg",
+    imageUrl: granolaAiHero,
     directUrl: "https://granola.ai/?via=aiwebtools",
     category: "Business & Productivity",
     tags: ["AI meeting notes", "Granola", "meeting transcription", "AI notetaker", "meeting summary", "action items", "productivity", "meeting assistant", "auto-transcribe", "business meetings"],
@@ -122,7 +127,7 @@ export const trendingPlatformsBatch2026: Tool[] = [
     description: "WebSim AI is a creative AI platform that generates interactive websites, games, and digital experiences from natural language descriptions. Imagine any web experience and watch it materialize—from retro games to interactive art installations—all running in your browser instantly.",
     emoji: "🌐",
     color: "from-pink-500 to-cyan-400",
-    imageUrl: "/placeholder.svg",
+    imageUrl: websimAiHero,
     directUrl: "https://websim.ai/?via=aiwebtools",
     category: "Developer Tools & APIs",
     tags: ["AI website generator", "WebSim", "interactive AI", "web simulation", "creative coding", "AI web builder", "text to website", "generative web", "browser games", "digital art"],
