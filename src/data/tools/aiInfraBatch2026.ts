@@ -1,6 +1,17 @@
 import { Tool } from "@/types/tools";
 import { Layers, Bot, Globe, FileText, MessageCircle, Search, Database, Brain, Cloud, Workflow } from "lucide-react";
 
+import langflowHero from "@/assets/tools/langflow-hero.jpg";
+import stackAiHero from "@/assets/tools/stack-ai-hero.jpg";
+import vectaraHero from "@/assets/tools/vectara-hero.jpg";
+import craftDocsHero from "@/assets/tools/craft-docs-hero.jpg";
+import piInflectionHero from "@/assets/tools/pi-inflection-hero.jpg";
+import sciteAiHero from "@/assets/tools/scite-ai-hero.jpg";
+import chaiAiHero from "@/assets/tools/chai-ai-hero.jpg";
+import ragieHero from "@/assets/tools/ragie-hero.jpg";
+import zepAiHero from "@/assets/tools/zep-ai-hero.jpg";
+import llamaindexCloudHero from "@/assets/tools/llamaindex-cloud-hero.jpg";
+
 
 export const aiInfraBatch2026: Tool[] = [
   {
@@ -9,7 +20,7 @@ export const aiInfraBatch2026: Tool[] = [
     description: "Langflow is a powerful low-code visual builder for creating AI agents, RAG applications, and MCP servers. Drag and drop components to build sophisticated AI workflows with support for all major LLMs, vector databases, and a growing library of AI tools—then deploy with one click.",
     emoji: "🔗",
     color: "from-green-500 to-emerald-600",
-    imageUrl: "/placeholder.svg",
+    imageUrl: langflowHero,
     directUrl: "https://www.langflow.org/?via=aiwebtools",
     category: "Developer Tools & APIs",
     tags: ["low-code AI", "visual workflow", "Langflow", "AI agents", "RAG builder", "MCP server", "LangChain", "drag and drop", "AI pipeline", "open source AI"],
@@ -21,7 +32,7 @@ export const aiInfraBatch2026: Tool[] = [
     description: "Stack AI is an enterprise-grade no-code platform for building AI agents and automating workflows. Design sophisticated AI systems with a visual interface, connect to 100+ data sources, and deploy production-ready agents that handle document processing, customer support, and internal operations.",
     emoji: "📊",
     color: "from-blue-800 to-blue-600",
-    imageUrl: "/placeholder.svg",
+    imageUrl: stackAiHero,
     directUrl: "https://www.stack-ai.com/?via=aiwebtools",
     category: "AI Agents & Automation",
     tags: ["enterprise AI", "Stack AI", "no-code agents", "AI automation", "workflow builder", "document processing", "AI for business", "enterprise automation", "agent builder"],
@@ -33,7 +44,7 @@ export const aiInfraBatch2026: Tool[] = [
     description: "Vectara is the enterprise agent platform with built-in multi-modal retrieval, orchestration, and always-on governance. Deploy RAG-powered AI agents on-prem, in your VPC, or as SaaS with source citations, audit trails, fine-grained access controls, and real-time factual-consistency enforcement.",
     emoji: "🔍",
     color: "from-teal-600 to-cyan-500",
-    imageUrl: "/placeholder.svg",
+    imageUrl: vectaraHero,
     directUrl: "https://vectara.com/?via=aiwebtools",
     category: "Developer Tools & APIs",
     tags: ["RAG platform", "Vectara", "enterprise search", "vector database", "retrieval augmented generation", "AI search", "semantic search", "knowledge retrieval", "enterprise AI"],
@@ -45,7 +56,7 @@ export const aiInfraBatch2026: Tool[] = [
     description: "Craft is a beautiful, native document editor with built-in AI assistance. Create stunning documents, notes, and wikis with AI-powered writing, summarization, and organization. Its Apple-quality design and offline-first architecture make it the premium choice for teams and individuals.",
     emoji: "✍️",
     color: "from-sky-300 to-blue-400",
-    imageUrl: "/placeholder.svg",
+    imageUrl: craftDocsHero,
     directUrl: "https://www.craft.do/?via=aiwebtools",
     category: "Writing & Content",
     tags: ["AI documents", "Craft", "note-taking", "AI writing", "collaborative docs", "wiki", "knowledge management", "document editor", "Apple design", "offline-first"],
@@ -57,7 +68,7 @@ export const aiInfraBatch2026: Tool[] = [
     description: "Pi is a personal AI companion by Inflection AI designed for meaningful, empathetic conversations. Unlike task-focused assistants, Pi excels at thoughtful dialogue, emotional support, brainstorming, and learning—acting as a kind, curious friend that remembers your preferences and adapts to you.",
     emoji: "🥧",
     color: "from-amber-300 to-orange-400",
-    imageUrl: "/placeholder.svg",
+    imageUrl: piInflectionHero,
     directUrl: "https://pi.ai/?via=aiwebtools",
     category: "AI Assistants & Chatbots",
     tags: ["personal AI", "Pi", "Inflection AI", "AI companion", "conversational AI", "emotional AI", "empathetic AI", "AI chat", "personal assistant", "AI friend"],
@@ -69,7 +80,7 @@ export const aiInfraBatch2026: Tool[] = [
     description: "scite is an AI-powered research platform that revolutionizes how scientists discover and evaluate research. It uses Smart Citations to show whether a paper has been supported or contrasted by subsequent studies, helping researchers quickly assess the reliability of scientific claims.",
     emoji: "📑",
     color: "from-blue-600 to-blue-800",
-    imageUrl: "/placeholder.svg",
+    imageUrl: sciteAiHero,
     directUrl: "https://scite.ai/?via=aiwebtools",
     category: "Research & Analysis",
     tags: ["research AI", "scite", "citation analysis", "smart citations", "academic research", "scientific papers", "literature review", "research tool", "evidence analysis", "scholarly AI"],
@@ -81,7 +92,7 @@ export const aiInfraBatch2026: Tool[] = [
     description: "Chai is a leading conversational AI platform with 1.5 million daily active users. Create and chat with diverse AI characters, build your own chatbots, and explore a community-driven ecosystem of AI personalities—from helpful assistants to creative storytelling companions.",
     emoji: "☕",
     color: "from-orange-500 to-purple-600",
-    imageUrl: "/placeholder.svg",
+    imageUrl: chaiAiHero,
     directUrl: "https://chai.ml/?via=aiwebtools",
     category: "AI Assistants & Chatbots",
     tags: ["AI chatbot", "Chai", "AI characters", "conversational AI", "chatbot platform", "AI personality", "character AI", "social AI", "AI entertainment", "community chatbots"],
@@ -93,7 +104,7 @@ export const aiInfraBatch2026: Tool[] = [
     description: "Ragie is a fully managed RAG-as-a-service platform that makes it easy to connect your data to LLMs. Ingest documents, build retrieval pipelines, and deploy production-ready AI applications with simple APIs—no vector database management or embedding infrastructure required.",
     emoji: "📦",
     color: "from-purple-600 to-violet-700",
-    imageUrl: "/placeholder.svg",
+    imageUrl: ragieHero,
     directUrl: "https://ragie.ai/?via=aiwebtools",
     category: "Developer Tools & APIs",
     tags: ["RAG infrastructure", "Ragie", "document ingestion", "retrieval API", "managed RAG", "AI infrastructure", "embedding pipeline", "knowledge base API", "LLM integration"],
@@ -105,7 +116,7 @@ export const aiInfraBatch2026: Tool[] = [
     description: "Zep provides long-term memory infrastructure for AI assistants and agents. It stores, manages, and retrieves conversation history and user context, enabling AI applications to remember past interactions, build user profiles, and deliver personalized experiences across sessions.",
     emoji: "🧠",
     color: "from-indigo-700 to-green-500",
-    imageUrl: "/placeholder.svg",
+    imageUrl: zepAiHero,
     directUrl: "https://www.getzep.com/?via=aiwebtools",
     category: "Developer Tools & APIs",
     tags: ["AI memory", "Zep", "long-term memory", "conversation history", "AI infrastructure", "session memory", "user context", "persistent memory", "agent memory", "memory layer"],
@@ -117,7 +128,7 @@ export const aiInfraBatch2026: Tool[] = [
     description: "LlamaIndex Cloud is a managed platform for building production-grade RAG and agentic AI applications. It provides hosted data ingestion, indexing, and retrieval infrastructure built on the popular open-source LlamaIndex framework, enabling teams to ship AI apps without managing complex infrastructure.",
     emoji: "🦙",
     color: "from-purple-700 to-indigo-600",
-    imageUrl: "/placeholder.svg",
+    imageUrl: llamaindexCloudHero,
     directUrl: "https://cloud.llamaindex.ai/?via=aiwebtools",
     category: "Developer Tools & APIs",
     tags: ["LlamaIndex", "managed RAG", "AI infrastructure", "data framework", "indexing platform", "retrieval engine", "agentic AI", "LLM framework", "cloud AI", "production RAG"],

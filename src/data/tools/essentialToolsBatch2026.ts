@@ -1,6 +1,31 @@
 import { Tool } from "@/types/tools";
 import { Mic, Video, Search, Code, Zap, Layout, Brain, Wand2, Volume2, Bot, Workflow, Sparkles, Monitor } from "lucide-react";
 
+import elevenlabsHero from "@/assets/tools/elevenlabs-hero.jpg";
+import perplexityHero from "@/assets/tools/perplexity-hero.jpg";
+import notebooklmHero from "@/assets/tools/notebooklm-hero.jpg";
+import devinHero from "@/assets/tools/devin-hero.jpg";
+import hailuoAiHero from "@/assets/tools/hailuo-ai-hero.jpg";
+import minimaxHero from "@/assets/tools/minimax-hero.jpg";
+import runwayGen4Hero from "@/assets/tools/runway-gen4-hero.jpg";
+import dalleHero from "@/assets/tools/dalle-hero.jpg";
+import makeHero from "@/assets/tools/make-hero.jpg";
+import haiperHero from "@/assets/tools/haiper-hero.jpg";
+import viggleHero from "@/assets/tools/viggle-hero.jpg";
+import vizardAiHero from "@/assets/tools/vizard-ai-hero.jpg";
+import elaiHero from "@/assets/tools/elai-hero.jpg";
+import playhtHero from "@/assets/tools/playht-hero.jpg";
+import lovoAiHero from "@/assets/tools/lovo-ai-hero.jpg";
+import phindHero from "@/assets/tools/phind-hero.jpg";
+import activepiecesHero from "@/assets/tools/activepieces-hero.jpg";
+import domoaiHero from "@/assets/tools/domoai-hero.jpg";
+import wanAiHero from "@/assets/tools/wan-ai-hero.jpg";
+import flowiseaiHero from "@/assets/tools/flowiseai-hero.jpg";
+import devvAiHero from "@/assets/tools/devv-ai-hero.jpg";
+import andiSearchHero from "@/assets/tools/andi-search-hero.jpg";
+import relumeHero from "@/assets/tools/relume-hero.jpg";
+import webflowAiHero from "@/assets/tools/webflow-ai-hero.jpg";
+import openaiCodexHero from "@/assets/tools/openai-codex-hero.jpg";
 
 export const essentialToolsBatch2026: Tool[] = [
   {
@@ -10,7 +35,7 @@ export const essentialToolsBatch2026: Tool[] = [
     emoji: "🎙️",
     color: "from-purple-600 to-indigo-700",
     directUrl: "https://elevenlabs.io/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: elevenlabsHero,
     tags: ["text to speech", "voice cloning", "AI voice", "voiceover", "dubbing", "audiobook", "voice synthesis", "speech generation", "voice AI", "audio AI"],
     category: "Audio & Music",
     rating: 4.9,
@@ -23,7 +48,7 @@ export const essentialToolsBatch2026: Tool[] = [
     emoji: "🔍",
     color: "from-teal-500 to-cyan-600",
     directUrl: "https://perplexity.ai/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: perplexityHero,
     tags: ["AI search", "answer engine", "research", "citations", "web search", "question answering", "real-time search", "knowledge engine", "fact finding"],
     category: "Research & Academic",
     rating: 4.9,
@@ -36,7 +61,7 @@ export const essentialToolsBatch2026: Tool[] = [
     emoji: "📓",
     color: "from-blue-500 to-green-500",
     directUrl: "https://notebooklm.google.com",
-    imageUrl: "/placeholder.svg",
+    imageUrl: notebooklmHero,
     tags: ["Google AI", "research assistant", "document analysis", "audio overview", "podcast", "note-taking", "study tool", "knowledge base", "PDF analysis"],
     category: "Research & Academic",
     rating: 4.8,
@@ -49,7 +74,7 @@ export const essentialToolsBatch2026: Tool[] = [
     emoji: "🤖",
     color: "from-green-600 to-emerald-700",
     directUrl: "https://devin.ai/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: devinHero,
     tags: ["autonomous coding", "AI engineer", "software development", "code generation", "debugging", "full-stack AI", "Cognition", "AI agent", "coding agent"],
     category: "Coding & Development",
     rating: 4.7,
@@ -62,7 +87,7 @@ export const essentialToolsBatch2026: Tool[] = [
     emoji: "🎬",
     color: "from-amber-500 to-orange-600",
     directUrl: "https://hailuoai.video/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: hailuoAiHero,
     tags: ["text to video", "AI video", "video generation", "cinematic AI", "MiniMax", "image to video", "video creator", "motion generation"],
     category: "Video & Animation Tools",
     rating: 4.8,
@@ -75,7 +100,7 @@ export const essentialToolsBatch2026: Tool[] = [
     emoji: "🧠",
     color: "from-red-500 to-orange-600",
     directUrl: "https://www.minimaxi.com/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: minimaxHero,
     tags: ["multimodal AI", "video generation", "music generation", "text generation", "AI lab", "foundation model", "creative AI", "Chinese AI"],
     category: "AI Platforms",
     rating: 4.7,
@@ -88,7 +113,7 @@ export const essentialToolsBatch2026: Tool[] = [
     emoji: "🎥",
     color: "from-purple-600 to-pink-600",
     directUrl: "https://runwayml.com/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: runwayGen4Hero,
     tags: ["AI video", "text to video", "video generation", "cinematic AI", "filmmaking", "Gen-4", "Runway", "creative AI", "video editing"],
     category: "Video & Animation Tools",
     rating: 4.9,
@@ -101,7 +126,7 @@ export const essentialToolsBatch2026: Tool[] = [
     emoji: "🎨",
     color: "from-emerald-500 to-teal-600",
     directUrl: "https://openai.com/dall-e-3/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: dalleHero,
     tags: ["AI image", "text to image", "image generation", "OpenAI", "DALL-E 3", "art generation", "photorealistic", "creative AI", "digital art"],
     category: "Image & Design",
     rating: 4.9,
@@ -114,7 +139,7 @@ export const essentialToolsBatch2026: Tool[] = [
     emoji: "⚙️",
     color: "from-purple-600 to-violet-700",
     directUrl: "https://www.make.com/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: makeHero,
     tags: ["automation", "workflow", "no-code", "integrations", "API", "Integromat", "business automation", "AI automation", "task automation"],
     category: "Business & Productivity",
     rating: 4.8,
@@ -127,7 +152,7 @@ export const essentialToolsBatch2026: Tool[] = [
     emoji: "✨",
     color: "from-indigo-600 to-blue-700",
     directUrl: "https://haiper.ai/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: haiperHero,
     tags: ["AI video", "text to video", "video generation", "DeepMind", "animation", "video creation", "motion AI", "creative video"],
     category: "Video & Animation Tools",
     rating: 4.6,
@@ -140,7 +165,7 @@ export const essentialToolsBatch2026: Tool[] = [
     emoji: "💃",
     color: "from-pink-500 to-fuchsia-600",
     directUrl: "https://viggle.ai/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: viggleHero,
     tags: ["character animation", "AI animation", "motion transfer", "video creation", "meme maker", "body animation", "creative AI", "social content"],
     category: "Video & Animation Tools",
     rating: 4.7,
@@ -153,7 +178,7 @@ export const essentialToolsBatch2026: Tool[] = [
     emoji: "✂️",
     color: "from-teal-500 to-green-600",
     directUrl: "https://vizard.ai/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: vizardAiHero,
     tags: ["video repurposing", "short clips", "TikTok", "Reels", "Shorts", "auto caption", "video editing", "content creation", "social media"],
     category: "Video & Animation Tools",
     rating: 4.7,
@@ -166,7 +191,7 @@ export const essentialToolsBatch2026: Tool[] = [
     emoji: "🎭",
     color: "from-blue-500 to-indigo-600",
     directUrl: "https://elai.io/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: elaiHero,
     tags: ["AI avatar", "video creation", "training video", "presentation", "text to video", "AI presenter", "enterprise video", "avatar video"],
     category: "Video & Animation Tools",
     rating: 4.6,
@@ -179,7 +204,7 @@ export const essentialToolsBatch2026: Tool[] = [
     emoji: "🔊",
     color: "from-orange-500 to-red-600",
     directUrl: "https://play.ht/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: playhtHero,
     tags: ["text to speech", "voice cloning", "AI voice", "voiceover", "audio generation", "voice synthesis", "podcast", "audiobook", "voice AI"],
     category: "Audio & Music",
     rating: 4.7,
@@ -192,7 +217,7 @@ export const essentialToolsBatch2026: Tool[] = [
     emoji: "🗣️",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://lovo.ai/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: lovoAiHero,
     tags: ["text to speech", "AI voice", "voice generator", "e-learning", "localization", "voice cloning", "video narration", "multilingual", "voice AI"],
     category: "Audio & Music",
     rating: 4.6,
@@ -205,7 +230,7 @@ export const essentialToolsBatch2026: Tool[] = [
     emoji: "💻",
     color: "from-green-600 to-teal-600",
     directUrl: "https://www.phind.com/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: phindHero,
     tags: ["developer search", "coding assistant", "programming", "code search", "AI search", "developer tools", "VS Code", "pair programming"],
     category: "Coding & Development",
     rating: 4.7,
@@ -218,7 +243,7 @@ export const essentialToolsBatch2026: Tool[] = [
     emoji: "🧩",
     color: "from-orange-500 to-blue-600",
     directUrl: "https://www.activepieces.com/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: activepiecesHero,
     tags: ["automation", "open source", "no-code", "workflow", "self-hosted", "integrations", "Zapier alternative", "AI automation"],
     category: "Business & Productivity",
     rating: 4.6,
@@ -231,7 +256,7 @@ export const essentialToolsBatch2026: Tool[] = [
     emoji: "🎌",
     color: "from-pink-500 to-purple-600",
     directUrl: "https://domoai.app/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: domoaiHero,
     tags: ["style transfer", "anime AI", "video transformation", "art style", "image to anime", "video to anime", "creative AI", "artistic filter"],
     category: "Video & Animation Tools",
     rating: 4.7,
@@ -244,7 +269,7 @@ export const essentialToolsBatch2026: Tool[] = [
     emoji: "🎞️",
     color: "from-red-600 to-amber-600",
     directUrl: "https://wan.video/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: wanAiHero,
     tags: ["open source", "text to video", "video generation", "Alibaba", "AI video", "image to video", "cinematic AI", "self-hosted"],
     category: "Video & Animation Tools",
     rating: 4.7,
@@ -257,7 +282,7 @@ export const essentialToolsBatch2026: Tool[] = [
     emoji: "🔗",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://flowiseai.com/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: flowiseaiHero,
     tags: ["LLM builder", "no-code AI", "chatbot builder", "RAG", "LangChain", "AI agents", "open source", "workflow builder", "AI pipeline"],
     category: "AI Agents & Automation",
     rating: 4.7,
@@ -270,7 +295,7 @@ export const essentialToolsBatch2026: Tool[] = [
     emoji: "🔎",
     color: "from-amber-500 to-orange-600",
     directUrl: "https://devv.ai/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: devvAiHero,
     tags: ["developer search", "code search", "programming", "GitHub", "Stack Overflow", "documentation", "developer tools", "AI search"],
     category: "Coding & Development",
     rating: 4.6,
@@ -283,7 +308,7 @@ export const essentialToolsBatch2026: Tool[] = [
     emoji: "💬",
     color: "from-sky-400 to-blue-500",
     directUrl: "https://andisearch.com/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: andiSearchHero,
     tags: ["AI search", "conversational search", "answer engine", "ad-free", "knowledge search", "question answering", "web search", "AI assistant"],
     category: "Research & Academic",
     rating: 4.5,
@@ -296,7 +321,7 @@ export const essentialToolsBatch2026: Tool[] = [
     emoji: "📐",
     color: "from-gray-700 to-blue-600",
     directUrl: "https://www.relume.io/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: relumeHero,
     tags: ["web design", "wireframing", "sitemap", "Figma", "Webflow", "UI design", "component library", "layout generation", "design tool"],
     category: "Image & Design",
     rating: 4.7,
@@ -309,7 +334,7 @@ export const essentialToolsBatch2026: Tool[] = [
     emoji: "🌐",
     color: "from-blue-600 to-indigo-700",
     directUrl: "https://webflow.com/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: webflowAiHero,
     tags: ["web design", "website builder", "AI design", "no-code", "responsive design", "visual editor", "CMS", "web development"],
     category: "Coding & Development",
     rating: 4.8,
@@ -322,7 +347,7 @@ export const essentialToolsBatch2026: Tool[] = [
     emoji: "⚡",
     color: "from-green-600 to-emerald-600",
     directUrl: "https://openai.com/index/introducing-codex/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: openaiCodexHero,
     tags: ["autonomous coding", "AI engineer", "code generation", "OpenAI", "cloud coding", "software agent", "pull requests", "code review", "AI coding"],
     category: "Coding & Development",
     rating: 4.8,

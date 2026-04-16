@@ -2,6 +2,8 @@ import { Tool } from "@/types/tools";
 import { Smartphone } from "lucide-react";
 
 
+import appbuildDiyHero from "@/assets/tools/appbuild-diy-hero.jpg";
+
 export const appBuildDiy2026: Tool[] = [
   {
     icon: Smartphone,
@@ -10,7 +12,7 @@ export const appBuildDiy2026: Tool[] = [
     emoji: "📱",
     color: "from-purple-500 to-indigo-600",
     directUrl: "https://appbuild.diy/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: appbuildDiyHero,
     tags: [
       "app builder", "no code", "mobile app", "app store", "google play",
       "lovable", "lovable app", "deploy app", "publish app", "iOS app",

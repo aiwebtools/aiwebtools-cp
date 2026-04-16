@@ -46,7 +46,7 @@ const SimilarTools = ({ currentTool, currentToolIndex }: SimilarToolsProps) => {
         <button
           type="button"
           onClick={() => scrollRef.current?.scrollBy({ left: -window.innerWidth * 0.6, behavior: 'smooth' })}
-          className="hidden md:flex absolute left-2 top-1/2 -translate-y-1/2 z-10 h-10 w-10 items-center justify-center rounded-full border border-cyan-500/40 text-cyan-200 bg-black/40 hover:bg-black/60"
+          className="flex absolute left-1 md:left-2 top-1/2 -translate-y-1/2 z-10 h-8 w-8 md:h-10 md:w-10 items-center justify-center rounded-full border border-cyan-500/40 text-cyan-200 bg-black/60 hover:bg-black/80 shadow-lg backdrop-blur-sm"
           aria-label="Scroll recommendations left"
         >
           ‹
@@ -54,7 +54,7 @@ const SimilarTools = ({ currentTool, currentToolIndex }: SimilarToolsProps) => {
         <button
           type="button"
           onClick={() => scrollRef.current?.scrollBy({ left: window.innerWidth * 0.6, behavior: 'smooth' })}
-          className="hidden md:flex absolute right-2 top-1/2 -translate-y-1/2 z-10 h-10 w-10 items-center justify-center rounded-full border border-cyan-500/40 text-cyan-200 bg-black/40 hover:bg-black/60"
+          className="flex absolute right-1 md:right-2 top-1/2 -translate-y-1/2 z-10 h-8 w-8 md:h-10 md:w-10 items-center justify-center rounded-full border border-cyan-500/40 text-cyan-200 bg-black/60 hover:bg-black/80 shadow-lg backdrop-blur-sm"
           aria-label="Scroll recommendations right"
         >
           ›
