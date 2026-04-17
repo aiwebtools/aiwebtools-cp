@@ -509,7 +509,7 @@ export const newAffiliatePlatforms2025: Tool[] = [
     description: "Educational platform to learn building your first AI agent. Comprehensive training and tools for AI development and implementation.",
     emoji: "🧠",
     color: "from-purple-500 to-blue-600",
-    directUrl: "https://get.mindstudio.ai/aiwebtools",
+    directUrl: "https://www.mindstudio.ai/?via=aiwebtools",
     tags: ["AI education", "agent building", "AI training", "development platform", "learning"],
     category: "Education & Learning Tools",
     rating: 4.6,

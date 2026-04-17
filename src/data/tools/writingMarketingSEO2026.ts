@@ -1,6 +1,27 @@
 import { Tool } from "@/types/tools";
 import { PenTool, FileText, Search, TrendingUp, Share2, BarChart3, Mail, Target, Users, Calendar, MessageCircle, Edit3, Zap, Globe, Eye, Megaphone, Hash, Layers, Send, Star } from "lucide-react";
 
+import prowritingaidHero from "@/assets/tools/prowritingaid-hero.jpg";
+import narratoHero from "@/assets/tools/narrato-hero.jpg";
+import writecreamHero from "@/assets/tools/writecream-hero.jpg";
+import peppertypeAiHero from "@/assets/tools/peppertype-ai-hero.jpg";
+import flickHero from "@/assets/tools/flick-hero.jpg";
+import repurposeIoHero from "@/assets/tools/repurpose-io-hero.jpg";
+import missinglettrHero from "@/assets/tools/missinglettr-hero.jpg";
+import crowdfireHero from "@/assets/tools/crowdfire-hero.jpg";
+import tailwindAppHero from "@/assets/tools/tailwind-app-hero.jpg";
+import loomlyHero from "@/assets/tools/loomly-hero.jpg";
+import ubersuggestHero from "@/assets/tools/ubersuggest-hero.jpg";
+import serpstatHero from "@/assets/tools/serpstat-hero.jpg";
+import growthbarHero from "@/assets/tools/growthbar-hero.jpg";
+import dashwordHero from "@/assets/tools/dashword-hero.jpg";
+import seoAiHero from "@/assets/tools/seo-ai-hero.jpg";
+import agorapulseHero from "@/assets/tools/agorapulse-hero.jpg";
+import iconosquareHero from "@/assets/tools/iconosquare-hero.jpg";
+import storychiefHero from "@/assets/tools/storychief-hero.jpg";
+import snovIoHero from "@/assets/tools/snov-io-hero.jpg";
+import hypeauditorHero from "@/assets/tools/hypeauditor-hero.jpg";
+
 
 export const writingMarketingSEO2026: Tool[] = [
   {
@@ -10,7 +31,7 @@ export const writingMarketingSEO2026: Tool[] = [
     emoji: "✏️",
     color: "from-teal-500 to-blue-600",
     directUrl: "https://prowritingaid.com/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: prowritingaidHero,
     tags: ["grammar checker", "writing assistant", "style analysis", "readability", "proofreading", "editing", "Grammar & Editing", "Blog Writing", "Article Writing"],
     category: "Writing & Content Enhancement",
     rating: 4.7,
@@ -24,7 +45,7 @@ export const writingMarketingSEO2026: Tool[] = [
     emoji: "📋",
     color: "from-purple-500 to-indigo-600",
     directUrl: "https://narrato.io/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: narratoHero,
     tags: ["content workspace", "AI writing", "content planning", "team collaboration", "SEO optimization", "workflow", "Content Strategy", "Blog Writing", "Content Marketing"],
     category: "Writing & Content Enhancement",
     rating: 4.5,
@@ -38,7 +59,7 @@ export const writingMarketingSEO2026: Tool[] = [
     emoji: "🍦",
     color: "from-pink-400 to-coral-500",
     directUrl: "https://www.writecream.com/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: writecreamHero,
     tags: ["AI copywriting", "cold email", "LinkedIn outreach", "ad copy", "personalization", "free AI writer", "Copywriting", "Email Writing", "Marketing Automation"],
     category: "Writing & Content Enhancement",
     rating: 4.4,
@@ -52,7 +73,7 @@ export const writingMarketingSEO2026: Tool[] = [
     emoji: "🌶️",
     color: "from-orange-500 to-red-600",
     directUrl: "https://www.peppertype.ai/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: peppertypeAiHero,
     tags: ["content generation", "blog posts", "social media captions", "ad copy", "brand voice", "AI templates", "Copywriting", "Social Media Writing", "Content Marketing"],
     category: "Writing & Content Enhancement",
     rating: 4.3,
@@ -66,7 +87,7 @@ export const writingMarketingSEO2026: Tool[] = [
     emoji: "📸",
     color: "from-pink-500 to-purple-600",
     directUrl: "https://www.flick.social/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: flickHero,
     tags: ["hashtag research", "social media scheduling", "AI captions", "Instagram analytics", "content planning", "social media marketing", "Social Media Marketing", "Analytics & Tracking", "Content Marketing"],
     category: "AI Social Media Management Tools",
     rating: 4.6,
@@ -80,7 +101,7 @@ export const writingMarketingSEO2026: Tool[] = [
     emoji: "🔄",
     color: "from-blue-500 to-green-600",
     directUrl: "https://repurpose.io/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: repurposeIoHero,
     tags: ["content repurposing", "automation", "multi-platform", "video distribution", "social media automation", "cross-posting", "Content Marketing", "Social Media Marketing", "Marketing Automation"],
     category: "AI Social Media Management Tools",
     rating: 4.5,
@@ -94,7 +115,7 @@ export const writingMarketingSEO2026: Tool[] = [
     emoji: "💌",
     color: "from-orange-500 to-amber-600",
     directUrl: "https://missinglettr.com/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: missinglettrHero,
     tags: ["drip campaigns", "blog promotion", "social media automation", "content scheduling", "AI social posts", "evergreen content", "Social Media Marketing", "Content Marketing", "Marketing Automation"],
     category: "AI Social Media Management Tools",
     rating: 4.3,
@@ -108,7 +129,7 @@ export const writingMarketingSEO2026: Tool[] = [
     emoji: "🔥",
     color: "from-red-500 to-orange-600",
     directUrl: "https://www.crowdfireapp.com/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: crowdfireHero,
     tags: ["social media management", "content curation", "scheduling", "analytics", "e-commerce", "multi-platform", "Social Media Marketing", "Analytics & Tracking", "Content Marketing"],
     category: "AI Social Media Management Tools",
     rating: 4.2,
@@ -122,7 +143,7 @@ export const writingMarketingSEO2026: Tool[] = [
     emoji: "🌀",
     color: "from-teal-500 to-orange-500",
     directUrl: "https://www.tailwindapp.com/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: tailwindAppHero,
     tags: ["Pinterest scheduler", "Instagram scheduler", "smart scheduling", "hashtag finder", "AI design", "visual planning", "Social Media Marketing", "Analytics & Tracking"],
     category: "AI Social Media Management Tools",
     rating: 4.5,
@@ -136,7 +157,7 @@ export const writingMarketingSEO2026: Tool[] = [
     emoji: "📢",
     color: "from-blue-600 to-indigo-700",
     directUrl: "https://www.loomly.com/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: loomlyHero,
     tags: ["brand management", "content calendar", "approval workflow", "ad management", "social analytics", "team collaboration", "Social Media Marketing", "Brand Management", "Marketing Automation"],
     category: "AI Social Media Management Tools",
     rating: 4.4,
@@ -150,7 +171,7 @@ export const writingMarketingSEO2026: Tool[] = [
     emoji: "🔍",
     color: "from-orange-500 to-red-500",
     directUrl: "https://neilpatel.com/ubersuggest/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: ubersuggestHero,
     tags: ["keyword research", "SEO audit", "backlink analysis", "content ideas", "competitor analysis", "free SEO tool", "SEO Tools", "SEO Content", "Content Strategy"],
     category: "AI SEO & Content Marketing",
     rating: 4.5,
@@ -164,7 +185,7 @@ export const writingMarketingSEO2026: Tool[] = [
     emoji: "📊",
     color: "from-green-500 to-emerald-600",
     directUrl: "https://serpstat.com/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: serpstatHero,
     tags: ["SEO platform", "keyword research", "rank tracking", "site audit", "backlink analysis", "competitor research", "SEO Tools", "SEO Content", "Analytics & Tracking"],
     category: "AI SEO & Content Marketing",
     rating: 4.5,
@@ -178,7 +199,7 @@ export const writingMarketingSEO2026: Tool[] = [
     emoji: "📈",
     color: "from-green-400 to-emerald-500",
     directUrl: "https://www.growthbarseo.com/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: growthbarHero,
     tags: ["AI blog writer", "SEO content", "keyword research", "content outlines", "Chrome extension", "SERP analysis", "SEO Tools", "SEO Content", "Blog Writing"],
     category: "AI SEO & Content Marketing",
     rating: 4.4,
@@ -192,7 +213,7 @@ export const writingMarketingSEO2026: Tool[] = [
     emoji: "📝",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://www.dashword.com/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: dashwordHero,
     tags: ["content optimization", "SEO briefs", "content scoring", "keyword suggestions", "SERP analysis", "content marketing", "SEO Tools", "SEO Content", "Content Strategy"],
     category: "AI SEO & Content Marketing",
     rating: 4.4,
@@ -206,7 +227,7 @@ export const writingMarketingSEO2026: Tool[] = [
     emoji: "🎯",
     color: "from-purple-600 to-blue-700",
     directUrl: "https://seo.ai/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: seoAiHero,
     tags: ["AI SEO writing", "content optimization", "NLP analysis", "SERP scoring", "content generation", "rank optimization", "SEO Tools", "SEO Content", "Content Marketing"],
     category: "AI SEO & Content Marketing",
     rating: 4.5,
@@ -220,7 +241,7 @@ export const writingMarketingSEO2026: Tool[] = [
     emoji: "🏛️",
     color: "from-blue-500 to-indigo-600",
     directUrl: "https://www.agorapulse.com/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: agorapulseHero,
     tags: ["social inbox", "publishing", "social listening", "ROI tracking", "team collaboration", "reporting", "Social Media Marketing", "Analytics & Tracking", "Marketing Automation"],
     category: "AI Social Media Management Tools",
     rating: 4.5,
@@ -234,7 +255,7 @@ export const writingMarketingSEO2026: Tool[] = [
     emoji: "📐",
     color: "from-orange-500 to-red-600",
     directUrl: "https://www.iconosquare.com/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: iconosquareHero,
     tags: ["social analytics", "Instagram analytics", "competitor tracking", "benchmarks", "engagement metrics", "multi-platform", "Social Media Marketing", "Analytics & Tracking"],
     category: "AI Social Media Management Tools",
     rating: 4.4,
@@ -248,7 +269,7 @@ export const writingMarketingSEO2026: Tool[] = [
     emoji: "📡",
     color: "from-green-500 to-teal-600",
     directUrl: "https://storychief.io/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: storychiefHero,
     tags: ["multi-channel publishing", "content distribution", "SEO scoring", "collaboration", "content marketing", "newsletter", "Content Marketing", "Content Strategy", "Blog Writing"],
     category: "Writing & Content Enhancement",
     rating: 4.4,
@@ -262,7 +283,7 @@ export const writingMarketingSEO2026: Tool[] = [
     emoji: "📧",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://snov.io/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: snovIoHero,
     tags: ["email finder", "lead generation", "drip campaigns", "email verification", "CRM", "cold outreach", "Email Writing", "Marketing Automation", "Sales Tools"],
     category: "Business & Productivity",
     rating: 4.5,
@@ -276,7 +297,7 @@ export const writingMarketingSEO2026: Tool[] = [
     emoji: "⭐",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://hypeauditor.com/?via=aiwebtools",
-    imageUrl: "/placeholder.svg",
+    imageUrl: hypeauditorHero,
     tags: ["influencer marketing", "fake follower detection", "audience analytics", "campaign ROI", "influencer discovery", "social media analytics", "Social Media Marketing", "Analytics & Tracking", "Marketing Automation"],
     category: "AI Social Media Management Tools",
     rating: 4.5,
