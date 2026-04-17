@@ -2041,6 +2041,31 @@ export const useGlobalSearch = () => {
     };
   }, []);
 
+  // ⚡ SEARCH INDEX WARM-UP: prime quickSearch + LRU cache during initial idle
+  // so the first keystroke after page load is instant (no first-keystroke stutter).
+  useEffect(() => {
+    let cancelled = false;
+    const warm = () => {
+      if (cancelled) return;
+      const stems = ["a", "c", "g", "m", "s", "ai", "gpt", "chat", "image", "video"];
+      for (const s of stems) {
+        try { quickSearch(s); } catch {}
+      }
+    };
+    const ric = (window as any).requestIdleCallback;
+    const handle = ric
+      ? ric(warm, { timeout: 1500 })
+      : setTimeout(warm, 600);
+    return () => {
+      cancelled = true;
+      if (ric && (window as any).cancelIdleCallback) {
+        (window as any).cancelIdleCallback(handle);
+      } else {
+        clearTimeout(handle as any);
+      }
+    };
+  }, [quickSearch]);
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
