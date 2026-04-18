@@ -349,7 +349,7 @@ export const futureToolsBatch2025Q2: Tool[] = [
     description: "An audio generator that creates high-quality sounds from text descriptions. Control tone, volume and brightness using time signal sketches.",
     emoji: "🎨",
     color: "from-red-500 to-pink-600",
-    directUrl: "https://adobe-research.github.io/sketch2sound/?via=aiwebtools",
+    directUrl: "https://research.adobe.com/?via=aiwebtools",
     imageUrl: sketch2SoundHero,
     tags: ["Adobe", "audio generation", "sound design", "audio editing", "future tools", "text to audio"],
     category: "Audio & Music",

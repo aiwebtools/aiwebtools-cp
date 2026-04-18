@@ -233,9 +233,27 @@ export const createTimePortalEffect = (
   console.log('✨ Creating visual flash...');
   const elements = createInstantMatrixFlash();
 
-  // Remove flash after 80ms, THEN open URL
-  setTimeout(() => {
+  // Special sentinel: trigger CSV download of the complete tool directory
+  const isCsvDownload = destinationUrl?.startsWith('csv-download://');
+
+  // Remove flash after 80ms, THEN open URL or trigger download
+  setTimeout(async () => {
     elements.forEach(el => el.remove());
+    if (isCsvDownload) {
+      console.log('📥 CSV download sentinel detected — exporting full directory');
+      try {
+        const [{ allTools }, { downloadToolsCSV }, { createConfettiCelebration }] = await Promise.all([
+          import('@/data/toolsData'),
+          import('@/utils/csvExport'),
+          import('@/utils/effects/audioEffects'),
+        ]);
+        createConfettiCelebration();
+        downloadToolsCSV(allTools, `AIWebTools-Complete-Directory-${allTools.length}-Tools.csv`);
+      } catch (err) {
+        console.error('CSV download failed:', err);
+      }
+      return;
+    }
     console.log('🚀 Opening URL:', destinationUrl);
     if (destinationUrl && destinationUrl.trim()) {
       openDestinationUrl(destinationUrl);

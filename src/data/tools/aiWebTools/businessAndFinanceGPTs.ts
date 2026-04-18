@@ -152,19 +152,6 @@ export const businessAndFinanceGPTs: Tool[] = [
     totalVotes: 1723
   },
   {
-    icon: Lightbulb,
-    title: "Innovation Strategy Advisor",
-    description: "Advises on innovation strategies, helping businesses foster creativity and develop new products and services.",
-    emoji: "💡",
-    color: "from-cyan-500 to-teal-600",
-    directUrl: "https://chat.openai.com/g/g-7z8w3x9y1-innovation-strategy-advisor",
-    imageUrl: "/src/assets/tools/innovation-strategy-advisor-hero.png",
-    tags: ["innovation strategies", "creativity", "product development", "new services"],
-    category: "Business & Finance",
-    rating: 4.6,
-    totalVotes: 2056
-  },
-  {
     icon: Zap,
     title: "Efficiency Expert",
     description: "Analyzes business processes to identify inefficiencies and recommend improvements for increased productivity.",

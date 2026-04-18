@@ -46,15 +46,16 @@ export const aiToolsAndUtilities: Tool[] = [
   },
   {
     icon: List,
-    title: "1000+ AI Tools List",
-    description: "Comprehensive list of over 1000 AI tools and resources, categorized for easy browsing and discovery.",
+    title: "4,000+ AI Tools List (FREE CSV Download)",
+    description: "Instantly download the complete AI Web Tools directory as a CSV file — every tool, category, URL, tag, and rating in our live database. Always up-to-date with every new tool added.",
     emoji: "📚",
     color: "from-green-500 to-blue-600",
-    directUrl: "https://1000aitools.lovable.app/?via=aiwebtools",
-    tags: ["AI tools", "AI resources", "list", "directory", "database"],
-    category: "AI Tools To Run LOCALLY",
-    rating: 4.3,
-    totalVotes: 2789
+    directUrl: "csv-download://all-tools",
+    tags: ["AI tools", "AI resources", "list", "directory", "database", "CSV", "download", "free", "complete directory", "export"],
+    category: "AI Tools & Utilities",
+    rating: 4.9,
+    totalVotes: 2789,
+    isFree: true
   },
   {
     icon: Zap,

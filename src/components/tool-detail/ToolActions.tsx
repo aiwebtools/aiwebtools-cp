@@ -36,6 +36,7 @@ Thank you!`);
 
   // Check if this is an AI Web Tools original tool (has lovable.app in the URL)
   const isAIWebToolsOriginal = tool.directUrl?.includes('lovable.app') || false;
+  const isCsvDownload = tool.directUrl?.startsWith('csv-download://') || false;
 
   return (
     <div className="text-center pb-6 mb-6 border-b border-cyan-500/30">
@@ -46,7 +47,7 @@ Thank you!`);
           className="w-full sm:w-auto bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white px-8 sm:px-12 py-4 text-base sm:text-lg rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg shadow-cyan-500/30 interactive-button glow-effect"
         >
           <ExternalLink className="w-5 h-5 mr-2" />
-          {!tool.directUrl ? "COMING SOON" : "USE IT NOW"}
+          {!tool.directUrl ? "COMING SOON" : isCsvDownload ? "DOWNLOAD CSV (FREE)" : "USE IT NOW"}
         </Button>
         
         {isAIWebToolsOriginal && (
@@ -67,9 +68,11 @@ Thank you!`);
       </div>
       
       <p className="text-sm text-gray-400 mt-3 px-4">
-        {tool.directUrl 
-          ? "Click to access this AI tool and start using it immediately"
-          : "Direct access coming soon - check back later"}
+        {isCsvDownload
+          ? "Click to instantly download the complete AI Web Tools directory as a CSV file"
+          : tool.directUrl 
+            ? "Click to access this AI tool and start using it immediately"
+            : "Direct access coming soon - check back later"}
         {isAIWebToolsOriginal && (
           <>
             <br />
