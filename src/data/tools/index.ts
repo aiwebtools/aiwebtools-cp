@@ -596,3 +596,9 @@ export { appBuildDiy2026 } from './appBuildDiy2026';
 
 // Export Writing, Marketing & SEO Batch 2026 (20 tools: ProWritingAid, Ubersuggest, SEO.ai, etc.)
 export { writingMarketingSEO2026 } from './writingMarketingSEO2026';
+
+// Export VR & 3D Worlds Batch 2026 (4 tools: OpenArt Worlds, Marble World Labs, Meta SAM 3D, Meta WorldGen)
+export { vr3DWorldsBatch2026 } from './vr3DWorldsBatch2026';
+
+// Export Wearables & Robots Batch 2026 (3 tools: 1X NEO, Friend AI Pendant, Plaud NotePin)
+export { wearablesRobotsBatch2026 } from './wearablesRobotsBatch2026';

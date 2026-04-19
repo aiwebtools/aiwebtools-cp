@@ -235,6 +235,8 @@ import { aiInfraBatch2026 } from "./tools/aiInfraBatch2026";
 import { essentialToolsBatch2026 } from "./tools/essentialToolsBatch2026";
 import { appBuildDiy2026 } from "./tools/appBuildDiy2026";
 import { writingMarketingSEO2026 } from "./tools/writingMarketingSEO2026";
+import { vr3DWorldsBatch2026 } from "./tools/vr3DWorldsBatch2026";
+import { wearablesRobotsBatch2026 } from "./tools/wearablesRobotsBatch2026";
 
 const allToolCategories = consolidateTools([
   ...getAllToolCategories(),
@@ -560,7 +562,13 @@ const allToolCategories = consolidateTools([
   ...appBuildDiy2026,
 
   // Writing, Marketing & SEO Batch 2026 (20 tools)
-  ...writingMarketingSEO2026
+  ...writingMarketingSEO2026,
+
+  // VR & 3D Worlds Batch 2026 (4 tools: OpenArt Worlds, Marble World Labs, Meta SAM 3D, Meta WorldGen)
+  ...vr3DWorldsBatch2026,
+
+  // Wearables & Robots Batch 2026 (3 tools: 1X NEO, Friend AI Pendant, Plaud NotePin)
+  ...wearablesRobotsBatch2026
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories
