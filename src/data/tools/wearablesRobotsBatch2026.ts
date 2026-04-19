@@ -1,9 +1,11 @@
 import { Tool } from "@/types/tools";
-import { Bot, Heart, Mic } from "lucide-react";
+import { Bot, Heart, Mic, Usb, HardDrive } from "lucide-react";
 
 import onexNeoHero from "@/assets/tools/onex-neo-hero.jpg";
 import friendAiHero from "@/assets/tools/friend-ai-hero.jpg";
 import plaudNotepinHero from "@/assets/tools/plaud-notepin-hero.jpg";
+import bunkeraiUsbHero from "@/assets/tools/bunkerai-usb-hero.jpg";
+import portablemindHero from "@/assets/tools/portablemind-hero.jpg";
 
 export const wearablesRobotsBatch2026: Tool[] = [
   {
@@ -44,5 +46,31 @@ export const wearablesRobotsBatch2026: Tool[] = [
     category: "AI Gadgets & Devices",
     rating: 4.6,
     totalVotes: 4321
+  },
+  {
+    icon: Usb,
+    title: "BunkerAI USB",
+    description: "The #1 offline AI USB drive — 100% air-gapped, uncensored, and survival-ready. BunkerAI USB V2 ($89) packs an uncensored reasoning engine plus a 'backup of civilization' archive (offline medical diagnostics, grid-down engineering, survival agriculture, tactical emergency ops) onto a single USB stick. Plug in anywhere — no internet, no cloud, no tracking. Built for preppers, survivalists, and anyone who refuses to depend on Big Tech.",
+    emoji: "🔒",
+    color: "from-green-600 to-gray-800",
+    directUrl: "https://bunkerai.io/products/bunkerai2?via=aiwebtools",
+    imageUrl: bunkeraiUsbHero,
+    tags: ["BunkerAI", "Bunker AI", "offline AI USB", "survival USB", "air-gapped AI", "uncensored AI", "offline LLM", "prepper AI", "grid-down AI", "USB AI drive", "survival kit", "AI Gadgets & Devices", "device"],
+    category: "AI Gadgets & Devices",
+    rating: 4.5,
+    totalVotes: 1567
+  },
+  {
+    icon: HardDrive,
+    title: "PortableMind",
+    description: "Offline AI on a USB stick — voice, vision, chat, and phone access running entirely on your hardware. Plug PortableMind into any Windows or macOS laptop and launch the desktop app: no cloud logins, no subscription, no internet required. The trusted, privacy-first alternative for people searching for an offline AI USB.",
+    emoji: "💾",
+    color: "from-slate-400 to-blue-500",
+    directUrl: "https://portablemind.io/?via=aiwebtools",
+    imageUrl: portablemindHero,
+    tags: ["PortableMind", "offline AI USB", "USB AI drive", "local AI", "private AI", "no cloud AI", "offline LLM USB", "Windows AI USB", "macOS AI USB", "AI Gadgets & Devices", "device", "privacy AI"],
+    category: "AI Gadgets & Devices",
+    rating: 4.4,
+    totalVotes: 987
   }
 ];
