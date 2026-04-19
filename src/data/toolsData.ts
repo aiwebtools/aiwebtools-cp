@@ -237,6 +237,7 @@ import { appBuildDiy2026 } from "./tools/appBuildDiy2026";
 import { writingMarketingSEO2026 } from "./tools/writingMarketingSEO2026";
 import { vr3DWorldsBatch2026 } from "./tools/vr3DWorldsBatch2026";
 import { wearablesRobotsBatch2026 } from "./tools/wearablesRobotsBatch2026";
+import { wearablesRobotsBatch2026Part2 } from "./tools/wearablesRobotsBatch2026Part2";
 
 const allToolCategories = consolidateTools([
   ...getAllToolCategories(),
@@ -568,7 +569,10 @@ const allToolCategories = consolidateTools([
   ...vr3DWorldsBatch2026,
 
   // Wearables & Robots Batch 2026 (3 tools: 1X NEO, Friend AI Pendant, Plaud NotePin)
-  ...wearablesRobotsBatch2026
+  ...wearablesRobotsBatch2026,
+
+  // Wearables & Robots Batch 2026 Part 2 (5 tools: Unitree G1, Figure 02, Limitless Pendant, Bee AI, Rabbit R1)
+  ...wearablesRobotsBatch2026Part2
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories
