@@ -602,3 +602,6 @@ export { vr3DWorldsBatch2026 } from './vr3DWorldsBatch2026';
 
 // Export Wearables & Robots Batch 2026 (3 tools: 1X NEO, Friend AI Pendant, Plaud NotePin)
 export { wearablesRobotsBatch2026 } from './wearablesRobotsBatch2026';
+
+// Export Wearables & Robots Batch 2026 Part 2 (5 tools: Unitree G1, Figure 02, Limitless Pendant, Bee AI, Rabbit R1)
+export { wearablesRobotsBatch2026Part2 } from './wearablesRobotsBatch2026Part2';
