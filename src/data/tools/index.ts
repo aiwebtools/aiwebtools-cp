@@ -605,3 +605,6 @@ export { wearablesRobotsBatch2026 } from './wearablesRobotsBatch2026';
 
 // Export Wearables & Robots Batch 2026 Part 2 (5 tools: Unitree G1, Figure 02, Limitless Pendant, Bee AI, Rabbit R1)
 export { wearablesRobotsBatch2026Part2 } from './wearablesRobotsBatch2026Part2';
+
+// Export Wearables & Robots Batch 2026 Part 3 (5 tools: Boston Dynamics Atlas Electric, Agility Digit, Apptronik Apollo, Sanctuary Phoenix, Tesla Optimus Gen 3)
+export { wearablesRobotsBatch2026Part3 } from './wearablesRobotsBatch2026Part3';
