@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Check, Sparkles, Shield } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import ImprovedSEOHead from "@/components/ImprovedSEOHead";
-import { getConsentAccepted, setConsentAccepted } from "@/utils/consent";
+import { Button } from "../components/ui/button";
+import ImprovedSEOHead from "../components/ImprovedSEOHead";
+import { getConsentAccepted, setConsentAccepted } from "../utils/consent";
 
 // Creative rotating welcome messages - Spiritual Light, Matrix/AI, Humor themed
 // PRIORITY: Original 67 quotes first, then 114 Gospel of Thomas inspired quotes
