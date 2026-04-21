@@ -53,7 +53,7 @@ export const platformsAndDevelopment: Tool[] = [
     description: "AI medical assistant providing health information, symptom analysis, and medical guidance for patients and healthcare professionals.",
     emoji: "👨‍⚕️",
     color: "from-green-500 to-blue-600",
-    directUrl: "https://aidoctorgpt.lovable.app/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-69c4da4473b0819185462889b7348a28-medicus-wellcheck-gpt",
     videoUrl: "https://youtu.be/jwjNOKP5mf4",
     category: "Healthcare AI",
     tags: ["medical AI", "health advice", "diagnosis", "healthcare", "All-in-One Suite"],
