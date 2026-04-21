@@ -55,7 +55,7 @@ export const topMusicVideoTools: Tool[] = [
     description: "OpenAI's groundbreaking text-to-video AI model creating up to 60-second videos. Currently in limited release, Sora generates highly realistic scenes with complex camera movements and multiple characters.",
     emoji: "🎬",
     color: "from-green-500 to-teal-600",
-    directUrl: "https://openai.com/sora?via=aiwebtools",
+    directUrl: "https://sora.com/?via=aiwebtools",
     imageUrl: soraOpenAiHero,
     tags: ["Sora", "OpenAI", "text-to-video", "AI video", "realistic video", "60 seconds", "groundbreaking"],
     category: "AI Video Generation",
