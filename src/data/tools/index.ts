@@ -611,3 +611,6 @@ export { wearablesRobotsBatch2026Part3 } from './wearablesRobotsBatch2026Part3';
 
 // Top 5 trending AI models released November 2025/2026 (GPT-5.1, GPT-5.1 Codex Max, Claude Opus 4.5, Gemini 3 Pro, Grok 4.1)
 export { trendingAIModels2026Nov } from './trendingAIModels2026Nov';
+
+// Top 5 trending AI agents November 2026 (Gemini Robotics-ER 1.6, FetchCoder V2, Claude Agent SDK, Magentic-One, Grok Agent)
+export { trendingAgents2026Nov } from './trendingAgents2026Nov';
