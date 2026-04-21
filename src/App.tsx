@@ -1,22 +1,22 @@
 
 import * as React from 'react'
 import { Suspense, lazy } from 'react';
-import { Toaster } from "./components/ui/sonner";
-import { TooltipProvider } from "./components/ui/tooltip";
+import { Toaster } from "@/components/ui/sonner";
+import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation, Navigate } from "react-router-dom";
 import { HelmetProvider } from 'react-helmet-async';
-import { FavoritesProvider } from "./hooks/useFavorites";
-import { VideoManagerProvider } from "./hooks/useGlobalVideoManager";
-import { useCrossBrowserOptimization } from "./hooks/useCrossBrowserOptimization";
-import { useChromebookOptimization } from "./hooks/useChromebookOptimization";
-import { useScrollPerformance } from "./hooks/useScrollPerformance";
-import { usePrefetchRoutes } from "./hooks/usePrefetch";
-import ErrorBoundary from "./components/ErrorBoundary";
-import MatrixCursorEffect from "./components/effects/MatrixCursorEffect";
-import "./styles/loading-cube.css";
-import ScrollProgressIndicator from "./components/ScrollProgressIndicator";
-import { getConsentAccepted } from "./utils/consent";
+import { FavoritesProvider } from "@/hooks/useFavorites";
+import { VideoManagerProvider } from "@/hooks/useGlobalVideoManager";
+import { useCrossBrowserOptimization } from "@/hooks/useCrossBrowserOptimization";
+import { useChromebookOptimization } from "@/hooks/useChromebookOptimization";
+import { useScrollPerformance } from "@/hooks/useScrollPerformance";
+import { usePrefetchRoutes } from "@/hooks/usePrefetch";
+import ErrorBoundary from "@/components/ErrorBoundary";
+import MatrixCursorEffect from "@/components/effects/MatrixCursorEffect";
+import "@/styles/loading-cube.css";
+import ScrollProgressIndicator from "@/components/ScrollProgressIndicator";
+import { getConsentAccepted } from "@/utils/consent";
 
 // Eager load - critical path (home page AND disclaimer gate for instant first load)
 import Index from "./pages/Index";
@@ -202,7 +202,7 @@ const PostAcceptBoot: React.FC = () => {
 
     // Defer category cache init until after first paint
     const id = window.setTimeout(() => {
-      import("./utils/categoryUtils/precomputedCache");
+      import("@/utils/categoryUtils/precomputedCache");
     }, 0);
 
     return () => {

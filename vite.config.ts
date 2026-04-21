@@ -1,9 +1,8 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
-import { fileURLToPath, URL } from "url";
+import path from "path";
+import { componentTagger } from "lovable-tagger";
 import { viteOGManifest } from "./plugins/vite-og-manifest";
-
-const srcPath = fileURLToPath(new URL("./src", import.meta.url));
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
@@ -13,13 +12,13 @@ export default defineConfig(({ mode }) => ({
   },
   plugins: [
     react(),
+    mode === 'development' && componentTagger(),
     mode === 'production' && viteOGManifest(),
   ].filter(Boolean),
   resolve: {
-    alias: [
-      { find: /^@\//, replacement: `${srcPath}/` },
-      { find: "@", replacement: srcPath },
-    ],
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+    },
   },
   build: {
     // Optimize chunk splitting for faster initial load
