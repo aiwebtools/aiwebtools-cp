@@ -7,9 +7,8 @@ import { viteOGManifest } from "./plugins/vite-og-manifest";
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
   server: {
-    host: "::",
+    host: true,
     port: 8080,
-    hmr: false,
   },
   plugins: [
     react(),
