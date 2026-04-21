@@ -240,6 +240,7 @@ import { wearablesRobotsBatch2026 } from "./tools/wearablesRobotsBatch2026";
 import { wearablesRobotsBatch2026Part2 } from "./tools/wearablesRobotsBatch2026Part2";
 import { wearablesRobotsBatch2026Part3 } from "./tools/wearablesRobotsBatch2026Part3";
 import { trendingAIModels2026Nov } from "./tools/trendingAIModels2026Nov";
+import { trendingAgents2026Nov } from "./tools/trendingAgents2026Nov";
 
 const allToolCategories = consolidateTools([
   ...getAllToolCategories(),
@@ -580,7 +581,10 @@ const allToolCategories = consolidateTools([
   ...wearablesRobotsBatch2026Part3,
 
   // Trending AI Models November 2026 (5 tools: GPT-5.1, GPT-5.1 Codex Max, Claude Opus 4.5, Gemini 3 Pro, Grok 4.1)
-  ...trendingAIModels2026Nov
+  ...trendingAIModels2026Nov,
+
+  // Trending AI Agents November 2026 (5 tools: Gemini Robotics-ER 1.6, FetchCoder V2, Claude Agent SDK, Magentic-One, Grok Agent)
+  ...trendingAgents2026Nov
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories
