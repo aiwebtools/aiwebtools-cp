@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Check, Sparkles, Shield } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button } from "../components/ui/button";
 import ImprovedSEOHead from "@/components/ImprovedSEOHead";
 import { getConsentAccepted, setConsentAccepted } from "@/utils/consent";
 
