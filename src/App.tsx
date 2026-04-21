@@ -21,11 +21,11 @@ import { getConsentAccepted } from "@/utils/consent";
 // Eager load - critical path (home page AND disclaimer gate for instant first load)
 import Index from "./pages/Index";
 import DisclaimerGate from "./pages/DisclaimerGate";
+import ToolDetail from "./pages/ToolDetail";
 
 // Lazy load - secondary pages for faster initial load
 const CategoryPage = lazy(() => import("./pages/CategoryPage"));
 const MainCategoryPage = lazy(() => import("./pages/MainCategoryPage"));
-const ToolDetail = lazy(() => import("./pages/ToolDetail"));
 const SimilarToolsPage = lazy(() => import("./pages/SimilarTools"));
 const FavoritesPage = lazy(() => import("./pages/FavoritesPage"));
 const ToolSubmission = lazy(() => import("./pages/ToolSubmission"));
