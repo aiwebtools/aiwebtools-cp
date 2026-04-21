@@ -1,24 +1,25 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { Suspense, lazy, useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import HeroSection from "@/components/HeroSection";
-import CategoryPageSelection from "@/components/CategoryPageSelection";
-import SpecialServices from "@/components/SpecialServices";
-import Footer from "@/components/Footer";
-import ScrollToTop from "@/components/ui/scroll-to-top";
 import ImprovedSEOHead from "@/components/ImprovedSEOHead";
 import GoogleRankingBooster from "@/components/seo/GoogleRankingBooster";
 import { Button } from "../components/ui/button";
-import BookPromotionCard from "@/components/BookPromotionCard";
-import LazyFeaturedTools from "@/components/LazyFeaturedTools";
-import LazySearchPortal from "@/components/LazySearchPortal";
-import InteractiveMatrixBackground from "@/components/InteractiveMatrixBackground";
-import AnimatedBackground from "@/components/AnimatedBackground";
-import CloneOfferPopup from "@/components/CloneOfferPopup";
-import AIWebToolsSEOSection from "@/components/seo/AIWebToolsSEOSection";
 import DeferredMount from "@/components/DeferredMount";
-import EthicalAIQuoteSection from "@/components/EthicalAIQuoteSection";
-import InspirationCarousel from "@/components/InspirationCarousel";
+
+const CategoryPageSelection = lazy(() => import("@/components/CategoryPageSelection"));
+const SpecialServices = lazy(() => import("@/components/SpecialServices"));
+const Footer = lazy(() => import("@/components/Footer"));
+const ScrollToTop = lazy(() => import("@/components/ui/scroll-to-top"));
+const BookPromotionCard = lazy(() => import("@/components/BookPromotionCard"));
+const LazyFeaturedTools = lazy(() => import("@/components/LazyFeaturedTools"));
+const LazySearchPortal = lazy(() => import("@/components/LazySearchPortal"));
+const InteractiveMatrixBackground = lazy(() => import("@/components/InteractiveMatrixBackground"));
+const AnimatedBackground = lazy(() => import("@/components/AnimatedBackground"));
+const CloneOfferPopup = lazy(() => import("@/components/CloneOfferPopup"));
+const AIWebToolsSEOSection = lazy(() => import("@/components/seo/AIWebToolsSEOSection"));
+const EthicalAIQuoteSection = lazy(() => import("@/components/EthicalAIQuoteSection"));
+const InspirationCarousel = lazy(() => import("@/components/InspirationCarousel"));
 
 
 // Removed loading spinner - causes perceived slowness on refresh
@@ -84,8 +85,10 @@ const Index = () => {
       
       {/* Background effects - defer slightly so the hero appears faster on mobile */}
       <DeferredMount delay={120}>
-        <InteractiveMatrixBackground />
-        <AnimatedBackground />
+        <Suspense fallback={null}>
+          <InteractiveMatrixBackground />
+          <AnimatedBackground />
+        </Suspense>
       </DeferredMount>
       
       {/* Fixed Header - outside of relative container */}
@@ -139,56 +142,76 @@ const Index = () => {
           </section>
         </DeferredMount>
         
-        <div id="categories-section">
-          <CategoryPageSelection />
-        </div>
+        <Suspense fallback={null}>
+          <div id="categories-section">
+            <CategoryPageSelection />
+          </div>
+        </Suspense>
         
         <DeferredMount delay={320} fallback={null}>
-          <AIWebToolsSEOSection />
+          <Suspense fallback={null}>
+            <AIWebToolsSEOSection />
+          </Suspense>
         </DeferredMount>
    
         <DeferredMount delay={380} fallback={null}>
-          <LazyFeaturedTools onToolsLoaded={(count) => {}} />
+          <Suspense fallback={null}>
+            <LazyFeaturedTools onToolsLoaded={(count) => {}} />
+          </Suspense>
         </DeferredMount>
         
         <DeferredMount delay={520} fallback={null}>
-          <BookPromotionCard />
+          <Suspense fallback={null}>
+            <BookPromotionCard />
+          </Suspense>
         </DeferredMount>
         
         <DeferredMount delay={620} fallback={null}>
-          <InspirationCarousel />
+          <Suspense fallback={null}>
+            <InspirationCarousel />
+          </Suspense>
         </DeferredMount>
         
         <DeferredMount delay={460} fallback={null}>
-          <SpecialServices />
+          <Suspense fallback={null}>
+            <SpecialServices />
+          </Suspense>
         </DeferredMount>
         
         <DeferredMount delay={720} fallback={null}>
-          <section className="py-16 relative" style={{ background: 'linear-gradient(135deg, #0a0a0a 0%, #001a00 50%, #0a0a0a 100%)' }}>
-            <div className="container mx-auto px-4">
-              <div className="text-center mb-12">
-                <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-                  <span className="text-green-400" style={{ textShadow: '0 0 20px rgba(0, 255, 0, 0.5)' }}>🔍 SEARCH ALL AI TOOLS</span>
-                </h2>
-                <p className="text-xl text-green-200 max-w-3xl mx-auto mb-4">
-                  Explore our complete database of AI tools with advanced search and filtering
-                </p>
+          <Suspense fallback={null}>
+            <section className="py-16 relative" style={{ background: 'linear-gradient(135deg, #0a0a0a 0%, #001a00 50%, #0a0a0a 100%)' }}>
+              <div className="container mx-auto px-4">
+                <div className="text-center mb-12">
+                  <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+                    <span className="text-green-400" style={{ textShadow: '0 0 20px rgba(0, 255, 0, 0.5)' }}>🔍 SEARCH ALL AI TOOLS</span>
+                  </h2>
+                  <p className="text-xl text-green-200 max-w-3xl mx-auto mb-4">
+                    Explore our complete database of AI tools with advanced search and filtering
+                  </p>
+                </div>
+                
+                <LazySearchPortal />
               </div>
-              
-              <LazySearchPortal />
-            </div>
-          </section>
+            </section>
+          </Suspense>
         </DeferredMount>
         
         <DeferredMount delay={860} fallback={null}>
-          <EthicalAIQuoteSection />
+          <Suspense fallback={null}>
+            <EthicalAIQuoteSection />
+          </Suspense>
         </DeferredMount>
         
-        <ScrollToTop />
-        <Footer />
+        <Suspense fallback={null}>
+          <ScrollToTop />
+          <Footer />
+        </Suspense>
       </div>
       
-      <CloneOfferPopup />
+      <Suspense fallback={null}>
+        <CloneOfferPopup />
+      </Suspense>
     </div>
   );
 };
