@@ -45,7 +45,7 @@ export const healthcareProfessionals: Tool[] = [
     description: "Disclaimer: Dr. GPT is not a direct replacement for genuine medical advice. It was developed for individuals who may not have access to a medical doctor. It is crucial to recognize that this is a simulation, not an actual medical professional, and it should not be utilized as one. This AI tool is private, confidential, and personalized, intended solely for informational purposes and should not replace professional medical advice, diagnosis, or treatment.",
     emoji: "👨‍⚕️",
     color: "from-blue-500 to-purple-600",
-    directUrl: "https://chatgpt.com/g/g-69c4da4473b0819185462889b7348a28-medicus-wellcheck-gpt",
+    directUrl: "https://aidoctorgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/jwjNOKP5mf4",
     tags: ["medical consultation", "health assessment", "symptom analysis", "medical simulation", "healthcare access"],
     category: "Healthcare Professionals",
