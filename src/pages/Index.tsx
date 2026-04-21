@@ -1,24 +1,24 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import Header from "../components/Header";
-import HeroSection from "../components/HeroSection";
-import CategoryPageSelection from "../components/CategoryPageSelection";
-import SpecialServices from "../components/SpecialServices";
-import Footer from "../components/Footer";
-import ScrollToTop from "../components/ui/scroll-to-top";
-import ImprovedSEOHead from "../components/ImprovedSEOHead";
-import GoogleRankingBooster from "../components/seo/GoogleRankingBooster";
-import { Button } from "../components/ui/button";
-import BookPromotionCard from "../components/BookPromotionCard";
-import LazyFeaturedTools from "../components/LazyFeaturedTools";
-import LazySearchPortal from "../components/LazySearchPortal";
-import InteractiveMatrixBackground from "../components/InteractiveMatrixBackground";
-import AnimatedBackground from "../components/AnimatedBackground";
-import CloneOfferPopup from "../components/CloneOfferPopup";
-import AIWebToolsSEOSection from "../components/seo/AIWebToolsSEOSection";
-import DeferredMount from "../components/DeferredMount";
-import EthicalAIQuoteSection from "../components/EthicalAIQuoteSection";
-import InspirationCarousel from "../components/InspirationCarousel";
+import Header from "@/components/Header";
+import HeroSection from "@/components/HeroSection";
+import CategoryPageSelection from "@/components/CategoryPageSelection";
+import SpecialServices from "@/components/SpecialServices";
+import Footer from "@/components/Footer";
+import ScrollToTop from "@/components/ui/scroll-to-top";
+import ImprovedSEOHead from "@/components/ImprovedSEOHead";
+import GoogleRankingBooster from "@/components/seo/GoogleRankingBooster";
+import { Button } from "@/components/ui/button";
+import BookPromotionCard from "@/components/BookPromotionCard";
+import LazyFeaturedTools from "@/components/LazyFeaturedTools";
+import LazySearchPortal from "@/components/LazySearchPortal";
+import InteractiveMatrixBackground from "@/components/InteractiveMatrixBackground";
+import AnimatedBackground from "@/components/AnimatedBackground";
+import CloneOfferPopup from "@/components/CloneOfferPopup";
+import AIWebToolsSEOSection from "@/components/seo/AIWebToolsSEOSection";
+import DeferredMount from "@/components/DeferredMount";
+import EthicalAIQuoteSection from "@/components/EthicalAIQuoteSection";
+import InspirationCarousel from "@/components/InspirationCarousel";
 
 
 // Removed loading spinner - causes perceived slowness on refresh
