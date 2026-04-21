@@ -608,3 +608,6 @@ export { wearablesRobotsBatch2026Part2 } from './wearablesRobotsBatch2026Part2';
 
 // Export Wearables & Robots Batch 2026 Part 3 (5 tools: Boston Dynamics Atlas Electric, Agility Digit, Apptronik Apollo, Sanctuary Phoenix, Tesla Optimus Gen 3)
 export { wearablesRobotsBatch2026Part3 } from './wearablesRobotsBatch2026Part3';
+
+// Top 5 trending AI models released November 2025/2026 (GPT-5.1, GPT-5.1 Codex Max, Claude Opus 4.5, Gemini 3 Pro, Grok 4.1)
+export { trendingAIModels2026Nov } from './trendingAIModels2026Nov';
