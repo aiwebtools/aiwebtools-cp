@@ -8,4 +8,6 @@ if (!rootElement) {
   throw new Error("Root element not found");
 }
 
+console.log("[boot] main.tsx start", window.location.pathname);
+
 createRoot(rootElement).render(<App />);
