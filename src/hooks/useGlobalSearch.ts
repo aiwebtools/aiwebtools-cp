@@ -98,7 +98,7 @@ const spreadSimilarToolsFast = (tools: any[]): any[] => {
 
 // Global search cache (persists across component re-renders)
 // NOTE: versioned to prevent "stale" cached results after search-intelligence updates.
-const SEARCH_CACHE_VERSION = "v37";
+const SEARCH_CACHE_VERSION = "v38";
 const searchCache = new LRUCache<string, any[]>(50);
 
 // ==================== INTELLIGENCE MAPS (precomputed, instant lookup) ====================
