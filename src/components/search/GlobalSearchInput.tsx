@@ -89,10 +89,14 @@ const GlobalSearchInput = memo(({
       <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-300 w-4 h-4 pointer-events-none z-10" />
 
       {ghostText && (
-        <div className="absolute inset-0 flex items-center pointer-events-none">
-          <span className="pl-10 text-transparent">{localValue}</span>
-          <span className="text-gray-500/60 font-normal">{ghostText}</span>
-          <span className="ml-2 text-[10px] text-cyan-500/50 hidden sm:inline">Tab ↹</span>
+        <div className="absolute inset-0 flex items-center pointer-events-none z-[2]">
+          <span className="pl-10 text-transparent select-none">{localValue}</span>
+          <span className="text-emerald-300/90 font-medium drop-shadow-[0_0_4px_rgba(16,185,129,0.45)]">
+            {ghostText}
+          </span>
+          <span className="ml-2 px-1.5 py-0.5 rounded text-[10px] font-semibold tracking-wide text-emerald-200 bg-emerald-500/15 border border-emerald-400/30 hidden sm:inline">
+            Tab ↹
+          </span>
         </div>
       )}
 
