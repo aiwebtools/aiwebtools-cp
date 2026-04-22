@@ -10,6 +10,31 @@ export interface PhraseHandler {
 
 // 50 commonly searched phrases mapped to tools
 export const COMMON_PHRASE_HANDLERS: Record<string, PhraseHandler> = {
+  // ===== TIME MACHINE / TIME TRAVEL (HIGHEST PRIORITY) =====
+  timeMachine: {
+    triggers: [
+      'time', 'time m', 'time ma', 'time mac', 'time mach', 'time machi',
+      'time machin', 'time machine', 'time machine gpt',
+      'time travel', 'time traveler', 'travel in time', 'time portal',
+      'back to the future', 'back in time', 'time jump', 'go back in time',
+      'historical time', 'time exploration',
+    ],
+    keywords: [
+      'time', 'time machine', 'time travel', 'history', 'historical',
+      'past', 'era', 'epoch', 'timeline', 'chronology',
+    ],
+    priorityTools: [
+      'TIME MACHINE GPT',
+      'Native American History Time Machine GPT - (Special Edition)',
+      'TALK TO HISTORY GPT',
+      'Historical Headlines GPT',
+      'Titanic Resurrections GPT',
+      'Imagination Traveler GPT',
+      'Indiana Archeologist GPT',
+    ],
+    relatedCategories: ['Historical & Time-Based AI Tools', 'Education & Research Tools'],
+  },
+
   // ===== MOBILE APP DEVELOPMENT (HIGH PRIORITY) =====
   buildMobileApp: {
     triggers: [
