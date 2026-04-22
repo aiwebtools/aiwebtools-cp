@@ -435,6 +435,8 @@ export const getExpandedKeywords = (searchTerm: string): string[] => {
     lowerSearchTerm.includes('bak to the future') ||
     lowerSearchTerm.includes('bak to future') ||
     lowerSearchTerm.includes('time machine') ||
+    // Partial prefixes so autocomplete triggers as user types "time m", "time ma", etc.
+    /\btime\s+m[a-z]*$/i.test(lowerSearchTerm) ||
     lowerSearchTerm === 'time travel' || 
     lowerSearchTerm === 'travel in time' ||
     lowerSearchTerm === 'back to the future' ||
