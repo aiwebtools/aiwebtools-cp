@@ -608,3 +608,6 @@ export { wearablesRobotsBatch2026Part2 } from './wearablesRobotsBatch2026Part2';
 
 // Export Wearables & Robots Batch 2026 Part 3 (5 tools: Boston Dynamics Atlas Electric, Agility Digit, Apptronik Apollo, Sanctuary Phoenix, Tesla Optimus Gen 3)
 export { wearablesRobotsBatch2026Part3 } from './wearablesRobotsBatch2026Part3';
+
+// Export AI Gadgets & Devices Batch 2026 (10 tools: Ray-Ban Meta, Even Realities G1, Brilliant Frame, Omi, Plaud Note, Insta360 GO 3S, Looi, Eilik, Loona, Rewind Pendant)
+export { aiGadgetsDevicesBatch2026 } from './aiGadgetsDevicesBatch2026';

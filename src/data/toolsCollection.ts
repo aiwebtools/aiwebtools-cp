@@ -525,6 +525,7 @@ export const getAllToolCategories = (): Tool[] => {
     ...newsAndInformationTools,
     ...roboticsCompanies,
     ...aiGadgetsDevicesTools,
+    ...aiGadgetsDevicesBatch2026,
     ...aiHardware,
     
     // NEW 2025: Additional tools
