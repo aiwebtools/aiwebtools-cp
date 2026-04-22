@@ -2235,24 +2235,35 @@ export const useGlobalSearch = () => {
   // Generate prediction based on top result
   const prediction = useMemo(() => {
     if (!searchTerm.trim() || searchResults.length === 0) return "";
-    
-    const topResult = searchResults[0];
-    if (!topResult?.title) return "";
-    
-    const topTitle = topResult.title.toLowerCase();
+
     const query = searchTerm.toLowerCase().trim();
-    
-    // Only predict if the top result starts with what user typed
-    if (topTitle.startsWith(query)) {
-      // Return the first word or two for cleaner predictions
-      const words = topResult.title.split(/\s+/);
-      if (words.length >= 2) {
-        // Return first 2-3 words for multi-word predictions
-        return words.slice(0, Math.min(3, words.length)).join(" ");
-      }
-      return topResult.title;
+    if (query.length < 2) return "";
+
+    // Scan top results for the best startsWith match (not just position 0)
+    // This handles cases where search ranking surfaces a different tool first
+    // but a better autocomplete match exists in the top results.
+    const candidates = searchResults.slice(0, 10);
+    let match = candidates.find((r) => r?.title?.toLowerCase().startsWith(query));
+
+    // Fallback: try matching against any word boundary in the title
+    // (e.g., "machine" in "Time Machine GPT" when user types "mac")
+    if (!match) {
+      match = candidates.find((r) => {
+        const title = r?.title?.toLowerCase() ?? "";
+        return title.split(/\s+/).some((w) => w.startsWith(query));
+      });
     }
-    
+
+    if (!match?.title) return "";
+
+    const titleLower = match.title.toLowerCase();
+
+    // If title starts with query, return up to first 3 words for clean ghost text
+    if (titleLower.startsWith(query)) {
+      const words = match.title.split(/\s+/);
+      return words.slice(0, Math.min(3, words.length)).join(" ");
+    }
+
     return "";
   }, [searchTerm, searchResults]);
 
