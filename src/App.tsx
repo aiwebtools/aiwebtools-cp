@@ -17,6 +17,7 @@ import MatrixCursorEffect from "@/components/effects/MatrixCursorEffect";
 import "@/styles/loading-cube.css";
 import ScrollProgressIndicator from "@/components/ScrollProgressIndicator";
 import { getConsentAccepted } from "@/utils/consent";
+import AssetErrorOverlay from "@/components/AssetErrorOverlay";
 
 // Eager load - keep disclaimer gate instant; lazy-load heavy app routes to avoid black-screen startup
 import DisclaimerGate from "./pages/DisclaimerGate";
@@ -107,10 +108,12 @@ const AnimatedRoutes = () => {
   // Critical paths render without Suspense for instant load
   if (location.pathname === '/' || location.pathname === '/welcome') {
     return (
-      <Routes location={location}>
-        <Route path="/welcome" element={<DisclaimerGate />} />
-        <Route path="/" element={<Index />} />
-      </Routes>
+      <Suspense fallback={<PageLoader />}>
+        <Routes location={location}>
+          <Route path="/welcome" element={<DisclaimerGate />} />
+          <Route path="/" element={<Index />} />
+        </Routes>
+      </Suspense>
     );
   }
   
@@ -262,6 +265,7 @@ function App() {
                   <RouteGuard />
                   <PostAcceptBoot />
                   <GlobalOverlays />
+                  <AssetErrorOverlay />
                 </BrowserRouter>
               </TooltipProvider>
             </VideoManagerProvider>
