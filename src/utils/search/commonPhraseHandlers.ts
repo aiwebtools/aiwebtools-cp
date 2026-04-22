@@ -1915,6 +1915,686 @@ export const COMMON_PHRASE_HANDLERS: Record<string, PhraseHandler> = {
     keywords: ['negotiation', 'negotiate', 'bargain', 'deal', 'agreement', 'compromise', 'salary'],
     priorityTools: ['LEARN ANY SKILL GPT', 'Business Plan Generator GPT'],
     relatedCategories: ['Business & Productivity', 'Negotiation']
+  },
+
+  // ===== AIWEBTOOLS CUSTOM GPT BRAND/NAME RECOGNITION =====
+  automobileGpt: {
+    triggers: ['auto', 'autom', 'automo', 'automob', 'automobi', 'automobil', 'automobile', 'automobile gpt', 'car gpt', 'car ai', 'vehicle gpt', 'auto gpt'],
+    keywords: ['automobile', 'car', 'vehicle', 'auto', 'dealership', 'repair'],
+    priorityTools: ['AUTOMOBILE GPT'],
+    relatedCategories: ['Automotive']
+  },
+  collegeDegreeGpt: {
+    triggers: ['college', 'colleg', 'college d', 'college de', 'college deg', 'college degree', 'college degree gpt', 'free college', 'free degree', 'university gpt', 'degree gpt'],
+    keywords: ['college', 'degree', 'university', 'class', 'course'],
+    priorityTools: ['COLLEGE DEGREE GPT', 'LEARN ANY COURSE GPT', 'LEARN ANY SKILL GPT'],
+    relatedCategories: ['Education & Learning']
+  },
+  movieMakerStudio: {
+    triggers: ['movie', 'movi', 'movie m', 'movie ma', 'movie mak', 'movie make', 'movie maker', 'movie maker studio', 'film maker', 'filmmaker', 'film studio', 'ai movie', 'ai film', 'make a movie', 'make movie', 'film production'],
+    keywords: ['movie', 'film', 'cinema', 'studio', 'maker', 'production'],
+    priorityTools: ['Movie Maker Studio AI SUITE', 'Movie Script Writer GPT', 'Movie Scene Maker GPT'],
+    relatedCategories: ['Video & Multimedia']
+  },
+  movieScriptWriter: {
+    triggers: ['movie script', 'movie scrip', 'script writer', 'screenplay', 'screen play', 'movie script writer', 'film script', 'screenplay writer'],
+    keywords: ['script', 'screenplay', 'movie', 'film', 'writer'],
+    priorityTools: ['Movie Script Writer GPT', 'Movie Scene Maker GPT', '🎭 Playwriter GPT'],
+    relatedCategories: ['Writing & Content']
+  },
+  survivalistGpt: {
+    triggers: ['survival', 'surviv', 'survivalist', 'survivalist gpt', 'survival gpt', 'wilderness survival', 'doomsday prep', 'prepper', 'bushcraft'],
+    keywords: ['survival', 'survivalist', 'wilderness', 'prepper', 'outdoor'],
+    priorityTools: ['Survivalist GPT', 'Firefighter GPT', 'Firearms Safety Instructor GPT'],
+    relatedCategories: ['Health & Wellness', 'Education & Learning']
+  },
+  stageMaster: {
+    triggers: ['stage', 'stagem', 'stage master', 'stagemaster', 'stagemaster ai', 'theater ai', 'theatre ai', 'performing arts', 'broadway gpt'],
+    keywords: ['stage', 'theater', 'theatre', 'performing arts', 'broadway'],
+    priorityTools: ['STAGEMASTER AI SUITE FOR THE Preforming Arts', '🎭 Playwriter GPT'],
+    relatedCategories: ['Creative & Media']
+  },
+  immortalizeMe: {
+    triggers: ['immortal', 'immortalize', 'immortalize me', 'immortalizeme', 'digital clone', 'voice legacy', 'preserve voice', 'digital legacy'],
+    keywords: ['immortal', 'clone', 'legacy', 'digital twin', 'voice clone'],
+    priorityTools: ['ImmortalizeME'],
+    relatedCategories: ['AI & Development']
+  },
+  illuminousExplorer: {
+    triggers: ['illuminous', 'illumi', 'illumin', 'world data', 'data explorer', 'predictions gpt', 'predict the future'],
+    keywords: ['illuminous', 'predictions', 'data', 'global', 'forecast'],
+    priorityTools: ['Illuminous World Data Explorer GPT', 'Fortune Teller GPT', 'Probability GPT'],
+    relatedCategories: ['Science & Research']
+  },
+  godmodeGpt: {
+    triggers: ['godmode', 'god mode', 'g mode', 'g-mode', 'gmode', 'godmode gpt', 'g-mode gpt', 'ultimate gpt', 'all in one gpt'],
+    keywords: ['godmode', 'g-mode', 'ultimate', 'omni', 'all-in-one'],
+    priorityTools: ['GODMODE GPT', 'MULTITASKER GPT', 'Clarity Omni GPT'],
+    relatedCategories: ['AI & Development']
+  },
+  musicVideoMaker: {
+    triggers: ['music video', 'music vid', 'music video maker', 'music video studio', 'mv maker', 'music production'],
+    keywords: ['music video', 'mv', 'music', 'video', 'production'],
+    priorityTools: ['Music Video Maker AI Studio', 'Music Melodies & Lessons GPT'],
+    relatedCategories: ['Video & Multimedia', 'Creative & Media']
+  },
+  bookWriterGpt: {
+    triggers: ['book', 'book w', 'book wr', 'book wri', 'book writer', 'book writer gpt', 'novel writer', 'write a book', 'author gpt', 'novelist'],
+    keywords: ['book', 'novel', 'writer', 'author', 'chapter'],
+    priorityTools: ['BOOK WRITER GPT', "Children's Picture Book Maker GPT", 'Coloring Book Generator GPT'],
+    relatedCategories: ['Writing & Content']
+  },
+  talkToHistory: {
+    triggers: ['talk to history', 'talk history', 'historical figures', 'chat with history', 'history chat', 'historical conversation'],
+    keywords: ['history', 'historical', 'figures', 'past', 'leaders'],
+    priorityTools: ['TALK TO HISTORY GPT', 'TIME MACHINE GPT', 'Historical Headlines GPT'],
+    relatedCategories: ['Education & Learning']
+  },
+  stellarisSpace: {
+    triggers: ['stellaris', 'space explorer', 'space ai', 'space gpt', 'astronomy gpt', 'exoplanet', 'astrogation'],
+    keywords: ['space', 'stellaris', 'astronomy', 'exoplanet', 'cosmos'],
+    priorityTools: ['Stellaris: 🚀AI Space Explorer'],
+    relatedCategories: ['Science & Research']
+  },
+  criminologistGpt: {
+    triggers: ['criminologist', 'criminology', 'crime gpt', 'detective gpt', 'forensic gpt', 'criminal investigation'],
+    keywords: ['criminology', 'crime', 'detective', 'forensic', 'investigation'],
+    priorityTools: ['Criminologist GPT', 'Public Defender GPT'],
+    relatedCategories: ['Legal & Government']
+  },
+  resurrectionGpt: {
+    triggers: ['resurrection', 'resurrect', 'talk to deceased', 'talk to dead', 'memorial gpt', 'grief chat'],
+    keywords: ['resurrection', 'memorial', 'grief', 'deceased'],
+    priorityTools: ['Resurrection GPT', 'ImmortalizeME'],
+    relatedCategories: ['Health & Wellness']
+  },
+  perfectPromptEngine: {
+    triggers: ['perfect prompt', 'prompt engine', 'prompt engineer', 'prompt optimizer', 'best prompt', 'prompt builder', 'prompt perfect'],
+    keywords: ['prompt', 'engineer', 'optimize', 'engine'],
+    priorityTools: ['PERFECT PROMPT ENGINE', 'Sora Prompt Assistant', 'Luma Dream Machine Prompt Assistant'],
+    relatedCategories: ['AI & Development']
+  },
+  travelAdvisor: {
+    triggers: ['travel advisor', 'travel agent', 'travel planner', 'vacation planner', 'trip planner', 'travel gpt'],
+    keywords: ['travel', 'vacation', 'trip', 'advisor', 'agent'],
+    priorityTools: ['Travel Advisor GPT'],
+    relatedCategories: ['Travel']
+  },
+  clarityOmni: {
+    triggers: ['clarity', 'clarity omni', 'omni gpt', 'rewrite ai', 'text rewriter', 'paraphraser gpt'],
+    keywords: ['clarity', 'omni', 'rewrite', 'paraphrase'],
+    priorityTools: ['Clarity Omni GPT', 'Article and Blog Rewriter GPT'],
+    relatedCategories: ['Writing & Content']
+  },
+  engineeringGpt: {
+    triggers: ['engineering', 'engineer', 'engineering gpt', 'mechanical engineer', 'electrical engineer', 'civil engineer', 'software engineer ai'],
+    keywords: ['engineering', 'engineer', 'mechanical', 'electrical', 'civil'],
+    priorityTools: ['Engineering GPT AI Suite', 'Solar Land Assessor GPT'],
+    relatedCategories: ['Science & Research', 'AI & Development']
+  },
+  talkToGodsGpt: {
+    triggers: ['talk to gods', 'talk to god', 'gods gpt', 'deities gpt', 'religion chat', 'mythology gpt'],
+    keywords: ['gods', 'deities', 'religion', 'mythology'],
+    priorityTools: ['TALK TO THE GODS GPT', '🕊️Mary Magdalene GPT', 'ALAN WATTS GPT', 'Sophia Aeterna AI'],
+    relatedCategories: ['Spiritual & Philosophy']
+  },
+  phenomenonExplorer: {
+    triggers: ['phenomenon', 'paranormal', 'ufo gpt', 'cryptid', 'ghost hunting', 'supernatural', 'unexplained'],
+    keywords: ['phenomenon', 'paranormal', 'ufo', 'cryptid', 'ghost'],
+    priorityTools: ['Phenomenon Explorer AI Suite'],
+    relatedCategories: ['Mysterious & Unusual']
+  },
+  legislationWriter: {
+    triggers: ['legislation', 'legislate', 'legislation writer', 'write a law', 'draft legislation', 'bill writer'],
+    keywords: ['legislation', 'law', 'bill', 'statute', 'legal draft'],
+    priorityTools: ['Legislation Writer GPT', 'Public Testimony Writer GPT', 'Legislator Link GPT'],
+    relatedCategories: ['Legal & Government']
+  },
+  graphicDesignGpt: {
+    triggers: ['graphic design', 'cover design', 'book cover', 'graphic designer', 'design gpt', 'cover designer'],
+    keywords: ['graphic', 'design', 'cover', 'visual'],
+    priorityTools: ['Graphic & Cover Design GPT', 'Tattoo Designer GPT', 'Sketch Artist GPT'],
+    relatedCategories: ['Image & Design']
+  },
+  factCheckerGpt: {
+    triggers: ['fact check', 'fact checker', 'fact-checker', 'misinformation', 'verify facts', 'truth check'],
+    keywords: ['fact', 'truth', 'verify', 'misinformation', 'check'],
+    priorityTools: ['FACT CHECKER GPT', 'Probability GPT'],
+    relatedCategories: ['Investigative & Analysis']
+  },
+  sustainableFutures: {
+    triggers: ['sustainable', 'sustainability', 'sustainable futures', 'climate gpt', 'green future', 'eco gpt'],
+    keywords: ['sustainable', 'sustainability', 'climate', 'green', 'eco'],
+    priorityTools: ['Sustainable Futures GPT'],
+    relatedCategories: ['Science & Research']
+  },
+  teslaEinsteinGpt: {
+    triggers: ['nikola tesla', 'tesla gpt', 'einstein', 'albert einstein', 'einstein gpt', 'tesla einstein', 'physicist gpt', 'physics gpt'],
+    keywords: ['tesla', 'einstein', 'physics', 'scientist'],
+    priorityTools: ['Nikola Tesla GPT', 'Albert Einstein GPT'],
+    relatedCategories: ['Science & Research']
+  },
+  foodQualityInspector: {
+    triggers: ['food quality', 'food inspector', 'food safety', 'grocery ai', 'ingredient checker'],
+    keywords: ['food quality', 'food safety', 'inspector', 'grocery', 'ingredient'],
+    priorityTools: ['Food Quality Inspector GPT'],
+    relatedCategories: ['Food & Hospitality']
+  },
+  homeRenovator: {
+    triggers: ['home renovator', 'home renovation', 'renovation gpt', 'home repair', 'home improvement', 'remodel', 'diy home'],
+    keywords: ['home', 'renovation', 'repair', 'remodel', 'improvement'],
+    priorityTools: ['Home Renovator GPT 🏡🔧'],
+    relatedCategories: ['Professional Services']
+  },
+  fishermanGpt: {
+    triggers: ['fisherman', 'fishing', 'fisher', 'fish gpt', 'fishing gpt', 'angling'],
+    keywords: ['fishing', 'fisherman', 'angling', 'bait', 'tackle'],
+    priorityTools: ['Fisherman GPT🎣😊'],
+    relatedCategories: ['Recreation & Outdoors']
+  },
+  agronomus: {
+    triggers: ['agronomus', 'farming', 'farming ai', 'farmer gpt', 'agriculture gpt', 'crop gpt'],
+    keywords: ['farming', 'agriculture', 'agronomy', 'crop'],
+    priorityTools: ['Agronomus AI Farming Expert'],
+    relatedCategories: ['Science & Research']
+  },
+  antiqueAppraisal: {
+    triggers: ['antique', 'antiques', 'collectible', 'collectibles', 'appraisal', 'appraise', 'coin appraisal', 'antique appraisal'],
+    keywords: ['antique', 'collectible', 'appraisal', 'value'],
+    priorityTools: ['Antique and Collectible Appraisal GPT', 'Artwork & Vintage Appraisal GPT', 'MATERIAL VALUATION GPT'],
+    relatedCategories: ['Appraisal & Valuation']
+  },
+  oraculum: {
+    triggers: ['oraculum', 'hidden truths', 'oracle gpt', 'reveal truth', 'hidden knowledge'],
+    keywords: ['oraculum', 'oracle', 'hidden', 'truth', 'esoteric'],
+    priorityTools: ['Oraculum – The Revealer of Hidden "Truths"'],
+    relatedCategories: ['Spiritual & Philosophy']
+  },
+  triviaNight: {
+    triggers: ['trivia', 'trivia night', 'quiz game', 'trivia gpt'],
+    keywords: ['trivia', 'quiz', 'game', 'knowledge'],
+    priorityTools: ['Trivia Night GPT', 'Quiz Maker Ai'],
+    relatedCategories: ['Entertainment & Gaming']
+  },
+  veterinarianGpt: {
+    triggers: ['veterinarian', 'vet gpt', 'pet care', 'animal doctor', 'pet health', 'pet doctor'],
+    keywords: ['veterinarian', 'vet', 'pet', 'animal'],
+    priorityTools: ['🐾Veterinarian GPT'],
+    relatedCategories: ['Health & Wellness']
+  },
+  insuranceClaims: {
+    triggers: ['insurance', 'insurance claim', 'insurance claims', 'claim gpt', 'damage claim'],
+    keywords: ['insurance', 'claim', 'damage', 'policy'],
+    priorityTools: ['🔒Insurance Claims GPT'],
+    relatedCategories: ['Professional Services']
+  },
+  cannabisGpt: {
+    triggers: ['cannabis', 'canabis', 'marijuana', 'weed gpt', 'cannabis gpt', 'hemp gpt', 'thc', 'cbd'],
+    keywords: ['cannabis', 'marijuana', 'hemp', 'thc', 'cbd', 'strain'],
+    priorityTools: ['Cannabis GPT', 'Fungus GPT – AI Mushroom Specialist'],
+    relatedCategories: ['Health & Wellness']
+  },
+  probabilityGpt: {
+    triggers: ['probability', 'probability gpt', 'odds calculator', 'truth probability', 'likelihood gpt'],
+    keywords: ['probability', 'odds', 'likelihood', 'truth'],
+    priorityTools: ['Probability GPT', 'Fortune Teller GPT'],
+    relatedCategories: ['Science & Research']
+  },
+  learnAnyCourse: {
+    triggers: ['learn any course', 'any course', 'learn course', 'free course', 'online class', 'self taught'],
+    keywords: ['course', 'learn', 'class', 'lesson'],
+    priorityTools: ['LEARN ANY COURSE GPT', 'COLLEGE DEGREE GPT', 'LEARN ANY SKILL GPT', 'Course Maker GPT'],
+    relatedCategories: ['Education & Learning']
+  },
+  learnAnySkill: {
+    triggers: ['learn any skill', 'learn skill', 'master a skill', 'skill learning', 'pick up a skill', 'new skill'],
+    keywords: ['skill', 'learn', 'master', 'tutorial'],
+    priorityTools: ['LEARN ANY SKILL GPT', 'LEARN ANY COURSE GPT'],
+    relatedCategories: ['Education & Learning']
+  },
+  publicDefender: {
+    triggers: ['public defender', 'defense lawyer', 'criminal defense', 'free lawyer', 'court defense', 'legal defense'],
+    keywords: ['public defender', 'defense', 'lawyer', 'attorney', 'criminal'],
+    priorityTools: ['Public Defender GPT', 'Legal Draftsmith GPT', 'Contract Review Bot'],
+    relatedCategories: ['Legal & Government']
+  },
+  propertyDataFinder: {
+    triggers: ['property data', 'property finder', 'property lookup', 'real estate data', 'home value', 'property info'],
+    keywords: ['property', 'real estate', 'data', 'value', 'lookup'],
+    priorityTools: ['Property Data Finder GPT', 'Predictive Credit Score Checker GPT', 'Solar Land Assessor GPT'],
+    relatedCategories: ['Professional Services']
+  },
+  algebraicExpression: {
+    triggers: ['algebra', 'algebraic', 'math gpt', 'algebra gpt', 'algebraic expression', 'math equation'],
+    keywords: ['algebra', 'math', 'equation', 'expression'],
+    priorityTools: ['Algebraic Expression Inventor GPT', 'King Blueberry GPT'],
+    relatedCategories: ['Education & Learning']
+  },
+  multitaskerGpt: {
+    triggers: ['multitasker', 'multi task', 'multi-task', 'multitask gpt', 'do many things'],
+    keywords: ['multitask', 'multitasker', 'tasks', 'multiple'],
+    priorityTools: ['MULTITASKER GPT', 'GODMODE GPT'],
+    relatedCategories: ['AI & Development']
+  },
+  fortuneTellerGpt: {
+    triggers: ['fortune teller', 'fortune', 'predict future', 'psychic gpt', 'forecast gpt'],
+    keywords: ['fortune', 'prediction', 'psychic', 'forecast'],
+    priorityTools: ['Fortune Teller GPT', 'Probability GPT', 'Illuminous World Data Explorer GPT'],
+    relatedCategories: ['Spiritual & Philosophy']
+  },
+  materialValuation: {
+    triggers: ['material valuation', 'metal value', 'gem value', 'material value', 'precious metal', 'gem appraisal'],
+    keywords: ['material', 'valuation', 'metal', 'gem', 'value'],
+    priorityTools: ['MATERIAL VALUATION GPT', 'Antique and Collectible Appraisal GPT'],
+    relatedCategories: ['Appraisal & Valuation']
+  },
+  microSaasGpt: {
+    triggers: ['microsaas', 'micro saas', 'micro-saas', 'saas idea', 'startup idea', 'saas builder'],
+    keywords: ['saas', 'microsaas', 'startup', 'app idea'],
+    priorityTools: ['MicroSaaS GPT', '🚀 Startup Validator GPT', '-Business Plan Generator GPT💼'],
+    relatedCategories: ['Business & Productivity']
+  },
+  interpretis: {
+    triggers: ['interpretis', 'etymology', 'etymological', 'word origin', 'word meaning', 'language origin'],
+    keywords: ['etymology', 'etymological', 'word', 'origin', 'language'],
+    priorityTools: ['Interpretis 🕰️'],
+    relatedCategories: ['Education & Learning']
+  },
+  imaginationTraveler: {
+    triggers: ['imagination', 'imagination traveler', 'imagine', 'alternate reality', 'fantasy traveler'],
+    keywords: ['imagination', 'imagine', 'fantasy', 'alternate'],
+    priorityTools: ['Imagination Traveler GPT', 'TIME MACHINE GPT'],
+    relatedCategories: ['Entertainment & Gaming']
+  },
+  titanicResurrections: {
+    triggers: ['titanic', 'titanic resurrections', 'titanic gpt', 'titanic survivors'],
+    keywords: ['titanic', 'shipwreck', 'survivors', '1912'],
+    priorityTools: ['Titanic Resurrections GPT', 'TALK TO HISTORY GPT'],
+    relatedCategories: ['Education & Learning']
+  },
+  alchemistScientist: {
+    triggers: ['alchemist', 'alchemy', 'alchemical', 'alchemist gpt', 'medieval chemistry'],
+    keywords: ['alchemy', 'alchemist', 'chemistry', 'medieval'],
+    priorityTools: ['Alchemist Scientist GPT', 'Historical Apothecary GPT'],
+    relatedCategories: ['Spiritual & Philosophy']
+  },
+  doctorGpt: {
+    triggers: ['doctor gpt', 'dr gpt', 'personal doctor', 'medical gpt', 'medicus', 'health gpt'],
+    keywords: ['doctor', 'medical', 'medicus', 'health', 'physician'],
+    priorityTools: ['Personalized DR. GPT (Doctor GPT)', 'Pharmaceutical Assistant GPT', 'Mental Wellness GPT'],
+    relatedCategories: ['Health & Wellness']
+  },
+  traderGpt: {
+    triggers: ['trader', 'trading gpt', 'day trader', 'stock trader', 'trader gpt', 'trading signals'],
+    keywords: ['trading', 'trader', 'stock', 'market', 'signals'],
+    priorityTools: ['Trader GPT', 'Predictive Credit Score Checker GPT'],
+    relatedCategories: ['Business & Productivity']
+  },
+  indianaArcheologist: {
+    triggers: ['indiana', 'archeologist', 'archaeologist', 'archeology', 'archaeology', 'indiana jones', 'ancient texts'],
+    keywords: ['archeology', 'archaeology', 'ancient', 'artifacts', 'indiana'],
+    priorityTools: ['Indiana Archeologist GPT', 'Historical Apothecary GPT', 'TALK TO HISTORY GPT'],
+    relatedCategories: ['Education & Learning']
+  },
+  marriageMender: {
+    triggers: ['marriage', 'marriage mender', 'couples therapy', 'relationship advice', 'marriage counseling', 'mend marriage'],
+    keywords: ['marriage', 'couples', 'relationship', 'mediation'],
+    priorityTools: ['Marriage Mender GPT'],
+    relatedCategories: ['Health & Wellness']
+  },
+  trainingManual: {
+    triggers: ['training manual', 'employee training', 'manual generator', 'onboarding manual', 'sop generator'],
+    keywords: ['training', 'manual', 'onboarding', 'sop'],
+    priorityTools: ['Training Manual Generator GPT', '-Business Plan Generator GPT💼'],
+    relatedCategories: ['Business & Productivity']
+  },
+  alanWatts: {
+    triggers: ['alan watts', 'alanwatts', 'philosophy gpt', 'free thinker', 'eastern philosophy'],
+    keywords: ['alan watts', 'philosophy', 'eastern', 'liberation'],
+    priorityTools: ['ALAN WATTS GPT', 'Sophia Aeterna AI', 'TALK TO THE GODS GPT'],
+    relatedCategories: ['Spiritual & Philosophy']
+  },
+  solarLandAssessor: {
+    triggers: ['solar', 'solar land', 'solar assessor', 'solar installer', 'solar panel', 'solar property'],
+    keywords: ['solar', 'land', 'assessor', 'panel'],
+    priorityTools: ['Solar Land Assessor GPT', 'Sustainable Futures GPT'],
+    relatedCategories: ['Professional Services']
+  },
+  dataResearchAnalysis: {
+    triggers: ['data research', 'data analysis', 'analysis report', 'research report', 'data analytics ai'],
+    keywords: ['data', 'analysis', 'research', 'report', 'analytics'],
+    priorityTools: ['Data Research Analysis Report GPT', 'Illuminous World Data Explorer GPT'],
+    relatedCategories: ['Investigative & Analysis']
+  },
+  resumeJobFinder: {
+    triggers: ['resume', 'resume gpt', 'job finder', 'job search', 'cv writer', 'job hunt', 'career coach', 'job coach'],
+    keywords: ['resume', 'cv', 'job', 'career', 'finder'],
+    priorityTools: ['The Resume & Job Finder Ai Suite', 'AI Interview Copilot'],
+    relatedCategories: ['Business & Productivity']
+  },
+  playwriterGpt: {
+    triggers: ['playwriter', 'playwright', 'theatrical play', 'stage play', 'write a play'],
+    keywords: ['playwriter', 'playwright', 'play', 'theatrical', 'stage'],
+    priorityTools: ['🎭 Playwriter GPT', 'STAGEMASTER AI SUITE FOR THE Preforming Arts'],
+    relatedCategories: ['Creative & Media']
+  },
+  customGptMaker: {
+    triggers: ['custom gpt', 'gpt maker', 'make a gpt', 'build a gpt', 'gpt builder', 'customizable gpt', 'gpt ideas'],
+    keywords: ['custom gpt', 'gpt maker', 'gpt builder'],
+    priorityTools: ['Customizable GPT Maker', 'Custom GPT Ideas & Brainstorming Assistant'],
+    relatedCategories: ['AI & Development']
+  },
+  apothecaryGpt: {
+    triggers: ['apothecary', 'historical apothecary', 'herbal remedies', 'herbalist gpt', 'tinctures'],
+    keywords: ['apothecary', 'herbal', 'remedies', 'herbalist', 'tincture'],
+    priorityTools: ['Historical Apothecary GPT', 'Alchemist Scientist GPT'],
+    relatedCategories: ['Health & Wellness']
+  },
+  homeSchooling: {
+    triggers: ['homeschool', 'home school', 'home-schooling', 'homeschooling', 'home education'],
+    keywords: ['homeschool', 'home school', 'education', 'parent'],
+    priorityTools: ['Home-Schooling Assistant GPT', 'LEARN ANY COURSE GPT'],
+    relatedCategories: ['Education & Learning']
+  },
+  pharmaceuticalAssistant: {
+    triggers: ['pharmaceutical', 'pharmacy gpt', 'pharma', 'rx ai', 'medication assistant', 'drug info', 'pharma research'],
+    keywords: ['pharmaceutical', 'pharmacy', 'medication', 'drug', 'rx'],
+    priorityTools: ['Pharmaceutical Assistant GPT', 'PHARMA RESEARCH PRO'],
+    relatedCategories: ['Health & Wellness']
+  },
+  contractReviewBot: {
+    triggers: ['contract review', 'review contract', 'contract bot', 'contract analysis', 'legal contract'],
+    keywords: ['contract', 'review', 'legal', 'agreement'],
+    priorityTools: ['Contract Review Bot', 'Legal Draftsmith GPT', 'Public Defender GPT'],
+    relatedCategories: ['Legal & Government']
+  },
+  tattooDesigner: {
+    triggers: ['tattoo', 'tattoo designer', 'tattoo artist', 'tattoo gpt', 'piercing gpt', 'body art'],
+    keywords: ['tattoo', 'piercing', 'body art', 'design'],
+    priorityTools: ['Tattoo Designer GPT', 'Sketch Artist GPT'],
+    relatedCategories: ['Creative & Media']
+  },
+  firearmsSafety: {
+    triggers: ['firearm', 'firearms', 'gun safety', 'firearm safety', 'shooting instructor', 'gun training'],
+    keywords: ['firearm', 'gun', 'safety', 'shooting'],
+    priorityTools: ['Firearms Safety Instructor GPT', 'Survivalist GPT'],
+    relatedCategories: ['Education & Learning']
+  },
+  soraPromptAssistant: {
+    triggers: ['sora prompt', 'sora gpt', 'sora ai', 'video prompt', 'text to video prompt'],
+    keywords: ['sora', 'video prompt', 'text to video'],
+    priorityTools: ['Sora Prompt Assistant', 'Luma Dream Machine Prompt Assistant'],
+    relatedCategories: ['Video & Multimedia']
+  },
+  mixologistGpt: {
+    triggers: ['mixologist', 'bartender', 'cocktail', 'cocktails', 'drink mixer', 'kenny mixology'],
+    keywords: ['mixologist', 'bartender', 'cocktail', 'drink'],
+    priorityTools: ['Mixologist GPT', 'Chef "Sizzle" AI Culinary Assistant', 'Restaurant Menu Maker GPT'],
+    relatedCategories: ['Food & Hospitality']
+  },
+  chefSizzle: {
+    triggers: ['chef sizzle', 'chef gpt', 'culinary assistant', 'recipe gpt', 'cooking assistant'],
+    keywords: ['chef', 'culinary', 'recipe', 'cooking'],
+    priorityTools: ['Chef "Sizzle" AI Culinary Assistant', 'Mixologist GPT', 'Restaurant Menu Maker GPT'],
+    relatedCategories: ['Food & Hospitality']
+  },
+  restyleMe: {
+    triggers: ['restyle', 'restyle me', 'restyleme', 'photo style', 'image style transfer', 'art style'],
+    keywords: ['restyle', 'style', 'transform', 'image'],
+    priorityTools: ['RESTYLE ME GPT', 'Graphic & Cover Design GPT'],
+    relatedCategories: ['Image & Design']
+  },
+  celebrityChatline: {
+    triggers: ['celebrity', 'celebrity chat', 'chat with celebrity', 'famous people chat', 'celebrity ai'],
+    keywords: ['celebrity', 'famous', 'star', 'chat'],
+    priorityTools: ['Celebrity Chatline GPT'],
+    relatedCategories: ['Entertainment & Gaming']
+  },
+  firefighterGpt: {
+    triggers: ['firefighter', 'fire fighter', 'wildfire', 'fire safety', 'firefighting'],
+    keywords: ['firefighter', 'fire', 'wildfire', 'safety'],
+    priorityTools: ['Firefighter GPT', 'Survivalist GPT'],
+    relatedCategories: ['Health & Wellness']
+  },
+  binaryConverter: {
+    triggers: ['binary', 'binary converter', 'binary text', 'text to binary', 'binary to text'],
+    keywords: ['binary', 'converter', 'text'],
+    priorityTools: ['Binary-Text-Image Converter GPT'],
+    relatedCategories: ['Utility & Productivity']
+  },
+  lumaDreamMachine: {
+    triggers: ['luma', 'luma dream', 'dream machine', 'luma ai', 'luma prompt'],
+    keywords: ['luma', 'dream machine', 'video', 'prompt'],
+    priorityTools: ['Luma Dream Machine Prompt Assistant', 'Sora Prompt Assistant'],
+    relatedCategories: ['Video & Multimedia']
+  },
+  restaurantMenuMaker: {
+    triggers: ['restaurant menu', 'menu maker', 'menu designer', 'restaurant menu gpt'],
+    keywords: ['restaurant', 'menu', 'maker'],
+    priorityTools: ['Restaurant Menu Maker GPT', 'Chef "Sizzle" AI Culinary Assistant'],
+    relatedCategories: ['Food & Hospitality']
+  },
+  quizMakerAi: {
+    triggers: ['quiz maker', 'quiz gpt', 'make a quiz', 'create quiz', 'test maker'],
+    keywords: ['quiz', 'test', 'maker', 'questions'],
+    priorityTools: ['Quiz Maker Ai', 'Trivia Night GPT'],
+    relatedCategories: ['Education & Learning']
+  },
+  courseMakerGpt: {
+    triggers: ['course maker', 'course creator', 'create course', 'build a course', 'online course maker'],
+    keywords: ['course', 'maker', 'creator', 'curriculum'],
+    priorityTools: ['Course Maker GPT', 'LEARN ANY COURSE GPT', 'Quiz Maker Ai'],
+    relatedCategories: ['Education & Learning']
+  },
+  taxesGpt: {
+    triggers: ['taxes', 'tax gpt', 'tax preparation', 'tax return', 'taxes gpt', 'tax filing'],
+    keywords: ['taxes', 'tax', 'preparation', 'filing'],
+    priorityTools: ['Taxes GPT'],
+    relatedCategories: ['Business & Productivity']
+  },
+  genomeGpt: {
+    triggers: ['genome', 'dna gpt', 'genetic gpt', 'genetics', 'dna analysis', 'genome gpt'],
+    keywords: ['genome', 'dna', 'genetic', 'genomics'],
+    priorityTools: ['Genome GPT'],
+    relatedCategories: ['Science & Research']
+  },
+  gameDesignDocument: {
+    triggers: ['game design', 'gdd', 'game design document', 'game developer gpt', 'video game design'],
+    keywords: ['game design', 'gdd', 'developer', 'video game'],
+    priorityTools: ['Game Design Document / Developer GPT'],
+    relatedCategories: ['Entertainment & Gaming']
+  },
+  neoMatrixGpt: {
+    triggers: ['matrix', 'neo matrix', 'enter the matrix', 'simulation theory', 'morpheus', 'red pill'],
+    keywords: ['matrix', 'neo', 'morpheus', 'simulation'],
+    priorityTools: ['ENTER THE MATRIX GPT (NEO👁️MATRIX GPT)'],
+    relatedCategories: ['Mysterious & Unusual']
+  },
+  predictiveCreditScore: {
+    triggers: ['credit score', 'credit check', 'predictive credit', 'creditworthiness'],
+    keywords: ['credit', 'score', 'check', 'rating'],
+    priorityTools: ['Predictive Credit Score Checker GPT', 'Property Data Finder GPT'],
+    relatedCategories: ['Business & Productivity']
+  },
+  nameInsight: {
+    triggers: ['name meaning', 'name insight', 'name predictor', 'whats my name', 'numerology name', 'name origin'],
+    keywords: ['name', 'meaning', 'insight', 'numerology'],
+    priorityTools: ['Name Insight Research & Predictor GPT', 'Interpretis 🕰️'],
+    relatedCategories: ['Spiritual & Philosophy']
+  },
+  coloringBookGenerator: {
+    triggers: ['coloring book', 'coloring page', 'coloring generator', 'kids coloring'],
+    keywords: ['coloring book', 'coloring page'],
+    priorityTools: ['Coloring Book Generator GPT', "Children's Picture Book Maker GPT"],
+    relatedCategories: ['Creative & Media']
+  },
+  publicTestimony: {
+    triggers: ['public testimony', 'testimony writer', 'write testimony', 'legislative testimony'],
+    keywords: ['testimony', 'public', 'legislative'],
+    priorityTools: ['Public Testimony Writer GPT', 'Legislator Link GPT', 'Legislation Writer GPT'],
+    relatedCategories: ['Legal & Government']
+  },
+  cyberSecurityGpt: {
+    triggers: ['cyber security', 'cybersecurity', 'hacking defender', 'infrastructure protection', 'network security ai'],
+    keywords: ['cyber', 'security', 'hacking', 'defender'],
+    priorityTools: ['Cyber Security GPT'],
+    relatedCategories: ['Investigative & Analysis']
+  },
+  startupValidator: {
+    triggers: ['startup validator', 'validate startup', 'startup idea', 'business validator'],
+    keywords: ['startup', 'validator', 'validate', 'idea'],
+    priorityTools: ['🚀 Startup Validator GPT', 'MicroSaaS GPT', '-Business Plan Generator GPT💼'],
+    relatedCategories: ['Business & Productivity']
+  },
+  businessPlanGenerator: {
+    triggers: ['business plan', 'business plan generator', 'create business plan', 'startup plan'],
+    keywords: ['business plan', 'business', 'plan'],
+    priorityTools: ['-Business Plan Generator GPT💼', '🚀 Startup Validator GPT', 'MicroSaaS GPT'],
+    relatedCategories: ['Business & Productivity']
+  },
+  fungusGpt: {
+    triggers: ['fungus', 'mushroom', 'mycology', 'mushroom specialist', 'fungus gpt', 'foraging mushrooms'],
+    keywords: ['fungus', 'mushroom', 'mycology', 'foraging'],
+    priorityTools: ['Fungus GPT – AI Mushroom Specialist'],
+    relatedCategories: ['Science & Research']
+  },
+  drillBabyDrill: {
+    triggers: ['drill baby drill', 'oil and gas', 'oil gas ai', 'drilling ai', 'petroleum'],
+    keywords: ['oil', 'gas', 'drilling', 'petroleum'],
+    priorityTools: ['Drill Baby Drill Ai Suite For Oil & Gas'],
+    relatedCategories: ['Professional Services']
+  },
+  dreamInterpreter: {
+    triggers: ['dream interpreter', 'interpret dreams', 'dream meaning', 'dream analysis', 'dream gpt'],
+    keywords: ['dream', 'interpreter', 'meaning'],
+    priorityTools: ['Dream Interpreter GPT', 'Fortune Teller GPT'],
+    relatedCategories: ['Spiritual & Philosophy']
+  },
+  podcastScriptWriter: {
+    triggers: ['podcast', 'podcast script', 'podcast writer', 'podcast gpt', 'podcast script writer'],
+    keywords: ['podcast', 'script', 'writer', 'audio'],
+    priorityTools: ['Podcast Script Writer GPT'],
+    relatedCategories: ['Multimedia & Content']
+  },
+  personFinder: {
+    triggers: ['person finder', 'find a person', 'people search', 'person info', 'background check'],
+    keywords: ['person', 'finder', 'people', 'search'],
+    priorityTools: ['Person Information Finder GPT'],
+    relatedCategories: ['Investigative & Analysis']
+  },
+  pptxPowerpointMaker: {
+    triggers: ['powerpoint', 'pptx', 'ppt maker', 'powerpoint maker', 'presentation maker', 'slide deck'],
+    keywords: ['powerpoint', 'pptx', 'presentation', 'slides'],
+    priorityTools: ['PPTx Powerpoint Maker GPT'],
+    relatedCategories: ['Business & Productivity']
+  },
+  grantWriter: {
+    triggers: ['grant writer', 'grant writing', 'write grant', 'grant proposal', 'grant gpt'],
+    keywords: ['grant', 'writer', 'proposal', 'funding'],
+    priorityTools: ['Grant Writer GPT'],
+    relatedCategories: ['Writing & Content']
+  },
+  ubiStrategist: {
+    triggers: ['ubi', 'universal basic income', 'basic income', 'ubi strategist'],
+    keywords: ['ubi', 'universal basic income', 'income'],
+    priorityTools: ['Universal Basic Income Strategist GPT'],
+    relatedCategories: ['Legal & Government']
+  },
+  artworkVintage: {
+    triggers: ['artwork', 'artwork appraisal', 'vintage appraisal', 'art valuation', 'art appraiser'],
+    keywords: ['artwork', 'art', 'vintage', 'appraisal'],
+    priorityTools: ['Artwork & Vintage Appraisal GPT', 'Antique and Collectible Appraisal GPT'],
+    relatedCategories: ['Appraisal & Valuation']
+  },
+  hiddenHistoricalPatterns: {
+    triggers: ['hidden patterns', 'historical patterns', 'pattern recognition', 'uncover history', 'hidden history'],
+    keywords: ['hidden', 'historical', 'patterns'],
+    priorityTools: ['Uncovering Hidden Historical Patterns GPT'],
+    relatedCategories: ['Investigative & Analysis']
+  },
+  sketchArtist: {
+    triggers: ['sketch artist', 'sketch gpt', 'sketch ai', 'pencil sketch', 'drawing ai'],
+    keywords: ['sketch', 'artist', 'drawing'],
+    priorityTools: ['Sketch Artist GPT', 'Graphic & Cover Design GPT'],
+    relatedCategories: ['Image & Design']
+  },
+  aiToolsFinder: {
+    triggers: ['ai tool finder', 'find ai tool', 'ai tools finder', 'tool finder', 'best ai tool'],
+    keywords: ['ai tool', 'finder', 'tools'],
+    priorityTools: ['AI Tools Finder GPT'],
+    relatedCategories: ['AI & Development']
+  },
+  articleBlogRewriter: {
+    triggers: ['article rewriter', 'blog rewriter', 'rewrite article', 'rewrite blog', 'content rewriter'],
+    keywords: ['rewriter', 'article', 'blog', 'content'],
+    priorityTools: ['Article and Blog Rewriter GPT', 'Clarity Omni GPT'],
+    relatedCategories: ['Writing & Content']
+  },
+  videoAnalysis: {
+    triggers: ['video analysis', 'analyze video', 'video second by second', 'frame analysis'],
+    keywords: ['video', 'analysis', 'analyze'],
+    priorityTools: ['Video Second-by-Second Analysis GPT'],
+    relatedCategories: ['Video & Multimedia']
+  },
+  middleJourney: {
+    triggers: ['middlejourney', 'midjourney prompt', 'midjourney assistant', 'mj prompt'],
+    keywords: ['midjourney', 'middlejourney', 'prompt'],
+    priorityTools: ['"MiddleJourney" Midjourney Prompting Assistant', 'Sora Prompt Assistant'],
+    relatedCategories: ['Image & Design']
+  },
+  maryMagdalene: {
+    triggers: ['mary magdalene', 'magdalene gpt', 'mary magdalene gpt'],
+    keywords: ['mary magdalene', 'magdalene'],
+    priorityTools: ['🕊️Mary Magdalene GPT', 'TALK TO THE GODS GPT'],
+    relatedCategories: ['Spiritual & Philosophy']
+  },
+  snoopImageAi: {
+    triggers: ['snoop image', 'snoop ai', 'ai image detector', 'detect ai image', 'is this ai'],
+    keywords: ['snoop', 'detector', 'ai image'],
+    priorityTools: ['Snoop Image Ai - Experimental AI Image Generation Detector', 'FACT CHECKER GPT'],
+    relatedCategories: ['Investigative & Analysis']
+  },
+  legalDraftsmith: {
+    triggers: ['legal draftsmith', 'legal draft', 'draft legal document', 'legal writer'],
+    keywords: ['legal draft', 'draftsmith', 'legal'],
+    priorityTools: ['Legal Draftsmith GPT', 'Public Defender GPT', 'Contract Review Bot'],
+    relatedCategories: ['Legal & Government']
+  },
+  musicMelodies: {
+    triggers: ['music melodies', 'music lessons', 'music gpt', 'music theory', 'learn music'],
+    keywords: ['music', 'melodies', 'lessons', 'theory'],
+    priorityTools: ['Music Melodies & Lessons GPT', 'Music Video Maker AI Studio'],
+    relatedCategories: ['Multimedia & Content']
+  },
+  sophiaAeterna: {
+    triggers: ['sophia', 'sophia aeterna', 'sophia ai', 'wisdom gpt'],
+    keywords: ['sophia', 'aeterna', 'wisdom'],
+    priorityTools: ['Sophia Aeterna AI', 'ALAN WATTS GPT'],
+    relatedCategories: ['Spiritual & Philosophy']
+  },
+  childrensBookMaker: {
+    triggers: ['children book', 'childrens book', "children's book", 'kids book', 'picture book'],
+    keywords: ['children', 'kids', 'picture book'],
+    priorityTools: ["Children's Picture Book Maker GPT", 'BOOK WRITER GPT', 'Coloring Book Generator GPT'],
+    relatedCategories: ['Writing & Content']
+  },
+  movieSceneMaker: {
+    triggers: ['movie scene', 'scene maker', 'film scene', 'cinematic scene'],
+    keywords: ['scene', 'movie', 'film'],
+    priorityTools: ['Movie Scene Maker GPT', 'Movie Maker Studio AI SUITE', 'Movie Script Writer GPT'],
+    relatedCategories: ['Video & Multimedia']
+  },
+  mentalWellness: {
+    triggers: ['mental wellness', 'mental health', 'wellness gpt', 'therapy gpt', 'anxiety help'],
+    keywords: ['mental', 'wellness', 'health', 'therapy'],
+    priorityTools: ['Mental Wellness GPT', 'Marriage Mender GPT'],
+    relatedCategories: ['Health & Wellness']
+  },
+  legislatorLink: {
+    triggers: ['legislator', 'legislator link', 'contact legislator', 'find legislator', 'representative gpt'],
+    keywords: ['legislator', 'representative', 'contact'],
+    priorityTools: ['Legislator Link GPT', 'Public Testimony Writer GPT', 'Legislation Writer GPT'],
+    relatedCategories: ['Legal & Government']
   }
 };
 
