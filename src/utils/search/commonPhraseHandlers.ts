@@ -10,6 +10,40 @@ export interface PhraseHandler {
 
 // 50 commonly searched phrases mapped to tools
 export const COMMON_PHRASE_HANDLERS: Record<string, PhraseHandler> = {
+  // ===== MOBILE APP DEVELOPMENT (HIGH PRIORITY) =====
+  buildMobileApp: {
+    triggers: [
+      'mobile', 'mobile app', 'mobile apps', 'mobile application',
+      'mobile app builder', 'mobile app development', 'mobile app dev',
+      'build a mobile app', 'build mobile app', 'create mobile app',
+      'make a mobile app', 'make mobile app',
+      'ios app', 'android app', 'iphone app', 'ipad app',
+      'app builder', 'no-code app', 'no code app', 'no-code app builder',
+      'rork', 'rork app', 'rork mobile', 'rork mobile app',
+      'app development', 'mobile development',
+      'flutterflow', 'thunkable', 'expo app', 'react native app',
+    ],
+    keywords: [
+      'mobile', 'app', 'ios', 'android', 'rork', 'no-code',
+      'app builder', 'mobile app', 'expo', 'react native',
+      'flutterflow', 'thunkable', 'lovable', 'bolt.new',
+    ],
+    priorityTools: [
+      'RORK Mobile App Coding Agent',
+      'Lovable',
+      'Bolt.new',
+      'Expo',
+      'React Native',
+      'FlutterFlow',
+      'Thunkable',
+      'Adalo',
+      'Glide',
+      'Bubble',
+      'Softr',
+    ],
+    relatedCategories: ['Developer Tools', 'AI Agents', 'No-Code/Low-Code'],
+  },
+
   // ===== WRITING & CONTENT =====
   writeBook: {
     triggers: ['write a book', 'write book', 'book writing', 'write my book', 'author a book', 'create a book', 'novel writing', 'write novel'],
