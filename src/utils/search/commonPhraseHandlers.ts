@@ -69,6 +69,214 @@ export const COMMON_PHRASE_HANDLERS: Record<string, PhraseHandler> = {
     relatedCategories: ['Developer Tools', 'AI Agents', 'No-Code/Low-Code'],
   },
 
+  // ===== AI CHAT / LLM (HIGH PRIORITY) =====
+  aiChat: {
+    triggers: [
+      'chat', 'chatgpt', 'chat gpt', 'gpt', 'gpt-4', 'gpt 4', 'gpt5', 'gpt-5',
+      'ai chat', 'ai assistant', 'chatbot', 'claude', 'gemini', 'grok',
+      'perplexity', 'mistral', 'llama', 'deepseek', 'copilot',
+      'large language model', 'llm', 'conversational ai',
+    ],
+    keywords: [
+      'chat', 'gpt', 'claude', 'gemini', 'grok', 'llm', 'assistant',
+      'conversation', 'language model', 'ai chatbot',
+    ],
+    priorityTools: [
+      'ChatGPT', 'Claude', 'Gemini', 'Grok', 'Perplexity AI',
+      'Microsoft Copilot', 'DeepSeek', 'Mistral AI', 'Meta AI',
+    ],
+    relatedCategories: ['AI Chat & Conversation', 'AI Development & Platforms'],
+  },
+
+  // ===== IMAGE GENERATION (HIGH PRIORITY) =====
+  imageGen: {
+    triggers: [
+      'image', 'image generator', 'generate image', 'ai image',
+      'midjourney', 'dall-e', 'dalle', 'dall e', 'stable diffusion',
+      'flux', 'leonardo', 'ideogram', 'firefly', 'image creator',
+      'text to image', 'art generator', 'ai art',
+    ],
+    keywords: [
+      'image', 'art', 'picture', 'generate', 'midjourney', 'dalle',
+      'stable diffusion', 'visual', 'illustration',
+    ],
+    priorityTools: [
+      'Midjourney', 'DALL-E 3', 'Stable Diffusion', 'Leonardo AI',
+      'Ideogram', 'Flux', 'Adobe Firefly',
+    ],
+    relatedCategories: ['Image & Design', 'AI Art & Creative'],
+  },
+
+  // ===== VIDEO GENERATION =====
+  videoGen: {
+    triggers: [
+      'video', 'video generator', 'ai video', 'text to video',
+      'sora', 'runway', 'pika', 'kling', 'luma', 'veo', 'heygen',
+      'synthesia', 'invideo', 'movie maker',
+    ],
+    keywords: [
+      'video', 'generate', 'sora', 'runway', 'pika', 'luma',
+      'animation', 'film', 'movie',
+    ],
+    priorityTools: [
+      'Sora (OpenAI)', 'Runway Gen-3', 'Pika', 'Luma Dream Machine',
+      'Kling AI', 'HeyGen', 'Synthesia', 'Movie Maker Studio AI SUITE',
+      'Music Video Maker AI Studio',
+    ],
+    relatedCategories: ['Video & Multimedia'],
+  },
+
+  // ===== MUSIC =====
+  musicGen: {
+    triggers: [
+      'music', 'music generator', 'ai music', 'song', 'suno', 'udio',
+      'compose', 'beat maker', 'lyrics', 'songwriting', 'soundtrack',
+    ],
+    keywords: ['music', 'song', 'audio', 'compose', 'suno', 'udio', 'lyrics'],
+    priorityTools: [
+      'Suno', 'Udio', 'Soundraw', 'AIVA', 'Mubert',
+      'Music Melodies & Lessons GPT', 'Music Video Maker AI Studio',
+    ],
+    relatedCategories: ['Audio & Music'],
+  },
+
+  // ===== HEALTH / DOCTOR =====
+  doctorHealth: {
+    triggers: [
+      'doctor', 'doctor gpt', 'dr gpt', 'medical', 'health', 'symptoms',
+      'diagnosis', 'medicine', 'pharmacy', 'pharmacist', 'medication',
+      'prescription', 'medical advice', 'health info',
+    ],
+    keywords: [
+      'doctor', 'medical', 'health', 'symptom', 'medicine', 'pharma',
+      'prescription', 'diagnosis',
+    ],
+    priorityTools: [
+      'Personalized DR. GPT (Doctor GPT)', 'Medicus - The FREE Personal Medical GPT',
+      'Pharmaceutical Assistant GPT', 'PHARMA RESEARCH PRO',
+      'Mental Wellness GPT', 'Genome GPT',
+    ],
+    relatedCategories: ['Health & Medical', 'Medical AI Tools'],
+  },
+
+  // ===== SURVIVAL / PREPPING =====
+  survival: {
+    triggers: [
+      'survival', 'survivalist', 'prepper', 'prepping', 'wilderness',
+      'bushcraft', 'survive', 'emergency prep', 'doomsday',
+    ],
+    keywords: ['survival', 'wilderness', 'emergency', 'prepper', 'bushcraft'],
+    priorityTools: ['Survivalist GPT', 'Firefighter GPT', 'Firearms Safety Instructor GPT'],
+    relatedCategories: ['Survival & Safety', 'Education & Learning'],
+  },
+
+  // ===== FINANCE / TRADING =====
+  trading: {
+    triggers: [
+      'trading', 'trader', 'stocks', 'stock market', 'crypto',
+      'cryptocurrency', 'forex', 'investment', 'invest', 'trade',
+      'day trading', 'tradingview',
+    ],
+    keywords: ['trade', 'stock', 'crypto', 'invest', 'forex', 'market'],
+    priorityTools: ['Trader GPT', 'TradingView', 'Composer'],
+    relatedCategories: ['Finance & Trading'],
+  },
+
+  // ===== LEGAL =====
+  legalHelp: {
+    triggers: [
+      'legal', 'lawyer', 'attorney', 'contract', 'contract review',
+      'law', 'public defender', 'legal advice', 'legal help',
+      'legislation', 'testimony',
+    ],
+    keywords: ['legal', 'law', 'contract', 'attorney', 'lawyer', 'court'],
+    priorityTools: [
+      'Public Defender GPT', 'Contract Review Bot',
+      'Legislation Writer GPT', 'Public Testimony Writer GPT',
+      'Legal Draftsmith GPT',
+    ],
+    relatedCategories: ['Legal & Compliance'],
+  },
+
+  // ===== TRAVEL =====
+  travel: {
+    triggers: [
+      'travel', 'vacation', 'trip', 'travel planner', 'itinerary',
+      'flight', 'hotel', 'booking', 'travel agent',
+    ],
+    keywords: ['travel', 'vacation', 'trip', 'itinerary', 'flight', 'hotel'],
+    priorityTools: ['Travel Advisor GPT', 'MULTITASKER GPT'],
+    relatedCategories: ['Travel & Lifestyle'],
+  },
+
+  // ===== AUTOMOTIVE =====
+  automotive: {
+    triggers: [
+      'car', 'auto', 'automobile', 'vehicle', 'car repair', 'mechanic',
+      'car buying', 'car maintenance', 'truck',
+    ],
+    keywords: ['car', 'auto', 'vehicle', 'mechanic', 'repair'],
+    priorityTools: ['AUTOMOBILE GPT'],
+    relatedCategories: ['Automotive', 'Lifestyle'],
+  },
+
+  // ===== REAL ESTATE / PROPERTY =====
+  realEstate: {
+    triggers: [
+      'real estate', 'property', 'house', 'home value', 'property data',
+      'realtor', 'mortgage', 'property finder', 'home buying',
+    ],
+    keywords: ['property', 'real estate', 'house', 'home', 'realtor', 'mortgage'],
+    priorityTools: [
+      'Property Data Finder GPT', 'Predictive Credit Score Checker GPT',
+      'Home Renovator GPT 🏡🔧', 'Solar Land Assessor GPT',
+    ],
+    relatedCategories: ['Real Estate', 'Finance & Trading'],
+  },
+
+  // ===== SPIRITUAL / PHILOSOPHY =====
+  spiritual: {
+    triggers: [
+      'spiritual', 'spirituality', 'god', 'gods', 'divine', 'meditation',
+      'tarot', 'fortune', 'oracle', 'astrology', 'philosophy', 'wisdom',
+      'soul', 'consciousness', 'enlightenment',
+    ],
+    keywords: ['spiritual', 'god', 'divine', 'soul', 'meditation', 'wisdom'],
+    priorityTools: [
+      'TALK TO THE GODS GPT', 'ALAN WATTS GPT', 'Oraculum – The Revealer of Hidden "Truths"',
+      'Sophia Aeterna AI', '🕊️Mary Magdalene GPT', 'Resurrection GPT',
+      'Fortune Teller GPT', 'Dream Interpreter GPT',
+    ],
+    relatedCategories: ['Spirituality & Philosophy'],
+  },
+
+  // ===== FOOD / COOKING =====
+  cooking: {
+    triggers: [
+      'recipe', 'cook', 'cooking', 'chef', 'meal', 'dinner', 'food',
+      'restaurant menu', 'mixology', 'cocktail', 'bartender',
+    ],
+    keywords: ['recipe', 'cook', 'chef', 'meal', 'food', 'menu'],
+    priorityTools: [
+      'Chef "Sizzle" AI Culinary Assistant', 'Mixologist GPT',
+      'Restaurant Menu Maker GPT', 'Food Quality Inspector GPT',
+    ],
+    relatedCategories: ['Food & Cooking', 'Lifestyle'],
+  },
+
+  // ===== PRESENTATION / PPT =====
+  presentation: {
+    triggers: [
+      'presentation', 'powerpoint', 'ppt', 'pptx', 'slides', 'slide deck',
+      'pitch deck', 'gamma', 'tome',
+    ],
+    keywords: ['presentation', 'powerpoint', 'slides', 'deck'],
+    priorityTools: [
+      'PPTx Powerpoint Maker GPT', 'Gamma', 'Tome', 'Beautiful.ai',
+    ],
+    relatedCategories: ['Productivity', 'Business Tools'],
+  },
+
   // ===== WRITING & CONTENT =====
   writeBook: {
     triggers: ['write a book', 'write book', 'book writing', 'write my book', 'author a book', 'create a book', 'novel writing', 'write novel'],
