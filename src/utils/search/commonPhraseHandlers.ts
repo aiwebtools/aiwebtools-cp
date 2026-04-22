@@ -2428,7 +2428,7 @@ export const COMMON_PHRASE_HANDLERS: Record<string, PhraseHandler> = {
     priorityTools: ['Coloring Book Generator GPT', "Children's Picture Book Maker GPT"],
     relatedCategories: ['Creative & Media']
   },
-  publicTestimony: {
+  publicTestimonyBoost: {
     triggers: ['public testimony', 'testimony writer', 'write testimony', 'legislative testimony'],
     keywords: ['testimony', 'public', 'legislative'],
     priorityTools: ['Public Testimony Writer GPT', 'Legislator Link GPT', 'Legislation Writer GPT'],
