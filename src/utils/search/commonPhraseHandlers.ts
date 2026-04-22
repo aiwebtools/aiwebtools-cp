@@ -2609,6 +2609,66 @@ export const COMMON_PHRASE_HANDLERS: Record<string, PhraseHandler> = {
     ],
     priorityTools: ['Mindmap Maestro GPT'],
     relatedCategories: ['Utility & Productivity']
+  },
+  raybanMeta: {
+    triggers: ['ray-ban', 'rayban', 'ray ban', 'ray-ban meta', 'meta glasses', 'meta smart glasses', 'meta wayfarer'],
+    keywords: ['ray-ban meta', 'meta smart glasses', 'AI glasses', 'smart glasses'],
+    priorityTools: ['Ray-Ban Meta Smart Glasses', 'Meta AI Glasses', 'Even Realities G1', 'Brilliant Labs Frame'],
+    relatedCategories: ['AI Gadgets & Devices']
+  },
+  evenRealities: {
+    triggers: ['even realities', 'even g1', 'g1 glasses', 'evenrealities'],
+    keywords: ['even realities', 'g1', 'AI glasses', 'translation glasses'],
+    priorityTools: ['Even Realities G1', 'Ray-Ban Meta Smart Glasses', 'Brilliant Labs Frame'],
+    relatedCategories: ['AI Gadgets & Devices']
+  },
+  brilliantFrame: {
+    triggers: ['brilliant labs', 'brilliant frame', 'frame glasses', 'noa ai'],
+    keywords: ['brilliant labs', 'frame', 'noa', 'open source AI glasses'],
+    priorityTools: ['Brilliant Labs Frame', 'Even Realities G1', 'Ray-Ban Meta Smart Glasses'],
+    relatedCategories: ['AI Gadgets & Devices']
+  },
+  omiAi: {
+    triggers: ['omi', 'omi ai', 'omi necklace', 'based hardware', 'omi pendant'],
+    keywords: ['omi', 'omi necklace', 'AI necklace', 'AI pendant', 'second brain wearable'],
+    priorityTools: ['Omi AI Necklace', 'Friend AI Pendant', 'Limitless Pendant', 'Rewind Pendant'],
+    relatedCategories: ['AI Gadgets & Devices']
+  },
+  plaudNote: {
+    triggers: ['plaud', 'plaud note', 'plaud ai', 'plaud recorder'],
+    keywords: ['plaud', 'plaud note', 'AI voice recorder', 'AI transcription'],
+    priorityTools: ['Plaud Note', 'Plaud NotePin'],
+    relatedCategories: ['AI Gadgets & Devices']
+  },
+  insta360: {
+    triggers: ['insta360', 'insta 360', 'go 3s', 'insta360 go', 'thumb camera'],
+    keywords: ['insta360', 'go 3s', 'AI action camera', '4K mini camera', 'wearable camera'],
+    priorityTools: ['Insta360 GO 3S'],
+    relatedCategories: ['AI Gadgets & Devices']
+  },
+  looiRobot: {
+    triggers: ['looi', 'looi robot', 'desktop robot', 'phone robot'],
+    keywords: ['looi', 'desktop AI robot', 'phone robot', 'AI desk companion'],
+    priorityTools: ['Looi Robot', 'Eilik', 'Loona Petbot'],
+    relatedCategories: ['AI Gadgets & Devices']
+  },
+  eilikRobot: {
+    triggers: ['eilik', 'energize lab', 'desk robot', 'desktop pet robot'],
+    keywords: ['eilik', 'desk robot', 'AI desk companion', 'emotional robot'],
+    priorityTools: ['Eilik', 'Looi Robot', 'Loona Petbot'],
+    relatedCategories: ['AI Gadgets & Devices']
+  },
+  loonaPetbot: {
+    triggers: ['loona', 'loona petbot', 'keyi', 'robot puppy', 'robot dog pet'],
+    keywords: ['loona', 'KEYi', 'AI robot dog', 'robot puppy', 'AI pet robot'],
+    priorityTools: ['Loona Petbot', 'Eilik', 'Looi Robot'],
+    relatedCategories: ['AI Gadgets & Devices']
+  },
+  rewindPendant: {
+    triggers: ['rewind', 'rewind pendant', 'rewind ai', 'memory pendant', 'life logger'],
+    keywords: ['rewind', 'rewind pendant', 'AI memory pendant', 'AI life logger', 'second brain'],
+    priorityTools: ['Rewind Pendant', 'Limitless Pendant', 'Friend AI Pendant', 'Omi AI Necklace'],
+    relatedCategories: ['AI Gadgets & Devices']
   }
 };
 
