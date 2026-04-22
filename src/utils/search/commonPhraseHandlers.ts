@@ -2595,6 +2595,20 @@ export const COMMON_PHRASE_HANDLERS: Record<string, PhraseHandler> = {
     keywords: ['legislator', 'representative', 'contact'],
     priorityTools: ['Legislator Link GPT', 'Public Testimony Writer GPT', 'Legislation Writer GPT'],
     relatedCategories: ['Legal & Government']
+  },
+  mindmapMaestro: {
+    triggers: [
+      'mind', 'mindm', 'mindma', 'mindmap', 'mind map', 'mind mapping',
+      'mindmaps', 'mind maps', 'maestro', 'mindmap maestro',
+      'mindmap maestro gpt', 'concept map', 'visual thinking',
+      'brainstorm map', 'idea map', 'knowledge map'
+    ],
+    keywords: [
+      'mindmap', 'mind map', 'mind mapping', 'maestro', 'visual thinking',
+      'brainstorm', 'concept map', 'knowledge graph', 'outline', 'organize ideas'
+    ],
+    priorityTools: ['Mindmap Maestro GPT'],
+    relatedCategories: ['Utility & Productivity']
   }
 };
 
