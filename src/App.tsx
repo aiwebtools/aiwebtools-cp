@@ -18,12 +18,12 @@ import "@/styles/loading-cube.css";
 import ScrollProgressIndicator from "@/components/ScrollProgressIndicator";
 import { getConsentAccepted } from "@/utils/consent";
 
-// Eager load - critical path (home page AND disclaimer gate for instant first load)
-import Index from "./pages/Index";
+// Eager load - keep disclaimer gate instant; lazy-load heavy app routes to avoid black-screen startup
 import DisclaimerGate from "./pages/DisclaimerGate";
-import ToolDetail from "./pages/ToolDetail";
 
 // Lazy load - secondary pages for faster initial load
+const Index = lazy(() => import("./pages/Index"));
+const ToolDetail = lazy(() => import("./pages/ToolDetail"));
 const CategoryPage = lazy(() => import("./pages/CategoryPage"));
 const MainCategoryPage = lazy(() => import("./pages/MainCategoryPage"));
 const SimilarToolsPage = lazy(() => import("./pages/SimilarTools"));
