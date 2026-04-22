@@ -688,6 +688,69 @@ export const getExpandedKeywords = (searchTerm: string): string[] => {
       lowerSearchTerm.includes('past') || lowerSearchTerm.includes('ancient') ||
       lowerSearchTerm.includes('time') || lowerSearchTerm.includes('era') ||
       lowerSearchTerm.includes('period') || lowerSearchTerm.includes('civilization')) {
+
+    // Skip history expansion when query is clearly mobile-app related
+    // (e.g., "mobile app" contains no history words, but guard for safety)
+  }
+
+  // MOBILE APP / APP BUILDER SEARCH EXPANSION - HIGHEST PRIORITY
+  // Triggers for: "mobile", "mobile app", "mobile apps", "mobile app builder",
+  // "ios app", "android app", "rork", "app builder", "no-code app"
+  const isMobileAppQuery =
+    /\bmobile\b/i.test(lowerSearchTerm) ||
+    /\brork\b/i.test(lowerSearchTerm) ||
+    /\bios\s+app/i.test(lowerSearchTerm) ||
+    /\bandroid\s+app/i.test(lowerSearchTerm) ||
+    /\bapp\s+build/i.test(lowerSearchTerm) ||
+    /\bbuild\s+(an?\s+)?app\b/i.test(lowerSearchTerm) ||
+    /\bno[- ]?code\s+app/i.test(lowerSearchTerm) ||
+    /\bflutter\s*flow\b/i.test(lowerSearchTerm);
+
+  if (isMobileAppQuery) {
+    const mobileAppKeywords = [
+      'rork mobile app coding agent',
+      'rork mobile application vibe coding agent',
+      'rork',
+      'lovable',
+      'lovable.dev',
+      'bolt.new',
+      'expo',
+      'react native',
+      'flutterflow',
+      'thunkable',
+      'adalo',
+      'glide',
+      'bubble',
+      'softr',
+      'draftbit',
+      'appgyver',
+      'buildfire',
+      'mobile app',
+      'mobile app builder',
+      'mobile app development',
+      'app builder',
+      'no-code app builder',
+      'vibe coding',
+      'vibe coding agent',
+      'ios',
+      'android',
+      'iphone',
+      'ipad',
+      'smartphone',
+    ];
+    mobileAppKeywords.forEach((k) => expandedKeywords.add(k));
+    console.log(`📱 MOBILE APP SEARCH DETECTED: Added ${mobileAppKeywords.length} mobile app keywords`);
+  }
+
+  // HISTORY SEARCH EXPANSION - HIGHEST PRIORITY (re-entry point — original logic continues)
+  if (
+    !isMobileAppQuery &&
+    (lowerSearchTerm.includes('history') || lowerSearchTerm.includes('historical') ||
+      lowerSearchTerm.includes('past') || lowerSearchTerm.includes('ancient') ||
+      (lowerSearchTerm.includes('time') && !/\bmobile\b/.test(lowerSearchTerm)) ||
+      lowerSearchTerm.includes('era') ||
+      lowerSearchTerm.includes('period') || lowerSearchTerm.includes('civilization'))
+  ) {
     const historyKeywords = [
       'time machine gpt',
       'talk to history gpt',
