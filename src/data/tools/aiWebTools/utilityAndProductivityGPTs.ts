@@ -33,6 +33,7 @@ import checklistCreatorHero from "@/assets/tools/checklist-creator-hero.jpg";
 import progressTrackerHero from "@/assets/tools/progress-tracker-hero.jpg";
 import workflowOptimizerHero from "@/assets/tools/workflow-optimizer-hero.jpg";
 import aiLanguageTranslatorHero from "@/assets/tools/ai-language-translator-hero.jpg";
+import mindmapMaestroGptHero from "@/assets/tools/mindmap-maestro-gpt-hero.jpg";
 
 export const utilityAndProductivityGPTs: Tool[] = [
   {
@@ -230,5 +231,40 @@ export const utilityAndProductivityGPTs: Tool[] = [
     category: "Utility & Productivity",
     rating: 4.7,
     totalVotes: 3892
+  },
+  {
+    icon: Workflow,
+    title: "Mindmap Maestro GPT",
+    description: "Mindmap Maestro GPT by AIWebTools.AI is your master conductor for visual thinking — instantly transforming any topic, document, or brainstorm into beautifully organized mind maps. From study notes and project plans to business strategies, research breakdowns, and creative ideation, Mindmap Maestro structures your thoughts into clear, branching visual hierarchies that unlock clarity, memory retention, and breakthrough insight. Whether you're a student, founder, teacher, or strategist, this AI orchestrates your ideas into actionable, exportable mind maps with elegance and precision.",
+    emoji: "🧠",
+    color: "from-green-500 to-emerald-600",
+    directUrl: "https://chatgpt.com/g/g-6cLfhefUj-mindmap-maestro",
+    imageUrl: mindmapMaestroGptHero,
+    tags: [
+      "mindmap maestro",
+      "mindmap maestro gpt",
+      "mind map",
+      "mind maps",
+      "mindmap",
+      "mindmaps",
+      "mind mapping",
+      "visual thinking",
+      "brainstorming",
+      "knowledge graph",
+      "concept map",
+      "idea organization",
+      "study notes",
+      "note taking",
+      "productivity",
+      "planning",
+      "outline generator",
+      "aiwebtools",
+      "Custom GPT",
+      "Brainstorming & Ideation",
+      "Productivity"
+    ],
+    category: "Utility & Productivity",
+    rating: 4.9,
+    totalVotes: 2871
   }
 ];

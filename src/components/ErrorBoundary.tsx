@@ -21,6 +21,21 @@ class ErrorBoundary extends Component<Props, State> {
 
   public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     console.error('ErrorBoundary caught an error:', error, errorInfo);
+    // Self-heal stale Vite chunk errors with a single hard reload.
+    // These happen when a deploy/HMR invalidates a previously fetched module URL.
+    const msg = error?.message || '';
+    const isChunkError =
+      /Failed to fetch dynamically imported module/i.test(msg) ||
+      /Importing a module script failed/i.test(msg) ||
+      /ChunkLoadError/i.test(msg) ||
+      /Loading chunk [\d]+ failed/i.test(msg);
+    if (isChunkError && typeof window !== 'undefined') {
+      const KEY = '__chunk_reload_attempted__';
+      if (!sessionStorage.getItem(KEY)) {
+        sessionStorage.setItem(KEY, '1');
+        window.location.reload();
+      }
+    }
   }
 
   public render() {
