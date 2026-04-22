@@ -183,7 +183,7 @@ export const COMMON_PHRASE_HANDLERS: Record<string, PhraseHandler> = {
   },
 
   // ===== LEGAL =====
-  legalHelp: {
+  legalToolsBoost: {
     triggers: [
       'legal', 'lawyer', 'attorney', 'contract', 'contract review',
       'law', 'public defender', 'legal advice', 'legal help',
