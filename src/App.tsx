@@ -247,15 +247,19 @@ const GlobalOverlays: React.FC = () => {
       <WelcomeNeoVoice />
       {/* Tiny floating clone button - hides on scroll */}
       {show ? (
-        <Suspense fallback={null}>
-          <FloatingCloneButton />
-        </Suspense>
+        <ErrorBoundary fallback={null}>
+          <Suspense fallback={null}>
+            <FloatingCloneButton />
+          </Suspense>
+        </ErrorBoundary>
       ) : null}
       {/* Pinned rotating video player - lower left corner */}
       {show ? (
-        <Suspense fallback={null}>
-          <PinnedVideoPlayer />
-        </Suspense>
+        <ErrorBoundary fallback={null}>
+          <Suspense fallback={null}>
+            <PinnedVideoPlayer />
+          </Suspense>
+        </ErrorBoundary>
       ) : null}
     </>
   );
