@@ -21,9 +21,30 @@ import { getConsentAccepted } from "@/utils/consent";
 // Eager load - keep disclaimer gate instant; lazy-load heavy app routes to avoid black-screen startup
 import DisclaimerGate from "./pages/DisclaimerGate";
 
+// Retry wrapper for lazy imports — prevents black screen on transient
+// "Failed to fetch dynamically imported module" errors (HMR / flaky network).
+function lazyWithRetry<T extends React.ComponentType<any>>(
+  factory: () => Promise<{ default: T }>,
+  retries = 2,
+  delayMs = 400,
+) {
+  return lazy(async () => {
+    let lastErr: unknown;
+    for (let i = 0; i <= retries; i++) {
+      try {
+        return await factory();
+      } catch (err) {
+        lastErr = err;
+        await new Promise((r) => setTimeout(r, delayMs * (i + 1)));
+      }
+    }
+    throw lastErr;
+  });
+}
+
 // Lazy load - secondary pages for faster initial load
-const Index = lazy(() => import("./pages/Index"));
-const ToolDetail = lazy(() => import("./pages/ToolDetail"));
+const Index = lazyWithRetry(() => import("./pages/Index"));
+const ToolDetail = lazyWithRetry(() => import("./pages/ToolDetail"));
 const CategoryPage = lazy(() => import("./pages/CategoryPage"));
 const MainCategoryPage = lazy(() => import("./pages/MainCategoryPage"));
 const SimilarToolsPage = lazy(() => import("./pages/SimilarTools"));
@@ -46,9 +67,9 @@ const AIWritingToolsPage = lazy(() => import("./pages/AIWritingToolsPage"));
 const AIWebToolsPage = lazy(() => import("./pages/AIWebToolsPage"));
 const AdminAnalytics = lazy(() => import("./pages/AdminAnalytics"));
 
-// Lazy load non-critical components
-const FloatingCloneButton = lazy(() => import("./components/FloatingCloneButton"));
-const PinnedVideoPlayer = lazy(() => import("./components/PinnedVideoPlayer"));
+// Lazy load non-critical components — wrapped in retry to prevent black screen
+const FloatingCloneButton = lazyWithRetry(() => import("./components/FloatingCloneButton"));
+const PinnedVideoPlayer = lazyWithRetry(() => import("./components/PinnedVideoPlayer"));
 
 // Welcome Neo voice - plays when user lands on main site after accepting disclaimer
 const WelcomeNeoVoice = () => {
