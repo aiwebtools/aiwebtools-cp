@@ -614,3 +614,6 @@ export { aiGadgetsDevicesBatch2026 } from './aiGadgetsDevicesBatch2026';
 
 // Export One More Shot AI (AI music video generator — cinematic music videos from songs/prompts)
 export { oneMoreShotAi } from './oneMoreShotAi';
+
+// Export Trending AI Batch 2026 April (10 tools: Cluely, Felo AI, Inflection Pi, SambaNova, Same.dev, Lambda Labs, MotherDuck, Milvus, Heyboss AI, MultiOn AI)
+export { trendingAiBatch2026Apr } from './trendingAiBatch2026Apr';
