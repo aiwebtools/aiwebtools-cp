@@ -2675,6 +2675,66 @@ export const COMMON_PHRASE_HANDLERS: Record<string, PhraseHandler> = {
     keywords: ['One More Shot AI', 'AI music video generator', 'cinematic music video', 'song to video', 'lyric video AI', 'music video maker'],
     priorityTools: ['One More Shot AI', 'Music Video Maker AI Studio', 'Movie Maker Studio AI SUITE'],
     relatedCategories: ['Video & Multimedia']
+  },
+  cluely: {
+    triggers: ['cluely', 'invisible ai', 'screen ai', 'meeting copilot', 'interview ai', 'stealth ai', 'ai overlay'],
+    keywords: ['Cluely', 'invisible AI', 'screen-watching AI', 'real-time AI assistant', 'meeting copilot', 'interview assistant'],
+    priorityTools: ['Cluely'],
+    relatedCategories: ['AI Tools & Utilities']
+  },
+  feloAi: {
+    triggers: ['felo', 'felo ai', 'multilingual search', 'multilingual ai search', 'cross language search'],
+    keywords: ['Felo AI', 'multilingual AI search', 'global answer engine', 'cross-language search'],
+    priorityTools: ['Felo AI', 'Perplexity AI Search Engine'],
+    relatedCategories: ['Search & Productivity']
+  },
+  inflectionPi: {
+    triggers: ['pi ai', 'inflection', 'inflection pi', 'pi.ai', 'empathetic ai', 'ai companion', 'ai friend'],
+    keywords: ['Pi', 'Inflection Pi', 'empathetic AI', 'AI companion', 'kind AI'],
+    priorityTools: ['Inflection Pi'],
+    relatedCategories: ['AI Chat Platforms']
+  },
+  sambanova: {
+    triggers: ['sambanova', 'samba nova', 'fast inference', 'rdu chip', 'fastest llm'],
+    keywords: ['SambaNova', 'AI inference', 'fast LLM hosting', 'RDU chip', 'enterprise AI inference'],
+    priorityTools: ['SambaNova', 'Groq', 'Cerebras'],
+    relatedCategories: ['AI Tools & Development']
+  },
+  sameDev: {
+    triggers: ['same.dev', 'same dev', 'website cloner', 'clone website ai', 'clone any website'],
+    keywords: ['Same.dev', 'AI website cloner', 'pixel perfect clone', 'website to React'],
+    priorityTools: ['Same.dev'],
+    relatedCategories: ['AI Tools & Development']
+  },
+  lambdaLabs: {
+    triggers: ['lambda labs', 'lambda gpu', 'lambda cloud', 'h100 cloud', 'h200 cloud', 'gpu cloud'],
+    keywords: ['Lambda Labs', 'GPU cloud', 'H100 hosting', 'AI training compute'],
+    priorityTools: ['Lambda Labs', 'RunPod', 'Together AI'],
+    relatedCategories: ['AI Tools & Development']
+  },
+  motherduck: {
+    triggers: ['motherduck', 'duckdb', 'serverless analytics', 'duck db'],
+    keywords: ['MotherDuck', 'DuckDB', 'serverless data warehouse', 'AI analytics'],
+    priorityTools: ['MotherDuck'],
+    relatedCategories: ['AI Tools & Development']
+  },
+  milvus: {
+    triggers: ['milvus', 'vector database', 'open source vector db', 'rag database', 'embedding database'],
+    keywords: ['Milvus', 'vector database', 'RAG', 'semantic search', 'embedding store'],
+    priorityTools: ['Milvus', 'Pinecone', 'Weaviate', 'Qdrant'],
+    relatedCategories: ['AI Tools & Development']
+  },
+  heybossAi: {
+    triggers: ['heyboss', 'hey boss', 'heyboss ai', 'ai app builder', 'text to app'],
+    keywords: ['Heyboss AI', 'AI app builder', 'AI website builder', 'text to app'],
+    priorityTools: ['Heyboss AI', 'Lovable', 'Bolt.new'],
+    relatedCategories: ['AI Tools & Development']
+  },
+  multionAi: {
+    triggers: ['multion', 'multi on', 'multion ai', 'web agent', 'browser agent', 'autonomous web agent', 'ai that browses'],
+    keywords: ['MultiOn', 'autonomous web agent', 'AI browser agent', 'web automation agent'],
+    priorityTools: ['MultiOn AI', 'Browser Use', 'Convergence'],
+    relatedCategories: ['AI Agents']
   }
 };
 
