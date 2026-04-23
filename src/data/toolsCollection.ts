@@ -254,6 +254,9 @@ import { aiGadgetsDevicesTools } from './tools/aiGadgetsDevicesTools';
 // Import AI Gadgets & Devices Batch 2026 (Ray-Ban Meta, Even Realities G1, Brilliant Frame, Omi, Plaud Note, Insta360 GO 3S, Looi, Eilik, Loona, Rewind Pendant)
 import { aiGadgetsDevicesBatch2026 } from './tools/aiGadgetsDevicesBatch2026';
 
+// Import One More Shot AI (AI music video generator)
+import { oneMoreShotAi } from './tools/oneMoreShotAi';
+
 // Import AI Hardware (legacy - moved to gadgets)
 import { aiHardware } from './tools/aiHardware';
 
@@ -526,6 +529,7 @@ export const getAllToolCategories = (): Tool[] => {
     ...roboticsCompanies,
     ...aiGadgetsDevicesTools,
     ...aiGadgetsDevicesBatch2026,
+    ...oneMoreShotAi,
     ...aiHardware,
     
     // NEW 2025: Additional tools

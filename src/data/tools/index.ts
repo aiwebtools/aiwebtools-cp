@@ -611,3 +611,6 @@ export { wearablesRobotsBatch2026Part3 } from './wearablesRobotsBatch2026Part3';
 
 // Export AI Gadgets & Devices Batch 2026 (10 tools: Ray-Ban Meta, Even Realities G1, Brilliant Frame, Omi, Plaud Note, Insta360 GO 3S, Looi, Eilik, Loona, Rewind Pendant)
 export { aiGadgetsDevicesBatch2026 } from './aiGadgetsDevicesBatch2026';
+
+// Export One More Shot AI (AI music video generator — cinematic music videos from songs/prompts)
+export { oneMoreShotAi } from './oneMoreShotAi';

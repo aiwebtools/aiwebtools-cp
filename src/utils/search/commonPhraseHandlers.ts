@@ -2669,6 +2669,12 @@ export const COMMON_PHRASE_HANDLERS: Record<string, PhraseHandler> = {
     keywords: ['rewind', 'rewind pendant', 'AI memory pendant', 'AI life logger', 'second brain'],
     priorityTools: ['Rewind Pendant', 'Limitless Pendant', 'Friend AI Pendant', 'Omi AI Necklace'],
     relatedCategories: ['AI Gadgets & Devices']
+  },
+  oneMoreShotAi: {
+    triggers: ['one more shot', 'onemoreshot', 'one more shot ai', 'music video ai', 'ai music video', 'cinematic music video', 'song to video', 'lyric video'],
+    keywords: ['One More Shot AI', 'AI music video generator', 'cinematic music video', 'song to video', 'lyric video AI', 'music video maker'],
+    priorityTools: ['One More Shot AI', 'Music Video Maker AI Studio', 'Movie Maker Studio AI SUITE'],
+    relatedCategories: ['Video & Multimedia']
   }
 };
 
