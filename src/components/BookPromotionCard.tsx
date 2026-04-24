@@ -232,6 +232,101 @@ const BookPromotionCard = () => {
       id: "mwljVsoKeZU",
       title: "AI Web Tools Showcase 24",
       gradient: "from-orange-500/20 to-red-500/20"
+    },
+    {
+      id: "sKkiTqYh3P4",
+      title: "AI Web Tools Showcase 25",
+      gradient: "from-pink-500/20 to-rose-500/20"
+    },
+    {
+      id: "LaQqXZeqb1Y",
+      title: "AI Web Tools Showcase 26",
+      gradient: "from-violet-500/20 to-purple-500/20"
+    },
+    {
+      id: "DMUCTY3e-Kc",
+      title: "AI Web Tools Showcase 27",
+      gradient: "from-indigo-500/20 to-blue-500/20"
+    },
+    {
+      id: "RMMyWOnBrro",
+      title: "AI Web Tools Showcase 28",
+      gradient: "from-sky-500/20 to-cyan-500/20"
+    },
+    {
+      id: "f2HJE0rHF88",
+      title: "AI Web Tools Showcase 29",
+      gradient: "from-teal-500/20 to-emerald-500/20"
+    },
+    {
+      id: "vF_TMbdLCdA",
+      title: "AI Web Tools Showcase 30",
+      gradient: "from-green-500/20 to-lime-500/20"
+    },
+    {
+      id: "srA41eHKfGc",
+      title: "AI Web Tools Showcase 31",
+      gradient: "from-yellow-500/20 to-amber-500/20"
+    },
+    {
+      id: "37XnviX1yZ0",
+      title: "AI Web Tools Showcase 32",
+      gradient: "from-orange-500/20 to-red-500/20"
+    },
+    {
+      id: "rXgZcgZnIis",
+      title: "AI Web Tools Showcase 33",
+      gradient: "from-rose-500/20 to-pink-500/20"
+    },
+    {
+      id: "9TflLd00Lhw",
+      title: "AI Web Tools Showcase 34",
+      gradient: "from-fuchsia-500/20 to-violet-500/20"
+    },
+    {
+      id: "O6DG34FQK6E",
+      title: "AI Web Tools Showcase 35",
+      gradient: "from-purple-500/20 to-indigo-500/20"
+    },
+    {
+      id: "eQcBgybGwIg",
+      title: "AI Web Tools Showcase 36",
+      gradient: "from-blue-500/20 to-sky-500/20"
+    },
+    {
+      id: "4_cIoCi9OY8",
+      title: "AI Web Tools Showcase 37",
+      gradient: "from-cyan-500/20 to-teal-500/20"
+    },
+    {
+      id: "pAkZqkvd-Ak",
+      title: "AI Web Tools Showcase 38",
+      gradient: "from-emerald-500/20 to-green-500/20"
+    },
+    {
+      id: "qbfeh6We4u0",
+      title: "AI Web Tools Showcase 39",
+      gradient: "from-lime-500/20 to-yellow-500/20"
+    },
+    {
+      id: "nUfoKuBE9NQ",
+      title: "AI Web Tools Showcase 40",
+      gradient: "from-amber-500/20 to-orange-500/20"
+    },
+    {
+      id: "Vln79Im3I0g",
+      title: "AI Web Tools Showcase 41",
+      gradient: "from-red-500/20 to-rose-500/20"
+    },
+    {
+      id: "Yjl6rVHR_jo",
+      title: "AI Web Tools Showcase 42",
+      gradient: "from-pink-500/20 to-fuchsia-500/20"
+    },
+    {
+      id: "-wZ_fWUE1mg",
+      title: "AI Web Tools Showcase 43",
+      gradient: "from-violet-500/20 to-purple-500/20"
     }
   ];
 
