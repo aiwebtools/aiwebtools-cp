@@ -194,7 +194,7 @@ export const healthcareAITools2025Batch2: Tool[] = [
     description: "Intelligent AI chatbot designed to help healthcare professionals get accurate answers to complex medical questions. Access reliable medical information for clinical decision support.",
     emoji: "💬",
     color: "from-blue-500 to-blue-600",
-    directUrl: "https://chatgpt.com/g/g-PFQijmS57-medical-ai/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-PFQijmS57-medical-ai/",
     imageUrl: "/src/assets/tools/medical-chat-hero.png",
     tags: ["medical chatbot", "healthcare AI", "clinical support", "medical Q&A", "doctor assistant", "health information help"],
     category: "Healthcare & Medical AI",

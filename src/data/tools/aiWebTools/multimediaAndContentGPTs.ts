@@ -9,7 +9,7 @@ export const multimediaAndContentGPTs: Tool[] = [
     description: "I'm NewsChannel GPT, your live TV news reporter AI, bringing your Customized Live Local and World News 24/7 news tailored to you! Get personalized news coverage, breaking stories, and comprehensive reporting on topics that matter most to you. This AI delivers news in engaging broadcast style, covering local events, global affairs, politics, business, technology, sports, entertainment, and more with professional journalism standards.",
     emoji: "📺",
     color: "from-red-500 to-blue-600",
-    directUrl: "https://chatgpt.com/g/g-ELRe07210-news-channel-gpt?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-ELRe07210-news-channel-gpt",
     imageUrl: "/src/assets/tools/news-channel-gpt-hero.png",
     tags: ["news", "news channel", "live news", "TV news", "world news", "local news", "breaking news", "journalism", "news reporter", "Custom GPT", "aiwebtools"],
     category: "Multimedia & Content",

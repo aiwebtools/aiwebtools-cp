@@ -745,7 +745,7 @@ export const moreRealAITools: Tool[] = [
     description: "AI-powered news summarization tool that creates brief summaries of articles.",
     emoji: "📰",
     color: "from-blue-500 to-purple-600",
-    directUrl: "https://chatgpt.com/g/g-683e55bf739c8191983241faaf028062-summari?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-683e55bf739c8191983241faaf028062-summari",
     tags: ["news summarization", "article summary", "AI reading", "information digest", "content curation"],
     category: "News & Information",
     rating: 4.1,

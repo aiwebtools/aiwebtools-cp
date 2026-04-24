@@ -134,7 +134,7 @@ export const newPersonalDevelopmentTools: Tool[] = [
     description: "Achieve your fitness goals with the Fitness Coach GPT. This AI personal trainer provides customized workout plans, nutrition guidance, and motivation to help you get in shape and maintain a healthy lifestyle. Whether you're a beginner or advanced athlete, get the support you need to succeed.",
     emoji: "💪",
     color: "from-orange-400 to-red-500",
-    directUrl: "https://chatgpt.com/g/g-68afaae3f8e881918d8b84b7ca85a413-fitness-coach/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68afaae3f8e881918d8b84b7ca85a413-fitness-coach/",
     videoUrl: "https://www.youtube.com/watch?v=eHInYKxyKm4",
     tags: ["fitness", "personal training", "workout plans", "nutrition", "health", "exercise", "fitness coach"],
     category: "Personal Development & Self-Discovery",

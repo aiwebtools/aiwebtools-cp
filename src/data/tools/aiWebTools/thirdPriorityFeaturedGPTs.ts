@@ -113,7 +113,7 @@ export const thirdPriorityFeaturedGPTs: Tool[] = [
     emoji: "⚗️",
     color: "from-green-600 to-brown-500",
     category: "Health, Wellness & Personal Lifestyle",
-    directUrl: "https://chatgpt.com/g/g-67d839556b848191a7572b1f3e911499-historical-apothecary-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-67d839556b848191a7572b1f3e911499-historical-apothecary-gpt/",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-digital-advertisement-for-the-ai-tool-_kLdMI.png/:/cr=t:0%25,l:7.93%25,w:84.15%25,h:100%25/rs=w:1200,cg:true",
     rating: 4.5,
     totalVotes: 3100,

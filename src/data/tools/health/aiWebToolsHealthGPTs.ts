@@ -19,7 +19,7 @@ export const aiWebToolsHealthGPTs: Tool[] = [
     description: "MIND & BODY GPT (Neurophysical Titan) is an advanced AI specialist that integrates mental and physical wellness approaches. This comprehensive health assistant provides personalized guidance for optimizing both cognitive function and physical performance, offering evidence-based strategies for mind-body connection, stress management, fitness optimization, and holistic wellness. Perfect for those seeking to achieve peak mental and physical performance through integrated neurophysical approaches.",
     emoji: "🧠",
     color: "from-blue-500 to-green-600",
-    directUrl: "https://chatgpt.com/g/g-68ae286601288191825384507ac74512-neurophysical-titan/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68ae286601288191825384507ac74512-neurophysical-titan/",
     tags: ["mind body connection", "neurophysical health", "mental performance", "physical wellness", "holistic health", "cognitive optimization", "fitness", "stress management", "aiwebtools", "Mental Health", "Wellness", "Fitness"],
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.8,

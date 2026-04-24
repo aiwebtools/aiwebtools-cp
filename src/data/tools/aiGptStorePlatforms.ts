@@ -8,7 +8,7 @@ export const aiGptStorePlatforms: Tool[] = [
     description: "Official marketplace for custom ChatGPT models (GPTs). Discover, create, and share specialized AI assistants built on GPT-4 for specific tasks and use cases.",
     emoji: "🏪",
     color: "from-green-500 to-emerald-600",
-    directUrl: "https://chatgpt.com/gpts?via=aiwebtools",
+    directUrl: "https://chatgpt.com/gpts",
     tags: ["GPT Store", "custom GPTs", "ChatGPT", "AI assistants", "OpenAI", "GPT-4", "AI marketplace"],
     category: "AI GPT Store & Platforms",
     rating: 4.9,

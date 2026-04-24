@@ -34,7 +34,7 @@ export const aiPromptingAndGenerationGPTs: Tool[] = [
     description: "Video Prompt Assistant GPT is your ultimate AI-powered companion for generating optimized text-to-video prompts. This specialized tool helps you create epic, professional-quality video prompts for AI video generation platforms, making it easy to copy and paste for seamless creative workflow. Whether you're producing content for marketing, entertainment, or artistic expression, this GPT crafts detailed, cinematic prompts that bring your vision to life with precision. Perfect for content creators, video producers, and AI enthusiasts looking to streamline their AI video production process with expertly structured prompts that deliver stunning visual results.",
     emoji: "🎬",
     color: "from-blue-500 to-purple-600",
-    directUrl: "https://chatgpt.com/g/g-6767015882288191810ef9bd3270862f-video-prompt-assistant?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-6767015882288191810ef9bd3270862f-video-prompt-assistant",
     imageUrl: "/src/assets/tools/video-prompt-assistant-hero.png",
     tags: ["video prompts", "text-to-video", "prompt generation", "ai video", "creative prompts", "video production", "content creation", "prompt assistant", "aiwebtools"],
     category: "AI Prompting & Generation",

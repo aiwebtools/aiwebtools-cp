@@ -605,7 +605,7 @@ combinedTools = combinedTools.map(tool => {
 const filteredTools = combinedTools.filter(tool => {
   if (tool.title === 'Financial Calculator Pro') {
     return tool.category === 'Business & Productivity' && 
-           tool.directUrl === 'https://chatgpt.com/g/g-683cfb6951308191abb310d5d2fa8238-financial-calculator-pro?via=aiwebtools';
+           tool.directUrl === 'https://chatgpt.com/g/g-683cfb6951308191abb310d5d2fa8238-financial-calculator-pro';
   }
   return true;
 });
