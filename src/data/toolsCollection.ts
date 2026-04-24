@@ -260,6 +260,9 @@ import { oneMoreShotAi } from './tools/oneMoreShotAi';
 // Import Trending AI Batch 2026 April (Cluely, Felo, Pi, SambaNova, Same.dev, Lambda, MotherDuck, Milvus, Heyboss, MultiOn)
 import { trendingAiBatch2026Apr } from './tools/trendingAiBatch2026Apr';
 
+// Import Vid.ai (faceless YouTube Shorts / TikTok automation)
+import { vidAi } from './tools/vidAi';
+
 // Import AI Hardware (legacy - moved to gadgets)
 import { aiHardware } from './tools/aiHardware';
 
@@ -534,6 +537,7 @@ export const getAllToolCategories = (): Tool[] => {
     ...aiGadgetsDevicesBatch2026,
     ...oneMoreShotAi,
     ...trendingAiBatch2026Apr,
+    ...vidAi,
     ...aiHardware,
     
     // NEW 2025: Additional tools

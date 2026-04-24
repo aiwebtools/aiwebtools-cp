@@ -2676,6 +2676,12 @@ export const COMMON_PHRASE_HANDLERS: Record<string, PhraseHandler> = {
     priorityTools: ['One More Shot AI', 'Music Video Maker AI Studio', 'Movie Maker Studio AI SUITE'],
     relatedCategories: ['Video & Multimedia']
   },
+  vidAi: {
+    triggers: ['vid.ai', 'vid ai', 'vidai', 'faceless youtube', 'faceless channel', 'youtube shorts automation', 'tiktok automation', 'reels automation', 'short video automation', 'turn laziness into income', 'faceless ai channel'],
+    keywords: ['Vid.ai', 'faceless YouTube Shorts', 'TikTok automation', 'AI short video generator', 'viral clips', 'faceless channel automation', 'monetize shorts'],
+    priorityTools: ['Vid.ai', 'One More Shot AI', 'Music Video Maker AI Studio'],
+    relatedCategories: ['Video & Multimedia']
+  },
   cluely: {
     triggers: ['cluely', 'invisible ai', 'screen ai', 'meeting copilot', 'interview ai', 'stealth ai', 'ai overlay'],
     keywords: ['Cluely', 'invisible AI', 'screen-watching AI', 'real-time AI assistant', 'meeting copilot', 'interview assistant'],
