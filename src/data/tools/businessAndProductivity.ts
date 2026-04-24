@@ -24,7 +24,7 @@ export const businessAndProductivity: Tool[] = [
     description: "Advanced AI-powered financial calculator for complex calculations, investment analysis, and financial planning with step-by-step explanations.",
     emoji: "🧮",
     color: "from-green-500 to-blue-600",
-    directUrl: "https://chatgpt.com/g/g-683cfb6951308191abb310d5d2fa8238-financial-calculator-pro?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-683cfb6951308191abb310d5d2fa8238-financial-calculator-pro",
     imageUrl: "/src/assets/tools/financial-calculator-hero.png",
     tags: ["financial calculator", "investment analysis", "financial planning", "calculations", "Finance & Accounting"],
     category: "Business & Productivity",

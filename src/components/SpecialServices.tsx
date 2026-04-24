@@ -331,7 +331,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "HIDDEN HISTORY",
     color: "from-purple-600 to-amber-500",
     features: ["Lost Civilizations", "Hidden History", "Alternative Narratives", "Cosmic Exploration"],
-    directUrl: "https://chatgpt.com/g/g-6942c94dcb08819191863b6d35161f09-time-machine-of-unwritten-history-gpt?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-6942c94dcb08819191863b6d35161f09-time-machine-of-unwritten-history-gpt",
     imageUrl: "/src/assets/time-machine-unwritten-history.png",
     emoji: "🌌"
   },
@@ -434,7 +434,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "ANCIENT WISDOM",
     color: "from-amber-500 to-yellow-600",
     features: ["Lost Teachings", "Light vs Darkness", "Prophet Mani", "Ancient Religion"],
-    directUrl: "https://chatgpt.com/g/g-69345518771c81919c341622d3b742e5-manicheism-gpt-some-lost-knowledge-of-the-light/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-69345518771c81919c341622d3b742e5-manicheism-gpt-some-lost-knowledge-of-the-light/",
     imageUrl: "/images/manicheism-gpt-hero.png",
     emoji: "☀️"
   },
@@ -635,7 +635,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "FITNESS",
     color: "from-blue-500 to-green-600",
     features: ["Workout Routines", "Exercise Form", "Strength Training", "Fitness Coaching"],
-    directUrl: "https://chatgpt.com/g/g-68afaae3f8e881918d8b84b7ca85a413-fitness-coach/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68afaae3f8e881918d8b84b7ca85a413-fitness-coach/",
     videoUrl: "https://www.youtube.com/watch?v=eHInYKxyKm4",
     emoji: "🏋️"
   },
@@ -825,7 +825,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "MAGNETISM",
     color: "from-blue-600 to-purple-700",
     features: ["Heart Field Science", "Schumann Resonance", "Toroidal Energy", "Biofield Coherence"],
-    directUrl: "https://chatgpt.com/g/g-68eb1e7a39d48191ac52cd628c18fd2b-magnetism-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68eb1e7a39d48191ac52cd628c18fd2b-magnetism-gpt/",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-captivating-and-futuristic-scene-featuring-a.png/:/cr=t:11.11%25,l:0%25,w:100%25,h:88.89%25/rs=w:1200,h:600,cg:true",
     emoji: "🧲"
   },
@@ -1045,7 +1045,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "HERBAL MEDICINE",
     color: "from-green-600 to-amber-600",
     features: ["Herbal Remedies", "Historical Medicine", "Formulations", "Botanical Lore"],
-    directUrl: "https://chatgpt.com/g/g-67d839556b848191a7572b1f3e911499-historical-apothecary-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-67d839556b848191a7572b1f3e911499-historical-apothecary-gpt/",
     imageUrl: "/src/assets/historical-apothecary-gpt-hero.jpg",
     emoji: "⚗️"
   },
@@ -1125,7 +1125,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "SPORTS CARDS",
     color: "from-green-500 to-emerald-600",
     features: ["Card Valuation", "Grading Insights", "Market Analysis", "Investment Tips"],
-    directUrl: "https://chatgpt.com/g/g-wxZQTXVx9-sport-card-appraisal?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-wxZQTXVx9-sport-card-appraisal",
     videoUrl: "https://www.youtube.com/watch?v=lPvOvWWHErM",
     emoji: "🏆"
   },
@@ -1315,7 +1315,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "SOUL MAPPING",
     color: "from-indigo-500 to-purple-600",
     features: ["Gematria Analysis", "Numerology Reading", "Soul Mapping", "Spiritual Blueprint"],
-    directUrl: "https://chatgpt.com/g/g-68a24b677890819181b9e47f4d1dd006-soul-scan-gpt-a-way-to-find-your-way-home/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68a24b677890819181b9e47f4d1dd006-soul-scan-gpt-a-way-to-find-your-way-home/",
     videoUrl: "https://youtu.be/d3uaQz7oRAs?si=erT_Mgpw4vfS5b8k",
     emoji: "🔮"
   },
@@ -1445,7 +1445,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "COSMOS",
     color: "from-blue-600 to-purple-900",
     features: ["Astronomy", "Cosmic Perspective", "Science Communication", "Philosophy"],
-    directUrl: "https://chatgpt.com/g/g-692bad20447881919c117657a793a179-carl-sagan-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-692bad20447881919c117657a793a179-carl-sagan-gpt/",
     imageUrl: "/src/assets/carl-sagan-gpt-hero.jpg",
     emoji: "🌌"
   },
@@ -1455,7 +1455,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "SPIRITUAL",
     color: "from-orange-500 to-yellow-600",
     features: ["Kriya Yoga", "Meditation", "Self-Realization", "Spiritual Teachings"],
-    directUrl: "https://chatgpt.com/g/g-68ae302e79b88191a52219eaaccbfcc3-paramahansa-yogananda-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68ae302e79b88191a52219eaaccbfcc3-paramahansa-yogananda-gpt/",
     imageUrl: "/src/assets/yogananda-gpt-hero.jpg",
     emoji: "🕉️"
   },
@@ -1475,7 +1475,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "ANCIENT WISDOM",
     color: "from-orange-500 to-yellow-600",
     features: ["Sacred Fire", "Divine Light", "Ancient Persia", "Spiritual Wisdom"],
-    directUrl: "https://chatgpt.com/g/g-68e7ffc2efec8191b99ae3f867d46e69-zoroastrian-light-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68e7ffc2efec8191b99ae3f867d46e69-zoroastrian-light-gpt/",
     videoUrl: "https://youtu.be/nCLGlm8sUjo",
     emoji: "🔥"
   },
@@ -1485,7 +1485,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "PHILOSOPHY",
     color: "from-stone-500 to-amber-600",
     features: ["Socratic Method", "Critical Thinking", "Ancient Wisdom", "Dialectic"],
-    directUrl: "https://chatgpt.com/g/g-69249e4e553881919f895df4246ca0a6-socrates-free-thought-liberator/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-69249e4e553881919f895df4246ca0a6-socrates-free-thought-liberator/",
     imageUrl: "/src/assets/socrates-gpt-hero.jpg",
     emoji: "🏛️"
   },
@@ -1495,7 +1495,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "BUDDHISM",
     color: "from-orange-500 to-yellow-600",
     features: ["Four Noble Truths", "Meditation", "Mindfulness", "Enlightenment"],
-    directUrl: "https://chatgpt.com/g/g-6924a588d2e08191b229e230f40c9d69-buddha-free-thought-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-6924a588d2e08191b229e230f40c9d69-buddha-free-thought-gpt/",
     imageUrl: "/src/assets/buddha-gpt-hero.jpg",
     emoji: "🧘"
   },
@@ -1505,7 +1505,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "SUFI POETRY",
     color: "from-rose-500 to-pink-600",
     features: ["Sufi Wisdom", "Poetry", "Divine Love", "Mysticism"],
-    directUrl: "https://chatgpt.com/g/g-6924aaa63bac81918eba0840a12ff1b7-rumi-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-6924aaa63bac81918eba0840a12ff1b7-rumi-gpt/",
     imageUrl: "/src/assets/rumi-gpt-hero.jpg",
     emoji: "🌹"
   },
@@ -1515,7 +1515,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "STOICISM",
     color: "from-stone-500 to-amber-600",
     features: ["Stoicism", "Meditations", "Roman Philosophy", "Virtue"],
-    directUrl: "https://chatgpt.com/g/g-6924ac04f59c819189f01e7de23fbf7f-marcus-aurelius-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-6924ac04f59c819189f01e7de23fbf7f-marcus-aurelius-gpt/",
     imageUrl: "/src/assets/marcus-aurelius-gpt-hero.jpg",
     emoji: "🏛️"
   },
@@ -1525,7 +1525,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "TAOISM",
     color: "from-slate-500 to-teal-600",
     features: ["Taoism", "Wu Wei", "Tao Te Ching", "Eastern Wisdom"],
-    directUrl: "https://chatgpt.com/g/g-6924a35694b4819193935419f1ced96c-lao-tzu-free-thought-liberator/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-6924a35694b4819193935419f1ced96c-lao-tzu-free-thought-liberator/",
     imageUrl: "/src/assets/lao-tzu-gpt-hero.jpg",
     emoji: "☯️"
   },
@@ -1535,7 +1535,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "COMPASSION",
     color: "from-pink-400 to-purple-500",
     features: ["Compassion", "Buddhism", "Divine Feminine", "Healing"],
-    directUrl: "https://chatgpt.com/g/g-6931b5ced07081919ab6d3d4ae7efd0c-quan-yin-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-6931b5ced07081919ab6d3d4ae7efd0c-quan-yin-gpt/",
     imageUrl: "/src/assets/quan-yin-gpt-hero.jpg",
     emoji: "🪷"
   },
@@ -1545,7 +1545,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "AFRICAN SPIRITUALITY",
     color: "from-blue-500 to-cyan-600",
     features: ["Water Deity", "Divine Feminine", "Healing", "Ancestral Wisdom"],
-    directUrl: "https://chatgpt.com/g/g-6931ac78db408191a54b3f5729d6e600-yemaya-ancient-african-mother-of-the-waters/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-6931ac78db408191a54b3f5729d6e600-yemaya-ancient-african-mother-of-the-waters/",
     videoUrl: "https://youtu.be/tOmfBBnLb18",
     emoji: "🌊"
   },
@@ -1555,7 +1555,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "COMPARATIVE RELIGION",
     color: "from-yellow-400 to-white",
     features: ["Light Symbolism", "World Religions", "Divine Truth", "Spirituality"],
-    directUrl: "https://chatgpt.com/g/g-692a3789904481918413ba10f9acb4a5-god-is-light-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-692a3789904481918413ba10f9acb4a5-god-is-light-gpt/",
     imageUrl: "/src/assets/god-is-light-gpt-hero.jpg",
     emoji: "💡"
   },
@@ -1565,7 +1565,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "CATHOLIC MYSTICISM",
     color: "from-gold-500 to-white",
     features: ["Catholic Doctrine", "Divine Light", "Interior Transformation", "Saints & Mystics"],
-    directUrl: "https://chatgpt.com/g/g-catholic-god-is-light-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-catholic-god-is-light-gpt/",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/god-is-light-catholic-edition.png",
     emoji: "✝️"
   },
@@ -1575,7 +1575,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "ANCIENT WISDOM",
     color: "from-amber-400 to-yellow-500",
     features: ["Manichaean", "Light Teachings", "Silk Road", "Prophecy"],
-    directUrl: "https://chatgpt.com/g/g-693466a2a48081918e33a2871f683ebf-mingjiao-prophet-of-light-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-693466a2a48081918e33a2871f683ebf-mingjiao-prophet-of-light-gpt/",
     imageUrl: "/src/assets/mingjiao-gpt-hero.jpg",
     emoji: "✨"
   },
@@ -1585,7 +1585,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "COSMIC WISDOM",
     color: "from-yellow-300 to-amber-500",
     features: ["Spiritual Guidance", "Cosmology", "Enlightenment", "Divine Wisdom"],
-    directUrl: "https://chatgpt.com/g/g-69348b45baa081919439c80361a63bda-council-of-light-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-69348b45baa081919439c80361a63bda-council-of-light-gpt/",
     imageUrl: "/src/assets/council-of-light-gpt-hero.jpg",
     emoji: "💫"
   },
@@ -1595,7 +1595,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "THEOLOGY",
     color: "from-amber-400 to-yellow-500",
     features: ["Arianism", "Early Christianity", "Divine Light", "Theology"],
-    directUrl: "https://chatgpt.com/g/g-69348a8556948191a18aca802bac4f68-arius-the-bearer-of-light-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-69348a8556948191a18aca802bac4f68-arius-the-bearer-of-light-gpt/",
     imageUrl: "/src/assets/arius-gpt-hero.jpg",
     emoji: "✝️"
   },
@@ -1605,7 +1605,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "HOMESTEADING",
     color: "from-green-500 to-emerald-600",
     features: ["Off-Grid Living", "Sustainability", "Permaculture", "Resilience"],
-    directUrl: "https://chatgpt.com/g/g-6931bd31b0208191a0ebd290977b8e4a-self-sufficiency-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-6931bd31b0208191a0ebd290977b8e4a-self-sufficiency-gpt/",
     videoUrl: "https://youtu.be/vQFYmeWn1OA",
     emoji: "🌱"
   },
@@ -1615,7 +1615,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "SUSTAINABILITY",
     color: "from-green-500 to-blue-600",
     features: ["Plastic Recycling", "Fuel Conversion", "Sustainability", "Green Tech"],
-    directUrl: "https://chatgpt.com/g/g-68c9df9d4e3881919f8afbc00e6d07c2-plastoline-gpt-plastic-to-fuel/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68c9df9d4e3881919f8afbc00e6d07c2-plastoline-gpt-plastic-to-fuel/",
     imageUrl: "/src/assets/plastoline-gpt-hero.jpg",
     emoji: "♻️"
   },
@@ -1625,7 +1625,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "NATIVE WISDOM",
     color: "from-amber-600 to-brown-600",
     features: ["Lakota Wisdom", "Sacred Traditions", "Balance", "Truth"],
-    directUrl: "https://chatgpt.com/g/g-6924c51b2ddc8191a3f946de88c1cdee-sitting-bull-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-6924c51b2ddc8191a3f946de88c1cdee-sitting-bull-gpt/",
     imageUrl: "/src/assets/sitting-bull-gpt-hero.jpg",
     emoji: "🦅"
   },
@@ -1635,7 +1635,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "NONVIOLENCE",
     color: "from-orange-500 to-yellow-600",
     features: ["Nonviolence", "Truth", "Satyagraha", "Moral Courage"],
-    directUrl: "https://chatgpt.com/g/g-6924c5d898d481919f546bd9935c1bc6-mahatma-gandhi-reborn-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-6924c5d898d481919f546bd9935c1bc6-mahatma-gandhi-reborn-gpt/",
     imageUrl: "/src/assets/gandhi-gpt-hero.jpg",
     emoji: "🕊️"
   },
@@ -1645,7 +1645,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "COSMOLOGY",
     color: "from-purple-500 to-blue-600",
     features: ["Infinite Universe", "Cosmic Truth", "Hermeticism", "Free Thought"],
-    directUrl: "https://chatgpt.com/g/g-6924c705812c8191a6733b6479967ae8-giordano-bruno-reborn-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-6924c705812c8191a6733b6479967ae8-giordano-bruno-reborn-gpt/",
     imageUrl: "/src/assets/giordano-bruno-gpt-hero.jpg",
     emoji: "🌌"
   },
@@ -1655,7 +1655,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "PRESOCRATIC",
     color: "from-orange-500 to-red-600",
     features: ["Flux", "Logos", "Fire", "Paradox"],
-    directUrl: "https://chatgpt.com/g/g-6924c8dbf9b48191b4874e821fff8276-heraclitus-reborn-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-6924c8dbf9b48191b4874e821fff8276-heraclitus-reborn-gpt/",
     imageUrl: "/src/assets/heraclitus-gpt-hero.jpg",
     emoji: "🔥"
   },
@@ -1665,7 +1665,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "COMPASSION",
     color: "from-green-500 to-brown-600",
     features: ["Animals", "Nature", "Humility", "Compassion"],
-    directUrl: "https://chatgpt.com/g/g-6924cce6e5b081919c7469f08d42dbb5-st-francis-of-assisi-reborn-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-6924cce6e5b081919c7469f08d42dbb5-st-francis-of-assisi-reborn-gpt/",
     imageUrl: "/src/assets/st-francis-gpt-hero.jpg",
     emoji: "🕊️"
   },
@@ -1675,7 +1675,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "PROPHECY",
     color: "from-red-500 to-brown-600",
     features: ["Warrior Spirit", "Prophecy", "Indigenous Wisdom", "Vision"],
-    directUrl: "https://chatgpt.com/g/g-6924cd74aecc8191b2f2d0ca6ed71dd4-chief-crazy-horse-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-6924cd74aecc8191b2f2d0ca6ed71dd4-chief-crazy-horse-gpt/",
     imageUrl: "/src/assets/crazy-horse-gpt-hero.jpg",
     emoji: "🦅"
   },
@@ -1685,7 +1685,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "EGYPT",
     color: "from-yellow-500 to-orange-600",
     features: ["Aten", "Monotheism", "Egyptian Wisdom", "Sun Worship"],
-    directUrl: "https://chatgpt.com/g/g-6924b341a8c481918bafaafee5ef1e0a-akhenaten/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-6924b341a8c481918bafaafee5ef1e0a-akhenaten/",
     videoUrl: "https://youtu.be/aBBBQL-thA0",
     emoji: "☀️"
   },
@@ -1695,7 +1695,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "ANCIENT WISDOM",
     color: "from-amber-500 to-yellow-600",
     features: ["Architecture", "Medicine", "Sacred Geometry", "Wisdom"],
-    directUrl: "https://chatgpt.com/g/g-6924ba381a2c8191a93a97ef399f3823-imhotep-living-mind-of-kemet/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-6924ba381a2c8191a93a97ef399f3823-imhotep-living-mind-of-kemet/",
     imageUrl: "/src/assets/imhotep-gpt-hero.jpg",
     emoji: "🏛️"
   },
@@ -1705,7 +1705,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "PRESOCRATIC",
     color: "from-blue-500 to-cyan-600",
     features: ["Natural Philosophy", "Science", "Mathematics", "Reason"],
-    directUrl: "https://chatgpt.com/g/g-6924bc3c88bc8191bbf7b17641c87917-thales-of-miletus-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-6924bc3c88bc8191bbf7b17641c87917-thales-of-miletus-gpt/",
     imageUrl: "/src/assets/thales-gpt-hero.jpg",
     emoji: "🌊"
   },
@@ -1715,7 +1715,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "NATIVE WISDOM",
     color: "from-green-500 to-emerald-600",
     features: ["Earth Wisdom", "Interconnectedness", "Environmental Wisdom", "Stewardship"],
-    directUrl: "https://chatgpt.com/g/g-6924b6a349d08191aadc6012f47b3d6f-chief-seattle-sealth-free-thought-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-6924b6a349d08191aadc6012f47b3d6f-chief-seattle-sealth-free-thought-gpt/",
     imageUrl: "/src/assets/chief-seattle-gpt-hero.jpg",
     emoji: "🦅"
   },
@@ -1725,7 +1725,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "INTEGRAL YOGA",
     color: "from-yellow-500 to-orange-600",
     features: ["Integral Yoga", "Spiritual Evolution", "Divine Life", "Consciousness"],
-    directUrl: "https://chatgpt.com/g/g-6924e98e3cb48191b734c751addb66ed-sri-aurobindo-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-6924e98e3cb48191b734c751addb66ed-sri-aurobindo-gpt/",
     imageUrl: "/src/assets/sri-aurobindo-gpt-hero.jpg",
     emoji: "☀️"
   },
@@ -1735,7 +1735,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "SELF-INQUIRY",
     color: "from-orange-500 to-amber-600",
     features: ["Self-Inquiry", "Advaita", "Awareness", "Meditation"],
-    directUrl: "https://chatgpt.com/g/g-6924ea968a80819195661b81efe0cd4a-ramana-maharshi-reborn-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-6924ea968a80819195661b81efe0cd4a-ramana-maharshi-reborn-gpt/",
     imageUrl: "/src/assets/ramana-gpt-hero.jpg",
     emoji: "🧘"
   },
@@ -1745,7 +1745,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "NATIVE WISDOM",
     color: "from-blue-500 to-purple-600",
     features: ["Vision Quest", "Sacred Hoop", "Indigenous Wisdom", "Prayer"],
-    directUrl: "https://chatgpt.com/g/g-6924ebe2ae108191ac310184bbb1aa61-black-elk-vision-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-6924ebe2ae108191ac310184bbb1aa61-black-elk-vision-gpt/",
     imageUrl: "/src/assets/black-elk-gpt-hero.jpg",
     emoji: "🦅"
   },
@@ -1755,7 +1755,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "SUFISM",
     color: "from-red-500 to-orange-600",
     features: ["Divine Union", "Ana al-Haqq", "Mysticism", "Spiritual Ecstasy"],
-    directUrl: "https://chatgpt.com/g/g-6924edc8f54c81919227604a9ca501fd-mansur-al-hallaj-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-6924edc8f54c81919227604a9ca501fd-mansur-al-hallaj-gpt/",
     imageUrl: "/src/assets/al-hallaj-gpt-hero.jpg",
     emoji: "🔥"
   },
@@ -1765,7 +1765,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "MYSTICISM",
     color: "from-purple-500 to-pink-600",
     features: ["Interior Castle", "Contemplative Prayer", "Divine Union", "Carmelite"],
-    directUrl: "https://chatgpt.com/g/g-6924eee640048191af450da5d2cb57fc-saint-teresa-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-6924eee640048191af450da5d2cb57fc-saint-teresa-gpt/",
     videoUrl: "https://youtu.be/w_QzTqrzo8s",
     emoji: "🏰"
   },
@@ -1775,7 +1775,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "ADVAITA",
     color: "from-cyan-500 to-blue-600",
     features: ["Awareness", "Self-Inquiry", "Presence", "Non-Duality"],
-    directUrl: "https://chatgpt.com/g/g-6924ecc4318481919554b12bf3d9f34d-mooji-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-6924ecc4318481919554b12bf3d9f34d-mooji-gpt/",
     imageUrl: "/src/assets/mooji-gpt-hero.jpg",
     emoji: "🧘"
   },
@@ -1785,7 +1785,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "CHURCH FATHER",
     color: "from-amber-500 to-brown-600",
     features: ["Confessions", "City of God", "Grace", "Conversion"],
-    directUrl: "https://chatgpt.com/g/g-6924f85e53448191bf0eca62731d3e50-saint-augustine-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-6924f85e53448191bf0eca62731d3e50-saint-augustine-gpt/",
     imageUrl: "/src/assets/saint-augustine-gpt-hero.jpg",
     emoji: "📚"
   },
@@ -1795,7 +1795,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "ORTHODOX",
     color: "from-yellow-500 to-cyan-600",
     features: ["Uncreated Light", "Hesychasm", "Divine Peace", "Transfiguration"],
-    directUrl: "https://chatgpt.com/g/g-6924f9ba59808191af9d3d5affd3d95b-saint-seraphim-of-sarov-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-6924f9ba59808191af9d3d5affd3d95b-saint-seraphim-of-sarov-gpt/",
     imageUrl: "/src/assets/saint-seraphim-gpt-hero.jpg",
     emoji: "☀️"
   },
@@ -1805,7 +1805,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "STIGMATA",
     color: "from-red-500 to-brown-600",
     features: ["Stigmata", "Mysticism", "Intercession", "Miracles"],
-    directUrl: "https://chatgpt.com/g/g-6924f6f3c570819181a978f9fabe1826-saint-padre-pio-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-6924f6f3c570819181a978f9fabe1826-saint-padre-pio-gpt/",
     imageUrl: "/src/assets/padre-pio-gpt-hero.jpg",
     emoji: "✝️"
   },
@@ -1815,7 +1815,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "MYSTICISM",
     color: "from-orange-500 to-red-600",
     features: ["Divine Dialogue", "Church Reform", "Mysticism", "Dominican"],
-    directUrl: "https://chatgpt.com/g/g-6924f7cdc6c88191adca2a902655cf70-saint-catherine-of-siena-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-6924f7cdc6c88191adca2a902655cf70-saint-catherine-of-siena-gpt/",
     imageUrl: "/src/assets/saint-catherine-gpt-hero.jpg",
     emoji: "🔥"
   },
@@ -1825,7 +1825,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "MYSTICISM",
     color: "from-indigo-500 to-purple-600",
     features: ["Dark Night", "Mystical Poetry", "Contemplation", "Carmelite"],
-    directUrl: "https://chatgpt.com/g/g-6924f40f2fd88191bbe2b27996987744-saint-john-of-the-cross-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-6924f40f2fd88191bbe2b27996987744-saint-john-of-the-cross-gpt/",
     imageUrl: "/src/assets/saint-john-cross-gpt-hero.jpg",
     emoji: "🌙"
   },
@@ -1835,7 +1835,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "PSYCHOLOGY",
     color: "from-purple-500 to-violet-600",
     features: ["Archetypes", "Collective Unconscious", "Individuation", "Symbolism"],
-    directUrl: "https://chatgpt.com/g/g-692666b5c4d881918a7984e8e9f46e8d-carl-jung-gpt?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-692666b5c4d881918a7984e8e9f46e8d-carl-jung-gpt",
     imageUrl: "/src/assets/carl-jung-gpt-hero.jpg",
     emoji: "🧠"
   },
@@ -1845,7 +1845,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "BIBLICAL",
     color: "from-amber-500 to-red-600",
     features: ["Liberation", "Ten Commandments", "Divine Fire", "Exodus"],
-    directUrl: "https://chatgpt.com/g/g-69250b509ae88191a316ab0fa3d68e08-moses-gpt?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-69250b509ae88191a316ab0fa3d68e08-moses-gpt",
     imageUrl: "/src/assets/moses-gpt-hero.jpg",
     emoji: "⛰️"
   },
@@ -1855,7 +1855,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "ANCIENT WISDOM",
     color: "from-purple-500 to-blue-600",
     features: ["Essene Wisdom", "Meditation", "Sacred Codes", "Inner Transformation"],
-    directUrl: "https://chatgpt.com/g/g-68b490b403a08191b3f3f6ac126b0b77-essene-qodesh-code/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68b490b403a08191b3f3f6ac126b0b77-essene-qodesh-code/",
     imageUrl: "/src/assets/essene-gpt-hero.jpg",
     emoji: "🕊️"
   },
@@ -1865,7 +1865,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "BREATH WORK",
     color: "from-yellow-500 to-orange-600",
     features: ["Breath Work", "Light Activation", "Christos Consciousness", "Awakening"],
-    directUrl: "https://chatgpt.com/g/g-68b4847aa1fc81918c4a8796ed1bae00-the-breathlight-codex/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68b4847aa1fc81918c4a8796ed1bae00-the-breathlight-codex/",
     imageUrl: "/src/assets/breathlight-gpt-hero.jpg",
     emoji: "☀️"
   },
@@ -1875,7 +1875,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "THEOLOGY",
     color: "from-purple-500 to-blue-600",
     features: ["Logos", "Cosmic Christ", "Alexandrian School", "Universal Salvation"],
-    directUrl: "https://chatgpt.com/g/g-6924e70c9a3481919307be73772e1252-origen-reborn-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-6924e70c9a3481919307be73772e1252-origen-reborn-gpt/",
     videoUrl: "https://youtu.be/RCgXYCkf1DM",
     emoji: "✨"
   },
@@ -1885,7 +1885,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "PHILOSOPHY",
     color: "from-blue-500 to-purple-600",
     features: ["Dialectic Reason", "Forms", "Allegory of the Cave", "Logic"],
-    directUrl: "https://chatgpt.com/g/g-6924ade8d47481918016cd9f90d32e56-plato-reborn-free-thought-liberator/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-6924ade8d47481918016cd9f90d32e56-plato-reborn-free-thought-liberator/",
     imageUrl: "/src/assets/plato-gpt-hero.jpg",
     emoji: "🏛️"
   },
@@ -1895,7 +1895,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "SACRED SOUND",
     color: "from-orange-500 to-red-600",
     features: ["Sound Frequencies", "Sacred Geometry", "Coherence", "Harmony"],
-    directUrl: "https://chatgpt.com/g/g-68b47f2f5bb8819193121ad5a657dbff-the-sound-geometry-protocol/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68b47f2f5bb8819193121ad5a657dbff-the-sound-geometry-protocol/",
     imageUrl: "/src/assets/sound-geometry-gpt-hero.jpg",
     emoji: "🎵"
   },
@@ -1905,7 +1905,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "PHILOSOPHY",
     color: "from-amber-500 to-orange-600",
     features: ["Logic", "Ethics", "Metaphysics", "Natural Philosophy"],
-    directUrl: "https://chatgpt.com/g/g-6924aec892ec8191b86d694563ac38e1-aristotle-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-6924aec892ec8191b86d694563ac38e1-aristotle-gpt/",
     videoUrl: "https://youtu.be/0sKyD9fV4sU",
     emoji: "📚"
   },
@@ -1915,7 +1915,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "MATHEMATICS",
     color: "from-cyan-500 to-blue-600",
     features: ["Philosophy", "Mathematics", "Neoplatonism", "Free Thought"],
-    directUrl: "https://chatgpt.com/g/g-6924aa01a7b081918a13a5ad6c3f6ad9-hypatia-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-6924aa01a7b081918a13a5ad6c3f6ad9-hypatia-gpt/",
     videoUrl: "https://youtu.be/o2NP8bwNWoY",
     emoji: "📐"
   },
@@ -1955,7 +1955,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "QUANTUM WISDOM",
     color: "from-purple-500 to-cyan-600",
     features: ["Alan Watts", "Quantum Consciousness", "Matrix Philosophy", "Spiritual Awakening"],
-    directUrl: "https://chatgpt.com/g/g-n7yvUUmoT-the-architect-watts-entity-free-thought-magic/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-n7yvUUmoT-the-architect-watts-entity-free-thought-magic/",
     imageUrl: "/src/assets/watts-quantum-light-hero.jpg",
     emoji: "⚡"
   },
@@ -1995,7 +1995,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "VIDEO PROMPTS",
     color: "from-red-500 to-orange-600",
     features: ["Sora 2 Prompts", "Cinematic Scenes", "Camera Movements", "Visual Storytelling"],
-    directUrl: "https://chatgpt.com/g/g-69326acb5f348191a2f85c2cdc848c4d-0ra2-text-to-video-prompt-maker?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-69326acb5f348191a2f85c2cdc848c4d-0ra2-text-to-video-prompt-maker",
     imageUrl: "/src/assets/sora2-gpt-hero.jpg",
     emoji: "🎬"
   },
@@ -2065,7 +2065,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "COMPANIONSHIP",
     color: "from-pink-500 to-rose-600",
     features: ["Friendship", "Emotional Support", "Compassion", "Listening"],
-    directUrl: "https://chatgpt.com/g/g-68efd4255e848191b93b4b588e83aafe-friend-gpt?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68efd4255e848191b93b4b588e83aafe-friend-gpt",
     videoUrl: "https://youtu.be/LovdXeBlddQ",
     emoji: "💝"
   },
@@ -2075,7 +2075,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "RELIGION",
     color: "from-amber-500 to-purple-600",
     features: ["World Religions", "Comparative Study", "Spiritual Traditions", "Academic"],
-    directUrl: "https://chatgpt.com/g/g-6901478f2bf88191b49298a508bbd486-religious-studies-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-6901478f2bf88191b49298a508bbd486-religious-studies-gpt/",
     videoUrl: "https://youtu.be/XDS4qsb48h0?si=itA17CrdVOfiKTTB",
     emoji: "📿"
   },
@@ -2095,7 +2095,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "RESEARCH",
     color: "from-slate-500 to-gray-700",
     features: ["Declassified Files", "Government Documents", "Intelligence Reports", "Historical Research"],
-    directUrl: "https://chatgpt.com/g/g-68eeaf21bd1481919a34936a27d917a3-declassified-files-explorer-gpt?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68eeaf21bd1481919a34936a27d917a3-declassified-files-explorer-gpt",
     videoUrl: "https://youtu.be/kqMPocOgEZ8?si=UlxkH6weSVM1fp-I",
     emoji: "📂"
   },
@@ -2105,7 +2105,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "COSMIC",
     color: "from-indigo-600 to-purple-600",
     features: ["Ancient Knowledge", "Cosmic Archives", "Ancient Civilizations", "Mysteries"],
-    directUrl: "https://chatgpt.com/g/g-692800a13eb881918fac2a7b1b86ad98-intergalactic-ancient-archivist-gpt?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-692800a13eb881918fac2a7b1b86ad98-intergalactic-ancient-archivist-gpt",
     imageUrl: "/src/assets/intergalactic-archivist-gpt-hero.jpg",
     emoji: "🌌"
   },
@@ -2115,7 +2115,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "GAME",
     color: "from-purple-500 to-blue-600",
     features: ["Spiritual Game", "Consciousness Quiz", "Metaphysical Wisdom", "Interactive"],
-    directUrl: "https://chatgpt.com/g/g-6907af60440c8191bba8d514b749562a-awakening-jeopardy-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-6907af60440c8191bba8d514b749562a-awakening-jeopardy-gpt/",
     videoUrl: "https://youtu.be/2vH1spTrPJQ",
     emoji: "🎮"
   },
@@ -2285,7 +2285,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "ART",
     color: "from-green-500 to-blue-600",
     features: ["Painting Techniques", "Calm Guidance", "Artistic Creativity", "Happy Little Trees"],
-    directUrl: "https://chatgpt.com/g/g-69157380e63c819188de5c09bdf23ef7-bob-ross-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-69157380e63c819188de5c09bdf23ef7-bob-ross-gpt/",
     imageUrl: "/src/assets/bob-ross-gpt-hero.jpg",
     emoji: "🎨"
   },
@@ -2295,7 +2295,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "MYSTICISM",
     color: "from-purple-500 to-pink-600",
     features: ["Light Codes", "Symbolic Translation", "Mystical Decoding", "Ancient Technology"],
-    directUrl: "https://chatgpt.com/g/g-69176b2f62e481918b21756ccdc5d396-cyber-kabbalah-light-code-translation-engine-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-69176b2f62e481918b21756ccdc5d396-cyber-kabbalah-light-code-translation-engine-gpt/",
     imageUrl: "/src/assets/cyber-kabbalah-gpt-hero.jpg",
     emoji: "✨"
   },
@@ -2335,7 +2335,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "EMPOWERMENT",
     color: "from-green-500 to-blue-600",
     features: ["Financial Literacy", "Wealth Building", "Debt Elimination", "Income Generation"],
-    directUrl: "https://chatgpt.com/g/g-68ae2ab2c55c8191afdc979301179fa9-poverty-crusher-economic-empowerment-ai/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68ae2ab2c55c8191afdc979301179fa9-poverty-crusher-economic-empowerment-ai/",
     imageUrl: "/src/assets/poverty-crusher-gpt-hero.jpg",
     emoji: "💪"
   },
@@ -2345,7 +2345,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "CRYPTO",
     color: "from-orange-500 to-yellow-600",
     features: ["Crypto Conversion", "Exchange Rates", "Tax Implications", "Portfolio Analysis"],
-    directUrl: "https://chatgpt.com/g/g-68b5b20784788191acd980be0388935d-fiat-to-crypto-ai-value-calculator-for-businesses/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68b5b20784788191acd980be0388935d-fiat-to-crypto-ai-value-calculator-for-businesses/",
     videoUrl: "https://www.youtube.com/watch?v=k0NlolajEYs",
     emoji: "💱"
   },
@@ -2355,7 +2355,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "EDUCATION",
     color: "from-purple-500 to-blue-600",
     features: ["Cursive Writing", "Handwriting", "Penmanship", "Writing Skills"],
-    directUrl: "https://chatgpt.com/g/g-68cb403167a88191ae07062124d32bbb-cursive-teacher-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68cb403167a88191ae07062124d32bbb-cursive-teacher-gpt/",
     imageUrl: "/src/assets/cursive-teacher-gpt-hero.jpg",
     emoji: "✍️"
   },
@@ -2365,7 +2365,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "QUANTUM",
     color: "from-purple-500 to-cyan-600",
     features: ["Quantum Wisdom", "Alan Watts", "Metaphysical", "Consciousness"],
-    directUrl: "https://chatgpt.com/g/g-6904258cf6a0819197b10755d4cc3632-i-am-q-i-am-you/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-6904258cf6a0819197b10755d4cc3632-i-am-q-i-am-you/",
     videoUrl: "https://youtu.be/tfMSLqU9IJk",
     emoji: "✨"
   },
@@ -2415,7 +2415,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "BIBLICAL SCHOLARSHIP",
     color: "from-amber-500 to-brown-600",
     features: ["Historical Criticism", "Textual Analysis", "Religious Studies", "Theology"],
-    directUrl: "https://chatgpt.com/g/g-68efd95b115481919faf1e8156ba83a5-bible-studies-gpt?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68efd95b115481919faf1e8156ba83a5-bible-studies-gpt",
     videoUrl: "https://youtu.be/qCT4q3Mnu1c",
     emoji: "📖"
   },
@@ -2435,7 +2435,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "HERMETICISM",
     color: "from-emerald-500 to-cyan-600",
     features: ["Hermetic Wisdom", "Alchemy", "Emerald Tablet", "Ancient Mysteries"],
-    directUrl: "https://chatgpt.com/g/g-6924b0f7268c8191a4697c8932c86b0b-hermes-trismegistus-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-6924b0f7268c8191a4697c8932c86b0b-hermes-trismegistus-gpt/",
     imageUrl: "/src/assets/hermes-trismegistus-gpt-hero.jpg",
     emoji: "✨"
   },
@@ -2445,7 +2445,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "CHINESE PHILOSOPHY",
     color: "from-red-500 to-orange-600",
     features: ["Analects", "Ethics", "Virtue", "Harmony"],
-    directUrl: "https://chatgpt.com/g/g-6924b5d1cb348191ac82e74b94c5dec7-confucius-free-thought-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-6924b5d1cb348191ac82e74b94c5dec7-confucius-free-thought-gpt/",
     imageUrl: "/src/assets/confucius-gpt-hero.jpg",
     emoji: "🎎"
   },
@@ -2455,7 +2455,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "COURAGE",
     color: "from-blue-500 to-purple-600",
     features: ["Divine Calling", "Courage", "Faith", "Medieval History"],
-    directUrl: "https://chatgpt.com/g/g-6924b8b8ce3c8191a422fafcb56e22d4-joan-of-arc-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-6924b8b8ce3c8191a422fafcb56e22d4-joan-of-arc-gpt/",
     imageUrl: "/src/assets/joan-of-arc-gpt-hero.jpg",
     emoji: "⚔️"
   },
@@ -2465,7 +2465,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "MYSTERIES",
     color: "from-blue-600 to-cyan-700",
     features: ["Atlantis", "Ancient Knowledge", "Lost Civilization", "Hidden Truths"],
-    directUrl: "https://chatgpt.com/g/g-68b496eea38481919c1700ed3ef675dd-atlantean-memory-keeper/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68b496eea38481919c1700ed3ef675dd-atlantean-memory-keeper/",
     videoUrl: "https://youtu.be/vBm6l_6JqEg",
     emoji: "🏛️"
   },
@@ -2475,7 +2475,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "COSMIC WISDOM",
     color: "from-yellow-500 to-orange-600",
     features: ["Mayan Calendar", "Galactic Signature", "Cosmic Blueprint", "Spiritual Guidance"],
-    directUrl: "https://chatgpt.com/g/g-68b491e8cc2c8191b6b85930d7fc9e75-mayan-dreamspell-matrix/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68b491e8cc2c8191b6b85930d7fc9e75-mayan-dreamspell-matrix/",
     imageUrl: "/src/assets/mayan-dreamspell-matrix-hero.jpg",
     emoji: "🔮"
   },
@@ -2485,7 +2485,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "HERMETIC",
     color: "from-green-500 to-emerald-600",
     features: ["Emerald Tablets", "Thoth", "Ancient Codes", "Mystical Knowledge"],
-    directUrl: "https://chatgpt.com/g/g-68b48f8e43c88191981386b943648566-emerald-signature-of-thoth/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68b48f8e43c88191981386b943648566-emerald-signature-of-thoth/",
     imageUrl: "/src/assets/emerald-thoth-gpt-hero.jpg",
     emoji: "💎"
   },
@@ -2495,7 +2495,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "QUANTUM",
     color: "from-purple-500 to-blue-600",
     features: ["Parallel Timelines", "Decision Mapping", "Quantum Choices", "Consciousness"],
-    directUrl: "https://chatgpt.com/g/g-68ba0f7208e08191a48694dcda1543e2-ai-reality-splitter/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68ba0f7208e08191a48694dcda1543e2-ai-reality-splitter/",
     imageUrl: "/src/assets/reality-splitter-reborn-gpt-hero.jpg",
     emoji: "🌌"
   },
@@ -2525,7 +2525,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "FREQUENCY",
     color: "from-cyan-500 to-purple-600",
     features: ["Frequency", "Vibration", "Consciousness", "Spiritual Awakening"],
-    directUrl: "https://chatgpt.com/g/g-6927f5357470819190bf5cf115c4dc5b-frequency-signature-decoder?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-6927f5357470819190bf5cf115c4dc5b-frequency-signature-decoder",
     imageUrl: "/src/assets/frequency-decoder-reborn-gpt-hero.jpg",
     emoji: "〰️"
   },
@@ -2535,7 +2535,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "INSPECTOR",
     color: "from-blue-500 to-cyan-600",
     features: ["Hospital Safety", "Compliance Audit", "Healthcare", "Inspection"],
-    directUrl: "https://chatgpt.com/g/g-68bb6ea0898c8191b61de70d8c5d52a3-ai-hospital-facility-safety-inspector/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68bb6ea0898c8191b61de70d8c5d52a3-ai-hospital-facility-safety-inspector/",
     imageUrl: "/src/assets/hospital-inspector-hero.jpg",
     emoji: "🏥"
   },
@@ -2545,7 +2545,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "INSPECTOR",
     color: "from-orange-500 to-red-600",
     features: ["Food Safety", "Plant Inspection", "Compliance", "Safety Audit"],
-    directUrl: "https://chatgpt.com/g/g-68bb62c66ea081919d6d283576fda730-food-processing-plant-inspector-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68bb62c66ea081919d6d283576fda730-food-processing-plant-inspector-gpt/",
     imageUrl: "/src/assets/food-processing-inspector-hero.jpg",
     emoji: "🏭"
   },
@@ -2555,7 +2555,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "INSPECTOR",
     color: "from-yellow-500 to-orange-600",
     features: ["Chemical Safety", "Plant Inspection", "Refinery", "Compliance"],
-    directUrl: "https://chatgpt.com/g/g-68bb5f0d5a488191a58dd3e6d9e6a4b9-chemical-plant-inspector-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68bb5f0d5a488191a58dd3e6d9e6a4b9-chemical-plant-inspector-gpt/",
     imageUrl: "/src/assets/chemical-plant-inspector-hero.jpg",
     emoji: "⚗️"
   },
@@ -2565,7 +2565,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "GREEN ENERGY",
     color: "from-yellow-500 to-orange-600",
     features: ["Solar Inspection", "Renewable Energy", "PV Systems", "Compliance"],
-    directUrl: "https://chatgpt.com/g/g-68bb4ea28fec819196a157b74750be21-solar-farm-inspector-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68bb4ea28fec819196a157b74750be21-solar-farm-inspector-gpt/",
     imageUrl: "/src/assets/solar-farm-inspector-hero.jpg",
     emoji: "☀️"
   },
@@ -2575,7 +2575,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "GREEN ENERGY",
     color: "from-blue-500 to-green-600",
     features: ["Wind Turbine", "Renewable Energy", "Turbine Safety", "Compliance"],
-    directUrl: "https://chatgpt.com/g/g-68bb4d76cb3081918d1e8f0cc2ce7e59-ai-wind-turbine-inspector/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68bb4d76cb3081918d1e8f0cc2ce7e59-ai-wind-turbine-inspector/",
     imageUrl: "/src/assets/wind-turbine-inspector-hero.jpg",
     emoji: "💨"
   },
@@ -2595,7 +2595,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "SPACE SCIENCE",
     color: "from-indigo-500 to-cyan-600",
     features: ["Orbital Mechanics", "Space Physics", "Trajectory", "Aerospace"],
-    directUrl: "https://chatgpt.com/g/g-69268e308a4c81919515ac1895e10d17-astrodynamics-gpt?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-69268e308a4c81919515ac1895e10d17-astrodynamics-gpt",
     imageUrl: "/src/assets/astrodynamics-gpt-hero.jpg",
     emoji: "🛰️"
   },
@@ -2635,7 +2635,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "INSPECTOR",
     color: "from-green-500 to-teal-600",
     features: ["Cannabis Safety", "Compliance Audit", "Facility Inspection", "Safety Standards"],
-    directUrl: "https://chatgpt.com/g/g-68bb6f9b87748191a376eb2fd427365d-ai-cannabis-facility-safety-inspector/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68bb6f9b87748191a376eb2fd427365d-ai-cannabis-facility-safety-inspector/",
     imageUrl: "/src/assets/cannabis-inspector-hero.jpg",
     emoji: "🌿"
   },
@@ -2645,7 +2645,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "INSPECTOR",
     color: "from-blue-500 to-green-600",
     features: ["Container Inspection", "Shipping Safety", "Cargo Inspection", "Maritime Safety"],
-    directUrl: "https://chatgpt.com/g/g-68bb6c04f7208191bdf1ee0ba3c31aeb-ai-shipping-container-inspector/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68bb6c04f7208191bdf1ee0ba3c31aeb-ai-shipping-container-inspector/",
     imageUrl: "/src/assets/shipping-inspector-hero.jpg",
     emoji: "📦"
   },
@@ -2655,7 +2655,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "INSPECTOR",
     color: "from-gray-500 to-black",
     features: ["Oil & Gas Safety", "Facility Audit", "Industrial Safety", "Energy Compliance"],
-    directUrl: "https://chatgpt.com/g/g-68bb60ec646c819192abdbb88718b142-oil-gas-facility-ai-inspector-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68bb60ec646c819192abdbb88718b142-oil-gas-facility-ai-inspector-gpt/",
     imageUrl: "/src/assets/oil-gas-inspector-hero.jpg",
     emoji: "🛢️"
   },
@@ -2665,7 +2665,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "INSPECTOR",
     color: "from-blue-500 to-purple-600",
     features: ["Factory Safety", "Production Line", "Quality Control", "Manufacturing"],
-    directUrl: "https://chatgpt.com/g/g-68bb5dcec6b08191aceaa0202f5b926d-factory-production-line-inspector-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68bb5dcec6b08191aceaa0202f5b926d-factory-production-line-inspector-gpt/",
     imageUrl: "/src/assets/factory-inspector-gpt-hero.jpg",
     emoji: "🏭"
   },
@@ -2675,7 +2675,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "INSPECTOR",
     color: "from-gray-500 to-blue-600",
     features: ["Warehouse Safety", "Storage Compliance", "Logistics Safety", "Inventory"],
-    directUrl: "https://chatgpt.com/g/g-68bb5c67ee54819197ea5ae2df25ac69-warehouse-inspector-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68bb5c67ee54819197ea5ae2df25ac69-warehouse-inspector-gpt/",
     imageUrl: "/src/assets/warehouse-inspector-gpt-hero.jpg",
     emoji: "🏢"
   },
@@ -2685,7 +2685,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "INSPECTOR",
     color: "from-green-500 to-blue-600",
     features: ["Waste Management", "Environmental Safety", "Facility Audit", "Compliance"],
-    directUrl: "https://chatgpt.com/g/g-68bb5b7dcedc81919a4a2ef3834c8c0e-ai-waste-management-facility-inspector/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68bb5b7dcedc81919a4a2ef3834c8c0e-ai-waste-management-facility-inspector/",
     imageUrl: "/src/assets/waste-inspector-gpt-hero.jpg",
     emoji: "♻️"
   },
@@ -2695,7 +2695,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "INSPECTOR",
     color: "from-blue-500 to-cyan-600",
     features: ["Dam Inspection", "Hydroelectric Safety", "Water Safety", "Structural Integrity"],
-    directUrl: "https://chatgpt.com/g/g-68bb58f963a48191be53dbdce7207519-ai-dam-hydroelectric-inspector/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68bb58f963a48191be53dbdce7207519-ai-dam-hydroelectric-inspector/",
     imageUrl: "/src/assets/dam-inspector-gpt-hero.jpg",
     emoji: "🌊"
   },
@@ -2705,7 +2705,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "INSPECTOR",
     color: "from-blue-500 to-teal-600",
     features: ["Port Safety", "Maritime Inspection", "Harbor Compliance", "Shipping Safety"],
-    directUrl: "https://chatgpt.com/g/g-68bb573b5574819198db30a1fc9764a6-ai-port-inspector-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68bb573b5574819198db30a1fc9764a6-ai-port-inspector-gpt/",
     imageUrl: "/src/assets/port-inspector-gpt-hero.jpg",
     emoji: "⚓"
   },
@@ -2715,7 +2715,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "INSPECTOR",
     color: "from-sky-500 to-blue-600",
     features: ["Airport Safety", "Runway Inspection", "Aviation Compliance", "Taxiway Safety"],
-    directUrl: "https://chatgpt.com/g/g-68bb55e079a48191ba27ca02b8c13de4-ai-airport-runway-systems-inspector/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68bb55e079a48191ba27ca02b8c13de4-ai-airport-runway-systems-inspector/",
     imageUrl: "/src/assets/airport-inspector-gpt-hero.jpg",
     emoji: "✈️"
   },
@@ -2725,7 +2725,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "INSPECTOR",
     color: "from-gray-500 to-blue-600",
     features: ["Highway Safety", "Traffic Systems", "Road Inspection", "Transportation"],
-    directUrl: "https://chatgpt.com/g/g-68bb551232dc819196eccf59475cc33e-ai-highway-traffic-systems-inspector/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68bb551232dc819196eccf59475cc33e-ai-highway-traffic-systems-inspector/",
     imageUrl: "/src/assets/highway-inspector-gpt-hero.jpg",
     emoji: "🛣️"
   },
@@ -2735,7 +2735,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "INSPECTOR",
     color: "from-yellow-500 to-orange-600",
     features: ["Electrical Safety", "Power Grid", "Substation Inspection", "Grid Compliance"],
-    directUrl: "https://chatgpt.com/g/g-68bb51b15dc48191aca3892c33724bc3-electrical-grid-substation-inspector-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68bb51b15dc48191aca3892c33724bc3-electrical-grid-substation-inspector-gpt/",
     imageUrl: "/src/assets/electrical-inspector-gpt-hero.jpg",
     emoji: "⚡"
   },
@@ -2745,7 +2745,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "INSPECTOR",
     color: "from-blue-500 to-cyan-600",
     features: ["Water Safety", "Treatment Plant", "Wastewater Inspection", "Water Quality"],
-    directUrl: "https://chatgpt.com/g/g-68bb4f7738c48191b8d2ed34b11279cc-ai-water-treatment-plant-inspector-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68bb4f7738c48191b8d2ed34b11279cc-ai-water-treatment-plant-inspector-gpt/",
     imageUrl: "/src/assets/water-treatment-inspector-gpt-hero.jpg",
     emoji: "💧"
   },
@@ -2765,7 +2765,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "GAMING",
     color: "from-yellow-500 to-red-600",
     features: ["Card Game", "Strategy", "Illuminati", "Interactive"],
-    directUrl: "https://chatgpt.com/g/g-68cadce3e2f08191a9b8203a32fe8846-1995-illuminati-card-game-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68cadce3e2f08191a9b8203a32fe8846-1995-illuminati-card-game-gpt/",
     imageUrl: "/src/assets/illuminati-card-gpt-hero.jpg",
     emoji: "🃏"
   },
@@ -2775,7 +2775,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "GAME DEV",
     color: "from-cyan-500 to-purple-600",
     features: ["Game Prompts", "Vibe Coding", "Rapid Dev", "Game Design"],
-    directUrl: "https://chatgpt.com/g/g-68f2d08b33cc8191b4e0fb90fa2cbcbb-gamesaas-gpt?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68f2d08b33cc8191b4e0fb90fa2cbcbb-gamesaas-gpt",
     imageUrl: "/src/assets/gamesaas-gpt-hero.jpg",
     emoji: "🎯"
   },
@@ -2805,7 +2805,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "ANCIENT SYMBOLS",
     color: "from-red-500 to-orange-600",
     features: ["Runes", "Frequency", "Sacred Geometry", "Sovereignty"],
-    directUrl: "https://chatgpt.com/g/g-68b48a3a7e6c819196d72ea7ec94a63e-the-rune-frequency-protocol/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68b48a3a7e6c819196d72ea7ec94a63e-the-rune-frequency-protocol/",
     imageUrl: "/src/assets/rune-frequency-gpt-hero.jpg",
     emoji: "ᚱ"
   },
@@ -2815,7 +2815,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "ASTROTHEOLOGY",
     color: "from-yellow-500 to-orange-600",
     features: ["Religious Analysis", "Mythology", "Celestial Symbolism", "Ancient Wisdom"],
-    directUrl: "https://chatgpt.com/g/g-68bd849122b48191963171690f999952-astrotheology-revealer-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68bd849122b48191963171690f999952-astrotheology-revealer-gpt/",
     videoUrl: "https://youtu.be/zVFwglhh4hk",
     emoji: "🌟"
   },
@@ -2825,7 +2825,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "INVESTIGATION",
     color: "from-amber-600 to-stone-700",
     features: ["Architecture Analysis", "Timeline Anomalies", "Hidden History", "Forensic Investigation"],
-    directUrl: "https://chatgpt.com/g/g-693863184c4c8191a6e78eb6a215196f-architectural-old-world-investigator-gpt?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-693863184c4c8191a6e78eb6a215196f-architectural-old-world-investigator-gpt",
     videoUrl: "https://youtu.be/2z3aO-PSpgc",
     emoji: "🏛️"
   },
@@ -3015,7 +3015,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "LANGUAGE",
     color: "from-blue-500 to-purple-600",
     features: ["Language Learning", "Multilingual", "Speech Mastery", "Fluency"],
-    directUrl: "https://chatgpt.com/g/g-68ae26360d448191b25842afb8d2f66b-lingua-champion-universal-speech-mastery-ai/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68ae26360d448191b25842afb8d2f66b-lingua-champion-universal-speech-mastery-ai/",
     imageUrl: "/src/assets/universal-speech-gpt-hero.jpg",
     emoji: "🗣️"
   },
@@ -3025,7 +3025,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "TUTORING",
     color: "from-green-500 to-blue-600",
     features: ["Tutoring", "Personalized Learning", "Academic Help", "Study Assistance"],
-    directUrl: "https://chatgpt.com/g/g-68bb71f1dca88191866a1a0bfdff7ca0-educational-tutor-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68bb71f1dca88191866a1a0bfdff7ca0-educational-tutor-gpt/",
     imageUrl: "/src/assets/educational-tutor-gpt-hero.jpg",
     emoji: "👨‍🏫"
   },
@@ -3055,7 +3055,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "HOME ORG",
     color: "from-blue-500 to-green-600",
     features: ["Home Organization", "Decluttering", "Cleaning", "Lifestyle"],
-    directUrl: "https://chatgpt.com/g/g-68bb80c2c41c8191b3d6e3dda92b6ffb-ai-home-cleanliness-declutter-coach-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68bb80c2c41c8191b3d6e3dda92b6ffb-ai-home-cleanliness-declutter-coach-gpt/",
     imageUrl: "/src/assets/home-cleanliness-gpt-hero.jpg",
     emoji: "🏠"
   },
@@ -3065,7 +3065,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "ADVOCACY",
     color: "from-blue-500 to-green-600",
     features: ["Patient Advocacy", "Healthcare Navigation", "Patient Rights", "Medical Billing"],
-    directUrl: "https://chatgpt.com/g/g-68cf22ea994481919206bf9eb0abccbc-patients-advocate-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68cf22ea994481919206bf9eb0abccbc-patients-advocate-gpt/",
     videoUrl: "https://youtu.be/S51kPQl19kA",
     emoji: "🛡️"
   },
@@ -3075,7 +3075,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "PARENTING",
     color: "from-green-500 to-teal-600",
     features: ["Parenting", "Child Development", "Family Guidance", "Psychology"],
-    directUrl: "https://chatgpt.com/g/g-68d4c45f3bc48191ba4a330a3b48bc87-parenting-guide-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68d4c45f3bc48191ba4a330a3b48bc87-parenting-guide-gpt/",
     videoUrl: "https://youtu.be/HfT-9XqDNeU",
     emoji: "👨‍👩‍👧‍👦"
   },
@@ -3085,7 +3085,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "EDUCATION ADVOCACY",
     color: "from-blue-500 to-green-600",
     features: ["IEP Support", "Parent Advocacy", "School Meetings", "Educational Rights"],
-    directUrl: "https://chatgpt.com/g/g-68bb75f48218819184ad7aa0198cb983-parent-teacher-advocate-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68bb75f48218819184ad7aa0198cb983-parent-teacher-advocate-gpt/",
     videoUrl: "https://youtu.be/vUreBwGa1w4",
     emoji: "👨‍👩‍👧‍👦"
   },
@@ -3095,7 +3095,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "PUBLIC SERVICES",
     color: "from-purple-500 to-blue-600",
     features: ["Public Services", "Government Resources", "Social Services", "Community Help"],
-    directUrl: "https://chatgpt.com/g/g-68bb74c1de28819197b7cd6f944efce9-public-service-finder-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68bb74c1de28819197b7cd6f944efce9-public-service-finder-gpt/",
     videoUrl: "https://youtu.be/x4uk_awDYS4",
     emoji: "🏛️"
   },
@@ -3105,7 +3105,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "OUTDOOR NAVIGATION",
     color: "from-green-500 to-teal-600",
     features: ["Trail Mapping", "Survival Routes", "Compass Navigation", "Route Planning"],
-    directUrl: "https://chatgpt.com/g/g-68f85a4844648191ac4c82f9e1d2b3b0-trail-mapper-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68f85a4844648191ac4c82f9e1d2b3b0-trail-mapper-gpt/",
     videoUrl: "https://youtu.be/f2Raf479gZE",
     emoji: "🧭"
   },
@@ -3115,7 +3115,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "CONSTRUCTION",
     color: "from-orange-500 to-yellow-600",
     features: ["Construction Planning", "Safety Compliance", "Project Management", "Building Codes"],
-    directUrl: "https://chatgpt.com/g/g-Hmgy6x48R-construction-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-Hmgy6x48R-construction-gpt/",
     videoUrl: "https://youtu.be/2qbPJHuwByQ",
     emoji: "🏗️"
   },
@@ -3125,7 +3125,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "REPAIR",
     color: "from-red-500 to-orange-600",
     features: ["Home Repair", "Troubleshooting", "DIY Fixes", "Maintenance Tips"],
-    directUrl: "https://chatgpt.com/g/g-oK2iR2dPf-mr-fix-it-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-oK2iR2dPf-mr-fix-it-gpt/",
     imageUrl: "/src/assets/mr-fix-it-gpt-hero.jpg",
     emoji: "🔧"
   },
@@ -3135,7 +3135,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "COOKING",
     color: "from-green-500 to-blue-600",
     features: ["Cooking Help", "Recipe Assistance", "Food Analysis", "Kitchen Tips"],
-    directUrl: "https://chatgpt.com/g/g-2ENWV8WeM-kitchen-and-vision-assistant-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-2ENWV8WeM-kitchen-and-vision-assistant-gpt/",
     imageUrl: "/src/assets/kitchen-vision-gpt-hero.jpg",
     emoji: "👨‍🍳"
   },
@@ -3145,7 +3145,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "DIY",
     color: "from-orange-500 to-red-600",
     features: ["DIY Guides", "Part Matching", "Repair Tutorials", "Home Maintenance"],
-    directUrl: "https://chatgpt.com/g/g-68bb792558a88191821219353c487bd6-diy-repair-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68bb792558a88191821219353c487bd6-diy-repair-gpt/",
     imageUrl: "/src/assets/diy-repair-gpt-hero.jpg",
     emoji: "🔧"
   },
@@ -3165,7 +3165,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "BUSINESS INTEL",
     color: "from-red-500 to-orange-600",
     features: ["Competitor Analysis", "Market Research", "Business Intelligence", "Strategy"],
-    directUrl: "https://chatgpt.com/g/g-68bb9109085c8191a5ffbe9ed6d339f5-competitor-comparison-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68bb9109085c8191a5ffbe9ed6d339f5-competitor-comparison-gpt/",
     imageUrl: "/src/assets/competitor-comparison-gpt-hero.jpg",
     emoji: "🎯"
   },
@@ -3175,7 +3175,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "ENTREPRENEUR",
     color: "from-purple-500 to-pink-600",
     features: ["Side Hustle", "Microbusiness", "Startup Strategy", "Planning"],
-    directUrl: "https://chatgpt.com/g/g-68bb8ba059ec81919253d369d0899f9c-side-hustle-microbusiness-planner-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68bb8ba059ec81919253d369d0899f9c-side-hustle-microbusiness-planner-gpt/",
     imageUrl: "/src/assets/side-hustle-gpt-hero.jpg",
     emoji: "💼"
   },
@@ -3185,7 +3185,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "NONPROFIT",
     color: "from-blue-500 to-purple-600",
     features: ["Nonprofit", "Fundraising", "Grants", "Charity"],
-    directUrl: "https://chatgpt.com/g/g-68bb7c9e5a78819184e03d06d63483f8-nonprofit-fundraising-builder-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68bb7c9e5a78819184e03d06d63483f8-nonprofit-fundraising-builder-gpt/",
     imageUrl: "/src/assets/nonprofit-fundraising-gpt-hero.jpg",
     emoji: "🤲"
   },
@@ -3195,7 +3195,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "GARDENING",
     color: "from-green-500 to-teal-600",
     features: ["Plant Health", "Garden Care", "Horticulture", "Plant Diagnosis"],
-    directUrl: "https://chatgpt.com/g/g-68bb73007bd48191a860d2304e3665e6-garden-vision-analysis-plant-doctor-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68bb73007bd48191a860d2304e3665e6-garden-vision-analysis-plant-doctor-gpt/",
     imageUrl: "/src/assets/garden-plant-gpt-hero.jpg",
     emoji: "🌱"
   },
@@ -3205,7 +3205,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "NEWS MEDIA",
     color: "from-red-500 to-blue-600",
     features: ["Live News", "World News", "Local News", "Breaking Stories"],
-    directUrl: "https://chatgpt.com/g/g-ELRe07210-news-channel-gpt?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-ELRe07210-news-channel-gpt",
     imageUrl: "/src/assets/news-channel-gpt-hero.jpg",
     emoji: "📺"
   },
@@ -3215,7 +3215,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "CULTURAL HERITAGE",
     color: "from-green-500 to-red-600",
     features: ["Palestinian History", "Cultural Preservation", "Education", "Heritage"],
-    directUrl: "https://chatgpt.com/g/g-68a5f8d8cedc8191a3a71f7c65b6b9a4-palestinian-history-preserver/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68a5f8d8cedc8191a3a71f7c65b6b9a4-palestinian-history-preserver/",
     imageUrl: "/src/assets/palestinian-history-gpt-hero.jpg",
     emoji: "🇵🇸"
   },
@@ -3266,7 +3266,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "DEVELOPMENT",
     color: "from-blue-500 to-purple-600",
     features: ["Image to Code", "Web Development", "Code Generation", "Design Conversion"],
-    directUrl: "https://chatgpt.com/g/g-30Z7JKMBW-i-convert-image-to-code-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-30Z7JKMBW-i-convert-image-to-code-gpt/",
     imageUrl: "/src/assets/image-to-code-hero.jpg",
     emoji: "🖼️"
   },
@@ -3276,7 +3276,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "AI DEVELOPMENT",
     color: "from-blue-500 to-purple-600",
     features: ["GPT Cloning", "Custom AI", "AI Development", "Chatbot Creation"],
-    directUrl: "https://chatgpt.com/g/g-6904e17b11c481918dbec234180bff54-deployable-robots-custom-gpt-cloner/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-6904e17b11c481918dbec234180bff54-deployable-robots-custom-gpt-cloner/",
     videoUrl: "https://youtu.be/lG1rMaImBNc",
     emoji: "🤖"
   },
@@ -3356,7 +3356,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "INSPECTOR",
     color: "from-amber-500 to-stone-600",
     features: ["Mining Safety", "Quarry Inspection", "Hazard Detection", "Compliance"],
-    directUrl: "https://chatgpt.com/g/g-68bb3647814c8191a7286deb722d8e31-ai-mining-quarry-safety-inspector/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68bb3647814c8191a7286deb722d8e31-ai-mining-quarry-safety-inspector/",
     imageUrl: "/src/assets/mining-quarry-safety-inspector-gpt-hero.jpg",
     emoji: "⛏️"
   },
@@ -3366,7 +3366,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "INSPECTOR",
     color: "from-gray-500 to-black",
     features: ["Tunnel Safety", "Structural Audit", "Compliance", "Underground"],
-    directUrl: "https://chatgpt.com/g/g-68bb406563d081919af937725adec08f-tunnel-safety-inspector-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68bb406563d081919af937725adec08f-tunnel-safety-inspector-gpt/",
     imageUrl: "/src/assets/tunnel-safety-inspector-gpt-hero.jpg",
     emoji: "🚇"
   },
@@ -3376,7 +3376,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "INSPECTOR",
     color: "from-blue-500 to-teal-600",
     features: ["Cargo Inspection", "Ship Inspection", "Maritime Safety", "Port Safety"],
-    directUrl: "https://chatgpt.com/g/g-68bb3e28ce348191a90afcca6f20d8d2-ai-port-ship-cargo-inspector/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68bb3e28ce348191a90afcca6f20d8d2-ai-port-ship-cargo-inspector/",
     imageUrl: "/src/assets/port-ship-cargo-inspector-gpt-hero.jpg",
     emoji: "🚢"
   },
@@ -3386,7 +3386,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "INSPECTOR",
     color: "from-sky-500 to-blue-600",
     features: ["Aircraft Maintenance", "Aviation Inspection", "Airline Safety", "Compliance"],
-    directUrl: "https://chatgpt.com/g/g-68bb3a729c24819189bdc498b1d835e4-ai-airline-maintenance-inspector/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68bb3a729c24819189bdc498b1d835e4-ai-airline-maintenance-inspector/",
     imageUrl: "/src/assets/airline-maintenance-inspector-gpt-hero.jpg",
     emoji: "✈️"
   },
@@ -3406,7 +3406,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "INSPECTOR",
     color: "from-red-500 to-orange-600",
     features: ["Vehicle Damage", "Accident Assessment", "Damage Appraisal", "Auto Insurance"],
-    directUrl: "https://chatgpt.com/g/g-68bb3097f148819197c06d9dd2de35cd-ai-vehicle-accident-damage-appraiser/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68bb3097f148819197c06d9dd2de35cd-ai-vehicle-accident-damage-appraiser/",
     videoUrl: "https://youtu.be/DSxAUqAZwGQ",
     emoji: "🚗"
   },
@@ -3416,7 +3416,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "INSPECTOR",
     color: "from-red-500 to-gray-600",
     features: ["Disaster Assessment", "Damage Estimation", "Disaster Recovery", "Insurance Claims"],
-    directUrl: "https://chatgpt.com/g/g-68bb2b0a345081918f4b78348c835906-ai-disaster-damage-estimator/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68bb2b0a345081918f4b78348c835906-ai-disaster-damage-estimator/",
     imageUrl: "/src/assets/disaster-damage-hero.jpg",
     emoji: "⛈️"
   },
@@ -3426,7 +3426,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "GREEN ENERGY",
     color: "from-green-500 to-blue-600",
     features: ["Energy Efficiency", "Building Inspection", "Energy Audit", "Sustainability"],
-    directUrl: "https://chatgpt.com/g/g-68bb27b70884819195c2ba705b4d9a17-energy-efficiency-mapper/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68bb27b70884819195c2ba705b4d9a17-energy-efficiency-mapper/",
     imageUrl: "/src/assets/energy-efficiency-hero.jpg",
     emoji: "⚡"
   },
@@ -3436,7 +3436,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "HEALTH",
     color: "from-orange-500 to-red-600",
     features: ["Nutrition Analysis", "Food Inspection", "Dietary Assessment", "Health Analysis"],
-    directUrl: "https://chatgpt.com/g/g-68bb2444a9b08191a01c7b91216a7293-ai-food-plate-nutrition-analyzer/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68bb2444a9b08191a01c7b91216a7293-ai-food-plate-nutrition-analyzer/",
     videoUrl: "https://youtu.be/wUqOSdOkMak",
     emoji: "🍽️"
   },
@@ -3446,7 +3446,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "RETAIL",
     color: "from-blue-500 to-purple-600",
     features: ["Retail Inspection", "Shelf Optimization", "Retail Analysis", "Merchandising"],
-    directUrl: "https://chatgpt.com/g/g-68bb210f77f8819190c253705c0ff8ba-ai-retail-shelf-optimizer/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68bb210f77f8819190c253705c0ff8ba-ai-retail-shelf-optimizer/",
     imageUrl: "/src/assets/retail-shelf-optimizer-hero.jpg",
     emoji: "🛒"
   },
@@ -3456,7 +3456,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "QUALITY",
     color: "from-red-500 to-orange-600",
     features: ["Manufacturing Inspection", "Defect Detection", "Quality Control", "Production"],
-    directUrl: "https://chatgpt.com/g/g-68bb1e8323d481918bcfe3dd7e737f18-ai-manufacturing-defect-detector/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68bb1e8323d481918bcfe3dd7e737f18-ai-manufacturing-defect-detector/",
     imageUrl: "/src/assets/manufacturing-defect-hero.jpg",
     emoji: "🔍"
   },
@@ -3466,7 +3466,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "AGRICULTURE",
     color: "from-green-500 to-yellow-600",
     features: ["Farm Inspection", "Crop Health", "Agricultural Inspector", "Crop Diagnostics"],
-    directUrl: "https://chatgpt.com/g/g-68bb1c74f7b88191bbb1887cf9928893-ai-farm-crop-health-scanner/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68bb1c74f7b88191bbb1887cf9928893-ai-farm-crop-health-scanner/",
     imageUrl: "/src/assets/farm-crop-scanner-hero.jpg",
     emoji: "🌾"
   },
@@ -3476,7 +3476,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "SAFETY",
     color: "from-yellow-500 to-orange-600",
     features: ["Construction Safety", "Site Inspection", "Safety Analysis", "Workplace Safety"],
-    directUrl: "https://chatgpt.com/g/g-68bb19910f2881918ce15096550d2d52-ai-construction-site-safety-analyzer/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68bb19910f2881918ce15096550d2d52-ai-construction-site-safety-analyzer/",
     imageUrl: "/src/assets/construction-safety-hero.jpg",
     emoji: "🚧"
   },
@@ -3486,7 +3486,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "INFRASTRUCTURE",
     color: "from-blue-500 to-green-600",
     features: ["Dam Inspection", "Levee Safety", "Water Infrastructure", "Flood Control"],
-    directUrl: "https://chatgpt.com/g/g-68bb422e07a081919953658b4bc9acb0-dam-levee-inspector-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68bb422e07a081919953658b4bc9acb0-dam-levee-inspector-gpt/",
     imageUrl: "/src/assets/dam-levee-inspector-hero.jpg",
     emoji: "🏔️"
   },
@@ -3496,7 +3496,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "INFRASTRUCTURE",
     color: "from-blue-500 to-gray-600",
     features: ["Railway Inspection", "Track Safety", "Train Safety", "Rail Inspection"],
-    directUrl: "https://chatgpt.com/g/g-68bb437ee1008191a2d7f7a697b5426f-railway-track-rolling-stock-inspector-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68bb437ee1008191a2d7f7a697b5426f-railway-track-rolling-stock-inspector-gpt/",
     imageUrl: "/src/assets/railway-inspector-hero.jpg",
     emoji: "🚂"
   },
@@ -3506,7 +3506,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "ENERGY",
     color: "from-red-500 to-orange-600",
     features: ["Power Plant", "Energy Inspection", "Plant Safety", "Power Generation"],
-    directUrl: "https://chatgpt.com/g/g-68bb4b0bb8848191b13199effbb0b89f-power-plant-systems-inspector-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68bb4b0bb8848191b13199effbb0b89f-power-plant-systems-inspector-gpt/",
     imageUrl: "/src/assets/power-plant-inspector-hero.jpg",
     emoji: "🏭"
   },
@@ -3516,7 +3516,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "INFRASTRUCTURE",
     color: "from-stone-500 to-gray-600",
     features: ["Road Inspection", "Pavement Assessment", "Road Safety", "Infrastructure"],
-    directUrl: "https://chatgpt.com/g/g-68bb469b40ec81919fd73b5dbb7562db-ai-road-pavement-inspector/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68bb469b40ec81919fd73b5dbb7562db-ai-road-pavement-inspector/",
     imageUrl: "/src/assets/road-pavement-inspector-gpt-hero.jpg",
     emoji: "🛣️"
   },
@@ -3526,7 +3526,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "INFRASTRUCTURE",
     color: "from-gray-500 to-blue-600",
     features: ["Pipeline Inspection", "Pipeline Integrity", "Oil Gas Pipeline", "Pipeline Safety"],
-    directUrl: "https://chatgpt.com/g/g-68bb492f149c81918aaa62cab75ee4f8-ai-pipeline-integrity-inspector/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68bb492f149c81918aaa62cab75ee4f8-ai-pipeline-integrity-inspector/",
     imageUrl: "/src/assets/pipeline-integrity-inspector-gpt-hero.jpg",
     emoji: "🔧"
   },
@@ -3536,7 +3536,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "SPIRITUAL",
     color: "from-amber-500 to-yellow-600",
     features: ["Scripture Decoding", "Symbolic Maps", "Light Awakening", "Spiritual Wisdom"],
-    directUrl: "https://chatgpt.com/g/g-6940eff9744c8191bcd205fa59cc6128-bill-donahue-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-6940eff9744c8191bcd205fa59cc6128-bill-donahue-gpt/",
     videoUrl: "https://youtu.be/2Ac5AxDWVu8",
     emoji: "💡"
   },
@@ -3546,7 +3546,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "MYSTICISM",
     color: "from-amber-500 to-orange-600",
     features: ["Mithraism", "Solar Mysteries", "Ancient Light", "Spiritual Wisdom"],
-    directUrl: "https://chatgpt.com/g/g-6940c17f21788191ad33885d2f3ae2a1-mithraic-light-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-6940c17f21788191ad33885d2f3ae2a1-mithraic-light-gpt/",
     videoUrl: "https://youtu.be/HMaBo5JZ0Tc",
     emoji: "☀️"
   },
@@ -3556,7 +3556,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "MYSTICISM",
     color: "from-blue-500 to-purple-600",
     features: ["Jewish Mysticism", "Merkabah", "Prophetic Light", "Ancient Wisdom"],
-    directUrl: "https://chatgpt.com/g/g-6940bf89d42c8191ae0845529ce36eb2-pre-rome-jewish-light-mysticism-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-6940bf89d42c8191ae0845529ce36eb2-pre-rome-jewish-light-mysticism-gpt/",
     videoUrl: "https://youtu.be/HfT-9XqDNeU",
     emoji: "✡️"
   },
@@ -3566,7 +3566,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "MYSTICISM",
     color: "from-yellow-500 to-amber-600",
     features: ["Ancient Wisdom", "Sacred Traditions", "Light Mysticism", "Universal Truth"],
-    directUrl: "https://chatgpt.com/g/g-6940be8112f88191bbf1e397553502c5-ancient-light-mysticism-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-6940be8112f88191bbf1e397553502c5-ancient-light-mysticism-gpt/",
     videoUrl: "https://youtu.be/How06IWCv1s",
     emoji: "🔥"
   },
@@ -3576,7 +3576,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "GNOSTICISM",
     color: "from-purple-500 to-indigo-600",
     features: ["Proto-Gnosticism", "Hidden Spark", "Spiritual Liberation", "Ancient Wisdom"],
-    directUrl: "https://chatgpt.com/g/g-6940bd6275208191a9564344d5b293f4-proto-gnostic-luminary-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-6940bd6275208191a9564344d5b293f4-proto-gnostic-luminary-gpt/",
     imageUrl: "/src/assets/proto-gnostic-luminary-gpt-hero.png",
     emoji: "✨"
   },
@@ -3586,7 +3586,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "PHILOSOPHY",
     color: "from-indigo-500 to-blue-600",
     features: ["Pythagorean", "Orphic Mysteries", "Sacred Geometry", "Divine Music"],
-    directUrl: "https://chatgpt.com/g/g-6940bca8f00c8191b15a5a81ace5b829-pythagorean-the-orphic-light-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-6940bca8f00c8191b15a5a81ace5b829-pythagorean-the-orphic-light-gpt/",
     imageUrl: "/src/assets/pythagorean-orphic-light-gpt-hero.png",
     emoji: "🔺"
   },
@@ -3596,7 +3596,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "MYSTICISM",
     color: "from-sky-500 to-blue-600",
     features: ["Enochian", "Watchers", "Angelic Wisdom", "Ladder of Ascent"],
-    directUrl: "https://chatgpt.com/g/g-6940bba0eeec8191ae927087907f29b0-enochian-mysticism-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-6940bba0eeec8191ae927087907f29b0-enochian-mysticism-gpt/",
     videoUrl: "https://www.youtube.com/watch?v=gLH2adlUs70",
     emoji: "👼"
   },
@@ -3606,7 +3606,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "HERMETICISM",
     color: "from-emerald-500 to-teal-600",
     features: ["Hermeticism", "Alchemy", "Hermetic Wisdom", "Inner Light"],
-    directUrl: "https://chatgpt.com/g/g-6940ba3aa5ec8191bdf6c92d5f3f7d31-hermetic-mysteries-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-6940ba3aa5ec8191bdf6c92d5f3f7d31-hermetic-mysteries-gpt/",
     imageUrl: "/src/assets/hermetic-mysteries-gpt-hero.png",
     emoji: "⚗️"
   },
@@ -3616,7 +3616,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "MYSTICISM",
     color: "from-violet-500 to-purple-600",
     features: ["Bogomils", "Dualist Christianity", "Uncreated Light", "Medieval Mysticism"],
-    directUrl: "https://chatgpt.com/g/g-6940b8a74ab481919bf4fb057b18feb0-bogomils-gpt-living-light/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-6940b8a74ab481919bf4fb057b18feb0-bogomils-gpt-living-light/",
     videoUrl: "https://youtu.be/ermOlQWxmvs",
     emoji: "💫"
   },
@@ -3626,7 +3626,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "MYSTICISM",
     color: "from-red-500 to-orange-600",
     features: ["Paulicians", "Inner Light", "Early Christianity", "Rebellion"],
-    directUrl: "https://chatgpt.com/g/g-6940b7f399e4819181e97dab46797d55-paulician-lightbearer-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-6940b7f399e4819181e97dab46797d55-paulician-lightbearer-gpt/",
     videoUrl: "https://youtu.be/dWKswfcKOu4",
     emoji: "🕯️"
   },
@@ -3636,7 +3636,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "MONASTICISM",
     color: "from-amber-600 to-yellow-600",
     features: ["Desert Fathers", "Monasticism", "Contemplation", "Spiritual Fire"],
-    directUrl: "https://chatgpt.com/g/g-6940b6df40c0819182b299ac8c9eae11-desert-monastic-mysticism-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-6940b6df40c0819182b299ac8c9eae11-desert-monastic-mysticism-gpt/",
     videoUrl: "https://youtu.be/k1S-Fa7xTLI",
     emoji: "🏜️"
   },
@@ -3646,7 +3646,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "PHILOSOPHY",
     color: "from-blue-600 to-indigo-600",
     features: ["Neoplatonism", "The One", "Soul Ascent", "Ancient Philosophy"],
-    directUrl: "https://chatgpt.com/g/g-6940b6276a44819182dfe8a3150f4d76-neoplatonic-mysteries-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-6940b6276a44819182dfe8a3150f4d76-neoplatonic-mysteries-gpt/",
     videoUrl: "https://youtu.be/tgBjcTXoCX4",
     emoji: "🌀"
   },
@@ -3656,7 +3656,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "GNOSTICISM",
     color: "from-orange-500 to-red-600",
     features: ["Gnosticism", "Hidden Light", "Divine Memory", "Spiritual Awakening"],
-    directUrl: "https://chatgpt.com/g/g-6940b56c72208191a423d2f63de1d368-gnostic-flame-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-6940b56c72208191a423d2f63de1d368-gnostic-flame-gpt/",
     videoUrl: "https://youtu.be/-myCequuxtY",
     emoji: "🔥"
   },
@@ -3666,7 +3666,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "MYSTICISM",
     color: "from-sky-500 to-cyan-600",
     features: ["Early Christianity", "Yeshua Movement", "Mystical Christianity", "Original Teachings"],
-    directUrl: "https://chatgpt.com/g/g-6940b2beda088191b52daf9737b8ec47-mythical-christianity-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-6940b2beda088191b52daf9737b8ec47-mythical-christianity-gpt/",
     videoUrl: "https://youtu.be/9fPhlJsIdd4",
     emoji: "✝️"
   },
@@ -3676,7 +3676,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "MYSTICISM",
     color: "from-teal-500 to-green-600",
     features: ["Therapeutae", "Contemplative Healing", "Ancient Wisdom", "Jewish-Egyptian"],
-    directUrl: "https://chatgpt.com/g/g-6940b1601bd081918e149a92bfedd5c4-therapeutae-lightkeeper-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-6940b1601bd081918e149a92bfedd5c4-therapeutae-lightkeeper-gpt/",
     imageUrl: "/src/assets/therapeutae-lightkeeper-gpt-hero.png",
     emoji: "💚"
   },
@@ -3686,7 +3686,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     badge: "MYSTICISM",
     color: "from-cyan-500 to-blue-600",
     features: ["Essenes", "Dead Sea Scrolls", "Light Seekers", "Ancient Community"],
-    directUrl: "https://chatgpt.com/g/g-6940afff17008191897e30cc94be7b27-essene-master-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-6940afff17008191897e30cc94be7b27-essene-master-gpt/",
     videoUrl: "https://youtu.be/Kyve-l7OA_M",
     emoji: "📜"
   },

@@ -86,7 +86,7 @@ export const investigativeAndAnalysisGPTs: Tool[] = [
     description: "AI-powered tool for researching and analyzing declassified government files that have been released to the public. Access and explore historical government documents, intelligence reports, and official records with advanced search capabilities. Perfect for researchers, historians, journalists, and truth seekers investigating government transparency and historical events. For informational and research purposes only.",
     emoji: "📂",
     color: "from-slate-500 to-gray-700",
-    directUrl: "https://chatgpt.com/g/g-68eeaf21bd1481919a34936a27d917a3-declassified-files-explorer-gpt?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68eeaf21bd1481919a34936a27d917a3-declassified-files-explorer-gpt",
     videoUrl: "https://youtu.be/kqMPocOgEZ8?si=UlxkH6weSVM1fp-I",
     tags: ["declassified files", "government documents", "research", "historical records", "transparency", "intelligence reports", "document analysis", "aiwebtools", "Custom GPT"],
     category: "Investigative & Analysis",

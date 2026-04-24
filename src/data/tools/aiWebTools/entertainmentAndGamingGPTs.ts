@@ -52,7 +52,7 @@ export const entertainmentAndGamingGPTs: Tool[] = [
     description: "A cunning opponent and oracle for the 1995 Illuminati card game. Experience the classic conspiracy-themed card game with AI-powered gameplay, strategic guidance, and immersive storytelling. This GPT brings the iconic Steve Jackson Games creation to life with intelligent game mechanics and engaging narrative elements.",
     emoji: "🃏",
     color: "from-yellow-500 to-red-600",
-    directUrl: "https://chatgpt.com/g/g-68cadce3e2f08191a9b8203a32fe8846-1995-illuminati-card-game-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68cadce3e2f08191a9b8203a32fe8846-1995-illuminati-card-game-gpt/",
     imageUrl: illuminatiCardGameHero,
     tags: ["card game", "illuminati", "strategy game", "1995", "conspiracy", "gaming", "interactive game", "aiwebtools", "Custom GPT"],
     category: "Entertainment & Gaming",
