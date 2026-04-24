@@ -39,6 +39,7 @@ const images = [
   { src: "/images/inspiration/praise-light-within.jpg", alt: "Praise the Light of God for it is WITHIN" },
   { src: "/images/inspiration/met-god-no-religion.jpg", alt: "If having a religion was a requirement to have a God - How come I met God without having a religion?" },
   { src: "/images/inspiration/declaration-cosmic-light.png", alt: "Declaration of Cosmic Light Within All People on Earth - The Inner Cosmos Monk of Humanity" },
+  { src: "/images/inspiration/met-god-tour-of-hell.png", alt: "I met God face to face and got a tour of the Black Hole of Hell - He is within me and within you - The Light is Within - No dogma required" },
 ];
 
 const InspirationCarousel = () => {
