@@ -617,3 +617,6 @@ export { oneMoreShotAi } from './oneMoreShotAi';
 
 // Export Trending AI Batch 2026 April (10 tools: Cluely, Felo AI, Inflection Pi, SambaNova, Same.dev, Lambda Labs, MotherDuck, Milvus, Heyboss AI, MultiOn AI)
 export { trendingAiBatch2026Apr } from './trendingAiBatch2026Apr';
+
+// Export Vid.ai (faceless YouTube Shorts / TikTok automation — viral short-form video generator)
+export { vidAi } from './vidAi';
