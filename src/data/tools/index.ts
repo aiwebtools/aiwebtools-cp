@@ -620,3 +620,6 @@ export { trendingAiBatch2026Apr } from './trendingAiBatch2026Apr';
 
 // Export Vid.ai (faceless YouTube Shorts / TikTok automation — viral short-form video generator)
 export { vidAi } from './vidAi';
+
+// Free Awesome Batch April 2026 — Excalidraw, Cleanup.pictures, Consensus, HuggingChat, Scribble Diffusion
+export { freeAwesomeBatch2026 } from './freeAwesomeBatch2026';
