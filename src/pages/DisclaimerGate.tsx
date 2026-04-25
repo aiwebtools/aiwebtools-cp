@@ -297,7 +297,9 @@ const DisclaimerGate: React.FC = () => {
   // If already accepted, skip this page
   useEffect(() => {
     if (getConsentAccepted()) {
-      navigate("/", { replace: true });
+      startTransition(() => {
+        navigate("/", { replace: true });
+      });
     }
   }, [navigate]);
 
