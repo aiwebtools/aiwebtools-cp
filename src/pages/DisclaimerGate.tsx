@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, startTransition } from "react";
 import { useNavigate } from "react-router-dom";
 import { Check, Sparkles, Shield } from "lucide-react";
 import { Button } from "../components/ui/button";
@@ -297,7 +297,9 @@ const DisclaimerGate: React.FC = () => {
   // If already accepted, skip this page
   useEffect(() => {
     if (getConsentAccepted()) {
-      navigate("/", { replace: true });
+      startTransition(() => {
+        navigate("/", { replace: true });
+      });
     }
   }, [navigate]);
 
@@ -322,9 +324,13 @@ const DisclaimerGate: React.FC = () => {
     document.documentElement.scrollTop = 0;
     document.body.scrollTop = 0;
     
-    // Set consent and navigate
+    // Set consent and navigate inside a transition so any lazy/Suspense
+    // boundaries during route change don't throw the
+    // "component suspended while responding to synchronous input" error.
     setConsentAccepted(true);
-    navigate("/", { replace: true });
+    startTransition(() => {
+      navigate("/", { replace: true });
+    });
   };
 
   return (
