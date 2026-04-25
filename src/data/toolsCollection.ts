@@ -263,6 +263,9 @@ import { trendingAiBatch2026Apr } from './tools/trendingAiBatch2026Apr';
 // Import Vid.ai (faceless YouTube Shorts / TikTok automation)
 import { vidAi } from './tools/vidAi';
 
+// Import Free Awesome Batch 2026 (Excalidraw, Cleanup.pictures, Consensus, HuggingChat, Scribble Diffusion)
+import { freeAwesomeBatch2026 } from './tools/freeAwesomeBatch2026';
+
 // Import AI Hardware (legacy - moved to gadgets)
 import { aiHardware } from './tools/aiHardware';
 
@@ -538,6 +541,7 @@ export const getAllToolCategories = (): Tool[] => {
     ...oneMoreShotAi,
     ...trendingAiBatch2026Apr,
     ...vidAi,
+    ...freeAwesomeBatch2026,
     ...aiHardware,
     
     // NEW 2025: Additional tools
