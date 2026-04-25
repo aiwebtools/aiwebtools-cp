@@ -327,6 +327,36 @@ const BookPromotionCard = () => {
       id: "-wZ_fWUE1mg",
       title: "AI Web Tools Showcase 43",
       gradient: "from-violet-500/20 to-purple-500/20"
+    },
+    {
+      id: "Uxl3CIeScvg",
+      title: "AI Web Tools Showcase 44",
+      gradient: "from-purple-500/20 to-pink-500/20"
+    },
+    {
+      id: "Buffx22sp6w",
+      title: "AI Web Tools Showcase 45",
+      gradient: "from-blue-500/20 to-indigo-500/20"
+    },
+    {
+      id: "xsxEBaMW8Ng",
+      title: "AI Web Tools Showcase 46",
+      gradient: "from-cyan-500/20 to-teal-500/20"
+    },
+    {
+      id: "p1DAS1BFfDY",
+      title: "AI Web Tools Showcase 47",
+      gradient: "from-emerald-500/20 to-green-500/20"
+    },
+    {
+      id: "me4bSdyssIg",
+      title: "AI Web Tools Showcase 48",
+      gradient: "from-lime-500/20 to-yellow-500/20"
+    },
+    {
+      id: "BIRVV2retf0",
+      title: "AI Web Tools Showcase 49",
+      gradient: "from-amber-500/20 to-orange-500/20"
     }
   ];
 
