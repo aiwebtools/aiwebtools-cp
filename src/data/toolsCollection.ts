@@ -544,6 +544,7 @@ export const getAllToolCategories = (): Tool[] => {
     ...trendingAiBatch2026Apr,
     ...vidAi,
     ...freeAwesomeBatch2026,
+    ...freeAwesomeBatch2026B,
     ...aiHardware,
     
     // NEW 2025: Additional tools
