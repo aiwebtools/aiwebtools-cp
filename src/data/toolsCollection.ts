@@ -265,6 +265,8 @@ import { vidAi } from './tools/vidAi';
 
 // Import Free Awesome Batch 2026 (Excalidraw, Cleanup.pictures, Consensus, HuggingChat, Scribble Diffusion)
 import { freeAwesomeBatch2026 } from './tools/freeAwesomeBatch2026';
+// Import Free Awesome Batch 2026 B (Photopea, Penpot, Stirling PDF, Pinokio, Fooocus)
+import { freeAwesomeBatch2026B } from './tools/freeAwesomeBatch2026B';
 
 // Import AI Hardware (legacy - moved to gadgets)
 import { aiHardware } from './tools/aiHardware';
@@ -542,6 +544,7 @@ export const getAllToolCategories = (): Tool[] => {
     ...trendingAiBatch2026Apr,
     ...vidAi,
     ...freeAwesomeBatch2026,
+    ...freeAwesomeBatch2026B,
     ...aiHardware,
     
     // NEW 2025: Additional tools
