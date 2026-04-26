@@ -142,8 +142,11 @@ const LazyBookVideo = ({
 const BookPromotionCard = () => {
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
   const [desktopIndex, setDesktopIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
+  // Pause idle auto-cycle by default so the pinned first video stays visible
+  // until the user interacts with the carousel.
+  const [isPaused, setIsPaused] = useState(true);
   const [isAutoPlaying, setIsAutoPlaying] = useState(false);
+  const [hasUserInteracted, setHasUserInteracted] = useState(false);
   
   // First video is always pinned, rest are shuffled
   const originalVideos = [
@@ -640,42 +643,86 @@ const BookPromotionCard = () => {
 
                 {/* Mobile: Carousel with swipe and lazy loading */}
                 <div 
-                  className="md:hidden relative"
+                  className="md:hidden relative overflow-hidden"
                   onTouchStart={handleTouchStart}
                   onTouchMove={handleTouchMove}
                   onTouchEnd={handleTouchEnd}
                 >
-                  <div className="flex justify-center items-center">
-                    <button
-                      onClick={prevVideo}
-                      type="button"
-                      className="absolute left-0 z-30 w-12 h-12 flex items-center justify-center bg-green-900/90 rounded-full text-green-400 border border-green-500/40 transition-colors duration-150 hover:bg-green-800 active:bg-green-700 focus:outline-none cursor-pointer shadow-lg"
-                      aria-label="Previous video"
-                    >
-                      <ChevronLeft size={24} className="pointer-events-none" />
-                    </button>
+                  <div className="relative flex justify-center items-center py-2">
+                    {/* Peek of previous video */}
+                    {(() => {
+                      const prevIdx = (currentVideoIndex - 1 + videos.length) % videos.length;
+                      const nextIdx = (currentVideoIndex + 1) % videos.length;
+                      return (
+                        <>
+                          <button
+                            onClick={prevVideo}
+                            type="button"
+                            aria-label="Previous video"
+                            className="absolute left-0 top-1/2 -translate-y-1/2 z-30 w-10 h-10 flex items-center justify-center bg-green-900/90 rounded-full text-green-400 border border-green-500/40 transition-colors duration-150 active:bg-green-700 focus:outline-none cursor-pointer shadow-lg"
+                          >
+                            <ChevronLeft size={20} className="pointer-events-none" />
+                          </button>
 
-                    <div className="relative w-48 flex-shrink-0 mx-auto transition-all duration-700 ease-in-out">
-                      <div className="relative rounded-xl overflow-hidden shadow-2xl" style={{ aspectRatio: '9/16' }}>
-                        <LazyBookVideo 
-                          videoId={videos[currentVideoIndex].id} 
-                          title={videos[currentVideoIndex].title} 
-                          onPlay={handleVideoPlay}
-                          onEnd={handleVideoEnd}
-                          autoPlay={isAutoPlaying}
-                        />
-                      </div>
-                      <div className={`absolute -inset-2 bg-gradient-to-r ${videos[currentVideoIndex].gradient} rounded-lg blur-xl -z-10 transition-all duration-700`}></div>
-                    </div>
+                          <div className="flex items-center justify-center gap-2 w-full">
+                            {/* Left peek */}
+                            <button
+                              type="button"
+                              onClick={prevVideo}
+                              aria-label="Show previous video"
+                              className="relative w-16 flex-shrink-0 opacity-50 transition-all duration-500"
+                              style={{ aspectRatio: '9/16' }}
+                            >
+                              <img
+                                src={`https://i.ytimg.com/vi/${videos[prevIdx].id}/hqdefault.jpg`}
+                                alt={videos[prevIdx].title}
+                                className="w-full h-full object-cover rounded-lg"
+                                loading="lazy"
+                              />
+                            </button>
 
-                    <button
-                      onClick={nextVideo}
-                      type="button"
-                      className="absolute right-0 z-30 w-12 h-12 flex items-center justify-center bg-green-900/90 rounded-full text-green-400 border border-green-500/40 transition-colors duration-150 hover:bg-green-800 active:bg-green-700 focus:outline-none cursor-pointer shadow-lg"
-                      aria-label="Next video"
-                    >
-                      <ChevronRight size={24} className="pointer-events-none" />
-                    </button>
+                            {/* Active video */}
+                            <div className="relative w-44 flex-shrink-0 transition-all duration-700 ease-in-out">
+                              <div className="relative rounded-xl overflow-hidden shadow-2xl ring-2 ring-cyan-400/40" style={{ aspectRatio: '9/16' }}>
+                                <LazyBookVideo 
+                                  videoId={videos[currentVideoIndex].id} 
+                                  title={videos[currentVideoIndex].title} 
+                                  onPlay={handleVideoPlay}
+                                  onEnd={handleVideoEnd}
+                                  autoPlay={isAutoPlaying}
+                                />
+                              </div>
+                              <div className={`absolute -inset-2 bg-gradient-to-r ${videos[currentVideoIndex].gradient} rounded-lg blur-xl -z-10 transition-all duration-700`}></div>
+                            </div>
+
+                            {/* Right peek */}
+                            <button
+                              type="button"
+                              onClick={nextVideo}
+                              aria-label="Show next video"
+                              className="relative w-16 flex-shrink-0 opacity-50 transition-all duration-500"
+                              style={{ aspectRatio: '9/16' }}
+                            >
+                              <img
+                                src={`https://i.ytimg.com/vi/${videos[nextIdx].id}/hqdefault.jpg`}
+                                alt={videos[nextIdx].title}
+                                className="w-full h-full object-cover rounded-lg"
+                                loading="lazy"
+                              />
+                            </button>
+                          </div>
+
+                          <button
+                            onClick={nextVideo}
+                            type="button"
+                            aria-label="Next video"
+                            className="absolute right-0 top-1/2 -translate-y-1/2 z-30 w-10 h-10 flex items-center justify-center bg-green-900/90 rounded-full text-green-400 border border-green-500/40 transition-colors duration-150 active:bg-green-700 focus:outline-none cursor-pointer shadow-lg"
+                          >
+                            <ChevronRight size={20} className="pointer-events-none" />
+                          </button>
+                        </>
+                      );
+                    })()}
                   </div>
 
                   <div className="flex justify-center gap-2 mt-4">
