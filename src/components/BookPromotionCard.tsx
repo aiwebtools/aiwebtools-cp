@@ -142,8 +142,11 @@ const LazyBookVideo = ({
 const BookPromotionCard = () => {
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
   const [desktopIndex, setDesktopIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
+  // Pause idle auto-cycle by default so the pinned first video stays visible
+  // until the user interacts with the carousel.
+  const [isPaused, setIsPaused] = useState(true);
   const [isAutoPlaying, setIsAutoPlaying] = useState(false);
+  const [hasUserInteracted, setHasUserInteracted] = useState(false);
   
   // First video is always pinned, rest are shuffled
   const originalVideos = [
