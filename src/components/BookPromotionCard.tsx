@@ -410,10 +410,14 @@ const BookPromotionCard = () => {
   }, []);
 
   const nextDesktopPage = () => {
+    setIsAutoPlaying(false);
+    setIsPaused(true);
     setDesktopIndex((prev) => (prev + 1) % totalDesktopPages);
   };
 
   const prevDesktopPage = () => {
+    setIsAutoPlaying(false);
+    setIsPaused(true);
     setDesktopIndex((prev) => (prev - 1 + totalDesktopPages) % totalDesktopPages);
   };
 
