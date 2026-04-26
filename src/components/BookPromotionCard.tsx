@@ -410,11 +410,13 @@ const BookPromotionCard = () => {
   ];
 
   // Randomize videos on component mount
-  // Pin first video, shuffle the rest
+  // Pin the newest showcase video first, keep IHY7AlYJhUc at 4th, shuffle the rest
   const videos = useMemo(() => {
-    const pinned1 = originalVideos[0]; // Always first
-    const pinned4 = originalVideos[3]; // Always fourth (IHY7AlYJhUc)
-    const rest = originalVideos.filter((_, i) => i !== 0 && i !== 3);
+    const firstIdx = originalVideos.findIndex(v => v.id === "W4grI_pqzbk");
+    const fourthIdx = originalVideos.findIndex(v => v.id === "IHY7AlYJhUc");
+    const pinned1 = originalVideos[firstIdx]; // Always first (newest showcase)
+    const pinned4 = originalVideos[fourthIdx]; // Always fourth
+    const rest = originalVideos.filter((_, i) => i !== firstIdx && i !== fourthIdx);
     const shuffled = shuffleArray(rest);
     // Insert pinned4 at index 3 (4th position)
     return [pinned1, shuffled[0], shuffled[1], pinned4, ...shuffled.slice(2)];
