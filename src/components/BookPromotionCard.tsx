@@ -33,6 +33,12 @@ const LazyBookVideo = ({
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const thumbnailUrl = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
 
+  // React to autoPlay prop changes after mount (e.g. when the previous
+  // video ends and the carousel promotes this card to the active slot).
+  useEffect(() => {
+    if (autoPlay) setIsLoaded(true);
+  }, [autoPlay]);
+
   const handlePlay = () => {
     setIsLoaded(true);
     onPlay?.();
@@ -41,6 +47,39 @@ const LazyBookVideo = ({
   // Listen for video end via YouTube iframe API
   useEffect(() => {
     if (!isLoaded || !onEnd) return;
+
+    const iframe = iframeRef.current;
+    if (!iframe) return;
+
+    // Subscribe to YouTube iframe state-change events.
+    // The YT iframe API requires us to post a "listening" handshake AND
+    // an addEventListener command before it will emit onStateChange.
+    const subscribe = () => {
+      try {
+        iframe.contentWindow?.postMessage(
+          JSON.stringify({ event: 'listening', id: videoId, channel: 'widget' }),
+          'https://www.youtube-nocookie.com'
+        );
+        iframe.contentWindow?.postMessage(
+          JSON.stringify({
+            event: 'command',
+            func: 'addEventListener',
+            args: ['onStateChange'],
+            id: videoId,
+            channel: 'widget',
+          }),
+          'https://www.youtube-nocookie.com'
+        );
+      } catch {
+        // ignore
+      }
+    };
+
+    // Subscribe once the iframe has loaded, and again after a short delay
+    // in case the load already happened.
+    iframe.addEventListener('load', subscribe);
+    const t1 = setTimeout(subscribe, 500);
+    const t2 = setTimeout(subscribe, 1500);
 
     const handleMessage = (event: MessageEvent) => {
       if (event.origin !== 'https://www.youtube-nocookie.com') return;
@@ -57,8 +96,13 @@ const LazyBookVideo = ({
     };
 
     window.addEventListener('message', handleMessage);
-    return () => window.removeEventListener('message', handleMessage);
-  }, [isLoaded, onEnd]);
+    return () => {
+      window.removeEventListener('message', handleMessage);
+      iframe.removeEventListener('load', subscribe);
+      clearTimeout(t1);
+      clearTimeout(t2);
+    };
+  }, [isLoaded, onEnd, videoId]);
 
   if (isLoaded) {
     return (
@@ -379,18 +423,18 @@ const BookPromotionCard = () => {
   const videosPerPage = 3;
   const totalDesktopPages = Math.ceil(videos.length / videosPerPage);
 
-  // Handle video end - auto advance to next video
+  // Handle video end - ALWAYS auto advance to next video and autoplay it (unmuted)
+  // This fires regardless of pause state because the user explicitly watched
+  // a full video and expects continuous playback.
   const handleVideoEnd = useCallback(() => {
-    if (!isPaused) {
-      // Loop back to first video when reaching the end
-      setCurrentVideoIndex((prev) => (prev + 1) % videos.length);
-      setDesktopIndex((prev) => {
-        const nextVideoIndex = (currentVideoIndex + 1) % videos.length;
-        return Math.floor(nextVideoIndex / videosPerPage);
-      });
-      setIsAutoPlaying(true);
-    }
-  }, [isPaused, currentVideoIndex, videos.length, videosPerPage]);
+    setCurrentVideoIndex((prev) => {
+      const next = (prev + 1) % videos.length;
+      setDesktopIndex(Math.floor(next / videosPerPage));
+      return next;
+    });
+    setIsAutoPlaying(true);
+    setIsPaused(true); // keep idle cycle off; the next video will autoplay itself
+  }, [videos.length, videosPerPage]);
 
   // Auto-cycle effect - pauses when video is playing
   useEffect(() => {
