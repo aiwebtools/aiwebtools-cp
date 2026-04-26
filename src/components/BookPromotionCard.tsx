@@ -535,7 +535,8 @@ const BookPromotionCard = () => {
                   <div className="flex items-center justify-center gap-3">
                     <button
                       onClick={prevDesktopPage}
-                      className="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-green-900/80 rounded-full text-green-400 border border-green-500/30 transition-colors duration-150 hover:bg-green-800 active:bg-green-700 focus:outline-none"
+                      type="button"
+                      className="relative z-20 flex-shrink-0 w-12 h-12 flex items-center justify-center bg-green-900/90 rounded-full text-green-400 border border-green-500/40 transition-colors duration-150 hover:bg-green-800 active:bg-green-700 focus:outline-none cursor-pointer shadow-lg"
                       aria-label="Previous videos"
                     >
                       <ChevronLeft size={24} className="pointer-events-none" />
@@ -560,7 +561,8 @@ const BookPromotionCard = () => {
 
                     <button
                       onClick={nextDesktopPage}
-                      className="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-green-900/80 rounded-full text-green-400 border border-green-500/30 transition-colors duration-150 hover:bg-green-800 active:bg-green-700 focus:outline-none"
+                      type="button"
+                      className="relative z-20 flex-shrink-0 w-12 h-12 flex items-center justify-center bg-green-900/90 rounded-full text-green-400 border border-green-500/40 transition-colors duration-150 hover:bg-green-800 active:bg-green-700 focus:outline-none cursor-pointer shadow-lg"
                       aria-label="Next videos"
                     >
                       <ChevronRight size={24} className="pointer-events-none" />
