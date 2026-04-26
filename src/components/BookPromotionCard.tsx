@@ -42,6 +42,39 @@ const LazyBookVideo = ({
   useEffect(() => {
     if (!isLoaded || !onEnd) return;
 
+    const iframe = iframeRef.current;
+    if (!iframe) return;
+
+    // Subscribe to YouTube iframe state-change events.
+    // The YT iframe API requires us to post a "listening" handshake AND
+    // an addEventListener command before it will emit onStateChange.
+    const subscribe = () => {
+      try {
+        iframe.contentWindow?.postMessage(
+          JSON.stringify({ event: 'listening', id: videoId, channel: 'widget' }),
+          'https://www.youtube-nocookie.com'
+        );
+        iframe.contentWindow?.postMessage(
+          JSON.stringify({
+            event: 'command',
+            func: 'addEventListener',
+            args: ['onStateChange'],
+            id: videoId,
+            channel: 'widget',
+          }),
+          'https://www.youtube-nocookie.com'
+        );
+      } catch {
+        // ignore
+      }
+    };
+
+    // Subscribe once the iframe has loaded, and again after a short delay
+    // in case the load already happened.
+    iframe.addEventListener('load', subscribe);
+    const t1 = setTimeout(subscribe, 500);
+    const t2 = setTimeout(subscribe, 1500);
+
     const handleMessage = (event: MessageEvent) => {
       if (event.origin !== 'https://www.youtube-nocookie.com') return;
       
@@ -57,8 +90,13 @@ const LazyBookVideo = ({
     };
 
     window.addEventListener('message', handleMessage);
-    return () => window.removeEventListener('message', handleMessage);
-  }, [isLoaded, onEnd]);
+    return () => {
+      window.removeEventListener('message', handleMessage);
+      iframe.removeEventListener('load', subscribe);
+      clearTimeout(t1);
+      clearTimeout(t2);
+    };
+  }, [isLoaded, onEnd, videoId]);
 
   if (isLoaded) {
     return (
