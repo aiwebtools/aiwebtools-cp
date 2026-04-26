@@ -449,10 +449,14 @@ const BookPromotionCard = () => {
   };
 
   const nextVideo = () => {
+    setIsAutoPlaying(false);
+    setIsPaused(true);
     setCurrentVideoIndex((prev) => (prev + 1) % videos.length);
   };
 
   const prevVideo = () => {
+    setIsAutoPlaying(false);
+    setIsPaused(true);
     setCurrentVideoIndex((prev) => (prev - 1 + videos.length) % videos.length);
   };
 
