@@ -417,18 +417,18 @@ const BookPromotionCard = () => {
   const videosPerPage = 3;
   const totalDesktopPages = Math.ceil(videos.length / videosPerPage);
 
-  // Handle video end - auto advance to next video
+  // Handle video end - ALWAYS auto advance to next video and autoplay it (unmuted)
+  // This fires regardless of pause state because the user explicitly watched
+  // a full video and expects continuous playback.
   const handleVideoEnd = useCallback(() => {
-    if (!isPaused) {
-      // Loop back to first video when reaching the end
-      setCurrentVideoIndex((prev) => (prev + 1) % videos.length);
-      setDesktopIndex((prev) => {
-        const nextVideoIndex = (currentVideoIndex + 1) % videos.length;
-        return Math.floor(nextVideoIndex / videosPerPage);
-      });
-      setIsAutoPlaying(true);
-    }
-  }, [isPaused, currentVideoIndex, videos.length, videosPerPage]);
+    setCurrentVideoIndex((prev) => {
+      const next = (prev + 1) % videos.length;
+      setDesktopIndex(Math.floor(next / videosPerPage));
+      return next;
+    });
+    setIsAutoPlaying(true);
+    setIsPaused(true); // keep idle cycle off; the next video will autoplay itself
+  }, [videos.length, videosPerPage]);
 
   // Auto-cycle effect - pauses when video is playing
   useEffect(() => {
