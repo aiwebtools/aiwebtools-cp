@@ -33,6 +33,12 @@ const LazyBookVideo = ({
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const thumbnailUrl = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
 
+  // React to autoPlay prop changes after mount (e.g. when the previous
+  // video ends and the carousel promotes this card to the active slot).
+  useEffect(() => {
+    if (autoPlay) setIsLoaded(true);
+  }, [autoPlay]);
+
   const handlePlay = () => {
     setIsLoaded(true);
     onPlay?.();
