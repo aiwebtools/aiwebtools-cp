@@ -410,10 +410,14 @@ const BookPromotionCard = () => {
   }, []);
 
   const nextDesktopPage = () => {
+    setIsAutoPlaying(false);
+    setIsPaused(true);
     setDesktopIndex((prev) => (prev + 1) % totalDesktopPages);
   };
 
   const prevDesktopPage = () => {
+    setIsAutoPlaying(false);
+    setIsPaused(true);
     setDesktopIndex((prev) => (prev - 1 + totalDesktopPages) % totalDesktopPages);
   };
 
@@ -445,10 +449,14 @@ const BookPromotionCard = () => {
   };
 
   const nextVideo = () => {
+    setIsAutoPlaying(false);
+    setIsPaused(true);
     setCurrentVideoIndex((prev) => (prev + 1) % videos.length);
   };
 
   const prevVideo = () => {
+    setIsAutoPlaying(false);
+    setIsPaused(true);
     setCurrentVideoIndex((prev) => (prev - 1 + videos.length) % videos.length);
   };
 
@@ -535,7 +543,8 @@ const BookPromotionCard = () => {
                   <div className="flex items-center justify-center gap-3">
                     <button
                       onClick={prevDesktopPage}
-                      className="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-green-900/80 rounded-full text-green-400 border border-green-500/30 transition-colors duration-150 hover:bg-green-800 active:bg-green-700 focus:outline-none"
+                      type="button"
+                      className="relative z-20 flex-shrink-0 w-12 h-12 flex items-center justify-center bg-green-900/90 rounded-full text-green-400 border border-green-500/40 transition-colors duration-150 hover:bg-green-800 active:bg-green-700 focus:outline-none cursor-pointer shadow-lg"
                       aria-label="Previous videos"
                     >
                       <ChevronLeft size={24} className="pointer-events-none" />
@@ -560,7 +569,8 @@ const BookPromotionCard = () => {
 
                     <button
                       onClick={nextDesktopPage}
-                      className="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-green-900/80 rounded-full text-green-400 border border-green-500/30 transition-colors duration-150 hover:bg-green-800 active:bg-green-700 focus:outline-none"
+                      type="button"
+                      className="relative z-20 flex-shrink-0 w-12 h-12 flex items-center justify-center bg-green-900/90 rounded-full text-green-400 border border-green-500/40 transition-colors duration-150 hover:bg-green-800 active:bg-green-700 focus:outline-none cursor-pointer shadow-lg"
                       aria-label="Next videos"
                     >
                       <ChevronRight size={24} className="pointer-events-none" />
@@ -592,7 +602,8 @@ const BookPromotionCard = () => {
                   <div className="flex justify-center items-center">
                     <button
                       onClick={prevVideo}
-                      className="absolute left-0 z-10 w-10 h-10 flex items-center justify-center bg-green-900/80 rounded-full text-green-400 border border-green-500/30 transition-colors duration-150 hover:bg-green-800 active:bg-green-700 focus:outline-none"
+                      type="button"
+                      className="absolute left-0 z-30 w-12 h-12 flex items-center justify-center bg-green-900/90 rounded-full text-green-400 border border-green-500/40 transition-colors duration-150 hover:bg-green-800 active:bg-green-700 focus:outline-none cursor-pointer shadow-lg"
                       aria-label="Previous video"
                     >
                       <ChevronLeft size={24} className="pointer-events-none" />
@@ -613,7 +624,8 @@ const BookPromotionCard = () => {
 
                     <button
                       onClick={nextVideo}
-                      className="absolute right-0 z-10 w-10 h-10 flex items-center justify-center bg-green-900/80 rounded-full text-green-400 border border-green-500/30 transition-colors duration-150 hover:bg-green-800 active:bg-green-700 focus:outline-none"
+                      type="button"
+                      className="absolute right-0 z-30 w-12 h-12 flex items-center justify-center bg-green-900/90 rounded-full text-green-400 border border-green-500/40 transition-colors duration-150 hover:bg-green-800 active:bg-green-700 focus:outline-none cursor-pointer shadow-lg"
                       aria-label="Next video"
                     >
                       <ChevronRight size={24} className="pointer-events-none" />
