@@ -169,6 +169,7 @@ const BookPromotionCard = () => {
   const [isPaused, setIsPaused] = useState(true);
   const [isAutoPlaying, setIsAutoPlaying] = useState(false);
   const [hasUserInteracted, setHasUserInteracted] = useState(false);
+  const isMobileViewport = typeof window !== 'undefined' && window.matchMedia('(max-width: 767px)').matches;
   
   // First video is always pinned, rest are shuffled
   const originalVideos = [
@@ -483,13 +484,21 @@ const BookPromotionCard = () => {
   const nextDesktopPage = () => {
     setIsAutoPlaying(false);
     setIsPaused(true);
-    setDesktopIndex((prev) => (prev + 1) % totalDesktopPages);
+    setDesktopIndex((prev) => {
+      const nextPage = (prev + 1) % totalDesktopPages;
+      setCurrentVideoIndex((nextPage * videosPerPage) % videos.length);
+      return nextPage;
+    });
   };
 
   const prevDesktopPage = () => {
     setIsAutoPlaying(false);
     setIsPaused(true);
-    setDesktopIndex((prev) => (prev - 1 + totalDesktopPages) % totalDesktopPages);
+    setDesktopIndex((prev) => {
+      const nextPage = (prev - 1 + totalDesktopPages) % totalDesktopPages;
+      setCurrentVideoIndex((nextPage * videosPerPage) % videos.length);
+      return nextPage;
+    });
   };
 
   // Get visible videos with proper looping
@@ -522,13 +531,21 @@ const BookPromotionCard = () => {
   const nextVideo = () => {
     setIsAutoPlaying(false);
     setIsPaused(true);
-    setCurrentVideoIndex((prev) => (prev + 1) % videos.length);
+    setCurrentVideoIndex((prev) => {
+      const next = (prev + 1) % videos.length;
+      setDesktopIndex(Math.floor(next / videosPerPage));
+      return next;
+    });
   };
 
   const prevVideo = () => {
     setIsAutoPlaying(false);
     setIsPaused(true);
-    setCurrentVideoIndex((prev) => (prev - 1 + videos.length) % videos.length);
+    setCurrentVideoIndex((prev) => {
+      const next = (prev - 1 + videos.length) % videos.length;
+      setDesktopIndex(Math.floor(next / videosPerPage));
+      return next;
+    });
   };
 
   // Handle touch swipe for mobile carousel
