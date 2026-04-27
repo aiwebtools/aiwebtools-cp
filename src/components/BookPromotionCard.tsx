@@ -768,6 +768,7 @@ const BookPromotionCard = () => {
                             <div className="relative w-44 flex-shrink-0 transition-all duration-700 ease-in-out">
                               <div className="relative rounded-xl overflow-hidden shadow-2xl ring-2 ring-cyan-400/40" style={{ aspectRatio: '9/16' }}>
                                 <LazyBookVideo 
+                                  key={videos[currentVideoIndex].id}
                                   videoId={videos[currentVideoIndex].id} 
                                   title={videos[currentVideoIndex].title} 
                                   onPlay={() => handleVideoPlay(currentVideoIndex)}
