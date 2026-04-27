@@ -774,10 +774,11 @@ const BookPromotionCard = () => {
 
                 {/* Mobile: Carousel with swipe and lazy loading */}
                 <div 
-                  className="md:hidden relative overflow-hidden"
+                  className="md:hidden relative overflow-hidden select-none"
                   onTouchStart={handleTouchStart}
                   onTouchMove={handleTouchMove}
                   onTouchEnd={handleTouchEnd}
+                  style={{ touchAction: 'pan-y' }}
                 >
                   <div className="relative flex justify-center items-center py-2">
                     {/* Peek of previous video */}
@@ -795,7 +796,13 @@ const BookPromotionCard = () => {
                             <ChevronLeft size={20} className="pointer-events-none" />
                           </button>
 
-                          <div className="flex items-center justify-center gap-2 w-full">
+                          <div
+                            className="flex items-center justify-center gap-2 w-full"
+                            style={{
+                              transform: `translateX(${dragOffset}px)`,
+                              transition: dragOffset === 0 ? 'transform 0.35s cubic-bezier(0.22, 1, 0.36, 1)' : 'none',
+                            }}
+                          >
                             {/* Left peek */}
                             <button
                               type="button"
