@@ -85,7 +85,7 @@ const LazyBookVideo = ({
     return () => {
       stopCurrentVideo();
     };
-  }, [stopCurrentVideo, videoId]);
+  }, [stopCurrentVideo]);
 
   const handlePlay = () => {
     announceVideoStart();
