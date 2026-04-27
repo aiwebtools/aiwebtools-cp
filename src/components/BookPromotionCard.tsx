@@ -641,9 +641,14 @@ const BookPromotionCard = () => {
     touchEndX.current = e.touches[0].clientX;
     const dx = e.touches[0].clientX - touchStartX.current;
     const dy = e.touches[0].clientY - touchStartY.current;
-    // Lock into horizontal swipe once intent is clear
-    if (!isSwiping.current && Math.abs(dx) > 10 && Math.abs(dx) > Math.abs(dy)) {
+    // Lock into horizontal swipe ONLY when intent is clearly horizontal.
+    // Requires horizontal movement to dominate vertical by 1.5x — keeps vertical page scroll smooth.
+    if (!isSwiping.current && Math.abs(dx) > 12 && Math.abs(dx) > Math.abs(dy) * 1.5) {
       isSwiping.current = true;
+    }
+    // If the gesture is clearly vertical, abandon swipe so the page scrolls normally
+    if (!isSwiping.current && Math.abs(dy) > 12 && Math.abs(dy) > Math.abs(dx)) {
+      return;
     }
     if (isSwiping.current) {
       // Dampened drag (max ~80px) for tactile feedback
@@ -665,6 +670,12 @@ const BookPromotionCard = () => {
         prevVideo();
       }
     }
+    setDragOffset(0);
+    isSwiping.current = false;
+  };
+
+  const handleTouchCancel = () => {
+    // Browser interrupted the gesture (e.g., scroll engaged) — reset state cleanly
     setDragOffset(0);
     isSwiping.current = false;
   };
