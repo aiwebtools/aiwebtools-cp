@@ -33,11 +33,32 @@ const LazyBookVideo = ({
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const thumbnailUrl = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
 
+  const stopCurrentVideo = useCallback(() => {
+    const iframe = iframeRef.current;
+    if (!iframe) return;
+
+    try {
+      iframe.contentWindow?.postMessage(
+        JSON.stringify({ event: 'command', func: 'pauseVideo', args: [] }),
+        'https://www.youtube-nocookie.com'
+      );
+      iframe.src = 'about:blank';
+    } catch {
+      // ignore YouTube iframe teardown errors
+    }
+  }, []);
+
   // React to autoPlay prop changes after mount (e.g. when the previous
   // video ends and the carousel promotes this card to the active slot).
   useEffect(() => {
     if (autoPlay) setIsLoaded(true);
   }, [autoPlay]);
+
+  useEffect(() => {
+    return () => {
+      stopCurrentVideo();
+    };
+  }, [stopCurrentVideo, videoId]);
 
   const handlePlay = () => {
     setIsLoaded(true);
@@ -83,6 +104,7 @@ const LazyBookVideo = ({
 
     const handleMessage = (event: MessageEvent) => {
       if (event.origin !== 'https://www.youtube-nocookie.com') return;
+      if (event.source !== iframe.contentWindow) return;
       
       try {
         const data = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
