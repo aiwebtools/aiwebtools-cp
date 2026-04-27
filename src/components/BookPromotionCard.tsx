@@ -538,13 +538,11 @@ const BookPromotionCard = () => {
 
   const goToVideo = useCallback((videoIndex: number) => {
     stopAllBookVideos();
-    // Deliberate navigation → the targeted video becomes the active autoplay source
-    setIsAutoPlaying(true);
-    setPlayingVideoIndex(videoIndex);
+    setIsAutoPlaying(playingVideoIndex === currentVideoIndex);
     setIsPaused(true);
     setCurrentVideoIndex(videoIndex);
     setDesktopIndex(Math.floor(videoIndex / videosPerPage));
-  }, [stopAllBookVideos, videosPerPage]);
+  }, [currentVideoIndex, playingVideoIndex, stopAllBookVideos, videosPerPage]);
 
   const nextDesktopPage = () => {
     stopAllBookVideos();
@@ -597,26 +595,22 @@ const BookPromotionCard = () => {
 
   const nextVideo = () => {
     stopAllBookVideos();
+    setIsAutoPlaying(isMobileCarousel && playingVideoIndex === currentVideoIndex);
     setIsPaused(true);
     setCurrentVideoIndex((prev) => {
       const next = (prev + 1) % videos.length;
       setDesktopIndex(Math.floor(next / videosPerPage));
-      // The exact previewed "next" video becomes the active autoplay source
-      setPlayingVideoIndex(next);
-      setIsAutoPlaying(true);
       return next;
     });
   };
 
   const prevVideo = () => {
     stopAllBookVideos();
+    setIsAutoPlaying(isMobileCarousel && playingVideoIndex === currentVideoIndex);
     setIsPaused(true);
     setCurrentVideoIndex((prev) => {
       const next = (prev - 1 + videos.length) % videos.length;
       setDesktopIndex(Math.floor(next / videosPerPage));
-      // The exact previewed "prev" video becomes the active autoplay source
-      setPlayingVideoIndex(next);
-      setIsAutoPlaying(true);
       return next;
     });
   };
