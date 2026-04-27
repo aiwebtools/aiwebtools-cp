@@ -545,6 +545,7 @@ const BookPromotionCard = () => {
   }, [currentVideoIndex, playingVideoIndex, stopAllBookVideos, videosPerPage]);
 
   const nextDesktopPage = () => {
+    stopAllBookVideos();
     setIsAutoPlaying(!isMobileCarousel && playingVideoIndex === currentVideoIndex);
     setIsPaused(true);
     setDesktopIndex((prev) => {
@@ -555,6 +556,7 @@ const BookPromotionCard = () => {
   };
 
   const prevDesktopPage = () => {
+    stopAllBookVideos();
     setIsAutoPlaying(!isMobileCarousel && playingVideoIndex === currentVideoIndex);
     setIsPaused(true);
     setDesktopIndex((prev) => {
@@ -592,6 +594,7 @@ const BookPromotionCard = () => {
   };
 
   const nextVideo = () => {
+    stopAllBookVideos();
     setIsAutoPlaying(isMobileCarousel && playingVideoIndex === currentVideoIndex);
     setIsPaused(true);
     setCurrentVideoIndex((prev) => {
@@ -602,6 +605,7 @@ const BookPromotionCard = () => {
   };
 
   const prevVideo = () => {
+    stopAllBookVideos();
     setIsAutoPlaying(isMobileCarousel && playingVideoIndex === currentVideoIndex);
     setIsPaused(true);
     setCurrentVideoIndex((prev) => {
