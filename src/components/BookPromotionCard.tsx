@@ -14,6 +14,8 @@ const shuffleArray = <T,>(array: T[]): T[] => {
   return shuffled;
 };
 
+const BOOK_CAROUSEL_VIDEO_EVENT = 'book-carousel-video-starting';
+
 // Lazy YouTube component for book section with play state callback and end detection
 const LazyBookVideo = ({ 
   videoId, 
@@ -31,28 +33,53 @@ const LazyBookVideo = ({
   const [isLoaded, setIsLoaded] = useState(autoPlay);
   const [isHovered, setIsHovered] = useState(false);
   const iframeRef = useRef<HTMLIFrameElement>(null);
+  const playerInstanceId = useRef(`book-video-${Math.random().toString(36).slice(2)}`);
   const thumbnailUrl = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
 
-  const stopCurrentVideo = useCallback(() => {
+  const stopCurrentVideo = useCallback((resetToThumbnail = false) => {
     const iframe = iframeRef.current;
-    if (!iframe) return;
-
-    try {
-      iframe.contentWindow?.postMessage(
-        JSON.stringify({ event: 'command', func: 'pauseVideo', args: [] }),
-        'https://www.youtube-nocookie.com'
-      );
-      iframe.src = 'about:blank';
-    } catch {
-      // ignore YouTube iframe teardown errors
+    if (iframe) {
+      try {
+        iframe.contentWindow?.postMessage(
+          JSON.stringify({ event: 'command', func: 'pauseVideo', args: [] }),
+          'https://www.youtube-nocookie.com'
+        );
+        iframe.src = 'about:blank';
+      } catch {
+        // ignore YouTube iframe teardown errors
+      }
     }
+
+    if (resetToThumbnail) setIsLoaded(false);
   }, []);
+
+  const announceVideoStart = useCallback(() => {
+    window.dispatchEvent(new CustomEvent(BOOK_CAROUSEL_VIDEO_EVENT, {
+      detail: { playerInstanceId: playerInstanceId.current }
+    }));
+  }, []);
+
+  useEffect(() => {
+    const handleOtherVideoStarting = (event: Event) => {
+      const detail = (event as CustomEvent<{ playerInstanceId?: string }>).detail;
+      if (detail?.playerInstanceId !== playerInstanceId.current) {
+        stopCurrentVideo(true);
+      }
+    };
+
+    window.addEventListener(BOOK_CAROUSEL_VIDEO_EVENT, handleOtherVideoStarting);
+    return () => window.removeEventListener(BOOK_CAROUSEL_VIDEO_EVENT, handleOtherVideoStarting);
+  }, [stopCurrentVideo]);
 
   // React to autoPlay prop changes after mount (e.g. when the previous
   // video ends and the carousel promotes this card to the active slot).
   useEffect(() => {
-    if (autoPlay) setIsLoaded(true);
-  }, [autoPlay]);
+    if (autoPlay) {
+      announceVideoStart();
+      setIsLoaded(true);
+      onPlay?.();
+    }
+  }, [announceVideoStart, autoPlay, onPlay]);
 
   useEffect(() => {
     return () => {
@@ -61,6 +88,7 @@ const LazyBookVideo = ({
   }, [stopCurrentVideo, videoId]);
 
   const handlePlay = () => {
+    announceVideoStart();
     setIsLoaded(true);
     onPlay?.();
   };
