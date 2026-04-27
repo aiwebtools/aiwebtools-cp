@@ -494,10 +494,17 @@ const BookPromotionCard = () => {
   const videosPerPage = 3;
   const totalDesktopPages = Math.ceil(videos.length / videosPerPage);
 
+  const stopAllBookVideos = useCallback(() => {
+    window.dispatchEvent(new CustomEvent(BOOK_CAROUSEL_VIDEO_EVENT, {
+      detail: { playerInstanceId: 'carousel-navigation' }
+    }));
+  }, []);
+
   // Handle video end - ALWAYS auto advance to next video and autoplay it (unmuted)
   // This fires regardless of pause state because the user explicitly watched
   // a full video and expects continuous playback.
   const handleVideoEnd = useCallback(() => {
+    stopAllBookVideos();
     setCurrentVideoIndex((prev) => {
       const next = (prev + 1) % videos.length;
       setDesktopIndex(Math.floor(next / videosPerPage));
@@ -505,7 +512,7 @@ const BookPromotionCard = () => {
     });
     setIsAutoPlaying(true);
     setIsPaused(true); // keep idle cycle off; the next video will autoplay itself
-  }, [videos.length, videosPerPage]);
+  }, [stopAllBookVideos, videos.length, videosPerPage]);
 
   // Auto-cycle effect - pauses when video is playing
   useEffect(() => {
@@ -530,11 +537,12 @@ const BookPromotionCard = () => {
   }, [videosPerPage]);
 
   const goToVideo = useCallback((videoIndex: number) => {
+    stopAllBookVideos();
     setIsAutoPlaying(playingVideoIndex === currentVideoIndex);
     setIsPaused(true);
     setCurrentVideoIndex(videoIndex);
     setDesktopIndex(Math.floor(videoIndex / videosPerPage));
-  }, [currentVideoIndex, playingVideoIndex, videosPerPage]);
+  }, [currentVideoIndex, playingVideoIndex, stopAllBookVideos, videosPerPage]);
 
   const nextDesktopPage = () => {
     setIsAutoPlaying(!isMobileCarousel && playingVideoIndex === currentVideoIndex);
