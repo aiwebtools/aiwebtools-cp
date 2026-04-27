@@ -537,7 +537,7 @@ const BookPromotionCard = () => {
   }, [currentVideoIndex, playingVideoIndex, videosPerPage]);
 
   const nextDesktopPage = () => {
-    setIsAutoPlaying(playingVideoIndex === currentVideoIndex);
+    setIsAutoPlaying(!isMobileCarousel && playingVideoIndex === currentVideoIndex);
     setIsPaused(true);
     setDesktopIndex((prev) => {
       const nextPage = (prev + 1) % totalDesktopPages;
@@ -547,7 +547,7 @@ const BookPromotionCard = () => {
   };
 
   const prevDesktopPage = () => {
-    setIsAutoPlaying(playingVideoIndex === currentVideoIndex);
+    setIsAutoPlaying(!isMobileCarousel && playingVideoIndex === currentVideoIndex);
     setIsPaused(true);
     setDesktopIndex((prev) => {
       const nextPage = (prev - 1 + totalDesktopPages) % totalDesktopPages;
@@ -584,7 +584,7 @@ const BookPromotionCard = () => {
   };
 
   const nextVideo = () => {
-    setIsAutoPlaying(playingVideoIndex === currentVideoIndex);
+    setIsAutoPlaying(isMobileCarousel && playingVideoIndex === currentVideoIndex);
     setIsPaused(true);
     setCurrentVideoIndex((prev) => {
       const next = (prev + 1) % videos.length;
@@ -594,7 +594,7 @@ const BookPromotionCard = () => {
   };
 
   const prevVideo = () => {
-    setIsAutoPlaying(playingVideoIndex === currentVideoIndex);
+    setIsAutoPlaying(isMobileCarousel && playingVideoIndex === currentVideoIndex);
     setIsPaused(true);
     setCurrentVideoIndex((prev) => {
       const next = (prev - 1 + videos.length) % videos.length;
