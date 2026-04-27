@@ -197,7 +197,7 @@ const BookPromotionCard = () => {
   const [isPaused, setIsPaused] = useState(true);
   const [isAutoPlaying, setIsAutoPlaying] = useState(false);
   const [hasUserInteracted, setHasUserInteracted] = useState(false);
-  const isMobileViewport = typeof window !== 'undefined' && window.matchMedia('(max-width: 767px)').matches;
+  const [playingVideoIndex, setPlayingVideoIndex] = useState<number | null>(null);
   
   // First video is always pinned, rest are shuffled
   const originalVideos = [
@@ -508,17 +508,18 @@ const BookPromotionCard = () => {
     setIsPaused(true);
     setIsAutoPlaying(false);
     if (typeof videoIndex === 'number') {
+      setPlayingVideoIndex(videoIndex);
       setCurrentVideoIndex(videoIndex);
       setDesktopIndex(Math.floor(videoIndex / videosPerPage));
     }
-  }, []);
+  }, [videosPerPage]);
 
   const goToVideo = useCallback((videoIndex: number) => {
-    setIsAutoPlaying(false);
+    setIsAutoPlaying(playingVideoIndex === currentVideoIndex);
     setIsPaused(true);
     setCurrentVideoIndex(videoIndex);
     setDesktopIndex(Math.floor(videoIndex / videosPerPage));
-  }, [videosPerPage]);
+  }, [currentVideoIndex, playingVideoIndex, videosPerPage]);
 
   const nextDesktopPage = () => {
     setIsAutoPlaying(false);
@@ -568,7 +569,7 @@ const BookPromotionCard = () => {
   };
 
   const nextVideo = () => {
-    setIsAutoPlaying(false);
+    setIsAutoPlaying(playingVideoIndex === currentVideoIndex);
     setIsPaused(true);
     setCurrentVideoIndex((prev) => {
       const next = (prev + 1) % videos.length;
@@ -578,7 +579,7 @@ const BookPromotionCard = () => {
   };
 
   const prevVideo = () => {
-    setIsAutoPlaying(false);
+    setIsAutoPlaying(playingVideoIndex === currentVideoIndex);
     setIsPaused(true);
     setCurrentVideoIndex((prev) => {
       const next = (prev - 1 + videos.length) % videos.length;
