@@ -202,6 +202,17 @@ const BookPromotionCard = () => {
   const [isAutoPlaying, setIsAutoPlaying] = useState(false);
   const [hasUserInteracted, setHasUserInteracted] = useState(false);
   const [playingVideoIndex, setPlayingVideoIndex] = useState<number | null>(null);
+  const [isMobileCarousel, setIsMobileCarousel] = useState(() =>
+    typeof window !== 'undefined' ? window.matchMedia('(max-width: 767px)').matches : false
+  );
+
+  useEffect(() => {
+    const mobileQuery = window.matchMedia('(max-width: 767px)');
+    const updateViewportMode = () => setIsMobileCarousel(mobileQuery.matches);
+    updateViewportMode();
+    mobileQuery.addEventListener('change', updateViewportMode);
+    return () => mobileQuery.removeEventListener('change', updateViewportMode);
+  }, []);
   
   // First video is always pinned, rest are shuffled
   const originalVideos = [
@@ -526,7 +537,7 @@ const BookPromotionCard = () => {
   }, [currentVideoIndex, playingVideoIndex, videosPerPage]);
 
   const nextDesktopPage = () => {
-    setIsAutoPlaying(false);
+    setIsAutoPlaying(playingVideoIndex === currentVideoIndex);
     setIsPaused(true);
     setDesktopIndex((prev) => {
       const nextPage = (prev + 1) % totalDesktopPages;
@@ -536,7 +547,7 @@ const BookPromotionCard = () => {
   };
 
   const prevDesktopPage = () => {
-    setIsAutoPlaying(false);
+    setIsAutoPlaying(playingVideoIndex === currentVideoIndex);
     setIsPaused(true);
     setDesktopIndex((prev) => {
       const nextPage = (prev - 1 + totalDesktopPages) % totalDesktopPages;
