@@ -34,6 +34,7 @@ const LazyBookVideo = ({
   const [isHovered, setIsHovered] = useState(false);
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const playerInstanceId = useRef(`book-video-${Math.random().toString(36).slice(2)}`);
+  const autoPlayStartedRef = useRef(false);
   const thumbnailUrl = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
 
   const stopCurrentVideo = useCallback((resetToThumbnail = false) => {
@@ -74,12 +75,15 @@ const LazyBookVideo = ({
   // React to autoPlay prop changes after mount (e.g. when the previous
   // video ends and the carousel promotes this card to the active slot).
   useEffect(() => {
-    if (autoPlay) {
+    if (autoPlay && !autoPlayStartedRef.current) {
+      autoPlayStartedRef.current = true;
       announceVideoStart();
       setIsLoaded(true);
       onPlay?.();
+    } else if (!autoPlay) {
+      autoPlayStartedRef.current = false;
     }
-  }, [announceVideoStart, autoPlay, onPlay]);
+  }, [announceVideoStart, autoPlay]);
 
   useEffect(() => {
     return () => {
