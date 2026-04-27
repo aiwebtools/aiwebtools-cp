@@ -795,6 +795,7 @@ const BookPromotionCard = () => {
                   onTouchStart={handleTouchStart}
                   onTouchMove={handleTouchMove}
                   onTouchEnd={handleTouchEnd}
+                  onTouchCancel={handleTouchCancel}
                   style={{ touchAction: 'pan-y' }}
                 >
                   <div className="relative flex justify-center items-center py-2">
