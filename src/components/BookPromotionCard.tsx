@@ -14,6 +14,8 @@ const shuffleArray = <T,>(array: T[]): T[] => {
   return shuffled;
 };
 
+const BOOK_CAROUSEL_VIDEO_EVENT = 'book-carousel-video-starting';
+
 // Lazy YouTube component for book section with play state callback and end detection
 const LazyBookVideo = ({ 
   videoId, 
@@ -31,15 +33,66 @@ const LazyBookVideo = ({
   const [isLoaded, setIsLoaded] = useState(autoPlay);
   const [isHovered, setIsHovered] = useState(false);
   const iframeRef = useRef<HTMLIFrameElement>(null);
+  const playerInstanceId = useRef(`book-video-${Math.random().toString(36).slice(2)}`);
+  const autoPlayStartedRef = useRef(false);
   const thumbnailUrl = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
+
+  const stopCurrentVideo = useCallback((resetToThumbnail = false) => {
+    const iframe = iframeRef.current;
+    if (iframe) {
+      try {
+        iframe.contentWindow?.postMessage(
+          JSON.stringify({ event: 'command', func: 'pauseVideo', args: [] }),
+          'https://www.youtube-nocookie.com'
+        );
+        iframe.src = 'about:blank';
+      } catch {
+        // ignore YouTube iframe teardown errors
+      }
+    }
+
+    if (resetToThumbnail) setIsLoaded(false);
+  }, []);
+
+  const announceVideoStart = useCallback(() => {
+    window.dispatchEvent(new CustomEvent(BOOK_CAROUSEL_VIDEO_EVENT, {
+      detail: { playerInstanceId: playerInstanceId.current }
+    }));
+  }, []);
+
+  useEffect(() => {
+    const handleOtherVideoStarting = (event: Event) => {
+      const detail = (event as CustomEvent<{ playerInstanceId?: string }>).detail;
+      if (detail?.playerInstanceId !== playerInstanceId.current) {
+        stopCurrentVideo(true);
+      }
+    };
+
+    window.addEventListener(BOOK_CAROUSEL_VIDEO_EVENT, handleOtherVideoStarting);
+    return () => window.removeEventListener(BOOK_CAROUSEL_VIDEO_EVENT, handleOtherVideoStarting);
+  }, [stopCurrentVideo]);
 
   // React to autoPlay prop changes after mount (e.g. when the previous
   // video ends and the carousel promotes this card to the active slot).
   useEffect(() => {
-    if (autoPlay) setIsLoaded(true);
-  }, [autoPlay]);
+    if (autoPlay && !autoPlayStartedRef.current) {
+      autoPlayStartedRef.current = true;
+      announceVideoStart();
+      setIsLoaded(true);
+      onPlay?.();
+    } else if (!autoPlay) {
+      autoPlayStartedRef.current = false;
+    }
+  }, [announceVideoStart, autoPlay]);
+
+  useEffect(() => {
+    return () => {
+      stopCurrentVideo();
+    };
+  }, [stopCurrentVideo]);
 
   const handlePlay = () => {
+    announceVideoStart();
     setIsLoaded(true);
     onPlay?.();
   };
@@ -83,6 +136,7 @@ const LazyBookVideo = ({
 
     const handleMessage = (event: MessageEvent) => {
       if (event.origin !== 'https://www.youtube-nocookie.com') return;
+      if (event.source !== iframe.contentWindow) return;
       
       try {
         const data = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
@@ -147,6 +201,18 @@ const BookPromotionCard = () => {
   const [isPaused, setIsPaused] = useState(true);
   const [isAutoPlaying, setIsAutoPlaying] = useState(false);
   const [hasUserInteracted, setHasUserInteracted] = useState(false);
+  const [playingVideoIndex, setPlayingVideoIndex] = useState<number | null>(null);
+  const [isMobileCarousel, setIsMobileCarousel] = useState(() =>
+    typeof window !== 'undefined' ? window.matchMedia('(max-width: 767px)').matches : false
+  );
+
+  useEffect(() => {
+    const mobileQuery = window.matchMedia('(max-width: 767px)');
+    const updateViewportMode = () => setIsMobileCarousel(mobileQuery.matches);
+    updateViewportMode();
+    mobileQuery.addEventListener('change', updateViewportMode);
+    return () => mobileQuery.removeEventListener('change', updateViewportMode);
+  }, []);
   
   // First video is always pinned, rest are shuffled
   const originalVideos = [
@@ -428,10 +494,17 @@ const BookPromotionCard = () => {
   const videosPerPage = 3;
   const totalDesktopPages = Math.ceil(videos.length / videosPerPage);
 
+  const stopAllBookVideos = useCallback(() => {
+    window.dispatchEvent(new CustomEvent(BOOK_CAROUSEL_VIDEO_EVENT, {
+      detail: { playerInstanceId: 'carousel-navigation' }
+    }));
+  }, []);
+
   // Handle video end - ALWAYS auto advance to next video and autoplay it (unmuted)
   // This fires regardless of pause state because the user explicitly watched
   // a full video and expects continuous playback.
   const handleVideoEnd = useCallback(() => {
+    stopAllBookVideos();
     setCurrentVideoIndex((prev) => {
       const next = (prev + 1) % videos.length;
       setDesktopIndex(Math.floor(next / videosPerPage));
@@ -439,7 +512,7 @@ const BookPromotionCard = () => {
     });
     setIsAutoPlaying(true);
     setIsPaused(true); // keep idle cycle off; the next video will autoplay itself
-  }, [videos.length, videosPerPage]);
+  }, [stopAllBookVideos, videos.length, videosPerPage]);
 
   // Auto-cycle effect - pauses when video is playing
   useEffect(() => {
@@ -453,21 +526,44 @@ const BookPromotionCard = () => {
     return () => clearInterval(interval);
   }, [isPaused, isAutoPlaying, totalDesktopPages, videos.length]);
 
-  const handleVideoPlay = useCallback(() => {
+  const handleVideoPlay = useCallback((videoIndex?: number) => {
     setIsPaused(true);
     setIsAutoPlaying(false);
-  }, []);
+    if (typeof videoIndex === 'number') {
+      setPlayingVideoIndex(videoIndex);
+      setCurrentVideoIndex(videoIndex);
+      setDesktopIndex(Math.floor(videoIndex / videosPerPage));
+    }
+  }, [videosPerPage]);
+
+  const goToVideo = useCallback((videoIndex: number) => {
+    stopAllBookVideos();
+    setIsAutoPlaying(playingVideoIndex === currentVideoIndex);
+    setIsPaused(true);
+    setCurrentVideoIndex(videoIndex);
+    setDesktopIndex(Math.floor(videoIndex / videosPerPage));
+  }, [currentVideoIndex, playingVideoIndex, stopAllBookVideos, videosPerPage]);
 
   const nextDesktopPage = () => {
-    setIsAutoPlaying(false);
+    stopAllBookVideos();
+    setIsAutoPlaying(!isMobileCarousel && playingVideoIndex === currentVideoIndex);
     setIsPaused(true);
-    setDesktopIndex((prev) => (prev + 1) % totalDesktopPages);
+    setDesktopIndex((prev) => {
+      const nextPage = (prev + 1) % totalDesktopPages;
+      setCurrentVideoIndex((nextPage * videosPerPage) % videos.length);
+      return nextPage;
+    });
   };
 
   const prevDesktopPage = () => {
-    setIsAutoPlaying(false);
+    stopAllBookVideos();
+    setIsAutoPlaying(!isMobileCarousel && playingVideoIndex === currentVideoIndex);
     setIsPaused(true);
-    setDesktopIndex((prev) => (prev - 1 + totalDesktopPages) % totalDesktopPages);
+    setDesktopIndex((prev) => {
+      const nextPage = (prev - 1 + totalDesktopPages) % totalDesktopPages;
+      setCurrentVideoIndex((nextPage * videosPerPage) % videos.length);
+      return nextPage;
+    });
   };
 
   // Get visible videos with proper looping
@@ -498,15 +594,25 @@ const BookPromotionCard = () => {
   };
 
   const nextVideo = () => {
-    setIsAutoPlaying(false);
+    stopAllBookVideos();
+    setIsAutoPlaying(isMobileCarousel && playingVideoIndex === currentVideoIndex);
     setIsPaused(true);
-    setCurrentVideoIndex((prev) => (prev + 1) % videos.length);
+    setCurrentVideoIndex((prev) => {
+      const next = (prev + 1) % videos.length;
+      setDesktopIndex(Math.floor(next / videosPerPage));
+      return next;
+    });
   };
 
   const prevVideo = () => {
-    setIsAutoPlaying(false);
+    stopAllBookVideos();
+    setIsAutoPlaying(isMobileCarousel && playingVideoIndex === currentVideoIndex);
     setIsPaused(true);
-    setCurrentVideoIndex((prev) => (prev - 1 + videos.length) % videos.length);
+    setCurrentVideoIndex((prev) => {
+      const next = (prev - 1 + videos.length) % videos.length;
+      setDesktopIndex(Math.floor(next / videosPerPage));
+      return next;
+    });
   };
 
   // Handle touch swipe for mobile carousel
@@ -606,7 +712,7 @@ const BookPromotionCard = () => {
                             <LazyBookVideo 
                               videoId={video.id} 
                               title={video.title} 
-                              onPlay={handleVideoPlay}
+                              onPlay={() => handleVideoPlay(video.originalIndex)}
                               onEnd={handleVideoEnd}
                               autoPlay={isAutoPlaying && video.originalIndex === currentVideoIndex}
                             />
@@ -631,7 +737,7 @@ const BookPromotionCard = () => {
                     {Array.from({ length: totalDesktopPages }).map((_, index) => (
                       <button
                         key={index}
-                        onClick={() => setDesktopIndex(index)}
+                        onClick={() => goToVideo((index * videosPerPage) % videos.length)}
                         className={`w-2 h-2 rounded-full transition-colors ${
                           index === desktopIndex ? 'bg-cyan-400' : 'bg-gray-500'
                         }`}
@@ -685,9 +791,10 @@ const BookPromotionCard = () => {
                             <div className="relative w-44 flex-shrink-0 transition-all duration-700 ease-in-out">
                               <div className="relative rounded-xl overflow-hidden shadow-2xl ring-2 ring-cyan-400/40" style={{ aspectRatio: '9/16' }}>
                                 <LazyBookVideo 
+                                  key={videos[currentVideoIndex].id}
                                   videoId={videos[currentVideoIndex].id} 
                                   title={videos[currentVideoIndex].title} 
-                                  onPlay={handleVideoPlay}
+                                  onPlay={() => handleVideoPlay(currentVideoIndex)}
                                   onEnd={handleVideoEnd}
                                   autoPlay={isAutoPlaying}
                                 />
@@ -729,7 +836,7 @@ const BookPromotionCard = () => {
                     {videos.map((_, index) => (
                       <button
                         key={index}
-                        onClick={() => setCurrentVideoIndex(index)}
+                        onClick={() => goToVideo(index)}
                         className={`w-2 h-2 rounded-full transition-colors ${
                           index === currentVideoIndex ? 'bg-cyan-400' : 'bg-gray-500'
                         }`}
