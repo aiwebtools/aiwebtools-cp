@@ -618,24 +618,49 @@ const BookPromotionCard = () => {
   // Handle touch swipe for mobile carousel
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
+  const touchStartY = useRef(0);
+  const touchStartTime = useRef(0);
+  const isSwiping = useRef(false);
+  const [dragOffset, setDragOffset] = useState(0);
 
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX;
+    touchEndX.current = e.touches[0].clientX;
+    touchStartY.current = e.touches[0].clientY;
+    touchStartTime.current = Date.now();
+    isSwiping.current = false;
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
     touchEndX.current = e.touches[0].clientX;
+    const dx = e.touches[0].clientX - touchStartX.current;
+    const dy = e.touches[0].clientY - touchStartY.current;
+    // Lock into horizontal swipe once intent is clear
+    if (!isSwiping.current && Math.abs(dx) > 10 && Math.abs(dx) > Math.abs(dy)) {
+      isSwiping.current = true;
+    }
+    if (isSwiping.current) {
+      // Dampened drag (max ~80px) for tactile feedback
+      const clamped = Math.max(-120, Math.min(120, dx));
+      setDragOffset(clamped);
+    }
   };
 
   const handleTouchEnd = () => {
     const diff = touchStartX.current - touchEndX.current;
-    if (Math.abs(diff) > 50) {
+    const elapsed = Date.now() - touchStartTime.current;
+    const velocity = Math.abs(diff) / Math.max(elapsed, 1); // px/ms
+    const distanceTrigger = Math.abs(diff) > 60;
+    const flickTrigger = Math.abs(diff) > 25 && velocity > 0.4;
+    if (isSwiping.current && (distanceTrigger || flickTrigger)) {
       if (diff > 0) {
         nextVideo();
       } else {
         prevVideo();
       }
     }
+    setDragOffset(0);
+    isSwiping.current = false;
   };
 
   return (
