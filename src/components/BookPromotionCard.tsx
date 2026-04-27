@@ -504,10 +504,21 @@ const BookPromotionCard = () => {
     return () => clearInterval(interval);
   }, [isPaused, isAutoPlaying, totalDesktopPages, videos.length]);
 
-  const handleVideoPlay = useCallback(() => {
+  const handleVideoPlay = useCallback((videoIndex?: number) => {
     setIsPaused(true);
     setIsAutoPlaying(false);
+    if (typeof videoIndex === 'number') {
+      setCurrentVideoIndex(videoIndex);
+      setDesktopIndex(Math.floor(videoIndex / videosPerPage));
+    }
   }, []);
+
+  const goToVideo = useCallback((videoIndex: number) => {
+    setIsAutoPlaying(false);
+    setIsPaused(true);
+    setCurrentVideoIndex(videoIndex);
+    setDesktopIndex(Math.floor(videoIndex / videosPerPage));
+  }, [videosPerPage]);
 
   const nextDesktopPage = () => {
     setIsAutoPlaying(false);
