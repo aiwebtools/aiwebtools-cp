@@ -689,7 +689,7 @@ const BookPromotionCard = () => {
                             <LazyBookVideo 
                               videoId={video.id} 
                               title={video.title} 
-                              onPlay={handleVideoPlay}
+                              onPlay={() => handleVideoPlay(video.originalIndex)}
                               onEnd={handleVideoEnd}
                               autoPlay={isAutoPlaying && video.originalIndex === currentVideoIndex}
                             />
@@ -714,7 +714,7 @@ const BookPromotionCard = () => {
                     {Array.from({ length: totalDesktopPages }).map((_, index) => (
                       <button
                         key={index}
-                        onClick={() => setDesktopIndex(index)}
+                        onClick={() => goToVideo((index * videosPerPage) % videos.length)}
                         className={`w-2 h-2 rounded-full transition-colors ${
                           index === desktopIndex ? 'bg-cyan-400' : 'bg-gray-500'
                         }`}
@@ -770,7 +770,7 @@ const BookPromotionCard = () => {
                                 <LazyBookVideo 
                                   videoId={videos[currentVideoIndex].id} 
                                   title={videos[currentVideoIndex].title} 
-                                  onPlay={handleVideoPlay}
+                                  onPlay={() => handleVideoPlay(currentVideoIndex)}
                                   onEnd={handleVideoEnd}
                                   autoPlay={isAutoPlaying}
                                 />
@@ -812,7 +812,7 @@ const BookPromotionCard = () => {
                     {videos.map((_, index) => (
                       <button
                         key={index}
-                        onClick={() => setCurrentVideoIndex(index)}
+                        onClick={() => goToVideo(index)}
                         className={`w-2 h-2 rounded-full transition-colors ${
                           index === currentVideoIndex ? 'bg-cyan-400' : 'bg-gray-500'
                         }`}
