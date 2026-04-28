@@ -1,6 +1,8 @@
-import { allTools } from '../src/data/toolsData.ts';
-import { convertToolsToCSV } from '../src/utils/csvExport.ts';
-import fs from 'fs';
+globalThis.localStorage = { getItem:()=>null, setItem:()=>{}, removeItem:()=>{}, clear:()=>{} };
+globalThis.window = globalThis;
+const { allTools } = await import('../src/data/toolsData.ts');
+const { convertToolsToCSV } = await import('../src/utils/csvExport.ts');
+const fs = await import('fs');
 const csv = convertToolsToCSV(allTools);
 const out = `/mnt/documents/AIWebTools-Complete-Directory-${allTools.length}-Tools.csv`;
 fs.writeFileSync(out, csv);
