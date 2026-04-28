@@ -2019,8 +2019,9 @@ export const useGlobalSearch = () => {
         const runSearch = () => {
           if (currentId !== searchIdRef.current) return;
           const fallbackResults = searchTools(allTools, cappedT);
-          searchCache.set(fullCacheKey, fallbackResults);
-          setSearchResults(fallbackResults);
+          const promoted = promoteExactTitleMatches(fallbackResults, cappedT);
+          searchCache.set(fullCacheKey, promoted);
+          setSearchResults(promoted);
           setDisplayedCount(50);
         };
 
