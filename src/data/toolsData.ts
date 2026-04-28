@@ -5,7 +5,7 @@ import { createFeaturedTools } from '@/utils/featuredTools';
 import { getCategoriesWithCounts, getToolsByCategory } from '@/utils/categoryUtils';
 import { consolidateTools } from '@/utils/categoryConsolidation';
 import { deduplicateTools } from '@/utils/toolDeduplication';
-import { markFreeTools } from '@/utils/toolUtils';
+import { markFreeTools, ensureTitleTags } from '@/utils/toolUtils';
 import { applySpirtualTags } from '@/utils/spiritualTagging';
 
 // Import AI Web Tools GPTs - PRIORITY FEATURED TOOLS
@@ -612,7 +612,9 @@ const filteredTools = combinedTools.filter(tool => {
 
 // Mark all AI Web Tools GPTs as free and apply spiritual/simulation tags
 const toolsWithFreeFlags = markFreeTools(filteredTools);
-const toolsWithTags = applySpirtualTags(toolsWithFreeFlags);
+const toolsWithSpiritualTags = applySpirtualTags(toolsWithFreeFlags);
+// Auto-tag every tool with its full title so exact-name searches always hit
+const toolsWithTags = ensureTitleTags(toolsWithSpiritualTags);
 
 export const allTools: Tool[] = toolsWithTags;
 
