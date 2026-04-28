@@ -98,8 +98,43 @@ const spreadSimilarToolsFast = (tools: any[]): any[] => {
 
 // Global search cache (persists across component re-renders)
 // NOTE: versioned to prevent "stale" cached results after search-intelligence updates.
-const SEARCH_CACHE_VERSION = "v48";
+const SEARCH_CACHE_VERSION = "v49";
 const searchCache = new LRUCache<string, any[]>(50);
+
+// ==================== EXACT-TITLE PROMOTION ====================
+// Ensures that when a user types a tool's exact name (or first word of its name),
+// that tool is bumped to the very top of the results — without changing the rest
+// of the ordering. Safe, non-destructive: only re-orders, never removes.
+const promoteExactTitleMatches = (results: any[], rawQuery: string): any[] => {
+  if (!Array.isArray(results) || results.length < 2) return results;
+  const q = (rawQuery || "").toLowerCase().trim();
+  if (!q) return results;
+  const qNoSpace = q.replace(/\s+/g, "");
+
+  const scoreFor = (tool: any): number => {
+    const title = (tool?.title || "").toLowerCase();
+    if (!title) return 0;
+    const titleNoSpace = title.replace(/\s+/g, "");
+    if (title === q || titleNoSpace === qNoSpace) return 4; // exact title
+    const words = title.split(/[\s\-_:/]+/).filter(Boolean);
+    if (words[0] === q) return 3; // first-word exact (e.g., "grok" → "Grok by X")
+    if (title.startsWith(`${q} `) || title.startsWith(`${q}-`)) return 3;
+    if (words.includes(q)) return 2; // any whole-word match
+    if (title.startsWith(q) && q.length >= 3) return 1; // prefix
+    return 0;
+  };
+
+  const promoted: { tool: any; rank: number; idx: number }[] = [];
+  const rest: any[] = [];
+  results.forEach((tool, idx) => {
+    const r = scoreFor(tool);
+    if (r > 0) promoted.push({ tool, rank: r, idx });
+    else rest.push(tool);
+  });
+  if (promoted.length === 0) return results;
+  promoted.sort((a, b) => (b.rank - a.rank) || (a.idx - b.idx));
+  return [...promoted.map(p => p.tool), ...rest];
+};
 
 // ==================== INTELLIGENCE MAPS (precomputed, instant lookup) ====================
 
