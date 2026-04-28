@@ -1,8 +1,23 @@
 
 import { Tool } from "@/types/tools";
-import { Brain, Palette, FileText, Video, Zap, Search, Image, Music, Calendar, Target } from "lucide-react";
+import { Brain, Palette, FileText, Video, Zap, Search, Image, Music, Calendar, Target, Database } from "lucide-react";
+import directoryListHero from "@/assets/tools/aiwebtools-directory-list-hero.jpg";
 
 export const additionalSpecializedGPTs: Tool[] = [
+  {
+    icon: Database,
+    title: "Downloadable AIWebTools Directory List",
+    description: "The complete downloadable AIWebTools.ai directory in a single CSV file — every AI tool in our database with names, descriptions, categories, direct URLs, video URLs, image URLs, tags, ratings, and metadata. Perfect for researchers, builders, marketers, and AI enthusiasts who want offline access to the full 4,000+ AI Tools catalog. Always synced with the live database. Click 'USE IT NOW' to instantly download the latest CSV export.",
+    emoji: "📊",
+    color: "from-green-500 to-emerald-600",
+    directUrl: "https://aiwebtools.lovable.app/downloads/aiwebtools-directory-list.csv",
+    imageUrl: directoryListHero,
+    tags: ["downloadable", "csv", "directory", "database", "export", "ai tools list", "spreadsheet", "research", "data", "catalog", "complete directory", "offline", "aiwebtools", "Custom GPT"],
+    category: "Additional Specialized",
+    rating: 5.0,
+    totalVotes: 8888,
+    isFree: true
+  },
   {
     icon: Brain,
     title: "Dream Interpreter GPT",
