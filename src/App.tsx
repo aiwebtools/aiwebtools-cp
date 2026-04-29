@@ -125,16 +125,13 @@ const queryClient = new QueryClient({
 const AnimatedRoutes = () => {
   const location = useLocation();
   
-  // Critical paths still need Suspense because the home page is lazy-loaded.
-  // Without this, returning visitors can briefly see only the dark root layer.
+  // Critical paths render without Suspense for instant load
   if (location.pathname === '/' || location.pathname === '/welcome') {
     return (
-      <Suspense fallback={<PageLoader />}>
-        <Routes location={location}>
-          <Route path="/welcome" element={<DisclaimerGate />} />
-          <Route path="/" element={<Index />} />
-        </Routes>
-      </Suspense>
+      <Routes location={location}>
+        <Route path="/welcome" element={<DisclaimerGate />} />
+        <Route path="/" element={<Index />} />
+      </Routes>
     );
   }
   
