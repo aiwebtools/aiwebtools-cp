@@ -384,8 +384,8 @@
         border-radius: 4px;
         /* CSS-driven width animation - runs on GPU, never blocked by JS */
         width: 5%;
-        -webkit-animation: progressShimmer 1.5s linear infinite, progressGrow 2.5s ease-out forwards;
-        animation: progressShimmer 1.5s linear infinite, progressGrow 2.5s ease-out forwards;
+        -webkit-animation: progressShimmer 1.2s linear infinite, progressGrow 1.5s ease-out forwards;
+        animation: progressShimmer 1.2s linear infinite, progressGrow 1.5s ease-out forwards;
         will-change: width, background-position;
         -webkit-transform: translateZ(0);
         transform: translateZ(0);
@@ -502,7 +502,7 @@
           const updatePct = () => {
             if (removed) return;
             var elapsed = performance.now() - startTime;
-            var duration = 2500; // matches CSS progressGrow duration
+            var duration = 1500; // matches CSS progressGrow duration
             var t = Math.min(elapsed / duration, 1);
             // Ease-out curve matching CSS
             var p;
@@ -523,7 +523,7 @@
           // Hard fallback - finish sooner if React has not reported visible content yet
           setTimeout(function() {
             if (!removed) removeSpinner();
-          }, 1800);
+          }, 1200);
         };
 
         const tryStart = () => {
