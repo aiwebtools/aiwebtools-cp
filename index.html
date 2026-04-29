@@ -120,13 +120,8 @@
       // Instant preloader - zero blocking, maximum speed
       (function() {
         var hints = [
-          // Critical images (logo, hero elements)
-          { href: '/lovable-uploads/fe59a436-1f90-45d6-9b98-236a54034010.png', as: 'image' },
-          // YouTube thumbnail CDN (most tools have videos)
-          { href: 'https://i.ytimg.com', as: 'fetch', crossorigin: true },
-          // Key external domains for tool images
-          { href: 'https://img1.wsimg.com', as: 'fetch', crossorigin: true },
-          { href: 'https://media.discordapp.net', as: 'fetch', crossorigin: true }
+          // Critical image only — external CDN roots must not be preloaded as fetches.
+          { href: '/lovable-uploads/fe59a436-1f90-45d6-9b98-236a54034010.png', as: 'image' }
         ];
         
         // Use requestIdleCallback or setTimeout(0) to ensure zero blocking
