@@ -502,7 +502,7 @@
           const updatePct = () => {
             if (removed) return;
             var elapsed = performance.now() - startTime;
-            var duration = 2500; // matches CSS progressGrow duration
+            var duration = 1500; // matches CSS progressGrow duration
             var t = Math.min(elapsed / duration, 1);
             // Ease-out curve matching CSS
             var p;
@@ -523,7 +523,7 @@
           // Hard fallback - finish sooner if React has not reported visible content yet
           setTimeout(function() {
             if (!removed) removeSpinner();
-          }, 1800);
+          }, 1200);
         };
 
         const tryStart = () => {
