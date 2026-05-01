@@ -3,7 +3,7 @@ import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { fileURLToPath } from "url";
 import { componentTagger } from "lovable-tagger";
-import { viteOGManifest } from "./plugins/vite-og-manifest";
+import { viteOGManifest } from "./plugins/vite-og-manifest.ts";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
