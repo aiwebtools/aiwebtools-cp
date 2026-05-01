@@ -568,24 +568,53 @@ const PinnedVideoPlayer = memo(() => {
     return () => window.removeEventListener("message", handleMessage);
   }, [isVisible, toolsWithVideos.length, advanceToNextVideo, currentVideoId]);
 
-  // Dynamic fallback: use detected video duration, or poll until duration is known
+  // Play each video to completion. Poll YT iframe API for the real duration,
+  // then schedule an advance just after the video ends. A generous safety cap
+  // prevents the player from ever getting stuck if the duration never reports.
   useEffect(() => {
     if (!isVisible || toolsWithVideos.length === 0) return;
-    
+
     // Clear any existing timeout
     if (advanceTimeoutRef.current) {
       clearTimeout(advanceTimeoutRef.current);
     }
-    
-    // Simple 10-second auto-advance for preview-style continuous playback
-    const AUTO_SKIP_MS = 10000; // 10 seconds per video preview
-    console.log('[PinnedPlayer] Setting 10s auto-advance for:', currentTool?.title);
-    advanceTimeoutRef.current = setTimeout(() => {
-      console.log('[PinnedPlayer] Auto-advancing after 10s preview');
-      advanceToNextVideo();
-    }, AUTO_SKIP_MS);
-    
+
+    const MIN_PLAY_MS = 15000;       // never advance before 15s (handles tiny clips / slow metadata)
+    const SAFETY_CAP_MS = 600000;    // hard cap at 10 min so we never wedge on a livestream
+    const END_BUFFER_MS = 800;       // tiny pad so YT actually reaches end-state cleanly
+    const startedAt = Date.now();
+
+    const scheduleFromDuration = (durationSec: number) => {
+      const fullMs = Math.min(durationSec * 1000 + END_BUFFER_MS, SAFETY_CAP_MS);
+      const elapsed = Date.now() - startedAt;
+      const remaining = Math.max(MIN_PLAY_MS - elapsed, fullMs - elapsed);
+      console.log('[PinnedPlayer] Full-play scheduled:', { tool: currentTool?.title, durationSec, remainingMs: remaining });
+      advanceTimeoutRef.current = setTimeout(() => {
+        advanceToNextVideo();
+      }, remaining);
+    };
+
+    // Poll for the detected duration captured by the message listener above.
+    const pollInterval = setInterval(() => {
+      if (detectedDurationRef.current && detectedDurationRef.current > 0) {
+        clearInterval(pollInterval);
+        scheduleFromDuration(detectedDurationRef.current);
+      }
+    }, 250);
+
+    // Safety: if duration never arrives within 8s (e.g. blocked postMessage),
+    // fall back to the safety cap so the carousel still advances eventually.
+    const fallbackTimeout = setTimeout(() => {
+      if (!detectedDurationRef.current) {
+        clearInterval(pollInterval);
+        console.log('[PinnedPlayer] Duration never detected, using safety cap');
+        advanceTimeoutRef.current = setTimeout(advanceToNextVideo, SAFETY_CAP_MS);
+      }
+    }, 8000);
+
     return () => {
+      clearInterval(pollInterval);
+      clearTimeout(fallbackTimeout);
       if (advanceTimeoutRef.current) {
         clearTimeout(advanceTimeoutRef.current);
       }
