@@ -364,13 +364,16 @@ const PinnedVideoPlayer = memo(() => {
     // Sync UI state - always start muted
     setIsMuted(shouldMute);
     
-    // If user previously unmuted, aggressively retry unmute after iframe reloads
-    // The iframe always loads with mute=1, so we must send unmute commands
-    // Multiple retries needed because iframe load time varies
+    // If user previously unmuted, aggressively retry unmute after iframe reloads.
+    // The iframe always loads with mute=1, so we must send unmute commands.
+    // Many retries needed because YouTube iframe init time varies wildly per video.
     if (!shouldMute && userMutePreferenceRef.current === false) {
-      const retryDelays = [300, 600, 1000, 1500, 2500];
+      const retryDelays = [200, 400, 700, 1100, 1600, 2200, 3000, 4000, 5500];
       const timers = retryDelays.map(delay =>
-        setTimeout(() => sendYTCommand('unMute'), delay)
+        setTimeout(() => {
+          sendYTCommand('unMute');
+          sendYTCommand('playVideo');
+        }, delay)
       );
       // Cleanup in case video changes again quickly
       return () => timers.forEach(clearTimeout);
