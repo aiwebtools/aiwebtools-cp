@@ -364,13 +364,16 @@ const PinnedVideoPlayer = memo(() => {
     // Sync UI state - always start muted
     setIsMuted(shouldMute);
     
-    // If user previously unmuted, aggressively retry unmute after iframe reloads
-    // The iframe always loads with mute=1, so we must send unmute commands
-    // Multiple retries needed because iframe load time varies
+    // If user previously unmuted, aggressively retry unmute after iframe reloads.
+    // The iframe always loads with mute=1, so we must send unmute commands.
+    // Many retries needed because YouTube iframe init time varies wildly per video.
     if (!shouldMute && userMutePreferenceRef.current === false) {
-      const retryDelays = [300, 600, 1000, 1500, 2500];
+      const retryDelays = [200, 400, 700, 1100, 1600, 2200, 3000, 4000, 5500];
       const timers = retryDelays.map(delay =>
-        setTimeout(() => sendYTCommand('unMute'), delay)
+        setTimeout(() => {
+          sendYTCommand('unMute');
+          sendYTCommand('playVideo');
+        }, delay)
       );
       // Cleanup in case video changes again quickly
       return () => timers.forEach(clearTimeout);
@@ -568,9 +571,10 @@ const PinnedVideoPlayer = memo(() => {
     return () => window.removeEventListener("message", handleMessage);
   }, [isVisible, toolsWithVideos.length, advanceToNextVideo, currentVideoId]);
 
-  // Play each video to completion. Poll YT iframe API for the real duration,
-  // then schedule an advance just after the video ends. A generous safety cap
-  // prevents the player from ever getting stuck if the duration never reports.
+  // Reliable fixed-interval auto-skip: every video plays for ~28 seconds,
+  // then advances to the next. The onStateChange "ended" listener above will
+  // still trigger early advance for shorter clips. This guarantees the
+  // carousel always moves forward and never gets stuck on long videos.
   useEffect(() => {
     if (!isVisible || toolsWithVideos.length === 0) return;
 
@@ -579,42 +583,14 @@ const PinnedVideoPlayer = memo(() => {
       clearTimeout(advanceTimeoutRef.current);
     }
 
-    const MIN_PLAY_MS = 15000;       // never advance before 15s (handles tiny clips / slow metadata)
-    const SAFETY_CAP_MS = 600000;    // hard cap at 10 min so we never wedge on a livestream
-    const END_BUFFER_MS = 800;       // tiny pad so YT actually reaches end-state cleanly
-    const startedAt = Date.now();
+    const AUTO_SKIP_MS = 28000; // 28 seconds per video — sweet spot between 25-30s
 
-    const scheduleFromDuration = (durationSec: number) => {
-      const fullMs = Math.min(durationSec * 1000 + END_BUFFER_MS, SAFETY_CAP_MS);
-      const elapsed = Date.now() - startedAt;
-      const remaining = Math.max(MIN_PLAY_MS - elapsed, fullMs - elapsed);
-      console.log('[PinnedPlayer] Full-play scheduled:', { tool: currentTool?.title, durationSec, remainingMs: remaining });
-      advanceTimeoutRef.current = setTimeout(() => {
-        advanceToNextVideo();
-      }, remaining);
-    };
-
-    // Poll for the detected duration captured by the message listener above.
-    const pollInterval = setInterval(() => {
-      if (detectedDurationRef.current && detectedDurationRef.current > 0) {
-        clearInterval(pollInterval);
-        scheduleFromDuration(detectedDurationRef.current);
-      }
-    }, 250);
-
-    // Safety: if duration never arrives within 8s (e.g. blocked postMessage),
-    // fall back to the safety cap so the carousel still advances eventually.
-    const fallbackTimeout = setTimeout(() => {
-      if (!detectedDurationRef.current) {
-        clearInterval(pollInterval);
-        console.log('[PinnedPlayer] Duration never detected, using safety cap');
-        advanceTimeoutRef.current = setTimeout(advanceToNextVideo, SAFETY_CAP_MS);
-      }
-    }, 8000);
+    advanceTimeoutRef.current = setTimeout(() => {
+      console.log('[PinnedPlayer] Auto-skip after 28s:', currentTool?.title);
+      advanceToNextVideo();
+    }, AUTO_SKIP_MS);
 
     return () => {
-      clearInterval(pollInterval);
-      clearTimeout(fallbackTimeout);
       if (advanceTimeoutRef.current) {
         clearTimeout(advanceTimeoutRef.current);
       }
