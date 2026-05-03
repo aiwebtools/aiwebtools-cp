@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1536" height="864" viewBox="0 0 1536 864" role="img" aria-label="HTC VIVE XR ELITE AIWebTools hero image">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#020403"/><stop offset="0.48" stop-color="#052b1d"/><stop offset="1" stop-color="#020403"/></linearGradient>
+    <radialGradient id="glow" cx="55%" cy="45%" r="60%"><stop offset="0" stop-color="#26ff9a" stop-opacity="0.38"/><stop offset="1" stop-color="#26ff9a" stop-opacity="0"/></radialGradient>
+    <filter id="soft"><feGaussianBlur stdDeviation="10"/></filter>
+  </defs>
+  <rect width="1536" height="864" fill="url(#bg)"/>
+  <rect width="1536" height="864" fill="url(#glow)"/>
+  <g opacity="0.28" stroke="#22ff88" stroke-width="2" fill="none">
+    <path d="M0 160 C340 70 470 250 768 150 C1040 58 1180 180 1536 90"/>
+    <path d="M0 710 C260 570 505 805 768 650 C1010 510 1230 720 1536 565"/>
+    <path d="M240 0 L1296 864 M1296 0 L240 864" opacity="0.22"/>
+  </g>
+  <g transform="translate(768 390)" opacity="0.95">
+    <ellipse cx="0" cy="30" rx="330" ry="150" fill="#07120d" stroke="#22ff88" stroke-width="8"/>
+    <path d="M-240 0 C-120 -90 120 -90 240 0 C145 90 -145 90 -240 0Z" fill="#0a1b13" stroke="#eafff1" stroke-width="5"/>
+    <circle cx="-100" cy="5" r="34" fill="#0d3322" stroke="#22ff88" stroke-width="4"/>
+    <circle cx="100" cy="5" r="34" fill="#0d3322" stroke="#22ff88" stroke-width="4"/>
+    <path d="M-300 130 C-145 220 145 220 300 130" stroke="#22ff88" stroke-width="6" fill="none" opacity="0.65"/>
+  </g>
+  <text x="768" y="210" text-anchor="middle" fill="#f5fff8" font-family="Arial Black, Impact, sans-serif" font-size="92" font-weight="900" letter-spacing="2">HTC VIVE XR ELITE</text>
+  <text x="768" y="690" text-anchor="middle" fill="#b7ffd2" font-family="Arial, sans-serif" font-size="38" font-weight="700">modular mixed reality headset</text>
+  <text x="1400" y="812" text-anchor="end" fill="#f5fff8" font-family="Arial Black, Arial, sans-serif" font-size="34" font-weight="900">AIWEBTOOLS.AI</text>
+  <rect x="1260" y="770" width="52" height="52" rx="10" fill="none" stroke="#22ff88" stroke-width="5" transform="rotate(45 1286 796)"/>
+</svg>
