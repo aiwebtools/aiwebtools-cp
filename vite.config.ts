@@ -20,10 +20,9 @@ export default defineConfig(({ mode }) => ({
     mode === 'production' && viteOGManifest(),
   ].filter(Boolean),
   resolve: {
-    alias: [
-      { find: /^@\//, replacement: `${path.resolve(__dirname, "./src")}/` },
-      { find: "@", replacement: path.resolve(__dirname, "./src") },
-    ],
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+    },
   },
   build: {
     // Optimize chunk splitting for faster initial load
