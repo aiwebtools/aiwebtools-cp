@@ -300,8 +300,9 @@ const PinnedVideoPlayer = memo(() => {
   // Persisted current index - survives navigation
   const [currentIndex, setCurrentIndex] = useState(getStoredIndex);
   
-  // ALWAYS start muted - browser autoplay policies require it, and prevents audio without video bug
-  const [isMuted, setIsMuted] = useState(true);
+  // Try to start UNMUTED per Master's request. If browser blocks autoplay-with-sound,
+  // user can tap unmute. We aggressively retry unMute commands on every load.
+  const [isMuted, setIsMuted] = useState(false);
   const initialMuteEnforcedRef = useRef(false);
   
   // Shuffled tools - computed once at module level, never recalculated
@@ -320,7 +321,7 @@ const PinnedVideoPlayer = memo(() => {
   const [videoSrc, setVideoSrc] = useState<string>(() => {
     if (!currentVideoId) return "";
     const origin = typeof window !== 'undefined' ? window.location.origin : '';
-    return `https://www.youtube.com/embed/${currentVideoId}?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&enablejsapi=1&playsinline=1&loop=0&origin=${encodeURIComponent(origin)}&widget_referrer=${encodeURIComponent(origin)}`;
+    return `https://www.youtube.com/embed/${currentVideoId}?autoplay=1&mute=0&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&enablejsapi=1&playsinline=1&loop=0&origin=${encodeURIComponent(origin)}&widget_referrer=${encodeURIComponent(origin)}`;
   });
   const lastVideoIdRef = useRef<string>(currentVideoId || "");
   
