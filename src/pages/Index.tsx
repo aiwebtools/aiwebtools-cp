@@ -17,6 +17,7 @@ const LazySearchPortal = lazy(() => import("@/components/LazySearchPortal"));
 const InteractiveMatrixBackground = lazy(() => import("@/components/InteractiveMatrixBackground"));
 const AnimatedBackground = lazy(() => import("@/components/AnimatedBackground"));
 const CloneOfferPopup = lazy(() => import("@/components/CloneOfferPopup"));
+const LovableInvitePopup = lazy(() => import("@/components/LovableInvitePopup"));
 const AIWebToolsSEOSection = lazy(() => import("@/components/seo/AIWebToolsSEOSection"));
 const EthicalAIQuoteSection = lazy(() => import("@/components/EthicalAIQuoteSection"));
 const InspirationCarousel = lazy(() => import("@/components/InspirationCarousel"));
@@ -211,6 +212,7 @@ const Index = () => {
       
       <Suspense fallback={null}>
         <CloneOfferPopup />
+        <LovableInvitePopup />
       </Suspense>
     </div>
   );

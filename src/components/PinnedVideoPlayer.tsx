@@ -300,12 +300,14 @@ const PinnedVideoPlayer = memo(() => {
   // Persisted current index - survives navigation
   const [currentIndex, setCurrentIndex] = useState(getStoredIndex);
   
-  // ALWAYS start muted - browser autoplay policies require it, and prevents audio without video bug
-  const [isMuted, setIsMuted] = useState(true);
+  // Try to start UNMUTED per Master's request. If browser blocks autoplay-with-sound,
+  // user can tap unmute. We aggressively retry unMute commands on every load.
+  const [isMuted, setIsMuted] = useState(false);
   const initialMuteEnforcedRef = useRef(false);
   
-  // Shuffled tools - computed once at module level, never recalculated
-  const toolsWithVideos = useMemo(() => getToolsWithVideosCached(), []);
+  // Shuffled tools - kept in state so we can reshuffle on round wrap
+  // (so every video plays once before any repeat)
+  const [toolsWithVideos, setToolsWithVideos] = useState<Tool[]>(() => getToolsWithVideosCached());
   
   const currentTool: Tool | undefined = toolsWithVideos[currentIndex];
   const currentVideoId = currentTool ? extractYouTubeId(currentTool.videoUrl || '') : null;
@@ -320,7 +322,7 @@ const PinnedVideoPlayer = memo(() => {
   const [videoSrc, setVideoSrc] = useState<string>(() => {
     if (!currentVideoId) return "";
     const origin = typeof window !== 'undefined' ? window.location.origin : '';
-    return `https://www.youtube.com/embed/${currentVideoId}?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&enablejsapi=1&playsinline=1&loop=0&origin=${encodeURIComponent(origin)}&widget_referrer=${encodeURIComponent(origin)}`;
+    return `https://www.youtube.com/embed/${currentVideoId}?autoplay=1&mute=0&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&enablejsapi=1&playsinline=1&loop=0&origin=${encodeURIComponent(origin)}&widget_referrer=${encodeURIComponent(origin)}`;
   });
   const lastVideoIdRef = useRef<string>(currentVideoId || "");
   
@@ -340,34 +342,29 @@ const PinnedVideoPlayer = memo(() => {
     // ALWAYS start muted - browser autoplay policies require it on ALL devices
     // This also prevents the "audio without visible player" bug
     // User can unmute manually after seeing the player
+    // Default: UNMUTED. Respect explicit user mute preference if set.
     let shouldMute: boolean;
-    if (isFirstVideoRef.current) {
-      // First video - ALWAYS muted (browser autoplay requirement)
-      shouldMute = true;
-      isFirstVideoRef.current = false;
-    } else if (userMutePreferenceRef.current !== null) {
-      // User has explicitly toggled mute - respect their choice on ALL devices
+    if (userMutePreferenceRef.current !== null) {
       shouldMute = userMutePreferenceRef.current;
     } else {
-      // No user preference yet, keep muted
-      shouldMute = true;
+      shouldMute = false;
     }
+    isFirstVideoRef.current = false;
     
     // Build video URL - ALWAYS start with mute=1 for reliable autoplay on ALL browsers
     // User must explicitly click unmute button to hear audio
     // Use youtube-nocookie.com for faster loads and better privacy
-     const origin = typeof window !== 'undefined' ? window.location.origin : '';
-    const newSrc = `https://www.youtube.com/embed/${currentVideoId}?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&enablejsapi=1&playsinline=1&loop=0&origin=${encodeURIComponent(origin)}&widget_referrer=${encodeURIComponent(origin)}`;
+    const origin = typeof window !== 'undefined' ? window.location.origin : '';
+    const muteParam = shouldMute ? 1 : 0;
+    const newSrc = `https://www.youtube.com/embed/${currentVideoId}?autoplay=1&mute=${muteParam}&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&enablejsapi=1&playsinline=1&loop=0&origin=${encodeURIComponent(origin)}&widget_referrer=${encodeURIComponent(origin)}`;
     setVideoSrc(newSrc);
     playerMountedRef.current = true;
     
     // Sync UI state - always start muted
     setIsMuted(shouldMute);
     
-    // If user previously unmuted, aggressively retry unmute after iframe reloads.
-    // The iframe always loads with mute=1, so we must send unmute commands.
-    // Many retries needed because YouTube iframe init time varies wildly per video.
-    if (!shouldMute && userMutePreferenceRef.current === false) {
+    // Aggressively retry unMute for every new video so sound is always on.
+    if (!shouldMute) {
       const retryDelays = [200, 400, 700, 1100, 1600, 2200, 3000, 4000, 5500];
       const timers = retryDelays.map(delay =>
         setTimeout(() => {
@@ -482,10 +479,27 @@ const PinnedVideoPlayer = memo(() => {
 
   // NOTE: scroll threshold is handled by useScrollThreshold
 
-  // Auto-advance function
+  // Auto-advance function. Plays every video in the shuffled order before any
+  // can repeat. When we wrap past the last video, invalidate the cache so the
+  // next render generates a fresh random order for the new round.
   const advanceToNextVideo = useCallback(() => {
-    setCurrentIndex(prev => (prev + 1) % toolsWithVideos.length);
-  }, [toolsWithVideos.length]);
+    setCurrentIndex(prev => {
+      const next = prev + 1;
+      if (next >= toolsWithVideos.length) {
+        // Reshuffle the playlist for a brand-new random round — no recent repeats
+        cachedToolsWithVideos = null;
+        lastGenerationTime = 0;
+        const fresh = getShuffledToolsWithVideos();
+        // Avoid starting the new round with the exact video that just played
+        if (fresh.length > 1 && toolsWithVideos[prev] && fresh[0].title === toolsWithVideos[prev].title) {
+          [fresh[0], fresh[1]] = [fresh[1], fresh[0]];
+        }
+        setToolsWithVideos(fresh);
+        return 0;
+      }
+      return next;
+    });
+  }, [toolsWithVideos]);
 
   // Track when video started to prevent premature skipping
   const videoStartTimeRef = useRef<number>(Date.now());
@@ -583,10 +597,10 @@ const PinnedVideoPlayer = memo(() => {
       clearTimeout(advanceTimeoutRef.current);
     }
 
-    const AUTO_SKIP_MS = 28000; // 28 seconds per video — sweet spot between 25-30s
+    const AUTO_SKIP_MS = 15000; // 15 seconds per video per Master's request
 
     advanceTimeoutRef.current = setTimeout(() => {
-      console.log('[PinnedPlayer] Auto-skip after 28s:', currentTool?.title);
+      console.log('[PinnedPlayer] Auto-skip after 15s:', currentTool?.title);
       advanceToNextVideo();
     }, AUTO_SKIP_MS);
 
