@@ -341,34 +341,29 @@ const PinnedVideoPlayer = memo(() => {
     // ALWAYS start muted - browser autoplay policies require it on ALL devices
     // This also prevents the "audio without visible player" bug
     // User can unmute manually after seeing the player
+    // Default: UNMUTED. Respect explicit user mute preference if set.
     let shouldMute: boolean;
-    if (isFirstVideoRef.current) {
-      // First video - ALWAYS muted (browser autoplay requirement)
-      shouldMute = true;
-      isFirstVideoRef.current = false;
-    } else if (userMutePreferenceRef.current !== null) {
-      // User has explicitly toggled mute - respect their choice on ALL devices
+    if (userMutePreferenceRef.current !== null) {
       shouldMute = userMutePreferenceRef.current;
     } else {
-      // No user preference yet, keep muted
-      shouldMute = true;
+      shouldMute = false;
     }
+    isFirstVideoRef.current = false;
     
     // Build video URL - ALWAYS start with mute=1 for reliable autoplay on ALL browsers
     // User must explicitly click unmute button to hear audio
     // Use youtube-nocookie.com for faster loads and better privacy
-     const origin = typeof window !== 'undefined' ? window.location.origin : '';
-    const newSrc = `https://www.youtube.com/embed/${currentVideoId}?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&enablejsapi=1&playsinline=1&loop=0&origin=${encodeURIComponent(origin)}&widget_referrer=${encodeURIComponent(origin)}`;
+    const origin = typeof window !== 'undefined' ? window.location.origin : '';
+    const muteParam = shouldMute ? 1 : 0;
+    const newSrc = `https://www.youtube.com/embed/${currentVideoId}?autoplay=1&mute=${muteParam}&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&enablejsapi=1&playsinline=1&loop=0&origin=${encodeURIComponent(origin)}&widget_referrer=${encodeURIComponent(origin)}`;
     setVideoSrc(newSrc);
     playerMountedRef.current = true;
     
     // Sync UI state - always start muted
     setIsMuted(shouldMute);
     
-    // If user previously unmuted, aggressively retry unmute after iframe reloads.
-    // The iframe always loads with mute=1, so we must send unmute commands.
-    // Many retries needed because YouTube iframe init time varies wildly per video.
-    if (!shouldMute && userMutePreferenceRef.current === false) {
+    // Aggressively retry unMute for every new video so sound is always on.
+    if (!shouldMute) {
       const retryDelays = [200, 400, 700, 1100, 1600, 2200, 3000, 4000, 5500];
       const timers = retryDelays.map(delay =>
         setTimeout(() => {
