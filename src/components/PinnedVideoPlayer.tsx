@@ -579,10 +579,10 @@ const PinnedVideoPlayer = memo(() => {
       clearTimeout(advanceTimeoutRef.current);
     }
 
-    const AUTO_SKIP_MS = 28000; // 28 seconds per video — sweet spot between 25-30s
+    const AUTO_SKIP_MS = 15000; // 15 seconds per video per Master's request
 
     advanceTimeoutRef.current = setTimeout(() => {
-      console.log('[PinnedPlayer] Auto-skip after 28s:', currentTool?.title);
+      console.log('[PinnedPlayer] Auto-skip after 15s:', currentTool?.title);
       advanceToNextVideo();
     }, AUTO_SKIP_MS);
 
