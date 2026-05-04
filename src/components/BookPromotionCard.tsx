@@ -217,6 +217,31 @@ const BookPromotionCard = () => {
   // First video is always pinned, rest are shuffled
   const originalVideos = [
     {
+      id: "-I0LGUP9xso",
+      title: "AI Web Tools Featured Showcase",
+      gradient: "from-purple-500/20 to-cyan-500/20"
+    },
+    {
+      id: "yZ9Jt1canjE",
+      title: "AI Web Tools Featured Showcase 2",
+      gradient: "from-amber-500/20 to-rose-500/20"
+    },
+    {
+      id: "O9n0tKbbI2E",
+      title: "AI Web Tools Featured Showcase 3",
+      gradient: "from-emerald-500/20 to-blue-500/20"
+    },
+    {
+      id: "KIqBIh6TZ04",
+      title: "AI Web Tools Featured Showcase 4",
+      gradient: "from-pink-500/20 to-violet-500/20"
+    },
+    {
+      id: "NglQB5OVmqk",
+      title: "AI Web Tools Featured Showcase 5",
+      gradient: "from-cyan-500/20 to-emerald-500/20"
+    },
+    {
       id: "EYnCtw9CsxQ",
       title: "The Book Of Deployable Robot Prompts",
       gradient: "from-purple-500/20 to-blue-500/20"
