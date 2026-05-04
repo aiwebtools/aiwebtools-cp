@@ -478,9 +478,20 @@ const PinnedVideoPlayer = memo(() => {
 
   // NOTE: scroll threshold is handled by useScrollThreshold
 
-  // Auto-advance function
+  // Auto-advance function. Plays every video in the shuffled order before any
+  // can repeat. When we wrap past the last video, invalidate the cache so the
+  // next render generates a fresh random order for the new round.
   const advanceToNextVideo = useCallback(() => {
-    setCurrentIndex(prev => (prev + 1) % toolsWithVideos.length);
+    setCurrentIndex(prev => {
+      const next = prev + 1;
+      if (next >= toolsWithVideos.length) {
+        // Force regeneration on next access — fresh random order, no repeats
+        cachedToolsWithVideos = null;
+        lastGenerationTime = 0;
+        return 0;
+      }
+      return next;
+    });
   }, [toolsWithVideos.length]);
 
   // Track when video started to prevent premature skipping
