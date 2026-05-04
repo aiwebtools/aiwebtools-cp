@@ -305,8 +305,9 @@ const PinnedVideoPlayer = memo(() => {
   const [isMuted, setIsMuted] = useState(false);
   const initialMuteEnforcedRef = useRef(false);
   
-  // Shuffled tools - computed once at module level, never recalculated
-  const toolsWithVideos = useMemo(() => getToolsWithVideosCached(), []);
+  // Shuffled tools - kept in state so we can reshuffle on round wrap
+  // (so every video plays once before any repeat)
+  const [toolsWithVideos, setToolsWithVideos] = useState<Tool[]>(() => getToolsWithVideosCached());
   
   const currentTool: Tool | undefined = toolsWithVideos[currentIndex];
   const currentVideoId = currentTool ? extractYouTubeId(currentTool.videoUrl || '') : null;
@@ -485,14 +486,20 @@ const PinnedVideoPlayer = memo(() => {
     setCurrentIndex(prev => {
       const next = prev + 1;
       if (next >= toolsWithVideos.length) {
-        // Force regeneration on next access — fresh random order, no repeats
+        // Reshuffle the playlist for a brand-new random round — no recent repeats
         cachedToolsWithVideos = null;
         lastGenerationTime = 0;
+        const fresh = getShuffledToolsWithVideos();
+        // Avoid starting the new round with the exact video that just played
+        if (fresh.length > 1 && toolsWithVideos[prev] && fresh[0].title === toolsWithVideos[prev].title) {
+          [fresh[0], fresh[1]] = [fresh[1], fresh[0]];
+        }
+        setToolsWithVideos(fresh);
         return 0;
       }
       return next;
     });
-  }, [toolsWithVideos.length]);
+  }, [toolsWithVideos]);
 
   // Track when video started to prevent premature skipping
   const videoStartTimeRef = useRef<number>(Date.now());
