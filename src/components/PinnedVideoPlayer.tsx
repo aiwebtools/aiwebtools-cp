@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback, useRef, memo, useMemo } from "react";
 import { createPortal } from "react-dom";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { X, SkipForward, SkipBack, Volume2, VolumeX } from "lucide-react";
+import { Play, X, SkipForward, SkipBack, Volume2, VolumeX } from "lucide-react";
 import { allTools } from "@/data/toolsData";
 import { Tool } from "@/types/tools";
 import { useScrollThreshold } from "@/hooks/useScrollThreshold";
@@ -653,6 +653,20 @@ const PinnedVideoPlayer = memo(() => {
     });
   }, [sendYTCommand]);
 
+  const handlePlayVideo = useCallback(() => {
+    userMutePreferenceRef.current = false;
+    setIsMuted(false);
+    sendYTCommand('unMute');
+    sendYTCommand('playVideo');
+    window.dispatchEvent(new CustomEvent('pinnedPlayerPlaying'));
+    [120, 350, 800, 1400].forEach(delay => {
+      window.setTimeout(() => {
+        sendYTCommand('unMute');
+        sendYTCommand('playVideo');
+      }, delay);
+    });
+  }, [sendYTCommand]);
+
   // Don't render if not on homepage, permanently closed, no tools, or haven't scrolled past hero yet
   if (!isHomepage || !isVisible || !hasScrolledEnough || toolsWithVideos.length === 0 || !currentTool || !currentVideoId || !videoSrc) {
     return null;
@@ -710,16 +724,23 @@ const PinnedVideoPlayer = memo(() => {
             ref={iframeRef}
             src={videoSrc}
             className="w-full h-full"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
             allowFullScreen
             title={currentTool.title}
             style={{ minHeight: '70px' }}
           />
         </div>
 
-        {/* Controls bar - 2x2 grid compact square buttons */}
+        {/* Controls bar - compact square buttons */}
         <div className="flex justify-center py-1 px-1.5 bg-gray-800/95 border-t border-cyan-500/20">
-          <div className="grid grid-cols-2 gap-0.5">
+          <div className="grid grid-cols-3 gap-0.5">
+            <button
+              onClick={handlePlayVideo}
+              className="w-6 h-6 flex items-center justify-center rounded bg-green-500 hover:bg-green-400 text-black"
+              title="Play with sound"
+            >
+              <Play className="w-3 h-3" />
+            </button>
             <button
               onClick={toggleMute}
               className="w-6 h-6 flex items-center justify-center rounded bg-cyan-500 hover:bg-cyan-400 text-white"
