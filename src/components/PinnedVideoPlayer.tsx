@@ -787,13 +787,6 @@ const PinnedVideoPlayer = memo(() => {
               {isPlaying ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5" />}
             </button>
             <button
-              onClick={toggleMute}
-              className="h-7 w-full flex items-center justify-center rounded bg-cyan-500 hover:bg-cyan-400 text-white"
-              title={isMuted ? "Unmute" : "Mute"}
-            >
-              {isMuted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5" />}
-            </button>
-            <button
               onClick={handlePrevVideo}
               className="h-7 w-full flex items-center justify-center rounded bg-gray-600 hover:bg-gray-500 text-white"
               title="Previous Video"
@@ -806,6 +799,13 @@ const PinnedVideoPlayer = memo(() => {
               title="Next Video"
             >
               <SkipForward className="w-3.5 h-3.5" />
+            </button>
+            <button
+              onClick={toggleMute}
+              className="h-7 w-full flex items-center justify-center rounded bg-cyan-500 hover:bg-cyan-400 text-white"
+              title={isMuted ? "Unmute" : "Mute"}
+            >
+              {isMuted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5" />}
             </button>
             <button
               onClick={handleToolClick}
