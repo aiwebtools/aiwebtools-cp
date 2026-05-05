@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef, TouchEvent } from "react";
+import { useState, useCallback, useRef, TouchEvent, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const images = [
@@ -45,6 +45,19 @@ const images = [
 const InspirationCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const touchStartX = useRef<number | null>(null);
+
+  // Preload neighbor images so arrow clicks render instantly
+  useEffect(() => {
+    const toPreload = [
+      (currentIndex + 1) % images.length,
+      (currentIndex - 1 + images.length) % images.length,
+      (currentIndex + 2) % images.length,
+    ];
+    toPreload.forEach((i) => {
+      const img = new Image();
+      img.src = images[i].src;
+    });
+  }, [currentIndex]);
 
   const scrollPrev = useCallback(() => {
     setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
@@ -107,8 +120,10 @@ const InspirationCarousel = () => {
             <img
               src={images[currentIndex].src}
               alt={images[currentIndex].alt}
-              className="w-full h-auto block transition-opacity duration-500"
+              className="w-full h-auto block"
               draggable={false}
+              loading="eager"
+              decoding="sync"
             />
             {/* Image counter */}
             <div className="absolute bottom-3 right-3 bg-black/70 text-green-400 text-xs md:text-sm px-3 py-1 rounded-full backdrop-blur-sm border border-green-500/30">
