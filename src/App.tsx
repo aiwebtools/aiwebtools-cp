@@ -120,10 +120,24 @@ const WelcomeNeoVoice = () => {
 // NOTE: precomputed category cache is initialized AFTER disclaimer acceptance
 // to keep the /welcome disclaimer gate load instant.
 
-// Single unified loader: the branded cube/matrix spinner in index.html is the
-// ONLY loading screen. Suspense renders null so the HTML cube stays visible
-// until real route content mounts — no clashing/overlapping loaders.
-const PageLoader = () => null;
+// HTML cube handles cold boot. This React fallback only appears after that cube
+// is gone, preventing black screens during lazy route transitions.
+const PageLoader = () => {
+  if (typeof document !== "undefined" && document.querySelector(".loading-spinner")) {
+    return null;
+  }
+
+  return (
+    <div className="fixed inset-0 z-[9000] flex min-h-screen items-center justify-center bg-background px-6 text-foreground">
+      <div className="flex flex-col items-center gap-4 text-center">
+        <div className="h-12 w-12 animate-spin rounded-sm border-2 border-primary/40 border-t-primary shadow-[0_0_30px_hsl(var(--primary)/0.35)]" />
+        <div className="font-mono text-sm font-bold uppercase tracking-[0.22em] text-primary">
+          Stabilizing Matrix Route...
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const queryClient = new QueryClient({
   defaultOptions: {
