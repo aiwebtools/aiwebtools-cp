@@ -409,10 +409,10 @@
         background: linear-gradient(90deg, #00ff41, #22d3ee, #a855f7, #00ff41);
         background-size: 300% 100%;
         border-radius: 4px;
-        /* CSS-driven width animation - runs on GPU, never blocked by JS */
+        /* Slowed to 8s so bar creeps toward 97% while React boots — no premature 100%. */
         width: 5%;
-        -webkit-animation: progressShimmer 1.5s linear infinite, progressGrow 2.5s ease-out forwards;
-        animation: progressShimmer 1.5s linear infinite, progressGrow 2.5s ease-out forwards;
+        -webkit-animation: progressShimmer 1.5s linear infinite, progressGrow 8s ease-out forwards;
+        animation: progressShimmer 1.5s linear infinite, progressGrow 8s ease-out forwards;
         will-change: width, background-position;
         -webkit-transform: translateZ(0);
         transform: translateZ(0);
@@ -427,17 +427,19 @@
       }
       @-webkit-keyframes progressGrow {
         0% { width: 5%; }
-        30% { width: 40%; }
-        60% { width: 70%; }
-        80% { width: 85%; }
-        100% { width: 95%; }
+        15% { width: 40%; }
+        35% { width: 65%; }
+        55% { width: 80%; }
+        75% { width: 90%; }
+        100% { width: 97%; }
       }
       @keyframes progressGrow {
         0% { width: 5%; }
-        30% { width: 40%; }
-        60% { width: 70%; }
-        80% { width: 85%; }
-        100% { width: 95%; }
+        15% { width: 40%; }
+        35% { width: 65%; }
+        55% { width: 80%; }
+        75% { width: 90%; }
+        100% { width: 97%; }
       }
       .progress-text {
         font: 10px 'Courier New', monospace;
@@ -508,49 +510,63 @@
             }
           };
 
-          // AGGRESSIVE content detection
+          // STRICT content detection — only remove cube when REAL page UI is painted.
+          // Suspense fallback is null, so an empty #root means we are still booting.
           const hasVisibleContent = () => {
             const root = document.getElementById('root');
             if (!root) return false;
+            // Require actual semantic UI elements that only mount when a route renders
+            var hasHeader = !!root.querySelector('header');
+            var hasMain = !!root.querySelector('main');
+            var hasNav = !!root.querySelector('nav');
+            var hasArticle = !!root.querySelector('article');
+            // Require meaningful painted size
+            var bigChild = false;
             var children = root.children;
             for (var i = 0; i < children.length; i++) {
               var child = children[i];
               if (child.classList && child.classList.contains('loading-spinner')) continue;
-              if (child.offsetHeight > 50 && child.innerHTML.length > 100) return true;
+              if (child.offsetHeight > 200 && child.innerHTML.length > 500) {
+                bigChild = true;
+                break;
+              }
             }
-            if (root.querySelector('header[class*="fixed"]')) return true;
-            if (root.querySelector('main')) return true;
-            if (root.querySelector('nav')) return true;
-            if (root.querySelector('.backdrop-blur-md')) return true;
-            return false;
+            return (hasHeader || hasMain || hasNav || hasArticle) && bigChild;
           };
 
-          // RAF-based percentage counter (syncs with CSS animation timing)
+          // RAF-based percentage counter (syncs with 8s CSS progressGrow timing)
           const updatePct = () => {
             if (removed) return;
             var elapsed = performance.now() - startTime;
-            var duration = 2500; // matches CSS progressGrow duration
+            var duration = 8000;
             var t = Math.min(elapsed / duration, 1);
-            // Ease-out curve matching CSS
             var p;
-            if (t < 0.3) p = 5 + (35 * (t / 0.3));
-            else if (t < 0.6) p = 40 + (30 * ((t - 0.3) / 0.3));
-            else if (t < 0.8) p = 70 + (15 * ((t - 0.6) / 0.2));
-            else p = 85 + (10 * ((t - 0.8) / 0.2));
+            if (t < 0.15) p = 5 + (35 * (t / 0.15));
+            else if (t < 0.35) p = 40 + (25 * ((t - 0.15) / 0.20));
+            else if (t < 0.55) p = 65 + (15 * ((t - 0.35) / 0.20));
+            else if (t < 0.75) p = 80 + (10 * ((t - 0.55) / 0.20));
+            else p = 90 + (7 * ((t - 0.75) / 0.25));
             if (pct) pct.textContent = Math.round(p) + '%';
             requestAnimationFrame(updatePct);
           };
           requestAnimationFrame(updatePct);
 
-          // Content detection every frame-ish without burning extra CPU on mobile
+          // Poll for real content. Cheap on CPU (every 100ms) and stops as soon as found.
           var contentCheck = setInterval(function() {
-            if (hasVisibleContent()) removeSpinner();
-          }, 16);
+            if (hasVisibleContent()) {
+              clearInterval(contentCheck);
+              removeSpinner();
+            }
+          }, 100);
 
-          // Hard fallback - finish sooner if React has not reported visible content yet
+          // Safety net only — generous so the cube can keep spinning until React truly mounts.
+          // Previously 1800ms caused a black gap when lazy chunks took longer.
           setTimeout(function() {
-            if (!removed) removeSpinner();
-          }, 1800);
+            if (!removed) {
+              clearInterval(contentCheck);
+              removeSpinner();
+            }
+          }, 15000);
         };
 
         const tryStart = () => {
