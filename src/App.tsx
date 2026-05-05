@@ -120,30 +120,99 @@ const WelcomeNeoVoice = () => {
 // NOTE: precomputed category cache is initialized AFTER disclaimer acceptance
 // to keep the /welcome disclaimer gate load instant.
 
-// Minimal page loader for Suspense — sleek loading indicator, prevents black screen
-const PageLoader = () => (
-  <div className="min-h-screen bg-black flex items-center justify-center relative overflow-hidden">
-    <div
-      className="absolute inset-0 opacity-30 pointer-events-none"
-      style={{
-        backgroundImage:
-          "linear-gradient(rgba(34,197,94,0.18) 1px, transparent 1px), linear-gradient(90deg, rgba(34,197,94,0.18) 1px, transparent 1px)",
-        backgroundSize: "40px 40px",
-      }}
-    />
-    <div className="relative flex flex-col items-center gap-5">
-      <div className="relative w-16 h-16">
-        <div className="absolute inset-0 rounded-full border-2 border-green-500/20" />
-        <div className="absolute inset-0 rounded-full border-2 border-transparent border-t-green-400 border-r-green-400/60 animate-spin" style={{ filter: "drop-shadow(0 0 8px rgba(34,197,94,0.8))" }} />
-        <div className="absolute inset-2 rounded-full border border-green-400/40 animate-pulse" />
+// Suspense loader with real-feeling staged progress so users see what's booting.
+const LOADER_STAGES: { pct: number; label: string }[] = [
+  { pct: 12, label: "INITIALIZING MATRIX" },
+  { pct: 28, label: "LOADING MODULES" },
+  { pct: 46, label: "INDEXING 4,000+ AI TOOLS" },
+  { pct: 64, label: "FETCHING ASSETS" },
+  { pct: 80, label: "RENDERING INTERFACE" },
+  { pct: 94, label: "FINALIZING" },
+  { pct: 100, label: "READY" },
+];
+
+const PageLoader = () => {
+  const [progress, setProgress] = useState(8);
+  const [stageIdx, setStageIdx] = useState(0);
+
+  useEffect(() => {
+    let raf = 0;
+    let last = performance.now();
+    const tick = (now: number) => {
+      const dt = now - last;
+      last = now;
+      setProgress((p) => {
+        if (p >= 99) return 99; // hold at 99 until route mounts and unmounts loader
+        // Ease-out: faster at start, slower near the end
+        const remaining = 99 - p;
+        const inc = Math.max(0.15, (remaining / 100) * (dt / 16) * 1.6);
+        const next = Math.min(99, p + inc);
+        const idx = LOADER_STAGES.findIndex((s) => next < s.pct);
+        setStageIdx(idx === -1 ? LOADER_STAGES.length - 1 : idx);
+        return next;
+      });
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, []);
+
+  const pct = Math.floor(progress);
+  const stage = LOADER_STAGES[stageIdx]?.label ?? "LOADING";
+
+  return (
+    <div className="min-h-screen bg-black flex items-center justify-center relative overflow-hidden">
+      <div
+        className="absolute inset-0 opacity-30 pointer-events-none"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(34,197,94,0.18) 1px, transparent 1px), linear-gradient(90deg, rgba(34,197,94,0.18) 1px, transparent 1px)",
+          backgroundSize: "40px 40px",
+        }}
+      />
+      <div className="relative flex flex-col items-center gap-6 px-6 w-full max-w-md">
+        <div className="relative w-20 h-20">
+          <div className="absolute inset-0 rounded-full border-2 border-green-500/20" />
+          <div
+            className="absolute inset-0 rounded-full border-2 border-transparent border-t-green-400 border-r-green-400/60 animate-spin"
+            style={{ filter: "drop-shadow(0 0 10px rgba(34,197,94,0.85))" }}
+          />
+          <div className="absolute inset-3 rounded-full border border-green-400/40 animate-pulse" />
+          <div
+            className="absolute inset-0 flex items-center justify-center font-mono text-green-300 text-sm font-bold tabular-nums"
+            style={{ textShadow: "0 0 8px rgba(34,197,94,0.8)" }}
+          >
+            {pct}%
+          </div>
+        </div>
+
+        <div
+          className="font-mono text-green-400 text-base md:text-lg tracking-[0.4em]"
+          style={{ textShadow: "0 0 10px rgba(34,197,94,0.7)" }}
+        >
+          AIWEBTOOLS<span className="text-green-300">.AI</span>
+        </div>
+
+        {/* Progress bar */}
+        <div className="w-full">
+          <div className="h-1.5 w-full bg-green-500/10 rounded-full overflow-hidden border border-green-500/20">
+            <div
+              className="h-full bg-gradient-to-r from-green-500 via-green-400 to-emerald-300 transition-[width] duration-150 ease-out"
+              style={{
+                width: `${pct}%`,
+                boxShadow: "0 0 12px rgba(34,197,94,0.85)",
+              }}
+            />
+          </div>
+          <div className="mt-3 flex items-center justify-between font-mono text-[10px] md:text-xs tracking-[0.25em] text-green-400/80">
+            <span>&gt; {stage}_</span>
+            <span className="tabular-nums">{pct.toString().padStart(3, "0")}/100</span>
+          </div>
+        </div>
       </div>
-      <div className="font-mono text-green-400 text-sm tracking-[0.4em]" style={{ textShadow: "0 0 10px rgba(34,197,94,0.7)" }}>
-        AIWEBTOOLS<span className="text-green-300">.AI</span>
-      </div>
-      <span className="text-green-400/70 text-xs font-mono tracking-[0.3em]">&gt; LOADING_</span>
     </div>
-  </div>
-);
+  );
+};
 
 const queryClient = new QueryClient({
   defaultOptions: {
