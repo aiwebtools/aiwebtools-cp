@@ -238,7 +238,6 @@ Best regards,
                 <Button 
                   asChild 
                   className="bg-indigo-600 hover:bg-indigo-500 text-white font-semibold w-full"
-                  onClick={() => window.open('https://chatgpt.com/g/g-68a24b677890819181b9e47f4d1dd006-soul-scan-gpt-a-way-to-find-your-way-home/', '_blank')}
                 >
                   <a 
                     href="https://chatgpt.com/g/g-68a24b677890819181b9e47f4d1dd006-soul-scan-gpt-a-way-to-find-your-way-home/"
