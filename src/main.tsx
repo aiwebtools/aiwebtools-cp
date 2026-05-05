@@ -65,6 +65,8 @@ const root = createRoot(rootElement);
 import('./App.tsx')
   .then(({ default: App }) => {
     root.render(<App />);
+    // Notify HTML loader debug instrumentation that React has mounted.
+    try { window.dispatchEvent(new Event('aiwt:react-mounted')); } catch (_) {}
     // If app boots successfully, clear the guard so future errors can trigger again.
     window.setTimeout(() => sessionStorage.removeItem(CHUNK_RELOAD_KEY), 4000);
   })
