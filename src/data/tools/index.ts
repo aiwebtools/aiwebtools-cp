@@ -399,6 +399,7 @@ export { topAgentPlatforms2026 } from './topAgentPlatforms2026';
 
 // Export Top AI Agent Platforms 2026 Batch 2 (Wordware, Composio, SmythOS, MindPal, AgentOps)
 export { topAgentPlatforms2026Batch2 } from './topAgentPlatforms2026Batch2';
+export { newAIAgentsBatch2026D } from './newAIAgentsBatch2026D';
 
 // Export New AI Agents 2026 (15 verified: MultiOn, CodeRabbit, Phind, Induced, BrowserBase, LangGraph, Beam AI, Fixie, Sweep, Fine.dev, Adept, OpenHands, Dia Browser, Axiom, Ottogrid)
 export { newAIAgents2026 } from './newAIAgents2026';
