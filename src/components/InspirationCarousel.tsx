@@ -40,6 +40,16 @@ const images = [
   { src: "/images/inspiration/met-god-no-religion.jpg", alt: "If having a religion was a requirement to have a God - How come I met God without having a religion?" },
   { src: "/images/inspiration/declaration-cosmic-light.png", alt: "Declaration of Cosmic Light Within All People on Earth - The Inner Cosmos Monk of Humanity" },
   { src: "/images/inspiration/met-god-tour-of-hell.png", alt: "I met God face to face and got a tour of the Black Hole of Hell - He is within me and within you - The Light is Within - No dogma required" },
+  { src: "/images/inspiration/as-above-so-below.jpg", alt: "As Above So Below, As Within So Without, As the Universe So the Soul - Sacred spirals of hurricane, galaxy, and nautilus shell" },
+  { src: "/images/inspiration/is-ra-el-inner-god.jpg", alt: "IS-RA-EL - The Inner God of each person - Ancient Hebrew etymology revealed" },
+  { src: "/images/inspiration/god-cosmic-light-within.jpg", alt: "God is the cosmic light within you - Sacred union under the stars" },
+  { src: "/images/inspiration/god-is-light-within-you.jpg", alt: "God is light - God has always been within you" },
+  { src: "/images/inspiration/you-contain-the-universe.jpg", alt: "You contain the universe and the cosmic light of God - No dogma required" },
+  { src: "/images/inspiration/how-god-communicates.jpg", alt: "How God Communicates - The Direct Link of Consciousness through your soul" },
+  { src: "/images/inspiration/met-god-tour-black-hole-hell.jpg", alt: "I met God face to face and got a tour of the Black Hole of Hell - The Light is Within - No dogma required" },
+  { src: "/images/inspiration/hartford-cemetery-elite-graves.jpg", alt: "Hartford Cemetery - Spiritually guided tours to elite graves reflecting on the lies of this world" },
+  { src: "/images/inspiration/burning-lies-truth-prevails.jpg", alt: "Truth Prevails - Burning lies, deceit, falsehoods, and betrayal - No more lies" },
+  { src: "/images/inspiration/kingdom-of-god-within-us.jpg", alt: "If the Kingdom of God is within us, why do so many still believe they are separate from God?" },
 ];
 
 const InspirationCarousel = () => {
