@@ -16,6 +16,7 @@ import { useFavorites } from "@/hooks/useFavorites";
 import { allTools } from "@/data/toolsData";
 import { createTimePortalEffect } from "@/utils/timeEffects";
 import { createConfettiCelebration } from "@/utils/effects/audioEffects";
+import { openDestinationUrl } from "@/utils/effects/domEffects";
 import { getCurrentToolCount } from "@/utils/toolCounter";
 import { web3DomainsTools } from "@/data/tools/web3DomainsTools";
 import { downloadToolsCSV } from "@/utils/csvExport";
@@ -387,7 +388,7 @@ const DesktopMenu = () => {
                         a.click();
                         document.body.removeChild(a);
                         URL.revokeObjectURL(url);
-                        setTimeout(() => window.open("https://lovable.dev/projects/16f4843b-3d0d-4fac-8365-1ccb03890154?utm_source=lovable-badge&via=aiwebtools", '_blank'), 300);
+                        setTimeout(() => openDestinationUrl("https://lovable.dev/projects/16f4843b-3d0d-4fac-8365-1ccb03890154?utm_source=lovable-badge&via=aiwebtools"), 300);
                         setIsMenuOpen(false);
                       }}
                       className="text-green-100 hover:bg-green-500/20 rounded text-sm px-2 py-1.5 bg-green-600/10 border border-green-500/30"
