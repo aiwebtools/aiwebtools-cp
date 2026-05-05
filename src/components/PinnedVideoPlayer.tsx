@@ -285,10 +285,9 @@ const PinnedVideoPlayer = memo(() => {
     return sessionStorage.getItem(SESSION_CLOSED_KEY) !== "true";
   });
   
-  // Show player after 25% of viewport height scroll
-  // Using Math.max with inner height so works on any screen size
-  const viewportQuarter = typeof window !== 'undefined' ? Math.round(window.innerHeight * 0.25) : 200;
-  const hasScrolledEnough = useScrollThreshold(isHomepage ? viewportQuarter : 100, {
+  // Show player immediately on the homepage so it is always visible and clickable.
+  // Tool pages still wait for a small scroll so they don't cover the primary tool media.
+  const hasScrolledEnough = useScrollThreshold(isHomepage ? 0 : 100, {
     enabled: true,
     allowReset: false, // Once shown, stay shown
   });
@@ -516,7 +515,7 @@ const PinnedVideoPlayer = memo(() => {
 
   // Listen for YouTube iframe API messages to detect video end
   useEffect(() => {
-    if (!isVisible || toolsWithVideos.length === 0) return;
+    if (!isVisible || !hasScrolledEnough || toolsWithVideos.length === 0) return;
 
     const handleMessage = (event: MessageEvent) => {
       // YouTube sends messages when video state changes
@@ -583,14 +582,14 @@ const PinnedVideoPlayer = memo(() => {
 
     window.addEventListener("message", handleMessage);
     return () => window.removeEventListener("message", handleMessage);
-  }, [isVisible, toolsWithVideos.length, advanceToNextVideo, currentVideoId]);
+  }, [isVisible, hasScrolledEnough, toolsWithVideos.length, advanceToNextVideo, currentVideoId]);
 
   // Reliable fixed-interval auto-skip: every video plays for ~28 seconds,
   // then advances to the next. The onStateChange "ended" listener above will
   // still trigger early advance for shorter clips. This guarantees the
   // carousel always moves forward and never gets stuck on long videos.
   useEffect(() => {
-    if (!isVisible || toolsWithVideos.length === 0) return;
+    if (!isVisible || !hasScrolledEnough || toolsWithVideos.length === 0) return;
 
     // Clear any existing timeout
     if (advanceTimeoutRef.current) {
@@ -609,7 +608,7 @@ const PinnedVideoPlayer = memo(() => {
         clearTimeout(advanceTimeoutRef.current);
       }
     };
-  }, [isVisible, toolsWithVideos.length, currentIndex, advanceToNextVideo, currentTool?.title]);
+  }, [isVisible, hasScrolledEnough, toolsWithVideos.length, currentIndex, advanceToNextVideo, currentTool?.title]);
 
   const handleNextVideo = useCallback(() => {
     setCurrentIndex(prev => (prev + 1) % toolsWithVideos.length);
