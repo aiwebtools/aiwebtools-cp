@@ -99,17 +99,19 @@
     <link rel="dns-prefetch" href="//i.ytimg.com">
     <link rel="dns-prefetch" href="//lovable.app">
     <link rel="dns-prefetch" href="//chatgpt.com">
+    <!-- Preconnect: limit to top 4 critical origins (Lighthouse best practice) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://ai-webtools.com">
-    <link rel="preconnect" href="https://www.aiwebtools.ai">
-    <link rel="preconnect" href="https://media.discordapp.net" crossorigin>
-    <link rel="preconnect" href="https://cdn.discordapp.com" crossorigin>
     <link rel="preconnect" href="https://img1.wsimg.com" crossorigin>
-    <link rel="preconnect" href="https://www.youtube.com" crossorigin>
     <link rel="preconnect" href="https://i.ytimg.com" crossorigin>
-    <link rel="preconnect" href="https://lovable.app" crossorigin>
-    <link rel="preconnect" href="https://chatgpt.com" crossorigin>
+    <!-- Lower-priority origins use dns-prefetch (cheaper) -->
+    <link rel="dns-prefetch" href="https://ai-webtools.com">
+    <link rel="dns-prefetch" href="https://www.aiwebtools.ai">
+    <link rel="dns-prefetch" href="https://media.discordapp.net">
+    <link rel="dns-prefetch" href="https://cdn.discordapp.com">
+    <link rel="dns-prefetch" href="https://www.youtube.com">
+    <link rel="dns-prefetch" href="https://lovable.app">
+    <link rel="dns-prefetch" href="https://chatgpt.com">
     
     <!-- Preload critical fonts for faster text rendering -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500;700&family=Dancing+Script:wght@400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
