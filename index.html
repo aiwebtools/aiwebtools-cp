@@ -10,17 +10,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no" />
     <title>AIWEBTOOLS.AI — 4,000+ Best AI Tools Directory 2026</title>
     
-    <!-- Google tag (gtag.js) - deferred for faster initial load -->
-    <script defer src="https://www.googletagmanager.com/gtag/js?id=G-PQH30EX1YJ"></script>
+    <!-- Google Analytics (gtag.js) — lazy-loaded after interaction or 4s idle.
+         Saves ~60KB unused JS on initial mobile load. -->
     <script>
-      // Defer analytics initialization until after page load
-      window.addEventListener('load', function() {
+      (function () {
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        window.gtag = gtag;
-        gtag('js', new Date());
-        gtag('config', 'G-PQH30EX1YJ');
-      });
+        window.gtag = function () { window.dataLayer.push(arguments); };
+        var loaded = false;
+        function loadGtag() {
+          if (loaded) return;
+          loaded = true;
+          var s = document.createElement('script');
+          s.async = true;
+          s.src = 'https://www.googletagmanager.com/gtag/js?id=G-PQH30EX1YJ';
+          s.onload = function () {
+            gtag('js', new Date());
+            gtag('config', 'G-PQH30EX1YJ');
+          };
+          document.head.appendChild(s);
+        }
+        var events = ['scroll', 'mousemove', 'touchstart', 'keydown', 'click'];
+        function trigger() {
+          events.forEach(function (e) { window.removeEventListener(e, trigger); });
+          loadGtag();
+        }
+        events.forEach(function (e) { window.addEventListener(e, trigger, { passive: true, once: true }); });
+        setTimeout(loadGtag, 4000);
+      })();
     </script>
     
     <!-- Google AdSense — lazy-loaded to protect mobile LCP (huge unused JS).
