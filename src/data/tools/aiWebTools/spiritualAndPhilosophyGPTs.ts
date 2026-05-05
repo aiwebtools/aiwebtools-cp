@@ -422,7 +422,6 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     emoji: "⚡",
     color: "from-purple-500 to-cyan-600",
     directUrl: "https://chatgpt.com/g/g-n7yvUUmoT-the-architect-watts-entity-free-thought-magic/",
-    videoUrl: "https://youtu.be/ocYyr5LheK8?si=Y3Jxk855N50iZXky",
     tags: ["alan watts", "the architect", "quantum consciousness", "metaphysical wisdom", "neo", "matrix philosophy", "spiritual liberation", "free thought", "aiwebtools"],
     category: "Spirituality & Philosophy",
     rating: 4.9,
