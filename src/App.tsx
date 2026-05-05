@@ -21,6 +21,7 @@ import { isFrameHostileExternalUrl, openExternal } from "@/lib/openLink";
 
 // Eager load only the disclaimer gate; lazy-load heavy app routes to avoid black-screen startup
 import DisclaimerGate from "./pages/DisclaimerGate";
+import ToolDetail from "./pages/ToolDetail";
 
 // Retry wrapper for lazy imports — prevents black screen on transient
 // "Failed to fetch dynamically imported module" errors (HMR / flaky network).
@@ -65,7 +66,6 @@ async function importWithRetry<T>(
 
 // Lazy load - secondary pages for faster initial load
 const Index = lazyWithRetry(() => import("./pages/Index"));
-const ToolDetail = lazyWithRetry(() => import("./pages/ToolDetail"));
 const CategoryPage = lazyWithRetry(() => import("./pages/CategoryPage"));
 const MainCategoryPage = lazyWithRetry(() => import("./pages/MainCategoryPage"));
 const SimilarToolsPage = lazyWithRetry(() => import("./pages/SimilarTools"));
