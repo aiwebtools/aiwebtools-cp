@@ -85,25 +85,42 @@ const LoadingScreen = memo(() => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-black flex flex-col items-center justify-center px-4">
-      {/* CSS-only 3D Rotating Cube — zero JS, pure GPU */}
-      <div className="mb-8" style={{ perspective: '600px', WebkitPerspective: '600px', transformStyle: 'preserve-3d', WebkitTransformStyle: 'preserve-3d' as any }}>
-        <div className="loading-cube">
-          <div className="loading-cube-face loading-cube-front"><span>🤖</span></div>
-          <div className="loading-cube-face loading-cube-back"><span>⚡</span></div>
-          <div className="loading-cube-face loading-cube-right"><span>🧠</span></div>
-          <div className="loading-cube-face loading-cube-left"><span>🚀</span></div>
-          <div className="loading-cube-face loading-cube-top"><span>✨</span></div>
-          <div className="loading-cube-face loading-cube-bottom"><span>💡</span></div>
+    <div className="relative min-h-screen bg-black flex flex-col items-center justify-center px-4 overflow-hidden">
+      {/* Cyberpunk grid background */}
+      <div className="ls-grid" />
+      {/* Scanline sweep */}
+      <div className="ls-scanline" />
+
+      {/* Brand wordmark */}
+      <h1
+        className="ls-brand text-3xl md:text-5xl font-extrabold text-green-400 mb-6 tracking-[0.18em] text-center font-mono"
+      >
+        AIWEBTOOLS<span className="text-green-300">.AI</span>
+      </h1>
+
+      {/* CSS-only 3D Rotating Cube wrapped in pulsing rings */}
+      <div className="relative mb-8 w-[140px] h-[140px] flex items-center justify-center">
+        <span className="ls-ring" />
+        <span className="ls-ring delay-1" />
+        <span className="ls-ring delay-2" />
+        <div style={{ perspective: '700px', WebkitPerspective: '700px', transformStyle: 'preserve-3d', WebkitTransformStyle: 'preserve-3d' as any }}>
+          <div className="loading-cube">
+            <div className="loading-cube-face loading-cube-front"><span>🤖</span></div>
+            <div className="loading-cube-face loading-cube-back"><span>⚡</span></div>
+            <div className="loading-cube-face loading-cube-right"><span>🧠</span></div>
+            <div className="loading-cube-face loading-cube-left"><span>🚀</span></div>
+            <div className="loading-cube-face loading-cube-top"><span>✨</span></div>
+            <div className="loading-cube-face loading-cube-bottom"><span>💡</span></div>
+          </div>
         </div>
       </div>
 
-      <h1
-        className="text-xl md:text-2xl font-bold text-green-400 mb-8 tracking-[0.2em] text-center"
-        style={{ textShadow: '0 0 20px rgba(34, 197, 94, 0.5)' }}
+      <div
+        className="text-sm md:text-base font-bold text-green-400 mb-6 tracking-[0.35em] text-center font-mono"
+        style={{ textShadow: '0 0 14px rgba(34, 197, 94, 0.7)' }}
       >
-        LOADING YOUR AI TOOL EMPIRE
-      </h1>
+        &gt; NOW LOADING<span className="ls-caret">_</span>
+      </div>
 
       <div className="flex items-center gap-2 mb-6 h-8">
         <Sparkles
