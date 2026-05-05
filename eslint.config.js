@@ -24,6 +24,20 @@ export default tseslint.config(
         { allowConstantExport: true },
       ],
       "@typescript-eslint/no-unused-vars": "off",
+      "no-restricted-syntax": [
+        "warn",
+        {
+          selector: "CallExpression[callee.object.name='window'][callee.property.name='open']",
+          message: "Do not call window.open directly. Use openDestinationUrl from '@/utils/effects/domEffects' so retries, timeouts, and fallbacks apply.",
+        },
+      ],
     },
-  }
+  },
+  {
+    // The opener helper itself is allowed to call window.open as a fallback.
+    files: ["src/utils/effects/domEffects.ts"],
+    rules: {
+      "no-restricted-syntax": "off",
+    },
+  },
 );
