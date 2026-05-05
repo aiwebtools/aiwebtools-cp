@@ -774,8 +774,22 @@ const BookPromotionCard = () => {
 
                     <div className="flex justify-center gap-4 transition-all duration-700 ease-in-out">
                       {visibleDesktopVideos.map((video, index) => (
-                        <div key={`${video.originalIndex}-${video.id}`} className="relative w-48 flex-shrink-0 transition-all duration-700 ease-in-out">
-                          <div className="relative rounded-xl overflow-hidden shadow-2xl" style={{ aspectRatio: '9/16' }}>
+                        <div
+                          key={`${video.originalIndex}-${video.id}`}
+                          className={`relative w-48 flex-shrink-0 transition-all duration-700 ease-in-out ${
+                            !isPaused && video.originalIndex === currentVideoIndex
+                              ? 'scale-[1.04]'
+                              : ''
+                          }`}
+                        >
+                          <div
+                            className={`relative rounded-xl overflow-hidden shadow-2xl transition-shadow duration-500 ${
+                              !isPaused && video.originalIndex === currentVideoIndex
+                                ? 'ring-2 ring-cyan-400/70 shadow-[0_0_30px_rgba(34,211,238,0.45)]'
+                                : ''
+                            }`}
+                            style={{ aspectRatio: '9/16' }}
+                          >
                             <LazyBookVideo 
                               videoId={video.id} 
                               title={video.title} 
@@ -783,6 +797,13 @@ const BookPromotionCard = () => {
                               onEnd={handleVideoEnd}
                               autoPlay={isAutoPlaying && video.originalIndex === currentVideoIndex}
                             />
+                            {/* Preview-reel indicator: shows the carousel is auto-cycling
+                                through the full video library, not just the 3 visible */}
+                            {!isPaused && video.originalIndex === currentVideoIndex && (
+                              <div className="pointer-events-none absolute top-2 left-1/2 -translate-x-1/2 px-2.5 py-0.5 rounded-full bg-black/70 border border-cyan-400/50 text-[10px] font-bold text-cyan-300 tracking-wider uppercase backdrop-blur-sm animate-pulse z-10">
+                                ▶ Previewing {currentVideoIndex + 1}/{videos.length}
+                              </div>
+                            )}
                           </div>
                           <div className={`absolute -inset-2 bg-gradient-to-r ${video.gradient} rounded-lg blur-xl -z-10`}></div>
                         </div>
