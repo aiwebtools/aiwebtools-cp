@@ -559,12 +559,13 @@
             }
           }, 100);
 
-          // Safety net only — generous so the cube can keep spinning until React truly mounts.
-          // Previously 1800ms caused a black gap when lazy chunks took longer.
+          // Do NOT force-remove the cube on a timer. If React chunks are slow,
+          // the loader must keep spinning instead of revealing a black screen.
           setTimeout(function() {
             if (!removed) {
-              clearInterval(contentCheck);
-              removeSpinner();
+              var tagline = document.querySelector('.tagline');
+              if (tagline) tagline.textContent = 'STILL BOOTING THE MATRIX...';
+              if (pct) pct.textContent = '97%';
             }
           }, 15000);
         };
@@ -682,8 +683,8 @@
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap"></noscript>
 </head>
   <body>
-    <div id="root">
-      <div class="loading-spinner">
+    <div id="root"></div>
+    <div class="loading-spinner" aria-live="polite" aria-busy="true">
         <!-- Matrix rain background -->
         <div class="matrix-bg">
           <span class="matrix-col" style="left:5%;animation-duration:2.5s">01010110</span>
@@ -718,7 +719,6 @@
           </div>
           <div class="progress-text">LOADING <span id="progress-pct">5%</span></div>
         </div>
-      </div>
     </div>
     
     <!-- ElevenLabs widget removed (paused subscription) -->
