@@ -5,6 +5,7 @@ import { createTimePortalEffect } from "@/utils/timeEffects";
 import { useState, useRef, useEffect, useCallback, useMemo } from "react";
 import { allTools } from "@/data/toolsData";
 import { downloadToolsCSV } from "@/utils/csvExport";
+import { triggerPublicDownload } from "@/utils/downloads";
 
 // Utility function to shuffle array
 const shuffleArray = <T,>(array: T[]): T[] => {
