@@ -526,6 +526,9 @@
           requestAnimationFrame(updatePct);
 
           window.addEventListener('aiwt:route-ready', function() {
+            window.__loaderDebug.routeReadyAt = performance.now() - startTime;
+            window.__loaderDebug.hideReason = 'route-ready-event';
+            logLoader('route-ready-event');
             requestAnimationFrame(function() {
               requestAnimationFrame(removeSpinner);
             });
@@ -535,6 +538,8 @@
           var contentCheck = setInterval(function() {
             if (hasVisibleContent()) {
               clearInterval(contentCheck);
+              window.__loaderDebug.hideReason = 'content-detected';
+              logLoader('content-detected');
               removeSpinner();
             }
           }, 100);
@@ -546,9 +551,12 @@
               var root = document.getElementById('root');
               var rootText = root ? (root.textContent || '').replace(/\s+/g, ' ').trim() : '';
               if (root && root.children.length && rootText.length > 40) {
+                window.__loaderDebug.hideReason = 'fallback-15s-content-ok';
+                logLoader('fallback-15s-hide', 'rootChildren=' + root.children.length + ' textLen=' + rootText.length);
                 removeSpinner();
                 return;
               }
+              logLoader('fallback-15s-stalled', 'rootChildren=' + (root ? root.children.length : 0) + ' textLen=' + rootText.length);
               var tagline = document.querySelector('.tagline');
               if (tagline) tagline.textContent = 'STILL BOOTING THE MATRIX...';
               if (pct) pct.textContent = '97%';
