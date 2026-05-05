@@ -261,10 +261,35 @@ export const cleanupEffects = (effectsContainer: HTMLElement) => {
 };
 
 export const openDestinationUrl = (destinationUrl: string) => {
-  if (destinationUrl && destinationUrl.trim()) {
-    // Always open in new window to keep users on our website
-    window.open(destinationUrl, '_blank', 'noopener,noreferrer');
-  } else {
+  if (!destinationUrl || !destinationUrl.trim()) {
     console.log('No destination URL provided');
+    return;
+  }
+
+  // Use a real anchor click instead of window.open.
+  // window.open(...,'noopener,noreferrer') from sandboxed/iframed contexts
+  // (and even some COOP-strict production setups) triggers
+  // ERR_BLOCKED_BY_RESPONSE on destinations like chatgpt.com.
+  // A synthetic <a target="_blank"> click is the most reliable way to
+  // open external links across browsers, sandboxes, and CSP setups.
+  try {
+    const a = document.createElement('a');
+    a.href = destinationUrl;
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+    a.style.display = 'none';
+    document.body.appendChild(a);
+    a.click();
+    // Defer cleanup so the click event fully propagates first
+    setTimeout(() => {
+      try { a.remove(); } catch {}
+    }, 0);
+  } catch (err) {
+    // Last-resort fallback
+    try {
+      window.open(destinationUrl, '_blank', 'noopener,noreferrer');
+    } catch {
+      window.location.href = destinationUrl;
+    }
   }
 };
