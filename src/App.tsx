@@ -153,6 +153,17 @@ const queryClient = new QueryClient({
 // Routes wrapper - eager pages render instantly, lazy pages show loader
 const AnimatedRoutes = () => {
   const location = useLocation();
+
+  React.useEffect(() => {
+    const id = window.setTimeout(() => {
+      const root = document.getElementById("root");
+      if (root?.children.length) {
+        window.dispatchEvent(new Event("aiwt:route-ready"));
+      }
+    }, 350);
+
+    return () => window.clearTimeout(id);
+  }, [location.pathname]);
   
   // Critical paths render without Suspense for instant load
   if (location.pathname === '/' || location.pathname === '/welcome') {
