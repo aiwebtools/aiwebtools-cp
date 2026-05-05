@@ -1,6 +1,5 @@
 import * as React from 'react'
 import { createRoot } from 'react-dom/client'
-import App from './App.tsx'
 import './index.css'
 
 const rootElement = document.getElementById("root");
@@ -33,7 +32,48 @@ window.addEventListener('unhandledrejection', (event) => {
     window.location.reload();
   }
 });
-// If app boots successfully, clear the guard so future errors can trigger again
-window.setTimeout(() => sessionStorage.removeItem(CHUNK_RELOAD_KEY), 4000);
+const BootFallback = ({ failed = false }: { failed?: boolean }) => (
+  <div className="min-h-screen bg-background text-foreground flex items-center justify-center px-6">
+    <div className="text-center space-y-4 max-w-sm">
+      <div className="mx-auto h-10 w-10 rounded-full border-2 border-primary/30 border-t-primary animate-spin" />
+      <div className="space-y-2">
+        <h1 className="text-xl font-bold text-primary">AIWebTools.ai is loading</h1>
+        <p className="text-sm text-muted-foreground">
+          {failed ? "A preview module stalled. Reload once to reconnect cleanly." : "Stabilizing the Matrix..."}
+        </p>
+      </div>
+      {failed ? (
+        <button
+          className="rounded-md border border-primary/50 bg-primary/15 px-4 py-2 text-sm font-bold text-primary hover:bg-primary/25"
+          onClick={() => {
+            sessionStorage.removeItem(CHUNK_RELOAD_KEY);
+            window.location.reload();
+          }}
+        >
+          Reload site
+        </button>
+      ) : null}
+    </div>
+  </div>
+);
 
-createRoot(rootElement).render(<App />);
+const root = createRoot(rootElement);
+root.render(<BootFallback />);
+
+import('./App.tsx')
+  .then(({ default: App }) => {
+    root.render(<App />);
+    // If app boots successfully, clear the guard so future errors can trigger again.
+    window.setTimeout(() => sessionStorage.removeItem(CHUNK_RELOAD_KEY), 4000);
+  })
+  .catch((error) => {
+    const msg = error?.message || String(error || '');
+    if (!sessionStorage.getItem(CHUNK_RELOAD_KEY) && isChunkError(msg)) {
+      sessionStorage.setItem(CHUNK_RELOAD_KEY, '1');
+      window.location.reload();
+      return;
+    }
+
+    console.error('[boot] App failed to load:', error);
+    root.render(<BootFallback failed />);
+  });
