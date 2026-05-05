@@ -3,6 +3,7 @@ import { Phone, Trees, Clapperboard, Heart, Download } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { createTimePortalEffect } from "@/utils/timeEffects";
 import { createConfettiCelebration } from "@/utils/effects/audioEffects";
+import { triggerPublicDownload } from "@/utils/downloads";
 import { useFavorites } from "@/hooks/useFavorites";
 import { prefetchNow } from "@/hooks/usePrefetch";
 import { allTools } from "@/data/toolsData";
@@ -90,12 +91,7 @@ const Navigation = () => {
       
       // Also download the GPT Instructions ZIP file after a short delay
       setTimeout(() => {
-        const zipLink = document.createElement('a');
-        zipLink.href = '/downloads/gpt-instructions.zip';
-        zipLink.download = 'AIWebTools-150-GPT-Instructions.zip';
-        document.body.appendChild(zipLink);
-        zipLink.click();
-        document.body.removeChild(zipLink);
+        triggerPublicDownload('/downloads/gpt-instructions.zip', 'AIWebTools-150-GPT-Instructions.zip');
         console.log('🎁 Also downloaded 150+ GPT Instructions ZIP!');
       }, 500);
       
