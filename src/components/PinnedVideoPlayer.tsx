@@ -767,13 +767,6 @@ const PinnedVideoPlayer = memo(() => {
             style={{ minHeight: '70px' }}
             onLoad={handleIframeLoad}
           />
-          {/* Mask covering YouTube's native center play overlay so it doesn't block the video.
-              Reveals the underlying iframe area on hover so the user can still interact. */}
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-black opacity-100 group-hover:opacity-0 transition-opacity duration-150"
-            style={{ width: '38%', height: '38%', borderRadius: '12%' }}
-          />
           <button
             type="button"
             onClick={handleTogglePlay}
