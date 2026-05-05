@@ -17,9 +17,11 @@ import MatrixCursorEffect from "@/components/effects/MatrixCursorEffect";
 import "@/styles/loading-cube.css";
 import ScrollProgressIndicator from "@/components/ScrollProgressIndicator";
 import { getConsentAccepted } from "@/utils/consent";
+import { isFrameHostileExternalUrl, openExternal } from "@/lib/openLink";
 
 // Eager load only the disclaimer gate; lazy-load heavy app routes to avoid black-screen startup
 import DisclaimerGate from "./pages/DisclaimerGate";
+import ToolDetail from "./pages/ToolDetail";
 
 // Retry wrapper for lazy imports — prevents black screen on transient
 // "Failed to fetch dynamically imported module" errors (HMR / flaky network).
@@ -64,7 +66,6 @@ async function importWithRetry<T>(
 
 // Lazy load - secondary pages for faster initial load
 const Index = lazyWithRetry(() => import("./pages/Index"));
-const ToolDetail = lazyWithRetry(() => import("./pages/ToolDetail"));
 const CategoryPage = lazyWithRetry(() => import("./pages/CategoryPage"));
 const MainCategoryPage = lazyWithRetry(() => import("./pages/MainCategoryPage"));
 const SimilarToolsPage = lazyWithRetry(() => import("./pages/SimilarTools"));
@@ -159,11 +160,29 @@ const AnimatedRoutes = () => {
       const root = document.getElementById("root");
       if (root?.children.length) {
         window.dispatchEvent(new Event("aiwt:route-ready"));
+        const spinner = document.querySelector(".loading-spinner");
+        if (spinner) {
+          spinner.classList.add("fade-out");
+          window.setTimeout(() => spinner.remove(), 300);
+        }
       }
     }, 350);
 
     return () => window.clearTimeout(id);
   }, [location.pathname]);
+
+  React.useEffect(() => {
+    const handleExternalAnchor = (event: MouseEvent) => {
+      const anchor = (event.target as HTMLElement | null)?.closest?.("a[href]") as HTMLAnchorElement | null;
+      if (!anchor?.href || !isFrameHostileExternalUrl(anchor.href)) return;
+      event.preventDefault();
+      event.stopPropagation();
+      openExternal(anchor.href);
+    };
+
+    document.addEventListener("click", handleExternalAnchor, true);
+    return () => document.removeEventListener("click", handleExternalAnchor, true);
+  }, []);
   
   // Critical paths render without Suspense for instant load
   if (location.pathname === '/' || location.pathname === '/welcome') {
