@@ -512,6 +512,12 @@
           // the loader must keep spinning instead of revealing a black screen.
           setTimeout(function() {
             if (!removed) {
+              var root = document.getElementById('root');
+              var rootText = root ? (root.textContent || '').replace(/\s+/g, ' ').trim() : '';
+              if (root && root.children.length && rootText.length > 40) {
+                removeSpinner();
+                return;
+              }
               var tagline = document.querySelector('.tagline');
               if (tagline) tagline.textContent = 'STILL BOOTING THE MATRIX...';
               if (pct) pct.textContent = '97%';
