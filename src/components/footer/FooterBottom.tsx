@@ -35,45 +35,66 @@ const FooterBottom = ({
               @keyframes awtFooterPulse {
                 0%, 100% {
                   transform: scale(1);
-                  opacity: 0.86;
+                  opacity: 0.72;
                   color: hsl(130 100% 74%);
-                  text-shadow: 0 0 10px hsl(130 100% 55% / 0.75), 0 0 24px hsl(130 100% 50% / 0.45), 0 0 46px hsl(130 100% 45% / 0.28);
-                  filter: brightness(1) saturate(1.05);
+                  text-shadow: 0 0 6px hsl(130 100% 55% / 0.75), 0 0 18px hsl(130 100% 50% / 0.5);
+                  filter: brightness(0.88) saturate(1);
                 }
-                45% {
-                  transform: scale(1.2);
+                35%, 55% {
+                  transform: scale(1.23);
                   opacity: 1;
                   color: hsl(135 100% 88%);
-                  text-shadow: 0 0 18px hsl(135 100% 78% / 1), 0 0 44px hsl(135 100% 56% / 0.95), 0 0 88px hsl(135 100% 50% / 0.7), 0 0 140px hsl(135 100% 45% / 0.45);
-                  filter: brightness(1.9) saturate(1.45);
+                  text-shadow: 0 0 20px hsl(135 100% 90% / 1), 0 0 54px hsl(135 100% 56% / 1), 0 0 104px hsl(135 100% 50% / 0.9), 0 0 170px hsl(135 100% 45% / 0.7);
+                  filter: brightness(2.65) saturate(1.8) drop-shadow(0 0 22px hsl(135 100% 55% / 0.95));
                 }
               }
               @keyframes awtInfinitySpinPulse {
                 0%, 100% {
                   transform: scale(1) rotate(-4deg);
-                  opacity: 0.88;
+                  opacity: 0.7;
                   color: hsl(140 100% 74%);
-                  text-shadow: 0 0 14px hsl(140 100% 60% / 0.9), 0 0 36px hsl(140 100% 50% / 0.6), 0 0 70px hsl(140 100% 45% / 0.35);
-                  filter: brightness(1.08);
+                  text-shadow: 0 0 8px hsl(140 100% 60% / 0.9), 0 0 26px hsl(140 100% 50% / 0.6);
+                  filter: brightness(0.9);
                 }
-                45% {
-                  transform: scale(1.34) rotate(9deg);
+                35%, 55% {
+                  transform: scale(1.44) rotate(9deg);
                   opacity: 1;
                   color: hsl(145 100% 90%);
-                  text-shadow: 0 0 24px hsl(145 100% 85% / 1), 0 0 58px hsl(145 100% 58% / 1), 0 0 112px hsl(145 100% 48% / 0.78), 0 0 170px hsl(145 100% 42% / 0.5);
-                  filter: brightness(2.1) saturate(1.55);
+                  text-shadow: 0 0 28px hsl(145 100% 90% / 1), 0 0 66px hsl(145 100% 58% / 1), 0 0 126px hsl(145 100% 48% / 0.95), 0 0 190px hsl(145 100% 42% / 0.75);
+                  filter: brightness(2.9) saturate(1.9) drop-shadow(0 0 28px hsl(145 100% 55% / 1));
                 }
               }
+              @keyframes awtFooterHaloPulse {
+                0%, 100% { opacity: 0.18; transform: translate(-50%, -50%) scale(0.82); }
+                35%, 55% { opacity: 0.82; transform: translate(-50%, -50%) scale(1.18); }
+              }
+              .awt-footer-brand-wrap {
+                position: relative;
+                isolation: isolate;
+              }
+              .awt-footer-brand-wrap::before {
+                content: "";
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                width: min(96vw, 620px);
+                height: 112px;
+                border-radius: 999px;
+                background: radial-gradient(circle, hsl(135 100% 55% / 0.5) 0%, hsl(135 100% 45% / 0.22) 42%, transparent 72%);
+                filter: blur(18px);
+                z-index: -1;
+                animation: awtFooterHaloPulse 0.95s ease-in-out infinite !important;
+              }
               .awt-footer-neon-pulse {
-                animation: awtFooterPulse 1.25s ease-in-out infinite;
+                animation: awtFooterPulse 0.95s ease-in-out infinite !important;
                 will-change: transform, opacity, filter, text-shadow;
               }
               .awt-footer-infinity-pulse {
-                animation: awtInfinitySpinPulse 1.25s ease-in-out infinite;
+                animation: awtInfinitySpinPulse 0.95s ease-in-out infinite !important;
                 will-change: transform, opacity, filter, text-shadow;
               }
             `}</style>
-            <span className="flex items-center justify-center gap-4 flex-wrap py-2">
+            <span className="awt-footer-brand-wrap flex items-center justify-center gap-4 flex-wrap py-2">
               <span
                 aria-label="infinity"
                 className="awt-footer-infinity-pulse inline-block text-green-300"
