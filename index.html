@@ -23,9 +23,30 @@
       });
     </script>
     
-    <!-- Google AdSense - load after main content -->
-    <script defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5053006805192587"
-         crossorigin="anonymous"></script>
+    <!-- Google AdSense — lazy-loaded to protect mobile LCP (huge unused JS).
+         Loads after first user interaction OR 6s idle, whichever comes first. -->
+    <script>
+      (function () {
+        var loaded = false;
+        function loadAdSense() {
+          if (loaded) return;
+          loaded = true;
+          var s = document.createElement('script');
+          s.async = true;
+          s.crossOrigin = 'anonymous';
+          s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5053006805192587';
+          document.head.appendChild(s);
+        }
+        var events = ['scroll', 'mousemove', 'touchstart', 'keydown', 'click'];
+        function trigger() {
+          events.forEach(function (e) { window.removeEventListener(e, trigger, { passive: true }); });
+          loadAdSense();
+        }
+        events.forEach(function (e) { window.addEventListener(e, trigger, { passive: true, once: true }); });
+        // Fallback: load after 6s of idle so ads still appear without interaction
+        setTimeout(loadAdSense, 6000);
+      })();
+    </script>
     
     <!-- Enhanced Meta Tags for SEO -->
     <meta name="description" content="AIWEBTOOLS.AI — the #1 directory of 4,000+ AI tools for 2026. ChatGPT alternatives, AI image generators, writing tools, AI agents & custom GPTs. Free.">
@@ -87,18 +108,6 @@
     <meta name="format-detection" content="telephone=no" />
     <meta name="mobile-web-app-capable" content="no" />
     
-    <!-- DNS Prefetch for Performance -->
-    <link rel="dns-prefetch" href="//fonts.googleapis.com">
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link rel="dns-prefetch" href="//ai-webtools.com">
-    <link rel="dns-prefetch" href="//www.aiwebtools.ai">
-    <link rel="dns-prefetch" href="//media.discordapp.net">
-    <link rel="dns-prefetch" href="//cdn.discordapp.com">
-    <link rel="dns-prefetch" href="//img1.wsimg.com">
-    <link rel="dns-prefetch" href="//www.youtube.com">
-    <link rel="dns-prefetch" href="//i.ytimg.com">
-    <link rel="dns-prefetch" href="//lovable.app">
-    <link rel="dns-prefetch" href="//chatgpt.com">
     <!-- Preconnect: limit to top 4 critical origins (Lighthouse best practice) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
