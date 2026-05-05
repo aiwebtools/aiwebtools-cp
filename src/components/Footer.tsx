@@ -1,6 +1,7 @@
 import { Separator } from "@/components/ui/separator";
 import { createTimePortalEffect } from "@/utils/timeEffects";
 import { createConfettiCelebration } from "@/utils/effects/audioEffects";
+import { triggerPublicDownload } from "@/utils/downloads";
 import FooterActions from "./footer/FooterActions";
 import FooterCompanyInfo from "./footer/FooterCompanyInfo";
 import FooterLinks from "./footer/FooterLinks";
@@ -115,12 +116,7 @@ Best regards,
   const handleDownloadGPTInstructions = () => {
     createConfettiCelebration();
     setTimeout(() => {
-      const link = document.createElement('a');
-      link.href = '/downloads/gpt-instructions.zip';
-      link.download = 'AIWebTools-150-GPT-Instructions.zip';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+      triggerPublicDownload('/downloads/gpt-instructions.zip', 'AIWebTools-150-GPT-Instructions.zip');
       console.log('🎁 Downloaded 150+ GPT Instructions!');
     }, 500);
   };
