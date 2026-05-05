@@ -5,6 +5,7 @@ import { createTimePortalEffect } from "@/utils/timeEffects";
 import { useState, useRef, useEffect, useCallback, useMemo } from "react";
 import { allTools } from "@/data/toolsData";
 import { downloadToolsCSV } from "@/utils/csvExport";
+import { triggerPublicDownload } from "@/utils/downloads";
 
 // Utility function to shuffle array
 const shuffleArray = <T,>(array: T[]): T[] => {
@@ -1049,12 +1050,7 @@ const BookPromotionCard = () => {
                         <Button
                           onClick={() => {
                             try {
-                              const link = document.createElement('a');
-                              link.href = '/downloads/gpt-instructions.zip';
-                              link.download = 'AIWebTools-150-GPT-Instructions.zip';
-                              document.body.appendChild(link);
-                              link.click();
-                              document.body.removeChild(link);
+                              triggerPublicDownload('/downloads/gpt-instructions.zip', 'AIWebTools-150-GPT-Instructions.zip');
                             } catch (err) {
                               console.error("ZIP download failed:", err);
                             }

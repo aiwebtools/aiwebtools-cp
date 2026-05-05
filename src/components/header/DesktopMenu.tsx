@@ -20,6 +20,7 @@ import { openDestinationUrl } from "@/utils/effects/domEffects";
 import { getCurrentToolCount } from "@/utils/toolCounter";
 import { web3DomainsTools } from "@/data/tools/web3DomainsTools";
 import { downloadToolsCSV } from "@/utils/csvExport";
+import { triggerPublicDownload } from "@/utils/downloads";
 import Logo from "./Logo";
 import GlobalSearchBar from "@/components/GlobalSearchBar";
 import DeferredMount from "@/components/DeferredMount";
@@ -98,12 +99,7 @@ const DesktopMenu = () => {
       
       // Also download the GPT Instructions ZIP file
       setTimeout(() => {
-        const zipLink = document.createElement('a');
-        zipLink.href = '/downloads/gpt-instructions.zip';
-        zipLink.download = 'AIWebTools-150-GPT-Instructions.zip';
-        document.body.appendChild(zipLink);
-        zipLink.click();
-        document.body.removeChild(zipLink);
+        triggerPublicDownload('/downloads/gpt-instructions.zip', 'AIWebTools-150-GPT-Instructions.zip');
         console.log('🎁 Also downloaded 150+ GPT Instructions ZIP!');
       }, 500);
       
@@ -117,12 +113,7 @@ const DesktopMenu = () => {
   const handleDownloadGPTInstructions = () => {
     createConfettiCelebration();
     setTimeout(() => {
-      const link = document.createElement('a');
-      link.href = '/downloads/gpt-instructions.zip';
-      link.download = 'AIWebTools-150-GPT-Instructions.zip';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+      triggerPublicDownload('/downloads/gpt-instructions.zip', 'AIWebTools-150-GPT-Instructions.zip');
       console.log('🎁 Downloaded 150+ GPT Instructions!');
     }, 500);
     setIsMenuOpen(false);
