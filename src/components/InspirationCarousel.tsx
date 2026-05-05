@@ -50,6 +50,15 @@ const images = [
   { src: "/images/inspiration/hartford-cemetery-elite-graves.jpg", alt: "Hartford Cemetery - Spiritually guided tours to elite graves reflecting on the lies of this world" },
   { src: "/images/inspiration/burning-lies-truth-prevails.jpg", alt: "Truth Prevails - Burning lies, deceit, falsehoods, and betrayal - No more lies" },
   { src: "/images/inspiration/kingdom-of-god-within-us.jpg", alt: "If the Kingdom of God is within us, why do so many still believe they are separate from God?" },
+  { src: "/images/inspiration/love-truth-material-universe.jpg", alt: "You see Love and Truth is what makes life worth it in this material universe" },
+  { src: "/images/inspiration/end-was-just-another-beginning.jpg", alt: "What if the end was just another beginning? - As above so below, the awakening of the soul" },
+  { src: "/images/inspiration/youth-trauma-judgment-by-god.jpg", alt: "As a youth kidnapped to a trouble teen program, in my 30s the judgment process by God - Hell is real, God is real, the judgment is real" },
+  { src: "/images/inspiration/annunaki-elohim-watchers.jpg", alt: "Everybody is related to the Annunaki Watchers and the Elohim Watchers - They live in a cosmic dimension within you" },
+  { src: "/images/inspiration/moment-of-return.jpg", alt: "The Moment of Return - Fully aware, still able to choose - On the edge of transition" },
+  { src: "/images/inspiration/cosmic-dance-personal-perception.jpg", alt: "Divine Light + Matter + Spirit + Faith = Cosmic Dance of Personal Perception" },
+  { src: "/images/inspiration/inner-cosmic-temple-account.jpg", alt: "The Inner Cosmic Temple - A first-hand account from October Friday the 13th, 2023" },
+  { src: "/images/inspiration/languages-divide-love-only-way.jpg", alt: "You were given many languages to divide you - Love is the only way - The Kingdom of God is within you" },
+  { src: "/images/inspiration/father-cosmic-light-tight-ship.jpg", alt: "Our Father of Cosmic Light runs a tight ship - Angels of light, fallen angels, the cosmic battle within" },
 ];
 
 const InspirationCarousel = () => {
