@@ -58,7 +58,9 @@ const BootFallback = ({ failed = false }: { failed?: boolean }) => (
 );
 
 const root = createRoot(rootElement);
-root.render(<BootFallback />);
+// NOTE: do NOT render a boot fallback here — index.html already shows the
+// matrix loading spinner inside #root until React mounts. Rendering another
+// fallback would create a second visible loading screen.
 
 import('./App.tsx')
   .then(({ default: App }) => {
