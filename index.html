@@ -453,9 +453,40 @@
           const pct = document.getElementById('progress-pct');
           const startTime = performance.now();
 
+          // ===== Loader debug instrumentation =====
+          // Append ?debugLoader=1 to URL for an on-screen overlay; otherwise
+          // inspect window.__loaderDebug or filter console for "[loader]".
+          var debugOn = /[?&]debugLoader=1\b/.test(window.location.search);
+          window.__loaderDebug = { shownAt: startTime, events: [], hideReason: null, reactMountedAt: null, routeReadyAt: null, removedAt: null };
+          var overlayEl = null;
+          function renderOverlay() {
+            if (!debugOn) return;
+            if (!overlayEl) {
+              overlayEl = document.createElement('div');
+              overlayEl.id = 'loader-debug-overlay';
+              overlayEl.style.cssText = 'position:fixed;bottom:8px;left:8px;z-index:99999;max-width:90vw;max-height:40vh;overflow:auto;background:rgba(0,0,0,.85);color:#00ff41;font:11px/1.4 monospace;padding:8px 10px;border:1px solid #00ff41;border-radius:6px;pointer-events:none;text-shadow:0 0 4px #00ff41;';
+              document.body.appendChild(overlayEl);
+            }
+            var lines = window.__loaderDebug.events.map(function(e){ return '+' + e.t.toFixed(0) + 'ms  ' + e.type + (e.detail ? '  ' + e.detail : ''); });
+            overlayEl.innerHTML = '<b>LOADER DEBUG</b><br>' + lines.join('<br>');
+          }
+          function logLoader(type, detail) {
+            var t = performance.now() - startTime;
+            window.__loaderDebug.events.push({ t: t, type: type, detail: detail || '' });
+            try { console.log('[loader]', '+' + t.toFixed(0) + 'ms', type, detail || ''); } catch(_) {}
+            renderOverlay();
+          }
+          logLoader('html-loader-shown');
+          window.addEventListener('aiwt:react-mounted', function(){
+            window.__loaderDebug.reactMountedAt = performance.now() - startTime;
+            logLoader('react-mounted');
+          }, { once: true });
+
           const removeSpinner = () => {
             if (removed) return;
             removed = true;
+            window.__loaderDebug.removedAt = performance.now() - startTime;
+            logLoader('loader-hide', 'reason=' + (window.__loaderDebug.hideReason || 'unknown'));
             if (bar) bar.style.width = '100%';
             if (pct) pct.textContent = '100%';
             const spinner = document.querySelector('.loading-spinner');
