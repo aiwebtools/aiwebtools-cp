@@ -236,7 +236,16 @@ export const createTimePortalEffect = (
   // Special sentinel: trigger CSV download of the complete tool directory
   const isCsvDownload = destinationUrl?.startsWith('csv-download://');
 
-  // Remove flash after 80ms, THEN open URL or trigger download
+  // CRITICAL: open the URL SYNCHRONOUSLY in the same tick as the click so the
+  // browser's user-activation gesture is preserved. Delaying via setTimeout
+  // causes popup blockers (especially Safari/iOS) and COOP-protected sites
+  // like chatgpt.com to silently fail. The matrix flash runs in parallel and
+  // is cleaned up shortly after.
+  if (!isCsvDownload && destinationUrl && destinationUrl.trim()) {
+    console.log('🚀 Opening URL (sync):', destinationUrl);
+    openDestinationUrl(destinationUrl);
+  }
+
   setTimeout(async () => {
     elements.forEach(el => el.remove());
     if (isCsvDownload) {
@@ -253,10 +262,6 @@ export const createTimePortalEffect = (
         console.error('CSV download failed:', err);
       }
       return;
-    }
-    console.log('🚀 Opening URL:', destinationUrl);
-    if (destinationUrl && destinationUrl.trim()) {
-      openDestinationUrl(destinationUrl);
     }
   }, 80);
 };
