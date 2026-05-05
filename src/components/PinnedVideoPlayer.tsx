@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback, useRef, memo, useMemo } from "react";
 import { createPortal } from "react-dom";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { X, SkipForward, SkipBack, Volume2, VolumeX } from "lucide-react";
+import { X, SkipForward, SkipBack, Volume2, VolumeX, Play } from "lucide-react";
 import { allTools } from "@/data/toolsData";
 import { Tool } from "@/types/tools";
 import { useScrollThreshold } from "@/hooks/useScrollThreshold";
@@ -301,8 +301,10 @@ const PinnedVideoPlayer = memo(() => {
   const [currentIndex, setCurrentIndex] = useState(getStoredIndex);
   
   // Try to start UNMUTED per Master's request. If browser blocks autoplay-with-sound,
-  // user can tap unmute. We aggressively retry unMute commands on every load.
+  // the video surface now has a real click-to-play overlay that sends play + unmute.
   const [isMuted, setIsMuted] = useState(false);
+  const [needsUserGesture, setNeedsUserGesture] = useState(true);
+  const [hasUserStartedPlayback, setHasUserStartedPlayback] = useState(false);
   const initialMuteEnforcedRef = useRef(false);
   
   // Shuffled tools - kept in state so we can reshuffle on round wrap
@@ -322,7 +324,7 @@ const PinnedVideoPlayer = memo(() => {
   const [videoSrc, setVideoSrc] = useState<string>(() => {
     if (!currentVideoId) return "";
     const origin = typeof window !== 'undefined' ? window.location.origin : '';
-    return `https://www.youtube.com/embed/${currentVideoId}?autoplay=1&mute=0&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&enablejsapi=1&playsinline=1&loop=0&origin=${encodeURIComponent(origin)}&widget_referrer=${encodeURIComponent(origin)}`;
+    return `https://www.youtube.com/embed/${currentVideoId}?autoplay=1&mute=0&controls=1&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&enablejsapi=1&playsinline=1&loop=0&origin=${encodeURIComponent(origin)}&widget_referrer=${encodeURIComponent(origin)}`;
   });
   const lastVideoIdRef = useRef<string>(currentVideoId || "");
   
@@ -337,11 +339,7 @@ const PinnedVideoPlayer = memo(() => {
     if (currentVideoId === lastVideoIdRef.current) return;
     
     lastVideoIdRef.current = currentVideoId;
-    const isMobile = isMobileDevice();
     
-    // ALWAYS start muted - browser autoplay policies require it on ALL devices
-    // This also prevents the "audio without visible player" bug
-    // User can unmute manually after seeing the player
     // Default: UNMUTED. Respect explicit user mute preference if set.
     let shouldMute: boolean;
     if (userMutePreferenceRef.current !== null) {
@@ -351,12 +349,10 @@ const PinnedVideoPlayer = memo(() => {
     }
     isFirstVideoRef.current = false;
     
-    // Build video URL - ALWAYS start with mute=1 for reliable autoplay on ALL browsers
-    // User must explicitly click unmute button to hear audio
-    // Use youtube-nocookie.com for faster loads and better privacy
+    // Build video URL with visible YouTube controls so the pinned player remains clickable.
     const origin = typeof window !== 'undefined' ? window.location.origin : '';
     const muteParam = shouldMute ? 1 : 0;
-    const newSrc = `https://www.youtube.com/embed/${currentVideoId}?autoplay=1&mute=${muteParam}&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&enablejsapi=1&playsinline=1&loop=0&origin=${encodeURIComponent(origin)}&widget_referrer=${encodeURIComponent(origin)}`;
+    const newSrc = `https://www.youtube.com/embed/${currentVideoId}?autoplay=1&mute=${muteParam}&controls=1&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&enablejsapi=1&playsinline=1&loop=0&origin=${encodeURIComponent(origin)}&widget_referrer=${encodeURIComponent(origin)}`;
     setVideoSrc(newSrc);
     playerMountedRef.current = true;
     
