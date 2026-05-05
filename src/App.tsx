@@ -122,10 +122,25 @@ const WelcomeNeoVoice = () => {
 
 // Minimal page loader for Suspense — sleek loading indicator, prevents black screen
 const PageLoader = () => (
-  <div className="min-h-screen bg-black flex items-center justify-center">
-    <div className="flex flex-col items-center gap-4">
-      <div className="w-8 h-8 border-2 border-green-500/30 border-t-green-400 rounded-full animate-spin" />
-      <span className="text-green-400/70 text-sm font-mono tracking-wider">Loading...</span>
+  <div className="min-h-screen bg-black flex items-center justify-center relative overflow-hidden">
+    <div
+      className="absolute inset-0 opacity-30 pointer-events-none"
+      style={{
+        backgroundImage:
+          "linear-gradient(rgba(34,197,94,0.18) 1px, transparent 1px), linear-gradient(90deg, rgba(34,197,94,0.18) 1px, transparent 1px)",
+        backgroundSize: "40px 40px",
+      }}
+    />
+    <div className="relative flex flex-col items-center gap-5">
+      <div className="relative w-16 h-16">
+        <div className="absolute inset-0 rounded-full border-2 border-green-500/20" />
+        <div className="absolute inset-0 rounded-full border-2 border-transparent border-t-green-400 border-r-green-400/60 animate-spin" style={{ filter: "drop-shadow(0 0 8px rgba(34,197,94,0.8))" }} />
+        <div className="absolute inset-2 rounded-full border border-green-400/40 animate-pulse" />
+      </div>
+      <div className="font-mono text-green-400 text-sm tracking-[0.4em]" style={{ textShadow: "0 0 10px rgba(34,197,94,0.7)" }}>
+        AIWEBTOOLS<span className="text-green-300">.AI</span>
+      </div>
+      <span className="text-green-400/70 text-xs font-mono tracking-[0.3em]">&gt; LOADING_</span>
     </div>
   </div>
 );
