@@ -65,12 +65,6 @@ const FooterBottom = ({
           >
             ⬆️ TOP OF PAGE
           </button>
-          <button 
-            onClick={() => window.scrollTo({ top: 0, behavior: 'auto' })} 
-            className="text-green-300 hover:text-green-400 transition-colors text-sm font-medium"
-          >
-            ⬆️ TOP OF PAGE
-          </button>
         </div>
         <div className="flex items-center text-green-300">
           <button onClick={e => handleExternalLink("https://freename.io?ref=olive-ears-obey&utm_source=clipboard", e)} className="flex items-center space-x-2 hover:text-green-400 transition-colors cursor-pointer text-sm md:text-base">
