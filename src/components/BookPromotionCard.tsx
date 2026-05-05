@@ -208,6 +208,7 @@ const BookPromotionCard = () => {
   const [isAutoPlaying, setIsAutoPlaying] = useState(false);
   const [hasUserInteracted, setHasUserInteracted] = useState(false);
   const [playingVideoIndex, setPlayingVideoIndex] = useState<number | null>(null);
+  const hasEverPlayedRef = useRef(false);
   const [isMobileCarousel, setIsMobileCarousel] = useState(() =>
     typeof window !== 'undefined' ? window.matchMedia('(max-width: 767px)').matches : false
   );
@@ -560,6 +561,8 @@ const BookPromotionCard = () => {
   const handleVideoPlay = useCallback((videoIndex?: number) => {
     setIsPaused(true);
     setIsAutoPlaying(false);
+    hasEverPlayedRef.current = true;
+    setHasUserInteracted(true);
     if (typeof videoIndex === 'number') {
       setPlayingVideoIndex(videoIndex);
       setCurrentVideoIndex(videoIndex);
@@ -569,15 +572,15 @@ const BookPromotionCard = () => {
 
   const goToVideo = useCallback((videoIndex: number) => {
     stopAllBookVideos();
-    setIsAutoPlaying(playingVideoIndex === currentVideoIndex);
+    setIsAutoPlaying(hasEverPlayedRef.current);
     setIsPaused(true);
     setCurrentVideoIndex(videoIndex);
     setDesktopIndex(Math.floor(videoIndex / videosPerPage));
-  }, [currentVideoIndex, playingVideoIndex, stopAllBookVideos, videosPerPage]);
+  }, [stopAllBookVideos, videosPerPage]);
 
   const nextDesktopPage = () => {
     stopAllBookVideos();
-    setIsAutoPlaying(!isMobileCarousel && playingVideoIndex === currentVideoIndex);
+    setIsAutoPlaying(!isMobileCarousel && hasEverPlayedRef.current);
     setIsPaused(true);
     setDesktopIndex((prev) => {
       const nextPage = (prev + 1) % totalDesktopPages;
@@ -588,7 +591,7 @@ const BookPromotionCard = () => {
 
   const prevDesktopPage = () => {
     stopAllBookVideos();
-    setIsAutoPlaying(!isMobileCarousel && playingVideoIndex === currentVideoIndex);
+    setIsAutoPlaying(!isMobileCarousel && hasEverPlayedRef.current);
     setIsPaused(true);
     setDesktopIndex((prev) => {
       const nextPage = (prev - 1 + totalDesktopPages) % totalDesktopPages;
@@ -629,7 +632,7 @@ const BookPromotionCard = () => {
 
   const nextVideo = () => {
     stopAllBookVideos();
-    setIsAutoPlaying(isMobileCarousel && playingVideoIndex === currentVideoIndex);
+    setIsAutoPlaying(hasEverPlayedRef.current);
     setIsPaused(true);
     setCurrentVideoIndex((prev) => {
       const next = (prev + 1) % videos.length;
@@ -640,7 +643,7 @@ const BookPromotionCard = () => {
 
   const prevVideo = () => {
     stopAllBookVideos();
-    setIsAutoPlaying(isMobileCarousel && playingVideoIndex === currentVideoIndex);
+    setIsAutoPlaying(hasEverPlayedRef.current);
     setIsPaused(true);
     setCurrentVideoIndex((prev) => {
       const next = (prev - 1 + videos.length) % videos.length;
