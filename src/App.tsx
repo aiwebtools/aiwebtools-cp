@@ -18,9 +18,8 @@ import "@/styles/loading-cube.css";
 import ScrollProgressIndicator from "@/components/ScrollProgressIndicator";
 import { getConsentAccepted } from "@/utils/consent";
 
-// Eager load - keep disclaimer gate instant; lazy-load heavy app routes to avoid black-screen startup
+// Eager load only the disclaimer gate; lazy-load heavy app routes to avoid black-screen startup
 import DisclaimerGate from "./pages/DisclaimerGate";
-import Index from "./pages/Index";
 
 // Retry wrapper for lazy imports — prevents black screen on transient
 // "Failed to fetch dynamically imported module" errors (HMR / flaky network).
@@ -44,6 +43,7 @@ function lazyWithRetry<T extends React.ComponentType<any>>(
 }
 
 // Lazy load - secondary pages for faster initial load
+const Index = lazyWithRetry(() => import("./pages/Index"));
 const ToolDetail = lazyWithRetry(() => import("./pages/ToolDetail"));
 const CategoryPage = lazy(() => import("./pages/CategoryPage"));
 const MainCategoryPage = lazy(() => import("./pages/MainCategoryPage"));
