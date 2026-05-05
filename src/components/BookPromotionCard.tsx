@@ -1045,6 +1045,26 @@ const BookPromotionCard = () => {
                           <Download className="mr-1.5" size={16} />
                           📊 Download {allTools.length}+ AI Tools (CSV)
                         </Button>
+
+                        <Button
+                          onClick={() => {
+                            try {
+                              const link = document.createElement('a');
+                              link.href = '/downloads/gpt-instructions.zip';
+                              link.download = 'AIWebTools-150-GPT-Instructions.zip';
+                              document.body.appendChild(link);
+                              link.click();
+                              document.body.removeChild(link);
+                            } catch (err) {
+                              console.error("ZIP download failed:", err);
+                            }
+                          }}
+                          size="sm"
+                          className="bg-gradient-to-r from-purple-600 to-fuchsia-700 hover:from-purple-700 hover:to-fuchsia-800 text-white font-bold px-4 py-2 rounded-lg text-sm shadow-lg hover:shadow-purple-500/25 transition-all duration-300 transform hover:scale-105 border border-purple-400/40"
+                        >
+                          <Download className="mr-1.5" size={16} />
+                          🧠 150+ GPT Instructions (ZIP)
+                        </Button>
                   </div>
                 </div>
               </div>
