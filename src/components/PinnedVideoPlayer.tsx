@@ -667,6 +667,18 @@ const PinnedVideoPlayer = memo(() => {
     });
   }, [sendYTCommand]);
 
+  const handleIframeLoad = useCallback(() => {
+    playerMountedRef.current = true;
+    if (!isMuted) {
+      [100, 300, 700, 1200, 2200].forEach(delay => {
+        window.setTimeout(() => {
+          sendYTCommand('unMute');
+          sendYTCommand('playVideo');
+        }, delay);
+      });
+    }
+  }, [isMuted, sendYTCommand]);
+
   // Don't render if not on homepage, permanently closed, no tools, or haven't scrolled past hero yet
   if (!isHomepage || !isVisible || !hasScrolledEnough || toolsWithVideos.length === 0 || !currentTool || !currentVideoId || !videoSrc) {
     return null;
@@ -728,7 +740,19 @@ const PinnedVideoPlayer = memo(() => {
             allowFullScreen
             title={currentTool.title}
             style={{ minHeight: '70px' }}
+            onLoad={handleIframeLoad}
           />
+          <button
+            type="button"
+            onClick={handlePlayVideo}
+            className="absolute inset-0 flex items-center justify-center bg-transparent text-white/0 hover:text-white/90 transition-colors"
+            title="Play with sound"
+            aria-label="Play pinned video with sound"
+          >
+            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-black/45 opacity-0 hover:opacity-100 transition-opacity">
+              <Play className="h-4 w-4" />
+            </span>
+          </button>
         </div>
 
         {/* Controls bar - compact square buttons */}
