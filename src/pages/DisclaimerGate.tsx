@@ -303,6 +303,14 @@ const DisclaimerGate: React.FC = () => {
     }
   }, [navigate]);
 
+  useEffect(() => {
+    const id = window.setTimeout(() => {
+      window.dispatchEvent(new Event("aiwt:route-ready"));
+    }, 120);
+
+    return () => window.clearTimeout(id);
+  }, []);
+
   const handleAccept = () => {
     // Play welcome audio immediately on user gesture (bypasses autoplay restrictions)
     try {
