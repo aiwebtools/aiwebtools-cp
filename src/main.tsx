@@ -9,6 +9,14 @@ if (!rootElement) {
 
 console.log("[boot] main.tsx start", window.location.pathname);
 
+const logLoaderDebug = (type: string, detail = '') => {
+  try {
+    window.dispatchEvent(new CustomEvent('aiwt:loader-debug', { detail: { type, detail } }));
+  } catch {
+    // debug-only signal; never block boot
+  }
+};
+
 // Self-heal stale Vite chunk errors (post-deploy / HMR mismatches).
 // Forces ONE hard reload, then clears the flag so we never loop.
 const CHUNK_RELOAD_KEY = '__chunk_reload_attempted__';
@@ -64,6 +72,7 @@ const root = createRoot(rootElement);
 
 import('./App.tsx')
   .then(({ default: App }) => {
+    logLoaderDebug('app-module-loaded');
     root.render(<App />);
     // Notify HTML loader debug instrumentation that React has mounted.
     try { window.dispatchEvent(new Event('aiwt:react-mounted')); } catch (_) {}
@@ -79,5 +88,6 @@ import('./App.tsx')
     }
 
     console.error('[boot] App failed to load:', error);
+    logLoaderDebug('app-module-failed', msg.slice(0, 180));
     root.render(<BootFallback failed />);
   });
