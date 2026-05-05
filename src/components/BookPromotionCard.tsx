@@ -81,9 +81,15 @@ const LazyBookVideo = ({
       setIsLoaded(true);
       onPlay?.();
     } else if (!autoPlay) {
+      // When this slot is no longer the active autoplay slot,
+      // tear down the iframe so its audio doesn't keep playing
+      // behind the new active video in the carousel.
+      if (autoPlayStartedRef.current) {
+        stopCurrentVideo(true);
+      }
       autoPlayStartedRef.current = false;
     }
-  }, [announceVideoStart, autoPlay]);
+  }, [announceVideoStart, autoPlay, stopCurrentVideo]);
 
   useEffect(() => {
     return () => {
@@ -593,7 +599,10 @@ const BookPromotionCard = () => {
 
   // Get visible videos with proper looping
   const getVisibleDesktopVideos = () => {
-    const startIndex = desktopIndex * videosPerPage;
+    // Center the active video: show [current-1, current, current+1] when
+    // videosPerPage === 3, so the middle slot is the playing one.
+    const offset = Math.floor(videosPerPage / 2);
+    const startIndex = (currentVideoIndex - offset + videos.length) % videos.length;
     const result = [];
     for (let i = 0; i < videosPerPage; i++) {
       const index = (startIndex + i) % videos.length;
