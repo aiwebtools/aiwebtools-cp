@@ -28,7 +28,21 @@ const FooterBottom = ({
       <div className="flex flex-col items-center space-y-4">
         <div className="flex flex-col items-center space-y-2">
           <button onClick={e => handleExternalLink("https://aiwebtools.lovable.app/?via=aiwebtools", e)} className="text-green-300 hover:text-green-400 transition-colors text-center" style={{ textShadow: '0 0 8px rgba(0, 255, 0, 0.3)' }}>
-            <span className="block">© 2026 AI WEB TOOLS</span>
+            <span className="block">
+              <span
+                aria-label="infinity"
+                className="inline-block align-middle mr-2 text-green-300"
+                style={{
+                  fontSize: '1.5em',
+                  lineHeight: 1,
+                  textShadow: '0 0 10px rgba(0,255,120,0.85), 0 0 22px rgba(0,255,120,0.55), 0 0 38px rgba(0,255,120,0.35)',
+                  animation: 'pulse 2.4s ease-in-out infinite',
+                }}
+              >
+                ∞
+              </span>
+              AI WEB TOOLS
+            </span>
             <span className="block text-sm md:inline md:ml-1">All Rights Reserved</span>
           </button>
           <div className="flex flex-wrap justify-center gap-4">
