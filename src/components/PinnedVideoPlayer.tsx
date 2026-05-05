@@ -778,43 +778,43 @@ const PinnedVideoPlayer = memo(() => {
 
         {/* Controls bar - compact square buttons */}
         <div className="flex justify-center py-1 px-1.5 bg-gray-800/95 border-t border-cyan-500/20">
-          <div className="grid grid-cols-3 gap-0.5">
+          <div className="grid grid-cols-3 gap-1 w-full">
             <button
               onClick={handleTogglePlay}
-              className="w-6 h-6 flex items-center justify-center rounded bg-green-500 hover:bg-green-400 text-black"
+              className="h-7 w-full flex items-center justify-center rounded bg-green-500 hover:bg-green-400 text-black"
               title={isPlaying ? "Pause" : "Play with sound"}
             >
-              {isPlaying ? <Pause className="w-3 h-3" /> : <Play className="w-3 h-3" />}
+              {isPlaying ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5" />}
             </button>
             <button
               onClick={toggleMute}
-              className="w-6 h-6 flex items-center justify-center rounded bg-cyan-500 hover:bg-cyan-400 text-white"
+              className="h-7 w-full flex items-center justify-center rounded bg-cyan-500 hover:bg-cyan-400 text-white"
               title={isMuted ? "Unmute" : "Mute"}
             >
-              {isMuted ? <VolumeX className="w-3 h-3" /> : <Volume2 className="w-3 h-3" />}
+              {isMuted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5" />}
             </button>
             <button
               onClick={handlePrevVideo}
-              className="w-6 h-6 flex items-center justify-center rounded bg-gray-600 hover:bg-gray-500 text-white"
+              className="h-7 w-full flex items-center justify-center rounded bg-gray-600 hover:bg-gray-500 text-white"
               title="Previous Video"
             >
-              <SkipBack className="w-3 h-3" />
+              <SkipBack className="w-3.5 h-3.5" />
             </button>
             <button
               onClick={handleNextVideo}
-              className="w-6 h-6 flex items-center justify-center rounded bg-gray-600 hover:bg-gray-500 text-white"
+              className="h-7 w-full flex items-center justify-center rounded bg-gray-600 hover:bg-gray-500 text-white"
               title="Next Video"
             >
-              <SkipForward className="w-3 h-3" />
+              <SkipForward className="w-3.5 h-3.5" />
             </button>
             <button
               onClick={handleToolClick}
-              className="w-6 h-6 text-[6px] rounded bg-gradient-to-r from-amber-500 to-yellow-400 hover:from-amber-400 hover:to-yellow-300 text-black font-bold animate-pulse"
+              className="col-span-2 h-7 w-full text-[12px] tracking-wider rounded bg-gradient-to-r from-amber-500 via-yellow-300 to-amber-500 hover:from-amber-400 hover:via-yellow-200 hover:to-amber-400 text-black font-extrabold animate-pulse hover:scale-105 active:scale-95 transition-transform bg-[length:200%_100%] animate-[shimmer_2s_linear_infinite]"
               style={{
                 boxShadow: '0 0 12px rgba(255, 215, 0, 0.8), 0 0 24px rgba(255, 215, 0, 0.5), 0 0 36px rgba(255, 215, 0, 0.3)'
               }}
             >
-              TRY
+              ▶ TRY NOW
             </button>
           </div>
         </div>
