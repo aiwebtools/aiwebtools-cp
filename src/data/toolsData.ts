@@ -158,6 +158,9 @@ import { topAgentPlatforms2026Batch2 } from "./tools/topAgentPlatforms2026Batch2
 // Import New AI Agents 2026 (15 verified: MultiOn, CodeRabbit, Phind, Induced, BrowserBase, LangGraph, Beam AI, Fixie, Sweep, Fine.dev, Adept, OpenHands, Dia Browser, Axiom, Ottogrid)
 import { newAIAgents2026 } from "./tools/newAIAgents2026";
 
+// Import New AI Agents Batch 2026 D (25 verified: Orby, Cresta, Hebbia, Glia, Forethought, Magic.dev, Reflection AI, Sema4.ai, Imbue, Kortix Suna, Klarity, Norm Ai, Pinecone Assistant, Lutra, Phonely, CrewAI Studio, Letta Cloud, Smol Developer, ChatDev, Druid AI, Rasa Pro, Pega GenAI, Workato Genie, Vespper, Tavily)
+import { newAIAgentsBatch2026D } from "./tools/newAIAgentsBatch2026D";
+
 // Import Enterprise Agents 2026 (26 tools: Salesforce Agentforce, Vertex AI, Ema, Decagon, Sierra, etc.)
 import { enterpriseAgents2026 } from "./tools/enterpriseAgents2026";
 
@@ -382,6 +385,9 @@ const allToolCategories = consolidateTools([
   
   // Top AI Agent Platforms 2026 Batch 2 (Wordware, Composio, SmythOS, MindPal, AgentOps)
   ...topAgentPlatforms2026Batch2,
+
+  // New AI Agents Batch 2026 D (25 verified agents)
+  ...newAIAgentsBatch2026D,
   
   // New AI Agents 2026 (15 verified: MultiOn, CodeRabbit, Phind, Induced, BrowserBase, LangGraph, Beam AI, Fixie, Sweep, Fine.dev, Adept, OpenHands, Dia Browser, Axiom, Ottogrid)
   ...newAIAgents2026,
