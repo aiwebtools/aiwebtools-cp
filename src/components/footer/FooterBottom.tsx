@@ -27,23 +27,61 @@ const FooterBottom = ({
       {/* Copyright and Links */}
       <div className="flex flex-col items-center space-y-4">
         <div className="flex flex-col items-center space-y-2">
-          <button onClick={e => handleExternalLink("https://aiwebtools.lovable.app/?via=aiwebtools", e)} className="text-green-300 hover:text-green-400 transition-colors text-center" style={{ textShadow: '0 0 8px rgba(0, 255, 0, 0.3)' }}>
-            <span className="block">
+          <button
+            onClick={e => handleExternalLink("https://aiwebtools.lovable.app/?via=aiwebtools", e)}
+            className="text-green-300 hover:text-green-400 transition-colors text-center group"
+          >
+            <style>{`
+              @keyframes awtFooterPulse {
+                0%, 100% {
+                  transform: scale(1);
+                  text-shadow: 0 0 12px rgba(0,255,120,0.55), 0 0 28px rgba(0,255,120,0.30);
+                  filter: brightness(1);
+                }
+                50% {
+                  transform: scale(1.06);
+                  text-shadow: 0 0 22px rgba(0,255,120,1), 0 0 50px rgba(0,255,120,0.75), 0 0 90px rgba(0,255,120,0.45);
+                  filter: brightness(1.25);
+                }
+              }
+              @keyframes awtInfinitySpinPulse {
+                0%, 100% {
+                  transform: scale(1) rotate(0deg);
+                  text-shadow: 0 0 14px rgba(0,255,140,0.9), 0 0 32px rgba(0,255,140,0.55), 0 0 60px rgba(0,255,140,0.35);
+                }
+                50% {
+                  transform: scale(1.18) rotate(8deg);
+                  text-shadow: 0 0 26px rgba(0,255,140,1), 0 0 60px rgba(0,255,140,0.85), 0 0 110px rgba(0,255,140,0.55);
+                }
+              }
+            `}</style>
+            <span className="flex items-center justify-center gap-3 flex-wrap">
               <span
                 aria-label="infinity"
-                className="inline-block align-middle mr-2 text-green-300"
+                className="inline-block text-green-300"
                 style={{
-                  fontSize: '1.5em',
+                  fontSize: 'clamp(2.25rem, 5vw, 3.25rem)',
                   lineHeight: 1,
-                  textShadow: '0 0 10px rgba(0,255,120,0.85), 0 0 22px rgba(0,255,120,0.55), 0 0 38px rgba(0,255,120,0.35)',
-                  animation: 'pulse 2.4s ease-in-out infinite',
+                  display: 'inline-block',
+                  transformOrigin: 'center',
+                  animation: 'awtInfinitySpinPulse 2.4s ease-in-out infinite',
                 }}
               >
                 ∞
               </span>
-              AI WEB TOOLS
+              <span
+                className="font-bold tracking-wide text-green-300"
+                style={{
+                  fontSize: 'clamp(1.5rem, 3.6vw, 2.25rem)',
+                  display: 'inline-block',
+                  transformOrigin: 'center',
+                  animation: 'awtFooterPulse 2.4s ease-in-out infinite',
+                }}
+              >
+                AI WEB TOOLS
+              </span>
             </span>
-            <span className="block text-sm md:inline md:ml-1">All Rights Reserved</span>
+            <span className="block text-sm mt-1 text-green-300/80">All Rights Reserved</span>
           </button>
           <div className="flex flex-wrap justify-center gap-4">
             <button onClick={e => handleExternalLink("https://openai.com/policies/privacy-policy/", e)} className="text-green-300 hover:text-green-400 transition-colors text-sm">
