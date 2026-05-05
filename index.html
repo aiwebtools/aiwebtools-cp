@@ -477,6 +477,10 @@
             renderOverlay();
           }
           logLoader('html-loader-shown');
+          window.addEventListener('aiwt:loader-debug', function(event){
+            var detail = event && event.detail ? event.detail : {};
+            logLoader(detail.type || 'loader-debug', detail.detail || '');
+          });
           window.addEventListener('aiwt:react-mounted', function(){
             window.__loaderDebug.reactMountedAt = performance.now() - startTime;
             logLoader('react-mounted');
