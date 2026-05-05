@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogClose } from "@/components/ui/dialog";
 import { createTimePortalEffect } from "@/utils/timeEffects";
 import { useState, useRef, useEffect, useCallback, useMemo } from "react";
+import { allTools } from "@/data/toolsData";
+import { downloadToolsCSV } from "@/utils/csvExport";
 
 // Utility function to shuffle array
 const shuffleArray = <T,>(array: T[]): T[] => {
@@ -1028,6 +1030,21 @@ const BookPromotionCard = () => {
                         </div>
                       </DialogContent>
                     </Dialog>
+
+                        <Button
+                          onClick={() => {
+                            try {
+                              downloadToolsCSV(allTools, `AIWebTools-Complete-Directory-${allTools.length}-Tools.csv`);
+                            } catch (err) {
+                              console.error("CSV download failed:", err);
+                            }
+                          }}
+                          size="sm"
+                          className="bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-bold px-4 py-2 rounded-lg text-sm shadow-lg hover:shadow-yellow-500/25 transition-all duration-300 transform hover:scale-105 border border-yellow-400/40"
+                        >
+                          <Download className="mr-1.5" size={16} />
+                          📊 Download {allTools.length}+ AI Tools (CSV)
+                        </Button>
                   </div>
                 </div>
               </div>
