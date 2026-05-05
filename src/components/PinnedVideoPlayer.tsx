@@ -324,7 +324,7 @@ const PinnedVideoPlayer = memo(() => {
   const [videoSrc, setVideoSrc] = useState<string>(() => {
     if (!currentVideoId) return "";
     const origin = typeof window !== 'undefined' ? window.location.origin : '';
-    return `https://www.youtube.com/embed/${currentVideoId}?autoplay=1&mute=0&controls=1&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&enablejsapi=1&playsinline=1&loop=0&origin=${encodeURIComponent(origin)}&widget_referrer=${encodeURIComponent(origin)}`;
+    return `${YT_EMBED_ORIGIN}/embed/${currentVideoId}?autoplay=1&mute=0&controls=1&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&enablejsapi=1&playsinline=1&loop=0&origin=${encodeURIComponent(origin)}&widget_referrer=${encodeURIComponent(origin)}`;
   });
   const lastVideoIdRef = useRef<string>(currentVideoId || "");
   
@@ -352,7 +352,7 @@ const PinnedVideoPlayer = memo(() => {
     // Build video URL with visible YouTube controls so the pinned player remains clickable.
     const origin = typeof window !== 'undefined' ? window.location.origin : '';
     const muteParam = shouldMute ? 1 : 0;
-    const newSrc = `https://www.youtube.com/embed/${currentVideoId}?autoplay=1&mute=${muteParam}&controls=1&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&enablejsapi=1&playsinline=1&loop=0&origin=${encodeURIComponent(origin)}&widget_referrer=${encodeURIComponent(origin)}`;
+    const newSrc = `${YT_EMBED_ORIGIN}/embed/${currentVideoId}?autoplay=1&mute=${muteParam}&controls=1&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&enablejsapi=1&playsinline=1&loop=0&origin=${encodeURIComponent(origin)}&widget_referrer=${encodeURIComponent(origin)}`;
     setVideoSrc(newSrc);
     playerMountedRef.current = true;
     
