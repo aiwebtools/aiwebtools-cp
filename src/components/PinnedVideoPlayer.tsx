@@ -287,7 +287,7 @@ const PinnedVideoPlayer = memo(() => {
   
   // Show player immediately on the homepage so it is always visible and clickable.
   // Tool pages still wait for a small scroll so they don't cover the primary tool media.
-  const hasScrolledEnough = useScrollThreshold(isHomepage ? 0 : 100, {
+  const hasScrolledEnough = useScrollThreshold(isHomepage ? -1 : 100, {
     enabled: true,
     allowReset: false, // Once shown, stay shown
   });
