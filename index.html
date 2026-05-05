@@ -508,21 +508,28 @@
             }
           };
 
-          // AGGRESSIVE content detection
+          // STRICT content detection — only remove cube when REAL page UI is painted.
+          // Suspense fallback is null, so an empty #root means we are still booting.
           const hasVisibleContent = () => {
             const root = document.getElementById('root');
             if (!root) return false;
+            // Require actual semantic UI elements that only mount when a route renders
+            var hasHeader = !!root.querySelector('header');
+            var hasMain = !!root.querySelector('main');
+            var hasNav = !!root.querySelector('nav');
+            var hasArticle = !!root.querySelector('article');
+            // Require meaningful painted size
+            var bigChild = false;
             var children = root.children;
             for (var i = 0; i < children.length; i++) {
               var child = children[i];
               if (child.classList && child.classList.contains('loading-spinner')) continue;
-              if (child.offsetHeight > 50 && child.innerHTML.length > 100) return true;
+              if (child.offsetHeight > 200 && child.innerHTML.length > 500) {
+                bigChild = true;
+                break;
+              }
             }
-            if (root.querySelector('header[class*="fixed"]')) return true;
-            if (root.querySelector('main')) return true;
-            if (root.querySelector('nav')) return true;
-            if (root.querySelector('.backdrop-blur-md')) return true;
-            return false;
+            return (hasHeader || hasMain || hasNav || hasArticle) && bigChild;
           };
 
           // RAF-based percentage counter (syncs with CSS animation timing)
@@ -542,15 +549,22 @@
           };
           requestAnimationFrame(updatePct);
 
-          // Content detection every frame-ish without burning extra CPU on mobile
+          // Poll for real content. Cheap on CPU (every 100ms) and stops as soon as found.
           var contentCheck = setInterval(function() {
-            if (hasVisibleContent()) removeSpinner();
-          }, 16);
+            if (hasVisibleContent()) {
+              clearInterval(contentCheck);
+              removeSpinner();
+            }
+          }, 100);
 
-          // Hard fallback - finish sooner if React has not reported visible content yet
+          // Safety net only — generous so the cube can keep spinning until React truly mounts.
+          // Previously 1800ms caused a black gap when lazy chunks took longer.
           setTimeout(function() {
-            if (!removed) removeSpinner();
-          }, 1800);
+            if (!removed) {
+              clearInterval(contentCheck);
+              removeSpinner();
+            }
+          }, 15000);
         };
 
         const tryStart = () => {
