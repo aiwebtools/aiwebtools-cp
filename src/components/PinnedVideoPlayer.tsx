@@ -652,6 +652,19 @@ const PinnedVideoPlayer = memo(() => {
     });
   }, [sendYTCommand]);
 
+  const handleVideoSurfaceClick = useCallback(() => {
+    setHasUserStartedPlayback(true);
+    setNeedsUserGesture(false);
+    userMutePreferenceRef.current = false;
+    setIsMuted(false);
+    window.dispatchEvent(new CustomEvent('pinnedPlayerPlaying'));
+    const commands = ['unMute', 'playVideo'];
+    commands.forEach(sendYTCommand);
+    [120, 350, 800, 1400].forEach(delay => {
+      setTimeout(() => commands.forEach(sendYTCommand), delay);
+    });
+  }, [sendYTCommand]);
+
   // Don't render if not on homepage, permanently closed, no tools, or haven't scrolled past hero yet
   if (!isHomepage || !isVisible || !hasScrolledEnough || toolsWithVideos.length === 0 || !currentTool || !currentVideoId || !videoSrc) {
     return null;
