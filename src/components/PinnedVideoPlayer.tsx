@@ -508,7 +508,8 @@ const PinnedVideoPlayer = memo(() => {
     videoStartTimeRef.current = Date.now();
     hasReceivedPlayStateRef.current = false;
     detectedDurationRef.current = null; // Reset so we pick up new video's duration
-  }, [currentVideoId]);
+    setNeedsUserGesture(!hasUserStartedPlayback);
+  }, [currentVideoId, hasUserStartedPlayback]);
 
   // Listen for YouTube iframe API messages to detect video end
   useEffect(() => {
@@ -532,10 +533,12 @@ const PinnedVideoPlayer = memo(() => {
         if (data?.event === "onStateChange" && data?.info === 1) {
           hasReceivedPlayStateRef.current = true;
           videoStartTimeRef.current = Date.now();
+          setNeedsUserGesture(false);
         }
         if (data?.info?.playerState === 1) {
           hasReceivedPlayStateRef.current = true;
           videoStartTimeRef.current = Date.now();
+          setNeedsUserGesture(false);
         }
         
         // Only advance if video has been playing for at least 8 seconds
