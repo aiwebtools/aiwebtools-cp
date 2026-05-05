@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/components/ui/collapsible";
 import { allTools } from "@/data/toolsData";
+import { triggerPublicDownload } from "@/utils/downloads";
 import { createTimePortalEffect } from "@/utils/timeEffects";
 import { createConfettiCelebration } from "@/utils/effects/audioEffects";
 import { getCurrentToolCount } from "@/utils/toolCounter";
@@ -101,12 +102,7 @@ const TabletMenu = () => {
       
       // Also download the GPT Instructions ZIP file
       setTimeout(() => {
-        const zipLink = document.createElement('a');
-        zipLink.href = '/downloads/gpt-instructions.zip';
-        zipLink.download = 'AIWebTools-150-GPT-Instructions.zip';
-        document.body.appendChild(zipLink);
-        zipLink.click();
-        document.body.removeChild(zipLink);
+        triggerPublicDownload('/downloads/gpt-instructions.zip', 'AIWebTools-150-GPT-Instructions.zip');
         console.log('🎁 Also downloaded 150+ GPT Instructions ZIP!');
       }, 500);
     } catch (err) {
