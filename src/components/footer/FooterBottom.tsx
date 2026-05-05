@@ -20,7 +20,7 @@ const FooterBottom = ({
             textShadow: '0 0 8px rgba(0, 255, 0, 0.35)',
           }}
         >
-          IF THIS IS THE LAST CHAPTER....THEN MAKE IT A Beautiful One -Imagine - A Perspective You Can Love With. - J/K.B/C. - THE COSMIC LIGHT IS WITHIN EVERYONE SINCE BIRTH
+          IF THIS IS THE LAST CHAPTER…… THEN MAKE IT A BEAUTIFUL ONE — IMAGINE — A PERSPECTIVE OF LOVE AND BALANCE. 𐤀𐤅𐤓 𐤔𐤌𐤉𐤌 — THE COSMIC LIGHT IS WITHIN ALL PEOPLE, NO DOGMA REQUIRED. #JUSTTHEFACTS
         </p>
       </div>
 
