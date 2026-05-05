@@ -727,6 +727,18 @@ const PinnedVideoPlayer = memo(() => {
             title={currentTool.title}
             style={{ minHeight: '70px' }}
           />
+          {needsUserGesture && (
+            <button
+              type="button"
+              onClick={handleVideoSurfaceClick}
+              className="absolute inset-0 z-10 flex items-center justify-center bg-background/30 backdrop-blur-[1px] text-primary-foreground transition-opacity hover:bg-background/20"
+              title="Play pinned video with sound"
+            >
+              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/90 shadow-lg shadow-primary/40">
+                <Play className="h-5 w-5 fill-current" />
+              </span>
+            </button>
+          )}
         </div>
 
         {/* Controls bar - 2x2 grid compact square buttons */}
