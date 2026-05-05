@@ -35,47 +35,63 @@ const FooterBottom = ({
               @keyframes awtFooterPulse {
                 0%, 100% {
                   transform: scale(1);
-                  text-shadow: 0 0 12px rgba(0,255,120,0.55), 0 0 28px rgba(0,255,120,0.30);
-                  filter: brightness(1);
+                  opacity: 0.86;
+                  color: hsl(130 100% 74%);
+                  text-shadow: 0 0 10px hsl(130 100% 55% / 0.75), 0 0 24px hsl(130 100% 50% / 0.45), 0 0 46px hsl(130 100% 45% / 0.28);
+                  filter: brightness(1) saturate(1.05);
                 }
-                50% {
-                  transform: scale(1.06);
-                  text-shadow: 0 0 22px rgba(0,255,120,1), 0 0 50px rgba(0,255,120,0.75), 0 0 90px rgba(0,255,120,0.45);
-                  filter: brightness(1.25);
+                45% {
+                  transform: scale(1.2);
+                  opacity: 1;
+                  color: hsl(135 100% 88%);
+                  text-shadow: 0 0 18px hsl(135 100% 78% / 1), 0 0 44px hsl(135 100% 56% / 0.95), 0 0 88px hsl(135 100% 50% / 0.7), 0 0 140px hsl(135 100% 45% / 0.45);
+                  filter: brightness(1.9) saturate(1.45);
                 }
               }
               @keyframes awtInfinitySpinPulse {
                 0%, 100% {
-                  transform: scale(1) rotate(0deg);
-                  text-shadow: 0 0 14px rgba(0,255,140,0.9), 0 0 32px rgba(0,255,140,0.55), 0 0 60px rgba(0,255,140,0.35);
+                  transform: scale(1) rotate(-4deg);
+                  opacity: 0.88;
+                  color: hsl(140 100% 74%);
+                  text-shadow: 0 0 14px hsl(140 100% 60% / 0.9), 0 0 36px hsl(140 100% 50% / 0.6), 0 0 70px hsl(140 100% 45% / 0.35);
+                  filter: brightness(1.08);
                 }
-                50% {
-                  transform: scale(1.18) rotate(8deg);
-                  text-shadow: 0 0 26px rgba(0,255,140,1), 0 0 60px rgba(0,255,140,0.85), 0 0 110px rgba(0,255,140,0.55);
+                45% {
+                  transform: scale(1.34) rotate(9deg);
+                  opacity: 1;
+                  color: hsl(145 100% 90%);
+                  text-shadow: 0 0 24px hsl(145 100% 85% / 1), 0 0 58px hsl(145 100% 58% / 1), 0 0 112px hsl(145 100% 48% / 0.78), 0 0 170px hsl(145 100% 42% / 0.5);
+                  filter: brightness(2.1) saturate(1.55);
                 }
               }
+              .awt-footer-neon-pulse {
+                animation: awtFooterPulse 1.25s ease-in-out infinite;
+                will-change: transform, opacity, filter, text-shadow;
+              }
+              .awt-footer-infinity-pulse {
+                animation: awtInfinitySpinPulse 1.25s ease-in-out infinite;
+                will-change: transform, opacity, filter, text-shadow;
+              }
             `}</style>
-            <span className="flex items-center justify-center gap-3 flex-wrap">
+            <span className="flex items-center justify-center gap-4 flex-wrap py-2">
               <span
                 aria-label="infinity"
-                className="inline-block text-green-300"
+                className="awt-footer-infinity-pulse inline-block text-green-300"
                 style={{
-                  fontSize: 'clamp(2.25rem, 5vw, 3.25rem)',
+                  fontSize: 'clamp(3rem, 7vw, 4.75rem)',
                   lineHeight: 1,
                   display: 'inline-block',
                   transformOrigin: 'center',
-                  animation: 'awtInfinitySpinPulse 2.4s ease-in-out infinite',
                 }}
               >
                 ∞
               </span>
               <span
-                className="font-bold tracking-wide text-green-300"
+                className="awt-footer-neon-pulse font-black tracking-wide text-green-300"
                 style={{
-                  fontSize: 'clamp(1.5rem, 3.6vw, 2.25rem)',
+                  fontSize: 'clamp(2rem, 5vw, 3.35rem)',
                   display: 'inline-block',
                   transformOrigin: 'center',
-                  animation: 'awtFooterPulse 2.4s ease-in-out infinite',
                 }}
               >
                 AI WEB TOOLS
