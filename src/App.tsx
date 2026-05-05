@@ -42,30 +42,50 @@ function lazyWithRetry<T extends React.ComponentType<any>>(
   });
 }
 
+// Generic retry wrapper for non-component dynamic imports (e.g., side-effect modules).
+// Prevents "Failed to fetch dynamically imported module" from breaking the app.
+async function importWithRetry<T>(
+  factory: () => Promise<T>,
+  retries = 3,
+  delayMs = 500,
+): Promise<T | null> {
+  let lastErr: unknown;
+  for (let i = 0; i <= retries; i++) {
+    try {
+      return await factory();
+    } catch (err) {
+      lastErr = err;
+      await new Promise((r) => setTimeout(r, delayMs * (i + 1)));
+    }
+  }
+  console.warn('[importWithRetry] giving up after retries', lastErr);
+  return null;
+}
+
 // Lazy load - secondary pages for faster initial load
 const Index = lazyWithRetry(() => import("./pages/Index"));
 const ToolDetail = lazyWithRetry(() => import("./pages/ToolDetail"));
-const CategoryPage = lazy(() => import("./pages/CategoryPage"));
-const MainCategoryPage = lazy(() => import("./pages/MainCategoryPage"));
-const SimilarToolsPage = lazy(() => import("./pages/SimilarTools"));
-const FavoritesPage = lazy(() => import("./pages/FavoritesPage"));
-const ToolSubmission = lazy(() => import("./pages/ToolSubmission"));
-const NotFound = lazy(() => import("./pages/NotFound"));
-const DisclaimersPage = lazy(() => import("./pages/DisclaimersPage"));
-const OurStoryPage = lazy(() => import("./pages/OurStoryPage"));
-const AIToolsHub = lazy(() => import("./pages/AIToolsHub"));
-const AIAgentsDirectory = lazy(() => import("./pages/AIAgentsDirectory"));
-const ChatGPTAlternatives = lazy(() => import("./pages/ChatGPTAlternatives"));
-const BlogPage = lazy(() => import("./pages/BlogPage"));
-const BlogPostPage = lazy(() => import("./pages/BlogPostPage"));
-const GamingEntertainmentPage = lazy(() => import("./pages/GamingEntertainmentPage"));
-const FAQPage = lazy(() => import("./pages/FAQPage"));
-const AIToolsPage = lazy(() => import("./pages/AIToolsPage"));
-const BestAIToolsPage = lazy(() => import("./pages/BestAIToolsPage"));
-const FreeAIToolsPage = lazy(() => import("./pages/FreeAIToolsPage"));
-const AIWritingToolsPage = lazy(() => import("./pages/AIWritingToolsPage"));
-const AIWebToolsPage = lazy(() => import("./pages/AIWebToolsPage"));
-const AdminAnalytics = lazy(() => import("./pages/AdminAnalytics"));
+const CategoryPage = lazyWithRetry(() => import("./pages/CategoryPage"));
+const MainCategoryPage = lazyWithRetry(() => import("./pages/MainCategoryPage"));
+const SimilarToolsPage = lazyWithRetry(() => import("./pages/SimilarTools"));
+const FavoritesPage = lazyWithRetry(() => import("./pages/FavoritesPage"));
+const ToolSubmission = lazyWithRetry(() => import("./pages/ToolSubmission"));
+const NotFound = lazyWithRetry(() => import("./pages/NotFound"));
+const DisclaimersPage = lazyWithRetry(() => import("./pages/DisclaimersPage"));
+const OurStoryPage = lazyWithRetry(() => import("./pages/OurStoryPage"));
+const AIToolsHub = lazyWithRetry(() => import("./pages/AIToolsHub"));
+const AIAgentsDirectory = lazyWithRetry(() => import("./pages/AIAgentsDirectory"));
+const ChatGPTAlternatives = lazyWithRetry(() => import("./pages/ChatGPTAlternatives"));
+const BlogPage = lazyWithRetry(() => import("./pages/BlogPage"));
+const BlogPostPage = lazyWithRetry(() => import("./pages/BlogPostPage"));
+const GamingEntertainmentPage = lazyWithRetry(() => import("./pages/GamingEntertainmentPage"));
+const FAQPage = lazyWithRetry(() => import("./pages/FAQPage"));
+const AIToolsPage = lazyWithRetry(() => import("./pages/AIToolsPage"));
+const BestAIToolsPage = lazyWithRetry(() => import("./pages/BestAIToolsPage"));
+const FreeAIToolsPage = lazyWithRetry(() => import("./pages/FreeAIToolsPage"));
+const AIWritingToolsPage = lazyWithRetry(() => import("./pages/AIWritingToolsPage"));
+const AIWebToolsPage = lazyWithRetry(() => import("./pages/AIWebToolsPage"));
+const AdminAnalytics = lazyWithRetry(() => import("./pages/AdminAnalytics"));
 
 // Lazy load non-critical components — wrapped in retry to prevent black screen
 const FloatingCloneButton = lazyWithRetry(() => import("./components/FloatingCloneButton"));
@@ -225,7 +245,7 @@ const PostAcceptBoot: React.FC = () => {
 
     // Defer category cache init until after first paint
     const id = window.setTimeout(() => {
-      import("@/utils/categoryUtils/precomputedCache");
+      importWithRetry(() => import("@/utils/categoryUtils/precomputedCache"));
     }, 0);
 
     return () => {
