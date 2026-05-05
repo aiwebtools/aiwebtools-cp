@@ -65,11 +65,21 @@ const loadCacheFromStorage = () => {
 const saveCacheToStorage = () => {
   try {
     const cacheObject = Object.fromEntries(toolsCacheByMainCategory);
-    localStorage.setItem(CACHE_KEY, JSON.stringify(cacheObject));
+    const serialized = JSON.stringify(cacheObject);
+    // The full category cache can exceed mobile/private-mode storage quotas.
+    // Keep the fast in-memory cache and skip persistent storage instead of
+    // throwing quota warnings that slow startup.
+    if (serialized.length > 1_500_000) {
+      localStorage.removeItem(CACHE_KEY);
+      localStorage.removeItem(CACHE_VERSION_KEY);
+      return;
+    }
+    localStorage.setItem(CACHE_KEY, serialized);
     localStorage.setItem(CACHE_VERSION_KEY, cacheVersion.toString());
     console.log('💾 Cache saved to storage');
   } catch (error) {
-    console.warn('Cache storage save failed:', error);
+    localStorage.removeItem(CACHE_KEY);
+    localStorage.removeItem(CACHE_VERSION_KEY);
   }
 };
 
