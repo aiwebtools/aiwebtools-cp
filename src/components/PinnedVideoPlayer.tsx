@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback, useRef, memo, useMemo } from "react";
 import { createPortal } from "react-dom";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Play, X, SkipForward, SkipBack, Volume2, VolumeX } from "lucide-react";
+import { Play, Pause, X, SkipForward, SkipBack, Volume2, VolumeX } from "lucide-react";
 import { allTools } from "@/data/toolsData";
 import { Tool } from "@/types/tools";
 import { useScrollThreshold } from "@/hooks/useScrollThreshold";
@@ -303,6 +303,7 @@ const PinnedVideoPlayer = memo(() => {
   // user can tap unmute. We aggressively retry unMute commands on every load.
   const [isMuted, setIsMuted] = useState(false);
   const initialMuteEnforcedRef = useRef(false);
+  const [isPlaying, setIsPlaying] = useState(true);
   
   // Shuffled tools - kept in state so we can reshuffle on round wrap
   // (so every video plays once before any repeat)
@@ -535,10 +536,18 @@ const PinnedVideoPlayer = memo(() => {
         if (data?.event === "onStateChange" && data?.info === 1) {
           hasReceivedPlayStateRef.current = true;
           videoStartTimeRef.current = Date.now();
+          setIsPlaying(true);
         }
         if (data?.info?.playerState === 1) {
           hasReceivedPlayStateRef.current = true;
           videoStartTimeRef.current = Date.now();
+          setIsPlaying(true);
+        }
+        if (data?.event === "onStateChange" && data?.info === 2) {
+          setIsPlaying(false);
+        }
+        if (data?.info?.playerState === 2) {
+          setIsPlaying(false);
         }
         
         // Only advance if video has been playing for at least 8 seconds
@@ -666,6 +675,23 @@ const PinnedVideoPlayer = memo(() => {
     });
   }, [sendYTCommand]);
 
+  const handleTogglePlay = useCallback(() => {
+    if (isPlaying) {
+      sendYTCommand('pauseVideo');
+      setIsPlaying(false);
+    } else {
+      userMutePreferenceRef.current = false;
+      setIsMuted(false);
+      sendYTCommand('unMute');
+      sendYTCommand('playVideo');
+      setIsPlaying(true);
+      [150, 500, 1200].forEach(d => window.setTimeout(() => {
+        sendYTCommand('unMute');
+        sendYTCommand('playVideo');
+      }, d));
+    }
+  }, [isPlaying, sendYTCommand]);
+
   const handleIframeLoad = useCallback(() => {
     playerMountedRef.current = true;
     if (!isMuted) {
@@ -711,7 +737,7 @@ const PinnedVideoPlayer = memo(() => {
         {/* Tool title header with X button - allow wrap */}
         <div className="flex items-start justify-between gap-1 px-1.5 py-1 bg-gradient-to-r from-gray-800 to-gray-900 border-b border-cyan-500/30">
           <p 
-            className="text-[7px] font-bold leading-tight flex-1 line-clamp-2"
+            className="text-[11px] font-bold leading-tight flex-1 line-clamp-2"
             style={{
               color: '#FFD700',
               textShadow: '0 0 6px #FFD700'
@@ -743,26 +769,22 @@ const PinnedVideoPlayer = memo(() => {
           />
           <button
             type="button"
-            onClick={handlePlayVideo}
-            className="absolute inset-0 flex items-center justify-center bg-transparent text-white/0 hover:text-white/90 transition-colors"
-            title="Play with sound"
-            aria-label="Play pinned video with sound"
-          >
-            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-black/45 opacity-0 hover:opacity-100 transition-opacity">
-              <Play className="h-4 w-4" />
-            </span>
-          </button>
+            onClick={handleTogglePlay}
+            className="absolute inset-0 bg-transparent"
+            title={isPlaying ? "Pause" : "Play with sound"}
+            aria-label={isPlaying ? "Pause pinned video" : "Play pinned video with sound"}
+          />
         </div>
 
         {/* Controls bar - compact square buttons */}
         <div className="flex justify-center py-1 px-1.5 bg-gray-800/95 border-t border-cyan-500/20">
           <div className="grid grid-cols-3 gap-0.5">
             <button
-              onClick={handlePlayVideo}
+              onClick={handleTogglePlay}
               className="w-6 h-6 flex items-center justify-center rounded bg-green-500 hover:bg-green-400 text-black"
-              title="Play with sound"
+              title={isPlaying ? "Pause" : "Play with sound"}
             >
-              <Play className="w-3 h-3" />
+              {isPlaying ? <Pause className="w-3 h-3" /> : <Play className="w-3 h-3" />}
             </button>
             <button
               onClick={toggleMute}
