@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback, useRef, memo, useMemo } from "react";
 import { createPortal } from "react-dom";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { X, SkipForward, SkipBack, Volume2, VolumeX } from "lucide-react";
+import { Play, X, SkipForward, SkipBack, Volume2, VolumeX } from "lucide-react";
 import { allTools } from "@/data/toolsData";
 import { Tool } from "@/types/tools";
 import { useScrollThreshold } from "@/hooks/useScrollThreshold";
@@ -285,10 +285,9 @@ const PinnedVideoPlayer = memo(() => {
     return sessionStorage.getItem(SESSION_CLOSED_KEY) !== "true";
   });
   
-  // Show player after 25% of viewport height scroll
-  // Using Math.max with inner height so works on any screen size
-  const viewportQuarter = typeof window !== 'undefined' ? Math.round(window.innerHeight * 0.25) : 200;
-  const hasScrolledEnough = useScrollThreshold(isHomepage ? viewportQuarter : 100, {
+  // Show player immediately on the homepage so it is always visible and clickable.
+  // Tool pages still wait for a small scroll so they don't cover the primary tool media.
+  const hasScrolledEnough = useScrollThreshold(isHomepage ? 0 : 100, {
     enabled: true,
     allowReset: false, // Once shown, stay shown
   });
@@ -516,7 +515,7 @@ const PinnedVideoPlayer = memo(() => {
 
   // Listen for YouTube iframe API messages to detect video end
   useEffect(() => {
-    if (!isVisible || toolsWithVideos.length === 0) return;
+    if (!isVisible || !hasScrolledEnough || toolsWithVideos.length === 0) return;
 
     const handleMessage = (event: MessageEvent) => {
       // YouTube sends messages when video state changes
@@ -583,14 +582,14 @@ const PinnedVideoPlayer = memo(() => {
 
     window.addEventListener("message", handleMessage);
     return () => window.removeEventListener("message", handleMessage);
-  }, [isVisible, toolsWithVideos.length, advanceToNextVideo, currentVideoId]);
+  }, [isVisible, hasScrolledEnough, toolsWithVideos.length, advanceToNextVideo, currentVideoId]);
 
   // Reliable fixed-interval auto-skip: every video plays for ~28 seconds,
   // then advances to the next. The onStateChange "ended" listener above will
   // still trigger early advance for shorter clips. This guarantees the
   // carousel always moves forward and never gets stuck on long videos.
   useEffect(() => {
-    if (!isVisible || toolsWithVideos.length === 0) return;
+    if (!isVisible || !hasScrolledEnough || toolsWithVideos.length === 0) return;
 
     // Clear any existing timeout
     if (advanceTimeoutRef.current) {
@@ -609,7 +608,7 @@ const PinnedVideoPlayer = memo(() => {
         clearTimeout(advanceTimeoutRef.current);
       }
     };
-  }, [isVisible, toolsWithVideos.length, currentIndex, advanceToNextVideo, currentTool?.title]);
+  }, [isVisible, hasScrolledEnough, toolsWithVideos.length, currentIndex, advanceToNextVideo, currentTool?.title]);
 
   const handleNextVideo = useCallback(() => {
     setCurrentIndex(prev => (prev + 1) % toolsWithVideos.length);
@@ -652,6 +651,32 @@ const PinnedVideoPlayer = memo(() => {
       return newMuted;
     });
   }, [sendYTCommand]);
+
+  const handlePlayVideo = useCallback(() => {
+    userMutePreferenceRef.current = false;
+    setIsMuted(false);
+    sendYTCommand('unMute');
+    sendYTCommand('playVideo');
+    window.dispatchEvent(new CustomEvent('pinnedPlayerPlaying'));
+    [120, 350, 800, 1400].forEach(delay => {
+      window.setTimeout(() => {
+        sendYTCommand('unMute');
+        sendYTCommand('playVideo');
+      }, delay);
+    });
+  }, [sendYTCommand]);
+
+  const handleIframeLoad = useCallback(() => {
+    playerMountedRef.current = true;
+    if (!isMuted) {
+      [100, 300, 700, 1200, 2200].forEach(delay => {
+        window.setTimeout(() => {
+          sendYTCommand('unMute');
+          sendYTCommand('playVideo');
+        }, delay);
+      });
+    }
+  }, [isMuted, sendYTCommand]);
 
   // Don't render if not on homepage, permanently closed, no tools, or haven't scrolled past hero yet
   if (!isHomepage || !isVisible || !hasScrolledEnough || toolsWithVideos.length === 0 || !currentTool || !currentVideoId || !videoSrc) {
@@ -710,16 +735,35 @@ const PinnedVideoPlayer = memo(() => {
             ref={iframeRef}
             src={videoSrc}
             className="w-full h-full"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
             allowFullScreen
             title={currentTool.title}
             style={{ minHeight: '70px' }}
+            onLoad={handleIframeLoad}
           />
+          <button
+            type="button"
+            onClick={handlePlayVideo}
+            className="absolute inset-0 flex items-center justify-center bg-transparent text-white/0 hover:text-white/90 transition-colors"
+            title="Play with sound"
+            aria-label="Play pinned video with sound"
+          >
+            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-black/45 opacity-0 hover:opacity-100 transition-opacity">
+              <Play className="h-4 w-4" />
+            </span>
+          </button>
         </div>
 
-        {/* Controls bar - 2x2 grid compact square buttons */}
+        {/* Controls bar - compact square buttons */}
         <div className="flex justify-center py-1 px-1.5 bg-gray-800/95 border-t border-cyan-500/20">
-          <div className="grid grid-cols-2 gap-0.5">
+          <div className="grid grid-cols-3 gap-0.5">
+            <button
+              onClick={handlePlayVideo}
+              className="w-6 h-6 flex items-center justify-center rounded bg-green-500 hover:bg-green-400 text-black"
+              title="Play with sound"
+            >
+              <Play className="w-3 h-3" />
+            </button>
             <button
               onClick={toggleMute}
               className="w-6 h-6 flex items-center justify-center rounded bg-cyan-500 hover:bg-cyan-400 text-white"
