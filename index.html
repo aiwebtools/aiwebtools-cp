@@ -10,22 +10,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no" />
     <title>AIWEBTOOLS.AI — 4,000+ Best AI Tools Directory 2026</title>
     
-    <!-- Google tag (gtag.js) - deferred for faster initial load -->
-    <script defer src="https://www.googletagmanager.com/gtag/js?id=G-PQH30EX1YJ"></script>
+    <!-- Google Analytics (gtag.js) — lazy-loaded after interaction or 4s idle.
+         Saves ~60KB unused JS on initial mobile load. -->
     <script>
-      // Defer analytics initialization until after page load
-      window.addEventListener('load', function() {
+      (function () {
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        window.gtag = gtag;
-        gtag('js', new Date());
-        gtag('config', 'G-PQH30EX1YJ');
-      });
+        window.gtag = function () { window.dataLayer.push(arguments); };
+        var loaded = false;
+        function loadGtag() {
+          if (loaded) return;
+          loaded = true;
+          var s = document.createElement('script');
+          s.async = true;
+          s.src = 'https://www.googletagmanager.com/gtag/js?id=G-PQH30EX1YJ';
+          s.onload = function () {
+            gtag('js', new Date());
+            gtag('config', 'G-PQH30EX1YJ');
+          };
+          document.head.appendChild(s);
+        }
+        var events = ['scroll', 'mousemove', 'touchstart', 'keydown', 'click'];
+        function trigger() {
+          events.forEach(function (e) { window.removeEventListener(e, trigger); });
+          loadGtag();
+        }
+        events.forEach(function (e) { window.addEventListener(e, trigger, { passive: true, once: true }); });
+        setTimeout(loadGtag, 4000);
+      })();
     </script>
     
-    <!-- Google AdSense - load after main content -->
-    <script defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5053006805192587"
-         crossorigin="anonymous"></script>
+    <!-- Google AdSense — lazy-loaded to protect mobile LCP (huge unused JS).
+         Loads after first user interaction OR 6s idle, whichever comes first. -->
+    <script>
+      (function () {
+        var loaded = false;
+        function loadAdSense() {
+          if (loaded) return;
+          loaded = true;
+          var s = document.createElement('script');
+          s.async = true;
+          s.crossOrigin = 'anonymous';
+          s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5053006805192587';
+          document.head.appendChild(s);
+        }
+        var events = ['scroll', 'mousemove', 'touchstart', 'keydown', 'click'];
+        function trigger() {
+          events.forEach(function (e) { window.removeEventListener(e, trigger, { passive: true }); });
+          loadAdSense();
+        }
+        events.forEach(function (e) { window.addEventListener(e, trigger, { passive: true, once: true }); });
+        // Fallback: load after 6s of idle so ads still appear without interaction
+        setTimeout(loadAdSense, 6000);
+      })();
+    </script>
     
     <!-- Enhanced Meta Tags for SEO -->
     <meta name="description" content="AIWEBTOOLS.AI — the #1 directory of 4,000+ AI tools for 2026. ChatGPT alternatives, AI image generators, writing tools, AI agents & custom GPTs. Free.">
@@ -87,18 +124,6 @@
     <meta name="format-detection" content="telephone=no" />
     <meta name="mobile-web-app-capable" content="no" />
     
-    <!-- DNS Prefetch for Performance -->
-    <link rel="dns-prefetch" href="//fonts.googleapis.com">
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link rel="dns-prefetch" href="//ai-webtools.com">
-    <link rel="dns-prefetch" href="//www.aiwebtools.ai">
-    <link rel="dns-prefetch" href="//media.discordapp.net">
-    <link rel="dns-prefetch" href="//cdn.discordapp.com">
-    <link rel="dns-prefetch" href="//img1.wsimg.com">
-    <link rel="dns-prefetch" href="//www.youtube.com">
-    <link rel="dns-prefetch" href="//i.ytimg.com">
-    <link rel="dns-prefetch" href="//lovable.app">
-    <link rel="dns-prefetch" href="//chatgpt.com">
     <!-- Preconnect: limit to top 4 critical origins (Lighthouse best practice) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
