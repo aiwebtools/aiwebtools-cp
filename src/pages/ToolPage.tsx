@@ -26,6 +26,7 @@ import {
   needsDivinationDisclaimer
 } from "@/utils/toolDisclaimerDetection";
 import ToolCardMedia from "@/components/tools/ToolCardMedia";
+import { openDestinationUrl } from "@/utils/effects/domEffects";
 
 const ToolPage = () => {
   const { toolIndex } = useParams<{ toolIndex: string }>();
@@ -63,7 +64,7 @@ const ToolPage = () => {
 
   const handleNavigation = (url: string | undefined) => {
     if (url) {
-      window.open(url, '_blank');
+      openDestinationUrl(url);
     }
   };
 
