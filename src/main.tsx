@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { createRoot } from 'react-dom/client'
+import type { Root } from 'react-dom/client'
 import './index.css'
 
 const rootElement = document.getElementById("root");
@@ -65,7 +66,14 @@ const BootFallback = ({ failed = false }: { failed?: boolean }) => (
   </div>
 );
 
-const root = createRoot(rootElement);
+declare global {
+  interface Window {
+    __AIWT_REACT_ROOT__?: Root;
+  }
+}
+
+const root = window.__AIWT_REACT_ROOT__ ?? createRoot(rootElement);
+window.__AIWT_REACT_ROOT__ = root;
 // NOTE: do NOT render a boot fallback here — index.html already shows the
 // matrix loading spinner inside #root until React mounts. Rendering another
 // fallback would create a second visible loading screen.
