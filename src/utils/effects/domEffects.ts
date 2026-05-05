@@ -1,3 +1,4 @@
+import { isFrameHostileExternalUrl, openExternal } from "@/lib/openLink";
 
 // Dynamic mobile detection - check at runtime, not module load
 const checkIsMobile = () => typeof window !== 'undefined' && window.innerWidth < 768;
@@ -260,8 +261,6 @@ export const cleanupEffects = (effectsContainer: HTMLElement) => {
   } catch (e) {}
 };
 
-import { isFrameHostileExternalUrl, openExternal } from "@/lib/openLink";
-
 /** Robust external link opener with retry + timeout + same-tab fallback. */
 const showLinkErrorToast = (url: string) => {
   try {
@@ -284,9 +283,9 @@ export const openDestinationUrl = (destinationUrl: string): void => {
   const url = destinationUrl.trim();
 
   // ChatGPT/OpenAI pages refuse iframe embedding (`ERR_BLOCKED_BY_RESPONSE`).
-  // Open them in a real top-level browsing context immediately, never in the preview iframe.
-  if (isFrameHostileUrl(url)) {
-    if (!openInTopLevelContext(url)) showLinkErrorToast(url);
+  // Always force a real external window before any same-tab fallback.
+  if (isFrameHostileExternalUrl(url)) {
+    if (!openExternal(url)) showLinkErrorToast(url);
     return;
   }
 
@@ -316,13 +315,8 @@ export const openDestinationUrl = (destinationUrl: string): void => {
 
   const attempt = (n: number) => {
     if (resolved) return;
-    // Strategy 1: anchor click
-    if (tryAnchorClick(url)) {
-      markResolved();
-      return;
-    }
-    // Strategy 2: window.open
-    if (tryWindowOpen(url)) {
+    // Strategy: centralized external opener with window.open + anchor fallback.
+    if (openExternal(url)) {
       markResolved();
       return;
     }
