@@ -534,18 +534,18 @@
             return (hasHeader || hasMain || hasNav || hasArticle) && bigChild;
           };
 
-          // RAF-based percentage counter (syncs with CSS animation timing)
+          // RAF-based percentage counter (syncs with 8s CSS progressGrow timing)
           const updatePct = () => {
             if (removed) return;
             var elapsed = performance.now() - startTime;
-            var duration = 2500; // matches CSS progressGrow duration
+            var duration = 8000;
             var t = Math.min(elapsed / duration, 1);
-            // Ease-out curve matching CSS
             var p;
-            if (t < 0.3) p = 5 + (35 * (t / 0.3));
-            else if (t < 0.6) p = 40 + (30 * ((t - 0.3) / 0.3));
-            else if (t < 0.8) p = 70 + (15 * ((t - 0.6) / 0.2));
-            else p = 85 + (10 * ((t - 0.8) / 0.2));
+            if (t < 0.15) p = 5 + (35 * (t / 0.15));
+            else if (t < 0.35) p = 40 + (25 * ((t - 0.15) / 0.20));
+            else if (t < 0.55) p = 65 + (15 * ((t - 0.35) / 0.20));
+            else if (t < 0.75) p = 80 + (10 * ((t - 0.55) / 0.20));
+            else p = 90 + (7 * ((t - 0.75) / 0.25));
             if (pct) pct.textContent = Math.round(p) + '%';
             requestAnimationFrame(updatePct);
           };
