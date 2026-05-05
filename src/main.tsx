@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { createRoot } from 'react-dom/client'
+import type { Root } from 'react-dom/client'
 import './index.css'
 
 const rootElement = document.getElementById("root");
@@ -8,6 +9,14 @@ if (!rootElement) {
 }
 
 console.log("[boot] main.tsx start", window.location.pathname);
+
+const logLoaderDebug = (type: string, detail = '') => {
+  try {
+    window.dispatchEvent(new CustomEvent('aiwt:loader-debug', { detail: { type, detail } }));
+  } catch {
+    // debug-only signal; never block boot
+  }
+};
 
 // Self-heal stale Vite chunk errors (post-deploy / HMR mismatches).
 // Forces ONE hard reload, then clears the flag so we never loop.
@@ -57,13 +66,21 @@ const BootFallback = ({ failed = false }: { failed?: boolean }) => (
   </div>
 );
 
-const root = createRoot(rootElement);
+declare global {
+  interface Window {
+    __AIWT_REACT_ROOT__?: Root;
+  }
+}
+
+const root = window.__AIWT_REACT_ROOT__ ?? createRoot(rootElement);
+window.__AIWT_REACT_ROOT__ = root;
 // NOTE: do NOT render a boot fallback here — index.html already shows the
 // matrix loading spinner inside #root until React mounts. Rendering another
 // fallback would create a second visible loading screen.
 
 import('./App.tsx')
   .then(({ default: App }) => {
+    logLoaderDebug('app-module-loaded');
     root.render(<App />);
     // Notify HTML loader debug instrumentation that React has mounted.
     try { window.dispatchEvent(new Event('aiwt:react-mounted')); } catch (_) {}
@@ -79,5 +96,6 @@ import('./App.tsx')
     }
 
     console.error('[boot] App failed to load:', error);
+    logLoaderDebug('app-module-failed', msg.slice(0, 180));
     root.render(<BootFallback failed />);
   });
