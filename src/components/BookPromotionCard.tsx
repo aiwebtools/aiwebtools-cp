@@ -202,9 +202,10 @@ const LazyBookVideo = ({
 const BookPromotionCard = () => {
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
   const [desktopIndex, setDesktopIndex] = useState(0);
-  // Pause idle auto-cycle by default so the pinned first video stays visible
-  // until the user interacts with the carousel.
-  const [isPaused, setIsPaused] = useState(true);
+  // Idle auto-cycle ON by default so visitors see a "preview reel" of all
+  // videos rotating through, instead of just three static thumbnails.
+  // Pauses automatically the moment a user plays a video.
+  const [isPaused, setIsPaused] = useState(false);
   const [isAutoPlaying, setIsAutoPlaying] = useState(false);
   const [hasUserInteracted, setHasUserInteracted] = useState(false);
   const [playingVideoIndex, setPlayingVideoIndex] = useState<number | null>(null);
@@ -551,9 +552,13 @@ const BookPromotionCard = () => {
     if (isPaused || isAutoPlaying) return;
     
     const interval = setInterval(() => {
-      setDesktopIndex((prev) => (prev + 1) % totalDesktopPages);
-      setCurrentVideoIndex((prev) => (prev + 1) % videos.length);
-    }, 5000); // 5 seconds between transitions
+      setCurrentVideoIndex((prev) => {
+        const next = (prev + 1) % videos.length;
+        setDesktopIndex(Math.floor(next / videosPerPage));
+        return next;
+      });
+    }, 2800); // ~2.8s preview tick — fast enough to feel like a reel,
+              // slow enough to actually see each thumbnail
 
     return () => clearInterval(interval);
   }, [isPaused, isAutoPlaying, totalDesktopPages, videos.length]);
