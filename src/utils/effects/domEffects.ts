@@ -260,36 +260,112 @@ export const cleanupEffects = (effectsContainer: HTMLElement) => {
   } catch (e) {}
 };
 
-export const openDestinationUrl = (destinationUrl: string) => {
-  if (!destinationUrl || !destinationUrl.trim()) {
-    console.log('No destination URL provided');
-    return;
-  }
+/**
+ * Robust external link opener with retry + timeout + same-tab fallback.
+ *
+ * Strategy (in order, each guarded):
+ *   1. Synthetic <a target="_blank"> click — survives COOP/CSP/sandbox restrictions
+ *      that break window.open (ERR_BLOCKED_BY_RESPONSE on chatgpt.com etc).
+ *   2. window.open() — detects popup blockers (returns null).
+ *   3. Up to 2 retries with short backoff on hard failures.
+ *   4. Hard timeout fallback (1.2s): if nothing handled the navigation,
+ *      navigate same-tab so the user is NEVER stuck on a portal/loading screen.
+ *   5. Toast notification if even same-tab nav fails.
+ */
+const showLinkErrorToast = (url: string) => {
+  try {
+    // Lazy-import sonner so this util stays framework-light
+    import('sonner').then(({ toast }) => {
+      toast.error('Could not open link', {
+        description: url.length > 60 ? url.slice(0, 60) + '…' : url,
+        action: { label: 'Open', onClick: () => { window.location.href = url; } },
+      });
+    }).catch(() => {});
+  } catch {}
+};
 
-  // Use a real anchor click instead of window.open.
-  // window.open(...,'noopener,noreferrer') from sandboxed/iframed contexts
-  // (and even some COOP-strict production setups) triggers
-  // ERR_BLOCKED_BY_RESPONSE on destinations like chatgpt.com.
-  // A synthetic <a target="_blank"> click is the most reliable way to
-  // open external links across browsers, sandboxes, and CSP setups.
+const tryAnchorClick = (url: string): boolean => {
   try {
     const a = document.createElement('a');
-    a.href = destinationUrl;
+    a.href = url;
     a.target = '_blank';
     a.rel = 'noopener noreferrer';
     a.style.display = 'none';
     document.body.appendChild(a);
     a.click();
-    // Defer cleanup so the click event fully propagates first
-    setTimeout(() => {
-      try { a.remove(); } catch {}
-    }, 0);
-  } catch (err) {
-    // Last-resort fallback
-    try {
-      window.open(destinationUrl, '_blank', 'noopener,noreferrer');
-    } catch {
-      window.location.href = destinationUrl;
-    }
+    setTimeout(() => { try { a.remove(); } catch {} }, 0);
+    return true;
+  } catch {
+    return false;
   }
+};
+
+const tryWindowOpen = (url: string): boolean => {
+  try {
+    const win = window.open(url, '_blank', 'noopener,noreferrer');
+    // Popup blocker -> null/undefined
+    return !!win;
+  } catch {
+    return false;
+  }
+};
+
+export const openDestinationUrl = (destinationUrl: string): void => {
+  if (!destinationUrl || !destinationUrl.trim()) {
+    console.warn('[openDestinationUrl] No destination URL provided');
+    return;
+  }
+
+  const url = destinationUrl.trim();
+  const MAX_ATTEMPTS = 3;
+  const RETRY_DELAY_MS = 200;
+  const HARD_TIMEOUT_MS = 1200;
+  let resolved = false;
+
+  // Hard-timeout safety net: if no strategy succeeded, navigate same-tab so
+  // the user is never stuck on a portal/loading overlay.
+  const safetyTimer = window.setTimeout(() => {
+    if (resolved) return;
+    resolved = true;
+    console.warn('[openDestinationUrl] Hard timeout reached — using same-tab fallback for', url);
+    try {
+      window.location.href = url;
+    } catch {
+      showLinkErrorToast(url);
+    }
+  }, HARD_TIMEOUT_MS);
+
+  const markResolved = () => {
+    if (resolved) return;
+    resolved = true;
+    clearTimeout(safetyTimer);
+  };
+
+  const attempt = (n: number) => {
+    if (resolved) return;
+    // Strategy 1: anchor click
+    if (tryAnchorClick(url)) {
+      markResolved();
+      return;
+    }
+    // Strategy 2: window.open
+    if (tryWindowOpen(url)) {
+      markResolved();
+      return;
+    }
+    // Retry
+    if (n < MAX_ATTEMPTS) {
+      setTimeout(() => attempt(n + 1), RETRY_DELAY_MS * n);
+      return;
+    }
+    // All retries exhausted — same-tab fallback (before safety timer)
+    markResolved();
+    try {
+      window.location.href = url;
+    } catch {
+      showLinkErrorToast(url);
+    }
+  };
+
+  attempt(1);
 };
