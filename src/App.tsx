@@ -130,7 +130,7 @@ const AnimatedRoutes = () => {
     return (
       <Routes location={location}>
         <Route path="/welcome" element={<DisclaimerGate />} />
-        <Route path="/" element={<Index />} />
+        <Route path="/" element={<Suspense fallback={<PageLoader />}><Index /></Suspense>} />
       </Routes>
     );
   }
