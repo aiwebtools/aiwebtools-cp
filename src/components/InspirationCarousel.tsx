@@ -59,6 +59,8 @@ const images = [
   { src: "/images/inspiration/inner-cosmic-temple-account.jpg", alt: "The Inner Cosmic Temple - A first-hand account from October Friday the 13th, 2023" },
   { src: "/images/inspiration/languages-divide-love-only-way.jpg", alt: "You were given many languages to divide you - Love is the only way - The Kingdom of God is within you" },
   { src: "/images/inspiration/father-cosmic-light-tight-ship.jpg", alt: "Our Father of Cosmic Light runs a tight ship - Angels of light, fallen angels, the cosmic battle within" },
+  { src: "/images/inspiration/third-temple-within-you.jpg", alt: "The Third Temple was never out there - It was always within you" },
+  { src: "/images/inspiration/inner-cosmic-temple-back-cover.jpg", alt: "The Inner Cosmic Temple - A first-hand account of the Inner Cosmos - Based on a true experience - AI Web Tools Publishing" },
 ];
 
 const InspirationCarousel = () => {
