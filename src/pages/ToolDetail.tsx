@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useParams, Navigate } from "react-router-dom";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { allTools } from "@/data/toolsData";
@@ -102,16 +101,6 @@ const ToolDetail = () => {
   } = useToolDetail(toolIndex);
 
   // Debug logging removed for production performance
-
-  useEffect(() => {
-    if (!tool) return;
-
-    const id = window.setTimeout(() => {
-      window.dispatchEvent(new Event("aiwt:route-ready"));
-    }, 120);
-
-    return () => window.clearTimeout(id);
-  }, [tool]);
 
   if (!tool) {
     return <ToolNotFound toolIndex={toolIndex} totalTools={allTools.length} />;

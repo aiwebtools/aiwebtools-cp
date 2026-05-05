@@ -310,38 +310,6 @@ const tryWindowOpen = (url: string): boolean => {
   }
 };
 
-const isFrameHostileUrl = (url: string): boolean => {
-  try {
-    const hostname = new URL(url).hostname.toLowerCase();
-    return hostname === 'chatgpt.com' || hostname.endsWith('.chatgpt.com') || hostname.includes('openai.com');
-  } catch {
-    return false;
-  }
-};
-
-const openInTopLevelContext = (url: string): boolean => {
-  try {
-    const win = window.open('about:blank', '_blank');
-    if (win) {
-      win.opener = null;
-      win.location.href = url;
-      return true;
-    }
-  } catch {}
-
-  try {
-    window.top?.location.assign(url);
-    return true;
-  } catch {}
-
-  try {
-    window.location.assign(url);
-    return true;
-  } catch {
-    return false;
-  }
-};
-
 export const openDestinationUrl = (destinationUrl: string): void => {
   if (!destinationUrl || !destinationUrl.trim()) {
     console.warn('[openDestinationUrl] No destination URL provided');
@@ -349,14 +317,6 @@ export const openDestinationUrl = (destinationUrl: string): void => {
   }
 
   const url = destinationUrl.trim();
-
-  // ChatGPT/OpenAI pages refuse iframe embedding (`ERR_BLOCKED_BY_RESPONSE`).
-  // Open them in a real top-level browsing context immediately, never in the preview iframe.
-  if (isFrameHostileUrl(url)) {
-    if (!openInTopLevelContext(url)) showLinkErrorToast(url);
-    return;
-  }
-
   const MAX_ATTEMPTS = 3;
   const RETRY_DELAY_MS = 200;
   const HARD_TIMEOUT_MS = 1200;

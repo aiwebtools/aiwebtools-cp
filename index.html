@@ -498,7 +498,7 @@
             requestAnimationFrame(function() {
               requestAnimationFrame(removeSpinner);
             });
-          });
+          }, { once: true });
 
           // Poll for real content. Cheap on CPU (every 100ms) and stops as soon as found.
           var contentCheck = setInterval(function() {
