@@ -130,7 +130,8 @@ const ToolMedia = ({ tool, toolIndex }: ToolMediaProps) => {
     if (videoId) {
       // Force 1080p HD quality with immediate autoplay unmuted
       // Using multiple quality parameters for maximum compatibility
-      return `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0&controls=1&rel=0&vq=hd1080&hd=1&quality=hd1080&enablejsapi=1&origin=${encodeURIComponent(window.location.origin)}&playsinline=1&modestbranding=1&fs=1&iv_load_policy=3&cc_load_policy=0&start=0`;
+      // Adaptive quality — YouTube picks the best stream for the player size & connection (prevents buffer/glitch).
+      return `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0&controls=1&rel=0&enablejsapi=1&origin=${encodeURIComponent(window.location.origin)}&playsinline=1&modestbranding=1&fs=1&iv_load_policy=3&cc_load_policy=0&start=0`;
     }
     
     if (url.includes('vimeo.com/')) {
