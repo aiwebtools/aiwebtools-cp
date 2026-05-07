@@ -13,6 +13,14 @@ Allow: /*?search=*
 Allow: /sitemap.xml
 Allow: /blog
 Allow: /blog/
+Allow: /tool/
+Allow: /category/
+Allow: /main-category/
+Allow: /best-ai-tools
+Allow: /free-ai-tools
+Allow: /ai-agents-directory
+Allow: /ai-tools-hub
+Allow: /chatgpt-alternatives
 Crawl-delay: 0
 
 # UNRESTRICTED ACCESS FOR ALL MAJOR SEARCH ENGINES
@@ -228,17 +236,17 @@ User-agent: Screaming Frog SEO Spider
 Allow: /
 
 # Enhanced sitemap locations for maximum discovery
-Sitemap: https://aitools.studio/sitemap.xml
 Sitemap: https://aiwebtools.ai/sitemap.xml
-Sitemap: https://aitools.studio/rss.xml
-Sitemap: https://aitools.studio/atom.xml
+Sitemap: https://aitools.studio/sitemap.xml
+Sitemap: https://aiwebtools.ai/rss.xml
+Sitemap: https://aiwebtools.ai/atom.xml
 
 # LLMs.txt for AI Assistant Discovery
 # AI assistants can read /llms.txt for site information
 # See: https://llmstxt.org/
 
 # Host preference for canonical URLs and domain authority
-Host: aitools.studio
+Host: aiwebtools.ai
 
 # MAXIMUM CRAWLING PERFORMANCE
 Crawl-delay: 0

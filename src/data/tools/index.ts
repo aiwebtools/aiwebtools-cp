@@ -625,3 +625,4 @@ export { vidAi } from './vidAi';
 // Free Awesome Batch April 2026 — Excalidraw, Cleanup.pictures, Consensus, HuggingChat, Scribble Diffusion
 export { freeAwesomeBatch2026 } from './freeAwesomeBatch2026';
 export { freeAwesomeBatch2026B } from './freeAwesomeBatch2026B';
+export { freeAwesomeBatch2026C } from './freeAwesomeBatch2026C';
