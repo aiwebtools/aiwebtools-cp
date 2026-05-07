@@ -267,6 +267,8 @@ import { vidAi } from './tools/vidAi';
 import { freeAwesomeBatch2026 } from './tools/freeAwesomeBatch2026';
 // Import Free Awesome Batch 2026 B (Photopea, Penpot, Stirling PDF, Pinokio, Fooocus)
 import { freeAwesomeBatch2026B } from './tools/freeAwesomeBatch2026B';
+// Import Free Awesome Batch 2026 C (Kokoro TTS, Perplexica, OpenUI, FreeConvert, Yourware)
+import { freeAwesomeBatch2026C } from './tools/freeAwesomeBatch2026C';
 
 // Import AI Hardware (legacy - moved to gadgets)
 import { aiHardware } from './tools/aiHardware';
@@ -545,6 +547,7 @@ export const getAllToolCategories = (): Tool[] => {
     ...vidAi,
     ...freeAwesomeBatch2026,
     ...freeAwesomeBatch2026B,
+    ...freeAwesomeBatch2026C,
     ...aiHardware,
     
     // NEW 2025: Additional tools
