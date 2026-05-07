@@ -269,6 +269,8 @@ import { freeAwesomeBatch2026 } from './tools/freeAwesomeBatch2026';
 import { freeAwesomeBatch2026B } from './tools/freeAwesomeBatch2026B';
 // Import Free Awesome Batch 2026 C (Kokoro TTS, Perplexica, OpenUI, FreeConvert, Yourware)
 import { freeAwesomeBatch2026C } from './tools/freeAwesomeBatch2026C';
+// Import Free Awesome Batch 2026 D (Khoj, Venice AI, Morphic, Cobalt, Supermeme, DeepWiki)
+import { freeAwesomeBatch2026D } from './tools/freeAwesomeBatch2026D';
 
 // Import AI Hardware (legacy - moved to gadgets)
 import { aiHardware } from './tools/aiHardware';
@@ -548,6 +550,7 @@ export const getAllToolCategories = (): Tool[] => {
     ...freeAwesomeBatch2026,
     ...freeAwesomeBatch2026B,
     ...freeAwesomeBatch2026C,
+    ...freeAwesomeBatch2026D,
     ...aiHardware,
     
     // NEW 2025: Additional tools
