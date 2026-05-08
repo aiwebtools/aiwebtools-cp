@@ -233,6 +233,46 @@ const BookPromotionCard = () => {
       gradient: "from-purple-500/20 to-cyan-500/20"
     },
     {
+      id: "hKZhXxV8KiA",
+      title: "AI Web Tools Featured Showcase - New",
+      gradient: "from-cyan-500/20 to-emerald-500/20"
+    },
+    {
+      id: "UlYYh-8pjS8",
+      title: "AI Web Tools Featured Showcase - New 2",
+      gradient: "from-purple-500/20 to-pink-500/20"
+    },
+    {
+      id: "8y6irP9OPJ0",
+      title: "AI Web Tools Featured Showcase - New 3",
+      gradient: "from-amber-500/20 to-orange-500/20"
+    },
+    {
+      id: "6NeNA-KGz2s",
+      title: "AI Web Tools Featured Showcase - New 4",
+      gradient: "from-emerald-500/20 to-teal-500/20"
+    },
+    {
+      id: "0IfbFWirwTg",
+      title: "AI Web Tools Featured Showcase - New 5",
+      gradient: "from-blue-500/20 to-indigo-500/20"
+    },
+    {
+      id: "ZMxg9PMHmos",
+      title: "AI Web Tools Featured Showcase - New 6",
+      gradient: "from-rose-500/20 to-fuchsia-500/20"
+    },
+    {
+      id: "siddzjKXd9o",
+      title: "AI Web Tools Featured Showcase - New 7",
+      gradient: "from-violet-500/20 to-purple-500/20"
+    },
+    {
+      id: "u8Rs0KH2XTg",
+      title: "AI Web Tools Featured Showcase - New 8",
+      gradient: "from-lime-500/20 to-green-500/20"
+    },
+    {
       id: "yZ9Jt1canjE",
       title: "AI Web Tools Featured Showcase 2",
       gradient: "from-amber-500/20 to-rose-500/20"
