@@ -275,7 +275,7 @@ const MobileMenu = () => {
                   onClick={(e) => {
                     e.preventDefault();
                     e.stopPropagation();
-                    handleExternalLink('https://lovable.dev/projects/16f4843b-3d0d-4fac-8365-1ccb03890154?utm_source=lovable-badge&via=aiwebtools', e);
+                    handleExternalLink('https://lovable.dev/projects/76a4e4e6-b882-41a4-9cbe-db549c76bc53?utm_source=lovable-badge&via=aiwebtools', e);
                   }}
                   className="group relative w-full overflow-hidden rounded-xl p-4 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
                   style={{
@@ -491,7 +491,7 @@ const MobileMenu = () => {
                   <DropdownMenuItem 
                      onClick={(e) => { 
                        e.preventDefault();
-                       handleExternalLink("https://lovable.dev/projects/16f4843b-3d0d-4fac-8365-1ccb03890154?utm_source=lovable-badge&via=aiwebtools", e);
+                       handleExternalLink("https://lovable.dev/projects/76a4e4e6-b882-41a4-9cbe-db549c76bc53?utm_source=lovable-badge&via=aiwebtools", e);
                      }}
                     className="text-yellow-100 hover:bg-gradient-to-r hover:from-yellow-500/20 hover:to-amber-500/20 mb-2 rounded flex items-center space-x-2 bg-gradient-to-r from-yellow-600/10 to-amber-600/10 border border-yellow-500/30 p-2"
                   >
