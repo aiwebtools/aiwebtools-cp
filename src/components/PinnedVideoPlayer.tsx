@@ -315,6 +315,9 @@ const PinnedVideoPlayer = memo(() => {
   // Track if this is the first video load (to set initial mute state)
   const isFirstVideoRef = useRef(true);
   const userMutePreferenceRef = useRef<boolean | null>(null);
+  // Tracks whether the user explicitly paused the current video so background
+  // retry timers (unmute/playVideo loops) don't sneak it back to playing.
+  const userPausedRef = useRef(false);
   
   // Track video src separately to prevent unnecessary iframe reloads
   // Initialize with actual video URL to prevent "null" blocking first render
@@ -369,6 +372,7 @@ const PinnedVideoPlayer = memo(() => {
       const retryDelays = [200, 400, 700, 1100, 1600, 2200, 3000, 4000, 5500];
       const timers = retryDelays.map(delay =>
         setTimeout(() => {
+          if (userPausedRef.current) return;
           sendYTCommand('unMute');
           sendYTCommand('playVideo');
         }, delay)
@@ -411,7 +415,10 @@ const PinnedVideoPlayer = memo(() => {
   useEffect(() => {
     if (!currentVideoId || !playerMountedRef.current) return;
     if (userMutePreferenceRef.current === false) {
-      const timers = [800, 1500, 2500].map(d => setTimeout(() => sendYTCommand('unMute'), d));
+      const timers = [800, 1500, 2500].map(d => setTimeout(() => {
+        if (userPausedRef.current) return;
+        sendYTCommand('unMute');
+      }, d));
       return () => timers.forEach(clearTimeout);
     }
   }, [currentVideoId, sendYTCommand]);
@@ -513,6 +520,8 @@ const PinnedVideoPlayer = memo(() => {
     videoStartTimeRef.current = Date.now();
     hasReceivedPlayStateRef.current = false;
     detectedDurationRef.current = null; // Reset so we pick up new video's duration
+    // New video = fresh play intent
+    userPausedRef.current = false;
   }, [currentVideoId]);
 
   // Listen for YouTube iframe API messages to detect video end
@@ -537,12 +546,22 @@ const PinnedVideoPlayer = memo(() => {
         if (data?.event === "onStateChange" && data?.info === 1) {
           hasReceivedPlayStateRef.current = true;
           videoStartTimeRef.current = Date.now();
-          setIsPlaying(true);
+          // If the user just paused, immediately re-pause so retry timers
+          // or YouTube's own autoplay don't override the pause intent.
+          if (userPausedRef.current) {
+            sendYTCommand('pauseVideo');
+          } else {
+            setIsPlaying(true);
+          }
         }
         if (data?.info?.playerState === 1) {
           hasReceivedPlayStateRef.current = true;
           videoStartTimeRef.current = Date.now();
-          setIsPlaying(true);
+          if (userPausedRef.current) {
+            sendYTCommand('pauseVideo');
+          } else {
+            setIsPlaying(true);
+          }
         }
         if (data?.event === "onStateChange" && data?.info === 2) {
           setIsPlaying(false);
@@ -678,15 +697,20 @@ const PinnedVideoPlayer = memo(() => {
 
   const handleTogglePlay = useCallback(() => {
     if (isPlaying) {
+      userPausedRef.current = true;
       sendYTCommand('pauseVideo');
       setIsPlaying(false);
+      // Re-assert pause shortly after in case a background timer fires playVideo.
+      [120, 400, 900].forEach(d => window.setTimeout(() => sendYTCommand('pauseVideo'), d));
     } else {
+      userPausedRef.current = false;
       userMutePreferenceRef.current = false;
       setIsMuted(false);
       sendYTCommand('unMute');
       sendYTCommand('playVideo');
       setIsPlaying(true);
       [150, 500, 1200].forEach(d => window.setTimeout(() => {
+        if (userPausedRef.current) return;
         sendYTCommand('unMute');
         sendYTCommand('playVideo');
       }, d));
@@ -698,6 +722,7 @@ const PinnedVideoPlayer = memo(() => {
     if (!isMuted) {
       [100, 300, 700, 1200, 2200].forEach(delay => {
         window.setTimeout(() => {
+          if (userPausedRef.current) return;
           sendYTCommand('unMute');
           sendYTCommand('playVideo');
         }, delay);

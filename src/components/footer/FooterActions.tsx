@@ -45,24 +45,24 @@ const FooterActions = ({ handleExternalLink, handleSubmitTool, handleRequestTool
       <h3 className="text-2xl font-bold text-green-300 mb-6" style={{ textShadow: '0 0 15px rgba(0, 255, 0, 0.5)' }}>
         🚀 Discover More AI Tools
       </h3>
-      <div className="flex flex-col sm:flex-row gap-4 justify-center items-center max-w-5xl mx-auto">
+      <div className="flex flex-wrap gap-4 justify-center items-stretch max-w-6xl mx-auto">
         <Button
           onClick={handleDownloadAIList}
           variant="gold"
           size="lg"
-          className="w-full sm:w-auto sm:min-w-[240px] px-8 sm:px-10 leading-snug"
+          className="w-full sm:w-auto px-6 py-3 h-auto min-h-[3rem] whitespace-nowrap text-sm md:text-base font-bold tracking-wide"
         >
-          <Download className="mr-2 h-5 w-5 animate-bounce" />
-          DOWNLOAD {allTools.length}+ AI TOOLS CSV (FREE)
+          <Download className="mr-2 h-5 w-5 animate-bounce flex-shrink-0" />
+          DOWNLOAD {allTools.length}+ AI TOOLS (CSV)
         </Button>
         
         <Button
           onClick={handleViewAllTools}
           variant="outline"
           size="lg"
-          className="w-full sm:w-auto border-green-500 text-green-300 hover:bg-green-500/20 hover:text-white transition-all duration-300 sm:min-w-[240px] px-8 sm:px-10 leading-snug sm:whitespace-nowrap"
+          className="w-full sm:w-auto border-green-500 text-green-300 hover:bg-green-500/20 hover:text-white transition-all duration-300 px-6 py-3 h-auto min-h-[3rem] whitespace-nowrap text-sm md:text-base font-bold tracking-wide"
         >
-          <Search className="mr-2 h-5 w-5" />
+          <Search className="mr-2 h-5 w-5 flex-shrink-0" />
           VIEW ALL AI TOOLS
         </Button>
         
@@ -70,19 +70,19 @@ const FooterActions = ({ handleExternalLink, handleSubmitTool, handleRequestTool
           onClick={handleViewPortfolio}
           variant="outline"
           size="lg"
-          className="w-full sm:w-auto border-yellow-500 text-yellow-300 hover:bg-yellow-500/20 hover:text-white transition-all duration-300 sm:min-w-[280px] px-8 sm:px-10 leading-snug"
+          className="w-full sm:w-auto border-yellow-500 text-yellow-300 hover:bg-yellow-500/20 hover:text-white transition-all duration-300 px-6 py-3 h-auto min-h-[3rem] whitespace-nowrap text-sm md:text-base font-bold tracking-wide"
         >
-          <ExternalLink className="mr-2 h-5 w-5" />
-          VIEW AI WEB TOOLS PERSONAL PORTFOLIO
+          <ExternalLink className="mr-2 h-5 w-5 flex-shrink-0" />
+          VIEW PORTFOLIO
         </Button>
         
         <Button
           onClick={handleSubmitTool}
           variant="outline" 
           size="lg"
-          className="w-full sm:w-auto border-emerald-500 text-emerald-300 hover:bg-emerald-500/20 hover:text-white transition-all duration-300 sm:min-w-[240px] px-8 sm:px-10 leading-snug sm:whitespace-nowrap"
+          className="w-full sm:w-auto border-emerald-500 text-emerald-300 hover:bg-emerald-500/20 hover:text-white transition-all duration-300 px-6 py-3 h-auto min-h-[3rem] whitespace-nowrap text-sm md:text-base font-bold tracking-wide"
         >
-          <Plus className="mr-2 h-5 w-5" />
+          <Plus className="mr-2 h-5 w-5 flex-shrink-0" />
           SUBMIT YOUR TOOL
         </Button>
         
@@ -90,9 +90,9 @@ const FooterActions = ({ handleExternalLink, handleSubmitTool, handleRequestTool
           onClick={handleRequestTool}
           variant="outline"
           size="lg" 
-          className="w-full sm:w-auto border-green-400 text-green-400 hover:bg-green-400/20 hover:text-white transition-all duration-300 sm:min-w-[240px] px-8 sm:px-10 leading-snug sm:whitespace-nowrap"
+          className="w-full sm:w-auto border-green-400 text-green-400 hover:bg-green-400/20 hover:text-white transition-all duration-300 px-6 py-3 h-auto min-h-[3rem] whitespace-nowrap text-sm md:text-base font-bold tracking-wide"
         >
-          <ExternalLink className="mr-2 h-5 w-5" />
+          <ExternalLink className="mr-2 h-5 w-5 flex-shrink-0" />
           REQUEST CUSTOM TOOL
         </Button>
       </div>
