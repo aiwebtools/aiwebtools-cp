@@ -627,3 +627,4 @@ export { freeAwesomeBatch2026 } from './freeAwesomeBatch2026';
 export { freeAwesomeBatch2026B } from './freeAwesomeBatch2026B';
 export { freeAwesomeBatch2026C } from './freeAwesomeBatch2026C';
 export { freeAwesomeBatch2026D } from './freeAwesomeBatch2026D';
+export { newAgentsAndMedicalBatch2026E } from './newAgentsAndMedicalBatch2026E';
