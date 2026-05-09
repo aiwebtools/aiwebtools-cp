@@ -271,6 +271,8 @@ import { freeAwesomeBatch2026B } from './tools/freeAwesomeBatch2026B';
 import { freeAwesomeBatch2026C } from './tools/freeAwesomeBatch2026C';
 // Import Free Awesome Batch 2026 D (Khoj, Venice AI, Morphic, Cobalt, Supermeme, DeepWiki)
 import { freeAwesomeBatch2026D } from './tools/freeAwesomeBatch2026D';
+// Import New Agents + Free Medical Batch 2026 E (Sim Studio, AgentKit by OpenAI, Symptomate)
+import { newAgentsAndMedicalBatch2026E } from './tools/newAgentsAndMedicalBatch2026E';
 
 // Import AI Hardware (legacy - moved to gadgets)
 import { aiHardware } from './tools/aiHardware';
@@ -551,6 +553,7 @@ export const getAllToolCategories = (): Tool[] => {
     ...freeAwesomeBatch2026B,
     ...freeAwesomeBatch2026C,
     ...freeAwesomeBatch2026D,
+    ...newAgentsAndMedicalBatch2026E,
     ...aiHardware,
     
     // NEW 2025: Additional tools
