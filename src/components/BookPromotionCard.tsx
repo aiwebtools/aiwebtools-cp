@@ -228,6 +228,11 @@ const BookPromotionCard = () => {
   // First video is always pinned, rest are shuffled
   const originalVideos = [
     {
+      id: "VGZdXt3shq8",
+      title: "AI Web Tools Featured Showcase - Latest",
+      gradient: "from-fuchsia-500/20 to-cyan-500/20"
+    },
+    {
       id: "-I0LGUP9xso",
       title: "AI Web Tools Featured Showcase",
       gradient: "from-purple-500/20 to-cyan-500/20"
