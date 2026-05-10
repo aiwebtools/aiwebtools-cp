@@ -97,10 +97,10 @@ const Index = () => {
       
       {/* Background effects - defer slightly so the hero appears faster on mobile */}
       <DeferredMount delay={120}>
-        <Suspense fallback={null}>
+        <LazySection>
           <InteractiveMatrixBackground />
           <AnimatedBackground />
-        </Suspense>
+        </LazySection>
       </DeferredMount>
       
       {/* Fixed Header - outside of relative container */}
@@ -154,28 +154,28 @@ const Index = () => {
           </section>
         </DeferredMount>
         
-        <Suspense fallback={null}>
+        <LazySection>
           <div id="categories-section">
             <CategoryPageSelection />
           </div>
-        </Suspense>
+        </LazySection>
         
         <DeferredMount delay={320} fallback={null}>
-          <Suspense fallback={null}>
+          <LazySection>
             <AIWebToolsSEOSection />
-          </Suspense>
+          </LazySection>
         </DeferredMount>
    
         <DeferredMount delay={380} fallback={null}>
-          <Suspense fallback={null}>
+          <LazySection>
             <LazyFeaturedTools onToolsLoaded={(count) => {}} />
-          </Suspense>
+          </LazySection>
         </DeferredMount>
         
         <DeferredMount delay={520} fallback={null}>
-          <Suspense fallback={null}>
+          <LazySection>
             <BookPromotionCard />
-          </Suspense>
+          </LazySection>
         </DeferredMount>
         
         <DeferredMount delay={620} fallback={null}>
