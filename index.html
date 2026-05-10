@@ -364,10 +364,10 @@
         background: linear-gradient(90deg, #00ff41, #22d3ee, #a855f7, #00ff41);
         background-size: 300% 100%;
         border-radius: 4px;
-        /* Slowed to 8s so bar creeps toward 97% while React boots — no premature 100%. */
+        /* 4s ease-out — fast enough to feel responsive, slow enough to not premature-100. */
         width: 5%;
-        -webkit-animation: progressShimmer 1.5s linear infinite, progressGrow 8s ease-out forwards;
-        animation: progressShimmer 1.5s linear infinite, progressGrow 8s ease-out forwards;
+        -webkit-animation: progressShimmer 1.5s linear infinite, progressGrow 4s ease-out forwards;
+        animation: progressShimmer 1.5s linear infinite, progressGrow 4s ease-out forwards;
         will-change: width, background-position;
         -webkit-transform: translateZ(0);
         transform: translateZ(0);
