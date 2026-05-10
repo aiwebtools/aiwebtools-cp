@@ -179,19 +179,19 @@ const Index = () => {
         </DeferredMount>
         
         <DeferredMount delay={620} fallback={null}>
-          <Suspense fallback={null}>
+          <LazySection>
             <InspirationCarousel />
-          </Suspense>
+          </LazySection>
         </DeferredMount>
         
         <DeferredMount delay={460} fallback={null}>
-          <Suspense fallback={null}>
+          <LazySection>
             <SpecialServices />
-          </Suspense>
+          </LazySection>
         </DeferredMount>
         
         <DeferredMount delay={720} fallback={null}>
-          <Suspense fallback={null}>
+          <LazySection>
             <section className="py-16 relative" style={{ background: 'linear-gradient(135deg, #0a0a0a 0%, #001a00 50%, #0a0a0a 100%)' }}>
               <div className="container mx-auto px-4">
                 <div className="text-center mb-12">
@@ -206,25 +206,25 @@ const Index = () => {
                 <LazySearchPortal />
               </div>
             </section>
-          </Suspense>
+          </LazySection>
         </DeferredMount>
         
         <DeferredMount delay={860} fallback={null}>
-          <Suspense fallback={null}>
+          <LazySection>
             <EthicalAIQuoteSection />
-          </Suspense>
+          </LazySection>
         </DeferredMount>
         
-        <Suspense fallback={null}>
+        <LazySection>
           <ScrollToTop />
           <Footer />
-        </Suspense>
+        </LazySection>
       </div>
       
-      <Suspense fallback={null}>
+      <LazySection>
         <CloneOfferPopup />
         <LovableInvitePopup />
-      </Suspense>
+      </LazySection>
     </div>
   );
 };
