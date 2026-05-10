@@ -809,12 +809,24 @@ const BookPromotionCard = () => {
               {/* Book Visual - YouTube Videos */}
                 <div className="lg:w-1/2 p-3 md:p-5 overflow-visible">
                 {/* Desktop: Carousel showing 3 videos at a time */}
-                <div className="hidden md:block relative overflow-visible">
-                  <div className="flex items-center justify-center gap-3">
+                <div
+                  className="hidden md:block relative overflow-visible select-none"
+                  onTouchStart={handleTouchStart}
+                  onTouchMove={handleTouchMove}
+                  onTouchEnd={(e) => {
+                    const diff = touchStartX.current - touchEndX.current;
+                    if (Math.abs(diff) > 50) {
+                      if (diff > 0) nextDesktopPage(); else prevDesktopPage();
+                    }
+                    setDragOffset(0);
+                  }}
+                  style={{ touchAction: 'pan-y' }}
+                >
+                  <div className="relative flex items-center justify-center px-2">
                     <button
                       onClick={prevDesktopPage}
                       type="button"
-                      className="relative z-20 flex-shrink-0 w-12 h-12 flex items-center justify-center bg-green-900/90 rounded-full text-green-400 border border-green-500/40 transition-colors duration-150 hover:bg-green-800 active:bg-green-700 focus:outline-none cursor-pointer shadow-lg"
+                      className="absolute left-0 top-1/2 -translate-y-1/2 z-30 w-12 h-12 flex items-center justify-center bg-green-900/95 rounded-full text-green-400 border border-green-500/50 transition-colors duration-150 hover:bg-green-800 active:bg-green-700 focus:outline-none cursor-pointer shadow-2xl"
                       aria-label="Previous videos"
                     >
                       <ChevronLeft size={24} className="pointer-events-none" />
@@ -861,7 +873,7 @@ const BookPromotionCard = () => {
                     <button
                       onClick={nextDesktopPage}
                       type="button"
-                      className="relative z-20 flex-shrink-0 w-12 h-12 flex items-center justify-center bg-green-900/90 rounded-full text-green-400 border border-green-500/40 transition-colors duration-150 hover:bg-green-800 active:bg-green-700 focus:outline-none cursor-pointer shadow-lg"
+                      className="absolute right-0 top-1/2 -translate-y-1/2 z-30 w-12 h-12 flex items-center justify-center bg-green-900/95 rounded-full text-green-400 border border-green-500/50 transition-colors duration-150 hover:bg-green-800 active:bg-green-700 focus:outline-none cursor-pointer shadow-2xl"
                       aria-label="Next videos"
                     >
                       <ChevronRight size={24} className="pointer-events-none" />
