@@ -6,6 +6,7 @@ import ImprovedSEOHead from "@/components/ImprovedSEOHead";
 import GoogleRankingBooster from "@/components/seo/GoogleRankingBooster";
 import { Button } from "../components/ui/button";
 import DeferredMount from "@/components/DeferredMount";
+import ErrorBoundary from "@/components/ErrorBoundary";
 
 const CategoryPageSelection = lazy(() => import("@/components/CategoryPageSelection"));
 const SpecialServices = lazy(() => import("@/components/SpecialServices"));
@@ -22,6 +23,11 @@ const AIWebToolsSEOSection = lazy(() => import("@/components/seo/AIWebToolsSEOSe
 const EthicalAIQuoteSection = lazy(() => import("@/components/EthicalAIQuoteSection"));
 const InspirationCarousel = lazy(() => import("@/components/InspirationCarousel"));
 
+const LazySection = ({ children }: { children: React.ReactNode }) => (
+  <ErrorBoundary fallback={null}>
+    <Suspense fallback={null}>{children}</Suspense>
+  </ErrorBoundary>
+);
 
 // Removed loading spinner - causes perceived slowness on refresh
 
