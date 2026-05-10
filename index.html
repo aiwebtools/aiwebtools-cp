@@ -508,8 +508,8 @@
             }
           }, 100);
 
-          // Do NOT force-remove the cube on a timer. If React chunks are slow,
-          // the loader must keep spinning instead of revealing a black screen.
+          // Last-resort recovery: dev/HMR can occasionally leave Vite chunks stale,
+          // which strands users at 97%. Retry once, then reveal any React fallback.
           setTimeout(function() {
             if (!removed) {
               var root = document.getElementById('root');
@@ -518,9 +518,16 @@
                 removeSpinner();
                 return;
               }
+              var reloadKey = '__aiwt_loader_recovered__';
+              if (!sessionStorage.getItem(reloadKey)) {
+                sessionStorage.setItem(reloadKey, '1');
+                window.location.reload();
+                return;
+              }
               var tagline = document.querySelector('.tagline');
-              if (tagline) tagline.textContent = 'STILL BOOTING THE MATRIX...';
+              if (tagline) tagline.textContent = 'RECONNECTING THE MATRIX...';
               if (pct) pct.textContent = '97%';
+              setTimeout(removeSpinner, 1200);
             }
           }, 15000);
         };
