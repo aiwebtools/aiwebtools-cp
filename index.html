@@ -364,10 +364,10 @@
         background: linear-gradient(90deg, #00ff41, #22d3ee, #a855f7, #00ff41);
         background-size: 300% 100%;
         border-radius: 4px;
-        /* 4s ease-out — fast enough to feel responsive, slow enough to not premature-100. */
+        /* Slowed to 8s so bar creeps toward 97% while React boots — no premature 100%. */
         width: 5%;
-        -webkit-animation: progressShimmer 1.5s linear infinite, progressGrow 4s ease-out forwards;
-        animation: progressShimmer 1.5s linear infinite, progressGrow 4s ease-out forwards;
+        -webkit-animation: progressShimmer 1.5s linear infinite, progressGrow 8s ease-out forwards;
+        animation: progressShimmer 1.5s linear infinite, progressGrow 8s ease-out forwards;
         will-change: width, background-position;
         -webkit-transform: translateZ(0);
         transform: translateZ(0);
@@ -456,17 +456,12 @@
           const removeSpinner = () => {
             if (removed) return;
             removed = true;
-            if (bar) {
-              // Cancel running CSS animation so the inline 100% width sticks immediately.
-              bar.style.animation = 'none';
-              bar.style.transition = 'width 200ms ease-out';
-              bar.style.width = '100%';
-            }
+            if (bar) bar.style.width = '100%';
             if (pct) pct.textContent = '100%';
             const spinner = document.querySelector('.loading-spinner');
             if (spinner) {
               spinner.classList.add('fade-out');
-              setTimeout(() => spinner.remove(), 250);
+              setTimeout(() => spinner.remove(), 300);
             }
           };
 
@@ -477,17 +472,16 @@
             if (!root) return false;
             if (!root.children.length) return false;
             var rect = root.getBoundingClientRect();
+            var text = (root.textContent || '').replace(/\s+/g, ' ').trim();
             var hasPageSignal = !!root.querySelector('header, main, nav, section, article, h1, h2, button, a, input');
-            // Lower thresholds so the loader removes as soon as the hero has painted —
-            // no need to wait for full text content (causes a perceived stall).
-            return rect.height > 80 && hasPageSignal;
+            return rect.height > 180 && text.length > 40 && hasPageSignal;
           };
 
-          // RAF-based percentage counter (syncs with 4s CSS progressGrow timing)
+          // RAF-based percentage counter (syncs with 8s CSS progressGrow timing)
           const updatePct = () => {
             if (removed) return;
             var elapsed = performance.now() - startTime;
-            var duration = 4000;
+            var duration = 8000;
             var t = Math.min(elapsed / duration, 1);
             var p;
             if (t < 0.15) p = 5 + (35 * (t / 0.15));
@@ -506,20 +500,21 @@
             });
           }, { once: true });
 
-          // Poll for real content. Cheap on CPU and stops as soon as found.
+          // Poll for real content. Cheap on CPU (every 100ms) and stops as soon as found.
           var contentCheck = setInterval(function() {
             if (hasVisibleContent()) {
               clearInterval(contentCheck);
               removeSpinner();
             }
-          }, 60);
+          }, 100);
 
-          // Safety fallback: if React chunks stall, force-reveal whatever is in #root
-          // after 6s instead of leaving the user staring at the loader.
+          // Do NOT force-remove the cube on a timer. If React chunks are slow,
+          // the loader must keep spinning instead of revealing a black screen.
           setTimeout(function() {
             if (!removed) {
               var root = document.getElementById('root');
-              if (root && root.children.length) {
+              var rootText = root ? (root.textContent || '').replace(/\s+/g, ' ').trim() : '';
+              if (root && root.children.length && rootText.length > 40) {
                 removeSpinner();
                 return;
               }
@@ -527,7 +522,7 @@
               if (tagline) tagline.textContent = 'STILL BOOTING THE MATRIX...';
               if (pct) pct.textContent = '97%';
             }
-          }, 6000);
+          }, 15000);
         };
 
         const tryStart = () => {
