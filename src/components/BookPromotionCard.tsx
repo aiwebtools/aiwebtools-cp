@@ -612,7 +612,6 @@ const BookPromotionCard = () => {
       setCurrentVideoIndex(videoIndex);
       setDesktopIndex(Math.floor(videoIndex / videosPerPage));
     }
-    setIsAutoPlaying(false);
   }, [videosPerPage]);
 
   const goToVideo = useCallback((videoIndex: number) => {
@@ -627,6 +626,7 @@ const BookPromotionCard = () => {
     stopAllBookVideos();
     setIsPaused(true);
     setIsAutoPlaying(shouldAutoPlay);
+    setPlayingVideoIndex(shouldAutoPlay ? videoIndex : null);
     setCurrentVideoIndex(videoIndex);
     setDesktopIndex(Math.floor(videoIndex / videosPerPage));
   }, [stopAllBookVideos, videosPerPage]);
