@@ -465,8 +465,9 @@
             }
           };
 
-          // Remove cube only when React has mounted visible route UI.
-          // Suspense fallback is null, so #root stays empty while lazy chunks boot.
+          // Remove cube as soon as React owns #root. If the disclaimer or home
+          // route is visible but still light on text during navigation, do not
+          // strand users behind the 97% overlay.
           const hasVisibleContent = () => {
             const root = document.getElementById('root');
             if (!root) return false;
@@ -474,7 +475,7 @@
             var rect = root.getBoundingClientRect();
             var text = (root.textContent || '').replace(/\s+/g, ' ').trim();
             var hasPageSignal = !!root.querySelector('header, main, nav, section, article, h1, h2, button, a, input');
-            return rect.height > 180 && text.length > 40 && hasPageSignal;
+            return rect.height > 120 && hasPageSignal && (text.length > 12 || performance.now() - startTime > 1800);
           };
 
           // RAF-based percentage counter (syncs with 8s CSS progressGrow timing)

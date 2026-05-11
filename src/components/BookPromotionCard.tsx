@@ -1,8 +1,8 @@
-import { BookOpen, ExternalLink, Download, Eye, X, ChevronLeft, ChevronRight, Play, Pause } from "lucide-react";
+import { BookOpen, ExternalLink, Download, Eye, X, ChevronLeft, ChevronRight, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogClose } from "@/components/ui/dialog";
 import { createTimePortalEffect } from "@/utils/timeEffects";
-import { useState, useRef, useEffect, useCallback, useMemo } from "react";
+import { useState, useRef, useEffect, useCallback, useMemo, type ReactNode } from "react";
 import { allTools } from "@/data/toolsData";
 import { downloadToolsCSV } from "@/utils/csvExport";
 import { triggerPublicDownload } from "@/utils/downloads";
@@ -25,13 +25,15 @@ const LazyBookVideo = ({
   title, 
   onPlay,
   onEnd,
-  autoPlay = false
+  autoPlay = false,
+  swipeOverlay
 }: { 
   videoId: string; 
   title: string; 
   onPlay?: () => void;
   onEnd?: () => void;
   autoPlay?: boolean;
+  swipeOverlay?: ReactNode;
 }) => {
   const [isLoaded, setIsLoaded] = useState(autoPlay);
   const [isHovered, setIsHovered] = useState(false);
@@ -169,15 +171,18 @@ const LazyBookVideo = ({
 
   if (isLoaded) {
     return (
-      <iframe
-        ref={iframeRef}
-        src={`https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&mute=0&controls=1&rel=0&modestbranding=1&playsinline=1&fs=1&enablejsapi=1`}
-        className="absolute inset-0 w-full h-full"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowFullScreen
-        title={title}
-        loading="eager"
-      />
+      <>
+        <iframe
+          ref={iframeRef}
+          src={`https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&mute=0&controls=1&rel=0&modestbranding=1&playsinline=1&fs=1&enablejsapi=1`}
+          className="absolute inset-0 w-full h-full"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+          title={title}
+          loading="eager"
+        />
+        {swipeOverlay}
+      </>
     );
   }
 
@@ -210,20 +215,7 @@ const BookPromotionCard = () => {
   // Pauses automatically the moment a user plays a video.
   const [isPaused, setIsPaused] = useState(false);
   const [isAutoPlaying, setIsAutoPlaying] = useState(false);
-  const [hasUserInteracted, setHasUserInteracted] = useState(false);
-  const [playingVideoIndex, setPlayingVideoIndex] = useState<number | null>(null);
   const hasEverPlayedRef = useRef(false);
-  const [isMobileCarousel, setIsMobileCarousel] = useState(() =>
-    typeof window !== 'undefined' ? window.matchMedia('(max-width: 767px)').matches : false
-  );
-
-  useEffect(() => {
-    const mobileQuery = window.matchMedia('(max-width: 767px)');
-    const updateViewportMode = () => setIsMobileCarousel(mobileQuery.matches);
-    updateViewportMode();
-    mobileQuery.addEventListener('change', updateViewportMode);
-    return () => mobileQuery.removeEventListener('change', updateViewportMode);
-  }, []);
   
   // First video is always pinned, rest are shuffled
   const originalVideos = [
@@ -560,9 +552,9 @@ const BookPromotionCard = () => {
   ];
 
   // Randomize videos on component mount
-  // Pin the newest showcase video first, keep IHY7AlYJhUc at 4th, shuffle the rest
+  // Pin the newest 9:16 showcase video first, keep IHY7AlYJhUc at 4th, shuffle the rest
   const videos = useMemo(() => {
-    const firstIdx = originalVideos.findIndex(v => v.id === "W4grI_pqzbk");
+    const firstIdx = originalVideos.findIndex(v => v.id === "VGZdXt3shq8");
     const fourthIdx = originalVideos.findIndex(v => v.id === "IHY7AlYJhUc");
     const pinned1 = originalVideos[firstIdx]; // Always first (newest showcase)
     const pinned4 = originalVideos[fourthIdx]; // Always fourth
@@ -613,11 +605,8 @@ const BookPromotionCard = () => {
 
   const handleVideoPlay = useCallback((videoIndex?: number) => {
     setIsPaused(true);
-    setIsAutoPlaying(false);
     hasEverPlayedRef.current = true;
-    setHasUserInteracted(true);
     if (typeof videoIndex === 'number') {
-      setPlayingVideoIndex(videoIndex);
       setCurrentVideoIndex(videoIndex);
       setDesktopIndex(Math.floor(videoIndex / videosPerPage));
     }
@@ -631,27 +620,21 @@ const BookPromotionCard = () => {
     setDesktopIndex(Math.floor(videoIndex / videosPerPage));
   }, [stopAllBookVideos, videosPerPage]);
 
-  const nextDesktopPage = () => {
+  const activateVideoIndex = useCallback((videoIndex: number, shouldAutoPlay = hasEverPlayedRef.current) => {
     stopAllBookVideos();
-    setIsAutoPlaying(!isMobileCarousel && hasEverPlayedRef.current);
     setIsPaused(true);
-    setDesktopIndex((prev) => {
-      const nextPage = (prev + 1) % totalDesktopPages;
-      setCurrentVideoIndex((nextPage * videosPerPage) % videos.length);
-      return nextPage;
-    });
-  };
+    setIsAutoPlaying(shouldAutoPlay);
+    setCurrentVideoIndex(videoIndex);
+    setDesktopIndex(Math.floor(videoIndex / videosPerPage));
+  }, [stopAllBookVideos, videosPerPage]);
 
-  const prevDesktopPage = () => {
-    stopAllBookVideos();
-    setIsAutoPlaying(!isMobileCarousel && hasEverPlayedRef.current);
-    setIsPaused(true);
-    setDesktopIndex((prev) => {
-      const nextPage = (prev - 1 + totalDesktopPages) % totalDesktopPages;
-      setCurrentVideoIndex((nextPage * videosPerPage) % videos.length);
-      return nextPage;
-    });
-  };
+  const nextDesktopPage = useCallback(() => {
+    activateVideoIndex((currentVideoIndex + 1) % videos.length);
+  }, [activateVideoIndex, currentVideoIndex, videos.length]);
+
+  const prevDesktopPage = useCallback(() => {
+    activateVideoIndex((currentVideoIndex - 1 + videos.length) % videos.length);
+  }, [activateVideoIndex, currentVideoIndex, videos.length]);
 
   // Get visible videos with proper looping
   const getVisibleDesktopVideos = () => {
@@ -683,27 +666,13 @@ const BookPromotionCard = () => {
     createTimePortalEffect("https://docs.google.com/document/d/18LHLsPXIjjtZgIAaXry5IktOGm9lacTq/edit?usp=sharing&ouid=116187507271950139405&rtpof=true&sd=true", "Free The Book Of Deployable Robot Prompts Download");
   };
 
-  const nextVideo = () => {
-    stopAllBookVideos();
-    setIsAutoPlaying(hasEverPlayedRef.current);
-    setIsPaused(true);
-    setCurrentVideoIndex((prev) => {
-      const next = (prev + 1) % videos.length;
-      setDesktopIndex(Math.floor(next / videosPerPage));
-      return next;
-    });
-  };
+  const nextVideo = useCallback(() => {
+    activateVideoIndex((currentVideoIndex + 1) % videos.length);
+  }, [activateVideoIndex, currentVideoIndex, videos.length]);
 
-  const prevVideo = () => {
-    stopAllBookVideos();
-    setIsAutoPlaying(hasEverPlayedRef.current);
-    setIsPaused(true);
-    setCurrentVideoIndex((prev) => {
-      const next = (prev - 1 + videos.length) % videos.length;
-      setDesktopIndex(Math.floor(next / videosPerPage));
-      return next;
-    });
-  };
+  const prevVideo = useCallback(() => {
+    activateVideoIndex((currentVideoIndex - 1 + videos.length) % videos.length);
+  }, [activateVideoIndex, currentVideoIndex, videos.length]);
 
   // Handle touch swipe for mobile carousel
   const touchStartX = useRef(0);
@@ -813,13 +782,7 @@ const BookPromotionCard = () => {
                   className="hidden md:block relative overflow-visible select-none"
                   onTouchStart={handleTouchStart}
                   onTouchMove={handleTouchMove}
-                  onTouchEnd={(e) => {
-                    const diff = touchStartX.current - touchEndX.current;
-                    if (Math.abs(diff) > 50) {
-                      if (diff > 0) nextDesktopPage(); else prevDesktopPage();
-                    }
-                    setDragOffset(0);
-                  }}
+                  onTouchEnd={handleTouchEnd}
                   style={{ touchAction: 'pan-y' }}
                 >
                   <div className="relative flex items-center justify-center px-2">
@@ -832,7 +795,13 @@ const BookPromotionCard = () => {
                       <ChevronLeft size={24} className="pointer-events-none" />
                     </button>
 
-                    <div className="flex justify-center gap-4 transition-all duration-700 ease-in-out">
+                    <div
+                      className="flex justify-center gap-4 transition-all duration-700 ease-in-out"
+                      style={{
+                        transform: `translateX(${dragOffset}px)`,
+                        transition: dragOffset === 0 ? 'transform 0.35s cubic-bezier(0.22, 1, 0.36, 1)' : 'none',
+                      }}
+                    >
                       {visibleDesktopVideos.map((video, index) => (
                         <div
                           key={`${video.originalIndex}-${video.id}`}
@@ -856,6 +825,7 @@ const BookPromotionCard = () => {
                               onPlay={() => handleVideoPlay(video.originalIndex)}
                               onEnd={handleVideoEnd}
                               autoPlay={isAutoPlaying && video.originalIndex === currentVideoIndex}
+                              swipeOverlay={<div className="absolute inset-x-0 top-0 bottom-14 z-10 cursor-grab active:cursor-grabbing" aria-hidden="true" />}
                             />
                             {/* Preview-reel indicator: shows the carousel is auto-cycling
                                 through the full video library, not just the 3 visible */}
@@ -952,6 +922,7 @@ const BookPromotionCard = () => {
                                   onPlay={() => handleVideoPlay(currentVideoIndex)}
                                   onEnd={handleVideoEnd}
                                   autoPlay={isAutoPlaying}
+                                  swipeOverlay={<div className="absolute inset-x-0 top-0 bottom-14 z-10 cursor-grab active:cursor-grabbing" aria-hidden="true" />}
                                 />
                               </div>
                               <div className={`absolute -inset-2 bg-gradient-to-r ${videos[currentVideoIndex].gradient} rounded-lg blur-xl -z-10 transition-all duration-700`}></div>
