@@ -1,4 +1,4 @@
-import { BookOpen, ExternalLink, Download, Eye, X, ChevronLeft, ChevronRight, Play, Pause } from "lucide-react";
+import { BookOpen, ExternalLink, Download, Eye, X, ChevronLeft, ChevronRight, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogClose } from "@/components/ui/dialog";
 import { createTimePortalEffect } from "@/utils/timeEffects";
@@ -215,7 +215,6 @@ const BookPromotionCard = () => {
   // Pauses automatically the moment a user plays a video.
   const [isPaused, setIsPaused] = useState(false);
   const [isAutoPlaying, setIsAutoPlaying] = useState(false);
-  const [playingVideoIndex, setPlayingVideoIndex] = useState<number | null>(null);
   const hasEverPlayedRef = useRef(false);
   
   // First video is always pinned, rest are shuffled
@@ -608,7 +607,6 @@ const BookPromotionCard = () => {
     setIsPaused(true);
     hasEverPlayedRef.current = true;
     if (typeof videoIndex === 'number') {
-      setPlayingVideoIndex(videoIndex);
       setCurrentVideoIndex(videoIndex);
       setDesktopIndex(Math.floor(videoIndex / videosPerPage));
     }
@@ -626,7 +624,6 @@ const BookPromotionCard = () => {
     stopAllBookVideos();
     setIsPaused(true);
     setIsAutoPlaying(shouldAutoPlay);
-    setPlayingVideoIndex(shouldAutoPlay ? videoIndex : null);
     setCurrentVideoIndex(videoIndex);
     setDesktopIndex(Math.floor(videoIndex / videosPerPage));
   }, [stopAllBookVideos, videosPerPage]);
