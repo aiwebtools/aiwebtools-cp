@@ -618,7 +618,6 @@ const BookPromotionCard = () => {
 
   const handleVideoPlay = useCallback((videoIndex?: number) => {
     setIsPaused(true);
-    setIsAutoPlaying(false);
     hasEverPlayedRef.current = true;
     setHasUserInteracted(true);
     if (typeof videoIndex === 'number') {
@@ -626,6 +625,7 @@ const BookPromotionCard = () => {
       setCurrentVideoIndex(videoIndex);
       setDesktopIndex(Math.floor(videoIndex / videosPerPage));
     }
+    setIsAutoPlaying(false);
   }, [videosPerPage]);
 
   const goToVideo = useCallback((videoIndex: number) => {
@@ -636,27 +636,21 @@ const BookPromotionCard = () => {
     setDesktopIndex(Math.floor(videoIndex / videosPerPage));
   }, [stopAllBookVideos, videosPerPage]);
 
-  const nextDesktopPage = () => {
+  const activateVideoIndex = useCallback((videoIndex: number, shouldAutoPlay = hasEverPlayedRef.current) => {
     stopAllBookVideos();
-    setIsAutoPlaying(!isMobileCarousel && hasEverPlayedRef.current);
     setIsPaused(true);
-    setDesktopIndex((prev) => {
-      const nextPage = (prev + 1) % totalDesktopPages;
-      setCurrentVideoIndex((nextPage * videosPerPage) % videos.length);
-      return nextPage;
-    });
-  };
+    setIsAutoPlaying(shouldAutoPlay);
+    setCurrentVideoIndex(videoIndex);
+    setDesktopIndex(Math.floor(videoIndex / videosPerPage));
+  }, [stopAllBookVideos, videosPerPage]);
 
-  const prevDesktopPage = () => {
-    stopAllBookVideos();
-    setIsAutoPlaying(!isMobileCarousel && hasEverPlayedRef.current);
-    setIsPaused(true);
-    setDesktopIndex((prev) => {
-      const nextPage = (prev - 1 + totalDesktopPages) % totalDesktopPages;
-      setCurrentVideoIndex((nextPage * videosPerPage) % videos.length);
-      return nextPage;
-    });
-  };
+  const nextDesktopPage = useCallback(() => {
+    activateVideoIndex((currentVideoIndex + 1) % videos.length);
+  }, [activateVideoIndex, currentVideoIndex, videos.length]);
+
+  const prevDesktopPage = useCallback(() => {
+    activateVideoIndex((currentVideoIndex - 1 + videos.length) % videos.length);
+  }, [activateVideoIndex, currentVideoIndex, videos.length]);
 
   // Get visible videos with proper looping
   const getVisibleDesktopVideos = () => {
@@ -688,27 +682,13 @@ const BookPromotionCard = () => {
     createTimePortalEffect("https://docs.google.com/document/d/18LHLsPXIjjtZgIAaXry5IktOGm9lacTq/edit?usp=sharing&ouid=116187507271950139405&rtpof=true&sd=true", "Free The Book Of Deployable Robot Prompts Download");
   };
 
-  const nextVideo = () => {
-    stopAllBookVideos();
-    setIsAutoPlaying(hasEverPlayedRef.current);
-    setIsPaused(true);
-    setCurrentVideoIndex((prev) => {
-      const next = (prev + 1) % videos.length;
-      setDesktopIndex(Math.floor(next / videosPerPage));
-      return next;
-    });
-  };
+  const nextVideo = useCallback(() => {
+    activateVideoIndex((currentVideoIndex + 1) % videos.length);
+  }, [activateVideoIndex, currentVideoIndex, videos.length]);
 
-  const prevVideo = () => {
-    stopAllBookVideos();
-    setIsAutoPlaying(hasEverPlayedRef.current);
-    setIsPaused(true);
-    setCurrentVideoIndex((prev) => {
-      const next = (prev - 1 + videos.length) % videos.length;
-      setDesktopIndex(Math.floor(next / videosPerPage));
-      return next;
-    });
-  };
+  const prevVideo = useCallback(() => {
+    activateVideoIndex((currentVideoIndex - 1 + videos.length) % videos.length);
+  }, [activateVideoIndex, currentVideoIndex, videos.length]);
 
   // Handle touch swipe for mobile carousel
   const touchStartX = useRef(0);
