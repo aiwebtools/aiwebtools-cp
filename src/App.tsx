@@ -20,7 +20,6 @@ import { getConsentAccepted } from "@/utils/consent";
 
 // Eager load only the disclaimer gate; lazy-load heavy app routes to avoid black-screen startup
 import DisclaimerGate from "./pages/DisclaimerGate";
-import Index from "./pages/Index";
 
 // Retry wrapper for lazy imports — prevents black screen on transient
 // "Failed to fetch dynamically imported module" errors (HMR / flaky network).
@@ -86,6 +85,10 @@ const FreeAIToolsPage = lazyWithRetry(() => import("./pages/FreeAIToolsPage"));
 const AIWritingToolsPage = lazyWithRetry(() => import("./pages/AIWritingToolsPage"));
 const AIWebToolsPage = lazyWithRetry(() => import("./pages/AIWebToolsPage"));
 const AdminAnalytics = lazyWithRetry(() => import("./pages/AdminAnalytics"));
+
+// Home page lazy-loaded with retry — eager import was pulling in the entire
+// tool database synchronously, stranding the loader at 97% on slow chunks.
+const Index = lazyWithRetry(() => import("./pages/Index"));
 
 // Lazy load non-critical components — wrapped in retry to prevent black screen
 const FloatingCloneButton = lazyWithRetry(() => import("./components/FloatingCloneButton"));
