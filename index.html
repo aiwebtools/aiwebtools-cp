@@ -465,9 +465,8 @@
             }
           };
 
-          // Remove cube as soon as React owns #root. If the disclaimer or home
-          // route is visible but still light on text during navigation, do not
-          // strand users behind the 97% overlay.
+          // Remove cube only when React has mounted visible route UI.
+          // Suspense fallback is null, so #root stays empty while lazy chunks boot.
           const hasVisibleContent = () => {
             const root = document.getElementById('root');
             if (!root) return false;
@@ -475,7 +474,7 @@
             var rect = root.getBoundingClientRect();
             var text = (root.textContent || '').replace(/\s+/g, ' ').trim();
             var hasPageSignal = !!root.querySelector('header, main, nav, section, article, h1, h2, button, a, input');
-            return rect.height > 120 && hasPageSignal && (text.length > 12 || performance.now() - startTime > 1800);
+            return rect.height > 180 && text.length > 40 && hasPageSignal;
           };
 
           // RAF-based percentage counter (syncs with 8s CSS progressGrow timing)
@@ -509,8 +508,8 @@
             }
           }, 100);
 
-          // Last-resort recovery: dev/HMR can occasionally leave Vite chunks stale,
-          // which strands users at 97%. Retry once, then reveal any React fallback.
+          // Do NOT force-remove the cube on a timer. If React chunks are slow,
+          // the loader must keep spinning instead of revealing a black screen.
           setTimeout(function() {
             if (!removed) {
               var root = document.getElementById('root');
@@ -519,16 +518,9 @@
                 removeSpinner();
                 return;
               }
-              var reloadKey = '__aiwt_loader_recovered__';
-              if (!sessionStorage.getItem(reloadKey)) {
-                sessionStorage.setItem(reloadKey, '1');
-                window.location.reload();
-                return;
-              }
               var tagline = document.querySelector('.tagline');
-              if (tagline) tagline.textContent = 'RECONNECTING THE MATRIX...';
+              if (tagline) tagline.textContent = 'STILL BOOTING THE MATRIX...';
               if (pct) pct.textContent = '97%';
-              setTimeout(removeSpinner, 1200);
             }
           }, 15000);
         };

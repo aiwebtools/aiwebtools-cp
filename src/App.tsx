@@ -63,6 +63,7 @@ async function importWithRetry<T>(
 }
 
 // Lazy load - secondary pages for faster initial load
+const Index = lazyWithRetry(() => import("./pages/Index"));
 const ToolDetail = lazyWithRetry(() => import("./pages/ToolDetail"));
 const CategoryPage = lazyWithRetry(() => import("./pages/CategoryPage"));
 const MainCategoryPage = lazyWithRetry(() => import("./pages/MainCategoryPage"));
@@ -85,10 +86,6 @@ const FreeAIToolsPage = lazyWithRetry(() => import("./pages/FreeAIToolsPage"));
 const AIWritingToolsPage = lazyWithRetry(() => import("./pages/AIWritingToolsPage"));
 const AIWebToolsPage = lazyWithRetry(() => import("./pages/AIWebToolsPage"));
 const AdminAnalytics = lazyWithRetry(() => import("./pages/AdminAnalytics"));
-
-// Home page lazy-loaded with retry — eager import was pulling in the entire
-// tool database synchronously, stranding the loader at 97% on slow chunks.
-const Index = lazyWithRetry(() => import("./pages/Index"));
 
 // Lazy load non-critical components — wrapped in retry to prevent black screen
 const FloatingCloneButton = lazyWithRetry(() => import("./components/FloatingCloneButton"));

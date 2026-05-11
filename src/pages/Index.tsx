@@ -6,7 +6,6 @@ import ImprovedSEOHead from "@/components/ImprovedSEOHead";
 import GoogleRankingBooster from "@/components/seo/GoogleRankingBooster";
 import { Button } from "../components/ui/button";
 import DeferredMount from "@/components/DeferredMount";
-import ErrorBoundary from "@/components/ErrorBoundary";
 
 const CategoryPageSelection = lazy(() => import("@/components/CategoryPageSelection"));
 const SpecialServices = lazy(() => import("@/components/SpecialServices"));
@@ -23,11 +22,6 @@ const AIWebToolsSEOSection = lazy(() => import("@/components/seo/AIWebToolsSEOSe
 const EthicalAIQuoteSection = lazy(() => import("@/components/EthicalAIQuoteSection"));
 const InspirationCarousel = lazy(() => import("@/components/InspirationCarousel"));
 
-const LazySection = ({ children }: { children: React.ReactNode }) => (
-  <ErrorBoundary fallback={null}>
-    <Suspense fallback={null}>{children}</Suspense>
-  </ErrorBoundary>
-);
 
 // Removed loading spinner - causes perceived slowness on refresh
 
@@ -97,10 +91,10 @@ const Index = () => {
       
       {/* Background effects - defer slightly so the hero appears faster on mobile */}
       <DeferredMount delay={120}>
-        <LazySection>
+        <Suspense fallback={null}>
           <InteractiveMatrixBackground />
           <AnimatedBackground />
-        </LazySection>
+        </Suspense>
       </DeferredMount>
       
       {/* Fixed Header - outside of relative container */}
@@ -154,44 +148,44 @@ const Index = () => {
           </section>
         </DeferredMount>
         
-        <LazySection>
+        <Suspense fallback={null}>
           <div id="categories-section">
             <CategoryPageSelection />
           </div>
-        </LazySection>
+        </Suspense>
         
         <DeferredMount delay={320} fallback={null}>
-          <LazySection>
+          <Suspense fallback={null}>
             <AIWebToolsSEOSection />
-          </LazySection>
+          </Suspense>
         </DeferredMount>
    
         <DeferredMount delay={380} fallback={null}>
-          <LazySection>
+          <Suspense fallback={null}>
             <LazyFeaturedTools onToolsLoaded={(count) => {}} />
-          </LazySection>
+          </Suspense>
         </DeferredMount>
         
         <DeferredMount delay={520} fallback={null}>
-          <LazySection>
+          <Suspense fallback={null}>
             <BookPromotionCard />
-          </LazySection>
+          </Suspense>
         </DeferredMount>
         
         <DeferredMount delay={620} fallback={null}>
-          <LazySection>
+          <Suspense fallback={null}>
             <InspirationCarousel />
-          </LazySection>
+          </Suspense>
         </DeferredMount>
         
         <DeferredMount delay={460} fallback={null}>
-          <LazySection>
+          <Suspense fallback={null}>
             <SpecialServices />
-          </LazySection>
+          </Suspense>
         </DeferredMount>
         
         <DeferredMount delay={720} fallback={null}>
-          <LazySection>
+          <Suspense fallback={null}>
             <section className="py-16 relative" style={{ background: 'linear-gradient(135deg, #0a0a0a 0%, #001a00 50%, #0a0a0a 100%)' }}>
               <div className="container mx-auto px-4">
                 <div className="text-center mb-12">
@@ -206,25 +200,25 @@ const Index = () => {
                 <LazySearchPortal />
               </div>
             </section>
-          </LazySection>
+          </Suspense>
         </DeferredMount>
         
         <DeferredMount delay={860} fallback={null}>
-          <LazySection>
+          <Suspense fallback={null}>
             <EthicalAIQuoteSection />
-          </LazySection>
+          </Suspense>
         </DeferredMount>
         
-        <LazySection>
+        <Suspense fallback={null}>
           <ScrollToTop />
           <Footer />
-        </LazySection>
+        </Suspense>
       </div>
       
-      <LazySection>
+      <Suspense fallback={null}>
         <CloneOfferPopup />
         <LovableInvitePopup />
-      </LazySection>
+      </Suspense>
     </div>
   );
 };

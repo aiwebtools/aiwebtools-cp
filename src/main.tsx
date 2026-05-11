@@ -65,9 +65,6 @@ const root = createRoot(rootElement);
 import('./App.tsx')
   .then(({ default: App }) => {
     root.render(<App />);
-    window.setTimeout(() => {
-      window.dispatchEvent(new Event("aiwt:route-ready"));
-    }, 800);
     // If app boots successfully, clear the guard so future errors can trigger again.
     window.setTimeout(() => sessionStorage.removeItem(CHUNK_RELOAD_KEY), 4000);
   })
