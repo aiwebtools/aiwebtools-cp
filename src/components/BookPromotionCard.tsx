@@ -785,13 +785,7 @@ const BookPromotionCard = () => {
                   className="hidden md:block relative overflow-visible select-none"
                   onTouchStart={handleTouchStart}
                   onTouchMove={handleTouchMove}
-                  onTouchEnd={(e) => {
-                    const diff = touchStartX.current - touchEndX.current;
-                    if (Math.abs(diff) > 50) {
-                      if (diff > 0) nextDesktopPage(); else prevDesktopPage();
-                    }
-                    setDragOffset(0);
-                  }}
+                  onTouchEnd={handleTouchEnd}
                   style={{ touchAction: 'pan-y' }}
                 >
                   <div className="relative flex items-center justify-center px-2">
