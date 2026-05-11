@@ -2,7 +2,7 @@ import { BookOpen, ExternalLink, Download, Eye, X, ChevronLeft, ChevronRight, Pl
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogClose } from "@/components/ui/dialog";
 import { createTimePortalEffect } from "@/utils/timeEffects";
-import { useState, useRef, useEffect, useCallback, useMemo } from "react";
+import { useState, useRef, useEffect, useCallback, useMemo, type ReactNode } from "react";
 import { allTools } from "@/data/toolsData";
 import { downloadToolsCSV } from "@/utils/csvExport";
 import { triggerPublicDownload } from "@/utils/downloads";
@@ -25,13 +25,15 @@ const LazyBookVideo = ({
   title, 
   onPlay,
   onEnd,
-  autoPlay = false
+  autoPlay = false,
+  swipeOverlay
 }: { 
   videoId: string; 
   title: string; 
   onPlay?: () => void;
   onEnd?: () => void;
   autoPlay?: boolean;
+  swipeOverlay?: ReactNode;
 }) => {
   const [isLoaded, setIsLoaded] = useState(autoPlay);
   const [isHovered, setIsHovered] = useState(false);
@@ -169,15 +171,18 @@ const LazyBookVideo = ({
 
   if (isLoaded) {
     return (
-      <iframe
-        ref={iframeRef}
-        src={`https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&mute=0&controls=1&rel=0&modestbranding=1&playsinline=1&fs=1&enablejsapi=1`}
-        className="absolute inset-0 w-full h-full"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowFullScreen
-        title={title}
-        loading="eager"
-      />
+      <>
+        <iframe
+          ref={iframeRef}
+          src={`https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&mute=0&controls=1&rel=0&modestbranding=1&playsinline=1&fs=1&enablejsapi=1`}
+          className="absolute inset-0 w-full h-full"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+          title={title}
+          loading="eager"
+        />
+        {swipeOverlay}
+      </>
     );
   }
 
@@ -560,9 +565,9 @@ const BookPromotionCard = () => {
   ];
 
   // Randomize videos on component mount
-  // Pin the newest showcase video first, keep IHY7AlYJhUc at 4th, shuffle the rest
+  // Pin the newest 9:16 showcase video first, keep IHY7AlYJhUc at 4th, shuffle the rest
   const videos = useMemo(() => {
-    const firstIdx = originalVideos.findIndex(v => v.id === "W4grI_pqzbk");
+    const firstIdx = originalVideos.findIndex(v => v.id === "VGZdXt3shq8");
     const fourthIdx = originalVideos.findIndex(v => v.id === "IHY7AlYJhUc");
     const pinned1 = originalVideos[firstIdx]; // Always first (newest showcase)
     const pinned4 = originalVideos[fourthIdx]; // Always fourth
