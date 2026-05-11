@@ -215,20 +215,8 @@ const BookPromotionCard = () => {
   // Pauses automatically the moment a user plays a video.
   const [isPaused, setIsPaused] = useState(false);
   const [isAutoPlaying, setIsAutoPlaying] = useState(false);
-  const [hasUserInteracted, setHasUserInteracted] = useState(false);
   const [playingVideoIndex, setPlayingVideoIndex] = useState<number | null>(null);
   const hasEverPlayedRef = useRef(false);
-  const [isMobileCarousel, setIsMobileCarousel] = useState(() =>
-    typeof window !== 'undefined' ? window.matchMedia('(max-width: 767px)').matches : false
-  );
-
-  useEffect(() => {
-    const mobileQuery = window.matchMedia('(max-width: 767px)');
-    const updateViewportMode = () => setIsMobileCarousel(mobileQuery.matches);
-    updateViewportMode();
-    mobileQuery.addEventListener('change', updateViewportMode);
-    return () => mobileQuery.removeEventListener('change', updateViewportMode);
-  }, []);
   
   // First video is always pinned, rest are shuffled
   const originalVideos = [
@@ -619,7 +607,6 @@ const BookPromotionCard = () => {
   const handleVideoPlay = useCallback((videoIndex?: number) => {
     setIsPaused(true);
     hasEverPlayedRef.current = true;
-    setHasUserInteracted(true);
     if (typeof videoIndex === 'number') {
       setPlayingVideoIndex(videoIndex);
       setCurrentVideoIndex(videoIndex);
