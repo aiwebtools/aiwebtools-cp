@@ -931,6 +931,7 @@ const BookPromotionCard = () => {
                                   onPlay={() => handleVideoPlay(currentVideoIndex)}
                                   onEnd={handleVideoEnd}
                                   autoPlay={isAutoPlaying}
+                                  swipeOverlay={<div className="absolute inset-x-0 top-0 bottom-14 z-10 cursor-grab active:cursor-grabbing" aria-hidden="true" />}
                                 />
                               </div>
                               <div className={`absolute -inset-2 bg-gradient-to-r ${videos[currentVideoIndex].gradient} rounded-lg blur-xl -z-10 transition-all duration-700`}></div>
