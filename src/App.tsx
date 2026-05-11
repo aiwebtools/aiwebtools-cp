@@ -86,6 +86,10 @@ const AIWritingToolsPage = lazyWithRetry(() => import("./pages/AIWritingToolsPag
 const AIWebToolsPage = lazyWithRetry(() => import("./pages/AIWebToolsPage"));
 const AdminAnalytics = lazyWithRetry(() => import("./pages/AdminAnalytics"));
 
+// Home page lazy-loaded with retry — eager import was pulling in the entire
+// tool database synchronously, stranding the loader at 97% on slow chunks.
+const Index = lazyWithRetry(() => import("./pages/Index"));
+
 // Lazy load non-critical components — wrapped in retry to prevent black screen
 const FloatingCloneButton = lazyWithRetry(() => import("./components/FloatingCloneButton"));
 const PinnedVideoPlayer = lazyWithRetry(() => import("./components/PinnedVideoPlayer"));
