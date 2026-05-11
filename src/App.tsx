@@ -20,7 +20,6 @@ import { getConsentAccepted } from "@/utils/consent";
 
 // Eager load only the disclaimer gate; lazy-load heavy app routes to avoid black-screen startup
 import DisclaimerGate from "./pages/DisclaimerGate";
-import Index from "./pages/Index";
 
 // Retry wrapper for lazy imports — prevents black screen on transient
 // "Failed to fetch dynamically imported module" errors (HMR / flaky network).
