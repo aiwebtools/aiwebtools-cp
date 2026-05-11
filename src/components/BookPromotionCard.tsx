@@ -804,7 +804,13 @@ const BookPromotionCard = () => {
                       <ChevronLeft size={24} className="pointer-events-none" />
                     </button>
 
-                    <div className="flex justify-center gap-4 transition-all duration-700 ease-in-out">
+                    <div
+                      className="flex justify-center gap-4 transition-all duration-700 ease-in-out"
+                      style={{
+                        transform: `translateX(${dragOffset}px)`,
+                        transition: dragOffset === 0 ? 'transform 0.35s cubic-bezier(0.22, 1, 0.36, 1)' : 'none',
+                      }}
+                    >
                       {visibleDesktopVideos.map((video, index) => (
                         <div
                           key={`${video.originalIndex}-${video.id}`}
@@ -828,6 +834,7 @@ const BookPromotionCard = () => {
                               onPlay={() => handleVideoPlay(video.originalIndex)}
                               onEnd={handleVideoEnd}
                               autoPlay={isAutoPlaying && video.originalIndex === currentVideoIndex}
+                              swipeOverlay={<div className="absolute inset-x-0 top-0 bottom-14 z-10 cursor-grab active:cursor-grabbing" aria-hidden="true" />}
                             />
                             {/* Preview-reel indicator: shows the carousel is auto-cycling
                                 through the full video library, not just the 3 visible */}
