@@ -273,8 +273,6 @@ import { freeAwesomeBatch2026C } from './tools/freeAwesomeBatch2026C';
 import { freeAwesomeBatch2026D } from './tools/freeAwesomeBatch2026D';
 // Import New Agents + Free Medical Batch 2026 E (Sim Studio, AgentKit by OpenAI, Symptomate)
 import { newAgentsAndMedicalBatch2026E } from './tools/newAgentsAndMedicalBatch2026E';
-// Import Society-Good Free Batch 2026 F (10 free AI tools that help society)
-import { societyGoodFreeBatch2026F } from './tools/societyGoodFreeBatch2026F';
 
 // Import AI Hardware (legacy - moved to gadgets)
 import { aiHardware } from './tools/aiHardware';
@@ -556,7 +554,6 @@ export const getAllToolCategories = (): Tool[] => {
     ...freeAwesomeBatch2026C,
     ...freeAwesomeBatch2026D,
     ...newAgentsAndMedicalBatch2026E,
-    ...societyGoodFreeBatch2026F,
     ...aiHardware,
     
     // NEW 2025: Additional tools
