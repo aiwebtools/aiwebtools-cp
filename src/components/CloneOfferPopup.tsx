@@ -9,12 +9,16 @@ import {
 import { Button } from "@/components/ui/button";
 import { Copy, Sparkles } from "lucide-react";
 import { createTimePortalEffect } from "@/utils/timeEffects";
-import cloneKingdomImage from "@/assets/clone-kingdom.jpg";
-import clonePopup4 from "@/assets/clone-popup-4.jpg";
-import clonePopup5 from "@/assets/clone-popup-5.jpg";
-import clonePopup6 from "@/assets/clone-popup-6.jpg";
-import clonePopup7 from "@/assets/clone-popup-7.jpg";
-import clonePopup8 from "@/assets/clone-popup-8.jpg";
+
+// Served from /public to guarantee a stable URL inside id-preview and
+// avoid any bundler/asset-pipeline edge cases where the import resolves
+// to a hashed asset that fails to load before the dialog renders.
+const cloneKingdomImage = "/clone-popup/clone-kingdom.jpg";
+const clonePopup4 = "/clone-popup/clone-popup-4.jpg";
+const clonePopup5 = "/clone-popup/clone-popup-5.jpg";
+const clonePopup6 = "/clone-popup/clone-popup-6.jpg";
+const clonePopup7 = "/clone-popup/clone-popup-7.jpg";
+const clonePopup8 = "/clone-popup/clone-popup-8.jpg";
 
 const popupImages: Record<number, string> = {
   4: clonePopup4,
