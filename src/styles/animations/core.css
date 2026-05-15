@@ -6,6 +6,21 @@
   contain: layout style paint;
 }
 
+/* Cosmic marquee scroll */
+@keyframes cosmic-marquee-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.cosmic-marquee-track {
+  display: inline-block;
+  animation: cosmic-marquee-scroll 60s linear infinite;
+  text-shadow: 0 0 6px rgba(0, 255, 65, 0.5);
+  will-change: transform;
+}
+.cosmic-marquee-track:hover {
+  animation-play-state: paused;
+}
+
 /* Clean logo text without blur effects */
 .logo-text-crisp {
   text-shadow: none !important;
