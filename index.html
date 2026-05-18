@@ -465,8 +465,8 @@
             }
           };
 
-          // Remove cube only when React has mounted visible route UI.
-          // Suspense fallback is null, so #root stays empty while lazy chunks boot.
+          // Remove cube when React has mounted route UI. Keep this intentionally
+          // permissive so mobile/preview wrappers never get parked at 97%.
           const hasVisibleContent = () => {
             const root = document.getElementById('root');
             if (!root) return false;
@@ -474,7 +474,7 @@
             var rect = root.getBoundingClientRect();
             var text = (root.textContent || '').replace(/\s+/g, ' ').trim();
             var hasPageSignal = !!root.querySelector('header, main, nav, section, article, h1, h2, button, a, input');
-            return rect.height > 180 && text.length > 40 && hasPageSignal;
+            return (rect.height > 40 || root.scrollHeight > 40) && (text.length > 12 || hasPageSignal);
           };
 
           // RAF-based percentage counter (syncs with 8s CSS progressGrow timing)
@@ -508,19 +508,24 @@
             }
           }, 100);
 
-          // Do NOT force-remove the cube on a timer. If React chunks are slow,
-          // the loader must keep spinning instead of revealing a black screen.
+          // Watchdog: once React has mounted anything meaningful, reveal it.
+          // If chunks truly fail, one hard reload is safer than an endless 97%.
           setTimeout(function() {
             if (!removed) {
               var root = document.getElementById('root');
               var rootText = root ? (root.textContent || '').replace(/\s+/g, ' ').trim() : '';
-              if (root && root.children.length && rootText.length > 40) {
+              if (root && root.children.length && rootText.length > 12) {
                 removeSpinner();
                 return;
               }
+              if (!sessionStorage.getItem('__aiwt_boot_watchdog_reload__')) {
+                sessionStorage.setItem('__aiwt_boot_watchdog_reload__', '1');
+                window.location.reload();
+                return;
+              }
               var tagline = document.querySelector('.tagline');
-              if (tagline) tagline.textContent = 'STILL BOOTING THE MATRIX...';
-              if (pct) pct.textContent = '97%';
+              if (tagline) tagline.textContent = 'TAP REFRESH IF THE MATRIX STALLS';
+              if (pct) pct.textContent = '100%';
             }
           }, 15000);
         };
