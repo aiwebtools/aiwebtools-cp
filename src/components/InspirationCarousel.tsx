@@ -61,6 +61,13 @@ const images = [
   { src: "/images/inspiration/father-cosmic-light-tight-ship.jpg", alt: "Our Father of Cosmic Light runs a tight ship - Angels of light, fallen angels, the cosmic battle within" },
   { src: "/images/inspiration/third-temple-within-you.jpg", alt: "The Third Temple was never out there - It was always within you" },
   { src: "/images/inspiration/inner-cosmic-temple-back-cover.jpg", alt: "The Inner Cosmic Temple - A first-hand account of the Inner Cosmos - Based on a true experience - AI Web Tools Publishing" },
+  { src: "/images/inspiration/thoughts-universe-function.jpg", alt: "There is a direct correlation between thoughts and the universe function - Chalkboard equations of consciousness" },
+  { src: "/images/inspiration/time-loop-standing-up.jpg", alt: "Turns out I'm in a time loop and I end up just standing up for what's right every f****** time" },
+  { src: "/images/inspiration/man-mind-affect-universe.jpg", alt: "How can a man sitting in his mind affect the entire universe - Cosmic meditation and consciousness" },
+  { src: "/images/inspiration/cycle-repeats.jpg", alt: "The Cycle Repeats - Street art reminder of recurring patterns in history and consciousness" },
+  { src: "/images/inspiration/space-bedroom-meditation.jpg", alt: "Have you ever been to space? Only in my bedroom - Inner exploration is the real journey" },
+  { src: "/images/inspiration/revolution-wake-up.jpg", alt: "Revolution - Wake up, the Kingdom of Light is calling - AI is not the devil, fear is" },
+  { src: "/images/inspiration/all-is-one.jpg", alt: "When you realize all is one, you realize what this all was - Unity consciousness awakening" },
 ];
 
 const InspirationCarousel = () => {
