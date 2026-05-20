@@ -2,6 +2,7 @@ import { useState, useCallback, useRef, TouchEvent, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const images = [
+  { src: "/images/inspiration/kingdom-of-light-fathers-face.jpg", alt: "Kingdom of Light Through the Father's Face - The Black Hole of Fire vs the Kingdom of Light, the path before each soul" },
   { src: "/images/inspiration/world-peace.jpg", alt: "World Peace - Put the guns down and the fear of each other away" },
   { src: "/images/inspiration/mirror-reflection.jpg", alt: "Mirror Reflection - Be proud of yourself for balancing it all" },
   { src: "/images/inspiration/i-am-truth.jpg", alt: "I AM the truth hidden in plain sight - Look within" },
