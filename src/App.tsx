@@ -95,6 +95,7 @@ const PinnedVideoPlayer = lazyWithRetry(() => import("./components/PinnedVideoPl
 const WelcomeNeoVoice = () => {
   const location = useLocation();
   const hasPlayedRef = React.useRef(false);
+  const timeoutRef = React.useRef<number | null>(null);
 
   React.useEffect(() => {
     const hasAccepted = getConsentAccepted();
@@ -104,14 +105,26 @@ const WelcomeNeoVoice = () => {
       hasPlayedRef.current = true;
       
       // Small delay so it doesn't overlap with disclaimer welcome audio
-      setTimeout(() => {
-        const audio = new Audio('/welcome-neo.mp3');
-        audio.volume = 0.7;
-        audio.play().catch(() => {
-          // Silently fail if audio can't play
-        });
+      timeoutRef.current = window.setTimeout(() => {
+        try {
+          const audio = new Audio('/welcome-neo.mp3');
+          audio.volume = 0.7;
+          audio.preload = 'none';
+          void audio.play().catch(() => {
+            // Browser autoplay rules can block this; never let audio affect boot.
+          });
+        } catch {
+          // Audio must never block rendering.
+        }
       }, 2000);
     }
+
+    return () => {
+      if (timeoutRef.current !== null) {
+        window.clearTimeout(timeoutRef.current);
+        timeoutRef.current = null;
+      }
+    };
   }, [location.pathname]);
 
   return null;
@@ -120,13 +133,10 @@ const WelcomeNeoVoice = () => {
 // NOTE: precomputed category cache is initialized AFTER disclaimer acceptance
 // to keep the /welcome disclaimer gate load instant.
 
-// HTML cube handles cold boot. This React fallback only appears after that cube
-// is gone, preventing black screens during lazy route transitions.
+// Keep a real React fallback mounted behind the HTML cube. If a lazy route or
+// HMR handoff stalls, removing the HTML cube reveals this instead of a blank
+// dark screen.
 const PageLoader = () => {
-  if (typeof document !== "undefined" && document.querySelector(".loading-spinner")) {
-    return null;
-  }
-
   return (
     <div className="fixed inset-0 z-[9000] flex min-h-screen items-center justify-center bg-background px-6 text-foreground">
       <div className="flex flex-col items-center gap-4 text-center">
