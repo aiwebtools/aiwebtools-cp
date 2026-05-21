@@ -133,13 +133,10 @@ const WelcomeNeoVoice = () => {
 // NOTE: precomputed category cache is initialized AFTER disclaimer acceptance
 // to keep the /welcome disclaimer gate load instant.
 
-// HTML cube handles cold boot. This React fallback only appears after that cube
-// is gone, preventing black screens during lazy route transitions.
+// Keep a real React fallback mounted behind the HTML cube. If a lazy route or
+// HMR handoff stalls, removing the HTML cube reveals this instead of a blank
+// dark screen.
 const PageLoader = () => {
-  if (typeof document !== "undefined" && document.querySelector(".loading-spinner")) {
-    return null;
-  }
-
   return (
     <div className="fixed inset-0 z-[9000] flex min-h-screen items-center justify-center bg-background px-6 text-foreground">
       <div className="flex flex-col items-center gap-4 text-center">
