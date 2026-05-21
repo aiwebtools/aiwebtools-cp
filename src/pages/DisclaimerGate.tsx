@@ -316,15 +316,12 @@ const DisclaimerGate: React.FC = () => {
     try {
       const audio = new Audio('/welcome-disclaimer.mp3');
       audio.volume = 0.8;
-      audio.preload = 'auto';
-      const playPromise = audio.play();
-      if (playPromise !== undefined) {
-        playPromise.catch((err) => {
-          console.log('Welcome audio playback failed:', err);
-        });
-      }
+      audio.preload = 'none';
+      void audio.play().catch(() => {
+        // Browser audio policies can block this; portal entry must continue.
+      });
     } catch (e) {
-      console.log('Welcome audio error:', e);
+      // Audio must never block the disclaimer accept flow.
     }
     
     // Force scroll to top BEFORE navigation to prevent bottom-of-page glitch
