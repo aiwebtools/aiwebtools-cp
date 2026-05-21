@@ -508,13 +508,15 @@
             }
           }, 100);
 
-          // Watchdog: once React has mounted anything meaningful, reveal it.
-          // If chunks truly fail, one hard reload is safer than an endless 97%.
+          // Watchdog: never let the Matrix cube trap visitors at 97%.
+          // In dev/preview, HMR or a stale chunk can fail before React dispatches
+          // route-ready; after one clean reload, reveal a recovery panel instead
+          // of leaving a blocking loading screen over the site.
           setTimeout(function() {
             if (!removed) {
               var root = document.getElementById('root');
               var rootText = root ? (root.textContent || '').replace(/\s+/g, ' ').trim() : '';
-              if (root && root.children.length && rootText.length > 12) {
+              if (root && root.children.length && (rootText.length > 0 || root.querySelector('header, main, nav, section, article, h1, h2, button, a, input'))) {
                 removeSpinner();
                 return;
               }
@@ -523,11 +525,12 @@
                 window.location.reload();
                 return;
               }
-              var tagline = document.querySelector('.tagline');
-              if (tagline) tagline.textContent = 'TAP REFRESH IF THE MATRIX STALLS';
-              if (pct) pct.textContent = '100%';
+              if (root && !root.children.length) {
+                root.innerHTML = '<div style="min-height:100vh;display:flex;align-items:center;justify-content:center;background:#020817;color:#00ff66;font-family:monospace;text-align:center;padding:24px"><div><h1 style="font-size:24px;margin:0 0 12px;text-shadow:0 0 18px #00ff66">AI Web Tools is reconnecting</h1><p style="margin:0 0 18px;color:#67e8f9">The preview boot cache stalled. Refresh once to enter cleanly.</p><button onclick="sessionStorage.removeItem(\'__aiwt_boot_watchdog_reload__\');location.reload()" style="border:1px solid #00ff66;background:rgba(0,255,102,.14);color:#00ff66;padding:10px 16px;border-radius:8px;font-weight:700;cursor:pointer">Refresh Portal</button></div></div>';
+              }
+              removeSpinner();
             }
-          }, 15000);
+          }, 9000);
         };
 
         const tryStart = () => {
