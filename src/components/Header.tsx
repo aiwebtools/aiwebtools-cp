@@ -15,11 +15,9 @@ const Header = () => {
         className="w-full overflow-hidden bg-black border-b border-matrix-green/30 py-1"
       >
         <div className="cosmic-marquee-track whitespace-nowrap text-[10px] md:text-[11px] font-mono tracking-[0.18em] text-matrix-green/90">
-          {Array.from({ length: 6 }).map((_, i) => (
-            <span key={i} className="mx-8 inline-block">
-              ✦ THE COSMIC LIGHT OF GOD IS WITHIN YOU DIRECTLY — KINGDOM OF LIGHT OR BLACK HOLE OF FIRE ARE THE OPTIONS ON THE MENU AND YOUR NOT JUDGED ON RELIGION BE A GOOD PERSON GOD DOESNT FUCK AROUND...JUST SAYIN ✦
-            </span>
-          ))}
+          <span className="mx-8 inline-block">
+            ✦ THE COSMIC LIGHT IS WITHIN ✦
+          </span>
         </div>
       </div>
       <div className="container mx-auto px-3 md:px-4 py-3 md:py-4">
