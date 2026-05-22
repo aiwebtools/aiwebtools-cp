@@ -297,6 +297,15 @@ const TabletMenu = () => {
                   <Copy className="w-4 h-4" />
                   <span>Clone This Site</span>
                 </DropdownMenuItem>
+
+                {/* AI HUMAN BILL OF RIGHTS - bottom featured button */}
+                <DropdownMenuItem
+                  onClick={(e) => { e.preventDefault(); createTimePortalEffect('https://human-ai-guardian.lovable.app'); }}
+                  className="text-amber-100 hover:bg-gradient-to-r hover:from-amber-500/30 hover:to-cyan-500/30 rounded flex items-center justify-center gap-2 bg-gradient-to-r from-amber-600/20 via-cyan-600/20 to-emerald-600/20 border border-amber-400/50 p-2.5 mt-2 font-bold tracking-wide shadow-[0_0_15px_rgba(245,158,11,0.25)]"
+                >
+                  <span>⚖️</span>
+                  <span>AI HUMAN BILL OF RIGHTS</span>
+                </DropdownMenuItem>
               </div>
             </div>
           </DropdownMenuContent>
