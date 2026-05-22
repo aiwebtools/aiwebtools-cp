@@ -528,7 +528,16 @@ const MobileMenu = () => {
                 <Heart className="w-3 h-3 fill-current text-red-500" />
                 <span>Favorites ({getFavoritesCount()})</span>
               </DropdownMenuItem>
-              
+
+              {/* AI HUMAN BILL OF RIGHTS - bottom featured button */}
+              <DropdownMenuItem
+                onClick={(e) => handleExternalLink("https://human-ai-guardian.lovable.app", e)}
+                className="text-amber-100 hover:bg-gradient-to-r hover:from-amber-500/30 hover:to-cyan-500/30 rounded flex items-center justify-center gap-2 bg-gradient-to-r from-amber-600/20 via-cyan-600/20 to-emerald-600/20 border border-amber-400/50 p-2.5 font-bold tracking-wide mb-2 shadow-[0_0_15px_rgba(245,158,11,0.25)]"
+              >
+                <span>⚖️</span>
+                <span>AI HUMAN BILL OF RIGHTS</span>
+              </DropdownMenuItem>
+
               {/* Close Button */}
               <div className="flex justify-center pt-2">
                 <Button
