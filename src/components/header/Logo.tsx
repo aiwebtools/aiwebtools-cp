@@ -33,7 +33,7 @@ const Logo = ({ compact = false }: { compact?: boolean }) => {
         <div className={`flex items-center gap-1 md:gap-2 ${compact ? 'mb-0' : 'mb-0.5 md:mb-1'}`}>
           <div className={`font-bold ${compact ? 'text-sm' : 'text-sm sm:text-lg md:text-xl'} tracking-wider letter-spacing-wide relative truncate`}>
             <span className="relative z-10 bg-gradient-to-r from-cyan-400 via-cyan-300 to-cyan-500 bg-clip-text text-transparent logo-text-crisp">AI WEB TOOLS</span>
-            <span className="relative z-10 bg-gradient-to-r from-cyan-400 via-cyan-300 to-cyan-500 bg-clip-text text-transparent logo-text-crisp hidden sm:inline"> - AITOOLS.STUDIO</span>
+            <span className="relative z-10 bg-gradient-to-r from-cyan-400 via-cyan-300 to-cyan-500 bg-clip-text text-transparent logo-text-crisp hidden sm:inline"> - AIWEBTOOLS.SOFTWARE</span>
           </div>
           {!compact && (
             <span className="text-xs text-cyan-200/80 font-medium hidden lg:block tracking-wide">
@@ -42,9 +42,18 @@ const Logo = ({ compact = false }: { compact?: boolean }) => {
           )}
         </div>
         
-        {/* Mobile-visible branding info */}
-        <div className={`${compact ? 'text-[8px]' : 'text-[9px] sm:text-[10px] md:text-xs'} text-cyan-200/70 -mt-0.5`}>
-          <span className="font-light tracking-wide">AN AI TOOLS COMPANY</span>
+        {/* Mobile-visible branding info - now clickable link to new domain */}
+        <div className={`${compact ? 'text-[8px]' : 'text-[9px] sm:text-[10px] md:text-xs'} -mt-0.5`}>
+          <a
+            href="https://aiwebtools.software"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => handleExternalLink("https://aiwebtools.software", e)}
+            className="font-light tracking-wide text-cyan-300 hover:text-cyan-200 transition-colors underline-offset-2 hover:underline"
+            title="Visit aiwebtools.software"
+          >
+            aiwebtools.software
+          </a>
         </div>
         
         {/* AIWebTools.ai link - always visible */}
@@ -58,9 +67,9 @@ const Logo = ({ compact = false }: { compact?: boolean }) => {
           </button>
         </div>
         
-        {/* AITOOLS.STUDIO on mobile only */}
+        {/* AIWEBTOOLS.SOFTWARE on mobile only */}
         <div className="text-[8px] text-cyan-300/60 mt-0 sm:hidden">
-          AITOOLS.STUDIO
+          AIWEBTOOLS.SOFTWARE
         </div>
       </div>
       
