@@ -172,12 +172,6 @@ const Index = () => {
           </Suspense>
         </DeferredMount>
         
-        <DeferredMount delay={620} fallback={null}>
-          <Suspense fallback={null}>
-            <InspirationCarousel />
-          </Suspense>
-        </DeferredMount>
-        
         <DeferredMount delay={460} fallback={null}>
           <Suspense fallback={null}>
             <SpecialServices />
@@ -209,6 +203,12 @@ const Index = () => {
           </Suspense>
         </DeferredMount>
         
+        <DeferredMount delay={920} fallback={null}>
+          <Suspense fallback={null}>
+            <InspirationCarousel />
+          </Suspense>
+        </DeferredMount>
+
         <Suspense fallback={null}>
           <ScrollToTop />
           <Footer />
