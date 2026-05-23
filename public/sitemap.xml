@@ -3302,4 +3302,14 @@
   <url><loc>https://aiwebtools.software/storychief</loc><lastmod>2026-05-06</lastmod><changefreq>weekly</changefreq><priority>0.70</priority></url>
   <url><loc>https://aiwebtools.software/snovio</loc><lastmod>2026-05-06</lastmod><changefreq>weekly</changefreq><priority>0.70</priority></url>
   <url><loc>https://aiwebtools.software/hypeauditor</loc><lastmod>2026-05-06</lastmod><changefreq>weekly</changefreq><priority>0.70</priority></url>
+
+  <url><loc>https://aiwebtools.software/category/ai-agents</loc><changefreq>weekly</changefreq><priority>0.80</priority></url>
+  <url><loc>https://aiwebtools.software/category/writing-content</loc><changefreq>weekly</changefreq><priority>0.80</priority></url>
+  <url><loc>https://aiwebtools.software/category/image-design</loc><changefreq>weekly</changefreq><priority>0.80</priority></url>
+  <url><loc>https://aiwebtools.software/category/video-multimedia</loc><changefreq>weekly</changefreq><priority>0.80</priority></url>
+  <url><loc>https://aiwebtools.software/category/coding-development</loc><changefreq>weekly</changefreq><priority>0.80</priority></url>
+  <url><loc>https://aiwebtools.software/tool/chatgpt</loc><changefreq>weekly</changefreq><priority>0.70</priority></url>
+  <url><loc>https://aiwebtools.software/tool/midjourney</loc><changefreq>weekly</changefreq><priority>0.70</priority></url>
+  <url><loc>https://aiwebtools.software/similar-tools/chatgpt</loc><changefreq>monthly</changefreq><priority>0.50</priority></url>
+  <url><loc>https://aiwebtools.software/blog/ai-tools-guide</loc><changefreq>monthly</changefreq><priority>0.60</priority></url>
 </urlset>
