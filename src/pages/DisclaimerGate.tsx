@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Check, Sparkles, Shield } from "lucide-react";
 import { Button } from "../components/ui/button";
 import ImprovedSEOHead from "@/components/ImprovedSEOHead";
+import { Helmet } from "react-helmet-async";
 import { getConsentAccepted, setConsentAccepted } from "@/utils/consent";
 
 // Creative rotating welcome messages - Spiritual Light, Matrix/AI, Humor themed
@@ -341,6 +342,13 @@ const DisclaimerGate: React.FC = () => {
   return (
     <div className="min-h-screen bg-black flex items-center justify-center px-4">
       <ImprovedSEOHead pageType="homepage" />
+      <Helmet>
+        <title>Welcome — AIWEBTOOLS Disclaimer & Consent</title>
+        <meta name="description" content="Welcome to AIWEBTOOLS. Review the disclaimer and enter the 4,000+ AI tools directory — ChatGPT alternatives, custom GPTs, AI agents and more." />
+        <meta property="og:title" content="Welcome — AIWEBTOOLS Disclaimer & Consent" />
+        <meta property="og:description" content="Review the disclaimer and enter the 4,000+ AI tools directory." />
+        <link rel="canonical" href="https://aiwebtools.software/welcome" />
+      </Helmet>
       <div className="max-w-md w-full bg-gray-900 border-2 border-cyan-500 rounded-2xl p-6 shadow-2xl shadow-cyan-500/30 animate-fade-in">
         <div className="text-center mb-6">
           <div className="flex items-center justify-center gap-3 mb-3">

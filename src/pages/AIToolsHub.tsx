@@ -5,7 +5,7 @@ const AIToolsHub = () => {
   return (
     <>
       <Helmet>
-        <title>AI Tools Hub - Comprehensive AI Directory | AI Agents, ChatGPT Alternatives & More</title>
+        <title>AI Tools Hub — AI Agents & ChatGPT Alternatives</title>
         <meta name="description" content="Explore the ultimate AI tools hub with 1000+ AI applications, agents, ChatGPT alternatives, and automation solutions. Find the perfect AI tool for any task." />
         <meta name="keywords" content="ai tools hub, ai agents, chatgpt alternatives, ai directory, artificial intelligence tools, ai applications, ai software, ai platforms, ai solutions, automation tools, machine learning tools" />
         <link rel="canonical" href="https://aitools.studio/ai-tools-hub" />

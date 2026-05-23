@@ -100,7 +100,7 @@ const Index = () => {
       {/* Fixed Header - outside of relative container */}
       <Header />
       
-      <div className="relative z-10 pt-[70px] md:pt-[85px]">
+      <main className="relative z-10 pt-[70px] md:pt-[85px]">
         <HeroSection />
         
         {/* Featured Video Section */}
@@ -213,7 +213,7 @@ const Index = () => {
           <ScrollToTop />
           <Footer />
         </Suspense>
-      </div>
+      </main>
       
       <Suspense fallback={null}>
         <CloneOfferPopup />

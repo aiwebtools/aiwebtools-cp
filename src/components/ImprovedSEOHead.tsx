@@ -24,7 +24,7 @@ const ImprovedSEOHead: React.FC<ImprovedSEOHeadProps> = ({
       case 'search':
         return `${searchTerm} AI Tools - Search Results | AI Web Tools Directory`;
       default:
-        return 'AI Web Tools - #1 AI Tools Directory | 2195+ Best Free AI Tools 2026';
+        return 'AI Web Tools — 4,000+ Best Free AI Tools 2026';
     }
   };
 
@@ -39,7 +39,7 @@ const ImprovedSEOHead: React.FC<ImprovedSEOHeadProps> = ({
       case 'search':
         return `Find the best AI tools for "${searchTerm}". Browse our comprehensive directory of AI tools with reviews, features, and direct access links.`;
       default:
-        return 'Discover 2195+ free AI tools for productivity, creativity, business, coding & design. The world\'s largest AI directory with ChatGPT alternatives, custom GPTs & more. Updated daily 2026.';
+        return 'Discover 4,000+ free AI tools: ChatGPT alternatives, custom GPTs, AI agents, image, writing & business AI. Updated daily.';
     }
   };
 

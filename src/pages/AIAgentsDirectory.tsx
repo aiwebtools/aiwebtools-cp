@@ -5,7 +5,7 @@ const AIAgentsDirectory = () => {
   return (
     <>
       <Helmet>
-        <title>AI Agents Directory - Best AI Agents & Autonomous AI Systems 2026</title>
+        <title>AI Agents Directory — Best AI Agents 2026</title>
         <meta name="description" content="Discover the best AI agents and autonomous AI systems. Compare intelligent agents, AI assistants, and automated AI solutions for business and personal use." />
         <meta name="keywords" content="ai agents, autonomous ai, intelligent agents, ai assistants, automated ai, ai bots, conversational ai, virtual agents, smart agents, ai automation, ai workforce, digital agents" />
         <link rel="canonical" href="https://aitools.studio/ai-agents-directory" />
