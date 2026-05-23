@@ -1,7 +1,7 @@
-import { useState, useCallback, useRef, TouchEvent, useEffect } from "react";
+import { useState, useCallback, useRef, TouchEvent, useEffect, useMemo } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-const images = [
+const ALL_IMAGES = [
   { src: "/images/inspiration/kingdom-of-light-fathers-face.jpg", alt: "Kingdom of Light Through the Father's Face - The Black Hole of Fire vs the Kingdom of Light, the path before each soul" },
   { src: "/images/inspiration/world-peace.jpg", alt: "World Peace - Put the guns down and the fear of each other away" },
   { src: "/images/inspiration/mirror-reflection.jpg", alt: "Mirror Reflection - Be proud of yourself for balancing it all" },
@@ -72,6 +72,16 @@ const images = [
 ];
 
 const InspirationCarousel = () => {
+  // Keep first image fixed; randomize the order of the rest on every mount
+  const images = useMemo(() => {
+    const [first, ...rest] = ALL_IMAGES;
+    for (let i = rest.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [rest[i], rest[j]] = [rest[j], rest[i]];
+    }
+    return [first, ...rest];
+  }, []);
+
   const [currentIndex, setCurrentIndex] = useState(0);
   const touchStartX = useRef<number | null>(null);
 
