@@ -23,7 +23,7 @@ import {
   Cloud,
   List,
   FlaskConical,
-  Atom,
+  Atom
 } from "lucide-react";
 
 import perplexityAiHero from "@/assets/tools/perplexity-ai-hero.jpg";
