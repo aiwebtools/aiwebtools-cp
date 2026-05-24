@@ -23,8 +23,7 @@ import {
   Cloud,
   List,
   FlaskConical,
-  Atom,
-  Building
+  Atom
 } from "lucide-react";
 
 import perplexityAiHero from "@/assets/tools/perplexity-ai-hero.jpg";
@@ -69,17 +68,5 @@ export const aiToolsAndUtilities: Tool[] = [
     category: "AI Tools To Run LOCALLY",
     rating: 4.1,
     totalVotes: 1987
-  },
-  {
-    icon: Building,
-    title: "AI WEB TOOLS",
-    description: "Comprehensive AI Tool Directory & Portfolio showcasing the latest and most innovative AI tools and technologies across all categories.",
-    emoji: "🏢",
-    color: "from-cyan-500 to-blue-600",
-    directUrl: "https://aiwebtools.lovable.app/?via=aiwebtools",
-    tags: ["AI directory", "portfolio", "tools collection", "AI resources", "comprehensive", "innovation"],
-    category: "AI Tools & Utilities",
-    rating: 4.8,
-    totalVotes: 2567
   }
 ];
