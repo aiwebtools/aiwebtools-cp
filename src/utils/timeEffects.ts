@@ -236,11 +236,12 @@ export const createTimePortalEffect = (
   // Special sentinel: trigger CSV download of the complete tool directory
   const isCsvDownload = destinationUrl?.startsWith('csv-download://');
 
-  // Remove flash after 80ms, THEN open URL or trigger download
-  setTimeout(async () => {
-    elements.forEach(el => el.remove());
-    if (isCsvDownload) {
-      console.log('📥 CSV download sentinel detected — exporting full directory');
+  // CRITICAL: open the URL SYNCHRONOUSLY inside the click handler so the
+  // browser preserves the user-gesture and never blocks the new tab.
+  // Visual flash runs in parallel and is cleaned up shortly after.
+  if (isCsvDownload) {
+    console.log('📥 CSV download sentinel detected — exporting full directory');
+    (async () => {
       try {
         const [{ allTools }, { downloadToolsCSV }, { createConfettiCelebration }] = await Promise.all([
           import('@/data/toolsData'),
@@ -252,13 +253,16 @@ export const createTimePortalEffect = (
       } catch (err) {
         console.error('CSV download failed:', err);
       }
-      return;
-    }
-    console.log('🚀 Opening URL:', destinationUrl);
-    if (destinationUrl && destinationUrl.trim()) {
-      openDestinationUrl(destinationUrl);
-    }
-  }, 80);
+    })();
+  } else if (destinationUrl && destinationUrl.trim()) {
+    console.log('🚀 Opening URL (sync, preserves user gesture):', destinationUrl);
+    openDestinationUrl(destinationUrl);
+  }
+
+  // Clean up the flash visuals after 250ms (decoupled from navigation)
+  setTimeout(() => {
+    elements.forEach(el => { try { el.remove(); } catch {} });
+  }, 250);
 };
 
 // Ultra-brief green matrix flash - returns elements for cleanup
