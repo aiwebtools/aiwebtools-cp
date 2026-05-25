@@ -1,5 +1,5 @@
 
-import { useState, useEffect, useRef, useCallback, useMemo } from "react";
+import { useState, useEffect, useRef, useCallback, useMemo, startTransition } from "react";
 import { useNavigate } from "react-router-dom";
 import { allTools } from "@/data/toolsData";
 import { searchTools } from "@/utils/searchUtils";
@@ -2000,9 +2000,11 @@ export const useGlobalSearch = () => {
 
     const t = value.trim();
     if (!t) {
-      setSearchResults([]);
-      setIsOpen(false);
-      setDisplayedCount(50);
+      startTransition(() => {
+        setSearchResults([]);
+        setIsOpen(false);
+        setDisplayedCount(50);
+      });
       lastInputTimeRef.current = 0;
       return;
     }
@@ -2017,18 +2019,20 @@ export const useGlobalSearch = () => {
     const now = performance.now();
     const timeSinceLastInput = now - lastInputTimeRef.current;
     lastInputTimeRef.current = now;
-    const isRapidTyping = timeSinceLastInput < 100; // Rapid keystrokes < 100ms apart
+    const isRapidTyping = timeSinceLastInput < 120; // Rapid keystrokes < 120ms apart
     // Longer delay for rapid typing to batch keystrokes; also scale with query length
-    const quickDelay = isRapidTyping ? (cappedT.length > 15 ? 20 : 10) : 0;
+    const quickDelay = isRapidTyping ? (cappedT.length > 15 ? 40 : 25) : 0;
 
     // 3) Check cache FIRST - if hit, apply results in next frame (zero compute)
     const fullCacheKey = `${SEARCH_CACHE_VERSION}:full:${cappedT.toLowerCase().trim()}`;
     const cachedFull = searchCache.get(fullCacheKey);
     if (cachedFull) {
-      // Cache hit - apply immediately for zero blocking
+      // Cache hit - apply in a transition so the input keeps up with typing
       if (currentId === searchIdRef.current) {
-        setSearchResults(cachedFull);
-        setDisplayedCount(50);
+        startTransition(() => {
+          setSearchResults(cachedFull);
+          setDisplayedCount(50);
+        });
       }
       return;
     }
@@ -2037,15 +2041,18 @@ export const useGlobalSearch = () => {
     quickRef.current = setTimeout(() => {
       if (currentId !== searchIdRef.current) return;
       const fast = quickSearch(cappedT);
-      setSearchResults(fast);
-      setDisplayedCount(50);
+      if (currentId !== searchIdRef.current) return;
+      startTransition(() => {
+        setSearchResults(fast);
+        setDisplayedCount(50);
+      });
     }, quickDelay);
 
     // 5) Full intelligent ranking for 3+ chars - adaptive debounce (main thread with requestIdleCallback)
     if (cappedT.length >= 3) {
       const fullDelay = isRapidTyping 
-        ? (cappedT.length > 15 ? 180 : 120) 
-        : (cappedT.length > 15 ? 120 : 80);
+        ? (cappedT.length > 15 ? 220 : 160) 
+        : (cappedT.length > 15 ? 140 : 100);
 
       fullRef.current = setTimeout(() => {
         if (currentId !== searchIdRef.current) return;
@@ -2054,10 +2061,13 @@ export const useGlobalSearch = () => {
         const runSearch = () => {
           if (currentId !== searchIdRef.current) return;
           const fallbackResults = searchTools(allTools, cappedT);
+          if (currentId !== searchIdRef.current) return;
           const promoted = promoteExactTitleMatches(fallbackResults, cappedT);
           searchCache.set(fullCacheKey, promoted);
-          setSearchResults(promoted);
-          setDisplayedCount(50);
+          startTransition(() => {
+            setSearchResults(promoted);
+            setDisplayedCount(50);
+          });
         };
 
         if ('requestIdleCallback' in window) {
