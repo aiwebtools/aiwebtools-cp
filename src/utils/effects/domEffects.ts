@@ -285,6 +285,10 @@ const showLinkErrorToast = (url: string) => {
 };
 
 const tryAnchorClick = (url: string): boolean => {
+  // NOTE: anchor.click() never reports popup-blocker failure, so we treat
+  // it as a best-effort assist rather than a definitive success. The caller
+  // should still rely on window.open() (which DOES report blockage) as the
+  // authoritative signal.
   try {
     const a = document.createElement('a');
     a.href = url;
@@ -317,9 +321,7 @@ export const openDestinationUrl = (destinationUrl: string): void => {
   }
 
   const url = destinationUrl.trim();
-  const MAX_ATTEMPTS = 3;
-  const RETRY_DELAY_MS = 200;
-  const HARD_TIMEOUT_MS = 1200;
+  const HARD_TIMEOUT_MS = 800;
   let resolved = false;
 
   // Hard-timeout safety net: if no strategy succeeded, navigate same-tab so
@@ -341,31 +343,32 @@ export const openDestinationUrl = (destinationUrl: string): void => {
     clearTimeout(safetyTimer);
   };
 
-  const attempt = (n: number) => {
-    if (resolved) return;
-    // Strategy 1: anchor click
-    if (tryAnchorClick(url)) {
-      markResolved();
-      return;
-    }
-    // Strategy 2: window.open
-    if (tryWindowOpen(url)) {
-      markResolved();
-      return;
-    }
-    // Retry
-    if (n < MAX_ATTEMPTS) {
-      setTimeout(() => attempt(n + 1), RETRY_DELAY_MS * n);
-      return;
-    }
-    // All retries exhausted — same-tab fallback (before safety timer)
+  // Heuristic: if the page loses focus / becomes hidden shortly after we
+  // try to open the URL, a new tab/window successfully took focus.
+  const onBlurOrHidden = () => {
     markResolved();
-    try {
-      window.location.href = url;
-    } catch {
-      showLinkErrorToast(url);
-    }
+    window.removeEventListener('blur', onBlurOrHidden);
+    document.removeEventListener('visibilitychange', onVisChange);
   };
+  const onVisChange = () => { if (document.hidden) onBlurOrHidden(); };
+  window.addEventListener('blur', onBlurOrHidden, { once: true });
+  document.addEventListener('visibilitychange', onVisChange);
 
-  attempt(1);
+  // Strategy 1: anchor click (works in most browsers, including some cases
+  // where window.open is blocked by COOP/CSP).
+  const anchorOk = tryAnchorClick(url);
+
+  // Strategy 2: window.open as a second attempt — its null return is the
+  // only reliable signal that a popup was blocked.
+  const winOk = tryWindowOpen(url);
+
+  // If BOTH explicit attempts failed synchronously, fall back same-tab now.
+  if (!anchorOk && !winOk) {
+    markResolved();
+    try { window.location.href = url; } catch { showLinkErrorToast(url); }
+    return;
+  }
+
+  // Otherwise rely on blur/visibility detection (or the safety timer) to
+  // confirm/recover. User will never be stuck on a portal/loading overlay.
 };
