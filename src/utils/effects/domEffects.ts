@@ -321,7 +321,7 @@ export const openDestinationUrl = (destinationUrl: string): void => {
   }
 
   const url = destinationUrl.trim();
-  const HARD_TIMEOUT_MS = 600;
+  const HARD_TIMEOUT_MS = 800;
   let resolved = false;
 
   // Hard-timeout safety net: if no strategy succeeded, navigate same-tab so
@@ -343,17 +343,32 @@ export const openDestinationUrl = (destinationUrl: string): void => {
     clearTimeout(safetyTimer);
   };
 
-  // Strategy 1: window.open — authoritative success/failure signal.
-  // Must run SYNCHRONOUSLY from the click handler to preserve user gesture.
-  if (tryWindowOpen(url)) {
+  // Heuristic: if the page loses focus / becomes hidden shortly after we
+  // try to open the URL, a new tab/window successfully took focus.
+  const onBlurOrHidden = () => {
     markResolved();
+    window.removeEventListener('blur', onBlurOrHidden);
+    document.removeEventListener('visibilitychange', onVisChange);
+  };
+  const onVisChange = () => { if (document.hidden) onBlurOrHidden(); };
+  window.addEventListener('blur', onBlurOrHidden, { once: true });
+  document.addEventListener('visibilitychange', onVisChange);
+
+  // Strategy 1: anchor click (works in most browsers, including some cases
+  // where window.open is blocked by COOP/CSP).
+  const anchorOk = tryAnchorClick(url);
+
+  // Strategy 2: window.open as a second attempt — its null return is the
+  // only reliable signal that a popup was blocked.
+  const winOk = tryWindowOpen(url);
+
+  // If BOTH explicit attempts failed synchronously, fall back same-tab now.
+  if (!anchorOk && !winOk) {
+    markResolved();
+    try { window.location.href = url; } catch { showLinkErrorToast(url); }
     return;
   }
 
-  // Strategy 2: anchor click — sometimes succeeds where window.open is blocked
-  // (e.g. some COOP/CSP cases). Best-effort, doesn't report failure.
-  tryAnchorClick(url);
-
-  // The safety timer will navigate same-tab if nothing actually opened.
-  // Users will never be stuck on a portal/loading overlay again.
+  // Otherwise rely on blur/visibility detection (or the safety timer) to
+  // confirm/recover. User will never be stuck on a portal/loading overlay.
 };
