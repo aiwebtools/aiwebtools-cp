@@ -285,6 +285,10 @@ const showLinkErrorToast = (url: string) => {
 };
 
 const tryAnchorClick = (url: string): boolean => {
+  // NOTE: anchor.click() never reports popup-blocker failure, so we treat
+  // it as a best-effort assist rather than a definitive success. The caller
+  // should still rely on window.open() (which DOES report blockage) as the
+  // authoritative signal.
   try {
     const a = document.createElement('a');
     a.href = url;
@@ -317,9 +321,7 @@ export const openDestinationUrl = (destinationUrl: string): void => {
   }
 
   const url = destinationUrl.trim();
-  const MAX_ATTEMPTS = 3;
-  const RETRY_DELAY_MS = 200;
-  const HARD_TIMEOUT_MS = 1200;
+  const HARD_TIMEOUT_MS = 600;
   let resolved = false;
 
   // Hard-timeout safety net: if no strategy succeeded, navigate same-tab so
@@ -341,31 +343,17 @@ export const openDestinationUrl = (destinationUrl: string): void => {
     clearTimeout(safetyTimer);
   };
 
-  const attempt = (n: number) => {
-    if (resolved) return;
-    // Strategy 1: anchor click
-    if (tryAnchorClick(url)) {
-      markResolved();
-      return;
-    }
-    // Strategy 2: window.open
-    if (tryWindowOpen(url)) {
-      markResolved();
-      return;
-    }
-    // Retry
-    if (n < MAX_ATTEMPTS) {
-      setTimeout(() => attempt(n + 1), RETRY_DELAY_MS * n);
-      return;
-    }
-    // All retries exhausted — same-tab fallback (before safety timer)
+  // Strategy 1: window.open — authoritative success/failure signal.
+  // Must run SYNCHRONOUSLY from the click handler to preserve user gesture.
+  if (tryWindowOpen(url)) {
     markResolved();
-    try {
-      window.location.href = url;
-    } catch {
-      showLinkErrorToast(url);
-    }
-  };
+    return;
+  }
 
-  attempt(1);
+  // Strategy 2: anchor click — sometimes succeeds where window.open is blocked
+  // (e.g. some COOP/CSP cases). Best-effort, doesn't report failure.
+  tryAnchorClick(url);
+
+  // The safety timer will navigate same-tab if nothing actually opened.
+  // Users will never be stuck on a portal/loading overlay again.
 };
