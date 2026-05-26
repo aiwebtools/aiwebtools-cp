@@ -19,6 +19,33 @@ const shuffleArray = <T,>(array: T[]): T[] => {
 
 const BOOK_CAROUSEL_VIDEO_EVENT = 'book-carousel-video-starting';
 
+// Load YouTube IFrame API once, return a promise that resolves when window.YT is ready.
+let ytApiPromise: Promise<any> | null = null;
+const loadYouTubeAPI = (): Promise<any> => {
+  if (typeof window === 'undefined') return Promise.reject('no window');
+  if ((window as any).YT && (window as any).YT.Player) {
+    return Promise.resolve((window as any).YT);
+  }
+  if (ytApiPromise) return ytApiPromise;
+  ytApiPromise = new Promise((resolve) => {
+    const prev = (window as any).onYouTubeIframeAPIReady;
+    (window as any).onYouTubeIframeAPIReady = () => {
+      if (typeof prev === 'function') {
+        try { prev(); } catch {}
+      }
+      resolve((window as any).YT);
+    };
+    if (!document.querySelector('script[data-yt-iframe-api]')) {
+      const s = document.createElement('script');
+      s.src = 'https://www.youtube.com/iframe_api';
+      s.async = true;
+      s.setAttribute('data-yt-iframe-api', 'true');
+      document.head.appendChild(s);
+    }
+  });
+  return ytApiPromise;
+};
+
 // Lazy YouTube component for book section with play state callback and end detection
 const LazyBookVideo = ({ 
   videoId, 
@@ -38,16 +65,19 @@ const LazyBookVideo = ({
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const playerInstanceId = useRef(`book-video-${Math.random().toString(36).slice(2)}`);
   const autoPlayStartedRef = useRef(false);
+  const playerRef = useRef<any>(null);
+  const onEndRef = useRef(onEnd);
+  useEffect(() => { onEndRef.current = onEnd; }, [onEnd]);
   const thumbnailUrl = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
 
   const stopCurrentVideo = useCallback((resetToThumbnail = false) => {
+    if (playerRef.current) {
+      try { playerRef.current.destroy?.(); } catch {}
+      playerRef.current = null;
+    }
     const iframe = iframeRef.current;
     if (iframe) {
       try {
-        iframe.contentWindow?.postMessage(
-          JSON.stringify({ event: 'command', func: 'pauseVideo', args: [] }),
-          'https://www.youtube-nocookie.com'
-        );
         iframe.src = 'about:blank';
       } catch {
         // ignore YouTube iframe teardown errors
@@ -106,72 +136,53 @@ const LazyBookVideo = ({
     onPlay?.();
   };
 
-  // Listen for video end via YouTube iframe API
+  // Attach YouTube IFrame Player API to detect end-of-video reliably.
   useEffect(() => {
-    if (!isLoaded || !onEnd) return;
+    if (!isLoaded) return;
+    let cancelled = false;
+    let safetyTimer: ReturnType<typeof setTimeout> | null = null;
 
-    const iframe = iframeRef.current;
-    if (!iframe) return;
-
-    // Subscribe to YouTube iframe state-change events.
-    // The YT iframe API requires us to post a "listening" handshake AND
-    // an addEventListener command before it will emit onStateChange.
-    const subscribe = () => {
+    loadYouTubeAPI().then((YT) => {
+      if (cancelled || !iframeRef.current) return;
       try {
-        iframe.contentWindow?.postMessage(
-          JSON.stringify({ event: 'listening', id: videoId, channel: 'widget' }),
-          'https://www.youtube-nocookie.com'
-        );
-        iframe.contentWindow?.postMessage(
-          JSON.stringify({
-            event: 'command',
-            func: 'addEventListener',
-            args: ['onStateChange'],
-            id: videoId,
-            channel: 'widget',
-          }),
-          'https://www.youtube-nocookie.com'
-        );
-      } catch {
-        // ignore
-      }
-    };
+        playerRef.current = new YT.Player(iframeRef.current, {
+          events: {
+            onReady: (e: any) => {
+              try {
+                e.target.unMute?.();
+                e.target.playVideo?.();
+                // Safety: schedule fallback advance based on duration
+                const dur = e.target.getDuration?.();
+                if (dur && dur > 0 && onEndRef.current) {
+                  if (safetyTimer) clearTimeout(safetyTimer);
+                  safetyTimer = setTimeout(() => {
+                    onEndRef.current?.();
+                  }, (dur + 1.5) * 1000);
+                }
+              } catch {}
+            },
+            onStateChange: (e: any) => {
+              // 0 = ended
+              if (e.data === 0) {
+                onEndRef.current?.();
+              }
+            },
+          },
+        });
+      } catch {}
+    }).catch(() => {});
 
-    // Subscribe once the iframe has loaded, and again after a short delay
-    // in case the load already happened.
-    iframe.addEventListener('load', subscribe);
-    const t1 = setTimeout(subscribe, 500);
-    const t2 = setTimeout(subscribe, 1500);
-
-    const handleMessage = (event: MessageEvent) => {
-      if (event.origin !== 'https://www.youtube-nocookie.com') return;
-      if (event.source !== iframe.contentWindow) return;
-      
-      try {
-        const data = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
-        if (data.event === 'onStateChange' && data.info === 0) {
-          // Video ended (state 0)
-          onEnd();
-        }
-      } catch (e) {
-        // Ignore parse errors
-      }
-    };
-
-    window.addEventListener('message', handleMessage);
     return () => {
-      window.removeEventListener('message', handleMessage);
-      iframe.removeEventListener('load', subscribe);
-      clearTimeout(t1);
-      clearTimeout(t2);
+      cancelled = true;
+      if (safetyTimer) clearTimeout(safetyTimer);
     };
-  }, [isLoaded, onEnd, videoId]);
+  }, [isLoaded, videoId]);
 
   if (isLoaded) {
     return (
       <iframe
         ref={iframeRef}
-        src={`https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&mute=0&controls=1&rel=0&modestbranding=1&playsinline=1&fs=1&enablejsapi=1`}
+        src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0&controls=1&rel=0&modestbranding=1&playsinline=1&fs=1&enablejsapi=1&origin=${encodeURIComponent(typeof window !== 'undefined' ? window.location.origin : '')}`}
         className="absolute inset-0 w-full h-full"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         allowFullScreen
