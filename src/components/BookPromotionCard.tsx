@@ -523,11 +523,6 @@ const BookPromotionCard = () => {
       gradient: "from-pink-500/20 to-fuchsia-500/20"
     },
     {
-      id: "O9n0tKbbI2E",
-      title: "AI Web Tools Showcase 43",
-      gradient: "from-violet-500/20 to-purple-500/20"
-    },
-    {
       id: "Uxl3CIeScvg",
       title: "AI Web Tools Showcase 44",
       gradient: "from-purple-500/20 to-pink-500/20"
@@ -592,11 +587,18 @@ const BookPromotionCard = () => {
   // Randomize videos on component mount
   // Pin the newest showcase video first, keep IHY7AlYJhUc at 4th, shuffle the rest
   const videos = useMemo(() => {
-    const firstIdx = originalVideos.findIndex(v => v.id === "W4grI_pqzbk");
-    const fourthIdx = originalVideos.findIndex(v => v.id === "IHY7AlYJhUc");
-    const pinned1 = originalVideos[firstIdx]; // Always first (newest showcase)
-    const pinned4 = originalVideos[fourthIdx]; // Always fourth
-    const rest = originalVideos.filter((_, i) => i !== firstIdx && i !== fourthIdx);
+    // Defensive dedupe by video id so the same clip can never appear twice
+    const seen = new Set<string>();
+    const uniqueVideos = originalVideos.filter(v => {
+      if (seen.has(v.id)) return false;
+      seen.add(v.id);
+      return true;
+    });
+    const firstIdx = uniqueVideos.findIndex(v => v.id === "W4grI_pqzbk");
+    const fourthIdx = uniqueVideos.findIndex(v => v.id === "IHY7AlYJhUc");
+    const pinned1 = uniqueVideos[firstIdx]; // Always first (newest showcase)
+    const pinned4 = uniqueVideos[fourthIdx]; // Always fourth
+    const rest = uniqueVideos.filter((_, i) => i !== firstIdx && i !== fourthIdx);
     const shuffled = shuffleArray(rest);
     // Insert pinned4 at index 3 (4th position)
     return [pinned1, shuffled[0], shuffled[1], pinned4, ...shuffled.slice(2)];
