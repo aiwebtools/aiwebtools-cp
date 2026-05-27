@@ -75,15 +75,10 @@ const LazyBookVideo = ({
       try { playerRef.current.destroy?.(); } catch {}
       playerRef.current = null;
     }
-    const iframe = iframeRef.current;
-    if (iframe) {
-      try {
-        iframe.src = 'about:blank';
-      } catch {
-        // ignore YouTube iframe teardown errors
-      }
-    }
-
+    // YT.Player.destroy() removes the iframe element from the DOM,
+    // so any stale reference must be cleared to avoid attaching a new
+    // player to a detached node on the next cycle.
+    iframeRef.current = null;
     if (resetToThumbnail) setIsLoaded(false);
   }, []);
 
@@ -143,9 +138,13 @@ const LazyBookVideo = ({
     let safetyTimer: ReturnType<typeof setTimeout> | null = null;
 
     loadYouTubeAPI().then((YT) => {
-      if (cancelled || !iframeRef.current) return;
+      if (cancelled) return;
+      const el = iframeRef.current;
+      // Bail out if the iframe was unmounted or detached during the
+      // async API load (happens when users skip videos quickly).
+      if (!el || !el.isConnected) return;
       try {
-        playerRef.current = new YT.Player(iframeRef.current, {
+        playerRef.current = new YT.Player(el, {
           events: {
             onReady: (e: any) => {
               try {
@@ -175,6 +174,10 @@ const LazyBookVideo = ({
     return () => {
       cancelled = true;
       if (safetyTimer) clearTimeout(safetyTimer);
+      if (playerRef.current) {
+        try { playerRef.current.destroy?.(); } catch {}
+        playerRef.current = null;
+      }
     };
   }, [isLoaded, videoId]);
 
