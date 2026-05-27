@@ -75,15 +75,10 @@ const LazyBookVideo = ({
       try { playerRef.current.destroy?.(); } catch {}
       playerRef.current = null;
     }
-    const iframe = iframeRef.current;
-    if (iframe) {
-      try {
-        iframe.src = 'about:blank';
-      } catch {
-        // ignore YouTube iframe teardown errors
-      }
-    }
-
+    // YT.Player.destroy() removes the iframe element from the DOM,
+    // so any stale reference must be cleared to avoid attaching a new
+    // player to a detached node on the next cycle.
+    iframeRef.current = null;
     if (resetToThumbnail) setIsLoaded(false);
   }, []);
 
@@ -143,9 +138,13 @@ const LazyBookVideo = ({
     let safetyTimer: ReturnType<typeof setTimeout> | null = null;
 
     loadYouTubeAPI().then((YT) => {
-      if (cancelled || !iframeRef.current) return;
+      if (cancelled) return;
+      const el = iframeRef.current;
+      // Bail out if the iframe was unmounted or detached during the
+      // async API load (happens when users skip videos quickly).
+      if (!el || !el.isConnected) return;
       try {
-        playerRef.current = new YT.Player(iframeRef.current, {
+        playerRef.current = new YT.Player(el, {
           events: {
             onReady: (e: any) => {
               try {
@@ -175,6 +174,10 @@ const LazyBookVideo = ({
     return () => {
       cancelled = true;
       if (safetyTimer) clearTimeout(safetyTimer);
+      if (playerRef.current) {
+        try { playerRef.current.destroy?.(); } catch {}
+        playerRef.current = null;
+      }
     };
   }, [isLoaded, videoId]);
 
@@ -592,6 +595,11 @@ const BookPromotionCard = () => {
       id: "bhC9aTQGbGI",
       title: "AI Web Tools 9:16 Vertical Showcase 5",
       gradient: "from-amber-500/20 to-rose-500/20"
+    },
+    {
+      id: "qxIYhAAkko8",
+      title: "AI Web Tools 9:16 Vertical Showcase 6",
+      gradient: "from-indigo-500/20 to-purple-500/20"
     }
   ];
 
@@ -928,7 +936,7 @@ const BookPromotionCard = () => {
 
                 {/* Mobile: Carousel with swipe and lazy loading */}
                 <div 
-                  className="md:hidden relative overflow-hidden select-none"
+                  className="md:hidden relative overflow-visible select-none px-2"
                   onTouchStart={handleTouchStart}
                   onTouchMove={handleTouchMove}
                   onTouchEnd={handleTouchEnd}
@@ -945,9 +953,9 @@ const BookPromotionCard = () => {
                             onClick={prevVideo}
                             type="button"
                             aria-label="Previous video"
-                            className="absolute left-0 top-1/2 -translate-y-1/2 z-30 w-10 h-10 flex items-center justify-center bg-green-900/90 rounded-full text-green-400 border border-green-500/40 transition-colors duration-150 active:bg-green-700 focus:outline-none cursor-pointer shadow-lg"
+                            className="absolute -left-1 top-1/2 -translate-y-1/2 z-40 w-11 h-11 flex items-center justify-center bg-green-900/95 rounded-full text-green-300 border-2 border-green-400/70 transition-colors duration-150 active:bg-green-700 focus:outline-none cursor-pointer shadow-[0_0_15px_rgba(0,255,0,0.4)]"
                           >
-                            <ChevronLeft size={20} className="pointer-events-none" />
+                            <ChevronLeft size={22} className="pointer-events-none" />
                           </button>
 
                           <div
@@ -1009,9 +1017,9 @@ const BookPromotionCard = () => {
                             onClick={nextVideo}
                             type="button"
                             aria-label="Next video"
-                            className="absolute right-0 top-1/2 -translate-y-1/2 z-30 w-10 h-10 flex items-center justify-center bg-green-900/90 rounded-full text-green-400 border border-green-500/40 transition-colors duration-150 active:bg-green-700 focus:outline-none cursor-pointer shadow-lg"
+                            className="absolute -right-1 top-1/2 -translate-y-1/2 z-40 w-11 h-11 flex items-center justify-center bg-green-900/95 rounded-full text-green-300 border-2 border-green-400/70 transition-colors duration-150 active:bg-green-700 focus:outline-none cursor-pointer shadow-[0_0_15px_rgba(0,255,0,0.4)]"
                           >
-                            <ChevronRight size={20} className="pointer-events-none" />
+                            <ChevronRight size={22} className="pointer-events-none" />
                           </button>
                         </>
                       );
