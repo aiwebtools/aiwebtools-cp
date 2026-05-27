@@ -936,7 +936,7 @@ const BookPromotionCard = () => {
 
                 {/* Mobile: Carousel with swipe and lazy loading */}
                 <div 
-                  className="md:hidden relative overflow-hidden select-none"
+                  className="md:hidden relative overflow-visible select-none px-2"
                   onTouchStart={handleTouchStart}
                   onTouchMove={handleTouchMove}
                   onTouchEnd={handleTouchEnd}
@@ -953,9 +953,9 @@ const BookPromotionCard = () => {
                             onClick={prevVideo}
                             type="button"
                             aria-label="Previous video"
-                            className="absolute left-0 top-1/2 -translate-y-1/2 z-30 w-10 h-10 flex items-center justify-center bg-green-900/90 rounded-full text-green-400 border border-green-500/40 transition-colors duration-150 active:bg-green-700 focus:outline-none cursor-pointer shadow-lg"
+                            className="absolute -left-1 top-1/2 -translate-y-1/2 z-40 w-11 h-11 flex items-center justify-center bg-green-900/95 rounded-full text-green-300 border-2 border-green-400/70 transition-colors duration-150 active:bg-green-700 focus:outline-none cursor-pointer shadow-[0_0_15px_rgba(0,255,0,0.4)]"
                           >
-                            <ChevronLeft size={20} className="pointer-events-none" />
+                            <ChevronLeft size={22} className="pointer-events-none" />
                           </button>
 
                           <div
@@ -1017,9 +1017,9 @@ const BookPromotionCard = () => {
                             onClick={nextVideo}
                             type="button"
                             aria-label="Next video"
-                            className="absolute right-0 top-1/2 -translate-y-1/2 z-30 w-10 h-10 flex items-center justify-center bg-green-900/90 rounded-full text-green-400 border border-green-500/40 transition-colors duration-150 active:bg-green-700 focus:outline-none cursor-pointer shadow-lg"
+                            className="absolute -right-1 top-1/2 -translate-y-1/2 z-40 w-11 h-11 flex items-center justify-center bg-green-900/95 rounded-full text-green-300 border-2 border-green-400/70 transition-colors duration-150 active:bg-green-700 focus:outline-none cursor-pointer shadow-[0_0_15px_rgba(0,255,0,0.4)]"
                           >
-                            <ChevronRight size={20} className="pointer-events-none" />
+                            <ChevronRight size={22} className="pointer-events-none" />
                           </button>
                         </>
                       );
