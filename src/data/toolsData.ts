@@ -540,6 +540,9 @@ const allToolCategories = consolidateTools([
   // Hot New Batch March 2026 (25 tools)
   ...hotNewBatch2026March,
 
+  // Top New Batch May 2026 (5 tools: Manus, Genspark, Higgsfield, Lindy, Cluely)
+  ...topNewBatch2026May,
+
   // Game, VR & 3D Creation Batch 2026 (30 tools)
   ...gameVR3DBatch2026,
 
