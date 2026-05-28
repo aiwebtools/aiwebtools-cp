@@ -222,6 +222,7 @@ import { toolifyBatch2026B20 } from "./tools/toolifyBatch2026B20";
 import { toolifyBatch2026B21 } from "./tools/toolifyBatch2026B21";
 import { apocalypseSurvivalBatch2026 } from "./tools/apocalypseSurvivalBatch2026";
 import { hotNewBatch2026March } from "./tools/hotNewBatch2026March";
+import { topNewBatch2026May } from "./tools/topNewBatch2026May";
 import { apocalypseSurvivalBatch2026B2 } from "./tools/apocalypseSurvivalBatch2026B2";
 import { researchedToolsBatch2026 } from "./tools/researchedToolsBatch2026";
 import { newVerifiedBatch2026 } from "./tools/newVerifiedBatch2026";
@@ -538,6 +539,9 @@ const allToolCategories = consolidateTools([
 
   // Hot New Batch March 2026 (25 tools)
   ...hotNewBatch2026March,
+
+  // Top New Batch May 2026 (5 tools: Manus, Genspark, Higgsfield, Lindy, Cluely)
+  ...topNewBatch2026May,
 
   // Game, VR & 3D Creation Batch 2026 (30 tools)
   ...gameVR3DBatch2026,
