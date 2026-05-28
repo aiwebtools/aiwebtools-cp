@@ -618,14 +618,24 @@ const BookPromotionCard = () => {
       seen.add(v.id);
       return true;
     });
-    const firstIdx = uniqueVideos.findIndex(v => v.id === "W4grI_pqzbk");
-    const fourthIdx = uniqueVideos.findIndex(v => v.id === "IHY7AlYJhUc");
-    const pinned1 = uniqueVideos[firstIdx]; // Always first (newest showcase)
-    const pinned4 = uniqueVideos[fourthIdx]; // Always fourth
-    const rest = uniqueVideos.filter((_, i) => i !== firstIdx && i !== fourthIdx);
-    const shuffled = shuffleArray(rest);
-    // Insert pinned4 at index 3 (4th position)
-    return [pinned1, shuffled[0], shuffled[1], pinned4, ...shuffled.slice(2)];
+    // Pin the longer 9:16 vertical music-video showcases at the FRONT of the
+    // lineup (they're the longest, most cinematic clips and should lead the reel).
+    const verticalMusicVideoIds = [
+      "AFwPVOQV0SE",
+      "M5l6VJAh2-Y",
+      "FHEWZkP_3ew",
+      "TlAgmV_2hXs",
+      "bhC9aTQGbGI",
+      "qxIYhAAkko8",
+      "1yajmSLnPTs",
+    ];
+    const verticalSet = new Set(verticalMusicVideoIds);
+    const verticals = verticalMusicVideoIds
+      .map(id => uniqueVideos.find(v => v.id === id))
+      .filter((v): v is typeof uniqueVideos[number] => Boolean(v));
+    const rest = uniqueVideos.filter(v => !verticalSet.has(v.id));
+    const shuffledRest = shuffleArray(rest);
+    return [...verticals, ...shuffledRest];
   }, []);
 
   const videosPerPage = 3;
