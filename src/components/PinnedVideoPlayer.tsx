@@ -654,7 +654,13 @@ const PinnedVideoPlayer = memo(() => {
         // Only advance if video has been playing for at least 8 seconds
         // This prevents false "ended" signals during loading
         const timeSinceStart = Date.now() - videoStartTimeRef.current;
-        const MIN_PLAY_TIME = 9000; // 9 seconds minimum
+        // For music mode: require ~90% of the detected duration before
+        // treating an "ended" signal as real. This prevents long music
+        // videos from skipping early due to spurious state changes.
+        const detected = detectedDurationRef.current;
+        const MIN_PLAY_TIME = isMusicMode && detected
+          ? Math.max(9000, detected * 1000 * 0.9)
+          : 9000;
         
         // Check for video ended state (state 0 = ended)
         if (data?.event === "onStateChange" && data?.info === 0) {
