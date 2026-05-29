@@ -115,8 +115,9 @@ export const offlineDownloadableBatch2026: Tool[] = [
     tags: [
       "MLC Chat", "MLC LLM", "MLC", "mlc-chat", "mlc llm chat",
       "MOBILE APP", "mobile app", "iOS app", "Android app", "iPhone AI",
-      "offline AI", "offline LLM mobile", "on-device AI", "on device LLM",
-      "downloadable AI", "local AI phone", "private mobile AI", "airplane mode AI",
+      "offline", "offline AI", "offline LLM mobile", "downloadable", "downloadable AI",
+      "on-device", "on device", "on-device AI", "on device LLM",
+      "local AI phone", "private mobile AI", "airplane mode AI",
       "PocketPal alternative", "Enchanted alternative", "Layla alternative",
       "Llama on phone", "Phi-3 mobile", "Gemma mobile", "Mistral mobile", "Qwen mobile",
       "free AI tool", "open source mobile AI", "MIT license AI",
