@@ -706,13 +706,20 @@ const PinnedVideoPlayer = memo(() => {
   }, []);
 
   const handleToolClick = useCallback(() => {
+    if (isMusicMode) {
+      // Open the Music Video Maker AI Studio tool in a new tab
+      try {
+        window.open(MUSIC_VIDEO_TOOL_URL, '_blank', 'noopener,noreferrer');
+      } catch {}
+      return;
+    }
     if (!currentTool) return;
     
     // Generate URL slug from tool title
     const slug = slugifyToolTitle(currentTool.title);
     
     navigate(`/tool/${slug}`);
-  }, [currentTool, navigate]);
+  }, [currentTool, navigate, isMusicMode]);
 
   const toggleMute = useCallback(() => {
     setIsMuted(prev => {
