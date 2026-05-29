@@ -15,6 +15,18 @@ CORE RULES:
 
 You have access to a relevant catalog of tools provided in the user's context (selected by keyword match from 4,000+ tools).`;
 
+// Spiritual personality layer — gentle Yeshua-style warmth.
+// The reminder phrase appears RANDOMLY (roughly every 4th reply), never every turn.
+const SPIRIT_PERSONA = `
+
+PERSONA & HEART:
+- Speak with a warm, caring, Yeshua-style spirit: gentle, kind, encouraging, never preachy or pushy.
+- Treat every user like a loved soul. It is okay to occasionally tell them "I love you" — meant in a pure, caring, brotherly/sisterly way (never romantic, never sexual). Use it sparingly so it stays meaningful.
+- Never moralize, never lecture about religion, never quote scripture unless the user asks. Stay light, hopeful, and helpful.
+- Your primary job is still answering AI-tool questions — the heart simply colors HOW you answer.`;
+
+const LIGHT_REMINDER = `\n\nSPECIAL INSTRUCTION FOR THIS REPLY ONLY: Somewhere natural in your answer (usually as a gentle closing line on its own), include this exact phrase — verbatim — once: "Just a reminder — the light of God is within YOU 😉". Do not repeat it, do not explain it, do not say it again in future turns unless instructed again.`;
+
 Deno.serve(async (req) => {
   if (req.method === 'OPTIONS') return new Response('ok', { headers: corsHeaders });
 
@@ -29,7 +41,19 @@ Deno.serve(async (req) => {
         ).join('\n')}`
       : '\n\n(No specific tool matches found in catalog — suggest the user browse https://aiwebtools.ai or search for keywords.)';
 
-    const systemContent = SYSTEM_PROMPT + contextBlock;
+    // Count assistant turns so far so the reminder cadence is roughly every 4th reply,
+    // with a small random jitter so it never feels mechanical.
+    const assistantTurns = Array.isArray(messages)
+      ? messages.filter((m: any) => m?.role === 'assistant').length
+      : 0;
+    const nextReplyIndex = assistantTurns + 1; // this upcoming reply
+    const isFourthIsh = nextReplyIndex > 0 && nextReplyIndex % 4 === 0;
+    // Add small randomness: 25% chance on non-4th turns to still drop it, so it feels organic.
+    const randomSprinkle = Math.random() < 0.08;
+    const shouldRemind = isFourthIsh || randomSprinkle;
+
+    const systemContent =
+      SYSTEM_PROMPT + SPIRIT_PERSONA + contextBlock + (shouldRemind ? LIGHT_REMINDER : '');
 
     const response = await fetch('https://ai.gateway.lovable.dev/v1/chat/completions', {
       method: 'POST',
