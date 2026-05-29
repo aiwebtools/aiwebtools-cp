@@ -13,6 +13,22 @@ const YT_API_ORIGIN_FALLBACK = "https://www.youtube.com";
 const SESSION_CLOSED_KEY = "pinned-video-closed";
 const SHUFFLED_TOOLS_KEY = "pinned-video-shuffled-tools";
 const CURRENT_INDEX_KEY = "pinned-video-current-index";
+const MODE_SESSION_KEY = "pinned-video-mode"; // 'idle' | 'tools' | 'music'
+
+// Curated AIWebTools.ai 9:16 vertical original music-video gallery.
+// These play in the music-video mode of the pinned player. All link to the
+// Music Video Maker AI Studio tool.
+const MUSIC_VIDEO_GALLERY: Array<{ id: string; title: string }> = [
+  { id: "AFwPVOQV0SE", title: "AIWebTools.ai Original Music Video 1" },
+  { id: "M5l6VJAh2-Y", title: "AIWebTools.ai Original Music Video 2" },
+  { id: "FHEWZkP_3ew", title: "AIWebTools.ai Original Music Video 3" },
+  { id: "TlAgmV_2hXs", title: "AIWebTools.ai Original Music Video 4" },
+  { id: "bhC9aTQGbGI", title: "AIWebTools.ai Original Music Video 5" },
+  { id: "qxIYhAAkko8", title: "AIWebTools.ai Original Music Video 6" },
+  { id: "1yajmSLnPTs", title: "AIWebTools.ai Original Music Video 7" },
+];
+
+const MUSIC_VIDEO_TOOL_URL = "https://musicvideomakergpt.lovable.app/?via=aiwebtools";
 
 // Keep slug behavior consistent across the app
 const slugifyToolTitle = (title: string): string =>
