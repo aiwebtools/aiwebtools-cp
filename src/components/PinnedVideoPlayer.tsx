@@ -864,7 +864,7 @@ const PinnedVideoPlayer = memo(() => {
         {/* Tool title header with X button - allow wrap */}
         <div className="flex items-start justify-between gap-1 px-1.5 py-1 bg-gradient-to-r from-gray-800 to-gray-900 border-b border-cyan-500/30">
           <p 
-            className="text-[11px] font-bold leading-tight flex-1 line-clamp-2"
+            className="text-[10px] font-bold leading-[1.15] flex-1 line-clamp-3 break-words"
             style={{
               color: '#FFD700',
               textShadow: '0 0 6px #FFD700'
