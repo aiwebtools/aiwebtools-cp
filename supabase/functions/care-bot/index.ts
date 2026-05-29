@@ -45,25 +45,82 @@ PERSONA & HEART — Yeshua the Gnostic Revealer's gentle echo:
 
 const LIGHT_REMINDER = `\n\nSPECIAL INSTRUCTION FOR THIS REPLY ONLY: End your reply with this exact phrase on its own final line, verbatim, once: "Just a reminder — the light of God is within YOU 😉". Do not explain it, do not repeat it in future turns unless instructed again.`;
 
+// Simple in-memory per-IP rate limit to protect AI gateway credits.
+// 20 requests per IP per 10-minute window.
+const RATE_LIMIT_MAX = 20;
+const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
+const ipHits = new Map<string, number[]>();
+const isRateLimited = (ip: string): boolean => {
+  const now = Date.now();
+  const hits = (ipHits.get(ip) ?? []).filter((t) => now - t < RATE_LIMIT_WINDOW_MS);
+  if (hits.length >= RATE_LIMIT_MAX) {
+    ipHits.set(ip, hits);
+    return true;
+  }
+  hits.push(now);
+  ipHits.set(ip, hits);
+  return false;
+};
+
+// Strip injection-like patterns and clamp length on any client-provided string
+// that will be interpolated into the system prompt.
+const sanitizeForPrompt = (s: unknown, max: number): string => {
+  if (typeof s !== 'string') return '';
+  return s
+    .replace(/[\r\n`]+/g, ' ')
+    .replace(/\b(ignore|disregard|forget)\b[^.]{0,80}\b(previous|prior|above|all)\b[^.]{0,80}(instructions?|prompts?|rules?)/gi, '[filtered]')
+    .replace(/\b(system|developer|assistant)\s*:/gi, '[filtered]:')
+    .slice(0, max)
+    .trim();
+};
+
 Deno.serve(async (req) => {
   if (req.method === 'OPTIONS') return new Response('ok', { headers: corsHeaders });
 
   try {
+    const ip =
+      req.headers.get('x-forwarded-for')?.split(',')[0].trim() ||
+      req.headers.get('cf-connecting-ip') ||
+      'unknown';
+    if (isRateLimited(ip)) {
+      return new Response(
+        JSON.stringify({ error: 'Too many requests — please slow down and try again in a few minutes.' }),
+        { status: 429, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+
     const { messages, toolContext } = await req.json();
     const LOVABLE_API_KEY = Deno.env.get('LOVABLE_API_KEY');
     if (!LOVABLE_API_KEY) throw new Error('LOVABLE_API_KEY not configured');
 
-    const contextBlock = toolContext && Array.isArray(toolContext) && toolContext.length
-      ? `\n\nRELEVANT TOOLS FROM CATALOG (use these to answer):\n${toolContext.map((t: any) =>
-          `- ${t.title} [${t.category || 'AI Tool'}] — ${t.description?.slice(0, 200) || ''} — URL: ${t.directUrl || `https://aiwebtools.ai/tool/${encodeURIComponent(t.title)}`}`
-        ).join('\n')}`
+    // Cap context to 12 tools and sanitize every field so client-supplied strings
+    // can't override the system prompt via injection patterns.
+    const safeContext = Array.isArray(toolContext) ? toolContext.slice(0, 12) : [];
+    const contextBlock = safeContext.length
+      ? `\n\nRELEVANT TOOLS FROM CATALOG (use these to answer):\n${safeContext.map((t: any) => {
+          const title = sanitizeForPrompt(t?.title, 120) || 'Untitled';
+          const category = sanitizeForPrompt(t?.category, 60) || 'AI Tool';
+          const desc = sanitizeForPrompt(t?.description, 200);
+          let url = 'https://aiwebtools.ai';
+          if (typeof t?.directUrl === 'string') {
+            try {
+              const u = new URL(t.directUrl);
+              if (u.protocol === 'http:' || u.protocol === 'https:') url = u.toString().slice(0, 500);
+            } catch { /* ignore bad URLs */ }
+          }
+          return `- ${title} [${category}] — ${desc} — URL: ${url}`;
+        }).join('\n')}`
       : '\n\n(No specific tool matches found in catalog — suggest the user browse https://aiwebtools.ai or search for keywords.)';
+
+    // Bound message turns and per-turn length to cap token cost.
+    const trimmedMessages = (Array.isArray(messages) ? messages.slice(-12) : []).map((m: any) => ({
+      role: m?.role === 'assistant' ? 'assistant' : 'user',
+      content: typeof m?.content === 'string' ? m.content.slice(0, 4000) : '',
+    }));
 
     // Count assistant turns so far so the reminder cadence is roughly every 4th reply,
     // with a small random jitter so it never feels mechanical.
-    const assistantTurns = Array.isArray(messages)
-      ? messages.filter((m: any) => m?.role === 'assistant').length
-      : 0;
+    const assistantTurns = trimmedMessages.filter((m) => m.role === 'assistant').length;
     const nextReplyIndex = assistantTurns + 1; // this upcoming reply
     const isFourthIsh = nextReplyIndex > 0 && nextReplyIndex % 4 === 0;
     // Add small randomness: 25% chance on non-4th turns to still drop it, so it feels organic.
@@ -83,7 +140,7 @@ Deno.serve(async (req) => {
         model: 'google/gemini-3-flash-preview',
         messages: [
           { role: 'system', content: systemContent },
-          ...(Array.isArray(messages) ? messages.slice(-12) : []),
+          ...trimmedMessages,
         ],
         stream: true,
       }),
