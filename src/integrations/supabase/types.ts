@@ -14,6 +14,57 @@ export type Database = {
   }
   public: {
     Tables: {
+      error_logs: {
+        Row: {
+          column_number: number | null
+          component_stack: string | null
+          created_at: string
+          error_type: string
+          id: string
+          line_number: number | null
+          message: string
+          metadata: Json | null
+          session_id: string | null
+          severity: string
+          source: string | null
+          stack: string | null
+          url: string | null
+          user_agent: string | null
+        }
+        Insert: {
+          column_number?: number | null
+          component_stack?: string | null
+          created_at?: string
+          error_type: string
+          id?: string
+          line_number?: number | null
+          message: string
+          metadata?: Json | null
+          session_id?: string | null
+          severity?: string
+          source?: string | null
+          stack?: string | null
+          url?: string | null
+          user_agent?: string | null
+        }
+        Update: {
+          column_number?: number | null
+          component_stack?: string | null
+          created_at?: string
+          error_type?: string
+          id?: string
+          line_number?: number | null
+          message?: string
+          metadata?: Json | null
+          session_id?: string | null
+          severity?: string
+          source?: string | null
+          stack?: string | null
+          url?: string | null
+          user_agent?: string | null
+        }
+        Relationships: []
+      }
       tool_analytics: {
         Row: {
           created_at: string
