@@ -1,6 +1,10 @@
 import * as React from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
+import { installGlobalErrorHandlers } from './utils/errorReporting'
+
+// Install global crash/error handlers (window.onerror, unhandledrejection, console.error)
+installGlobalErrorHandlers();
 
 const rootElement = document.getElementById("root");
 if (!rootElement) {

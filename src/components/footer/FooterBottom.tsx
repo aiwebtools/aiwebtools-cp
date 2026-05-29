@@ -121,9 +121,9 @@ const FooterBottom = ({
             <span className="block text-sm mt-1 text-green-300/80">All Rights Reserved</span>
           </button>
           <div className="flex flex-wrap justify-center gap-4">
-            <button onClick={e => handleExternalLink("https://openai.com/policies/privacy-policy/", e)} className="text-green-300 hover:text-green-400 transition-colors text-sm">
+            <Link to="/privacy-policy" className="text-green-300 hover:text-green-400 transition-colors text-sm">
               Privacy Policy
-            </button>
+            </Link>
             <button onClick={e => handleExternalLink("https://aiwebtools.lovable.app/terms-of-services?via=aiwebtools", e)} className="text-green-300 hover:text-green-400 transition-colors text-sm">
               Terms of Service
             </button>
