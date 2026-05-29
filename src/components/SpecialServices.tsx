@@ -1217,7 +1217,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     color: "from-purple-600 to-blue-600",
     features: ["Hidden Truths", "Symbolic Wisdom", "Historical Insight", "Pattern Recognition"],
     directUrl: "https://oraculum.lovable.app/?via=aiwebtools",
-    videoUrl: "https://youtu.be/Twl5-MsgmoI",
+    videoUrl: "https://youtu.be/DCZVO_Czanw",
     emoji: "🔮"
   },
   {
