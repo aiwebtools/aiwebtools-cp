@@ -543,6 +543,9 @@ const PinnedVideoPlayer = memo(() => {
   const advanceToNextVideo = useCallback(() => {
     setCurrentIndex(prev => {
       const next = prev + 1;
+      if (isMusicMode) {
+        return next >= MUSIC_VIDEO_GALLERY.length ? 0 : next;
+      }
       if (next >= toolsWithVideos.length) {
         // Reshuffle the playlist for a brand-new random round — no recent repeats
         cachedToolsWithVideos = null;
@@ -557,7 +560,7 @@ const PinnedVideoPlayer = memo(() => {
       }
       return next;
     });
-  }, [toolsWithVideos]);
+  }, [toolsWithVideos, isMusicMode]);
 
   // Track when video started to prevent premature skipping
   const videoStartTimeRef = useRef<number>(Date.now());
@@ -690,12 +693,12 @@ const PinnedVideoPlayer = memo(() => {
   }, [isVisible, hasScrolledEnough, toolsWithVideos.length, currentIndex, advanceToNextVideo, currentTool?.title]);
 
   const handleNextVideo = useCallback(() => {
-    setCurrentIndex(prev => (prev + 1) % toolsWithVideos.length);
-  }, [toolsWithVideos.length]);
+    setCurrentIndex(prev => (prev + 1) % activeLength);
+  }, [activeLength]);
 
   const handlePrevVideo = useCallback(() => {
-    setCurrentIndex(prev => (prev - 1 + toolsWithVideos.length) % toolsWithVideos.length);
-  }, [toolsWithVideos.length]);
+    setCurrentIndex(prev => (prev - 1 + activeLength) % activeLength);
+  }, [activeLength]);
 
   const handleClose = useCallback(() => {
     sessionStorage.setItem(SESSION_CLOSED_KEY, "true");
