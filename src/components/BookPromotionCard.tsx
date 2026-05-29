@@ -648,6 +648,11 @@ const BookPromotionCard = () => {
       id: "QCJCKhbwxhA",
       title: "Walk Through Fire — Music Video",
       gradient: "from-amber-500/20 to-orange-500/20"
+    },
+    {
+      id: "Twl5-MsgmoI",
+      title: "Hidden Truths Revealed — Music Video",
+      gradient: "from-purple-500/20 to-indigo-500/20"
     }
   ];
 
@@ -677,6 +682,7 @@ const BookPromotionCard = () => {
       "ZWiOa6NXqYE",
       "EYnCtw9CsxQ",
       "QCJCKhbwxhA",
+      "Twl5-MsgmoI",
     ];
     const verticalSet = new Set(verticalMusicVideoIds);
     const verticals = verticalMusicVideoIds
