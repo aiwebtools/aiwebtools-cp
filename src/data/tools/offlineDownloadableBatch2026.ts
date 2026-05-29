@@ -134,6 +134,8 @@ export const offlineDownloadableBatch2026: Tool[] = [
     imageUrl: enchantedHero,
     isFree: true,
     tagline: "📱 iOS MOBILE APP • Free native Ollama client — your offline LLM, beautifully.",
+    platform: "mobile",
+    platforms: ["iOS", "iPadOS", "macOS", "visionOS"],
     tags: [
       "Enchanted", "Enchanted app", "Enchanted Ollama", "enchanted ios",
       "MOBILE APP", "mobile app", "iOS app", "iPhone app", "iPad app", "macOS app", "Apple Vision Pro app",
