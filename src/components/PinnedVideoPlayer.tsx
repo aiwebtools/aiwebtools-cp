@@ -857,6 +857,7 @@ const PinnedVideoPlayer = memo(() => {
         >
           {mode === 'idle' ? (
             <div className="absolute inset-0 flex flex-col items-center justify-center gap-1.5 p-1.5 bg-black overflow-hidden">
+              <style>{`@keyframes matrixRain { 0% { transform: translateY(-50%);} 100% { transform: translateY(50%);} }`}</style>
               {/* Matrix streaming code background */}
               <div
                 aria-hidden
