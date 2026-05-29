@@ -341,6 +341,10 @@ const PinnedVideoPlayer = memo(() => {
   // (so every video plays once before any repeat)
   const [toolsWithVideos, setToolsWithVideos] = useState<Tool[]>(() => getToolsWithVideosCached());
 
+  // Shuffled music-video order — every video plays once before any repeat.
+  // Reshuffled when we wrap past the end so the next round is a fresh random order.
+  const [musicOrder, setMusicOrder] = useState<typeof MUSIC_VIDEO_GALLERY>(() => shuffleArray(MUSIC_VIDEO_GALLERY));
+
   // Mode: idle = show overlay with "Whatcha in the mood for?" buttons.
   // tools = play tool showcase videos (original behavior). music = 9:16 music videos.
   const [mode, setMode] = useState<'idle' | 'tools' | 'music'>(() => {
@@ -368,9 +372,9 @@ const PinnedVideoPlayer = memo(() => {
 
   // Active playlist length and current video for the chosen mode
   const isMusicMode = mode === 'music';
-  const activeLength = isMusicMode ? MUSIC_VIDEO_GALLERY.length : toolsWithVideos.length;
+  const activeLength = isMusicMode ? musicOrder.length : toolsWithVideos.length;
   const currentTool: Tool | undefined = isMusicMode ? undefined : toolsWithVideos[currentIndex];
-  const currentMusicVideo = isMusicMode ? MUSIC_VIDEO_GALLERY[currentIndex % MUSIC_VIDEO_GALLERY.length] : undefined;
+  const currentMusicVideo = isMusicMode ? musicOrder[currentIndex % musicOrder.length] : undefined;
   const currentVideoId = isMusicMode
     ? (currentMusicVideo?.id ?? null)
     : (currentTool ? extractYouTubeId(currentTool.videoUrl || '') : null);
