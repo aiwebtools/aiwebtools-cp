@@ -297,13 +297,14 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
   ...civicTransparencyFeaturedGPTs,
   {
     title: "AI HUMAN BILL OF RIGHTS",
-    description: "A foundational charter authored by AIWebTools.ai protecting human dignity, privacy, autonomy, transparency, accountability, safety, and freedom of thought in the age of artificial intelligence. Stand with the Light — humanity deserves a Bill of Rights for the AI era.",
-    badge: "HUMAN RIGHTS CHARTER",
+    description: "As AI progresses, concerns will grow. Rather than wait until it is too late, AIWebTools.ai plants this suggestion into the psyche of the public: preserve human dignity, freedom, privacy, autonomy, and mankind's authority over machines before the machines become self-aware. A Bill of Rights for humanity in the AI age — just a suggestion from the Light.",
+    badge: "HUMANITY FIRST CHARTER",
     color: "from-amber-400 via-cyan-400 to-emerald-500",
-    features: ["Human Dignity", "AI Accountability", "Privacy & Autonomy", "Freedom of Thought"],
+    features: ["Human Rights", "AI Preservation", "Mankind Over Machines", "AI Bill of Rights"],
     directUrl: "https://human-ai-guardian.lovable.app/?via=aiwebtools",
     imageUrl: "/src/assets/tools/ai-human-bill-of-rights-hero.jpg",
-    emoji: "⚖️"
+    emoji: "⚖️",
+    tags: ["ai human bill of rights", "ai bill of rights", "human bill of rights", "human rights", "ai rights", "mankind over machines", "humanity first", "ai preservation", "human preservation", "artificial intelligence bill of rights", "ai humen bill of rights", "ai human bil of rights", "ai human bill of rigths", "human righs", "bill of writes", "phyee", "psyche"]
   },
   {
     title: "Ancient Bible Recovery",
