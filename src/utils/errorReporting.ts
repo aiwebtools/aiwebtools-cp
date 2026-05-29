@@ -1,7 +1,7 @@
 import { supabase } from "@/integrations/supabase/client";
 
 const SESSION_KEY = "awt_session_id";
-const RATE_LIMIT_MS = 2000; // don't spam more than 1 report / 2s
+const RATE_LIMIT_MS = 5000; // don't spam more than 1 report / 5s
 const SEEN_KEY = "awt_err_seen";
 
 function getSessionId(): string {
@@ -42,6 +42,9 @@ export async function reportError(payload: ReportPayload): Promise<void> {
   try {
     const now = Date.now();
     if (now - lastSent < RATE_LIMIT_MS) return;
+    // Skip self-referential noise from the reporter itself
+    const msg = payload.message || "";
+    if (/log-error|FunctionsFetchError|FunctionsHttpError|supabase\.functions/i.test(msg)) return;
     const sig = hash(`${payload.error_type}|${payload.message}|${payload.source || ""}|${payload.line_number || ""}`);
     if (sentHashes.has(sig)) return;
     sentHashes.add(sig);
@@ -54,11 +57,11 @@ export async function reportError(payload: ReportPayload): Promise<void> {
       session_id: getSessionId(),
     };
 
-    await supabase.functions.invoke("log-error", { body });
+    // Fire-and-forget. Swallow ALL rejections so a failing edge function
+    // never becomes an unhandledrejection that re-enters this handler.
+    supabase.functions.invoke("log-error", { body }).catch(() => { /* noop */ });
   } catch (e) {
-    // Never throw from error reporter
-    // eslint-disable-next-line no-console
-    console.warn("[reportError] failed", e);
+    // Never throw from error reporter, never console.error either.
   }
 }
 
