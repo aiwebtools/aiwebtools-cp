@@ -4022,7 +4022,7 @@ const SpecialServices = () => {
     icon: Play,
     title: gpt.title,
     description: gpt.description,
-    tags: gpt.features,
+    tags: [...gpt.features, ...(gpt.tags ?? [])],
     color: gpt.color,
     directUrl: gpt.directUrl,
     category: gpt.badge,
