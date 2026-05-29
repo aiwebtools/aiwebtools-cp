@@ -292,7 +292,9 @@ const PinnedVideoPlayer = memo(() => {
         try {
           frame.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'mute' }), '*');
           frame.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'pauseVideo' }), '*');
-        } catch {}
+        } catch {
+          return;
+        }
       });
   }, []);
   
