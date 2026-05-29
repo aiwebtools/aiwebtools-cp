@@ -646,6 +646,7 @@ const BookPromotionCard = () => {
       "bhC9aTQGbGI",
       "qxIYhAAkko8",
       "1yajmSLnPTs",
+      "cKHZ7X0qx_Y",
     ];
     const verticalSet = new Set(verticalMusicVideoIds);
     const verticals = verticalMusicVideoIds
