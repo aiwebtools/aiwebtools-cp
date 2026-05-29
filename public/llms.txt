@@ -18,6 +18,7 @@
 - [Our Story](/our-story): About AI Web Tools.
 - [Submit a Tool](/submit-tool): Submit a new AI tool for review.
 - [Disclaimers](/disclaimers): Site disclaimers and policies.
+- [Privacy Policy](/privacy-policy): How AIWebTools.ai handles data, cookies, AI Care Bot conversations, and tool submissions.
 
 ## Primary Keywords
 - AI Web Tools
