@@ -1,6 +1,6 @@
 
 import * as React from 'react'
-import { Suspense, lazy } from 'react';
+import { Suspense } from 'react';
 import { Toaster } from "./components/ui/sonner";
 import { TooltipProvider } from "./components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -17,30 +17,10 @@ import MatrixCursorEffect from "@/components/effects/MatrixCursorEffect";
 import "@/styles/loading-cube.css";
 import ScrollProgressIndicator from "@/components/ScrollProgressIndicator";
 import { getConsentAccepted } from "@/utils/consent";
+import { lazyWithRetry } from "@/utils/lazyWithRetry";
 
 // Eager load only the disclaimer gate; lazy-load heavy app routes to avoid black-screen startup
 import DisclaimerGate from "./pages/DisclaimerGate";
-
-// Retry wrapper for lazy imports — prevents black screen on transient
-// "Failed to fetch dynamically imported module" errors (HMR / flaky network).
-function lazyWithRetry<T extends React.ComponentType<any>>(
-  factory: () => Promise<{ default: T }>,
-  retries = 2,
-  delayMs = 400,
-) {
-  return lazy(async () => {
-    let lastErr: unknown;
-    for (let i = 0; i <= retries; i++) {
-      try {
-        return await factory();
-      } catch (err) {
-        lastErr = err;
-        await new Promise((r) => setTimeout(r, delayMs * (i + 1)));
-      }
-    }
-    throw lastErr;
-  });
-}
 
 // Generic retry wrapper for non-component dynamic imports (e.g., side-effect modules).
 // Prevents "Failed to fetch dynamically imported module" from breaking the app.
@@ -201,10 +181,10 @@ const queryClient = new QueryClient({
 const AnimatedRoutes = () => {
   const location = useLocation();
   
-  // Critical paths render without Suspense for instant load
+  // Critical paths keep the animated cube visible while lazy chunks reconnect.
   if (location.pathname === '/' || location.pathname === '/welcome') {
     return (
-      <Suspense fallback={null}>
+      <Suspense fallback={<PageLoader />}>
         <Routes location={location}>
           <Route path="/welcome" element={<DisclaimerGate />} />
           <Route path="/" element={<Index />} />
