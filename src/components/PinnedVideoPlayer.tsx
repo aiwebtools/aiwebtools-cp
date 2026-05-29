@@ -363,6 +363,9 @@ const PinnedVideoPlayer = memo(() => {
   const handleSelectMode = useCallback((next: 'tools' | 'music') => {
     pauseOtherYouTubePlayers();
     setCurrentIndex(0);
+    if (next === 'music') {
+      setMusicOrder(shuffleArray(MUSIC_VIDEO_GALLERY));
+    }
     setMode(next);
     userPausedRef.current = false;
     userMutePreferenceRef.current = false;
