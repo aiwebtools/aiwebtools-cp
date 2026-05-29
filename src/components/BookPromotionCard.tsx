@@ -72,13 +72,25 @@ const LazyBookVideo = ({
 
   const stopCurrentVideo = useCallback((resetToThumbnail = false) => {
     if (playerRef.current) {
-      try { playerRef.current.destroy?.(); } catch {}
+      // CRITICAL: never call YT.Player.destroy() — it removes the iframe
+      // DOM node that React owns, which causes "Failed to execute removeChild"
+      // crashes on rapid carousel navigation. Stop via the player API only;
+      // React will unmount the iframe when isLoaded flips to false.
+      try { playerRef.current.stopVideo?.(); } catch {}
+      try { playerRef.current.mute?.(); } catch {}
       playerRef.current = null;
     }
-    // YT.Player.destroy() removes the iframe element from the DOM,
-    // so any stale reference must be cleared to avoid attaching a new
-    // player to a detached node on the next cycle.
-    iframeRef.current = null;
+    // As a belt-and-suspenders stop, post a pause command directly to the
+    // iframe in case the player wrapper was never created yet.
+    const el = iframeRef.current;
+    if (el && el.contentWindow) {
+      try {
+        el.contentWindow.postMessage(
+          JSON.stringify({ event: 'command', func: 'stopVideo', args: [] }),
+          '*'
+        );
+      } catch {}
+    }
     if (resetToThumbnail) setIsLoaded(false);
   }, []);
 
@@ -175,7 +187,8 @@ const LazyBookVideo = ({
       cancelled = true;
       if (safetyTimer) clearTimeout(safetyTimer);
       if (playerRef.current) {
-        try { playerRef.current.destroy?.(); } catch {}
+        // Same as above — do NOT destroy(); let React unmount the iframe.
+        try { playerRef.current.stopVideo?.(); } catch {}
         playerRef.current = null;
       }
     };
