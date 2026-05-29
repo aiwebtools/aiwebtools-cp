@@ -3997,7 +3997,7 @@ const SpecialServices = () => {
     const filtered = selectedCategory === "ALL" 
       ? categorizedGPTs 
       : categorizedGPTs.filter(gpt => gpt.filterCategory === selectedCategory);
-    setDisplayedGPTs(filtered);
+    setDisplayedGPTs(placeHumanBillOfRightsNearBottom(filtered));
     setIsShuffled(false);
   };
 
