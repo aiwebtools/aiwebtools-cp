@@ -977,12 +977,14 @@ const PinnedVideoPlayer = memo(() => {
         <div
           className="group relative bg-black"
           style={{
-            aspectRatio: isMusicMode ? '9 / 16' : '16 / 9',
-            minHeight: '70px',
+            // In idle mode let the content (3 buttons + label) define the height
+            // so MUSIC_GALLERY.exe never gets clipped on small mobile screens.
+            aspectRatio: mode === 'idle' ? 'auto' : (isMusicMode ? '9 / 16' : '16 / 9'),
+            minHeight: mode === 'idle' ? undefined : '70px',
           }}
         >
           {mode === 'idle' ? (
-            <div className="absolute inset-0 flex flex-col items-center justify-center gap-1.5 p-1.5 bg-black overflow-hidden">
+            <div className="relative flex flex-col items-center justify-center gap-1.5 p-1.5 bg-black overflow-hidden">
               <style>{`@keyframes matrixRain { 0% { transform: translateY(-50%);} 100% { transform: translateY(50%);} }`}</style>
               {/* Matrix streaming code background */}
               <div
