@@ -264,12 +264,25 @@ const getShuffledToolsWithVideos = (): Tool[] => {
   // Always generate fresh random order (no caching)
   const toolsWithVideos = allTools
     .filter(tool => extractYouTubeId(tool.videoUrl || '') !== null);
-  
+
+  // Dedupe by YouTube video ID — multiple tools (e.g. Web3 .worldpeace /
+  // .worldtrade domain pages) often share the same promo video. Keep only the
+  // first occurrence so the pinned player never replays the same clip twice
+  // in a row across different tool entries.
+  const seenVideoIds = new Set<string>();
+  const uniqueByVideo = toolsWithVideos.filter(tool => {
+    const id = extractYouTubeId(tool.videoUrl || '');
+    if (!id) return false;
+    if (seenVideoIds.has(id)) return false;
+    seenVideoIds.add(id);
+    return true;
+  });
+
   // Separate into priority tiers
   const wowFactorTools: Tool[] = [];
   const regularTools: Tool[] = [];
-  
-  toolsWithVideos.forEach(tool => {
+
+  uniqueByVideo.forEach(tool => {
     // Check if tool title matches any wow factor tool (case-insensitive partial match)
     const isWowFactor = Array.from(WOW_FACTOR_TOOLS).some(wowTitle => 
       tool.title.toLowerCase().includes(wowTitle.toLowerCase()) ||
