@@ -296,6 +296,16 @@ const civicTransparencyFeaturedGPTs: FeaturedSpecialService[] = civicTransparenc
 const featuredGPTsUnsorted: FeaturedSpecialService[] = [
   ...civicTransparencyFeaturedGPTs,
   {
+    title: "AI HUMAN BILL OF RIGHTS",
+    description: "A foundational charter authored by AIWebTools.ai protecting human dignity, privacy, autonomy, transparency, accountability, safety, and freedom of thought in the age of artificial intelligence. Stand with the Light — humanity deserves a Bill of Rights for the AI era.",
+    badge: "HUMAN RIGHTS CHARTER",
+    color: "from-amber-400 via-cyan-400 to-emerald-500",
+    features: ["Human Dignity", "AI Accountability", "Privacy & Autonomy", "Freedom of Thought"],
+    directUrl: "https://human-ai-guardian.lovable.app/?via=aiwebtools",
+    imageUrl: "/src/assets/tools/ai-human-bill-of-rights-hero.jpg",
+    emoji: "⚖️"
+  },
+  {
     title: "Ancient Bible Recovery",
     description: "Forensic recovery and translation of ancient biblical and para-biblical texts, exposing original forms through manuscript evidence. Discover hidden meanings through scholarly manuscript analysis.",
     badge: "BIBLICAL RESEARCH",
