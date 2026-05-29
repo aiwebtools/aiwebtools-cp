@@ -278,6 +278,8 @@ import { freeAwesomeBatch2026D } from './tools/freeAwesomeBatch2026D';
 import { freeAwesomeBatch2026E } from './tools/freeAwesomeBatch2026E';
 // Import New Agents + Free Medical Batch 2026 E (Sim Studio, AgentKit by OpenAI, Symptomate)
 import { newAgentsAndMedicalBatch2026E } from './tools/newAgentsAndMedicalBatch2026E';
+// Import Offline Downloadable Batch 2026 (InvokeAI, Backyard AI, SillyTavern, MLC Chat mobile, Enchanted mobile)
+import { offlineDownloadableBatch2026 } from './tools/offlineDownloadableBatch2026';
 
 // Import AI Hardware (legacy - moved to gadgets)
 import { aiHardware } from './tools/aiHardware';
@@ -561,6 +563,7 @@ export const getAllToolCategories = (): Tool[] => {
     ...freeAwesomeBatch2026D,
     ...freeAwesomeBatch2026E,
     ...newAgentsAndMedicalBatch2026E,
+    ...offlineDownloadableBatch2026,
     ...aiHardware,
     
     // NEW 2025: Additional tools

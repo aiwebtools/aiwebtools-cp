@@ -263,6 +263,16 @@ export const createTimePortalEffect = (
   setTimeout(() => {
     elements.forEach(el => { try { el.remove(); } catch {} });
   }, 250);
+
+  // SAFETY NET: hard-clear any leftover portal overlay shortly after, in
+  // case a previous flash got orphaned (e.g. user double-clicked a tool
+  // or the page navigated mid-flash and a node was never removed). Fixes
+  // the rare "loading screen never disappears / timeout" complaint.
+  setTimeout(() => {
+    try {
+      document.querySelectorAll('[data-time-portal-overlay], [data-time-portal-flash]').forEach((n) => n.remove());
+    } catch {}
+  }, 1200);
 };
 
 // Ultra-brief green matrix flash - returns elements for cleanup

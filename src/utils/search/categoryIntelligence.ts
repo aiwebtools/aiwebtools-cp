@@ -189,7 +189,7 @@ export const CATEGORY_TITLE_KEYWORDS: Record<string, string[]> = {
     'web3', 'web 3', 'blockchain', 'crypto', 'cryptocurrency', 'bitcoin', 'ethereum',
     'solana', 'polygon', 'nft', 'defi', 'decentralized', 'decentralised', 'wallet',
     'metamask', 'phantom', 'coinbase', 'token', 'smart contract', 'dao', 'dapp',
-    'future of finance', 'digital asset', 'mint', 'minting', 'no bio chip',
+    'future of finance', 'digital asset', 'mint', 'minting', 'decentralized banking', 'fair world', 'financial freedom',
     'worldpeace', 'worldtrade', 'transfermoney', 'transfercoin', 'cashtransfer',
     'domain', 'freename', 'unstoppable', 'ens', '.eth', '.sol', '.crypto'
   ]

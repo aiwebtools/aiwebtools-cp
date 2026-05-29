@@ -344,7 +344,10 @@ const MobileMenu = () => {
                   Own forever • Resell for profit • Minted as NFT
                 </p>
                 <p className="text-xs mt-1.5 font-bold bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent">
-                  🏦 NO BIO CHIP REQUIRED • WEB3 BANKING
+                  🏦 DECENTRALIZED BANKING • A FAIR WORLD FOR ALL
+                </p>
+                <p className="text-[10px] mt-1 italic text-cyan-300/80 leading-snug">
+                  "Overcoming poverty is not a gesture of charity. It is an act of justice." — Nelson Mandela
                 </p>
               </div>
               <Collapsible open={isWeb3Open} onOpenChange={setIsWeb3Open}>
