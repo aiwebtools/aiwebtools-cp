@@ -74,6 +74,97 @@ const sanitizeForPrompt = (s: unknown, max: number): string => {
     .trim();
 };
 
+// ---------- CSV directory knowledge base ----------
+// Cold-start fetch of the public CSV directory so the AI always has the full
+// 3,700+ tool catalog to recommend from — not just the 12 client-supplied
+// matches. Cached in module memory for the life of the isolate.
+const CSV_URL = 'https://aiwebtools.lovable.app/downloads/aiwebtools-directory-list.csv';
+interface CsvTool { title: string; description: string; category: string; url: string; tags: string; searchBlob: string; }
+let csvCache: CsvTool[] | null = null;
+let csvLoading: Promise<CsvTool[]> | null = null;
+
+const parseCsvLine = (line: string): string[] => {
+  const out: string[] = [];
+  let cur = '';
+  let inQ = false;
+  for (let i = 0; i < line.length; i++) {
+    const c = line[i];
+    if (inQ) {
+      if (c === '"' && line[i + 1] === '"') { cur += '"'; i++; }
+      else if (c === '"') inQ = false;
+      else cur += c;
+    } else {
+      if (c === ',') { out.push(cur); cur = ''; }
+      else if (c === '"') inQ = true;
+      else cur += c;
+    }
+  }
+  out.push(cur);
+  return out;
+};
+
+async function loadCsv(): Promise<CsvTool[]> {
+  if (csvCache) return csvCache;
+  if (csvLoading) return csvLoading;
+  csvLoading = (async () => {
+    try {
+      const res = await fetch(CSV_URL, { signal: AbortSignal.timeout(8000) });
+      if (!res.ok) return [];
+      const text = await res.text();
+      const lines = text.split(/\r?\n/).filter(Boolean);
+      lines.shift(); // header
+      const rows: CsvTool[] = [];
+      for (const line of lines) {
+        const cols = parseCsvLine(line);
+        if (cols.length < 10) continue;
+        const title = (cols[1] || '').trim();
+        const description = (cols[2] || '').trim();
+        const category = (cols[3] || '').trim();
+        const url = (cols[4] || '').trim();
+        const tags = (cols[9] || '').trim();
+        if (!title || !url) continue;
+        if (!/^https?:\/\//i.test(url)) continue;
+        rows.push({
+          title, description, category, url, tags,
+          searchBlob: `${title}\n${description}\n${category}\n${tags}`.toLowerCase(),
+        });
+      }
+      csvCache = rows;
+      console.log(`care-bot: loaded ${rows.length} tools from CSV`);
+      return rows;
+    } catch (err) {
+      console.error('care-bot CSV load failed:', err);
+      csvCache = [];
+      return [];
+    } finally {
+      csvLoading = null;
+    }
+  })();
+  return csvLoading;
+}
+
+const STOPWORDS = new Set(['the','a','an','and','or','of','to','for','in','on','with','is','it','my','i','you','me','what','best','top','can','please','help','need','want','how','do','give','show','list','some','any','tools','tool','ai']);
+
+function searchCsv(rows: CsvTool[], query: string, limit = 12): CsvTool[] {
+  if (!rows.length || !query) return [];
+  const q = query.toLowerCase();
+  const terms = Array.from(new Set(q.split(/[^a-z0-9+#]+/i).filter((w) => w && w.length > 2 && !STOPWORDS.has(w))));
+  if (!terms.length) return [];
+  const scored: Array<{ t: CsvTool; s: number }> = [];
+  for (const t of rows) {
+    let s = 0;
+    for (const term of terms) {
+      if (t.title.toLowerCase().includes(term)) s += 10;
+      if (t.category.toLowerCase().includes(term)) s += 4;
+      if (t.tags.toLowerCase().includes(term)) s += 3;
+      if (t.searchBlob.includes(term)) s += 1;
+    }
+    if (s > 0) scored.push({ t, s });
+  }
+  scored.sort((a, b) => b.s - a.s);
+  return scored.slice(0, limit).map((x) => x.t);
+}
+
 Deno.serve(async (req) => {
   if (req.method === 'OPTIONS') return new Response('ok', { headers: corsHeaders });
 
@@ -96,6 +187,22 @@ Deno.serve(async (req) => {
     // Cap context to 12 tools and sanitize every field so client-supplied strings
     // can't override the system prompt via injection patterns.
     const safeContext = Array.isArray(toolContext) ? toolContext.slice(0, 12) : [];
+
+    // Augment with CSV-backed catalog search using the latest user message.
+    // This gives the AI access to the entire 3,700+ tool directory, not just
+    // the 12 client-supplied matches — so it can recommend real, verified
+    // tools with working URLs even when the on-page search missed.
+    const lastUserMsg = (Array.isArray(messages) ? [...messages].reverse().find((m: any) => m?.role !== 'assistant') : null);
+    const userQuery = typeof lastUserMsg?.content === 'string' ? lastUserMsg.content : '';
+    let csvMatches: CsvTool[] = [];
+    try {
+      const rows = await loadCsv();
+      const seenUrls = new Set(safeContext.map((t: any) => String(t?.directUrl || '')));
+      csvMatches = searchCsv(rows, userQuery, 12)
+        .filter((t) => !seenUrls.has(t.url))
+        .slice(0, Math.max(0, 12 - safeContext.length));
+    } catch { /* non-fatal */ }
+
     const contextBlock = safeContext.length
       ? `\n\nRELEVANT TOOLS FROM CATALOG (use these to answer):\n${safeContext.map((t: any) => {
           const title = sanitizeForPrompt(t?.title, 120) || 'Untitled';
@@ -111,6 +218,15 @@ Deno.serve(async (req) => {
           return `- ${title} [${category}] — ${desc} — URL: ${url}`;
         }).join('\n')}`
       : '\n\n(No specific tool matches found in catalog — suggest the user browse https://aiwebtools.ai or search for keywords.)';
+
+    const csvBlock = csvMatches.length
+      ? `\n\nADDITIONAL VERIFIED TOOLS FROM FULL DIRECTORY (CSV-indexed, ${csvCache?.length ?? 0} total tools available — URLs are verified, use them verbatim):\n${csvMatches.map((t) => {
+          const title = sanitizeForPrompt(t.title, 120);
+          const category = sanitizeForPrompt(t.category, 60);
+          const desc = sanitizeForPrompt(t.description, 200);
+          return `- ${title} [${category}] — ${desc} — URL: ${t.url}`;
+        }).join('\n')}`
+      : '';
 
     // Bound message turns and per-turn length to cap token cost.
     const trimmedMessages = (Array.isArray(messages) ? messages.slice(-12) : []).map((m: any) => ({
@@ -128,7 +244,7 @@ Deno.serve(async (req) => {
     const shouldRemind = isFourthIsh || randomSprinkle;
 
     const systemContent =
-      SYSTEM_PROMPT + SPIRIT_PERSONA + contextBlock + (shouldRemind ? LIGHT_REMINDER : '');
+      SYSTEM_PROMPT + SPIRIT_PERSONA + contextBlock + csvBlock + (shouldRemind ? LIGHT_REMINDER : '');
 
     const response = await fetch('https://ai.gateway.lovable.dev/v1/chat/completions', {
       method: 'POST',
