@@ -660,6 +660,17 @@ const BookPromotionCard = () => {
     }));
   }, []);
 
+  useEffect(() => {
+    const handlePinnedPlayerStarting = () => {
+      stopAllBookVideos();
+      setIsAutoPlaying(false);
+      setIsPaused(true);
+    };
+
+    window.addEventListener('pinnedPlayerPlaying', handlePinnedPlayerStarting);
+    return () => window.removeEventListener('pinnedPlayerPlaying', handlePinnedPlayerStarting);
+  }, [stopAllBookVideos]);
+
   // Handle video end - ALWAYS auto advance to next video and autoplay it (unmuted)
   // This fires regardless of pause state because the user explicitly watched
   // a full video and expects continuous playback.

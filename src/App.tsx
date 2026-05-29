@@ -169,7 +169,7 @@ const AnimatedRoutes = () => {
   // Critical paths render without Suspense for instant load
   if (location.pathname === '/' || location.pathname === '/welcome') {
     return (
-      <Suspense fallback={<PageLoader />}>
+      <Suspense fallback={null}>
         <Routes location={location}>
           <Route path="/welcome" element={<DisclaimerGate />} />
           <Route path="/" element={<Index />} />

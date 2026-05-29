@@ -282,6 +282,21 @@ const PinnedVideoPlayer = memo(() => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const playerMountedRef = useRef(false);
   const advanceTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const pauseOtherYouTubePlayers = useCallback(() => {
+    if (typeof document === 'undefined') return;
+    const currentFrame = iframeRef.current;
+    document
+      .querySelectorAll<HTMLIFrameElement>('iframe[src*="youtube.com/embed"], iframe[src*="youtube-nocookie.com/embed"]')
+      .forEach((frame) => {
+        if (!frame?.contentWindow || frame === currentFrame) return;
+        try {
+          frame.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'mute' }), '*');
+          frame.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'pauseVideo' }), '*');
+        } catch {
+          return;
+        }
+      });
+  }, []);
   
   // Check if on homepage
   const isHomepage = location.pathname === "/" || location.pathname === "";
@@ -341,13 +356,14 @@ const PinnedVideoPlayer = memo(() => {
 
   // Reset playlist index when switching modes so each gallery starts fresh
   const handleSelectMode = useCallback((next: 'tools' | 'music') => {
+    pauseOtherYouTubePlayers();
     setCurrentIndex(0);
     setMode(next);
     userPausedRef.current = false;
     userMutePreferenceRef.current = false;
     setIsMuted(false);
     setIsPlaying(true);
-  }, []);
+  }, [pauseOtherYouTubePlayers]);
 
   // Active playlist length and current video for the chosen mode
   const isMusicMode = mode === 'music';
@@ -368,6 +384,20 @@ const PinnedVideoPlayer = memo(() => {
   // Tracks whether the user explicitly paused the current video so background
   // retry timers (unmute/playVideo loops) don't sneak it back to playing.
   const userPausedRef = useRef(false);
+
+  // Handle mute/unmute via postMessage instead of iframe reload.
+  // Send to ALL possible YouTube origins + wildcard for maximum mobile compatibility.
+  const sendYTCommand = useCallback((command: string) => {
+    if (!iframeRef.current?.contentWindow) return;
+    const msg = JSON.stringify({ event: 'command', func: command });
+    try {
+      iframeRef.current.contentWindow.postMessage(msg, YT_EMBED_ORIGIN);
+      iframeRef.current.contentWindow.postMessage(msg, YT_API_ORIGIN_FALLBACK);
+      iframeRef.current.contentWindow.postMessage(msg, '*');
+    } catch {
+      return;
+    }
+  }, []);
   
   // Track video src separately to prevent unnecessary iframe reloads
   // Initialize with actual video URL to prevent "null" blocking first render
@@ -419,10 +449,13 @@ const PinnedVideoPlayer = memo(() => {
     
     // Aggressively retry unMute for every new video so sound is always on.
     if (!shouldMute) {
+      pauseOtherYouTubePlayers();
+      window.dispatchEvent(new CustomEvent('pinnedPlayerPlaying'));
       const retryDelays = [200, 400, 700, 1100, 1600, 2200, 3000, 4000, 5500];
       const timers = retryDelays.map(delay =>
         setTimeout(() => {
           if (userPausedRef.current) return;
+          pauseOtherYouTubePlayers();
           sendYTCommand('unMute');
           sendYTCommand('playVideo');
         }, delay)
@@ -435,21 +468,7 @@ const PinnedVideoPlayer = memo(() => {
     if (!shouldMute) {
       window.dispatchEvent(new CustomEvent('pinnedPlayerPlaying'));
     }
-  }, [currentVideoId]); // Only depend on video ID, not mute state
-  
-  // Handle mute/unmute via postMessage instead of iframe reload
-  // Send to ALL possible YouTube origins + wildcard for maximum mobile compatibility
-  const sendYTCommand = useCallback((command: string) => {
-    if (!iframeRef.current?.contentWindow) return;
-    const msg = JSON.stringify({ event: 'command', func: command });
-    try {
-      // Send to both origins — mobile Chrome often only responds to one
-      iframeRef.current.contentWindow.postMessage(msg, YT_EMBED_ORIGIN);
-      iframeRef.current.contentWindow.postMessage(msg, YT_API_ORIGIN_FALLBACK);
-      // Wildcard fallback for edge cases (cross-origin redirects inside YT embed)
-      iframeRef.current.contentWindow.postMessage(msg, '*');
-    } catch {}
-  }, []);
+  }, [currentVideoId, pauseOtherYouTubePlayers, sendYTCommand]); // Only depend on video ID, not mute state
 
   // Sync mute state to iframe whenever isMuted changes
   useEffect(() => {
@@ -581,6 +600,8 @@ const PinnedVideoPlayer = memo(() => {
   useEffect(() => {
     if (!isVisible || !hasScrolledEnough || toolsWithVideos.length === 0) return;
 
+    let didAdvanceForVideo = false;
+
     const handleMessage = (event: MessageEvent) => {
       // YouTube sends messages when video state changes
       if (event.origin !== YT_EMBED_ORIGIN && event.origin !== YT_API_ORIGIN_FALLBACK) return;
@@ -599,6 +620,7 @@ const PinnedVideoPlayer = memo(() => {
         if (data?.event === "onStateChange" && data?.info === 1) {
           hasReceivedPlayStateRef.current = true;
           videoStartTimeRef.current = Date.now();
+          didAdvanceForVideo = false;
           // If the user just paused, immediately re-pause so retry timers
           // or YouTube's own autoplay don't override the pause intent.
           if (userPausedRef.current) {
@@ -610,6 +632,7 @@ const PinnedVideoPlayer = memo(() => {
         if (data?.info?.playerState === 1) {
           hasReceivedPlayStateRef.current = true;
           videoStartTimeRef.current = Date.now();
+          didAdvanceForVideo = false;
           if (userPausedRef.current) {
             sendYTCommand('pauseVideo');
           } else {
@@ -630,7 +653,9 @@ const PinnedVideoPlayer = memo(() => {
         
         // Check for video ended state (state 0 = ended)
         if (data?.event === "onStateChange" && data?.info === 0) {
+          if (didAdvanceForVideo) return;
           if (hasReceivedPlayStateRef.current && timeSinceStart > MIN_PLAY_TIME) {
+            didAdvanceForVideo = true;
             console.log('[PinnedPlayer] Video ended via onStateChange after', timeSinceStart, 'ms, advancing...');
             advanceToNextVideo();
           } else {
@@ -641,7 +666,9 @@ const PinnedVideoPlayer = memo(() => {
         
         // Also check for infoDelivery with playerState (0 = ended)
         if (data?.info?.playerState === 0) {
+          if (didAdvanceForVideo) return;
           if (hasReceivedPlayStateRef.current && timeSinceStart > MIN_PLAY_TIME) {
+            didAdvanceForVideo = true;
             console.log('[PinnedPlayer] Video ended via infoDelivery after', timeSinceStart, 'ms, advancing...');
             advanceToNextVideo();
           }
@@ -734,6 +761,7 @@ const PinnedVideoPlayer = memo(() => {
       userMutePreferenceRef.current = newMuted;
       // If unmuting pinned player, notify tool page video to mute
       if (!newMuted) {
+        pauseOtherYouTubePlayers();
         window.dispatchEvent(new CustomEvent('pinnedPlayerPlaying'));
       }
       // Force-send command immediately on user gesture (critical for mobile Chrome)
@@ -745,9 +773,10 @@ const PinnedVideoPlayer = memo(() => {
       setTimeout(() => sendYTCommand(command), 500);
       return newMuted;
     });
-  }, [sendYTCommand]);
+  }, [sendYTCommand, pauseOtherYouTubePlayers]);
 
   const handlePlayVideo = useCallback(() => {
+    pauseOtherYouTubePlayers();
     userMutePreferenceRef.current = false;
     setIsMuted(false);
     sendYTCommand('unMute');
@@ -759,7 +788,7 @@ const PinnedVideoPlayer = memo(() => {
         sendYTCommand('playVideo');
       }, delay);
     });
-  }, [sendYTCommand]);
+  }, [sendYTCommand, pauseOtherYouTubePlayers]);
 
   const handleTogglePlay = useCallback(() => {
     if (isPlaying) {
@@ -769,6 +798,7 @@ const PinnedVideoPlayer = memo(() => {
       // Re-assert pause shortly after in case a background timer fires playVideo.
       [120, 400, 900].forEach(d => window.setTimeout(() => sendYTCommand('pauseVideo'), d));
     } else {
+      pauseOtherYouTubePlayers();
       userPausedRef.current = false;
       userMutePreferenceRef.current = false;
       setIsMuted(false);
@@ -781,7 +811,7 @@ const PinnedVideoPlayer = memo(() => {
         sendYTCommand('playVideo');
       }, d));
     }
-  }, [isPlaying, sendYTCommand]);
+  }, [isPlaying, sendYTCommand, pauseOtherYouTubePlayers]);
 
   const handleIframeLoad = useCallback(() => {
     playerMountedRef.current = true;
@@ -789,12 +819,13 @@ const PinnedVideoPlayer = memo(() => {
       [100, 300, 700, 1200, 2200].forEach(delay => {
         window.setTimeout(() => {
           if (userPausedRef.current) return;
+          pauseOtherYouTubePlayers();
           sendYTCommand('unMute');
           sendYTCommand('playVideo');
         }, delay);
       });
     }
-  }, [isMuted, sendYTCommand]);
+  }, [isMuted, sendYTCommand, pauseOtherYouTubePlayers]);
 
   // Don't render if not on homepage, permanently closed, no tools, or haven't scrolled past hero yet
   if (!isHomepage || !isVisible || !hasScrolledEnough || toolsWithVideos.length === 0) {

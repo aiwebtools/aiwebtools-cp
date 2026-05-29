@@ -145,6 +145,16 @@ const weightedShuffle = <T extends { title: string }>(items: T[]): T[] => {
   return [...topDreamConquering, ...topPremium, ...mixed];
 };
 
+const isHumanBillOfRightsCard = (title: string) => title === "AI HUMAN BILL OF RIGHTS";
+
+const placeHumanBillOfRightsNearBottom = <T extends { title: string }>(items: T[]): T[] => {
+  const card = items.find(item => isHumanBillOfRightsCard(item.title));
+  if (!card) return items;
+  const rest = items.filter(item => !isHumanBillOfRightsCard(item.title));
+  const insertAt = Math.max(0, Math.min(rest.length, Math.floor(rest.length * 0.72)));
+  return [...rest.slice(0, insertAt), card, ...rest.slice(insertAt)];
+};
+
 // Lazy-loading YouTube video component - shows thumbnail until clicked
 const LazyVideoEmbed = ({ videoUrl, title, height = "h-32" }: { videoUrl: string; title: string; height?: string }) => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -297,13 +307,14 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
   ...civicTransparencyFeaturedGPTs,
   {
     title: "AI HUMAN BILL OF RIGHTS",
-    description: "A foundational charter authored by AIWebTools.ai protecting human dignity, privacy, autonomy, transparency, accountability, safety, and freedom of thought in the age of artificial intelligence. Stand with the Light — humanity deserves a Bill of Rights for the AI era.",
-    badge: "HUMAN RIGHTS CHARTER",
+    description: "As AI progresses, concerns will grow. Rather than wait until it is too late, AIWebTools.ai plants this suggestion into the psyche of the public: preserve human dignity, freedom, privacy, autonomy, and mankind's authority over machines before the machines become self-aware. A Bill of Rights for humanity in the AI age — just a suggestion from the Light.",
+    badge: "HUMANITY FIRST CHARTER",
     color: "from-amber-400 via-cyan-400 to-emerald-500",
-    features: ["Human Dignity", "AI Accountability", "Privacy & Autonomy", "Freedom of Thought"],
+    features: ["Human Rights", "AI Preservation", "Mankind Over Machines", "AI Bill of Rights"],
     directUrl: "https://human-ai-guardian.lovable.app/?via=aiwebtools",
     imageUrl: "/src/assets/tools/ai-human-bill-of-rights-hero.jpg",
-    emoji: "⚖️"
+    emoji: "⚖️",
+    tags: ["ai human bill of rights", "ai bill of rights", "human bill of rights", "human rights", "ai rights", "mankind over machines", "humanity first", "ai preservation", "human preservation", "artificial intelligence bill of rights", "ai humen bill of rights", "ai human bil of rights", "ai human bill of rigths", "human righs", "bill of writes", "phyee", "psyche"]
   },
   {
     title: "Ancient Bible Recovery",
@@ -3962,7 +3973,7 @@ const SpecialServices = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   
   // Use useMemo to create initial shuffled order once per page load
-  const initialShuffledGPTs = useMemo(() => weightedShuffle(categorizedGPTs), []);
+  const initialShuffledGPTs = useMemo(() => placeHumanBillOfRightsNearBottom(weightedShuffle(categorizedGPTs)), []);
   
   const [displayedGPTs, setDisplayedGPTs] = useState(initialShuffledGPTs);
   const [selectedCategory, setSelectedCategory] = useState<string>("ALL");
@@ -3976,7 +3987,7 @@ const SpecialServices = () => {
     const currentItems = selectedCategory === "ALL" 
       ? categorizedGPTs 
       : categorizedGPTs.filter(gpt => gpt.filterCategory === selectedCategory);
-    const shuffled = weightedShuffle(currentItems);
+    const shuffled = placeHumanBillOfRightsNearBottom(weightedShuffle(currentItems));
     setDisplayedGPTs(shuffled);
     setIsShuffled(true);
   };
@@ -3986,7 +3997,7 @@ const SpecialServices = () => {
     const filtered = selectedCategory === "ALL" 
       ? categorizedGPTs 
       : categorizedGPTs.filter(gpt => gpt.filterCategory === selectedCategory);
-    setDisplayedGPTs(filtered);
+    setDisplayedGPTs(placeHumanBillOfRightsNearBottom(filtered));
     setIsShuffled(false);
   };
 
@@ -3995,12 +4006,12 @@ const SpecialServices = () => {
     setSelectedCategory(category);
     if (category === "ALL") {
       // Re-shuffle all GPTs when going back to ALL
-      setDisplayedGPTs(weightedShuffle(categorizedGPTs));
+      setDisplayedGPTs(placeHumanBillOfRightsNearBottom(weightedShuffle(categorizedGPTs)));
       setIsShuffled(true);
     } else {
       // Apply weighted shuffle to filtered category
       const filtered = categorizedGPTs.filter(gpt => gpt.filterCategory === category);
-      setDisplayedGPTs(weightedShuffle(filtered));
+      setDisplayedGPTs(placeHumanBillOfRightsNearBottom(weightedShuffle(filtered)));
       setIsShuffled(true);
     }
   };
@@ -4021,7 +4032,7 @@ const SpecialServices = () => {
     icon: Play,
     title: gpt.title,
     description: gpt.description,
-    tags: gpt.features,
+    tags: [...gpt.features, ...(gpt.tags ?? [])],
     color: gpt.color,
     directUrl: gpt.directUrl,
     category: gpt.badge,
@@ -4144,13 +4155,21 @@ const SpecialServices = () => {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-4">
-          {displayedGPTs.map((gpt, index) => (
+          {displayedGPTs.map((gpt, index) => {
+            const isHumanRightsCard = isHumanBillOfRightsCard(gpt.title);
+            return (
             <Card 
               key={`${gpt.title}-${index}`}
-              className="group relative overflow-hidden border-0 bg-gradient-to-br from-card/90 to-card/70 backdrop-blur-md hover:shadow-2xl hover:shadow-primary/20 transition-all duration-500 hover:-translate-y-1 cursor-pointer"
+              className={`group relative overflow-hidden border-0 bg-gradient-to-br from-card/90 to-card/70 backdrop-blur-md hover:shadow-2xl hover:shadow-primary/20 transition-all duration-500 hover:-translate-y-1 cursor-pointer ${isHumanRightsCard ? "sm:col-span-2 lg:col-span-2 xl:col-span-2 min-h-[460px] shadow-2xl shadow-primary/25 ring-1 ring-primary/40" : ""}`}
               onClick={() => handleCardClick(gpt.title)}
             >
               <div className={`absolute inset-0 bg-gradient-to-br ${gpt.color} opacity-5 group-hover:opacity-15 transition-opacity duration-500`} />
+              {isHumanRightsCard && (
+                <div className="pointer-events-none absolute inset-0 opacity-30">
+                  <div className="absolute inset-0 bg-[repeating-linear-gradient(180deg,hsl(var(--primary)/0.18)_0_1px,transparent_1px_5px)] animate-pulse" />
+                  <div className="absolute -inset-x-12 top-1/3 h-px bg-primary/70 shadow-[0_0_32px_hsl(var(--primary))]" />
+                </div>
+              )}
               
               <CardHeader className="pb-2 relative z-10">
                 <div className="flex items-start justify-between mb-1.5 gap-2">
@@ -4225,14 +4244,15 @@ const SpecialServices = () => {
                 
                 <Button 
                   size="sm"
-                  className={`w-full bg-gradient-to-r ${gpt.color} hover:opacity-90 text-white text-[10px] md:text-xs py-1.5 font-medium transition-all duration-300 group-hover:shadow-lg`}
+                  className={`w-full bg-gradient-to-r ${gpt.color} hover:opacity-90 text-white text-[10px] md:text-xs py-1.5 font-medium transition-all duration-300 group-hover:shadow-lg ${isHumanRightsCard ? "min-h-11 text-sm font-black uppercase tracking-[0.18em] shadow-[0_0_24px_hsl(var(--primary)/0.55)]" : ""}`}
                   onClick={(e) => handleLaunchGPT(gpt.directUrl, gpt.title, gpt.badge, e)}
                 >
-                  🚀 Launch GPT →
+                  {isHumanRightsCard ? "⚖️ Preserve Humanity →" : "🚀 Launch GPT →"}
                 </Button>
               </CardContent>
             </Card>
-          ))}
+          );
+          })}
         </div>
       </div>
     </section>
