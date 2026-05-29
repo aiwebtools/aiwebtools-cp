@@ -184,9 +184,10 @@ const AnimatedRoutes = () => {
       <Routes location={location}>
         <Route path="/category/:categoryName" element={<CategoryPage />} />
         <Route path="/main-category/:mainCategoryName" element={<MainCategoryPage />} />
-        <Route path="/tool/:toolId" element={<ToolDetail />} />
+        {/* Tool detail routes: no fallback — instant nav like before */}
+        <Route path="/tool/:toolId" element={<Suspense fallback={null}><ToolDetail /></Suspense>} />
+        <Route path="/:toolSlug" element={<Suspense fallback={null}><ToolDetail /></Suspense>} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-        <Route path="/:toolSlug" element={<ToolDetail />} />
         <Route path="/similar-tools/:toolId" element={<SimilarToolsPage />} />
         <Route path="/ai-tools-hub" element={<AIToolsHub />} />
         <Route path="/ai-agents-directory" element={<AIAgentsDirectory />} />
