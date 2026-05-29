@@ -376,7 +376,7 @@ const PinnedVideoPlayer = memo(() => {
     if (!currentVideoId) return "";
     const origin = typeof window !== 'undefined' ? window.location.origin : '';
     // No forced HD — pinned player is ~200px wide; let YouTube auto-pick the smallest stream to avoid buffering.
-    return `https://www.youtube.com/embed/${currentVideoId}?autoplay=1&mute=0&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&enablejsapi=1&playsinline=1&loop=0&origin=${encodeURIComponent(origin)}&widget_referrer=${encodeURIComponent(origin)}`;
+    return `https://www.youtube.com/embed/${currentVideoId}?autoplay=1&mute=0&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&enablejsapi=1&playsinline=1&loop=0&vq=hd1080&hd=1&origin=${encodeURIComponent(origin)}&widget_referrer=${encodeURIComponent(origin)}`;
   });
   const lastVideoIdRef = useRef<string>(currentVideoId || "");
   
@@ -410,7 +410,7 @@ const PinnedVideoPlayer = memo(() => {
     // Use youtube-nocookie.com for faster loads and better privacy
     const origin = typeof window !== 'undefined' ? window.location.origin : '';
     const muteParam = shouldMute ? 1 : 0;
-    const newSrc = `https://www.youtube.com/embed/${currentVideoId}?autoplay=1&mute=${muteParam}&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&enablejsapi=1&playsinline=1&loop=0&origin=${encodeURIComponent(origin)}&widget_referrer=${encodeURIComponent(origin)}`;
+    const newSrc = `https://www.youtube.com/embed/${currentVideoId}?autoplay=1&mute=${muteParam}&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&enablejsapi=1&playsinline=1&loop=0&vq=hd1080&hd=1&origin=${encodeURIComponent(origin)}&widget_referrer=${encodeURIComponent(origin)}`;
     setVideoSrc(newSrc);
     playerMountedRef.current = true;
     
