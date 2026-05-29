@@ -30,10 +30,14 @@ const ImprovedSEOHead: React.FC<ImprovedSEOHeadProps> = ({
 
   const getDescription = () => {
     switch (pageType) {
-      case 'tool':
-        const toolDesc = tool?.description || 'Powerful AI tool for enhanced productivity and creativity';
-        const truncatedDesc = toolDesc.length > 150 ? toolDesc.substring(0, 150) + '...' : toolDesc;
-        return `${truncatedDesc} Try ${tool?.title} now - Free access to this ${tool?.category || 'AI'} tool. Get started instantly!`;
+      case 'tool': {
+        const toolDesc = tool?.description || `Powerful ${tool?.category || 'AI'} tool for productivity and creativity.`;
+        const suffix = ` — Try ${tool?.title} free.`;
+        const max = 158;
+        const room = max - suffix.length;
+        const base = toolDesc.length > room ? toolDesc.substring(0, room - 1).trimEnd() + '…' : toolDesc;
+        return base + suffix;
+      }
       case 'category':
         return `Discover the best ${category?.toLowerCase()} AI tools for 2026. Compare features, pricing, and reviews of top ${category?.toLowerCase()} tools in our comprehensive directory.`;
       case 'search':
