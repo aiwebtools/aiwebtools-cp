@@ -111,6 +111,16 @@ const shuffleArray = <T,>(array: T[]): T[] => {
   return shuffled;
 };
 
+// Build a randomized music-video order that ALWAYS leads with real cinematic
+// music videos and pushes Suno-style lyric tracks to the back of the line.
+// Within each group we shuffle so playback still feels fresh on every round.
+const buildMusicOrder = (): typeof MUSIC_VIDEO_GALLERY => {
+  const titleLooksLyric = (t: string) => / — Track$/i.test(t);
+  const visuals = MUSIC_VIDEO_GALLERY.filter(v => !titleLooksLyric(v.title));
+  const lyrics  = MUSIC_VIDEO_GALLERY.filter(v =>  titleLooksLyric(v.title));
+  return [...shuffleArray(visuals), ...shuffleArray(lyrics)];
+};
+
 // Priority "wow factor" tools that blow minds - these play FIRST
 const WOW_FACTOR_TOOLS = new Set([
   // Creative powerhouses
