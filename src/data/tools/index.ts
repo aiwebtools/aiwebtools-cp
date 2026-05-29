@@ -630,3 +630,4 @@ export { freeAwesomeBatch2026C } from './freeAwesomeBatch2026C';
 export { freeAwesomeBatch2026D } from './freeAwesomeBatch2026D';
 export { freeAwesomeBatch2026E } from './freeAwesomeBatch2026E';
 export { newAgentsAndMedicalBatch2026E } from './newAgentsAndMedicalBatch2026E';
+export { offlineDownloadableBatch2026 } from './offlineDownloadableBatch2026';
