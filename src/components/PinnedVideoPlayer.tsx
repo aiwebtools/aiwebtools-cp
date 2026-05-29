@@ -392,7 +392,7 @@ const PinnedVideoPlayer = memo(() => {
 
   // Shuffled music-video order — every video plays once before any repeat.
   // Reshuffled when we wrap past the end so the next round is a fresh random order.
-  const [musicOrder, setMusicOrder] = useState<typeof MUSIC_VIDEO_GALLERY>(() => shuffleArray(MUSIC_VIDEO_GALLERY));
+  const [musicOrder, setMusicOrder] = useState<typeof MUSIC_VIDEO_GALLERY>(() => buildMusicOrder());
 
   // Mode: idle = show overlay with "Whatcha in the mood for?" buttons.
   // tools = play tool showcase videos (original behavior). music = 9:16 music videos.
@@ -413,7 +413,7 @@ const PinnedVideoPlayer = memo(() => {
     pauseOtherYouTubePlayers();
     setCurrentIndex(0);
     if (next === 'music') {
-      setMusicOrder(shuffleArray(MUSIC_VIDEO_GALLERY));
+      setMusicOrder(buildMusicOrder());
     }
     setMode(next);
     userPausedRef.current = false;
@@ -622,7 +622,7 @@ const PinnedVideoPlayer = memo(() => {
       if (isMusicMode) {
         if (next >= musicOrder.length) {
           // Reshuffle for a fresh random round — every video plays once before repeating.
-          let fresh = shuffleArray(MUSIC_VIDEO_GALLERY);
+          let fresh = buildMusicOrder();
           // Don't start the new round with the same video that just played.
           if (fresh.length > 1 && musicOrder[prev] && fresh[0].id === musicOrder[prev].id) {
             [fresh[0], fresh[1]] = [fresh[1], fresh[0]];
