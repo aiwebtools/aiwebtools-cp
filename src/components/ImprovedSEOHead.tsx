@@ -17,12 +17,15 @@ const ImprovedSEOHead: React.FC<ImprovedSEOHeadProps> = ({
 }) => {
   const getTitle = () => {
     switch (pageType) {
-      case 'tool':
-        return `${tool?.title} - ${tool?.category || 'AI Tool'} | Free AI Tool Access`;
+      case 'tool': {
+        const t = tool?.title || 'AI Tool';
+        const full = `${t} — Free ${tool?.category || 'AI'} Tool | AI Web Tools`;
+        return full.length > 60 ? `${t} | AI Web Tools` : full;
+      }
       case 'category':
-        return `${category} AI Tools - Best ${category} Tools 2026 | AI Web Tools`;
+        return `Best ${category} AI Tools 2026 | AI Web Tools`;
       case 'search':
-        return `${searchTerm} AI Tools - Search Results | AI Web Tools Directory`;
+        return `${searchTerm} AI Tools | AI Web Tools`;
       default:
         return 'AI Web Tools — 4,000+ Best Free AI Tools 2026';
     }
@@ -30,10 +33,14 @@ const ImprovedSEOHead: React.FC<ImprovedSEOHeadProps> = ({
 
   const getDescription = () => {
     switch (pageType) {
-      case 'tool':
-        const toolDesc = tool?.description || 'Powerful AI tool for enhanced productivity and creativity';
-        const truncatedDesc = toolDesc.length > 150 ? toolDesc.substring(0, 150) + '...' : toolDesc;
-        return `${truncatedDesc} Try ${tool?.title} now - Free access to this ${tool?.category || 'AI'} tool. Get started instantly!`;
+      case 'tool': {
+        const toolDesc = tool?.description || `Powerful ${tool?.category || 'AI'} tool for productivity and creativity.`;
+        const suffix = ` — Try ${tool?.title} free.`;
+        const max = 158;
+        const room = max - suffix.length;
+        const base = toolDesc.length > room ? toolDesc.substring(0, room - 1).trimEnd() + '…' : toolDesc;
+        return base + suffix;
+      }
       case 'category':
         return `Discover the best ${category?.toLowerCase()} AI tools for 2026. Compare features, pricing, and reviews of top ${category?.toLowerCase()} tools in our comprehensive directory.`;
       case 'search':
@@ -63,13 +70,13 @@ const ImprovedSEOHead: React.FC<ImprovedSEOHeadProps> = ({
       case 'tool':
         // Use clean slug-based URL with proper utility
         const slug = generateToolSlug(tool?.title || '');
-        return `https://aitools.studio/${slug}`;
+        return `https://ai-webtools.com/${slug}`;
       case 'category':
-        return `https://aitools.studio/category/${category?.toLowerCase().replace(/\s+/g, '-')}`;
+        return `https://ai-webtools.com/category/${category?.toLowerCase().replace(/\s+/g, '-')}`;
       case 'search':
-        return `https://aitools.studio/search?q=${encodeURIComponent(searchTerm || '')}`;
+        return `https://ai-webtools.com/search?q=${encodeURIComponent(searchTerm || '')}`;
       default:
-        return 'https://aitools.studio';
+        return 'https://ai-webtools.com';
     }
   };
 
@@ -89,11 +96,11 @@ const ImprovedSEOHead: React.FC<ImprovedSEOHeadProps> = ({
       }
       
       // Priority 3: Fall back to default AI Web Tools branded image
-      return 'https://aitools.studio/og-default.jpg';
+      return 'https://ai-webtools.com/og-default.jpg';
     }
     
     // Homepage default image
-    return 'https://aitools.studio/og-default.jpg';
+    return 'https://ai-webtools.com/og-default.jpg';
   };
 
   const structuredData = {
@@ -142,7 +149,7 @@ const ImprovedSEOHead: React.FC<ImprovedSEOHeadProps> = ({
         "name": "AI Web Tools",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://aitools.studio/logo.png"
+          "url": "https://ai-webtools.com/logo.png"
         }
       }
     };
@@ -156,13 +163,13 @@ const ImprovedSEOHead: React.FC<ImprovedSEOHeadProps> = ({
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://aitools.studio"
+        "item": "https://ai-webtools.com"
       },
       ...(category ? [{
         "@type": "ListItem",
         "position": 2,
         "name": category,
-        "item": `https://aitools.studio/category/${category.toLowerCase().replace(/\s+/g, '-')}`
+        "item": `https://ai-webtools.com/category/${category.toLowerCase().replace(/\s+/g, '-')}`
       }] : []),
       ...(tool ? [{
         "@type": "ListItem",
@@ -308,8 +315,8 @@ const ImprovedSEOHead: React.FC<ImprovedSEOHeadProps> = ({
           "@context": "https://schema.org",
           "@type": "Organization",
           "name": "AI Web Tools",
-          "url": "https://aitools.studio",
-          "logo": "https://aitools.studio/logo.png",
+          "url": "https://ai-webtools.com",
+          "logo": "https://ai-webtools.com/logo.png",
           "description": "The world's largest directory of 2195+ AI tools for productivity, creativity, and business.",
           "foundingDate": "2023",
           "numberOfEmployees": {

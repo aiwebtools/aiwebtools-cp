@@ -50,6 +50,7 @@ const ToolHeader = ({ tool, defaultRating, defaultVotes, toolIndex }: ToolHeader
       <div className="space-y-4">
         <h1 className="text-4xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent cyber-glow">
           {tool.title}
+          <span className="sr-only"> — {tool.category || 'AI Tool'} Review & Free Access</span>
         </h1>
         {tool.category && (
           <Badge 

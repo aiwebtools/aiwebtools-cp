@@ -318,7 +318,7 @@ const SEOHead = ({
       <meta name="twitter:image:alt" content="AI WEB TOOLS - Ultimate AI Tools Directory with 1000+ Curated AI Applications" />
       <meta name="twitter:site" content={seoConfig.twitterHandle} />
       <meta name="twitter:creator" content={seoConfig.twitterHandle} />
-      <meta name="twitter:domain" content="aitools.studio" />
+      <meta name="twitter:domain" content="ai-webtools.com" />
       <meta name="twitter:url" content={canonical} />
       <meta name="twitter:data1" content="1000+ AI Tools" />
       <meta name="twitter:label1" content="Directory Size" />
@@ -413,8 +413,8 @@ const SEOHead = ({
       {/* Additional Competitive Meta */}
       <meta name="news_keywords" content="AI tools, artificial intelligence, ChatGPT alternatives, best AI directory, AI web tools" />
       <meta name="standout" content={canonical} />
-      <meta name="syndication-source" content="https://aitools.studio" />
-      <meta name="original-source" content="https://aitools.studio" />
+      <meta name="syndication-source" content="https://ai-webtools.com" />
+      <meta name="original-source" content="https://ai-webtools.com" />
       <meta name="generator" content="AI WEB TOOLS Directory Platform" />
       
       {/* Cache Control for SEO */}
