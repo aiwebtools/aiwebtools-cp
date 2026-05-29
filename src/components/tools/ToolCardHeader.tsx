@@ -5,7 +5,7 @@ import { Tool } from "@/types/tools";
 import StarRating from "./StarRating";
 import { FavoritesButton } from "@/components/favorites/FavoritesButton";
 import { allTools } from "@/data/toolsData";
-import { Brain, Blocks } from "lucide-react";
+import { Brain, Blocks, Smartphone, Monitor } from "lucide-react";
 import ToolDisclaimerBadges from "@/components/disclaimers/ToolDisclaimerBadges";
 import AutoScaleTitle from "@/components/ui/auto-scale-title";
 
