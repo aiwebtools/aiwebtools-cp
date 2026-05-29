@@ -463,15 +463,16 @@ const PinnedVideoPlayer = memo(() => {
     }
   }, []);
   
-  // Track video src separately to prevent unnecessary iframe reloads
-  // Initialize with actual video URL to prevent "null" blocking first render
-  // Use youtube-nocookie.com for faster loads and better privacy
-  const [videoSrc, setVideoSrc] = useState<string>(() => {
+  // Derive videoSrc SYNCHRONOUSLY from currentVideoId so the iframe never mounts
+  // with a stale URL. This was the root cause of the "music button plays AI tools"
+  // bug — the iframe was mounting with a previously-cached tool URL before a
+  // useEffect could swap it to the music URL, briefly playing the wrong video.
+  // Mute is controlled via postMessage (not src) so toggling it does not reload.
+  const videoSrc = useMemo(() => {
     if (!currentVideoId) return "";
     const origin = typeof window !== 'undefined' ? window.location.origin : '';
-    // No forced HD — pinned player is ~200px wide; let YouTube auto-pick the smallest stream to avoid buffering.
     return `https://www.youtube.com/embed/${currentVideoId}?autoplay=1&mute=0&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&enablejsapi=1&playsinline=1&loop=0&vq=hd1080&hd=1&origin=${encodeURIComponent(origin)}&widget_referrer=${encodeURIComponent(origin)}`;
-  });
+  }, [currentVideoId]);
   const lastVideoIdRef = useRef<string>(currentVideoId || "");
   
   // Persist index changes
@@ -479,39 +480,20 @@ const PinnedVideoPlayer = memo(() => {
     setStoredIndex(currentIndex);
   }, [currentIndex]);
   
-  // Update video src only when video ID actually changes
+  // React to video ID changes: kick mute/play retry loop. videoSrc itself is
+  // derived synchronously above so no need to setVideoSrc here.
   useEffect(() => {
     if (!currentVideoId) return;
     if (currentVideoId === lastVideoIdRef.current) return;
-    
     lastVideoIdRef.current = currentVideoId;
-    const isMobile = isMobileDevice();
-    
-    // ALWAYS start muted - browser autoplay policies require it on ALL devices
-    // This also prevents the "audio without visible player" bug
-    // User can unmute manually after seeing the player
-    // Default: UNMUTED. Respect explicit user mute preference if set.
-    let shouldMute: boolean;
-    if (userMutePreferenceRef.current !== null) {
-      shouldMute = userMutePreferenceRef.current;
-    } else {
-      shouldMute = false;
-    }
+
+    const shouldMute = userMutePreferenceRef.current !== null
+      ? userMutePreferenceRef.current
+      : false;
     isFirstVideoRef.current = false;
-    
-    // Build video URL - ALWAYS start with mute=1 for reliable autoplay on ALL browsers
-    // User must explicitly click unmute button to hear audio
-    // Use youtube-nocookie.com for faster loads and better privacy
-    const origin = typeof window !== 'undefined' ? window.location.origin : '';
-    const muteParam = shouldMute ? 1 : 0;
-    const newSrc = `https://www.youtube.com/embed/${currentVideoId}?autoplay=1&mute=${muteParam}&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&enablejsapi=1&playsinline=1&loop=0&vq=hd1080&hd=1&origin=${encodeURIComponent(origin)}&widget_referrer=${encodeURIComponent(origin)}`;
-    setVideoSrc(newSrc);
     playerMountedRef.current = true;
-    
-    // Sync UI state - always start muted
     setIsMuted(shouldMute);
-    
-    // Aggressively retry unMute for every new video so sound is always on.
+
     if (!shouldMute) {
       pauseOtherYouTubePlayers();
       window.dispatchEvent(new CustomEvent('pinnedPlayerPlaying'));
@@ -524,15 +506,9 @@ const PinnedVideoPlayer = memo(() => {
           sendYTCommand('playVideo');
         }, delay)
       );
-      // Cleanup in case video changes again quickly
       return () => timers.forEach(clearTimeout);
     }
-    
-    // If unmuted, notify tool page videos to mute
-    if (!shouldMute) {
-      window.dispatchEvent(new CustomEvent('pinnedPlayerPlaying'));
-    }
-  }, [currentVideoId, pauseOtherYouTubePlayers, sendYTCommand]); // Only depend on video ID, not mute state
+  }, [currentVideoId, pauseOtherYouTubePlayers, sendYTCommand]);
 
   // Sync mute state to iframe whenever isMuted changes
   useEffect(() => {
