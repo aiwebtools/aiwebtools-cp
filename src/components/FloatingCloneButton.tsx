@@ -33,9 +33,10 @@ const FloatingCloneButton = () => {
       <div
         style={{
           position: 'fixed',
-          // Top-right: opposite the logo so nothing overlaps; below the header strip
+          // Top-right: opposite the logo so nothing overlaps; sits well below the
+          // hamburger / header strip on mobile so the two never visually crowd.
           right: '12px',
-          top: '140px',
+          top: '232px',
           zIndex: 2147483646, // Just below pinned player, but above everything else
           pointerEvents: 'auto',
           isolation: 'isolate',
