@@ -856,23 +856,60 @@ const PinnedVideoPlayer = memo(() => {
           }}
         >
           {mode === 'idle' ? (
-            <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 p-2 bg-gradient-to-br from-purple-900/80 via-gray-900 to-cyan-900/80">
-              <p className="text-[10px] uppercase tracking-wider text-cyan-300/90 text-center font-bold">
-                Whatcha in the mood for?
+            <div className="absolute inset-0 flex flex-col items-center justify-center gap-1.5 p-1.5 bg-black overflow-hidden">
+              {/* Matrix streaming code background */}
+              <div
+                aria-hidden
+                className="absolute inset-0 pointer-events-none opacity-40"
+                style={{
+                  background:
+                    "repeating-linear-gradient(180deg, rgba(0,255,70,0.18) 0 1px, transparent 1px 3px)",
+                  animation: "matrixRain 2.5s linear infinite",
+                  textShadow: "0 0 6px #00ff41",
+                }}
+              />
+              <div
+                aria-hidden
+                className="absolute inset-0 pointer-events-none font-mono text-[8px] leading-[9px] text-[#00ff41]/70 select-none overflow-hidden whitespace-pre"
+                style={{
+                  animation: "matrixRain 6s linear infinite",
+                  textShadow: "0 0 4px #00ff41",
+                }}
+              >
+                {"01010\n10110\n11001\n01110\n10011\n01101\n10100\n01011\n11010\n00111\n10101\n01100\n11011\n00101\n10010\n01001"}
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/80 pointer-events-none" />
+
+              <p
+                className="relative z-10 text-[9px] uppercase tracking-[0.2em] text-center font-mono font-bold"
+                style={{ color: "#00ff41", textShadow: "0 0 8px #00ff41" }}
+              >
+                &gt; select_mode
               </p>
+
               <button
                 onClick={() => handleSelectMode('tools')}
-                className="w-full px-2 py-1.5 text-[11px] font-extrabold rounded bg-gradient-to-r from-amber-500 to-yellow-400 text-black hover:scale-[1.03] active:scale-95 transition-transform shadow-md"
+                className="relative z-10 group w-full px-2 py-1 text-[10px] font-mono font-bold uppercase tracking-wider text-[#00ff41] bg-black/70 border border-[#00ff41]/60 hover:bg-[#00ff41]/15 hover:border-[#00ff41] active:scale-95 transition-all"
+                style={{
+                  clipPath: "polygon(8% 0, 100% 0, 92% 100%, 0 100%)",
+                  textShadow: "0 0 6px #00ff41",
+                  boxShadow: "0 0 10px rgba(0,255,65,0.35), inset 0 0 8px rgba(0,255,65,0.15)",
+                }}
                 title="Browse our AI tools showcase"
               >
-                ✨ Check Out Our Tools
+                ▶ AI_TOOLS.exe
               </button>
               <button
                 onClick={() => handleSelectMode('music')}
-                className="w-full px-2 py-1.5 text-[10px] font-extrabold rounded bg-gradient-to-r from-fuchsia-500 to-purple-500 text-white hover:scale-[1.03] active:scale-95 transition-transform shadow-md leading-tight"
+                className="relative z-10 group w-full px-2 py-1 text-[10px] font-mono font-bold uppercase tracking-wider text-[#a855f7] bg-black/70 border border-[#a855f7]/60 hover:bg-[#a855f7]/15 hover:border-[#a855f7] active:scale-95 transition-all"
+                style={{
+                  clipPath: "polygon(8% 0, 100% 0, 92% 100%, 0 100%)",
+                  textShadow: "0 0 6px #a855f7",
+                  boxShadow: "0 0 10px rgba(168,85,247,0.35), inset 0 0 8px rgba(168,85,247,0.15)",
+                }}
                 title="Watch our original AI musical art gallery"
               >
-                🎵 Check Out Our Original<br/>AI Musical Art Gallery
+                ♪ MUSIC_GALLERY.exe
               </button>
             </div>
           ) : (
