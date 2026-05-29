@@ -85,8 +85,9 @@ export const offlineDownloadableBatch2026: Tool[] = [
     platforms: ["Windows", "macOS", "Linux", "Android (Termux)"],
     tags: [
       "SillyTavern", "Silly Tavern", "sillytavern",
-      "offline AI", "offline LLM frontend", "local LLM UI", "self-hosted AI",
-      "downloadable AI app", "free roleplay AI", "AI roleplay offline",
+      "offline", "offline AI", "offline LLM frontend", "downloadable", "downloadable AI app",
+      "on-device", "on device", "local LLM UI", "self-hosted AI",
+      "free roleplay AI", "AI roleplay offline",
       "KoboldCpp frontend", "Oobabooga frontend", "Ollama UI", "LM Studio UI",
       "llama.cpp frontend", "open source AI chat", "MIT license AI",
       "character chat", "lorebook", "world info", "group chat AI",
