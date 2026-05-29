@@ -17,12 +17,15 @@ const ImprovedSEOHead: React.FC<ImprovedSEOHeadProps> = ({
 }) => {
   const getTitle = () => {
     switch (pageType) {
-      case 'tool':
-        return `${tool?.title} - ${tool?.category || 'AI Tool'} | Free AI Tool Access`;
+      case 'tool': {
+        const t = tool?.title || 'AI Tool';
+        const full = `${t} — Free ${tool?.category || 'AI'} Tool | AI Web Tools`;
+        return full.length > 60 ? `${t} | AI Web Tools` : full;
+      }
       case 'category':
-        return `${category} AI Tools - Best ${category} Tools 2026 | AI Web Tools`;
+        return `Best ${category} AI Tools 2026 | AI Web Tools`;
       case 'search':
-        return `${searchTerm} AI Tools - Search Results | AI Web Tools Directory`;
+        return `${searchTerm} AI Tools | AI Web Tools`;
       default:
         return 'AI Web Tools — 4,000+ Best Free AI Tools 2026';
     }
