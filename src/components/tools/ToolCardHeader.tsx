@@ -5,7 +5,7 @@ import { Tool } from "@/types/tools";
 import StarRating from "./StarRating";
 import { FavoritesButton } from "@/components/favorites/FavoritesButton";
 import { allTools } from "@/data/toolsData";
-import { Brain, Blocks } from "lucide-react";
+import { Brain, Blocks, Smartphone, Monitor } from "lucide-react";
 import ToolDisclaimerBadges from "@/components/disclaimers/ToolDisclaimerBadges";
 import AutoScaleTitle from "@/components/ui/auto-scale-title";
 
@@ -103,7 +103,35 @@ const ToolCardHeader = ({
             </Badge>
           )}
         </div>
-        
+
+        {/* Platform Badge — always obvious for mobile vs desktop */}
+        {tool.platform && (
+          <div className="flex justify-center flex-wrap gap-2">
+            {tool.platform === "mobile" ? (
+              <Badge className="text-xs bg-gradient-to-r from-emerald-500 to-teal-600 text-white border-0 flex items-center gap-1 shadow-lg shadow-emerald-500/20">
+                <Smartphone size={12} />
+                MOBILE APP
+              </Badge>
+            ) : tool.platform === "desktop" ? (
+              <Badge className="text-xs bg-gradient-to-r from-blue-600 to-indigo-600 text-white border-0 flex items-center gap-1 shadow-lg shadow-blue-500/20">
+                <Monitor size={12} />
+                DESKTOP APP
+              </Badge>
+            ) : (
+              <Badge className="text-xs bg-gradient-to-r from-violet-500 to-fuchsia-600 text-white border-0 flex items-center gap-1 shadow-lg shadow-violet-500/20">
+                <Monitor size={12} />
+                CROSS-PLATFORM
+              </Badge>
+            )}
+            {/* Specific platform chips */}
+            {tool.platforms && tool.platforms.length > 0 && (
+              <Badge variant="outline" className="text-[10px] border-gray-500 text-gray-300 bg-gray-800/60 flex items-center gap-1">
+                {tool.platforms.join(" · ")}
+              </Badge>
+            )}
+          </div>
+        )}
+
         {tool.category && (
           <Badge variant="outline" className={`text-xs ${isAIWebToolsOriginal ? 'border-cyan-300 text-cyan-200 bg-cyan-500/20' : 'border-cyan-400 text-cyan-300 bg-cyan-500/10'}`}>
             {tool.category}

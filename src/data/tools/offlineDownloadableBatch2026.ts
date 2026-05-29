@@ -24,6 +24,8 @@ export const offlineDownloadableBatch2026: Tool[] = [
     imageUrl: invokeaiHero,
     isFree: true,
     tagline: "Free offline Stable Diffusion studio — runs locally on your own PC.",
+    platform: "desktop",
+    platforms: ["Windows", "macOS", "Linux"],
     tags: [
       "InvokeAI", "Invoke AI", "Invoke", "invokeai",
       "offline AI", "offline AI tool", "downloadable AI", "local AI", "self-hosted AI",
@@ -50,6 +52,8 @@ export const offlineDownloadableBatch2026: Tool[] = [
     imageUrl: backyardAiHero,
     isFree: true,
     tagline: "Free offline desktop AI — run private local LLMs with one click.",
+    platform: "desktop",
+    platforms: ["Windows", "macOS"],
     tags: [
       "Backyard AI", "Backyard", "Faraday AI", "Faraday", "backyard.ai",
       "offline AI", "offline LLM", "local LLM", "downloadable AI",
@@ -75,6 +79,8 @@ export const offlineDownloadableBatch2026: Tool[] = [
     imageUrl: sillytavernHero,
     isFree: true,
     tagline: "Free self-hosted offline LLM frontend — the power user's local AI UI.",
+    platform: "cross-platform",
+    platforms: ["Windows", "macOS", "Linux", "Android (Termux)"],
     tags: [
       "SillyTavern", "Silly Tavern", "sillytavern",
       "offline AI", "offline LLM frontend", "local LLM UI", "self-hosted AI",
@@ -101,6 +107,8 @@ export const offlineDownloadableBatch2026: Tool[] = [
     imageUrl: mlcChatHero,
     isFree: true,
     tagline: "📱 MOBILE APP • Free fully-offline on-device LLM chat for iOS & Android.",
+    platform: "mobile",
+    platforms: ["iOS", "Android"],
     tags: [
       "MLC Chat", "MLC LLM", "MLC", "mlc-chat", "mlc llm chat",
       "MOBILE APP", "mobile app", "iOS app", "Android app", "iPhone AI",
@@ -126,6 +134,8 @@ export const offlineDownloadableBatch2026: Tool[] = [
     imageUrl: enchantedHero,
     isFree: true,
     tagline: "📱 iOS MOBILE APP • Free native Ollama client — your offline LLM, beautifully.",
+    platform: "mobile",
+    platforms: ["iOS", "iPadOS", "macOS", "visionOS"],
     tags: [
       "Enchanted", "Enchanted app", "Enchanted Ollama", "enchanted ios",
       "MOBILE APP", "mobile app", "iOS app", "iPhone app", "iPad app", "macOS app", "Apple Vision Pro app",
