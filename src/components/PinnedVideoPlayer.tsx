@@ -759,6 +759,7 @@ const PinnedVideoPlayer = memo(() => {
       userMutePreferenceRef.current = newMuted;
       // If unmuting pinned player, notify tool page video to mute
       if (!newMuted) {
+        pauseOtherYouTubePlayers();
         window.dispatchEvent(new CustomEvent('pinnedPlayerPlaying'));
       }
       // Force-send command immediately on user gesture (critical for mobile Chrome)
@@ -770,9 +771,10 @@ const PinnedVideoPlayer = memo(() => {
       setTimeout(() => sendYTCommand(command), 500);
       return newMuted;
     });
-  }, [sendYTCommand]);
+  }, [sendYTCommand, pauseOtherYouTubePlayers]);
 
   const handlePlayVideo = useCallback(() => {
+    pauseOtherYouTubePlayers();
     userMutePreferenceRef.current = false;
     setIsMuted(false);
     sendYTCommand('unMute');
@@ -784,7 +786,7 @@ const PinnedVideoPlayer = memo(() => {
         sendYTCommand('playVideo');
       }, delay);
     });
-  }, [sendYTCommand]);
+  }, [sendYTCommand, pauseOtherYouTubePlayers]);
 
   const handleTogglePlay = useCallback(() => {
     if (isPlaying) {
@@ -794,6 +796,7 @@ const PinnedVideoPlayer = memo(() => {
       // Re-assert pause shortly after in case a background timer fires playVideo.
       [120, 400, 900].forEach(d => window.setTimeout(() => sendYTCommand('pauseVideo'), d));
     } else {
+      pauseOtherYouTubePlayers();
       userPausedRef.current = false;
       userMutePreferenceRef.current = false;
       setIsMuted(false);
@@ -806,7 +809,7 @@ const PinnedVideoPlayer = memo(() => {
         sendYTCommand('playVideo');
       }, d));
     }
-  }, [isPlaying, sendYTCommand]);
+  }, [isPlaying, sendYTCommand, pauseOtherYouTubePlayers]);
 
   const handleIframeLoad = useCallback(() => {
     playerMountedRef.current = true;
@@ -814,12 +817,13 @@ const PinnedVideoPlayer = memo(() => {
       [100, 300, 700, 1200, 2200].forEach(delay => {
         window.setTimeout(() => {
           if (userPausedRef.current) return;
+          pauseOtherYouTubePlayers();
           sendYTCommand('unMute');
           sendYTCommand('playVideo');
         }, delay);
       });
     }
-  }, [isMuted, sendYTCommand]);
+  }, [isMuted, sendYTCommand, pauseOtherYouTubePlayers]);
 
   // Don't render if not on homepage, permanently closed, no tools, or haven't scrolled past hero yet
   if (!isHomepage || !isVisible || !hasScrolledEnough || toolsWithVideos.length === 0) {
