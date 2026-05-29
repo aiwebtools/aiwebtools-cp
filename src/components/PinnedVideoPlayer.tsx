@@ -605,7 +605,12 @@ const PinnedVideoPlayer = memo(() => {
     const handleMessage = (event: MessageEvent) => {
       // YouTube sends messages when video state changes
       if (event.origin !== YT_EMBED_ORIGIN && event.origin !== YT_API_ORIGIN_FALLBACK) return;
-      
+      // CRITICAL: only react to messages from OUR iframe — other YouTube
+      // iframes on the page (book carousel, tool pages) also post state
+      // changes and were causing the pinned player to advance prematurely
+      // when a different video on the page ended.
+      if (!iframeRef.current || event.source !== iframeRef.current.contentWindow) return;
+
       try {
         const data = typeof event.data === "string" ? JSON.parse(event.data) : event.data;
         
