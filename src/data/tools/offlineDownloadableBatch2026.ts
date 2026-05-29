@@ -79,6 +79,8 @@ export const offlineDownloadableBatch2026: Tool[] = [
     imageUrl: sillytavernHero,
     isFree: true,
     tagline: "Free self-hosted offline LLM frontend — the power user's local AI UI.",
+    platform: "cross-platform",
+    platforms: ["Windows", "macOS", "Linux", "Android (Termux)"],
     tags: [
       "SillyTavern", "Silly Tavern", "sillytavern",
       "offline AI", "offline LLM frontend", "local LLM UI", "self-hosted AI",
@@ -105,6 +107,8 @@ export const offlineDownloadableBatch2026: Tool[] = [
     imageUrl: mlcChatHero,
     isFree: true,
     tagline: "📱 MOBILE APP • Free fully-offline on-device LLM chat for iOS & Android.",
+    platform: "mobile",
+    platforms: ["iOS", "Android"],
     tags: [
       "MLC Chat", "MLC LLM", "MLC", "mlc-chat", "mlc llm chat",
       "MOBILE APP", "mobile app", "iOS app", "Android app", "iPhone AI",
