@@ -631,12 +631,12 @@ const BookPromotionCard = () => {
       seen.add(v.id);
       return true;
     });
-    // Pin the longer 9:16 vertical music-video showcases at the FRONT of the
-    // lineup (they're the longest, most cinematic clips and should lead the reel).
+    // Pin the longest, most cinematic 9:16 vertical music videos at the FRONT
+    // of the lineup. FHEWZkP_3ew is a Suno-style lyric track, so it's NOT
+    // pinned to the front — it joins the lyric/audio tracks at the back.
     const verticalMusicVideoIds = [
       "AFwPVOQV0SE",
       "M5l6VJAh2-Y",
-      "FHEWZkP_3ew",
       "TlAgmV_2hXs",
       "bhC9aTQGbGI",
       "qxIYhAAkko8",
@@ -646,9 +646,29 @@ const BookPromotionCard = () => {
     const verticals = verticalMusicVideoIds
       .map(id => uniqueVideos.find(v => v.id === id))
       .filter((v): v is typeof uniqueVideos[number] => Boolean(v));
-    const rest = uniqueVideos.filter(v => !verticalSet.has(v.id));
-    const shuffledRest = shuffleArray(rest);
-    return [...verticals, ...shuffledRest];
+
+    // Suno / lyric-only audio tracks — pushed to the BACK of the reel so the
+    // carousel always leads with eye-catching real music videos.
+    const sunoLyricIds = new Set<string>([
+      "FHEWZkP_3ew", // its in the code polly
+      "KIqBIh6TZ04", // Cosmic Light Code Within
+      "UlYYh-8pjS8", // Portal Through The Light
+      "NglQB5OVmqk", // Cosmic Code
+      "yZ9Jt1canjE", // Cosmic TRUTH within YOU
+      "O9n0tKbbI2E", // The Cosmic Light is Within You
+      "-I0LGUP9xso", // Cosmic Light Inner Cosmos Rap
+      "6NeNA-KGz2s", // my eyes (remix)
+      "siddzjKXd9o", // Rome fell once
+      "0IfbFWirwTg", // Father of Living Light
+      "u8Rs0KH2XTg", // my eyes
+      "8y6irP9OPJ0", // Fall Again
+      "uPioA-r3Wyw", // Truth. Light. Now.
+      "ZMxg9PMHmos", // Portal Fall Again (Remix)
+    ]);
+
+    const middle = uniqueVideos.filter(v => !verticalSet.has(v.id) && !sunoLyricIds.has(v.id));
+    const tail   = uniqueVideos.filter(v => sunoLyricIds.has(v.id));
+    return [...verticals, ...shuffleArray(middle), ...shuffleArray(tail)];
   }, []);
 
   const videosPerPage = 3;
