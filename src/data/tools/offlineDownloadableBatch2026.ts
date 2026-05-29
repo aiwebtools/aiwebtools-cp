@@ -28,7 +28,8 @@ export const offlineDownloadableBatch2026: Tool[] = [
     platforms: ["Windows", "macOS", "Linux"],
     tags: [
       "InvokeAI", "Invoke AI", "Invoke", "invokeai",
-      "offline AI", "offline AI tool", "downloadable AI", "local AI", "self-hosted AI",
+      "offline", "offline AI", "offline AI tool", "downloadable", "downloadable AI",
+      "on-device", "on device", "local AI", "self-hosted AI",
       "free Stable Diffusion", "Stable Diffusion offline", "local image generation",
       "SDXL local", "Flux local", "AUTOMATIC1111 alternative", "ComfyUI alternative",
       "free AI image generator", "open source image AI", "node based image AI",
