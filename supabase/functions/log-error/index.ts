@@ -6,10 +6,37 @@ Deno.serve(async (req) => {
 
   try {
     const body = await req.json();
+    // Use the anon key (the error_logs table has an RLS policy allowing anon INSERT).
+    // Pass through the caller's Authorization header so RLS evaluates under their real role.
     const supabase = createClient(
       Deno.env.get('SUPABASE_URL')!,
-      Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!
+      Deno.env.get('SUPABASE_ANON_KEY')!,
+      {
+        global: {
+          headers: { Authorization: req.headers.get('Authorization') ?? '' },
+        },
+      }
     );
+
+    // Bound metadata: must be a plain object, serialized JSON ≤ 4 KB, ≤ 50 keys.
+    let safeMetadata: Record<string, unknown> | null = null;
+    if (
+      body.metadata &&
+      typeof body.metadata === 'object' &&
+      !Array.isArray(body.metadata)
+    ) {
+      const keys = Object.keys(body.metadata);
+      if (keys.length <= 50) {
+        try {
+          const serialized = JSON.stringify(body.metadata);
+          if (serialized.length <= 4096) {
+            safeMetadata = body.metadata as Record<string, unknown>;
+          }
+        } catch {
+          safeMetadata = null;
+        }
+      }
+    }
 
     const { error } = await supabase.from('error_logs').insert({
       error_type: String(body.error_type || 'unknown').slice(0, 200),
@@ -23,7 +50,7 @@ Deno.serve(async (req) => {
       session_id: body.session_id ? String(body.session_id).slice(0, 100) : null,
       component_stack: body.component_stack ? String(body.component_stack).slice(0, 8000) : null,
       severity: ['error', 'warning', 'fatal', 'info'].includes(body.severity) ? body.severity : 'error',
-      metadata: body.metadata ?? null,
+      metadata: safeMetadata,
     });
 
     if (error) {
