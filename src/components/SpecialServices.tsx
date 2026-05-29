@@ -145,6 +145,8 @@ const weightedShuffle = <T extends { title: string }>(items: T[]): T[] => {
   return [...topDreamConquering, ...topPremium, ...mixed];
 };
 
+const isHumanBillOfRightsCard = (title: string) => title === "AI HUMAN BILL OF RIGHTS";
+
 // Lazy-loading YouTube video component - shows thumbnail until clicked
 const LazyVideoEmbed = ({ videoUrl, title, height = "h-32" }: { videoUrl: string; title: string; height?: string }) => {
   const [isLoaded, setIsLoaded] = useState(false);
