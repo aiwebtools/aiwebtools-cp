@@ -143,8 +143,9 @@ export const offlineDownloadableBatch2026: Tool[] = [
     tags: [
       "Enchanted", "Enchanted app", "Enchanted Ollama", "enchanted ios",
       "MOBILE APP", "mobile app", "iOS app", "iPhone app", "iPad app", "macOS app", "Apple Vision Pro app",
-      "offline AI", "offline LLM", "Ollama client", "Ollama mobile", "Ollama iOS",
-      "downloadable AI", "local AI phone", "private mobile AI",
+      "offline", "offline AI", "offline LLM", "downloadable", "downloadable AI",
+      "on-device", "on device", "Ollama client", "Ollama mobile", "Ollama iOS",
+      "local AI phone", "private mobile AI",
       "free Ollama app", "open source iOS AI", "MIT license AI",
       "Llama 3 mobile", "Mistral mobile", "Gemma mobile", "Phi mobile", "DeepSeek mobile",
       "no cloud AI", "no telemetry AI", "self-hosted mobile AI",
