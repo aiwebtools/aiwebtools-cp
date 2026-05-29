@@ -50,6 +50,7 @@ const MUSIC_VIDEO_GALLERY: Array<{ id: string; title: string }> = [
   { id: "ZWiOa6NXqYE", title: "Light Code Awakening — Music Video (Short)" },
   { id: "EYnCtw9CsxQ", title: "Eyes Of The Soul — Music Video" },
   { id: "QCJCKhbwxhA", title: "Walk Through Fire — Music Video" },
+  { id: "Twl5-MsgmoI", title: "Hidden Truths Revealed — Music Video" },
   { id: "1cnzF1bkq3o", title: "What's The Plan? — Music Video" },
   { id: "8afw8Tq94Pg", title: "Deep Inside (Remastered) — Music Video" },
   { id: "eAaXtMBYWYs", title: "The Empire Has Fallen — Music Video" },
