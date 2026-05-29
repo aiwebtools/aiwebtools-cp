@@ -36,7 +36,9 @@ const FloatingCloneButton = () => {
           // Top-right: opposite the logo so nothing overlaps; sits well below the
           // hamburger / header strip on mobile so the two never visually crowd.
           right: '12px',
-          top: '232px',
+          // Sit roughly one extra inch below the hamburger menu strip on mobile,
+          // so the clone circle never visually crowds the dropdown trigger.
+          top: '328px',
           zIndex: 2147483646, // Just below pinned player, but above everything else
           pointerEvents: 'auto',
           isolation: 'isolate',
