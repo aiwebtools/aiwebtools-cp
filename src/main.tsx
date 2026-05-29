@@ -69,8 +69,10 @@ const root = createRoot(rootElement);
 import('./App.tsx')
   .then(({ default: App }) => {
     root.render(<App />);
-    // If app boots successfully, clear the guard so future errors can trigger again.
-    window.setTimeout(() => sessionStorage.removeItem(CHUNK_RELOAD_KEY), 4000);
+    // NOTE: we intentionally do NOT clear CHUNK_RELOAD_KEY after boot.
+    // Clearing it allowed mid-session errors to trigger a second reload,
+    // which users perceived as random "refresh screens". One self-heal per
+    // session is enough — anything after that should surface a manual button.
   })
   .catch((error) => {
     const msg = error?.message || String(error || '');
