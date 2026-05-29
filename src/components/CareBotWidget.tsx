@@ -239,12 +239,29 @@ const CareBotWidget = () => {
                     }`}
                   >
                     {m.role === "assistant" ? (
-                      <div className="prose prose-sm prose-invert max-w-none [&_a]:text-cyan-300 [&_a]:underline [&_p]:my-1 [&_ul]:my-1 [&_strong]:text-green-300">
+                      <div className="prose prose-sm prose-invert max-w-none [&_p]:my-1 [&_ul]:my-1 [&_strong]:text-green-300">
                         <ReactMarkdown
                           components={{
-                            a: ({ href, children }) => (
-                              <a href={href} target="_blank" rel="noopener noreferrer">{children}</a>
-                            ),
+                            a: ({ href, children }) => {
+                              const url = String(href || "");
+                              return (
+                                <button
+                                  type="button"
+                                  onClick={(e) => {
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                    // Open INSTANTLY in a new window — no time-warp,
+                                    // no internal route, no middle-man loader.
+                                    window.open(url, "_blank", "noopener,noreferrer");
+                                  }}
+                                  className="inline-flex items-center gap-1 mx-0.5 my-0.5 px-2 py-0.5 rounded-md bg-cyan-500/15 hover:bg-cyan-500/30 border border-cyan-400/40 text-cyan-200 hover:text-white text-xs font-semibold transition-colors no-underline"
+                                  title={url}
+                                >
+                                  {children}
+                                  <span aria-hidden className="text-[10px] opacity-80">↗</span>
+                                </button>
+                              );
+                            },
                           }}
                         >
                           {m.content}
