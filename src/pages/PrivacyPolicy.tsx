@@ -10,12 +10,12 @@ const PrivacyPolicy = () => {
         <title>Privacy Policy | AIWebTools.ai — 4,000+ AI Tools Directory</title>
         <meta
           name="description"
-          content="AIWebTools.ai Privacy Policy: how we collect, use, and protect data across our directory of 4,000+ AI tools, custom GPTs, and AI services. Plain-English, no dark patterns."
+          content="AIWebTools.ai Privacy Policy: we do not collect personal information. Learn how we protect your privacy while browsing our directory of 4,000+ AI tools."
         />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://aiwebtools.ai/privacy-policy" />
         <meta property="og:title" content="Privacy Policy | AIWebTools.ai" />
-        <meta property="og:description" content="How AIWebTools.ai handles your data — clear, honest, and minimal." />
+        <meta property="og:description" content="AIWebTools.ai does not collect personal information — clear, honest, and minimal." />
         <meta property="og:url" content="https://aiwebtools.ai/privacy-policy" />
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
@@ -44,68 +44,76 @@ const PrivacyPolicy = () => {
               <h2 className="text-xl font-bold text-green-300">1. Who we are</h2>
               <p>
                 AIWebTools.ai (also operating as AITools.studio and several mirror domains) is a directory of
-                4,000+ AI tools, custom GPTs, and AI services. This Privacy Policy explains how we handle
-                information when you visit our website or interact with our tools.
+                4,000+ AI tools, custom GPTs, and AI services. This Privacy Policy explains our commitment to
+                your privacy when you visit our website.
               </p>
             </section>
 
             <section>
-              <h2 className="text-xl font-bold text-green-300">2. What we collect</h2>
-              <ul className="list-disc list-inside space-y-1">
-                <li><strong>Analytics:</strong> aggregated, anonymous tool views, clicks, search queries, page load times, referrers, and approximate session identifiers.</li>
-                <li><strong>Crash logs:</strong> automatic error reports (error message, stack trace, page URL, browser user agent) so we can keep the site stable.</li>
-                <li><strong>Care Bot conversations:</strong> messages you send to our AI Care Bot are processed via our AI gateway to generate responses. We do not sell these messages.</li>
-                <li><strong>Tool submissions:</strong> if you submit a tool, we store the name, email, and details you provide.</li>
-                <li><strong>Cookies / local storage:</strong> minimal — preferences, session IDs, and consent state. No third-party advertising cookies.</li>
-              </ul>
-            </section>
-
-            <section>
-              <h2 className="text-xl font-bold text-green-300">3. What we do NOT collect</h2>
-              <ul className="list-disc list-inside space-y-1">
-                <li>We do not knowingly collect data from children under 13.</li>
-                <li>We do not sell your personal data to advertisers or data brokers.</li>
-                <li>We do not use invasive fingerprinting or cross-site tracking.</li>
-              </ul>
-            </section>
-
-            <section>
-              <h2 className="text-xl font-bold text-green-300">4. How we use information</h2>
-              <p>To run, improve, and secure AIWebTools.ai — including improving search, recommending tools, fixing bugs, preventing abuse, and complying with the law.</p>
-            </section>
-
-            <section>
-              <h2 className="text-xl font-bold text-green-300">5. Third-party links & tools</h2>
+              <h2 className="text-xl font-bold text-green-300">2. We do not collect personal information</h2>
               <p>
-                Many tools listed here are third-party AI services. When you click an external tool, you leave AIWebTools.ai
-                and become subject to that provider's privacy policy. External links may include the affiliate parameter
-                <code className="px-1 mx-1 bg-green-500/10 rounded">?via=aiwebtools</code> — this helps fund the directory at no cost to you.
+                AIWebTools.ai does not collect, store, or process any personally identifiable information
+                from visitors browsing our directory. We do not require accounts, logins, or registrations to
+                browse tools. No names, emails, addresses, phone numbers, or payment information are gathered
+                simply by visiting the site.
               </p>
             </section>
 
             <section>
-              <h2 className="text-xl font-bold text-green-300">6. AI Care Bot</h2>
+              <h2 className="text-xl font-bold text-green-300">3. Anonymous analytics only</h2>
               <p>
-                Our Care Bot uses Lovable AI Gateway (which routes to providers such as Google and OpenAI) to respond to
-                your questions. Messages are sent to those providers solely to generate the response. Do not share sensitive
-                personal, medical, legal, or financial information with the bot.
+                We use Google Analytics to understand broad traffic patterns — such as which pages are popular
+                and how visitors navigate the site. This data is aggregated and anonymized. It cannot be used
+                to identify you personally. You may block analytics via your browser's Do Not Track setting or
+                an ad-blocker with no loss of functionality.
               </p>
             </section>
 
             <section>
-              <h2 className="text-xl font-bold text-green-300">7. Data storage & security</h2>
+              <h2 className="text-xl font-bold text-green-300">4. No cookies or tracking for ads</h2>
               <p>
-                Data is stored using Supabase (PostgreSQL) with row-level security. Crash logs and analytics are accessible
-                only to AIWebTools.ai administrators. We use industry-standard practices but no system is 100% secure.
+                We do not use third-party advertising cookies, cross-site trackers, or invasive fingerprinting.
+                Google AdSense may serve contextual ads, but we do not participate in personalized ad targeting
+                based on your browsing behavior across other sites.
               </p>
             </section>
 
             <section>
-              <h2 className="text-xl font-bold text-green-300">8. Your rights</h2>
+              <h2 className="text-xl font-bold text-green-300">5. Local storage</h2>
               <p>
-                You may request access, correction, or deletion of any personal data you have submitted (e.g., tool submissions)
-                by contacting <a href="mailto:contact@ai-webtools.com" className="text-cyan-300 underline">contact@ai-webtools.com</a>.
-                EU/UK residents have additional rights under GDPR; California residents have rights under CCPA. We honor them.
+                Your browser may store a few small items locally — such as your disclaimer-consent preference,
+                favorite tools list (saved only on your device), and session IDs. These remain on your device
+                and are never transmitted to our servers.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-xl font-bold text-green-300">6. Third-party links & tools</h2>
+              <p>
+                Many tools listed here are third-party AI services. When you click an external tool, you leave
+                AIWebTools.ai and become subject to that provider's privacy policy. External links may include
+                the affiliate parameter <code className="px-1 mx-1 bg-green-500/10 rounded">?via=aiwebtools</code> —
+                this helps fund the directory at no cost to you. AIWebTools.ai receives no personal data back
+                from these links.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-xl font-bold text-green-300">7. AI Care Bot</h2>
+              <p>
+                Our Care Bot uses Lovable AI Gateway (which routes to providers such as Google and OpenAI) to
+                respond to your questions. Messages are sent to those providers solely to generate the response.
+                We do not store or review your Care Bot conversations. Do not share sensitive personal, medical,
+                legal, or financial information with any AI bot.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-xl font-bold text-green-300">8. Tool submissions</h2>
+              <p>
+                If you voluntarily submit a tool to be listed, you choose what information to provide (name,
+                email, tool details). This data is used only to review and potentially add your tool to the
+                directory. It is never sold or shared with third parties.
               </p>
             </section>
 
