@@ -491,6 +491,14 @@
             else if (t < 0.75) p = 80 + (10 * ((t - 0.55) / 0.20));
             else p = 90 + (7 * ((t - 0.75) / 0.25));
             if (pct) pct.textContent = Math.round(p) + '%';
+            // JS-driven width as a fallback for mobile browsers that pause
+            // long CSS animations in the background (iOS Safari throttles).
+            if (bar) bar.style.width = Math.round(p) + '%';
+            var sec = document.getElementById('progress-sec');
+            if (sec) {
+              var s = Math.max(0, Math.ceil((duration - elapsed) / 1000));
+              sec.textContent = s + 's';
+            }
             requestAnimationFrame(updatePct);
           };
           requestAnimationFrame(updatePct);
@@ -682,6 +690,7 @@
             <div class="progress-bar" id="progress-bar" style="width:5%"></div>
           </div>
           <div class="progress-text">LOADING <span id="progress-pct">5%</span></div>
+          <div class="progress-text" style="margin-top:2px;color:#22d3ee;letter-spacing:1px">ENTERING IN <span id="progress-sec">8s</span></div>
         </div>
     </div>
     
