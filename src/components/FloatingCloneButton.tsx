@@ -34,9 +34,8 @@ const FloatingCloneButton = () => {
         style={{
           position: 'fixed',
           left: '12px',
-          // Middle-left: 50% vertical minus half button height for true center
-          top: '46%',
-          transform: 'translateY(-50%) translateZ(0)',
+          // Top-left area: high enough to clear the pinned 9x16 video player
+          top: '12px',
           zIndex: 2147483646, // Just below pinned player, but above everything else
           pointerEvents: 'auto',
           isolation: 'isolate',
