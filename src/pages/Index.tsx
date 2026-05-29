@@ -166,15 +166,15 @@ const Index = () => {
           </Suspense>
         </DeferredMount>
         
-        <DeferredMount delay={520} fallback={null}>
-          <Suspense fallback={null}>
-            <BookPromotionCard />
-          </Suspense>
-        </DeferredMount>
-        
         <DeferredMount delay={460} fallback={null}>
           <Suspense fallback={null}>
             <SpecialServices />
+          </Suspense>
+        </DeferredMount>
+
+        <DeferredMount delay={600} fallback={null}>
+          <Suspense fallback={null}>
+            <BookPromotionCard />
           </Suspense>
         </DeferredMount>
         
