@@ -702,7 +702,7 @@ const PinnedVideoPlayer = memo(() => {
 
     window.addEventListener("message", handleMessage);
     return () => window.removeEventListener("message", handleMessage);
-  }, [isVisible, hasScrolledEnough, toolsWithVideos.length, advanceToNextVideo, currentVideoId]);
+  }, [isVisible, hasScrolledEnough, toolsWithVideos.length, advanceToNextVideo, currentVideoId, isMusicMode]);
 
   // Reliable fixed-interval auto-skip: every video plays for ~28 seconds,
   // then advances to the next. The onStateChange "ended" listener above will
