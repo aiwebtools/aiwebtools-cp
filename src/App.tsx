@@ -86,10 +86,12 @@ const FreeAIToolsPage = lazyWithRetry(() => import("./pages/FreeAIToolsPage"));
 const AIWritingToolsPage = lazyWithRetry(() => import("./pages/AIWritingToolsPage"));
 const AIWebToolsPage = lazyWithRetry(() => import("./pages/AIWebToolsPage"));
 const AdminAnalytics = lazyWithRetry(() => import("./pages/AdminAnalytics"));
+const PrivacyPolicy = lazyWithRetry(() => import("./pages/PrivacyPolicy"));
 
 // Lazy load non-critical components — wrapped in retry to prevent black screen
 const FloatingCloneButton = lazyWithRetry(() => import("./components/FloatingCloneButton"));
 const PinnedVideoPlayer = lazyWithRetry(() => import("./components/PinnedVideoPlayer"));
+const CareBotWidget = lazyWithRetry(() => import("./components/CareBotWidget"));
 
 // Welcome Neo voice - plays when user lands on main site after accepting disclaimer
 const WelcomeNeoVoice = () => {
@@ -183,6 +185,7 @@ const AnimatedRoutes = () => {
         <Route path="/category/:categoryName" element={<CategoryPage />} />
         <Route path="/main-category/:mainCategoryName" element={<MainCategoryPage />} />
         <Route path="/tool/:toolId" element={<ToolDetail />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/:toolSlug" element={<ToolDetail />} />
         <Route path="/similar-tools/:toolId" element={<SimilarToolsPage />} />
         <Route path="/ai-tools-hub" element={<AIToolsHub />} />
@@ -299,6 +302,14 @@ const GlobalOverlays: React.FC = () => {
         <ErrorBoundary fallback={null}>
           <Suspense fallback={null}>
             <PinnedVideoPlayer />
+          </Suspense>
+        </ErrorBoundary>
+      ) : null}
+      {/* AIWebTools Care Bot — answers any question about our tools */}
+      {show ? (
+        <ErrorBoundary fallback={null}>
+          <Suspense fallback={null}>
+            <CareBotWidget />
           </Suspense>
         </ErrorBoundary>
       ) : null}
