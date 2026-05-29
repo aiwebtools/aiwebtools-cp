@@ -28,57 +28,12 @@ const Logo = ({ compact = false }: { compact?: boolean }) => {
 
   return (
     <div className={`flex items-center gap-2 md:gap-3 flex-shrink min-w-0 relative z-[110] ${compact ? 'scale-90' : ''}`}>
-      <div className="text-left flex-1 min-w-0 overflow-hidden">
-        {/* Main title row */}
-        <div className={`flex items-center gap-1 md:gap-2 ${compact ? 'mb-0' : 'mb-0.5 md:mb-1'}`}>
-          <div className={`font-bold ${compact ? 'text-sm' : 'text-sm sm:text-lg md:text-xl'} tracking-wider letter-spacing-wide relative truncate`}>
-            <span className="relative z-10 bg-gradient-to-r from-cyan-400 via-cyan-300 to-cyan-500 bg-clip-text text-transparent logo-text-crisp">AI WEB TOOLS</span>
-            <span className="relative z-10 bg-gradient-to-r from-cyan-400 via-cyan-300 to-cyan-500 bg-clip-text text-transparent logo-text-crisp hidden sm:inline"> - AIWEBTOOLS.SOFTWARE</span>
-          </div>
-          {!compact && (
-            <span className="text-xs text-cyan-200/80 font-medium hidden lg:block tracking-wide">
-              AN AI TOOLS DIRECTORY
-            </span>
-          )}
-        </div>
-        
-        {/* Mobile-visible branding info - now clickable link to new domain */}
-        <div className={`${compact ? 'text-[8px]' : 'text-[9px] sm:text-[10px] md:text-xs'} -mt-0.5`}>
-          <a
-            href="https://aiwebtools.software"
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={(e) => handleExternalLink("https://aiwebtools.software", e)}
-            className="font-light tracking-wide text-cyan-300 hover:text-cyan-200 transition-colors underline-offset-2 hover:underline"
-            title="Visit aiwebtools.software"
-          >
-            aiwebtools.software
-          </a>
-        </div>
-        
-        {/* AIWebTools.ai link - always visible */}
-        <div className={`${compact ? 'text-[8px]' : 'text-[9px] sm:text-[10px] md:text-xs'} text-gray-400 mt-0`}>
-          BY{" "}
-          <button 
-            onClick={(e) => handleExternalLink("https://aiwebtools.lovable.app/?via=aiwebtools", e)}
-            className="text-cyan-400 hover:text-cyan-300 transition-all duration-200 hover:text-shadow-glow font-medium tracking-wide"
-          >
-            AIWEBTOOLS.AI
-          </button>
-        </div>
-        
-        {/* AIWEBTOOLS.SOFTWARE on mobile only */}
-        <div className="text-[8px] text-cyan-300/60 mt-0 sm:hidden">
-          AIWEBTOOLS.SOFTWARE
-        </div>
-      </div>
-      
-      {/* Redesigned Home Button - Sleek circular design with glow */}
+      {/* Home Button on the LEFT so the wording flows right without being smooshed */}
       <button
         onClick={scrollToHome}
         className={`
           group relative flex-shrink-0 
-          ${compact ? 'w-10 h-10' : 'w-11 h-11 md:w-14 md:h-14'} 
+          ${compact ? 'w-9 h-9' : 'w-10 h-10 md:w-12 md:h-12'} 
           rounded-full 
           bg-gradient-to-br from-cyan-500/20 via-blue-600/30 to-purple-600/20
           border border-cyan-400/50
@@ -110,7 +65,7 @@ const Logo = ({ compact = false }: { compact?: boolean }) => {
         {/* Home Icon */}
         <Home 
           className={`
-            ${compact ? 'w-5 h-5' : 'w-5 h-5 md:w-7 md:h-7'} 
+            ${compact ? 'w-4 h-4' : 'w-5 h-5 md:w-6 md:h-6'} 
             text-cyan-300 
             drop-shadow-[0_0_8px_rgba(6,182,212,0.8)]
             group-hover:text-white
@@ -125,6 +80,46 @@ const Logo = ({ compact = false }: { compact?: boolean }) => {
           className="absolute top-1 right-1 w-3 h-3 text-cyan-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-pulse" 
         />
       </button>
+
+      <div className="text-left flex-1 min-w-0">
+        {/* Main title row */}
+        <div className={`flex items-center gap-1 md:gap-2 ${compact ? 'mb-0' : 'mb-0.5 md:mb-1'}`}>
+          <div className={`font-bold ${compact ? 'text-[11px]' : 'text-[13px] sm:text-base md:text-lg'} tracking-wider letter-spacing-wide relative leading-tight`}>
+            <span className="relative z-10 bg-gradient-to-r from-cyan-400 via-cyan-300 to-cyan-500 bg-clip-text text-transparent logo-text-crisp">AI WEB TOOLS</span>
+            <span className="relative z-10 bg-gradient-to-r from-cyan-400 via-cyan-300 to-cyan-500 bg-clip-text text-transparent logo-text-crisp hidden md:inline"> - AIWEBTOOLS.SOFTWARE</span>
+          </div>
+          {!compact && (
+            <span className="text-xs text-cyan-200/80 font-medium hidden lg:block tracking-wide">
+              AN AI TOOLS DIRECTORY
+            </span>
+          )}
+        </div>
+
+        {/* Mobile-visible branding info - now clickable link to new domain */}
+        <div className={`${compact ? 'text-[8px]' : 'text-[9px] sm:text-[10px] md:text-xs'} -mt-0.5 truncate`}>
+          <a
+            href="https://aiwebtools.software"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => handleExternalLink("https://aiwebtools.software", e)}
+            className="font-light tracking-wide text-cyan-300 hover:text-cyan-200 transition-colors underline-offset-2 hover:underline"
+            title="Visit aiwebtools.software"
+          >
+            aiwebtools.software
+          </a>
+        </div>
+
+        {/* AIWebTools.ai link - always visible */}
+        <div className={`${compact ? 'text-[8px]' : 'text-[9px] sm:text-[10px] md:text-xs'} text-gray-400 mt-0 truncate`}>
+          BY{" "}
+          <button
+            onClick={(e) => handleExternalLink("https://aiwebtools.lovable.app/?via=aiwebtools", e)}
+            className="text-cyan-400 hover:text-cyan-300 transition-all duration-200 hover:text-shadow-glow font-medium tracking-wide"
+          >
+            AIWEBTOOLS.AI
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
