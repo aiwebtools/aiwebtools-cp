@@ -623,6 +623,31 @@ const BookPromotionCard = () => {
       id: "cKHZ7X0qx_Y",
       title: "In The Shadows — Music Video",
       gradient: "from-indigo-500/20 to-purple-500/20"
+    },
+    {
+      id: "-MSiCn4Fts8",
+      title: "Through The Veil — Music Video",
+      gradient: "from-emerald-500/20 to-teal-500/20"
+    },
+    {
+      id: "mg7F63-PN30",
+      title: "Inner Fire Rising — Music Video",
+      gradient: "from-orange-500/20 to-red-500/20"
+    },
+    {
+      id: "ZWiOa6NXqYE",
+      title: "Light Code Awakening — Music Video",
+      gradient: "from-lime-500/20 to-emerald-500/20"
+    },
+    {
+      id: "EYnCtw9CsxQ",
+      title: "Eyes Of The Soul — Music Video",
+      gradient: "from-violet-500/20 to-fuchsia-500/20"
+    },
+    {
+      id: "QCJCKhbwxhA",
+      title: "Walk Through Fire — Music Video",
+      gradient: "from-amber-500/20 to-orange-500/20"
     }
   ];
 
@@ -647,6 +672,11 @@ const BookPromotionCard = () => {
       "qxIYhAAkko8",
       "1yajmSLnPTs",
       "cKHZ7X0qx_Y",
+      "-MSiCn4Fts8",
+      "mg7F63-PN30",
+      "ZWiOa6NXqYE",
+      "EYnCtw9CsxQ",
+      "QCJCKhbwxhA",
     ];
     const verticalSet = new Set(verticalMusicVideoIds);
     const verticals = verticalMusicVideoIds
