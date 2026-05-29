@@ -254,6 +254,9 @@ import { aiGadgetsDevicesTools } from './tools/aiGadgetsDevicesTools';
 // Import AI Gadgets & Devices Batch 2026 (Ray-Ban Meta, Even Realities G1, Brilliant Frame, Omi, Plaud Note, Insta360 GO 3S, Looi, Eilik, Loona, Rewind Pendant)
 import { aiGadgetsDevicesBatch2026 } from './tools/aiGadgetsDevicesBatch2026';
 
+// Import AI Gadgets Batch 2026 Trust (Humane Pin, XREAL, Halliday, Solos, Vuzix, Oura 4, Galaxy Ring, Ultrahuman, RingConn, WHOOP MG, Lumen, Fenix 8, inReach+, Reachy 2, Ameca, Walker S1, XPeng Iron, Kepler K2, Aibo, Lovot)
+import { aiGadgetsBatch2026Trust } from './tools/aiGadgetsBatch2026Trust';
+
 // Import One More Shot AI (AI music video generator)
 import { oneMoreShotAi } from './tools/oneMoreShotAi';
 
