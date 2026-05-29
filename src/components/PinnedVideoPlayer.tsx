@@ -598,6 +598,8 @@ const PinnedVideoPlayer = memo(() => {
   useEffect(() => {
     if (!isVisible || !hasScrolledEnough || toolsWithVideos.length === 0) return;
 
+    let didAdvanceForVideo = false;
+
     const handleMessage = (event: MessageEvent) => {
       // YouTube sends messages when video state changes
       if (event.origin !== YT_EMBED_ORIGIN && event.origin !== YT_API_ORIGIN_FALLBACK) return;
@@ -616,6 +618,7 @@ const PinnedVideoPlayer = memo(() => {
         if (data?.event === "onStateChange" && data?.info === 1) {
           hasReceivedPlayStateRef.current = true;
           videoStartTimeRef.current = Date.now();
+          didAdvanceForVideo = false;
           // If the user just paused, immediately re-pause so retry timers
           // or YouTube's own autoplay don't override the pause intent.
           if (userPausedRef.current) {
@@ -627,6 +630,7 @@ const PinnedVideoPlayer = memo(() => {
         if (data?.info?.playerState === 1) {
           hasReceivedPlayStateRef.current = true;
           videoStartTimeRef.current = Date.now();
+          didAdvanceForVideo = false;
           if (userPausedRef.current) {
             sendYTCommand('pauseVideo');
           } else {
@@ -647,7 +651,9 @@ const PinnedVideoPlayer = memo(() => {
         
         // Check for video ended state (state 0 = ended)
         if (data?.event === "onStateChange" && data?.info === 0) {
+          if (didAdvanceForVideo) return;
           if (hasReceivedPlayStateRef.current && timeSinceStart > MIN_PLAY_TIME) {
+            didAdvanceForVideo = true;
             console.log('[PinnedPlayer] Video ended via onStateChange after', timeSinceStart, 'ms, advancing...');
             advanceToNextVideo();
           } else {
@@ -658,7 +664,9 @@ const PinnedVideoPlayer = memo(() => {
         
         // Also check for infoDelivery with playerState (0 = ended)
         if (data?.info?.playerState === 0) {
+          if (didAdvanceForVideo) return;
           if (hasReceivedPlayStateRef.current && timeSinceStart > MIN_PLAY_TIME) {
+            didAdvanceForVideo = true;
             console.log('[PinnedPlayer] Video ended via infoDelivery after', timeSinceStart, 'ms, advancing...');
             advanceToNextVideo();
           }
