@@ -4147,13 +4147,21 @@ const SpecialServices = () => {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-4">
-          {displayedGPTs.map((gpt, index) => (
+          {displayedGPTs.map((gpt, index) => {
+            const isHumanRightsCard = isHumanBillOfRightsCard(gpt.title);
+            return (
             <Card 
               key={`${gpt.title}-${index}`}
-              className="group relative overflow-hidden border-0 bg-gradient-to-br from-card/90 to-card/70 backdrop-blur-md hover:shadow-2xl hover:shadow-primary/20 transition-all duration-500 hover:-translate-y-1 cursor-pointer"
+              className={`group relative overflow-hidden border-0 bg-gradient-to-br from-card/90 to-card/70 backdrop-blur-md hover:shadow-2xl hover:shadow-primary/20 transition-all duration-500 hover:-translate-y-1 cursor-pointer ${isHumanRightsCard ? "sm:col-span-2 lg:col-span-2 xl:col-span-2 min-h-[460px] shadow-2xl shadow-primary/25 ring-1 ring-primary/40" : ""}`}
               onClick={() => handleCardClick(gpt.title)}
             >
               <div className={`absolute inset-0 bg-gradient-to-br ${gpt.color} opacity-5 group-hover:opacity-15 transition-opacity duration-500`} />
+              {isHumanRightsCard && (
+                <div className="pointer-events-none absolute inset-0 opacity-30">
+                  <div className="absolute inset-0 bg-[repeating-linear-gradient(180deg,hsl(var(--primary)/0.18)_0_1px,transparent_1px_5px)] animate-pulse" />
+                  <div className="absolute -inset-x-12 top-1/3 h-px bg-primary/70 shadow-[0_0_32px_hsl(var(--primary))]" />
+                </div>
+              )}
               
               <CardHeader className="pb-2 relative z-10">
                 <div className="flex items-start justify-between mb-1.5 gap-2">
@@ -4228,14 +4236,15 @@ const SpecialServices = () => {
                 
                 <Button 
                   size="sm"
-                  className={`w-full bg-gradient-to-r ${gpt.color} hover:opacity-90 text-white text-[10px] md:text-xs py-1.5 font-medium transition-all duration-300 group-hover:shadow-lg`}
+                  className={`w-full bg-gradient-to-r ${gpt.color} hover:opacity-90 text-white text-[10px] md:text-xs py-1.5 font-medium transition-all duration-300 group-hover:shadow-lg ${isHumanRightsCard ? "min-h-11 text-sm font-black uppercase tracking-[0.18em] shadow-[0_0_24px_hsl(var(--primary)/0.55)]" : ""}`}
                   onClick={(e) => handleLaunchGPT(gpt.directUrl, gpt.title, gpt.badge, e)}
                 >
-                  🚀 Launch GPT →
+                  {isHumanRightsCard ? "⚖️ Preserve Humanity →" : "🚀 Launch GPT →"}
                 </Button>
               </CardContent>
             </Card>
-          ))}
+          );
+          })}
         </div>
       </div>
     </section>
