@@ -16,7 +16,15 @@ const FloatingCloneButton = () => {
     setMountNode(node);
 
     return () => {
-      node.remove();
+      // Defer removal so React can unmount the portal's children BEFORE the
+      // host node disappears. Removing synchronously here causes:
+      //   "Failed to execute 'removeChild' on 'Node': The node to be removed
+      //    is not a child of this node."
+      // because React's commit phase then tries to detach children from a
+      // parent that no longer exists in the DOM.
+      setTimeout(() => {
+        try { node.remove(); } catch { /* already gone */ }
+      }, 0);
     };
   }, []);
 
