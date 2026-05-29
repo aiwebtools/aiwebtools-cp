@@ -3973,7 +3973,7 @@ const SpecialServices = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   
   // Use useMemo to create initial shuffled order once per page load
-  const initialShuffledGPTs = useMemo(() => weightedShuffle(categorizedGPTs), []);
+  const initialShuffledGPTs = useMemo(() => placeHumanBillOfRightsNearBottom(weightedShuffle(categorizedGPTs)), []);
   
   const [displayedGPTs, setDisplayedGPTs] = useState(initialShuffledGPTs);
   const [selectedCategory, setSelectedCategory] = useState<string>("ALL");
@@ -3987,7 +3987,7 @@ const SpecialServices = () => {
     const currentItems = selectedCategory === "ALL" 
       ? categorizedGPTs 
       : categorizedGPTs.filter(gpt => gpt.filterCategory === selectedCategory);
-    const shuffled = weightedShuffle(currentItems);
+    const shuffled = placeHumanBillOfRightsNearBottom(weightedShuffle(currentItems));
     setDisplayedGPTs(shuffled);
     setIsShuffled(true);
   };
@@ -4006,12 +4006,12 @@ const SpecialServices = () => {
     setSelectedCategory(category);
     if (category === "ALL") {
       // Re-shuffle all GPTs when going back to ALL
-      setDisplayedGPTs(weightedShuffle(categorizedGPTs));
+      setDisplayedGPTs(placeHumanBillOfRightsNearBottom(weightedShuffle(categorizedGPTs)));
       setIsShuffled(true);
     } else {
       // Apply weighted shuffle to filtered category
       const filtered = categorizedGPTs.filter(gpt => gpt.filterCategory === category);
-      setDisplayedGPTs(weightedShuffle(filtered));
+      setDisplayedGPTs(placeHumanBillOfRightsNearBottom(weightedShuffle(filtered)));
       setIsShuffled(true);
     }
   };
