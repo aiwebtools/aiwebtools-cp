@@ -65,6 +65,15 @@ async function importWithRetry<T>(
 // Lazy load - secondary pages for faster initial load
 const Index = lazyWithRetry(() => import("./pages/Index"));
 const ToolDetail = lazyWithRetry(() => import("./pages/ToolDetail"));
+// Eagerly warm the ToolDetail chunk so search→tool nav feels instant.
+if (typeof window !== 'undefined') {
+  const warm = () => { import("./pages/ToolDetail").catch(() => {}); };
+  if ('requestIdleCallback' in window) {
+    (window as any).requestIdleCallback(warm, { timeout: 1500 });
+  } else {
+    setTimeout(warm, 800);
+  }
+}
 const CategoryPage = lazyWithRetry(() => import("./pages/CategoryPage"));
 const MainCategoryPage = lazyWithRetry(() => import("./pages/MainCategoryPage"));
 const SimilarToolsPage = lazyWithRetry(() => import("./pages/SimilarTools"));
@@ -184,9 +193,10 @@ const AnimatedRoutes = () => {
       <Routes location={location}>
         <Route path="/category/:categoryName" element={<CategoryPage />} />
         <Route path="/main-category/:mainCategoryName" element={<MainCategoryPage />} />
-        <Route path="/tool/:toolId" element={<ToolDetail />} />
+        {/* Tool detail routes: no fallback — instant nav like before */}
+        <Route path="/tool/:toolId" element={<Suspense fallback={null}><ToolDetail /></Suspense>} />
+        <Route path="/:toolSlug" element={<Suspense fallback={null}><ToolDetail /></Suspense>} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-        <Route path="/:toolSlug" element={<ToolDetail />} />
         <Route path="/similar-tools/:toolId" element={<SimilarToolsPage />} />
         <Route path="/ai-tools-hub" element={<AIToolsHub />} />
         <Route path="/ai-agents-directory" element={<AIAgentsDirectory />} />
