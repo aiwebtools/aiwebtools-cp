@@ -382,6 +382,20 @@ const PinnedVideoPlayer = memo(() => {
   // Tracks whether the user explicitly paused the current video so background
   // retry timers (unmute/playVideo loops) don't sneak it back to playing.
   const userPausedRef = useRef(false);
+
+  // Handle mute/unmute via postMessage instead of iframe reload.
+  // Send to ALL possible YouTube origins + wildcard for maximum mobile compatibility.
+  const sendYTCommand = useCallback((command: string) => {
+    if (!iframeRef.current?.contentWindow) return;
+    const msg = JSON.stringify({ event: 'command', func: command });
+    try {
+      iframeRef.current.contentWindow.postMessage(msg, YT_EMBED_ORIGIN);
+      iframeRef.current.contentWindow.postMessage(msg, YT_API_ORIGIN_FALLBACK);
+      iframeRef.current.contentWindow.postMessage(msg, '*');
+    } catch {
+      return;
+    }
+  }, []);
   
   // Track video src separately to prevent unnecessary iframe reloads
   // Initialize with actual video URL to prevent "null" blocking first render
@@ -452,21 +466,7 @@ const PinnedVideoPlayer = memo(() => {
     if (!shouldMute) {
       window.dispatchEvent(new CustomEvent('pinnedPlayerPlaying'));
     }
-  }, [currentVideoId, pauseOtherYouTubePlayers]); // Only depend on video ID, not mute state
-  
-  // Handle mute/unmute via postMessage instead of iframe reload
-  // Send to ALL possible YouTube origins + wildcard for maximum mobile compatibility
-  const sendYTCommand = useCallback((command: string) => {
-    if (!iframeRef.current?.contentWindow) return;
-    const msg = JSON.stringify({ event: 'command', func: command });
-    try {
-      // Send to both origins — mobile Chrome often only responds to one
-      iframeRef.current.contentWindow.postMessage(msg, YT_EMBED_ORIGIN);
-      iframeRef.current.contentWindow.postMessage(msg, YT_API_ORIGIN_FALLBACK);
-      // Wildcard fallback for edge cases (cross-origin redirects inside YT embed)
-      iframeRef.current.contentWindow.postMessage(msg, '*');
-    } catch {}
-  }, []);
+  }, [currentVideoId, pauseOtherYouTubePlayers, sendYTCommand]); // Only depend on video ID, not mute state
 
   // Sync mute state to iframe whenever isMuted changes
   useEffect(() => {
