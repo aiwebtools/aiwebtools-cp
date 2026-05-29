@@ -618,6 +618,11 @@ const BookPromotionCard = () => {
       id: "1yajmSLnPTs",
       title: "AI Web Tools 9:16 Vertical Showcase 7",
       gradient: "from-fuchsia-500/20 to-rose-500/20"
+    },
+    {
+      id: "cKHZ7X0qx_Y",
+      title: "In The Shadows — Music Video",
+      gradient: "from-indigo-500/20 to-purple-500/20"
     }
   ];
 
@@ -641,6 +646,7 @@ const BookPromotionCard = () => {
       "bhC9aTQGbGI",
       "qxIYhAAkko8",
       "1yajmSLnPTs",
+      "cKHZ7X0qx_Y",
     ];
     const verticalSet = new Set(verticalMusicVideoIds);
     const verticals = verticalMusicVideoIds

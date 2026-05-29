@@ -44,6 +44,7 @@ const MUSIC_VIDEO_GALLERY: Array<{ id: string; title: string }> = [
   { id: "v8El2IdTwsE", title: "Plastic Face — Official Music Video" },
   { id: "bfRpZ5r88Zg", title: "Wake The F Up — Music Video" },
   { id: "864_bIK9Feo", title: "Love Or Fall — Music Video" },
+  { id: "cKHZ7X0qx_Y", title: "In The Shadows — Music Video" },
   { id: "1cnzF1bkq3o", title: "What's The Plan? — Music Video" },
   { id: "8afw8Tq94Pg", title: "Deep Inside (Remastered) — Music Video" },
   { id: "eAaXtMBYWYs", title: "The Empire Has Fallen — Music Video" },
