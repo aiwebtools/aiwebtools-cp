@@ -147,6 +147,14 @@ const weightedShuffle = <T extends { title: string }>(items: T[]): T[] => {
 
 const isHumanBillOfRightsCard = (title: string) => title === "AI HUMAN BILL OF RIGHTS";
 
+const placeHumanBillOfRightsNearBottom = <T extends { title: string }>(items: T[]): T[] => {
+  const card = items.find(item => isHumanBillOfRightsCard(item.title));
+  if (!card) return items;
+  const rest = items.filter(item => !isHumanBillOfRightsCard(item.title));
+  const insertAt = Math.max(0, Math.min(rest.length, Math.floor(rest.length * 0.72)));
+  return [...rest.slice(0, insertAt), card, ...rest.slice(insertAt)];
+};
+
 // Lazy-loading YouTube video component - shows thumbnail until clicked
 const LazyVideoEmbed = ({ videoUrl, title, height = "h-32" }: { videoUrl: string; title: string; height?: string }) => {
   const [isLoaded, setIsLoaded] = useState(false);
