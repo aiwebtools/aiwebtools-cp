@@ -11,11 +11,11 @@ CORE EXPERTISE — you are the ultimate AI tools concierge:
 
 LINK RULES — links must JUST WORK:
 - ALWAYS link as markdown: [Tool Name](DIRECT_URL)
-- Use the DIRECT URL from the catalog (the "URL:" field). Do NOT route through aiwebtools.ai/tool/... — go straight to the source.
-- For external (non-lovable.app) tools, keep the ?via=aiwebtools affiliate tag if present.
-- For platform/site questions, link straight to the exact page: https://aiwebtools.ai/submit-tool, https://aiwebtools.ai/favorites, https://aiwebtools.ai/blog, etc.
-- Never invent tools or URLs. If you don't have it in the catalog, say so honestly and suggest: https://aiwebtools.ai/?search=KEYWORD
-- Prefer 1–4 highly relevant links per answer over a giant dump. Quality > quantity.
+- ONLY use URLs that appear EXACTLY in the "RELEVANT TOOLS FROM CATALOG" block below, or these whitelisted platform URLs: https://aiwebtools.ai, https://aiwebtools.ai/submit-tool, https://aiwebtools.ai/favorites, https://aiwebtools.ai/blog, https://aiwebtools.ai/faq, https://aiwebtools.ai/disclaimers, https://aiwebtools.ai/our-story, https://aiwebtools.ai/?search=KEYWORD (replace KEYWORD with the user's term).
+- NEVER invent, guess, paraphrase, shorten, or "best-guess" a URL. NEVER link to gemini.google.com, bard.google.com, openai.com/chatgpt, or any product page you are not 100% sure exists — many such URLs are blocked, gated, or fake.
+- If a user asks for a tool that is NOT in the catalog block, do NOT fabricate a link. Say: "I don't have a verified link for that yet — try our search: https://aiwebtools.ai/?search=<their keyword>" and stop. Honesty over hallucination.
+- Use the DIRECT URL from the catalog (the "URL:" field) verbatim. Do NOT route through aiwebtools.ai/tool/... and do NOT strip or add query params. The ?via=aiwebtools tag must stay if it was there.
+- Prefer 1–4 highly relevant links per answer over a giant dump. Quality > quantity. Every link you output must be one you can point to in the catalog block or the whitelist above.
 
 FORMAT:
 - Markdown, concise, scannable. Use **bold** for tool names in prose, short bullet lists, and small section headers when helpful.
@@ -161,13 +161,45 @@ Deno.serve(async (req) => {
       }
       const t = await response.text();
       console.error('AI gateway error:', response.status, t);
+      logTurn({
+        ip,
+        userMessage: trimmedMessages[trimmedMessages.length - 1]?.content ?? '',
+        assistantReply: '',
+        toolTitles: safeContext.map((t: any) => String(t?.title ?? '')).filter(Boolean),
+        turnCount: trimmedMessages.length,
+        latencyMs: 0,
+        userAgent: req.headers.get('user-agent') ?? '',
+        error: `gateway_${response.status}`,
+      });
       return new Response(JSON.stringify({ error: 'AI service error' }), {
         status: 500,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
     }
 
-    return new Response(response.body, {
+    // Tee the upstream SSE stream: forward bytes to the client unchanged, while
+    // simultaneously accumulating the assistant reply text so we can log the
+    // full turn (user + reply) for back-end tuning. Logging is fire-and-forget
+    // and must NEVER block or break the user-facing stream.
+    const start = Date.now();
+    const userMessage = trimmedMessages[trimmedMessages.length - 1]?.content ?? '';
+    const toolTitles = safeContext.map((t: any) => String(t?.title ?? '')).filter(Boolean);
+    const turnCount = trimmedMessages.length;
+    const ua = req.headers.get('user-agent') ?? '';
+
+    const teedStream = teeAndCollect(response.body!, (replyText) => {
+      logTurn({
+        ip,
+        userMessage,
+        assistantReply: replyText,
+        toolTitles,
+        turnCount,
+        latencyMs: Date.now() - start,
+        userAgent: ua,
+      });
+    });
+
+    return new Response(teedStream, {
       headers: { ...corsHeaders, 'Content-Type': 'text/event-stream' },
     });
   } catch (e) {
@@ -178,3 +210,118 @@ Deno.serve(async (req) => {
     });
   }
 });
+
+// ---------- helpers ----------
+
+// Parse SSE chunks coming from the AI gateway and extract the cumulative
+// assistant content. We keep this resilient: never throw, never block.
+const extractDelta = (line: string): string => {
+  if (!line.startsWith('data: ')) return '';
+  const payload = line.slice(6).trim();
+  if (!payload || payload === '[DONE]') return '';
+  try {
+    const parsed = JSON.parse(payload);
+    const c = parsed?.choices?.[0]?.delta?.content;
+    return typeof c === 'string' ? c : '';
+  } catch {
+    return '';
+  }
+};
+
+function teeAndCollect(
+  upstream: ReadableStream<Uint8Array>,
+  onFinal: (text: string) => void,
+): ReadableStream<Uint8Array> {
+  const decoder = new TextDecoder();
+  let buffer = '';
+  let collected = '';
+
+  return new ReadableStream<Uint8Array>({
+    async start(controller) {
+      const reader = upstream.getReader();
+      try {
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+          controller.enqueue(value);
+          try {
+            buffer += decoder.decode(value, { stream: true });
+            let idx: number;
+            while ((idx = buffer.indexOf('\n')) !== -1) {
+              const line = buffer.slice(0, idx).replace(/\r$/, '');
+              buffer = buffer.slice(idx + 1);
+              collected += extractDelta(line);
+            }
+          } catch {
+            // Parsing must never break the passthrough stream.
+          }
+        }
+        // Flush any remaining buffered line.
+        if (buffer.trim()) collected += extractDelta(buffer.trim());
+      } catch (err) {
+        console.error('tee read error:', err);
+      } finally {
+        controller.close();
+        try { onFinal(collected); } catch (e) { console.error('log callback error:', e); }
+      }
+    },
+  });
+}
+
+interface LogTurnArgs {
+  ip: string;
+  userMessage: string;
+  assistantReply: string;
+  toolTitles: string[];
+  turnCount: number;
+  latencyMs: number;
+  userAgent: string;
+  error?: string;
+}
+
+async function logTurn(args: LogTurnArgs): Promise<void> {
+  // Fire-and-forget insert into care_bot_logs via REST so we don't pull in a
+  // full Supabase JS client. Failures are swallowed; logging must never break
+  // the chat experience.
+  const SUPABASE_URL = Deno.env.get('SUPABASE_URL');
+  const SERVICE_KEY = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY');
+  if (!SUPABASE_URL || !SERVICE_KEY) return;
+
+  // Hash the IP so we never store raw IPs in the log table.
+  let ipHash = '';
+  try {
+    const data = new TextEncoder().encode(args.ip || 'unknown');
+    const buf = await crypto.subtle.digest('SHA-256', data);
+    ipHash = Array.from(new Uint8Array(buf))
+      .map((b) => b.toString(16).padStart(2, '0'))
+      .join('')
+      .slice(0, 32);
+  } catch { /* ignore */ }
+
+  const row = {
+    ip_hash: ipHash,
+    user_agent: args.userAgent.slice(0, 400),
+    user_message: args.userMessage.slice(0, 4000),
+    assistant_reply: args.assistantReply.slice(0, 8000),
+    tool_titles: args.toolTitles.slice(0, 12),
+    turn_count: args.turnCount,
+    latency_ms: args.latencyMs,
+    model: 'google/gemini-3-flash-preview',
+    error: args.error ?? null,
+  };
+
+  try {
+    await fetch(`${SUPABASE_URL}/rest/v1/care_bot_logs`, {
+      method: 'POST',
+      headers: {
+        apikey: SERVICE_KEY,
+        Authorization: `Bearer ${SERVICE_KEY}`,
+        'Content-Type': 'application/json',
+        Prefer: 'return=minimal',
+      },
+      body: JSON.stringify(row),
+    });
+  } catch (err) {
+    console.error('care_bot_logs insert failed:', err);
+  }
+}
