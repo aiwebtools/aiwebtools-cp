@@ -605,7 +605,12 @@ const PinnedVideoPlayer = memo(() => {
     const handleMessage = (event: MessageEvent) => {
       // YouTube sends messages when video state changes
       if (event.origin !== YT_EMBED_ORIGIN && event.origin !== YT_API_ORIGIN_FALLBACK) return;
-      
+      // CRITICAL: only react to messages from OUR iframe — other YouTube
+      // iframes on the page (book carousel, tool pages) also post state
+      // changes and were causing the pinned player to advance prematurely
+      // when a different video on the page ended.
+      if (!iframeRef.current || event.source !== iframeRef.current.contentWindow) return;
+
       try {
         const data = typeof event.data === "string" ? JSON.parse(event.data) : event.data;
         
@@ -649,7 +654,13 @@ const PinnedVideoPlayer = memo(() => {
         // Only advance if video has been playing for at least 8 seconds
         // This prevents false "ended" signals during loading
         const timeSinceStart = Date.now() - videoStartTimeRef.current;
-        const MIN_PLAY_TIME = 9000; // 9 seconds minimum
+        // For music mode: require ~90% of the detected duration before
+        // treating an "ended" signal as real. This prevents long music
+        // videos from skipping early due to spurious state changes.
+        const detected = detectedDurationRef.current;
+        const MIN_PLAY_TIME = isMusicMode && detected
+          ? Math.max(9000, detected * 1000 * 0.9)
+          : 9000;
         
         // Check for video ended state (state 0 = ended)
         if (data?.event === "onStateChange" && data?.info === 0) {
@@ -691,7 +702,7 @@ const PinnedVideoPlayer = memo(() => {
 
     window.addEventListener("message", handleMessage);
     return () => window.removeEventListener("message", handleMessage);
-  }, [isVisible, hasScrolledEnough, toolsWithVideos.length, advanceToNextVideo, currentVideoId]);
+  }, [isVisible, hasScrolledEnough, toolsWithVideos.length, advanceToNextVideo, currentVideoId, isMusicMode]);
 
   // Reliable fixed-interval auto-skip: every video plays for ~28 seconds,
   // then advances to the next. The onStateChange "ended" listener above will
@@ -864,7 +875,7 @@ const PinnedVideoPlayer = memo(() => {
         {/* Tool title header with X button - allow wrap */}
         <div className="flex items-start justify-between gap-1 px-1.5 py-1 bg-gradient-to-r from-gray-800 to-gray-900 border-b border-cyan-500/30">
           <p 
-            className="text-[11px] font-bold leading-tight flex-1 line-clamp-2"
+            className="text-[10px] font-bold leading-[1.15] flex-1 line-clamp-3 break-words"
             style={{
               color: '#FFD700',
               textShadow: '0 0 6px #FFD700'
