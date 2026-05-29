@@ -791,7 +791,11 @@ const PinnedVideoPlayer = memo(() => {
   }, [isMuted, sendYTCommand]);
 
   // Don't render if not on homepage, permanently closed, no tools, or haven't scrolled past hero yet
-  if (!isHomepage || !isVisible || !hasScrolledEnough || toolsWithVideos.length === 0 || !currentTool || !currentVideoId || !videoSrc) {
+  if (!isHomepage || !isVisible || !hasScrolledEnough || toolsWithVideos.length === 0) {
+    return null;
+  }
+  // Once a mode is chosen, require a video to render
+  if (mode !== 'idle' && (!currentVideoId || !videoSrc)) {
     return null;
   }
 
@@ -802,7 +806,7 @@ const PinnedVideoPlayer = memo(() => {
         // CRITICAL: Inline fixed positioning - cannot be overridden by CSS
         position: 'fixed',
         // Responsive sizing & safe-area support (iOS notch, etc.)
-        width: "clamp(148px, 36vw, 208px)",
+        width: isMusicMode ? "clamp(130px, 30vw, 180px)" : "clamp(148px, 36vw, 208px)",
         bottom: "calc(0.5rem + env(safe-area-inset-bottom, 0px))",
         left: "calc(0.5rem + env(safe-area-inset-left, 0px))",
         // Portal + max z-index prevents the "audio-only" bug caused by stacking contexts/overlays.
@@ -828,9 +832,11 @@ const PinnedVideoPlayer = memo(() => {
               color: '#FFD700',
               textShadow: '0 0 6px #FFD700'
             }}
-            title={`${currentTool.title} - ${currentTool.description?.slice(0, 100) || ''}`}
+            title={currentTitle}
           >
-            {currentTool.emoji || "🤖"} {currentTool.title}
+            {mode === 'idle'
+              ? '🎬 Whatcha in the mood for?'
+              : `${currentEmoji} ${currentTitle}`}
           </p>
           <button
             onClick={handleClose}
@@ -842,27 +848,58 @@ const PinnedVideoPlayer = memo(() => {
         </div>
 
         {/* Video Container - stable iframe that doesn't remount on navigation */}
-        <div className="group relative aspect-video bg-black" style={{ minHeight: '70px' }}>
-          <iframe
-            ref={iframeRef}
-            src={videoSrc}
-            className="w-full h-full"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
-            allowFullScreen
-            title={currentTool.title}
-            style={{ minHeight: '70px' }}
-            onLoad={handleIframeLoad}
-          />
-          <button
-            type="button"
-            onClick={handleTogglePlay}
-            className="absolute inset-0 bg-transparent"
-            title={isPlaying ? "Pause" : "Play with sound"}
-            aria-label={isPlaying ? "Pause pinned video" : "Play pinned video with sound"}
-          />
+        <div
+          className="group relative bg-black"
+          style={{
+            aspectRatio: isMusicMode ? '9 / 16' : '16 / 9',
+            minHeight: '70px',
+          }}
+        >
+          {mode === 'idle' ? (
+            <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 p-2 bg-gradient-to-br from-purple-900/80 via-gray-900 to-cyan-900/80">
+              <p className="text-[10px] uppercase tracking-wider text-cyan-300/90 text-center font-bold">
+                Whatcha in the mood for?
+              </p>
+              <button
+                onClick={() => handleSelectMode('tools')}
+                className="w-full px-2 py-1.5 text-[11px] font-extrabold rounded bg-gradient-to-r from-amber-500 to-yellow-400 text-black hover:scale-[1.03] active:scale-95 transition-transform shadow-md"
+                title="Browse our AI tools showcase"
+              >
+                ✨ Check Out Our Tools
+              </button>
+              <button
+                onClick={() => handleSelectMode('music')}
+                className="w-full px-2 py-1.5 text-[10px] font-extrabold rounded bg-gradient-to-r from-fuchsia-500 to-purple-500 text-white hover:scale-[1.03] active:scale-95 transition-transform shadow-md leading-tight"
+                title="Watch our original AI musical art gallery"
+              >
+                🎵 Check Out Our Original<br/>AI Musical Art Gallery
+              </button>
+            </div>
+          ) : (
+            <>
+              <iframe
+                ref={iframeRef}
+                src={videoSrc}
+                className="w-full h-full"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
+                allowFullScreen
+                title={currentTitle}
+                style={{ minHeight: '70px' }}
+                onLoad={handleIframeLoad}
+              />
+              <button
+                type="button"
+                onClick={handleTogglePlay}
+                className="absolute inset-0 bg-transparent"
+                title={isPlaying ? "Pause" : "Play with sound"}
+                aria-label={isPlaying ? "Pause pinned video" : "Play pinned video with sound"}
+              />
+            </>
+          )}
         </div>
 
         {/* Controls bar - compact square buttons */}
+        {mode !== 'idle' && (
         <div className="flex justify-center py-1 px-1.5 bg-gray-800/95 border-t border-cyan-500/20">
           <div className="grid grid-cols-3 gap-1 w-full">
             <button
@@ -904,6 +941,16 @@ const PinnedVideoPlayer = memo(() => {
             </button>
           </div>
         </div>
+        )}
+        {mode !== 'idle' && (
+          <button
+            onClick={() => setMode('idle')}
+            className="w-full text-[9px] uppercase tracking-wider py-0.5 bg-black/60 text-cyan-300 hover:text-white hover:bg-black/80 border-t border-cyan-500/20"
+            title="Switch between Tools and Music Video gallery"
+          >
+            ⇄ Switch Mode
+          </button>
+        )}
       </div>
     </div>
   );
