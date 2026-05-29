@@ -367,10 +367,10 @@
         background: linear-gradient(90deg, #00ff41, #22d3ee, #a855f7, #00ff41);
         background-size: 300% 100%;
         border-radius: 4px;
-        /* Slowed to 8s so bar creeps toward 97% while React boots — no premature 100%. */
+       /* 3.5s for snappy entry — bar creeps toward 97% while React boots. */
         width: 5%;
-        -webkit-animation: progressShimmer 1.5s linear infinite, progressGrow 8s ease-out forwards;
-        animation: progressShimmer 1.5s linear infinite, progressGrow 8s ease-out forwards;
+        -webkit-animation: progressShimmer 1.5s linear infinite, progressGrow 3.5s ease-out forwards;
+        animation: progressShimmer 1.5s linear infinite, progressGrow 3.5s ease-out forwards;
         will-change: width, background-position;
         -webkit-transform: translateZ(0);
         transform: translateZ(0);
@@ -484,7 +484,7 @@
           const updatePct = () => {
             if (removed) return;
             var elapsed = performance.now() - startTime;
-            var duration = 8000;
+            var duration = 3500;
             var t = Math.min(elapsed / duration, 1);
             var p;
             if (t < 0.15) p = 5 + (35 * (t / 0.15));
@@ -692,7 +692,7 @@
             <div class="progress-bar" id="progress-bar" style="width:5%"></div>
           </div>
           <div class="progress-text">LOADING <span id="progress-pct">5%</span></div>
-          <div class="progress-text" style="margin-top:2px;color:#22d3ee;letter-spacing:1px">ENTERING IN <span id="progress-sec">8s</span></div>
+          <div class="progress-text" style="margin-top:2px;color:#22d3ee;letter-spacing:1px">ENTERING IN <span id="progress-sec">3s</span></div>
         </div>
     </div>
     
