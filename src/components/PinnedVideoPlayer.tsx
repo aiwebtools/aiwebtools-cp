@@ -929,7 +929,11 @@ const PinnedVideoPlayer = memo(() => {
         position: 'fixed',
         // Responsive sizing & safe-area support (iOS notch, etc.)
         width: isMusicMode ? "clamp(130px, 30vw, 180px)" : "clamp(148px, 36vw, 208px)",
-        bottom: "calc(0.5rem + env(safe-area-inset-bottom, 0px))",
+        // Lift the player on mobile so the idle mode buttons (esp. MUSIC_GALLERY.exe)
+        // never get clipped by the bottom of the viewport / nav UI.
+        bottom: mode === 'idle'
+          ? "calc(4.5rem + env(safe-area-inset-bottom, 0px))"
+          : "calc(1rem + env(safe-area-inset-bottom, 0px))",
         left: "calc(0.5rem + env(safe-area-inset-left, 0px))",
         // Portal + max z-index prevents the "audio-only" bug caused by stacking contexts/overlays.
         zIndex: 2147483647,
