@@ -1,6 +1,15 @@
 import { lazy, ComponentType } from "react";
 
-const RELOAD_FLAG = "aiwt:chunk-reload";
+// Shared with index.html boot tracer + main.tsx so we never stack reloads.
+type ReloadGuard = {
+  canReload: () => boolean;
+  mark: (reason?: string) => void;
+  clear: () => void;
+};
+const getReloadGuard = (): ReloadGuard | undefined =>
+  typeof window !== "undefined"
+    ? ((window as any).__aiwtReloadGuard as ReloadGuard | undefined)
+    : undefined;
 
 const isChunkLoadError = (err: unknown): boolean => {
   const msg = err instanceof Error ? err.message : String(err ?? "");
@@ -28,11 +37,6 @@ export function lazyWithRetry<T extends ComponentType<any>>(
     for (let i = 0; i <= retries; i++) {
       try {
         const mod = await factory();
-        try {
-          sessionStorage.removeItem(RELOAD_FLAG);
-        } catch {
-          // ignore
-        }
         return mod;
       } catch (err) {
         lastErr = err;
@@ -40,16 +44,12 @@ export function lazyWithRetry<T extends ComponentType<any>>(
       }
     }
     if (isChunkLoadError(lastErr) && typeof window !== "undefined") {
-      try {
-        if (!sessionStorage.getItem(RELOAD_FLAG)) {
-          sessionStorage.setItem(RELOAD_FLAG, "1");
-          window.location.reload();
-          // Return a never-resolving promise so React keeps the Suspense
-          // fallback until the reload happens.
-          return await new Promise<{ default: T }>(() => {});
-        }
-      } catch {
-        // ignore storage errors and fall through to throw
+      const g = getReloadGuard();
+      if (g?.canReload()) {
+        g.mark("lazyWithRetry");
+        window.location.reload();
+        // Never-resolving promise so Suspense stays up until the reload happens.
+        return await new Promise<{ default: T }>(() => {});
       }
     }
     throw lastErr;

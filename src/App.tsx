@@ -90,12 +90,28 @@ const WelcomeNeoVoice = () => {
 
   React.useEffect(() => {
     const hasAccepted = getConsentAccepted();
-    
-    // Only play on main page ("/"), after disclaimer accepted, once per session
-    if (location.pathname === '/' && hasAccepted && !hasPlayedRef.current) {
+
+    // Skip entirely if the disclaimer welcome audio just played — they share
+    // overlapping content and stacking two <audio> elements during the route
+    // transition was a real source of perceived "stutter / second loader".
+    let disclaimerPlayedAt = 0;
+    try {
+      disclaimerPlayedAt = Number(sessionStorage.getItem('aiwt:disclaimer-audio-at') || '0');
+    } catch { /* storage may be unavailable */ }
+    const recentlyPlayedDisclaimerAudio =
+      disclaimerPlayedAt > 0 && Date.now() - disclaimerPlayedAt < 15000;
+
+    // Only play on main page ("/"), after disclaimer accepted, once per session,
+    // and NOT if the disclaimer audio fired in the last 15s.
+    if (
+      location.pathname === '/' &&
+      hasAccepted &&
+      !hasPlayedRef.current &&
+      !recentlyPlayedDisclaimerAudio
+    ) {
       hasPlayedRef.current = true;
-      
-      // Small delay so it doesn't overlap with disclaimer welcome audio
+      (window as any).__aiwtBootTrace?.('welcome-neo-scheduled');
+
       timeoutRef.current = window.setTimeout(() => {
         try {
           const audio = new Audio('/welcome-neo.mp3');
@@ -108,6 +124,8 @@ const WelcomeNeoVoice = () => {
           // Audio must never block rendering.
         }
       }, 2000);
+    } else if (recentlyPlayedDisclaimerAudio) {
+      (window as any).__aiwtBootTrace?.('welcome-neo-skipped-disclaimer-audio');
     }
 
     return () => {
