@@ -282,6 +282,19 @@ const PinnedVideoPlayer = memo(() => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const playerMountedRef = useRef(false);
   const advanceTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const pauseOtherYouTubePlayers = useCallback(() => {
+    if (typeof document === 'undefined') return;
+    const currentFrame = iframeRef.current;
+    document
+      .querySelectorAll<HTMLIFrameElement>('iframe[src*="youtube.com/embed"], iframe[src*="youtube-nocookie.com/embed"]')
+      .forEach((frame) => {
+        if (!frame?.contentWindow || frame === currentFrame) return;
+        try {
+          frame.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'mute' }), '*');
+          frame.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'pauseVideo' }), '*');
+        } catch {}
+      });
+  }, []);
   
   // Check if on homepage
   const isHomepage = location.pathname === "/" || location.pathname === "";
@@ -341,13 +354,14 @@ const PinnedVideoPlayer = memo(() => {
 
   // Reset playlist index when switching modes so each gallery starts fresh
   const handleSelectMode = useCallback((next: 'tools' | 'music') => {
+    pauseOtherYouTubePlayers();
     setCurrentIndex(0);
     setMode(next);
     userPausedRef.current = false;
     userMutePreferenceRef.current = false;
     setIsMuted(false);
     setIsPlaying(true);
-  }, []);
+  }, [pauseOtherYouTubePlayers]);
 
   // Active playlist length and current video for the chosen mode
   const isMusicMode = mode === 'music';
@@ -419,10 +433,13 @@ const PinnedVideoPlayer = memo(() => {
     
     // Aggressively retry unMute for every new video so sound is always on.
     if (!shouldMute) {
+      pauseOtherYouTubePlayers();
+      window.dispatchEvent(new CustomEvent('pinnedPlayerPlaying'));
       const retryDelays = [200, 400, 700, 1100, 1600, 2200, 3000, 4000, 5500];
       const timers = retryDelays.map(delay =>
         setTimeout(() => {
           if (userPausedRef.current) return;
+          pauseOtherYouTubePlayers();
           sendYTCommand('unMute');
           sendYTCommand('playVideo');
         }, delay)
@@ -435,7 +452,7 @@ const PinnedVideoPlayer = memo(() => {
     if (!shouldMute) {
       window.dispatchEvent(new CustomEvent('pinnedPlayerPlaying'));
     }
-  }, [currentVideoId]); // Only depend on video ID, not mute state
+  }, [currentVideoId, pauseOtherYouTubePlayers]); // Only depend on video ID, not mute state
   
   // Handle mute/unmute via postMessage instead of iframe reload
   // Send to ALL possible YouTube origins + wildcard for maximum mobile compatibility
