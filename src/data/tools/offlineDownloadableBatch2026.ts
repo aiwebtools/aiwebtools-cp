@@ -57,7 +57,8 @@ export const offlineDownloadableBatch2026: Tool[] = [
     platforms: ["Windows", "macOS"],
     tags: [
       "Backyard AI", "Backyard", "Faraday AI", "Faraday", "backyard.ai",
-      "offline AI", "offline LLM", "local LLM", "downloadable AI",
+      "offline", "offline AI", "offline LLM", "downloadable", "downloadable AI",
+      "on-device", "on device", "local LLM",
       "free local AI app", "private AI", "no cloud AI", "uncensored local AI",
       "Llama local", "Mistral local", "Qwen local", "DeepSeek local",
       "AI companion offline", "character chat offline", "roleplay AI offline",
