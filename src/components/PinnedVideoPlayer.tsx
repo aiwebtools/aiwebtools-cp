@@ -316,9 +316,10 @@ const PinnedVideoPlayer = memo(() => {
     return sessionStorage.getItem(SESSION_CLOSED_KEY) !== "true";
   });
   
-  // Show player immediately on the homepage so it is always visible and clickable.
-  // Tool pages still wait for a small scroll so they don't cover the primary tool media.
-  const hasScrolledEnough = useScrollThreshold(isHomepage ? -1 : 100, {
+  // Wait for the user to scroll past the hero/search area on the homepage before
+  // popping the pinned player open. Tool pages still use a small scroll threshold
+  // so the player doesn't cover the primary tool media.
+  const hasScrolledEnough = useScrollThreshold(isHomepage ? 650 : 100, {
     enabled: true,
     allowReset: false, // Once shown, stay shown
   });
@@ -340,6 +341,10 @@ const PinnedVideoPlayer = memo(() => {
   // (so every video plays once before any repeat)
   const [toolsWithVideos, setToolsWithVideos] = useState<Tool[]>(() => getToolsWithVideosCached());
 
+  // Shuffled music-video order — every video plays once before any repeat.
+  // Reshuffled when we wrap past the end so the next round is a fresh random order.
+  const [musicOrder, setMusicOrder] = useState<typeof MUSIC_VIDEO_GALLERY>(() => shuffleArray(MUSIC_VIDEO_GALLERY));
+
   // Mode: idle = show overlay with "Whatcha in the mood for?" buttons.
   // tools = play tool showcase videos (original behavior). music = 9:16 music videos.
   const [mode, setMode] = useState<'idle' | 'tools' | 'music'>(() => {
@@ -358,6 +363,9 @@ const PinnedVideoPlayer = memo(() => {
   const handleSelectMode = useCallback((next: 'tools' | 'music') => {
     pauseOtherYouTubePlayers();
     setCurrentIndex(0);
+    if (next === 'music') {
+      setMusicOrder(shuffleArray(MUSIC_VIDEO_GALLERY));
+    }
     setMode(next);
     userPausedRef.current = false;
     userMutePreferenceRef.current = false;
@@ -367,9 +375,9 @@ const PinnedVideoPlayer = memo(() => {
 
   // Active playlist length and current video for the chosen mode
   const isMusicMode = mode === 'music';
-  const activeLength = isMusicMode ? MUSIC_VIDEO_GALLERY.length : toolsWithVideos.length;
+  const activeLength = isMusicMode ? musicOrder.length : toolsWithVideos.length;
   const currentTool: Tool | undefined = isMusicMode ? undefined : toolsWithVideos[currentIndex];
-  const currentMusicVideo = isMusicMode ? MUSIC_VIDEO_GALLERY[currentIndex % MUSIC_VIDEO_GALLERY.length] : undefined;
+  const currentMusicVideo = isMusicMode ? musicOrder[currentIndex % musicOrder.length] : undefined;
   const currentVideoId = isMusicMode
     ? (currentMusicVideo?.id ?? null)
     : (currentTool ? extractYouTubeId(currentTool.videoUrl || '') : null);
@@ -563,7 +571,17 @@ const PinnedVideoPlayer = memo(() => {
     setCurrentIndex(prev => {
       const next = prev + 1;
       if (isMusicMode) {
-        return next >= MUSIC_VIDEO_GALLERY.length ? 0 : next;
+        if (next >= musicOrder.length) {
+          // Reshuffle for a fresh random round — every video plays once before repeating.
+          let fresh = shuffleArray(MUSIC_VIDEO_GALLERY);
+          // Don't start the new round with the same video that just played.
+          if (fresh.length > 1 && musicOrder[prev] && fresh[0].id === musicOrder[prev].id) {
+            [fresh[0], fresh[1]] = [fresh[1], fresh[0]];
+          }
+          setMusicOrder(fresh);
+          return 0;
+        }
+        return next;
       }
       if (next >= toolsWithVideos.length) {
         // Reshuffle the playlist for a brand-new random round — no recent repeats
@@ -579,7 +597,7 @@ const PinnedVideoPlayer = memo(() => {
       }
       return next;
     });
-  }, [toolsWithVideos, isMusicMode]);
+  }, [toolsWithVideos, isMusicMode, musicOrder]);
 
   // Track when video started to prevent premature skipping
   const videoStartTimeRef = useRef<number>(Date.now());
