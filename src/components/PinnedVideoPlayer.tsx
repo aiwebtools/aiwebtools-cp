@@ -13,6 +13,22 @@ const YT_API_ORIGIN_FALLBACK = "https://www.youtube.com";
 const SESSION_CLOSED_KEY = "pinned-video-closed";
 const SHUFFLED_TOOLS_KEY = "pinned-video-shuffled-tools";
 const CURRENT_INDEX_KEY = "pinned-video-current-index";
+const MODE_SESSION_KEY = "pinned-video-mode"; // 'idle' | 'tools' | 'music'
+
+// Curated AIWebTools.ai 9:16 vertical original music-video gallery.
+// These play in the music-video mode of the pinned player. All link to the
+// Music Video Maker AI Studio tool.
+const MUSIC_VIDEO_GALLERY: Array<{ id: string; title: string }> = [
+  { id: "AFwPVOQV0SE", title: "AIWebTools.ai Original Music Video 1" },
+  { id: "M5l6VJAh2-Y", title: "AIWebTools.ai Original Music Video 2" },
+  { id: "FHEWZkP_3ew", title: "AIWebTools.ai Original Music Video 3" },
+  { id: "TlAgmV_2hXs", title: "AIWebTools.ai Original Music Video 4" },
+  { id: "bhC9aTQGbGI", title: "AIWebTools.ai Original Music Video 5" },
+  { id: "qxIYhAAkko8", title: "AIWebTools.ai Original Music Video 6" },
+  { id: "1yajmSLnPTs", title: "AIWebTools.ai Original Music Video 7" },
+];
+
+const MUSIC_VIDEO_TOOL_URL = "https://musicvideomakergpt.lovable.app/?via=aiwebtools";
 
 // Keep slug behavior consistent across the app
 const slugifyToolTitle = (title: string): string =>
@@ -308,9 +324,43 @@ const PinnedVideoPlayer = memo(() => {
   // Shuffled tools - kept in state so we can reshuffle on round wrap
   // (so every video plays once before any repeat)
   const [toolsWithVideos, setToolsWithVideos] = useState<Tool[]>(() => getToolsWithVideosCached());
-  
-  const currentTool: Tool | undefined = toolsWithVideos[currentIndex];
-  const currentVideoId = currentTool ? extractYouTubeId(currentTool.videoUrl || '') : null;
+
+  // Mode: idle = show overlay with "Whatcha in the mood for?" buttons.
+  // tools = play tool showcase videos (original behavior). music = 9:16 music videos.
+  const [mode, setMode] = useState<'idle' | 'tools' | 'music'>(() => {
+    try {
+      const stored = sessionStorage.getItem(MODE_SESSION_KEY);
+      if (stored === 'tools' || stored === 'music') return stored;
+    } catch {}
+    return 'idle';
+  });
+
+  useEffect(() => {
+    try { sessionStorage.setItem(MODE_SESSION_KEY, mode); } catch {}
+  }, [mode]);
+
+  // Reset playlist index when switching modes so each gallery starts fresh
+  const handleSelectMode = useCallback((next: 'tools' | 'music') => {
+    setCurrentIndex(0);
+    setMode(next);
+    userPausedRef.current = false;
+    userMutePreferenceRef.current = false;
+    setIsMuted(false);
+    setIsPlaying(true);
+  }, []);
+
+  // Active playlist length and current video for the chosen mode
+  const isMusicMode = mode === 'music';
+  const activeLength = isMusicMode ? MUSIC_VIDEO_GALLERY.length : toolsWithVideos.length;
+  const currentTool: Tool | undefined = isMusicMode ? undefined : toolsWithVideos[currentIndex];
+  const currentMusicVideo = isMusicMode ? MUSIC_VIDEO_GALLERY[currentIndex % MUSIC_VIDEO_GALLERY.length] : undefined;
+  const currentVideoId = isMusicMode
+    ? (currentMusicVideo?.id ?? null)
+    : (currentTool ? extractYouTubeId(currentTool.videoUrl || '') : null);
+  const currentTitle = isMusicMode
+    ? (currentMusicVideo?.title ?? "AIWebTools Music Video")
+    : (currentTool?.title ?? "");
+  const currentEmoji = isMusicMode ? "🎵" : (currentTool?.emoji || "🤖");
   
   // Track if this is the first video load (to set initial mute state)
   const isFirstVideoRef = useRef(true);
@@ -493,6 +543,9 @@ const PinnedVideoPlayer = memo(() => {
   const advanceToNextVideo = useCallback(() => {
     setCurrentIndex(prev => {
       const next = prev + 1;
+      if (isMusicMode) {
+        return next >= MUSIC_VIDEO_GALLERY.length ? 0 : next;
+      }
       if (next >= toolsWithVideos.length) {
         // Reshuffle the playlist for a brand-new random round — no recent repeats
         cachedToolsWithVideos = null;
@@ -507,7 +560,7 @@ const PinnedVideoPlayer = memo(() => {
       }
       return next;
     });
-  }, [toolsWithVideos]);
+  }, [toolsWithVideos, isMusicMode]);
 
   // Track when video started to prevent premature skipping
   const videoStartTimeRef = useRef<number>(Date.now());
@@ -640,12 +693,12 @@ const PinnedVideoPlayer = memo(() => {
   }, [isVisible, hasScrolledEnough, toolsWithVideos.length, currentIndex, advanceToNextVideo, currentTool?.title]);
 
   const handleNextVideo = useCallback(() => {
-    setCurrentIndex(prev => (prev + 1) % toolsWithVideos.length);
-  }, [toolsWithVideos.length]);
+    setCurrentIndex(prev => (prev + 1) % activeLength);
+  }, [activeLength]);
 
   const handlePrevVideo = useCallback(() => {
-    setCurrentIndex(prev => (prev - 1 + toolsWithVideos.length) % toolsWithVideos.length);
-  }, [toolsWithVideos.length]);
+    setCurrentIndex(prev => (prev - 1 + activeLength) % activeLength);
+  }, [activeLength]);
 
   const handleClose = useCallback(() => {
     sessionStorage.setItem(SESSION_CLOSED_KEY, "true");
@@ -653,13 +706,20 @@ const PinnedVideoPlayer = memo(() => {
   }, []);
 
   const handleToolClick = useCallback(() => {
+    if (isMusicMode) {
+      // Open the Music Video Maker AI Studio tool in a new tab
+      try {
+        window.open(MUSIC_VIDEO_TOOL_URL, '_blank', 'noopener,noreferrer');
+      } catch {}
+      return;
+    }
     if (!currentTool) return;
     
     // Generate URL slug from tool title
     const slug = slugifyToolTitle(currentTool.title);
     
     navigate(`/tool/${slug}`);
-  }, [currentTool, navigate]);
+  }, [currentTool, navigate, isMusicMode]);
 
   const toggleMute = useCallback(() => {
     setIsMuted(prev => {
@@ -731,7 +791,11 @@ const PinnedVideoPlayer = memo(() => {
   }, [isMuted, sendYTCommand]);
 
   // Don't render if not on homepage, permanently closed, no tools, or haven't scrolled past hero yet
-  if (!isHomepage || !isVisible || !hasScrolledEnough || toolsWithVideos.length === 0 || !currentTool || !currentVideoId || !videoSrc) {
+  if (!isHomepage || !isVisible || !hasScrolledEnough || toolsWithVideos.length === 0) {
+    return null;
+  }
+  // Once a mode is chosen, require a video to render
+  if (mode !== 'idle' && (!currentVideoId || !videoSrc)) {
     return null;
   }
 
@@ -742,7 +806,7 @@ const PinnedVideoPlayer = memo(() => {
         // CRITICAL: Inline fixed positioning - cannot be overridden by CSS
         position: 'fixed',
         // Responsive sizing & safe-area support (iOS notch, etc.)
-        width: "clamp(148px, 36vw, 208px)",
+        width: isMusicMode ? "clamp(130px, 30vw, 180px)" : "clamp(148px, 36vw, 208px)",
         bottom: "calc(0.5rem + env(safe-area-inset-bottom, 0px))",
         left: "calc(0.5rem + env(safe-area-inset-left, 0px))",
         // Portal + max z-index prevents the "audio-only" bug caused by stacking contexts/overlays.
@@ -768,9 +832,11 @@ const PinnedVideoPlayer = memo(() => {
               color: '#FFD700',
               textShadow: '0 0 6px #FFD700'
             }}
-            title={`${currentTool.title} - ${currentTool.description?.slice(0, 100) || ''}`}
+            title={currentTitle}
           >
-            {currentTool.emoji || "🤖"} {currentTool.title}
+            {mode === 'idle'
+              ? '🎬 Whatcha in the mood for?'
+              : `${currentEmoji} ${currentTitle}`}
           </p>
           <button
             onClick={handleClose}
@@ -782,27 +848,58 @@ const PinnedVideoPlayer = memo(() => {
         </div>
 
         {/* Video Container - stable iframe that doesn't remount on navigation */}
-        <div className="group relative aspect-video bg-black" style={{ minHeight: '70px' }}>
-          <iframe
-            ref={iframeRef}
-            src={videoSrc}
-            className="w-full h-full"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
-            allowFullScreen
-            title={currentTool.title}
-            style={{ minHeight: '70px' }}
-            onLoad={handleIframeLoad}
-          />
-          <button
-            type="button"
-            onClick={handleTogglePlay}
-            className="absolute inset-0 bg-transparent"
-            title={isPlaying ? "Pause" : "Play with sound"}
-            aria-label={isPlaying ? "Pause pinned video" : "Play pinned video with sound"}
-          />
+        <div
+          className="group relative bg-black"
+          style={{
+            aspectRatio: isMusicMode ? '9 / 16' : '16 / 9',
+            minHeight: '70px',
+          }}
+        >
+          {mode === 'idle' ? (
+            <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 p-2 bg-gradient-to-br from-purple-900/80 via-gray-900 to-cyan-900/80">
+              <p className="text-[10px] uppercase tracking-wider text-cyan-300/90 text-center font-bold">
+                Whatcha in the mood for?
+              </p>
+              <button
+                onClick={() => handleSelectMode('tools')}
+                className="w-full px-2 py-1.5 text-[11px] font-extrabold rounded bg-gradient-to-r from-amber-500 to-yellow-400 text-black hover:scale-[1.03] active:scale-95 transition-transform shadow-md"
+                title="Browse our AI tools showcase"
+              >
+                ✨ Check Out Our Tools
+              </button>
+              <button
+                onClick={() => handleSelectMode('music')}
+                className="w-full px-2 py-1.5 text-[10px] font-extrabold rounded bg-gradient-to-r from-fuchsia-500 to-purple-500 text-white hover:scale-[1.03] active:scale-95 transition-transform shadow-md leading-tight"
+                title="Watch our original AI musical art gallery"
+              >
+                🎵 Check Out Our Original<br/>AI Musical Art Gallery
+              </button>
+            </div>
+          ) : (
+            <>
+              <iframe
+                ref={iframeRef}
+                src={videoSrc}
+                className="w-full h-full"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
+                allowFullScreen
+                title={currentTitle}
+                style={{ minHeight: '70px' }}
+                onLoad={handleIframeLoad}
+              />
+              <button
+                type="button"
+                onClick={handleTogglePlay}
+                className="absolute inset-0 bg-transparent"
+                title={isPlaying ? "Pause" : "Play with sound"}
+                aria-label={isPlaying ? "Pause pinned video" : "Play pinned video with sound"}
+              />
+            </>
+          )}
         </div>
 
         {/* Controls bar - compact square buttons */}
+        {mode !== 'idle' && (
         <div className="flex justify-center py-1 px-1.5 bg-gray-800/95 border-t border-cyan-500/20">
           <div className="grid grid-cols-3 gap-1 w-full">
             <button
@@ -844,6 +941,16 @@ const PinnedVideoPlayer = memo(() => {
             </button>
           </div>
         </div>
+        )}
+        {mode !== 'idle' && (
+          <button
+            onClick={() => setMode('idle')}
+            className="w-full text-[9px] uppercase tracking-wider py-0.5 bg-black/60 text-cyan-300 hover:text-white hover:bg-black/80 border-t border-cyan-500/20"
+            title="Switch between Tools and Music Video gallery"
+          >
+            ⇄ Switch Mode
+          </button>
+        )}
       </div>
     </div>
   );
