@@ -678,6 +678,12 @@ const PinnedVideoPlayer = memo(() => {
       clearTimeout(advanceTimeoutRef.current);
     }
 
+    // In music mode, let the full video play to completion (advance via ended event).
+    // In tool showcase mode, keep the 15s rotation.
+    if (isMusicMode) {
+      return;
+    }
+
     const AUTO_SKIP_MS = 15000; // 15 seconds per video per Master's request
 
     advanceTimeoutRef.current = setTimeout(() => {
@@ -690,7 +696,7 @@ const PinnedVideoPlayer = memo(() => {
         clearTimeout(advanceTimeoutRef.current);
       }
     };
-  }, [isVisible, hasScrolledEnough, toolsWithVideos.length, currentIndex, advanceToNextVideo, currentTool?.title]);
+  }, [isVisible, hasScrolledEnough, toolsWithVideos.length, currentIndex, advanceToNextVideo, currentTool?.title, isMusicMode]);
 
   const handleNextVideo = useCallback(() => {
     setCurrentIndex(prev => (prev + 1) % activeLength);
