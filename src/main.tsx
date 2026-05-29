@@ -68,6 +68,11 @@ const root = createRoot(rootElement);
 
 import('./App.tsx')
   .then(({ default: App }) => {
+    try {
+      sessionStorage.removeItem('__aiwt_boot_watchdog_reload__');
+    } catch {
+      // Storage can be unavailable in strict privacy modes; rendering still continues.
+    }
     root.render(<App />);
     // NOTE: we intentionally do NOT clear CHUNK_RELOAD_KEY after boot.
     // Clearing it allowed mid-session errors to trigger a second reload,
