@@ -269,7 +269,7 @@ export const detectToolCategory = (tool: {
   // Priority detection order (most specific first)
   const detectionRules: [string, string[]][] = [
     // Web3 detection (check early since it's specific)
-    ['web3', ['web3', 'web 3', 'blockchain', 'decentralized', 'nft', 'defi', 'wallet', 'metamask', 'phantom', 'coinbase wallet', 'solana', 'polygon', 'ethereum', '.worldpeace', '.worldtrade', '.transfermoney', 'freename', 'domain nft', 'web3 domain', 'no bio chip', 'future of finance']],
+    ['web3', ['web3', 'web 3', 'blockchain', 'decentralized', 'nft', 'defi', 'wallet', 'metamask', 'phantom', 'coinbase wallet', 'solana', 'polygon', 'ethereum', '.worldpeace', '.worldtrade', '.transfermoney', 'freename', 'domain nft', 'web3 domain', 'decentralized banking', 'fair world', 'future of finance']],
     ['spiritual', ['spiritual', 'soul', 'divine', 'god', 'buddha', 'meditation', 'prayer', 'faith', 'sacred', 'mystical', 'enlighten', 'consciousness', 'tarot', 'astrology', 'oracle', 'psychic', 'resurrection', 'scripture', 'religious', 'sufi', 'kabbalah', 'gnostic', 'esoteric', 'chakra', 'kundalini', 'mantra', 'temple', 'prophet', 'saint', 'angel']],
     ['philosophy', ['philosophy', 'philosopher', 'socrates', 'plato', 'aristotle', 'nietzsche', 'stoic', 'metaphysics', 'ethics', 'existential', 'wisdom']],
     ['history', ['history', 'historical', 'time machine', 'ancient', 'civilization', 'archaeology', 'heritage', 'dynasty', 'empire', 'medieval', 'renaissance', 'ancestors', 'chronicles']],

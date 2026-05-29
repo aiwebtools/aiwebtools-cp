@@ -208,7 +208,7 @@ const DesktopMenu = () => {
                 </div>
                 <div className="mb-3 p-3 bg-gradient-to-r from-purple-900/30 to-blue-900/30 rounded-lg border border-purple-500/20 text-xs">
                   <span className="font-semibold text-cyan-400">Own forever • Resell • NFT</span>
-                  <span className="ml-2 font-bold text-green-400">NO BIO CHIP WEB3</span>
+                  <span className="ml-2 font-bold text-green-400">DECENTRALIZED BANKING • A FAIR WORLD FOR ALL</span>
                 </div>
                 
                 <div className="space-y-1">

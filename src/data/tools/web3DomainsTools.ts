@@ -5,7 +5,7 @@ import { Globe } from "lucide-react";
 const WEB3_COMMON_TAGS = [
   // Core Web3 terms
   "WEB3", "web 3", "web3 domain", "web3 domains", "decentralized", "decentralised", "blockchain", "crypto", "cryptocurrency", 
-  "NFT", "wallet", "future of finance", "digital asset", "no bio chip", "decentralized finance", "defi",
+  "NFT", "wallet", "future of finance", "digital asset", "decentralized banking", "fair world", "financial freedom", "decentralized finance", "defi",
   // Wallet mentions
   "metamask", "phantom", "coinbase wallet", "phantom wallet", "trust wallet",
   // Domain/registration terms
