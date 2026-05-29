@@ -568,7 +568,17 @@ const PinnedVideoPlayer = memo(() => {
     setCurrentIndex(prev => {
       const next = prev + 1;
       if (isMusicMode) {
-        return next >= MUSIC_VIDEO_GALLERY.length ? 0 : next;
+        if (next >= musicOrder.length) {
+          // Reshuffle for a fresh random round — every video plays once before repeating.
+          let fresh = shuffleArray(MUSIC_VIDEO_GALLERY);
+          // Don't start the new round with the same video that just played.
+          if (fresh.length > 1 && musicOrder[prev] && fresh[0].id === musicOrder[prev].id) {
+            [fresh[0], fresh[1]] = [fresh[1], fresh[0]];
+          }
+          setMusicOrder(fresh);
+          return 0;
+        }
+        return next;
       }
       if (next >= toolsWithVideos.length) {
         // Reshuffle the playlist for a brand-new random round — no recent repeats
@@ -584,7 +594,7 @@ const PinnedVideoPlayer = memo(() => {
       }
       return next;
     });
-  }, [toolsWithVideos, isMusicMode]);
+  }, [toolsWithVideos, isMusicMode, musicOrder]);
 
   // Track when video started to prevent premature skipping
   const videoStartTimeRef = useRef<number>(Date.now());
