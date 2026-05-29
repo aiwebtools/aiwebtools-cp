@@ -17,4 +17,6 @@ export interface Tool {
   blockchain?: string;
   isFree?: boolean; // Flag for free tools from AI Web Tools
   tagline?: string; // Short, mind-blowing one-liner about what the tool does
+  platform?: "mobile" | "desktop" | "cross-platform"; // Primary platform type
+  platforms?: string[]; // Specific platforms: iOS, Android, Windows, macOS, Linux, Web, etc.
 }
