@@ -324,9 +324,43 @@ const PinnedVideoPlayer = memo(() => {
   // Shuffled tools - kept in state so we can reshuffle on round wrap
   // (so every video plays once before any repeat)
   const [toolsWithVideos, setToolsWithVideos] = useState<Tool[]>(() => getToolsWithVideosCached());
-  
-  const currentTool: Tool | undefined = toolsWithVideos[currentIndex];
-  const currentVideoId = currentTool ? extractYouTubeId(currentTool.videoUrl || '') : null;
+
+  // Mode: idle = show overlay with "Whatcha in the mood for?" buttons.
+  // tools = play tool showcase videos (original behavior). music = 9:16 music videos.
+  const [mode, setMode] = useState<'idle' | 'tools' | 'music'>(() => {
+    try {
+      const stored = sessionStorage.getItem(MODE_SESSION_KEY);
+      if (stored === 'tools' || stored === 'music') return stored;
+    } catch {}
+    return 'idle';
+  });
+
+  useEffect(() => {
+    try { sessionStorage.setItem(MODE_SESSION_KEY, mode); } catch {}
+  }, [mode]);
+
+  // Reset playlist index when switching modes so each gallery starts fresh
+  const handleSelectMode = useCallback((next: 'tools' | 'music') => {
+    setCurrentIndex(0);
+    setMode(next);
+    userPausedRef.current = false;
+    userMutePreferenceRef.current = false;
+    setIsMuted(false);
+    setIsPlaying(true);
+  }, []);
+
+  // Active playlist length and current video for the chosen mode
+  const isMusicMode = mode === 'music';
+  const activeLength = isMusicMode ? MUSIC_VIDEO_GALLERY.length : toolsWithVideos.length;
+  const currentTool: Tool | undefined = isMusicMode ? undefined : toolsWithVideos[currentIndex];
+  const currentMusicVideo = isMusicMode ? MUSIC_VIDEO_GALLERY[currentIndex % MUSIC_VIDEO_GALLERY.length] : undefined;
+  const currentVideoId = isMusicMode
+    ? (currentMusicVideo?.id ?? null)
+    : (currentTool ? extractYouTubeId(currentTool.videoUrl || '') : null);
+  const currentTitle = isMusicMode
+    ? (currentMusicVideo?.title ?? "AIWebTools Music Video")
+    : (currentTool?.title ?? "");
+  const currentEmoji = isMusicMode ? "🎵" : (currentTool?.emoji || "🤖");
   
   // Track if this is the first video load (to set initial mute state)
   const isFirstVideoRef = useRef(true);
