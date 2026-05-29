@@ -1,4 +1,4 @@
-import React, { Suspense, lazy, useState, useEffect, useRef } from "react";
+import React, { Suspense, useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import HeroSection from "@/components/HeroSection";
@@ -6,6 +6,7 @@ import ImprovedSEOHead from "@/components/ImprovedSEOHead";
 import GoogleRankingBooster from "@/components/seo/GoogleRankingBooster";
 import { Button } from "../components/ui/button";
 import DeferredMount from "@/components/DeferredMount";
+import { lazyWithRetry as lazy } from "@/utils/lazyWithRetry";
 
 const CategoryPageSelection = lazy(() => import("@/components/CategoryPageSelection"));
 const SpecialServices = lazy(() => import("@/components/SpecialServices"));
