@@ -271,6 +271,8 @@ import { freeAwesomeBatch2026B } from './tools/freeAwesomeBatch2026B';
 import { freeAwesomeBatch2026C } from './tools/freeAwesomeBatch2026C';
 // Import Free Awesome Batch 2026 D (Khoj, Venice AI, Morphic, Cobalt, Supermeme, DeepWiki)
 import { freeAwesomeBatch2026D } from './tools/freeAwesomeBatch2026D';
+// Import Free Awesome Batch 2026 E (20 powerhouse free open-source AI tools/agents: Smolagents, Magentic-One, Dyad, Onlook, Plandex, Roo Code, Pipecat, Open Notebook, SurfSense, RAGFlow, Quivr, Maxun, ScrapeGraphAI, LightRAG, Devika, AppFlowy, AFFiNE, Reor, Daytona, Chatbox)
+import { freeAwesomeBatch2026E } from './tools/freeAwesomeBatch2026E';
 // Import New Agents + Free Medical Batch 2026 E (Sim Studio, AgentKit by OpenAI, Symptomate)
 import { newAgentsAndMedicalBatch2026E } from './tools/newAgentsAndMedicalBatch2026E';
 
@@ -553,6 +555,7 @@ export const getAllToolCategories = (): Tool[] => {
     ...freeAwesomeBatch2026B,
     ...freeAwesomeBatch2026C,
     ...freeAwesomeBatch2026D,
+    ...freeAwesomeBatch2026E,
     ...newAgentsAndMedicalBatch2026E,
     ...aiHardware,
     
