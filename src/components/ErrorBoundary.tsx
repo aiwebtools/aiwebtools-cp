@@ -22,14 +22,16 @@ class ErrorBoundary extends Component<Props, State> {
 
   public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     console.error('ErrorBoundary caught an error:', error, errorInfo);
-    // Send to backend crash log
-    reportError({
-      error_type: 'ErrorBoundary',
-      message: error?.message || 'Unknown React render error',
-      stack: error?.stack,
-      component_stack: errorInfo?.componentStack,
-      severity: 'fatal',
-    });
+    // Send to backend crash log (fire-and-forget, never throw)
+    try {
+      reportError({
+        error_type: 'ErrorBoundary',
+        message: error?.message || 'Unknown React render error',
+        stack: error?.stack,
+        component_stack: errorInfo?.componentStack,
+        severity: 'fatal',
+      });
+    } catch { /* noop */ }
     // Self-heal stale Vite chunk errors with a single hard reload.
     // These happen when a deploy/HMR invalidates a previously fetched module URL.
     const msg = error?.message || '';
