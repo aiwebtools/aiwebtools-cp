@@ -14,6 +14,51 @@ export type Database = {
   }
   public: {
     Tables: {
+      care_bot_logs: {
+        Row: {
+          assistant_reply: string | null
+          created_at: string
+          error: string | null
+          id: string
+          ip_hash: string | null
+          latency_ms: number | null
+          model: string | null
+          session_id: string | null
+          tool_titles: string[] | null
+          turn_count: number | null
+          user_agent: string | null
+          user_message: string
+        }
+        Insert: {
+          assistant_reply?: string | null
+          created_at?: string
+          error?: string | null
+          id?: string
+          ip_hash?: string | null
+          latency_ms?: number | null
+          model?: string | null
+          session_id?: string | null
+          tool_titles?: string[] | null
+          turn_count?: number | null
+          user_agent?: string | null
+          user_message: string
+        }
+        Update: {
+          assistant_reply?: string | null
+          created_at?: string
+          error?: string | null
+          id?: string
+          ip_hash?: string | null
+          latency_ms?: number | null
+          model?: string | null
+          session_id?: string | null
+          tool_titles?: string[] | null
+          turn_count?: number | null
+          user_agent?: string | null
+          user_message?: string
+        }
+        Relationships: []
+      }
       error_logs: {
         Row: {
           column_number: number | null
