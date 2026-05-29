@@ -316,9 +316,10 @@ const PinnedVideoPlayer = memo(() => {
     return sessionStorage.getItem(SESSION_CLOSED_KEY) !== "true";
   });
   
-  // Show player immediately on the homepage so it is always visible and clickable.
-  // Tool pages still wait for a small scroll so they don't cover the primary tool media.
-  const hasScrolledEnough = useScrollThreshold(isHomepage ? -1 : 100, {
+  // Wait for the user to scroll past the hero/search area on the homepage before
+  // popping the pinned player open. Tool pages still use a small scroll threshold
+  // so the player doesn't cover the primary tool media.
+  const hasScrolledEnough = useScrollThreshold(isHomepage ? 650 : 100, {
     enabled: true,
     allowReset: false, // Once shown, stay shown
   });
