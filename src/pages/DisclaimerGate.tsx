@@ -321,6 +321,12 @@ const DisclaimerGate: React.FC = () => {
       void audio.play().catch(() => {
         // Browser audio policies can block this; portal entry must continue.
       });
+      // Tell WelcomeNeoVoice on "/" to stand down for ~15s so we never stack
+      // two <audio> elements during the route transition.
+      try {
+        sessionStorage.setItem('aiwt:disclaimer-audio-at', String(Date.now()));
+      } catch { /* storage may be unavailable */ }
+      (window as any).__aiwtBootTrace?.('disclaimer-audio-played');
     } catch (e) {
       // Audio must never block the disclaimer accept flow.
     }
