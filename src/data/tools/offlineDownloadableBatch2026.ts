@@ -52,6 +52,8 @@ export const offlineDownloadableBatch2026: Tool[] = [
     imageUrl: backyardAiHero,
     isFree: true,
     tagline: "Free offline desktop AI — run private local LLMs with one click.",
+    platform: "desktop",
+    platforms: ["Windows", "macOS"],
     tags: [
       "Backyard AI", "Backyard", "Faraday AI", "Faraday", "backyard.ai",
       "offline AI", "offline LLM", "local LLM", "downloadable AI",
