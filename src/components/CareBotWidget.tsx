@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { X, Send, Loader2, Sparkles, Bot } from "lucide-react";
 import ReactMarkdown from "react-markdown";
+import { useNavigate } from "react-router-dom";
 import { allTools } from "@/data/toolsData";
 
 type Msg = { role: "user" | "assistant"; content: string };
@@ -8,15 +9,28 @@ type Msg = { role: "user" | "assistant"; content: string };
 const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/care-bot`;
 const ANON = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
 
-// Pre-flatten a search index of tool titles/tags/categories for fast keyword match
-const searchIndex = allTools.map((t) => ({
-  title: t.title,
-  description: t.description,
-  category: t.category,
-  directUrl: t.directUrl,
-  tags: (t.tags || []).join(" "),
-  haystack: `${t.title} ${t.description} ${t.category || ""} ${(t.tags || []).join(" ")}`.toLowerCase(),
-}));
+// Keep slug behavior consistent with the rest of the app (see PinnedVideoPlayer / ToolDetail).
+const slugifyToolTitle = (title: string): string =>
+  title
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
+
+// Pre-flatten a search index of tool titles/tags/categories for fast keyword match.
+// pageUrl is the canonical INTERNAL AIWebTools tool-detail page so the bot's
+// recommendation buttons land on our own pages first (not the external launcher).
+const searchIndex = allTools.map((t) => {
+  const slug = slugifyToolTitle(t.title);
+  return {
+    title: t.title,
+    description: t.description,
+    category: t.category,
+    directUrl: t.directUrl,
+    pageUrl: `https://aiwebtools.ai/${slug}`,
+    tags: (t.tags || []).join(" "),
+    haystack: `${t.title} ${t.description} ${t.category || ""} ${(t.tags || []).join(" ")}`.toLowerCase(),
+  };
+});
 
 function selectRelevantTools(query: string, max = 18) {
   const terms = query.toLowerCase().split(/\W+/).filter((w) => w.length > 2);
@@ -58,6 +72,7 @@ const SUGGESTIONS = [
 
 const CareBotWidget = () => {
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
   const [messages, setMessages] = useState<Msg[]>([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
