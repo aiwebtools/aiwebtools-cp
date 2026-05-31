@@ -24,6 +24,7 @@ const MODE_SESSION_KEY = "pinned-video-mode"; // 'idle' | 'tools' | 'music'
 // always leads with the most eye-catching content.
 const MUSIC_VIDEO_GALLERY: Array<{ id: string; title: string }> = [
   // ── VISUAL MUSIC VIDEOS (real cinematic clips, lead the reel) ──
+  { id: "htVLYZPHehk", title: "New Cinematic Drop — Music Video" },
   { id: "AFwPVOQV0SE", title: "My Name Is Irrelevant — Music Video" },
   { id: "M5l6VJAh2-Y", title: "Ai Might Be The Devil — Music Video" },
   { id: "TlAgmV_2hXs", title: "Mushroomhead Style — Music Video" },
