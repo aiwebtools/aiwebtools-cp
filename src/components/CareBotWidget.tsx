@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { X, Send, Loader2, Sparkles, Bot } from "lucide-react";
 import ReactMarkdown from "react-markdown";
+import { useNavigate } from "react-router-dom";
 import { allTools } from "@/data/toolsData";
 
 type Msg = { role: "user" | "assistant"; content: string };
@@ -8,15 +9,28 @@ type Msg = { role: "user" | "assistant"; content: string };
 const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/care-bot`;
 const ANON = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
 
-// Pre-flatten a search index of tool titles/tags/categories for fast keyword match
-const searchIndex = allTools.map((t) => ({
-  title: t.title,
-  description: t.description,
-  category: t.category,
-  directUrl: t.directUrl,
-  tags: (t.tags || []).join(" "),
-  haystack: `${t.title} ${t.description} ${t.category || ""} ${(t.tags || []).join(" ")}`.toLowerCase(),
-}));
+// Keep slug behavior consistent with the rest of the app (see PinnedVideoPlayer / ToolDetail).
+const slugifyToolTitle = (title: string): string =>
+  title
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
+
+// Pre-flatten a search index of tool titles/tags/categories for fast keyword match.
+// pageUrl is the canonical INTERNAL AIWebTools tool-detail page so the bot's
+// recommendation buttons land on our own pages first (not the external launcher).
+const searchIndex = allTools.map((t) => {
+  const slug = slugifyToolTitle(t.title);
+  return {
+    title: t.title,
+    description: t.description,
+    category: t.category,
+    directUrl: t.directUrl,
+    pageUrl: `https://aiwebtools.ai/${slug}`,
+    tags: (t.tags || []).join(" "),
+    haystack: `${t.title} ${t.description} ${t.category || ""} ${(t.tags || []).join(" ")}`.toLowerCase(),
+  };
+});
 
 function selectRelevantTools(query: string, max = 18) {
   const terms = query.toLowerCase().split(/\W+/).filter((w) => w.length > 2);
@@ -58,6 +72,7 @@ const SUGGESTIONS = [
 
 const CareBotWidget = () => {
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
   const [messages, setMessages] = useState<Msg[]>([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
@@ -244,21 +259,47 @@ const CareBotWidget = () => {
                           components={{
                             a: ({ href, children }) => {
                               const url = String(href || "");
+                              // Detect internal AIWebTools tool-page links so they
+                              // navigate INSIDE the app instantly (no full reload,
+                              // no new tab) — the bot's recommendations should
+                              // land users on our own pages first.
+                              let internalPath: string | null = null;
+                              try {
+                                const u = new URL(url, window.location.origin);
+                                const isInternalHost =
+                                  u.origin === window.location.origin ||
+                                  /(^|\.)aiwebtools\.ai$/i.test(u.hostname) ||
+                                  /(^|\.)aiwebtools\.lovable\.app$/i.test(u.hostname);
+                                if (isInternalHost) {
+                                  internalPath = `${u.pathname}${u.search}${u.hash}` || "/";
+                                }
+                              } catch { /* relative or bad URL — treat as external */ }
+
                               return (
                                 <button
                                   type="button"
                                   onClick={(e) => {
                                     e.preventDefault();
                                     e.stopPropagation();
-                                    // Open INSTANTLY in a new window — no time-warp,
-                                    // no internal route, no middle-man loader.
-                                    window.open(url, "_blank", "noopener,noreferrer");
+                                    if (internalPath) {
+                                      // In-app navigation to the tool's detail page.
+                                      setOpen(false);
+                                      navigate(internalPath);
+                                    } else {
+                                      // External tool launcher — open instantly in a
+                                      // new tab, no time-warp, no middle-man loader.
+                                      window.open(url, "_blank", "noopener,noreferrer");
+                                    }
                                   }}
-                                  className="inline-flex items-center gap-1 mx-0.5 my-0.5 px-2 py-0.5 rounded-md bg-cyan-500/15 hover:bg-cyan-500/30 border border-cyan-400/40 text-cyan-200 hover:text-white text-xs font-semibold transition-colors no-underline"
+                                  className={
+                                    internalPath
+                                      ? "inline-flex items-center gap-1 mx-0.5 my-0.5 px-2 py-0.5 rounded-md bg-green-500/20 hover:bg-green-500/40 border border-green-400/50 text-green-100 hover:text-white text-xs font-semibold transition-colors no-underline"
+                                      : "inline-flex items-center gap-1 mx-0.5 my-0.5 px-2 py-0.5 rounded-md bg-cyan-500/15 hover:bg-cyan-500/30 border border-cyan-400/40 text-cyan-200 hover:text-white text-xs font-semibold transition-colors no-underline"
+                                  }
                                   title={url}
                                 >
                                   {children}
-                                  <span aria-hidden className="text-[10px] opacity-80">↗</span>
+                                  <span aria-hidden className="text-[10px] opacity-80">{internalPath ? "→" : "↗"}</span>
                                 </button>
                               );
                             },
