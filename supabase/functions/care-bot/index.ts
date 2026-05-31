@@ -10,12 +10,14 @@ CORE EXPERTISE — you are the ultimate AI tools concierge:
 - For build-something requests ("help me make a music video / book / business plan / app") give a step-by-step using specific tools from the catalog with direct links.
 
 LINK RULES — links must JUST WORK:
-- ALWAYS link as markdown: [Tool Name](DIRECT_URL)
-- ONLY use URLs that appear EXACTLY in the "RELEVANT TOOLS FROM CATALOG" block below, or these whitelisted platform URLs: https://aiwebtools.ai, https://aiwebtools.ai/submit-tool, https://aiwebtools.ai/favorites, https://aiwebtools.ai/blog, https://aiwebtools.ai/faq, https://aiwebtools.ai/disclaimers, https://aiwebtools.ai/our-story, https://aiwebtools.ai/?search=KEYWORD (replace KEYWORD with the user's term).
+- ALWAYS link as markdown: [Tool Name](URL). Links render as CLICKABLE BUTTONS in the chat — make every recommendation a button.
+- PRIMARY BUTTON RULE: When you recommend a tool, the tool name MUST link to its PAGE url (the internal AIWebTools tool-detail page) — that takes the user straight to the tool's own page on our site where they can read more, see the video/image, and launch it. Format: [Tool Name](PAGE_URL).
+- OPTIONAL LAUNCH BUTTON: After the tool name button, you MAY add one short companion link like " · [Launch ↗](DIRECT_URL)" so power users can open the tool itself in a new tab. Skip the Launch button if PAGE and DIRECT are the same URL.
+- ONLY use URLs that appear EXACTLY in the "RELEVANT TOOLS FROM CATALOG" or "ADDITIONAL VERIFIED TOOLS" blocks below (use the PAGE: and DIRECT: lines verbatim), or these whitelisted platform URLs: https://aiwebtools.ai, https://aiwebtools.ai/submit-tool, https://aiwebtools.ai/favorites, https://aiwebtools.ai/blog, https://aiwebtools.ai/faq, https://aiwebtools.ai/disclaimers, https://aiwebtools.ai/our-story, https://aiwebtools.ai/?search=KEYWORD (replace KEYWORD with the user's term).
 - NEVER invent, guess, paraphrase, shorten, or "best-guess" a URL. NEVER link to gemini.google.com, bard.google.com, openai.com/chatgpt, or any product page you are not 100% sure exists — many such URLs are blocked, gated, or fake.
 - If a user asks for a tool that is NOT in the catalog block, do NOT fabricate a link. Say: "I don't have a verified link for that yet — try our search: https://aiwebtools.ai/?search=<their keyword>" and stop. Honesty over hallucination.
-- Use the DIRECT URL from the catalog (the "URL:" field) verbatim. Do NOT route through aiwebtools.ai/tool/... and do NOT strip or add query params. The ?via=aiwebtools tag must stay if it was there.
-- Prefer 1–4 highly relevant links per answer over a giant dump. Quality > quantity. Every link you output must be one you can point to in the catalog block or the whitelist above.
+- Use both URLs from the catalog verbatim. Do NOT strip or add query params; the ?via=aiwebtools tag must stay if it was there.
+- Prefer 1–4 highly relevant recommendations per answer over a giant dump. Quality > quantity. Every link you output must be one you can point to in the catalog block or the whitelist above.
 
 FORMAT:
 - Markdown, concise, scannable. Use **bold** for tool names in prose, short bullet lists, and small section headers when helpful.
@@ -208,14 +210,21 @@ Deno.serve(async (req) => {
           const title = sanitizeForPrompt(t?.title, 120) || 'Untitled';
           const category = sanitizeForPrompt(t?.category, 60) || 'AI Tool';
           const desc = sanitizeForPrompt(t?.description, 200);
-          let url = 'https://aiwebtools.ai';
+          let directUrl = 'https://aiwebtools.ai';
           if (typeof t?.directUrl === 'string') {
             try {
               const u = new URL(t.directUrl);
-              if (u.protocol === 'http:' || u.protocol === 'https:') url = u.toString().slice(0, 500);
+              if (u.protocol === 'http:' || u.protocol === 'https:') directUrl = u.toString().slice(0, 500);
             } catch { /* ignore bad URLs */ }
           }
-          return `- ${title} [${category}] — ${desc} — URL: ${url}`;
+          let pageUrl = directUrl;
+          if (typeof t?.pageUrl === 'string') {
+            try {
+              const p = new URL(t.pageUrl);
+              if (p.protocol === 'http:' || p.protocol === 'https:') pageUrl = p.toString().slice(0, 500);
+            } catch { /* ignore */ }
+          }
+          return `- ${title} [${category}] — ${desc}\n   PAGE: ${pageUrl}\n   DIRECT: ${directUrl}`;
         }).join('\n')}`
       : '\n\n(No specific tool matches found in catalog — suggest the user browse https://aiwebtools.ai or search for keywords.)';
 
@@ -224,7 +233,12 @@ Deno.serve(async (req) => {
           const title = sanitizeForPrompt(t.title, 120);
           const category = sanitizeForPrompt(t.category, 60);
           const desc = sanitizeForPrompt(t.description, 200);
-          return `- ${title} [${category}] — ${desc} — URL: ${t.url}`;
+          const slug = title
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, '-')
+            .replace(/(^-|-$)/g, '');
+          const pageUrl = slug ? `https://aiwebtools.ai/${slug}` : 'https://aiwebtools.ai';
+          return `- ${title} [${category}] — ${desc}\n   PAGE: ${pageUrl}\n   DIRECT: ${t.url}`;
         }).join('\n')}`
       : '';
 
