@@ -697,8 +697,13 @@
           columns=Math.max(1,Math.floor(vw/fontSize));
           drops=Array.from({length:columns},function(){return Math.random()*-vh/fontSize;});
         }
-        function drawMatrix(){
+        var lastMatrix=0;
+        function drawMatrix(ts){
           if(overlay.classList.contains('fade-out')) return;
+          // Throttle matrix rain to ~30fps. Indistinguishable visually, halves
+          // the per-frame cost of the heaviest canvas during boot.
+          if(ts && ts-lastMatrix < 32){ requestAnimationFrame(drawMatrix); return; }
+          lastMatrix = ts || 0;
           matrixCtx.fillStyle='rgba(0,0,0,'+fade+')'; matrixCtx.fillRect(0,0,vw,vh);
           for(var i=0;i<drops.length;i++){
             var x=i*fontSize, y=drops[i]*fontSize;
