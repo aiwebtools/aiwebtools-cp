@@ -740,14 +740,14 @@
           edges.forEach(function(ed){
             var p1=proj[ed[0]], p2=proj[ed[1]], gl=Math.min(1,(p1.depth+p2.depth)/3.1);
             cubeCtx.beginPath(); cubeCtx.moveTo(p1.x,p1.y); cubeCtx.lineTo(p2.x,p2.y);
-            cubeCtx.strokeStyle='rgba(0,255,65,'+(.12+gl*.48)+')'; cubeCtx.lineWidth=.8+gl*1.8;
-            cubeCtx.shadowColor='#00ff41'; cubeCtx.shadowBlur=10+gl*26; cubeCtx.stroke();
+            cubeCtx.strokeStyle='rgba(0,255,65,'+(.18+gl*.6)+')'; cubeCtx.lineWidth=.9+gl*2.0;
+            cubeCtx.stroke();
           });
           proj.forEach(function(p,idx){
             var pu=Math.sin(cubeAngle*6+idx)*.5+.5, rad=Math.max(1.4,1.7+p.depth*1.55+pu*1.25);
             cubeCtx.beginPath(); cubeCtx.arc(p.x,p.y,rad,0,Math.PI*2);
-            cubeCtx.fillStyle='rgba(190,255,210,'+(.38+pu*.5)+')';
-            cubeCtx.shadowColor='#00ff41'; cubeCtx.shadowBlur=18; cubeCtx.fill();
+            cubeCtx.fillStyle='rgba(190,255,210,'+(.48+pu*.5)+')';
+            cubeCtx.fill();
           });
           cubeCtx.restore();
           cubeAngle+=vw<=560?.0085:.0115;
@@ -755,21 +755,28 @@
         }
         function drawBurst(){
           if(overlay.classList.contains('fade-out')) return;
+          // No active particles → skip the rAF entirely. The pointerdown
+          // handler restarts the loop. Saves ~1 rAF/frame of idle main-thread
+          // work before React mounts.
+          if(burst.length===0){ burstRunning=false; return; }
           burstCtx.clearRect(0,0,vw,vh);
           for(var i=burst.length-1;i>=0;i--){
             var p=burst[i]; p.x+=p.vx; p.y+=p.vy; p.life-=1; p.size*=.985;
             burstCtx.beginPath(); burstCtx.arc(p.x,p.y,p.size,0,Math.PI*2);
             burstCtx.fillStyle='rgba(0,255,65,'+Math.max(0,p.life/p.maxLife)+')';
-            burstCtx.shadowColor='#00ff41'; burstCtx.shadowBlur=16; burstCtx.fill();
+            burstCtx.fill();
             if(p.life<=0) burst.splice(i,1);
           }
           requestAnimationFrame(drawBurst);
         }
+        var burstRunning=false;
+        function startBurst(){ if(!burstRunning){ burstRunning=true; requestAnimationFrame(drawBurst); } }
         overlay.addEventListener('pointerdown',function(ev){
           for(var n=0;n<46;n++){var ang=Math.random()*Math.PI*2,sp=Math.random()*5+1.2;
             burst.push({x:ev.clientX,y:ev.clientY,vx:Math.cos(ang)*sp,vy:Math.sin(ang)*sp,size:Math.random()*2.8+1.2,life:Math.floor(Math.random()*28+18),maxLife:46});}
           var col=Math.floor(ev.clientX/fontSize);
           for(var k=Math.max(0,col-8);k<Math.min(drops.length,col+8);k++) drops[k]=Math.random()*-8;
+          startBurst();
         });
         // Binary strip
         var strip=document.getElementById('aiwt-binary-strip');
