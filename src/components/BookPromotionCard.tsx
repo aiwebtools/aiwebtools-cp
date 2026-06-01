@@ -595,6 +595,11 @@ const BookPromotionCard = () => {
       gradient: "from-purple-500/20 to-fuchsia-500/20"
     },
     {
+      id: "bBZT8sPWvRY",
+      title: "AI Web Tools 9:16 Vertical Showcase — Awakening Anthem",
+      gradient: "from-emerald-500/20 to-lime-500/20"
+    },
+    {
       id: "M5l6VJAh2-Y",
       title: "AI Web Tools 9:16 Vertical Showcase 2",
       gradient: "from-cyan-500/20 to-teal-500/20"
@@ -640,11 +645,6 @@ const BookPromotionCard = () => {
       gradient: "from-orange-500/20 to-red-500/20"
     },
     {
-      id: "ZWiOa6NXqYE",
-      title: "Light Code Awakening — Music Video",
-      gradient: "from-lime-500/20 to-emerald-500/20"
-    },
-    {
       id: "EYnCtw9CsxQ",
       title: "Eyes Of The Soul — Music Video",
       gradient: "from-violet-500/20 to-fuchsia-500/20"
@@ -676,6 +676,7 @@ const BookPromotionCard = () => {
     // pinned to the front — it joins the lyric/audio tracks at the back.
     const verticalMusicVideoIds = [
       "htVLYZPHehk",
+      "bBZT8sPWvRY",
       "AFwPVOQV0SE",
       "M5l6VJAh2-Y",
       "TlAgmV_2hXs",
@@ -685,7 +686,6 @@ const BookPromotionCard = () => {
       "cKHZ7X0qx_Y",
       "-MSiCn4Fts8",
       "mg7F63-PN30",
-      "ZWiOa6NXqYE",
       "EYnCtw9CsxQ",
       "QCJCKhbwxhA",
       "Twl5-MsgmoI",
