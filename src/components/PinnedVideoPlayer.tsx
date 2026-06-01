@@ -25,6 +25,7 @@ const MODE_SESSION_KEY = "pinned-video-mode"; // 'idle' | 'tools' | 'music'
 const MUSIC_VIDEO_GALLERY: Array<{ id: string; title: string }> = [
   // ── VISUAL MUSIC VIDEOS (real cinematic clips, lead the reel) ──
   { id: "htVLYZPHehk", title: "New Cinematic Drop — Music Video" },
+  { id: "bBZT8sPWvRY", title: "Awakening Anthem — Music Video" },
   { id: "AFwPVOQV0SE", title: "My Name Is Irrelevant — Music Video" },
   { id: "M5l6VJAh2-Y", title: "Ai Might Be The Devil — Music Video" },
   { id: "TlAgmV_2hXs", title: "Mushroomhead Style — Music Video" },
@@ -48,7 +49,6 @@ const MUSIC_VIDEO_GALLERY: Array<{ id: string; title: string }> = [
   { id: "cKHZ7X0qx_Y", title: "In The Shadows — Music Video" },
   { id: "-MSiCn4Fts8", title: "Through The Veil — Music Video" },
   { id: "mg7F63-PN30", title: "Inner Fire Rising — Music Video" },
-  { id: "ZWiOa6NXqYE", title: "Light Code Awakening — Music Video (Short)" },
   { id: "EYnCtw9CsxQ", title: "Eyes Of The Soul — Music Video" },
   { id: "QCJCKhbwxhA", title: "Walk Through Fire — Music Video" },
   { id: "Twl5-MsgmoI", title: "Hidden Truths Revealed — Music Video" },

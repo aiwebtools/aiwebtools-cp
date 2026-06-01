@@ -804,11 +804,16 @@
           coordB.textContent = (Math.cos(cubeAngle*.74)*.5+.5).toFixed(3);
           coordC.textContent = (Math.sin(cubeAngle*1.33)*.5+.5).toFixed(3);
         },140);
-        // Initial paint
-        resize();
-        requestAnimationFrame(drawMatrix);
-        requestAnimationFrame(drawCube);
-        requestAnimationFrame(drawBurst);
+        // Initial paint — defer heavy canvas work one frame so the overlay
+        // (logo, terminal, progress bar) paints instantly. This fixes the
+        // perceived "slow to open" delay where the screen stayed black while
+        // the matrix/cube/burst canvases initialized synchronously.
+        requestAnimationFrame(function(){
+          resize();
+          requestAnimationFrame(drawMatrix);
+          requestAnimationFrame(drawCube);
+          requestAnimationFrame(drawBurst);
+        });
         var rt;
         window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(resize,120);});
       })();
