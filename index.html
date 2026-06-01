@@ -183,7 +183,10 @@
       .aiwt-scanlines {
         position: absolute; inset: 0; z-index: 8; pointer-events: none;
         background: repeating-linear-gradient(0deg, rgba(255,255,255,0.025) 0px, rgba(255,255,255,0.025) 1px, rgba(0,0,0,0.2) 2px, rgba(0,0,0,0.2) 4px);
-        animation: aiwt-flicker 160ms infinite;
+        /* Slower flicker — 160ms was forcing a full-overlay repaint ~6×/sec and
+           stealing main-thread time before React could mount. 2.4s keeps the
+           CRT vibe without crushing FCP. */
+        animation: aiwt-flicker 2.4s steps(8, end) infinite;
       }
       .aiwt-vignette { position: absolute; inset: 0; z-index: 9; pointer-events: none;
         background: radial-gradient(ellipse at center, transparent 44%, rgba(0,0,0,0.88) 100%); }
