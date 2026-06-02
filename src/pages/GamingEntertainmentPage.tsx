@@ -151,7 +151,7 @@ const GamingEntertainmentPage = () => {
           <main className="container mx-auto px-4 py-8 pt-32 md:pt-36 lg:pt-40">
             <div className="text-center mb-8">
               <div className="text-6xl mb-4 animate-pulse">🎮</div>
-              <h1 className="text-2xl font-bold text-cyan-100 mb-4">Loading Gaming Tools...</h1>
+              <div className="text-2xl font-bold text-cyan-100 mb-4" role="status" aria-live="polite">Loading Gaming Tools...</div>
             </div>
             <ToolGridSkeleton count={8} />
           </main>

@@ -27,7 +27,9 @@ const EnhancedSEOHead = ({
   toolData,
   pageType = 'homepage'
 }: EnhancedSEOHeadProps) => {
-  const fullTitle = title ? `${title} | AI WEB TOOLS - #1 AI Tools Directory 2026 | Better Than Toolify & Futurepedia` : "AI WEB TOOLS - #1 AI Tools Directory | 1000+ Best AI Tools 2026 | Better Than Toolify & Futurepedia | Trusted by 100K+ Users";
+  const fullTitle = title
+    ? `${title} | AI Web Tools`
+    : "AI Web Tools — 4,000+ Best AI Tools Directory 2026";
   const canonical = url.startsWith('http') ? url : `${seoConfig.siteUrl}${url}`;
   
   // Get proper Open Graph image for tool pages
