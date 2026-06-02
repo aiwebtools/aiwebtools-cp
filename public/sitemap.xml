@@ -3315,4 +3315,5 @@
   <url><loc>https://ai-webtools.com/tool/midjourney</loc><changefreq>weekly</changefreq><priority>0.70</priority></url>
   <url><loc>https://ai-webtools.com/similar-tools/chatgpt</loc><changefreq>monthly</changefreq><priority>0.50</priority></url>
   <url><loc>https://ai-webtools.com/blog/ai-tools-guide</loc><changefreq>monthly</changefreq><priority>0.60</priority></url>
+  <url><loc>https://ai-webtools.com/admin/analytics</loc><changefreq>monthly</changefreq><priority>0.10</priority></url>
 </urlset>
