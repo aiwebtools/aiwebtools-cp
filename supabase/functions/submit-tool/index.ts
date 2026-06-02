@@ -63,7 +63,14 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
-    const ip = (req.headers.get("x-forwarded-for") ?? "").split(",")[0].trim() || "unknown";
+    // Use the right-most X-Forwarded-For value (last hop / closest to our edge)
+    // or x-real-ip, so spoofing the header doesn't bypass rate limiting.
+    const xff = req.headers.get("x-forwarded-for") ?? "";
+    const xffParts = xff.split(",").map((s) => s.trim()).filter(Boolean);
+    const ip =
+      req.headers.get("x-real-ip") ||
+      (xffParts.length ? xffParts[xffParts.length - 1] : "") ||
+      "unknown";
     if (isRateLimited(ip)) {
       return new Response(
         JSON.stringify({ error: "Too many submissions. Please try again later." }),
@@ -144,35 +151,11 @@ const handler = async (req: Request): Promise<Response> => {
 
     console.log("Admin email sent:", adminEmailResponse);
 
-    // Send confirmation email to submitter
-    const confirmationEmailResponse = await resend.emails.send({
-      from: "AI Web Tools <onboarding@resend.dev>",
-      to: [submission.submitterEmail],
-      subject: "We received your AI tool submission!",
-      html: `
-        <h1>Thank you for your submission!</h1>
-        <p>Hi${submission.submitterName ? ` ${safeSubmitterName}` : ""},</p>
-        <p>We've received your submission for <strong>${safeName}</strong> and will review it within 5-7 business days.</p>
-        
-        <h2>What's Next?</h2>
-        <ul>
-          <li>Our team will review your tool for quality and appropriateness</li>
-          <li>You may receive feedback or requests for changes</li>
-          <li>Once approved, your tool will be added to the AI Web Tools Directory</li>
-          <li>You'll receive a notification when your tool is live</li>
-        </ul>
-        
-        <h3>Submission Details</h3>
-        <p><strong>Tool Name:</strong> ${safeName}</p>
-        <p><strong>Category:</strong> ${safeCategory}</p>
-        <p><strong>URL:</strong> <a href="${safeToolUrl}">${safeToolUrl}</a></p>
-        
-        <p>If you have any questions, feel free to reply to this email.</p>
-        <p>Best regards,<br>The AI Web Tools Team</p>
-      `,
-    });
-
-    console.log("Confirmation email sent:", confirmationEmailResponse);
+    // Note: We intentionally do NOT send a confirmation email to the
+    // submitter-provided address. Doing so would turn this public endpoint
+    // into an open email relay where anyone could trigger delivery to
+    // arbitrary inboxes. The UI shows an on-screen success toast, and the
+    // admin team can follow up directly after review.
 
     return new Response(
       JSON.stringify({ 
