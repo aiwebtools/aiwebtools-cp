@@ -25,6 +25,8 @@ const GlobalSearchInput = memo(({
 }: GlobalSearchInputProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const queuedSearchIdRef = useRef(0);
+  const debounceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const lastKeystrokeRef = useRef(0);
 
   // Keep visual typing fully local and instant
   const [localValue, setLocalValue] = useState(searchTerm);
@@ -37,7 +39,8 @@ const GlobalSearchInput = memo(({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchTerm]);
 
-  // Zero-delay local paint, then hand off search work in a microtask
+  // Zero-delay local paint, then debounce the parent state update so rapid
+  // typing never thrashes React re-renders / blocks the input thread.
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const next = e.target.value;
@@ -45,14 +48,34 @@ const GlobalSearchInput = memo(({
 
       setLocalValue(next);
 
-      queueMicrotask(() => {
+      // Adaptive debounce: rapid keystrokes get batched, slow typing feels instant.
+      const now = performance.now();
+      const gap = now - lastKeystrokeRef.current;
+      lastKeystrokeRef.current = now;
+      const rapid = gap < 140;
+      const delay = rapid ? 90 : 0;
+
+      if (debounceTimerRef.current) clearTimeout(debounceTimerRef.current);
+      const dispatch = () => {
         if (queuedSearchIdRef.current === requestId) {
           onSearchChange(next);
         }
-      });
+      };
+      if (delay === 0) {
+        queueMicrotask(dispatch);
+      } else {
+        debounceTimerRef.current = setTimeout(dispatch, delay);
+      }
     },
     [onSearchChange]
   );
+
+  // Cleanup pending debounce on unmount
+  useEffect(() => {
+    return () => {
+      if (debounceTimerRef.current) clearTimeout(debounceTimerRef.current);
+    };
+  }, []);
 
   // Handle Tab key to accept prediction
   const handleKeyDown = useCallback(
@@ -80,6 +103,7 @@ const GlobalSearchInput = memo(({
   const handleClear = useCallback((e: React.MouseEvent) => {
     e.stopPropagation();
     queuedSearchIdRef.current += 1;
+    if (debounceTimerRef.current) clearTimeout(debounceTimerRef.current);
     setLocalValue("");
     onClear();
   }, [onClear]);
