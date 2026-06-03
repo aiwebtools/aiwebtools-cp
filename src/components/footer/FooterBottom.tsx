@@ -124,9 +124,9 @@ const FooterBottom = ({
             <Link to="/privacy-policy" className="text-green-300 hover:text-green-400 transition-colors text-sm">
               Privacy Policy
             </Link>
-            <button onClick={e => handleExternalLink("https://aiwebtools.lovable.app/terms-of-services?via=aiwebtools", e)} className="text-green-300 hover:text-green-400 transition-colors text-sm">
+            <Link to="/disclaimers" className="text-green-300 hover:text-green-400 transition-colors text-sm">
               Terms of Service
-            </button>
+            </Link>
           </div>
           <Link
             to="/disclaimers"

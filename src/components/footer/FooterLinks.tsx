@@ -53,12 +53,12 @@ const FooterLinks = () => {
           >
             🔒 Privacy Policy
           </a>
-          <button
-            onClick={(e) => handleExternalLink("https://aiwebtools.lovable.app/terms-of-services?via=aiwebtools", e)}
+          <a
+            href="/disclaimers"
             className="block text-green-200 hover:text-green-400 transition-colors text-left"
           >
             📜 Terms of Service
-          </button>
+          </a>
           <button
             onClick={(e) => handleExternalLink("https://aiwebtools.lovable.app/contact?via=aiwebtools", e)}
             className="block text-green-200 hover:text-green-400 transition-colors text-left"
