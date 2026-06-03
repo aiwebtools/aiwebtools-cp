@@ -71,6 +71,22 @@ const AIWebToolsDisclaimer = ({ tool }: AIWebToolsDisclaimerProps) => {
               </p>
             </div>
 
+            <div>
+              <p className="text-cyan-400 font-semibold">Connecticut AI Disclosure</p>
+              <p>
+                You are interacting with an AI-powered system. Outputs are AI-generated and may contain
+                errors, omissions, or biases. AI Web Tools LLC (Connecticut) makes no guarantee as to
+                accuracy, completeness, or suitability and disclaims all liability arising from use. See
+                the full {" "}
+                <button
+                  onClick={handleDisclaimersPage}
+                  className="text-cyan-400 hover:text-cyan-300 transition-colors underline"
+                >
+                  Connecticut AI Disclosure
+                </button>.
+              </p>
+            </div>
+
             <div className="border-t border-cyan-500/30 pt-3 mt-4">
               <p className="text-xs text-gray-400">
                 By using {tool.title}, you acknowledge this disclaimer and agree to our{" "}
