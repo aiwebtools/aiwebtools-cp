@@ -59,6 +59,13 @@ const ToolDisclaimer = ({ tool }: ToolDisclaimerProps) => {
               "as is" without warranties regarding the accuracy, reliability, or performance of listed tools.
             </p>
 
+            <p>
+              <strong className="text-yellow-400">Connecticut AI Disclosure:</strong> You may be interacting
+              with AI-generated systems, content, or media. Outputs may contain errors, biases, or
+              inaccuracies and must be independently verified. AI Web Tools LLC (Connecticut) disclaims
+              all liability arising from AI-generated content.
+            </p>
+
             <div className="border-t border-yellow-500/30 pt-3 mt-4">
               <p className="text-xs text-gray-400">
                 Questions about this disclaimer? Contact{" "}
