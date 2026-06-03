@@ -410,6 +410,21 @@ const DisclaimerGate: React.FC = () => {
               </div>
             </div>
           </div>
+
+          <div className="bg-gray-800 rounded-lg p-3 border border-emerald-500/30">
+            <div className="flex items-center gap-3">
+              <Shield className="w-6 h-6 text-emerald-400" />
+              <div>
+                <h2 className="text-emerald-300 font-semibold text-sm">Connecticut AI Disclosure</h2>
+                <p className="text-gray-300 text-xs">
+                  You may be interacting with AI-generated systems, agents, or content. Outputs may
+                  contain errors — verify before relying on them. AI Web Tools LLC (Connecticut)
+                  disclaims liability for AI-generated content.{" "}
+                  <a href="/disclaimers" className="text-emerald-300 underline">Full notice</a>.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
 
         <Button
