@@ -165,6 +165,42 @@ const DisclaimersPage = () => {
             </Card>
 
             {/* AI Web Tools Original GPTs Disclaimer */}
+            {/* Connecticut AI Disclosure (State Law Compliance) */}
+            <Card className="mb-8 bg-gradient-to-r from-emerald-900/30 to-cyan-900/30 border border-emerald-500/40 rounded-xl backdrop-blur-sm">
+              <CardHeader>
+                <CardTitle className="text-2xl text-emerald-400 flex items-center">
+                  <Shield className="w-6 h-6 mr-3" />
+                  Connecticut AI Disclosure & Transparency Notice
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4 text-gray-300">
+                <p className="text-emerald-300 text-sm font-semibold">
+                  AI Web Tools LLC is headquartered in the State of Connecticut. In compliance with Connecticut's AI transparency and disclosure standards, the following notices apply to all users of this platform.
+                </p>
+                <div>
+                  <h3 className="text-lg font-semibold text-emerald-400 mb-2">General AI Interaction Notice</h3>
+                  <p>
+                    Certain features of this platform utilize artificial intelligence ("AI"). By using our services, you acknowledge and understand that you may be interacting with AI-generated systems, agents, chatbots, content, recommendations, images, audio, video, or other automated outputs rather than a human. AI-generated outputs may contain errors, inaccuracies, omissions, biases, or outdated information. Users are solely responsible for independently verifying any information before relying upon it for business, legal, financial, medical, compliance, safety, or other important decisions. AI Web Tools LLC makes no guarantee regarding the accuracy, completeness, reliability, or suitability of AI-generated content and disclaims all liability arising from its use.
+                  </p>
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-emerald-400 mb-2">Employment & HR-Related AI Tools</h3>
+                  <p>
+                    Where AI-assisted decision-making tools are utilized for employment-related functions, users acknowledge that such tools are intended solely to assist human decision-makers and shall not be relied upon as the sole basis for employment decisions. Users remain responsible for ensuring compliance with all applicable federal, state, and local employment and anti-discrimination laws.
+                  </p>
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-emerald-400 mb-2">AI-Generated Images, Video & Media</h3>
+                  <p>
+                    Content generated through AI image, video, audio, or media generation tools may depict fictional, altered, simulated, or synthetic representations and should not be assumed to reflect actual events, persons, statements, endorsements, or factual circumstances unless independently verified.
+                  </p>
+                </div>
+                <p className="text-xs text-gray-400 border-t border-emerald-500/30 pt-3">
+                  This notice is provided to satisfy Connecticut AI disclosure standards and does not constitute legal advice. Users with specific compliance questions should consult Connecticut counsel.
+                </p>
+              </CardContent>
+            </Card>
+
             <Card className="mb-8 bg-gradient-to-r from-cyan-900/30 to-blue-900/30 border border-cyan-500/30 rounded-xl backdrop-blur-sm">
               <CardHeader>
                 <CardTitle className="text-2xl text-cyan-400 flex items-center">
@@ -294,7 +330,7 @@ const DisclaimersPage = () => {
 
                 <div>
                   <h3 className="text-lg font-semibold text-green-400 mb-2">Governing Law</h3>
-                  <p>These terms are governed by the laws of the jurisdiction where AI Web Tools is incorporated, without regard to conflict of law principles.</p>
+                  <p>These terms are governed by the laws of the State of Connecticut, where AI Web Tools LLC is headquartered, without regard to conflict of law principles. Users acknowledge the Connecticut AI Disclosure & Transparency Notice above.</p>
                 </div>
 
                 <div className="border-t border-green-500/30 pt-4 mt-4">
