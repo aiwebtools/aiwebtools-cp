@@ -39,7 +39,7 @@ const ConsentBanner: React.FC = () => {
                 Quick guidelines before you browse
               </p>
               <p className="text-xs md:text-sm text-muted-foreground mt-1">
-                21+ only • Educational use • Verify outputs • Use AI ethically.{' '}
+                21+ only • Educational use • You may be interacting with AI — verify outputs • Use AI ethically.{' '}
                 <Link to="/disclaimers" className="underline underline-offset-4">
                   Read full disclaimers
                 </Link>
