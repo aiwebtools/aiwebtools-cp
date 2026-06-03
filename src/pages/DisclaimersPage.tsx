@@ -117,7 +117,6 @@ const DisclaimersPage = () => {
 
             {/* General Terms of Service */}
             <Card className="mb-8 bg-gray-900/80 backdrop-blur-md shadow-2xl shadow-cyan-500/20 border border-cyan-500/30 neon-border">
-              {/* placeholder */}
               <CardHeader>
                 <CardTitle className="text-2xl text-cyan-400 flex items-center">
                   <FileText className="w-6 h-6 mr-3" />
