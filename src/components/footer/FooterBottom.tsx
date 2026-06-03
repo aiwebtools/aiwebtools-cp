@@ -134,6 +134,12 @@ const FooterBottom = ({
           >
             📜 Full Disclaimers & User Agreement
           </Link>
+          <Link
+            to="/disclaimers"
+            className="text-green-300/80 hover:text-green-300 transition-colors text-xs text-center max-w-xl px-4"
+          >
+            Connecticut AI Disclosure: You may be interacting with AI-generated systems or content. Outputs may contain errors — verify before relying on them. AI Web Tools LLC (Connecticut) disclaims liability for AI-generated content.
+          </Link>
           <button 
             onClick={() => window.scrollTo({ top: 0, behavior: 'auto' })} 
             className="text-green-300 hover:text-green-400 transition-colors text-sm font-medium"
