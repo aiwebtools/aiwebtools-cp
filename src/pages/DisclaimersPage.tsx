@@ -165,6 +165,7 @@ const DisclaimersPage = () => {
             </Card>
 
             {/* AI Web Tools Original GPTs Disclaimer */}
+            {/* CT-DISCLOSURE-ANCHOR */}
             <Card className="mb-8 bg-gradient-to-r from-cyan-900/30 to-blue-900/30 border border-cyan-500/30 rounded-xl backdrop-blur-sm">
               <CardHeader>
                 <CardTitle className="text-2xl text-cyan-400 flex items-center">
