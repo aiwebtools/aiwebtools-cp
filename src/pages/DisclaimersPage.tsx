@@ -330,7 +330,7 @@ const DisclaimersPage = () => {
 
                 <div>
                   <h3 className="text-lg font-semibold text-green-400 mb-2">Governing Law</h3>
-                  <p>These terms are governed by the laws of the jurisdiction where AI Web Tools is incorporated, without regard to conflict of law principles.</p>
+                  <p>These terms are governed by the laws of the State of Connecticut, where AI Web Tools LLC is headquartered, without regard to conflict of law principles. Users acknowledge the Connecticut AI Disclosure & Transparency Notice above.</p>
                 </div>
 
                 <div className="border-t border-green-500/30 pt-4 mt-4">
