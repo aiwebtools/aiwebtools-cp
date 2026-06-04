@@ -189,6 +189,7 @@ import { topAgentsBatch2026JulPart3 } from "./tools/topAgentsBatch2026JulPart3";
 import { topAgentsBatch2026JulPart4 } from "./tools/topAgentsBatch2026JulPart4";
 import { topAgentsBatch2026JulPart5 } from "./tools/topAgentsBatch2026JulPart5";
 import { topAgentsBatch2026JulPart6 } from "./tools/topAgentsBatch2026JulPart6";
+import { topAgentsBatch2026JulPart7 } from "./tools/topAgentsBatch2026JulPart7";
 
 // Import Frontier Batch D1-D4 (70 tools: Healthcare, Finance, Security, Enterprise, Agencies)
 import { frontierBatchD1 } from "./tools/frontierBatchD1";
@@ -440,6 +441,7 @@ const allToolCategories = consolidateTools([
   ...topAgentsBatch2026JulPart4,
   ...topAgentsBatch2026JulPart5,
   ...topAgentsBatch2026JulPart6,
+  ...topAgentsBatch2026JulPart7,
 
   // Frontier Batch D1-D4 (70 tools: Healthcare, Finance, Security, Enterprise, Agencies)
   ...frontierBatchD1,
