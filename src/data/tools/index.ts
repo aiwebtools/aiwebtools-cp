@@ -434,6 +434,7 @@ export { frontierInfraBatch2026C3 } from './frontierInfraBatch2026C3';
 // Export Frontier Infrastructure Batch 2026 C4 (11 tools: Vellum AI, Codium AI, Hume AI, Vapi, Nano Banana, Jason AI, Reclaim.ai, Yellow.ai, Capacity, Granola, Cognosys)
 export { frontierInfraBatch2026C4 } from './frontierInfraBatch2026C4';
 export { newFrontierBatch2026Jun } from './newFrontierBatch2026Jun';
+export { topNewBatch2026Jun20 } from './topNewBatch2026Jun20';
 
 // Export Frontier Batch D1 (Healthcare, Finance, Security - 20 tools)
 export { frontierBatchD1 } from './frontierBatchD1';

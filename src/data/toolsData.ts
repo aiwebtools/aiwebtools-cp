@@ -181,6 +181,7 @@ import { frontierInfraBatch2026C2 } from "./tools/frontierInfraBatch2026C2";
 import { frontierInfraBatch2026C3 } from "./tools/frontierInfraBatch2026C3";
 import { frontierInfraBatch2026C4 } from "./tools/frontierInfraBatch2026C4";
 import { newFrontierBatch2026Jun } from "./tools/newFrontierBatch2026Jun";
+import { topNewBatch2026Jun20 } from "./tools/topNewBatch2026Jun20";
 
 // Import Frontier Batch D1-D4 (70 tools: Healthcare, Finance, Security, Enterprise, Agencies)
 import { frontierBatchD1 } from "./tools/frontierBatchD1";
@@ -416,6 +417,9 @@ const allToolCategories = consolidateTools([
 
   // June 2026 — 20 verified frontier AI tools (Sesame, Mercury, Sakana, Liquid AI, Cohere North, Reve, FLUX Kontext, Whisk, Wispr Flow, Superwhisper, Aragon, PhotoAI, Cerebras, Voyage, Jina, Qdrant, Braintrust, Helicone, Cline, Goose)
   ...newFrontierBatch2026Jun,
+
+  // Top New Batch — June 4 2026 (20 verified real AI tools: Read AI, Veo 3, Sora 2, ChatGPT Atlas, ChatPRD, Luma Ray 2, ElevenReader, Particle News, Magic Loops, Letta, Eraser AI, Grok 3, DeepSeek R1, Stitch, Subframe, Magic Patterns, Perplexity Labs, Skywork AI, Tonic AI, ChatGPT Pulse)
+  ...topNewBatch2026Jun20,
 
   // Frontier Batch D1-D4 (70 tools: Healthcare, Finance, Security, Enterprise, Agencies)
   ...frontierBatchD1,
