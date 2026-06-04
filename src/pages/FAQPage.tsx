@@ -90,7 +90,7 @@ const FAQPage = () => {
   return (
     <>
       <Helmet>
-        <title>Best AI Tools Directory FAQ | Find Top AI Tools | AI WEB TOOLS</title>
+        <title>AI Tools Directory FAQ | AI WEB TOOLS</title>
         <meta name="description" content="Frequently asked questions about the best AI tools directory. Learn how to find top AI tools, browse our 2000+ tool database, and discover the perfect AI tools for your needs." />
         <meta name="keywords" content="best ai tools, ai tool directory, ai tools directory, best ai tools 2026, top ai tools, ai directory, ai tools list, ai tools finder, best ai tools directory, ai tools faq" />
         <link rel="canonical" href="https://ai-webtools.com/faq" />

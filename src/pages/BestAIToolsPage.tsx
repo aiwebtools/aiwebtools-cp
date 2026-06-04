@@ -42,7 +42,7 @@ const BestAIToolsPage = () => {
   return (
     <>
       <Helmet>
-        <title>Best AI Tools 2026 - Top {topTools.length} Highest Rated AI Tools | AI Tools Directory</title>
+        <title>Best AI Tools 2026 — Top Rated AI Directory</title>
         <meta name="description" content={`Discover the best AI tools of 2026. Our curated list of ${topTools.length}+ top-rated AI tools includes ChatGPT, Midjourney, Claude, and more. Find the perfect AI tool for your needs.`} />
         <meta name="keywords" content="best AI tools, top AI tools, best AI tools 2026, highest rated AI tools, AI tools ranking, best artificial intelligence tools, top rated AI software, best AI apps, AI tools comparison, best free AI tools" />
         <link rel="canonical" href="https://ai-webtools.com/best-ai-tools" />
