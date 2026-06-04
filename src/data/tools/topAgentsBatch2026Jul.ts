@@ -1,5 +1,5 @@
 import { Tool } from "@/types/tools";
-import { Bot, Brain, Globe, Spider, Workflow, Cpu, Eye, MessageSquare, FileCode, Telescope, BarChart3, Database, Users, Shield, BookOpen, Layers, Sparkles, Wrench, Network, GitBranch, Guitar, TerminalSquare, Heart, BrainCircuit, Puzzle } from "lucide-react";
+import { Bot, Brain, Globe, Bug, Workflow, Cpu, Eye, MessageSquare, FileCode, Telescope, BarChart3, Database, Users, Shield, BookOpen, Layers, Sparkles, Wrench, Network, GitBranch, Guitar, TerminalSquare, Heart, BrainCircuit, Puzzle } from "lucide-react";
 
 import apifyHero from "@/assets/tools/apify-hero.jpg";
 import athenaIntelligenceHero from "@/assets/tools/athena-intelligence-hero.jpg";
@@ -46,7 +46,7 @@ export const topAgentsBatch2026Jul: Tool[] = [
     category: "AI Agents", rating: 4.7,
   },
   {
-    icon: Spider, title: "Crawl4AI",
+    icon: Bug, title: "Crawl4AI",
     description: "Crawl4AI is the leading open-source LLM-friendly web crawler and scraper — async, blazing fast, and outputs clean markdown ready for RAG and agent pipelines.",
     emoji: "🕸️", color: "from-green-600 to-cyan-600",
     directUrl: "https://crawl4ai.com/?via=aiwebtools", imageUrl: crawl4aiHero,
