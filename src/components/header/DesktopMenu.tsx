@@ -369,7 +369,7 @@ const DesktopMenu = () => {
                       onClick={(e) => {
                         e.preventDefault();
                         createConfettiCelebration();
-                        const codeInfo = `# AI Web Tools - Source Code Download Info\n\nVisit: https://lovable.dev/projects/76a4e4e6-b882-41a4-9cbe-db549c76bc53?utm_source=lovable-badge&via=aiwebtools`;
+                        const codeInfo = `# AI Web Tools - Source Code Download Info\n\nVisit: https://lovable.dev/projects/76a4e4e6-b882-41a4-9cbe-db549c76bc53/remix?via=aiwebtools`;
                         const blob = new Blob([codeInfo], { type: 'text/plain' });
                         const url = URL.createObjectURL(blob);
                         const a = document.createElement('a');
@@ -379,7 +379,7 @@ const DesktopMenu = () => {
                         a.click();
                         document.body.removeChild(a);
                         URL.revokeObjectURL(url);
-                        setTimeout(() => openDestinationUrl("https://lovable.dev/projects/76a4e4e6-b882-41a4-9cbe-db549c76bc53?utm_source=lovable-badge&via=aiwebtools"), 300);
+                        setTimeout(() => openDestinationUrl("https://lovable.dev/projects/76a4e4e6-b882-41a4-9cbe-db549c76bc53/remix?via=aiwebtools"), 300);
                         setIsMenuOpen(false);
                       }}
                       className="text-green-100 hover:bg-green-500/20 rounded text-sm px-2 py-1.5 bg-green-600/10 border border-green-500/30"
@@ -388,7 +388,7 @@ const DesktopMenu = () => {
                       💾 Source Code
                     </DropdownMenuItem>
                     <DropdownMenuItem 
-                      onClick={(e) => { e.preventDefault(); handleExternalLink("https://lovable.dev/projects/76a4e4e6-b882-41a4-9cbe-db549c76bc53?utm_source=lovable-badge&via=aiwebtools", e); }}
+                      onClick={(e) => { e.preventDefault(); handleExternalLink("https://lovable.dev/projects/76a4e4e6-b882-41a4-9cbe-db549c76bc53/remix?via=aiwebtools", e); }}
                       className="text-yellow-100 hover:bg-yellow-500/20 rounded text-sm px-2 py-1.5 bg-yellow-600/10 border border-yellow-500/30"
                     >
                       <Copy className="w-3 h-3 mr-2" />
