@@ -637,3 +637,6 @@ export { offlineDownloadableBatch2026 } from './offlineDownloadableBatch2026';
 // Top New Batch — June 2026 Part 2 (25 verified real popular AI tools: Wan 2.5, Submagic, Eleven v3, Suno v4, JetBrains Junie, AutoGPT, SWE-agent, Mistral Large, Pixtral, NVIDIA Nemotron, OLMo, Gemini 2.5 Pro, Claude 4, GPT-5, OpenAI o3, Recraft V3, Ideogram 2, FLUX Kontext, Stable Diffusion 3.5, Black Forest Labs, PromptLayer, Chroma, Convex, Nyota, Krea Realtime)
 export { topNewBatch2026Jun25 } from './topNewBatch2026Jun25';
 export { topAgentsBatch2026Jul } from './topAgentsBatch2026Jul';
+
+// Top Agents Batch — July 2026 Part 2 (25 verified-new agent/autonomy tools: Strands Agents, Bedrock AgentCore, Hyperbrowser, Steel Browser, Patronus, DeepEval, Athina, Maxim, Humanloop, Atomic Agents, Inferable, Parallel AI, Serper, AI21 Maestro, Palmyra by Writer, Fixie AI, Fetch.ai, Olas Network, Sentient AGI, Gensyn, Nous Research, Hyperbolic, Prime Intellect, Ritual, Factory AI, Refact AI, Bito AI, Zencoder, NEAR AI, Lakera Guard)
+export { topAgentsBatch2026JulPart2 } from './topAgentsBatch2026JulPart2';
