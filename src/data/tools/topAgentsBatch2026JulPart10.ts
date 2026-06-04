@@ -1,5 +1,5 @@
 import { Tool } from "@/types/tools";
-import { Bot, MessagesSquare, Lock, Globe, Wrench, TrendingUp, Sliders, Brain, Database, Network, Workspace, GitBranch, Mic, Search, Layers, Cloud, BookOpen, Repeat, Wind, Boxes, Zap, Headphones, Sparkles, MessageCircle, Music } from "lucide-react";
+import { Bot, MessagesSquare, Lock, Globe, Wrench, TrendingUp, Sliders, Brain, Database, Network, GitBranch, Mic, Search, Layers, Cloud, BookOpen, Repeat, Wind, Boxes, Zap, Headphones, Sparkles, MessageCircle, Music } from "lucide-react";
 
 import tamboHero from "@/assets/tools/tambo-hero.jpg";
 import parlantHero from "@/assets/tools/parlant-hero.jpg";
