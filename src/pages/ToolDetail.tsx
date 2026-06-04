@@ -113,10 +113,10 @@ const ToolDetail = () => {
   const toolStructuredData = generateStructuredData('tool');
 
   const breadcrumbItems = [
-    { name: "Home", url: "https://aitools.studio" },
-    { name: "AI Tools", url: "https://aitools.studio/#tools-section" },
-    { name: tool.category || "Tools", url: `https://aitools.studio/category/${encodeURIComponent(tool.category || "")}` },
-    { name: tool.title, url: `https://aitools.studio/${generateToolSlug(tool.title)}` }
+    { name: "Home", url: "https://ai-webtools.com" },
+    { name: "AI Tools", url: "https://ai-webtools.com/#tools-section" },
+    { name: tool.category || "Tools", url: `https://ai-webtools.com/category/${encodeURIComponent(tool.category || "")}` },
+    { name: tool.title, url: `https://ai-webtools.com/${generateToolSlug(tool.title)}` }
   ];
 
   // Check if this is an AI Web Tools GPT (has lovable.app in the URL)

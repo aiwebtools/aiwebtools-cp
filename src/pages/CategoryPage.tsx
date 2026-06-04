@@ -127,9 +127,9 @@ const CategoryPage = () => {
   const categoryStructuredData = generateStructuredData('category');
 
   const breadcrumbItems = [
-    { name: "Home", url: "https://aitools.studio" },
-    { name: "AI Tools", url: "https://aitools.studio/#tools-section" },
-    { name: standardizedCategory, url: `https://aitools.studio/category/${encodeURIComponent(standardizedCategory)}` }
+    { name: "Home", url: "https://ai-webtools.com" },
+    { name: "AI Tools", url: "https://ai-webtools.com/#tools-section" },
+    { name: standardizedCategory, url: `https://ai-webtools.com/category/${encodeURIComponent(standardizedCategory)}` }
   ];
 
   return (

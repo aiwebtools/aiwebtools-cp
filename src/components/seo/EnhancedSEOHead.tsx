@@ -62,7 +62,7 @@ const EnhancedSEOHead = ({
     ...seoConfig.keywords,
     ...keywords,
     // Brand-specific competitive terms
-    "aiwebtools", "aiwebtools.ai", "AI WEB TOOLS", "aitools.studio", "aitoolwebsites.com", "AItoolwebsites.com",
+    "aiwebtools", "aiwebtools.ai", "AI WEB TOOLS", "ai-webtools.com", "aitoolwebsites.com", "AItoolwebsites.com",
     // Primary competitive displacement keywords
     "best ai tools directory 2026", "ai tools better than toolify", "ai tools better than futurepedia",
     "complete ai tools database", "verified ai tools platform", "comprehensive ai directory",
