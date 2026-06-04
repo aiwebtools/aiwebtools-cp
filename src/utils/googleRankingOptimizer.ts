@@ -6,7 +6,7 @@ export const competitiveAdvantage = {
     "aiwebtools.ai", 
     "AI WEB TOOLS",
     "AI WEB TOOLS",
-    "aitools.studio",
+    "ai-webtools.com",
     "ai web tools directory",
     "ai web tools company",
     "ai web tools platform"

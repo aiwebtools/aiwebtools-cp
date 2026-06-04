@@ -7,13 +7,13 @@ export const generateEnhancedStructuredData = () => {
     "@graph": [
       {
         "@type": "Organization",
-        "@id": "https://aitools.studio/#organization",
+        "@id": "https://ai-webtools.com/#organization",
         "name": "AI WEB TOOLS",
         "alternateName": ["AIWEBTOOLS.AI", "AI WEB TOOLS", "AIWEBTOOLS", "AITools.Studio"],
-        "url": "https://aitools.studio",
+        "url": "https://ai-webtools.com",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://aitools.studio/favicon.ico",
+          "url": "https://ai-webtools.com/favicon.ico",
           "width": 512,
           "height": 512
         },
@@ -57,19 +57,19 @@ export const generateEnhancedStructuredData = () => {
       },
       {
         "@type": "WebSite",
-        "@id": "https://aitools.studio/#website",
-        "url": "https://aitools.studio",
+        "@id": "https://ai-webtools.com/#website",
+        "url": "https://ai-webtools.com",
         "name": "AIWEBTOOLS.AI - #1 AI WEB TOOLS Directory",
         "alternateName": "AI WEB TOOLS Directory",
         "description": "AIWEBTOOLS.AI - The #1 comprehensive AI web tools directory with 1000+ curated AI tools. Better than Toolify. Discover the best AI tools 2026 for business, creativity, and productivity.",
         "publisher": {
-          "@id": "https://aitools.studio/#organization"
+          "@id": "https://ai-webtools.com/#organization"
         },
         "potentialAction": {
           "@type": "SearchAction",
           "target": {
             "@type": "EntryPoint",
-            "urlTemplate": "https://aitools.studio/?search={search_term_string}"
+            "urlTemplate": "https://ai-webtools.com/?search={search_term_string}"
           },
           "query-input": "required name=search_term_string"
         },
@@ -89,22 +89,22 @@ export const generateEnhancedStructuredData = () => {
       },
       {
         "@type": "ItemList",
-        "@id": "https://aitools.studio/#itemlist",
+        "@id": "https://ai-webtools.com/#itemlist",
         "name": "AI WEB TOOLS Directory",
         "description": "Comprehensive list of 1000+ AI tools curated by AIWEBTOOLS.AI",
         "numberOfItems": 1000,
         "itemListOrder": "https://schema.org/ItemListOrderDescending",
         "mainEntity": {
-          "@id": "https://aitools.studio/#website"
+          "@id": "https://ai-webtools.com/#website"
         }
       },
       {
         "@type": "Service",
-        "@id": "https://aitools.studio/#service",
+        "@id": "https://ai-webtools.com/#service",
         "name": "AI WEB TOOLS Directory Service",
         "description": "Professional AI tools curation and directory service by AIWEBTOOLS.AI",
         "provider": {
-          "@id": "https://aitools.studio/#organization"
+          "@id": "https://ai-webtools.com/#organization"
         },
         "serviceType": "AI Tools Directory",
         "areaServed": "Worldwide",
@@ -115,18 +115,18 @@ export const generateEnhancedStructuredData = () => {
       },
       {
         "@type": "Dataset",
-        "@id": "https://aitools.studio/#dataset", 
+        "@id": "https://ai-webtools.com/#dataset", 
         "name": "AIWEBTOOLS.AI - AI Tools Dataset",
         "description": "Comprehensive dataset of 1000+ AI tools with detailed metadata, categories, and reviews",
         "creator": {
-          "@id": "https://aitools.studio/#organization"
+          "@id": "https://ai-webtools.com/#organization"
         },
         "keywords": "ai tools, artificial intelligence, machine learning, automation, productivity, business tools",
-        "license": "https://aitools.studio/terms"
+        "license": "https://ai-webtools.com/terms"
       },
       {
         "@type": "FAQPage",
-        "@id": "https://aitools.studio/#faq",
+        "@id": "https://ai-webtools.com/#faq",
         "mainEntity": [
           {
             "@type": "Question",
@@ -194,7 +194,7 @@ export const generateToolStructuredData = (tool: any) => {
     "publisher": {
       "@type": "Organization",
       "name": "AI WEB TOOLS",
-      "url": "https://aitools.studio"
+      "url": "https://ai-webtools.com"
     }
   };
 };
@@ -205,7 +205,7 @@ export const generateCategoryStructuredData = (category: string, tools: any[]) =
     "@type": "CollectionPage",
     "name": `${category} - AI WEB TOOLS Directory`,
     "description": `Discover the best ${category} AI tools curated by AIWEBTOOLS.AI`,
-    "url": `https://aitools.studio/category/${encodeURIComponent(category)}`,
+    "url": `https://ai-webtools.com/category/${encodeURIComponent(category)}`,
     "mainEntity": {
       "@type": "ItemList",
       "numberOfItems": tools.length,
@@ -226,13 +226,13 @@ export const generateCategoryStructuredData = (category: string, tools: any[]) =
           "@type": "ListItem",
           "position": 1,
           "name": "AIWEBTOOLS.AI",
-          "item": "https://aitools.studio"
+          "item": "https://ai-webtools.com"
         },
         {
           "@type": "ListItem",
           "position": 2,
           "name": category,
-          "item": `https://aitools.studio/category/${encodeURIComponent(category)}`
+          "item": `https://ai-webtools.com/category/${encodeURIComponent(category)}`
         }
       ]
     }
@@ -245,7 +245,7 @@ export const generateSearchResultsStructuredData = (query: string, results: any[
     "@type": "SearchResultsPage",
     "name": `Search Results for "${query}" - AIWEBTOOLS.AI`,
     "description": `Find the best AI tools for ${query} in our comprehensive directory`,
-    "url": `https://aitools.studio/?search=${encodeURIComponent(query)}`,
+    "url": `https://ai-webtools.com/?search=${encodeURIComponent(query)}`,
     "mainEntity": {
       "@type": "ItemList",
       "numberOfItems": results.length,

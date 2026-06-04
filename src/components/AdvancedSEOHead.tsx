@@ -46,9 +46,9 @@ const AdvancedSEOHead = ({ tool, toolIndex, pageType = 'homepage' }: AdvancedSEO
         
         {/* Additional SEO Tags */}
         <meta name="news_keywords" content={`${tool.title}, AI tool, ${tool.category}, artificial intelligence`} />
-        <meta name="standout" content={`https://aitools.studio/${generateToolSlug(tool.title)}`} />
-        <meta name="syndication-source" content="https://aitools.studio" />
-        <meta name="original-source" content="https://aitools.studio" />
+        <meta name="standout" content={`https://ai-webtools.com/${generateToolSlug(tool.title)}`} />
+        <meta name="syndication-source" content="https://ai-webtools.com" />
+        <meta name="original-source" content="https://ai-webtools.com" />
         
         {/* Rich Snippets */}
         <meta name="price" content="0.00" />

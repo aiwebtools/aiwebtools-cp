@@ -19,8 +19,8 @@ const BestAIToolsPage = () => {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://aitools.studio" },
-      { "@type": "ListItem", "position": 2, "name": "Best AI Tools", "item": "https://aitools.studio/best-ai-tools" }
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://ai-webtools.com" },
+      { "@type": "ListItem", "position": 2, "name": "Best AI Tools", "item": "https://ai-webtools.com/best-ai-tools" }
     ]
   };
 
@@ -35,7 +35,7 @@ const BestAIToolsPage = () => {
       "position": index + 1,
       "name": tool.title,
       "description": tool.description?.substring(0, 150),
-      "url": `https://aitools.studio/${generateToolSlug(tool.title)}`
+      "url": `https://ai-webtools.com/${generateToolSlug(tool.title)}`
     }))
   };
 
@@ -45,11 +45,11 @@ const BestAIToolsPage = () => {
         <title>Best AI Tools 2026 - Top {topTools.length} Highest Rated AI Tools | AI Tools Directory</title>
         <meta name="description" content={`Discover the best AI tools of 2026. Our curated list of ${topTools.length}+ top-rated AI tools includes ChatGPT, Midjourney, Claude, and more. Find the perfect AI tool for your needs.`} />
         <meta name="keywords" content="best AI tools, top AI tools, best AI tools 2026, highest rated AI tools, AI tools ranking, best artificial intelligence tools, top rated AI software, best AI apps, AI tools comparison, best free AI tools" />
-        <link rel="canonical" href="https://aitools.studio/best-ai-tools" />
+        <link rel="canonical" href="https://ai-webtools.com/best-ai-tools" />
         
         <meta property="og:title" content="Best AI Tools 2026 - Top Rated AI Tools Directory" />
         <meta property="og:description" content={`Discover the best AI tools of 2026. Curated list of ${topTools.length}+ top-rated AI tools.`} />
-        <meta property="og:url" content="https://aitools.studio/best-ai-tools" />
+        <meta property="og:url" content="https://ai-webtools.com/best-ai-tools" />
         
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(itemListSchema)}</script>

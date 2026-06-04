@@ -27,7 +27,7 @@ const CompetitiveSEOHead = ({ tool, toolIndex, category, isHomepage }: Competiti
         
         {/* Competitive keyword targeting */}
         <meta name="keywords" content="AI WEB TOOLS, best AI tools directory 2026, better than toolify, comprehensive AI tools, verified AI directory, top AI tools ranking, ChatGPT alternatives, professional AI tools, ai tools marketplace, curated AI collection, enterprise AI solutions, AI tools comparison, trusted AI platform, complete AI database, AI tools for business, AI directory leader, what is the best ai tool for, how to use ai tools, which ai tool is better, where to find ai tools" />
-        <link rel="canonical" href="https://aitools.studio" />
+        <link rel="canonical" href="https://ai-webtools.com" />
         <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
         <meta name="revisit-after" content="1 days" />
         <meta name="author" content="AI WEB TOOLS" />
@@ -47,11 +47,11 @@ const CompetitiveSEOHead = ({ tool, toolIndex, category, isHomepage }: Competiti
         
         {/* Enhanced Open Graph */}
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://aitools.studio" />
+        <meta property="og:url" content="https://ai-webtools.com" />
         <meta property="og:site_name" content="AI WEB TOOLS" />
         <meta property="og:title" content="AI WEB TOOLS - #1 AI Tools Directory | Better Than Toolify" />
         <meta property="og:description" content="Discover 1000+ verified AI tools with expert reviews. The most comprehensive AI directory - better than Toolify & Futurepedia." />
-        <meta property="og:image" content="https://aitools.studio/og-image-homepage.jpg" />
+        <meta property="og:image" content="https://ai-webtools.com/og-image-homepage.jpg" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:image:alt" content="AI WEB TOOLS - Best AI Tools Directory 2026" />
@@ -62,7 +62,7 @@ const CompetitiveSEOHead = ({ tool, toolIndex, category, isHomepage }: Competiti
         <meta name="twitter:creator" content="@AIWebTools" />
         <meta name="twitter:title" content="AI WEB TOOLS - #1 AI Tools Directory 2026" />
         <meta name="twitter:description" content="1000+ verified AI tools with expert reviews and ratings" />
-        <meta name="twitter:image" content="https://aitools.studio/og-image-homepage.jpg" />
+        <meta name="twitter:image" content="https://ai-webtools.com/og-image-homepage.jpg" />
         
         {/* Mobile optimization */}
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
@@ -76,13 +76,13 @@ const CompetitiveSEOHead = ({ tool, toolIndex, category, isHomepage }: Competiti
             "@type": "WebSite",
             "name": "AI WEB TOOLS - #1 AI Tools Directory",
             "alternateName": "AITools.Studio",
-            "url": "https://aitools.studio",
+            "url": "https://ai-webtools.com",
             "description": "The world's most comprehensive AI tools directory with 1000+ verified tools, expert reviews, and detailed analysis. Better than Toolify and all competitors.",
             "potentialAction": {
               "@type": "SearchAction",
               "target": {
                 "@type": "EntryPoint",
-                "urlTemplate": "https://aitools.studio/?search={search_term_string}"
+                "urlTemplate": "https://ai-webtools.com/?search={search_term_string}"
               },
               "query-input": "required name=search_term_string"
             },
@@ -155,7 +155,7 @@ const CompetitiveSEOHead = ({ tool, toolIndex, category, isHomepage }: Competiti
         
         {/* Enhanced tool-specific keywords */}
         <meta name="keywords" content={`${tool.title}, ${tool.category}, AI tool review, best AI tools 2026, ${tool.tags?.join(', ') || ''}, AI WEB TOOLS directory, expert analysis, tool comparison, user reviews, professional AI tools`} />
-        <link rel="canonical" href={`https://aitools.studio/${generateToolSlug(tool.title)}`} />
+        <link rel="canonical" href={`https://ai-webtools.com/${generateToolSlug(tool.title)}`} />
         
         {/* Tool authority indicators */}
         <meta name="expertise" content={`Expert review and analysis of ${tool.title}`} />
@@ -164,7 +164,7 @@ const CompetitiveSEOHead = ({ tool, toolIndex, category, isHomepage }: Competiti
         
         {/* Enhanced Open Graph for tools */}
         <meta property="og:type" content="article" />
-        <meta property="og:url" content={`https://aitools.studio/${generateToolSlug(tool.title)}`} />
+        <meta property="og:url" content={`https://ai-webtools.com/${generateToolSlug(tool.title)}`} />
         <meta property="og:title" content={selectedTitle} />
         <meta property="og:description" content={selectedDescription} />
         <meta property="og:image" content={toolImage} />
@@ -220,11 +220,11 @@ const CompetitiveSEOHead = ({ tool, toolIndex, category, isHomepage }: Competiti
         <title>{category} AI Tools - Best Directory 2026 | AI WEB TOOLS</title>
         <meta name="description" content={`Discover the best ${category.toLowerCase()} AI tools in our comprehensive directory. Expert reviews, ratings, and comparisons. Part of AI WEB TOOLS - the #1 AI directory trusted by professionals.`} />
         <meta name="keywords" content={`${category} AI tools, best ${category.toLowerCase()} AI, ${category.toLowerCase()} artificial intelligence, AI ${category.toLowerCase()} solutions, ${category.toLowerCase()} automation, AI WEB TOOLS directory`} />
-        <link rel="canonical" href={`https://aitools.studio/category/${encodeURIComponent(category)}`} />
+        <link rel="canonical" href={`https://ai-webtools.com/category/${encodeURIComponent(category)}`} />
         
         {/* Category Open Graph */}
         <meta property="og:type" content="website" />
-        <meta property="og:url" content={`https://aitools.studio/category/${encodeURIComponent(category)}`} />
+        <meta property="og:url" content={`https://ai-webtools.com/category/${encodeURIComponent(category)}`} />
         <meta property="og:title" content={`${category} AI Tools - Best Directory 2026`} />
         <meta property="og:description" content={`Expert-curated ${category.toLowerCase()} AI tools with reviews and ratings`} />
       </Helmet>

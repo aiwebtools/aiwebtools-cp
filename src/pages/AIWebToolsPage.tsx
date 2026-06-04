@@ -22,11 +22,11 @@ const AIWebToolsPage = () => {
     "name": "AI Web Tools",
     "alternateName": ["AIWebTools", "AI WEB TOOLS", "AIWEBTOOLS.AI", "AITools.Studio"],
     "url": "https://aiwebtools.ai",
-    "logo": "https://aitools.studio/lovable-uploads/fe59a436-1f90-45d6-9b98-236a54034010.png",
+    "logo": "https://ai-webtools.com/lovable-uploads/fe59a436-1f90-45d6-9b98-236a54034010.png",
     "description": `AI Web Tools is the world's leading AI tools directory with ${toolCount}+ verified AI tools, custom GPTs, and intelligent assistants for every industry and use case.`,
     "foundingDate": "2024",
     "sameAs": [
-      "https://aitools.studio",
+      "https://ai-webtools.com",
       "https://aiwebtools.ai",
       "https://www.aiwebtools.ai",
       "https://ai-webtools.com"
@@ -61,13 +61,13 @@ const AIWebToolsPage = () => {
     "publisher": {
       "@type": "Organization",
       "name": "AI Web Tools",
-      "logo": "https://aitools.studio/lovable-uploads/fe59a436-1f90-45d6-9b98-236a54034010.png"
+      "logo": "https://ai-webtools.com/lovable-uploads/fe59a436-1f90-45d6-9b98-236a54034010.png"
     },
     "potentialAction": {
       "@type": "SearchAction",
       "target": {
         "@type": "EntryPoint",
-        "urlTemplate": "https://aitools.studio/?search={search_term_string}"
+        "urlTemplate": "https://ai-webtools.com/?search={search_term_string}"
       },
       "query-input": "required name=search_term_string"
     },
@@ -79,7 +79,7 @@ const AIWebToolsPage = () => {
     "@type": "CollectionPage",
     "name": "AI Web Tools - Complete Directory",
     "description": `Discover ${toolCount}+ AI web tools in the most comprehensive AI tools directory. AI Web Tools offers free access to the best AI tools for every purpose.`,
-    "url": "https://aitools.studio/ai-web-tools",
+    "url": "https://ai-webtools.com/ai-web-tools",
     "mainEntity": {
       "@type": "ItemList",
       "name": "AI Web Tools Collection",
@@ -159,13 +159,13 @@ const AIWebToolsPage = () => {
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://aitools.studio"
+        "item": "https://ai-webtools.com"
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": "AI Web Tools",
-        "item": "https://aitools.studio/ai-web-tools"
+        "item": "https://ai-webtools.com/ai-web-tools"
       }
     ]
   };
@@ -176,7 +176,7 @@ const AIWebToolsPage = () => {
         <title>AI Web Tools - AIWEBTOOLS.AI | {toolCount}+ Best AI Web Tools Directory {currentYear}</title>
         <meta name="description" content={`AI Web Tools - The #1 AI web tools directory with ${toolCount}+ verified AI tools. Discover the best AI web tools for writing, design, coding, business & productivity. AIWEBTOOLS.AI - Your ultimate AI web tools resource.`} />
         <meta name="keywords" content={`AI web tools, ai web tools, AIWEBTOOLS, aiwebtools, aiwebtools.ai, AI WEB TOOLS, best AI web tools, free AI web tools, AI web tools directory, AI web tools ${currentYear}, AI tools online, web-based AI tools, AI web applications, artificial intelligence web tools, AI tools browser, online AI tools`} />
-        <link rel="canonical" href="https://aitools.studio/ai-web-tools" />
+        <link rel="canonical" href="https://ai-webtools.com/ai-web-tools" />
         
         {/* Maximum SEO Robot Instructions */}
         <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
@@ -185,10 +185,10 @@ const AIWebToolsPage = () => {
         {/* Open Graph - AI Web Tools Focused */}
         <meta property="og:title" content={`AI Web Tools - AIWEBTOOLS.AI | ${toolCount}+ Best AI Web Tools`} />
         <meta property="og:description" content={`The #1 AI web tools directory. Discover ${toolCount}+ verified AI web tools for any task. AIWEBTOOLS.AI - Your complete AI web tools resource.`} />
-        <meta property="og:url" content="https://aitools.studio/ai-web-tools" />
+        <meta property="og:url" content="https://ai-webtools.com/ai-web-tools" />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="AI Web Tools - AIWEBTOOLS.AI" />
-        <meta property="og:image" content="https://aitools.studio/social-thumbnail.png" />
+        <meta property="og:image" content="https://ai-webtools.com/social-thumbnail.png" />
         
         {/* Twitter Card - AI Web Tools Focused */}
         <meta name="twitter:card" content="summary_large_image" />
