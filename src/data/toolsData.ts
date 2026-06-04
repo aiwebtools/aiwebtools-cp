@@ -180,6 +180,7 @@ import { frontierInfraBatch2026C1 } from "./tools/frontierInfraBatch2026C1";
 import { frontierInfraBatch2026C2 } from "./tools/frontierInfraBatch2026C2";
 import { frontierInfraBatch2026C3 } from "./tools/frontierInfraBatch2026C3";
 import { frontierInfraBatch2026C4 } from "./tools/frontierInfraBatch2026C4";
+import { newFrontierBatch2026Jun } from "./tools/newFrontierBatch2026Jun";
 
 // Import Frontier Batch D1-D4 (70 tools: Healthcare, Finance, Security, Enterprise, Agencies)
 import { frontierBatchD1 } from "./tools/frontierBatchD1";
@@ -412,6 +413,9 @@ const allToolCategories = consolidateTools([
   ...frontierInfraBatch2026C2,
   ...frontierInfraBatch2026C3,
   ...frontierInfraBatch2026C4,
+
+  // June 2026 — 20 verified frontier AI tools (Sesame, Mercury, Sakana, Liquid AI, Cohere North, Reve, FLUX Kontext, Whisk, Wispr Flow, Superwhisper, Aragon, PhotoAI, Cerebras, Voyage, Jina, Qdrant, Braintrust, Helicone, Cline, Goose)
+  ...newFrontierBatch2026Jun,
 
   // Frontier Batch D1-D4 (70 tools: Healthcare, Finance, Security, Enterprise, Agencies)
   ...frontierBatchD1,
