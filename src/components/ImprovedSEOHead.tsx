@@ -219,7 +219,7 @@ const ImprovedSEOHead: React.FC<ImprovedSEOHeadProps> = ({
       {/* Enhanced Open Graph - Tool-Specific */}
       <meta property="og:type" content={pageType === 'tool' ? 'product' : 'website'} />
       <meta property="og:url" content={getCanonicalUrl()} />
-      <meta property="og:title" content={getTitle()} />
+      <meta property="og:title" content={ogTitle} />
       <meta property="og:description" content={getDescription()} />
       <meta property="og:image" content={getOgImage()} />
       <meta property="og:image:width" content="1200" />
@@ -239,7 +239,7 @@ const ImprovedSEOHead: React.FC<ImprovedSEOHeadProps> = ({
       {/* Twitter Cards - Tool-Specific */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:url" content={getCanonicalUrl()} />
-      <meta name="twitter:title" content={getTitle()} />
+      <meta name="twitter:title" content={ogTitle} />
       <meta name="twitter:description" content={getDescription()} />
       <meta name="twitter:image" content={getOgImage()} />
       <meta name="twitter:image:alt" content={pageType === 'tool' ? `Try ${tool?.title} - ${tool?.category || 'AI Tool'}` : `${getTitle()} - AI Web Tools Preview`} />
