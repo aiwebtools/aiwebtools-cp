@@ -644,3 +644,4 @@ export { topAgentsBatch2026JulPart2 } from './topAgentsBatch2026JulPart2';
 // Top Agents Batch — July 2026 Part 3 (25 verified-new agent tools: Convergence Proxy, MultiOn, Roo Code, Continue.dev, Tabby ML, Sweep AI, Cody by Sourcegraph, Void Editor, Pythagora, All Hands AI, GPT Engineer, Sema4 AI, Decagon AI, 11x, Artisan AI, Rox, Distyl AI, Beam AI, MemGPT, Arize Phoenix, Comet Opik, W&B Weave, Outlines, Poolside, Suna AI)
 export { topAgentsBatch2026JulPart3 } from './topAgentsBatch2026JulPart3';
 export { topAgentsBatch2026JulPart4 } from './topAgentsBatch2026JulPart4';
+export { topAgentsBatch2026JulPart5 } from './topAgentsBatch2026JulPart5';
