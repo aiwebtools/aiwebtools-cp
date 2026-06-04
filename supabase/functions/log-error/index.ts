@@ -55,7 +55,7 @@ Deno.serve(async (req) => {
 
     if (error) {
       console.error('Insert failed:', error);
-      return new Response(JSON.stringify({ ok: false, error: error.message }), {
+      return new Response(JSON.stringify({ ok: false }), {
         status: 500,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
@@ -66,7 +66,7 @@ Deno.serve(async (req) => {
     });
   } catch (e) {
     console.error('log-error exception:', e);
-    return new Response(JSON.stringify({ ok: false, error: String(e) }), {
+    return new Response(JSON.stringify({ ok: false }), {
       status: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
