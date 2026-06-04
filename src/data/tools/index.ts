@@ -633,3 +633,6 @@ export { freeAwesomeBatch2026D } from './freeAwesomeBatch2026D';
 export { freeAwesomeBatch2026E } from './freeAwesomeBatch2026E';
 export { newAgentsAndMedicalBatch2026E } from './newAgentsAndMedicalBatch2026E';
 export { offlineDownloadableBatch2026 } from './offlineDownloadableBatch2026';
+
+// Top New Batch — June 2026 Part 2 (25 verified real popular AI tools: Wan 2.5, Submagic, Eleven v3, Suno v4, JetBrains Junie, AutoGPT, SWE-agent, Mistral Large, Pixtral, NVIDIA Nemotron, OLMo, Gemini 2.5 Pro, Claude 4, GPT-5, OpenAI o3, Recraft V3, Ideogram 2, FLUX Kontext, Stable Diffusion 3.5, Black Forest Labs, PromptLayer, Chroma, Convex, Nyota, Krea Realtime)
+export { topNewBatch2026Jun25 } from './topNewBatch2026Jun25';
