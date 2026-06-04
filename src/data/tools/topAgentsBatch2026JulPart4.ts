@@ -1,5 +1,5 @@
 import { Tool } from "@/types/tools";
-import { Bird, Boxes, Layers, Mic, BrainCircuit, PenTool, Activity, Waves, Gauge, ShieldCheck, Network, GitBranch, Wand2, Eye, MessageSquareCode, Diamond, Bot, Theater, Gamepad2, Workflow, UserCog, Headset, Hub, Bug, Code2, GitPullRequest, Plug, MousePointer, Sparkles } from "lucide-react";
+import { Bird, Boxes, Layers, Mic, BrainCircuit, PenTool, Activity, Waves, Gauge, ShieldCheck, Network, GitBranch, Wand2, Eye, MessageSquareCode, Diamond, Bot, Theater, Gamepad2, Workflow, UserCog, Headset, Bug, Code2, GitPullRequest, Plug, MousePointer, Sparkles } from "lucide-react";
 
 import gooseHero from "@/assets/tools/goose-block-hero.jpg";
 import beeAgentHero from "@/assets/tools/bee-agent-hero.jpg";
