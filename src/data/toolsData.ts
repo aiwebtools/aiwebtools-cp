@@ -183,6 +183,7 @@ import { frontierInfraBatch2026C4 } from "./tools/frontierInfraBatch2026C4";
 import { newFrontierBatch2026Jun } from "./tools/newFrontierBatch2026Jun";
 import { topNewBatch2026Jun20 } from "./tools/topNewBatch2026Jun20";
 import { topNewBatch2026Jun25 } from "./tools/topNewBatch2026Jun25";
+import { topAgentsBatch2026Jul } from "./tools/topAgentsBatch2026Jul";
 
 // Import Frontier Batch D1-D4 (70 tools: Healthcare, Finance, Security, Enterprise, Agencies)
 import { frontierBatchD1 } from "./tools/frontierBatchD1";
@@ -424,6 +425,7 @@ const allToolCategories = consolidateTools([
 
   // Top New Batch — June 2026 Part 2 (25 verified real AI tools: Wan 2.5, Submagic, Eleven v3, Suno v4, JetBrains Junie, AutoGPT, SWE-agent, Mistral Large, Pixtral, NVIDIA Nemotron, OLMo, Gemini 2.5 Pro, Claude 4, GPT-5, OpenAI o3, Recraft V3, Ideogram 2, FLUX Kontext, Stable Diffusion 3.5, Black Forest Labs, PromptLayer, Chroma, Convex, Nyota, Krea Realtime)
   ...topNewBatch2026Jun25,
+  ...topAgentsBatch2026Jul,
 
   // Frontier Batch D1-D4 (70 tools: Healthcare, Finance, Security, Enterprise, Agencies)
   ...frontierBatchD1,
