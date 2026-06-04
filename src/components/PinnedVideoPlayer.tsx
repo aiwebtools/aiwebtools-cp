@@ -24,6 +24,7 @@ const MODE_SESSION_KEY = "pinned-video-mode"; // 'idle' | 'tools' | 'music'
 // always leads with the most eye-catching content.
 const MUSIC_VIDEO_GALLERY: Array<{ id: string; title: string }> = [
   // ── VISUAL MUSIC VIDEOS (real cinematic clips, lead the reel) ──
+  { id: "RVBmL7FEtQk", title: "AI Web Tools 9:16 Vertical Showcase — Latest Cinematic Drop" },
   { id: "htVLYZPHehk", title: "New Cinematic Drop — Music Video" },
   { id: "bBZT8sPWvRY", title: "Awakening Anthem — Music Video" },
   { id: "AFwPVOQV0SE", title: "My Name Is Irrelevant — Music Video" },
