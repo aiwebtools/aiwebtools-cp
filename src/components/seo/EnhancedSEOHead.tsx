@@ -31,6 +31,8 @@ const EnhancedSEOHead = ({
     ? `${title} | AI Web Tools`
     : "AI Web Tools — 4,000+ Best AI Tools Directory 2026";
   const canonical = url.startsWith('http') ? url : `${seoConfig.siteUrl}${url}`;
+  // Open Graph titles render best ≤60 chars; clamp to avoid social-preview truncation.
+  const ogTitle = fullTitle.length > 60 ? `${fullTitle.slice(0, 57).trimEnd()}…` : fullTitle;
   
   // Get proper Open Graph image for tool pages
   const getToolImage = () => {
@@ -152,7 +154,7 @@ const EnhancedSEOHead = ({
       )}
       
       {/* Comprehensive Open Graph */}
-      <meta property="og:title" content={fullTitle} />
+      <meta property="og:title" content={ogTitle} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={fullImage} />
       <meta property="og:image:width" content="1200" />
@@ -166,7 +168,7 @@ const EnhancedSEOHead = ({
       
       {/* Enhanced Twitter Card */}
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={fullTitle} />
+      <meta name="twitter:title" content={ogTitle} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={fullImage} />
       <meta name="twitter:site" content={seoConfig.twitterHandle} />
