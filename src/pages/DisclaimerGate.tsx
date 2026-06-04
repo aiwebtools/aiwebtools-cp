@@ -313,11 +313,23 @@ const DisclaimerGate: React.FC = () => {
   }, []);
 
   const handleAccept = () => {
+    // Guard against double-fire (rapid clicks / touch+click) which created
+    // two overlapping <audio> instances and an echo effect.
+    const w = window as any;
+    if (w.__aiwtDisclaimerAccepted) return;
+    w.__aiwtDisclaimerAccepted = true;
+
     // Play welcome audio immediately on user gesture (bypasses autoplay restrictions)
     try {
+      // Stop any prior instance just in case (HMR, back-nav, etc.)
+      if (w.__aiwtDisclaimerAudio) {
+        try { w.__aiwtDisclaimerAudio.pause(); } catch {}
+        w.__aiwtDisclaimerAudio = null;
+      }
       const audio = new Audio('/welcome-disclaimer.mp3');
       audio.volume = 0.8;
       audio.preload = 'none';
+      w.__aiwtDisclaimerAudio = audio;
       void audio.play().catch(() => {
         // Browser audio policies can block this; portal entry must continue.
       });
