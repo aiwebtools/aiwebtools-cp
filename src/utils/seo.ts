@@ -35,6 +35,7 @@ export const generateStructuredData = (page: string = "homepage") => {
   const baseStructuredData = {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": `${seoConfig.siteUrl}/#website`,
     "name": seoConfig.siteName,
     "alternateName": "AITools.Studio",
     "url": seoConfig.siteUrl,
@@ -60,7 +61,6 @@ export const generateStructuredData = (page: string = "homepage") => {
       "bestRating": "5"
     },
     "sameAs": [
-      "https://ai-webtools.com",
       "https://www.aiwebtools.ai",
       "https://aitoolwebsites.com"
     ]
@@ -114,10 +114,14 @@ export const generateLocalBusinessStructuredData = () => {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": `${seoConfig.siteUrl}/#organization`,
     "name": "AI WEB TOOLS",
     "alternateName": "AI WEB TOOLS",
     "url": seoConfig.siteUrl,
-    "logo": `${seoConfig.siteUrl}/favicon.ico`,
+    "logo": {
+      "@type": "ImageObject",
+      "url": `${seoConfig.siteUrl}/favicon.ico`
+    },
     "description": "The world's most comprehensive AI tools directory with 1000+ curated AI applications.",
     "foundingDate": "2024",
     "founders": [
@@ -148,7 +152,6 @@ export const generateLocalBusinessStructuredData = () => {
       "availableLanguage": "English"
     },
     "sameAs": [
-      "https://ai-webtools.com",
       "https://www.aiwebtools.ai",
       "https://aitoolwebsites.com"
     ]
