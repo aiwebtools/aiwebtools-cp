@@ -31,6 +31,10 @@ const ImprovedSEOHead: React.FC<ImprovedSEOHeadProps> = ({
     }
   };
 
+  // Open Graph titles render best ≤60 chars; clamp to avoid social-preview truncation.
+  const clampOg = (s: string) => (s.length > 60 ? `${s.slice(0, 57).trimEnd()}…` : s);
+  const ogTitle = clampOg(getTitle());
+
   const getDescription = () => {
     switch (pageType) {
       case 'tool': {
