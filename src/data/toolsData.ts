@@ -198,6 +198,7 @@ import { topAgentsBatch2026JulPart12 } from "./tools/topAgentsBatch2026JulPart12
 import { topAgentsBatch2026JulPart13 } from "./tools/topAgentsBatch2026JulPart13";
 import { topAgentsBatch2026JulPart14 } from "./tools/topAgentsBatch2026JulPart14";
 import { topAgentsBatch2026JulPart15 } from "./tools/topAgentsBatch2026JulPart15";
+import { topAgentsBatch2026JulPart16 } from "./tools/topAgentsBatch2026JulPart16";
 
 // Import Frontier Batch D1-D4 (70 tools: Healthcare, Finance, Security, Enterprise, Agencies)
 import { frontierBatchD1 } from "./tools/frontierBatchD1";
