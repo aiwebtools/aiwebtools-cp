@@ -685,6 +685,7 @@ const BookPromotionCard = () => {
     // of the lineup. FHEWZkP_3ew is a Suno-style lyric track, so it's NOT
     // pinned to the front — it joins the lyric/audio tracks at the back.
     const verticalMusicVideoIds = [
+      "3XaTLuJ0kak",
       "htVLYZPHehk",
       "bBZT8sPWvRY",
       "AFwPVOQV0SE",
