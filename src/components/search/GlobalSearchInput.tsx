@@ -52,8 +52,8 @@ const GlobalSearchInput = memo(({
       const now = performance.now();
       const gap = now - lastKeystrokeRef.current;
       lastKeystrokeRef.current = now;
-      const rapid = gap < 140;
-      const delay = rapid ? 90 : 0;
+      const rapid = gap < 120;
+      const delay = rapid ? 45 : 0;
 
       if (debounceTimerRef.current) clearTimeout(debounceTimerRef.current);
       const dispatch = () => {
