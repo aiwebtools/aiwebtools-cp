@@ -98,8 +98,21 @@ const spreadSimilarToolsFast = (tools: any[]): any[] => {
 
 // Global search cache (persists across component re-renders)
 // NOTE: versioned to prevent "stale" cached results after search-intelligence updates.
-const SEARCH_CACHE_VERSION = "v50";
+const SEARCH_CACHE_VERSION = "v51";
 const searchCache = new LRUCache<string, any[]>(50);
+
+// ==================== EXACT-TITLE GUARANTEE ====================
+// Normalize a title or query to a comparable key (strip emojis, punctuation, GPT/AI suffixes).
+// Used to guarantee that typing a tool's exact name ALWAYS surfaces it, even when the
+// heavier "full" search filters happen to exclude it.
+const normalizeTitleKey = (s: string): string => {
+  return (s || "")
+    .toLowerCase()
+    .replace(/[^\w\s]/g, " ")   // strip emoji + punctuation
+    .replace(/\b(gpt|ai|app|the)\b/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+};
 
 // ==================== EXACT-TITLE PROMOTION ====================
 // Ensures that when a user types a tool's exact name (or first word of its name),
@@ -1543,6 +1556,46 @@ export const useGlobalSearch = () => {
     });
   }, []);
 
+  // ⚡ EXACT-TITLE MAP: O(1) lookup of any tool by its normalized title or no-space form.
+  // Guarantees a typed tool name always finds the tool even if heavier filters drop it.
+  const exactTitleMap = useMemo(() => {
+    const map = new Map<string, any>();
+    for (const tool of allTools) {
+      if (!tool?.title) continue;
+      const t = tool.title.toLowerCase().trim();
+      map.set(t, tool);
+      map.set(t.replace(/\s+/g, ""), tool);
+      map.set(normalizeTitleKey(tool.title), tool);
+    }
+    return map;
+  }, []);
+
+  // Prepend any tool whose normalized title matches the query — never let strong
+  // exact hits fall out of the results list because of upstream filters.
+  const ensureExactTitleHit = useCallback((list: any[], rawQuery: string): any[] => {
+    const q = (rawQuery || "").toLowerCase().trim();
+    if (!q) return list;
+    const candidates: any[] = [];
+    const direct =
+      exactTitleMap.get(q) ||
+      exactTitleMap.get(q.replace(/\s+/g, "")) ||
+      exactTitleMap.get(normalizeTitleKey(q));
+    if (direct) candidates.push(direct);
+    // Also: tools whose normalized title CONTAINS the query as a whole word (e.g., "openclaw")
+    if (q.length >= 3) {
+      for (const [k, v] of exactTitleMap.entries()) {
+        if (k && k !== q && (k === q || k.split(" ").includes(q))) {
+          if (!candidates.includes(v)) candidates.push(v);
+        }
+      }
+    }
+    if (candidates.length === 0) return list;
+    const have = new Set(list);
+    const out = [...candidates];
+    for (const t of list) if (!out.includes(t)) out.push(t);
+    return out;
+  }, [exactTitleMap]);
+
   // HYPER-INTELLIGENT instant search with LRU cache
   const quickSearch = useCallback((term: string) => {
     let qRaw = term.toLowerCase().trim();
@@ -2040,12 +2093,19 @@ export const useGlobalSearch = () => {
     // 4) Run quick search AFTER paint to prevent any typing lag
     quickRef.current = setTimeout(() => {
       if (currentId !== searchIdRef.current) return;
-      const fast = quickSearch(cappedT);
+      const fast = ensureExactTitleHit(quickSearch(cappedT), cappedT);
       if (currentId !== searchIdRef.current) return;
       startTransition(() => {
         setSearchResults(fast);
         setDisplayedCount(50);
       });
+
+      // Strong exact-title hit? Skip the heavy full-search entirely — quick result is best.
+      const topTitle = (fast?.[0]?.title || "").toLowerCase().trim();
+      const q = cappedT.toLowerCase().trim();
+      if (topTitle && (topTitle === q || topTitle.replace(/\s+/g, "") === q.replace(/\s+/g, "") || normalizeTitleKey(fast[0].title) === normalizeTitleKey(q))) {
+        if (fullRef.current) clearTimeout(fullRef.current);
+      }
     }, quickDelay);
 
     // 5) Full intelligent ranking for 3+ chars - adaptive debounce (main thread with requestIdleCallback)
@@ -2062,7 +2122,10 @@ export const useGlobalSearch = () => {
           if (currentId !== searchIdRef.current) return;
           const fallbackResults = searchTools(allTools, cappedT);
           if (currentId !== searchIdRef.current) return;
-          const promoted = promoteExactTitleMatches(fallbackResults, cappedT);
+          const promoted = ensureExactTitleHit(
+            promoteExactTitleMatches(fallbackResults, cappedT),
+            cappedT
+          );
           searchCache.set(fullCacheKey, promoted);
           startTransition(() => {
             setSearchResults(promoted);
