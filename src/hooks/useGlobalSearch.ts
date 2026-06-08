@@ -1556,6 +1556,46 @@ export const useGlobalSearch = () => {
     });
   }, []);
 
+  // ⚡ EXACT-TITLE MAP: O(1) lookup of any tool by its normalized title or no-space form.
+  // Guarantees a typed tool name always finds the tool even if heavier filters drop it.
+  const exactTitleMap = useMemo(() => {
+    const map = new Map<string, any>();
+    for (const tool of allTools) {
+      if (!tool?.title) continue;
+      const t = tool.title.toLowerCase().trim();
+      map.set(t, tool);
+      map.set(t.replace(/\s+/g, ""), tool);
+      map.set(normalizeTitleKey(tool.title), tool);
+    }
+    return map;
+  }, []);
+
+  // Prepend any tool whose normalized title matches the query — never let strong
+  // exact hits fall out of the results list because of upstream filters.
+  const ensureExactTitleHit = useCallback((list: any[], rawQuery: string): any[] => {
+    const q = (rawQuery || "").toLowerCase().trim();
+    if (!q) return list;
+    const candidates: any[] = [];
+    const direct =
+      exactTitleMap.get(q) ||
+      exactTitleMap.get(q.replace(/\s+/g, "")) ||
+      exactTitleMap.get(normalizeTitleKey(q));
+    if (direct) candidates.push(direct);
+    // Also: tools whose normalized title CONTAINS the query as a whole word (e.g., "openclaw")
+    if (q.length >= 3) {
+      for (const [k, v] of exactTitleMap.entries()) {
+        if (k && k !== q && (k === q || k.split(" ").includes(q))) {
+          if (!candidates.includes(v)) candidates.push(v);
+        }
+      }
+    }
+    if (candidates.length === 0) return list;
+    const have = new Set(list);
+    const out = [...candidates];
+    for (const t of list) if (!out.includes(t)) out.push(t);
+    return out;
+  }, [exactTitleMap]);
+
   // HYPER-INTELLIGENT instant search with LRU cache
   const quickSearch = useCallback((term: string) => {
     let qRaw = term.toLowerCase().trim();
