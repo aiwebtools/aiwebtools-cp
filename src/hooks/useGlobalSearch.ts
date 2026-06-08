@@ -2093,12 +2093,19 @@ export const useGlobalSearch = () => {
     // 4) Run quick search AFTER paint to prevent any typing lag
     quickRef.current = setTimeout(() => {
       if (currentId !== searchIdRef.current) return;
-      const fast = quickSearch(cappedT);
+      const fast = ensureExactTitleHit(quickSearch(cappedT), cappedT);
       if (currentId !== searchIdRef.current) return;
       startTransition(() => {
         setSearchResults(fast);
         setDisplayedCount(50);
       });
+
+      // Strong exact-title hit? Skip the heavy full-search entirely — quick result is best.
+      const topTitle = (fast?.[0]?.title || "").toLowerCase().trim();
+      const q = cappedT.toLowerCase().trim();
+      if (topTitle && (topTitle === q || topTitle.replace(/\s+/g, "") === q.replace(/\s+/g, "") || normalizeTitleKey(fast[0].title) === normalizeTitleKey(q))) {
+        if (fullRef.current) clearTimeout(fullRef.current);
+      }
     }, quickDelay);
 
     // 5) Full intelligent ranking for 3+ chars - adaptive debounce (main thread with requestIdleCallback)
@@ -2115,7 +2122,10 @@ export const useGlobalSearch = () => {
           if (currentId !== searchIdRef.current) return;
           const fallbackResults = searchTools(allTools, cappedT);
           if (currentId !== searchIdRef.current) return;
-          const promoted = promoteExactTitleMatches(fallbackResults, cappedT);
+          const promoted = ensureExactTitleHit(
+            promoteExactTitleMatches(fallbackResults, cappedT),
+            cappedT
+          );
           searchCache.set(fullCacheKey, promoted);
           startTransition(() => {
             setSearchResults(promoted);
