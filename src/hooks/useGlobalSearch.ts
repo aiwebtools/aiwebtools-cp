@@ -98,8 +98,21 @@ const spreadSimilarToolsFast = (tools: any[]): any[] => {
 
 // Global search cache (persists across component re-renders)
 // NOTE: versioned to prevent "stale" cached results after search-intelligence updates.
-const SEARCH_CACHE_VERSION = "v50";
+const SEARCH_CACHE_VERSION = "v51";
 const searchCache = new LRUCache<string, any[]>(50);
+
+// ==================== EXACT-TITLE GUARANTEE ====================
+// Normalize a title or query to a comparable key (strip emojis, punctuation, GPT/AI suffixes).
+// Used to guarantee that typing a tool's exact name ALWAYS surfaces it, even when the
+// heavier "full" search filters happen to exclude it.
+const normalizeTitleKey = (s: string): string => {
+  return (s || "")
+    .toLowerCase()
+    .replace(/[^\w\s]/g, " ")   // strip emoji + punctuation
+    .replace(/\b(gpt|ai|app|the)\b/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+};
 
 // ==================== EXACT-TITLE PROMOTION ====================
 // Ensures that when a user types a tool's exact name (or first word of its name),
