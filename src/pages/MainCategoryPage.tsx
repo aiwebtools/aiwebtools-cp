@@ -9,7 +9,7 @@ import ScrollToTop from "@/components/ui/scroll-to-top";
 import SEOHead from "@/components/SEOHead";
 import ToolsGrid from "@/components/tools/ToolsGrid";
 import ToolsGridSkeleton from "@/components/tools/ToolsGridSkeleton";
-import GlobalSearchBar from "@/components/GlobalSearchBar";
+import GlobalSearchBar from "@/components/LazyGlobalSearchBar";
 import MainCategoryFilter from "@/components/category/MainCategoryFilter";
 import BreadcrumbNav from "@/components/navigation/BreadcrumbNav";
 import { Button } from "@/components/ui/button";
