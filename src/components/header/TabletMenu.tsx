@@ -36,10 +36,11 @@ const TabletMenu = () => {
   };
 
   // Enhanced CSV download with all comprehensive data fields
-  const handleDownloadAllToolsCSV = () => {
+  const handleDownloadAllToolsCSV = async () => {
     try {
       // Trigger confetti celebration first
       createConfettiCelebration();
+      const { allTools } = await import("@/data/toolsData");
       
       console.log(`📊 Generating comprehensive CSV with ${allTools.length} tools...`);
       
@@ -256,7 +257,7 @@ const TabletMenu = () => {
                 {/* Download ALL AI tools CSV - tablet only */}
                 <DropdownMenuItem onClick={handleDownloadAllToolsCSV} className="text-cyan-100 hover:bg-cyan-500/20 rounded">
                   <Download className="w-4 h-4 mr-2" />
-                  📊 Download ALL {toolStats.marketing} AI Tools (CSV)
+                  📊 Download ALL 4,000+ AI Tools (CSV)
                 </DropdownMenuItem>
 
                 {/* Recently Visited Tools */}
