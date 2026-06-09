@@ -16,7 +16,7 @@ import { triggerPublicDownload } from "@/utils/downloads";
 import { createConfettiCelebration } from "@/utils/effects/audioEffects";
 import { web3DomainsTools } from "@/data/tools/web3DomainsTools";
 import Logo from "./Logo";
-import GlobalSearchBar from "@/components/GlobalSearchBar";
+import GlobalSearchBar from "@/components/LazyGlobalSearchBar";
 
 import { useRecentlyVisitedTools } from "@/hooks/useRecentlyVisitedTools";
 
