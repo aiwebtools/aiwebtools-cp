@@ -13,16 +13,13 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/components/ui/collapsible";
 import { useFavorites } from "@/hooks/useFavorites";
-import { allTools } from "@/data/toolsData";
 import { createTimePortalEffect } from "@/utils/timeEffects";
 import { createConfettiCelebration } from "@/utils/effects/audioEffects";
 import { openDestinationUrl } from "@/utils/effects/domEffects";
-import { getCurrentToolCount } from "@/utils/toolCounter";
 import { web3DomainsTools } from "@/data/tools/web3DomainsTools";
-import { downloadToolsCSV } from "@/utils/csvExport";
 import { triggerPublicDownload } from "@/utils/downloads";
 import Logo from "./Logo";
-import GlobalSearchBar from "@/components/GlobalSearchBar";
+import GlobalSearchBar from "@/components/LazyGlobalSearchBar";
 import DeferredMount from "@/components/DeferredMount";
 import { useRecentlyVisitedTools } from "@/hooks/useRecentlyVisitedTools";
 
@@ -43,17 +40,11 @@ const DesktopMenu = () => {
   const [isWeb3Open, setIsWeb3Open] = useState(false);
   const [isAboutOpen, setIsAboutOpen] = useState(false);
   const [isToolsOpen, setIsToolsOpen] = useState(false);
-  const [toolStats, setToolStats] = useState({ total: 0, marketing: "0+", categories: 0 });
   const [renderSearch, setRenderSearch] = useState(false);
   const { recentTools } = useRecentlyVisitedTools();
 
   const handleMenuToggle = useCallback((open: boolean) => {
     setIsMenuOpen(open);
-  }, []);
-
-  useEffect(() => {
-    const stats = getCurrentToolCount();
-    setToolStats(stats);
   }, []);
 
   // Defer mounting the global search (heavy index on first mount) until AFTER the menu is visible.
@@ -85,10 +76,14 @@ const DesktopMenu = () => {
   }, [handleMenuToggle]);
 
   // Enhanced CSV download - uses centralized export with all tool data
-  const handleDownloadAllToolsCSV = () => {
+  const handleDownloadAllToolsCSV = async () => {
     try {
       // Trigger confetti celebration first
       createConfettiCelebration();
+      const [{ allTools }, { downloadToolsCSV }] = await Promise.all([
+        import("@/data/toolsData"),
+        import("@/utils/csvExport"),
+      ]);
       
       console.log(`📊 Generating comprehensive CSV with ${allTools.length} tools...`);
       
@@ -363,7 +358,7 @@ const DesktopMenu = () => {
                   <div className="bg-gray-900/50 rounded border border-white/5 p-2 space-y-1">
                     <DropdownMenuItem onClick={handleDownloadAllToolsCSV} className="text-cyan-100 hover:bg-cyan-500/20 rounded text-sm px-2 py-1.5">
                       <Download className="w-3 h-3 mr-2" />
-                      📊 Download {toolStats.marketing} Tools (CSV)
+                      📊 Download 4,000+ Tools (CSV)
                     </DropdownMenuItem>
                     <DropdownMenuItem 
                       onClick={(e) => {

@@ -22,7 +22,7 @@ import { useToolDetail } from "@/hooks/useToolDetail";
 import ToolNotFound from "@/components/tool-detail/ToolNotFound";
 import ToolPageHeader from "@/components/tool-detail/ToolPageHeader";
 import ToolSearch from "@/components/tool-detail/ToolSearch";
-import GlobalSearchBar from "@/components/GlobalSearchBar";
+import GlobalSearchBar from "@/components/LazyGlobalSearchBar";
 import MoreToolsSection from "@/components/tool-detail/MoreToolsSection";
 import FullSpiritualDisclaimer from "@/components/disclaimers/FullSpiritualDisclaimer";
 import FullMedicalDisclaimer from "@/components/disclaimers/FullMedicalDisclaimer";

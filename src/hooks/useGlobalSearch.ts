@@ -114,6 +114,16 @@ const normalizeTitleKey = (s: string): string => {
     .trim();
 };
 
+const normalizeSearchText = (s: string): string =>
+  (s || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+export const getSearchDispatchDelay = (value: string, gapMs: number): number => {
+  if (gapMs >= 140) return 0;
+  if (value.length > 80) return 140;
+  if (value.length > 40) return 95;
+  return 55;
+};
+
 // ==================== EXACT-TITLE PROMOTION ====================
 // Ensures that when a user types a tool's exact name (or first word of its name),
 // that tool is bumped to the very top of the results — without changing the rest
@@ -1541,17 +1551,22 @@ export const useGlobalSearch = () => {
   // Precompute lowercase fields once (keeps search snappy)
   const quickIndex = useMemo(() => {
     return allTools.map((tool) => {
-      const t = tool.title?.toLowerCase() || "";
+      const t = normalizeSearchText(tool.title || "");
       const tNoSpace = t.replace(/[\s\-_]+/g, "");
       const words = t.split(/[\s\-_\u0026,.:()]+/).filter(w => w.length > 0);
+      const d = normalizeSearchText(tool.description || "");
+      const c = normalizeSearchText(tool.category || "");
+      const tags = (tool.tags || []).map(tag => normalizeSearchText(tag));
+      const tagText = tags.join(" ");
       return {
         tool,
         t,
         tNoSpace,
         words,
-        d: tool.description?.toLowerCase() || "",
-        c: tool.category?.toLowerCase() || "",
-        tags: tool.tags?.map(tag => tag.toLowerCase()) || [],
+        d,
+        c,
+        tags,
+        searchable: `${t} ${c} ${tagText} ${d}`,
       };
     });
   }, []);
@@ -1598,13 +1613,35 @@ export const useGlobalSearch = () => {
 
   // HYPER-INTELLIGENT instant search with LRU cache
   const quickSearch = useCallback((term: string) => {
-    let qRaw = term.toLowerCase().trim();
+    let qRaw = normalizeSearchText(term).trim();
     if (!qRaw) return [];
+
+    const rawWords = qRaw.split(/\s+/).filter(word => word.length > 1);
+    const isLongNaturalQuery = qRaw.length > 40 || rawWords.length > 6;
 
     // === CHECK CACHE FIRST (instant return for repeated searches) ===
     const cacheKey = `${SEARCH_CACHE_VERSION}:${qRaw}`;
     const cached = searchCache.get(cacheKey);
     if (cached) return cached;
+
+    if (isLongNaturalQuery) {
+      const scored: { tool: any; score: number }[] = [];
+      for (const it of quickIndex) {
+        let score = 0;
+        if (it.t && qRaw.includes(it.t)) score += 120000;
+        for (const word of rawWords) {
+          if (it.words.some(tw => tw === word || tw.startsWith(word))) score += 4500;
+          else if (it.tags.some(tag => tag.includes(word))) score += 2500;
+          else if (it.c.includes(word)) score += 1800;
+          else if (it.d.includes(word)) score += 350;
+        }
+        if (score > 0) scored.push({ tool: it.tool, score });
+      }
+      scored.sort((a, b) => b.score - a.score);
+      const results = scored.slice(0, 80).map(s => s.tool);
+      searchCache.set(cacheKey, results);
+      return results;
+    }
 
     // === SINGLE LETTER SEARCH - Show all tools starting with that letter alphabetically ===
     if (qRaw.length === 1 && /^[a-z]$/.test(qRaw)) {
@@ -2062,8 +2099,9 @@ export const useGlobalSearch = () => {
       return;
     }
 
-    // Cap query length to prevent main-thread freezing on very long inputs
-    const cappedT = t.length > 40 ? t.substring(0, 40) : t;
+    // Full UI text can be long; search work uses quick long-query scoring
+    // instead of slicing/locking the visible input.
+    const cappedT = t;
 
     setIsOpen(true);
     const currentId = ++searchIdRef.current;
@@ -2074,7 +2112,7 @@ export const useGlobalSearch = () => {
     lastInputTimeRef.current = now;
     const isRapidTyping = timeSinceLastInput < 120; // Rapid keystrokes < 120ms apart
     // Longer delay for rapid typing to batch keystrokes; also scale with query length
-    const quickDelay = isRapidTyping ? (cappedT.length > 15 ? 40 : 25) : 0;
+    const quickDelay = getSearchDispatchDelay(cappedT, timeSinceLastInput);
 
     // 3) Check cache FIRST - if hit, apply results in next frame (zero compute)
     const fullCacheKey = `${SEARCH_CACHE_VERSION}:full:${cappedT.toLowerCase().trim()}`;
@@ -2109,7 +2147,7 @@ export const useGlobalSearch = () => {
     }, quickDelay);
 
     // 5) Full intelligent ranking for 3+ chars - adaptive debounce (main thread with requestIdleCallback)
-    if (cappedT.length >= 3) {
+    if (cappedT.length >= 3 && cappedT.length <= 40) {
       const fullDelay = isRapidTyping 
         ? (cappedT.length > 15 ? 220 : 160) 
         : (cappedT.length > 15 ? 140 : 100);
@@ -2140,7 +2178,7 @@ export const useGlobalSearch = () => {
         }
       }, fullDelay);
     }
-  }, [quickSearch]);
+  }, [quickSearch, ensureExactTitleHit]);
   
   // Cleanup on unmount
   useEffect(() => {

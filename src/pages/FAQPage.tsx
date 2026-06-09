@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { HelpCircle, Search, Star, Zap, Users, Grid3X3, Copy, BookOpen, Home } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import GlobalSearchBar from '@/components/GlobalSearchBar';
+import GlobalSearchBar from '@/components/LazyGlobalSearchBar';
 import { Button } from '@/components/ui/button';
 
 const FAQPage = () => {

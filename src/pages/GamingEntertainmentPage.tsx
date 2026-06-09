@@ -8,7 +8,7 @@ import DeferredMount from "@/components/DeferredMount";
 import ScrollToTop from "@/components/ui/scroll-to-top";
 import { ToolGridSkeleton } from "@/components/ui/loading-skeleton";
 import ToolsGrid from "@/components/tools/ToolsGrid";
-import GlobalSearchBar from "@/components/GlobalSearchBar";
+import GlobalSearchBar from "@/components/LazyGlobalSearchBar";
 import BreadcrumbNav from "@/components/navigation/BreadcrumbNav";
 import { Button } from "@/components/ui/button";
 import { allTools } from "@/data/toolsData";

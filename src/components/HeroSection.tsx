@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { Search, Sparkles, Zap, Brain, Rocket, Stars } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import GlobalSearchBar from "./GlobalSearchBar";
+import GlobalSearchBar from "./LazyGlobalSearchBar";
 import { getCurrentToolCount } from "@/utils/toolCounter";
 import { useDeferredAnimation } from "@/hooks/useReducedMotion";
 

@@ -26,6 +26,7 @@ const InteractiveMatrixBackground = memo(() => {
   const interactionPointsRef = useRef<InteractionPoint[]>([]);
   const lastTimeRef = useRef<number>(0);
   const isVisibleRef = useRef(true);
+  const searchFocusedRef = useRef(false);
   const { isMobile } = useMobile();
   const { performanceTier, addOptimizedEventListener } = useCrossBrowserOptimization();
 
@@ -169,9 +170,9 @@ const InteractiveMatrixBackground = memo(() => {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    // Consistent 30fps for smooth animation without overloading
+    // Search typing gets priority: slow background frames while input is focused.
     const deltaTime = currentTime - lastTimeRef.current;
-    const targetInterval = isMobile ? 50 : 33.33; // 20fps mobile, 30fps desktop
+    const targetInterval = searchFocusedRef.current ? 140 : (isMobile ? 80 : 50);
 
     if (deltaTime < targetInterval && lastTimeRef.current > 0) {
       animationFrameRef.current = requestAnimationFrame(animate);
@@ -270,7 +271,7 @@ const InteractiveMatrixBackground = memo(() => {
     ctx.globalAlpha = 1; // Reset alpha
 
     // Clean up excess drops aggressively for smooth performance
-    const maxActiveDrops = isMobile ? 25 : performanceTier === 'high' ? 60 : 40;
+    const maxActiveDrops = searchFocusedRef.current ? 12 : (isMobile ? 20 : performanceTier === 'high' ? 38 : 24);
     if (dropsRef.current.length > maxActiveDrops) {
       dropsRef.current = dropsRef.current.slice(0, maxActiveDrops);
     }
@@ -322,11 +323,22 @@ const InteractiveMatrixBackground = memo(() => {
       }
     };
 
+    const handleFocusIn = (e: FocusEvent) => {
+      const target = e.target as HTMLElement | null;
+      searchFocusedRef.current = !!target?.closest('[data-testid="global-search-input"]');
+    };
+
+    const handleFocusOut = () => {
+      searchFocusedRef.current = false;
+    };
+
     // Add event listeners with optimization - use passive for touch events to allow scrolling
     const removeMouseMove = addOptimizedEventListener(canvas, 'mousemove', handleMouseMove);
     const removeClick = addOptimizedEventListener(canvas, 'click', handleClick);
     canvas.addEventListener('touchmove', handleTouchMove, { passive: true });
     canvas.addEventListener('touchstart', handleTouchStart, { passive: true });
+    document.addEventListener('focusin', handleFocusIn);
+    document.addEventListener('focusout', handleFocusOut);
 
     return () => {
       if (animationFrameRef.current) {
@@ -337,6 +349,8 @@ const InteractiveMatrixBackground = memo(() => {
       removeClick?.();
       canvas.removeEventListener('touchmove', handleTouchMove);
       canvas.removeEventListener('touchstart', handleTouchStart);
+      document.removeEventListener('focusin', handleFocusIn);
+      document.removeEventListener('focusout', handleFocusOut);
     };
   }, [initializeCanvas, initializeDrops, animate, handleInteraction, addOptimizedEventListener]);
 

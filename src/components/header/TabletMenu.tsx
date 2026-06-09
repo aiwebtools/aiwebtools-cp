@@ -1,6 +1,6 @@
 
 import { Menu, Phone, Globe, ChevronDown, Download, Copy, Gift, Clock } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -12,25 +12,17 @@ import {
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/components/ui/collapsible";
-import { allTools } from "@/data/toolsData";
 import { triggerPublicDownload } from "@/utils/downloads";
 import { createTimePortalEffect } from "@/utils/timeEffects";
 import { createConfettiCelebration } from "@/utils/effects/audioEffects";
-import { getCurrentToolCount } from "@/utils/toolCounter";
-import GlobalSearchBar from "@/components/GlobalSearchBar";
+import GlobalSearchBar from "@/components/LazyGlobalSearchBar";
 import Logo from "./Logo";
 import { useRecentlyVisitedTools } from "@/hooks/useRecentlyVisitedTools";
 
 const TabletMenu = () => {
   const navigate = useNavigate();
   const [isWeb3Open, setIsWeb3Open] = useState(false);
-  const [toolStats, setToolStats] = useState({ total: 0, marketing: "0+", categories: 0 });
   const { recentTools } = useRecentlyVisitedTools();
-
-  useEffect(() => {
-    const stats = getCurrentToolCount();
-    setToolStats(stats);
-  }, []);
 
   const handleBrowseAITools = () => {
     // Navigate to ALL AI TOOLS main category page
@@ -44,10 +36,11 @@ const TabletMenu = () => {
   };
 
   // Enhanced CSV download with all comprehensive data fields
-  const handleDownloadAllToolsCSV = () => {
+  const handleDownloadAllToolsCSV = async () => {
     try {
       // Trigger confetti celebration first
       createConfettiCelebration();
+      const { allTools } = await import("@/data/toolsData");
       
       console.log(`📊 Generating comprehensive CSV with ${allTools.length} tools...`);
       
@@ -264,7 +257,7 @@ const TabletMenu = () => {
                 {/* Download ALL AI tools CSV - tablet only */}
                 <DropdownMenuItem onClick={handleDownloadAllToolsCSV} className="text-cyan-100 hover:bg-cyan-500/20 rounded">
                   <Download className="w-4 h-4 mr-2" />
-                  📊 Download ALL {toolStats.marketing} AI Tools (CSV)
+                  📊 Download ALL 4,000+ AI Tools (CSV)
                 </DropdownMenuItem>
 
                 {/* Recently Visited Tools */}

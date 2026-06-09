@@ -3,7 +3,7 @@ import { useParams, Link, Navigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import GlobalSearchBar from '@/components/GlobalSearchBar';
+import GlobalSearchBar from '@/components/LazyGlobalSearchBar';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { getBlogPostBySlug, getRelatedPosts } from '@/data/blogPostContent';

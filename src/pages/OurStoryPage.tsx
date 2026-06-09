@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import GlobalSearchBar from "@/components/GlobalSearchBar";
+import GlobalSearchBar from "@/components/LazyGlobalSearchBar";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import DeferredMount from "@/components/DeferredMount";
 import SEOHead from "@/components/SEOHead";
