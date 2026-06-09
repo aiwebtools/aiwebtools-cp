@@ -1,5 +1,5 @@
 import React from "react";
-import GlobalSearchBar from "@/components/GlobalSearchBar";
+import GlobalSearchBar from "@/components/LazyGlobalSearchBar";
 import { TooltipProvider } from "@/components/ui/tooltip";
 
 interface SearchBarProps {

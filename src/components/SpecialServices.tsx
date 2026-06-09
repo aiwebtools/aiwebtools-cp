@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { createTimePortalEffect } from "@/utils/timeEffects";
 import { useNavigate } from "react-router-dom";
-import GlobalSearchBar from "@/components/GlobalSearchBar";
+import GlobalSearchBar from "@/components/LazyGlobalSearchBar";
 import { FavoritesButton } from "@/components/favorites/FavoritesButton";
 import { Tool } from "@/types/tools";
 import { useState, useRef, useMemo } from "react";

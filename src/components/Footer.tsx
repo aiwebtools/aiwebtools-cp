@@ -6,7 +6,7 @@ import FooterActions from "./footer/FooterActions";
 import FooterCompanyInfo from "./footer/FooterCompanyInfo";
 import FooterLinks from "./footer/FooterLinks";
 import FooterBottom from "./footer/FooterBottom";
-import GlobalSearchBar from "./GlobalSearchBar";
+import GlobalSearchBar from "./LazyGlobalSearchBar";
 import { Download, Gift } from "lucide-react";
 
 const Footer = () => {
