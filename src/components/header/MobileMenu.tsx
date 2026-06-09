@@ -1,5 +1,5 @@
 import { Menu, Phone, Search, X, FileText, Globe, ChevronDown, Download, Trees, Clapperboard, Heart, Copy, Gift, Clock } from "lucide-react";
-import { useState, useRef, useMemo, useCallback, lazy, Suspense } from "react";
+import { useState, useRef, useCallback, lazy, Suspense } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
@@ -11,11 +11,9 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/components/ui/collapsible";
 import { useFavorites } from "@/hooks/useFavorites";
-import { allTools } from "@/data/toolsData";
 import { createTimePortalEffect } from "@/utils/timeEffects";
 import { triggerPublicDownload } from "@/utils/downloads";
 import { createConfettiCelebration } from "@/utils/effects/audioEffects";
-import { getCurrentToolCount } from "@/utils/toolCounter";
 import { web3DomainsTools } from "@/data/tools/web3DomainsTools";
 import Logo from "./Logo";
 import GlobalSearchBar from "@/components/GlobalSearchBar";
@@ -42,12 +40,6 @@ const MobileMenu = () => {
     // Fallback silently
   }
   
-  // Lazy compute tool stats only when needed
-  const toolStats = useMemo(() => {
-    if (!isMenuOpen) return { total: 0, marketing: "0+", categories: 0 };
-    return getCurrentToolCount();
-  }, [isMenuOpen]);
-
   const handleMenuToggle = useCallback((open: boolean) => {
     setIsMenuOpen(open);
   }, []);
@@ -69,10 +61,11 @@ const MobileMenu = () => {
   }, [handleMenuToggle]);
 
   // Enhanced CSV download with all comprehensive data fields
-  const handleDownloadAllToolsCSV = () => {
+  const handleDownloadAllToolsCSV = async () => {
     try {
       // Trigger confetti celebration first
       createConfettiCelebration();
+      const { allTools } = await import("@/data/toolsData");
       
       console.log(`📊 Generating comprehensive CSV with ${allTools.length} tools...`);
       
@@ -489,7 +482,7 @@ const MobileMenu = () => {
                 <CollapsibleContent className="mt-1 space-y-1 pl-2">
                   <DropdownMenuItem onClick={handleDownloadAllToolsCSV} className="text-cyan-100 hover:bg-cyan-500/20 mb-1 rounded text-sm">
                     <Download className="w-3 h-3 mr-2" />
-                    📊 Download ALL {toolStats.marketing} AI Tools (CSV)
+                    📊 Download ALL 4,000+ AI Tools (CSV)
                   </DropdownMenuItem>
                   <DropdownMenuItem 
                      onClick={(e) => { 
