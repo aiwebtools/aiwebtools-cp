@@ -4,6 +4,13 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { memo, useCallback, useEffect, useRef, useState } from "react";
 
+const getInputDispatchDelay = (value: string, gapMs: number): number => {
+  if (gapMs >= 140) return 0;
+  if (value.length > 80) return 140;
+  if (value.length > 40) return 95;
+  return 55;
+};
+
 interface GlobalSearchInputProps {
   searchTerm: string;
   toolStats: { marketing: string };
@@ -31,9 +38,12 @@ const GlobalSearchInput = memo(({
   // Keep visual typing fully local and instant
   const [localValue, setLocalValue] = useState(searchTerm);
 
-  // Sync external changes (clear, navigation, prediction accept)
+  // Sync external changes (clear, navigation, prediction accept) without
+  // letting the intentionally-debounced parent value overwrite fast typing.
   useEffect(() => {
-    if (searchTerm !== localValue) {
+    const inputIsFocused = document.activeElement === inputRef.current;
+    const shouldSync = searchTerm === "" || !inputIsFocused;
+    if (shouldSync && searchTerm !== localValue) {
       setLocalValue(searchTerm);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -52,8 +62,7 @@ const GlobalSearchInput = memo(({
       const now = performance.now();
       const gap = now - lastKeystrokeRef.current;
       lastKeystrokeRef.current = now;
-      const rapid = gap < 120;
-      const delay = rapid ? 45 : 0;
+      const delay = getInputDispatchDelay(next, gap);
 
       if (debounceTimerRef.current) clearTimeout(debounceTimerRef.current);
       const dispatch = () => {

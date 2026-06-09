@@ -6,11 +6,8 @@ import { createConfettiCelebration } from "@/utils/effects/audioEffects";
 import { triggerPublicDownload } from "@/utils/downloads";
 import { useFavorites } from "@/hooks/useFavorites";
 import { prefetchNow } from "@/hooks/usePrefetch";
-import { allTools } from "@/data/toolsData";
-import { getCurrentToolCount } from "@/utils/toolCounter";
 import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
-import { useState, useEffect } from "react";
 
 const Navigation = () => {
   const navigate = useNavigate();
@@ -25,18 +22,12 @@ const Navigation = () => {
     getFavoritesCount = () => 0;
   }
   
-  const [toolStats, setToolStats] = useState({ total: 0, marketing: "0+", categories: 0 });
-
-  useEffect(() => {
-    const stats = getCurrentToolCount();
-    setToolStats(stats);
-  }, []);
-
   // Enhanced CSV download with all comprehensive data fields + GPT Instructions ZIP
-  const handleDownloadAllToolsCSV = () => {
+  const handleDownloadAllToolsCSV = async () => {
     try {
       // Trigger confetti celebration first
       createConfettiCelebration();
+      const { allTools } = await import("@/data/toolsData");
       
       console.log(`📊 Generating comprehensive CSV with ${allTools.length} tools...`);
       
@@ -158,7 +149,7 @@ const Navigation = () => {
       <button 
         onClick={handleDownloadAllToolsCSV}
         className="text-cyan-100 hover:text-cyan-400 transition-colors whitespace-nowrap cursor-pointer flex items-center space-x-1 px-2 py-1 rounded text-xs font-medium"
-        title={`Download all ${toolStats.marketing} AI tools as CSV`}
+        title="Download all 4,000+ AI tools as CSV"
       >
         <Download className="w-3 h-3" />
         <span className="hidden xl:inline">CSV</span>
