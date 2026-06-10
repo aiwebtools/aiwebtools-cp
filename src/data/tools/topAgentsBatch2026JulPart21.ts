@@ -1,5 +1,5 @@
 import { Tool } from "@/types/tools";
-import { FileText, FileCode, FileStack, Bot, Bug, Database, ListChecks, X, Dog, MousePointer, Mic, PenTool, Gem, Cat, Clapperboard, Workflow, Spider, Dna, Code2, Orbit } from "lucide-react";
+import { FileText, FileCode, FileStack, Bot, Bug, Database, ListChecks, X, Dog, MousePointer, Mic, PenTool, Gem, Cat, Clapperboard, Workflow, Dna, Code2, Orbit } from "lucide-react";
 
 import markitdownHero from "@/assets/tools/markitdown-hero.jpg";
 import doclingHero from "@/assets/tools/docling-hero.jpg";
