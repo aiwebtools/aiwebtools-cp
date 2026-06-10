@@ -6,6 +6,7 @@ import { Play, Pause, X, SkipForward, SkipBack, Volume2, VolumeX } from "lucide-
 import { allTools } from "@/data/toolsData";
 import { Tool } from "@/types/tools";
 import { useScrollThreshold } from "@/hooks/useScrollThreshold";
+import { playTimeWarpVoice } from "@/utils/effects/audioEffects";
 
 const YT_EMBED_ORIGIN = "https://www.youtube-nocookie.com";
 const YT_API_ORIGIN_FALLBACK = "https://www.youtube.com";
@@ -435,10 +436,14 @@ const PinnedVideoPlayer = memo(() => {
   // Reset playlist index when switching modes so each gallery starts fresh
   const handleSelectMode = useCallback((next: 'tools' | 'music') => {
     pauseOtherYouTubePlayers();
-    // Play the "WEB TOOLS INITIALIZING" voice on mode select for extra flair
-    import('@/utils/effects/audioEffects')
-      .then(({ playTimeWarpVoice }) => { try { playTimeWarpVoice(); } catch {} })
-      .catch(() => {});
+    // Play the "WEB TOOLS INITIALIZING" voice on mode select for extra flair.
+    // Wrap in try/catch and defer to next frame so it never blocks playlist setup
+    // or causes a render-time crash on mode switch.
+    try {
+      requestAnimationFrame(() => {
+        try { playTimeWarpVoice(); } catch {}
+      });
+    } catch {}
     setCurrentIndex(0);
     if (next === 'music') {
       setMusicOrder(buildMusicOrder());
