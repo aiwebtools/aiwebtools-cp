@@ -590,6 +590,11 @@ const BookPromotionCard = () => {
       gradient: "from-emerald-500/20 to-green-500/20"
     },
     {
+      id: "eG-TvPPKBpw",
+      title: "AI Web Tools 9:16 Vertical Showcase — Newest Drop",
+      gradient: "from-emerald-500/20 to-cyan-500/20"
+    },
+    {
       id: "3XaTLuJ0kak",
       title: "AI Web Tools 9:16 Vertical Showcase — Brand New Cinematic Drop",
       gradient: "from-emerald-500/20 to-cyan-500/20"
@@ -685,6 +690,7 @@ const BookPromotionCard = () => {
     // of the lineup. FHEWZkP_3ew is a Suno-style lyric track, so it's NOT
     // pinned to the front — it joins the lyric/audio tracks at the back.
     const verticalMusicVideoIds = [
+      "eG-TvPPKBpw",
       "3XaTLuJ0kak",
       "htVLYZPHehk",
       "bBZT8sPWvRY",

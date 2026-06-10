@@ -24,6 +24,7 @@ const MODE_SESSION_KEY = "pinned-video-mode"; // 'idle' | 'tools' | 'music'
 // always leads with the most eye-catching content.
 const MUSIC_VIDEO_GALLERY: Array<{ id: string; title: string }> = [
   // ── VISUAL MUSIC VIDEOS (real cinematic clips, lead the reel) ──
+  { id: "eG-TvPPKBpw", title: "AI Web Tools 9:16 Vertical Showcase — Newest Drop" },
   { id: "3XaTLuJ0kak", title: "AI Web Tools 9:16 Vertical Showcase — Brand New Cinematic Drop" },
   { id: "RVBmL7FEtQk", title: "AI Web Tools 9:16 Vertical Showcase — Latest Cinematic Drop" },
   { id: "htVLYZPHehk", title: "New Cinematic Drop — Music Video" },
@@ -434,6 +435,10 @@ const PinnedVideoPlayer = memo(() => {
   // Reset playlist index when switching modes so each gallery starts fresh
   const handleSelectMode = useCallback((next: 'tools' | 'music') => {
     pauseOtherYouTubePlayers();
+    // Play the "WEB TOOLS INITIALIZING" voice on mode select for extra flair
+    import('@/utils/effects/audioEffects')
+      .then(({ playTimeWarpVoice }) => { try { playTimeWarpVoice(); } catch {} })
+      .catch(() => {});
     setCurrentIndex(0);
     if (next === 'music') {
       setMusicOrder(buildMusicOrder());
