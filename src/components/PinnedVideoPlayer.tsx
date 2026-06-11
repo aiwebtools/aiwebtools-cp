@@ -1033,7 +1033,7 @@ const PinnedVideoPlayer = memo(() => {
               </button>
               <button
                 onClick={() => handleSelectMode('music')}
-                className="relative z-10 group w-full px-2 py-1 text-[10px] font-mono font-bold uppercase tracking-wider text-[#a855f7] bg-black/70 border border-[#a855f7]/60 hover:bg-[#a855f7]/15 hover:border-[#a855f7] active:scale-95 transition-all"
+                className="relative z-10 group w-full px-2 pt-3 pb-1 text-[10px] font-mono font-bold uppercase tracking-wider text-[#a855f7] bg-black/70 border border-[#a855f7]/60 hover:bg-[#a855f7]/15 hover:border-[#a855f7] active:scale-95 transition-all"
                 style={{
                   clipPath: "polygon(8% 0, 100% 0, 92% 100%, 0 100%)",
                   textShadow: "0 0 6px #a855f7",
@@ -1041,6 +1041,13 @@ const PinnedVideoPlayer = memo(() => {
                 }}
                 title="Watch our original AI musical art gallery"
               >
+                <img
+                  src={mtvAiWebToolsLogo}
+                  alt=""
+                  aria-hidden="true"
+                  draggable={false}
+                  className="pointer-events-none absolute top-0.5 left-1/2 -translate-x-1/2 w-3 h-3 opacity-80 select-none drop-shadow-[0_0_3px_rgba(168,85,247,0.6)]"
+                />
                 ♪ MUSIC_GALLERY.exe
               </button>
             </div>
