@@ -49,26 +49,24 @@ const GlobalSearchResults = ({
     }
   }, [searchResults]);
 
-  // Touch-drag detection: only fire navigation if finger didn't move much
-  const touchStartRef = useRef<{ x: number; y: number } | null>(null);
-  const TOUCH_SLOP = 12; // px threshold – prevents scroll from triggering click
+  // Unified pointer-down handling for instant nav on every device.
+  // Tracks pointer movement so a scroll-drag never fires a navigation.
+  const pointerStartRef = useRef<{ x: number; y: number; id: number } | null>(null);
+  const POINTER_SLOP = 10;
 
-  const handleTouchStart = useCallback((e: React.TouchEvent) => {
-    const t = e.touches[0];
-    touchStartRef.current = { x: t.clientX, y: t.clientY };
+  const handlePointerDown = useCallback((e: React.PointerEvent) => {
+    pointerStartRef.current = { x: e.clientX, y: e.clientY, id: e.pointerId };
   }, []);
 
-  const handleTouchEnd = useCallback((e: React.TouchEvent, toolIdx: number) => {
-    const start = touchStartRef.current;
-    if (!start) return;
-    const t = e.changedTouches[0];
-    const dx = Math.abs(t.clientX - start.x);
-    const dy = Math.abs(t.clientY - start.y);
-    if (dx < TOUCH_SLOP && dy < TOUCH_SLOP) {
-      e.preventDefault();
+  const handlePointerUp = useCallback((e: React.PointerEvent, toolIdx: number) => {
+    const start = pointerStartRef.current;
+    pointerStartRef.current = null;
+    if (!start || start.id !== e.pointerId) return;
+    const dx = Math.abs(e.clientX - start.x);
+    const dy = Math.abs(e.clientY - start.y);
+    if (dx < POINTER_SLOP && dy < POINTER_SLOP) {
       onToolClick(toolIdx);
     }
-    touchStartRef.current = null;
   }, [onToolClick]);
 
   const scrollToTop = () => {
@@ -115,10 +113,9 @@ const GlobalSearchResults = ({
             const toolItem = (
               <div 
                 className={`flex items-center space-x-3 p-3 rounded-lg hover:bg-cyan-500/10 cursor-pointer group border border-transparent hover:border-cyan-500/30 ${isRecommendation ? 'opacity-90' : ''}`}
-                onMouseDown={(e) => { e.preventDefault(); onToolClick(toolIndex); }}
-                onTouchStart={handleTouchStart}
-                onTouchEnd={(e) => handleTouchEnd(e, toolIndex)}
-                style={{ transform: 'translateZ(0)' }}
+                onPointerDown={handlePointerDown}
+                onPointerUp={(e) => handlePointerUp(e, toolIndex)}
+                style={{ transform: 'translateZ(0)', touchAction: 'pan-y' }}
               >
                 {/* Category color-coded icon */}
                 <div 

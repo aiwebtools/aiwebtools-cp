@@ -2228,18 +2228,22 @@ export const useGlobalSearch = () => {
     // Navigate FIRST before clearing state to avoid re-render blocking navigation
     const tool = allTools[toolIndex];
     const path = tool ? `/${generateToolSlug(tool.title)}` : `/tool/${toolIndex}`;
-    
+
     // Cancel any pending search work immediately
     if (quickRef.current) clearTimeout(quickRef.current);
     if (fullRef.current) clearTimeout(fullRef.current);
-    
+
     // Navigate synchronously - no RAF wrapper
     navigate(path);
-    
-    // Clear state AFTER navigation is queued (non-blocking)
-    setIsOpen(false);
-    setSearchResults([]);
-    setSearchTermInternal("");
+
+    // Defer the heavy state cleanup so React doesn't reconcile the entire
+    // (potentially huge) results list in the same tick as navigation.
+    // This eliminates the perceived 1-2s pause after clicking a result.
+    setTimeout(() => {
+      setIsOpen(false);
+      setSearchResults([]);
+      setSearchTermInternal("");
+    }, 0);
   }, [navigate]);
 
   const handleDirectAccess = useCallback((tool: any, e: React.MouseEvent) => {
