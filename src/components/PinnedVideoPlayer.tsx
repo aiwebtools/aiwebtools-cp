@@ -1063,6 +1063,16 @@ const PinnedVideoPlayer = memo(() => {
                 title={isPlaying ? "Pause" : "Play with sound"}
                 aria-label={isPlaying ? "Pause pinned video" : "Play pinned video with sound"}
               />
+              {/* MTV-style AIWebTools bug — only in music mode, bottom-left, non-interactive */}
+              {isMusicMode && (
+                <img
+                  src={mtvAiWebToolsLogo}
+                  alt="MTV AIWebTools.ai"
+                  aria-hidden="true"
+                  className="pointer-events-none absolute bottom-1.5 left-1.5 w-8 h-8 opacity-60 select-none drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]"
+                  draggable={false}
+                />
+              )}
             </>
           )}
         </div>
