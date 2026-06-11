@@ -471,6 +471,7 @@ const allToolCategories = consolidateTools([
   ...topAgentsBatch2026JulPart19,
   ...topAgentsBatch2026JulPart20,
   ...topAgentsBatch2026JulPart21,
+  ...topAgentsBatch2026JulPart22,
 
   // Frontier Batch D1-D4 (70 tools: Healthcare, Finance, Security, Enterprise, Agencies)
   ...frontierBatchD1,
