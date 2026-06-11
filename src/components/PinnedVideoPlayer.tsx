@@ -7,6 +7,7 @@ import { allTools } from "@/data/toolsData";
 import { Tool } from "@/types/tools";
 import { useScrollThreshold } from "@/hooks/useScrollThreshold";
 import { playTimeWarpVoice } from "@/utils/effects/audioEffects";
+import mtvAiWebToolsLogo from "@/assets/mtv-aiwebtools-logo.png";
 
 const YT_EMBED_ORIGIN = "https://www.youtube-nocookie.com";
 const YT_API_ORIGIN_FALLBACK = "https://www.youtube.com";
