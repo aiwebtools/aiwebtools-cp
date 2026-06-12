@@ -757,9 +757,22 @@ const PinnedVideoPlayer = memo(() => {
         }
         if (data?.event === "onStateChange" && data?.info === 2) {
           setIsPlaying(false);
+          // SMOOTH PLAYBACK: if YouTube spuriously pauses (buffering, ad
+          // boundary, network hiccup) but the user did NOT press pause,
+          // immediately resume so music videos play through end-to-end.
+          if (!userPausedRef.current && isMusicMode) {
+            setTimeout(() => {
+              if (!userPausedRef.current) sendYTCommand('playVideo');
+            }, 150);
+          }
         }
         if (data?.info?.playerState === 2) {
           setIsPlaying(false);
+          if (!userPausedRef.current && isMusicMode) {
+            setTimeout(() => {
+              if (!userPausedRef.current) sendYTCommand('playVideo');
+            }, 150);
+          }
         }
         
         // Only advance if video has been playing for at least 8 seconds
