@@ -76,6 +76,7 @@ const AIWritingToolsPage = lazyWithRetry(() => import("./pages/AIWritingToolsPag
 const AIWebToolsPage = lazyWithRetry(() => import("./pages/AIWebToolsPage"));
 const AdminAnalytics = lazyWithRetry(() => import("./pages/AdminAnalytics"));
 const PrivacyPolicy = lazyWithRetry(() => import("./pages/PrivacyPolicy"));
+const MusicStream = lazyWithRetry(() => import("./pages/MusicStream"));
 
 // Lazy load non-critical components — wrapped in retry to prevent black screen
 const FloatingCloneButton = lazyWithRetry(() => import("./components/FloatingCloneButton"));
