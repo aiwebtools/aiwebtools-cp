@@ -241,6 +241,7 @@ const AnimatedRoutes = () => {
         <Route path="/our-story" element={<OurStoryPage />} />
         <Route path="/submit-tool" element={<ToolSubmission />} />
         <Route path="/admin/analytics" element={<AdminAnalytics />} />
+        <Route path="/music-stream" element={<Suspense fallback={null}><MusicStream /></Suspense>} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Suspense>
