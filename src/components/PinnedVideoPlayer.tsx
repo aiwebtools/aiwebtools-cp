@@ -492,6 +492,63 @@ const PinnedVideoPlayer = memo(() => {
   // Reshuffled when we wrap past the end so the next round is a fresh random order.
   const [musicOrder, setMusicOrder] = useState<typeof MUSIC_VIDEO_GALLERY>(() => buildMusicOrder());
 
+  // ── Draggable pinned-player support ─────────────────────────────────────
+  // The player is pinned by default. As soon as the user drags it, we switch
+  // to free positioning so they can move it out of their way while still
+  // watching. Drag handle = the title header bar.
+  const [dragPos, setDragPos] = useState<{ x: number; y: number } | null>(null);
+  const dragStateRef = useRef<{
+    pointerId: number;
+    startX: number;
+    startY: number;
+    originX: number;
+    originY: number;
+    moved: boolean;
+  } | null>(null);
+
+  const handleDragPointerDown = useCallback((e: React.PointerEvent<HTMLDivElement>) => {
+    // Don't start a drag from the close button or other interactive children
+    const target = e.target as HTMLElement;
+    if (target.closest('[data-no-drag]')) return;
+    const rect = (e.currentTarget.parentElement as HTMLElement | null)?.getBoundingClientRect();
+    if (!rect) return;
+    dragStateRef.current = {
+      pointerId: e.pointerId,
+      startX: e.clientX,
+      startY: e.clientY,
+      originX: rect.left,
+      originY: rect.top,
+      moved: false,
+    };
+    try { (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId); } catch {}
+  }, []);
+
+  const handleDragPointerMove = useCallback((e: React.PointerEvent<HTMLDivElement>) => {
+    const s = dragStateRef.current;
+    if (!s || s.pointerId !== e.pointerId) return;
+    const dx = e.clientX - s.startX;
+    const dy = e.clientY - s.startY;
+    if (!s.moved && Math.hypot(dx, dy) < 4) return;
+    s.moved = true;
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+    // Clamp to viewport with a 220x220 worst-case footprint
+    const newX = Math.max(0, Math.min(w - 60, s.originX + dx));
+    const newY = Math.max(0, Math.min(h - 60, s.originY + dy));
+    setDragPos({ x: newX, y: newY });
+  }, []);
+
+  const handleDragPointerUp = useCallback((e: React.PointerEvent<HTMLDivElement>) => {
+    const s = dragStateRef.current;
+    if (s && s.pointerId === e.pointerId) {
+      try { (e.currentTarget as HTMLElement).releasePointerCapture(e.pointerId); } catch {}
+      dragStateRef.current = null;
+    }
+  }, []);
+
+  // Brief "exploding code" burst when the user clicks MUSIC_GALLERY.exe
+  const [musicBurst, setMusicBurst] = useState(false);
+
   // Mode: idle = show overlay with "Whatcha in the mood for?" buttons.
   // tools = play tool showcase videos (original behavior). music = 9:16 music videos.
   const [mode, setMode] = useState<'idle' | 'tools' | 'music'>(() => {
