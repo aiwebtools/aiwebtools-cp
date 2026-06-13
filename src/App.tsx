@@ -76,6 +76,7 @@ const AIWritingToolsPage = lazyWithRetry(() => import("./pages/AIWritingToolsPag
 const AIWebToolsPage = lazyWithRetry(() => import("./pages/AIWebToolsPage"));
 const AdminAnalytics = lazyWithRetry(() => import("./pages/AdminAnalytics"));
 const PrivacyPolicy = lazyWithRetry(() => import("./pages/PrivacyPolicy"));
+const MusicStream = lazyWithRetry(() => import("./pages/MusicStream"));
 
 // Lazy load non-critical components — wrapped in retry to prevent black screen
 const FloatingCloneButton = lazyWithRetry(() => import("./components/FloatingCloneButton"));
@@ -240,6 +241,7 @@ const AnimatedRoutes = () => {
         <Route path="/our-story" element={<OurStoryPage />} />
         <Route path="/submit-tool" element={<ToolSubmission />} />
         <Route path="/admin/analytics" element={<AdminAnalytics />} />
+        <Route path="/music-stream" element={<Suspense fallback={null}><MusicStream /></Suspense>} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Suspense>

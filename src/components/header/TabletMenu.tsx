@@ -133,6 +133,13 @@ const TabletMenu = () => {
               <DropdownMenuItem onClick={() => navigate('/our-story')} className="text-cyan-100 hover:bg-cyan-500/20 mb-2 rounded">
                 📖 Our Story
               </DropdownMenuItem>
+              <DropdownMenuItem
+                onClick={() => navigate('/music-stream')}
+                className="text-fuchsia-100 hover:bg-fuchsia-500/20 mb-2 rounded border border-fuchsia-500/30"
+                style={{ textShadow: '0 0 6px rgba(168,85,247,0.55)' }}
+              >
+                📺 AiWebTools Music Stream
+              </DropdownMenuItem>
               <DropdownMenuSeparator className="border-gray-700 mb-2" />
               
               {/* Browse Categories */}

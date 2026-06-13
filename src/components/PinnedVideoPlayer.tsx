@@ -24,7 +24,7 @@ const MODE_SESSION_KEY = "pinned-video-mode"; // 'idle' | 'tools' | 'music'
 // ORDERING RULE: Real cinematic music videos (with actual visuals) play FIRST.
 // Suno-style lyric/audio tracks (just lyrics on screen) play LAST, so the reel
 // always leads with the most eye-catching content.
-const MUSIC_VIDEO_GALLERY: Array<{ id: string; title: string }> = [
+export const MUSIC_VIDEO_GALLERY: Array<{ id: string; title: string }> = [
   // ── MTV LINE-UP (newest drops — play FIRST in the 9:16 reel) ──
   { id: "I6kOI_q0aHE", title: "Neon Prophecy — Official MTVai Music Video" },
   { id: "ZIr6c-fY9fs", title: "Through The Static — Official MTVai Music Video" },
@@ -59,6 +59,44 @@ const MUSIC_VIDEO_GALLERY: Array<{ id: string; title: string }> = [
   { id: "OcFYWWYEoYk", title: "Unlock You F'kn Dreams — Official MTVai Music Video" },
   { id: "brKREzLfgjU", title: "Strange — Official MTVai Music Video" },
   { id: "mQm6KsVGFSs", title: "Sunshine Daydream (Open Your Eyes) — Official MTVai Music Video" },
+  // ── MTV LINE-UP (latest expansion drop) ──
+  { id: "bMi4PGWzExk", title: "Glitch In The Garden — Official MTVai Music Video" },
+  { id: "vxGi31tkz3Y", title: "Crystal Override — Official MTVai Music Video" },
+  { id: "EBBw-cklCLk", title: "Neon Hallucination — Official MTVai Music Video" },
+  { id: "qtwyOzvCg_o", title: "Digital Stigmata — Official MTVai Music Video" },
+  { id: "CIK8QLCqU9M", title: "Static Cathedral — Official MTVai Music Video" },
+  { id: "C8nPl8IWHIw", title: "Phantom Wavelength — Official MTVai Music Video" },
+  { id: "Hk0QYyhBvSY", title: "Burn The Algorithm — Official MTVai Music Video" },
+  { id: "OFQX2Ew_81o", title: "Eclipse Engine — Official MTVai Music Video" },
+  { id: "KHdIFY7HrB4", title: "Liquid Lightning — Official MTVai Music Video" },
+  { id: "clSbwKvM5Vk", title: "Pixel Prayer — Official MTVai Music Video" },
+  { id: "pP2204ZbUHY", title: "Hologram Hymn — Official MTVai Music Video" },
+  { id: "m1YcCZHAb8A", title: "Ghosted Frequency — Official MTVai Music Video" },
+  { id: "FmATqYvL0IY", title: "Inner Circuit — Official MTVai Music Video" },
+  { id: "DMx8Sn7ncOY", title: "Cyber Resurrection — Official MTVai Music Video" },
+  { id: "qOmKRKPvCac", title: "Render The Truth — Official MTVai Music Video" },
+  { id: "iXIKj45hylQ", title: "Velvet Static — Official MTVai Music Video" },
+  { id: "_D-tw9BAoxk", title: "Code Of The Stars — Official MTVai Music Video" },
+  { id: "VgRehZKTIyk", title: "Mirror Loop — Official MTVai Music Video" },
+  { id: "IN1QMOU-8wM", title: "Override Reality — Official MTVai Music Video" },
+  { id: "1XY2eEH5elw", title: "Synthwave Apocalypse — Official MTVai Music Video" },
+  { id: "_ejJIAqxPtA", title: "Astral Bandwidth — Official MTVai Music Video" },
+  { id: "jUJQG3D9Ig0", title: "Lucid Lightning — Official MTVai Music Video" },
+  { id: "oR-aWyv1Ktg", title: "Encrypted Heart — Official MTVai Music Video" },
+  { id: "9IsuTqEKn4o", title: "Phantom Protocol — Official MTVai Music Video" },
+  { id: "I0meHkQV6FQ", title: "Future Echo — Official MTVai Music Video" },
+  { id: "jcb8zzaI8ic", title: "Quantum Hymn — Official MTVai Music Video" },
+  { id: "MA6mGk9tRAM", title: "Wired To Dream — Official MTVai Music Video" },
+  { id: "TvwM3Kkyrb0", title: "Neon Resurrection — Official MTVai Music Video" },
+  { id: "6owuUcQ4mF0", title: "Pulse Cathedral — Official MTVai Music Video" },
+  { id: "1MGu02bRTcc", title: "Holy Static — Official MTVai Music Video" },
+  { id: "7qIfC0ZPIZo", title: "Cyber Sermon — Official MTVai Music Video" },
+  { id: "iiFOYIYQ-bY", title: "Glow In The Machine — Official MTVai Music Video" },
+  { id: "jfZq0Bjgfc4", title: "Signal Of The Saints — Official MTVai Music Video" },
+  { id: "vE_N6r4dOL0", title: "Frequency Of Faith — Official MTVai Music Video" },
+  { id: "A16W7eADboQ", title: "Render The Resurrection — Official MTVai Music Video" },
+  { id: "U7R_6FRwK1Q", title: "Heart Of The Mainframe — Official MTVai Music Video" },
+  { id: "Ja2auKcdzHg", title: "Through The Looking Code — Official MTVai Music Video" },
   // ── VISUAL MUSIC VIDEOS (real cinematic clips, lead the reel) ──
   { id: "eG-TvPPKBpw", title: "AI Web Tools 9:16 Vertical Showcase — Newest Drop" },
   { id: "3XaTLuJ0kak", title: "AI Web Tools 9:16 Vertical Showcase — Brand New Cinematic Drop" },
@@ -453,6 +491,63 @@ const PinnedVideoPlayer = memo(() => {
   // Shuffled music-video order — every video plays once before any repeat.
   // Reshuffled when we wrap past the end so the next round is a fresh random order.
   const [musicOrder, setMusicOrder] = useState<typeof MUSIC_VIDEO_GALLERY>(() => buildMusicOrder());
+
+  // ── Draggable pinned-player support ─────────────────────────────────────
+  // The player is pinned by default. As soon as the user drags it, we switch
+  // to free positioning so they can move it out of their way while still
+  // watching. Drag handle = the title header bar.
+  const [dragPos, setDragPos] = useState<{ x: number; y: number } | null>(null);
+  const dragStateRef = useRef<{
+    pointerId: number;
+    startX: number;
+    startY: number;
+    originX: number;
+    originY: number;
+    moved: boolean;
+  } | null>(null);
+
+  const handleDragPointerDown = useCallback((e: React.PointerEvent<HTMLDivElement>) => {
+    // Don't start a drag from the close button or other interactive children
+    const target = e.target as HTMLElement;
+    if (target.closest('[data-no-drag]')) return;
+    const rect = (e.currentTarget.parentElement as HTMLElement | null)?.getBoundingClientRect();
+    if (!rect) return;
+    dragStateRef.current = {
+      pointerId: e.pointerId,
+      startX: e.clientX,
+      startY: e.clientY,
+      originX: rect.left,
+      originY: rect.top,
+      moved: false,
+    };
+    try { (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId); } catch {}
+  }, []);
+
+  const handleDragPointerMove = useCallback((e: React.PointerEvent<HTMLDivElement>) => {
+    const s = dragStateRef.current;
+    if (!s || s.pointerId !== e.pointerId) return;
+    const dx = e.clientX - s.startX;
+    const dy = e.clientY - s.startY;
+    if (!s.moved && Math.hypot(dx, dy) < 4) return;
+    s.moved = true;
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+    // Clamp to viewport with a 220x220 worst-case footprint
+    const newX = Math.max(0, Math.min(w - 60, s.originX + dx));
+    const newY = Math.max(0, Math.min(h - 60, s.originY + dy));
+    setDragPos({ x: newX, y: newY });
+  }, []);
+
+  const handleDragPointerUp = useCallback((e: React.PointerEvent<HTMLDivElement>) => {
+    const s = dragStateRef.current;
+    if (s && s.pointerId === e.pointerId) {
+      try { (e.currentTarget as HTMLElement).releasePointerCapture(e.pointerId); } catch {}
+      dragStateRef.current = null;
+    }
+  }, []);
+
+  // Brief "exploding code" burst when the user clicks MUSIC_GALLERY.exe
+  const [musicBurst, setMusicBurst] = useState(false);
 
   // Mode: idle = show overlay with "Whatcha in the mood for?" buttons.
   // tools = play tool showcase videos (original behavior). music = 9:16 music videos.
@@ -981,10 +1076,14 @@ const PinnedVideoPlayer = memo(() => {
         width: isMusicMode ? "clamp(130px, 30vw, 180px)" : "clamp(148px, 36vw, 208px)",
         // Lift the player on mobile so the idle mode buttons (esp. MUSIC_GALLERY.exe)
         // never get clipped by the bottom of the viewport / nav UI.
-        bottom: mode === 'idle'
-          ? "calc(4.5rem + env(safe-area-inset-bottom, 0px))"
-          : "calc(1rem + env(safe-area-inset-bottom, 0px))",
-        left: "calc(0.5rem + env(safe-area-inset-left, 0px))",
+        ...(dragPos
+          ? { top: `${dragPos.y}px`, left: `${dragPos.x}px` }
+          : {
+              bottom: mode === 'idle'
+                ? "calc(4.5rem + env(safe-area-inset-bottom, 0px))"
+                : "calc(1rem + env(safe-area-inset-bottom, 0px))",
+              left: "calc(0.5rem + env(safe-area-inset-left, 0px))",
+            }),
         // Portal + max z-index prevents the "audio-only" bug caused by stacking contexts/overlays.
         zIndex: 2147483647,
         transform: "translateZ(0)",
@@ -1000,8 +1099,40 @@ const PinnedVideoPlayer = memo(() => {
           boxShadow: '0 0 15px rgba(34, 211, 238, 0.3), 0 0 30px rgba(168, 85, 247, 0.15), 0 6px 24px rgba(0, 0, 0, 0.4)'
         }}
       >
+        {musicBurst && (
+          <>
+            <style>{`
+              @keyframes mtvCodeBurst { 0% { opacity:0; transform:scale(0.4);} 30% { opacity:1; } 100% { opacity:0; transform:scale(2.6);} }
+              @keyframes mtvLogoPop  { 0% { opacity:0; transform:scale(0.2) rotate(-25deg);} 50% { opacity:1; transform:scale(1.3) rotate(0);} 100% { opacity:0; transform:scale(2.4) rotate(15deg);} }
+            `}</style>
+            <div className="pointer-events-none fixed inset-0 z-[2147483646] flex items-center justify-center">
+              <div
+                aria-hidden
+                className="absolute inset-0 font-mono text-[10px] leading-[12px] text-[#a855f7] whitespace-pre overflow-hidden"
+                style={{ animation: "mtvCodeBurst .9s ease-out forwards", textShadow: "0 0 6px #a855f7" }}
+              >
+                {Array.from({ length: 40 }).map(() => "10110010 11001101 10101110 01001010\n").join("")}
+              </div>
+              <img
+                src={mtvAiWebToolsLogo}
+                alt=""
+                aria-hidden
+                draggable={false}
+                className="w-40 h-40 drop-shadow-[0_0_40px_rgba(168,85,247,0.95)]"
+                style={{ animation: "mtvLogoPop .9s cubic-bezier(.2,.7,.2,1) forwards" }}
+              />
+            </div>
+          </>
+        )}
         {/* Tool title header with X button - allow wrap */}
-        <div className="flex items-start justify-between gap-1 px-1.5 py-1 bg-gradient-to-r from-gray-800 to-gray-900 border-b border-cyan-500/30">
+        <div
+          className="flex items-start justify-between gap-1 px-1.5 py-1 bg-gradient-to-r from-gray-800 to-gray-900 border-b border-cyan-500/30 cursor-grab active:cursor-grabbing touch-none select-none"
+          onPointerDown={handleDragPointerDown}
+          onPointerMove={handleDragPointerMove}
+          onPointerUp={handleDragPointerUp}
+          onPointerCancel={handleDragPointerUp}
+          title="Drag to move"
+        >
           <p 
             className="text-[10px] font-bold leading-[1.15] flex-1 line-clamp-3 break-words"
             style={{
@@ -1016,6 +1147,7 @@ const PinnedVideoPlayer = memo(() => {
           </p>
           <button
             onClick={handleClose}
+            data-no-drag
             className="w-4 h-4 flex items-center justify-center rounded bg-black/40 hover:bg-red-500/70 text-white/60 hover:text-white transition-colors flex-shrink-0"
             title="Close"
           >
@@ -1079,7 +1211,11 @@ const PinnedVideoPlayer = memo(() => {
                 ▶ AI_TOOLS.exe
               </button>
               <button
-                onClick={() => handleSelectMode('music')}
+                onClick={() => {
+                  setMusicBurst(true);
+                  window.setTimeout(() => setMusicBurst(false), 900);
+                  handleSelectMode('music');
+                }}
                 className="relative z-10 group w-full px-2 pt-3 pb-1 text-[10px] font-mono font-bold uppercase tracking-wider text-[#a855f7] bg-black/70 border border-[#a855f7]/60 hover:bg-[#a855f7]/15 hover:border-[#a855f7] active:scale-95 transition-all"
                 style={{
                   clipPath: "polygon(8% 0, 100% 0, 92% 100%, 0 100%)",

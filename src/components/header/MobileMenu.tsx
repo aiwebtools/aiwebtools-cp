@@ -430,6 +430,15 @@ const MobileMenu = () => {
               
               <DropdownMenuSeparator className="border-gray-700 mb-2" />
               
+              {/* AiWebTools Music Stream — MTVai 24/7 channel */}
+              <DropdownMenuItem
+                onClick={() => { navigate('/music-stream'); setIsMenuOpen(false); }}
+                className="text-fuchsia-100 hover:bg-fuchsia-500/20 mb-2 rounded flex items-center text-sm border border-fuchsia-500/30 px-2 py-2 font-medium"
+                style={{ textShadow: '0 0 6px rgba(168,85,247,0.55)' }}
+              >
+                📺 AiWebTools Music Stream
+              </DropdownMenuItem>
+
               {/* About & Company Accordion */}
               <Collapsible open={isAboutOpen} onOpenChange={setIsAboutOpen}>
                 <CollapsibleTrigger 
