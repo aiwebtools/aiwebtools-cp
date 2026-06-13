@@ -24,7 +24,7 @@ const MODE_SESSION_KEY = "pinned-video-mode"; // 'idle' | 'tools' | 'music'
 // ORDERING RULE: Real cinematic music videos (with actual visuals) play FIRST.
 // Suno-style lyric/audio tracks (just lyrics on screen) play LAST, so the reel
 // always leads with the most eye-catching content.
-const MUSIC_VIDEO_GALLERY: Array<{ id: string; title: string }> = [
+export const MUSIC_VIDEO_GALLERY: Array<{ id: string; title: string }> = [
   // ── MTV LINE-UP (newest drops — play FIRST in the 9:16 reel) ──
   { id: "I6kOI_q0aHE", title: "Neon Prophecy — Official MTVai Music Video" },
   { id: "ZIr6c-fY9fs", title: "Through The Static — Official MTVai Music Video" },
@@ -59,6 +59,44 @@ const MUSIC_VIDEO_GALLERY: Array<{ id: string; title: string }> = [
   { id: "OcFYWWYEoYk", title: "Unlock You F'kn Dreams — Official MTVai Music Video" },
   { id: "brKREzLfgjU", title: "Strange — Official MTVai Music Video" },
   { id: "mQm6KsVGFSs", title: "Sunshine Daydream (Open Your Eyes) — Official MTVai Music Video" },
+  // ── MTV LINE-UP (latest expansion drop) ──
+  { id: "bMi4PGWzExk", title: "Glitch In The Garden — Official MTVai Music Video" },
+  { id: "vxGi31tkz3Y", title: "Crystal Override — Official MTVai Music Video" },
+  { id: "EBBw-cklCLk", title: "Neon Hallucination — Official MTVai Music Video" },
+  { id: "qtwyOzvCg_o", title: "Digital Stigmata — Official MTVai Music Video" },
+  { id: "CIK8QLCqU9M", title: "Static Cathedral — Official MTVai Music Video" },
+  { id: "C8nPl8IWHIw", title: "Phantom Wavelength — Official MTVai Music Video" },
+  { id: "Hk0QYyhBvSY", title: "Burn The Algorithm — Official MTVai Music Video" },
+  { id: "OFQX2Ew_81o", title: "Eclipse Engine — Official MTVai Music Video" },
+  { id: "KHdIFY7HrB4", title: "Liquid Lightning — Official MTVai Music Video" },
+  { id: "clSbwKvM5Vk", title: "Pixel Prayer — Official MTVai Music Video" },
+  { id: "pP2204ZbUHY", title: "Hologram Hymn — Official MTVai Music Video" },
+  { id: "m1YcCZHAb8A", title: "Ghosted Frequency — Official MTVai Music Video" },
+  { id: "FmATqYvL0IY", title: "Inner Circuit — Official MTVai Music Video" },
+  { id: "DMx8Sn7ncOY", title: "Cyber Resurrection — Official MTVai Music Video" },
+  { id: "qOmKRKPvCac", title: "Render The Truth — Official MTVai Music Video" },
+  { id: "iXIKj45hylQ", title: "Velvet Static — Official MTVai Music Video" },
+  { id: "_D-tw9BAoxk", title: "Code Of The Stars — Official MTVai Music Video" },
+  { id: "VgRehZKTIyk", title: "Mirror Loop — Official MTVai Music Video" },
+  { id: "IN1QMOU-8wM", title: "Override Reality — Official MTVai Music Video" },
+  { id: "1XY2eEH5elw", title: "Synthwave Apocalypse — Official MTVai Music Video" },
+  { id: "_ejJIAqxPtA", title: "Astral Bandwidth — Official MTVai Music Video" },
+  { id: "jUJQG3D9Ig0", title: "Lucid Lightning — Official MTVai Music Video" },
+  { id: "oR-aWyv1Ktg", title: "Encrypted Heart — Official MTVai Music Video" },
+  { id: "9IsuTqEKn4o", title: "Phantom Protocol — Official MTVai Music Video" },
+  { id: "I0meHkQV6FQ", title: "Future Echo — Official MTVai Music Video" },
+  { id: "jcb8zzaI8ic", title: "Quantum Hymn — Official MTVai Music Video" },
+  { id: "MA6mGk9tRAM", title: "Wired To Dream — Official MTVai Music Video" },
+  { id: "TvwM3Kkyrb0", title: "Neon Resurrection — Official MTVai Music Video" },
+  { id: "6owuUcQ4mF0", title: "Pulse Cathedral — Official MTVai Music Video" },
+  { id: "1MGu02bRTcc", title: "Holy Static — Official MTVai Music Video" },
+  { id: "7qIfC0ZPIZo", title: "Cyber Sermon — Official MTVai Music Video" },
+  { id: "iiFOYIYQ-bY", title: "Glow In The Machine — Official MTVai Music Video" },
+  { id: "jfZq0Bjgfc4", title: "Signal Of The Saints — Official MTVai Music Video" },
+  { id: "vE_N6r4dOL0", title: "Frequency Of Faith — Official MTVai Music Video" },
+  { id: "A16W7eADboQ", title: "Render The Resurrection — Official MTVai Music Video" },
+  { id: "U7R_6FRwK1Q", title: "Heart Of The Mainframe — Official MTVai Music Video" },
+  { id: "Ja2auKcdzHg", title: "Through The Looking Code — Official MTVai Music Video" },
   // ── VISUAL MUSIC VIDEOS (real cinematic clips, lead the reel) ──
   { id: "eG-TvPPKBpw", title: "AI Web Tools 9:16 Vertical Showcase — Newest Drop" },
   { id: "3XaTLuJ0kak", title: "AI Web Tools 9:16 Vertical Showcase — Brand New Cinematic Drop" },
