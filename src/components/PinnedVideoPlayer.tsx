@@ -1100,7 +1100,14 @@ const PinnedVideoPlayer = memo(() => {
         }}
       >
         {/* Tool title header with X button - allow wrap */}
-        <div className="flex items-start justify-between gap-1 px-1.5 py-1 bg-gradient-to-r from-gray-800 to-gray-900 border-b border-cyan-500/30">
+        <div
+          className="flex items-start justify-between gap-1 px-1.5 py-1 bg-gradient-to-r from-gray-800 to-gray-900 border-b border-cyan-500/30 cursor-grab active:cursor-grabbing touch-none select-none"
+          onPointerDown={handleDragPointerDown}
+          onPointerMove={handleDragPointerMove}
+          onPointerUp={handleDragPointerUp}
+          onPointerCancel={handleDragPointerUp}
+          title="Drag to move"
+        >
           <p 
             className="text-[10px] font-bold leading-[1.15] flex-1 line-clamp-3 break-words"
             style={{
@@ -1115,6 +1122,7 @@ const PinnedVideoPlayer = memo(() => {
           </p>
           <button
             onClick={handleClose}
+            data-no-drag
             className="w-4 h-4 flex items-center justify-center rounded bg-black/40 hover:bg-red-500/70 text-white/60 hover:text-white transition-colors flex-shrink-0"
             title="Close"
           >
