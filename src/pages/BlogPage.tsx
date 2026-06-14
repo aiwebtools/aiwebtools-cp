@@ -84,7 +84,7 @@ export default function BlogPage() {
                 </Link>
               </Button>
               <Button asChild className="bg-purple-600/20 hover:bg-purple-600/30 border border-purple-500/30 text-purple-300">
-                <a href="https://lovable.dev/products/aiwebtools" target="_blank" rel="noopener noreferrer">
+                <a href="https://lovable.dev/projects/be05dcba-063b-47c3-b8a5-bf7bdd86a447?via=aiwebtools" target="_blank" rel="noopener noreferrer">
                   <Copy className="w-4 h-4 mr-2" />
                   Clone AI Database
                 </a>
