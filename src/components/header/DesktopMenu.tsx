@@ -22,6 +22,7 @@ import Logo from "./Logo";
 import GlobalSearchBar from "@/components/LazyGlobalSearchBar";
 import DeferredMount from "@/components/DeferredMount";
 import { useRecentlyVisitedTools } from "@/hooks/useRecentlyVisitedTools";
+import { playMtvFlash } from "@/utils/mtvFlash";
 
 const DesktopMenu = () => {
   const navigate = useNavigate();
