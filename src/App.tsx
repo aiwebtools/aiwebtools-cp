@@ -350,6 +350,14 @@ const GlobalOverlays: React.FC = () => {
           </Suspense>
         </ErrorBoundary>
       ) : null}
+      {/* Back-to-Music floating pill — appears after visiting Music Stream */}
+      {show ? (
+        <ErrorBoundary fallback={null}>
+          <Suspense fallback={null}>
+            <BackToMusicPill />
+          </Suspense>
+        </ErrorBoundary>
+      ) : null}
     </>
   );
 };
