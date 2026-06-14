@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/components/ui/collapsible";
 import { triggerPublicDownload } from "@/utils/downloads";
+import { playMtvFlash } from "@/utils/mtvFlash";
 import { createTimePortalEffect } from "@/utils/timeEffects";
 import { createConfettiCelebration } from "@/utils/effects/audioEffects";
 import GlobalSearchBar from "@/components/LazyGlobalSearchBar";
@@ -130,11 +131,8 @@ const TabletMenu = () => {
               <DropdownMenuItem onClick={() => navigate('/')} className="text-cyan-100 hover:bg-cyan-500/20 mb-2 rounded">
                 Home
               </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => navigate('/our-story')} className="text-cyan-100 hover:bg-cyan-500/20 mb-2 rounded">
-                📖 Our Story
-              </DropdownMenuItem>
               <DropdownMenuItem
-                onClick={() => navigate('/music-stream')}
+                onClick={() => { playMtvFlash().then(() => navigate('/music-stream')); }}
                 className="text-fuchsia-100 hover:bg-fuchsia-500/20 mb-2 rounded border border-fuchsia-500/30"
                 style={{ textShadow: '0 0 6px rgba(168,85,247,0.55)' }}
               >
@@ -293,7 +291,7 @@ const TabletMenu = () => {
                 <DropdownMenuItem 
                   onClick={(e) => { 
                     e.preventDefault(); 
-                    createTimePortalEffect('https://lovable.dev/products/aiwebtools');
+                    createTimePortalEffect('https://lovable.dev/projects/be05dcba-063b-47c3-b8a5-bf7bdd86a447?via=aiwebtools');
                   }}
                   className="text-yellow-100 hover:bg-gradient-to-r hover:from-yellow-500/20 hover:to-amber-500/20 rounded flex items-center space-x-2 bg-gradient-to-r from-yellow-600/10 to-amber-600/10 border border-yellow-500/30 p-2 font-semibold"
                 >

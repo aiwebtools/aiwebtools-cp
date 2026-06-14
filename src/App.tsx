@@ -82,6 +82,7 @@ const MusicStream = lazyWithRetry(() => import("./pages/MusicStream"));
 const FloatingCloneButton = lazyWithRetry(() => import("./components/FloatingCloneButton"));
 const PinnedVideoPlayer = lazyWithRetry(() => import("./components/PinnedVideoPlayer"));
 const CareBotWidget = lazyWithRetry(() => import("./components/CareBotWidget"));
+const BackToMusicPill = lazyWithRetry(() => import("./components/BackToMusicPill"));
 
 // Welcome Neo voice - plays when user lands on main site after accepting disclaimer
 const WelcomeNeoVoice = () => {
@@ -346,6 +347,14 @@ const GlobalOverlays: React.FC = () => {
         <ErrorBoundary fallback={null}>
           <Suspense fallback={null}>
             <CareBotWidget />
+          </Suspense>
+        </ErrorBoundary>
+      ) : null}
+      {/* Back-to-Music floating pill — appears after visiting Music Stream */}
+      {show ? (
+        <ErrorBoundary fallback={null}>
+          <Suspense fallback={null}>
+            <BackToMusicPill />
           </Suspense>
         </ErrorBoundary>
       ) : null}

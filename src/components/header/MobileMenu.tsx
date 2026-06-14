@@ -13,6 +13,7 @@ import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/component
 import { useFavorites } from "@/hooks/useFavorites";
 import { createTimePortalEffect } from "@/utils/timeEffects";
 import { triggerPublicDownload } from "@/utils/downloads";
+import { playMtvFlash } from "@/utils/mtvFlash";
 import { createConfettiCelebration } from "@/utils/effects/audioEffects";
 import { web3DomainsTools } from "@/data/tools/web3DomainsTools";
 import Logo from "./Logo";
@@ -268,7 +269,7 @@ const MobileMenu = () => {
                   onClick={(e) => {
                     e.preventDefault();
                     e.stopPropagation();
-                    handleExternalLink('https://lovable.dev/products/aiwebtools', e);
+                    handleExternalLink('https://lovable.dev/projects/be05dcba-063b-47c3-b8a5-bf7bdd86a447?via=aiwebtools', e);
                   }}
                   className="group relative w-full overflow-hidden rounded-xl p-4 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
                   style={{
@@ -432,7 +433,10 @@ const MobileMenu = () => {
               
               {/* AiWebTools Music Stream — MTVai 24/7 channel */}
               <DropdownMenuItem
-                onClick={() => { navigate('/music-stream'); setIsMenuOpen(false); }}
+                onClick={() => {
+                  setIsMenuOpen(false);
+                  playMtvFlash().then(() => navigate('/music-stream'));
+                }}
                 className="text-fuchsia-100 hover:bg-fuchsia-500/20 mb-2 rounded flex items-center text-sm border border-fuchsia-500/30 px-2 py-2 font-medium"
                 style={{ textShadow: '0 0 6px rgba(168,85,247,0.55)' }}
               >
@@ -455,9 +459,6 @@ const MobileMenu = () => {
                   <ChevronDown className={`w-3 h-3 ml-2 transition-transform ${isAboutOpen ? 'rotate-180' : ''}`} />
                 </CollapsibleTrigger>
                 <CollapsibleContent className="mt-1 space-y-1 pl-2">
-                  <DropdownMenuItem onClick={() => { navigate('/our-story'); setIsMenuOpen(false); }} className="text-cyan-100 hover:bg-cyan-500/20 mb-1 rounded text-sm">
-                    📖 About AI Web Tools
-                  </DropdownMenuItem>
                   <DropdownMenuItem onClick={(e) => handleExternalLink('https://linktr.ee/aiwebtools', e)} className="text-cyan-100 hover:bg-cyan-500/20 mb-1 rounded text-sm">
                     <Trees className="w-3 h-3 mr-2" /> Linktree
                   </DropdownMenuItem>
@@ -496,7 +497,7 @@ const MobileMenu = () => {
                   <DropdownMenuItem 
                      onClick={(e) => { 
                        e.preventDefault();
-                       handleExternalLink("https://lovable.dev/products/aiwebtools", e);
+                       handleExternalLink("https://lovable.dev/projects/be05dcba-063b-47c3-b8a5-bf7bdd86a447?via=aiwebtools", e);
                      }}
                     className="text-yellow-100 hover:bg-gradient-to-r hover:from-yellow-500/20 hover:to-amber-500/20 mb-2 rounded flex items-center space-x-2 bg-gradient-to-r from-yellow-600/10 to-amber-600/10 border border-yellow-500/30 p-2"
                   >
