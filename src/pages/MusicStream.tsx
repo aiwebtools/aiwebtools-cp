@@ -1,9 +1,10 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-import { ArrowLeft, SkipForward, SkipBack, Volume2, VolumeX } from "lucide-react";
+import { ArrowLeft, SkipForward, SkipBack, Volume2, VolumeX, Home, Search, X } from "lucide-react";
 import { MUSIC_VIDEO_GALLERY } from "@/components/PinnedVideoPlayer";
 import mtvAiWebToolsLogo from "@/assets/mtv-aiwebtools-logo.png";
+import GlobalSearchBar from "@/components/LazyGlobalSearchBar";
 
 const shuffle = <T,>(a: T[]): T[] => {
   const s = [...a];
@@ -19,16 +20,29 @@ const MusicStream = () => {
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
   const [muted, setMuted] = useState(false);
   const [showIntro, setShowIntro] = useState(true);
+  const [searchOpen, setSearchOpen] = useState(false);
 
   const playlist = useMemo(() => {
-    // Lead with the latest MTV cinematic drops, then shuffle the rest
-    const head = MUSIC_VIDEO_GALLERY.filter(v => /MTVai Music Video/i.test(v.title));
-    const tail = MUSIC_VIDEO_GALLERY.filter(v => !/MTVai Music Video/i.test(v.title));
-    return [...head, ...shuffle(tail)];
+    // Smarter ordering: cinematic MTVai drops play FIRST (longest / most produced),
+    // then "Official Music Video" cinematic clips, then everything else randomized.
+    const tier1 = MUSIC_VIDEO_GALLERY.filter(v => /MTVai Music Video/i.test(v.title));
+    const tier2 = MUSIC_VIDEO_GALLERY.filter(
+      v => !/MTVai Music Video/i.test(v.title) && /Official Music Video|Cinematic|Showcase/i.test(v.title)
+    );
+    const tier3 = MUSIC_VIDEO_GALLERY.filter(
+      v => !/MTVai Music Video/i.test(v.title) && !/Official Music Video|Cinematic|Showcase/i.test(v.title)
+    );
+    return [...shuffle(tier1), ...shuffle(tier2), ...shuffle(tier3)];
   }, []);
 
   const [idx, setIdx] = useState(0);
   const current = playlist[idx % playlist.length];
+
+  // Persist a "came from music stream" flag so the global back-to-music
+  // pill can render on any tool/category page the user navigates to.
+  useEffect(() => {
+    try { sessionStorage.setItem("cameFromMusicStream", "1"); } catch { /* noop */ }
+  }, []);
 
   // 3D MTV pop-out intro
   useEffect(() => {
@@ -36,14 +50,14 @@ const MusicStream = () => {
     return () => window.clearTimeout(t);
   }, []);
 
-  const send = (func: string, args: unknown[] = []) => {
+  const send = useCallback((func: string, args: unknown[] = []) => {
     try {
       iframeRef.current?.contentWindow?.postMessage(
         JSON.stringify({ event: "command", func, args }),
         "*"
       );
     } catch {}
-  };
+  }, []);
 
   // Listen for end-of-video to auto-advance
   useEffect(() => {
@@ -59,7 +73,18 @@ const MusicStream = () => {
     return () => window.removeEventListener("message", onMsg);
   }, [playlist.length]);
 
-  const src = `https://www.youtube.com/embed/${current.id}?autoplay=1&mute=${muted ? 1 : 0}&controls=1&rel=0&modestbranding=1&playsinline=1&enablejsapi=1&vq=hd1080`;
+  // IMPORTANT: keep mute OUT of the iframe src so toggling mute does NOT
+  // reload the iframe (which previously felt like the track was being skipped).
+  // We start muted=0 always at load and control mute purely via postMessage.
+  const src = `https://www.youtube.com/embed/${current.id}?autoplay=1&mute=0&controls=1&rel=0&modestbranding=1&playsinline=1&enablejsapi=1&vq=hd1080`;
+
+  const toggleMute = useCallback(() => {
+    setMuted(prev => {
+      const next = !prev;
+      send(next ? "mute" : "unMute");
+      return next;
+    });
+  }, [send]);
 
   return (
     <div className="fixed inset-0 bg-black text-white overflow-hidden">
@@ -102,26 +127,68 @@ const MusicStream = () => {
       )}
 
       {/* Header / back nav */}
-      <div className="fixed top-0 inset-x-0 z-40 flex items-center justify-between px-3 py-2 bg-gradient-to-b from-black/90 to-transparent">
-        <button
-          onClick={() => navigate(-1)}
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded bg-black/70 border border-cyan-500/40 text-cyan-200 hover:bg-cyan-500/15 text-xs font-mono uppercase tracking-wider"
-        >
-          <ArrowLeft className="w-3.5 h-3.5" /> Back
-        </button>
-        <div className="flex items-center gap-2">
-          <img src={mtvAiWebToolsLogo} alt="MTV AiWebTools" className="w-7 h-7 drop-shadow-[0_0_8px_rgba(168,85,247,0.7)]" draggable={false} />
-          <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-fuchsia-300" style={{ textShadow: "0 0 8px #a855f7" }}>
-            AiWebTools Music Stream · LIVE
+      <div className="fixed top-0 inset-x-0 z-40 flex items-center justify-between gap-2 px-2 sm:px-3 py-2 bg-gradient-to-b from-black/90 to-transparent">
+        <div className="flex items-center gap-1.5">
+          <button
+            onClick={() => navigate(-1)}
+            className="flex items-center gap-1 px-2 py-1.5 rounded bg-black/70 border border-cyan-500/40 text-cyan-200 hover:bg-cyan-500/15 text-[11px] font-mono uppercase tracking-wider"
+            title="Back"
+          >
+            <ArrowLeft className="w-3.5 h-3.5" /> <span className="hidden sm:inline">Back</span>
+          </button>
+          <button
+            onClick={() => navigate('/')}
+            className="flex items-center gap-1 px-2 py-1.5 rounded bg-black/70 border border-emerald-500/40 text-emerald-200 hover:bg-emerald-500/15 text-[11px] font-mono uppercase tracking-wider"
+            title="Home"
+          >
+            <Home className="w-3.5 h-3.5" /> <span className="hidden sm:inline">Home</span>
+          </button>
+          <button
+            onClick={() => setSearchOpen(s => !s)}
+            className="flex items-center gap-1 px-2 py-1.5 rounded bg-black/70 border border-fuchsia-500/40 text-fuchsia-200 hover:bg-fuchsia-500/15 text-[11px] font-mono uppercase tracking-wider"
+            title="Search AI Tools"
+          >
+            {searchOpen ? <X className="w-3.5 h-3.5" /> : <Search className="w-3.5 h-3.5" />}
+            <span className="hidden sm:inline">Tools</span>
+          </button>
+        </div>
+        <div className="flex items-center gap-2 min-w-0">
+          <img src={mtvAiWebToolsLogo} alt="MTV AiWebTools" className="w-6 h-6 sm:w-7 sm:h-7 drop-shadow-[0_0_8px_rgba(168,85,247,0.7)] shrink-0" draggable={false} />
+          <span className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.2em] text-fuchsia-300 truncate" style={{ textShadow: "0 0 8px #a855f7" }}>
+            AiWebTools Music · LIVE
           </span>
         </div>
         <button
-          onClick={() => { setMuted(m => !m); send(muted ? "unMute" : "mute"); }}
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded bg-black/70 border border-fuchsia-500/40 text-fuchsia-200 hover:bg-fuchsia-500/15 text-xs"
+          onClick={toggleMute}
+          className="flex items-center gap-1 px-2 py-1.5 rounded bg-black/70 border border-fuchsia-500/40 text-fuchsia-200 hover:bg-fuchsia-500/15 text-[11px]"
           title={muted ? "Unmute" : "Mute"}
+          aria-label={muted ? "Unmute" : "Mute"}
         >
           {muted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5" />}
         </button>
+      </div>
+
+      {/* AI Tools slide-out search panel */}
+      <div
+        className={`fixed top-12 inset-x-0 z-[45] mx-auto max-w-2xl px-3 transition-all duration-300 ease-out ${
+          searchOpen ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 -translate-y-3 pointer-events-none"
+        }`}
+      >
+        <div className="rounded-xl border border-fuchsia-500/40 bg-black/90 backdrop-blur p-3 shadow-[0_0_40px_rgba(168,85,247,0.35)]">
+          <div className="flex items-center justify-between mb-2">
+            <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-fuchsia-300">
+              🔎 AI Tools Search · MTVai
+            </span>
+            <button
+              onClick={() => setSearchOpen(false)}
+              className="text-fuchsia-200/70 hover:text-white"
+              aria-label="Close tools search"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          </div>
+          {searchOpen && <GlobalSearchBar />}
+        </div>
       </div>
 
       {/* Theater player — giant 9:16 center stage */}
