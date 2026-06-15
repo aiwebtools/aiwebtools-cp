@@ -308,7 +308,7 @@ Disallow: /
 Sitemap: https://aiwebtools.ai/sitemap.xml
 
 # Host preference for canonical URLs
-Host: ai-webtools.com
+Host: aiwebtools.ai
 
 # Optimized crawl delay for faster indexing
 Crawl-delay: 0.5
