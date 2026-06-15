@@ -1303,7 +1303,33 @@ const PinnedVideoPlayer = memo(() => {
 
   // Render via portal to escape any parent stacking context (common cause of hidden UI with audible media)
   if (typeof document === 'undefined') return null;
-  return createPortal(playerUi, document.body);
+  const burstOverlay = musicBurst ? (
+    <div className="pointer-events-none fixed inset-0 z-[2147483646] flex items-center justify-center" aria-hidden>
+      <style>{`
+        @keyframes mtvBurstCode { 0% { opacity:0; transform:scale(0.4);} 30% { opacity:1; } 100% { opacity:0; transform:scale(2.6);} }
+        @keyframes mtvBurstLogo { 0% { opacity:0; transform: perspective(800px) translateZ(-600px) rotateY(180deg) scale(0.15);} 50% { opacity:1; transform: perspective(800px) translateZ(0) rotateY(0deg) scale(1.35);} 100% { opacity:0; transform: perspective(800px) translateZ(0) rotateY(0deg) scale(2.6) rotate(12deg);} }
+      `}</style>
+      <div
+        className="absolute inset-0 font-mono text-[10px] leading-[12px] text-[#a855f7] whitespace-pre overflow-hidden"
+        style={{ animation: "mtvBurstCode 1.1s ease-out forwards", textShadow: "0 0 6px #a855f7" }}
+      >
+        {Array.from({ length: 60 }).map(() => "10110010 11001101 10101110 01001010 11110000 00111100\n").join("")}
+      </div>
+      <img
+        src={mtvaiLogoSquare}
+        alt=""
+        draggable={false}
+        className="w-[55vmin] h-[55vmin] max-w-[520px] max-h-[520px] object-contain drop-shadow-[0_0_60px_rgba(168,85,247,0.95)]"
+        style={{ animation: "mtvBurstLogo 1.1s cubic-bezier(.2,.7,.2,1) forwards" }}
+      />
+    </div>
+  ) : null;
+  return (
+    <>
+      {createPortal(playerUi, document.body)}
+      {burstOverlay && createPortal(burstOverlay, document.documentElement)}
+    </>
+  );
 });
 
 PinnedVideoPlayer.displayName = 'PinnedVideoPlayer';
