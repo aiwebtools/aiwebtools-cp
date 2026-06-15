@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { ArrowLeft, SkipForward, SkipBack, Volume2, VolumeX, Home, Search, X, ChevronLeft, ChevronRight } from "lucide-react";
@@ -308,7 +308,7 @@ const MusicStream = () => {
  * Picks between mobile (9:16) and desktop (16:9 wide cinema) layouts.
  * Pure presentational helper so the parent only manages logic.
  */
-const DesktopAspect = ({ children }: { children: React.ReactNode }) => {
+const DesktopAspect = ({ children }: { children: ReactNode }) => {
   return (
     <div className="w-full h-full md:aspect-video md:w-full md:h-full overflow-hidden rounded-md border border-fuchsia-500/30">
       {children}
