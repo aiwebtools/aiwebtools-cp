@@ -1,7 +1,7 @@
 
 export const seoConfig = {
   siteName: "AI WEB TOOLS",
-  siteUrl: "https://ai-webtools.com",
+  siteUrl: "https://aiwebtools.ai",
   description: "🏆 #1 Free AI Tools Directory with 2195+ verified tools. Better than Toolify, Futurepedia & competitors. ChatGPT alternatives, custom GPTs, productivity AI, creative tools. Trusted by 100K+ professionals 2026.",
   keywords: [
     "AI WEB TOOLS",

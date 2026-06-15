@@ -236,16 +236,16 @@ User-agent: Screaming Frog SEO Spider
 Allow: /
 
 # Enhanced sitemap locations for maximum discovery
-Sitemap: https://ai-webtools.com/sitemap.xml
-Sitemap: https://ai-webtools.com/rss.xml
-Sitemap: https://ai-webtools.com/atom.xml
+Sitemap: https://aiwebtools.ai/sitemap.xml
+Sitemap: https://aiwebtools.ai/rss.xml
+Sitemap: https://aiwebtools.ai/atom.xml
 
 # LLMs.txt for AI Assistant Discovery
 # AI assistants can read /llms.txt for site information
 # See: https://llmstxt.org/
 
 # Host preference for canonical URLs and domain authority
-Host: ai-webtools.com
+Host: aiwebtools.ai
 
 # MAXIMUM CRAWLING PERFORMANCE
 Crawl-delay: 0

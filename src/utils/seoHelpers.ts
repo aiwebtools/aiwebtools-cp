@@ -1,13 +1,13 @@
 
 export const generateCanonicalUrl = (path: string) => {
-  const baseUrl = "https://ai-webtools.com";
+  const baseUrl = "https://aiwebtools.ai";
   return path.startsWith('http') ? path : `${baseUrl}${path}`;
 };
 
 export const generateAlternateLanguages = () => {
   return [
-    { lang: "en", url: "https://ai-webtools.com" },
-    { lang: "x-default", url: "https://ai-webtools.com" }
+    { lang: "en", url: "https://aiwebtools.ai" },
+    { lang: "x-default", url: "https://aiwebtools.ai" }
   ];
 };
 
@@ -17,8 +17,8 @@ export const generateRSSFeed = () => {
   <channel>
     <title>AI Tools Studio - Latest AI Tools</title>
     <description>Discover the latest AI tools and innovations</description>
-    <link>https://ai-webtools.com</link>
-    <atom:link href="https://ai-webtools.com/rss.xml" rel="self" type="application/rss+xml"/>
+    <link>https://aiwebtools.ai</link>
+    <atom:link href="https://aiwebtools.ai/rss.xml" rel="self" type="application/rss+xml"/>
     <language>en-us</language>
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
     <pubDate>${new Date().toUTCString()}</pubDate>

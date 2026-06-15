@@ -28,20 +28,20 @@ export default function BlogPostPage() {
     "author": {
       "@type": "Organization",
       "name": "AI Web Tools",
-      "url": "https://ai-webtools.com"
+      "url": "https://aiwebtools.ai"
     },
     "publisher": {
       "@type": "Organization",
       "name": "AI Web Tools",
-      "url": "https://ai-webtools.com",
+      "url": "https://aiwebtools.ai",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://ai-webtools.com/logo.png"
+        "url": "https://aiwebtools.ai/logo.png"
       }
     },
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": `https://ai-webtools.com/blog/${post.slug}`
+      "@id": `https://aiwebtools.ai/blog/${post.slug}`
     },
     "keywords": post.keywords.join(", "),
     "articleSection": post.category
@@ -53,12 +53,12 @@ export default function BlogPostPage() {
         <title>{post.title} | AI Web Tools Blog</title>
         <meta name="description" content={post.excerpt} />
         <meta name="keywords" content={post.keywords.join(", ")} />
-        <link rel="canonical" href={`https://ai-webtools.com/blog/${post.slug}`} />
+        <link rel="canonical" href={`https://aiwebtools.ai/blog/${post.slug}`} />
         
         <meta property="og:title" content={post.title} />
         <meta property="og:description" content={post.excerpt} />
         <meta property="og:type" content="article" />
-        <meta property="og:url" content={`https://ai-webtools.com/blog/${post.slug}`} />
+        <meta property="og:url" content={`https://aiwebtools.ai/blog/${post.slug}`} />
         <meta property="article:published_time" content={post.publishDate} />
         <meta property="article:section" content={post.category} />
         <meta property="article:tag" content={post.keywords.join(", ")} />

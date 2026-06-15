@@ -2,7 +2,7 @@
 import { allTools } from '@/data/toolsData';
 
 export const generateEnhancedSitemap = () => {
-  const baseUrl = 'https://ai-webtools.com';
+  const baseUrl = 'https://aiwebtools.ai';
   const currentDate = new Date().toISOString().split('T')[0];
   
   // Get unique categories from tools data
@@ -305,10 +305,10 @@ User-agent: DataForSeoBot
 Disallow: /
 
 # Sitemap location with enhanced indexing
-Sitemap: https://ai-webtools.com/sitemap.xml
+Sitemap: https://aiwebtools.ai/sitemap.xml
 
 # Host preference for canonical URLs
-Host: ai-webtools.com
+Host: aiwebtools.ai
 
 # Optimized crawl delay for faster indexing
 Crawl-delay: 0.5

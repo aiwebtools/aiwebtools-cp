@@ -115,7 +115,7 @@ export const generateCSVWithMetadata = (tools: Tool[]): string => {
     `# Free Tools: ${freeTools}`,
     `# `,
     `# Website: https://aiwebtools.lovable.app/?via=aiwebtools`,
-    `# Alternative: https://ai-webtools.com`,
+    `# Alternative: https://aiwebtools.ai`,
     `# Contact: contact@ai-webtools.com`,
     `# Clone This Website (FREE): https://lovable.dev/projects/be05dcba-063b-47c3-b8a5-bf7bdd86a447?via=aiwebtools`,
     `# `,

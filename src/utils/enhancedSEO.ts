@@ -7,13 +7,13 @@ export const generateEnhancedStructuredData = () => {
     "@graph": [
       {
         "@type": "Organization",
-        "@id": "https://ai-webtools.com/#organization",
+        "@id": "https://aiwebtools.ai/#organization",
         "name": "AI WEB TOOLS",
         "alternateName": ["AIWEBTOOLS.AI", "AI WEB TOOLS", "AIWEBTOOLS", "AITools.Studio"],
-        "url": "https://ai-webtools.com",
+        "url": "https://aiwebtools.ai",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://ai-webtools.com/favicon.ico",
+          "url": "https://aiwebtools.ai/favicon.ico",
           "width": 512,
           "height": 512
         },
@@ -33,7 +33,7 @@ export const generateEnhancedStructuredData = () => {
           "ChatGPT alternatives"
         ],
         "sameAs": [
-          "https://ai-webtools.com",
+          "https://aiwebtools.ai",
           "https://www.aiwebtools.ai",
           "https://linktr.ee/aiwebtools",
           "https://www.tiktok.com/@aiwebtools"
@@ -57,19 +57,19 @@ export const generateEnhancedStructuredData = () => {
       },
       {
         "@type": "WebSite",
-        "@id": "https://ai-webtools.com/#website",
-        "url": "https://ai-webtools.com",
+        "@id": "https://aiwebtools.ai/#website",
+        "url": "https://aiwebtools.ai",
         "name": "AIWEBTOOLS.AI - #1 AI WEB TOOLS Directory",
         "alternateName": "AI WEB TOOLS Directory",
         "description": "AIWEBTOOLS.AI - The #1 comprehensive AI web tools directory with 1000+ curated AI tools. Better than Toolify. Discover the best AI tools 2026 for business, creativity, and productivity.",
         "publisher": {
-          "@id": "https://ai-webtools.com/#organization"
+          "@id": "https://aiwebtools.ai/#organization"
         },
         "potentialAction": {
           "@type": "SearchAction",
           "target": {
             "@type": "EntryPoint",
-            "urlTemplate": "https://ai-webtools.com/?search={search_term_string}"
+            "urlTemplate": "https://aiwebtools.ai/?search={search_term_string}"
           },
           "query-input": "required name=search_term_string"
         },
@@ -89,22 +89,22 @@ export const generateEnhancedStructuredData = () => {
       },
       {
         "@type": "ItemList",
-        "@id": "https://ai-webtools.com/#itemlist",
+        "@id": "https://aiwebtools.ai/#itemlist",
         "name": "AI WEB TOOLS Directory",
         "description": "Comprehensive list of 1000+ AI tools curated by AIWEBTOOLS.AI",
         "numberOfItems": 1000,
         "itemListOrder": "https://schema.org/ItemListOrderDescending",
         "mainEntity": {
-          "@id": "https://ai-webtools.com/#website"
+          "@id": "https://aiwebtools.ai/#website"
         }
       },
       {
         "@type": "Service",
-        "@id": "https://ai-webtools.com/#service",
+        "@id": "https://aiwebtools.ai/#service",
         "name": "AI WEB TOOLS Directory Service",
         "description": "Professional AI tools curation and directory service by AIWEBTOOLS.AI",
         "provider": {
-          "@id": "https://ai-webtools.com/#organization"
+          "@id": "https://aiwebtools.ai/#organization"
         },
         "serviceType": "AI Tools Directory",
         "areaServed": "Worldwide",
@@ -115,18 +115,18 @@ export const generateEnhancedStructuredData = () => {
       },
       {
         "@type": "Dataset",
-        "@id": "https://ai-webtools.com/#dataset", 
+        "@id": "https://aiwebtools.ai/#dataset", 
         "name": "AIWEBTOOLS.AI - AI Tools Dataset",
         "description": "Comprehensive dataset of 1000+ AI tools with detailed metadata, categories, and reviews",
         "creator": {
-          "@id": "https://ai-webtools.com/#organization"
+          "@id": "https://aiwebtools.ai/#organization"
         },
         "keywords": "ai tools, artificial intelligence, machine learning, automation, productivity, business tools",
-        "license": "https://ai-webtools.com/terms"
+        "license": "https://aiwebtools.ai/terms"
       },
       {
         "@type": "FAQPage",
-        "@id": "https://ai-webtools.com/#faq",
+        "@id": "https://aiwebtools.ai/#faq",
         "mainEntity": [
           {
             "@type": "Question",
@@ -194,7 +194,7 @@ export const generateToolStructuredData = (tool: any) => {
     "publisher": {
       "@type": "Organization",
       "name": "AI WEB TOOLS",
-      "url": "https://ai-webtools.com"
+      "url": "https://aiwebtools.ai"
     }
   };
 };
@@ -205,7 +205,7 @@ export const generateCategoryStructuredData = (category: string, tools: any[]) =
     "@type": "CollectionPage",
     "name": `${category} - AI WEB TOOLS Directory`,
     "description": `Discover the best ${category} AI tools curated by AIWEBTOOLS.AI`,
-    "url": `https://ai-webtools.com/category/${encodeURIComponent(category)}`,
+    "url": `https://aiwebtools.ai/category/${encodeURIComponent(category)}`,
     "mainEntity": {
       "@type": "ItemList",
       "numberOfItems": tools.length,
@@ -226,13 +226,13 @@ export const generateCategoryStructuredData = (category: string, tools: any[]) =
           "@type": "ListItem",
           "position": 1,
           "name": "AIWEBTOOLS.AI",
-          "item": "https://ai-webtools.com"
+          "item": "https://aiwebtools.ai"
         },
         {
           "@type": "ListItem",
           "position": 2,
           "name": category,
-          "item": `https://ai-webtools.com/category/${encodeURIComponent(category)}`
+          "item": `https://aiwebtools.ai/category/${encodeURIComponent(category)}`
         }
       ]
     }
@@ -245,7 +245,7 @@ export const generateSearchResultsStructuredData = (query: string, results: any[
     "@type": "SearchResultsPage",
     "name": `Search Results for "${query}" - AIWEBTOOLS.AI`,
     "description": `Find the best AI tools for ${query} in our comprehensive directory`,
-    "url": `https://ai-webtools.com/?search=${encodeURIComponent(query)}`,
+    "url": `https://aiwebtools.ai/?search=${encodeURIComponent(query)}`,
     "mainEntity": {
       "@type": "ItemList",
       "numberOfItems": results.length,
