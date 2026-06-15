@@ -1190,7 +1190,8 @@ const PinnedVideoPlayer = memo(() => {
               <button
                 onClick={() => {
                   setMusicBurst(true);
-                  window.setTimeout(() => setMusicBurst(false), 900);
+                  try { void playTimeWarpVoice(); } catch { /* noop */ }
+                  window.setTimeout(() => setMusicBurst(false), 1100);
                   handleSelectMode('music');
                 }}
                 className="relative z-10 group w-full px-2 pt-3 pb-1 text-[10px] font-mono font-bold uppercase tracking-wider text-[#a855f7] bg-black/70 border border-[#a855f7]/60 hover:bg-[#a855f7]/15 hover:border-[#a855f7] active:scale-95 transition-all"
