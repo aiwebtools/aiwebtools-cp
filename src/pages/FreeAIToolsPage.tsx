@@ -25,7 +25,7 @@ const FreeAIToolsPage = () => {
       "position": index + 1,
       "name": tool.title,
       "description": tool.description?.substring(0, 150),
-      "url": `https://ai-webtools.com/${generateToolSlug(tool.title)}`
+      "url": `https://aiwebtools.ai/${generateToolSlug(tool.title)}`
     }))
   };
 
@@ -35,11 +35,11 @@ const FreeAIToolsPage = () => {
         <title>Free AI Tools - {freeTools.length}+ No-Cost AI Tools | 100% Free AI Tools Directory 2026</title>
         <meta name="description" content={`Discover ${freeTools.length}+ completely free AI tools. No signup, no credit card, no hidden costs. Free AI tools for writing, design, coding, and productivity.`} />
         <meta name="keywords" content="free AI tools, free AI, no cost AI tools, free artificial intelligence, free AI software, free AI apps, free chatgpt, free AI writing tools, free AI image generator, free AI tools 2026, AI tools without payment" />
-        <link rel="canonical" href="https://ai-webtools.com/free-ai-tools" />
+        <link rel="canonical" href="https://aiwebtools.ai/free-ai-tools" />
         
         <meta property="og:title" content={`Free AI Tools - ${freeTools.length}+ No-Cost AI Tools`} />
         <meta property="og:description" content={`${freeTools.length}+ completely free AI tools. No signup required.`} />
-        <meta property="og:url" content="https://ai-webtools.com/free-ai-tools" />
+        <meta property="og:url" content="https://aiwebtools.ai/free-ai-tools" />
         
         <script type="application/ld+json">{JSON.stringify(itemListSchema)}</script>
       </Helmet>

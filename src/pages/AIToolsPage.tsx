@@ -23,7 +23,7 @@ const AIToolsPage = () => {
       "position": index + 1,
       "name": tool.title,
       "description": tool.description?.substring(0, 150),
-      "url": `https://ai-webtools.com/${tool.title.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-').substring(0, 50)}`
+      "url": `https://aiwebtools.ai/${tool.title.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-').substring(0, 50)}`
     }))
   };
 
@@ -72,12 +72,12 @@ const AIToolsPage = () => {
         <title>AI Tools - Complete Directory of {toolCount}+ Best AI Tools 2026 | Free AI Tools Database</title>
         <meta name="description" content={`Discover ${toolCount}+ AI tools in our comprehensive AI tools directory. Find the best AI tools for writing, design, coding, business, and productivity. Free AI tools database updated daily.`} />
         <meta name="keywords" content="AI tools, ai tools, artificial intelligence tools, best AI tools, free AI tools, AI tools directory, AI tools 2026, AI software, AI applications, machine learning tools, AI productivity tools, AI business tools, AI writing tools, AI design tools, AI coding tools" />
-        <link rel="canonical" href="https://ai-webtools.com/ai-tools" />
+        <link rel="canonical" href="https://aiwebtools.ai/ai-tools" />
         
         {/* Open Graph */}
         <meta property="og:title" content={`AI Tools - ${toolCount}+ Best AI Tools Directory 2026`} />
         <meta property="og:description" content={`Complete directory of ${toolCount}+ AI tools. Find the best AI tools for any task - writing, design, coding, business & more.`} />
-        <meta property="og:url" content="https://ai-webtools.com/ai-tools" />
+        <meta property="og:url" content="https://aiwebtools.ai/ai-tools" />
         <meta property="og:type" content="website" />
         
         {/* Twitter */}

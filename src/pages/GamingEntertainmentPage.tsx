@@ -167,7 +167,7 @@ const GamingEntertainmentPage = () => {
         <title>Gaming & Entertainment AI Tools - Game Engines, AI NPCs & More | AIWebTools</title>
         <meta name="description" content="Discover the best AI gaming tools including game engines, NPC character AI, game asset generators, streaming tools, VR/AR gaming, and game development platforms." />
         <meta name="keywords" content="gaming ai, game engines, unity, unreal engine, npc ai, game development, streaming tools, vr gaming, ar gaming, game assets, metaverse" />
-        <link rel="canonical" href="https://ai-webtools.com/gaming-entertainment" />
+        <link rel="canonical" href="https://aiwebtools.ai/gaming-entertainment" />
       </Helmet>
       
       <DeferredMount delay={50}><AnimatedBackground /></DeferredMount>

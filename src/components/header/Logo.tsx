@@ -98,10 +98,10 @@ const Logo = ({ compact = false }: { compact?: boolean }) => {
         {/* Mobile-visible branding info - now clickable link to new domain */}
         <div className={`${compact ? 'text-[8px]' : 'text-[9px] sm:text-[10px] md:text-xs'} -mt-0.5 truncate`}>
           <a
-            href="https://ai-webtools.com"
+            href="https://aiwebtools.ai"
             target="_blank"
             rel="noopener noreferrer"
-            onClick={(e) => handleExternalLink("https://ai-webtools.com", e)}
+            onClick={(e) => handleExternalLink("https://aiwebtools.ai", e)}
             className="font-light tracking-wide text-cyan-300 hover:text-cyan-200 transition-colors underline-offset-2 hover:underline"
             title="Visit ai-webtools.com"
           >

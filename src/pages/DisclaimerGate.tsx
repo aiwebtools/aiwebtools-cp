@@ -365,7 +365,7 @@ const DisclaimerGate: React.FC = () => {
         <meta name="description" content="Welcome to AIWEBTOOLS. Review the disclaimer and enter the 4,000+ AI tools directory — ChatGPT alternatives, custom GPTs, AI agents and more." />
         <meta property="og:title" content="Welcome — AIWEBTOOLS Disclaimer & Consent" />
         <meta property="og:description" content="Review the disclaimer and enter the 4,000+ AI tools directory." />
-        <link rel="canonical" href="https://ai-webtools.com/welcome" />
+        <link rel="canonical" href="https://aiwebtools.ai/welcome" />
       </Helmet>
       <div className="max-w-md w-full bg-gray-900 border-2 border-cyan-500 rounded-2xl p-6 shadow-2xl shadow-cyan-500/30 animate-fade-in">
         <div className="text-center mb-6">

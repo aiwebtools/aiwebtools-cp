@@ -15,8 +15,8 @@ const GoogleRankingBooster = ({ pageType = 'homepage', toolData, category }: Goo
       "@type": "Organization",
       "name": "AI WEB TOOLS",
       "alternateName": ["AI WEB TOOLS", "AIWebTools", "AITools.Studio"],
-      "url": "https://ai-webtools.com",
-      "logo": "https://ai-webtools.com/favicon.ico",
+      "url": "https://aiwebtools.ai",
+      "logo": "https://aiwebtools.ai/favicon.ico",
       "description": "The world's #1 most comprehensive AI web tools directory with 2195+ verified AI web tools. Find, compare, and access the best AI web tools for any purpose. Better than competitors with expert reviews and daily updates.",
       "foundingDate": "2023",
       "keywords": competitiveAdvantage.brandDominance.join(", ") + ", ai web tools, best ai web tools, ai web tools directory, find ai web tools, compare ai web tools",
@@ -33,7 +33,7 @@ const GoogleRankingBooster = ({ pageType = 'homepage', toolData, category }: Goo
         "Enterprise AI Solutions"
       ],
       "sameAs": [
-        "https://ai-webtools.com",
+        "https://aiwebtools.ai",
         "https://aiwebtools.ai"
       ]
     };
@@ -42,7 +42,7 @@ const GoogleRankingBooster = ({ pageType = 'homepage', toolData, category }: Goo
       "@type": "WebSite",
       "name": "AI WEB TOOLS - #1 AI Web Tools Directory",
       "alternateName": "AI Web Tools Directory",
-      "url": "https://ai-webtools.com",
+      "url": "https://aiwebtools.ai",
       "description": "Discover 2,195+ AI web tools in the most comprehensive AI web tools directory. Find and compare the best AI web tools with expert reviews, ratings, and detailed analysis. Your trusted source for AI web tools.",
       "publisher": {
         "@type": "Organization",
@@ -52,7 +52,7 @@ const GoogleRankingBooster = ({ pageType = 'homepage', toolData, category }: Goo
         "@type": "SearchAction",
         "target": {
           "@type": "EntryPoint",
-          "urlTemplate": "https://ai-webtools.com/?search={search_term_string}"
+          "urlTemplate": "https://aiwebtools.ai/?search={search_term_string}"
         },
         "query-input": "required name=search_term_string"
       },
@@ -156,7 +156,7 @@ const GoogleRankingBooster = ({ pageType = 'homepage', toolData, category }: Goo
       "@type": "HowTo",
       "name": `How to Use ${toolData.title} - Complete Guide 2026`,
       "description": `Step-by-step guide to using ${toolData.title} effectively. Expert tips and best practices from AI WEB TOOLS.`,
-      "image": "https://ai-webtools.com/placeholder.svg",
+      "image": "https://aiwebtools.ai/placeholder.svg",
       "totalTime": "PT10M",
       "supply": [
         {
@@ -179,7 +179,7 @@ const GoogleRankingBooster = ({ pageType = 'homepage', toolData, category }: Goo
           "@type": "HowToStep",
           "name": "Access the Tool",
           "text": `Visit the ${toolData.title} website and create an account if required.`,
-          "url": `https://ai-webtools.com/${generateToolSlug(toolData.title)}`
+          "url": `https://aiwebtools.ai/${generateToolSlug(toolData.title)}`
         },
         {
           "@type": "HowToStep",
@@ -271,14 +271,14 @@ const GoogleRankingBooster = ({ pageType = 'homepage', toolData, category }: Goo
       <link rel="preconnect" href="https://api.ai-webtools.com" />
       
       {/* Competitive Advantage Links */}
-      <link rel="alternate" type="application/json" title="AI Tools API" href="https://ai-webtools.com/api/tools" />
-      <link rel="alternate" type="application/rss+xml" title="AI Web Tools Feed" href="https://ai-webtools.com/feed.xml" />
-      <link rel="sitemap" type="application/xml" href="https://ai-webtools.com/sitemap.xml" />
+      <link rel="alternate" type="application/json" title="AI Tools API" href="https://aiwebtools.ai/api/tools" />
+      <link rel="alternate" type="application/rss+xml" title="AI Web Tools Feed" href="https://aiwebtools.ai/feed.xml" />
+      <link rel="sitemap" type="application/xml" href="https://aiwebtools.ai/sitemap.xml" />
       <link rel="manifest" href="/manifest.json" />
       
       {/* Author & Publisher Links */}
-      <link rel="author" href="https://ai-webtools.com/about" />
-      <link rel="publisher" href="https://ai-webtools.com" />
+      <link rel="author" href="https://aiwebtools.ai/about" />
+      <link rel="publisher" href="https://aiwebtools.ai" />
       <link rel="me" href="https://twitter.com/aiwebtools" />
     </Helmet>
   );

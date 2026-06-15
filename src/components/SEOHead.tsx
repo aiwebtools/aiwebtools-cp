@@ -305,7 +305,7 @@ const SEOHead = ({
       <meta property="og:locale:alternate" content="en_GB" />
       <meta property="og:determiner" content="the" />
       <meta property="og:updated_time" content={new Date().toISOString()} />
-      <meta property="og:see_also" content="https://ai-webtools.com" />
+      <meta property="og:see_also" content="https://aiwebtools.ai" />
       <meta property="og:see_also" content="https://www.aiwebtools.ai" />
       <meta property="og:see_also" content="https://AItoolwebsites.com" />
       <meta property="fb:app_id" content={seoConfig.facebookAppId} />
@@ -365,7 +365,7 @@ const SEOHead = ({
       
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-      <link rel="preconnect" href="https://ai-webtools.com" />
+      <link rel="preconnect" href="https://aiwebtools.ai" />
       <link rel="preconnect" href="https://www.aiwebtools.ai" />
       <link rel="preconnect" href="https://aitoolwebsites.com" />
       
@@ -413,8 +413,8 @@ const SEOHead = ({
       {/* Additional Competitive Meta */}
       <meta name="news_keywords" content="AI tools, artificial intelligence, ChatGPT alternatives, best AI directory, AI web tools" />
       <meta name="standout" content={canonical} />
-      <meta name="syndication-source" content="https://ai-webtools.com" />
-      <meta name="original-source" content="https://ai-webtools.com" />
+      <meta name="syndication-source" content="https://aiwebtools.ai" />
+      <meta name="original-source" content="https://aiwebtools.ai" />
       <meta name="generator" content="AI WEB TOOLS Directory Platform" />
       
       {/* Cache Control for SEO */}
