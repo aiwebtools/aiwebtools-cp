@@ -8,6 +8,7 @@ import { Tool } from "@/types/tools";
 import { useScrollThreshold } from "@/hooks/useScrollThreshold";
 import { playTimeWarpVoice } from "@/utils/effects/audioEffects";
 import mtvAiWebToolsLogo from "@/assets/mtv-aiwebtools-logo.png";
+import mtvaiLogoSquare from "@/assets/mtvai-logo-square.png";
 
 const YT_EMBED_ORIGIN = "https://www.youtube-nocookie.com";
 const YT_API_ORIGIN_FALLBACK = "https://www.youtube.com";
@@ -1099,31 +1100,7 @@ const PinnedVideoPlayer = memo(() => {
           boxShadow: '0 0 15px rgba(34, 211, 238, 0.3), 0 0 30px rgba(168, 85, 247, 0.15), 0 6px 24px rgba(0, 0, 0, 0.4)'
         }}
       >
-        {musicBurst && (
-          <>
-            <style>{`
-              @keyframes mtvCodeBurst { 0% { opacity:0; transform:scale(0.4);} 30% { opacity:1; } 100% { opacity:0; transform:scale(2.6);} }
-              @keyframes mtvLogoPop  { 0% { opacity:0; transform:scale(0.2) rotate(-25deg);} 50% { opacity:1; transform:scale(1.3) rotate(0);} 100% { opacity:0; transform:scale(2.4) rotate(15deg);} }
-            `}</style>
-            <div className="pointer-events-none fixed inset-0 z-[2147483646] flex items-center justify-center">
-              <div
-                aria-hidden
-                className="absolute inset-0 font-mono text-[10px] leading-[12px] text-[#a855f7] whitespace-pre overflow-hidden"
-                style={{ animation: "mtvCodeBurst .9s ease-out forwards", textShadow: "0 0 6px #a855f7" }}
-              >
-                {Array.from({ length: 40 }).map(() => "10110010 11001101 10101110 01001010\n").join("")}
-              </div>
-              <img
-                src={mtvAiWebToolsLogo}
-                alt=""
-                aria-hidden
-                draggable={false}
-                className="w-40 h-40 drop-shadow-[0_0_40px_rgba(168,85,247,0.95)]"
-                style={{ animation: "mtvLogoPop .9s cubic-bezier(.2,.7,.2,1) forwards" }}
-              />
-            </div>
-          </>
-        )}
+        {/* burst rendered via portal below to escape transformed parent */}
         {/* Tool title header with X button - allow wrap */}
         <div
           className="flex items-start justify-between gap-1 px-1.5 py-1 bg-gradient-to-r from-gray-800 to-gray-900 border-b border-cyan-500/30 cursor-grab active:cursor-grabbing touch-none select-none"
@@ -1213,7 +1190,8 @@ const PinnedVideoPlayer = memo(() => {
               <button
                 onClick={() => {
                   setMusicBurst(true);
-                  window.setTimeout(() => setMusicBurst(false), 900);
+                  try { void playTimeWarpVoice(); } catch { /* noop */ }
+                  window.setTimeout(() => setMusicBurst(false), 1100);
                   handleSelectMode('music');
                 }}
                 className="relative z-10 group w-full px-2 pt-3 pb-1 text-[10px] font-mono font-bold uppercase tracking-wider text-[#a855f7] bg-black/70 border border-[#a855f7]/60 hover:bg-[#a855f7]/15 hover:border-[#a855f7] active:scale-95 transition-all"
@@ -1326,7 +1304,33 @@ const PinnedVideoPlayer = memo(() => {
 
   // Render via portal to escape any parent stacking context (common cause of hidden UI with audible media)
   if (typeof document === 'undefined') return null;
-  return createPortal(playerUi, document.body);
+  const burstOverlay = musicBurst ? (
+    <div className="pointer-events-none fixed inset-0 z-[2147483646] flex items-center justify-center" aria-hidden>
+      <style>{`
+        @keyframes mtvBurstCode { 0% { opacity:0; transform:scale(0.4);} 30% { opacity:1; } 100% { opacity:0; transform:scale(2.6);} }
+        @keyframes mtvBurstLogo { 0% { opacity:0; transform: perspective(800px) translateZ(-600px) rotateY(180deg) scale(0.15);} 50% { opacity:1; transform: perspective(800px) translateZ(0) rotateY(0deg) scale(1.35);} 100% { opacity:0; transform: perspective(800px) translateZ(0) rotateY(0deg) scale(2.6) rotate(12deg);} }
+      `}</style>
+      <div
+        className="absolute inset-0 font-mono text-[10px] leading-[12px] text-[#a855f7] whitespace-pre overflow-hidden"
+        style={{ animation: "mtvBurstCode 1.1s ease-out forwards", textShadow: "0 0 6px #a855f7" }}
+      >
+        {Array.from({ length: 60 }).map(() => "10110010 11001101 10101110 01001010 11110000 00111100\n").join("")}
+      </div>
+      <img
+        src={mtvaiLogoSquare}
+        alt=""
+        draggable={false}
+        className="w-[55vmin] h-[55vmin] max-w-[520px] max-h-[520px] object-contain drop-shadow-[0_0_60px_rgba(168,85,247,0.95)]"
+        style={{ animation: "mtvBurstLogo 1.1s cubic-bezier(.2,.7,.2,1) forwards" }}
+      />
+    </div>
+  ) : null;
+  return (
+    <>
+      {createPortal(playerUi, document.body)}
+      {burstOverlay && createPortal(burstOverlay, document.documentElement)}
+    </>
+  );
 });
 
 PinnedVideoPlayer.displayName = 'PinnedVideoPlayer';
