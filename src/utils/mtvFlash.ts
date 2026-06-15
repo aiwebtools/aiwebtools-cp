@@ -1,12 +1,19 @@
-import mtvLogo from "@/assets/mtv-aiwebtools-logo.png";
+import mtvLogo from "@/assets/mtvai-logo-square.png";
+import { playTimeWarpVoice } from "@/utils/effects/audioEffects";
 
 /**
- * Brief full-screen MTV pop-out flash used when entering the Music Stream.
- * Returns a Promise that resolves after the flash plays (caller can navigate).
+ * Brief full-screen MTV pop-out flash used when entering the Music Stream
+ * via the header dropdown. Plays the standard "WEB TOOLS INITIALIZING"
+ * voice cue (same as every other tool launch) for brand consistency.
+ * Mounted on document.documentElement so transformed ancestors (drag
+ * containers, dropdowns) can never clip the fixed overlay.
  */
-export const playMtvFlash = (durationMs = 850): Promise<void> => {
+export const playMtvFlash = (durationMs = 1100): Promise<void> => {
   return new Promise((resolve) => {
     if (typeof document === "undefined") return resolve();
+
+    // Fire the standard initializing voice cue (non-blocking).
+    try { void playTimeWarpVoice(); } catch { /* noop */ }
 
     const root = document.createElement("div");
     root.setAttribute("aria-hidden", "true");
@@ -14,7 +21,7 @@ export const playMtvFlash = (durationMs = 850): Promise<void> => {
       "position:fixed",
       "inset:0",
       "z-index:2147483647",
-      "background:radial-gradient(circle at center, rgba(168,85,247,0.35), rgba(0,0,0,0.95) 60%, #000 100%)",
+      "background:radial-gradient(circle at center, rgba(168,85,247,0.45), rgba(0,0,0,0.95) 55%, #000 100%)",
       "display:flex",
       "align-items:center",
       "justify-content:center",
@@ -71,31 +78,10 @@ export const playMtvFlash = (durationMs = 850): Promise<void> => {
     ].join(";");
     root.appendChild(img);
 
-    document.body.appendChild(root);
-
-    // Tiny audio chord
-    try {
-      const AC = (window as unknown as { AudioContext?: typeof AudioContext; webkitAudioContext?: typeof AudioContext }).AudioContext
-        || (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
-      if (AC) {
-        const ctx = new AC();
-        [392, 523.25, 659.25].forEach((f, i) => {
-          const o = ctx.createOscillator();
-          const g = ctx.createGain();
-          o.type = "sawtooth";
-          o.frequency.value = f;
-          g.gain.value = 0.0001;
-          o.connect(g).connect(ctx.destination);
-          const t0 = ctx.currentTime + i * 0.07;
-          g.gain.exponentialRampToValueAtTime(0.18, t0 + 0.04);
-          g.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.45);
-          o.start(t0);
-          o.stop(t0 + 0.5);
-        });
-      }
-    } catch {
-      /* audio optional */
-    }
+    // Append to <html> so any transformed/filtered ancestor (e.g. the
+    // dropdown menu portal, draggable pinned player) cannot establish
+    // a containing block that shrinks our fullscreen overlay.
+    (document.documentElement || document.body).appendChild(root);
 
     window.setTimeout(() => {
       try { root.remove(); } catch { /* noop */ }
