@@ -1100,31 +1100,7 @@ const PinnedVideoPlayer = memo(() => {
           boxShadow: '0 0 15px rgba(34, 211, 238, 0.3), 0 0 30px rgba(168, 85, 247, 0.15), 0 6px 24px rgba(0, 0, 0, 0.4)'
         }}
       >
-        {musicBurst && (
-          <>
-            <style>{`
-              @keyframes mtvCodeBurst { 0% { opacity:0; transform:scale(0.4);} 30% { opacity:1; } 100% { opacity:0; transform:scale(2.6);} }
-              @keyframes mtvLogoPop  { 0% { opacity:0; transform:scale(0.2) rotate(-25deg);} 50% { opacity:1; transform:scale(1.3) rotate(0);} 100% { opacity:0; transform:scale(2.4) rotate(15deg);} }
-            `}</style>
-            <div className="pointer-events-none fixed inset-0 z-[2147483646] flex items-center justify-center">
-              <div
-                aria-hidden
-                className="absolute inset-0 font-mono text-[10px] leading-[12px] text-[#a855f7] whitespace-pre overflow-hidden"
-                style={{ animation: "mtvCodeBurst .9s ease-out forwards", textShadow: "0 0 6px #a855f7" }}
-              >
-                {Array.from({ length: 40 }).map(() => "10110010 11001101 10101110 01001010\n").join("")}
-              </div>
-              <img
-                src={mtvAiWebToolsLogo}
-                alt=""
-                aria-hidden
-                draggable={false}
-                className="w-40 h-40 drop-shadow-[0_0_40px_rgba(168,85,247,0.95)]"
-                style={{ animation: "mtvLogoPop .9s cubic-bezier(.2,.7,.2,1) forwards" }}
-              />
-            </div>
-          </>
-        )}
+        {/* burst rendered via portal below to escape transformed parent */}
         {/* Tool title header with X button - allow wrap */}
         <div
           className="flex items-start justify-between gap-1 px-1.5 py-1 bg-gradient-to-r from-gray-800 to-gray-900 border-b border-cyan-500/30 cursor-grab active:cursor-grabbing touch-none select-none"
