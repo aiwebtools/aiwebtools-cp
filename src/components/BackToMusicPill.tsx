@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Music } from "lucide-react";
-import mtvLogo from "@/assets/mtv-aiwebtools-logo.png";
+import mtvLogo from "@/assets/mtvai-logo-square.png";
 
 /**
  * Tiny floating pill that appears on every page (EXCEPT /music-stream itself)
@@ -35,7 +35,11 @@ const BackToMusicPill = () => {
       style={{ animation: "fade-in 0.25s ease-out" }}
     >
       <button
-        onClick={() => navigate("/music-stream")}
+        onClick={() => {
+          let lastId = "";
+          try { lastId = sessionStorage.getItem("lastMusicStreamId") || ""; } catch { /* noop */ }
+          navigate(lastId ? `/music-stream?v=${encodeURIComponent(lastId)}` : "/music-stream");
+        }}
         className="flex items-center gap-1.5 text-fuchsia-200 hover:text-white text-[11px] font-mono uppercase tracking-wider"
         title="Back to AiWebTools Music Stream"
       >
