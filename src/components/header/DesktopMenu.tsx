@@ -343,17 +343,6 @@ const DesktopMenu = () => {
 
               {/* About & Company */}
               <Collapsible open={isAboutOpen} onOpenChange={setIsAboutOpen}>
-                {/* AiWebTools Music Stream — MTVai 24/7 channel */}
-                <DropdownMenuItem
-                  onClick={() => {
-                    setIsMenuOpen(false);
-                    playMtvFlash().then(() => navigate('/music-stream'));
-                  }}
-                  className="text-fuchsia-100 hover:bg-fuchsia-500/20 rounded flex items-center px-3 py-2 text-sm border border-fuchsia-500/30 mb-2 font-medium"
-                  style={{ textShadow: '0 0 6px rgba(168,85,247,0.55)' }}
-                >
-                  📺 AiWebTools Music Stream
-                </DropdownMenuItem>
                 <CollapsibleTrigger 
                   className="w-full text-cyan-100 hover:bg-cyan-500/20 rounded flex items-center justify-between px-3 py-2 text-sm border border-white/10 outline-none focus:bg-cyan-500/20 transition-colors mb-1"
                   onClick={(e) => { e.preventDefault(); e.stopPropagation(); setIsAboutOpen(!isAboutOpen); }}
