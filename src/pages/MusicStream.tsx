@@ -50,6 +50,27 @@ const MusicStream = () => {
     return () => window.clearTimeout(t);
   }, []);
 
+  // Play the MTVai welcome voice ONCE per browser session
+  useEffect(() => {
+    try {
+      if (sessionStorage.getItem("mtvaiWelcomePlayed") === "1") return;
+      const a = new Audio("/sounds/mtvai-welcome.mp3");
+      a.volume = 0.9;
+      // Best-effort autoplay; if blocked, we silently skip (user gesture already happened to enter)
+      a.play().then(() => {
+        sessionStorage.setItem("mtvaiWelcomePlayed", "1");
+      }).catch(() => {
+        // Try once more on first pointer interaction
+        const unlock = () => {
+          a.play().catch(() => {});
+          sessionStorage.setItem("mtvaiWelcomePlayed", "1");
+          window.removeEventListener("pointerdown", unlock);
+        };
+        window.addEventListener("pointerdown", unlock, { once: true });
+      });
+    } catch { /* noop */ }
+  }, []);
+
   const send = useCallback((func: string, args: unknown[] = []) => {
     try {
       iframeRef.current?.contentWindow?.postMessage(
@@ -72,6 +93,31 @@ const MusicStream = () => {
     window.addEventListener("message", onMsg);
     return () => window.removeEventListener("message", onMsg);
   }, [playlist.length]);
+
+  // Subscribe to YouTube iframe events so onStateChange messages actually fire.
+  // Without this `{event:"listening"}` handshake, end-of-video (info === 0)
+  // is never received and the theater never advances.
+  const handleIframeLoad = useCallback(() => {
+    try {
+      iframeRef.current?.contentWindow?.postMessage(
+        JSON.stringify({ event: "listening", id: current.id, channel: "widget" }),
+        "*"
+      );
+      iframeRef.current?.contentWindow?.postMessage(
+        JSON.stringify({ event: "command", func: "addEventListener", args: ["onStateChange"] }),
+        "*"
+      );
+      // Ensure playback starts unmuted at 1080p
+      iframeRef.current?.contentWindow?.postMessage(
+        JSON.stringify({ event: "command", func: "setPlaybackQuality", args: ["hd1080"] }),
+        "*"
+      );
+      iframeRef.current?.contentWindow?.postMessage(
+        JSON.stringify({ event: "command", func: "playVideo", args: [] }),
+        "*"
+      );
+    } catch { /* noop */ }
+  }, [current.id]);
 
   // IMPORTANT: keep mute OUT of the iframe src so toggling mute does NOT
   // reload the iframe (which previously felt like the track was being skipped).
@@ -203,6 +249,7 @@ const MusicStream = () => {
             src={src}
             title={current.title}
             className="w-full h-full"
+            onLoad={handleIframeLoad}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
             allowFullScreen
           />

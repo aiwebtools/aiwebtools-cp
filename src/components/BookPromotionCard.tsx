@@ -745,6 +745,11 @@ const BookPromotionCard = () => {
       id: "Twl5-MsgmoI",
       title: "Hidden Truths Revealed — Music Video",
       gradient: "from-purple-500/20 to-indigo-500/20"
+    },
+    {
+      id: "zVfi5UkMjTM",
+      title: "Look Deeper Inside (Listen To Spirit, For It Knows The Way) — Official MTVai Music Video",
+      gradient: "from-fuchsia-500/20 to-violet-500/20"
     }
   ];
 
@@ -763,6 +768,7 @@ const BookPromotionCard = () => {
     // pinned to the front — it joins the lyric/audio tracks at the back.
     const verticalMusicVideoIds = [
       // MTV Lineup — newest drops, pinned to the very FRONT of the reel
+      "zVfi5UkMjTM",
       "I6kOI_q0aHE",
       "ZIr6c-fY9fs",
       "uGkb2zOYKSk",

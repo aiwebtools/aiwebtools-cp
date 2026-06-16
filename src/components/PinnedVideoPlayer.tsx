@@ -26,6 +26,7 @@ const MODE_SESSION_KEY = "pinned-video-mode"; // 'idle' | 'tools' | 'music'
 // always leads with the most eye-catching content.
 export const MUSIC_VIDEO_GALLERY: Array<{ id: string; title: string }> = [
   // ── MTV LINE-UP (newest drops — play FIRST in the 9:16 reel) ──
+  { id: "zVfi5UkMjTM", title: "Look Deeper Inside (Listen To Spirit, For It Knows The Way) — Official MTVai Music Video" },
   { id: "I6kOI_q0aHE", title: "Neon Prophecy — Official MTVai Music Video" },
   { id: "ZIr6c-fY9fs", title: "Through The Static — Official MTVai Music Video" },
   { id: "uGkb2zOYKSk", title: "Glow In The Glitch — Official MTVai Music Video" },
