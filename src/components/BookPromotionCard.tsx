@@ -233,6 +233,7 @@ const LazyBookVideo = ({
 };
 
 const BookPromotionCard = () => {
+  const navigate = useNavigate();
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
   const [desktopIndex, setDesktopIndex] = useState(0);
   // Idle auto-cycle ON by default so visitors see a "preview reel" of all
