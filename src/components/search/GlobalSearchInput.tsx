@@ -5,10 +5,12 @@ import { Button } from "@/components/ui/button";
 import { memo, useCallback, useEffect, useRef, useState } from "react";
 
 const getInputDispatchDelay = (value: string, gapMs: number): number => {
-  if (gapMs >= 140) return 0;
-  if (value.length > 80) return 140;
-  if (value.length > 40) return 95;
-  return 55;
+  // Always defer the heavy parent update to the next macrotask so the
+  // browser can paint the keystroke first. Rapid typing batches harder.
+  if (gapMs >= 220) return 60;
+  if (value.length > 80) return 200;
+  if (value.length > 40) return 150;
+  return 110;
 };
 
 interface GlobalSearchInputProps {
@@ -70,11 +72,9 @@ const GlobalSearchInput = memo(({
           onSearchChange(next);
         }
       };
-      if (delay === 0) {
-        queueMicrotask(dispatch);
-      } else {
-        debounceTimerRef.current = setTimeout(dispatch, delay);
-      }
+      // Always use a macrotask (setTimeout) so the keystroke paints before
+      // any heavy search work runs. Microtasks would still block paint.
+      debounceTimerRef.current = setTimeout(dispatch, delay);
     },
     [onSearchChange]
   );
