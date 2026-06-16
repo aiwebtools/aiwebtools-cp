@@ -6,6 +6,9 @@ import { useState, useRef, useEffect, useCallback, useMemo } from "react";
 import { allTools } from "@/data/toolsData";
 import { downloadToolsCSV } from "@/utils/csvExport";
 import { triggerPublicDownload } from "@/utils/downloads";
+import { useNavigate } from "react-router-dom";
+import { playMtvFlash } from "@/utils/mtvFlash";
+import mtvAiWebToolsLogo from "@/assets/mtv-aiwebtools-logo.png";
 
 // Utility function to shuffle array
 const shuffleArray = <T,>(array: T[]): T[] => {
