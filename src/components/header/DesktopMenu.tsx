@@ -23,6 +23,7 @@ import GlobalSearchBar from "@/components/LazyGlobalSearchBar";
 import DeferredMount from "@/components/DeferredMount";
 import { useRecentlyVisitedTools } from "@/hooks/useRecentlyVisitedTools";
 import { playMtvFlash } from "@/utils/mtvFlash";
+import mtvAiWebToolsLogo from "@/assets/mtv-aiwebtools-logo.png";
 
 const DesktopMenu = () => {
   const navigate = useNavigate();
@@ -166,6 +167,28 @@ const DesktopMenu = () => {
                   <div className="h-10 rounded-lg border border-white/20 bg-black/40" />
                 )}
               </div>
+
+              {/* MTVai.live — square MTV-logo entry button, top of menu */}
+              <button
+                onClick={() => {
+                  setIsMenuOpen(false);
+                  playMtvFlash().then(() => navigate('/music-stream'));
+                }}
+                className="w-full mb-4 flex items-center justify-center gap-3 px-3 py-3 rounded-xl border border-fuchsia-500/50 bg-gradient-to-r from-fuchsia-600/30 via-purple-600/30 to-cyan-600/30 hover:from-fuchsia-500/40 hover:via-purple-500/40 hover:to-cyan-500/40 transition-all shadow-[0_0_28px_rgba(168,85,247,0.35)] hover:shadow-[0_0_44px_rgba(168,85,247,0.55)] group"
+                aria-label="Open MTVai Theater"
+                title="Enter MTVai.live — 24/7 AI music videos"
+              >
+                <img
+                  src={mtvAiWebToolsLogo}
+                  alt=""
+                  aria-hidden
+                  draggable={false}
+                  className="w-10 h-10 rounded-md drop-shadow-[0_0_10px_rgba(236,72,153,0.9)] group-hover:scale-110 transition-transform"
+                />
+                <span className="font-mono text-sm font-bold tracking-[0.18em] uppercase text-fuchsia-100" style={{ textShadow: '0 0 8px rgba(168,85,247,0.7)' }}>
+                  🎬 MTVai.live · Enter Theater
+                </span>
+              </button>
 
               <DeferredMount delay={80}>
               {/* Quick Navigation Row */}
