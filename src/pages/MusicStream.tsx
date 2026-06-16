@@ -297,8 +297,7 @@ const MusicStream = () => {
           <SkipForward className="w-8 h-8" />
         </button>
         <div
-          className="relative h-full w-full md:aspect-video md:h-auto md:max-h-[88vh]"
-          style={{ aspectRatio: undefined as unknown as string }}
+          className="relative h-full aspect-[9/16] max-w-[100vw] max-h-[100vh] md:aspect-video md:h-auto md:w-full md:max-h-[88vh]"
         >
           <iframe
             ref={iframeRef}
