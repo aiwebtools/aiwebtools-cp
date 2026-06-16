@@ -1406,6 +1406,23 @@ const BookPromotionCard = () => {
                       </DialogContent>
                     </Dialog>
 
+                    <Button
+                      size="sm"
+                      onClick={() => { playMtvFlash().then(() => navigate('/music-stream')); }}
+                      className="bg-gradient-to-r from-fuchsia-600 via-purple-600 to-cyan-600 hover:from-fuchsia-500 hover:via-purple-500 hover:to-cyan-500 text-white font-bold px-4 py-2 rounded-lg text-sm shadow-lg hover:shadow-fuchsia-500/40 transition-all duration-300 transform hover:scale-105 border border-fuchsia-400/40"
+                      title="Open MTVai Theater — 24/7 AI music videos"
+                      aria-label="Open MTVai Theater"
+                    >
+                      <img
+                        src={mtvAiWebToolsLogo}
+                        alt=""
+                        aria-hidden
+                        draggable={false}
+                        className="mr-1.5 w-4 h-4 drop-shadow-[0_0_6px_rgba(168,85,247,0.9)]"
+                      />
+                      🎬 MTVai.live
+                    </Button>
+
                         <Button
                           onClick={() => {
                             try {
