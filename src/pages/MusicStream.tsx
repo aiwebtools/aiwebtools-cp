@@ -139,75 +139,35 @@ const MusicStream = () => {
         <meta name="description" content="The official AiWebTools.ai MTVai Music Stream — non-stop AI-crafted music videos in cinematic 9:16, autoplay 1080p." />
       </Helmet>
 
-      {/* Curtain-opening MTVai intro */}
+      {/* 3D MTV pop-out intro */}
       {showIntro && (
-        <div className="fixed inset-0 z-[60] overflow-hidden bg-black pointer-events-none">
+        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black pointer-events-none">
           <style>{`
-            @keyframes mtvCurtainLeft  { 0% { transform: translateX(0); } 100% { transform: translateX(-105%); } }
-            @keyframes mtvCurtainRight { 0% { transform: translateX(0); } 100% { transform: translateX(105%); } }
-            @keyframes mtvCodeRain     { 0% { transform: translateY(-100%); opacity: 0; } 20% { opacity: 1; } 100% { transform: translateY(100%); opacity: 0; } }
-            @keyframes mtvLogoEmerge {
-              0%   { transform: perspective(900px) translateZ(-1200px) scale(0.05); opacity: 0; filter: blur(28px); }
-              45%  { transform: perspective(900px) translateZ(0)       scale(1.25); opacity: 1; filter: blur(0); }
-              75%  { transform: perspective(900px) translateZ(0)       scale(1.0);  opacity: 1; }
-              100% { transform: perspective(900px) translateZ(0)       scale(0.85); opacity: 0; }
+            @keyframes mtvPopOut {
+              0%   { transform: perspective(900px) translateZ(-800px) rotateY(180deg) scale(0.1); opacity: 0; filter: blur(20px); }
+              40%  { transform: perspective(900px) translateZ(0)      rotateY(0deg)   scale(1.4); opacity: 1; filter: blur(0); }
+              70%  { transform: perspective(900px) translateZ(0)      rotateY(0deg)   scale(1.1); opacity: 1; }
+              100% { transform: perspective(900px) translateZ(0)      rotateY(0deg)   scale(0.2); opacity: 0; }
             }
-            @keyframes mtvFlashRing {
-              0%   { box-shadow: 0 0 0 0 rgba(0,255,65,0.0); }
-              40%  { box-shadow: 0 0 200px 80px rgba(0,255,65,0.45); }
-              100% { box-shadow: 0 0 0 0 rgba(0,255,65,0.0); }
+            @keyframes codeBurst {
+              0% { opacity: 0; transform: scale(0.5); }
+              30% { opacity: 1; }
+              100% { opacity: 0; transform: scale(2.5); }
             }
           `}</style>
-          {/* Matrix code rain behind curtains */}
-          <div aria-hidden className="absolute inset-0 overflow-hidden">
-            {Array.from({ length: 24 }).map((_, i) => (
-              <div
-                key={i}
-                className="absolute top-0 font-mono text-[11px] leading-[13px] text-[#00ff41] whitespace-pre"
-                style={{
-                  left: `${(i / 24) * 100}%`,
-                  textShadow: "0 0 6px #00ff41",
-                  animation: `mtvCodeRain ${1.4 + (i % 5) * 0.18}s linear forwards`,
-                  animationDelay: `${(i % 7) * 0.07}s`,
-                }}
-              >
-                {Array.from({ length: 40 }).map(() => (Math.random() > 0.5 ? "1" : "0")).join("\n")}
-              </div>
-            ))}
-          </div>
-          {/* Logo emerging */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div
-              className="rounded-full"
-              style={{ animation: "mtvFlashRing 1.9s ease-out forwards" }}
-            >
-              <img
-                src={mtvAiWebToolsLogo}
-                alt="MTV AiWebTools"
-                className="w-[55vmin] h-[55vmin] object-contain drop-shadow-[0_0_80px_rgba(168,85,247,0.95)]"
-                style={{ animation: "mtvLogoEmerge 1.9s cubic-bezier(.2,.8,.2,1) forwards" }}
-                draggable={false}
-              />
-            </div>
-          </div>
-          {/* Theater curtains (in front) parting open */}
           <div
             aria-hidden
-            className="absolute inset-y-0 left-0 w-1/2"
-            style={{
-              background: "linear-gradient(90deg, #2a0010 0%, #5b0017 55%, #8b0020 100%)",
-              boxShadow: "inset -30px 0 60px rgba(0,0,0,0.7)",
-              animation: "mtvCurtainLeft 1.9s cubic-bezier(.7,.0,.3,1) forwards",
-            }}
-          />
-          <div
-            aria-hidden
-            className="absolute inset-y-0 right-0 w-1/2"
-            style={{
-              background: "linear-gradient(270deg, #2a0010 0%, #5b0017 55%, #8b0020 100%)",
-              boxShadow: "inset 30px 0 60px rgba(0,0,0,0.7)",
-              animation: "mtvCurtainRight 1.9s cubic-bezier(.7,.0,.3,1) forwards",
-            }}
+            className="absolute inset-0 font-mono text-[10px] leading-[12px] text-[#00ff41] whitespace-pre overflow-hidden"
+            style={{ animation: "codeBurst 1.9s ease-out forwards", textShadow: "0 0 6px #00ff41" }}
+          >
+            {Array.from({ length: 60 }).map(() => "01001010 11001101 10101110 11110000 00111100 11000011\n").join("")}
+          </div>
+          <img
+            src={mtvAiWebToolsLogo}
+            alt="MTV AiWebTools"
+            className="w-[60vmin] h-[60vmin] object-contain drop-shadow-[0_0_60px_rgba(168,85,247,0.9)]"
+            style={{ animation: "mtvPopOut 1.9s cubic-bezier(.2,.7,.2,1) forwards" }}
+            draggable={false}
           />
         </div>
       )}
@@ -277,27 +237,11 @@ const MusicStream = () => {
         </div>
       </div>
 
-      {/* Theater player — 9:16 on mobile, full 16:9 widescreen on desktop */}
-      <div className="absolute inset-0 flex items-center justify-center px-0 md:px-20">
-        {/* Large nav arrows beside player (desktop only) */}
-        <button
-          onClick={() => setIdx(i => (i - 1 + playlist.length) % playlist.length)}
-          className="hidden md:flex absolute left-2 top-1/2 -translate-y-1/2 z-30 h-20 w-14 items-center justify-center rounded-r-2xl bg-black/60 border border-cyan-500/40 text-cyan-200 hover:bg-cyan-500/20 hover:scale-110 transition shadow-[0_0_30px_rgba(34,211,238,0.4)]"
-          title="Previous video"
-          aria-label="Previous video"
-        >
-          <SkipBack className="w-8 h-8" />
-        </button>
-        <button
-          onClick={() => setIdx(i => (i + 1) % playlist.length)}
-          className="hidden md:flex absolute right-2 top-1/2 -translate-y-1/2 z-30 h-20 w-14 items-center justify-center rounded-l-2xl bg-black/60 border border-fuchsia-500/40 text-fuchsia-200 hover:bg-fuchsia-500/20 hover:scale-110 transition shadow-[0_0_30px_rgba(217,70,239,0.4)]"
-          title="Next video"
-          aria-label="Next video"
-        >
-          <SkipForward className="w-8 h-8" />
-        </button>
+      {/* Theater player — giant 9:16 center stage */}
+      <div className="absolute inset-0 flex items-center justify-center">
         <div
-          className="relative h-full aspect-[9/16] max-w-[100vw] max-h-[100vh] md:aspect-video md:h-auto md:w-full md:max-h-[88vh]"
+          className="relative h-full"
+          style={{ aspectRatio: "9 / 16", maxWidth: "100vw", maxHeight: "100vh" }}
         >
           <iframe
             ref={iframeRef}
