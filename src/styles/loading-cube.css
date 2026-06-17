@@ -170,3 +170,26 @@
   animation: loading-text-cycle 1.2s ease-out forwards;
   content: "0%";
 }
+
+/* CRITICAL: Loading cube must spin even with reduced motion preference.
+   Global reduced-motion overrides were freezing the matrix loader.
+   These rules win via higher specificity + !important. */
+@media (prefers-reduced-motion: reduce) {
+  .loading-cube,
+  .pl-cube {
+    -webkit-animation: cube-spin 6s linear infinite !important;
+    animation: cube-spin 6s linear infinite !important;
+    animation-duration: 6s !important;
+    animation-iteration-count: infinite !important;
+  }
+  .pl-cube {
+    -webkit-animation: pl-rotateCube 1.4s linear infinite !important;
+    animation: pl-rotateCube 1.4s linear infinite !important;
+    animation-duration: 1.4s !important;
+    animation-iteration-count: infinite !important;
+  }
+  .ls-scanline, .ls-grid, .ls-brand, .ls-ring, .pl-label, .pl-scan::before {
+    animation-duration: inherit !important;
+    animation-iteration-count: infinite !important;
+  }
+}
