@@ -98,6 +98,10 @@ export const MUSIC_VIDEO_GALLERY: Array<{ id: string; title: string }> = [
   { id: "A16W7eADboQ", title: "Render The Resurrection — Official MTVai Music Video" },
   { id: "U7R_6FRwK1Q", title: "Heart Of The Mainframe — Official MTVai Music Video" },
   { id: "Ja2auKcdzHg", title: "Through The Looking Code — Official MTVai Music Video" },
+  // ── MTV LINE-UP (fresh expansion drop) ──
+  { id: "eIwAbvwXNVc", title: "Awakened Anthem — Official MTVai Music Video" },
+  { id: "9F81C9zED-w", title: "Spirit In The Signal — Official MTVai Music Video" },
+  { id: "AOI0K3XyM20", title: "Resurrection Frequency — Official MTVai Music Video" },
   // ── VISUAL MUSIC VIDEOS (real cinematic clips, lead the reel) ──
   { id: "eG-TvPPKBpw", title: "AI Web Tools 9:16 Vertical Showcase — Newest Drop" },
   { id: "3XaTLuJ0kak", title: "AI Web Tools 9:16 Vertical Showcase — Brand New Cinematic Drop" },
