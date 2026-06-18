@@ -19,6 +19,7 @@ const MusicStream = () => {
   const navigate = useNavigate();
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
   const [muted, setMuted] = useState(false);
+  const [volume, setVolume] = useState(100);
   const [showIntro, setShowIntro] = useState(true);
   const [searchOpen, setSearchOpen] = useState(false);
 
@@ -149,12 +150,21 @@ const MusicStream = () => {
         JSON.stringify({ event: "command", func: "setPlaybackQuality", args: ["hd1080"] }),
         "*"
       );
+      // Theater-loud: crank to 100 and unmute on every load
+      iframeRef.current?.contentWindow?.postMessage(
+        JSON.stringify({ event: "command", func: "unMute", args: [] }),
+        "*"
+      );
+      iframeRef.current?.contentWindow?.postMessage(
+        JSON.stringify({ event: "command", func: "setVolume", args: [volume] }),
+        "*"
+      );
       iframeRef.current?.contentWindow?.postMessage(
         JSON.stringify({ event: "command", func: "playVideo", args: [] }),
         "*"
       );
     } catch { /* noop */ }
-  }, [current.id]);
+  }, [current.id, volume]);
 
   // IMPORTANT: keep mute OUT of the iframe src so toggling mute does NOT
   // reload the iframe (which previously felt like the track was being skipped).
@@ -168,6 +178,15 @@ const MusicStream = () => {
       return next;
     });
   }, [send]);
+
+  const onVolumeChange = useCallback((v: number) => {
+    setVolume(v);
+    send("setVolume", [v]);
+    if (v > 0 && muted) {
+      setMuted(false);
+      send("unMute");
+    }
+  }, [send, muted]);
 
   return (
     <div className="fixed inset-0 bg-black text-white overflow-hidden">
@@ -249,6 +268,31 @@ const MusicStream = () => {
         >
           {muted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5" />}
         </button>
+      </div>
+
+      {/* Theater volume slider — bottom-right floating control */}
+      <div className="fixed bottom-16 right-3 z-40 flex items-center gap-2 px-3 py-2 rounded-full bg-black/80 border border-fuchsia-500/40 backdrop-blur shadow-[0_0_20px_rgba(168,85,247,0.35)]">
+        <button
+          onClick={toggleMute}
+          className="text-fuchsia-200 hover:text-white"
+          aria-label={muted ? "Unmute" : "Mute"}
+          title={muted ? "Unmute" : "Mute"}
+        >
+          {muted || volume === 0 ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
+        </button>
+        <input
+          type="range"
+          min={0}
+          max={100}
+          step={1}
+          value={muted ? 0 : volume}
+          onChange={(e) => onVolumeChange(Number(e.target.value))}
+          aria-label="MTVai theater volume"
+          className="w-28 sm:w-36 accent-fuchsia-500 cursor-pointer"
+        />
+        <span className="font-mono text-[10px] uppercase tracking-widest text-fuchsia-300 w-7 text-right">
+          {muted ? 0 : volume}
+        </span>
       </div>
 
       {/* AI Tools slide-out search panel */}
