@@ -38,6 +38,19 @@ const MusicStream = () => {
   const [idx, setIdx] = useState(0);
   const current = playlist[idx % playlist.length];
 
+  // Guards so YouTube can't double-fire "ended" / fire it during a buffer
+  // hiccup — that was causing tracks to occasionally skip or replay before
+  // the round was finished.
+  const videoStartRef = useRef<number>(Date.now());
+  const advancedForRef = useRef<string | null>(null);
+  const detectedDurationRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    videoStartRef.current = Date.now();
+    advancedForRef.current = null;
+    detectedDurationRef.current = null;
+  }, [current.id]);
+
   // Persist a "came from music stream" flag so the global back-to-music
   // pill can render on any tool/category page the user navigates to.
   useEffect(() => {
@@ -85,14 +98,38 @@ const MusicStream = () => {
     const onMsg = (e: MessageEvent) => {
       try {
         const data = typeof e.data === "string" ? JSON.parse(e.data) : e.data;
-        if (data?.event === "onStateChange" && data?.info === 0) {
-          setIdx(i => (i + 1) % playlist.length);
+        // Only react to messages from OUR theater iframe — other YouTube
+        // embeds on the page (pinned player, etc.) also post state changes
+        // and were able to trigger spurious advances.
+        if (!iframeRef.current || e.source !== iframeRef.current.contentWindow) return;
+
+        // Capture duration so we can require ~90% playback before honoring "ended".
+        if (data?.info?.duration && data.info.duration > 0 && !detectedDurationRef.current) {
+          detectedDurationRef.current = data.info.duration;
         }
+
+        const ended =
+          (data?.event === "onStateChange" && data?.info === 0) ||
+          data?.info?.playerState === 0;
+        if (!ended) return;
+
+        // De-dupe: never advance twice for the same video id.
+        if (advancedForRef.current === current.id) return;
+
+        // Require minimum play time — 90% of detected duration, or 9s fallback —
+        // so a buffering hiccup or seek can't masquerade as "ended".
+        const elapsed = Date.now() - videoStartRef.current;
+        const detected = detectedDurationRef.current;
+        const minMs = detected ? Math.max(9000, detected * 1000 * 0.9) : 9000;
+        if (elapsed < minMs) return;
+
+        advancedForRef.current = current.id;
+        setIdx(i => (i + 1) % playlist.length);
       } catch {}
     };
     window.addEventListener("message", onMsg);
     return () => window.removeEventListener("message", onMsg);
-  }, [playlist.length]);
+  }, [playlist.length, current.id]);
 
   // Subscribe to YouTube iframe events so onStateChange messages actually fire.
   // Without this `{event:"listening"}` handshake, end-of-video (info === 0)
