@@ -270,16 +270,9 @@ const MusicStream = () => {
         </button>
       </div>
 
-      {/* Theater volume slider — bottom-right floating control */}
-      <div className="fixed bottom-16 right-3 z-40 flex items-center gap-2 px-3 py-2 rounded-full bg-black/80 border border-fuchsia-500/40 backdrop-blur shadow-[0_0_20px_rgba(168,85,247,0.35)]">
-        <button
-          onClick={toggleMute}
-          className="text-fuchsia-200 hover:text-white"
-          aria-label={muted ? "Unmute" : "Mute"}
-          title={muted ? "Unmute" : "Mute"}
-        >
-          {muted || volume === 0 ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
-        </button>
+      {/* Theater volume slider — vertical, bottom-left, compact */}
+      <div className="fixed bottom-16 left-2 z-40 flex flex-col items-center gap-1 px-1.5 py-2 rounded-xl bg-black/75 border border-fuchsia-500/40 backdrop-blur shadow-[0_0_16px_rgba(168,85,247,0.3)]">
+        <span className="font-mono text-[8px] uppercase tracking-widest text-fuchsia-300">Max</span>
         <input
           type="range"
           min={0}
@@ -288,11 +281,18 @@ const MusicStream = () => {
           value={muted ? 0 : volume}
           onChange={(e) => onVolumeChange(Number(e.target.value))}
           aria-label="MTVai theater volume"
-          className="w-28 sm:w-36 accent-fuchsia-500 cursor-pointer"
+          className="accent-fuchsia-500 cursor-pointer h-20 w-1"
+          style={{ writingMode: "vertical-lr" as const, WebkitAppearance: "slider-vertical", direction: "rtl" }}
         />
-        <span className="font-mono text-[10px] uppercase tracking-widest text-fuchsia-300 w-7 text-right">
-          {muted ? 0 : volume}
-        </span>
+        <span className="font-mono text-[8px] uppercase tracking-widest text-fuchsia-300">Min</span>
+        <button
+          onClick={toggleMute}
+          className="mt-0.5 text-fuchsia-200 hover:text-white"
+          aria-label={muted ? "Unmute" : "Mute"}
+          title={muted ? "Unmute" : "Mute"}
+        >
+          {muted || volume === 0 ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5" />}
+        </button>
       </div>
 
       {/* AI Tools slide-out search panel */}
