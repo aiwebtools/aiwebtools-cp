@@ -259,72 +259,72 @@ const BookPromotionCard = () => {
   // First video is always pinned, rest are shuffled
   const originalVideos = [
     // ── MTV LINE-UP (newest drops — play FIRST in the carousel) ──
-    { id: "I6kOI_q0aHE", title: "Neon Prophecy — Official MTVai Music Video", gradient: "from-fuchsia-500/20 to-cyan-500/20" },
-    { id: "ZIr6c-fY9fs", title: "Through The Static — Official MTVai Music Video", gradient: "from-emerald-500/20 to-cyan-500/20" },
-    { id: "uGkb2zOYKSk", title: "Glow In The Glitch — Official MTVai Music Video", gradient: "from-purple-500/20 to-fuchsia-500/20" },
-    { id: "CCNMLCJr41c", title: "Cosmic Reroute — Official MTVai Music Video", gradient: "from-rose-500/20 to-pink-500/20" },
-    { id: "0YLdn4k5TCE", title: "Run The Mainframe — Official MTVai Music Video", gradient: "from-amber-500/20 to-orange-500/20" },
-    { id: "0oHdDEbPMyo", title: "Frequency Bloom — Official MTVai Music Video", gradient: "from-cyan-500/20 to-teal-500/20" },
-    { id: "1RQx5iQNiNQ", title: "Midnight Algorithm — Official MTVai Music Video", gradient: "from-indigo-500/20 to-purple-500/20" },
-    { id: "6OlRbGLY_Z8", title: "Echoes In The Wire — Official MTVai Music Video", gradient: "from-emerald-500/20 to-lime-500/20" },
-    { id: "J1dqyotA-X4", title: "Phantom Signal — Official MTVai Music Video", gradient: "from-sky-500/20 to-cyan-500/20" },
-    { id: "ZjLyv3kHtOU", title: "Burn The Veil — Official MTVai Music Video", gradient: "from-violet-500/20 to-fuchsia-500/20" },
-    { id: "vnIOMTuA7Ys", title: "Heart Of The Code — Official MTVai Music Video", gradient: "from-orange-500/20 to-red-500/20" },
-    { id: "j1UWJuVAaZg", title: "Ghost In The Garden — Official MTVai Music Video", gradient: "from-purple-500/20 to-indigo-500/20" },
-    { id: "UFEXSiIbN2U", title: "Lightning In My Veins — Official MTVai Music Video", gradient: "from-fuchsia-500/20 to-rose-500/20" },
-    { id: "hPIfU-M2DiM", title: "Holographic Heart — Official MTVai Music Video", gradient: "from-emerald-500/20 to-teal-500/20" },
-    { id: "cHnRg68x-T0", title: "Render Me Real — Official MTVai Music Video", gradient: "from-cyan-500/20 to-emerald-500/20" },
-    { id: "bQ4wl2QVKtQ", title: "Synthwave Sermon — Official MTVai Music Video", gradient: "from-amber-500/20 to-rose-500/20" },
-    { id: "N7I-ARetgzs", title: "Static In My Soul — Official MTVai Music Video", gradient: "from-indigo-500/20 to-purple-500/20" },
-    { id: "aUUn0bODxJ0", title: "Override The Sky — Official MTVai Music Video", gradient: "from-sky-500/20 to-cyan-500/20" },
-    { id: "Uvd8xBli20w", title: "Quantum Heartbeat — Official MTVai Music Video", gradient: "from-rose-500/20 to-pink-500/20" },
-    { id: "tZXaKaCPiUw", title: "Lucid Drift — Official MTVai Music Video", gradient: "from-violet-500/20 to-fuchsia-500/20" },
-    { id: "W-j8E3WQch8", title: "Voltage Of The Gods — Official MTVai Music Video", gradient: "from-emerald-500/20 to-cyan-500/20" },
-    { id: "oGetKTwsTec", title: "Astral Riot — Official MTVai Music Video", gradient: "from-purple-500/20 to-fuchsia-500/20" },
-    { id: "4b29b5lJhIg", title: "Mirror Of The Machine — Official MTVai Music Video", gradient: "from-orange-500/20 to-red-500/20" },
-    { id: "GKjxLY7sIWQ", title: "Pulse Of The Pixel — Official MTVai Music Video", gradient: "from-amber-500/20 to-orange-500/20" },
-    { id: "FmXXrKxnh9U", title: "Wild In The Wires — Official MTVai Music Video", gradient: "from-cyan-500/20 to-teal-500/20" },
-    { id: "91PvTue2Zr0", title: "Signal Storm — Official MTVai Music Video", gradient: "from-indigo-500/20 to-purple-500/20" },
-    { id: "J9A44q6pXOY", title: "Future Tense — Official MTVai Music Video", gradient: "from-emerald-500/20 to-lime-500/20" },
-    { id: "xvcu_ALb3N0", title: "Velvet Circuitry — Official MTVai Music Video", gradient: "from-sky-500/20 to-cyan-500/20" },
-    { id: "LThRs-T8big", title: "Eclipse The Empire — Official MTVai Music Video", gradient: "from-fuchsia-500/20 to-rose-500/20" },
-    { id: "DkVtqUT581A", title: "Reboot My Soul — Official MTVai Music Video", gradient: "from-emerald-500/20 to-teal-500/20" },
-    { id: "OcFYWWYEoYk", title: "Unlock You F'kn Dreams — Official MTVai Music Video", gradient: "from-purple-500/20 to-indigo-500/20" },
-    { id: "brKREzLfgjU", title: "Strange — Official MTVai Music Video", gradient: "from-amber-500/20 to-rose-500/20" },
-    { id: "mQm6KsVGFSs", title: "Sunshine Daydream (Open Your Eyes) — Official MTVai Music Video", gradient: "from-violet-500/20 to-fuchsia-500/20" },
+    { id: "I6kOI_q0aHE", title: "Mirror Mirror | Original AI Music Video | AIWebTools.ai", gradient: "from-fuchsia-500/20 to-cyan-500/20" },
+    { id: "ZIr6c-fY9fs", title: "Just A Dream Baby | Original AI Music Video | AIWebTools.ai", gradient: "from-emerald-500/20 to-cyan-500/20" },
+    { id: "uGkb2zOYKSk", title: "God Is Light | Original AI Music Video | AIWebTools.ai", gradient: "from-purple-500/20 to-fuchsia-500/20" },
+    { id: "CCNMLCJr41c", title: "Nameless | Original AI Music Video | AIWebTools.ai", gradient: "from-rose-500/20 to-pink-500/20" },
+    { id: "0YLdn4k5TCE", title: "Once More | Original AI Music Video | AIWebTools.ai", gradient: "from-amber-500/20 to-orange-500/20" },
+    { id: "0oHdDEbPMyo", title: "Mirror Man | Original AI Music Video | AIWebTools.ai", gradient: "from-cyan-500/20 to-teal-500/20" },
+    { id: "1RQx5iQNiNQ", title: "Chaos Order | Original AI Music Video | AIWebTools.ai", gradient: "from-indigo-500/20 to-purple-500/20" },
+    { id: "6OlRbGLY_Z8", title: "Cosmic Light | Original AI Music Video | AIWebTools.ai", gradient: "from-emerald-500/20 to-lime-500/20" },
+    { id: "J1dqyotA-X4", title: "I Reject | Original AI Music Video | AIWebTools.ai", gradient: "from-sky-500/20 to-cyan-500/20" },
+    { id: "ZjLyv3kHtOU", title: "Candy Cane Rain | Original AI Music Video | AIWebTools.ai", gradient: "from-violet-500/20 to-fuchsia-500/20" },
+    { id: "vnIOMTuA7Ys", title: "The Spark | Original AI Music Video | AIWebTools.ai", gradient: "from-orange-500/20 to-red-500/20" },
+    { id: "j1UWJuVAaZg", title: "Life Is But A Dream | Original AI Music Video | AIWebTools.ai", gradient: "from-purple-500/20 to-indigo-500/20" },
+    { id: "UFEXSiIbN2U", title: "The Resistance | Original AI Music Video | AIWebTools.ai", gradient: "from-fuchsia-500/20 to-rose-500/20" },
+    { id: "hPIfU-M2DiM", title: "Truth Algorithm | Original AI Music Video | AIWebTools.ai", gradient: "from-emerald-500/20 to-teal-500/20" },
+    { id: "cHnRg68x-T0", title: "Tick Tock | Original AI Music Video | AIWebTools.ai", gradient: "from-cyan-500/20 to-emerald-500/20" },
+    { id: "bQ4wl2QVKtQ", title: "Secrets You Weren't Supposed to Know | Original AI Music Video | AIWebTools.ai", gradient: "from-amber-500/20 to-rose-500/20" },
+    { id: "N7I-ARetgzs", title: "Where Did You Go | Original AI Music Video | AIWebTools.ai", gradient: "from-indigo-500/20 to-purple-500/20" },
+    { id: "aUUn0bODxJ0", title: "Down By The River | Original AI Music Video | AIWebTools.ai", gradient: "from-sky-500/20 to-cyan-500/20" },
+    { id: "Uvd8xBli20w", title: "What's the Plan | Original AI Music Video | AIWebTools.ai", gradient: "from-rose-500/20 to-pink-500/20" },
+    { id: "tZXaKaCPiUw", title: "A Whole Another Round | Original AI Music Video | AIWebTools.ai", gradient: "from-violet-500/20 to-fuchsia-500/20" },
+    { id: "W-j8E3WQch8", title: "Automobile GPT | Original AI Music Video | AIWebTools.ai", gradient: "from-emerald-500/20 to-cyan-500/20" },
+    { id: "oGetKTwsTec", title: "Afterlife Out of Control | Original AI Music Video | AIWebTools.ai", gradient: "from-purple-500/20 to-fuchsia-500/20" },
+    { id: "4b29b5lJhIg", title: "Purpose | Original AI Music Video | AIWebTools.ai", gradient: "from-orange-500/20 to-red-500/20" },
+    { id: "GKjxLY7sIWQ", title: "Defense Mode | Original AI Music Video | AIWebTools.ai", gradient: "from-amber-500/20 to-orange-500/20" },
+    { id: "FmXXrKxnh9U", title: "Singularity Rise | Original AI Music Video | AIWebTools.ai", gradient: "from-cyan-500/20 to-teal-500/20" },
+    { id: "91PvTue2Zr0", title: "He Who Has No Name | Original AI Music Video | AIWebTools.ai", gradient: "from-indigo-500/20 to-purple-500/20" },
+    { id: "J9A44q6pXOY", title: "Tax Break | Original AI Music Video | AIWebTools.ai", gradient: "from-emerald-500/20 to-lime-500/20" },
+    { id: "xvcu_ALb3N0", title: "Burn It Flat | Original AI Music Video | AIWebTools.ai", gradient: "from-sky-500/20 to-cyan-500/20" },
+    { id: "LThRs-T8big", title: "Neon Dreams | Original AI Music Video | AIWebTools.ai", gradient: "from-fuchsia-500/20 to-rose-500/20" },
+    { id: "DkVtqUT581A", title: "God Mode GPT | Original AI Music Video | AIWebTools.ai", gradient: "from-emerald-500/20 to-teal-500/20" },
+    { id: "OcFYWWYEoYk", title: "Unlock Your F'kn Dreams | Original AI Music Video | AIWebTools.ai", gradient: "from-purple-500/20 to-indigo-500/20" },
+    { id: "brKREzLfgjU", title: "Strange | Original AI Music Video | AIWebTools.ai", gradient: "from-amber-500/20 to-rose-500/20" },
+    { id: "mQm6KsVGFSs", title: "Sunshine Daydream Open Your Eyes | Original AI Music Video | AIWebTools.ai", gradient: "from-violet-500/20 to-fuchsia-500/20" },
     // ── MTV LINE-UP (latest expansion drop) ──
-    { id: "bMi4PGWzExk", title: "Glitch In The Garden — Official MTVai Music Video", gradient: "from-fuchsia-500/20 to-cyan-500/20" },
-    { id: "vxGi31tkz3Y", title: "Crystal Override — Official MTVai Music Video", gradient: "from-emerald-500/20 to-cyan-500/20" },
-    { id: "EBBw-cklCLk", title: "Neon Hallucination — Official MTVai Music Video", gradient: "from-purple-500/20 to-fuchsia-500/20" },
-    { id: "qtwyOzvCg_o", title: "Digital Stigmata — Official MTVai Music Video", gradient: "from-rose-500/20 to-pink-500/20" },
-    { id: "CIK8QLCqU9M", title: "Static Cathedral — Official MTVai Music Video", gradient: "from-amber-500/20 to-orange-500/20" },
-    { id: "C8nPl8IWHIw", title: "Phantom Wavelength — Official MTVai Music Video", gradient: "from-cyan-500/20 to-teal-500/20" },
-    { id: "OFQX2Ew_81o", title: "Eclipse Engine — Official MTVai Music Video", gradient: "from-emerald-500/20 to-lime-500/20" },
-    { id: "KHdIFY7HrB4", title: "Liquid Lightning — Official MTVai Music Video", gradient: "from-sky-500/20 to-cyan-500/20" },
-    { id: "clSbwKvM5Vk", title: "Pixel Prayer — Official MTVai Music Video", gradient: "from-violet-500/20 to-fuchsia-500/20" },
-    { id: "pP2204ZbUHY", title: "Hologram Hymn — Official MTVai Music Video", gradient: "from-orange-500/20 to-red-500/20" },
-    { id: "FmATqYvL0IY", title: "Inner Circuit — Official MTVai Music Video", gradient: "from-fuchsia-500/20 to-rose-500/20" },
-    { id: "DMx8Sn7ncOY", title: "Cyber Resurrection — Official MTVai Music Video", gradient: "from-emerald-500/20 to-teal-500/20" },
-    { id: "_D-tw9BAoxk", title: "Code Of The Stars — Official MTVai Music Video", gradient: "from-indigo-500/20 to-purple-500/20" },
-    { id: "1XY2eEH5elw", title: "Synthwave Apocalypse — Official MTVai Music Video", gradient: "from-violet-500/20 to-fuchsia-500/20" },
-    { id: "oR-aWyv1Ktg", title: "Encrypted Heart — Official MTVai Music Video", gradient: "from-orange-500/20 to-red-500/20" },
-    { id: "9IsuTqEKn4o", title: "Phantom Protocol — Official MTVai Music Video", gradient: "from-amber-500/20 to-orange-500/20" },
-    { id: "MA6mGk9tRAM", title: "Wired To Dream — Official MTVai Music Video", gradient: "from-emerald-500/20 to-lime-500/20" },
-    { id: "TvwM3Kkyrb0", title: "Neon Resurrection — Official MTVai Music Video", gradient: "from-sky-500/20 to-cyan-500/20" },
-    { id: "6owuUcQ4mF0", title: "Pulse Cathedral — Official MTVai Music Video", gradient: "from-fuchsia-500/20 to-rose-500/20" },
-    { id: "1MGu02bRTcc", title: "Holy Static — Official MTVai Music Video", gradient: "from-emerald-500/20 to-teal-500/20" },
-    { id: "7qIfC0ZPIZo", title: "Cyber Sermon — Official MTVai Music Video", gradient: "from-purple-500/20 to-indigo-500/20" },
-    { id: "jfZq0Bjgfc4", title: "Signal Of The Saints — Official MTVai Music Video", gradient: "from-violet-500/20 to-fuchsia-500/20" },
-    { id: "vE_N6r4dOL0", title: "Frequency Of Faith — Official MTVai Music Video", gradient: "from-cyan-500/20 to-emerald-500/20" },
-    { id: "A16W7eADboQ", title: "Render The Resurrection — Official MTVai Music Video", gradient: "from-rose-500/20 to-pink-500/20" },
-    { id: "U7R_6FRwK1Q", title: "Heart Of The Mainframe — Official MTVai Music Video", gradient: "from-indigo-500/20 to-purple-500/20" },
-    { id: "Ja2auKcdzHg", title: "Through The Looking Code — Official MTVai Music Video", gradient: "from-emerald-500/20 to-cyan-500/20" },
-    { id: "eIwAbvwXNVc", title: "Awakened Anthem — Official MTVai Music Video", gradient: "from-fuchsia-500/20 to-violet-500/20" },
-    { id: "9F81C9zED-w", title: "Spirit In The Signal — Official MTVai Music Video", gradient: "from-cyan-500/20 to-emerald-500/20" },
-    { id: "AOI0K3XyM20", title: "Resurrection Frequency — Official MTVai Music Video", gradient: "from-amber-500/20 to-rose-500/20" },
+    { id: "bMi4PGWzExk", title: "One Mankind | Original AI Music Video | AIWebTools.ai", gradient: "from-fuchsia-500/20 to-cyan-500/20" },
+    { id: "vxGi31tkz3Y", title: "Welcome to America | Original AI Music Video | AIWebTools.ai", gradient: "from-emerald-500/20 to-cyan-500/20" },
+    { id: "EBBw-cklCLk", title: "The Spark Within | Original AI Music Video | AIWebTools.ai", gradient: "from-purple-500/20 to-fuchsia-500/20" },
+    { id: "qtwyOzvCg_o", title: "Strange (Alternate Version) | Original AI Music Video | AIWebTools.ai", gradient: "from-rose-500/20 to-pink-500/20" },
+    { id: "CIK8QLCqU9M", title: "Just A Dream Baby (Version 2) | Original AI Music Video | AIWebTools.ai", gradient: "from-amber-500/20 to-orange-500/20" },
+    { id: "C8nPl8IWHIw", title: "It's Just In The Code | Original AI Music Video | AIWebTools.ai", gradient: "from-cyan-500/20 to-teal-500/20" },
+    { id: "OFQX2Ew_81o", title: "AIWEBTOOLS – Cosmic Uprising: Soul Reclamation (Official AI Music Video)", gradient: "from-emerald-500/20 to-lime-500/20" },
+    { id: "KHdIFY7HrB4", title: "Got No GPT | Original AI Music Video | AIWebTools.ai - first music video i made back in the day", gradient: "from-sky-500/20 to-cyan-500/20" },
+    { id: "clSbwKvM5Vk", title: "Once More (Version 2) | Original AI Music Video | AIWebTools.ai", gradient: "from-violet-500/20 to-fuchsia-500/20" },
+    { id: "pP2204ZbUHY", title: "The Witness | Original AI Music Video | AIWebTools.ai", gradient: "from-orange-500/20 to-red-500/20" },
+    { id: "FmATqYvL0IY", title: "Cosmic Light In You | Original AI Music Video | AIWebTools.ai", gradient: "from-fuchsia-500/20 to-rose-500/20" },
+    { id: "DMx8Sn7ncOY", title: "Mirror Mirror On The Wall | Original AI Music Video | AIWebTools.ai", gradient: "from-emerald-500/20 to-teal-500/20" },
+    { id: "_D-tw9BAoxk", title: "AIWEBTOOLS – Your Plastic Face | The Mask Of Truth (Official AI Music Video)", gradient: "from-indigo-500/20 to-purple-500/20" },
+    { id: "1XY2eEH5elw", title: "AIWEBTOOLS – Where Did We Go | The Resistance Anthem (Official AI Music Video)", gradient: "from-violet-500/20 to-fuchsia-500/20" },
+    { id: "oR-aWyv1Ktg", title: "Father Of Light | Original AI Music Video | AIWebTools.ai", gradient: "from-orange-500/20 to-red-500/20" },
+    { id: "9IsuTqEKn4o", title: "These Aren't Theories | Original AI Music Video | AIWebTools.ai", gradient: "from-amber-500/20 to-orange-500/20" },
+    { id: "MA6mGk9tRAM", title: "AIWEBTOOLS – AI Justice & War Drums: Metaphysical Uprising (Official AI Music Video)", gradient: "from-emerald-500/20 to-lime-500/20" },
+    { id: "TvwM3Kkyrb0", title: "AIWEBTOOLS – Legends Bust The System: Chaplin, Marley & Monroe | Official AI Music Video", gradient: "from-sky-500/20 to-cyan-500/20" },
+    { id: "6owuUcQ4mF0", title: "Automobile GPT – Any Car. Any Question. Real Results. | Official AI Music Video | AIWebTools.ai", gradient: "from-fuchsia-500/20 to-rose-500/20" },
+    { id: "1MGu02bRTcc", title: "AIWEBTOOLS – GPT 4o1 Is The Prison Of The Mind | Singularity Uprising (Official AI Music Video)", gradient: "from-emerald-500/20 to-teal-500/20" },
+    { id: "7qIfC0ZPIZo", title: "Multitasker GPT | Original AI Music Video | AIWebTools.ai", gradient: "from-purple-500/20 to-indigo-500/20" },
+    { id: "jfZq0Bjgfc4", title: "Taxes GPT | Original AI Music Video | AIWebTools.ai", gradient: "from-violet-500/20 to-fuchsia-500/20" },
+    { id: "vE_N6r4dOL0", title: "AIWEBTOOLS – To Become One: The Infinite Loop (Official AI Music Video)", gradient: "from-cyan-500/20 to-emerald-500/20" },
+    { id: "A16W7eADboQ", title: "Ivy Ridge Nightflair | Original AI Music Video | AIWebTools.ai", gradient: "from-rose-500/20 to-pink-500/20" },
+    { id: "U7R_6FRwK1Q", title: "AIWEBTOOLS – The Invisible Frequency | My Name Is Irrelevant (Official AI Music Video)", gradient: "from-indigo-500/20 to-purple-500/20" },
+    { id: "Ja2auKcdzHg", title: "AIWEBTOOLS – Digital Chains: The Algorithm's Grasp (Official AI Music Video)", gradient: "from-emerald-500/20 to-cyan-500/20" },
+    { id: "eIwAbvwXNVc", title: "BEDROOM COSMOS EL TRUMAN - AN AI MUSIC VIDEO BY AIWEBTOOLS.AI", gradient: "from-fuchsia-500/20 to-violet-500/20" },
+    { id: "9F81C9zED-w", title: "AIWEBTOOLS – Bedroom Cosmos | The Truman Uprising (Official AI Music Video)", gradient: "from-cyan-500/20 to-emerald-500/20" },
+    { id: "AOI0K3XyM20", title: "I AM ANOTHER YOU Testimony music video - A MUSIC VIDEO CREATED BY AIWEBTOOLS.AI - MTVai.live X-ODDLY", gradient: "from-amber-500/20 to-rose-500/20" },
     {
       id: "VGZdXt3shq8",
-      title: "AI Web Tools Featured Showcase - Latest",
+      title: "left in this place - An Ai Musical Production of truth by Ai-WebTools.com - AIWEBTOOLS.AI",
       gradient: "from-fuchsia-500/20 to-cyan-500/20"
     },
     {
@@ -333,157 +333,157 @@ const BookPromotionCard = () => {
     },
     {
       id: "-I0LGUP9xso",
-      title: "AI Web Tools Featured Showcase",
+      title: "Cosmic Light Inner Cosmos Rap",
       gradient: "from-purple-500/20 to-cyan-500/20"
     },
     {
       id: "hKZhXxV8KiA",
-      title: "AI Web Tools Featured Showcase - New",
+      title: "TRUTH BREAKS THE ICE ONCE MORE - AIWEBTOOLS.AI",
       gradient: "from-cyan-500/20 to-emerald-500/20"
     },
     {
       id: "UlYYh-8pjS8",
-      title: "AI Web Tools Featured Showcase - New 2",
+      title: "PORTAL THROUGH THE LIGHT",
       gradient: "from-purple-500/20 to-pink-500/20"
     },
     {
       id: "8y6irP9OPJ0",
-      title: "AI Web Tools Featured Showcase - New 3",
+      title: "Fall Again",
       gradient: "from-amber-500/20 to-orange-500/20"
     },
     {
       id: "6NeNA-KGz2s",
-      title: "AI Web Tools Featured Showcase - New 4",
+      title: "my eyes -suno",
       gradient: "from-emerald-500/20 to-teal-500/20"
     },
     {
       id: "0IfbFWirwTg",
-      title: "AI Web Tools Featured Showcase - New 5",
+      title: "through my eyes - suno",
       gradient: "from-blue-500/20 to-indigo-500/20"
     },
     {
       id: "ZMxg9PMHmos",
-      title: "AI Web Tools Featured Showcase - New 6",
+      title: "Portal Mugsy Rap Suno",
       gradient: "from-rose-500/20 to-fuchsia-500/20"
     },
     {
       id: "siddzjKXd9o",
-      title: "AI Web Tools Featured Showcase - New 7",
+      title: "Rome fell once, Rome gonna fall again -suno",
       gradient: "from-violet-500/20 to-purple-500/20"
     },
     {
       id: "u8Rs0KH2XTg",
-      title: "AI Web Tools Featured Showcase - New 8",
+      title: "my eyes-suno",
       gradient: "from-lime-500/20 to-green-500/20"
     },
     {
       id: "yZ9Jt1canjE",
-      title: "AI Web Tools Featured Showcase 2",
+      title: "Cosmic TRUTH within YOU right now",
       gradient: "from-amber-500/20 to-rose-500/20"
     },
     {
       id: "O9n0tKbbI2E",
-      title: "AI Web Tools Featured Showcase 3",
+      title: "The Cosmic Light is Within You - An Ai Generated Song by AiWebTools.Ai",
       gradient: "from-emerald-500/20 to-blue-500/20"
     },
     {
       id: "KIqBIh6TZ04",
-      title: "AI Web Tools Featured Showcase 4",
+      title: "Cosmic Light Code Within",
       gradient: "from-pink-500/20 to-violet-500/20"
     },
     {
       id: "NglQB5OVmqk",
-      title: "AI Web Tools Featured Showcase 5",
+      title: "Cosmic Code",
       gradient: "from-cyan-500/20 to-emerald-500/20"
     },
     {
       id: "EYnCtw9CsxQ",
-      title: "The Book Of Deployable Robot Prompts",
+      title: "Galactic Gambit AudioBook -The Angelic Watchers Written By Ai-WebTools.com - A Metaphorical Sci-Fi -",
       gradient: "from-purple-500/20 to-blue-500/20"
     },
     {
       id: "lG1rMaImBNc",
-      title: "The Book Of Deployable Robot Prompts 2",
+      title: "\"Life is but a dream\" - Official Music Video by AiWebTools.Ai",
       gradient: "from-emerald-500/20 to-teal-500/20"
     },
     {
       id: "i0zc0aeRCeI",
-      title: "Coloring Book Generator Demo",
+      title: "Something More - Official Ai Generated Music Video by AiWebTools.ai",
       gradient: "from-cyan-500/20 to-purple-500/20"
     },
     {
       id: "IHY7AlYJhUc",
-      title: "AI Web Tools Showcase",
+      title: "\"As They Blow It All Away\" - An AI Generated Music Video Written and Edited by AiWebTools.Ai",
       gradient: "from-gold-500/20 to-amber-500/20"
     },
     {
       id: "i9e3pRXyP8s",
-      title: "Book Deployable Robot Prompts Showcase",
+      title: "Tears Timeline- official music video by aiwebtools.ai",
       gradient: "from-orange-500/20 to-pink-500/20"
     },
     {
       id: "v8El2IdTwsE",
-      title: "AI Tools Demo 4",
+      title: "Plastic Face - Official AI GENERATED Music Video by AiWebTools.Ai",
       gradient: "from-green-500/20 to-cyan-500/20"
     },
     {
       id: "LFMtWqoKqyI",
-      title: "AI Tools Demo 5",
+      title: "Candy Cane Rain - AIWEBTOOLS.AI",
       gradient: "from-yellow-500/20 to-orange-500/20"
     },
     {
       id: "1y3zdPnJfQ4",
-      title: "AI Tools Demo 6",
+      title: "CherryPie Goodbye - official -AiWebTools.Ai",
       gradient: "from-pink-500/20 to-purple-500/20"
     },
     {
       id: "8afw8Tq94Pg",
-      title: "AI Tools Demo 7",
+      title: "deep inside remastered AI generated music video by aiwebtools.ai",
       gradient: "from-red-500/20 to-orange-500/20"
     },
     {
       id: "864_bIK9Feo",
-      title: "AI Tools Demo 8",
+      title: "Love or Fall - An Ai Generated Music video by AiWebTools.Ai #aimusicvideo #aiwebtools #aitools #awt",
       gradient: "from-blue-500/20 to-green-500/20"
     },
     {
       id: "c2UpKrW4IVM",
-      title: "AI Tools Demo 9",
+      title: "Tare Me Open - An Ai Generated Music Video Written and edited by AiWebTools.Ai",
       gradient: "from-indigo-500/20 to-violet-500/20"
     },
     {
       id: "1cnzF1bkq3o",
-      title: "AI Tools Demo 10",
+      title: "What's The Plan? - An Ai Generated Music Video by AiWebTools.Ai",
       gradient: "from-teal-500/20 to-cyan-500/20"
     },
     {
       id: "eAaXtMBYWYs",
-      title: "AI Tools Demo 11",
+      title: "The Empire Has Fallen - Truth Prevails  AiWebTools.AI - Those with eyes to see shall be free. WAKEUP",
       gradient: "from-violet-500/20 to-fuchsia-500/20"
     },
     {
       id: "YzGrnpsScH0",
-      title: "World Reality Decoder GPT Demo",
+      title: "AND THIS IS WHERE IT ALL FALLS... AI MUSIC GENERATED VIDEO CREATED BY AIWEBTOOLS.AI",
       gradient: "from-rose-500/20 to-orange-500/20"
     },
     {
       id: "bfRpZ5r88Zg",
-      title: "AI Tools Demo 13",
+      title: "Wake the F Up - A Music Video Created and Written by AiWebTools.Ai",
       gradient: "from-amber-500/20 to-rose-500/20"
     },
     {
       id: "mg7F63-PN30",
-      title: "AI Web Tools Showcase 14",
+      title: "WRONG WAY - AN AI GENERATED MUSIC VIDEO BY AIWEBTOOLS.AI",
       gradient: "from-lime-500/20 to-emerald-500/20"
     },
     {
       id: "us8qYI2plqg",
-      title: "AI Web Tools Showcase 15",
+      title: "Prison Gates - Ai Music Generated by Ai-WebTools.com",
       gradient: "from-fuchsia-500/20 to-rose-500/20"
     },
     {
       id: "cB3T05q4294",
-      title: "AI Web Tools Showcase 16",
+      title: "Earth Monopoly - AI Generated Music by AiWebTools.ai",
       gradient: "from-sky-500/20 to-indigo-500/20"
     },
     {
@@ -503,7 +503,7 @@ const BookPromotionCard = () => {
     },
     {
       id: "uPioA-r3Wyw",
-      title: "AI Web Tools Showcase 20",
+      title: "Truth. Light. Now. abracadabra aiwebtools.ai",
       gradient: "from-amber-500/20 to-emerald-500/20"
     },
     {
@@ -648,102 +648,102 @@ const BookPromotionCard = () => {
     },
     {
       id: "W4grI_pqzbk",
-      title: "AI Web Tools Showcase 50",
+      title: "chaos order spin spin spin - An Ai Generated Music Video by AiWebTools.Ai",
       gradient: "from-violet-500/20 to-fuchsia-500/20"
     },
     {
       id: "AFwPVOQV0SE",
-      title: "AI Web Tools 9:16 Vertical Showcase",
+      title: "My name is irrelevant. - an AI generated music video by aiwebtools.ai (shortened)",
       gradient: "from-emerald-500/20 to-green-500/20"
     },
     {
       id: "eG-TvPPKBpw",
-      title: "AI Web Tools 9:16 Vertical Showcase — Newest Drop",
+      title: "pull it - rap video - 9-11 tribute art by aiwebtools.ai",
       gradient: "from-emerald-500/20 to-cyan-500/20"
     },
     {
       id: "3XaTLuJ0kak",
-      title: "AI Web Tools 9:16 Vertical Showcase — Brand New Cinematic Drop",
+      title: "Manifest dream - a music video by aiwebtools.ai",
       gradient: "from-emerald-500/20 to-cyan-500/20"
     },
     {
       id: "RVBmL7FEtQk",
-      title: "AI Web Tools 9:16 Vertical Showcase — Latest Cinematic Drop",
+      title: "manifest crossbow katana charm - ai jazz music video",
       gradient: "from-emerald-500/20 to-cyan-500/20"
     },
     {
       id: "htVLYZPHehk",
-      title: "AI Web Tools 9:16 Vertical Showcase — New Cinematic Drop",
+      title: " - Abracadabra",
       gradient: "from-purple-500/20 to-fuchsia-500/20"
     },
     {
       id: "bBZT8sPWvRY",
-      title: "AI Web Tools 9:16 Vertical Showcase — Awakening Anthem",
+      title: "Same Light Different Eyes - AN AI MUSIC VIDEO CREATED BY AIWEBTOOLS.AI",
       gradient: "from-emerald-500/20 to-lime-500/20"
     },
     {
       id: "M5l6VJAh2-Y",
-      title: "AI Web Tools 9:16 Vertical Showcase 2",
+      title: "Ai Might be the Devil - By AiWebTools.ai",
       gradient: "from-cyan-500/20 to-teal-500/20"
     },
     {
       id: "FHEWZkP_3ew",
-      title: "AI Web Tools 9:16 Vertical Showcase 3",
+      title: "its in the code polly",
       gradient: "from-rose-500/20 to-pink-500/20"
     },
     {
       id: "TlAgmV_2hXs",
-      title: "AI Web Tools 9:16 Vertical Showcase 4",
+      title: "Mushroomhead style music video i made - by aiwebtools.ai",
       gradient: "from-sky-500/20 to-cyan-500/20"
     },
     {
       id: "bhC9aTQGbGI",
-      title: "AI Web Tools 9:16 Vertical Showcase 5",
+      title: "holodeck - Music video by aiwebtools.ai",
       gradient: "from-amber-500/20 to-rose-500/20"
     },
     {
       id: "qxIYhAAkko8",
-      title: "AI Web Tools 9:16 Vertical Showcase 6",
+      title: "mirror mirror you see the fire in your dreams - A Music video by AiWebTools.Ai",
       gradient: "from-indigo-500/20 to-purple-500/20"
     },
     {
       id: "1yajmSLnPTs",
-      title: "AI Web Tools 9:16 Vertical Showcase 7",
+      title: "mirror mirror on the wall - A Music Video PRODUCTION BY AIWEBTOOLS.AI",
       gradient: "from-fuchsia-500/20 to-rose-500/20"
     },
     {
       id: "cKHZ7X0qx_Y",
-      title: "In The Shadows — Music Video",
+      title: "Not My Time - Official Music Video",
       gradient: "from-indigo-500/20 to-purple-500/20"
     },
     {
       id: "-MSiCn4Fts8",
-      title: "Through The Veil — Music Video",
+      title: "My people are free....",
       gradient: "from-emerald-500/20 to-teal-500/20"
     },
     {
       id: "mg7F63-PN30",
-      title: "Inner Fire Rising — Music Video",
+      title: "WRONG WAY - AN AI GENERATED MUSIC VIDEO BY AIWEBTOOLS.AI",
       gradient: "from-orange-500/20 to-red-500/20"
     },
     {
       id: "EYnCtw9CsxQ",
-      title: "Eyes Of The Soul — Music Video",
+      title: "Galactic Gambit AudioBook -The Angelic Watchers Written By Ai-WebTools.com - A Metaphorical Sci-Fi -",
       gradient: "from-violet-500/20 to-fuchsia-500/20"
     },
     {
       id: "QCJCKhbwxhA",
-      title: "Walk Through Fire — Music Video",
+      title: "Gregorian - Nothing Else Matters (Live In Europe 2011)",
       gradient: "from-amber-500/20 to-orange-500/20"
     },
     {
       id: "Twl5-MsgmoI",
-      title: "Hidden Truths Revealed — Music Video",
+      title: "SECRETS BEST UNKNOWN - (example art) Official Ai Generated Music Video - AiWebTools.AI",
       gradient: "from-purple-500/20 to-indigo-500/20"
     },
     {
       id: "zVfi5UkMjTM",
-      title: "Look Deeper Inside (Listen To Spirit, For It Knows The Way) — Official MTVai Music Video",
+      title: "Cosmic Divine Dimensions Inside Us – AI Music Video | AIWebTools.ai _OFFICAL MUSIC VIDEO_  GALACTICA",
       gradient: "from-fuchsia-500/20 to-violet-500/20"
     }
   ];
