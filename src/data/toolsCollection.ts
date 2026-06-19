@@ -192,6 +192,7 @@ import { professionalGPTsAudio } from './tools/professionalGPTsAudio';
 import { majorAIPlatforms } from './tools/majorAIPlatforms';
 import { topImageGenerators } from './tools/topImageGenerators';
 import { topMusicVideoTools } from './tools/topMusicVideoTools';
+import { aiMusicVideoGeneratorTools } from './tools/aiMusicVideoGeneratorTools';
 import { topProductivityWriting } from './tools/topProductivityWriting';
 import { developerProductivityAI } from './tools/developerProductivityAI';
 import { aiResearchAcademicTools } from './tools/aiResearchAcademicTools';
@@ -293,6 +294,7 @@ export const getAllToolCategories = (): Tool[] => {
     ...majorAIPlatforms, // ChatGPT, Claude, Gemini, Perplexity, etc.
     ...topImageGenerators, // Midjourney, DALL-E, Flux, Stable Diffusion, etc.
     ...topMusicVideoTools, // Sora, Runway, ElevenLabs, Udio, etc.
+    ...aiMusicVideoGeneratorTools, // Muvio, Kaiber, Neural Frames, Specterr, Rotor, etc.
     ...topProductivityWriting, // Notion AI, Grammarly, Jasper, etc.
     ...additionalPopularTools2025, // Kling AI, RunwayML Gen-3, etc.
     
@@ -596,6 +598,7 @@ export const getAllToolCategories = (): Tool[] => {
     ...majorAIPlatforms,
     ...topImageGenerators,
     ...topMusicVideoTools,
+    ...aiMusicVideoGeneratorTools,
     ...topProductivityWriting,
     ...developerProductivityAI,
     ...aiResearchAcademicTools,

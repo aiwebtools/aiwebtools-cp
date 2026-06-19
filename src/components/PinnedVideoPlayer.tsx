@@ -64,15 +64,11 @@ export const MUSIC_VIDEO_GALLERY: Array<{ id: string; title: string }> = [
   { id: "bMi4PGWzExk", title: "One Mankind | Original AI Music Video | AIWebTools.ai" },
   { id: "vxGi31tkz3Y", title: "Welcome to America | Original AI Music Video | AIWebTools.ai" },
   { id: "EBBw-cklCLk", title: "The Spark Within | Original AI Music Video | AIWebTools.ai" },
-  { id: "qtwyOzvCg_o", title: "Strange (Alternate Version) | Original AI Music Video | AIWebTools.ai" },
-  { id: "CIK8QLCqU9M", title: "Just A Dream Baby (Version 2) | Original AI Music Video | AIWebTools.ai" },
   { id: "C8nPl8IWHIw", title: "It's Just In The Code | Original AI Music Video | AIWebTools.ai" },
   { id: "OFQX2Ew_81o", title: "AIWEBTOOLS – Cosmic Uprising: Soul Reclamation (Official AI Music Video)" },
   { id: "KHdIFY7HrB4", title: "Got No GPT | Original AI Music Video | AIWebTools.ai - first music video i made back in the day" },
-  { id: "clSbwKvM5Vk", title: "Once More (Version 2) | Original AI Music Video | AIWebTools.ai" },
   { id: "pP2204ZbUHY", title: "The Witness | Original AI Music Video | AIWebTools.ai" },
   { id: "FmATqYvL0IY", title: "Cosmic Light In You | Original AI Music Video | AIWebTools.ai" },
-  { id: "DMx8Sn7ncOY", title: "Mirror Mirror On The Wall | Original AI Music Video | AIWebTools.ai" },
   { id: "_D-tw9BAoxk", title: "AIWEBTOOLS – Your Plastic Face | The Mask Of Truth (Official AI Music Video)" },
   { id: "1XY2eEH5elw", title: "AIWEBTOOLS – Where Did We Go | The Resistance Anthem (Official AI Music Video)" },
   { id: "oR-aWyv1Ktg", title: "Father Of Light | Original AI Music Video | AIWebTools.ai" },
@@ -89,7 +85,6 @@ export const MUSIC_VIDEO_GALLERY: Array<{ id: string; title: string }> = [
   { id: "Ja2auKcdzHg", title: "AIWEBTOOLS – Digital Chains: The Algorithm's Grasp (Official AI Music Video)" },
   // ── MTV LINE-UP (fresh expansion drop) ──
   { id: "eIwAbvwXNVc", title: "BEDROOM COSMOS EL TRUMAN - AN AI MUSIC VIDEO BY AIWEBTOOLS.AI" },
-  { id: "9F81C9zED-w", title: "AIWEBTOOLS – Bedroom Cosmos | The Truman Uprising (Official AI Music Video)" },
   { id: "AOI0K3XyM20", title: "I AM ANOTHER YOU Testimony music video - A MUSIC VIDEO CREATED BY AIWEBTOOLS.AI - MTVai.live X-ODDLY" },
   // ── VISUAL MUSIC VIDEOS (real cinematic clips, lead the reel) ──
   { id: "eG-TvPPKBpw", title: "pull it - rap video - 9-11 tribute art by aiwebtools.ai" },
@@ -140,7 +135,6 @@ export const MUSIC_VIDEO_GALLERY: Array<{ id: string; title: string }> = [
   { id: "6NeNA-KGz2s", title: "my eyes -suno" },
   { id: "siddzjKXd9o", title: "Rome fell once, Rome gonna fall again -suno" },
   { id: "0IfbFWirwTg", title: "through my eyes - suno" },
-  { id: "u8Rs0KH2XTg", title: "my eyes-suno" },
   { id: "8y6irP9OPJ0", title: "Fall Again" },
   { id: "uPioA-r3Wyw", title: "Truth. Light. Now. abracadabra aiwebtools.ai" },
 ];

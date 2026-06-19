@@ -158,6 +158,7 @@ export { professionalGPTsAudio } from './professionalGPTsAudio';
 export { majorAIPlatforms } from './majorAIPlatforms';
 export { topImageGenerators } from './topImageGenerators';
 export { topMusicVideoTools } from './topMusicVideoTools';
+export { aiMusicVideoGeneratorTools } from './aiMusicVideoGeneratorTools';
 export { topProductivityWriting } from './topProductivityWriting';
 
 // Export Developer Productivity AI Tools

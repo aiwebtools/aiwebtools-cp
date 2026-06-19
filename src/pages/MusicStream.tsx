@@ -15,6 +15,18 @@ const shuffle = <T,>(a: T[]): T[] => {
   return s;
 };
 
+// Persist a per-visit shuffle seed token so the queue genuinely changes order
+// every time the user enters the MTVai theater (not just first mount).
+const newSessionShuffleToken = (): number => {
+  try {
+    const t = Date.now() ^ Math.floor(Math.random() * 0xffffffff);
+    sessionStorage.setItem('mtvaiShuffleToken', String(t));
+    return t;
+  } catch {
+    return Date.now() ^ Math.floor(Math.random() * 0xffffffff);
+  }
+};
+
 const MusicStream = () => {
   const navigate = useNavigate();
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
@@ -23,17 +35,13 @@ const MusicStream = () => {
   const [showIntro, setShowIntro] = useState(true);
   const [searchOpen, setSearchOpen] = useState(false);
 
+  // Truly random playback order every time the user enters the theater.
+  // The session token guarantees a fresh shuffle per visit (not just first mount).
   const playlist = useMemo(() => {
-    // Smarter ordering: cinematic MTVai drops play FIRST (longest / most produced),
-    // then "Official Music Video" cinematic clips, then everything else randomized.
-    const tier1 = MUSIC_VIDEO_GALLERY.filter(v => /MTVai Music Video/i.test(v.title));
-    const tier2 = MUSIC_VIDEO_GALLERY.filter(
-      v => !/MTVai Music Video/i.test(v.title) && /Official Music Video|Cinematic|Showcase/i.test(v.title)
-    );
-    const tier3 = MUSIC_VIDEO_GALLERY.filter(
-      v => !/MTVai Music Video/i.test(v.title) && !/Official Music Video|Cinematic|Showcase/i.test(v.title)
-    );
-    return [...shuffle(tier1), ...shuffle(tier2), ...shuffle(tier3)];
+    // Touch the token so a new one is minted per visit; we don't need its value,
+    // Math.random() inside `shuffle` provides the entropy.
+    void newSessionShuffleToken();
+    return shuffle(MUSIC_VIDEO_GALLERY);
   }, []);
 
   const [idx, setIdx] = useState(0);
