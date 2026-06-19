@@ -192,6 +192,7 @@ import { professionalGPTsAudio } from './tools/professionalGPTsAudio';
 import { majorAIPlatforms } from './tools/majorAIPlatforms';
 import { topImageGenerators } from './tools/topImageGenerators';
 import { topMusicVideoTools } from './tools/topMusicVideoTools';
+import { aiMusicVideoGeneratorTools } from './tools/aiMusicVideoGeneratorTools';
 import { topProductivityWriting } from './tools/topProductivityWriting';
 import { developerProductivityAI } from './tools/developerProductivityAI';
 import { aiResearchAcademicTools } from './tools/aiResearchAcademicTools';
