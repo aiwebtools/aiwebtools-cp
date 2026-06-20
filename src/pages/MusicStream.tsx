@@ -37,14 +37,18 @@ const MusicStream = () => {
 
   // Truly random playback order every time the user enters the theater.
   // The session token guarantees a fresh shuffle per visit (not just first mount).
+  // We also randomize the STARTING INDEX so every video has an equal shot at
+  // being the first one played — previously idx always started at 0, which
+  // meant the same shuffled-position-0 video felt biased toward "first".
   const playlist = useMemo(() => {
-    // Touch the token so a new one is minted per visit; we don't need its value,
-    // Math.random() inside `shuffle` provides the entropy.
     void newSessionShuffleToken();
     return shuffle(MUSIC_VIDEO_GALLERY);
   }, []);
 
-  const [idx, setIdx] = useState(0);
+  const [idx, setIdx] = useState(() => {
+    const len = MUSIC_VIDEO_GALLERY.length || 1;
+    return Math.floor(Math.random() * len);
+  });
   const current = playlist[idx % playlist.length];
 
   // Guards so YouTube can't double-fire "ended" / fire it during a buffer
