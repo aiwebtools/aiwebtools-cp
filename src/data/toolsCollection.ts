@@ -603,6 +603,8 @@ export const getAllToolCategories = (): Tool[] => {
     ...topImageGenerators,
     ...topMusicVideoTools,
     ...aiMusicVideoGeneratorTools,
+    ...openSourceModelsBatch2026,
+    ...mixedAgentsBatch2026,
     ...topProductivityWriting,
     ...developerProductivityAI,
     ...aiResearchAcademicTools,
