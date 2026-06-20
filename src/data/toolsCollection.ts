@@ -193,6 +193,8 @@ import { majorAIPlatforms } from './tools/majorAIPlatforms';
 import { topImageGenerators } from './tools/topImageGenerators';
 import { topMusicVideoTools } from './tools/topMusicVideoTools';
 import { aiMusicVideoGeneratorTools } from './tools/aiMusicVideoGeneratorTools';
+import { openSourceModelsBatch2026 } from './tools/openSourceModelsBatch2026';
+import { mixedAgentsBatch2026 } from './tools/mixedAgentsBatch2026';
 import { topProductivityWriting } from './tools/topProductivityWriting';
 import { developerProductivityAI } from './tools/developerProductivityAI';
 import { aiResearchAcademicTools } from './tools/aiResearchAcademicTools';
@@ -295,6 +297,8 @@ export const getAllToolCategories = (): Tool[] => {
     ...topImageGenerators, // Midjourney, DALL-E, Flux, Stable Diffusion, etc.
     ...topMusicVideoTools, // Sora, Runway, ElevenLabs, Udio, etc.
     ...aiMusicVideoGeneratorTools, // Muvio, Kaiber, Neural Frames, Specterr, Rotor, etc.
+    ...openSourceModelsBatch2026, // Qwen3, DeepSeek V3, Mistral Large 2, Phi-4, Gemma 3, Jan, Ollama tools, OpenHands, Aider, etc.
+    ...mixedAgentsBatch2026, // Roo Code, Vapi, Retell, Lutra, MultiOn, STORM, Decagon, Sierra, Letta, Mem, Motion, Shortwave, Clay, 11x, etc.
     ...topProductivityWriting, // Notion AI, Grammarly, Jasper, etc.
     ...additionalPopularTools2025, // Kling AI, RunwayML Gen-3, etc.
     
@@ -599,6 +603,8 @@ export const getAllToolCategories = (): Tool[] => {
     ...topImageGenerators,
     ...topMusicVideoTools,
     ...aiMusicVideoGeneratorTools,
+    ...openSourceModelsBatch2026,
+    ...mixedAgentsBatch2026,
     ...topProductivityWriting,
     ...developerProductivityAI,
     ...aiResearchAcademicTools,

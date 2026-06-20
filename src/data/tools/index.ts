@@ -159,6 +159,12 @@ export { majorAIPlatforms } from './majorAIPlatforms';
 export { topImageGenerators } from './topImageGenerators';
 export { topMusicVideoTools } from './topMusicVideoTools';
 export { aiMusicVideoGeneratorTools } from './aiMusicVideoGeneratorTools';
+
+// Export 2026 Open-Source Models Batch (25 tools: open-weights, local runners, agent frameworks)
+export { openSourceModelsBatch2026 } from './openSourceModelsBatch2026';
+
+// Export 2026 Mixed Agents Batch (25 tools: coding, vibe, voice, web, research, support, multi-agent, productivity, email, sales)
+export { mixedAgentsBatch2026 } from './mixedAgentsBatch2026';
 export { topProductivityWriting } from './topProductivityWriting';
 
 // Export Developer Productivity AI Tools
