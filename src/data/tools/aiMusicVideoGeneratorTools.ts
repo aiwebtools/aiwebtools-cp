@@ -1,34 +1,13 @@
 import { Tool } from "@/types/tools";
-import { Film, Music, Video, Sparkles, Wand2, Mic, Play, Camera, Clapperboard, Image as ImageIcon, Headphones, Disc, Star, Tv, Cpu } from "lucide-react";
+import { Sparkles, Wand2, Mic, Play, Image as ImageIcon, Cpu } from "lucide-react";
 
 import muvioHero from "@/assets/tools/muvio-ai-hero.jpg";
-import kaiberHero from "@/assets/tools/kaiber-ai-hero.jpg";
 import neuralFramesHero from "@/assets/tools/neural-frames-hero.jpg";
-import specterrHero from "@/assets/tools/specterr-hero.jpg";
-import rotorVideosHero from "@/assets/tools/rotor-videos-hero.jpg";
 import decoherenceHero from "@/assets/tools/decoherence-hero.jpg";
 import wzrdHero from "@/assets/tools/wzrd-hero.jpg";
-import hailuoAiHero from "@/assets/tools/hailuo-ai-hero.jpg";
-import klingMusicHero from "@/assets/tools/kling-ai-music-hero.jpg";
-import viduAiHero from "@/assets/tools/vidu-ai-hero.jpg";
-import genmoHero from "@/assets/tools/genmo-hero.jpg";
 import vondyMusicHero from "@/assets/tools/vondy-music-hero.jpg";
-import renderforestMusicHero from "@/assets/tools/renderforest-music-hero.jpg";
-import steveAiHero from "@/assets/tools/steve-ai-hero.jpg";
-import invideoMusicHero from "@/assets/tools/invideo-music-hero.jpg";
-import veedMusicHero from "@/assets/tools/veed-music-hero.jpg";
-import hedraHero from "@/assets/tools/hedra-hero.jpg";
-import higgsfieldHero from "@/assets/tools/higgsfield-hero.jpg";
-import domoAiHero from "@/assets/tools/domo-ai-hero.jpg";
-import pixverseHero from "@/assets/tools/pixverse-hero.jpg";
-import kreaMusicHero from "@/assets/tools/krea-music-hero.jpg";
-import aiStudiosMusicHero from "@/assets/tools/ai-studios-music-hero.jpg";
-import polloAiMusicHero from "@/assets/tools/pollo-ai-music-hero.jpg";
 import neuralCanvasHero from "@/assets/tools/neuralcanvas-hero.jpg";
-import aivaVideoHero from "@/assets/tools/aiva-video-hero.jpg";
 import plaidayHero from "@/assets/tools/plaiday-hero.jpg";
-import magicHourHero from "@/assets/tools/magichour-hero.jpg";
-import lensgoHero from "@/assets/tools/lensgo-hero.jpg";
 import diffusionStudioHero from "@/assets/tools/diffusion-studio-hero.jpg";
 import audoirHero from "@/assets/tools/audoir-hero.jpg";
 
