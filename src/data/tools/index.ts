@@ -165,6 +165,7 @@ export { openSourceModelsBatch2026 } from './openSourceModelsBatch2026';
 
 // Export 2026 Mixed Agents Batch (25 tools: coding, vibe, voice, web, research, support, multi-agent, productivity, email, sales)
 export { mixedAgentsBatch2026 } from './mixedAgentsBatch2026';
+export { openSourceAgentsBatch2026Part3 } from './openSourceAgentsBatch2026Part3';
 export { topProductivityWriting } from './topProductivityWriting';
 
 // Export Developer Productivity AI Tools

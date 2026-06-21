@@ -195,6 +195,7 @@ import { topMusicVideoTools } from './tools/topMusicVideoTools';
 import { aiMusicVideoGeneratorTools } from './tools/aiMusicVideoGeneratorTools';
 import { openSourceModelsBatch2026 } from './tools/openSourceModelsBatch2026';
 import { mixedAgentsBatch2026 } from './tools/mixedAgentsBatch2026';
+import { openSourceAgentsBatch2026Part3 } from './tools/openSourceAgentsBatch2026Part3';
 import { topProductivityWriting } from './tools/topProductivityWriting';
 import { developerProductivityAI } from './tools/developerProductivityAI';
 import { aiResearchAcademicTools } from './tools/aiResearchAcademicTools';
@@ -299,6 +300,7 @@ export const getAllToolCategories = (): Tool[] => {
     ...aiMusicVideoGeneratorTools, // Muvio, Kaiber, Neural Frames, Specterr, Rotor, etc.
     ...openSourceModelsBatch2026, // Qwen3, DeepSeek V3, Mistral Large 2, Phi-4, Gemma 3, Jan, Ollama tools, OpenHands, Aider, etc.
     ...mixedAgentsBatch2026, // Roo Code, Vapi, Retell, Lutra, MultiOn, STORM, Decagon, Sierra, Letta, Mem, Motion, Shortwave, Clay, 11x, etc.
+    ...openSourceAgentsBatch2026Part3, // Dolphin 3, Mixtral 8x22B, Smaug, Zephyr, OpenChat, SOLAR, StarCoder2, DeepSeek Coder V2, Bielik, SmolLM2, MiniCPM-V, InternLM3, Molmo, Granite, Arcee, NeuralChat, Swarms, ShellGPT, Twinny, AIChat, Griptape, LocalGPT, Oobabooga, SGLang, TensorRT-LLM, Unsloth, Axolotl, Gorilla, Xinference, FastChat, ModelScope Agent, Qwen Agent, AutoGroq, LightLLM, KTransformers, PowerInfer, NextChat, Refuel, Hyperbee, MetaChain, ChatHub, Llama Stack, LangServe, NPCsh, KitOps, AIConfig, LlamaCoder, LitServe, Repomix
     ...topProductivityWriting, // Notion AI, Grammarly, Jasper, etc.
     ...additionalPopularTools2025, // Kling AI, RunwayML Gen-3, etc.
     
@@ -605,6 +607,7 @@ export const getAllToolCategories = (): Tool[] => {
     ...aiMusicVideoGeneratorTools,
     ...openSourceModelsBatch2026,
     ...mixedAgentsBatch2026,
+    ...openSourceAgentsBatch2026Part3,
     ...topProductivityWriting,
     ...developerProductivityAI,
     ...aiResearchAcademicTools,
