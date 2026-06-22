@@ -196,6 +196,7 @@ import { aiMusicVideoGeneratorTools } from './tools/aiMusicVideoGeneratorTools';
 import { openSourceModelsBatch2026 } from './tools/openSourceModelsBatch2026';
 import { mixedAgentsBatch2026 } from './tools/mixedAgentsBatch2026';
 import { openSourceAgentsBatch2026Part3 } from './tools/openSourceAgentsBatch2026Part3';
+import { openSourceAgentsBatch2026Part4 } from './tools/openSourceAgentsBatch2026Part4';
 import { topProductivityWriting } from './tools/topProductivityWriting';
 import { developerProductivityAI } from './tools/developerProductivityAI';
 import { aiResearchAcademicTools } from './tools/aiResearchAcademicTools';
@@ -301,6 +302,7 @@ export const getAllToolCategories = (): Tool[] => {
     ...openSourceModelsBatch2026, // Qwen3, DeepSeek V3, Mistral Large 2, Phi-4, Gemma 3, Jan, Ollama tools, OpenHands, Aider, etc.
     ...mixedAgentsBatch2026, // Roo Code, Vapi, Retell, Lutra, MultiOn, STORM, Decagon, Sierra, Letta, Mem, Motion, Shortwave, Clay, 11x, etc.
     ...openSourceAgentsBatch2026Part3, // Dolphin 3, Mixtral 8x22B, Smaug, Zephyr, OpenChat, SOLAR, StarCoder2, DeepSeek Coder V2, Bielik, SmolLM2, MiniCPM-V, InternLM3, Molmo, Granite, Arcee, NeuralChat, Swarms, ShellGPT, Twinny, AIChat, Griptape, LocalGPT, Oobabooga, SGLang, TensorRT-LLM, Unsloth, Axolotl, Gorilla, Xinference, FastChat, ModelScope Agent, Qwen Agent, AutoGroq, LightLLM, KTransformers, PowerInfer, NextChat, Refuel, Hyperbee, MetaChain, ChatHub, Llama Stack, LangServe, NPCsh, KitOps, AIConfig, LlamaCoder, LitServe, Repomix
+    ...openSourceAgentsBatch2026Part4, // 50 fresh open-source tools: UFO Agent, WebVoyager, llama.cpp, ExLlamaV2, MLC LLM, WasmEdge, KoboldCpp, LMDeploy, Distilabel, TRL, PEFT, LM Eval Harness, OpenCompass, Inspect AI, NeMo Guardrails, Avante.nvim, txtai, NLUX, LocalRecall, Jina Reader, SearXNG AI, Witsy, Page Assist, GPTeam, Semantic Router, aisuite, ChainForge, HumanLayer, Marker PDF, Surya OCR, olmOCR, Nougat OCR, RapidOCR, whisper.cpp, Faster Whisper, Distil-Whisper, WhisperX, OpenVoice, F5-TTS, Parler-TTS, Coqui XTTS, StyleTTS2, MeloTTS, Piper TTS, ESPnet, SpeechBrain, ToolLLM, Granite Code, Mathstral, Chronos
     ...topProductivityWriting, // Notion AI, Grammarly, Jasper, etc.
     ...additionalPopularTools2025, // Kling AI, RunwayML Gen-3, etc.
     
@@ -608,6 +610,7 @@ export const getAllToolCategories = (): Tool[] => {
     ...openSourceModelsBatch2026,
     ...mixedAgentsBatch2026,
     ...openSourceAgentsBatch2026Part3,
+    ...openSourceAgentsBatch2026Part4,
     ...topProductivityWriting,
     ...developerProductivityAI,
     ...aiResearchAcademicTools,
