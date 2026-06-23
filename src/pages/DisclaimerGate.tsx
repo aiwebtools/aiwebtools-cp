@@ -307,6 +307,7 @@ const DisclaimerGate: React.FC = () => {
   useEffect(() => {
     requestAnimationFrame(() => {
       window.dispatchEvent(new Event("aiwt:route-ready"));
+    });
   }, []);
 
   const handleAccept = () => {
