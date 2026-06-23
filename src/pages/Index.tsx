@@ -45,9 +45,11 @@ const Index = () => {
     requestAnimationFrame(() => {
       window.scrollTo(0, 0);
     });
-    requestAnimationFrame(() => {
+    const id = window.setTimeout(() => {
       window.dispatchEvent(new Event("aiwt:route-ready"));
-    });
+    }, 160);
+
+    return () => window.clearTimeout(id);
   }, []);
 
   const mainVideoRef = useRef<HTMLIFrameElement>(null);
