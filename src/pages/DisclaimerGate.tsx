@@ -305,11 +305,9 @@ const DisclaimerGate: React.FC = () => {
   }, [navigate]);
 
   useEffect(() => {
-    const id = window.setTimeout(() => {
+    requestAnimationFrame(() => {
       window.dispatchEvent(new Event("aiwt:route-ready"));
-    }, 120);
-
-    return () => window.clearTimeout(id);
+    });
   }, []);
 
   const handleAccept = () => {

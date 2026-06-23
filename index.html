@@ -164,7 +164,7 @@
         background: radial-gradient(circle at center, rgba(0,45,8,0.42) 0%, rgba(0,0,0,0.98) 72%), #000;
         font-family: 'Share Tech Mono','Courier New',monospace;
         opacity: 1; visibility: visible;
-        transition: opacity 0.9s ease, visibility 0.9s ease;
+        transition: opacity 0.18s ease, visibility 0.18s ease;
         -webkit-transform: translateZ(0); transform: translateZ(0);
       }
       .loading-spinner.fade-out { opacity: 0; visibility: hidden; pointer-events: none; }
@@ -402,7 +402,7 @@
             const spinner = document.querySelector('.loading-spinner');
             if (spinner) {
               spinner.classList.add('fade-out');
-              setTimeout(() => spinner.remove(), 300);
+              setTimeout(() => spinner.remove(), 190);
             }
           };
 
@@ -445,9 +445,7 @@
 
           window.addEventListener('aiwt:route-ready', function() {
             trace('aiwt:route-ready');
-            requestAnimationFrame(function() {
-              requestAnimationFrame(removeSpinner);
-            });
+            requestAnimationFrame(removeSpinner);
           }, { once: true });
 
           // Poll for real content. Cheap on CPU (every 100ms) and stops as soon as found.

@@ -3,14 +3,13 @@ import { useState, useEffect } from "react";
 import { Search, Sparkles, Zap, Brain, Rocket, Stars } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import GlobalSearchBar from "./LazyGlobalSearchBar";
-import { getCurrentToolCount } from "@/utils/toolCounter";
 import { useDeferredAnimation } from "@/hooks/useReducedMotion";
 
 const HeroSection = () => {
   const navigate = useNavigate();
   const [currentWord, setCurrentWord] = useState(0);
   const [showBrandName, setShowBrandName] = useState(false);
-  const [toolStats, setToolStats] = useState({ total: 0, marketing: "0+", categories: 0 });
+  const toolStats = { marketing: "4,000+" };
   
   // Show animations immediately
   const animationsReady = useDeferredAnimation();
@@ -23,12 +22,6 @@ const HeroSection = () => {
     "Browse",
     "Search"
   ];
-
-  useEffect(() => {
-    // Get accurate tool count immediately
-    const stats = getCurrentToolCount();
-    setToolStats(stats);
-  }, []);
 
   useEffect(() => {
     // Only start text animations after page has loaded
