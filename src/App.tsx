@@ -324,15 +324,24 @@ const GlobalOverlays: React.FC = () => {
   const location = useLocation();
   const hasAccepted = getConsentAccepted();
   const show = hasAccepted && location.pathname !== "/welcome";
+  const [overlaysReady, setOverlaysReady] = React.useState(false);
+
+  React.useEffect(() => {
+    setOverlaysReady(false);
+    if (!show) return;
+    return afterInitialRouteReady(() => setOverlaysReady(true));
+  }, [show, location.pathname]);
+
+  const showDeferredOverlays = show && overlaysReady;
 
   return (
     <>
-      {show ? <ScrollProgressIndicator /> : null}
-      {show ? <MatrixCursorEffect /> : null}
+      {showDeferredOverlays ? <ScrollProgressIndicator /> : null}
+      {showDeferredOverlays ? <MatrixCursorEffect /> : null}
       {/* Welcome Neo voice - only plays after disclaimer accepted */}
       <WelcomeNeoVoice />
       {/* Tiny floating clone button - hides on scroll */}
-      {show ? (
+      {showDeferredOverlays ? (
         <ErrorBoundary fallback={null}>
           <Suspense fallback={null}>
             <FloatingCloneButton />
@@ -340,7 +349,7 @@ const GlobalOverlays: React.FC = () => {
         </ErrorBoundary>
       ) : null}
       {/* Pinned rotating video player - lower left corner */}
-      {show ? (
+      {showDeferredOverlays ? (
         <ErrorBoundary fallback={null}>
           <Suspense fallback={null}>
             <PinnedVideoPlayer />
@@ -348,7 +357,7 @@ const GlobalOverlays: React.FC = () => {
         </ErrorBoundary>
       ) : null}
       {/* AIWebTools Care Bot — answers any question about our tools */}
-      {show ? (
+      {showDeferredOverlays ? (
         <ErrorBoundary fallback={null}>
           <Suspense fallback={null}>
             <CareBotWidget />
@@ -356,7 +365,7 @@ const GlobalOverlays: React.FC = () => {
         </ErrorBoundary>
       ) : null}
       {/* Back-to-Music floating pill — appears after visiting Music Stream */}
-      {show ? (
+      {showDeferredOverlays ? (
         <ErrorBoundary fallback={null}>
           <Suspense fallback={null}>
             <BackToMusicPill />
