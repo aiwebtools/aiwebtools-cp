@@ -1,0 +1,172 @@
+/* Pure CSS 3D Cube Animation — GPU-accelerated, zero JS, cross-browser */
+@-webkit-keyframes cube-spin {
+  0%   { -webkit-transform: rotateX(0deg) rotateY(0deg); transform: rotateX(0deg) rotateY(0deg); }
+  100% { -webkit-transform: rotateX(360deg) rotateY(540deg); transform: rotateX(360deg) rotateY(540deg); }
+}
+@keyframes cube-spin {
+  0%   { transform: rotateX(0deg) rotateY(0deg); }
+  100% { transform: rotateX(360deg) rotateY(540deg); }
+}
+
+.loading-cube {
+  width: 110px;
+  height: 110px;
+  position: relative;
+  -webkit-transform-style: preserve-3d !important;
+  transform-style: preserve-3d !important;
+  -webkit-animation: cube-spin 6s linear infinite !important;
+  animation: cube-spin 6s linear infinite !important;
+  will-change: transform;
+  -webkit-backface-visibility: visible;
+  backface-visibility: visible;
+  -webkit-transform-origin: center center;
+  transform-origin: center center;
+  filter: drop-shadow(0 0 25px rgba(34, 197, 94, 0.85));
+}
+
+.loading-cube-face {
+  -webkit-animation: none !important;
+}
+
+.loading-cube-face {
+  position: absolute;
+  width: 110px;
+  height: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 44px;
+  border: 2px solid rgba(34, 197, 94, 0.85);
+  box-shadow: 0 0 25px rgba(34, 197, 94, 0.55), inset 0 0 18px rgba(34, 197, 94, 0.25);
+  -webkit-backface-visibility: visible;
+  backface-visibility: visible;
+}
+
+.loading-cube-front  { background: linear-gradient(135deg, #22c55e, #4ade80); -webkit-transform: translateZ(55px); transform: translateZ(55px); }
+.loading-cube-back   { background: linear-gradient(135deg, #059669, #10b981); -webkit-transform: rotateY(180deg) translateZ(55px); transform: rotateY(180deg) translateZ(55px); }
+.loading-cube-right  { background: linear-gradient(135deg, #14b8a6, #2dd4bf); -webkit-transform: rotateY(90deg) translateZ(55px); transform: rotateY(90deg) translateZ(55px); }
+.loading-cube-left   { background: linear-gradient(135deg, #0d9488, #14b8a6); -webkit-transform: rotateY(-90deg) translateZ(55px); transform: rotateY(-90deg) translateZ(55px); }
+.loading-cube-top    { background: linear-gradient(135deg, #34d399, #6ee7b7); -webkit-transform: rotateX(90deg) translateZ(55px); transform: rotateX(90deg) translateZ(55px); }
+.loading-cube-bottom { background: linear-gradient(135deg, #047857, #059669); -webkit-transform: rotateX(-90deg) translateZ(55px); transform: rotateX(-90deg) translateZ(55px); }
+
+/* iOS Safari specific - ensure animation runs */
+@supports (-webkit-touch-callout: none) {
+  .loading-cube {
+    -webkit-animation: cube-spin 6s linear infinite !important;
+    animation: cube-spin 6s linear infinite !important;
+  }
+}
+
+/* === AIWEBTOOLS Loading Screen Enhancements === */
+@keyframes ls-scanline {
+  0%   { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+.ls-scanline {
+  position: absolute; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(34,197,94,0.85), transparent);
+  box-shadow: 0 0 14px rgba(34,197,94,0.7);
+  animation: ls-scanline 2.4s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes ls-grid-pan {
+  0%   { background-position: 0 0, 0 0; }
+  100% { background-position: 40px 40px, 40px 40px; }
+}
+.ls-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(34,197,94,0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34,197,94,0.08) 1px, transparent 1px);
+  background-size: 40px 40px, 40px 40px;
+  animation: ls-grid-pan 3s linear infinite;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+  pointer-events: none;
+}
+
+@keyframes ls-brand-glow {
+  0%, 100% { text-shadow: 0 0 12px rgba(34,197,94,0.6), 0 0 30px rgba(34,197,94,0.3); }
+  50%      { text-shadow: 0 0 22px rgba(74,222,128,0.95), 0 0 55px rgba(34,197,94,0.55); }
+}
+.ls-brand {
+  animation: ls-brand-glow 2.2s ease-in-out infinite;
+}
+
+@keyframes ls-blink { 50% { opacity: 0; } }
+.ls-caret { animation: ls-blink 1s step-end infinite; }
+
+@keyframes ls-ring-pulse {
+  0%   { transform: scale(0.85); opacity: 0.7; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+.ls-ring {
+  position: absolute; inset: 0; border-radius: 9999px;
+  border: 2px solid rgba(34,197,94,0.55);
+  animation: ls-ring-pulse 2s ease-out infinite;
+}
+.ls-ring.delay-1 { animation-delay: 0.6s; }
+.ls-ring.delay-2 { animation-delay: 1.2s; }
+
+/* GPU-accelerated progress bar — never freezes regardless of main thread load */
+@-webkit-keyframes loading-progress-fill {
+  0%   { width: 0%; }
+  20%  { width: 25%; }
+  50%  { width: 60%; }
+  75%  { width: 85%; }
+  90%  { width: 95%; }
+  100% { width: 100%; }
+}
+@keyframes loading-progress-fill {
+  0%   { width: 0%; }
+  20%  { width: 25%; }
+  50%  { width: 60%; }
+  75%  { width: 85%; }
+  90%  { width: 95%; }
+  100% { width: 100%; }
+}
+
+.loading-progress-bar {
+  -webkit-animation: loading-progress-fill 1.2s ease-out forwards;
+  animation: loading-progress-fill 1.2s ease-out forwards;
+  will-change: width;
+}
+
+/* CSS counter for percentage text */
+@-webkit-keyframes loading-text-cycle {
+  0%   { content: "0%"; }
+  8%   { content: "10%"; }
+  16%  { content: "20%"; }
+  25%  { content: "30%"; }
+  33%  { content: "40%"; }
+  42%  { content: "50%"; }
+  50%  { content: "60%"; }
+  58%  { content: "70%"; }
+  67%  { content: "80%"; }
+  75%  { content: "85%"; }
+  83%  { content: "90%"; }
+  92%  { content: "95%"; }
+  100% { content: "100%"; }
+}
+@keyframes loading-text-cycle {
+  0%   { content: "0%"; }
+  8%   { content: "10%"; }
+  16%  { content: "20%"; }
+  25%  { content: "30%"; }
+  33%  { content: "40%"; }
+  42%  { content: "50%"; }
+  50%  { content: "60%"; }
+  58%  { content: "70%"; }
+  67%  { content: "80%"; }
+  75%  { content: "85%"; }
+  83%  { content: "90%"; }
+  92%  { content: "95%"; }
+  100% { content: "100%"; }
+}
+
+.loading-progress-text::after {
+  -webkit-animation: loading-text-cycle 1.2s ease-out forwards;
+  animation: loading-text-cycle 1.2s ease-out forwards;
+  content: "0%";
+}
