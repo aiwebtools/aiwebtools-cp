@@ -14,7 +14,6 @@ import { useScrollPerformance } from "@/hooks/useScrollPerformance";
 import { usePrefetchRoutes } from "@/hooks/usePrefetch";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import MatrixCursorEffect from "@/components/effects/MatrixCursorEffect";
-import "@/styles/loading-cube.css";
 import ScrollProgressIndicator from "@/components/ScrollProgressIndicator";
 import { getConsentAccepted } from "@/utils/consent";
 import { lazyWithRetry } from "@/utils/lazyWithRetry";
@@ -144,40 +143,19 @@ const WelcomeNeoVoice = () => {
 // NOTE: precomputed category cache is initialized AFTER disclaimer acceptance
 // to keep the /welcome disclaimer gate load instant.
 
-// Keep a real React fallback mounted behind the HTML cube. If a lazy route or
-// HMR handoff stalls, removing the HTML cube reveals this instead of a blank
-// dark screen.
+// Minimal text-only React fallback for Suspense / lazy route transitions.
+// No 3D cube — keeps route handoff lightweight so the initial HTML loader
+// doesn't compete with an extra animated layer.
 const PageLoader = () => {
   return (
     <div className="fixed inset-0 z-[9000] flex min-h-screen items-center justify-center bg-background px-6 text-foreground">
       <style>{`
-        @keyframes pl-rotateCube { from { transform: rotateX(0) rotateY(0); } to { transform: rotateX(360deg) rotateY(360deg); } }
         @keyframes pl-pulse { 0%,100% { opacity: 1; text-shadow: 0 0 12px #00ff41; } 50% { opacity: 0.55; text-shadow: 0 0 28px #00ff41; } }
         @keyframes pl-dots { 0%,20% { content: ''; } 40% { content: '.'; } 60% { content: '..'; } 80%,100% { content: '...'; } }
-        @keyframes pl-scan { 0% { transform: translateY(-100%); } 100% { transform: translateY(100%); } }
-        .pl-cube-wrap { perspective: 220px; width: 64px; height: 64px; }
-        .pl-cube { width: 64px; height: 64px; position: relative; transform-style: preserve-3d; animation: pl-rotateCube 1.4s linear infinite; will-change: transform; }
-        .pl-face { position: absolute; width: 64px; height: 64px; border: 2px solid #00ff41; background: rgba(0,255,65,0.08); box-shadow: 0 0 18px rgba(0,255,65,0.35), inset 0 0 18px rgba(0,255,65,0.15); }
-        .pl-face.f { transform: translateZ(32px); }
-        .pl-face.b { transform: rotateY(180deg) translateZ(32px); }
-        .pl-face.r { transform: rotateY(90deg) translateZ(32px); }
-        .pl-face.l { transform: rotateY(-90deg) translateZ(32px); }
-        .pl-face.t { transform: rotateX(90deg) translateZ(32px); }
-        .pl-face.bt { transform: rotateX(-90deg) translateZ(32px); }
         .pl-label { animation: pl-pulse 1.4s ease-in-out infinite; }
         .pl-label::after { content: ''; display: inline-block; width: 1.2em; text-align: left; animation: pl-dots 1.2s steps(4,end) infinite; }
-        .pl-scan { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
-        .pl-scan::before { content: ''; position: absolute; left: 0; right: 0; height: 40%; background: linear-gradient(180deg, transparent, rgba(0,255,65,0.08), transparent); animation: pl-scan 2.2s linear infinite; }
       `}</style>
-      <div className="pl-scan" />
       <div className="flex flex-col items-center gap-6 text-center">
-        <div className="pl-cube-wrap">
-          <div className="pl-cube">
-            <div className="pl-face f" /><div className="pl-face b" />
-            <div className="pl-face r" /><div className="pl-face l" />
-            <div className="pl-face t" /><div className="pl-face bt" />
-          </div>
-        </div>
         <div className="pl-label font-mono text-sm font-bold uppercase tracking-[0.22em] text-[#00ff41]">
           Stabilizing Matrix Route
         </div>
@@ -201,7 +179,7 @@ const queryClient = new QueryClient({
 const AnimatedRoutes = () => {
   const location = useLocation();
   
-  // Critical paths keep the animated cube visible while lazy chunks reconnect.
+  // Critical paths still use the lightweight text loader during lazy chunk handoff.
   if (location.pathname === '/' || location.pathname === '/welcome') {
     return (
       <Suspense fallback={<PageLoader />}>
