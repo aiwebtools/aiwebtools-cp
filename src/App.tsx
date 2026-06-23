@@ -179,13 +179,10 @@ const queryClient = new QueryClient({
 const AnimatedRoutes = () => {
   const location = useLocation();
   
-  // Critical paths: render NOTHING during Suspense so the cool HTML 5D Matrix
-  // boot loader (matrix rain + hypercube + terminal logs from index.html)
-  // stays visible until the real page content mounts. The HTML overlay
-  // auto-removes itself the moment React puts visible content in #root.
+  // Critical paths still use the lightweight text loader during lazy chunk handoff.
   if (location.pathname === '/' || location.pathname === '/welcome') {
     return (
-      <Suspense fallback={null}>
+      <Suspense fallback={<PageLoader />}>
         <Routes location={location}>
           <Route path="/welcome" element={<DisclaimerGate />} />
           <Route path="/" element={<Index />} />
