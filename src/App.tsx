@@ -176,7 +176,7 @@ const afterInitialRouteReady = (callback: () => void) => {
     if ('requestIdleCallback' in window) {
       idleId = (window as any).requestIdleCallback(start, { timeout: 2500 });
     } else {
-      idleId = window.setTimeout(start, 500);
+      idleId = globalThis.setTimeout(start, 500) as unknown as number;
     }
   };
   const timeoutId = window.setTimeout(run, 3000);
@@ -186,7 +186,7 @@ const afterInitialRouteReady = (callback: () => void) => {
     window.removeEventListener('aiwt:route-ready', run);
     if (idleId !== null) {
       if ('cancelIdleCallback' in window) (window as any).cancelIdleCallback(idleId);
-      else window.clearTimeout(idleId);
+      else globalThis.clearTimeout(idleId);
     }
   };
 };
