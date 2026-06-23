@@ -164,6 +164,33 @@ const PageLoader = () => {
   );
 };
 
+const afterInitialRouteReady = (callback: () => void) => {
+  let fired = false;
+  let idleId: number | null = null;
+  const run = () => {
+    if (fired) return;
+    fired = true;
+    window.clearTimeout(timeoutId);
+    window.removeEventListener('aiwt:route-ready', run);
+    const start = () => callback();
+    if ('requestIdleCallback' in window) {
+      idleId = (window as any).requestIdleCallback(start, { timeout: 2500 });
+    } else {
+      idleId = window.setTimeout(start, 500);
+    }
+  };
+  const timeoutId = window.setTimeout(run, 3000);
+  window.addEventListener('aiwt:route-ready', run, { once: true });
+  return () => {
+    window.clearTimeout(timeoutId);
+    window.removeEventListener('aiwt:route-ready', run);
+    if (idleId !== null) {
+      if ('cancelIdleCallback' in window) (window as any).cancelIdleCallback(idleId);
+      else window.clearTimeout(idleId);
+    }
+  };
+};
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -267,8 +294,8 @@ const PostAcceptBoot: React.FC = () => {
       '/favorites',
     ];
     
-    // Prefetch in microtask to not block render
-    queueMicrotask(() => {
+    // Prefetch only after the first route is visible so boot work never traps the loader.
+    return afterInitialRouteReady(() => {
       PRIORITY_ROUTES.forEach(route => {
         if (document.querySelector(`link[href="${route}"]`)) return;
         const link = document.createElement('link');
@@ -283,14 +310,11 @@ const PostAcceptBoot: React.FC = () => {
   React.useEffect(() => {
     if (!enabled) return;
 
-    // Defer category cache init until after first paint
-    const id = window.setTimeout(() => {
+    // Defer category cache init until after first route paint; this cache is heavy
+    // and was delaying the Matrix loader handoff on mobile/preview.
+    return afterInitialRouteReady(() => {
       importWithRetry(() => import("@/utils/categoryUtils/precomputedCache"));
-    }, 0);
-
-    return () => {
-      clearTimeout(id);
-    };
+    });
   }, [enabled]);
 
   return null;
