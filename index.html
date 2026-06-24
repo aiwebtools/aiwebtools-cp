@@ -234,14 +234,14 @@
       }
       .aiwt-hud-card,.aiwt-terminal {
         position:relative; border:1px solid rgba(0,255,65,.36); background:rgba(0,18,0,.72);
-        -webkit-backdrop-filter:blur(5px); backdrop-filter:blur(5px);
+        text-shadow:0 0 8px rgba(0,255,65,.45);
         box-shadow:0 0 26px rgba(0,255,65,.13), inset 0 0 26px rgba(0,30,0,.82); overflow:hidden;
       }
       .aiwt-hud-card::before,.aiwt-terminal::before {
         content:''; position:absolute; left:9%; right:9%; top:-1px; height:1px;
         background:linear-gradient(90deg, transparent, #00ff41, transparent); box-shadow:0 0 15px #00ff41;
       }
-      .aiwt-hud-card { min-height:clamp(220px,40vh,440px); display:flex; align-items:flex-end; justify-content:center;
+      .aiwt-hud-card { min-height:clamp(180px,30vh,340px); display:flex; align-items:flex-end; justify-content:center;
         padding:clamp(14px,2.4vw,26px);
         background:radial-gradient(circle at center 38%, rgba(0,255,65,.1), transparent 50%), rgba(0,14,0,.52); }
       .aiwt-cube-label { position:absolute; top:clamp(10px,2vw,18px); left:50%; transform:translateX(-50%);
@@ -316,13 +316,13 @@
       @media (max-width: 900px) {
         .aiwt-ui { overflow-y:auto; }
         .aiwt-center-stage { grid-template-columns:1fr; }
-        .aiwt-hud-card { min-height:clamp(200px,32vh,300px); }
+        .aiwt-hud-card { min-height:clamp(150px,24vh,240px); }
         .aiwt-terminal { min-height:auto; }
         .aiwt-terminal-lines { min-height:9.5em; max-height:10em; }
       }
       @media (max-width: 560px) {
         .aiwt-ui { padding:14px 10px 44px; gap:9px; }
-        .aiwt-hud-card { min-height:190px; }
+        .aiwt-hud-card { min-height:132px; }
         .aiwt-stats-row { grid-template-columns:repeat(2,1fr); }
         .aiwt-binary-strip { height:24px; }
       }
@@ -690,9 +690,9 @@
           { pct:14, label:'ESTABLISHING CONNECTION',   html:'<span class="aiwt-prompt">▶</span> Establishing encrypted connection...' },
           { pct:24, label:'LOADING AI INDEX',          html:'<span class="aiwt-prompt">▶</span> Loading AI index manifest... <span class="aiwt-ok">[OK]</span>' },
           { pct:35, label:'SYNCING TOOL DATABASE',     html:'<span class="aiwt-prompt">▶</span> Syncing <span class="aiwt-data">4,217</span> verified AI tools...' },
-          { pct:46, label:'RENDERING 5D GRID',         html:'<span class="aiwt-prompt">▶</span> Rendering fifth-dimensional tool grid...' },
-          { pct:58, label:'FOLDING AI VECTORS',        html:'<span class="aiwt-prompt">▶</span> Folding AI search vectors...' },
-          { pct:70, label:'ACTIVATING CUBE INTERFACE', html:'<span class="aiwt-prompt">▶</span> Activating neural cube interface...' },
+          { pct:46, label:'COUNTING TOOLS',            html:'<span class="aiwt-prompt">▶</span> Counting every tool in the directory...' },
+          { pct:58, label:'INDEXING SEARCH',           html:'<span class="aiwt-prompt">▶</span> Preparing instant search results...' },
+          { pct:70, label:'WARMING PORTAL',            html:'<span class="aiwt-prompt">▶</span> Warming the AIWebTools portal...' },
           { pct:82, label:'COMPILING SEARCH VECTORS',  html:'<span class="aiwt-prompt">▶</span> Compiling search vectors... <span class="aiwt-ok">[OK]</span>' },
           { pct:92, label:'AI RECOMMENDATION ENGINE',  html:'<span class="aiwt-prompt">▶</span> AI recommendation engine: <span class="aiwt-ok">READY</span>' },
           { pct:100,label:'BOOT COMPLETE',             html:'<span class="aiwt-prompt">▶</span> <span class="aiwt-data">ALL SYSTEMS NOMINAL</span> — Welcome to the Matrix.' }
@@ -811,7 +811,7 @@
         }
         // Boot sequence — paced over a target while the watchdog drives real progress width.
         window.__aiwtBootLabel = function(text){ if(progressLabel) progressLabel.textContent = text; };
-        var TARGET_MS = 3500;
+        var TARGET_MS = 2400;
         BOOT_LINES.forEach(function(line,idx){
           var delay = Math.round(TARGET_MS * (idx / (BOOT_LINES.length-1)));
           setTimeout(function(){

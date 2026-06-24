@@ -2146,38 +2146,9 @@ export const useGlobalSearch = () => {
       }
     }, quickDelay);
 
-    // 5) Full intelligent ranking for 3+ chars - adaptive debounce (main thread with requestIdleCallback)
-    if (cappedT.length >= 3 && cappedT.length <= 40) {
-      const fullDelay = isRapidTyping 
-        ? (cappedT.length > 15 ? 220 : 160) 
-        : (cappedT.length > 15 ? 140 : 100);
-
-      fullRef.current = setTimeout(() => {
-        if (currentId !== searchIdRef.current) return;
-
-        // Use requestIdleCallback to avoid blocking typing
-        const runSearch = () => {
-          if (currentId !== searchIdRef.current) return;
-          const fallbackResults = searchTools(allTools, cappedT);
-          if (currentId !== searchIdRef.current) return;
-          const promoted = ensureExactTitleHit(
-            promoteExactTitleMatches(fallbackResults, cappedT),
-            cappedT
-          );
-          searchCache.set(fullCacheKey, promoted);
-          startTransition(() => {
-            setSearchResults(promoted);
-            setDisplayedCount(50);
-          });
-        };
-
-        if ('requestIdleCallback' in window) {
-          (window as any).requestIdleCallback(runSearch, { timeout: 300 });
-        } else {
-          runSearch();
-        }
-      }, fullDelay);
-    }
+    // Full heavy ranking intentionally stays out of the live input path.
+    // quickSearch uses the precomputed index and is exhaustive enough for discovery;
+    // avoiding the second all-tool ranking pass keeps backspace/delete smooth on phones.
   }, [quickSearch, ensureExactTitleHit]);
   
   // Cleanup on unmount
