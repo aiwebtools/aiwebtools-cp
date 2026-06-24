@@ -2,18 +2,9 @@
 import { useState, useEffect, useRef, useCallback, useMemo, startTransition } from "react";
 import { useNavigate } from "react-router-dom";
 import { allTools } from "@/data/toolsData";
-import { searchTools } from "@/utils/searchUtils";
 import { createTimePortalEffect } from "@/utils/timeEffects";
 import { generateToolSlug } from "@/utils/urlGenerator";
 import { getCurrentToolCount } from "@/utils/toolCounter";
-import { 
-  CATEGORY_TITLE_KEYWORDS, 
-  SIBLING_CATEGORIES,
-  areSiblingCategories,
-  areInSameFamily,
-  detectToolCategoryFromTitle,
-  getCategoryRelationshipScore
-} from "@/utils/search/categoryIntelligence";
 
 // ==================== LRU CACHE FOR SEARCH RESULTS ====================
 // Caches the last 50 search queries to avoid recomputation on repeated searches
@@ -54,48 +45,6 @@ class LRUCache<K, V> {
   }
 }
 
-// FAST spread function - simplified O(n) algorithm for instant spreading
-const spreadSimilarToolsFast = (tools: any[]): any[] => {
-  if (tools.length < 20) return tools;
-  
-  const result: any[] = [];
-  const seen = new Set<string>();
-  const recentBases: string[] = [];
-  const MIN_GAP = 8;
-  
-  const getBase = (title: string): string => {
-    return title.toLowerCase()
-      .replace(/\s*(gpt|gem|gemini|\(gem\)|\[gem\])\s*/gi, '')
-      .split(' ').slice(0, 2).join(' ');
-  };
-  
-  for (const tool of tools) {
-    const title = (tool?.title || "").toLowerCase();
-    const base = getBase(title);
-    
-    // Check if similar base was recent
-    const recentMatch = recentBases.slice(-MIN_GAP).includes(base);
-    
-    if (!recentMatch || result.length < 10) {
-      result.push(tool);
-      recentBases.push(base);
-    } else {
-      // Defer to end
-      seen.add(title);
-    }
-  }
-  
-  // Add deferred tools
-  for (const tool of tools) {
-    const title = (tool?.title || "").toLowerCase();
-    if (seen.has(title) && !result.some(r => (r?.title || "").toLowerCase() === title)) {
-      result.push(tool);
-    }
-  }
-  
-  return result;
-};
-
 // Global search cache (persists across component re-renders)
 // NOTE: versioned to prevent "stale" cached results after search-intelligence updates.
 const SEARCH_CACHE_VERSION = "v51";
@@ -122,41 +71,6 @@ export const getSearchDispatchDelay = (value: string, gapMs: number): number => 
   if (value.length > 80) return 140;
   if (value.length > 40) return 95;
   return 55;
-};
-
-// ==================== EXACT-TITLE PROMOTION ====================
-// Ensures that when a user types a tool's exact name (or first word of its name),
-// that tool is bumped to the very top of the results — without changing the rest
-// of the ordering. Safe, non-destructive: only re-orders, never removes.
-const promoteExactTitleMatches = (results: any[], rawQuery: string): any[] => {
-  if (!Array.isArray(results) || results.length < 2) return results;
-  const q = (rawQuery || "").toLowerCase().trim();
-  if (!q) return results;
-  const qNoSpace = q.replace(/\s+/g, "");
-
-  const scoreFor = (tool: any): number => {
-    const title = (tool?.title || "").toLowerCase();
-    if (!title) return 0;
-    const titleNoSpace = title.replace(/\s+/g, "");
-    if (title === q || titleNoSpace === qNoSpace) return 4; // exact title
-    const words = title.split(/[\s\-_:/]+/).filter(Boolean);
-    if (words[0] === q) return 3; // first-word exact (e.g., "grok" → "Grok by X")
-    if (title.startsWith(`${q} `) || title.startsWith(`${q}-`)) return 3;
-    if (words.includes(q)) return 2; // any whole-word match
-    if (title.startsWith(q) && q.length >= 3) return 1; // prefix
-    return 0;
-  };
-
-  const promoted: { tool: any; rank: number; idx: number }[] = [];
-  const rest: any[] = [];
-  results.forEach((tool, idx) => {
-    const r = scoreFor(tool);
-    if (r > 0) promoted.push({ tool, rank: r, idx });
-    else rest.push(tool);
-  });
-  if (promoted.length === 0) return results;
-  promoted.sort((a, b) => (b.rank - a.rank) || (a.idx - b.idx));
-  return [...promoted.map(p => p.tool), ...rest];
 };
 
 // ==================== INTELLIGENCE MAPS (precomputed, instant lookup) ====================
@@ -2110,7 +2024,6 @@ export const useGlobalSearch = () => {
     const now = performance.now();
     const timeSinceLastInput = now - lastInputTimeRef.current;
     lastInputTimeRef.current = now;
-    const isRapidTyping = timeSinceLastInput < 120; // Rapid keystrokes < 120ms apart
     // Longer delay for rapid typing to batch keystrokes; also scale with query length
     const quickDelay = getSearchDispatchDelay(cappedT, timeSinceLastInput);
 
