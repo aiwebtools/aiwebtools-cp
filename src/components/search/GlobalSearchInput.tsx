@@ -5,12 +5,13 @@ import { Button } from "@/components/ui/button";
 import { memo, useCallback, useEffect, useRef, useState } from "react";
 
 const getInputDispatchDelay = (value: string, gapMs: number): number => {
-  // Always defer the heavy parent update to the next macrotask so the
-  // browser can paint the keystroke first. Rapid typing batches harder.
-  if (gapMs >= 220) return 60;
-  if (value.length > 80) return 200;
-  if (value.length > 40) return 150;
-  return 110;
+  // Keep the text field feeling native: deletion must be instant, while
+  // rapid typing gets only a tiny batch window so React never fights the caret.
+  if (!value.trim()) return 0;
+  if (gapMs >= 160) return 0;
+  if (value.length > 80) return 70;
+  if (value.length > 40) return 45;
+  return 18;
 };
 
 interface GlobalSearchInputProps {
@@ -60,7 +61,7 @@ const GlobalSearchInput = memo(({
 
       setLocalValue(next);
 
-      // Adaptive debounce: rapid keystrokes get batched, slow typing feels instant.
+      // Adaptive debounce: rapid keystrokes get lightly batched; slow typing and deleting stay instant.
       const now = performance.now();
       const gap = now - lastKeystrokeRef.current;
       lastKeystrokeRef.current = now;
@@ -72,8 +73,6 @@ const GlobalSearchInput = memo(({
           onSearchChange(next);
         }
       };
-      // Always use a macrotask (setTimeout) so the keystroke paints before
-      // any heavy search work runs. Microtasks would still block paint.
       debounceTimerRef.current = setTimeout(dispatch, delay);
     },
     [onSearchChange]
@@ -118,7 +117,7 @@ const GlobalSearchInput = memo(({
   }, [onClear]);
 
   return (
-    <div className="relative rounded-lg border border-border cursor-text gpu-accelerated" onClick={handleContainerClick} style={{ transform: 'translateZ(0)', willChange: 'contents' }}>
+    <div className="relative rounded-lg border border-border cursor-text" onClick={handleContainerClick}>
       <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-300 w-4 h-4 pointer-events-none z-10" />
 
       {ghostText && (
@@ -141,7 +140,6 @@ const GlobalSearchInput = memo(({
         onChange={handleChange}
         onKeyDown={handleKeyDown}
         className="pl-10 pr-10 bg-black/60 border-0 text-white placeholder-gray-300 focus:ring-0 focus:outline-none rounded-lg focus:bg-black/80 relative z-[1] bg-transparent cursor-text"
-        style={{ transform: 'translateZ(0)' }}
         autoComplete="off"
         spellCheck={false}
         inputMode="search"

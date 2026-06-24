@@ -671,3 +671,6 @@ export { topAgentsBatch2026JulPart19 } from './topAgentsBatch2026JulPart19';
 export { topAgentsBatch2026JulPart20 } from './topAgentsBatch2026JulPart20';
 export { topAgentsBatch2026JulPart21 } from './topAgentsBatch2026JulPart21';
 export { topAgentsBatch2026JulPart22 } from './topAgentsBatch2026JulPart22';
+
+// Deep Agent Tools Batch 2026 (10 verified fresh agent/computer-use/MCP tools)
+export { deepAgentToolsBatch2026 } from './deepAgentToolsBatch2026';
