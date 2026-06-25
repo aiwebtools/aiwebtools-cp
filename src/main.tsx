@@ -78,6 +78,14 @@ import('./App.tsx')
     (window as any).__aiwtBootTrace?.('App-module-loaded');
     root.render(<App />);
     (window as any).__aiwtBootTrace?.('react-render-called');
+    // Signal the index.html loader to fade out as soon as React paints.
+    // Without this dispatch the loader only relies on the 100ms DOM-poll
+    // or the 9s watchdog, which left the cube parked at 70-80%.
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        try { window.dispatchEvent(new Event('aiwt:route-ready')); } catch { /* noop */ }
+      });
+    });
     // NOTE: We intentionally do NOT clear the reload guard after a successful
     // boot. The 30s cooldown in index.html prevents loop-reloads while still
     // letting a genuine later-session stale-chunk trigger one recovery reload.
