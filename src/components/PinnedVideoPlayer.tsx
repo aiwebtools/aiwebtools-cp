@@ -26,6 +26,7 @@ const MODE_SESSION_KEY = "pinned-video-mode"; // 'idle' | 'tools' | 'music'
 // always leads with the most eye-catching content.
 export const MUSIC_VIDEO_GALLERY: Array<{ id: string; title: string }> = [
   // ── MTV LINE-UP (newest drops — play FIRST in the 9:16 reel) ──
+  { id: "_O0G0oFO-GQ", title: "AIWEBTOOLS – Newest Drop | Official AI Music Video Short | AIWebTools.ai" },
   { id: "zVfi5UkMjTM", title: "Cosmic Divine Dimensions Inside Us – AI Music Video | AIWebTools.ai _OFFICAL MUSIC VIDEO_  GALACTICA" },
   { id: "I6kOI_q0aHE", title: "Mirror Mirror | Original AI Music Video | AIWebTools.ai" },
   { id: "ZIr6c-fY9fs", title: "Just A Dream Baby | Original AI Music Video | AIWebTools.ai" },
