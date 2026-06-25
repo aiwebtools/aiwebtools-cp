@@ -1,4 +1,4 @@
-import { supabase } from "@/integrations/supabase/client";
+import { supabase } from "../integrations/supabase/client";
 
 const SESSION_KEY = "awt_session_id";
 const RATE_LIMIT_MS = 5000; // don't spam more than 1 report / 5s
