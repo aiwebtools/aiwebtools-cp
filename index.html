@@ -468,6 +468,7 @@
             const root = document.getElementById('root');
             if (!root) return false;
             if (!root.children.length) return false;
+            if (root.querySelector('[data-aiwt-route-fallback="true"]')) return false;
             var rect = root.getBoundingClientRect();
             var text = (root.textContent || '').replace(/\s+/g, ' ').trim();
             var hasPageSignal = !!root.querySelector('header, main, nav, section, article, h1, h2, button, a, input');
