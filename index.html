@@ -418,7 +418,15 @@
             trace('spinner-finish-start', reason || null);
             const spinner = document.querySelector('.loading-spinner');
             const label = document.getElementById('aiwt-progress-label');
+            const tools = document.getElementById('aiwt-stat-tools');
+            const nodes = document.getElementById('aiwt-stat-nodes');
+            const latency = document.getElementById('aiwt-stat-latency');
+            const seconds = document.getElementById('progress-sec');
             if (label) label.textContent = 'WELCOME NEO';
+            if (tools) tools.textContent = '4,217';
+            if (nodes) nodes.textContent = '180';
+            if (latency) latency.textContent = '3 ms';
+            if (seconds) seconds.textContent = '0s';
             if (bar) bar.style.width = '100%';
             if (pct) pct.textContent = '100%';
             try { window.__aiwtLoaderClosing = true; } catch (_) {}
@@ -500,6 +508,14 @@
             });
           }, { once: true });
           if (routeReady) requestFinish('route-ready-flag');
+
+          window.addEventListener('load', function() {
+            if (hasVisibleContent()) {
+              trace('window-load-content-ready');
+              routeReady = true;
+              requestFinish('window-load');
+            }
+          }, { once: true });
 
           // Poll for real content. Cheap on CPU (every 100ms) and stops as soon as found.
           var contentCheck = setInterval(function() {
@@ -761,7 +777,8 @@
         function drawMatrix(ts){
           if(overlay.classList.contains('fade-out')) return;
           // Smooth Matrix rain: ~45fps keeps motion alive without starving React.
-          if(ts && ts-lastMatrix < 22){ requestAnimationFrame(drawMatrix); return; }
+          if(ts && ts-lastMatrix < 20){ requestAnimationFrame(drawMatrix); return; }
+          var delta = lastMatrix ? Math.min(2.2, Math.max(.7, ((ts || lastMatrix) - lastMatrix) / 22)) : 1;
           lastMatrix = ts || 0;
           matrixCtx.fillStyle='rgba(0,0,0,'+fade+')'; matrixCtx.fillRect(0,0,vw,vh);
           matrixCtx.textBaseline='top';
@@ -778,7 +795,7 @@
               matrixCtx.fillText(CHARS[Math.floor(Math.random()*CHARS.length)],x,y-fontSize*2);
             }
             if(y>vh&&Math.random()>.974) drops[i]=0;
-            drops[i]+=speeds[i];
+            drops[i]+=speeds[i]*delta;
           }
           requestAnimationFrame(drawMatrix);
         }
