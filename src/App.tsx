@@ -226,7 +226,7 @@ const AnimatedRoutes = () => {
     return (
       <Suspense fallback={<PageLoader />}>
         <Routes location={location}>
-          <Route path="/welcome" element={<DisclaimerGate />} />
+          <Route path="/welcome" element={<RouteReadySignal><DisclaimerGate /></RouteReadySignal>} />
           <Route path="/" element={<RouteReadySignal><Index /></RouteReadySignal>} />
         </Routes>
       </Suspense>
