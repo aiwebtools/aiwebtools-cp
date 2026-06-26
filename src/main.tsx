@@ -83,7 +83,11 @@ import('./App.tsx')
     // or the 9s watchdog, which left the cube parked at 70-80%.
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
-        try { window.dispatchEvent(new Event('aiwt:route-ready')); } catch { /* noop */ }
+        try {
+          (window as any).__aiwtRouteReady = true;
+          (window as any).__aiwtBootTrace?.('route-ready-dispatch');
+          window.dispatchEvent(new Event('aiwt:route-ready'));
+        } catch { /* noop */ }
       });
     });
     // NOTE: We intentionally do NOT clear the reload guard after a successful
