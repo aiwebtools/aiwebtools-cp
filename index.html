@@ -476,7 +476,7 @@
 
           // RAF-based percentage counter (syncs with 8s CSS progressGrow timing)
           const updatePct = () => {
-            if (removed) return;
+            if (removed || finishing) return;
             var elapsed = performance.now() - startTime;
             var duration = Math.max(MIN_BOOT_MS, routeReady ? 3300 : MAX_BOOT_MS);
             var t = Math.min(elapsed / duration, 1);
