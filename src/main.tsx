@@ -78,15 +78,14 @@ import('./App.tsx')
     (window as any).__aiwtBootTrace?.('App-module-loaded');
     root.render(<App />);
     (window as any).__aiwtBootTrace?.('react-render-called');
-    // Signal the index.html loader to fade out as soon as React paints.
-    // Without this dispatch the loader only relies on the 100ms DOM-poll
-    // or the 9s watchdog, which left the cube parked at 70-80%.
+    // App shell painted. The actual loader handoff is dispatched by
+    // RouteReadySignal inside App after the real route component mounts, so the
+    // Matrix loader never disappears just to reveal another route fallback.
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
         try {
-          (window as any).__aiwtRouteReady = true;
-          (window as any).__aiwtBootTrace?.('route-ready-dispatch');
-          window.dispatchEvent(new Event('aiwt:route-ready'));
+          (window as any).__aiwtAppShellRendered = true;
+          (window as any).__aiwtBootTrace?.('app-shell-painted');
         } catch { /* noop */ }
       });
     });
