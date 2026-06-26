@@ -165,10 +165,11 @@
         background: radial-gradient(circle at center, rgba(0,45,8,0.42) 0%, rgba(0,0,0,0.98) 72%), #000;
         font-family: 'Share Tech Mono','Courier New',monospace;
         opacity: 1; visibility: visible;
-        transition: opacity 0.9s ease, visibility 0.9s ease;
+        transition: opacity 0.82s cubic-bezier(.2,.9,.18,1), visibility 0.82s ease, filter 0.82s ease;
         -webkit-transform: translateZ(0); transform: translateZ(0);
       }
-      .loading-spinner.fade-out { opacity: 0; visibility: hidden; pointer-events: none; }
+      .loading-spinner.portal-opening { filter: brightness(1.22) contrast(1.08); }
+      .loading-spinner.fade-out { opacity: 0; visibility: hidden; pointer-events: none; filter: brightness(1.45) blur(2px); }
       .loading-spinner canvas { position: absolute; inset: 0; width: 100vw; height: 100dvh; display: block; }
       #aiwt-matrix-canvas { z-index: 1; }
       #aiwt-hypercube-canvas { z-index: 4; pointer-events: none; }
@@ -191,6 +192,16 @@
       }
       .aiwt-vignette { position: absolute; inset: 0; z-index: 9; pointer-events: none;
         background: radial-gradient(ellipse at center, transparent 44%, rgba(0,0,0,0.88) 100%); }
+      .aiwt-welcome {
+        position:absolute; inset:0; z-index:16; display:grid; place-items:center; pointer-events:none;
+        opacity:0; transform:scale(.96); color:#d8ffe6; font-family:'Orbitron',sans-serif;
+        font-size:clamp(2rem,8vw,6.4rem); font-weight:900; letter-spacing:.08em; text-transform:uppercase;
+        text-shadow:0 0 12px #00ff41,0 0 36px rgba(0,255,65,.85),0 0 90px rgba(0,255,65,.5);
+        transition:opacity .36s ease, transform .52s cubic-bezier(.16,1,.3,1);
+      }
+      .loading-spinner.portal-opening .aiwt-welcome { opacity:1; transform:scale(1); }
+      .loading-spinner.portal-opening .aiwt-ui { animation:aiwt-portal-ui-open .62s cubic-bezier(.16,1,.3,1) forwards; }
+      .loading-spinner.portal-opening #aiwt-hypercube-canvas { animation:aiwt-cube-yield .62s cubic-bezier(.16,1,.3,1) forwards; }
       .aiwt-corner { position: absolute; z-index: 12; width: clamp(28px,5vw,56px); height: clamp(28px,5vw,56px); pointer-events: none; opacity: .88; }
       .aiwt-corner::before,.aiwt-corner::after { content:''; position:absolute; background:#00ff41; box-shadow:0 0 12px #00ff41; }
       .aiwt-corner::before { width:100%; height:2px; top:0; left:0; }
@@ -312,6 +323,8 @@
       @keyframes aiwt-line-in { to{opacity:1} }
       @keyframes aiwt-cursor-blink { 0%,100%{opacity:1} 50%{opacity:0} }
       @keyframes aiwt-shimmer { 0%,100%{opacity:1} 50%{opacity:.25} }
+      @keyframes aiwt-portal-ui-open { to{opacity:0;transform:translate3d(0,-10px,0) scale(1.018)} }
+      @keyframes aiwt-cube-yield { to{opacity:.22;transform:scale(1.08)} }
 
       @media (max-width: 900px) {
         .aiwt-ui { overflow-y:auto; }
@@ -390,20 +403,54 @@
           trace('progress-start');
 
           let removed = false;
+          let routeReady = !!window.__aiwtRouteReady;
+          let finishing = false;
           const bar = document.getElementById('progress-bar');
           const pct = document.getElementById('progress-pct');
           const startTime = performance.now();
+          const MIN_BOOT_MS = 2600;
+          const MAX_BOOT_MS = 10000;
+          const FINISH_DELAY_MS = 620;
 
-          const removeSpinner = () => {
-            if (removed) return;
+          const removeSpinner = (reason) => {
+            if (removed || finishing) return;
+            finishing = true;
+            trace('spinner-finish-start', reason || null);
+            const spinner = document.querySelector('.loading-spinner');
+            const label = document.getElementById('aiwt-progress-label');
+            if (label) label.textContent = 'WELCOME NEO';
+            if (bar) bar.style.width = '100%';
+            if (pct) pct.textContent = '100%';
+            try { window.__aiwtLoaderClosing = true; } catch (_) {}
+            if (spinner) spinner.classList.add('portal-opening');
+            setTimeout(function() {
+              if (removed) return;
+              removed = true;
+              trace('spinner-removed', reason || null);
+              if (spinner) {
+                spinner.classList.add('fade-out');
+                setTimeout(() => spinner.remove(), 900);
+              }
+            }, FINISH_DELAY_MS);
+          };
+
+          const requestFinish = (reason) => {
+            if (removed || finishing) return;
+            const elapsed = performance.now() - startTime;
+            const wait = Math.max(0, MIN_BOOT_MS - elapsed);
+            setTimeout(function() { removeSpinner(reason); }, wait);
+          };
+
+          const hardRemoveSpinner = (reason) => {
+            if (removed || finishing) return;
             removed = true;
-            trace('spinner-removed');
+            trace('spinner-hard-removed', reason || null);
             if (bar) bar.style.width = '100%';
             if (pct) pct.textContent = '100%';
             const spinner = document.querySelector('.loading-spinner');
             if (spinner) {
               spinner.classList.add('fade-out');
-              setTimeout(() => spinner.remove(), 300);
+              setTimeout(() => spinner.remove(), 900);
             }
           };
 
@@ -423,14 +470,15 @@
           const updatePct = () => {
             if (removed) return;
             var elapsed = performance.now() - startTime;
-            var duration = 3500;
+            var duration = Math.max(MIN_BOOT_MS, routeReady ? 3300 : MAX_BOOT_MS);
             var t = Math.min(elapsed / duration, 1);
             var p;
             if (t < 0.15) p = 5 + (35 * (t / 0.15));
             else if (t < 0.35) p = 40 + (25 * ((t - 0.15) / 0.20));
             else if (t < 0.55) p = 65 + (15 * ((t - 0.35) / 0.20));
             else if (t < 0.75) p = 80 + (10 * ((t - 0.55) / 0.20));
-            else p = 90 + (7 * ((t - 0.75) / 0.25));
+            else p = 90 + ((routeReady ? 9 : 7) * ((t - 0.75) / 0.25));
+            if (!routeReady) p = Math.min(p, 97);
             if (pct) pct.textContent = Math.round(p) + '%';
             // JS-driven width as a fallback for mobile browsers that pause
             // long CSS animations in the background (iOS Safari throttles).
@@ -446,16 +494,19 @@
 
           window.addEventListener('aiwt:route-ready', function() {
             trace('aiwt:route-ready');
+            routeReady = true;
             requestAnimationFrame(function() {
-              requestAnimationFrame(removeSpinner);
+              requestAnimationFrame(function() { requestFinish('route-ready'); });
             });
           }, { once: true });
+          if (routeReady) requestFinish('route-ready-flag');
 
           // Poll for real content. Cheap on CPU (every 100ms) and stops as soon as found.
           var contentCheck = setInterval(function() {
             if (hasVisibleContent()) {
               clearInterval(contentCheck);
-              removeSpinner();
+              routeReady = true;
+              requestFinish('visible-content');
             }
           }, 100);
 
@@ -469,21 +520,17 @@
               var rootText = root ? (root.textContent || '').replace(/\s+/g, ' ').trim() : '';
               if (root && root.children.length && (rootText.length > 0 || root.querySelector('header, main, nav, section, article, h1, h2, button, a, input'))) {
                 trace('watchdog-found-content');
-                removeSpinner();
-                return;
-              }
-              if (window.__aiwtReloadGuard.canReload()) {
-                window.__aiwtReloadGuard.mark('watchdog-9s');
-                window.location.reload();
+                routeReady = true;
+                requestFinish('watchdog-found-content');
                 return;
               }
               trace('watchdog-recovery-panel');
               if (root && !root.children.length) {
                 root.innerHTML = '<div style="min-height:100vh;display:flex;align-items:center;justify-content:center;background:#020817;color:#00ff66;font-family:monospace;text-align:center;padding:24px"><div><div style="width:56px;height:56px;margin:0 auto 18px;border:2px solid #00ff66;border-top-color:#67e8f9;border-radius:50%;animation:spin 1s linear infinite"></div><style>@keyframes spin{to{transform:rotate(360deg)}}</style><h1 style="font-size:24px;margin:0 0 12px;text-shadow:0 0 18px #00ff66">AI Web Tools is reconnecting</h1><p style="margin:0 0 18px;color:#67e8f9">The preview boot cache stalled. Use refresh once if this message stays visible.</p><button onclick="window.__aiwtReloadGuard&&window.__aiwtReloadGuard.clear();location.reload()" style="border:1px solid #00ff66;background:rgba(0,255,102,.14);color:#00ff66;padding:10px 16px;border-radius:8px;font-weight:700;cursor:pointer">Refresh Portal</button></div></div>';
               }
-              removeSpinner();
+              hardRemoveSpinner('watchdog-10s');
             }
-          }, 9000);
+          }, MAX_BOOT_MS);
         };
 
         const tryStart = () => {
@@ -611,6 +658,7 @@
       <canvas id="aiwt-burst-canvas"></canvas>
       <div class="aiwt-scanlines"></div>
       <div class="aiwt-vignette"></div>
+      <div class="aiwt-welcome" aria-hidden="true">Welcome Neo</div>
       <span class="aiwt-corner aiwt-corner-tl"></span>
       <span class="aiwt-corner aiwt-corner-tr"></span>
       <span class="aiwt-corner aiwt-corner-bl"></span>
@@ -693,10 +741,10 @@
           { pct:70, label:'WARMING PORTAL',            html:'<span class="aiwt-prompt">▶</span> Warming the AIWebTools portal...' },
           { pct:82, label:'COMPILING SEARCH VECTORS',  html:'<span class="aiwt-prompt">▶</span> Compiling search vectors... <span class="aiwt-ok">[OK]</span>' },
           { pct:92, label:'AI RECOMMENDATION ENGINE',  html:'<span class="aiwt-prompt">▶</span> AI recommendation engine: <span class="aiwt-ok">READY</span>' },
-          { pct:100,label:'BOOT COMPLETE',             html:'<span class="aiwt-prompt">▶</span> <span class="aiwt-data">ALL SYSTEMS NOMINAL</span> — Welcome to the Matrix.' }
+          { pct:100,label:'WELCOME NEO',               html:'<span class="aiwt-prompt">▶</span> <span class="aiwt-data">WELCOME NEO</span> — Portal opening now.' }
         ];
-        var vw=0, vh=0, dpr=1, fontSize=16, cubeScale=.155, fade=.07, columns=0, drops=[], cubeAngle=0, burst=[];
-        function settings(){ var w=window.innerWidth; if(w<=480)return{f:12,c:.118,fd:.105}; if(w<=768)return{f:14,c:.13,fd:.092}; if(w<=1200)return{f:17,c:.155,fd:.075}; return{f:19,c:.168,fd:.062}; }
+        var vw=0, vh=0, dpr=1, fontSize=16, cubeScale=.155, fade=.055, columns=0, drops=[], speeds=[], cubeAngle=0, burst=[];
+        function settings(){ var w=window.innerWidth; if(w<=480)return{f:12,c:.118,fd:.075}; if(w<=768)return{f:14,c:.13,fd:.068}; if(w<=1200)return{f:17,c:.155,fd:.056}; return{f:19,c:.168,fd:.048}; }
         function resize(){
           var s=settings(); fontSize=s.f; cubeScale=s.c; fade=s.fd;
           dpr=Math.min(window.devicePixelRatio||1,2); vw=window.innerWidth; vh=window.innerHeight;
@@ -707,25 +755,30 @@
           matrixCtx.setTransform(dpr,0,0,dpr,0,0); cubeCtx.setTransform(dpr,0,0,dpr,0,0); burstCtx.setTransform(dpr,0,0,dpr,0,0);
           columns=Math.max(1,Math.floor(vw/fontSize));
           drops=Array.from({length:columns},function(){return Math.random()*-vh/fontSize;});
+          speeds=Array.from({length:columns},function(){return .76+Math.random()*.82;});
         }
         var lastMatrix=0;
         function drawMatrix(ts){
           if(overlay.classList.contains('fade-out')) return;
-          // Throttle matrix rain to ~30fps. Indistinguishable visually, halves
-          // the per-frame cost of the heaviest canvas during boot.
-          if(ts && ts-lastMatrix < 32){ requestAnimationFrame(drawMatrix); return; }
+          // Smooth Matrix rain: ~45fps keeps motion alive without starving React.
+          if(ts && ts-lastMatrix < 22){ requestAnimationFrame(drawMatrix); return; }
           lastMatrix = ts || 0;
           matrixCtx.fillStyle='rgba(0,0,0,'+fade+')'; matrixCtx.fillRect(0,0,vw,vh);
+          matrixCtx.textBaseline='top';
           for(var i=0;i<drops.length;i++){
             var x=i*fontSize, y=drops[i]*fontSize;
             matrixCtx.font='bold '+fontSize+'px "Share Tech Mono",monospace';
-            matrixCtx.fillStyle='rgba(200,255,220,'+(Math.random()*.36+.62)+')';
+            matrixCtx.fillStyle='rgba(210,255,224,'+(Math.random()*.28+.7)+')';
             matrixCtx.fillText(CHARS[Math.floor(Math.random()*CHARS.length)],x,y);
             matrixCtx.font=fontSize+'px "Share Tech Mono",monospace';
-            matrixCtx.fillStyle='rgba(0,'+Math.floor(Math.random()*80+170)+','+Math.floor(Math.random()*35+20)+','+(Math.random()*.28+.4)+')';
+            matrixCtx.fillStyle='rgba(0,'+Math.floor(Math.random()*90+160)+','+Math.floor(Math.random()*45+28)+','+(Math.random()*.32+.44)+')';
             matrixCtx.fillText(CHARS[Math.floor(Math.random()*CHARS.length)],x,y-fontSize);
+            if(Math.random()>.72){
+              matrixCtx.fillStyle='rgba(0,255,65,'+(Math.random()*.22+.16)+')';
+              matrixCtx.fillText(CHARS[Math.floor(Math.random()*CHARS.length)],x,y-fontSize*2);
+            }
             if(y>vh&&Math.random()>.974) drops[i]=0;
-            drops[i]+=.58+Math.random()*.46;
+            drops[i]+=speeds[i];
           }
           requestAnimationFrame(drawMatrix);
         }
@@ -809,7 +862,7 @@
         }
         // Boot sequence — paced over a target while the watchdog drives real progress width.
         window.__aiwtBootLabel = function(text){ if(progressLabel) progressLabel.textContent = text; };
-        var TARGET_MS = 2400;
+        var TARGET_MS = 2800;
         BOOT_LINES.forEach(function(line,idx){
           var delay = Math.round(TARGET_MS * (idx / (BOOT_LINES.length-1)));
           setTimeout(function(){
