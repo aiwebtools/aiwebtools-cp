@@ -149,7 +149,7 @@ const WelcomeNeoVoice = () => {
 // dark screen.
 const PageLoader = () => {
   return (
-    <div className="fixed inset-0 z-[9000] flex min-h-screen items-center justify-center bg-background px-6 text-foreground">
+    <div data-aiwt-route-fallback="true" className="fixed inset-0 z-[9000] flex min-h-screen items-center justify-center bg-background px-6 text-foreground">
       <style>{`
         @keyframes pl-rotateCube { from { transform: rotateX(0) rotateY(0); } to { transform: rotateX(360deg) rotateY(360deg); } }
         @keyframes pl-pulse { 0%,100% { opacity: 1; text-shadow: 0 0 12px #00ff41; } 50% { opacity: 0.55; text-shadow: 0 0 28px #00ff41; } }
@@ -186,6 +186,26 @@ const PageLoader = () => {
   );
 };
 
+const RouteReadySignal = ({ children }: { children: React.ReactNode }) => {
+  const location = useLocation();
+
+  React.useEffect(() => {
+    (window as any).__aiwtBootTrace?.('route-component-mounted', location.pathname);
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        try {
+          document.body.setAttribute('data-aiwt-route-ready', 'true');
+          (window as any).__aiwtRouteReady = true;
+          (window as any).__aiwtBootTrace?.('route-ready-dispatch', location.pathname);
+          window.dispatchEvent(new Event('aiwt:route-ready'));
+        } catch { /* loader signal must never break the app */ }
+      });
+    });
+  }, [location.pathname]);
+
+  return <>{children}</>;
+};
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -207,7 +227,7 @@ const AnimatedRoutes = () => {
       <Suspense fallback={<PageLoader />}>
         <Routes location={location}>
           <Route path="/welcome" element={<DisclaimerGate />} />
-          <Route path="/" element={<Index />} />
+          <Route path="/" element={<RouteReadySignal><Index /></RouteReadySignal>} />
         </Routes>
       </Suspense>
     );
@@ -217,33 +237,33 @@ const AnimatedRoutes = () => {
   return (
     <Suspense fallback={<PageLoader />}>
       <Routes location={location}>
-        <Route path="/category/:categoryName" element={<CategoryPage />} />
-        <Route path="/main-category/:mainCategoryName" element={<MainCategoryPage />} />
+        <Route path="/category/:categoryName" element={<RouteReadySignal><CategoryPage /></RouteReadySignal>} />
+        <Route path="/main-category/:mainCategoryName" element={<RouteReadySignal><MainCategoryPage /></RouteReadySignal>} />
         {/* Tool detail routes: no fallback — instant nav like before */}
-        <Route path="/tool/:toolId" element={<Suspense fallback={null}><ToolDetail /></Suspense>} />
-        <Route path="/:toolSlug" element={<Suspense fallback={null}><ToolDetail /></Suspense>} />
-        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-        <Route path="/similar-tools/:toolId" element={<SimilarToolsPage />} />
-        <Route path="/ai-tools-hub" element={<AIToolsHub />} />
-        <Route path="/ai-agents-directory" element={<AIAgentsDirectory />} />
-        <Route path="/chatgpt-alternatives" element={<ChatGPTAlternatives />} />
-        <Route path="/blog" element={<BlogPage />} />
-        <Route path="/blog/:slug" element={<BlogPostPage />} />
-        <Route path="/gaming-entertainment" element={<GamingEntertainmentPage />} />
-        <Route path="/faq" element={<FAQPage />} />
-        <Route path="/ai-tools" element={<AIToolsPage />} />
-        <Route path="/best-ai-tools" element={<BestAIToolsPage />} />
-        <Route path="/free-ai-tools" element={<FreeAIToolsPage />} />
-        <Route path="/ai-writing-tools" element={<AIWritingToolsPage />} />
-        <Route path="/ai-web-tools" element={<AIWebToolsPage />} />
-        <Route path="/aiwebtools" element={<AIWebToolsPage />} />
-        <Route path="/favorites" element={<FavoritesPage />} />
-        <Route path="/disclaimers" element={<DisclaimersPage />} />
-        <Route path="/our-story" element={<OurStoryPage />} />
-        <Route path="/submit-tool" element={<ToolSubmission />} />
-        <Route path="/admin/analytics" element={<AdminAnalytics />} />
-        <Route path="/music-stream" element={<Suspense fallback={null}><MusicStream /></Suspense>} />
-        <Route path="*" element={<NotFound />} />
+        <Route path="/tool/:toolId" element={<Suspense fallback={null}><RouteReadySignal><ToolDetail /></RouteReadySignal></Suspense>} />
+        <Route path="/:toolSlug" element={<Suspense fallback={null}><RouteReadySignal><ToolDetail /></RouteReadySignal></Suspense>} />
+        <Route path="/privacy-policy" element={<RouteReadySignal><PrivacyPolicy /></RouteReadySignal>} />
+        <Route path="/similar-tools/:toolId" element={<RouteReadySignal><SimilarToolsPage /></RouteReadySignal>} />
+        <Route path="/ai-tools-hub" element={<RouteReadySignal><AIToolsHub /></RouteReadySignal>} />
+        <Route path="/ai-agents-directory" element={<RouteReadySignal><AIAgentsDirectory /></RouteReadySignal>} />
+        <Route path="/chatgpt-alternatives" element={<RouteReadySignal><ChatGPTAlternatives /></RouteReadySignal>} />
+        <Route path="/blog" element={<RouteReadySignal><BlogPage /></RouteReadySignal>} />
+        <Route path="/blog/:slug" element={<RouteReadySignal><BlogPostPage /></RouteReadySignal>} />
+        <Route path="/gaming-entertainment" element={<RouteReadySignal><GamingEntertainmentPage /></RouteReadySignal>} />
+        <Route path="/faq" element={<RouteReadySignal><FAQPage /></RouteReadySignal>} />
+        <Route path="/ai-tools" element={<RouteReadySignal><AIToolsPage /></RouteReadySignal>} />
+        <Route path="/best-ai-tools" element={<RouteReadySignal><BestAIToolsPage /></RouteReadySignal>} />
+        <Route path="/free-ai-tools" element={<RouteReadySignal><FreeAIToolsPage /></RouteReadySignal>} />
+        <Route path="/ai-writing-tools" element={<RouteReadySignal><AIWritingToolsPage /></RouteReadySignal>} />
+        <Route path="/ai-web-tools" element={<RouteReadySignal><AIWebToolsPage /></RouteReadySignal>} />
+        <Route path="/aiwebtools" element={<RouteReadySignal><AIWebToolsPage /></RouteReadySignal>} />
+        <Route path="/favorites" element={<RouteReadySignal><FavoritesPage /></RouteReadySignal>} />
+        <Route path="/disclaimers" element={<RouteReadySignal><DisclaimersPage /></RouteReadySignal>} />
+        <Route path="/our-story" element={<RouteReadySignal><OurStoryPage /></RouteReadySignal>} />
+        <Route path="/submit-tool" element={<RouteReadySignal><ToolSubmission /></RouteReadySignal>} />
+        <Route path="/admin/analytics" element={<RouteReadySignal><AdminAnalytics /></RouteReadySignal>} />
+        <Route path="/music-stream" element={<Suspense fallback={null}><RouteReadySignal><MusicStream /></RouteReadySignal></Suspense>} />
+        <Route path="*" element={<RouteReadySignal><NotFound /></RouteReadySignal>} />
       </Routes>
     </Suspense>
   );
