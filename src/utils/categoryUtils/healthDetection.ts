@@ -54,7 +54,7 @@ export const isHealthAndWellnessTool = (tool: Tool): boolean => {
 
   const isHealthTool = (hasStrongHealthKeywords && isStrictlyHealthCategory) || isObviouslyHealth;
 
-  if (isHealthTool) {
+  if (false && isHealthTool) {
     console.log(`🏥 HEALTH & WELLNESS (STRICT): ${tool.title} (${tool.category})`);
   }
 

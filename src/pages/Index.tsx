@@ -149,37 +149,39 @@ const Index = () => {
           </section>
         </DeferredMount>
         
-        <Suspense fallback={null}>
-          <div id="categories-section">
-            <CategoryPageSelection />
-          </div>
-        </Suspense>
+        <DeferredMount delay={3200} fallback={null}>
+          <Suspense fallback={null}>
+            <div id="categories-section">
+              <CategoryPageSelection />
+            </div>
+          </Suspense>
+        </DeferredMount>
         
-        <DeferredMount delay={320} fallback={null}>
+        <DeferredMount delay={3600} fallback={null}>
           <Suspense fallback={null}>
             <AIWebToolsSEOSection />
           </Suspense>
         </DeferredMount>
    
-        <DeferredMount delay={380} fallback={null}>
+        <DeferredMount delay={4200} fallback={null}>
           <Suspense fallback={null}>
             <LazyFeaturedTools onToolsLoaded={(count) => {}} />
           </Suspense>
         </DeferredMount>
         
-        <DeferredMount delay={460} fallback={null}>
+        <DeferredMount delay={4800} fallback={null}>
           <Suspense fallback={null}>
             <SpecialServices />
           </Suspense>
         </DeferredMount>
 
-        <DeferredMount delay={600} fallback={null}>
+        <DeferredMount delay={5400} fallback={null}>
           <Suspense fallback={null}>
             <BookPromotionCard />
           </Suspense>
         </DeferredMount>
         
-        <DeferredMount delay={720} fallback={null}>
+        <DeferredMount delay={6100} fallback={null}>
           <Suspense fallback={null}>
             <section className="py-16 relative" style={{ background: 'linear-gradient(135deg, #0a0a0a 0%, #001a00 50%, #0a0a0a 100%)' }}>
               <div className="container mx-auto px-4">

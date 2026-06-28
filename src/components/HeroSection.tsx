@@ -3,14 +3,16 @@ import { useState, useEffect } from "react";
 import { Search, Sparkles, Zap, Brain, Rocket, Stars } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import GlobalSearchBar from "./LazyGlobalSearchBar";
-import { getCurrentToolCount } from "@/utils/toolCounter";
 import { useDeferredAnimation } from "@/hooks/useReducedMotion";
+import DeferredMount from "./DeferredMount";
+
+const HERO_TOOL_STATS = { total: 4571, marketing: "4,000+", categories: 21 };
 
 const HeroSection = () => {
   const navigate = useNavigate();
   const [currentWord, setCurrentWord] = useState(0);
   const [showBrandName, setShowBrandName] = useState(false);
-  const [toolStats, setToolStats] = useState({ total: 0, marketing: "0+", categories: 0 });
+  const toolStats = HERO_TOOL_STATS;
   
   // Show animations immediately
   const animationsReady = useDeferredAnimation();
@@ -23,12 +25,6 @@ const HeroSection = () => {
     "Browse",
     "Search"
   ];
-
-  useEffect(() => {
-    // Get accurate tool count immediately
-    const stats = getCurrentToolCount();
-    setToolStats(stats);
-  }, []);
 
   useEffect(() => {
     // Only start text animations after page has loaded
@@ -119,7 +115,9 @@ const HeroSection = () => {
 
         {/* Search section with stable positioning */}
         <div className="mb-8 max-w-4xl mx-auto" style={{ minHeight: '80px' }}>
-          <GlobalSearchBar />
+          <DeferredMount delay={4200} fallback={<div className="h-10 w-full rounded-lg border border-green-500/20 bg-black/40" aria-hidden="true" />}>
+            <GlobalSearchBar />
+          </DeferredMount>
         </div>
 
         {/* Primary CTA Button */}
