@@ -4,41 +4,21 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { mainCategories } from "@/utils/mainCategoryMapping";
-import { allTools } from "@/data/toolsData";
-import { getCachedCategoryCounts } from "@/utils/categoryUtils/precomputedCache";
-import { getMainCategoriesWithCounts } from "@/utils/categoryUtils/toolFiltering";
 
-// Pre-computed accurate counts using detection functions
-let accurateCategoryCounts: Record<string, number> | null = null;
-let countsInitialized = false;
-
-const initializeAccurateCounts = () => {
-  if (countsInitialized && accurateCategoryCounts) return accurateCategoryCounts;
-  
-  // Try pre-computed cache first (fastest)
-  const cached = getCachedCategoryCounts();
-  if (cached && Object.keys(cached).length > 0) {
-    accurateCategoryCounts = cached;
-    countsInitialized = true;
-    return cached;
-  }
-  
-  // Use the same detection functions as getToolsByMainCategory for accurate counts
-  const counts = getMainCategoriesWithCounts(allTools);
-  accurateCategoryCounts = counts;
-  countsInitialized = true;
-  return counts;
-};
-
-const getStaticCounts = () => {
-  return initializeAccurateCounts();
-};
+const FAST_TOOL_TOTAL = 4571;
 
 const CategoryPageSelection = memo(() => {
   const navigate = useNavigate();
   
-  // Use pre-computed counts - INSTANT, no heavy computation
-  const mainCategoryCounts = useMemo(() => getStaticCounts(), []);
+  // Opening path must stay instant: no detector-based category counts on first paint.
+  const categoryBadges = useMemo(() => {
+    return Object.fromEntries(
+      mainCategories.map((mainCat) => [
+        mainCat.name,
+        mainCat.name === "ALL AI TOOLS" ? `${FAST_TOOL_TOTAL.toLocaleString()} tools` : "Explore",
+      ]),
+    );
+  }, []);
 
   const handleMainCategoryClick = (mainCategoryName: string) => {
     // INSTANT navigation - no delays
@@ -59,11 +39,6 @@ const CategoryPageSelection = memo(() => {
         
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
           {mainCategories.map((mainCat) => {
-            // Use EXACT same logic: ALL AI TOOLS gets total count, others get from globalCounts
-            const count = mainCat.name === "ALL AI TOOLS" ? allTools.length : (mainCategoryCounts[mainCat.name] || 0);
-            
-            if (count === 0 && mainCat.name !== "ALL AI TOOLS") return null;
-            
             return (
               <Button
                 key={mainCat.name}
@@ -86,7 +61,7 @@ const CategoryPageSelection = memo(() => {
                         : "bg-black/30 text-gray-300 border-green-500/40 group-hover:bg-green-500/20 group-hover:text-white group-hover:border-green-400/30"
                     }`}
                   >
-                    {count} tools
+                    {categoryBadges[mainCat.name]}
                   </Badge>
                 </div>
               </Button>

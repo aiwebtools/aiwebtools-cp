@@ -1,39 +1,47 @@
+import { mainCategories } from '@/utils/mainCategoryMapping';
 
-import { getAllToolCategories } from '@/data/toolsCollection';
-import { deduplicateTools } from '@/utils/toolDeduplication';
-import { trackToolChanges } from '@/utils/toolChangeTracker';
-import { runIntegrityCheck } from '@/utils/toolIntegrityChecker';
-import { getMainCategoriesWithCounts } from '@/utils/categoryUtils/toolFiltering';
-import { allTools } from '@/data/toolsData';
-import { runFullToolVerification, runQuickToolVerification } from '@/utils/toolPreservationVerifier';
+// Keep the first paint path tiny. Importing the full tool database and all
+// integrity/category verifiers here was blocking the homepage lazy route for
+// many seconds before React could mount. The browser gets a fast static count;
+// heavyweight audits are loaded dynamically only when explicitly requested.
+const FAST_TOOL_TOTAL = 4571;
 
-export const getToolCount = () => {
-  // In the browser/runtime, avoid extremely heavy integrity checks that block navigation.
-  // Only run the full verification pipeline in non-browser (debug/tooling) environments.
-  const isBrowser = typeof window !== 'undefined';
+const getFastCountResult = () => ({
+  exactTotal: FAST_TOOL_TOTAL,
+  marketingNumber: '4,000+',
+  totalTools: FAST_TOOL_TOTAL,
+  categoryBreakdown: {},
+  mainCategoryCounts: { 'ALL AI TOOLS': FAST_TOOL_TOTAL },
+  categoriesCount: mainCategories.length,
+  rawToolsCount: FAST_TOOL_TOTAL,
+  removedByDeduplication: 0,
+  preservationScore: 100,
+  criticalToolsStatus: [],
+  missingTools: 0,
+});
 
-  if (isBrowser) {
-    const allToolsFromCollection = getAllToolCategories();
-    const deduplicatedTools = deduplicateTools(allToolsFromCollection);
+export const getToolCount = () => getFastCountResult();
 
-    const mainCategoryCounts = getMainCategoriesWithCounts(allTools);
-
-    return {
-      exactTotal: allTools.length,
-      marketingNumber: `${Math.round(allTools.length / 100) * 100}+`,
-      totalTools: allTools.length,
-      categoryBreakdown: {},
-      mainCategoryCounts,
-      categoriesCount: Object.keys(mainCategoryCounts).length,
-      rawToolsCount: allToolsFromCollection.length,
-      removedByDeduplication: allToolsFromCollection.length - deduplicatedTools.length,
-      preservationScore: 100,
-      criticalToolsStatus: [],
-      missingTools: 0
-    };
-  }
-
+export const getToolCountAudit = async () => {
   // Non-browser / debug path keeps the full integrity verification for deep audits
+  const [
+    { getAllToolCategories },
+    { deduplicateTools },
+    { trackToolChanges },
+    { runIntegrityCheck },
+    { getMainCategoriesWithCounts },
+    { allTools },
+    { runFullToolVerification },
+  ] = await Promise.all([
+    import('@/data/toolsCollection'),
+    import('@/utils/toolDeduplication'),
+    import('@/utils/toolChangeTracker'),
+    import('@/utils/toolIntegrityChecker'),
+    import('@/utils/categoryUtils/toolFiltering'),
+    import('@/data/toolsData'),
+    import('@/utils/toolPreservationVerifier'),
+  ]);
+
   // Track changes before counting
   trackToolChanges('tool_count_check');
   
@@ -125,21 +133,27 @@ export const getCurrentToolCount = (): { total: number; marketing: string; categ
 // Export helper to track changes during tool additions
 export const trackToolAddition = (operation: string, additionFn: () => void) => {
   console.log(`🔄 TRACKING TOOL ADDITION: ${operation}`);
-  trackToolChanges(`before_${operation}`);
-  
+  import('@/utils/toolChangeTracker')
+    .then(({ trackToolChanges }) => trackToolChanges(`before_${operation}`))
+    .catch(() => {});
+
   additionFn();
-  
-  trackToolChanges(`after_${operation}`);
-  console.log(`✅ TOOL ADDITION TRACKING COMPLETE: ${operation}`);
-  
-  // Run quick verification after addition
-  console.log(`🔍 Running post-addition verification...`);
-  runQuickToolVerification();
+
+  Promise.all([
+    import('@/utils/toolChangeTracker'),
+    import('@/utils/toolPreservationVerifier'),
+  ]).then(([{ trackToolChanges }, { runQuickToolVerification }]) => {
+    trackToolChanges(`after_${operation}`);
+    console.log(`✅ TOOL ADDITION TRACKING COMPLETE: ${operation}`);
+    console.log(`🔍 Running post-addition verification...`);
+    runQuickToolVerification();
+  }).catch(() => {});
 };
 
 // Export comprehensive verification function
-export const verifyAllToolsPreservation = () => {
+export const verifyAllToolsPreservation = async () => {
   console.log(`🔍 COMPREHENSIVE TOOL PRESERVATION CHECK INITIATED...`);
+  const { runFullToolVerification } = await import('@/utils/toolPreservationVerifier');
   return runFullToolVerification();
 };
 

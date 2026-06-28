@@ -195,17 +195,7 @@ export async function prefetchCategory(categoryName: string): Promise<void> {
   }
 }
 
-// Start pre-computation immediately on module load with higher priority
-if (typeof window !== 'undefined') {
-  if ('requestIdleCallback' in window) {
-    // Still use requestIdleCallback but with a shorter timeout for earlier execution
-    (window as any).requestIdleCallback(() => {
-      initializeCategoryCache();
-    }, { timeout: 100 });
-  } else {
-    // Fallback: run as soon as possible after first paint
-    setTimeout(() => {
-      initializeCategoryCache();
-    }, 0);
-  }
-}
+// IMPORTANT: do not auto-run this on module load. The cache imports the full
+// tools DB plus every category detector; doing that during boot was freezing
+// the Matrix handoff before the real page could paint. Callers can explicitly
+// initialize/prefetch after the site is already interactive.

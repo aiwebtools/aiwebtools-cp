@@ -45,14 +45,18 @@ async function importWithRetry<T>(
 // Lazy load - secondary pages for faster initial load
 const Index = lazyWithRetry(() => import("./pages/Index"));
 const ToolDetail = lazyWithRetry(() => import("./pages/ToolDetail"));
-// Eagerly warm the ToolDetail chunk so search→tool nav feels instant.
+// Warm ToolDetail only after the opening is safely complete. Pulling it during
+// the Matrix handoff imports a lot of tool-detail/data code and can cause the
+// exact freeze users were seeing.
 if (typeof window !== 'undefined') {
   const warm = () => { import("./pages/ToolDetail").catch(() => {}); };
-  if ('requestIdleCallback' in window) {
-    (window as any).requestIdleCallback(warm, { timeout: 1500 });
-  } else {
-    setTimeout(warm, 800);
-  }
+  setTimeout(() => {
+    if ('requestIdleCallback' in window) {
+      (window as any).requestIdleCallback(warm);
+    } else {
+      warm();
+    }
+  }, 18000);
 }
 const CategoryPage = lazyWithRetry(() => import("./pages/CategoryPage"));
 const MainCategoryPage = lazyWithRetry(() => import("./pages/MainCategoryPage"));
@@ -322,10 +326,22 @@ const PostAcceptBoot: React.FC = () => {
   React.useEffect(() => {
     if (!enabled) return;
 
-    // Defer category cache init until after first paint
+    // Defer category cache work until well after the Matrix handoff. It imports
+    // the full tool DB and detector modules, so running it during opening can
+    // freeze the route before the homepage paints.
+    const warmCache = () => {
+      importWithRetry(() => import("@/utils/categoryUtils/precomputedCache"))
+        .then((mod) => mod?.initializeCategoryCache?.())
+        .catch(() => {});
+    };
+
     const id = window.setTimeout(() => {
-      importWithRetry(() => import("@/utils/categoryUtils/precomputedCache"));
-    }, 0);
+      if ('requestIdleCallback' in window) {
+        (window as any).requestIdleCallback(warmCache);
+      } else {
+        setTimeout(warmCache, 12000);
+      }
+    }, 30000);
 
     return () => {
       clearTimeout(id);
@@ -339,15 +355,39 @@ const GlobalOverlays: React.FC = () => {
   const location = useLocation();
   const hasAccepted = getConsentAccepted();
   const show = hasAccepted && location.pathname !== "/welcome";
+  const [overlaysReady, setOverlaysReady] = React.useState(false);
+
+  React.useEffect(() => {
+    if (!show) {
+      setOverlaysReady(false);
+      return;
+    }
+
+    let timeoutId: number | null = null;
+    const enable = () => {
+      timeoutId = window.setTimeout(() => setOverlaysReady(true), 1800);
+    };
+
+    if ((window as any).__aiwtRouteReady) {
+      enable();
+    } else {
+      window.addEventListener('aiwt:route-ready', enable, { once: true });
+    }
+
+    return () => {
+      window.removeEventListener('aiwt:route-ready', enable);
+      if (timeoutId !== null) window.clearTimeout(timeoutId);
+    };
+  }, [show, location.pathname]);
 
   return (
     <>
-      {show ? <ScrollProgressIndicator /> : null}
-      {show ? <MatrixCursorEffect /> : null}
+      {overlaysReady ? <ScrollProgressIndicator /> : null}
+      {overlaysReady ? <MatrixCursorEffect /> : null}
       {/* Welcome Neo voice - only plays after disclaimer accepted */}
       <WelcomeNeoVoice />
       {/* Tiny floating clone button - hides on scroll */}
-      {show ? (
+      {overlaysReady ? (
         <ErrorBoundary fallback={null}>
           <Suspense fallback={null}>
             <FloatingCloneButton />
@@ -355,7 +395,7 @@ const GlobalOverlays: React.FC = () => {
         </ErrorBoundary>
       ) : null}
       {/* Pinned rotating video player - lower left corner */}
-      {show ? (
+      {overlaysReady ? (
         <ErrorBoundary fallback={null}>
           <Suspense fallback={null}>
             <PinnedVideoPlayer />
@@ -363,7 +403,7 @@ const GlobalOverlays: React.FC = () => {
         </ErrorBoundary>
       ) : null}
       {/* AIWebTools Care Bot — answers any question about our tools */}
-      {show ? (
+      {overlaysReady ? (
         <ErrorBoundary fallback={null}>
           <Suspense fallback={null}>
             <CareBotWidget />
@@ -371,7 +411,7 @@ const GlobalOverlays: React.FC = () => {
         </ErrorBoundary>
       ) : null}
       {/* Back-to-Music floating pill — appears after visiting Music Stream */}
-      {show ? (
+      {overlaysReady ? (
         <ErrorBoundary fallback={null}>
           <Suspense fallback={null}>
             <BackToMusicPill />
