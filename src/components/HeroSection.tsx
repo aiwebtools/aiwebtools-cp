@@ -60,8 +60,11 @@ const HeroSection = () => {
       )}
 
       <div className="relative z-10 max-w-6xl mx-auto">
-        {/* SEO-optimized hidden H1 for search engines */}
-        <h1 className="sr-only">AI Web Tools - The #1 AI Tools Directory with 2,195+ Best AI Web Tools for 2026</h1>
+        {/* SEO + accessibility — visible H1 (small, unobtrusive) so screen readers
+            and crawlers see a real visual heading, not display:none text. */}
+        <h1 className="text-center text-[11px] md:text-xs font-mono uppercase tracking-[0.25em] text-cyan-300/80 mb-2">
+          AI Web Tools — The #1 AI Tools Directory · 4,000+ Best AI Web Tools for 2026
+        </h1>
         
         {/* Main heading with stabilized layout */}
         <div className="mb-6">
