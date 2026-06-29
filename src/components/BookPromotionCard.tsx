@@ -260,6 +260,7 @@ const BookPromotionCard = () => {
   const originalVideos = [
     // ── MTV LINE-UP (newest drops — play FIRST in the carousel) ──
     { id: "I6kOI_q0aHE", title: "Mirror Mirror | Original AI Music Video | AIWebTools.ai", gradient: "from-fuchsia-500/20 to-cyan-500/20" },
+    { id: "n6y0lqJym0c", title: "AIWEBTOOLS – Newest Drop | Official AI Music Video | AIWebTools.ai", gradient: "from-fuchsia-500/20 to-purple-500/20" },
     { id: "ZIr6c-fY9fs", title: "Just A Dream Baby | Original AI Music Video | AIWebTools.ai", gradient: "from-emerald-500/20 to-cyan-500/20" },
     { id: "uGkb2zOYKSk", title: "God Is Light | Original AI Music Video | AIWebTools.ai", gradient: "from-purple-500/20 to-fuchsia-500/20" },
     { id: "CCNMLCJr41c", title: "Nameless | Original AI Music Video | AIWebTools.ai", gradient: "from-rose-500/20 to-pink-500/20" },
