@@ -7,6 +7,7 @@ import GoogleRankingBooster from "@/components/seo/GoogleRankingBooster";
 import { Button } from "../components/ui/button";
 import DeferredMount from "@/components/DeferredMount";
 import { lazyWithRetry as lazy } from "@/utils/lazyWithRetry";
+import { useMobile } from "@/hooks/useMobile";
 
 const CategoryPageSelection = lazy(() => import("@/components/CategoryPageSelection"));
 const SpecialServices = lazy(() => import("@/components/SpecialServices"));
@@ -28,6 +29,10 @@ const InspirationCarousel = lazy(() => import("@/components/InspirationCarousel"
 
 const Index = () => {
   const navigate = useNavigate();
+  const { isMobile } = useMobile();
+  // On mobile, defer the heavy matrix canvas way longer so the user's
+  // very first scroll-touch isn't fighting a full-screen rAF loop.
+  const matrixBgDelay = isMobile ? 2800 : 120;
 
   const [hasPlayedOnce, setHasPlayedOnce] = useState(false);
   const [videoSrc, setVideoSrc] = useState(
@@ -90,8 +95,9 @@ const Index = () => {
         <GoogleRankingBooster pageType="homepage" />
       </DeferredMount>
       
-      {/* Background effects - defer slightly so the hero appears faster on mobile */}
-      <DeferredMount delay={120}>
+      {/* Background effects - on mobile we defer aggressively so the first
+          finger-scroll is instant and doesn't fight the matrix canvas rAF. */}
+      <DeferredMount delay={matrixBgDelay}>
         <Suspense fallback={null}>
           <InteractiveMatrixBackground />
           <AnimatedBackground />
