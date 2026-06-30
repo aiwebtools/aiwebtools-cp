@@ -118,9 +118,7 @@ const HeroSection = () => {
 
         {/* Search section with stable positioning */}
         <div className="mb-8 max-w-4xl mx-auto" style={{ minHeight: '80px' }}>
-          <DeferredMount delay={4200} fallback={<div className="h-10 w-full rounded-lg border border-green-500/20 bg-black/40" aria-hidden="true" />}>
-            <GlobalSearchBar />
-          </DeferredMount>
+          <GlobalSearchBar />
         </div>
 
         {/* Primary CTA Button */}
