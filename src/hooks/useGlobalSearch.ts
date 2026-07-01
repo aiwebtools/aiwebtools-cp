@@ -1,10 +1,10 @@
 
 import { useState, useEffect, useRef, useCallback, useMemo, startTransition } from "react";
 import { useNavigate } from "react-router-dom";
-import { allTools } from "@/data/toolsData";
 import { createTimePortalEffect } from "@/utils/timeEffects";
 import { generateToolSlug } from "@/utils/urlGenerator";
 import { getCurrentToolCount } from "@/utils/toolCounter";
+import { searchTools } from "@/utils/searchUtils";
 
 // ==================== LRU CACHE FOR SEARCH RESULTS ====================
 // Caches the last 50 search queries to avoid recomputation on repeated searches
@@ -49,6 +49,10 @@ class LRUCache<K, V> {
 // NOTE: versioned to prevent "stale" cached results after search-intelligence updates.
 const SEARCH_CACHE_VERSION = "v51";
 const searchCache = new LRUCache<string, any[]>(50);
+
+const isMobileViewport = () =>
+  typeof window !== "undefined" &&
+  (window.innerWidth <= 768 || window.matchMedia?.("(hover: none) and (pointer: coarse)").matches);
 
 // ==================== EXACT-TITLE GUARANTEE ====================
 // Normalize a title or query to a comparable key (strip emojis, punctuation, GPT/AI suffixes).
