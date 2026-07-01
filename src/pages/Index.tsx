@@ -33,6 +33,7 @@ const Index = () => {
   // On mobile, defer the heavy matrix canvas way longer so the user's
   // very first scroll-touch isn't fighting a full-screen rAF loop.
   const matrixBgDelay = isMobile ? 2800 : 120;
+  const firstScrollSafeDelay = isMobile ? 12000 : 250;
 
   const [hasPlayedOnce, setHasPlayedOnce] = useState(false);
   const [videoSrc, setVideoSrc] = useState(
@@ -91,7 +92,7 @@ const Index = () => {
       <ImprovedSEOHead pageType="homepage" />
       
       {/* SEO booster - keep off the first paint path */}
-      <DeferredMount delay={250}>
+      <DeferredMount delay={firstScrollSafeDelay}>
         <GoogleRankingBooster pageType="homepage" />
       </DeferredMount>
       
@@ -111,7 +112,7 @@ const Index = () => {
         <HeroSection />
         
         {/* Featured Video Section */}
-        <DeferredMount delay={220} fallback={null}>
+        <DeferredMount delay={isMobile ? 10500 : 220} fallback={<div className="min-h-[52vh]" aria-hidden="true" />}>
           <section className="py-16 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #0a0a0a 0%, #001a00 50%, #0a0a0a 100%)' }}>
             <div className="container mx-auto px-4">
               <div className="text-center mb-8">
@@ -206,13 +207,13 @@ const Index = () => {
           </Suspense>
         </DeferredMount>
         
-        <DeferredMount delay={860} fallback={null}>
+        <DeferredMount delay={isMobile ? 13500 : 860} fallback={<div className="min-h-[16vh]" aria-hidden="true" />}>
           <Suspense fallback={null}>
             <EthicalAIQuoteSection />
           </Suspense>
         </DeferredMount>
         
-        <DeferredMount delay={920} fallback={null}>
+        <DeferredMount delay={isMobile ? 14500 : 920} fallback={<div className="min-h-[24vh]" aria-hidden="true" />}>
           <Suspense fallback={null}>
             <InspirationCarousel />
           </Suspense>
