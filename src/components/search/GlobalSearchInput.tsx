@@ -19,6 +19,7 @@ interface GlobalSearchInputProps {
   toolStats: { marketing: string };
   prediction?: string;
   onSearchChange: (value: string) => void;
+  onFocus?: () => void;
   onKeyDown: (e: React.KeyboardEvent) => void;
   onClear: () => void;
   onAcceptPrediction?: () => void;
@@ -29,6 +30,7 @@ const GlobalSearchInput = memo(({
   toolStats,
   prediction,
   onSearchChange,
+  onFocus,
   onKeyDown,
   onClear,
   onAcceptPrediction,
@@ -138,6 +140,7 @@ const GlobalSearchInput = memo(({
         placeholder={`Search ${toolStats.marketing} AI tools...`}
         value={localValue}
         onChange={handleChange}
+        onFocus={onFocus}
         onKeyDown={handleKeyDown}
         className="pl-10 pr-10 bg-black/60 border-0 text-white placeholder-gray-300 focus:ring-0 focus:outline-none rounded-lg focus:bg-black/80 relative z-[1] bg-transparent cursor-text"
         autoComplete="off"

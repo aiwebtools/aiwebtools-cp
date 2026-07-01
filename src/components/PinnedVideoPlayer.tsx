@@ -449,14 +449,12 @@ const PinnedVideoPlayer = memo(() => {
   }, [location.pathname]);
   
   // Check if closed this session
-  const [isVisible, setIsVisible] = useState(() => {
-    return sessionStorage.getItem(SESSION_CLOSED_KEY) !== "true";
-  });
+  const [isVisible, setIsVisible] = useState(true);
   
   // Wait for the user to scroll past the hero/search area on the homepage before
   // popping the pinned player open. Tool pages still use a small scroll threshold
   // so the player doesn't cover the primary tool media.
-  const hasScrolledEnough = useScrollThreshold(isHomepage ? 650 : 100, {
+  const hasScrolledEnough = useScrollThreshold(isHomepage ? 180 : 80, {
     enabled: true,
     allowReset: false, // Once shown, stay shown
   });
@@ -954,7 +952,7 @@ const PinnedVideoPlayer = memo(() => {
   }, [activeLength]);
 
   const handleClose = useCallback(() => {
-    sessionStorage.setItem(SESSION_CLOSED_KEY, "true");
+    try { sessionStorage.removeItem(SESSION_CLOSED_KEY); } catch {}
     setIsVisible(false);
   }, []);
 

@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { Search, Sparkles, Zap, Brain, Rocket, Stars } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import GlobalSearchBar from "./LazyGlobalSearchBar";
+import GlobalSearchBar from "./GlobalSearchBar";
 import { useDeferredAnimation } from "@/hooks/useReducedMotion";
 import DeferredMount from "./DeferredMount";
 
