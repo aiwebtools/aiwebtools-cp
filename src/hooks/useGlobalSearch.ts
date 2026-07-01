@@ -2121,30 +2121,39 @@ export const useGlobalSearch = () => {
     };
   }, []);
 
-  // ⚡ SEARCH INDEX WARM-UP: prime quickSearch + LRU cache during initial idle
-  // so the first keystroke after page load is instant (no first-keystroke stutter).
+  // ⚡ SEARCH INDEX WARM-UP: never compete with the first phone scroll. The full
+  // tool database is imported on first search interaction, or much later on
+  // mobile once the page is already usable.
   useEffect(() => {
     let cancelled = false;
     const warm = () => {
-      if (cancelled) return;
+      if (cancelled || toolsRef.current.length === 0) return;
       const stems = ["a", "c", "g", "m", "s", "ai", "gpt", "chat", "image", "video"];
       for (const s of stems) {
         try { quickSearch(s); } catch {}
       }
     };
-    const ric = (window as any).requestIdleCallback;
-    const handle = ric
-      ? ric(warm, { timeout: 1500 })
-      : setTimeout(warm, 600);
+
+    const delay = isMobileViewport() ? 12000 : 1800;
+    const handle = window.setTimeout(() => {
+      if (cancelled) return;
+      const ric = (window as any).requestIdleCallback;
+      const scheduleWarm = () => {
+        if (toolsRef.current.length === 0) {
+          void loadTools().then(() => warm());
+        } else {
+          warm();
+        }
+      };
+      if (ric) ric(scheduleWarm, { timeout: isMobileViewport() ? 5000 : 2000 });
+      else scheduleWarm();
+    }, delay);
+
     return () => {
       cancelled = true;
-      if (ric && (window as any).cancelIdleCallback) {
-        (window as any).cancelIdleCallback(handle);
-      } else {
-        clearTimeout(handle as any);
-      }
+      window.clearTimeout(handle);
     };
-  }, [quickSearch]);
+  }, [quickSearch, loadTools]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
