@@ -367,11 +367,21 @@ const GlobalOverlays: React.FC = () => {
     }
 
     let timeoutId: number | null = null;
+    let scrollListener: (() => void) | null = null;
     const enable = () => {
-      // Mobile first-scroll must stay completely clear. These overlays import
-      // video/search assistant chunks (and some full tool data), so keep them
-      // off the main thread until after the visitor has had time to navigate.
-      timeoutId = window.setTimeout(() => setOverlaysReady(true), isTouchPhone ? 12000 : 1800);
+      // Keep the mobile first-scroll clear, but also mount overlays as soon as
+      // the visitor starts interacting so the pinned player + tool button
+      // reliably show up once they scroll.
+      const delay = isTouchPhone ? 4500 : 1800;
+      timeoutId = window.setTimeout(() => setOverlaysReady(true), delay);
+      if (isTouchPhone) {
+        scrollListener = () => {
+          if (timeoutId !== null) window.clearTimeout(timeoutId);
+          setOverlaysReady(true);
+        };
+        window.addEventListener('scroll', scrollListener, { passive: true, once: true });
+        window.addEventListener('touchmove', scrollListener, { passive: true, once: true });
+      }
     };
 
     if ((window as any).__aiwtRouteReady) {
@@ -382,6 +392,10 @@ const GlobalOverlays: React.FC = () => {
 
     return () => {
       window.removeEventListener('aiwt:route-ready', enable);
+      if (scrollListener) {
+        window.removeEventListener('scroll', scrollListener);
+        window.removeEventListener('touchmove', scrollListener);
+      }
       if (timeoutId !== null) window.clearTimeout(timeoutId);
     };
   }, [show, location.pathname, isTouchPhone]);
