@@ -1,7 +1,6 @@
 
 import { useState, useEffect, useRef, useCallback, useMemo, startTransition } from "react";
 import { useNavigate } from "react-router-dom";
-import { allTools } from "@/data/toolsData";
 import { createTimePortalEffect } from "@/utils/timeEffects";
 import { generateToolSlug } from "@/utils/urlGenerator";
 import { getCurrentToolCount } from "@/utils/toolCounter";
@@ -49,6 +48,10 @@ class LRUCache<K, V> {
 // NOTE: versioned to prevent "stale" cached results after search-intelligence updates.
 const SEARCH_CACHE_VERSION = "v51";
 const searchCache = new LRUCache<string, any[]>(50);
+
+const isMobileViewport = () =>
+  typeof window !== "undefined" &&
+  (window.innerWidth <= 768 || window.matchMedia?.("(hover: none) and (pointer: coarse)").matches);
 
 // ==================== EXACT-TITLE GUARANTEE ====================
 // Normalize a title or query to a comparable key (strip emojis, punctuation, GPT/AI suffixes).
@@ -1462,9 +1465,34 @@ export const useGlobalSearch = () => {
   
   const toolStats = useMemo(() => getCurrentToolCount(), []);
 
+  // Keep the first mobile paint/scroll path lightweight: the 4k+ tool database
+  // is loaded only after the user interacts with search, or later during idle.
+  const [tools, setTools] = useState<any[]>([]);
+  const toolsRef = useRef<any[]>([]);
+  const toolsLoadingRef = useRef<Promise<any[]> | null>(null);
+  const pendingSearchRef = useRef<string | null>(null);
+
+  const loadTools = useCallback(() => {
+    if (toolsRef.current.length > 0) return Promise.resolve(toolsRef.current);
+    if (!toolsLoadingRef.current) {
+      toolsLoadingRef.current = import("@/data/toolsData")
+        .then(({ allTools }) => {
+          toolsRef.current = allTools;
+          setTools(allTools);
+          return allTools;
+        })
+        .catch((error) => {
+          toolsLoadingRef.current = null;
+          console.error("Failed to load search tools:", error);
+          return [];
+        });
+    }
+    return toolsLoadingRef.current;
+  }, []);
+
   // Precompute lowercase fields once (keeps search snappy)
   const quickIndex = useMemo(() => {
-    return allTools.map((tool) => {
+    return tools.map((tool) => {
       const t = normalizeSearchText(tool.title || "");
       const tNoSpace = t.replace(/[\s\-_]+/g, "");
       const words = t.split(/[\s\-_\u0026,.:()]+/).filter(w => w.length > 0);
@@ -1483,13 +1511,13 @@ export const useGlobalSearch = () => {
         searchable: `${t} ${c} ${tagText} ${d}`,
       };
     });
-  }, []);
+  }, [tools]);
 
   // ⚡ EXACT-TITLE MAP: O(1) lookup of any tool by its normalized title or no-space form.
   // Guarantees a typed tool name always finds the tool even if heavier filters drop it.
   const exactTitleMap = useMemo(() => {
     const map = new Map<string, any>();
-    for (const tool of allTools) {
+    for (const tool of tools) {
       if (!tool?.title) continue;
       const t = tool.title.toLowerCase().trim();
       map.set(t, tool);
@@ -1497,7 +1525,7 @@ export const useGlobalSearch = () => {
       map.set(normalizeTitleKey(tool.title), tool);
     }
     return map;
-  }, []);
+  }, [tools]);
 
   // Prepend any tool whose normalized title matches the query — never let strong
   // exact hits fall out of the results list because of upstream filters.
@@ -2013,6 +2041,17 @@ export const useGlobalSearch = () => {
       return;
     }
 
+    // Do not import/index the full tools database during the first mobile
+    // seconds unless the visitor actually searches. This preserves instant
+    // touch scrolling right after the loader disappears.
+    if (toolsRef.current.length === 0) {
+      pendingSearchRef.current = value;
+      setIsOpen(true);
+      setSearchResults([]);
+      void loadTools();
+      return;
+    }
+
     // Full UI text can be long; search work uses quick long-query scoring
     // instead of slicing/locking the visible input.
     const cappedT = t;
@@ -2062,7 +2101,17 @@ export const useGlobalSearch = () => {
     // Full heavy ranking intentionally stays out of the live input path.
     // quickSearch uses the precomputed index and is exhaustive enough for discovery;
     // avoiding the second all-tool ranking pass keeps backspace/delete smooth on phones.
-  }, [quickSearch, ensureExactTitleHit]);
+  }, [quickSearch, ensureExactTitleHit, loadTools]);
+
+  // If the first search triggered the lazy database import, run that search as
+  // soon as the index exists. Kept separate so it uses the fresh quickIndex.
+  useEffect(() => {
+    const pending = pendingSearchRef.current;
+    if (!pending || tools.length === 0) return;
+    pendingSearchRef.current = null;
+    setSearchTerm(pending);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [tools.length]);
   
   // Cleanup on unmount
   useEffect(() => {
@@ -2072,30 +2121,39 @@ export const useGlobalSearch = () => {
     };
   }, []);
 
-  // ⚡ SEARCH INDEX WARM-UP: prime quickSearch + LRU cache during initial idle
-  // so the first keystroke after page load is instant (no first-keystroke stutter).
+  // ⚡ SEARCH INDEX WARM-UP: never compete with the first phone scroll. The full
+  // tool database is imported on first search interaction, or much later on
+  // mobile once the page is already usable.
   useEffect(() => {
     let cancelled = false;
     const warm = () => {
-      if (cancelled) return;
+      if (cancelled || toolsRef.current.length === 0) return;
       const stems = ["a", "c", "g", "m", "s", "ai", "gpt", "chat", "image", "video"];
       for (const s of stems) {
         try { quickSearch(s); } catch {}
       }
     };
-    const ric = (window as any).requestIdleCallback;
-    const handle = ric
-      ? ric(warm, { timeout: 1500 })
-      : setTimeout(warm, 600);
+
+    const delay = isMobileViewport() ? 12000 : 1800;
+    const handle = window.setTimeout(() => {
+      if (cancelled) return;
+      const ric = (window as any).requestIdleCallback;
+      const scheduleWarm = () => {
+        if (toolsRef.current.length === 0) {
+          void loadTools().then(() => warm());
+        } else {
+          warm();
+        }
+      };
+      if (ric) ric(scheduleWarm, { timeout: isMobileViewport() ? 5000 : 2000 });
+      else scheduleWarm();
+    }, delay);
+
     return () => {
       cancelled = true;
-      if (ric && (window as any).cancelIdleCallback) {
-        (window as any).cancelIdleCallback(handle);
-      } else {
-        clearTimeout(handle as any);
-      }
+      window.clearTimeout(handle);
     };
-  }, [quickSearch]);
+  }, [quickSearch, loadTools]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -2108,10 +2166,10 @@ export const useGlobalSearch = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const handleToolClick = useCallback((toolIndex: number) => {
+  const handleToolClick = useCallback((toolOrIndex: any) => {
     // Navigate FIRST before clearing state to avoid re-render blocking navigation
-    const tool = allTools[toolIndex];
-    const path = tool ? `/${generateToolSlug(tool.title)}` : `/tool/${toolIndex}`;
+    const tool = typeof toolOrIndex === "number" ? toolsRef.current[toolOrIndex] : toolOrIndex;
+    const path = tool?.title ? `/${generateToolSlug(tool.title)}` : `/main-category/ALL%20AI%20TOOLS`;
 
     // Cancel any pending search work immediately
     if (quickRef.current) clearTimeout(quickRef.current);
@@ -2202,7 +2260,7 @@ export const useGlobalSearch = () => {
     });
     
     // Filter and score remaining tools
-    const remaining = allTools.filter(t => 
+    const remaining = tools.filter(t => 
       t?.title && !existingTitles.has(t.title.toLowerCase())
     );
     
@@ -2225,7 +2283,7 @@ export const useGlobalSearch = () => {
       setRecommendedTools(prev => [...prev, ...nextBatch]);
       setIsLoadingRecommendations(false);
     });
-  }, [searchResults, recommendedTools, isLoadingRecommendations]);
+  }, [searchResults, recommendedTools, isLoadingRecommendations, tools]);
 
   // Combined results: direct matches + recommendations
   const combinedResults = useMemo(() => {
@@ -2261,11 +2319,11 @@ export const useGlobalSearch = () => {
         });
       }
       // If showing all combined results, load more recommendations
-      else if (recommendedTools.length < allTools.length - searchResults.length) {
+      else if (recommendedTools.length < tools.length - searchResults.length) {
         loadMoreRecommendations();
       }
     }
-  }, [displayedCount, searchResults.length, combinedResults.length, recommendedTools.length, isLoadingMore, isLoadingRecommendations, loadMoreRecommendations]);
+  }, [displayedCount, searchResults.length, combinedResults.length, recommendedTools.length, isLoadingMore, isLoadingRecommendations, loadMoreRecommendations, tools.length]);
 
   // Generate prediction based on top result
   const prediction = useMemo(() => {

@@ -356,6 +356,9 @@ const GlobalOverlays: React.FC = () => {
   const hasAccepted = getConsentAccepted();
   const show = hasAccepted && location.pathname !== "/welcome";
   const [overlaysReady, setOverlaysReady] = React.useState(false);
+  const isTouchPhone =
+    typeof window !== 'undefined' &&
+    (window.innerWidth < 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(window.navigator.userAgent));
 
   React.useEffect(() => {
     if (!show) {
@@ -365,7 +368,10 @@ const GlobalOverlays: React.FC = () => {
 
     let timeoutId: number | null = null;
     const enable = () => {
-      timeoutId = window.setTimeout(() => setOverlaysReady(true), 1800);
+      // Mobile first-scroll must stay completely clear. These overlays import
+      // video/search assistant chunks (and some full tool data), so keep them
+      // off the main thread until after the visitor has had time to navigate.
+      timeoutId = window.setTimeout(() => setOverlaysReady(true), isTouchPhone ? 12000 : 1800);
     };
 
     if ((window as any).__aiwtRouteReady) {
@@ -378,12 +384,12 @@ const GlobalOverlays: React.FC = () => {
       window.removeEventListener('aiwt:route-ready', enable);
       if (timeoutId !== null) window.clearTimeout(timeoutId);
     };
-  }, [show, location.pathname]);
+  }, [show, location.pathname, isTouchPhone]);
 
   return (
     <>
       {overlaysReady ? <ScrollProgressIndicator /> : null}
-      {overlaysReady ? <MatrixCursorEffect /> : null}
+      {overlaysReady && !isTouchPhone ? <MatrixCursorEffect /> : null}
       {/* Welcome Neo voice - only plays after disclaimer accepted */}
       <WelcomeNeoVoice />
       {/* Tiny floating clone button - hides on scroll */}

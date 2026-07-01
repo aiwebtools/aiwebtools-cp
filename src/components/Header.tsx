@@ -1,11 +1,36 @@
 
+import { useEffect, useState } from "react";
 import Logo from "./header/Logo";
 import Navigation from "./header/Navigation";
 import MobileMenu from "./header/MobileMenu";
 import DesktopMenu from "./header/DesktopMenu";
 import TabletMenu from "./header/TabletMenu";
 
+const getViewportMenu = () => {
+  if (typeof window === "undefined") return "desktop";
+  if (window.innerWidth < 768) return "mobile";
+  if (window.innerWidth < 1024) return "tablet";
+  return "desktop";
+};
+
 const Header = () => {
+  const [viewportMenu, setViewportMenu] = useState(getViewportMenu);
+
+  useEffect(() => {
+    let raf = 0;
+    const update = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => setViewportMenu(getViewportMenu()));
+    };
+    window.addEventListener("resize", update, { passive: true });
+    window.addEventListener("orientationchange", update, { passive: true });
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("resize", update);
+      window.removeEventListener("orientationchange", update);
+    };
+  }, []);
+
   return (
     <header className="fixed top-0 w-full z-[100] bg-black/95 border-b border-cyan-500/30 shadow-lg backdrop-blur-sm">
       {/* Cosmic scrolling marquee - top strip */}
@@ -28,10 +53,10 @@ const Header = () => {
           
           {/* Menu buttons - always visible */}
           <div className="flex items-center gap-2 md:gap-3 flex-shrink-0">
-            <Navigation />
-            <MobileMenu />
-            <DesktopMenu />
-            <TabletMenu />
+            {viewportMenu !== "mobile" && <Navigation />}
+            {viewportMenu === "mobile" && <MobileMenu />}
+            {viewportMenu === "desktop" && <DesktopMenu />}
+            {viewportMenu === "tablet" && <TabletMenu />}
           </div>
         </div>
       </div>
