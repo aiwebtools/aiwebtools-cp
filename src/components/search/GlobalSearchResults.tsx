@@ -1,15 +1,14 @@
-import { useRef, useEffect, useMemo, useCallback } from "react";
+import { useRef, useEffect, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { ChevronUp, ChevronDown } from "lucide-react";
-import { allTools } from "@/data/toolsData";
 import { getToolCategoryColor } from "@/utils/search/categoryColors";
 interface GlobalSearchResultsProps {
   searchResults: any[];
   displayedCount: number;
   isLoadingMore: boolean;
   directMatchCount?: number; // How many are direct matches vs recommendations
-  onToolClick: (toolIndex: number) => void;
+  onToolClick: (tool: any) => void;
   onDirectAccess: (tool: any, e: React.MouseEvent) => void;
   onScroll: (e: React.UIEvent<HTMLDivElement>) => void;
 }
@@ -32,16 +31,6 @@ const GlobalSearchResults = ({
   const directMatchesDisplayed = Math.min(displayedCount, directMatchCount);
   const recommendationsDisplayed = Math.max(0, displayedCount - directMatchCount);
 
-  // O(1) lookup instead of repeated allTools.findIndex (huge perf win when typing)
-  const toolIndexByTitle = useMemo(() => {
-    const m = new Map<string, number>();
-    for (let i = 0; i < allTools.length; i++) {
-      const t = allTools[i];
-      if (t?.title) m.set(t.title, i);
-    }
-    return m;
-  }, []);
-
   // Keep scroll at top when new search results load
   useEffect(() => {
     if (scrollRef.current && displayedResults.length > 0) {
@@ -58,14 +47,14 @@ const GlobalSearchResults = ({
     pointerStartRef.current = { x: e.clientX, y: e.clientY, id: e.pointerId };
   }, []);
 
-  const handlePointerUp = useCallback((e: React.PointerEvent, toolIdx: number) => {
+  const handlePointerUp = useCallback((e: React.PointerEvent, tool: any) => {
     const start = pointerStartRef.current;
     pointerStartRef.current = null;
     if (!start || start.id !== e.pointerId) return;
     const dx = Math.abs(e.clientX - start.x);
     const dy = Math.abs(e.clientY - start.y);
     if (dx < POINTER_SLOP && dy < POINTER_SLOP) {
-      onToolClick(toolIdx);
+      onToolClick(tool);
     }
   }, [onToolClick]);
 
@@ -101,7 +90,6 @@ const GlobalSearchResults = ({
         <div className="p-0" style={{ transform: 'translateZ(0)' }}>
         <div className="p-2 pt-4" style={{ transform: 'translateZ(0)' }}>
           {displayedResults.map((tool, index) => {
-            const toolIndex = toolIndexByTitle.get(tool.title) ?? -1;
             const isRecommendation = index >= directMatchCount;
             
             // Show separator before first recommendation
@@ -114,7 +102,7 @@ const GlobalSearchResults = ({
               <div 
                 className={`flex items-center space-x-3 p-3 rounded-lg hover:bg-cyan-500/10 cursor-pointer group border border-transparent hover:border-cyan-500/30 ${isRecommendation ? 'opacity-90' : ''}`}
                 onPointerDown={handlePointerDown}
-                onPointerUp={(e) => handlePointerUp(e, toolIndex)}
+                onPointerUp={(e) => handlePointerUp(e, tool)}
                 style={{ transform: 'translateZ(0)', touchAction: 'pan-y' }}
               >
                 {/* Category color-coded icon */}
