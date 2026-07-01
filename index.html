@@ -31,13 +31,16 @@
           };
           document.head.appendChild(s);
         }
-        var events = ['scroll', 'mousemove', 'touchstart', 'keydown', 'click'];
+        // Do NOT load analytics on the first mobile scroll/touch. Injecting
+        // third-party JS exactly when a visitor swipes was causing the page to
+        // feel frozen for the first few seconds on phones.
+        var events = ['click', 'keydown'];
         function trigger() {
           events.forEach(function (e) { window.removeEventListener(e, trigger); });
           loadGtag();
         }
         events.forEach(function (e) { window.addEventListener(e, trigger, { passive: true, once: true }); });
-        setTimeout(loadGtag, 4000);
+        setTimeout(loadGtag, 12000);
       })();
     </script>
     
@@ -55,14 +58,16 @@
           s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5053006805192587';
           document.head.appendChild(s);
         }
-        var events = ['scroll', 'mousemove', 'touchstart', 'keydown', 'click'];
+        // Keep ads off the first scroll/touch path; phones must be instantly
+        // navigable as soon as the Matrix loader fades.
+        var events = ['click', 'keydown'];
         function trigger() {
           events.forEach(function (e) { window.removeEventListener(e, trigger, { passive: true }); });
           loadAdSense();
         }
         events.forEach(function (e) { window.addEventListener(e, trigger, { passive: true, once: true }); });
-        // Fallback: load after 6s of idle so ads still appear without interaction
-        setTimeout(loadAdSense, 6000);
+        // Fallback: load after the first interaction window has passed.
+        setTimeout(loadAdSense, 15000);
       })();
     </script>
     
