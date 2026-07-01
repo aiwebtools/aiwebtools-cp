@@ -1,9 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Plus, Search, Download } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { allTools } from "@/data/toolsData";
 import { downloadToolsCSV } from "@/utils/csvExport";
 import { createConfettiCelebration } from "@/utils/effects/audioEffects";
+
+const TOOL_COUNT = 4571;
 
 interface FooterActionsProps {
   handleExternalLink: (url: string, e: React.MouseEvent) => void;
@@ -24,8 +25,9 @@ const FooterActions = ({ handleExternalLink, handleSubmitTool, handleRequestTool
     handleExternalLink('https://aiwebtools.lovable.app/?via=aiwebtools', e);
   };
 
-  const handleDownloadAIList = (e: React.MouseEvent) => {
+  const handleDownloadAIList = async (e: React.MouseEvent) => {
     e.preventDefault();
+    const { allTools } = await import("@/data/toolsData");
     console.log(`📥 Downloading CSV with ${allTools.length} AI tools...`);
     
     // Trigger confetti celebration
@@ -53,7 +55,7 @@ const FooterActions = ({ handleExternalLink, handleSubmitTool, handleRequestTool
           className="w-full sm:w-auto px-6 py-3 h-auto min-h-[3rem] whitespace-nowrap text-sm md:text-base font-bold tracking-wide"
         >
           <Download className="mr-2 h-5 w-5 animate-bounce flex-shrink-0" />
-          DOWNLOAD {allTools.length}+ AI TOOLS (CSV)
+          DOWNLOAD {TOOL_COUNT}+ AI TOOLS (CSV)
         </Button>
         
         <Button
