@@ -22,6 +22,7 @@ const GlobalSearchBar = () => {
     handleKeyDown,
     handleScroll,
     acceptPrediction,
+    prepareSearch,
   } = useGlobalSearch();
 
   return (
@@ -33,6 +34,7 @@ const GlobalSearchBar = () => {
             toolStats={toolStats}
             prediction={prediction}
             onSearchChange={setSearchTerm}
+            onFocus={prepareSearch}
             onKeyDown={handleKeyDown}
             onClear={clearSearch}
             onAcceptPrediction={acceptPrediction}

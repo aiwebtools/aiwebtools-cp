@@ -1490,6 +1490,10 @@ export const useGlobalSearch = () => {
     return toolsLoadingRef.current;
   }, []);
 
+  const prepareSearch = useCallback(() => {
+    void loadTools();
+  }, [loadTools]);
+
   // Precompute lowercase fields once (keeps search snappy)
   const quickIndex = useMemo(() => {
     return tools.map((tool) => {
@@ -2384,5 +2388,6 @@ export const useGlobalSearch = () => {
     handleKeyDown,
     handleScroll,
     acceptPrediction,
+    prepareSearch,
   };
 };

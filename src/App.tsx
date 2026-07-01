@@ -372,7 +372,7 @@ const GlobalOverlays: React.FC = () => {
       // Keep the mobile first-scroll clear, but also mount overlays as soon as
       // the visitor starts interacting so the pinned player + tool button
       // reliably show up once they scroll.
-      const delay = isTouchPhone ? 4500 : 1800;
+      const delay = isTouchPhone ? 900 : 1200;
       timeoutId = window.setTimeout(() => setOverlaysReady(true), delay);
       if (isTouchPhone) {
         scrollListener = () => {
@@ -380,7 +380,10 @@ const GlobalOverlays: React.FC = () => {
           setOverlaysReady(true);
         };
         window.addEventListener('scroll', scrollListener, { passive: true, once: true });
+        window.addEventListener('wheel', scrollListener, { passive: true, once: true });
+        window.addEventListener('touchstart', scrollListener, { passive: true, once: true });
         window.addEventListener('touchmove', scrollListener, { passive: true, once: true });
+        window.addEventListener('pointerdown', scrollListener, { passive: true, once: true });
       }
     };
 
@@ -394,7 +397,10 @@ const GlobalOverlays: React.FC = () => {
       window.removeEventListener('aiwt:route-ready', enable);
       if (scrollListener) {
         window.removeEventListener('scroll', scrollListener);
+        window.removeEventListener('wheel', scrollListener);
+        window.removeEventListener('touchstart', scrollListener);
         window.removeEventListener('touchmove', scrollListener);
+        window.removeEventListener('pointerdown', scrollListener);
       }
       if (timeoutId !== null) window.clearTimeout(timeoutId);
     };
