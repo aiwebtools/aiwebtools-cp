@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { createTimePortalEffect } from "@/utils/timeEffects";
 import { generateToolSlug } from "@/utils/urlGenerator";
 import { getCurrentToolCount } from "@/utils/toolCounter";
-import { searchTools } from "@/utils/searchUtils";
 
 // ==================== LRU CACHE FOR SEARCH RESULTS ====================
 // Caches the last 50 search queries to avoid recomputation on repeated searches
@@ -1466,9 +1465,34 @@ export const useGlobalSearch = () => {
   
   const toolStats = useMemo(() => getCurrentToolCount(), []);
 
+  // Keep the first mobile paint/scroll path lightweight: the 4k+ tool database
+  // is loaded only after the user interacts with search, or later during idle.
+  const [tools, setTools] = useState<any[]>([]);
+  const toolsRef = useRef<any[]>([]);
+  const toolsLoadingRef = useRef<Promise<any[]> | null>(null);
+  const pendingSearchRef = useRef<string | null>(null);
+
+  const loadTools = useCallback(() => {
+    if (toolsRef.current.length > 0) return Promise.resolve(toolsRef.current);
+    if (!toolsLoadingRef.current) {
+      toolsLoadingRef.current = import("@/data/toolsData")
+        .then(({ allTools }) => {
+          toolsRef.current = allTools;
+          setTools(allTools);
+          return allTools;
+        })
+        .catch((error) => {
+          toolsLoadingRef.current = null;
+          console.error("Failed to load search tools:", error);
+          return [];
+        });
+    }
+    return toolsLoadingRef.current;
+  }, []);
+
   // Precompute lowercase fields once (keeps search snappy)
   const quickIndex = useMemo(() => {
-    return allTools.map((tool) => {
+    return tools.map((tool) => {
       const t = normalizeSearchText(tool.title || "");
       const tNoSpace = t.replace(/[\s\-_]+/g, "");
       const words = t.split(/[\s\-_\u0026,.:()]+/).filter(w => w.length > 0);
@@ -1487,13 +1511,13 @@ export const useGlobalSearch = () => {
         searchable: `${t} ${c} ${tagText} ${d}`,
       };
     });
-  }, []);
+  }, [tools]);
 
   // ⚡ EXACT-TITLE MAP: O(1) lookup of any tool by its normalized title or no-space form.
   // Guarantees a typed tool name always finds the tool even if heavier filters drop it.
   const exactTitleMap = useMemo(() => {
     const map = new Map<string, any>();
-    for (const tool of allTools) {
+    for (const tool of tools) {
       if (!tool?.title) continue;
       const t = tool.title.toLowerCase().trim();
       map.set(t, tool);
@@ -1501,7 +1525,7 @@ export const useGlobalSearch = () => {
       map.set(normalizeTitleKey(tool.title), tool);
     }
     return map;
-  }, []);
+  }, [tools]);
 
   // Prepend any tool whose normalized title matches the query — never let strong
   // exact hits fall out of the results list because of upstream filters.
