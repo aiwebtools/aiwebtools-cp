@@ -2041,6 +2041,17 @@ export const useGlobalSearch = () => {
       return;
     }
 
+    // Do not import/index the full tools database during the first mobile
+    // seconds unless the visitor actually searches. This preserves instant
+    // touch scrolling right after the loader disappears.
+    if (toolsRef.current.length === 0) {
+      pendingSearchRef.current = value;
+      setIsOpen(true);
+      setSearchResults([]);
+      void loadTools();
+      return;
+    }
+
     // Full UI text can be long; search work uses quick long-query scoring
     // instead of slicing/locking the visible input.
     const cappedT = t;
@@ -2090,7 +2101,17 @@ export const useGlobalSearch = () => {
     // Full heavy ranking intentionally stays out of the live input path.
     // quickSearch uses the precomputed index and is exhaustive enough for discovery;
     // avoiding the second all-tool ranking pass keeps backspace/delete smooth on phones.
-  }, [quickSearch, ensureExactTitleHit]);
+  }, [quickSearch, ensureExactTitleHit, loadTools]);
+
+  // If the first search triggered the lazy database import, run that search as
+  // soon as the index exists. Kept separate so it uses the fresh quickIndex.
+  useEffect(() => {
+    const pending = pendingSearchRef.current;
+    if (!pending || tools.length === 0) return;
+    pendingSearchRef.current = null;
+    setSearchTerm(pending);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [tools.length]);
   
   // Cleanup on unmount
   useEffect(() => {
@@ -2136,10 +2157,10 @@ export const useGlobalSearch = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const handleToolClick = useCallback((toolIndex: number) => {
+  const handleToolClick = useCallback((toolOrIndex: any) => {
     // Navigate FIRST before clearing state to avoid re-render blocking navigation
-    const tool = allTools[toolIndex];
-    const path = tool ? `/${generateToolSlug(tool.title)}` : `/tool/${toolIndex}`;
+    const tool = typeof toolOrIndex === "number" ? toolsRef.current[toolOrIndex] : toolOrIndex;
+    const path = tool?.title ? `/${generateToolSlug(tool.title)}` : `/main-category/ALL%20AI%20TOOLS`;
 
     // Cancel any pending search work immediately
     if (quickRef.current) clearTimeout(quickRef.current);
@@ -2230,7 +2251,7 @@ export const useGlobalSearch = () => {
     });
     
     // Filter and score remaining tools
-    const remaining = allTools.filter(t => 
+    const remaining = tools.filter(t => 
       t?.title && !existingTitles.has(t.title.toLowerCase())
     );
     
@@ -2253,7 +2274,7 @@ export const useGlobalSearch = () => {
       setRecommendedTools(prev => [...prev, ...nextBatch]);
       setIsLoadingRecommendations(false);
     });
-  }, [searchResults, recommendedTools, isLoadingRecommendations]);
+  }, [searchResults, recommendedTools, isLoadingRecommendations, tools]);
 
   // Combined results: direct matches + recommendations
   const combinedResults = useMemo(() => {
@@ -2289,11 +2310,11 @@ export const useGlobalSearch = () => {
         });
       }
       // If showing all combined results, load more recommendations
-      else if (recommendedTools.length < allTools.length - searchResults.length) {
+      else if (recommendedTools.length < tools.length - searchResults.length) {
         loadMoreRecommendations();
       }
     }
-  }, [displayedCount, searchResults.length, combinedResults.length, recommendedTools.length, isLoadingMore, isLoadingRecommendations, loadMoreRecommendations]);
+  }, [displayedCount, searchResults.length, combinedResults.length, recommendedTools.length, isLoadingMore, isLoadingRecommendations, loadMoreRecommendations, tools.length]);
 
   // Generate prediction based on top result
   const prediction = useMemo(() => {
