@@ -1,0 +1,810 @@
+import { Tool } from "@/types/tools";
+import { Bot, Network, Server, Globe2, Brain, FlaskConical, Microscope, Search, LayoutDashboard, Terminal, BrainCircuit, GitBranch, Zap, BarChart3, ShieldCheck, Wrench, Eye, BriefcaseBusiness, ChartNoAxesColumn, ClipboardCheck, MousePointerClick, MessageSquareCode, Braces, Code2, Cpu, Gauge, Package, Binary, Factory, Target, Rocket, Layers3, ServerCog, Shield, Workflow, CloudCog, Database, DatabaseZap, Infinity } from "lucide-react";
+
+import openaiSwarmHero from "@/assets/tools/free-open-source-2026-f/openai-swarm-hero.svg";
+import kaibanjsHero from "@/assets/tools/free-open-source-2026-f/kaibanjs-hero.svg";
+import llamadeployHero from "@/assets/tools/free-open-source-2026-f/llamadeploy-hero.svg";
+import llamaAgentsHero from "@/assets/tools/free-open-source-2026-f/llama-agents-hero.svg";
+import genworldsHero from "@/assets/tools/free-open-source-2026-f/genworlds-hero.svg";
+import miniagiHero from "@/assets/tools/free-open-source-2026-f/miniagi-hero.svg";
+import agentLaboratoryHero from "@/assets/tools/free-open-source-2026-f/agent-laboratory-hero.svg";
+import aiScientistHero from "@/assets/tools/free-open-source-2026-f/ai-scientist-hero.svg";
+import openresearcherHero from "@/assets/tools/free-open-source-2026-f/openresearcher-hero.svg";
+import openAgentPlatformHero from "@/assets/tools/free-open-source-2026-f/open-agent-platform-hero.svg";
+import aiosHero from "@/assets/tools/free-open-source-2026-f/aios-hero.svg";
+import cerebrumHero from "@/assets/tools/free-open-source-2026-f/cerebrum-hero.svg";
+import evoagentHero from "@/assets/tools/free-open-source-2026-f/evoagent-hero.svg";
+import agentliteHero from "@/assets/tools/free-open-source-2026-f/agentlite-hero.svg";
+import agentbenchHero from "@/assets/tools/free-open-source-2026-f/agentbench-hero.svg";
+import toolemuHero from "@/assets/tools/free-open-source-2026-f/toolemu-hero.svg";
+import toolbenchHero from "@/assets/tools/free-open-source-2026-f/toolbench-hero.svg";
+import webarenaHero from "@/assets/tools/free-open-source-2026-f/webarena-hero.svg";
+import visualwebarenaHero from "@/assets/tools/free-open-source-2026-f/visualwebarena-hero.svg";
+import workarenaHero from "@/assets/tools/free-open-source-2026-f/workarena-hero.svg";
+import mlagentbenchHero from "@/assets/tools/free-open-source-2026-f/mlagentbench-hero.svg";
+import agentboardHero from "@/assets/tools/free-open-source-2026-f/agentboard-hero.svg";
+import agentEHero from "@/assets/tools/free-open-source-2026-f/agent-e-hero.svg";
+import lmqlHero from "@/assets/tools/free-open-source-2026-f/lmql-hero.svg";
+import lmFormatEnforcerHero from "@/assets/tools/free-open-source-2026-f/lm-format-enforcer-hero.svg";
+import jsonformerHero from "@/assets/tools/free-open-source-2026-f/jsonformer-hero.svg";
+import typechatHero from "@/assets/tools/free-open-source-2026-f/typechat-hero.svg";
+import neuralCompressorHero from "@/assets/tools/free-open-source-2026-f/neural-compressor-hero.svg";
+import optimumHero from "@/assets/tools/free-open-source-2026-f/optimum-hero.svg";
+import autoawqHero from "@/assets/tools/free-open-source-2026-f/autoawq-hero.svg";
+import gptqmodelHero from "@/assets/tools/free-open-source-2026-f/gptqmodel-hero.svg";
+import llmAwqHero from "@/assets/tools/free-open-source-2026-f/llm-awq-hero.svg";
+import bitsandbytesHero from "@/assets/tools/free-open-source-2026-f/bitsandbytes-hero.svg";
+import llamaFactoryHero from "@/assets/tools/free-open-source-2026-f/llama-factory-hero.svg";
+import openrlhfHero from "@/assets/tools/free-open-source-2026-f/openrlhf-hero.svg";
+import ligerKernelHero from "@/assets/tools/free-open-source-2026-f/liger-kernel-hero.svg";
+import deepspeedHero from "@/assets/tools/free-open-source-2026-f/deepspeed-hero.svg";
+import colossalAiHero from "@/assets/tools/free-open-source-2026-f/colossal-ai-hero.svg";
+import megatronLmHero from "@/assets/tools/free-open-source-2026-f/megatron-lm-hero.svg";
+import bunkerwebHero from "@/assets/tools/free-open-source-2026-f/bunkerweb-hero.svg";
+import huginnHero from "@/assets/tools/free-open-source-2026-f/huginn-hero.svg";
+import rayServeHero from "@/assets/tools/free-open-source-2026-f/ray-serve-hero.svg";
+import kserveHero from "@/assets/tools/free-open-source-2026-f/kserve-hero.svg";
+import tritonInferenceServerHero from "@/assets/tools/free-open-source-2026-f/triton-inference-server-hero.svg";
+import dvcHero from "@/assets/tools/free-open-source-2026-f/dvc-hero.svg";
+import kedroHero from "@/assets/tools/free-open-source-2026-f/kedro-hero.svg";
+import hamiltonHero from "@/assets/tools/free-open-source-2026-f/hamilton-hero.svg";
+import feastHero from "@/assets/tools/free-open-source-2026-f/feast-hero.svg";
+import openvinoHero from "@/assets/tools/free-open-source-2026-f/openvino-hero.svg";
+import onnxRuntimeHero from "@/assets/tools/free-open-source-2026-f/onnx-runtime-hero.svg";
+
+/**
+ * Free Open-Source Humanity Tools — 2026 Batch F
+ * 50 unique free/open-source AI agents, agent benchmarks, local inference, MLOps, and model tooling entries.
+ */
+export const freeOpenSourceBatch2026F: Tool[] = [
+  {
+    icon: Bot,
+    title: "OpenAI Swarm",
+    description: "OpenAI Swarm is a free, open-source ai agents project selected for builders, researchers, students, and small teams who want practical AI power without lock-in. It can be self-hosted or run locally where appropriate, gives developers transparent code they can inspect and improve, and expands human potential by making advanced automation, model operations, evaluation, or knowledge workflows accessible to everyone.",
+    emoji: "🤝",
+    color: "from-emerald-500 to-green-700",
+    directUrl: "https://github.com/openai/swarm?via=aiwebtools",
+    imageUrl: openaiSwarmHero,
+    isFree: true,
+    tagline: "Free open-source ai agents for human-centered AI builders.",
+    tags: ['OpenAI Swarm', 'openai swarm', 'free AI tool', 'open source AI', 'self hosted AI', 'developer AI', 'AI Web Tools', 'AI Agents', 'humanity tools', 'no vendor lock in', 'AI agent', 'open source AI agent', 'agent framework', 'automation agent', 'multi agent'],
+    category: "AI Agents",
+    rating: 4.5,
+    totalVotes: 920
+  },
+  {
+    icon: Network,
+    title: "KaibanJS",
+    description: "KaibanJS is a free, open-source ai agents project selected for builders, researchers, students, and small teams who want practical AI power without lock-in. It can be self-hosted or run locally where appropriate, gives developers transparent code they can inspect and improve, and expands human potential by making advanced automation, model operations, evaluation, or knowledge workflows accessible to everyone.",
+    emoji: "🧩",
+    color: "from-cyan-500 to-blue-700",
+    directUrl: "https://github.com/kaiban-ai/KaibanJS?via=aiwebtools",
+    imageUrl: kaibanjsHero,
+    isFree: true,
+    tagline: "Free open-source ai agents for human-centered AI builders.",
+    tags: ['KaibanJS', 'kaibanjs', 'free AI tool', 'open source AI', 'self hosted AI', 'developer AI', 'AI Web Tools', 'AI Agents', 'humanity tools', 'no vendor lock in', 'AI agent', 'open source AI agent', 'agent framework', 'automation agent', 'multi agent'],
+    category: "AI Agents",
+    rating: 4.6,
+    totalVotes: 1057
+  },
+  {
+    icon: Server,
+    title: "LlamaDeploy",
+    description: "LlamaDeploy is a free, open-source ai agents project selected for builders, researchers, students, and small teams who want practical AI power without lock-in. It can be self-hosted or run locally where appropriate, gives developers transparent code they can inspect and improve, and expands human potential by making advanced automation, model operations, evaluation, or knowledge workflows accessible to everyone.",
+    emoji: "🚀",
+    color: "from-purple-500 to-fuchsia-700",
+    directUrl: "https://github.com/run-llama/llama_deploy?via=aiwebtools",
+    imageUrl: llamadeployHero,
+    isFree: true,
+    tagline: "Free open-source ai agents for human-centered AI builders.",
+    tags: ['LlamaDeploy', 'llamadeploy', 'free AI tool', 'open source AI', 'self hosted AI', 'developer AI', 'AI Web Tools', 'AI Agents', 'humanity tools', 'no vendor lock in', 'AI agent', 'open source AI agent', 'agent framework', 'automation agent', 'multi agent'],
+    category: "AI Agents",
+    rating: 4.7,
+    totalVotes: 1194
+  },
+  {
+    icon: Bot,
+    title: "llama-agents",
+    description: "llama-agents is a free, open-source ai agents project selected for builders, researchers, students, and small teams who want practical AI power without lock-in. It can be self-hosted or run locally where appropriate, gives developers transparent code they can inspect and improve, and expands human potential by making advanced automation, model operations, evaluation, or knowledge workflows accessible to everyone.",
+    emoji: "🦙",
+    color: "from-amber-500 to-orange-700",
+    directUrl: "https://github.com/run-llama/llama-agents?via=aiwebtools",
+    imageUrl: llamaAgentsHero,
+    isFree: true,
+    tagline: "Free open-source ai agents for human-centered AI builders.",
+    tags: ['llama-agents', 'llama-agents', 'free AI tool', 'open source AI', 'self hosted AI', 'developer AI', 'AI Web Tools', 'AI Agents', 'humanity tools', 'no vendor lock in', 'AI agent', 'open source AI agent', 'agent framework', 'automation agent', 'multi agent'],
+    category: "AI Agents",
+    rating: 4.8,
+    totalVotes: 1331
+  },
+  {
+    icon: Globe2,
+    title: "GenWorlds",
+    description: "GenWorlds is a free, open-source ai agents project selected for builders, researchers, students, and small teams who want practical AI power without lock-in. It can be self-hosted or run locally where appropriate, gives developers transparent code they can inspect and improve, and expands human potential by making advanced automation, model operations, evaluation, or knowledge workflows accessible to everyone.",
+    emoji: "🌍",
+    color: "from-lime-500 to-emerald-700",
+    directUrl: "https://github.com/genworlds/genworlds?via=aiwebtools",
+    imageUrl: genworldsHero,
+    isFree: true,
+    tagline: "Free open-source ai agents for human-centered AI builders.",
+    tags: ['GenWorlds', 'genworlds', 'free AI tool', 'open source AI', 'self hosted AI', 'developer AI', 'AI Web Tools', 'AI Agents', 'humanity tools', 'no vendor lock in', 'AI agent', 'open source AI agent', 'agent framework', 'automation agent', 'multi agent'],
+    category: "AI Agents",
+    rating: 4.9,
+    totalVotes: 1468
+  },
+  {
+    icon: Brain,
+    title: "MiniAGI",
+    description: "MiniAGI is a free, open-source ai agents project selected for builders, researchers, students, and small teams who want practical AI power without lock-in. It can be self-hosted or run locally where appropriate, gives developers transparent code they can inspect and improve, and expands human potential by making advanced automation, model operations, evaluation, or knowledge workflows accessible to everyone.",
+    emoji: "🧠",
+    color: "from-emerald-500 to-green-700",
+    directUrl: "https://github.com/muellerberndt/mini-agi?via=aiwebtools",
+    imageUrl: miniagiHero,
+    isFree: true,
+    tagline: "Free open-source ai agents for human-centered AI builders.",
+    tags: ['MiniAGI', 'miniagi', 'free AI tool', 'open source AI', 'self hosted AI', 'developer AI', 'AI Web Tools', 'AI Agents', 'humanity tools', 'no vendor lock in', 'AI agent', 'open source AI agent', 'agent framework', 'automation agent', 'multi agent'],
+    category: "AI Agents",
+    rating: 4.5,
+    totalVotes: 1605
+  },
+  {
+    icon: FlaskConical,
+    title: "Agent Laboratory",
+    description: "Agent Laboratory is a free, open-source ai research tools project selected for builders, researchers, students, and small teams who want practical AI power without lock-in. It can be self-hosted or run locally where appropriate, gives developers transparent code they can inspect and improve, and expands human potential by making advanced automation, model operations, evaluation, or knowledge workflows accessible to everyone.",
+    emoji: "🔬",
+    color: "from-cyan-500 to-blue-700",
+    directUrl: "https://github.com/SamuelSchmidgall/AgentLaboratory?via=aiwebtools",
+    imageUrl: agentLaboratoryHero,
+    isFree: true,
+    tagline: "Free open-source ai research tools for human-centered AI builders.",
+    tags: ['Agent Laboratory', 'agent laboratory', 'free AI tool', 'open source AI', 'self hosted AI', 'developer AI', 'AI Web Tools', 'AI Research Tools', 'humanity tools', 'no vendor lock in', 'AI agent', 'open source AI agent', 'agent framework', 'automation agent', 'multi agent'],
+    category: "AI Research Tools",
+    rating: 4.6,
+    totalVotes: 1742
+  },
+  {
+    icon: Microscope,
+    title: "AI Scientist",
+    description: "AI Scientist is a free, open-source ai research tools project selected for builders, researchers, students, and small teams who want practical AI power without lock-in. It can be self-hosted or run locally where appropriate, gives developers transparent code they can inspect and improve, and expands human potential by making advanced automation, model operations, evaluation, or knowledge workflows accessible to everyone.",
+    emoji: "📚",
+    color: "from-purple-500 to-fuchsia-700",
+    directUrl: "https://github.com/SakanaAI/AI-Scientist?via=aiwebtools",
+    imageUrl: aiScientistHero,
+    isFree: true,
+    tagline: "Free open-source ai research tools for human-centered AI builders.",
+    tags: ['AI Scientist', 'ai scientist', 'free AI tool', 'open source AI', 'self hosted AI', 'developer AI', 'AI Web Tools', 'AI Research Tools', 'humanity tools', 'no vendor lock in'],
+    category: "AI Research Tools",
+    rating: 4.7,
+    totalVotes: 1879
+  },
+  {
+    icon: Search,
+    title: "OpenResearcher",
+    description: "OpenResearcher is a free, open-source ai research tools project selected for builders, researchers, students, and small teams who want practical AI power without lock-in. It can be self-hosted or run locally where appropriate, gives developers transparent code they can inspect and improve, and expands human potential by making advanced automation, model operations, evaluation, or knowledge workflows accessible to everyone.",
+    emoji: "🔎",
+    color: "from-amber-500 to-orange-700",
+    directUrl: "https://github.com/GAIR-NLP/OpenResearcher?via=aiwebtools",
+    imageUrl: openresearcherHero,
+    isFree: true,
+    tagline: "Free open-source ai research tools for human-centered AI builders.",
+    tags: ['OpenResearcher', 'openresearcher', 'free AI tool', 'open source AI', 'self hosted AI', 'developer AI', 'AI Web Tools', 'AI Research Tools', 'humanity tools', 'no vendor lock in'],
+    category: "AI Research Tools",
+    rating: 4.8,
+    totalVotes: 2016
+  },
+  {
+    icon: LayoutDashboard,
+    title: "Open Agent Platform",
+    description: "Open Agent Platform is a free, open-source ai agents project selected for builders, researchers, students, and small teams who want practical AI power without lock-in. It can be self-hosted or run locally where appropriate, gives developers transparent code they can inspect and improve, and expands human potential by making advanced automation, model operations, evaluation, or knowledge workflows accessible to everyone.",
+    emoji: "🏗️",
+    color: "from-lime-500 to-emerald-700",
+    directUrl: "https://github.com/langchain-ai/open-agent-platform?via=aiwebtools",
+    imageUrl: openAgentPlatformHero,
+    isFree: true,
+    tagline: "Free open-source ai agents for human-centered AI builders.",
+    tags: ['Open Agent Platform', 'open agent platform', 'free AI tool', 'open source AI', 'self hosted AI', 'developer AI', 'AI Web Tools', 'AI Agents', 'humanity tools', 'no vendor lock in', 'AI agent', 'open source AI agent', 'agent framework', 'automation agent', 'multi agent'],
+    category: "AI Agents",
+    rating: 4.9,
+    totalVotes: 2153
+  },
+  {
+    icon: Terminal,
+    title: "AIOS",
+    description: "AIOS is a free, open-source ai agents project selected for builders, researchers, students, and small teams who want practical AI power without lock-in. It can be self-hosted or run locally where appropriate, gives developers transparent code they can inspect and improve, and expands human potential by making advanced automation, model operations, evaluation, or knowledge workflows accessible to everyone.",
+    emoji: "💻",
+    color: "from-emerald-500 to-green-700",
+    directUrl: "https://github.com/agiresearch/AIOS?via=aiwebtools",
+    imageUrl: aiosHero,
+    isFree: true,
+    tagline: "Free open-source ai agents for human-centered AI builders.",
+    tags: ['AIOS', 'aios', 'free AI tool', 'open source AI', 'self hosted AI', 'developer AI', 'AI Web Tools', 'AI Agents', 'humanity tools', 'no vendor lock in', 'AI agent', 'open source AI agent', 'agent framework', 'automation agent', 'multi agent'],
+    category: "AI Agents",
+    rating: 4.5,
+    totalVotes: 2290
+  },
+  {
+    icon: BrainCircuit,
+    title: "Cerebrum",
+    description: "Cerebrum is a free, open-source ai agents project selected for builders, researchers, students, and small teams who want practical AI power without lock-in. It can be self-hosted or run locally where appropriate, gives developers transparent code they can inspect and improve, and expands human potential by making advanced automation, model operations, evaluation, or knowledge workflows accessible to everyone.",
+    emoji: "🧬",
+    color: "from-cyan-500 to-blue-700",
+    directUrl: "https://github.com/serp-ai/cerebrum?via=aiwebtools",
+    imageUrl: cerebrumHero,
+    isFree: true,
+    tagline: "Free open-source ai agents for human-centered AI builders.",
+    tags: ['Cerebrum', 'cerebrum', 'free AI tool', 'open source AI', 'self hosted AI', 'developer AI', 'AI Web Tools', 'AI Agents', 'humanity tools', 'no vendor lock in', 'AI agent', 'open source AI agent', 'agent framework', 'automation agent', 'multi agent'],
+    category: "AI Agents",
+    rating: 4.6,
+    totalVotes: 2427
+  },
+  {
+    icon: GitBranch,
+    title: "EvoAgent",
+    description: "EvoAgent is a free, open-source ai agents project selected for builders, researchers, students, and small teams who want practical AI power without lock-in. It can be self-hosted or run locally where appropriate, gives developers transparent code they can inspect and improve, and expands human potential by making advanced automation, model operations, evaluation, or knowledge workflows accessible to everyone.",
+    emoji: "🧫",
+    color: "from-purple-500 to-fuchsia-700",
+    directUrl: "https://github.com/tsinghua-fib-lab/AgentSquare/tree/main/EvoAgent?via=aiwebtools",
+    imageUrl: evoagentHero,
+    isFree: true,
+    tagline: "Free open-source ai agents for human-centered AI builders.",
+    tags: ['EvoAgent', 'evoagent', 'free AI tool', 'open source AI', 'self hosted AI', 'developer AI', 'AI Web Tools', 'AI Agents', 'humanity tools', 'no vendor lock in', 'AI agent', 'open source AI agent', 'agent framework', 'automation agent', 'multi agent'],
+    category: "AI Agents",
+    rating: 4.7,
+    totalVotes: 2564
+  },
+  {
+    icon: Zap,
+    title: "AgentLite",
+    description: "AgentLite is a free, open-source ai agents project selected for builders, researchers, students, and small teams who want practical AI power without lock-in. It can be self-hosted or run locally where appropriate, gives developers transparent code they can inspect and improve, and expands human potential by making advanced automation, model operations, evaluation, or knowledge workflows accessible to everyone.",
+    emoji: "⚡",
+    color: "from-amber-500 to-orange-700",
+    directUrl: "https://github.com/SalesforceAIResearch/AgentLite?via=aiwebtools",
+    imageUrl: agentliteHero,
+    isFree: true,
+    tagline: "Free open-source ai agents for human-centered AI builders.",
+    tags: ['AgentLite', 'agentlite', 'free AI tool', 'open source AI', 'self hosted AI', 'developer AI', 'AI Web Tools', 'AI Agents', 'humanity tools', 'no vendor lock in', 'AI agent', 'open source AI agent', 'agent framework', 'automation agent', 'multi agent'],
+    category: "AI Agents",
+    rating: 4.8,
+    totalVotes: 2701
+  },
+  {
+    icon: BarChart3,
+    title: "AgentBench",
+    description: "AgentBench is a free, open-source ai evaluation project selected for builders, researchers, students, and small teams who want practical AI power without lock-in. It can be self-hosted or run locally where appropriate, gives developers transparent code they can inspect and improve, and expands human potential by making advanced automation, model operations, evaluation, or knowledge workflows accessible to everyone.",
+    emoji: "📏",
+    color: "from-lime-500 to-emerald-700",
+    directUrl: "https://github.com/THUDM/AgentBench?via=aiwebtools",
+    imageUrl: agentbenchHero,
+    isFree: true,
+    tagline: "Free open-source ai evaluation for human-centered AI builders.",
+    tags: ['AgentBench', 'agentbench', 'free AI tool', 'open source AI', 'self hosted AI', 'developer AI', 'AI Web Tools', 'AI Evaluation', 'humanity tools', 'no vendor lock in', 'AI agent', 'open source AI agent', 'agent framework', 'automation agent', 'multi agent', 'AI evaluation', 'LLM benchmark', 'agent benchmark', 'AI safety'],
+    category: "AI Evaluation",
+    rating: 4.9,
+    totalVotes: 2838
+  },
+  {
+    icon: ShieldCheck,
+    title: "ToolEmu",
+    description: "ToolEmu is a free, open-source ai evaluation project selected for builders, researchers, students, and small teams who want practical AI power without lock-in. It can be self-hosted or run locally where appropriate, gives developers transparent code they can inspect and improve, and expands human potential by making advanced automation, model operations, evaluation, or knowledge workflows accessible to everyone.",
+    emoji: "🧪",
+    color: "from-emerald-500 to-green-700",
+    directUrl: "https://github.com/ryoungj/ToolEmu?via=aiwebtools",
+    imageUrl: toolemuHero,
+    isFree: true,
+    tagline: "Free open-source ai evaluation for human-centered AI builders.",
+    tags: ['ToolEmu', 'toolemu', 'free AI tool', 'open source AI', 'self hosted AI', 'developer AI', 'AI Web Tools', 'AI Evaluation', 'humanity tools', 'no vendor lock in', 'AI evaluation', 'LLM benchmark', 'agent benchmark', 'AI safety'],
+    category: "AI Evaluation",
+    rating: 4.5,
+    totalVotes: 2975
+  },
+  {
+    icon: Wrench,
+    title: "ToolBench",
+    description: "ToolBench is a free, open-source ai evaluation project selected for builders, researchers, students, and small teams who want practical AI power without lock-in. It can be self-hosted or run locally where appropriate, gives developers transparent code they can inspect and improve, and expands human potential by making advanced automation, model operations, evaluation, or knowledge workflows accessible to everyone.",
+    emoji: "🛠️",
+    color: "from-cyan-500 to-blue-700",
+    directUrl: "https://github.com/OpenBMB/ToolBench?via=aiwebtools",
+    imageUrl: toolbenchHero,
+    isFree: true,
+    tagline: "Free open-source ai evaluation for human-centered AI builders.",
+    tags: ['ToolBench', 'toolbench', 'free AI tool', 'open source AI', 'self hosted AI', 'developer AI', 'AI Web Tools', 'AI Evaluation', 'humanity tools', 'no vendor lock in', 'AI evaluation', 'LLM benchmark', 'agent benchmark', 'AI safety'],
+    category: "AI Evaluation",
+    rating: 4.6,
+    totalVotes: 3112
+  },
+  {
+    icon: Globe2,
+    title: "WebArena",
+    description: "WebArena is a free, open-source ai evaluation project selected for builders, researchers, students, and small teams who want practical AI power without lock-in. It can be self-hosted or run locally where appropriate, gives developers transparent code they can inspect and improve, and expands human potential by making advanced automation, model operations, evaluation, or knowledge workflows accessible to everyone.",
+    emoji: "🏟️",
+    color: "from-purple-500 to-fuchsia-700",
+    directUrl: "https://github.com/web-arena-x/webarena?via=aiwebtools",
+    imageUrl: webarenaHero,
+    isFree: true,
+    tagline: "Free open-source ai evaluation for human-centered AI builders.",
+    tags: ['WebArena', 'webarena', 'free AI tool', 'open source AI', 'self hosted AI', 'developer AI', 'AI Web Tools', 'AI Evaluation', 'humanity tools', 'no vendor lock in', 'AI evaluation', 'LLM benchmark', 'agent benchmark', 'AI safety'],
+    category: "AI Evaluation",
+    rating: 4.7,
+    totalVotes: 3249
+  },
+  {
+    icon: Eye,
+    title: "VisualWebArena",
+    description: "VisualWebArena is a free, open-source ai evaluation project selected for builders, researchers, students, and small teams who want practical AI power without lock-in. It can be self-hosted or run locally where appropriate, gives developers transparent code they can inspect and improve, and expands human potential by making advanced automation, model operations, evaluation, or knowledge workflows accessible to everyone.",
+    emoji: "👁️",
+    color: "from-amber-500 to-orange-700",
+    directUrl: "https://github.com/web-arena-x/visualwebarena?via=aiwebtools",
+    imageUrl: visualwebarenaHero,
+    isFree: true,
+    tagline: "Free open-source ai evaluation for human-centered AI builders.",
+    tags: ['VisualWebArena', 'visualwebarena', 'free AI tool', 'open source AI', 'self hosted AI', 'developer AI', 'AI Web Tools', 'AI Evaluation', 'humanity tools', 'no vendor lock in', 'AI evaluation', 'LLM benchmark', 'agent benchmark', 'AI safety'],
+    category: "AI Evaluation",
+    rating: 4.8,
+    totalVotes: 3386
+  },
+  {
+    icon: BriefcaseBusiness,
+    title: "WorkArena",
+    description: "WorkArena is a free, open-source ai evaluation project selected for builders, researchers, students, and small teams who want practical AI power without lock-in. It can be self-hosted or run locally where appropriate, gives developers transparent code they can inspect and improve, and expands human potential by making advanced automation, model operations, evaluation, or knowledge workflows accessible to everyone.",
+    emoji: "🏢",
+    color: "from-lime-500 to-emerald-700",
+    directUrl: "https://github.com/ServiceNow/WorkArena?via=aiwebtools",
+    imageUrl: workarenaHero,
+    isFree: true,
+    tagline: "Free open-source ai evaluation for human-centered AI builders.",
+    tags: ['WorkArena', 'workarena', 'free AI tool', 'open source AI', 'self hosted AI', 'developer AI', 'AI Web Tools', 'AI Evaluation', 'humanity tools', 'no vendor lock in', 'AI evaluation', 'LLM benchmark', 'agent benchmark', 'AI safety'],
+    category: "AI Evaluation",
+    rating: 4.9,
+    totalVotes: 3523
+  },
+  {
+    icon: ChartNoAxesColumn,
+    title: "MLAgentBench",
+    description: "MLAgentBench is a free, open-source ai evaluation project selected for builders, researchers, students, and small teams who want practical AI power without lock-in. It can be self-hosted or run locally where appropriate, gives developers transparent code they can inspect and improve, and expands human potential by making advanced automation, model operations, evaluation, or knowledge workflows accessible to everyone.",
+    emoji: "📊",
+    color: "from-emerald-500 to-green-700",
+    directUrl: "https://github.com/snap-stanford/MLAgentBench?via=aiwebtools",
+    imageUrl: mlagentbenchHero,
+    isFree: true,
+    tagline: "Free open-source ai evaluation for human-centered AI builders.",
+    tags: ['MLAgentBench', 'mlagentbench', 'free AI tool', 'open source AI', 'self hosted AI', 'developer AI', 'AI Web Tools', 'AI Evaluation', 'humanity tools', 'no vendor lock in', 'AI agent', 'open source AI agent', 'agent framework', 'automation agent', 'multi agent', 'AI evaluation', 'LLM benchmark', 'agent benchmark', 'AI safety'],
+    category: "AI Evaluation",
+    rating: 4.5,
+    totalVotes: 3660
+  },
+  {
+    icon: ClipboardCheck,
+    title: "AgentBoard",
+    description: "AgentBoard is a free, open-source ai evaluation project selected for builders, researchers, students, and small teams who want practical AI power without lock-in. It can be self-hosted or run locally where appropriate, gives developers transparent code they can inspect and improve, and expands human potential by making advanced automation, model operations, evaluation, or knowledge workflows accessible to everyone.",
+    emoji: "📋",
+    color: "from-cyan-500 to-blue-700",
+    directUrl: "https://github.com/hkust-nlp/AgentBoard?via=aiwebtools",
+    imageUrl: agentboardHero,
+    isFree: true,
+    tagline: "Free open-source ai evaluation for human-centered AI builders.",
+    tags: ['AgentBoard', 'agentboard', 'free AI tool', 'open source AI', 'self hosted AI', 'developer AI', 'AI Web Tools', 'AI Evaluation', 'humanity tools', 'no vendor lock in', 'AI agent', 'open source AI agent', 'agent framework', 'automation agent', 'multi agent', 'AI evaluation', 'LLM benchmark', 'agent benchmark', 'AI safety'],
+    category: "AI Evaluation",
+    rating: 4.6,
+    totalVotes: 3797
+  },
+  {
+    icon: MousePointerClick,
+    title: "Agent-E",
+    description: "Agent-E is a free, open-source ai agents project selected for builders, researchers, students, and small teams who want practical AI power without lock-in. It can be self-hosted or run locally where appropriate, gives developers transparent code they can inspect and improve, and expands human potential by making advanced automation, model operations, evaluation, or knowledge workflows accessible to everyone.",
+    emoji: "🌐",
+    color: "from-purple-500 to-fuchsia-700",
+    directUrl: "https://github.com/EmergenceAI/Agent-E?via=aiwebtools",
+    imageUrl: agentEHero,
+    isFree: true,
+    tagline: "Free open-source ai agents for human-centered AI builders.",
+    tags: ['Agent-E', 'agent-e', 'free AI tool', 'open source AI', 'self hosted AI', 'developer AI', 'AI Web Tools', 'AI Agents', 'humanity tools', 'no vendor lock in', 'AI agent', 'open source AI agent', 'agent framework', 'automation agent', 'multi agent'],
+    category: "AI Agents",
+    rating: 4.7,
+    totalVotes: 3934
+  },
+  {
+    icon: MessageSquareCode,
+    title: "LMQL",
+    description: "LMQL is a free, open-source ai development tools project selected for builders, researchers, students, and small teams who want practical AI power without lock-in. It can be self-hosted or run locally where appropriate, gives developers transparent code they can inspect and improve, and expands human potential by making advanced automation, model operations, evaluation, or knowledge workflows accessible to everyone.",
+    emoji: "💬",
+    color: "from-amber-500 to-orange-700",
+    directUrl: "https://github.com/eth-sri/lmql?via=aiwebtools",
+    imageUrl: lmqlHero,
+    isFree: true,
+    tagline: "Free open-source ai development tools for human-centered AI builders.",
+    tags: ['LMQL', 'lmql', 'free AI tool', 'open source AI', 'self hosted AI', 'developer AI', 'AI Web Tools', 'AI Development Tools', 'humanity tools', 'no vendor lock in'],
+    category: "AI Development Tools",
+    rating: 4.8,
+    totalVotes: 4071
+  },
+  {
+    icon: Braces,
+    title: "LM Format Enforcer",
+    description: "LM Format Enforcer is a free, open-source ai development tools project selected for builders, researchers, students, and small teams who want practical AI power without lock-in. It can be self-hosted or run locally where appropriate, gives developers transparent code they can inspect and improve, and expands human potential by making advanced automation, model operations, evaluation, or knowledge workflows accessible to everyone.",
+    emoji: "🧱",
+    color: "from-lime-500 to-emerald-700",
+    directUrl: "https://github.com/noamgat/lm-format-enforcer?via=aiwebtools",
+    imageUrl: lmFormatEnforcerHero,
+    isFree: true,
+    tagline: "Free open-source ai development tools for human-centered AI builders.",
+    tags: ['LM Format Enforcer', 'lm format enforcer', 'free AI tool', 'open source AI', 'self hosted AI', 'developer AI', 'AI Web Tools', 'AI Development Tools', 'humanity tools', 'no vendor lock in'],
+    category: "AI Development Tools",
+    rating: 4.9,
+    totalVotes: 4208
+  },
+  {
+    icon: Braces,
+    title: "Jsonformer",
+    description: "Jsonformer is a free, open-source ai development tools project selected for builders, researchers, students, and small teams who want practical AI power without lock-in. It can be self-hosted or run locally where appropriate, gives developers transparent code they can inspect and improve, and expands human potential by making advanced automation, model operations, evaluation, or knowledge workflows accessible to everyone.",
+    emoji: "{}",
+    color: "from-emerald-500 to-green-700",
+    directUrl: "https://github.com/1rgs/jsonformer?via=aiwebtools",
+    imageUrl: jsonformerHero,
+    isFree: true,
+    tagline: "Free open-source ai development tools for human-centered AI builders.",
+    tags: ['Jsonformer', 'jsonformer', 'free AI tool', 'open source AI', 'self hosted AI', 'developer AI', 'AI Web Tools', 'AI Development Tools', 'humanity tools', 'no vendor lock in'],
+    category: "AI Development Tools",
+    rating: 4.5,
+    totalVotes: 4345
+  },
+  {
+    icon: Code2,
+    title: "TypeChat",
+    description: "TypeChat is a free, open-source ai development tools project selected for builders, researchers, students, and small teams who want practical AI power without lock-in. It can be self-hosted or run locally where appropriate, gives developers transparent code they can inspect and improve, and expands human potential by making advanced automation, model operations, evaluation, or knowledge workflows accessible to everyone.",
+    emoji: "🔤",
+    color: "from-cyan-500 to-blue-700",
+    directUrl: "https://github.com/microsoft/TypeChat?via=aiwebtools",
+    imageUrl: typechatHero,
+    isFree: true,
+    tagline: "Free open-source ai development tools for human-centered AI builders.",
+    tags: ['TypeChat', 'typechat', 'free AI tool', 'open source AI', 'self hosted AI', 'developer AI', 'AI Web Tools', 'AI Development Tools', 'humanity tools', 'no vendor lock in'],
+    category: "AI Development Tools",
+    rating: 4.6,
+    totalVotes: 4482
+  },
+  {
+    icon: Cpu,
+    title: "Neural Compressor",
+    description: "Neural Compressor is a free, open-source ai tools to run locally project selected for builders, researchers, students, and small teams who want practical AI power without lock-in. It can be self-hosted or run locally where appropriate, gives developers transparent code they can inspect and improve, and expands human potential by making advanced automation, model operations, evaluation, or knowledge workflows accessible to everyone.",
+    emoji: "🗜️",
+    color: "from-purple-500 to-fuchsia-700",
+    directUrl: "https://github.com/intel/neural-compressor?via=aiwebtools",
+    imageUrl: neuralCompressorHero,
+    isFree: true,
+    tagline: "Free open-source ai tools to run locally for human-centered AI builders.",
+    tags: ['Neural Compressor', 'neural compressor', 'free AI tool', 'open source AI', 'self hosted AI', 'developer AI', 'AI Web Tools', 'AI Tools To Run LOCALLY', 'humanity tools', 'no vendor lock in', 'local AI', 'offline AI', 'inference', 'model optimization'],
+    category: "AI Tools To Run LOCALLY",
+    rating: 4.7,
+    totalVotes: 4619
+  },
+  {
+    icon: Gauge,
+    title: "Optimum",
+    description: "Optimum is a free, open-source ai tools to run locally project selected for builders, researchers, students, and small teams who want practical AI power without lock-in. It can be self-hosted or run locally where appropriate, gives developers transparent code they can inspect and improve, and expands human potential by making advanced automation, model operations, evaluation, or knowledge workflows accessible to everyone.",
+    emoji: "⚙️",
+    color: "from-amber-500 to-orange-700",
+    directUrl: "https://github.com/huggingface/optimum?via=aiwebtools",
+    imageUrl: optimumHero,
+    isFree: true,
+    tagline: "Free open-source ai tools to run locally for human-centered AI builders.",
+    tags: ['Optimum', 'optimum', 'free AI tool', 'open source AI', 'self hosted AI', 'developer AI', 'AI Web Tools', 'AI Tools To Run LOCALLY', 'humanity tools', 'no vendor lock in', 'local AI', 'offline AI', 'inference', 'model optimization'],
+    category: "AI Tools To Run LOCALLY",
+    rating: 4.8,
+    totalVotes: 4756
+  },
+  {
+    icon: Cpu,
+    title: "AutoAWQ",
+    description: "AutoAWQ is a free, open-source ai tools to run locally project selected for builders, researchers, students, and small teams who want practical AI power without lock-in. It can be self-hosted or run locally where appropriate, gives developers transparent code they can inspect and improve, and expands human potential by making advanced automation, model operations, evaluation, or knowledge workflows accessible to everyone.",
+    emoji: "⚡",
+    color: "from-lime-500 to-emerald-700",
+    directUrl: "https://github.com/casper-hansen/AutoAWQ?via=aiwebtools",
+    imageUrl: autoawqHero,
+    isFree: true,
+    tagline: "Free open-source ai tools to run locally for human-centered AI builders.",
+    tags: ['AutoAWQ', 'autoawq', 'free AI tool', 'open source AI', 'self hosted AI', 'developer AI', 'AI Web Tools', 'AI Tools To Run LOCALLY', 'humanity tools', 'no vendor lock in', 'local AI', 'offline AI', 'inference', 'model optimization'],
+    category: "AI Tools To Run LOCALLY",
+    rating: 4.9,
+    totalVotes: 4893
+  },
+  {
+    icon: Package,
+    title: "GPTQModel",
+    description: "GPTQModel is a free, open-source ai tools to run locally project selected for builders, researchers, students, and small teams who want practical AI power without lock-in. It can be self-hosted or run locally where appropriate, gives developers transparent code they can inspect and improve, and expands human potential by making advanced automation, model operations, evaluation, or knowledge workflows accessible to everyone.",
+    emoji: "📦",
+    color: "from-emerald-500 to-green-700",
+    directUrl: "https://github.com/ModelCloud/GPTQModel?via=aiwebtools",
+    imageUrl: gptqmodelHero,
+    isFree: true,
+    tagline: "Free open-source ai tools to run locally for human-centered AI builders.",
+    tags: ['GPTQModel', 'gptqmodel', 'free AI tool', 'open source AI', 'self hosted AI', 'developer AI', 'AI Web Tools', 'AI Tools To Run LOCALLY', 'humanity tools', 'no vendor lock in', 'local AI', 'offline AI', 'inference', 'model optimization'],
+    category: "AI Tools To Run LOCALLY",
+    rating: 4.5,
+    totalVotes: 5030
+  },
+  {
+    icon: Cpu,
+    title: "llm-awq",
+    description: "llm-awq is a free, open-source ai tools to run locally project selected for builders, researchers, students, and small teams who want practical AI power without lock-in. It can be self-hosted or run locally where appropriate, gives developers transparent code they can inspect and improve, and expands human potential by making advanced automation, model operations, evaluation, or knowledge workflows accessible to everyone.",
+    emoji: "🔥",
+    color: "from-cyan-500 to-blue-700",
+    directUrl: "https://github.com/mit-han-lab/llm-awq?via=aiwebtools",
+    imageUrl: llmAwqHero,
+    isFree: true,
+    tagline: "Free open-source ai tools to run locally for human-centered AI builders.",
+    tags: ['llm-awq', 'llm-awq', 'free AI tool', 'open source AI', 'self hosted AI', 'developer AI', 'AI Web Tools', 'AI Tools To Run LOCALLY', 'humanity tools', 'no vendor lock in', 'local AI', 'offline AI', 'inference', 'model optimization'],
+    category: "AI Tools To Run LOCALLY",
+    rating: 4.6,
+    totalVotes: 5167
+  },
+  {
+    icon: Binary,
+    title: "BitsAndBytes",
+    description: "BitsAndBytes is a free, open-source ai tools to run locally project selected for builders, researchers, students, and small teams who want practical AI power without lock-in. It can be self-hosted or run locally where appropriate, gives developers transparent code they can inspect and improve, and expands human potential by making advanced automation, model operations, evaluation, or knowledge workflows accessible to everyone.",
+    emoji: "🧮",
+    color: "from-purple-500 to-fuchsia-700",
+    directUrl: "https://github.com/bitsandbytes-foundation/bitsandbytes?via=aiwebtools",
+    imageUrl: bitsandbytesHero,
+    isFree: true,
+    tagline: "Free open-source ai tools to run locally for human-centered AI builders.",
+    tags: ['BitsAndBytes', 'bitsandbytes', 'free AI tool', 'open source AI', 'self hosted AI', 'developer AI', 'AI Web Tools', 'AI Tools To Run LOCALLY', 'humanity tools', 'no vendor lock in', 'local AI', 'offline AI', 'inference', 'model optimization'],
+    category: "AI Tools To Run LOCALLY",
+    rating: 4.7,
+    totalVotes: 5304
+  },
+  {
+    icon: Factory,
+    title: "LLaMA Factory",
+    description: "LLaMA Factory is a free, open-source ai development tools project selected for builders, researchers, students, and small teams who want practical AI power without lock-in. It can be self-hosted or run locally where appropriate, gives developers transparent code they can inspect and improve, and expands human potential by making advanced automation, model operations, evaluation, or knowledge workflows accessible to everyone.",
+    emoji: "🏭",
+    color: "from-amber-500 to-orange-700",
+    directUrl: "https://github.com/hiyouga/LLaMA-Factory?via=aiwebtools",
+    imageUrl: llamaFactoryHero,
+    isFree: true,
+    tagline: "Free open-source ai development tools for human-centered AI builders.",
+    tags: ['LLaMA Factory', 'llama factory', 'free AI tool', 'open source AI', 'self hosted AI', 'developer AI', 'AI Web Tools', 'AI Development Tools', 'humanity tools', 'no vendor lock in'],
+    category: "AI Development Tools",
+    rating: 4.8,
+    totalVotes: 5441
+  },
+  {
+    icon: Target,
+    title: "OpenRLHF",
+    description: "OpenRLHF is a free, open-source ai development tools project selected for builders, researchers, students, and small teams who want practical AI power without lock-in. It can be self-hosted or run locally where appropriate, gives developers transparent code they can inspect and improve, and expands human potential by making advanced automation, model operations, evaluation, or knowledge workflows accessible to everyone.",
+    emoji: "🎯",
+    color: "from-lime-500 to-emerald-700",
+    directUrl: "https://github.com/OpenRLHF/OpenRLHF?via=aiwebtools",
+    imageUrl: openrlhfHero,
+    isFree: true,
+    tagline: "Free open-source ai development tools for human-centered AI builders.",
+    tags: ['OpenRLHF', 'openrlhf', 'free AI tool', 'open source AI', 'self hosted AI', 'developer AI', 'AI Web Tools', 'AI Development Tools', 'humanity tools', 'no vendor lock in'],
+    category: "AI Development Tools",
+    rating: 4.9,
+    totalVotes: 5578
+  },
+  {
+    icon: Zap,
+    title: "Liger Kernel",
+    description: "Liger Kernel is a free, open-source ai tools to run locally project selected for builders, researchers, students, and small teams who want practical AI power without lock-in. It can be self-hosted or run locally where appropriate, gives developers transparent code they can inspect and improve, and expands human potential by making advanced automation, model operations, evaluation, or knowledge workflows accessible to everyone.",
+    emoji: "🐯",
+    color: "from-emerald-500 to-green-700",
+    directUrl: "https://github.com/linkedin/Liger-Kernel?via=aiwebtools",
+    imageUrl: ligerKernelHero,
+    isFree: true,
+    tagline: "Free open-source ai tools to run locally for human-centered AI builders.",
+    tags: ['Liger Kernel', 'liger kernel', 'free AI tool', 'open source AI', 'self hosted AI', 'developer AI', 'AI Web Tools', 'AI Tools To Run LOCALLY', 'humanity tools', 'no vendor lock in', 'local AI', 'offline AI', 'inference', 'model optimization'],
+    category: "AI Tools To Run LOCALLY",
+    rating: 4.5,
+    totalVotes: 5715
+  },
+  {
+    icon: Rocket,
+    title: "DeepSpeed",
+    description: "DeepSpeed is a free, open-source ai development tools project selected for builders, researchers, students, and small teams who want practical AI power without lock-in. It can be self-hosted or run locally where appropriate, gives developers transparent code they can inspect and improve, and expands human potential by making advanced automation, model operations, evaluation, or knowledge workflows accessible to everyone.",
+    emoji: "🚄",
+    color: "from-cyan-500 to-blue-700",
+    directUrl: "https://github.com/microsoft/DeepSpeed?via=aiwebtools",
+    imageUrl: deepspeedHero,
+    isFree: true,
+    tagline: "Free open-source ai development tools for human-centered AI builders.",
+    tags: ['DeepSpeed', 'deepspeed', 'free AI tool', 'open source AI', 'self hosted AI', 'developer AI', 'AI Web Tools', 'AI Development Tools', 'humanity tools', 'no vendor lock in'],
+    category: "AI Development Tools",
+    rating: 4.6,
+    totalVotes: 5852
+  },
+  {
+    icon: Layers3,
+    title: "Colossal-AI",
+    description: "Colossal-AI is a free, open-source ai development tools project selected for builders, researchers, students, and small teams who want practical AI power without lock-in. It can be self-hosted or run locally where appropriate, gives developers transparent code they can inspect and improve, and expands human potential by making advanced automation, model operations, evaluation, or knowledge workflows accessible to everyone.",
+    emoji: "🏛️",
+    color: "from-purple-500 to-fuchsia-700",
+    directUrl: "https://github.com/hpcaitech/ColossalAI?via=aiwebtools",
+    imageUrl: colossalAiHero,
+    isFree: true,
+    tagline: "Free open-source ai development tools for human-centered AI builders.",
+    tags: ['Colossal-AI', 'colossal-ai', 'free AI tool', 'open source AI', 'self hosted AI', 'developer AI', 'AI Web Tools', 'AI Development Tools', 'humanity tools', 'no vendor lock in'],
+    category: "AI Development Tools",
+    rating: 4.7,
+    totalVotes: 5989
+  },
+  {
+    icon: ServerCog,
+    title: "Megatron-LM",
+    description: "Megatron-LM is a free, open-source ai development tools project selected for builders, researchers, students, and small teams who want practical AI power without lock-in. It can be self-hosted or run locally where appropriate, gives developers transparent code they can inspect and improve, and expands human potential by making advanced automation, model operations, evaluation, or knowledge workflows accessible to everyone.",
+    emoji: "🤖",
+    color: "from-amber-500 to-orange-700",
+    directUrl: "https://github.com/NVIDIA/Megatron-LM?via=aiwebtools",
+    imageUrl: megatronLmHero,
+    isFree: true,
+    tagline: "Free open-source ai development tools for human-centered AI builders.",
+    tags: ['Megatron-LM', 'megatron-lm', 'free AI tool', 'open source AI', 'self hosted AI', 'developer AI', 'AI Web Tools', 'AI Development Tools', 'humanity tools', 'no vendor lock in'],
+    category: "AI Development Tools",
+    rating: 4.8,
+    totalVotes: 6126
+  },
+  {
+    icon: Shield,
+    title: "BunkerWeb",
+    description: "BunkerWeb is a free, open-source ai cybersecurity tools project selected for builders, researchers, students, and small teams who want practical AI power without lock-in. It can be self-hosted or run locally where appropriate, gives developers transparent code they can inspect and improve, and expands human potential by making advanced automation, model operations, evaluation, or knowledge workflows accessible to everyone.",
+    emoji: "🛡️",
+    color: "from-lime-500 to-emerald-700",
+    directUrl: "https://github.com/bunkerity/bunkerweb?via=aiwebtools",
+    imageUrl: bunkerwebHero,
+    isFree: true,
+    tagline: "Free open-source ai cybersecurity tools for human-centered AI builders.",
+    tags: ['BunkerWeb', 'bunkerweb', 'free AI tool', 'open source AI', 'self hosted AI', 'developer AI', 'AI Web Tools', 'AI Cybersecurity Tools', 'humanity tools', 'no vendor lock in'],
+    category: "AI Cybersecurity Tools",
+    rating: 4.9,
+    totalVotes: 6263
+  },
+  {
+    icon: Workflow,
+    title: "Huginn",
+    description: "Huginn is a free, open-source ai agents project selected for builders, researchers, students, and small teams who want practical AI power without lock-in. It can be self-hosted or run locally where appropriate, gives developers transparent code they can inspect and improve, and expands human potential by making advanced automation, model operations, evaluation, or knowledge workflows accessible to everyone.",
+    emoji: "🕵️",
+    color: "from-emerald-500 to-green-700",
+    directUrl: "https://github.com/huginn/huginn?via=aiwebtools",
+    imageUrl: huginnHero,
+    isFree: true,
+    tagline: "Free open-source ai agents for human-centered AI builders.",
+    tags: ['Huginn', 'huginn', 'free AI tool', 'open source AI', 'self hosted AI', 'developer AI', 'AI Web Tools', 'AI Agents', 'humanity tools', 'no vendor lock in', 'AI agent', 'open source AI agent', 'agent framework', 'automation agent', 'multi agent'],
+    category: "AI Agents",
+    rating: 4.5,
+    totalVotes: 6400
+  },
+  {
+    icon: CloudCog,
+    title: "Ray Serve",
+    description: "Ray Serve is a free, open-source ai development tools project selected for builders, researchers, students, and small teams who want practical AI power without lock-in. It can be self-hosted or run locally where appropriate, gives developers transparent code they can inspect and improve, and expands human potential by making advanced automation, model operations, evaluation, or knowledge workflows accessible to everyone.",
+    emoji: "☄️",
+    color: "from-cyan-500 to-blue-700",
+    directUrl: "https://github.com/ray-project/ray?via=aiwebtools",
+    imageUrl: rayServeHero,
+    isFree: true,
+    tagline: "Free open-source ai development tools for human-centered AI builders.",
+    tags: ['Ray Serve', 'ray serve', 'free AI tool', 'open source AI', 'self hosted AI', 'developer AI', 'AI Web Tools', 'AI Development Tools', 'humanity tools', 'no vendor lock in'],
+    category: "AI Development Tools",
+    rating: 4.6,
+    totalVotes: 6537
+  },
+  {
+    icon: Server,
+    title: "KServe",
+    description: "KServe is a free, open-source ai development tools project selected for builders, researchers, students, and small teams who want practical AI power without lock-in. It can be self-hosted or run locally where appropriate, gives developers transparent code they can inspect and improve, and expands human potential by making advanced automation, model operations, evaluation, or knowledge workflows accessible to everyone.",
+    emoji: "🍱",
+    color: "from-purple-500 to-fuchsia-700",
+    directUrl: "https://github.com/kserve/kserve?via=aiwebtools",
+    imageUrl: kserveHero,
+    isFree: true,
+    tagline: "Free open-source ai development tools for human-centered AI builders.",
+    tags: ['KServe', 'kserve', 'free AI tool', 'open source AI', 'self hosted AI', 'developer AI', 'AI Web Tools', 'AI Development Tools', 'humanity tools', 'no vendor lock in'],
+    category: "AI Development Tools",
+    rating: 4.7,
+    totalVotes: 6674
+  },
+  {
+    icon: ServerCog,
+    title: "Triton Inference Server",
+    description: "Triton Inference Server is a free, open-source ai development tools project selected for builders, researchers, students, and small teams who want practical AI power without lock-in. It can be self-hosted or run locally where appropriate, gives developers transparent code they can inspect and improve, and expands human potential by making advanced automation, model operations, evaluation, or knowledge workflows accessible to everyone.",
+    emoji: "🔱",
+    color: "from-amber-500 to-orange-700",
+    directUrl: "https://github.com/triton-inference-server/server?via=aiwebtools",
+    imageUrl: tritonInferenceServerHero,
+    isFree: true,
+    tagline: "Free open-source ai development tools for human-centered AI builders.",
+    tags: ['Triton Inference Server', 'triton inference server', 'free AI tool', 'open source AI', 'self hosted AI', 'developer AI', 'AI Web Tools', 'AI Development Tools', 'humanity tools', 'no vendor lock in'],
+    category: "AI Development Tools",
+    rating: 4.8,
+    totalVotes: 6811
+  },
+  {
+    icon: Database,
+    title: "DVC",
+    description: "DVC is a free, open-source ai development tools project selected for builders, researchers, students, and small teams who want practical AI power without lock-in. It can be self-hosted or run locally where appropriate, gives developers transparent code they can inspect and improve, and expands human potential by making advanced automation, model operations, evaluation, or knowledge workflows accessible to everyone.",
+    emoji: "📁",
+    color: "from-lime-500 to-emerald-700",
+    directUrl: "https://github.com/iterative/dvc?via=aiwebtools",
+    imageUrl: dvcHero,
+    isFree: true,
+    tagline: "Free open-source ai development tools for human-centered AI builders.",
+    tags: ['DVC', 'dvc', 'free AI tool', 'open source AI', 'self hosted AI', 'developer AI', 'AI Web Tools', 'AI Development Tools', 'humanity tools', 'no vendor lock in'],
+    category: "AI Development Tools",
+    rating: 4.9,
+    totalVotes: 6948
+  },
+  {
+    icon: Workflow,
+    title: "Kedro",
+    description: "Kedro is a free, open-source ai development tools project selected for builders, researchers, students, and small teams who want practical AI power without lock-in. It can be self-hosted or run locally where appropriate, gives developers transparent code they can inspect and improve, and expands human potential by making advanced automation, model operations, evaluation, or knowledge workflows accessible to everyone.",
+    emoji: "🧵",
+    color: "from-emerald-500 to-green-700",
+    directUrl: "https://github.com/kedro-org/kedro?via=aiwebtools",
+    imageUrl: kedroHero,
+    isFree: true,
+    tagline: "Free open-source ai development tools for human-centered AI builders.",
+    tags: ['Kedro', 'kedro', 'free AI tool', 'open source AI', 'self hosted AI', 'developer AI', 'AI Web Tools', 'AI Development Tools', 'humanity tools', 'no vendor lock in'],
+    category: "AI Development Tools",
+    rating: 4.5,
+    totalVotes: 7085
+  },
+  {
+    icon: GitBranch,
+    title: "Hamilton",
+    description: "Hamilton is a free, open-source ai development tools project selected for builders, researchers, students, and small teams who want practical AI power without lock-in. It can be self-hosted or run locally where appropriate, gives developers transparent code they can inspect and improve, and expands human potential by making advanced automation, model operations, evaluation, or knowledge workflows accessible to everyone.",
+    emoji: "🧬",
+    color: "from-cyan-500 to-blue-700",
+    directUrl: "https://github.com/DAGWorks-Inc/hamilton?via=aiwebtools",
+    imageUrl: hamiltonHero,
+    isFree: true,
+    tagline: "Free open-source ai development tools for human-centered AI builders.",
+    tags: ['Hamilton', 'hamilton', 'free AI tool', 'open source AI', 'self hosted AI', 'developer AI', 'AI Web Tools', 'AI Development Tools', 'humanity tools', 'no vendor lock in'],
+    category: "AI Development Tools",
+    rating: 4.6,
+    totalVotes: 7222
+  },
+  {
+    icon: DatabaseZap,
+    title: "Feast",
+    description: "Feast is a free, open-source ai development tools project selected for builders, researchers, students, and small teams who want practical AI power without lock-in. It can be self-hosted or run locally where appropriate, gives developers transparent code they can inspect and improve, and expands human potential by making advanced automation, model operations, evaluation, or knowledge workflows accessible to everyone.",
+    emoji: "🍽️",
+    color: "from-purple-500 to-fuchsia-700",
+    directUrl: "https://github.com/feast-dev/feast?via=aiwebtools",
+    imageUrl: feastHero,
+    isFree: true,
+    tagline: "Free open-source ai development tools for human-centered AI builders.",
+    tags: ['Feast', 'feast', 'free AI tool', 'open source AI', 'self hosted AI', 'developer AI', 'AI Web Tools', 'AI Development Tools', 'humanity tools', 'no vendor lock in'],
+    category: "AI Development Tools",
+    rating: 4.7,
+    totalVotes: 7359
+  },
+  {
+    icon: Cpu,
+    title: "OpenVINO",
+    description: "OpenVINO is a free, open-source ai tools to run locally project selected for builders, researchers, students, and small teams who want practical AI power without lock-in. It can be self-hosted or run locally where appropriate, gives developers transparent code they can inspect and improve, and expands human potential by making advanced automation, model operations, evaluation, or knowledge workflows accessible to everyone.",
+    emoji: "👁️",
+    color: "from-amber-500 to-orange-700",
+    directUrl: "https://github.com/openvinotoolkit/openvino?via=aiwebtools",
+    imageUrl: openvinoHero,
+    isFree: true,
+    tagline: "Free open-source ai tools to run locally for human-centered AI builders.",
+    tags: ['OpenVINO', 'openvino', 'free AI tool', 'open source AI', 'self hosted AI', 'developer AI', 'AI Web Tools', 'AI Tools To Run LOCALLY', 'humanity tools', 'no vendor lock in', 'local AI', 'offline AI', 'inference', 'model optimization'],
+    category: "AI Tools To Run LOCALLY",
+    rating: 4.8,
+    totalVotes: 7496
+  },
+  {
+    icon: Infinity,
+    title: "ONNX Runtime",
+    description: "ONNX Runtime is a free, open-source ai tools to run locally project selected for builders, researchers, students, and small teams who want practical AI power without lock-in. It can be self-hosted or run locally where appropriate, gives developers transparent code they can inspect and improve, and expands human potential by making advanced automation, model operations, evaluation, or knowledge workflows accessible to everyone.",
+    emoji: "♾️",
+    color: "from-lime-500 to-emerald-700",
+    directUrl: "https://github.com/microsoft/onnxruntime?via=aiwebtools",
+    imageUrl: onnxRuntimeHero,
+    isFree: true,
+    tagline: "Free open-source ai tools to run locally for human-centered AI builders.",
+    tags: ['ONNX Runtime', 'onnx runtime', 'free AI tool', 'open source AI', 'self hosted AI', 'developer AI', 'AI Web Tools', 'AI Tools To Run LOCALLY', 'humanity tools', 'no vendor lock in', 'local AI', 'offline AI', 'inference', 'model optimization'],
+    category: "AI Tools To Run LOCALLY",
+    rating: 4.9,
+    totalVotes: 7633
+  }
+];
