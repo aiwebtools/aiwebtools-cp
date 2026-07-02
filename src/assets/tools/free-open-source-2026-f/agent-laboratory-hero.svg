@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-label="Agent Laboratory AI tool hero art">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#00ff88"/><stop offset="1" stop-color="#003b2f"/></linearGradient>
+    <radialGradient id="r" cx="70%" cy="25%" r="60%"><stop offset="0" stop-color="#ffffff" stop-opacity=".30"/><stop offset="1" stop-color="#000000" stop-opacity="0"/></radialGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="1200" height="675" rx="48" fill="#020617"/>
+  <rect width="1200" height="675" rx="48" fill="url(#g)" opacity=".72"/>
+  <rect width="1200" height="675" rx="48" fill="url(#r)"/>
+  <g opacity=".18" stroke="#fff" stroke-width="2">
+    <path d="M0 520 C220 410 340 650 560 515 S940 390 1200 470" fill="none"/>
+    <path d="M0 130 C230 20 410 210 600 120 S930 35 1200 120" fill="none"/>
+  </g>
+  <circle cx="220" cy="210" r="92" fill="#000" opacity=".28"/>
+  <text x="220" y="246" text-anchor="middle" font-size="108" filter="url(#glow)">🔬</text>
+  <text x="90" y="420" font-family="Inter,Arial,sans-serif" font-size="72" font-weight="900" fill="#fff" letter-spacing="-2">Agent Laboratory</text>
+  <text x="92" y="485" font-family="Inter,Arial,sans-serif" font-size="30" font-weight="700" fill="#dcfce7">FREE • OPEN SOURCE • AI WEB TOOLS</text>
+  <text x="92" y="545" font-family="Inter,Arial,sans-serif" font-size="24" fill="#bbf7d0">AI Research Tools</text>
+  <text x="1080" y="610" text-anchor="end" font-family="monospace" font-size="22" fill="#fff" opacity=".75">AIWebTools.ai</text>
+</svg>
