@@ -60,11 +60,19 @@ export function useScrollThreshold(thresholdPx: number, options: Options = {}) {
       }
     };
 
-    // Passive scroll listener - minimal overhead
-    const onScroll = () => evaluate();
+    let raf = 0;
+
+    // Passive scroll listener - rAF throttled so mobile scroll is never forced
+    // through duplicate synchronous threshold reads.
+    const onScroll = () => {
+      if (raf) return;
+      raf = window.requestAnimationFrame(() => {
+        raf = 0;
+        evaluate();
+      });
+    };
 
     window.addEventListener("scroll", onScroll, { passive: true });
-    document.addEventListener("scroll", onScroll, { passive: true });
     
     // Also listen on scrollingElement directly (catches edge cases)
     const scrollingEl = document.scrollingElement;
@@ -79,10 +87,10 @@ export function useScrollThreshold(thresholdPx: number, options: Options = {}) {
 
     return () => {
       window.removeEventListener("scroll", onScroll);
-      document.removeEventListener("scroll", onScroll);
       if (scrollingEl && scrollingEl !== document.documentElement) {
         scrollingEl.removeEventListener("scroll", onScroll);
       }
+      if (raf) window.cancelAnimationFrame(raf);
       timeouts.forEach(clearTimeout);
     };
   }, [enabled, thresholdPx, allowReset]);

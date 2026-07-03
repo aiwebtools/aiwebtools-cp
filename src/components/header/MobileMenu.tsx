@@ -1,5 +1,5 @@
-import { Menu, Phone, Search, X, FileText, Globe, ChevronDown, Download, Trees, Clapperboard, Heart, Copy, Gift, Clock } from "lucide-react";
-import { useState, useRef, useCallback, lazy, Suspense } from "react";
+import { Menu, Phone, X, Globe, ChevronDown, Download, Trees, Clapperboard, Heart, Copy, Clock } from "lucide-react";
+import { useState, useRef, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
@@ -15,7 +15,6 @@ import { createTimePortalEffect } from "@/utils/timeEffects";
 import { triggerPublicDownload } from "@/utils/downloads";
 import { playMtvFlash } from "@/utils/mtvFlash";
 import { createConfettiCelebration } from "@/utils/effects/audioEffects";
-import { web3DomainsTools } from "@/data/tools/web3DomainsTools";
 import Logo from "./Logo";
 import GlobalSearchBar from "@/components/LazyGlobalSearchBar";
 
@@ -161,7 +160,7 @@ const MobileMenu = () => {
         {/* Backdrop overlay - click to close */}
         {isMenuOpen && (
           <div 
-            className="fixed inset-0 bg-black/30 z-[100] backdrop-blur-[2px]"
+            className="fixed inset-0 bg-black/30 z-[100]"
             onClick={closeMenu}
             aria-hidden="true"
           />
@@ -231,9 +230,9 @@ const MobileMenu = () => {
                     AI Tools Navigator
                   </h2>
                   <p className="text-xs text-cyan-200/70 mt-1 flex items-center gap-1">
-                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-cyan-400" />
                     Discover • Create • Innovate
-                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-cyan-400" />
                   </p>
                 </div>
                 
@@ -312,7 +311,7 @@ const MobileMenu = () => {
                   </div>
                   
                   {/* Pulsing border */}
-                  <div className="absolute inset-0 rounded-xl border-2 border-yellow-200/60 animate-pulse" />
+                  <div className="absolute inset-0 rounded-xl border-2 border-yellow-200/60" />
                 </button>
                 
                 {/* Keyframe animations */}
@@ -435,7 +434,8 @@ const MobileMenu = () => {
               <DropdownMenuItem
                 onClick={() => {
                   setIsMenuOpen(false);
-                  playMtvFlash().then(() => navigate('/music-stream'));
+                  navigate('/music-stream');
+                  requestAnimationFrame(() => { void playMtvFlash(360); });
                 }}
                 className="text-fuchsia-100 hover:bg-fuchsia-500/20 mb-2 rounded flex items-center text-sm border border-fuchsia-500/30 px-2 py-2 font-medium"
                 style={{ textShadow: '0 0 6px rgba(168,85,247,0.55)' }}
