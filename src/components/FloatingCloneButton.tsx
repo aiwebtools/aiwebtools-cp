@@ -42,7 +42,7 @@ const FloatingCloneButton = () => {
           zIndex: 2147483646, // Just below pinned player, but above everything else
           pointerEvents: 'auto',
           isolation: 'isolate',
-          willChange: 'transform', // GPU acceleration ensures fixed stays fixed
+          contain: 'layout style paint',
         }}
       >
         <a
@@ -63,9 +63,9 @@ const FloatingCloneButton = () => {
           }}
           title="Clone This AI Tools Website"
         >
-          {/* Animated border glow */}
+          {/* Lightweight border glow */}
           <div 
-            className="absolute inset-0 rounded-full border-2 md:border-4 border-cyan-400/70 animate-pulse"
+            className="absolute inset-0 rounded-full border-2 md:border-4 border-cyan-400/70"
             style={{
               boxShadow: '0 0 15px rgba(6, 182, 212, 0.5), inset 0 0 10px rgba(6, 182, 212, 0.2)'
             }}
@@ -76,7 +76,7 @@ const FloatingCloneButton = () => {
             <div className="text-[7px] md:text-[9px] font-bold leading-tight tracking-wide">
               <div>CLONE</div>
               <div>SITE</div>
-              <div className="text-yellow-300 animate-pulse" style={{ textShadow: '0 0 8px #FFD700' }}>FREE</div>
+              <div className="text-yellow-300" style={{ textShadow: '0 0 8px #FFD700' }}>FREE</div>
             </div>
           </div>
         </a>

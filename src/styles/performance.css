@@ -23,13 +23,10 @@ html {
   contain-intrinsic-size: 300px 400px;
 }
 
-/* Reduce repaints on interactive elements - only on hover, not always */
-button, a, [role="button"] {
-  transform: translateZ(0);
-}
-
+/* Avoid blanket GPU layer promotion on every tap target; mobile browsers can
+   freeze when hundreds of buttons/cards are forced into their own layers. */
 button:hover, a:hover, [role="button"]:hover {
-  will-change: transform;
+  will-change: auto;
 }
 
 /* Optimize cards for scroll performance - pan-y allows vertical scroll */
@@ -38,7 +35,6 @@ button:hover, a:hover, [role="button"]:hover {
   content-visibility: auto;
   contain-intrinsic-size: 280px 380px;
   will-change: auto;
-  transform: translateZ(0);
   touch-action: pan-y !important;
 }
 
@@ -103,17 +99,12 @@ h1, h2, h3, h4, h5, h6 {
 input, textarea, select {
   -webkit-appearance: none;
   appearance: none;
-  transform: translateZ(0);
-  backface-visibility: hidden;
   will-change: auto;
 }
 
 /* Search input specifically - absolute zero delay */
 input[type="text"], input[type="search"], 
 input[data-testid="global-search-input"] {
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  -webkit-transform: translateZ(0);
   transition: none !important;
   animation: none !important;
   /* Ensure text rendering is optimized */
@@ -242,11 +233,7 @@ header, footer, [role="banner"], [role="contentinfo"] {
   box-shadow: none !important;
 }
 
-/* GPU layer for main content */
-main, .grid {
-  transform: translateZ(0);
-  backface-visibility: hidden;
-}
+/* Do not force main/grid into permanent GPU layers on mobile. */
 
 /* Optimize canvas elements */
 canvas {

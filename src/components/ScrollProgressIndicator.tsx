@@ -1,20 +1,35 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef } from 'react';
 
 const ScrollProgressIndicator = () => {
-  const [scrollProgress, setScrollProgress] = useState(0);
+  const barRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
+    let raf = 0;
+
     const updateProgress = () => {
       const scrollTop = window.scrollY;
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
       const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-      setScrollProgress(progress);
+      if (barRef.current) {
+        barRef.current.style.transform = `scaleX(${Math.min(1, Math.max(0, progress / 100))})`;
+      }
     };
 
-    window.addEventListener('scroll', updateProgress, { passive: true });
+    const onScroll = () => {
+      if (raf) return;
+      raf = window.requestAnimationFrame(() => {
+        raf = 0;
+        updateProgress();
+      });
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
     updateProgress();
 
-    return () => window.removeEventListener('scroll', updateProgress);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      if (raf) window.cancelAnimationFrame(raf);
+    };
   }, []);
 
   return (
@@ -23,11 +38,14 @@ const ScrollProgressIndicator = () => {
       style={{ pointerEvents: 'none' }}
     >
       <div 
+        ref={barRef}
         className="h-full transition-none"
         style={{ 
-          width: `${scrollProgress}%`,
+          width: '100%',
+          transform: 'scaleX(0)',
+          transformOrigin: '0 50%',
           background: 'linear-gradient(90deg, #00ff41, #00ffff, #a855f7)',
-          boxShadow: '0 0 10px #00ff41, 0 0 20px #00ffff',
+          boxShadow: '0 0 6px #00ff41',
         }}
       />
     </div>

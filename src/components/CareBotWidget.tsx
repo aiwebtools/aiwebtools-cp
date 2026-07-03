@@ -2,7 +2,7 @@ import { useState, useRef, useEffect, useCallback } from "react";
 import { X, Send, Loader2, Sparkles, Bot } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import { useNavigate } from "react-router-dom";
-import { allTools } from "@/data/toolsData";
+import type { Tool } from "@/types/tools";
 
 type Msg = { role: "user" | "assistant"; content: string };
 
@@ -16,23 +16,36 @@ const slugifyToolTitle = (title: string): string =>
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/(^-|-$)/g, '');
 
-// Pre-flatten a search index of tool titles/tags/categories for fast keyword match.
-// pageUrl is the canonical INTERNAL AIWebTools tool-detail page so the bot's
-// recommendation buttons land on our own pages first (not the external launcher).
-const searchIndex = allTools.map((t) => {
-  const slug = slugifyToolTitle(t.title);
-  return {
-    title: t.title,
-    description: t.description,
-    category: t.category,
-    directUrl: t.directUrl,
-    pageUrl: `https://aiwebtools.ai/${slug}`,
-    tags: (t.tags || []).join(" "),
-    haystack: `${t.title} ${t.description} ${t.category || ""} ${(t.tags || []).join(" ")}`.toLowerCase(),
-  };
-});
+type SearchIndexEntry = Pick<Tool, "title" | "description" | "category" | "directUrl"> & {
+  pageUrl: string;
+  tags: string;
+  haystack: string;
+};
 
-function selectRelevantTools(query: string, max = 18) {
+let searchIndexPromise: Promise<SearchIndexEntry[]> | null = null;
+
+const getSearchIndex = async () => {
+  if (!searchIndexPromise) {
+    searchIndexPromise = import("@/data/toolsData").then(({ allTools }) =>
+      allTools.map((t) => {
+        const slug = slugifyToolTitle(t.title);
+        return {
+          title: t.title,
+          description: t.description,
+          category: t.category,
+          directUrl: t.directUrl,
+          pageUrl: `https://aiwebtools.ai/${slug}`,
+          tags: (t.tags || []).join(" "),
+          haystack: `${t.title} ${t.description} ${t.category || ""} ${(t.tags || []).join(" ")}`.toLowerCase(),
+        };
+      })
+    );
+  }
+  return searchIndexPromise;
+};
+
+async function selectRelevantTools(query: string, max = 18) {
+  const searchIndex = await getSearchIndex();
   const terms = query.toLowerCase().split(/\W+/).filter((w) => w.length > 2);
   if (!terms.length) {
     // Default: return some flagship custom GPTs
@@ -98,8 +111,6 @@ const CareBotWidget = () => {
     setInput("");
     setLoading(true);
 
-    const toolContext = selectRelevantTools(trimmed);
-
     let assistantSoFar = "";
     const appendDelta = (chunk: string) => {
       assistantSoFar += chunk;
@@ -113,6 +124,7 @@ const CareBotWidget = () => {
     };
 
     try {
+      const toolContext = await selectRelevantTools(trimmed);
       const resp = await fetch(CHAT_URL, {
         method: "POST",
         headers: {
@@ -183,7 +195,7 @@ const CareBotWidget = () => {
             style={{ boxShadow: "0 0 22px rgba(0,255,65,0.55), 0 0 44px rgba(0,255,65,0.25)" }}
           >
             {/* Pulsing ring */}
-            <span className="absolute inset-0 rounded-full border-2 border-green-300/60 animate-ping" />
+            <span className="absolute inset-0 rounded-full border-2 border-green-300/60" />
             <Bot className="w-7 h-7 relative z-10" strokeWidth={2.5} />
             {/* 24/7 badge */}
             <span className="absolute -top-1 -right-1 z-20 text-[8px] font-mono font-bold px-1.5 py-0.5 rounded-full bg-black text-green-300 border border-green-400 leading-none">
@@ -201,7 +213,7 @@ const CareBotWidget = () => {
 
       {/* Chat panel */}
       {open && (
-        <div className="fixed inset-x-2 bottom-2 sm:inset-x-auto sm:right-4 sm:bottom-4 z-[9999] w-auto sm:w-[380px] max-h-[80vh] flex flex-col rounded-2xl border border-green-500/40 bg-black/95 backdrop-blur-md shadow-2xl"
+        <div className="fixed inset-x-2 bottom-2 sm:inset-x-auto sm:right-4 sm:bottom-4 z-[9999] w-auto sm:w-[380px] max-h-[80vh] flex flex-col rounded-2xl border border-green-500/40 bg-black/95 shadow-2xl"
           style={{ boxShadow: "0 0 40px rgba(0, 255, 0, 0.35)" }}
         >
           {/* Header */}

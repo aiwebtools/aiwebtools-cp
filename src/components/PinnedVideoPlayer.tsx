@@ -1,12 +1,9 @@
 import { useState, useEffect, useCallback, useRef, memo, useMemo } from "react";
 import { createPortal } from "react-dom";
 import { useNavigate, useLocation } from "react-router-dom";
-import { Button } from "@/components/ui/button";
 import { Play, Pause, X, SkipForward, SkipBack, Volume2, VolumeX } from "lucide-react";
-import { allTools } from "@/data/toolsData";
-import { Tool } from "@/types/tools";
+import type { Tool } from "@/types/tools";
 import { useScrollThreshold } from "@/hooks/useScrollThreshold";
-import { playTimeWarpVoice } from "@/utils/effects/audioEffects";
 import mtvAiWebToolsLogo from "@/assets/mtv-aiwebtools-logo.png";
 
 const YT_EMBED_ORIGIN = "https://www.youtube-nocookie.com";
@@ -150,9 +147,6 @@ const slugifyToolTitle = (title: string): string =>
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/(^-|-$)/g, '');
-
-// Fast lookup for /:toolSlug routes (avoid treating /faq, /blog, etc. as tool pages)
-const TOOL_SLUG_SET = new Set(allTools.map(t => slugifyToolTitle(t.title)));
 
 // Detect if device is mobile
 const isMobileDevice = (): boolean => {
@@ -328,7 +322,7 @@ const WOW_FACTOR_TOOLS = new Set([
 ]);
 
 // Get shuffled tools with priority ordering - FRESH every page load
-const getShuffledToolsWithVideos = (): Tool[] => {
+const getShuffledToolsWithVideos = (allTools: Tool[]): Tool[] => {
   // Always generate fresh random order (no caching)
   const toolsWithVideos = allTools
     .filter(tool => extractYouTubeId(tool.videoUrl || '') !== null);
@@ -400,17 +394,26 @@ const setStoredIndex = (index: number) => {
 let cachedToolsWithVideos: Tool[] | null = null;
 let lastGenerationTime = 0;
 
-const getToolsWithVideosCached = (): Tool[] => {
+const getToolsWithVideosCached = (allTools: Tool[]): Tool[] => {
   const now = Date.now();
   // Regenerate if more than 1 second since last generation (new page load)
   // or if not yet generated
   if (!cachedToolsWithVideos || (now - lastGenerationTime > 1000)) {
-    cachedToolsWithVideos = getShuffledToolsWithVideos();
+    cachedToolsWithVideos = getShuffledToolsWithVideos(allTools);
     lastGenerationTime = now;
     // Reset index to 0 for fresh experience
     setStoredIndex(0);
   }
   return cachedToolsWithVideos;
+};
+
+let toolsLoadPromise: Promise<Tool[]> | null = null;
+
+const loadToolsWithVideos = async (): Promise<Tool[]> => {
+  if (!toolsLoadPromise) {
+    toolsLoadPromise = import("@/data/toolsData").then(({ allTools }) => getToolsWithVideosCached(allTools));
+  }
+  return toolsLoadPromise;
 };
 
 const PinnedVideoPlayer = memo(() => {
@@ -440,12 +443,7 @@ const PinnedVideoPlayer = memo(() => {
   const isToolDetailPage = useMemo(() => {
     const p = location.pathname || "";
     if (p.startsWith("/tool/")) return true;
-
-    // ToolDetail also supports /:toolSlug. Only treat single-segment paths as tool pages
-    // if the segment matches a known tool slug.
-    const segments = p.split("/").filter(Boolean);
-    if (segments.length !== 1) return false;
-    return TOOL_SLUG_SET.has(segments[0]);
+    return false;
   }, [location.pathname]);
   
   // Check if closed this session
@@ -474,7 +472,7 @@ const PinnedVideoPlayer = memo(() => {
   
   // Shuffled tools - kept in state so we can reshuffle on round wrap
   // (so every video plays once before any repeat)
-  const [toolsWithVideos, setToolsWithVideos] = useState<Tool[]>(() => getToolsWithVideosCached());
+  const [toolsWithVideos, setToolsWithVideos] = useState<Tool[]>([]);
 
   // Shuffled music-video order — every video plays once before any repeat.
   // Reshuffled when we wrap past the end so the next round is a fresh random order.
@@ -551,27 +549,34 @@ const PinnedVideoPlayer = memo(() => {
     try { sessionStorage.setItem(MODE_SESSION_KEY, mode); } catch {}
   }, [mode]);
 
+  useEffect(() => {
+    if (mode !== 'tools' || toolsWithVideos.length > 0) return;
+    let cancelled = false;
+    void loadToolsWithVideos()
+      .then((tools) => {
+        if (!cancelled) setToolsWithVideos(tools);
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, [mode, toolsWithVideos.length]);
+
   // Reset playlist index when switching modes so each gallery starts fresh
   const handleSelectMode = useCallback((next: 'tools' | 'music') => {
-    pauseOtherYouTubePlayers();
-    // Play the "WEB TOOLS INITIALIZING" voice on mode select for extra flair.
-    // Wrap in try/catch and defer to next frame so it never blocks playlist setup
-    // or causes a render-time crash on mode switch.
-    try {
-      requestAnimationFrame(() => {
-        try { playTimeWarpVoice(); } catch {}
-      });
-    } catch {}
     setCurrentIndex(0);
     if (next === 'music') {
       setMusicOrder(buildMusicOrder());
+    } else if (toolsWithVideos.length === 0) {
+      void loadToolsWithVideos().then((tools) => setToolsWithVideos(tools)).catch(() => {});
     }
     setMode(next);
     userPausedRef.current = false;
     userMutePreferenceRef.current = false;
     setIsMuted(false);
     setIsPlaying(true);
-  }, [pauseOtherYouTubePlayers]);
+    requestAnimationFrame(() => pauseOtherYouTubePlayers());
+  }, [pauseOtherYouTubePlayers, toolsWithVideos.length]);
 
   // Active playlist length and current video for the chosen mode
   const isMusicMode = mode === 'music';
@@ -763,7 +768,7 @@ const PinnedVideoPlayer = memo(() => {
         // Reshuffle the playlist for a brand-new random round — no recent repeats
         cachedToolsWithVideos = null;
         lastGenerationTime = 0;
-        const fresh = getShuffledToolsWithVideos();
+          const fresh = getShuffledToolsWithVideos(toolsWithVideos);
         // Avoid starting the new round with the exact video that just played
         if (fresh.length > 1 && toolsWithVideos[prev] && fresh[0].title === toolsWithVideos[prev].title) {
           [fresh[0], fresh[1]] = [fresh[1], fresh[0]];
@@ -792,7 +797,8 @@ const PinnedVideoPlayer = memo(() => {
 
   // Listen for YouTube iframe API messages to detect video end
   useEffect(() => {
-    if (!isVisible || !hasScrolledEnough || toolsWithVideos.length === 0) return;
+    if (mode === 'idle') return;
+    if (!isVisible || !hasScrolledEnough || activeLength === 0) return;
 
     let didAdvanceForVideo = false;
 
@@ -812,7 +818,6 @@ const PinnedVideoPlayer = memo(() => {
         // YouTube automatically sends these with {currentTime, duration, ...}
         if (data?.info?.duration && data.info.duration > 0 && !detectedDurationRef.current) {
           detectedDurationRef.current = data.info.duration;
-          console.log('[PinnedPlayer] Detected video duration:', data.info.duration, 'seconds for', currentTool?.title);
         }
         
         // Track when we receive a "playing" state (state 1)
@@ -874,10 +879,8 @@ const PinnedVideoPlayer = memo(() => {
           if (didAdvanceForVideo) return;
           if (hasReceivedPlayStateRef.current && timeSinceStart > MIN_PLAY_TIME) {
             didAdvanceForVideo = true;
-            console.log('[PinnedPlayer] Video ended via onStateChange after', timeSinceStart, 'ms, advancing...');
             advanceToNextVideo();
           } else {
-            console.log('[PinnedPlayer] Ignoring premature end signal, only', timeSinceStart, 'ms elapsed');
           }
           return;
         }
@@ -887,7 +890,6 @@ const PinnedVideoPlayer = memo(() => {
           if (didAdvanceForVideo) return;
           if (hasReceivedPlayStateRef.current && timeSinceStart > MIN_PLAY_TIME) {
             didAdvanceForVideo = true;
-            console.log('[PinnedPlayer] Video ended via infoDelivery after', timeSinceStart, 'ms, advancing...');
             advanceToNextVideo();
           }
           return;
@@ -895,7 +897,6 @@ const PinnedVideoPlayer = memo(() => {
         
         // Check for onReady event to request state updates
         if (data?.event === "onReady" && iframeRef.current) {
-          console.log('[PinnedPlayer] YouTube player ready, listening for state changes');
           // Request the player to send state updates
           iframeRef.current.contentWindow?.postMessage(
             JSON.stringify({ event: 'listening' }),
@@ -909,14 +910,14 @@ const PinnedVideoPlayer = memo(() => {
 
     window.addEventListener("message", handleMessage);
     return () => window.removeEventListener("message", handleMessage);
-  }, [isVisible, hasScrolledEnough, toolsWithVideos.length, advanceToNextVideo, currentVideoId, isMusicMode]);
+  }, [isVisible, hasScrolledEnough, activeLength, mode, advanceToNextVideo, currentVideoId, isMusicMode]);
 
   // Reliable fixed-interval auto-skip: every video plays for ~28 seconds,
   // then advances to the next. The onStateChange "ended" listener above will
   // still trigger early advance for shorter clips. This guarantees the
   // carousel always moves forward and never gets stuck on long videos.
   useEffect(() => {
-    if (!isVisible || !hasScrolledEnough || toolsWithVideos.length === 0) return;
+    if (!isVisible || !hasScrolledEnough || activeLength === 0) return;
 
     // Clear any existing timeout
     if (advanceTimeoutRef.current) {
@@ -932,7 +933,6 @@ const PinnedVideoPlayer = memo(() => {
     const AUTO_SKIP_MS = 15000; // 15 seconds per video per Master's request
 
     advanceTimeoutRef.current = setTimeout(() => {
-      console.log('[PinnedPlayer] Auto-skip after 15s:', currentTool?.title);
       advanceToNextVideo();
     }, AUTO_SKIP_MS);
 
@@ -941,7 +941,7 @@ const PinnedVideoPlayer = memo(() => {
         clearTimeout(advanceTimeoutRef.current);
       }
     };
-  }, [isVisible, hasScrolledEnough, toolsWithVideos.length, currentIndex, advanceToNextVideo, currentTool?.title, isMusicMode]);
+  }, [isVisible, hasScrolledEnough, activeLength, currentIndex, advanceToNextVideo, isMusicMode]);
 
   const handleNextVideo = useCallback(() => {
     setCurrentIndex(prev => (prev + 1) % activeLength);
@@ -1046,9 +1046,10 @@ const PinnedVideoPlayer = memo(() => {
   }, [isMuted, sendYTCommand, pauseOtherYouTubePlayers]);
 
   // Don't render if not on homepage, permanently closed, no tools, or haven't scrolled past hero yet
-  if (!isHomepage || !isVisible || !hasScrolledEnough || toolsWithVideos.length === 0) {
+  if (!isHomepage || !isVisible || !hasScrolledEnough) {
     return null;
   }
+  if (mode === 'tools' && toolsWithVideos.length === 0) return null;
   // Once a mode is chosen, require a video to render
   if (mode !== 'idle' && (!currentVideoId || !videoSrc)) {
     return null;
@@ -1074,7 +1075,6 @@ const PinnedVideoPlayer = memo(() => {
             }),
         // Portal + max z-index prevents the "audio-only" bug caused by stacking contexts/overlays.
         zIndex: 2147483647,
-        transform: "translateZ(0)",
         transition: "opacity 0.3s ease-out",
         visibility: shouldShow ? "visible" : "hidden",
         pointerEvents: shouldShow ? "auto" : "none",
@@ -1082,7 +1082,7 @@ const PinnedVideoPlayer = memo(() => {
       }}
     >
       <div 
-        className="bg-gray-900/95 backdrop-blur-sm rounded-lg border border-cyan-500/40 overflow-hidden shadow-2xl"
+        className="bg-gray-900/95 rounded-lg border border-cyan-500/40 overflow-hidden shadow-2xl"
         style={{
           boxShadow: '0 0 15px rgba(34, 211, 238, 0.3), 0 0 30px rgba(168, 85, 247, 0.15), 0 6px 24px rgba(0, 0, 0, 0.4)'
         }}
@@ -1090,24 +1090,16 @@ const PinnedVideoPlayer = memo(() => {
         {musicBurst && (
           <>
             <style>{`
-              @keyframes mtvCodeBurst { 0% { opacity:0; transform:scale(0.4);} 30% { opacity:1; } 100% { opacity:0; transform:scale(2.6);} }
-              @keyframes mtvLogoPop  { 0% { opacity:0; transform:scale(0.2) rotate(-25deg);} 50% { opacity:1; transform:scale(1.3) rotate(0);} 100% { opacity:0; transform:scale(2.4) rotate(15deg);} }
+              @keyframes mtvLogoPop  { 0% { opacity:0; transform:scale(0.75);} 45% { opacity:1; transform:scale(1.08);} 100% { opacity:0; transform:scale(1.2);} }
             `}</style>
             <div className="pointer-events-none fixed inset-0 z-[2147483646] flex items-center justify-center">
-              <div
-                aria-hidden
-                className="absolute inset-0 font-mono text-[10px] leading-[12px] text-[#a855f7] whitespace-pre overflow-hidden"
-                style={{ animation: "mtvCodeBurst .9s ease-out forwards", textShadow: "0 0 6px #a855f7" }}
-              >
-                {Array.from({ length: 40 }).map(() => "10110010 11001101 10101110 01001010\n").join("")}
-              </div>
               <img
                 src={mtvAiWebToolsLogo}
                 alt=""
                 aria-hidden
                 draggable={false}
-                className="w-40 h-40 drop-shadow-[0_0_40px_rgba(168,85,247,0.95)]"
-                style={{ animation: "mtvLogoPop .9s cubic-bezier(.2,.7,.2,1) forwards" }}
+                className="w-32 h-32 drop-shadow-[0_0_26px_rgba(168,85,247,0.85)]"
+                style={{ animation: "mtvLogoPop .42s ease-out forwards" }}
               />
             </div>
           </>
@@ -1155,15 +1147,13 @@ const PinnedVideoPlayer = memo(() => {
         >
           {mode === 'idle' ? (
             <div className="relative flex flex-col items-center justify-center gap-1.5 p-1.5 bg-black overflow-hidden">
-              <style>{`@keyframes matrixRain { 0% { transform: translateY(-50%);} 100% { transform: translateY(50%);} }`}</style>
-              {/* Matrix streaming code background */}
+              {/* Lightweight Matrix background */}
               <div
                 aria-hidden
                 className="absolute inset-0 pointer-events-none opacity-40"
                 style={{
                   background:
                     "repeating-linear-gradient(180deg, rgba(0,255,70,0.18) 0 1px, transparent 1px 3px)",
-                  animation: "matrixRain 2.5s linear infinite",
                   textShadow: "0 0 6px #00ff41",
                 }}
               />
@@ -1171,7 +1161,6 @@ const PinnedVideoPlayer = memo(() => {
                 aria-hidden
                 className="absolute inset-0 pointer-events-none font-mono text-[8px] leading-[9px] text-[#00ff41]/70 select-none overflow-hidden whitespace-pre"
                 style={{
-                  animation: "matrixRain 6s linear infinite",
                   textShadow: "0 0 4px #00ff41",
                 }}
               >
@@ -1201,7 +1190,7 @@ const PinnedVideoPlayer = memo(() => {
               <button
                 onClick={() => {
                   setMusicBurst(true);
-                  window.setTimeout(() => setMusicBurst(false), 900);
+                  window.setTimeout(() => setMusicBurst(false), 420);
                   handleSelectMode('music');
                 }}
                 className="relative z-10 group w-full px-2 pt-3 pb-1 text-[10px] font-mono font-bold uppercase tracking-wider text-[#a855f7] bg-black/70 border border-[#a855f7]/60 hover:bg-[#a855f7]/15 hover:border-[#a855f7] active:scale-95 transition-all"
@@ -1289,7 +1278,7 @@ const PinnedVideoPlayer = memo(() => {
             </button>
             <button
               onClick={handleToolClick}
-              className="col-span-2 h-7 w-full text-[12px] tracking-wider rounded bg-gradient-to-r from-amber-500 via-yellow-300 to-amber-500 hover:from-amber-400 hover:via-yellow-200 hover:to-amber-400 text-black font-extrabold animate-pulse hover:scale-105 active:scale-95 transition-transform bg-[length:200%_100%] animate-[shimmer_2s_linear_infinite]"
+              className="col-span-2 h-7 w-full text-[12px] tracking-wider rounded bg-gradient-to-r from-amber-500 via-yellow-300 to-amber-500 hover:from-amber-400 hover:via-yellow-200 hover:to-amber-400 text-black font-extrabold active:scale-95 bg-[length:200%_100%]"
               style={{
                 boxShadow: '0 0 12px rgba(255, 215, 0, 0.8), 0 0 24px rgba(255, 215, 0, 0.5), 0 0 36px rgba(255, 215, 0, 0.3)'
               }}

@@ -32,7 +32,7 @@ const Header = () => {
   }, []);
 
   return (
-    <header className="fixed top-0 w-full z-[100] bg-black/95 border-b border-cyan-500/30 shadow-lg backdrop-blur-sm">
+    <header className="fixed top-0 w-full z-[100] bg-black/95 border-b border-cyan-500/30 shadow-lg">
       {/* Cosmic scrolling marquee - top strip */}
       <div
         aria-label="Cosmic message"
