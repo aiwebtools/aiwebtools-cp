@@ -111,8 +111,6 @@ const CareBotWidget = () => {
     setInput("");
     setLoading(true);
 
-    const toolContext = await selectRelevantTools(trimmed);
-
     let assistantSoFar = "";
     const appendDelta = (chunk: string) => {
       assistantSoFar += chunk;
@@ -126,6 +124,7 @@ const CareBotWidget = () => {
     };
 
     try {
+      const toolContext = await selectRelevantTools(trimmed);
       const resp = await fetch(CHAT_URL, {
         method: "POST",
         headers: {

@@ -549,6 +549,19 @@ const PinnedVideoPlayer = memo(() => {
     try { sessionStorage.setItem(MODE_SESSION_KEY, mode); } catch {}
   }, [mode]);
 
+  useEffect(() => {
+    if (mode !== 'tools' || toolsWithVideos.length > 0) return;
+    let cancelled = false;
+    void loadToolsWithVideos()
+      .then((tools) => {
+        if (!cancelled) setToolsWithVideos(tools);
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, [mode, toolsWithVideos.length]);
+
   // Reset playlist index when switching modes so each gallery starts fresh
   const handleSelectMode = useCallback((next: 'tools' | 'music') => {
     setCurrentIndex(0);
@@ -784,6 +797,7 @@ const PinnedVideoPlayer = memo(() => {
 
   // Listen for YouTube iframe API messages to detect video end
   useEffect(() => {
+    if (mode === 'idle') return;
     if (!isVisible || !hasScrolledEnough || (mode !== 'idle' && activeLength === 0)) return;
 
     let didAdvanceForVideo = false;
