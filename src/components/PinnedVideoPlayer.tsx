@@ -798,7 +798,7 @@ const PinnedVideoPlayer = memo(() => {
   // Listen for YouTube iframe API messages to detect video end
   useEffect(() => {
     if (mode === 'idle') return;
-    if (!isVisible || !hasScrolledEnough || (mode !== 'idle' && activeLength === 0)) return;
+    if (!isVisible || !hasScrolledEnough || activeLength === 0) return;
 
     let didAdvanceForVideo = false;
 
