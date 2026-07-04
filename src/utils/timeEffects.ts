@@ -225,16 +225,23 @@ export const createTimePortalEffect = (
   const emoji = options?.emoji || '🔧';
   trackToolVisit(finalToolName, emoji, destinationUrl);
 
+  // Special sentinel: trigger CSV download of the complete tool directory
+  const isCsvDownload = destinationUrl?.startsWith('csv-download://');
+
+  // CRITICAL: open normal external URLs before any DOM/audio effects so mobile
+  // taps never wait on animation work. Effects are purely decorative.
+  if (!isCsvDownload && destinationUrl && destinationUrl.trim()) {
+    console.log('🚀 Opening URL first (sync, preserves user gesture):', destinationUrl);
+    openDestinationUrl(destinationUrl);
+  }
+
   // Play voice immediately - MUST be called from click handler for autoplay
   console.log('🎤 Triggering voice...');
   playTimeWarpVoice();
 
   // Create ultra-brief green matrix flash
   console.log('✨ Creating visual flash...');
-  const elements = createInstantMatrixFlash();
-
-  // Special sentinel: trigger CSV download of the complete tool directory
-  const isCsvDownload = destinationUrl?.startsWith('csv-download://');
+  const elements = options?.skipScreenOverlay ? [] : createInstantMatrixFlash();
 
   // CRITICAL: open the URL SYNCHRONOUSLY inside the click handler so the
   // browser preserves the user-gesture and never blocks the new tab.
@@ -254,9 +261,6 @@ export const createTimePortalEffect = (
         console.error('CSV download failed:', err);
       }
     })();
-  } else if (destinationUrl && destinationUrl.trim()) {
-    console.log('🚀 Opening URL (sync, preserves user gesture):', destinationUrl);
-    openDestinationUrl(destinationUrl);
   }
 
   // Clean up the flash visuals after 250ms (decoupled from navigation)
