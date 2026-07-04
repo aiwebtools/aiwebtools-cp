@@ -18,7 +18,38 @@ type SearchResponse = {
   id: number;
   query: string;
   indices: number[];
+  results: SearchResultLite[];
 };
+
+type SearchResultLite = {
+  title: string;
+  category?: string;
+  description?: string;
+  tags?: string[];
+  directUrl?: string;
+  imageUrl?: string;
+  videoUrl?: string;
+  emoji?: string;
+  color?: string;
+  rating?: number;
+  totalVotes?: number;
+  isFree?: boolean;
+};
+
+const sanitizeToolForMainThread = (tool: (typeof allTools)[number]): SearchResultLite => ({
+  title: tool.title,
+  category: tool.category,
+  description: tool.description,
+  tags: Array.isArray(tool.tags) ? tool.tags.slice(0, 24) : [],
+  directUrl: tool.directUrl,
+  imageUrl: tool.imageUrl,
+  videoUrl: tool.videoUrl,
+  emoji: tool.emoji,
+  color: tool.color,
+  rating: tool.rating,
+  totalVotes: tool.totalVotes,
+  isFree: tool.isFree,
+});
 
 const toolKey = (tool: (typeof allTools)[number]) =>
   `${(tool?.title || "").toLowerCase()}|||${(tool?.directUrl || "").toLowerCase()}`;
@@ -327,7 +358,8 @@ const workerScope = globalThis as typeof globalThis & {
 workerScope.onmessage = (event: MessageEvent<SearchRequest>) => {
   const { id, query } = event.data;
   const indices = runFullSearch(query);
-  const response: SearchResponse = { id, query, indices };
+  const results = indices.slice(0, 140).map((index) => sanitizeToolForMainThread(allTools[index]));
+  const response: SearchResponse = { id, query, indices, results };
   workerScope.postMessage(response);
 };
 

@@ -190,6 +190,20 @@ const PageLoader = () => {
   );
 };
 
+const InstantToolFallback = ({ tool }: { tool?: any }) => {
+  if (!tool?.title) return null;
+  return (
+    <div className="min-h-screen bg-black px-4 pt-28 text-cyan-100">
+      <div className="mx-auto max-w-4xl rounded-lg border border-cyan-500/30 bg-gray-900/80 p-6 shadow-2xl shadow-cyan-500/20">
+        <div className="mb-3 text-xs uppercase tracking-[0.22em] text-matrix-green">Opening tool</div>
+        <h1 className="text-2xl font-bold text-cyan-100">{tool.title}</h1>
+        {tool.category ? <p className="mt-2 text-sm text-cyan-300/80">{tool.category}</p> : null}
+        {tool.description ? <p className="mt-4 line-clamp-4 text-sm leading-relaxed text-cyan-100/75">{tool.description}</p> : null}
+      </div>
+    </div>
+  );
+};
+
 const RouteReadySignal = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
 
@@ -238,14 +252,16 @@ const AnimatedRoutes = () => {
   }
   
   // Secondary pages use Suspense for lazy loading
+  const instantTool = (location.state as any)?.instantTool;
+  const toolFallback = <InstantToolFallback tool={instantTool} />;
   return (
     <Suspense fallback={<PageLoader />}>
       <Routes location={location}>
         <Route path="/category/:categoryName" element={<RouteReadySignal><CategoryPage /></RouteReadySignal>} />
         <Route path="/main-category/:mainCategoryName" element={<RouteReadySignal><MainCategoryPage /></RouteReadySignal>} />
         {/* Tool detail routes: no fallback — instant nav like before */}
-        <Route path="/tool/:toolId" element={<Suspense fallback={null}><RouteReadySignal><ToolDetail /></RouteReadySignal></Suspense>} />
-        <Route path="/:toolSlug" element={<Suspense fallback={null}><RouteReadySignal><ToolDetail /></RouteReadySignal></Suspense>} />
+        <Route path="/tool/:toolId" element={<Suspense fallback={toolFallback}><RouteReadySignal><ToolDetail /></RouteReadySignal></Suspense>} />
+        <Route path="/:toolSlug" element={<Suspense fallback={toolFallback}><RouteReadySignal><ToolDetail /></RouteReadySignal></Suspense>} />
         <Route path="/privacy-policy" element={<RouteReadySignal><PrivacyPolicy /></RouteReadySignal>} />
         <Route path="/similar-tools/:toolId" element={<RouteReadySignal><SimilarToolsPage /></RouteReadySignal>} />
         <Route path="/ai-tools-hub" element={<RouteReadySignal><AIToolsHub /></RouteReadySignal>} />
