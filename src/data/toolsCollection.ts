@@ -199,6 +199,7 @@ import { openSourceAgentsBatch2026Part3 } from './tools/openSourceAgentsBatch202
 import { openSourceAgentsBatch2026Part4 } from './tools/openSourceAgentsBatch2026Part4';
 import { deepAgentToolsBatch2026 } from './tools/deepAgentToolsBatch2026';
 import { freeOpenSourceBatch2026F } from './tools/freeOpenSourceBatch2026F';
+import { freeOpenSourceBatch2026G } from './tools/freeOpenSourceBatch2026G';
 import { topProductivityWriting } from './tools/topProductivityWriting';
 import { developerProductivityAI } from './tools/developerProductivityAI';
 import { aiResearchAcademicTools } from './tools/aiResearchAcademicTools';
@@ -307,6 +308,7 @@ export const getAllToolCategories = (): Tool[] => {
     ...openSourceAgentsBatch2026Part4, // 50 fresh open-source tools: UFO Agent, WebVoyager, llama.cpp, ExLlamaV2, MLC LLM, WasmEdge, KoboldCpp, LMDeploy, Distilabel, TRL, PEFT, LM Eval Harness, OpenCompass, Inspect AI, NeMo Guardrails, Avante.nvim, txtai, NLUX, LocalRecall, Jina Reader, SearXNG AI, Witsy, Page Assist, GPTeam, Semantic Router, aisuite, ChainForge, HumanLayer, Marker PDF, Surya OCR, olmOCR, Nougat OCR, RapidOCR, whisper.cpp, Faster Whisper, Distil-Whisper, WhisperX, OpenVoice, F5-TTS, Parler-TTS, Coqui XTTS, StyleTTS2, MeloTTS, Piper TTS, ESPnet, SpeechBrain, ToolLLM, Granite Code, Mathstral, Chronos
     ...deepAgentToolsBatch2026,
     ...freeOpenSourceBatch2026F, // 50 free/open-source humanity tools: Swarm, KaibanJS, LlamaDeploy, agent benchmarks, local inference, MLOps
+    ...freeOpenSourceBatch2026G, // 40 more free/OSS humanity tools: Doccano, Label Studio, Danswer, MinerU, InstructLab, Torchtune, Mergekit, Metaflow, HF TGI, Arize Phoenix, Chidori, LLMFlows, Modelfusion, NeMo Curator, CVAT, GROBID, Rig, Rivet, SkyPilot, Ludwig, H2O LLM Studio, CTranslate2, Petals, BigAGI, Serge, OpenBB, Chainlit, Gradio, Streamlit, Automatic1111, SD.Next, Kohya SS, Draw Things, HF Diffusers, TensorZero, nanoGPT, Apple MLX, Exo, Candle, AutoChain
     ...topProductivityWriting, // Notion AI, Grammarly, Jasper, etc.
     ...additionalPopularTools2025, // Kling AI, RunwayML Gen-3, etc.
     
