@@ -53,6 +53,13 @@ const isMobileViewport = () =>
   typeof window !== "undefined" &&
   (window.innerWidth <= 768 || window.matchMedia?.("(hover: none) and (pointer: coarse)").matches);
 
+type WorkerSearchResponse = {
+  id: number;
+  query: string;
+  indices?: number[];
+  results?: any[];
+};
+
 // ==================== EXACT-TITLE GUARANTEE ====================
 // Normalize a title or query to a comparable key (strip emojis, punctuation, GPT/AI suffixes).
 // Used to guarantee that typing a tool's exact name ALWAYS surfaces it, even when the
@@ -1471,6 +1478,13 @@ export const useGlobalSearch = () => {
   const toolsRef = useRef<any[]>([]);
   const toolsLoadingRef = useRef<Promise<any[]> | null>(null);
   const pendingSearchRef = useRef<string | null>(null);
+  const searchWorkerRef = useRef<Worker | null>(null);
+  const workerRequestIdRef = useRef(0);
+  const workerResolversRef = useRef(new Map<number, {
+    resolve: (results: any[]) => void;
+    reject: (error: unknown) => void;
+    timeoutId: number;
+  }>());
 
   const loadTools = useCallback(() => {
     if (toolsRef.current.length > 0) return Promise.resolve(toolsRef.current);
@@ -1490,9 +1504,59 @@ export const useGlobalSearch = () => {
     return toolsLoadingRef.current;
   }, []);
 
+  const getSearchWorker = useCallback(() => {
+    if (typeof window === "undefined" || typeof Worker === "undefined") return null;
+    if (searchWorkerRef.current) return searchWorkerRef.current;
+
+    try {
+      const worker = new Worker(new URL("../workers/globalSearchWorker.ts", import.meta.url), { type: "module" });
+      worker.onmessage = (event: MessageEvent<WorkerSearchResponse>) => {
+        const { id, results = [] } = event.data;
+        const pending = workerResolversRef.current.get(id);
+        if (!pending) return;
+        window.clearTimeout(pending.timeoutId);
+        workerResolversRef.current.delete(id);
+        pending.resolve(results);
+      };
+      worker.onerror = (error) => {
+        workerResolversRef.current.forEach((pending) => {
+          window.clearTimeout(pending.timeoutId);
+          pending.reject(error);
+        });
+        workerResolversRef.current.clear();
+        searchWorkerRef.current?.terminate();
+        searchWorkerRef.current = null;
+      };
+      searchWorkerRef.current = worker;
+      return worker;
+    } catch {
+      return null;
+    }
+  }, []);
+
+  const runWorkerSearch = useCallback((query: string): Promise<any[]> => {
+    const worker = getSearchWorker();
+    if (!worker) return Promise.resolve([]);
+
+    const id = ++workerRequestIdRef.current;
+    return new Promise((resolve, reject) => {
+      const timeoutId = window.setTimeout(() => {
+        workerResolversRef.current.delete(id);
+        resolve([]);
+      }, isMobileViewport() ? 8000 : 5000);
+
+      workerResolversRef.current.set(id, { resolve, reject, timeoutId });
+      worker.postMessage({ id, query });
+    });
+  }, [getSearchWorker]);
+
   const prepareSearch = useCallback(() => {
+    if (isMobileViewport()) {
+      getSearchWorker();
+      return;
+    }
     void loadTools();
-  }, [loadTools]);
+  }, [getSearchWorker, loadTools]);
 
   // Precompute lowercase fields once (keeps search snappy)
   const quickIndex = useMemo(() => {
@@ -2045,17 +2109,6 @@ export const useGlobalSearch = () => {
       return;
     }
 
-    // Do not import/index the full tools database during the first mobile
-    // seconds unless the visitor actually searches. This preserves instant
-    // touch scrolling right after the loader disappears.
-    if (toolsRef.current.length === 0) {
-      pendingSearchRef.current = value;
-      setIsOpen(true);
-      setSearchResults([]);
-      void loadTools();
-      return;
-    }
-
     // Full UI text can be long; search work uses quick long-query scoring
     // instead of slicing/locking the visible input.
     const cappedT = t;
@@ -2084,6 +2137,30 @@ export const useGlobalSearch = () => {
       return;
     }
 
+    const shouldUseWorker = isMobileViewport() || toolsRef.current.length === 0 || cappedT.length > 24;
+    if (shouldUseWorker) {
+      pendingSearchRef.current = null;
+      void runWorkerSearch(cappedT).then((workerResults) => {
+        if (currentId !== searchIdRef.current) return;
+        const results = workerResults.length > 0
+          ? workerResults
+          : (toolsRef.current.length > 0 ? ensureExactTitleHit(quickSearch(cappedT), cappedT) : []);
+        searchCache.set(fullCacheKey, results);
+        startTransition(() => {
+          setSearchResults(results);
+          setDisplayedCount(50);
+        });
+      });
+      return;
+    }
+
+    if (toolsRef.current.length === 0) {
+      pendingSearchRef.current = value;
+      setSearchResults([]);
+      void loadTools();
+      return;
+    }
+
     // 4) Run quick search AFTER paint to prevent any typing lag
     quickRef.current = setTimeout(() => {
       if (currentId !== searchIdRef.current) return;
@@ -2105,7 +2182,7 @@ export const useGlobalSearch = () => {
     // Full heavy ranking intentionally stays out of the live input path.
     // quickSearch uses the precomputed index and is exhaustive enough for discovery;
     // avoiding the second all-tool ranking pass keeps backspace/delete smooth on phones.
-  }, [quickSearch, ensureExactTitleHit, loadTools]);
+  }, [quickSearch, ensureExactTitleHit, loadTools, runWorkerSearch]);
 
   // If the first search triggered the lazy database import, run that search as
   // soon as the index exists. Kept separate so it uses the fresh quickIndex.
@@ -2122,6 +2199,10 @@ export const useGlobalSearch = () => {
     return () => {
       if (quickRef.current) clearTimeout(quickRef.current);
       if (fullRef.current) clearTimeout(fullRef.current);
+      workerResolversRef.current.forEach((pending) => window.clearTimeout(pending.timeoutId));
+      workerResolversRef.current.clear();
+      searchWorkerRef.current?.terminate();
+      searchWorkerRef.current = null;
     };
   }, []);
 
@@ -2143,7 +2224,9 @@ export const useGlobalSearch = () => {
       if (cancelled) return;
       const ric = (window as any).requestIdleCallback;
       const scheduleWarm = () => {
-        if (toolsRef.current.length === 0) {
+        if (isMobileViewport()) {
+          getSearchWorker();
+        } else if (toolsRef.current.length === 0) {
           void loadTools().then(() => warm());
         } else {
           warm();
@@ -2157,7 +2240,7 @@ export const useGlobalSearch = () => {
       cancelled = true;
       window.clearTimeout(handle);
     };
-  }, [quickSearch, loadTools]);
+  }, [quickSearch, loadTools, getSearchWorker]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -2180,7 +2263,7 @@ export const useGlobalSearch = () => {
     if (fullRef.current) clearTimeout(fullRef.current);
 
     // Navigate synchronously - no RAF wrapper
-    navigate(path);
+    navigate(path, { state: { instantTool: tool } });
 
     // Defer the heavy state cleanup so React doesn't reconcile the entire
     // (potentially huge) results list in the same tick as navigation.
@@ -2224,7 +2307,7 @@ export const useGlobalSearch = () => {
         if (quickRef.current) clearTimeout(quickRef.current);
         if (fullRef.current) clearTimeout(fullRef.current);
         // Navigate using slug directly - no O(n) findIndex
-        navigate(`/${generateToolSlug(topResult.title)}`);
+        navigate(`/${generateToolSlug(topResult.title)}`, { state: { instantTool: topResult } });
         setIsOpen(false);
         setSearchResults([]);
         setSearchTermInternal("");
