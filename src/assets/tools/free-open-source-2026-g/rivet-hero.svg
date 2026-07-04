@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#6366f1"/>
+      <stop offset="1" stop-color="#312e81"/>
+    </linearGradient>
+    <linearGradient id="grid" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#00ff41" stop-opacity="0.14"/>
+      <stop offset="1" stop-color="#00ff41" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <rect width="1200" height="675" fill="url(#grid)"/>
+  <g font-family="'Courier New', monospace" fill="#00ff41" font-size="14" opacity="0.35">
+    <text x="30" y="40">&gt; init open_source_ai --tool=rivet</text>
+    <text x="30" y="60">&gt; license: MIT · Apache · Free</text>
+    <text x="30" y="640">&gt; indexed on AIWEBTOOLS.AI · 4,000+ tools</text>
+  </g>
+  <text x="600" y="300" font-family="'Segoe UI Emoji','Apple Color Emoji',system-ui" font-size="180" text-anchor="middle">🧩</text>
+  <text x="600" y="440" font-family="'Segoe UI',system-ui,sans-serif" font-weight="800" font-size="72" fill="#ffffff" text-anchor="middle" stroke="#000" stroke-width="1.5" paint-order="stroke">Rivet</text>
+  <text x="600" y="490" font-family="'Segoe UI',system-ui,sans-serif" font-weight="600" font-size="26" fill="#d1fae5" text-anchor="middle">Open-Source · Self-Hostable · Free</text>
+  <g transform="translate(1050,610)">
+    <rect x="-140" y="-30" width="140" height="40" rx="8" fill="rgba(0,0,0,0.55)" stroke="#00ff41" stroke-width="1"/>
+    <text x="-70" y="-4" font-family="'Courier New',monospace" font-size="15" fill="#00ff41" text-anchor="middle" font-weight="700">AIWEBTOOLS.AI</text>
+  </g>
+</svg>
