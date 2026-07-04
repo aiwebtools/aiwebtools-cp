@@ -1,5 +1,5 @@
 import { Tool } from "@/types/tools";
-import { Apple, PartyPopper, BarChart3, BookOpenText, Brain, Brush, Cloud, Cog, Dna, Droplets, Eye, FileText, Flame, FlaskConical, Flower, GitBranch, GraduationCap, LayoutDashboard, Link, MessageSquare, Music, Network, Nut, Palette, Pickaxe, Rainbow, Rocket, Search, Server, Cloud, Sliders, Sparkles, Tags, Target, TrendingUp, Waves, Workflow, Zap } from "lucide-react";
+import { Apple, BarChart3, BookOpenText, Brain, Brush, Cloud, Cog, Dna, Droplets, Eye, FileText, Flame, FlaskConical, Flower, GitBranch, GraduationCap, LayoutDashboard, Link, MessageSquare, Music, Network, Nut, Palette, PartyPopper, Pickaxe, Rainbow, Rocket, Search, Server, Sliders, Sparkles, Tags, Target, TrendingUp, Waves, Workflow, Zap } from "lucide-react";
 
 import doccanoHero from "@/assets/tools/free-open-source-2026-g/doccano-hero.svg";
 import labelStudioHero from "@/assets/tools/free-open-source-2026-g/label-studio-hero.svg";
