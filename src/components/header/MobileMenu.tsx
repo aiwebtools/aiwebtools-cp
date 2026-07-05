@@ -17,6 +17,7 @@ import { playMtvFlash } from "@/utils/mtvFlash";
 import { createConfettiCelebration } from "@/utils/effects/audioEffects";
 import Logo from "./Logo";
 import GlobalSearchBar from "@/components/LazyGlobalSearchBar";
+import JoinEmailListButton from "@/components/JoinEmailListButton";
 
 import { useRecentlyVisitedTools } from "@/hooks/useRecentlyVisitedTools";
 
@@ -244,6 +245,11 @@ const MobileMenu = () => {
               <div className="mb-4">
                 <div className="text-xs text-cyan-400 mb-2">🔍 Search AI Tools</div>
                 <GlobalSearchBar />
+              </div>
+
+              {/* Join Email List CTA */}
+              <div className="mb-4">
+                <JoinEmailListButton source="mobile-menu" variant="mobile" />
               </div>
 
               <>
