@@ -5,6 +5,7 @@ import Navigation from "./header/Navigation";
 import MobileMenu from "./header/MobileMenu";
 import DesktopMenu from "./header/DesktopMenu";
 import TabletMenu from "./header/TabletMenu";
+import JoinEmailListButton from "./JoinEmailListButton";
 
 const getViewportMenu = () => {
   if (typeof window === "undefined") return "desktop";
@@ -53,6 +54,9 @@ const Header = () => {
           
           {/* Menu buttons - always visible */}
           <div className="flex items-center gap-2 md:gap-3 flex-shrink-0">
+            {viewportMenu !== "mobile" && (
+              <JoinEmailListButton source="header" variant="compact" className="hidden md:inline-flex" />
+            )}
             {viewportMenu !== "mobile" && <Navigation />}
             {viewportMenu === "mobile" && <MobileMenu />}
             {viewportMenu === "desktop" && <DesktopMenu />}
