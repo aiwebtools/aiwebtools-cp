@@ -240,7 +240,14 @@ const queryClient = new QueryClient({
 // Routes wrapper - eager pages render instantly, lazy pages show loader
 const AnimatedRoutes = () => {
   const location = useLocation();
-  
+
+  // Mark route-start once per pathname so perf telemetry can measure ready time.
+  const routeMarkedRef = React.useRef<string>("");
+  if (routeMarkedRef.current !== location.pathname) {
+    routeMarkedRef.current = location.pathname;
+    import('@/utils/perfTelemetry').then((m) => m.markRouteStart(location.pathname)).catch(() => {});
+  }
+
   // Critical paths keep the animated cube visible while lazy chunks reconnect.
   if (location.pathname === '/' || location.pathname === '/welcome') {
     return (
