@@ -43,8 +43,15 @@ let cacheVersion = 47; // Phase 27: Expanded historical detection with 89+ verif
 const CACHE_KEY = 'aitools_category_cache_v2';
 const CACHE_VERSION_KEY = 'aitools_cache_version';
 
+// Guard: worker contexts and SSR have no localStorage — access must be safe.
+const hasLocalStorage = (): boolean => {
+  try { return typeof window !== "undefined" && typeof window.localStorage !== "undefined"; }
+  catch { return false; }
+};
+
 // Load cache from localStorage on startup
 const loadCacheFromStorage = () => {
+  if (!hasLocalStorage()) return false;
   try {
     const stored = localStorage.getItem(CACHE_KEY);
     const version = localStorage.getItem(CACHE_VERSION_KEY);
@@ -63,6 +70,7 @@ const loadCacheFromStorage = () => {
 
 // Save cache to localStorage
 const saveCacheToStorage = () => {
+  if (!hasLocalStorage()) return;
   try {
     const cacheObject = Object.fromEntries(toolsCacheByMainCategory);
     const serialized = JSON.stringify(cacheObject);
@@ -78,8 +86,7 @@ const saveCacheToStorage = () => {
     localStorage.setItem(CACHE_VERSION_KEY, cacheVersion.toString());
     console.log('💾 Cache saved to storage');
   } catch (error) {
-    localStorage.removeItem(CACHE_KEY);
-    localStorage.removeItem(CACHE_VERSION_KEY);
+    try { localStorage.removeItem(CACHE_KEY); localStorage.removeItem(CACHE_VERSION_KEY); } catch { /* noop */ }
   }
 };
 
@@ -88,13 +95,15 @@ export const resetCache = () => {
   toolsCacheByMainCategory.clear();
   cacheBuilt = false;
   lastToolsLength = 0;
-  localStorage.removeItem(CACHE_KEY);
-  localStorage.removeItem(CACHE_VERSION_KEY);
+  if (hasLocalStorage()) {
+    try { localStorage.removeItem(CACHE_KEY); localStorage.removeItem(CACHE_VERSION_KEY); } catch { /* noop */ }
+  }
   console.log('🔄 Cache reset - will rebuild with 50+ new tools included v36');
 };
 
 // Force immediate cache reset for STRICT category detection update (v35)
-resetCache();
+// Only reset when we actually have a browser DOM — never in Web Worker or SSR.
+if (hasLocalStorage()) resetCache();
 
 // Helper function to combine subcategory and specialized tools efficiently
 const getCombinedTools = (tools: Tool[], mainCat: any, specializedTools: Tool[]) => {

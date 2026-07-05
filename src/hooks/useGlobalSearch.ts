@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { createTimePortalEffect } from "@/utils/timeEffects";
 import { generateToolSlug } from "@/utils/urlGenerator";
 import { getCurrentToolCount } from "@/utils/toolCounter";
+import { recordMetric } from "@/utils/perfTelemetry";
 
 // ==================== LRU CACHE FOR SEARCH RESULTS ====================
 // Caches the last 50 search queries to avoid recomputation on repeated searches
@@ -2092,11 +2093,18 @@ export const useGlobalSearch = () => {
   // INSTANT typing - defer ALL search work so input never blocks
   const setSearchTerm = useCallback((value: string) => {
     // 1) Update input state IMMEDIATELY - zero blocking
+    const keystrokeAt = performance.now();
     setSearchTermInternal(value);
 
     // 2) Cancel any pending search operations
     if (quickRef.current) clearTimeout(quickRef.current);
     if (fullRef.current) clearTimeout(fullRef.current);
+    // Cancel any in-flight worker request so its result is ignored on arrival.
+    workerResolversRef.current.forEach((pending) => {
+      window.clearTimeout(pending.timeoutId);
+      try { pending.resolve([]); } catch { /* noop */ }
+    });
+    workerResolversRef.current.clear();
 
     const t = value.trim();
     if (!t) {
@@ -2133,6 +2141,7 @@ export const useGlobalSearch = () => {
           setSearchResults(cachedFull);
           setDisplayedCount(50);
         });
+        recordMetric("search.cachehit.ms", performance.now() - keystrokeAt);
       }
       return;
     }
@@ -2150,6 +2159,7 @@ export const useGlobalSearch = () => {
           setSearchResults(results);
           setDisplayedCount(50);
         });
+        recordMetric("search.worker.ms", performance.now() - keystrokeAt, { len: cappedT.length });
       });
       return;
     }
@@ -2170,6 +2180,7 @@ export const useGlobalSearch = () => {
         setSearchResults(fast);
         setDisplayedCount(50);
       });
+      recordMetric("search.quick.ms", performance.now() - keystrokeAt, { len: cappedT.length });
 
       // Strong exact-title hit? Skip the heavy full-search entirely — quick result is best.
       const topTitle = (fast?.[0]?.title || "").toLowerCase().trim();
