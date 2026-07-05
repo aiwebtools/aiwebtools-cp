@@ -200,6 +200,7 @@ import { openSourceAgentsBatch2026Part4 } from './tools/openSourceAgentsBatch202
 import { deepAgentToolsBatch2026 } from './tools/deepAgentToolsBatch2026';
 import { freeOpenSourceBatch2026F } from './tools/freeOpenSourceBatch2026F';
 import { freeOpenSourceBatch2026G } from './tools/freeOpenSourceBatch2026G';
+import { freeOpenSourceBatch2026H } from './tools/freeOpenSourceBatch2026H';
 import { topProductivityWriting } from './tools/topProductivityWriting';
 import { developerProductivityAI } from './tools/developerProductivityAI';
 import { aiResearchAcademicTools } from './tools/aiResearchAcademicTools';
