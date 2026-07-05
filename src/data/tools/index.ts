@@ -678,3 +678,4 @@ export { deepAgentToolsBatch2026 } from './deepAgentToolsBatch2026';
 // Open Source & Local AI Tools Batch 2026 (50 self-hostable open-source AI models & frameworks)
 export { openSourceLocal2026 } from './openSourceLocal2026';
 export { openSourceLocal2026B } from './openSourceLocal2026B';
+export { openSourceLocal2026C } from './openSourceLocal2026C';
