@@ -85,8 +85,8 @@ export function installLongTaskObserver() {
   if (!enabled || !isBrowser || longTaskObserver) return;
   try {
     if (typeof PerformanceObserver === "undefined") return;
-    // @ts-expect-error - longtask is not in every lib.dom yet
-    if (!(PerformanceObserver.supportedEntryTypes || []).includes("longtask")) return;
+    const supported = (PerformanceObserver as unknown as { supportedEntryTypes?: string[] }).supportedEntryTypes ?? [];
+    if (!supported.includes("longtask")) return;
     longTaskObserver = new PerformanceObserver((list) => {
       for (const entry of list.getEntries()) {
         if (entry.duration >= 100) {
