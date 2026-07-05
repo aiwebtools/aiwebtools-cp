@@ -2,12 +2,13 @@ import * as React from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import { installGlobalErrorHandlers } from './utils/errorReporting'
-import { installLongTaskObserver } from './utils/perfTelemetry'
+import { installLongTaskObserver, installInteractionBreadcrumbs } from './utils/perfTelemetry'
 
 // Install global crash/error handlers (window.onerror, unhandledrejection, console.error)
 installGlobalErrorHandlers();
 // Install main-thread freeze observer so any >100ms block is captured for review.
 installLongTaskObserver();
+installInteractionBreadcrumbs();
 
 const rootElement = document.getElementById("root");
 if (!rootElement) {

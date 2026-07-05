@@ -186,6 +186,7 @@ const ToolDetail = () => {
             </Card>
 
             <div className="mt-8 space-y-6">
+              <DeferredMount delay={300}>
               {/* Show prominent disclaimer badges at top */}
               {(showSpiritualDisclaimer || showMedicalDisclaimer || showCompanionDisclaimer || showDivinationDisclaimer) && (
                 <div className="flex justify-center">
@@ -220,22 +221,29 @@ const ToolDetail = () => {
               
               {/* Show general third-party disclaimer for all tools */}
               <ToolDisclaimer tool={tool} />
+              </DeferredMount>
             </div>
 
-            <ToolSearch 
-              searchTerm={searchTerm}
-              onSearchChange={handleSearchChange}
-              totalTools={allTools.length}
-            />
+            <DeferredMount delay={400}>
+              <ToolSearch 
+                searchTerm={searchTerm}
+                onSearchChange={handleSearchChange}
+                totalTools={allTools.length}
+              />
+            </DeferredMount>
 
-            <SimilarTools currentTool={tool} currentToolIndex={toolIndex} />
+            <DeferredMount delay={600}>
+              <SimilarTools currentTool={tool} currentToolIndex={toolIndex} />
+            </DeferredMount>
 
-            <MoreToolsSection
-              showMoreTools={showMoreTools}
-              totalTools={allTools.length}
-              onSeeMoreTools={handleSeeMoreTools}
-              onToolsLoaded={handleToolsLoaded}
-            />
+            <DeferredMount delay={800}>
+              <MoreToolsSection
+                showMoreTools={showMoreTools}
+                totalTools={allTools.length}
+                onSeeMoreTools={handleSeeMoreTools}
+                onToolsLoaded={handleToolsLoaded}
+              />
+            </DeferredMount>
           </div>
         </div>
 
