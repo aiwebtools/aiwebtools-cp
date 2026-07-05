@@ -113,6 +113,71 @@ export function markRouteReady() {
   if (duration >= 250) recordMetric("route.ready.ms", duration, { path: routeName });
 }
 
+// ============ Interaction breadcrumbs ============
+// Ring buffer of the last ~24 user actions so freeze reports know what the
+// user actually did in the seconds before the main thread stalled. Kept in
+// memory only — flushed alongside any long-task event >250ms so we can trace
+// the exact code path causing the occasional mobile freeze.
+type Breadcrumb = { t: number; kind: string; label: string };
+const crumbs: Breadcrumb[] = [];
+const MAX_CRUMBS = 24;
+
+export function addBreadcrumb(kind: string, label: string) {
+  if (!enabled || !isBrowser) return;
+  crumbs.push({ t: Math.round(performance.now()), kind, label: label.slice(0, 80) });
+  if (crumbs.length > MAX_CRUMBS) crumbs.shift();
+}
+
+export function recentBreadcrumbs(): Breadcrumb[] {
+  return crumbs.slice(-MAX_CRUMBS);
+}
+
+// Install once — attach at pointer-down/touch-start (not click) so we catch
+// the very first interaction latency. Passive listeners keep scroll smooth.
+let interactionInstalled = false;
+export function installInteractionBreadcrumbs() {
+  if (!enabled || !isBrowser || interactionInstalled) return;
+  interactionInstalled = true;
+  const handler = (e: Event) => {
+    const t = e.target as HTMLElement | null;
+    if (!t || !t.closest) return;
+    const el = t.closest("[data-perf], a, button, [role=button], input, textarea") as HTMLElement | null;
+    if (!el) return;
+    const label =
+      el.getAttribute("data-perf") ||
+      el.getAttribute("aria-label") ||
+      (el as HTMLAnchorElement).href ||
+      (el.textContent || "").trim().slice(0, 40) ||
+      el.tagName;
+    addBreadcrumb(e.type, label);
+  };
+  window.addEventListener("pointerdown", handler, { passive: true, capture: true });
+  window.addEventListener("touchstart", handler, { passive: true, capture: true });
+}
+
+// Enhance long-task observer to include recent breadcrumbs when the freeze is
+// severe enough to be user-visible. We only send one report per 5s to avoid
+// flooding the log-error edge function.
+let lastFreezeReport = 0;
+export function reportFreezeIfSevere(durationMs: number) {
+  if (!enabled || !isBrowser) return;
+  if (durationMs < 300) return;
+  const now = performance.now();
+  if (now - lastFreezeReport < 5000) return;
+  lastFreezeReport = now;
+  reportError({
+    error_type: "perf.freeze",
+    message: `main-thread frozen ${Math.round(durationMs)}ms`,
+    severity: "warning",
+    metadata: {
+      mobile: isMobile(),
+      durationMs: Math.round(durationMs),
+      path: typeof location !== "undefined" ? location.pathname : "",
+      breadcrumbs: recentBreadcrumbs(),
+    },
+  });
+}
+
 // Flush on page hide so we never lose metrics on iOS/Safari.
 if (isBrowser && enabled) {
   window.addEventListener("pagehide", flush, { capture: true });
