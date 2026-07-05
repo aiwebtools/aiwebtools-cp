@@ -201,6 +201,7 @@ import { deepAgentToolsBatch2026 } from './tools/deepAgentToolsBatch2026';
 import { freeOpenSourceBatch2026F } from './tools/freeOpenSourceBatch2026F';
 import { freeOpenSourceBatch2026G } from './tools/freeOpenSourceBatch2026G';
 import { freeOpenSourceBatch2026H } from './tools/freeOpenSourceBatch2026H';
+import { aiToolDatabases2026 } from './tools/aiToolDatabases2026';
 import { topProductivityWriting } from './tools/topProductivityWriting';
 import { developerProductivityAI } from './tools/developerProductivityAI';
 import { aiResearchAcademicTools } from './tools/aiResearchAcademicTools';
@@ -299,6 +300,8 @@ export const getAllToolCategories = (): Tool[] => {
     // ========================================
     // TIER 1: MAJOR AI PLATFORMS (Most Popular & Essential)
     // ========================================
+    // AI TOOL DATABASES — AIWebTools.ai is dominant, always first-appearing
+    ...aiToolDatabases2026,
     ...majorAIPlatforms, // ChatGPT, Claude, Gemini, Perplexity, etc.
     ...topImageGenerators, // Midjourney, DALL-E, Flux, Stable Diffusion, etc.
     ...topMusicVideoTools, // Sora, Runway, ElevenLabs, Udio, etc.
