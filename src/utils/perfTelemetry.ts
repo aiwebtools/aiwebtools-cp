@@ -186,3 +186,85 @@ if (isBrowser && enabled) {
     if (document.visibilityState === "hidden") flush();
   });
 }
+
+// ============ Slow-click observer ============
+// Global click latency tracker: measures the delta between pointerdown and the
+// next painted frame after the corresponding click. If a click on any button,
+// link, or [role=button] blocks the main thread long enough that the next
+// frame is delayed past our threshold, we record + report it with a label
+// derived from data-perf / aria-label / text so we can pinpoint exactly which
+// control is freezing on mobile. Zero per-button wiring required.
+let slowClickInstalled = false;
+const SLOW_CLICK_MS = 200;   // record any click that costs a visible frame drop
+const REPORT_CLICK_MS = 450; // upgrade to a warning report above this
+let lastSlowClickReport = 0;
+
+export function installSlowClickObserver() {
+  if (!enabled || !isBrowser || slowClickInstalled) return;
+  slowClickInstalled = true;
+  let pendingLabel: string | null = null;
+  let pendingStart = 0;
+
+  const labelFor = (el: HTMLElement): string => {
+    return (
+      el.getAttribute("data-perf") ||
+      el.getAttribute("aria-label") ||
+      (el as HTMLAnchorElement).href ||
+      (el.textContent || "").trim().slice(0, 40) ||
+      el.tagName
+    );
+  };
+
+  window.addEventListener(
+    "pointerdown",
+    (e) => {
+      const t = e.target as HTMLElement | null;
+      if (!t || !t.closest) return;
+      const el = t.closest("a, button, [role=button], [data-perf]") as HTMLElement | null;
+      if (!el) return;
+      pendingLabel = labelFor(el);
+      pendingStart = performance.now();
+    },
+    { passive: true, capture: true }
+  );
+
+  window.addEventListener(
+    "click",
+    () => {
+      if (!pendingLabel || !pendingStart) return;
+      const label = pendingLabel;
+      const start = pendingStart;
+      pendingLabel = null;
+      pendingStart = 0;
+      // Measure to the next painted frame — this is when the user actually
+      // sees a response. A double rAF ensures we're past commit + paint.
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          const duration = performance.now() - start;
+          if (duration >= SLOW_CLICK_MS) {
+            recordMetric("click.slow.ms", duration, { label });
+            if (duration >= REPORT_CLICK_MS) {
+              const now = performance.now();
+              if (now - lastSlowClickReport >= 5000) {
+                lastSlowClickReport = now;
+                reportError({
+                  error_type: "perf.slow_click",
+                  message: `slow click ${Math.round(duration)}ms on ${label}`,
+                  severity: "info",
+                  metadata: {
+                    mobile: isMobile(),
+                    durationMs: Math.round(duration),
+                    label,
+                    path: typeof location !== "undefined" ? location.pathname : "",
+                    breadcrumbs: recentBreadcrumbs(),
+                  },
+                });
+              }
+            }
+          }
+        });
+      });
+    },
+    { passive: true, capture: true }
+  );
+}
