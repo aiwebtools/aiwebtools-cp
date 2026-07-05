@@ -55,9 +55,6 @@ import AnimateAnyoneOSSHero from "@/assets/tools/open-source-local-2026-h/animat
 import ChampHumanAnimationHero from "@/assets/tools/open-source-local-2026-h/champ-human-animation-hero.svg";
 import VExpressHero from "@/assets/tools/open-source-local-2026-h/v-express-hero.svg";
 import EchoMimicHero from "@/assets/tools/open-source-local-2026-h/echomimic-hero.svg";
-import LivePortraitKwaiHero from "@/assets/tools/open-source-local-2026-h/liveportrait-kwai-hero.svg";
-import SadTalkerHero from "@/assets/tools/open-source-local-2026-h/sadtalker-hero.svg";
-import Wav2LipGANHero from "@/assets/tools/open-source-local-2026-h/wav2lip-gan-hero.svg";
 
 /**
  * OPEN SOURCE & LOCAL AI TOOLS — 2026 (Batch H)
