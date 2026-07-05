@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#000000"/><stop offset="100%" stop-color="#001a0d"/></linearGradient>
+    <linearGradient id="glow" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#00ff41"/><stop offset="100%" stop-color="#00b32d"/></linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <g fill="none" stroke="#00ff41" stroke-width="1" opacity="0.15">
+    <line x1="0" y1="0" x2="0" y2="900"/><line x1="80" y1="0" x2="80" y2="900"/><line x1="160" y1="0" x2="160" y2="900"/><line x1="240" y1="0" x2="240" y2="900"/><line x1="320" y1="0" x2="320" y2="900"/><line x1="400" y1="0" x2="400" y2="900"/><line x1="480" y1="0" x2="480" y2="900"/><line x1="560" y1="0" x2="560" y2="900"/><line x1="640" y1="0" x2="640" y2="900"/><line x1="720" y1="0" x2="720" y2="900"/><line x1="800" y1="0" x2="800" y2="900"/><line x1="880" y1="0" x2="880" y2="900"/><line x1="960" y1="0" x2="960" y2="900"/><line x1="1040" y1="0" x2="1040" y2="900"/><line x1="1120" y1="0" x2="1120" y2="900"/><line x1="1200" y1="0" x2="1200" y2="900"/><line x1="1280" y1="0" x2="1280" y2="900"/><line x1="1360" y1="0" x2="1360" y2="900"/><line x1="1440" y1="0" x2="1440" y2="900"/><line x1="1520" y1="0" x2="1520" y2="900"/>
+    <line x1="0" y1="0" x2="1600" y2="0"/><line x1="0" y1="80" x2="1600" y2="80"/><line x1="0" y1="160" x2="1600" y2="160"/><line x1="0" y1="240" x2="1600" y2="240"/><line x1="0" y1="320" x2="1600" y2="320"/><line x1="0" y1="400" x2="1600" y2="400"/><line x1="0" y1="480" x2="1600" y2="480"/><line x1="0" y1="560" x2="1600" y2="560"/><line x1="0" y1="640" x2="1600" y2="640"/><line x1="0" y1="720" x2="1600" y2="720"/><line x1="0" y1="800" x2="1600" y2="800"/><line x1="0" y1="880" x2="1600" y2="880"/>
+  </g>
+  <text x="800" y="380" text-anchor="middle" font-family="'Courier New',monospace" font-size="140" font-weight="700" fill="url(#glow)">🔌</text>
+  <text x="800" y="500" text-anchor="middle" font-family="'Courier New',monospace" font-size="64" font-weight="700" fill="#00ff41">LLAMA-ADAPTER</text>
+  <text x="800" y="560" text-anchor="middle" font-family="'Courier New',monospace" font-size="28" fill="#00b32d" opacity="0.85">OPEN SOURCE // LOCAL // 2026</text>
+  <text x="1560" y="870" text-anchor="end" font-family="'Courier New',monospace" font-size="22" fill="#00ff41" opacity="0.7">AIWebTools.ai</text>
+</svg>
