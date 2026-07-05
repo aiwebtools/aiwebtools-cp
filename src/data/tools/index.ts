@@ -674,3 +674,6 @@ export { topAgentsBatch2026JulPart22 } from './topAgentsBatch2026JulPart22';
 
 // Deep Agent Tools Batch 2026 (10 verified fresh agent/computer-use/MCP tools)
 export { deepAgentToolsBatch2026 } from './deepAgentToolsBatch2026';
+
+// Open Source & Local AI Tools Batch 2026 (50 self-hostable open-source AI models & frameworks)
+export { openSourceLocal2026 } from './openSourceLocal2026';

@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="GPT-SoVITS — Open Source AI on AIWebTools.ai">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#000000"/>
+      <stop offset="1" stop-color="#001a08"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="60%">
+      <stop offset="0" stop-color="#00ff41" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#00ff41" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#00ff41" stroke-opacity="0.10" stroke-width="1"/>
+    </pattern>
+    <filter id="neon"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="1200" height="630" fill="url(#g)"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <ellipse cx="600" cy="330" rx="520" ry="260" fill="url(#glow)"/>
+  <g font-family="'JetBrains Mono','Courier New',monospace" text-anchor="middle" filter="url(#neon)">
+    <text x="600" y="120" font-size="22" fill="#00ff41" opacity="0.7" letter-spacing="8">::OPEN VOICE::</text>
+    <text x="600" y="315" font-size="88" fill="#00ff41" font-weight="800" letter-spacing="2">GPT-SOVITS</text>
+    <text x="600" y="380" font-size="26" fill="#00ff8880" letter-spacing="3">Few-Shot Voice Cloning</text>
+    <text x="600" y="480" font-size="18" fill="#00ff41" opacity="0.6">— Open Source · Local · Free Forever —</text>
+  </g>
+  <g transform="translate(1040,470)">
+    <rect width="130" height="130" rx="12" fill="#000" stroke="#00ff41" stroke-width="2"/>
+    <text x="65" y="61" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="16" font-weight="900" fill="#00ff41">AIWEB</text>
+    <text x="65" y="79" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="16" font-weight="900" fill="#00ff41">TOOLS.AI</text>
+  </g>
+  <rect x="0" y="0" width="1200" height="4" fill="#00ff41"/>
+  <rect x="0" y="626" width="1200" height="4" fill="#00ff41"/>
+</svg>
