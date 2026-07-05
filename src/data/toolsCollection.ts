@@ -203,6 +203,7 @@ import { freeOpenSourceBatch2026G } from './tools/freeOpenSourceBatch2026G';
 import { freeOpenSourceBatch2026H } from './tools/freeOpenSourceBatch2026H';
 import { aiToolDatabases2026 } from './tools/aiToolDatabases2026';
 import { openSourceLocal2026 } from './tools/openSourceLocal2026';
+import { openSourceLocal2026B } from './tools/openSourceLocal2026B';
 import { topProductivityWriting } from './tools/topProductivityWriting';
 import { developerProductivityAI } from './tools/developerProductivityAI';
 import { aiResearchAcademicTools } from './tools/aiResearchAcademicTools';
@@ -309,6 +310,7 @@ export const getAllToolCategories = (): Tool[] => {
     ...aiMusicVideoGeneratorTools, // Muvio, Kaiber, Neural Frames, Specterr, Rotor, etc.
     ...openSourceModelsBatch2026, // Qwen3, DeepSeek V3, Mistral Large 2, Phi-4, Gemma 3, Jan, Ollama tools, OpenHands, Aider, etc.
     ...openSourceLocal2026, // 50 open-source / local AI models & tools (2026)
+    ...openSourceLocal2026B, // +50 more open-source / local AI models & tools (2026 Batch B)
     ...mixedAgentsBatch2026, // Roo Code, Vapi, Retell, Lutra, MultiOn, STORM, Decagon, Sierra, Letta, Mem, Motion, Shortwave, Clay, 11x, etc.
     ...openSourceAgentsBatch2026Part3, // Dolphin 3, Mixtral 8x22B, Smaug, Zephyr, OpenChat, SOLAR, StarCoder2, DeepSeek Coder V2, Bielik, SmolLM2, MiniCPM-V, InternLM3, Molmo, Granite, Arcee, NeuralChat, Swarms, ShellGPT, Twinny, AIChat, Griptape, LocalGPT, Oobabooga, SGLang, TensorRT-LLM, Unsloth, Axolotl, Gorilla, Xinference, FastChat, ModelScope Agent, Qwen Agent, AutoGroq, LightLLM, KTransformers, PowerInfer, NextChat, Refuel, Hyperbee, MetaChain, ChatHub, Llama Stack, LangServe, NPCsh, KitOps, AIConfig, LlamaCoder, LitServe, Repomix
     ...openSourceAgentsBatch2026Part4, // 50 fresh open-source tools: UFO Agent, WebVoyager, llama.cpp, ExLlamaV2, MLC LLM, WasmEdge, KoboldCpp, LMDeploy, Distilabel, TRL, PEFT, LM Eval Harness, OpenCompass, Inspect AI, NeMo Guardrails, Avante.nvim, txtai, NLUX, LocalRecall, Jina Reader, SearXNG AI, Witsy, Page Assist, GPTeam, Semantic Router, aisuite, ChainForge, HumanLayer, Marker PDF, Surya OCR, olmOCR, Nougat OCR, RapidOCR, whisper.cpp, Faster Whisper, Distil-Whisper, WhisperX, OpenVoice, F5-TTS, Parler-TTS, Coqui XTTS, StyleTTS2, MeloTTS, Piper TTS, ESPnet, SpeechBrain, ToolLLM, Granite Code, Mathstral, Chronos
