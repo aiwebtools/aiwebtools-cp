@@ -216,6 +216,8 @@ const RouteReadySignal = ({ children }: { children: React.ReactNode }) => {
           (window as any).__aiwtRouteReady = true;
           (window as any).__aiwtBootTrace?.('route-ready-dispatch', location.pathname);
           window.dispatchEvent(new Event('aiwt:route-ready'));
+          // Perf telemetry: how long did the lazy chunk + first paint take?
+          import('@/utils/perfTelemetry').then((m) => m.markRouteReady()).catch(() => {});
         } catch { /* loader signal must never break the app */ }
       });
     });
