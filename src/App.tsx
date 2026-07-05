@@ -190,15 +190,43 @@ const PageLoader = () => {
   );
 };
 
+// Titleize a slug like "chat-gpt-4-turbo" -> "Chat GPT 4 Turbo" so the
+// shell still shows something readable when the click happens from a link
+// with no navigation state (direct URL, back/forward, external landing).
+const prettifySlug = (slug: string): string =>
+  slug
+    .replace(/[-_]+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .replace(/\b\w/g, (c) => c.toUpperCase());
+
 const InstantToolFallback = ({ tool }: { tool?: any }) => {
-  if (!tool?.title) return null;
+  const location = useLocation();
+  const slug = location.pathname.replace(/^\/(tool\/)?/, '').split('/')[0] || '';
+  const displayTitle = tool?.title || (slug ? prettifySlug(decodeURIComponent(slug)) : 'Loading tool…');
   return (
     <div className="min-h-screen bg-black px-4 pt-28 text-cyan-100">
       <div className="mx-auto max-w-4xl rounded-lg border border-cyan-500/30 bg-gray-900/80 p-6 shadow-2xl shadow-cyan-500/20">
-        <div className="mb-3 text-xs uppercase tracking-[0.22em] text-matrix-green">Opening tool</div>
-        <h1 className="text-2xl font-bold text-cyan-100">{tool.title}</h1>
-        {tool.category ? <p className="mt-2 text-sm text-cyan-300/80">{tool.category}</p> : null}
-        {tool.description ? <p className="mt-4 line-clamp-4 text-sm leading-relaxed text-cyan-100/75">{tool.description}</p> : null}
+        <div className="mb-3 flex items-center gap-2 text-xs uppercase tracking-[0.22em] text-matrix-green">
+          <span className="inline-block h-2 w-2 animate-pulse rounded-full bg-matrix-green" />
+          Opening tool
+        </div>
+        <h1 className="text-2xl font-bold text-cyan-100">{displayTitle}</h1>
+        {tool?.category ? <p className="mt-2 text-sm text-cyan-300/80">{tool.category}</p> : null}
+        {tool?.description ? (
+          <p className="mt-4 line-clamp-4 text-sm leading-relaxed text-cyan-100/75">{tool.description}</p>
+        ) : (
+          <div className="mt-4 space-y-2">
+            <div className="h-3 w-11/12 animate-pulse rounded bg-cyan-500/10" />
+            <div className="h-3 w-10/12 animate-pulse rounded bg-cyan-500/10" />
+            <div className="h-3 w-8/12 animate-pulse rounded bg-cyan-500/10" />
+          </div>
+        )}
+        <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <div key={i} className="h-24 animate-pulse rounded-md border border-cyan-500/10 bg-cyan-500/5" />
+          ))}
+        </div>
       </div>
     </div>
   );
