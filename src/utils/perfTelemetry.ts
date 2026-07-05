@@ -91,7 +91,21 @@ export function installLongTaskObserver() {
       for (const entry of list.getEntries()) {
         if (entry.duration >= 100) {
           recordMetric("longtask.ms", entry.duration);
-          reportFreezeIfSevere(entry.duration);
+          // Capture attribution (script URLs / container name) so freeze
+          // reports pinpoint the culprit even without prior user interaction.
+          const attr = (entry as any).attribution as Array<any> | undefined;
+          const attribution = Array.isArray(attr)
+            ? attr.slice(0, 3).map((a) => ({
+                name: a?.name,
+                containerType: a?.containerType,
+                containerSrc: a?.containerSrc,
+                containerId: a?.containerId,
+              }))
+            : undefined;
+          reportFreezeIfSevere(entry.duration, {
+            startTime: Math.round(entry.startTime),
+            attribution,
+          });
         }
       }
     });
@@ -160,7 +174,7 @@ export function installInteractionBreadcrumbs() {
 // severe enough to be user-visible. We only send one report per 5s to avoid
 // flooding the log-error edge function.
 let lastFreezeReport = 0;
-export function reportFreezeIfSevere(durationMs: number) {
+export function reportFreezeIfSevere(durationMs: number, extra?: Record<string, unknown>) {
   if (!enabled || !isBrowser) return;
   if (durationMs < 300) return;
   const now = performance.now();
@@ -175,6 +189,7 @@ export function reportFreezeIfSevere(durationMs: number) {
       durationMs: Math.round(durationMs),
       path: typeof location !== "undefined" ? location.pathname : "",
       breadcrumbs: recentBreadcrumbs(),
+      ...(extra ?? {}),
     },
   });
 }
