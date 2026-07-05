@@ -59,6 +59,51 @@ export type Database = {
         }
         Relationships: []
       }
+      email_subscribers: {
+        Row: {
+          confirmed: boolean
+          created_at: string
+          email: string
+          id: string
+          last_sent_at: string | null
+          name: string | null
+          pref_music_videos: boolean
+          pref_new_tools: boolean
+          pref_weekly_digest: boolean
+          source: string | null
+          unsubscribe_token: string
+          updated_at: string
+        }
+        Insert: {
+          confirmed?: boolean
+          created_at?: string
+          email: string
+          id?: string
+          last_sent_at?: string | null
+          name?: string | null
+          pref_music_videos?: boolean
+          pref_new_tools?: boolean
+          pref_weekly_digest?: boolean
+          source?: string | null
+          unsubscribe_token?: string
+          updated_at?: string
+        }
+        Update: {
+          confirmed?: boolean
+          created_at?: string
+          email?: string
+          id?: string
+          last_sent_at?: string | null
+          name?: string | null
+          pref_music_videos?: boolean
+          pref_new_tools?: boolean
+          pref_weekly_digest?: boolean
+          source?: string | null
+          unsubscribe_token?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       error_logs: {
         Row: {
           column_number: number | null
