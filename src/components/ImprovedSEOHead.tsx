@@ -85,26 +85,41 @@ const ImprovedSEOHead: React.FC<ImprovedSEOHeadProps> = ({
   };
 
   const getOgImage = () => {
+    // Social scrapers (Facebook, X, LinkedIn, Discord, iMessage) require an
+    // absolute https:// URL and cannot fetch Vite-bundled or relative asset
+    // paths. Normalize any tool image to a crawler-safe URL, and fall back to
+    // our verified og-default.jpg when the image isn't remotely fetchable.
+    const SITE = 'https://aiwebtools.ai';
+    const DEFAULT_OG = `${SITE}/og-default.jpg`;
+    const normalize = (raw?: string): string | null => {
+      if (!raw || typeof raw !== 'string') return null;
+      const url = raw.trim();
+      if (!url) return null;
+      if (/^https?:\/\//i.test(url)) return url;
+      if (url.startsWith('//')) return `https:${url}`;
+      if (url.startsWith('/')) return `${SITE}${url}`;
+      // bundled ES6 imports, data:, blob:, or relative — not scraper-safe
+      return null;
+    };
+
     if (pageType === 'tool' && tool) {
-      // Priority 1: Use tool's direct image if available
-      if (tool?.imageUrl && tool.imageUrl.trim() !== '') {
-        return tool.imageUrl;
-      }
-      
-      // Priority 2: Extract YouTube thumbnail from videoUrl
+      // Priority 1: Absolute image URL on the tool
+      const direct = normalize(tool?.imageUrl);
+      if (direct) return direct;
+
+      // Priority 2: YouTube thumbnail derived from videoUrl
       if (tool?.videoUrl) {
         const videoId = tool.videoUrl.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/)?.[1];
         if (videoId) {
           return `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
         }
       }
-      
-      // Priority 3: Fall back to default AI Web Tools branded image
-      return 'https://aiwebtools.ai/og-default.jpg';
+
+      // Priority 3: Default AI Web Tools branded image (crawler-safe)
+      return DEFAULT_OG;
     }
-    
-    // Homepage default image
-    return 'https://aiwebtools.ai/og-default.jpg';
+
+    return DEFAULT_OG;
   };
 
   const structuredData = {
@@ -222,6 +237,7 @@ const ImprovedSEOHead: React.FC<ImprovedSEOHeadProps> = ({
       <meta property="og:title" content={ogTitle} />
       <meta property="og:description" content={getDescription()} />
       <meta property="og:image" content={getOgImage()} />
+      <meta property="og:image:secure_url" content={getOgImage()} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
       <meta property="og:image:alt" content={pageType === 'tool' ? `${tool?.title} - ${tool?.category || 'AI Tool'} Preview` : `${getTitle()} - AI Web Tools Preview`} />
