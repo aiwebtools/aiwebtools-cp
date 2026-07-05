@@ -8,6 +8,7 @@ import FooterLinks from "./footer/FooterLinks";
 import FooterBottom from "./footer/FooterBottom";
 import GlobalSearchBar from "./LazyGlobalSearchBar";
 import { Download, Gift } from "lucide-react";
+import JoinEmailListButton from "./JoinEmailListButton";
 
 const Footer = () => {
   const handleRequestTool = () => {
@@ -128,6 +129,9 @@ Best regards,
         <div className="container mx-auto px-4">
           <p className="text-center text-green-400 text-sm mb-4 font-medium" style={{ textShadow: '0 0 10px rgba(0, 255, 0, 0.5)' }}>🔍 Quick Search - Find Any AI Tool Instantly</p>
           <GlobalSearchBar />
+          <div className="flex justify-center mt-6">
+            <JoinEmailListButton source="footer-search" />
+          </div>
         </div>
       </div>
       
