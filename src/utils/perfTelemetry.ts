@@ -91,6 +91,7 @@ export function installLongTaskObserver() {
       for (const entry of list.getEntries()) {
         if (entry.duration >= 100) {
           recordMetric("longtask.ms", entry.duration);
+          reportFreezeIfSevere(entry.duration);
         }
       }
     });
