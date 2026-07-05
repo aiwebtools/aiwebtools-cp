@@ -683,3 +683,4 @@ export { openSourceLocal2026D } from './openSourceLocal2026D';
 export { openSourceLocal2026E } from './openSourceLocal2026E';
 export { openSourceLocal2026F } from './openSourceLocal2026F';
 export { openSourceLocal2026G } from './openSourceLocal2026G';
+export { openSourceLocal2026H } from './openSourceLocal2026H';
