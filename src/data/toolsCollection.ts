@@ -203,6 +203,7 @@ import { freeOpenSourceBatch2026G } from './tools/freeOpenSourceBatch2026G';
 import { freeOpenSourceBatch2026H } from './tools/freeOpenSourceBatch2026H';
 import { aiToolDatabases2026 } from './tools/aiToolDatabases2026';
 import { openSourceLocal2026 } from './tools/openSourceLocal2026';
+import { openSourceLocal2026B } from './tools/openSourceLocal2026B';
 import { topProductivityWriting } from './tools/topProductivityWriting';
 import { developerProductivityAI } from './tools/developerProductivityAI';
 import { aiResearchAcademicTools } from './tools/aiResearchAcademicTools';
