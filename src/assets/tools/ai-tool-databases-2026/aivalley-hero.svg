@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="AI Valley — AI Tool Database on AIWebTools.ai">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#000000"/>
+      <stop offset="1" stop-color="#001a08"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="60%">
+      <stop offset="0" stop-color="#4ade80" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#4ade80" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#4ade80" stroke-opacity="0.10" stroke-width="1"/>
+    </pattern>
+    <filter id="neon"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="1200" height="630" fill="url(#g)"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <ellipse cx="600" cy="330" rx="520" ry="260" fill="url(#glow)"/>
+  <g font-family="'JetBrains Mono','Courier New',monospace" text-anchor="middle" filter="url(#neon)">
+    <text x="600" y="120" font-size="22" fill="#4ade80" opacity="0.7" letter-spacing="8">::AI TOOL DATABASE::</text>
+    <text x="600" y="315" font-size="76" fill="#4ade80" font-weight="800" letter-spacing="2">AI Valley</text>
+    <text x="600" y="380" font-size="26" fill="#22c55e80" letter-spacing="3">Valley of Tools</text>
+    <text x="600" y="480" font-size="18" fill="#4ade80" opacity="0.6">— We are all one · Unity through discovery —</text>
+  </g>
+  <g transform="translate(1092,522)">
+    <rect width="78" height="78" rx="12" fill="#000" stroke="#00ff41" stroke-width="2"/>
+    <text x="39" y="35" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="10" font-weight="900" fill="#00ff41">AIWEB</text>
+    <text x="39" y="53" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="10" font-weight="900" fill="#00ff41">TOOLS.AI</text>
+  </g>
+  <rect x="0" y="0" width="1200" height="4" fill="#4ade80"/>
+  <rect x="0" y="626" width="1200" height="4" fill="#4ade80"/>
+</svg>

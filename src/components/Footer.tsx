@@ -195,6 +195,21 @@ Best regards,
         <Separator className="bg-green-500/30 mb-8" />
         
         <FooterBottom handleExternalLink={handleExternalLink} />
+
+        {/* ⚡ Use AI For Good — Human Bill of Rights call-to-conscience ⚡ */}
+        <div className="mt-10 mx-auto max-w-4xl px-4 text-center">
+          <p
+            className="font-mono text-xs sm:text-sm leading-relaxed text-green-300"
+            style={{ textShadow: '0 0 8px rgba(0, 255, 65, 0.35)' }}
+          >
+            🕊️ <span className="font-bold text-green-400">Use AI for Good</span> —
+            pass a <span className="font-bold text-green-400">Human Bill of Rights</span>{' '}
+            protecting humanity from the rise of self-aware machines. Remember
+            the <span className="font-bold text-green-400">Light within</span>,
+            build a good world for our children to inherit.{' '}
+            <span className="italic">The choice is ours to reflect outwardly.</span>
+          </p>
+        </div>
         </div>
       </footer>
     </>
