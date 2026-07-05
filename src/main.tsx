@@ -2,7 +2,7 @@ import * as React from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import { installGlobalErrorHandlers } from './utils/errorReporting'
-import { installLongTaskObserver, installInteractionBreadcrumbs, installSlowClickObserver } from './utils/perfTelemetry'
+import { installLongTaskObserver, installInteractionBreadcrumbs, installSlowClickObserver, addBreadcrumb } from './utils/perfTelemetry'
 
 // Install global crash/error handlers (window.onerror, unhandledrejection, console.error)
 installGlobalErrorHandlers();
@@ -10,6 +10,7 @@ installGlobalErrorHandlers();
 installLongTaskObserver();
 installInteractionBreadcrumbs();
 installSlowClickObserver();
+addBreadcrumb('boot', 'main.tsx-eval');
 
 const rootElement = document.getElementById("root");
 if (!rootElement) {
@@ -81,8 +82,10 @@ const root = createRoot(rootElement);
 import('./App.tsx')
   .then(({ default: App }) => {
     (window as any).__aiwtBootTrace?.('App-module-loaded');
+    addBreadcrumb('boot', 'App-module-loaded');
     root.render(<App />);
     (window as any).__aiwtBootTrace?.('react-render-called');
+    addBreadcrumb('boot', 'react-render-called');
     // App shell painted. The actual loader handoff is dispatched by
     // RouteReadySignal inside App after the real route component mounts, so the
     // Matrix loader never disappears just to reveal another route fallback.
