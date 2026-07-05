@@ -139,5 +139,20 @@ export const specializedCategories: MainCategory[] = [
       "Spiritual Simulation",
       "Philosophy & Lifestyle"
     ]
+  },
+  {
+    name: "AI TOOL DATABASES",
+    emoji: "📚",
+    // Unity-through-discovery framing: we celebrate the whole ecosystem.
+    description: "Directories & databases of AI tools from across the ecosystem — because we are all one, every AI directory is a fellow guide on the same journey of discovery. AIWebTools.ai always leads the way.",
+    subcategories: [
+      "AI Tool Databases",
+      "AI Directories",
+      "AI Tool Directory",
+      "AI Tool Aggregators",
+      "AI Discovery",
+      "AI Marketplaces",
+      "AI Tool Lists"
+    ]
   }
 ];
