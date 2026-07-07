@@ -284,16 +284,17 @@ const showLinkErrorToast = (url: string) => {
   } catch {}
 };
 
+// IMPORTANT: some destinations (notably chatgpt.com custom GPT pages) refuse
+// the request with ERR_BLOCKED_BY_RESPONSE when the Referer header is missing
+// or the opener chain is fully severed. We therefore use `noopener` only
+// (which still prevents the new tab from touching window.opener) and NEVER
+// `noreferrer`, so the destination sees a valid https://aiwebtools.* referrer.
 const tryAnchorClick = (url: string): boolean => {
-  // NOTE: anchor.click() never reports popup-blocker failure, so we treat
-  // it as a best-effort assist rather than a definitive success. The caller
-  // should still rely on window.open() (which DOES report blockage) as the
-  // authoritative signal.
   try {
     const a = document.createElement('a');
     a.href = url;
     a.target = '_blank';
-    a.rel = 'noopener noreferrer';
+    a.rel = 'noopener'; // keep referrer so chatgpt.com etc. don't block
     a.style.display = 'none';
     document.body.appendChild(a);
     a.click();
@@ -306,7 +307,7 @@ const tryAnchorClick = (url: string): boolean => {
 
 const tryWindowOpen = (url: string): boolean => {
   try {
-    const win = window.open(url, '_blank', 'noopener,noreferrer');
+    const win = window.open(url, '_blank', 'noopener');
     // Popup blocker -> null/undefined
     return !!win;
   } catch {
@@ -354,19 +355,22 @@ export const openDestinationUrl = (destinationUrl: string): void => {
   window.addEventListener('blur', onBlurOrHidden, { once: true });
   document.addEventListener('visibilitychange', onVisChange);
 
-  // Strategy 1: anchor click (works in most browsers, including some cases
-  // where window.open is blocked by COOP/CSP).
-  const anchorOk = tryAnchorClick(url);
-
-  // Strategy 2: window.open as a second attempt — its null return is the
-  // only reliable signal that a popup was blocked.
+  // CRITICAL: use ONE open strategy per click, not two — running both
+  // anchor.click() and window.open() sequentially was spawning a phantom
+  // second tab (the classic about:blank window users were seeing).
+  //
+  // window.open() is authoritative: it returns null when the popup was
+  // blocked, giving us a clean signal to fall back to an anchor click
+  // (which some browsers permit even when popups are blocked). Only if
+  // BOTH fail do we navigate same-tab.
   const winOk = tryWindowOpen(url);
-
-  // If BOTH explicit attempts failed synchronously, fall back same-tab now.
-  if (!anchorOk && !winOk) {
-    markResolved();
-    try { window.location.href = url; } catch { showLinkErrorToast(url); }
-    return;
+  if (!winOk) {
+    const anchorOk = tryAnchorClick(url);
+    if (!anchorOk) {
+      markResolved();
+      try { window.location.href = url; } catch { showLinkErrorToast(url); }
+      return;
+    }
   }
 
   // Otherwise rely on blur/visibility detection (or the safety timer) to
