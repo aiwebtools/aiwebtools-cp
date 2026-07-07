@@ -1,8 +1,10 @@
 import { useRef, useEffect, useCallback } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { ChevronUp, ChevronDown } from "lucide-react";
 import { getToolCategoryColor } from "@/utils/search/categoryColors";
+import { generateToolSlug } from "@/utils/urlGenerator";
 interface GlobalSearchResultsProps {
   searchResults: any[];
   displayedCount: number;
@@ -98,37 +100,62 @@ const GlobalSearchResults = ({
             // Get category-based color coding
             const categoryStyle = getToolCategoryColor(tool);
             
+            const toolPath = tool?.title ? `/${generateToolSlug(tool.title)}` : "/main-category/ALL%20AI%20TOOLS";
+
             const toolItem = (
-              <div 
+              <div
+                role="button"
+                tabIndex={0}
+                data-testid="global-search-result"
+                data-tool-title={tool.title}
+                aria-label={`Open ${tool.title}`}
                 className={`flex items-center space-x-3 p-3 rounded-lg hover:bg-cyan-500/10 cursor-pointer group border border-transparent hover:border-cyan-500/30 ${isRecommendation ? 'opacity-90' : ''}`}
                 onPointerDown={handlePointerDown}
                 onPointerUp={(e) => handlePointerUp(e, tool)}
+                onClick={() => onToolClick(tool)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    onToolClick(tool);
+                  }
+                }}
                 style={{ transform: 'translateZ(0)', touchAction: 'pan-y' }}
               >
-                {/* Category color-coded icon */}
-                <div 
-                  className={`w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-gradient-to-br ${categoryStyle.bg} ${categoryStyle.border} border flex items-center justify-center text-sm sm:text-base flex-shrink-0 shadow-lg ${categoryStyle.glow} group-hover:scale-110`}
-                  style={{ transition: 'none' }}
+                <Link
+                  to={toolPath}
+                  className="flex min-w-0 flex-1 items-center space-x-3"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    onToolClick(tool);
+                  }}
                 >
-                  {categoryStyle.icon}
-                </div>
-                <div className="flex-1 min-w-0">
-                  <h3 className="font-medium text-cyan-100 text-xs sm:text-sm leading-tight mb-1 group-hover:text-cyan-300 transition-colors">
-                    {tool.title}
-                  </h3>
-                  {tool.category && (
-                    <p className="text-xs text-cyan-400/70 truncate">
-                      <span className="mr-1">{categoryStyle.icon}</span>
-                      {tool.category}
-                    </p>
-                  )}
-                </div>
+                  {/* Category color-coded icon */}
+                  <div 
+                    className={`w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-gradient-to-br ${categoryStyle.bg} ${categoryStyle.border} border flex items-center justify-center text-sm sm:text-base flex-shrink-0 shadow-lg ${categoryStyle.glow} group-hover:scale-110`}
+                    style={{ transition: 'none' }}
+                  >
+                    {categoryStyle.icon}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-medium text-cyan-100 text-xs sm:text-sm leading-tight mb-1 group-hover:text-cyan-300 transition-colors">
+                      {tool.title}
+                    </h3>
+                    {tool.category && (
+                      <p className="text-xs text-cyan-400/70 truncate">
+                        <span className="mr-1">{categoryStyle.icon}</span>
+                        {tool.category}
+                      </p>
+                    )}
+                  </div>
+                </Link>
                 
                 {tool.directUrl && (
                   <Button 
                     size="sm"
                     variant="outline"
                     className="border-green-400/50 bg-green-400/10 text-green-300 hover:bg-green-400/20 hover:border-green-400 text-xs px-2 py-1 h-auto flex-shrink-0"
+                    onPointerUp={(e) => e.stopPropagation()}
                     onClick={(e) => onDirectAccess(tool, e)}
                   >
                     🚀
