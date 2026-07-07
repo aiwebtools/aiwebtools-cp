@@ -2210,6 +2210,13 @@ export const useGlobalSearch = () => {
     setIsOpen(true);
     const currentId = ++searchIdRef.current;
     const lightweightResults = fallbackSearch(cappedT);
+    if (typeof window !== "undefined" && (window as any).__AIWT_SEARCH_DEBUG__) {
+      (window as any).__AIWT_SEARCH_STATE__ = {
+        value: cappedT,
+        lightweightCount: lightweightResults.length,
+        toolsLoaded: toolsRef.current.length,
+      };
+    }
     if (lightweightResults.length > 0 && toolsRef.current.length === 0) {
       startTransition(() => {
         setSearchResults(lightweightResults);
