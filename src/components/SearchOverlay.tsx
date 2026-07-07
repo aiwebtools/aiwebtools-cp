@@ -36,7 +36,24 @@ const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
 
   const handleToolClick = (tool: any) => {
     onClose();
-    navigate(`/${generateToolSlug(tool.title)}`);
+    navigate(`/${generateToolSlug(tool.title)}`, {
+      state: {
+        instantTool: {
+          title: tool.title,
+          category: tool.category,
+          description: tool.description,
+          directUrl: tool.directUrl,
+          imageUrl: typeof tool.imageUrl === "string" ? tool.imageUrl : undefined,
+          videoUrl: tool.videoUrl,
+          emoji: tool.emoji,
+          color: tool.color,
+          rating: tool.rating,
+          totalVotes: tool.totalVotes,
+          tags: Array.isArray(tool.tags) ? tool.tags.slice(0, 24) : [],
+          isFree: tool.isFree,
+        },
+      },
+    });
   };
 
   const handleDirectAccess = (tool: any, e: React.MouseEvent) => {

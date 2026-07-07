@@ -1,5 +1,4 @@
-import { useRef, useEffect, useCallback } from "react";
-import { Link } from "react-router-dom";
+import { useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { ChevronUp, ChevronDown } from "lucide-react";
@@ -39,26 +38,6 @@ const GlobalSearchResults = ({
       scrollRef.current.scrollTop = 0;
     }
   }, [searchResults]);
-
-  // Unified pointer-down handling for instant nav on every device.
-  // Tracks pointer movement so a scroll-drag never fires a navigation.
-  const pointerStartRef = useRef<{ x: number; y: number; id: number } | null>(null);
-  const POINTER_SLOP = 10;
-
-  const handlePointerDown = useCallback((e: React.PointerEvent) => {
-    pointerStartRef.current = { x: e.clientX, y: e.clientY, id: e.pointerId };
-  }, []);
-
-  const handlePointerUp = useCallback((e: React.PointerEvent, tool: any) => {
-    const start = pointerStartRef.current;
-    pointerStartRef.current = null;
-    if (!start || start.id !== e.pointerId) return;
-    const dx = Math.abs(e.clientX - start.x);
-    const dy = Math.abs(e.clientY - start.y);
-    if (dx < POINTER_SLOP && dy < POINTER_SLOP) {
-      onToolClick(tool);
-    }
-  }, [onToolClick]);
 
   const scrollToTop = () => {
     if (scrollRef.current) {
@@ -109,8 +88,6 @@ const GlobalSearchResults = ({
                 data-tool-title={tool.title}
                 aria-label={`Open ${tool.title}`}
                 className={`flex items-center space-x-3 p-3 rounded-lg hover:bg-cyan-500/10 cursor-pointer group border border-transparent hover:border-cyan-500/30 ${isRecommendation ? 'opacity-90' : ''}`}
-                onPointerDown={handlePointerDown}
-                onPointerUp={(e) => handlePointerUp(e, tool)}
                 onClick={() => onToolClick(tool)}
                 onKeyDown={(e) => {
                   if (e.key === 'Enter' || e.key === ' ') {
@@ -120,15 +97,7 @@ const GlobalSearchResults = ({
                 }}
                 style={{ transform: 'translateZ(0)', touchAction: 'pan-y' }}
               >
-                <Link
-                  to={toolPath}
-                  className="flex min-w-0 flex-1 items-center space-x-3"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    onToolClick(tool);
-                  }}
-                >
+                <div className="flex min-w-0 flex-1 items-center space-x-3" data-tool-path={toolPath}>
                   {/* Category color-coded icon */}
                   <div 
                     className={`w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-gradient-to-br ${categoryStyle.bg} ${categoryStyle.border} border flex items-center justify-center text-sm sm:text-base flex-shrink-0 shadow-lg ${categoryStyle.glow} group-hover:scale-110`}
@@ -147,14 +116,13 @@ const GlobalSearchResults = ({
                       </p>
                     )}
                   </div>
-                </Link>
+                </div>
                 
                 {tool.directUrl && (
                   <Button 
                     size="sm"
                     variant="outline"
                     className="border-green-400/50 bg-green-400/10 text-green-300 hover:bg-green-400/20 hover:border-green-400 text-xs px-2 py-1 h-auto flex-shrink-0"
-                    onPointerUp={(e) => e.stopPropagation()}
                     onClick={(e) => onDirectAccess(tool, e)}
                   >
                     🚀

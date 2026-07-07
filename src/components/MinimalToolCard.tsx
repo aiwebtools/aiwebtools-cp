@@ -50,15 +50,40 @@ const MinimalToolCard = memo(({ tool, index = 0 }: MinimalToolCardProps) => {
     e.preventDefault();
     e.stopPropagation();
     const slug = generateToolSlug(tool.title);
-    navigate(`/${slug}`);
+    navigate(`/${slug}`, {
+      state: {
+        instantTool: {
+          title: tool.title,
+          category: tool.category,
+          description: tool.description,
+          directUrl: tool.directUrl,
+          imageUrl: typeof tool.imageUrl === "string" ? tool.imageUrl : undefined,
+          videoUrl: tool.videoUrl,
+          emoji: tool.emoji,
+          color: tool.color,
+          rating: tool.rating,
+          totalVotes: tool.totalVotes,
+          tags: Array.isArray(tool.tags) ? tool.tags.slice(0, 24) : [],
+          isFree: tool.isFree,
+        },
+      },
+    });
   };
 
   return (
     <Card 
       className="group cursor-pointer hover:shadow-lg transition-all duration-200 border-gray-800 bg-gray-900/50 hover:bg-gray-800/70 relative"
       onClick={handleClick}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          handleClick(e as unknown as React.MouseEvent);
+        }
+      }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      role="button"
+      tabIndex={0}
+      aria-label={`Open ${tool.title} details`}
     >
       <FavoriteButton tool={tool} size="sm" className="top-2 right-2 z-30" />
       

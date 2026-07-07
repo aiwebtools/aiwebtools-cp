@@ -21,6 +21,8 @@ import { lazyWithRetry } from "@/utils/lazyWithRetry";
 
 // Eager load only the disclaimer gate; lazy-load heavy app routes to avoid black-screen startup
 import DisclaimerGate from "./pages/DisclaimerGate";
+import ToolDetail from "./pages/ToolDetail";
+import MainCategoryPage from "./pages/MainCategoryPage";
 
 // Generic retry wrapper for non-component dynamic imports (e.g., side-effect modules).
 // Prevents "Failed to fetch dynamically imported module" from breaking the app.
@@ -44,22 +46,7 @@ async function importWithRetry<T>(
 
 // Lazy load - secondary pages for faster initial load
 const Index = lazyWithRetry(() => import("./pages/Index"));
-const ToolDetail = lazyWithRetry(() => import("./pages/ToolDetail"));
-// Warm ToolDetail only after the opening is safely complete. Pulling it during
-// the Matrix handoff imports a lot of tool-detail/data code and can cause the
-// exact freeze users were seeing.
-if (typeof window !== 'undefined') {
-  const warm = () => { import("./pages/ToolDetail").catch(() => {}); };
-  setTimeout(() => {
-    if ('requestIdleCallback' in window) {
-      (window as any).requestIdleCallback(warm);
-    } else {
-      warm();
-    }
-  }, 18000);
-}
 const CategoryPage = lazyWithRetry(() => import("./pages/CategoryPage"));
-const MainCategoryPage = lazyWithRetry(() => import("./pages/MainCategoryPage"));
 const SimilarToolsPage = lazyWithRetry(() => import("./pages/SimilarTools"));
 const FavoritesPage = lazyWithRetry(() => import("./pages/FavoritesPage"));
 const ToolSubmission = lazyWithRetry(() => import("./pages/ToolSubmission"));
@@ -153,12 +140,12 @@ const WelcomeNeoVoice = () => {
 // dark screen.
 const PageLoader = () => {
   return (
-    // Instant, silent fallback — no cube, no label. Keeps the data marker for
-    // telemetry while feeling like the next route is already there.
+    // Instant, silent fallback with real height so route transitions never show
+    // a dead black screen if a lazy chunk is a few frames late.
     <div
       data-aiwt-route-fallback="true"
       aria-hidden="true"
-      className="fixed inset-0 z-[9000] bg-background"
+      className="min-h-screen bg-background"
     />
   );
 };
@@ -182,7 +169,7 @@ const InstantToolFallback = ({ tool }: { tool?: any }) => {
       <div className="mx-auto max-w-4xl rounded-lg border border-cyan-500/30 bg-gray-900/80 p-6 shadow-2xl shadow-cyan-500/20">
         <div className="mb-3 flex items-center gap-2 text-xs uppercase tracking-[0.22em] text-matrix-green">
           <span className="inline-block h-2 w-2 animate-pulse rounded-full bg-matrix-green" />
-          Opening tool
+          Loading tool details
         </div>
         <h1 className="text-2xl font-bold text-cyan-100">{displayTitle}</h1>
         {tool?.category ? <p className="mt-2 text-sm text-cyan-300/80">{tool.category}</p> : null}
@@ -270,8 +257,8 @@ const AnimatedRoutes = () => {
         <Route path="/category/:categoryName" element={<RouteReadySignal><CategoryPage /></RouteReadySignal>} />
         <Route path="/main-category/:mainCategoryName" element={<RouteReadySignal><MainCategoryPage /></RouteReadySignal>} />
         {/* Tool detail routes: no fallback — instant nav like before */}
-        <Route path="/tool/:toolId" element={<Suspense fallback={toolFallback}><RouteReadySignal><ToolDetail /></RouteReadySignal></Suspense>} />
-        <Route path="/:toolSlug" element={<Suspense fallback={toolFallback}><RouteReadySignal><ToolDetail /></RouteReadySignal></Suspense>} />
+        <Route path="/tool/:toolId" element={<RouteReadySignal><ToolDetail /></RouteReadySignal>} />
+        <Route path="/:toolSlug" element={<RouteReadySignal><ToolDetail /></RouteReadySignal>} />
         <Route path="/privacy-policy" element={<RouteReadySignal><PrivacyPolicy /></RouteReadySignal>} />
         <Route path="/similar-tools/:toolId" element={<RouteReadySignal><SimilarToolsPage /></RouteReadySignal>} />
         <Route path="/ai-tools-hub" element={<RouteReadySignal><AIToolsHub /></RouteReadySignal>} />
@@ -347,6 +334,25 @@ const PostAcceptBoot: React.FC = () => {
         document.head.appendChild(link);
       });
     });
+  }, [enabled]);
+
+  React.useEffect(() => {
+    if (!enabled) return;
+
+    const warmCriticalRoutes = () => {
+      void Promise.allSettled([
+        import("./pages/ToolDetail"),
+        import("./pages/MainCategoryPage"),
+      ]);
+    };
+
+    const id = window.setTimeout(() => {
+      const ric = (window as any).requestIdleCallback;
+      if (ric) ric(warmCriticalRoutes, { timeout: 2500 });
+      else warmCriticalRoutes();
+    }, typeof window !== 'undefined' && window.innerWidth < 768 ? 2600 : 1400);
+
+    return () => window.clearTimeout(id);
   }, [enabled]);
 
   React.useEffect(() => {

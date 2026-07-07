@@ -23,8 +23,12 @@ const CategoryPageSelection = memo(() => {
   const handleMainCategoryClick = (mainCategoryName: string) => {
     // INSTANT navigation - no delays
     const encodedName = encodeURIComponent(mainCategoryName);
-    navigate(`/main-category/${encodedName}`);
+    navigate(`/main-category/${encodedName}`, { state: { instantCategory: { name: mainCategoryName } } });
     window.scrollTo({ top: 0, behavior: 'auto' });
+  };
+
+  const warmCategoryPage = () => {
+    import("@/pages/MainCategoryPage").catch(() => {});
   };
 
   return (
@@ -43,6 +47,8 @@ const CategoryPageSelection = memo(() => {
               <Button
                 key={mainCat.name}
                 onClick={() => handleMainCategoryClick(mainCat.name)}
+                onMouseEnter={warmCategoryPage}
+                onFocus={warmCategoryPage}
                 variant="outline"
                 className={`group relative overflow-hidden transition-all duration-150 transform hover:scale-105 border h-auto py-6 px-3 min-w-0 ${
                   mainCat.name === "ALL AI TOOLS"

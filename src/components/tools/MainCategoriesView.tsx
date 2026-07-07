@@ -22,12 +22,13 @@ const MainCategoriesView = memo(({ mainCategoryCounts, onMainCategoryClick }: Ma
     // INSTANT navigation
     const encodedName = encodeURIComponent(mainCategoryName);
     onMainCategoryClick(mainCategoryName);
-    navigate(`/main-category/${encodedName}`);
+    navigate(`/main-category/${encodedName}`, { state: { instantCategory: { name: mainCategoryName } } });
     window.scrollTo({ top: 0, behavior: 'auto' });
   }, [navigate, onMainCategoryClick]);
 
   // Prefetch category data on hover (after 100ms delay to avoid unnecessary prefetches)
   const handleCategoryHover = useCallback((mainCategoryName: string) => {
+    import("@/pages/MainCategoryPage").catch(() => {});
     if (prefetchedCategories.has(mainCategoryName)) return;
     
     hoverTimeoutRef.current = setTimeout(() => {

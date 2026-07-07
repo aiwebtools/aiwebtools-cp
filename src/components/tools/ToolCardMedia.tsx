@@ -157,7 +157,6 @@ const ToolCardMedia = ({ tool, isFeatured, imageHeight }: ToolCardMediaProps) =>
             loading="lazy"
             decoding="async"
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            fetchPriority="low"
             onError={(e) => {
               const target = e.target as HTMLImageElement;
               target.style.display = 'none';

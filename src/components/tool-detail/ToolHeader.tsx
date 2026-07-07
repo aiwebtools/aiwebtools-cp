@@ -27,6 +27,7 @@ const ToolHeader = ({ tool, defaultRating, defaultVotes, toolIndex }: ToolHeader
   const handleQuickUse = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
+    if (!tool.directUrl) return;
     createTimePortalEffect(tool.directUrl || '', tool.title);
   };
 
@@ -67,6 +68,7 @@ const ToolHeader = ({ tool, defaultRating, defaultVotes, toolIndex }: ToolHeader
           <Button
             size="sm"
             onClick={handleQuickUse}
+            disabled={!tool.directUrl}
             className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white px-4 py-2 text-xs rounded-lg shadow-md shadow-cyan-500/20"
             style={{ touchAction: 'manipulation' }}
           >
