@@ -2156,26 +2156,30 @@ export const useGlobalSearch = () => {
     const shouldUseWorker = isMobileViewport() || toolsRef.current.length === 0 || cappedT.length > 24;
     if (shouldUseWorker) {
       pendingSearchRef.current = null;
-      console.log('[dbg] worker path enter', { q: cappedT });
-      void runWorkerSearch(cappedT).then((workerResults) => {
-        if (currentId !== searchIdRef.current) { console.log('[dbg] stale worker result'); return; }
-        console.log('[dbg] worker resolved', { got: workerResults.length, toolsLoaded: toolsRef.current.length });
-        const results = workerResults.length > 0
-          ? workerResults
-          : (toolsRef.current.length > 0 ? ensureExactTitleHit(quickSearch(cappedT), cappedT) : []);
-        // Worker failed AND tools not loaded — kick off tools load so a retry via the
-        // pending-search effect can finally surface results once modules arrive.
-        if (workerResults.length === 0 && toolsRef.current.length === 0) {
-          pendingSearchRef.current = cappedT;
-          void loadTools();
-        }
-        searchCache.set(fullCacheKey, results);
-        startTransition(() => {
-          setSearchResults(results);
-          setDisplayedCount(50);
+      void runWorkerSearch(cappedT)
+        .catch((err) => {
+          console.warn('[search] worker rejected, falling back:', err);
+          return [] as any[];
+        })
+        .then((workerResults) => {
+          if (currentId !== searchIdRef.current) return;
+          const haveTools = toolsRef.current.length > 0;
+          const results = workerResults.length > 0
+            ? workerResults
+            : (haveTools ? ensureExactTitleHit(quickSearch(cappedT), cappedT) : []);
+          // Worker returned nothing AND tools not loaded — kick off tools load so
+          // the pending-search effect can finally surface results once modules arrive.
+          if (workerResults.length === 0 && !haveTools) {
+            pendingSearchRef.current = cappedT;
+            void loadTools();
+          }
+          searchCache.set(fullCacheKey, results);
+          startTransition(() => {
+            setSearchResults(results);
+            setDisplayedCount(50);
+          });
+          recordMetric("search.worker.ms", performance.now() - keystrokeAt, { len: cappedT.length });
         });
-        recordMetric("search.worker.ms", performance.now() - keystrokeAt, { len: cappedT.length });
-      });
       return;
     }
 
