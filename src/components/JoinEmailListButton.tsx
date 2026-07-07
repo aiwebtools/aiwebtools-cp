@@ -6,9 +6,10 @@ interface Props {
   source?: string;
   variant?: "default" | "compact" | "mobile";
   className?: string;
+  onBeforeOpen?: () => void;
 }
 
-const JoinEmailListButton = ({ source = "website", variant = "default", className = "" }: Props) => {
+const JoinEmailListButton = ({ source = "website", variant = "default", className = "", onBeforeOpen }: Props) => {
   const [open, setOpen] = useState(false);
 
   const base =
@@ -24,7 +25,11 @@ const JoinEmailListButton = ({ source = "website", variant = "default", classNam
     <>
       <button
         type="button"
-        onClick={() => setOpen(true)}
+        onClick={() => {
+          onBeforeOpen?.();
+          // Delay slightly so any parent dropdown/menu can close first
+          setTimeout(() => setOpen(true), 60);
+        }}
         className={`${base} ${size} ${className}`}
         style={{ boxShadow: "0 0 12px rgba(0,255,65,0.35)", textShadow: "0 0 6px rgba(0,255,65,0.5)" }}
         aria-label="Join our email list"
