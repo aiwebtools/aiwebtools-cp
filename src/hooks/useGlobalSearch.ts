@@ -2210,13 +2210,6 @@ export const useGlobalSearch = () => {
     setIsOpen(true);
     const currentId = ++searchIdRef.current;
     const lightweightResults = fallbackSearch(cappedT);
-    if (typeof window !== "undefined" && (window as any).__AIWT_SEARCH_DEBUG__) {
-      (window as any).__AIWT_SEARCH_STATE__ = {
-        value: cappedT,
-        lightweightCount: lightweightResults.length,
-        toolsLoaded: toolsRef.current.length,
-      };
-    }
     if (lightweightResults.length > 0 && toolsRef.current.length === 0) {
       startTransition(() => {
         setSearchResults(lightweightResults);
@@ -2277,7 +2270,7 @@ export const useGlobalSearch = () => {
           const haveTools = toolsRef.current.length > 0;
           const results = workerResults.length > 0
             ? workerResults
-            : (haveTools ? ensureExactTitleHit(quickSearch(cappedT), cappedT) : []);
+            : (haveTools ? ensureExactTitleHit(quickSearch(cappedT), cappedT) : lightweightResults);
           // Worker returned nothing AND tools not loaded — kick off tools load so
           // the pending-search effect can finally surface results once modules arrive.
           if (workerResults.length === 0 && !haveTools) {
@@ -2287,10 +2280,13 @@ export const useGlobalSearch = () => {
           if (results.length > 0 || haveTools) {
             searchCache.set(fullCacheKey, results);
           }
-          startTransition(() => {
-            setSearchResults(results);
-            setDisplayedCount(50);
-          });
+          if (results.length > 0 || haveTools) {
+            startTransition(() => {
+              setSearchResults(results);
+              setDisplayedCount(50);
+              setIsOpen(true);
+            });
+          }
           recordMetric("search.worker.ms", performance.now() - keystrokeAt, { len: cappedT.length });
         });
       return;
