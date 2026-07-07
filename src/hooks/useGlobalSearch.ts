@@ -2243,14 +2243,15 @@ export const useGlobalSearch = () => {
       }
     };
 
-    const delay = isMobileViewport() ? 12000 : 1800;
+    const delay = isMobileViewport() ? 4000 : 1800;
     const handle = window.setTimeout(() => {
       if (cancelled) return;
       const ric = (window as any).requestIdleCallback;
       const scheduleWarm = () => {
         if (isMobileViewport()) {
           getSearchWorker();
-        } else if (toolsRef.current.length === 0) {
+        }
+        if (toolsRef.current.length === 0) {
           void loadTools().then(() => warm());
         } else {
           warm();
