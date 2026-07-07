@@ -106,7 +106,6 @@ const GlobalSearchResults = ({
               <div
                 role="button"
                 tabIndex={0}
-                data-testid="global-search-result"
                 data-tool-title={tool.title}
                 aria-label={`Open ${tool.title}`}
                 className={`flex items-center space-x-3 p-3 rounded-lg hover:bg-cyan-500/10 cursor-pointer group border border-transparent hover:border-cyan-500/30 ${isRecommendation ? 'opacity-90' : ''}`}
@@ -182,7 +181,7 @@ const GlobalSearchResults = ({
                 )}
                 
                 {/* Show tooltip only on desktop (md and above) */}
-                <div className="hidden md:block">
+                <div className="hidden md:block" data-testid="global-search-result" data-tool-title={tool.title}>
                   <Tooltip delayDuration={300}>
                     <TooltipTrigger asChild>
                       {toolItem}
@@ -220,7 +219,7 @@ const GlobalSearchResults = ({
                 </div>
                 
                 {/* Show plain item on mobile (below md) */}
-                <div className="block md:hidden">
+                <div className="block md:hidden" data-testid="global-search-result" data-tool-title={tool.title}>
                   {toolItem}
                 </div>
               </div>
