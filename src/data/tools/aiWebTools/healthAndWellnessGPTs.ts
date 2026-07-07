@@ -15,6 +15,8 @@ import {
   Home,
   ChefHat
 } from "lucide-react";
+import skinCareGptHero from "@/assets/tools/skin-care-gpt-hero.jpg";
+import patientsAdvocateGptHero from "@/assets/tools/patients-advocate-gpt-hero.jpg";
 
 export const healthAndWellnessGPTs: Tool[] = [
   {
@@ -37,7 +39,7 @@ export const healthAndWellnessGPTs: Tool[] = [
     emoji: "✨",
     color: "from-pink-500 to-purple-600",
     directUrl: "https://skincaregpt.lovable.app/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/skin-care-gpt-hero.png",
+    imageUrl: skinCareGptHero,
     tags: ["skincare", "dermatology", "beauty advice", "skin analysis", "cosmetics", "health", "wellness", "aiwebtools", "Custom GPT", "Wellness", "Healthcare"],
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.6,

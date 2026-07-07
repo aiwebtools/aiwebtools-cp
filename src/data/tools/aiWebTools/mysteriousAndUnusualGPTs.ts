@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 
 import mindReaderGptHero from "@/assets/tools/mind-reader-gpt-hero.jpg";
+import magnetismGptHero from "@/assets/tools/magnetism-gpt-hero.jpg";
 
 export const mysteriousAndUnusualGPTs: Tool[] = [
   {
@@ -203,7 +204,7 @@ export const mysteriousAndUnusualGPTs: Tool[] = [
     emoji: "🧲",
     color: "from-blue-600 to-purple-700",
     directUrl: "https://chatgpt.com/g/g-68eb1e7a39d48191ac52cd628c18fd2b-magnetism-gpt/",
-    imageUrl: "/images/magnetism-gpt.png",
+    imageUrl: magnetismGptHero,
     tags: ["magnetism", "science", "spirit", "coherence", "electromagnetic", "consciousness", "energy", "healing", "education", "aiwebtools", "Custom GPT"],
     category: "Mysterious & Unusual",
     rating: 4.7,

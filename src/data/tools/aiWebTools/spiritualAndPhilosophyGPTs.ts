@@ -1,6 +1,9 @@
 
 import { Tool } from "@/types/tools";
 import { Heart, Brain, Sparkles, Star, Sun, Moon, Flower2, Zap, Eye, BookOpen, MapPin, Compass, Leaf, Flame, Mountain } from "lucide-react";
+import harmonicAxisGptHero from "@/assets/tools/harmonic-axis-gpt-hero.jpg";
+import wattsQuantumLightGptHero from "@/assets/tools/watts-quantum-light-gpt-hero.jpg";
+import saintAnthonyPaduaGptHero from "@/assets/tools/saint-anthony-padua-gpt-hero.jpg";
 
 export const spiritualAndPhilosophyGPTs: Tool[] = [
   {
@@ -292,7 +295,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     emoji: "🧭",
     color: "from-green-500 to-teal-600",
     directUrl: "https://chatgpt.com/g/g-68b48909161881918ec5fdb00f56cd75-the-harmonic-axis-protocol/",
-    imageUrl: "/src/assets/harmonic-axis-gpt-hero.jpg",
+    imageUrl: harmonicAxisGptHero,
     tags: ["harmonic alignment", "harmonic", "axis", "sacred geometry", "chakra activation", "spiritual integration", "energy alignment", "divine axis", "aiwebtools", "Custom GPT"],
     category: "Spirituality & Philosophy",
     rating: 4.7,
@@ -422,6 +425,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     emoji: "⚡",
     color: "from-purple-500 to-cyan-600",
     directUrl: "https://chatgpt.com/g/g-n7yvUUmoT-the-architect-watts-entity-free-thought-magic/",
+    imageUrl: wattsQuantumLightGptHero,
     tags: ["alan watts", "the architect", "quantum consciousness", "metaphysical wisdom", "neo", "matrix philosophy", "spiritual liberation", "free thought", "aiwebtools"],
     category: "Spirituality & Philosophy",
     rating: 4.9,
@@ -967,6 +971,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     emoji: "📖",
     color: "from-brown-500 to-amber-600",
     directUrl: "https://chatgpt.com/g/g-6924f62963748191a8f11caa3dbd8aea-saint-anthony-of-padua-gpt/",
+    imageUrl: saintAnthonyPaduaGptHero,
     tags: ["anthony of padua", "franciscan", "preaching", "miracles", "divine mercy", "lost things", "eloquence", "medieval saint", "spirituality", "religion", "religious", "saint", "catholic", "christian", "aiwebtools"],
     category: "Spirituality & Philosophy",
     rating: 4.8,
