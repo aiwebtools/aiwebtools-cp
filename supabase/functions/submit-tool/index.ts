@@ -122,10 +122,25 @@ const handler = async (req: Request): Promise<Response> => {
     const safeVideoUrl = submission.videoUrl ? safeUrl(submission.videoUrl) : "";
     const safeImageUrl = submission.imageUrl ? safeUrl(submission.imageUrl) : "";
 
-    // Send email to admin
+    // Admin recipients are configured via secrets so private emails are
+    // never hardcoded in the repo. Fall back to contact@ai-webtools.com
+    // if the secondary is missing so we never send to nobody.
+    const adminRecipients = [
+      Deno.env.get("ADMIN_EMAIL_PRIMARY"),
+      Deno.env.get("ADMIN_EMAIL_SECONDARY"),
+    ]
+      .map((v) => (v ?? "").trim())
+      .filter((v) => EMAIL_RE.test(v));
+
+    if (adminRecipients.length === 0) {
+      adminRecipients.push("contact@ai-webtools.com");
+    }
+
+    // Send email to admins
     const adminEmailResponse = await resend.emails.send({
       from: "AI Web Tools <onboarding@resend.dev>",
-      to: ["contact@ai-webtools.com"],
+      to: adminRecipients,
+      reply_to: submission.submitterEmail,
       subject: `New AI Tool Submission: ${submission.name.slice(0, 200)}`,
       html: `
         <h1>New Tool Submission</h1>
