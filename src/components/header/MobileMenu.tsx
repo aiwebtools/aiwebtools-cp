@@ -545,6 +545,15 @@ const MobileMenu = () => {
                 <span>AI HUMAN BILL OF RIGHTS</span>
               </DropdownMenuItem>
 
+              {/* Join Email List CTA - placed after Bill of Rights */}
+              <div className="mb-3">
+                <JoinEmailListButton
+                  source="mobile-menu"
+                  variant="mobile"
+                  onBeforeOpen={() => setIsMenuOpen(false)}
+                />
+              </div>
+
               {/* Close Button */}
               <div className="flex justify-center pt-2">
                 <Button
