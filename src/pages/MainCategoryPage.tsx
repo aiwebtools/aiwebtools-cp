@@ -1,5 +1,5 @@
 
-import { useState, useEffect, useMemo, useCallback, useTransition } from "react";
+import { useState, useEffect, useMemo, useCallback, useTransition, lazy, Suspense } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -10,16 +10,16 @@ import SEOHead from "@/components/SEOHead";
 import ToolsGrid from "@/components/tools/ToolsGrid";
 import ToolsGridSkeleton from "@/components/tools/ToolsGridSkeleton";
 import GlobalSearchBar from "@/components/LazyGlobalSearchBar";
-import MainCategoryFilter from "@/components/category/MainCategoryFilter";
 import BreadcrumbNav from "@/components/navigation/BreadcrumbNav";
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
 import { allTools } from "@/data/toolsData";
-import { getToolsByMainCategory } from "@/utils/categoryUtils";
 import { mainCategories } from "@/utils/mainCategoryMapping";
 import { Tool } from "@/types/tools";
 import { getContextAwareAdditionalTools } from "@/utils/contextAwareSimilarTools";
 import { getCachedToolsByMainCategory } from "@/utils/categoryUtils/precomputedCache";
+
+const MainCategoryFilter = lazy(() => import("@/components/category/MainCategoryFilter"));
 
 const MainCategoryPage = () => {
   const { mainCategoryName } = useParams<{ mainCategoryName: string }>();
@@ -50,6 +50,15 @@ const MainCategoryPage = () => {
     setFilteredToolsByCategory([]);
     setDisplayedCount(48);
 
+    // Special fast path for "ALL AI TOOLS" - just use allTools directly (no filtering needed)
+    if (decodedCategoryName === "ALL AI TOOLS") {
+      setCategoryTools(allTools);
+      setFilteredToolsByCategory(allTools);
+      setIsToolsReady(true);
+      console.log(`📂 Loaded ${allTools.length} tools for ALL AI TOOLS`);
+      return;
+    }
+
     // Try to use precomputed cached tools (non-blocking, already computed at startup)
     const cachedTools = getCachedToolsByMainCategory(decodedCategoryName);
     if (cachedTools && cachedTools.length > 0) {
@@ -59,29 +68,24 @@ const MainCategoryPage = () => {
       return; // Skip heavier fallback path
     }
 
-    // Special fast path for "ALL AI TOOLS" - just use allTools directly (no filtering needed)
-    if (decodedCategoryName === "ALL AI TOOLS") {
-      // Use setTimeout(0) to truly defer and avoid blocking navigation
-      setTimeout(() => {
-        startTransition(() => {
-          setCategoryTools(allTools);
-          setFilteredToolsByCategory(allTools);
-          setIsToolsReady(true);
-          console.log(`📂 Loaded ${allTools.length} tools for ALL AI TOOLS`);
-        });
-      }, 0);
-      return;
-    }
-
-    // Fallback for other categories: use setTimeout(0) for true async deferral
+    // Fallback for other categories: lazy-load detector stack only after route paints.
     setTimeout(() => {
-      startTransition(() => {
-        const tools = getToolsByMainCategory(allTools, decodedCategoryName);
-        console.log(`📂 Loaded ${tools.length} tools for category: ${decodedCategoryName}`);
-        setCategoryTools(tools);
-        setFilteredToolsByCategory(tools);
-        setIsToolsReady(true);
-      });
+      import("@/utils/categoryUtils/toolFiltering")
+        .then(({ getToolsByMainCategory }) => {
+          startTransition(() => {
+            const tools = getToolsByMainCategory(allTools, decodedCategoryName);
+            console.log(`📂 Loaded ${tools.length} tools for category: ${decodedCategoryName}`);
+            setCategoryTools(tools);
+            setFilteredToolsByCategory(tools);
+            setIsToolsReady(true);
+          });
+        })
+        .catch((error) => {
+          console.error("Failed to load category tools", error);
+          setCategoryTools(allTools.slice(0, 96));
+          setFilteredToolsByCategory(allTools.slice(0, 96));
+          setIsToolsReady(true);
+        });
     }, 0);
   }, [decodedCategoryName]);
 
@@ -236,11 +240,15 @@ const MainCategoryPage = () => {
           ) : (
             <>
               {/* Category Filter Component */}
-              <MainCategoryFilter
-                tools={categoryTools}
-                onFilteredToolsChange={handleFilteredToolsChange}
-                currentMainCategory={decodedCategoryName}
-              />
+              {decodedCategoryName !== "ALL AI TOOLS" && (
+                <Suspense fallback={null}>
+                  <MainCategoryFilter
+                    tools={categoryTools}
+                    onFilteredToolsChange={handleFilteredToolsChange}
+                    currentMainCategory={decodedCategoryName}
+                  />
+                </Suspense>
+              )}
 
               {/* Tools Count Display - Shows actual filtered count */}
               <div className="text-center mb-8">

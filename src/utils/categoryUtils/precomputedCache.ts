@@ -155,6 +155,9 @@ export async function initializeCategoryCache(): Promise<void> {
  * Falls back to synchronous computation if cache not ready
  */
 export function getCachedToolsByMainCategory(categoryName: string): Tool[] | null {
+  if (categoryName === "ALL AI TOOLS") {
+    return allTools;
+  }
   if (!cacheInitialized || !categoryToolsCache) {
     return null; // Cache not ready
   }
@@ -184,6 +187,7 @@ export function isCategoryCacheReady(): boolean {
  */
 export async function prefetchCategory(categoryName: string): Promise<void> {
   if (typeof window === 'undefined') return;
+  if (categoryName === "ALL AI TOOLS") return;
   await initializeCategoryCache();
   // Touch the cache entry so its ready when navigating
   if (categoryToolsCache && !categoryToolsCache.has(categoryName)) {

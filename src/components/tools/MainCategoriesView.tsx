@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { mainCategories } from "@/utils/mainCategoryMapping";
 import { useNavigate } from "react-router-dom";
-import { getToolsByMainCategory } from "@/utils/categoryUtils/toolFiltering";
 import { allTools } from "@/data/toolsData";
 // Prefetched categories cache
 const prefetchedCategories = new Set<string>();
@@ -33,8 +32,12 @@ const MainCategoriesView = memo(({ mainCategoryCounts, onMainCategoryClick }: Ma
     
     hoverTimeoutRef.current = setTimeout(() => {
       // Trigger cache population by calling getToolsByMainCategory
-      getToolsByMainCategory(allTools, mainCategoryName);
-      prefetchedCategories.add(mainCategoryName);
+      import("@/utils/categoryUtils/toolFiltering")
+        .then(({ getToolsByMainCategory }) => {
+          getToolsByMainCategory(allTools, mainCategoryName);
+          prefetchedCategories.add(mainCategoryName);
+        })
+        .catch(() => {});
     }, 100);
   }, []);
 
