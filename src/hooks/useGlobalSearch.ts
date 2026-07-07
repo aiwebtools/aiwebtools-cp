@@ -2153,7 +2153,10 @@ export const useGlobalSearch = () => {
       return;
     }
 
-    const shouldUseWorker = isMobileViewport() || toolsRef.current.length === 0 || cappedT.length > 24;
+    // Prefer the main-thread quick index when tools are already loaded — the worker
+    // path can silently break in dev when the tools module fails to fetch, so this
+    // makes the dropdown resilient across devices.
+    const shouldUseWorker = toolsRef.current.length === 0 || cappedT.length > 24;
     if (shouldUseWorker) {
       pendingSearchRef.current = null;
       void runWorkerSearch(cappedT)
