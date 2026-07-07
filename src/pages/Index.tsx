@@ -52,8 +52,23 @@ const Index = () => {
       window.dispatchEvent(new Event("aiwt:route-ready"));
     }, 160);
 
-    return () => window.clearTimeout(id);
-  }, []);
+    const warmRouteChunks = window.setTimeout(() => {
+      const warm = () => {
+        void Promise.allSettled([
+          import("@/pages/MainCategoryPage"),
+          import("@/pages/ToolDetail"),
+        ]);
+      };
+      const ric = (window as any).requestIdleCallback;
+      if (ric) ric(warm, { timeout: 1500 });
+      else warm();
+    }, isMobile ? 900 : 450);
+
+    return () => {
+      window.clearTimeout(id);
+      window.clearTimeout(warmRouteChunks);
+    };
+  }, [isMobile]);
 
   return (
     <div className="min-h-screen bg-black relative overflow-x-hidden">
