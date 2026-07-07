@@ -13,7 +13,6 @@ import GlobalSearchBar from "@/components/LazyGlobalSearchBar";
 import BreadcrumbNav from "@/components/navigation/BreadcrumbNav";
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
-import { allTools } from "@/data/toolsData";
 import { mainCategories } from "@/utils/mainCategoryMapping";
 import { Tool } from "@/types/tools";
 import { getContextAwareAdditionalTools } from "@/utils/contextAwareSimilarTools";
@@ -31,6 +30,7 @@ const MainCategoryPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isToolsReady, setIsToolsReady] = useState(false);
   const [categoryTools, setCategoryTools] = useState<Tool[]>([]);
+  const [allCategoryTools, setAllCategoryTools] = useState<Tool[]>([]);
   const [isPending, startTransition] = useTransition();
 
   const decodedCategoryName = mainCategoryName ? decodeURIComponent(mainCategoryName) : "";
@@ -43,6 +43,7 @@ const MainCategoryPage = () => {
   // Load category tools using precomputed cache first for INSTANT data
   useEffect(() => {
     if (!decodedCategoryName) return;
+    let cancelled = false;
 
     // Reset state immediately - page renders instantly
     setIsToolsReady(false);
@@ -52,10 +53,14 @@ const MainCategoryPage = () => {
 
     // Special fast path for "ALL AI TOOLS" - just use allTools directly (no filtering needed)
     if (decodedCategoryName === "ALL AI TOOLS") {
-      setCategoryTools(allTools);
-      setFilteredToolsByCategory(allTools);
-      setIsToolsReady(true);
-      console.log(`📂 Loaded ${allTools.length} tools for ALL AI TOOLS`);
+      import("@/data/toolsData").then(({ allTools }) => {
+        if (cancelled) return;
+        setAllCategoryTools(allTools);
+        setCategoryTools(allTools);
+        setFilteredToolsByCategory(allTools);
+        setIsToolsReady(true);
+        console.log(`📂 Loaded ${allTools.length} tools for ALL AI TOOLS`);
+      });
       return;
     }
 
@@ -70,9 +75,14 @@ const MainCategoryPage = () => {
 
     // Fallback for other categories: lazy-load detector stack only after route paints.
     setTimeout(() => {
-      import("@/utils/categoryUtils/toolFiltering")
-        .then(({ getToolsByMainCategory }) => {
+      Promise.all([
+        import("@/data/toolsData"),
+        import("@/utils/categoryUtils/toolFiltering"),
+      ])
+        .then(([{ allTools }, { getToolsByMainCategory }]) => {
+          if (cancelled) return;
           startTransition(() => {
+            setAllCategoryTools(allTools);
             const tools = getToolsByMainCategory(allTools, decodedCategoryName);
             console.log(`📂 Loaded ${tools.length} tools for category: ${decodedCategoryName}`);
             setCategoryTools(tools);
@@ -81,12 +91,15 @@ const MainCategoryPage = () => {
           });
         })
         .catch((error) => {
+          if (cancelled) return;
           console.error("Failed to load category tools", error);
-          setCategoryTools(allTools.slice(0, 96));
-          setFilteredToolsByCategory(allTools.slice(0, 96));
           setIsToolsReady(true);
         });
     }, 0);
+
+    return () => {
+      cancelled = true;
+    };
   }, [decodedCategoryName]);
 
   // Use filtered tools from category filter - this is the SOURCE OF TRUTH when filter is active
@@ -112,7 +125,7 @@ const MainCategoryPage = () => {
       
       const stillNeeded = displayedCount - endlessTools.length;
       if (stillNeeded > 0) {
-        const otherTools = allTools.filter(tool => 
+        const otherTools = allCategoryTools.filter(tool => 
           !endlessTools.some(existing => existing.title === tool.title)
         );
         
@@ -122,7 +135,7 @@ const MainCategoryPage = () => {
     }
     
     return endlessTools;
-  }, [toolsToShow, displayedCount, decodedCategoryName]);
+  }, [toolsToShow, displayedCount, decodedCategoryName, allCategoryTools]);
 
   const displayedTools = useMemo(() => 
     finalFilteredTools.slice(0, displayedCount), 
