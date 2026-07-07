@@ -2161,7 +2161,6 @@ export const useGlobalSearch = () => {
       pendingSearchRef.current = null;
       void runWorkerSearch(cappedT)
         .catch((err) => {
-          console.warn('[search] worker rejected, falling back:', err);
           return [] as any[];
         })
         .then((workerResults) => {
