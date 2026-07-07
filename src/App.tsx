@@ -21,8 +21,6 @@ import { lazyWithRetry } from "@/utils/lazyWithRetry";
 
 // Eager load only the disclaimer gate; lazy-load heavy app routes to avoid black-screen startup
 import DisclaimerGate from "./pages/DisclaimerGate";
-import ToolDetail from "./pages/ToolDetail";
-import MainCategoryPage from "./pages/MainCategoryPage";
 
 // Generic retry wrapper for non-component dynamic imports (e.g., side-effect modules).
 // Prevents "Failed to fetch dynamically imported module" from breaking the app.
@@ -46,7 +44,9 @@ async function importWithRetry<T>(
 
 // Lazy load - secondary pages for faster initial load
 const Index = lazyWithRetry(() => import("./pages/Index"));
+const ToolDetail = lazyWithRetry(() => import("./pages/ToolDetail"));
 const CategoryPage = lazyWithRetry(() => import("./pages/CategoryPage"));
+const MainCategoryPage = lazyWithRetry(() => import("./pages/MainCategoryPage"));
 const SimilarToolsPage = lazyWithRetry(() => import("./pages/SimilarTools"));
 const FavoritesPage = lazyWithRetry(() => import("./pages/FavoritesPage"));
 const ToolSubmission = lazyWithRetry(() => import("./pages/ToolSubmission"));
@@ -192,6 +192,31 @@ const InstantToolFallback = ({ tool }: { tool?: any }) => {
   );
 };
 
+const InstantCategoryFallback = () => {
+  const location = useLocation();
+  const fromState = (location.state as any)?.instantCategory?.name;
+  const fromPath = location.pathname.startsWith('/main-category/')
+    ? decodeURIComponent(location.pathname.replace('/main-category/', ''))
+    : '';
+  const displayName = fromState || fromPath || 'AI Tools';
+
+  return (
+    <div className="min-h-screen bg-black px-4 pt-28 text-cyan-100">
+      <div className="mx-auto max-w-6xl">
+        <div className="mb-8 text-center">
+          <div className="mb-3 text-xs uppercase tracking-[0.22em] text-matrix-green">Loading category</div>
+          <h1 className="text-3xl font-black text-cyan-100">{displayName}</h1>
+        </div>
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {Array.from({ length: 9 }).map((_, i) => (
+            <div key={i} className="h-40 animate-pulse rounded-lg border border-cyan-500/20 bg-cyan-500/5" />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const RouteReadySignal = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
 
@@ -251,14 +276,15 @@ const AnimatedRoutes = () => {
   // Secondary pages use Suspense for lazy loading
   const instantTool = (location.state as any)?.instantTool;
   const toolFallback = <InstantToolFallback tool={instantTool} />;
+  const categoryFallback = <InstantCategoryFallback />;
   return (
     <Suspense fallback={<PageLoader />}>
       <Routes location={location}>
         <Route path="/category/:categoryName" element={<RouteReadySignal><CategoryPage /></RouteReadySignal>} />
-        <Route path="/main-category/:mainCategoryName" element={<RouteReadySignal><MainCategoryPage /></RouteReadySignal>} />
+        <Route path="/main-category/:mainCategoryName" element={<Suspense fallback={categoryFallback}><RouteReadySignal><MainCategoryPage /></RouteReadySignal></Suspense>} />
         {/* Tool detail routes: no fallback — instant nav like before */}
-        <Route path="/tool/:toolId" element={<RouteReadySignal><ToolDetail /></RouteReadySignal>} />
-        <Route path="/:toolSlug" element={<RouteReadySignal><ToolDetail /></RouteReadySignal>} />
+        <Route path="/tool/:toolId" element={<Suspense fallback={toolFallback}><RouteReadySignal><ToolDetail /></RouteReadySignal></Suspense>} />
+        <Route path="/:toolSlug" element={<Suspense fallback={toolFallback}><RouteReadySignal><ToolDetail /></RouteReadySignal></Suspense>} />
         <Route path="/privacy-policy" element={<RouteReadySignal><PrivacyPolicy /></RouteReadySignal>} />
         <Route path="/similar-tools/:toolId" element={<RouteReadySignal><SimilarToolsPage /></RouteReadySignal>} />
         <Route path="/ai-tools-hub" element={<RouteReadySignal><AIToolsHub /></RouteReadySignal>} />
