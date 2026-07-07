@@ -247,11 +247,6 @@ const MobileMenu = () => {
                 <GlobalSearchBar />
               </div>
 
-              {/* Join Email List CTA */}
-              <div className="mb-4">
-                <JoinEmailListButton source="mobile-menu" variant="mobile" />
-              </div>
-
               <>
               {/* Navigation Section */}
               <DropdownMenuItem onClick={() => { navigate('/'); setIsMenuOpen(false); }} className="text-cyan-100 hover:bg-cyan-500/20 mb-3 rounded-lg h-12 text-sm font-medium px-3">
