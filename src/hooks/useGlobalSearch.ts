@@ -47,18 +47,100 @@ class LRUCache<K, V> {
 
 // Global search cache (persists across component re-renders)
 // NOTE: versioned to prevent "stale" cached results after search-intelligence updates.
-const SEARCH_CACHE_VERSION = "v51";
+const SEARCH_CACHE_VERSION = "v52";
 const searchCache = new LRUCache<string, any[]>(50);
 
 const isMobileViewport = () =>
   typeof window !== "undefined" &&
   (window.innerWidth <= 768 || window.matchMedia?.("(hover: none) and (pointer: coarse)").matches);
 
+const LIGHTWEIGHT_SEARCH_FALLBACK_TOOLS = [
+  { title: "ChatGPT", category: "AI Chat Platforms", description: "OpenAI's flagship AI assistant for writing, research, coding, and everyday productivity.", tags: ["chatbot", "openai", "assistant", "writing", "coding"], directUrl: "https://chatgpt.com/?via=aiwebtools", isFree: true },
+  { title: "Claude AI", category: "AI Chat Platforms", description: "Anthropic's AI assistant for analysis, writing, coding, and long-context work.", tags: ["chatbot", "anthropic", "assistant", "writing", "research"], directUrl: "https://claude.ai/?via=aiwebtools", isFree: true },
+  { title: "Gemini", category: "AI Chat Platforms", description: "Google's multimodal AI assistant for search, writing, images, and productivity.", tags: ["google", "chatbot", "assistant", "multimodal"], directUrl: "https://gemini.google.com/", isFree: true },
+  { title: "Perplexity AI", category: "Research & Search", description: "AI answer engine for cited research, summaries, and web-connected discovery.", tags: ["research", "search", "citations", "answers"], directUrl: "https://www.perplexity.ai/?via=aiwebtools", isFree: true },
+  { title: "Poe by Quora", category: "AI Chat Platforms", description: "Multi-model AI chat platform for accessing several assistants in one interface.", tags: ["chatbot", "multi-model", "quora", "assistant"], directUrl: "https://poe.com/?via=aiwebtools", isFree: true },
+  { title: "Midjourney", category: "AI Image Generation", description: "AI image generation platform for cinematic art, concept design, and visual ideation.", tags: ["image generator", "art", "design", "creative"], directUrl: "https://www.midjourney.com/?via=aiwebtools", isFree: false },
+  { title: "Stable Diffusion", category: "AI Image Generation", description: "Open image-generation model ecosystem for local and hosted visual creation.", tags: ["image generator", "open source", "local ai", "art"], directUrl: "https://stability.ai/?via=aiwebtools", isFree: true },
+  { title: "DALL-E", category: "AI Image Generation", description: "OpenAI image generation for creating and editing visuals from text prompts.", tags: ["image generator", "openai", "art", "design"], directUrl: "https://openai.com/dall-e-3?via=aiwebtools", isFree: false },
+  { title: "Adobe Firefly", category: "AI Image Generation", description: "Adobe's generative AI suite for commercial-friendly creative image workflows.", tags: ["adobe", "image generator", "design", "creative"], directUrl: "https://firefly.adobe.com/?via=aiwebtools", isFree: true },
+  { title: "Leonardo AI", category: "AI Image Generation", description: "AI art and asset generation platform for designers, game creators, and marketers.", tags: ["image generator", "art", "game assets", "design"], directUrl: "https://leonardo.ai/?via=aiwebtools", isFree: true },
+  { title: "SORA by OpenAI", category: "AI Video Generation", description: "OpenAI text-to-video generation for cinematic AI video creation.", tags: ["video", "text to video", "openai", "cinematic"], directUrl: "https://openai.com/sora?via=aiwebtools", isFree: false },
+  { title: "Runway ML", category: "AI Video Generation", description: "Creative AI video suite for text-to-video, editing, and generative filmmaking.", tags: ["video", "editing", "text to video", "creative"], directUrl: "https://runwayml.com/?via=aiwebtools", isFree: true },
+  { title: "Luma Dream Machine", category: "AI Video Generation", description: "AI video model for realistic motion, cinematic shots, and creative clips.", tags: ["video", "text to video", "cinematic", "luma"], directUrl: "https://lumalabs.ai/dream-machine?via=aiwebtools", isFree: true },
+  { title: "Pika Labs", category: "AI Video Generation", description: "AI video generation and editing platform for turning prompts into motion.", tags: ["video", "animation", "text to video", "creative"], directUrl: "https://pika.art/?via=aiwebtools", isFree: true },
+  { title: "Synthesia", category: "AI Video Generation", description: "AI avatar video platform for business presentations, training, and explainers.", tags: ["video", "avatar", "training", "business"], directUrl: "https://www.synthesia.io/?via=aiwebtools", isFree: false },
+  { title: "HeyGen", category: "AI Video Generation", description: "AI avatar and video creation tool for marketing, sales, and education videos.", tags: ["video", "avatar", "marketing", "translation"], directUrl: "https://www.heygen.com/?via=aiwebtools", isFree: true },
+  { title: "ElevenLabs", category: "AI Audio & Voice", description: "AI voice generation, cloning, dubbing, and text-to-speech platform.", tags: ["voice", "text to speech", "audio", "dubbing"], directUrl: "https://elevenlabs.io/?via=aiwebtools", isFree: true },
+  { title: "Suno AI", category: "AI Music Generation", description: "AI music creation platform for generating songs from text prompts.", tags: ["music", "song generator", "audio", "creative"], directUrl: "https://suno.com/?via=aiwebtools", isFree: true },
+  { title: "Udio", category: "AI Music Generation", description: "AI music generator for creating songs, vocals, and musical ideas.", tags: ["music", "song generator", "audio"], directUrl: "https://www.udio.com/?via=aiwebtools", isFree: true },
+  { title: "Cursor", category: "Developer Tools", description: "AI code editor for building, refactoring, and understanding software projects.", tags: ["coding", "developer", "ide", "programming"], directUrl: "https://cursor.com/?via=aiwebtools", isFree: true },
+  { title: "GitHub Copilot", category: "Developer Tools", description: "AI coding assistant integrated into editors and GitHub developer workflows.", tags: ["coding", "github", "developer", "programming"], directUrl: "https://github.com/features/copilot?via=aiwebtools", isFree: false },
+  { title: "Bolt.new", category: "Developer Tools", description: "AI app builder for creating and editing full-stack web apps in the browser.", tags: ["coding", "app builder", "web development", "agent"], directUrl: "https://bolt.new/?via=aiwebtools", isFree: true },
+  { title: "Replit AI", category: "Developer Tools", description: "AI-assisted cloud development environment for building and shipping software.", tags: ["coding", "developer", "cloud ide", "apps"], directUrl: "https://replit.com/ai?via=aiwebtools", isFree: true },
+  { title: "Notion AI", category: "Productivity", description: "AI writing, summarization, and workspace assistant inside Notion.", tags: ["productivity", "notes", "writing", "workspace"], directUrl: "https://www.notion.so/product/ai?via=aiwebtools", isFree: false },
+  { title: "Grammarly", category: "Writing & Text Generation", description: "AI writing assistant for grammar, clarity, tone, and business communication.", tags: ["writing", "grammar", "productivity", "editing"], directUrl: "https://www.grammarly.com/?via=aiwebtools", isFree: true },
+  { title: "QuillBot", category: "Writing & Text Generation", description: "AI paraphrasing, summarization, grammar, and writing enhancement tool.", tags: ["writing", "paraphrase", "summarizer", "editing"], directUrl: "https://quillbot.com/?via=aiwebtools", isFree: true },
+  { title: "Jasper AI", category: "Marketing Tools", description: "AI marketing content platform for campaigns, copywriting, and brand workflows.", tags: ["marketing", "copywriting", "content", "business"], directUrl: "https://www.jasper.ai/?via=aiwebtools", isFree: false },
+  { title: "Canva AI", category: "Design & Graphics", description: "AI design tools for presentations, graphics, social posts, and brand content.", tags: ["design", "graphics", "presentation", "marketing"], directUrl: "https://www.canva.com/ai?via=aiwebtools", isFree: true },
+  { title: "DeepSeek", category: "AI Chat Platforms", description: "AI models and chat assistant for reasoning, coding, and research workflows.", tags: ["chatbot", "reasoning", "coding", "research"], directUrl: "https://www.deepseek.com/?via=aiwebtools", isFree: true },
+  { title: "Grok", category: "AI Chat Platforms", description: "xAI assistant for conversational search, reasoning, and current-event analysis.", tags: ["chatbot", "xai", "assistant", "research"], directUrl: "https://grok.com/?via=aiwebtools", isFree: true },
+  { title: "G-Mode GPT", category: "AI Web Tools GPTs", description: "AIWebTools custom GPT for powerful multi-purpose reasoning and task execution.", tags: ["aiwebtools", "custom gpt", "assistant", "g-mode"], directUrl: "https://godmodegpt.lovable.app/?via=aiwebtools", isFree: true },
+  { title: "TIME MACHINE GPT", category: "AI Web Tools GPTs", description: "Explore history, alternate realities, and possible futures through immersive AI simulation.", tags: ["aiwebtools", "history", "time travel", "simulation"], directUrl: "https://time-machine-gpt.lovable.app/?via=aiwebtools", isFree: true },
+  { title: "BOOK WRITER GPT", category: "AI Web Tools GPTs", description: "AIWebTools custom GPT for creating structured books, chapters, and long-form stories.", tags: ["aiwebtools", "writing", "book", "author"], directUrl: "https://bookwritergpt.lovable.app/?via=aiwebtools", isFree: true },
+  { title: "COLLEGE DEGREE GPT", category: "AI Web Tools GPTs", description: "AIWebTools education GPT for learning complete college-level subject paths.", tags: ["aiwebtools", "education", "college", "learning"], directUrl: "https://college-degree-gpt.lovable.app/?via=aiwebtools", isFree: true },
+  { title: "PERFECT PROMPT ENGINE", category: "AI Web Tools GPTs", description: "AIWebTools prompt optimizer for crafting stronger prompts and executing tasks.", tags: ["aiwebtools", "prompt", "prompt engineering", "productivity"], directUrl: "https://perfectpromptengine.lovable.app/?via=aiwebtools", isFree: true },
+  { title: "Music Video Maker AI Studio", category: "AI Web Tools GPTs", description: "AIWebTools creative suite for planning cinematic music videos and production ideas.", tags: ["aiwebtools", "music video", "video", "creative"], directUrl: "https://musicvideomakergpt.lovable.app/?via=aiwebtools", isFree: true },
+  { title: "Medicus - the FREE Personal Medical GPT", category: "Health & Wellness", description: "AIWebTools health information GPT for educational personal wellness support.", tags: ["aiwebtools", "health info", "medical", "wellness"], directUrl: "https://medicusgpt.lovable.app/?via=aiwebtools", isFree: true },
+  { title: "Soul Map GPT", category: "Spirituality & Philosophy", description: "AIWebTools spiritual self-reflection GPT for symbolic soul mapping and insight.", tags: ["aiwebtools", "spiritual", "soul", "reflection"], directUrl: "https://soulmapgpt.lovable.app/?via=aiwebtools", isFree: true },
+];
+
+const fallbackSearch = (term: string) => {
+  const q = normalizeSearchText(term).trim();
+  if (!q) return [];
+  const words = q.split(/\s+/).filter(Boolean);
+  return LIGHTWEIGHT_SEARCH_FALLBACK_TOOLS
+    .map((tool) => {
+      const haystack = normalizeSearchText(`${tool.title} ${tool.category} ${tool.description} ${tool.tags.join(" ")}`);
+      let score = 0;
+      const title = normalizeSearchText(tool.title);
+      if (title === q) score += 10000;
+      if (title.startsWith(q)) score += 6000;
+      if (title.includes(q)) score += 3500;
+      for (const word of words) {
+        if (title.includes(word)) score += 1500;
+        else if (haystack.includes(word)) score += 450;
+      }
+      return { tool, score };
+    })
+    .filter(({ score }) => score > 0)
+    .sort((a, b) => b.score - a.score)
+    .map(({ tool }) => tool);
+};
+
 type WorkerSearchResponse = {
   id: number;
   query: string;
   indices?: number[];
   results?: any[];
+};
+
+const toInstantToolState = (tool: any) => {
+  if (!tool || typeof tool !== "object") return undefined;
+  return {
+    title: String(tool.title || ""),
+    category: typeof tool.category === "string" ? tool.category : undefined,
+    description: typeof tool.description === "string" ? tool.description : undefined,
+    tags: Array.isArray(tool.tags) ? tool.tags.filter((tag: unknown) => typeof tag === "string").slice(0, 24) : [],
+    directUrl: typeof tool.directUrl === "string" ? tool.directUrl : undefined,
+    imageUrl: typeof tool.imageUrl === "string" ? tool.imageUrl : undefined,
+    videoUrl: typeof tool.videoUrl === "string" ? tool.videoUrl : undefined,
+    emoji: typeof tool.emoji === "string" ? tool.emoji : undefined,
+    color: typeof tool.color === "string" ? tool.color : undefined,
+    rating: typeof tool.rating === "number" ? tool.rating : undefined,
+    totalVotes: typeof tool.totalVotes === "number" ? tool.totalVotes : undefined,
+    isFree: typeof tool.isFree === "boolean" ? tool.isFree : undefined,
+  };
 };
 
 // ==================== EXACT-TITLE GUARANTEE ====================
@@ -1559,10 +1641,7 @@ export const useGlobalSearch = () => {
   }, [getSearchWorker]);
 
   const prepareSearch = useCallback(() => {
-    if (isMobileViewport()) {
-      getSearchWorker();
-      return;
-    }
+    getSearchWorker();
     void loadTools();
   }, [getSearchWorker, loadTools]);
 
@@ -2130,6 +2209,14 @@ export const useGlobalSearch = () => {
 
     setIsOpen(true);
     const currentId = ++searchIdRef.current;
+    const lightweightResults = fallbackSearch(cappedT);
+    if (lightweightResults.length > 0 && toolsRef.current.length === 0) {
+      startTransition(() => {
+        setSearchResults(lightweightResults);
+        setDisplayedCount(50);
+        setIsOpen(true);
+      });
+    }
 
     // Detect rapid typing/deletion — add adaptive delay to prevent lag
     const now = performance.now();
@@ -2141,7 +2228,7 @@ export const useGlobalSearch = () => {
     // 3) Check cache FIRST - if hit, apply results in next frame (zero compute)
     const fullCacheKey = `${SEARCH_CACHE_VERSION}:full:${cappedT.toLowerCase().trim()}`;
     const cachedFull = searchCache.get(fullCacheKey);
-    if (cachedFull) {
+    if (cachedFull && (cachedFull.length > 0 || toolsRef.current.length > 0)) {
       // Cache hit - apply in a transition so the input keeps up with typing
       if (currentId === searchIdRef.current) {
         startTransition(() => {
@@ -2159,6 +2246,21 @@ export const useGlobalSearch = () => {
     const shouldUseWorker = toolsRef.current.length === 0 || cappedT.length > 24;
     if (shouldUseWorker) {
       pendingSearchRef.current = null;
+      if (toolsRef.current.length === 0) {
+        pendingSearchRef.current = cappedT;
+        void loadTools().then((loadedTools) => {
+          if (currentId !== searchIdRef.current || loadedTools.length === 0) return;
+          const fast = ensureExactTitleHit(quickSearch(cappedT), cappedT);
+          if (fast.length > 0) {
+            searchCache.set(fullCacheKey, fast);
+            startTransition(() => {
+              setSearchResults(fast);
+              setDisplayedCount(50);
+              setIsOpen(true);
+            });
+          }
+        });
+      }
       void runWorkerSearch(cappedT)
         .catch((err) => {
           return [] as any[];
@@ -2168,18 +2270,23 @@ export const useGlobalSearch = () => {
           const haveTools = toolsRef.current.length > 0;
           const results = workerResults.length > 0
             ? workerResults
-            : (haveTools ? ensureExactTitleHit(quickSearch(cappedT), cappedT) : []);
+            : (haveTools ? ensureExactTitleHit(quickSearch(cappedT), cappedT) : lightweightResults);
           // Worker returned nothing AND tools not loaded — kick off tools load so
           // the pending-search effect can finally surface results once modules arrive.
           if (workerResults.length === 0 && !haveTools) {
             pendingSearchRef.current = cappedT;
             void loadTools();
           }
-          searchCache.set(fullCacheKey, results);
-          startTransition(() => {
-            setSearchResults(results);
-            setDisplayedCount(50);
-          });
+          if (results.length > 0 || haveTools) {
+            searchCache.set(fullCacheKey, results);
+          }
+          if (results.length > 0 || haveTools) {
+            startTransition(() => {
+              setSearchResults(results);
+              setDisplayedCount(50);
+              setIsOpen(true);
+            });
+          }
           recordMetric("search.worker.ms", performance.now() - keystrokeAt, { len: cappedT.length });
         });
       return;
@@ -2296,7 +2403,7 @@ export const useGlobalSearch = () => {
     if (fullRef.current) clearTimeout(fullRef.current);
 
     // Navigate synchronously - no RAF wrapper
-    navigate(path, { state: { instantTool: tool } });
+    navigate(path, { state: { instantTool: toInstantToolState(tool) } });
 
     // Defer the heavy state cleanup so React doesn't reconcile the entire
     // (potentially huge) results list in the same tick as navigation.
@@ -2340,7 +2447,7 @@ export const useGlobalSearch = () => {
         if (quickRef.current) clearTimeout(quickRef.current);
         if (fullRef.current) clearTimeout(fullRef.current);
         // Navigate using slug directly - no O(n) findIndex
-        navigate(`/${generateToolSlug(topResult.title)}`, { state: { instantTool: topResult } });
+        navigate(`/${generateToolSlug(topResult.title)}`, { state: { instantTool: toInstantToolState(topResult) } });
         setIsOpen(false);
         setSearchResults([]);
         setSearchTermInternal("");
