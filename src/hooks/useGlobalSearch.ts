@@ -1490,17 +1490,24 @@ export const useGlobalSearch = () => {
   const loadTools = useCallback(() => {
     if (toolsRef.current.length > 0) return Promise.resolve(toolsRef.current);
     if (!toolsLoadingRef.current) {
-      toolsLoadingRef.current = import("@/data/toolsData")
-        .then(({ allTools }) => {
-          toolsRef.current = allTools;
-          setTools(allTools);
-          return allTools;
-        })
-        .catch((error) => {
-          toolsLoadingRef.current = null;
-          console.error("Failed to load search tools:", error);
-          return [];
-        });
+      const attempt = (tries: number, delayMs: number): Promise<any[]> =>
+        import("@/data/toolsData")
+          .then(({ allTools }) => {
+            toolsRef.current = allTools;
+            setTools(allTools);
+            return allTools;
+          })
+          .catch((error) => {
+            if (tries >= 10) {
+              console.error(`[search] loadTools gave up after ${tries} attempts:`, error);
+              toolsLoadingRef.current = null;
+              return [] as any[];
+            }
+            return new Promise<any[]>((resolve) => {
+              setTimeout(() => resolve(attempt(tries + 1, Math.min(delayMs * 1.5, 5000))), delayMs);
+            });
+          });
+      toolsLoadingRef.current = attempt(1, 800);
     }
     return toolsLoadingRef.current;
   }, []);
@@ -2154,6 +2161,12 @@ export const useGlobalSearch = () => {
         const results = workerResults.length > 0
           ? workerResults
           : (toolsRef.current.length > 0 ? ensureExactTitleHit(quickSearch(cappedT), cappedT) : []);
+        // Worker failed AND tools not loaded — kick off tools load so a retry via the
+        // pending-search effect can finally surface results once modules arrive.
+        if (workerResults.length === 0 && toolsRef.current.length === 0) {
+          pendingSearchRef.current = cappedT;
+          void loadTools();
+        }
         searchCache.set(fullCacheKey, results);
         startTransition(() => {
           setSearchResults(results);
