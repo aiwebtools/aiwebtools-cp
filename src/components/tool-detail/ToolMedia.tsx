@@ -12,7 +12,7 @@ const ToolMedia = ({ tool, toolIndex }: ToolMediaProps) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
   const [videoError, setVideoError] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
   const containerRef = useRef<HTMLDivElement>(null);
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
@@ -154,7 +154,7 @@ const ToolMedia = ({ tool, toolIndex }: ToolMediaProps) => {
       
       return (
         <div className="relative w-full overflow-hidden rounded-xl bg-gray-800" style={{ aspectRatio: '16/9' }}>
-          {/* Only render iframe when visible - prevents autoplay before scroll */}
+          {/* Render immediately on individual tool pages so media is present as soon as the page opens. */}
           {isVisible ? (
             <iframe
               ref={iframeRef}
@@ -176,7 +176,7 @@ const ToolMedia = ({ tool, toolIndex }: ToolMediaProps) => {
               onError={handleVideoError}
             />
           ) : (
-            /* Clean gradient placeholder until user scrolls to video */
+            /* Safety placeholder only if rendering is intentionally paused. */
             <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900" />
           )}
         </div>
@@ -208,7 +208,7 @@ const ToolMedia = ({ tool, toolIndex }: ToolMediaProps) => {
             className={`w-full h-full object-cover transition-all duration-500 ${
               imageLoaded ? 'opacity-100' : 'opacity-0'
             }`}
-            loading="lazy"
+            loading="eager"
             decoding="async"
             onLoad={() => setImageLoaded(true)}
             onError={() => setImageError(true)}

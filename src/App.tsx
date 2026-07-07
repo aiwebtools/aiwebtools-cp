@@ -45,19 +45,6 @@ async function importWithRetry<T>(
 // Lazy load - secondary pages for faster initial load
 const Index = lazyWithRetry(() => import("./pages/Index"));
 const ToolDetail = lazyWithRetry(() => import("./pages/ToolDetail"));
-// Warm ToolDetail only after the opening is safely complete. Pulling it during
-// the Matrix handoff imports a lot of tool-detail/data code and can cause the
-// exact freeze users were seeing.
-if (typeof window !== 'undefined') {
-  const warm = () => { import("./pages/ToolDetail").catch(() => {}); };
-  setTimeout(() => {
-    if ('requestIdleCallback' in window) {
-      (window as any).requestIdleCallback(warm);
-    } else {
-      warm();
-    }
-  }, 18000);
-}
 const CategoryPage = lazyWithRetry(() => import("./pages/CategoryPage"));
 const MainCategoryPage = lazyWithRetry(() => import("./pages/MainCategoryPage"));
 const SimilarToolsPage = lazyWithRetry(() => import("./pages/SimilarTools"));
@@ -153,12 +140,12 @@ const WelcomeNeoVoice = () => {
 // dark screen.
 const PageLoader = () => {
   return (
-    // Instant, silent fallback — no cube, no label. Keeps the data marker for
-    // telemetry while feeling like the next route is already there.
+    // Instant, silent fallback with real height so route transitions never show
+    // a dead black screen if a lazy chunk is a few frames late.
     <div
       data-aiwt-route-fallback="true"
       aria-hidden="true"
-      className="fixed inset-0 z-[9000] bg-background"
+      className="min-h-screen bg-background"
     />
   );
 };
@@ -182,7 +169,7 @@ const InstantToolFallback = ({ tool }: { tool?: any }) => {
       <div className="mx-auto max-w-4xl rounded-lg border border-cyan-500/30 bg-gray-900/80 p-6 shadow-2xl shadow-cyan-500/20">
         <div className="mb-3 flex items-center gap-2 text-xs uppercase tracking-[0.22em] text-matrix-green">
           <span className="inline-block h-2 w-2 animate-pulse rounded-full bg-matrix-green" />
-          Opening tool
+          Loading tool details
         </div>
         <h1 className="text-2xl font-bold text-cyan-100">{displayTitle}</h1>
         {tool?.category ? <p className="mt-2 text-sm text-cyan-300/80">{tool.category}</p> : null}
@@ -198,6 +185,31 @@ const InstantToolFallback = ({ tool }: { tool?: any }) => {
         <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
           {Array.from({ length: 6 }).map((_, i) => (
             <div key={i} className="h-24 animate-pulse rounded-md border border-cyan-500/10 bg-cyan-500/5" />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const InstantCategoryFallback = () => {
+  const location = useLocation();
+  const fromState = (location.state as any)?.instantCategory?.name;
+  const fromPath = location.pathname.startsWith('/main-category/')
+    ? decodeURIComponent(location.pathname.replace('/main-category/', ''))
+    : '';
+  const displayName = fromState || fromPath || 'AI Tools';
+
+  return (
+    <div className="min-h-screen bg-black px-4 pt-28 text-cyan-100">
+      <div className="mx-auto max-w-6xl">
+        <div className="mb-8 text-center">
+          <div className="mb-3 text-xs uppercase tracking-[0.22em] text-matrix-green">Loading category</div>
+          <h1 className="text-3xl font-black text-cyan-100">{displayName}</h1>
+        </div>
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {Array.from({ length: 9 }).map((_, i) => (
+            <div key={i} className="h-40 animate-pulse rounded-lg border border-cyan-500/20 bg-cyan-500/5" />
           ))}
         </div>
       </div>
@@ -264,11 +276,12 @@ const AnimatedRoutes = () => {
   // Secondary pages use Suspense for lazy loading
   const instantTool = (location.state as any)?.instantTool;
   const toolFallback = <InstantToolFallback tool={instantTool} />;
+  const categoryFallback = <InstantCategoryFallback />;
   return (
     <Suspense fallback={<PageLoader />}>
       <Routes location={location}>
         <Route path="/category/:categoryName" element={<RouteReadySignal><CategoryPage /></RouteReadySignal>} />
-        <Route path="/main-category/:mainCategoryName" element={<RouteReadySignal><MainCategoryPage /></RouteReadySignal>} />
+        <Route path="/main-category/:mainCategoryName" element={<Suspense fallback={categoryFallback}><RouteReadySignal><MainCategoryPage /></RouteReadySignal></Suspense>} />
         {/* Tool detail routes: no fallback — instant nav like before */}
         <Route path="/tool/:toolId" element={<Suspense fallback={toolFallback}><RouteReadySignal><ToolDetail /></RouteReadySignal></Suspense>} />
         <Route path="/:toolSlug" element={<Suspense fallback={toolFallback}><RouteReadySignal><ToolDetail /></RouteReadySignal></Suspense>} />
@@ -347,6 +360,25 @@ const PostAcceptBoot: React.FC = () => {
         document.head.appendChild(link);
       });
     });
+  }, [enabled]);
+
+  React.useEffect(() => {
+    if (!enabled) return;
+
+    const warmCriticalRoutes = () => {
+      void Promise.allSettled([
+        import("./pages/ToolDetail"),
+        import("./pages/MainCategoryPage"),
+      ]);
+    };
+
+    const id = window.setTimeout(() => {
+      const ric = (window as any).requestIdleCallback;
+      if (ric) ric(warmCriticalRoutes, { timeout: 2500 });
+      else warmCriticalRoutes();
+    }, typeof window !== 'undefined' && window.innerWidth < 768 ? 2600 : 1400);
+
+    return () => window.clearTimeout(id);
   }, [enabled]);
 
   React.useEffect(() => {

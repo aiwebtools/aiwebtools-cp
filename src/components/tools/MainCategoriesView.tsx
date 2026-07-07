@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { mainCategories } from "@/utils/mainCategoryMapping";
 import { useNavigate } from "react-router-dom";
-import { getToolsByMainCategory } from "@/utils/categoryUtils/toolFiltering";
 import { allTools } from "@/data/toolsData";
 // Prefetched categories cache
 const prefetchedCategories = new Set<string>();
@@ -22,18 +21,23 @@ const MainCategoriesView = memo(({ mainCategoryCounts, onMainCategoryClick }: Ma
     // INSTANT navigation
     const encodedName = encodeURIComponent(mainCategoryName);
     onMainCategoryClick(mainCategoryName);
-    navigate(`/main-category/${encodedName}`);
+    navigate(`/main-category/${encodedName}`, { state: { instantCategory: { name: mainCategoryName } } });
     window.scrollTo({ top: 0, behavior: 'auto' });
   }, [navigate, onMainCategoryClick]);
 
   // Prefetch category data on hover (after 100ms delay to avoid unnecessary prefetches)
   const handleCategoryHover = useCallback((mainCategoryName: string) => {
+    import("@/pages/MainCategoryPage").catch(() => {});
     if (prefetchedCategories.has(mainCategoryName)) return;
     
     hoverTimeoutRef.current = setTimeout(() => {
       // Trigger cache population by calling getToolsByMainCategory
-      getToolsByMainCategory(allTools, mainCategoryName);
-      prefetchedCategories.add(mainCategoryName);
+      import("@/utils/categoryUtils/toolFiltering")
+        .then(({ getToolsByMainCategory }) => {
+          getToolsByMainCategory(allTools, mainCategoryName);
+          prefetchedCategories.add(mainCategoryName);
+        })
+        .catch(() => {});
     }, 100);
   }, []);
 

@@ -13,6 +13,7 @@ const ToolActions = ({ tool }: ToolActionsProps) => {
   const handleUseItNow = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
+    if (!tool.directUrl) return;
     console.log('USE IT NOW button clicked for:', tool.title);
     console.log('Tool directUrl:', tool.directUrl);
     
@@ -44,6 +45,7 @@ Thank you!`);
         <Button 
           size="lg"
           onClick={handleUseItNow}
+          disabled={!tool.directUrl}
           className="w-full sm:w-auto bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white px-8 sm:px-12 py-4 text-base sm:text-lg rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg shadow-cyan-500/30 interactive-button glow-effect"
         >
           <ExternalLink className="w-5 h-5 mr-2" />

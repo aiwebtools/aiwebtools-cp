@@ -76,7 +76,25 @@ Best regards`);
       
       <div className="mt-auto space-y-2">
         {/* View Details Button - now uses clean URL slug */}
-        <Link to={`/${generateToolSlug(tool.title)}`}>
+        <Link
+          to={`/${generateToolSlug(tool.title)}`}
+          state={{
+            instantTool: {
+              title: tool.title,
+              category: tool.category,
+              description: tool.description,
+              directUrl: tool.directUrl,
+              imageUrl: typeof tool.imageUrl === "string" ? tool.imageUrl : undefined,
+              videoUrl: tool.videoUrl,
+              emoji: tool.emoji,
+              color: tool.color,
+              rating: tool.rating,
+              totalVotes: tool.totalVotes,
+              tags: Array.isArray(tool.tags) ? tool.tags.slice(0, 24) : [],
+              isFree: tool.isFree,
+            },
+          }}
+        >
           <Button 
             size={buttonSize as any}
             className={`w-full ${isAIWebToolsOriginal ? 'bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600' : 'bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700'} text-white transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-cyan-500/30`}

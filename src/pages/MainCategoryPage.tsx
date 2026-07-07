@@ -1,5 +1,5 @@
 
-import { useState, useEffect, useMemo, useCallback, useTransition } from "react";
+import { useState, useEffect, useMemo, useCallback, useTransition, lazy, Suspense } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -10,16 +10,13 @@ import SEOHead from "@/components/SEOHead";
 import ToolsGrid from "@/components/tools/ToolsGrid";
 import ToolsGridSkeleton from "@/components/tools/ToolsGridSkeleton";
 import GlobalSearchBar from "@/components/LazyGlobalSearchBar";
-import MainCategoryFilter from "@/components/category/MainCategoryFilter";
 import BreadcrumbNav from "@/components/navigation/BreadcrumbNav";
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
-import { allTools } from "@/data/toolsData";
-import { getToolsByMainCategory } from "@/utils/categoryUtils";
 import { mainCategories } from "@/utils/mainCategoryMapping";
 import { Tool } from "@/types/tools";
-import { getContextAwareAdditionalTools } from "@/utils/contextAwareSimilarTools";
-import { getCachedToolsByMainCategory } from "@/utils/categoryUtils/precomputedCache";
+
+const MainCategoryFilter = lazy(() => import("@/components/category/MainCategoryFilter"));
 
 const MainCategoryPage = () => {
   const { mainCategoryName } = useParams<{ mainCategoryName: string }>();
@@ -31,6 +28,7 @@ const MainCategoryPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isToolsReady, setIsToolsReady] = useState(false);
   const [categoryTools, setCategoryTools] = useState<Tool[]>([]);
+  const [allCategoryTools, setAllCategoryTools] = useState<Tool[]>([]);
   const [isPending, startTransition] = useTransition();
 
   const decodedCategoryName = mainCategoryName ? decodeURIComponent(mainCategoryName) : "";
@@ -43,6 +41,7 @@ const MainCategoryPage = () => {
   // Load category tools using precomputed cache first for INSTANT data
   useEffect(() => {
     if (!decodedCategoryName) return;
+    let cancelled = false;
 
     // Reset state immediately - page renders instantly
     setIsToolsReady(false);
@@ -50,39 +49,46 @@ const MainCategoryPage = () => {
     setFilteredToolsByCategory([]);
     setDisplayedCount(48);
 
-    // Try to use precomputed cached tools (non-blocking, already computed at startup)
-    const cachedTools = getCachedToolsByMainCategory(decodedCategoryName);
-    if (cachedTools && cachedTools.length > 0) {
-      setCategoryTools(cachedTools);
-      setFilteredToolsByCategory(cachedTools);
-      setIsToolsReady(true);
-      return; // Skip heavier fallback path
-    }
-
     // Special fast path for "ALL AI TOOLS" - just use allTools directly (no filtering needed)
     if (decodedCategoryName === "ALL AI TOOLS") {
-      // Use setTimeout(0) to truly defer and avoid blocking navigation
-      setTimeout(() => {
-        startTransition(() => {
-          setCategoryTools(allTools);
-          setFilteredToolsByCategory(allTools);
-          setIsToolsReady(true);
-          console.log(`📂 Loaded ${allTools.length} tools for ALL AI TOOLS`);
-        });
-      }, 0);
+      import("@/data/toolsData").then(({ allTools }) => {
+        if (cancelled) return;
+        setAllCategoryTools(allTools);
+        setCategoryTools(allTools);
+        setFilteredToolsByCategory(allTools);
+        setIsToolsReady(true);
+        console.log(`📂 Loaded ${allTools.length} tools for ALL AI TOOLS`);
+      });
       return;
     }
 
-    // Fallback for other categories: use setTimeout(0) for true async deferral
+    // Fallback for other categories: lazy-load detector stack only after route paints.
     setTimeout(() => {
-      startTransition(() => {
-        const tools = getToolsByMainCategory(allTools, decodedCategoryName);
-        console.log(`📂 Loaded ${tools.length} tools for category: ${decodedCategoryName}`);
-        setCategoryTools(tools);
-        setFilteredToolsByCategory(tools);
-        setIsToolsReady(true);
-      });
+      Promise.all([
+        import("@/data/toolsData"),
+        import("@/utils/categoryUtils/toolFiltering"),
+      ])
+        .then(([{ allTools }, { getToolsByMainCategory }]) => {
+          if (cancelled) return;
+          startTransition(() => {
+            setAllCategoryTools(allTools);
+            const tools = getToolsByMainCategory(allTools, decodedCategoryName);
+            console.log(`📂 Loaded ${tools.length} tools for category: ${decodedCategoryName}`);
+            setCategoryTools(tools);
+            setFilteredToolsByCategory(tools);
+            setIsToolsReady(true);
+          });
+        })
+        .catch((error) => {
+          if (cancelled) return;
+          console.error("Failed to load category tools", error);
+          setIsToolsReady(true);
+        });
     }, 0);
+
+    return () => {
+      cancelled = true;
+    };
   }, [decodedCategoryName]);
 
   // Use filtered tools from category filter - this is the SOURCE OF TRUTH when filter is active
@@ -94,31 +100,14 @@ const MainCategoryPage = () => {
     const remainingCount = displayedCount - toolsToShow.length;
     
     if (remainingCount > 0) {
-      const similarTools = getContextAwareAdditionalTools(
-        toolsToShow, 
-        "", 
-        decodedCategoryName, 
-        Math.min(remainingCount, 100)
-      );
-      
-      const availableSimilar = similarTools.filter(tool => 
+      const otherTools = allCategoryTools.filter(tool => 
         !endlessTools.some(existing => existing.title === tool.title)
       );
-      endlessTools = [...endlessTools, ...availableSimilar];
-      
-      const stillNeeded = displayedCount - endlessTools.length;
-      if (stillNeeded > 0) {
-        const otherTools = allTools.filter(tool => 
-          !endlessTools.some(existing => existing.title === tool.title)
-        );
-        
-        const toolsToAdd = otherTools.slice(0, stillNeeded);
-        endlessTools = [...endlessTools, ...toolsToAdd];
-      }
+      endlessTools = [...endlessTools, ...otherTools.slice(0, remainingCount)];
     }
     
     return endlessTools;
-  }, [toolsToShow, displayedCount, decodedCategoryName]);
+  }, [toolsToShow, displayedCount, decodedCategoryName, allCategoryTools]);
 
   const displayedTools = useMemo(() => 
     finalFilteredTools.slice(0, displayedCount), 
@@ -236,11 +225,15 @@ const MainCategoryPage = () => {
           ) : (
             <>
               {/* Category Filter Component */}
-              <MainCategoryFilter
-                tools={categoryTools}
-                onFilteredToolsChange={handleFilteredToolsChange}
-                currentMainCategory={decodedCategoryName}
-              />
+              {decodedCategoryName !== "ALL AI TOOLS" && (
+                <Suspense fallback={null}>
+                  <MainCategoryFilter
+                    tools={categoryTools}
+                    onFilteredToolsChange={handleFilteredToolsChange}
+                    currentMainCategory={decodedCategoryName}
+                  />
+                </Suspense>
+              )}
 
               {/* Tools Count Display - Shows actual filtered count */}
               <div className="text-center mb-8">
