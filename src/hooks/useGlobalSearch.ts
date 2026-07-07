@@ -2156,8 +2156,10 @@ export const useGlobalSearch = () => {
     const shouldUseWorker = isMobileViewport() || toolsRef.current.length === 0 || cappedT.length > 24;
     if (shouldUseWorker) {
       pendingSearchRef.current = null;
+      console.log('[dbg] worker path enter', { q: cappedT });
       void runWorkerSearch(cappedT).then((workerResults) => {
-        if (currentId !== searchIdRef.current) return;
+        if (currentId !== searchIdRef.current) { console.log('[dbg] stale worker result'); return; }
+        console.log('[dbg] worker resolved', { got: workerResults.length, toolsLoaded: toolsRef.current.length });
         const results = workerResults.length > 0
           ? workerResults
           : (toolsRef.current.length > 0 ? ensureExactTitleHit(quickSearch(cappedT), cappedT) : []);
