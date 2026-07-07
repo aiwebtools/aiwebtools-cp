@@ -8,6 +8,9 @@ import {
   Building,
   Shirt
 } from "lucide-react";
+import medicalBillingCodingGptHero from "@/assets/tools/medical-billing-coding-gpt-hero.jpg";
+import healthInsuranceClaimsGptHero from "@/assets/tools/health-insurance-claims-gpt-hero.jpg";
+import virtualStylistGptHero from "@/assets/tools/virtual-stylist-gpt-hero.jpg";
 
 export const professionalGPTsAudio: Tool[] = [
   {
@@ -30,6 +33,7 @@ export const professionalGPTsAudio: Tool[] = [
     emoji: "🏥",
     color: "from-blue-500 to-green-600",
     directUrl: "https://medicalbillinggpt.lovable.app/?via=aiwebtools",
+    imageUrl: medicalBillingCodingGptHero,
     tags: ["medical billing", "medical coding", "CPT codes", "ICD-10", "HCPCS", "insurance", "reimbursement", "healthcare", "medical professionals", "billing assistant", "Medical Coding", "Healthcare"],
     category: "Healthcare Professionals",
     rating: 4.7,
@@ -42,6 +46,7 @@ export const professionalGPTsAudio: Tool[] = [
     emoji: "🛡️",
     color: "from-green-500 to-blue-600",
     directUrl: "https://healthinsurenceclaimsgpt.lovable.app/?via=aiwebtools",
+    imageUrl: healthInsuranceClaimsGptHero,
     tags: ["health insurance", "insurance claims", "claim assessment", "cost calculation", "reimbursement", "healthcare expenses", "insurance reports", "claims processing", "medical claims", "Healthcare", "Medical"],
     category: "Healthcare Professionals",
     rating: 4.6,
@@ -67,6 +72,7 @@ export const professionalGPTsAudio: Tool[] = [
     emoji: "👗",
     color: "from-pink-500 to-purple-600",
     directUrl: "https://virtualstylistgpt.lovable.app/?via=aiwebtools",
+    imageUrl: virtualStylistGptHero,
     tags: ["virtual stylist", "virtual try-on", "fashion", "outfit visualization", "hairstyle simulation", "ai stylist", "virtual makeover", "style transformation", "fashion ai", "wardrobe assistant", "look visualization", "fashion technology", "virtual fitting", "style advisor", "fashion preview"],
     category: "Creative & Entertainment",
     rating: 4.7,

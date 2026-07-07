@@ -7,6 +7,8 @@ import {
   BookOpen,
   Trophy
 } from "lucide-react";
+import adLogoMakerGptHero from "@/assets/tools/ad-logo-maker-gpt-hero.jpg";
+import triviaNightGptHero from "@/assets/tools/trivia-night-gpt-hero.jpg";
 
 export const aiWebToolsCreativeGPTs: Tool[] = [
   {
@@ -30,6 +32,7 @@ export const aiWebToolsCreativeGPTs: Tool[] = [
     emoji: "🎨",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://adandlogomakergpt.lovable.app/?via=aiwebtools",
+    imageUrl: adLogoMakerGptHero,
     tags: ["ad maker", "logo generator", "GPT-4o", "advertisement creation", "AI design", "professional design", "brand identity", "instant generation", "cutting-edge technology", "personalized ads", "high-quality design", "ad variations", "logo design", "marketing materials", "AI advertising"],
     category: "Creative & Entertainment",
     rating: 4.8,
@@ -55,6 +58,7 @@ export const aiWebToolsCreativeGPTs: Tool[] = [
     emoji: "🏆",
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://trivianightgpt.lovable.app/?via=aiwebtools",
+    imageUrl: triviaNightGptHero,
     tags: ["trivia", "ai trivia", "family games", "friends", "multiple choice", "true false", "image trivia", "quiz games", "party games", "entertainment", "trivia night", "game night", "brain games", "knowledge quiz", "interactive games"],
     category: "Creative & Entertainment",
     rating: 4.7,

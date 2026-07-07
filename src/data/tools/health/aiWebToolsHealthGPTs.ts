@@ -11,6 +11,11 @@ import {
   Shield,
   Beaker
 } from "lucide-react";
+import mindBodyGptHero from "@/assets/tools/mind-body-gpt-hero.jpg";
+import skinCareGptHero from "@/assets/tools/skin-care-gpt-hero.jpg";
+import meditationGuidanceGptHero from "@/assets/tools/meditation-guidance-gpt-hero.jpg";
+import petroProductScreenerGptHero from "@/assets/tools/petro-product-screener-gpt-hero.jpg";
+import patientsAdvocateGptHero from "@/assets/tools/patients-advocate-gpt-hero.jpg";
 
 export const aiWebToolsHealthGPTs: Tool[] = [
   {
@@ -20,6 +25,7 @@ export const aiWebToolsHealthGPTs: Tool[] = [
     emoji: "🧠",
     color: "from-blue-500 to-green-600",
     directUrl: "https://chatgpt.com/g/g-68ae286601288191825384507ac74512-neurophysical-titan/",
+    imageUrl: mindBodyGptHero,
     tags: ["mind body connection", "neurophysical health", "mental performance", "physical wellness", "holistic health", "cognitive optimization", "fitness", "stress management", "aiwebtools", "Mental Health", "Wellness", "Fitness"],
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.8,
@@ -125,6 +131,7 @@ export const aiWebToolsHealthGPTs: Tool[] = [
     emoji: "✨",
     color: "from-pink-500 to-purple-600",
     directUrl: "https://skincaregpt.lovable.app/?via=aiwebtools",
+    imageUrl: skinCareGptHero,
     tags: ["skincare", "dermatology", "beauty advice", "skin analysis", "cosmetics", "health", "wellness", "aiwebtools", "Wellness", "Healthcare"],
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.6,
@@ -137,6 +144,7 @@ export const aiWebToolsHealthGPTs: Tool[] = [
     emoji: "🧘",
     color: "from-indigo-500 to-purple-600",
     directUrl: "https://chatgpt.com/g/g-688ea843f0ac81918fb4b8d60d7dc4ef-meditation-guidance-gpt",
+    imageUrl: meditationGuidanceGptHero,
     tags: ["meditation", "mindfulness", "stress relief", "mental wellness", "breathing exercises", "inner peace", "aiwebtools", "Meditation", "Mental Health", "Stress Management"],
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.7,
@@ -149,6 +157,7 @@ export const aiWebToolsHealthGPTs: Tool[] = [
     emoji: "🛡️",
     color: "from-orange-500 to-red-600",
     directUrl: "https://chatgpt.com/g/g-68d28a4d6ad481918869ea60627624de-petro-product-screener-gpt",
+    imageUrl: petroProductScreenerGptHero,
     tags: ["product safety", "chemical analysis", "health hazards", "petrochemicals", "safety screening", "product analyzer", "aiwebtools", "Healthcare", "Wellness"],
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.6,
@@ -161,6 +170,7 @@ export const aiWebToolsHealthGPTs: Tool[] = [
     emoji: "🤝",
     color: "from-blue-500 to-green-600",
     directUrl: "https://chatgpt.com/g/g-68cf22ea994481919206bf9eb0abccbc-patients-advocate-gpt",
+    imageUrl: patientsAdvocateGptHero,
     tags: ["patient advocacy", "healthcare rights", "medical visits", "patient support", "healthcare navigation", "empowerment", "aiwebtools", "Healthcare", "Medical"],
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.8,
