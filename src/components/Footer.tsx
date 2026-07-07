@@ -172,6 +172,7 @@ Best regards,
         </div>
         </div>
       </footer>
+      <SubmitToolModal open={submitOpen} onOpenChange={setSubmitOpen} />
     </>
   );
 };
