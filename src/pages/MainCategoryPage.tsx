@@ -15,8 +15,6 @@ import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
 import { mainCategories } from "@/utils/mainCategoryMapping";
 import { Tool } from "@/types/tools";
-import { getContextAwareAdditionalTools } from "@/utils/contextAwareSimilarTools";
-import { getCachedToolsByMainCategory } from "@/utils/categoryUtils/precomputedCache";
 
 const MainCategoryFilter = lazy(() => import("@/components/category/MainCategoryFilter"));
 
@@ -64,15 +62,6 @@ const MainCategoryPage = () => {
       return;
     }
 
-    // Try to use precomputed cached tools (non-blocking, already computed at startup)
-    const cachedTools = getCachedToolsByMainCategory(decodedCategoryName);
-    if (cachedTools && cachedTools.length > 0) {
-      setCategoryTools(cachedTools);
-      setFilteredToolsByCategory(cachedTools);
-      setIsToolsReady(true);
-      return; // Skip heavier fallback path
-    }
-
     // Fallback for other categories: lazy-load detector stack only after route paints.
     setTimeout(() => {
       Promise.all([
@@ -111,27 +100,10 @@ const MainCategoryPage = () => {
     const remainingCount = displayedCount - toolsToShow.length;
     
     if (remainingCount > 0) {
-      const similarTools = getContextAwareAdditionalTools(
-        toolsToShow, 
-        "", 
-        decodedCategoryName, 
-        Math.min(remainingCount, 100)
-      );
-      
-      const availableSimilar = similarTools.filter(tool => 
+      const otherTools = allCategoryTools.filter(tool => 
         !endlessTools.some(existing => existing.title === tool.title)
       );
-      endlessTools = [...endlessTools, ...availableSimilar];
-      
-      const stillNeeded = displayedCount - endlessTools.length;
-      if (stillNeeded > 0) {
-        const otherTools = allCategoryTools.filter(tool => 
-          !endlessTools.some(existing => existing.title === tool.title)
-        );
-        
-        const toolsToAdd = otherTools.slice(0, stillNeeded);
-        endlessTools = [...endlessTools, ...toolsToAdd];
-      }
+      endlessTools = [...endlessTools, ...otherTools.slice(0, remainingCount)];
     }
     
     return endlessTools;
