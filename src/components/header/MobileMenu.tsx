@@ -181,7 +181,7 @@ const MobileMenu = () => {
           </DropdownMenuTrigger>
           <DropdownMenuContent 
             ref={dropdownRef}
-            className="w-[95vw] max-w-[400px] bg-black border-2 border-cyan-500/50 max-h-[70vh] overflow-hidden z-[110]"
+            className="w-[95vw] max-w-[400px] bg-black border-2 border-cyan-500/50 max-h-[82vh] overflow-hidden z-[110]"
             align="end"
             side="bottom"
             alignOffset={0}
@@ -213,7 +213,7 @@ const MobileMenu = () => {
               </Button>
             </div>
             
-            <div className="p-4 pt-0 overflow-y-scroll max-h-[65vh]" style={{ WebkitOverflowScrolling: 'touch', touchAction: 'pan-y', overscrollBehavior: 'contain', transform: 'translateZ(0)' }}>
+            <div className="p-4 pt-0 overflow-y-scroll max-h-[78vh]" style={{ WebkitOverflowScrolling: 'touch', touchAction: 'pan-y', overscrollBehavior: 'contain', transform: 'translateZ(0)' }}>
               {/* Redesigned Header Section */}
               <div className="relative mb-5">
                 {/* Glowing header background */}
@@ -253,80 +253,42 @@ const MobileMenu = () => {
                 <span className="mr-3 text-lg">🏠</span> Home
               </DropdownMenuItem>
               
-              {/* Browse Categories - Featured */}
-              <DropdownMenuItem
-                onClick={handleBrowseAITools}
-                className="text-center bg-gradient-to-r from-cyan-500 to-blue-600 text-white hover:from-cyan-600 hover:to-blue-700 font-bold mb-4 rounded-xl p-4 text-base shadow-xl shadow-cyan-500/30 border border-cyan-400/50 transition-all duration-200"
-              >
-                <span className="mr-2 text-lg">🎯</span> Browse AI Tool Categories
-              </DropdownMenuItem>
-              
-              <DropdownMenuSeparator className="border-gray-700 mb-2" />
-              
-              {/* ⚡ CLONE THIS AI TOOL EMPIRE - Flashy Gold Button */}
-              <div className="mb-4">
+              {/* Browse Categories + Clone Empire — side-by-side compact tiles */}
+              <div className="grid grid-cols-2 gap-2 mb-3">
+                <button
+                  onClick={handleBrowseAITools}
+                  className="rounded-lg p-2.5 bg-gradient-to-br from-cyan-500 to-blue-600 text-white font-bold text-[11px] leading-tight shadow-lg shadow-cyan-500/30 border border-cyan-400/50 active:scale-[0.97] transition-transform flex flex-col items-center justify-center gap-1 min-h-[64px]"
+                >
+                  <span className="text-lg leading-none">🎯</span>
+                  <span className="text-center">Browse AI Tool Categories</span>
+                </button>
                 <button
                   onClick={(e) => {
                     e.preventDefault();
                     e.stopPropagation();
                     handleExternalLink('https://lovable.dev/projects/be05dcba-063b-47c3-b8a5-bf7bdd86a447?via=aiwebtools', e);
                   }}
-                  className="group relative w-full overflow-hidden rounded-xl p-4 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                  className="relative overflow-hidden rounded-lg p-2.5 text-black font-black text-[11px] leading-tight active:scale-[0.97] transition-transform flex flex-col items-center justify-center gap-0.5 min-h-[64px] border border-yellow-200/60"
                   style={{
-                    background: 'linear-gradient(135deg, #FFD700 0%, #FFA500 25%, #FFD700 50%, #FFA500 75%, #FFD700 100%)',
+                    background: 'linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FFD700 100%)',
                     backgroundSize: '200% 200%',
                     animation: 'goldShimmer 2s ease-in-out infinite',
-                    boxShadow: '0 0 30px rgba(255, 215, 0, 0.5), 0 0 60px rgba(255, 165, 0, 0.3), inset 0 0 20px rgba(255, 255, 255, 0.3)',
+                    boxShadow: '0 0 18px rgba(255, 215, 0, 0.5)',
                   }}
                 >
-                  {/* Animated flash overlay */}
-                  <div 
-                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -skew-x-12"
-                    style={{
-                      animation: 'flashSweep 2s ease-in-out infinite',
-                    }}
-                  />
-                  
-                  {/* Content */}
-                  <div className="relative flex items-center justify-center gap-3">
-                    {/* Triangle/Play icon */}
-                    <div 
-                      className="w-0 h-0 border-t-[10px] border-t-transparent border-b-[10px] border-b-transparent border-l-[16px] border-l-black/80 drop-shadow-lg"
-                      style={{ filter: 'drop-shadow(0 0 4px rgba(0,0,0,0.5))' }}
-                    />
-                    
-                    <div className="text-center">
-                      <div className="text-black font-black text-sm tracking-wide drop-shadow-sm">
-                        CLONE THIS AI TOOL EMPIRE
-                      </div>
-                      <div className="text-black/70 text-[10px] font-bold tracking-wider">
-                        BUILD YOUR OWN • 100% FREE
-                      </div>
-                    </div>
-                    
-                    {/* Triangle/Play icon (right side) */}
-                    <div 
-                      className="w-0 h-0 border-t-[10px] border-t-transparent border-b-[10px] border-b-transparent border-r-[16px] border-r-black/80 drop-shadow-lg"
-                      style={{ filter: 'drop-shadow(0 0 4px rgba(0,0,0,0.5))' }}
-                    />
-                  </div>
-                  
-                  {/* Pulsing border */}
-                  <div className="absolute inset-0 rounded-xl border-2 border-yellow-200/60" />
+                  <span className="text-base leading-none">⚡</span>
+                  <span className="text-center tracking-wide">CLONE THIS AI EMPIRE</span>
+                  <span className="text-black/70 text-[8px] font-bold tracking-wider">100% FREE</span>
                 </button>
-                
-                {/* Keyframe animations */}
                 <style>{`
                   @keyframes goldShimmer {
                     0%, 100% { background-position: 0% 50%; }
                     50% { background-position: 100% 50%; }
                   }
-                  @keyframes flashSweep {
-                    0% { transform: translateX(-200%) skewX(-12deg); }
-                    50%, 100% { transform: translateX(200%) skewX(-12deg); }
-                  }
                 `}</style>
               </div>
+
+              <DropdownMenuSeparator className="border-gray-700 mb-2" />
                 
               {/* WEB3 Domains Section */}
               <div className="px-1 py-1 text-xs text-cyan-400/70 font-semibold uppercase tracking-wider">
