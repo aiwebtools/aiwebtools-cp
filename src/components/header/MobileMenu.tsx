@@ -102,7 +102,16 @@ const MobileMenu = () => {
       ]);
       
       const escapeCSV = (val: string) => `"${(val || "").replace(/"/g, '""')}"`;
-      const csv = [headers, ...rows]
+      // Prepend a metadata banner so every export carries site + clone info
+      const meta = [
+        ["# AIWebTools.ai — Complete AI Tools Directory Export"],
+        ["# Website", "https://aiwebtools.ai"],
+        ["# Clone This AI Tool Empire (FREE)", "https://lovable.dev/projects/be05dcba-063b-47c3-b8a5-bf7bdd86a447?via=aiwebtools"],
+        ["# Total Tools", String(allTools.length)],
+        ["# Exported", new Date().toISOString()],
+        [""],
+      ];
+      const csv = [...meta, headers, ...rows]
         .map((r) => r.map((c) => escapeCSV(String(c))).join(","))
         .join("\n");
 
