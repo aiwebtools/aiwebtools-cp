@@ -1,4 +1,5 @@
 import { Menu, Phone, X, Globe, ChevronDown, Download, Trees, Clapperboard, Heart, Copy, Clock } from "lucide-react";
+import mtvAiWebToolsLogo from "@/assets/mtv-aiwebtools-logo.png";
 import { useState, useRef, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -181,7 +182,7 @@ const MobileMenu = () => {
           </DropdownMenuTrigger>
           <DropdownMenuContent 
             ref={dropdownRef}
-            className="w-[95vw] max-w-[400px] bg-black border-2 border-cyan-500/50 max-h-[82vh] overflow-hidden z-[110]"
+            className="w-[95vw] max-w-[400px] bg-black border-2 border-cyan-500/50 max-h-[68vh] overflow-hidden z-[110]"
             align="end"
             side="bottom"
             alignOffset={0}
@@ -213,7 +214,7 @@ const MobileMenu = () => {
               </Button>
             </div>
             
-            <div className="p-4 pt-0 overflow-y-scroll max-h-[78vh]" style={{ WebkitOverflowScrolling: 'touch', touchAction: 'pan-y', overscrollBehavior: 'contain', transform: 'translateZ(0)' }}>
+            <div className="p-4 pt-0 overflow-y-scroll max-h-[64vh]" style={{ WebkitOverflowScrolling: 'touch', touchAction: 'pan-y', overscrollBehavior: 'contain', transform: 'translateZ(0)' }}>
               {/* Redesigned Header Section */}
               <div className="relative mb-5">
                 {/* Glowing header background */}
@@ -248,6 +249,28 @@ const MobileMenu = () => {
               </div>
 
               <>
+              {/* MTVai.live — square MTV-logo entry button (matches Desktop menu) */}
+              <button
+                onClick={() => {
+                  setIsMenuOpen(false);
+                  playMtvFlash().then(() => navigate('/music-stream'));
+                }}
+                className="w-full mb-3 flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl border border-fuchsia-500/50 bg-gradient-to-r from-fuchsia-600/30 via-purple-600/30 to-cyan-600/30 active:from-fuchsia-500/40 active:via-purple-500/40 active:to-cyan-500/40 shadow-[0_0_20px_rgba(168,85,247,0.35)]"
+                aria-label="Open MTVai Theater"
+                title="Enter MTVai.live — 24/7 AI music videos"
+              >
+                <img
+                  src={mtvAiWebToolsLogo}
+                  alt=""
+                  aria-hidden
+                  draggable={false}
+                  className="w-9 h-9 rounded-md drop-shadow-[0_0_8px_rgba(236,72,153,0.85)]"
+                />
+                <span className="font-mono text-[12px] font-bold tracking-[0.16em] uppercase text-fuchsia-100" style={{ textShadow: '0 0 6px rgba(168,85,247,0.7)' }}>
+                  🎬 MTVai.live · Enter Theater
+                </span>
+              </button>
+
               {/* Navigation Section */}
               <DropdownMenuItem onClick={() => { navigate('/'); setIsMenuOpen(false); }} className="text-cyan-100 hover:bg-cyan-500/20 mb-3 rounded-lg h-12 text-sm font-medium px-3">
                 <span className="mr-3 text-lg">🏠</span> Home
@@ -290,35 +313,22 @@ const MobileMenu = () => {
 
               <DropdownMenuSeparator className="border-gray-700 mb-2" />
                 
-              {/* WEB3 Domains Section */}
-              <div className="px-1 py-1 text-xs text-cyan-400/70 font-semibold uppercase tracking-wider">
-                💰 Register WEB3 Domains
-              </div>
-              <div className="mb-2 p-2 bg-gradient-to-r from-purple-900/50 to-blue-900/50 rounded-lg border border-purple-500/30">
-                <p className="text-xs text-gray-300 leading-relaxed">
-                  🔗 <span className="font-semibold text-cyan-400">Connect to Your Crypto Wallet</span><br/>
-                  Own forever • Resell for profit • Minted as NFT
-                </p>
-                <p className="text-xs mt-1.5 font-bold bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent">
-                  🏦 DECENTRALIZED BANKING • A FAIR WORLD FOR ALL
-                </p>
-                <p className="text-[10px] mt-1 italic text-cyan-300/80 leading-snug">
-                  "Overcoming poverty is not a gesture of charity. It is an act of justice." — Nelson Mandela
-                </p>
-              </div>
+              {/* WEB3 Domains Section — compact */}
               <Collapsible open={isWeb3Open} onOpenChange={setIsWeb3Open}>
                 <CollapsibleTrigger 
-                  className="w-full text-cyan-100 hover:bg-cyan-500/20 rounded flex items-center justify-between px-2 py-1 text-sm outline-none focus:bg-cyan-500/20 transition-colors"
+                  className="w-full rounded-lg flex items-center justify-between px-3 py-2 text-sm outline-none border border-purple-500/40 bg-gradient-to-r from-purple-900/40 to-blue-900/40 text-purple-100 active:bg-purple-500/20 transition-colors"
                   onClick={(e) => {
                     e.preventDefault();
                     e.stopPropagation();
                     setIsWeb3Open(!isWeb3Open);
                   }}
                 >
-                  <span className="flex items-center">
-                    <Globe className="w-3 h-3 mr-2" /> Browse WEB3 Domains
+                  <span className="flex items-center gap-2 font-semibold">
+                    <Globe className="w-4 h-4 text-cyan-300" />
+                    <span>WEB3 Domains</span>
+                    <span className="text-[9px] font-bold text-emerald-300 tracking-wider">· NFT · OWN FOREVER</span>
                   </span>
-                  <ChevronDown className={`w-3 h-3 ml-2 transition-transform ${isWeb3Open ? 'rotate-180' : ''}`} />
+                  <ChevronDown className={`w-4 h-4 ml-2 transition-transform ${isWeb3Open ? 'rotate-180' : ''}`} />
                 </CollapsibleTrigger>
                 <CollapsibleContent className="mt-1 space-y-1 pl-4 max-h-60 overflow-y-auto pr-1">
                   <div className="text-xs text-cyan-400 mb-1 font-semibold">💰 Financial & Cash Transfer</div>
