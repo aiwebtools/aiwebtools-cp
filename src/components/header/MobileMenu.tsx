@@ -403,18 +403,7 @@ const MobileMenu = () => {
               
               <DropdownMenuSeparator className="border-gray-700 mb-2" />
               
-              {/* AiWebTools Music Stream — MTVai 24/7 channel */}
-              <DropdownMenuItem
-                onClick={() => {
-                  setIsMenuOpen(false);
-                  navigate('/music-stream');
-                  requestAnimationFrame(() => { void playMtvFlash(360); });
-                }}
-                className="text-fuchsia-100 hover:bg-fuchsia-500/20 mb-2 rounded flex items-center text-sm border border-fuchsia-500/30 px-2 py-2 font-medium"
-                style={{ textShadow: '0 0 6px rgba(168,85,247,0.55)' }}
-              >
-                📺 AiWebTools Music Stream
-              </DropdownMenuItem>
+              {/* Music Stream button lives at the top of the menu now (MTV logo) */}
 
               {/* About & Company Accordion */}
               <Collapsible open={isAboutOpen} onOpenChange={setIsAboutOpen}>
