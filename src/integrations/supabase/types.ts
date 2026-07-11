@@ -194,13 +194,19 @@ export type Database = {
       tool_submissions: {
         Row: {
           admin_notes: string | null
+          ai_safety_reason: string | null
+          ai_safety_score: number | null
+          ai_safety_verdict: string | null
           category: string
           description: string
           id: string
+          image_storage_path: string | null
           image_url: string | null
           name: string
+          published_at: string | null
           reviewed_at: string | null
           reviewed_by: string | null
+          slug: string | null
           status: string
           submitted_at: string
           submitter_email: string
@@ -211,13 +217,19 @@ export type Database = {
         }
         Insert: {
           admin_notes?: string | null
+          ai_safety_reason?: string | null
+          ai_safety_score?: number | null
+          ai_safety_verdict?: string | null
           category: string
           description: string
           id?: string
+          image_storage_path?: string | null
           image_url?: string | null
           name: string
+          published_at?: string | null
           reviewed_at?: string | null
           reviewed_by?: string | null
+          slug?: string | null
           status?: string
           submitted_at?: string
           submitter_email: string
@@ -228,13 +240,19 @@ export type Database = {
         }
         Update: {
           admin_notes?: string | null
+          ai_safety_reason?: string | null
+          ai_safety_score?: number | null
+          ai_safety_verdict?: string | null
           category?: string
           description?: string
           id?: string
+          image_storage_path?: string | null
           image_url?: string | null
           name?: string
+          published_at?: string | null
           reviewed_at?: string | null
           reviewed_by?: string | null
+          slug?: string | null
           status?: string
           submitted_at?: string
           submitter_email?: string
