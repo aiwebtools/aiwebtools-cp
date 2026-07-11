@@ -6,7 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { supabase } from "@/integrations/supabase/client";
-import { useToast } from "@/hooks/use-toast";
+import { toast } from "sonner";
 import { Send, Loader2, CheckCircle2 } from "lucide-react";
 
 const categories = [
@@ -39,7 +39,6 @@ const empty = {
 };
 
 const SubmitToolModal = ({ open, onOpenChange }: Props) => {
-  const { toast } = useToast();
   const [formData, setFormData] = useState(empty);
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
@@ -47,7 +46,7 @@ const SubmitToolModal = ({ open, onOpenChange }: Props) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.description || !formData.url || !formData.category || !formData.submitterEmail) {
-      toast({ title: "Missing information", description: "Please fill in all required fields.", variant: "destructive" });
+      toast.error("Missing information", { description: "Please fill in all required fields." });
       return;
     }
     setSubmitting(true);
@@ -55,7 +54,7 @@ const SubmitToolModal = ({ open, onOpenChange }: Props) => {
       const { error } = await supabase.functions.invoke("submit-tool", { body: formData });
       if (error) throw error;
       setDone(true);
-      toast({ title: "🕊️ Submission received", description: "The AIWebTools team has your tool — we'll review it soon." });
+      toast.success("🕊️ Submission received", { description: "The AIWebTools team has your tool — we'll review it soon." });
       setTimeout(() => {
         onOpenChange(false);
         setDone(false);
@@ -63,7 +62,7 @@ const SubmitToolModal = ({ open, onOpenChange }: Props) => {
       }, 2200);
     } catch (err: any) {
       console.error("Submit tool error:", err);
-      toast({ title: "Submission failed", description: err?.message || "Please try again in a moment.", variant: "destructive" });
+      toast.error("Submission failed", { description: err?.message || "Please try again in a moment." });
     } finally {
       setSubmitting(false);
     }
