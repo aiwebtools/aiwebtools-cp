@@ -68,6 +68,8 @@ const AIWebToolsPage = lazyWithRetry(() => import("./pages/AIWebToolsPage"));
 const AdminAnalytics = lazyWithRetry(() => import("./pages/AdminAnalytics"));
 const PrivacyPolicy = lazyWithRetry(() => import("./pages/PrivacyPolicy"));
 const MusicStream = lazyWithRetry(() => import("./pages/MusicStream"));
+const UserSubmittedToolsPage = lazyWithRetry(() => import("./pages/UserSubmittedToolsPage"));
+const UserSubmittedToolDetail = lazyWithRetry(() => import("./pages/UserSubmittedToolDetail"));
 
 // Lazy load non-critical components — wrapped in retry to prevent black screen
 const FloatingCloneButton = lazyWithRetry(() => import("./components/FloatingCloneButton"));
@@ -306,6 +308,9 @@ const AnimatedRoutes = () => {
         <Route path="/submit-tool" element={<RouteReadySignal><ToolSubmission /></RouteReadySignal>} />
         <Route path="/admin/analytics" element={<RouteReadySignal><AdminAnalytics /></RouteReadySignal>} />
         <Route path="/music-stream" element={<Suspense fallback={null}><RouteReadySignal><MusicStream /></RouteReadySignal></Suspense>} />
+        <Route path="/user-submitted" element={<RouteReadySignal><UserSubmittedToolsPage /></RouteReadySignal>} />
+        <Route path="/user-submitted/:slug" element={<RouteReadySignal><UserSubmittedToolDetail /></RouteReadySignal>} />
+        <Route path="/category/user-submitted" element={<Navigate to="/user-submitted" replace />} />
         <Route path="*" element={<RouteReadySignal><NotFound /></RouteReadySignal>} />
       </Routes>
     </Suspense>
