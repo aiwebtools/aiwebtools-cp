@@ -2,3 +2,6 @@ project_id = "huupailptzvcykyqdkar"
 
 [functions.submit-tool]
 verify_jwt = false
+
+[functions.screen-tool-url]
+verify_jwt = false
