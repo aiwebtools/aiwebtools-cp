@@ -42,6 +42,12 @@ const FooterLinks = () => {
             ➕ Submit Your AI Tool
           </a>
           <a
+            href="/user-submitted"
+            className="block text-green-200 hover:text-green-400 transition-colors text-left"
+          >
+            🌐 User Submitted Tools
+          </a>
+          <a
             href="/blog"
             className="block text-green-200 hover:text-green-400 transition-colors text-left"
           >
