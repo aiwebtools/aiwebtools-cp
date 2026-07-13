@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import GlobalSearchBar from "@/components/LazyGlobalSearchBar";
 import { FavoritesButton } from "@/components/favorites/FavoritesButton";
 import { Tool } from "@/types/tools";
-import { useState, useRef, useMemo } from "react";
+import { useState, useRef, useMemo, useEffect } from "react";
 import { Play } from "lucide-react";
 import ToolDisclaimerBadges from "@/components/disclaimers/ToolDisclaimerBadges";
 import { generateToolSlug } from "@/utils/urlGenerator";
@@ -3978,6 +3978,25 @@ const SpecialServices = () => {
   const [displayedGPTs, setDisplayedGPTs] = useState(initialShuffledGPTs);
   const [selectedCategory, setSelectedCategory] = useState<string>("ALL");
   const [isShuffled, setIsShuffled] = useState(true); // Start as shuffled
+
+  // Progressive rendering: mobile browsers freeze when 200+ heavy cards
+  // (with iframes/hero images) mount at once. Render in batches instead.
+  const INITIAL_VISIBLE = 12;
+  const BATCH_SIZE = 24;
+  const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE);
+
+  // Reset the visible window whenever the underlying list changes
+  // (filter change, shuffle, reset), so users always see the top of
+  // the new list without a huge render spike.
+  useEffect(() => {
+    setVisibleCount(INITIAL_VISIBLE);
+  }, [displayedGPTs]);
+
+  const visibleGPTs = useMemo(
+    () => displayedGPTs.slice(0, visibleCount),
+    [displayedGPTs, visibleCount]
+  );
+  const hasMoreGPTs = visibleCount < displayedGPTs.length;
   
   // The 6 main filter categories
   const mainCategories = Object.keys(FILTER_CATEGORIES);
@@ -4147,7 +4166,7 @@ const SpecialServices = () => {
             
             {/* Results count */}
             <p className="text-sm text-muted-foreground">
-              Showing {displayedGPTs.length} of {categorizedGPTs.length} GPTs
+              Showing {visibleGPTs.length} of {displayedGPTs.length} GPTs
               {selectedCategory !== "ALL" && ` in "${selectedCategory}"`}
               {isShuffled && " (shuffled)"}
             </p>
@@ -4155,7 +4174,7 @@ const SpecialServices = () => {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-4">
-          {displayedGPTs.map((gpt, index) => {
+          {visibleGPTs.map((gpt, index) => {
             const isHumanRightsCard = isHumanBillOfRightsCard(gpt.title);
             return (
             <Card 
@@ -4254,6 +4273,25 @@ const SpecialServices = () => {
           );
           })}
         </div>
+
+        {hasMoreGPTs && (
+          <div className="mt-8 flex flex-col items-center gap-2">
+            <Button
+              size="lg"
+              onClick={() =>
+                setVisibleCount((c) =>
+                  Math.min(c + BATCH_SIZE, displayedGPTs.length)
+                )
+              }
+              className="bg-gradient-to-r from-purple-600 via-pink-600 to-cyan-600 hover:opacity-90 text-white font-bold px-8 py-3 shadow-lg shadow-purple-500/30"
+            >
+              ⚡ Load {Math.min(BATCH_SIZE, displayedGPTs.length - visibleCount)} More GPTs
+            </Button>
+            <p className="text-xs text-muted-foreground">
+              {displayedGPTs.length - visibleCount} more waiting
+            </p>
+          </div>
+        )}
       </div>
     </section>
   );
