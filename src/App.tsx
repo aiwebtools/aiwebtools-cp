@@ -280,11 +280,22 @@ const AnimatedRoutes = () => {
   const instantTool = (location.state as any)?.instantTool;
   const toolFallback = <InstantToolFallback tool={instantTool} />;
   const categoryFallback = <InstantCategoryFallback />;
+  const isAllToolsRoute = location.pathname === "/main-category/ALL%20AI%20TOOLS";
+
+  if (isAllToolsRoute) {
+    return (
+      <Suspense fallback={categoryFallback}>
+        <Routes location={location}>
+          <Route path="/main-category/ALL%20AI%20TOOLS" element={<RouteReadySignal><AllToolsFastPage /></RouteReadySignal>} />
+        </Routes>
+      </Suspense>
+    );
+  }
+
   return (
     <Suspense fallback={<PageLoader />}>
       <Routes location={location}>
         <Route path="/category/:categoryName" element={<RouteReadySignal><CategoryPage /></RouteReadySignal>} />
-        <Route path="/main-category/ALL%20AI%20TOOLS" element={<Suspense fallback={categoryFallback}><RouteReadySignal><AllToolsFastPage /></RouteReadySignal></Suspense>} />
         <Route path="/main-category/:mainCategoryName" element={<Suspense fallback={categoryFallback}><RouteReadySignal><MainCategoryPage /></RouteReadySignal></Suspense>} />
         {/* Tool detail routes: no fallback — instant nav like before */}
         <Route path="/tool/:toolId" element={<Suspense fallback={toolFallback}><RouteReadySignal><ToolDetail /></RouteReadySignal></Suspense>} />
