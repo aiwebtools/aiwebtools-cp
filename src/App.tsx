@@ -280,13 +280,13 @@ const AnimatedRoutes = () => {
   const instantTool = (location.state as any)?.instantTool;
   const toolFallback = <InstantToolFallback tool={instantTool} />;
   const categoryFallback = <InstantCategoryFallback />;
-  const isAllToolsRoute = location.pathname === "/main-category/ALL%20AI%20TOOLS";
+  const isAllToolsRoute = decodeURIComponent(location.pathname) === "/main-category/ALL AI TOOLS";
 
   if (isAllToolsRoute) {
     return (
       <Suspense fallback={categoryFallback}>
         <Routes location={location}>
-          <Route path="/main-category/ALL%20AI%20TOOLS" element={<RouteReadySignal><AllToolsFastPage /></RouteReadySignal>} />
+          <Route path="/main-category/:mainCategoryName" element={<RouteReadySignal><AllToolsFastPage /></RouteReadySignal>} />
         </Routes>
       </Suspense>
     );

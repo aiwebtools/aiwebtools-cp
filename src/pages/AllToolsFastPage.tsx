@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
-import ToolsGrid from "@/components/tools/ToolsGrid";
 import ToolsGridSkeleton from "@/components/tools/ToolsGridSkeleton";
+import MinimalToolCard from "@/components/MinimalToolCard";
 import GlobalSearchBar from "@/components/LazyGlobalSearchBar";
 import BreadcrumbNav from "@/components/navigation/BreadcrumbNav";
 import ScrollToTop from "@/components/ui/scroll-to-top";
@@ -97,16 +97,23 @@ const AllToolsFastPage = () => {
               </div>
 
               <div id="tools-section">
-                <ToolsGrid
-                  tools={tools}
-                  displayedCount={displayedCount}
-                  selectedCategory={PAGE_TITLE}
-                  searchTerm=""
-                  onLoadMore={handleLoadMore}
-                  hasInfiniteScroll={true}
-                  isLoading={isLoadingMore}
-                  filteredToolsCount={tools.length}
-                />
+                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-3 gap-4" style={{ touchAction: "pan-y", WebkitOverflowScrolling: "touch" }}>
+                  {displayedTools.map((tool, index) => (
+                    <MinimalToolCard key={`${tool.title}__${tool.directUrl ?? ""}`} tool={tool} index={index} />
+                  ))}
+                </div>
+
+                {displayedCount < tools.length && (
+                  <div className="mt-8 flex justify-center">
+                    <button
+                      onClick={handleLoadMore}
+                      disabled={isLoadingMore}
+                      className="rounded-lg border border-cyan-500/40 bg-cyan-500/15 px-6 py-3 font-bold text-cyan-100 hover:bg-cyan-500/25 disabled:opacity-60"
+                    >
+                      {isLoadingMore ? "Loading…" : "Load More AI Tools"}
+                    </button>
+                  </div>
+                )}
               </div>
             </>
           )}
