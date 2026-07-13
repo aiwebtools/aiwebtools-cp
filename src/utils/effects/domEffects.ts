@@ -315,6 +315,13 @@ const tryWindowOpen = (url: string): boolean => {
   }
 };
 
+const isConstrainedInAppBrowser = (): boolean => {
+  if (typeof window === 'undefined') return false;
+  const ua = window.navigator.userAgent || '';
+  const isTouchDevice = window.innerWidth < 768 || window.navigator.maxTouchPoints > 0;
+  return isTouchDevice && /FBAN|FBAV|FBIOS|FB_IAB|Instagram|Line|TikTok|Twitter|Snapchat/i.test(ua);
+};
+
 export const openDestinationUrl = (destinationUrl: string): void => {
   if (!destinationUrl || !destinationUrl.trim()) {
     console.warn('[openDestinationUrl] No destination URL provided');
@@ -322,6 +329,18 @@ export const openDestinationUrl = (destinationUrl: string): void => {
   }
 
   const url = destinationUrl.trim();
+
+  // Facebook/Instagram/TikTok in-app browsers often block or stall target=_blank.
+  // Navigate same-tab immediately so menu/tool taps never appear frozen.
+  if (isConstrainedInAppBrowser()) {
+    try {
+      window.location.assign(url);
+    } catch {
+      showLinkErrorToast(url);
+    }
+    return;
+  }
+
   const HARD_TIMEOUT_MS = 800;
   let resolved = false;
 

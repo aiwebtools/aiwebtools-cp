@@ -70,6 +70,7 @@
   button, a, [role="button"], [tabindex] {
     min-height: 44px;
     min-width: 44px;
+    touch-action: manipulation;
   }
   
   /* Remove hover effects on touch devices */
@@ -81,6 +82,11 @@
   * {
     -webkit-overflow-scrolling: touch;
     touch-action: pan-y;
+  }
+
+  /* Keep actual tap targets clickable in mobile in-app browsers. */
+  button, a, [role="button"], [tabindex], [data-radix-collection-item] {
+    touch-action: manipulation;
   }
 }
 

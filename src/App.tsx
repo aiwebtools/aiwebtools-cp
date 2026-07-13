@@ -70,6 +70,7 @@ const PrivacyPolicy = lazyWithRetry(() => import("./pages/PrivacyPolicy"));
 const MusicStream = lazyWithRetry(() => import("./pages/MusicStream"));
 const UserSubmittedToolsPage = lazyWithRetry(() => import("./pages/UserSubmittedToolsPage"));
 const UserSubmittedToolDetail = lazyWithRetry(() => import("./pages/UserSubmittedToolDetail"));
+const AllToolsFastPage = lazyWithRetry(() => import("./pages/AllToolsFastPage"));
 
 // Lazy load non-critical components — wrapped in retry to prevent black screen
 const FloatingCloneButton = lazyWithRetry(() => import("./components/FloatingCloneButton"));
@@ -279,6 +280,18 @@ const AnimatedRoutes = () => {
   const instantTool = (location.state as any)?.instantTool;
   const toolFallback = <InstantToolFallback tool={instantTool} />;
   const categoryFallback = <InstantCategoryFallback />;
+  const isAllToolsRoute = decodeURIComponent(location.pathname) === "/main-category/ALL AI TOOLS";
+
+  if (isAllToolsRoute) {
+    return (
+      <Suspense fallback={categoryFallback}>
+        <Routes location={location}>
+          <Route path="/main-category/:mainCategoryName" element={<RouteReadySignal><AllToolsFastPage /></RouteReadySignal>} />
+        </Routes>
+      </Suspense>
+    );
+  }
+
   return (
     <Suspense fallback={<PageLoader />}>
       <Routes location={location}>
@@ -371,17 +384,25 @@ const PostAcceptBoot: React.FC = () => {
     if (!enabled) return;
 
     const warmCriticalRoutes = () => {
-      void Promise.allSettled([
-        import("./pages/ToolDetail"),
-        import("./pages/MainCategoryPage"),
-      ]);
+      const isTouchPhone =
+        typeof window !== 'undefined' &&
+        (window.innerWidth < 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(window.navigator.userAgent));
+
+      // Do not warm the heavy generic category chunk on phones/in-app browsers.
+      // It can collide with the user's first category tap and strand them on
+      // the loading skeleton. The ALL AI TOOLS path now has its own light shell.
+      void Promise.allSettled(
+        isTouchPhone
+          ? [import("./pages/ToolDetail"), import("./pages/AllToolsFastPage")]
+          : [import("./pages/ToolDetail"), import("./pages/MainCategoryPage")]
+      );
     };
 
     const id = window.setTimeout(() => {
       const ric = (window as any).requestIdleCallback;
       if (ric) ric(warmCriticalRoutes, { timeout: 2500 });
       else warmCriticalRoutes();
-    }, typeof window !== 'undefined' && window.innerWidth < 768 ? 2600 : 1400);
+    }, typeof window !== 'undefined' && window.innerWidth < 768 ? 9000 : 1400);
 
     return () => window.clearTimeout(id);
   }, [enabled]);
@@ -419,35 +440,54 @@ const GlobalOverlays: React.FC = () => {
   const hasAccepted = getConsentAccepted();
   const show = hasAccepted && location.pathname !== "/welcome";
   const [overlaysReady, setOverlaysReady] = React.useState(false);
+  const [heavyOverlaysReady, setHeavyOverlaysReady] = React.useState(false);
   const isTouchPhone =
     typeof window !== 'undefined' &&
     (window.innerWidth < 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(window.navigator.userAgent));
+  const isInAppBrowser =
+    typeof window !== 'undefined' &&
+    /FBAN|FBAV|FBIOS|FB_IAB|Instagram|Line|TikTok|Twitter|Snapchat/i.test(window.navigator.userAgent);
 
   React.useEffect(() => {
     if (!show) {
       setOverlaysReady(false);
+      setHeavyOverlaysReady(false);
       return;
     }
 
-    let timeoutId: number | null = null;
-    let scrollListener: (() => void) | null = null;
-    const enable = () => {
-      // Keep the mobile first-scroll clear, but also mount overlays as soon as
-      // the visitor starts interacting so the pinned player + tool button
-      // reliably show up once they scroll.
-      const delay = isTouchPhone ? 900 : 1200;
-      timeoutId = window.setTimeout(() => setOverlaysReady(true), delay);
-      if (isTouchPhone) {
-        scrollListener = () => {
-          if (timeoutId !== null) window.clearTimeout(timeoutId);
-          setOverlaysReady(true);
-        };
-        window.addEventListener('scroll', scrollListener, { passive: true, once: true });
-        window.addEventListener('wheel', scrollListener, { passive: true, once: true });
-        window.addEventListener('touchstart', scrollListener, { passive: true, once: true });
-        window.addEventListener('touchmove', scrollListener, { passive: true, once: true });
-        window.addEventListener('pointerdown', scrollListener, { passive: true, once: true });
+    let lightTimeoutId: number | null = null;
+    let heavyTimeoutId: number | null = null;
+    let lightIdleId: number | null = null;
+    let heavyIdleId: number | null = null;
+    let cancelled = false;
+
+    const scheduleIdle = (callback: () => void, timeout: number) => {
+      const ric = (window as any).requestIdleCallback;
+      if (ric) {
+        return ric(() => {
+          if (!cancelled) callback();
+        }, { timeout });
       }
+
+      requestAnimationFrame(() => {
+        if (!cancelled) callback();
+      });
+      return null;
+    };
+
+    const enable = () => {
+      // Never mount heavy overlays on the first phone tap/scroll. Social in-app
+      // browsers can freeze when pinned video + bot chunks import during clicks.
+      const lightDelay = isTouchPhone ? 2500 : 1200;
+      const heavyDelay = isInAppBrowser ? 45000 : isTouchPhone ? 18000 : 1600;
+
+      lightTimeoutId = window.setTimeout(() => {
+        lightIdleId = scheduleIdle(() => setOverlaysReady(true), isTouchPhone ? 2500 : 1200);
+      }, lightDelay);
+
+      heavyTimeoutId = window.setTimeout(() => {
+        heavyIdleId = scheduleIdle(() => setHeavyOverlaysReady(true), isTouchPhone ? 5000 : 1500);
+      }, heavyDelay);
     };
 
     if ((window as any).__aiwtRouteReady) {
@@ -457,17 +497,14 @@ const GlobalOverlays: React.FC = () => {
     }
 
     return () => {
+      cancelled = true;
       window.removeEventListener('aiwt:route-ready', enable);
-      if (scrollListener) {
-        window.removeEventListener('scroll', scrollListener);
-        window.removeEventListener('wheel', scrollListener);
-        window.removeEventListener('touchstart', scrollListener);
-        window.removeEventListener('touchmove', scrollListener);
-        window.removeEventListener('pointerdown', scrollListener);
-      }
-      if (timeoutId !== null) window.clearTimeout(timeoutId);
+      if (lightTimeoutId !== null) window.clearTimeout(lightTimeoutId);
+      if (heavyTimeoutId !== null) window.clearTimeout(heavyTimeoutId);
+      if (lightIdleId !== null && 'cancelIdleCallback' in window) (window as any).cancelIdleCallback(lightIdleId);
+      if (heavyIdleId !== null && 'cancelIdleCallback' in window) (window as any).cancelIdleCallback(heavyIdleId);
     };
-  }, [show, location.pathname, isTouchPhone]);
+  }, [show, location.pathname, isTouchPhone, isInAppBrowser]);
 
   return (
     <>
@@ -484,7 +521,7 @@ const GlobalOverlays: React.FC = () => {
         </ErrorBoundary>
       ) : null}
       {/* Pinned rotating video player - lower left corner */}
-      {overlaysReady ? (
+      {heavyOverlaysReady ? (
         <ErrorBoundary fallback={null}>
           <Suspense fallback={null}>
             <PinnedVideoPlayer />
@@ -492,7 +529,7 @@ const GlobalOverlays: React.FC = () => {
         </ErrorBoundary>
       ) : null}
       {/* AIWebTools Care Bot — answers any question about our tools */}
-      {overlaysReady ? (
+      {heavyOverlaysReady ? (
         <ErrorBoundary fallback={null}>
           <Suspense fallback={null}>
             <CareBotWidget />
