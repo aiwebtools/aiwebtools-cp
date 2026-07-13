@@ -4273,6 +4273,25 @@ const SpecialServices = () => {
           );
           })}
         </div>
+
+        {hasMoreGPTs && (
+          <div className="mt-8 flex flex-col items-center gap-2">
+            <Button
+              size="lg"
+              onClick={() =>
+                setVisibleCount((c) =>
+                  Math.min(c + BATCH_SIZE, displayedGPTs.length)
+                )
+              }
+              className="bg-gradient-to-r from-purple-600 via-pink-600 to-cyan-600 hover:opacity-90 text-white font-bold px-8 py-3 shadow-lg shadow-purple-500/30"
+            >
+              ⚡ Load {Math.min(BATCH_SIZE, displayedGPTs.length - visibleCount)} More GPTs
+            </Button>
+            <p className="text-xs text-muted-foreground">
+              {displayedGPTs.length - visibleCount} more waiting
+            </p>
+          </div>
+        )}
       </div>
     </section>
   );
