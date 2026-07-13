@@ -3978,6 +3978,25 @@ const SpecialServices = () => {
   const [displayedGPTs, setDisplayedGPTs] = useState(initialShuffledGPTs);
   const [selectedCategory, setSelectedCategory] = useState<string>("ALL");
   const [isShuffled, setIsShuffled] = useState(true); // Start as shuffled
+
+  // Progressive rendering: mobile browsers freeze when 200+ heavy cards
+  // (with iframes/hero images) mount at once. Render in batches instead.
+  const INITIAL_VISIBLE = 12;
+  const BATCH_SIZE = 24;
+  const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE);
+
+  // Reset the visible window whenever the underlying list changes
+  // (filter change, shuffle, reset), so users always see the top of
+  // the new list without a huge render spike.
+  useEffect(() => {
+    setVisibleCount(INITIAL_VISIBLE);
+  }, [displayedGPTs]);
+
+  const visibleGPTs = useMemo(
+    () => displayedGPTs.slice(0, visibleCount),
+    [displayedGPTs, visibleCount]
+  );
+  const hasMoreGPTs = visibleCount < displayedGPTs.length;
   
   // The 6 main filter categories
   const mainCategories = Object.keys(FILTER_CATEGORIES);
