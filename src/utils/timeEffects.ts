@@ -18,6 +18,13 @@ import {
 } from './effects/domEffects';
 import { trackToolVisit } from '@/hooks/useRecentlyVisitedTools';
 
+const isConstrainedMobileClickSurface = (): boolean => {
+  if (typeof window === 'undefined') return false;
+  const ua = window.navigator.userAgent || '';
+  const isTouchDevice = window.innerWidth < 768 || window.navigator.maxTouchPoints > 0;
+  return isTouchDevice && /FBAN|FBAV|FBIOS|FB_IAB|Instagram|Line|TikTok|Twitter|Snapchat/i.test(ua);
+};
+
 // Enhanced tool name extraction that works with all tool types and categories
 const extractToolName = (destinationUrl: string, providedToolName?: string): string => {
   console.log('🎯 Extracting tool name for URL:', destinationUrl);
@@ -233,6 +240,12 @@ export const createTimePortalEffect = (
   if (!isCsvDownload && destinationUrl && destinationUrl.trim()) {
     console.log('🚀 Opening URL first (sync, preserves user gesture):', destinationUrl);
     openDestinationUrl(destinationUrl);
+
+    // Social in-app browsers need the tap path kept ultra-light; audio/flash
+    // work after navigation can make the website feel frozen inside Facebook.
+    if (isConstrainedMobileClickSurface()) {
+      return;
+    }
   }
 
   // Play voice immediately - MUST be called from click handler for autoplay
