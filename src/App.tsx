@@ -384,17 +384,25 @@ const PostAcceptBoot: React.FC = () => {
     if (!enabled) return;
 
     const warmCriticalRoutes = () => {
-      void Promise.allSettled([
-        import("./pages/ToolDetail"),
-        import("./pages/MainCategoryPage"),
-      ]);
+      const isTouchPhone =
+        typeof window !== 'undefined' &&
+        (window.innerWidth < 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(window.navigator.userAgent));
+
+      // Do not warm the heavy generic category chunk on phones/in-app browsers.
+      // It can collide with the user's first category tap and strand them on
+      // the loading skeleton. The ALL AI TOOLS path now has its own light shell.
+      void Promise.allSettled(
+        isTouchPhone
+          ? [import("./pages/ToolDetail"), import("./pages/AllToolsFastPage")]
+          : [import("./pages/ToolDetail"), import("./pages/MainCategoryPage")]
+      );
     };
 
     const id = window.setTimeout(() => {
       const ric = (window as any).requestIdleCallback;
       if (ric) ric(warmCriticalRoutes, { timeout: 2500 });
       else warmCriticalRoutes();
-    }, typeof window !== 'undefined' && window.innerWidth < 768 ? 2600 : 1400);
+    }, typeof window !== 'undefined' && window.innerWidth < 768 ? 9000 : 1400);
 
     return () => window.clearTimeout(id);
   }, [enabled]);
