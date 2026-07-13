@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import GlobalSearchBar from "@/components/LazyGlobalSearchBar";
 import { FavoritesButton } from "@/components/favorites/FavoritesButton";
 import { Tool } from "@/types/tools";
-import { useState, useRef, useMemo } from "react";
+import { useState, useRef, useMemo, useEffect } from "react";
 import { Play } from "lucide-react";
 import ToolDisclaimerBadges from "@/components/disclaimers/ToolDisclaimerBadges";
 import { generateToolSlug } from "@/utils/urlGenerator";
