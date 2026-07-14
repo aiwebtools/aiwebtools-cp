@@ -186,11 +186,6 @@ export const generateToolStructuredData = (tool: any) => {
       "priceCurrency": "USD",
       "availability": "https://schema.org/InStock"
     },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.5",
-      "reviewCount": "100"
-    },
     "publisher": {
       "@type": "Organization",
       "name": "AI WEB TOOLS",
