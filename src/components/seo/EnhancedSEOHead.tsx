@@ -95,31 +95,13 @@ const EnhancedSEOHead = ({
       <meta name="author" content={seoConfig.author} />
       <link rel="canonical" href={canonical} />
       
-      {/* Enhanced Meta Tags for Competitive Edge */}
-      <meta name="application-name" content="AI WEB TOOLS" />
-      <meta name="subject" content="Best AI Tools Directory 2026 - Better Than Toolify" />
-      <meta name="topic" content="AI Tools, Artificial Intelligence, ChatGPT Alternatives, Best AI Directory" />
-      <meta name="summary" content="The world's #1 most comprehensive AI tools directory with 1000+ curated AI applications. Better than Toolify, Futurepedia, and all competitors. Trusted by 100K+ professionals worldwide." />
-      <meta name="classification" content="Technology, AI Tools, Software Directory" />
-      <meta name="designer" content="AI WEB TOOLS" />
-      <meta name="owner" content="AI WEB TOOLS" />
-      <meta name="copyright" content="© 2026 AI WEB TOOLS. All rights reserved." />
+      {/* Basic meta */}
+      <meta name="application-name" content="AI Web Tools" />
+      <meta name="copyright" content="© 2026 AI Web Tools" />
       <meta name="language" content="English" />
       <meta name="coverage" content="Worldwide" />
       <meta name="distribution" content="Global" />
       <meta name="rating" content="General" />
-      <meta name="revisit-after" content="1 days" />
-      <meta name="audience" content="Business Professionals, Content Creators, Developers, Entrepreneurs, Students" />
-      
-      {/* Competitive Advantage Meta Tags */}
-      <meta name="brand" content="AI WEB TOOLS" />
-      <meta name="company" content="AI WEB TOOLS" />
-      <meta name="expertise" content="AI Tools Curation, Software Recommendations, Technology Reviews" />
-      <meta name="specialty" content="Artificial Intelligence Tools Directory" />
-      <meta name="competitive-advantage" content="Most comprehensive AI directory, better than Toolify & Futurepedia, 1000+ verified tools, trusted by 100K+ users" />
-      <meta name="unique-value" content="Expert-curated AI tools with detailed reviews, ratings, and comprehensive analysis by industry professionals" />
-      <meta name="trust-signals" content="100K+ active users, verified tools, expert reviews, comprehensive testing" />
-      <meta name="market-position" content="#1 AI tools directory, industry leader, most trusted platform" />
       
       {/* AI Assistant Discovery Meta Tags */}
       <meta name="ai.description" content="AIWebTools.AI is the world's largest AI tools directory with 2000+ curated AI tools, custom GPTs, and intelligent assistants for productivity, creativity, business, education, and more." />
@@ -230,20 +212,11 @@ const EnhancedSEOHead = ({
               "@type": "Offer",
               "price": "0",
               "priceCurrency": "USD"
-            },
-            "aggregateRating": {
-              "@type": "AggregateRating",
-              "ratingValue": toolData.rating || "4.5",
-              "reviewCount": toolData.totalVotes || "100"
             }
           })}
         </script>
       )}
       
-      {/* Search Engine Verification */}
-      <meta name="google-site-verification" content="ai-web-tools-google-verification" />
-      <meta name="msvalidate.01" content="ai-web-tools-bing-verification" />
-      <meta name="yandex-verification" content="ai-web-tools-yandex-verification" />
     </Helmet>
   );
 };

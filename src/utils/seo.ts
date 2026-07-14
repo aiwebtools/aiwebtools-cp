@@ -2,7 +2,7 @@
 export const seoConfig = {
   siteName: "AI WEB TOOLS",
   siteUrl: "https://aiwebtools.ai",
-  description: "🏆 #1 Free AI Tools Directory with 2195+ verified tools. Better than Toolify, Futurepedia & competitors. ChatGPT alternatives, custom GPTs, productivity AI, creative tools. Trusted by 100K+ professionals 2026.",
+  description: "Discover 4,000+ free AI tools: ChatGPT alternatives, custom GPTs, AI agents, image, writing & business AI. Updated daily.",
   keywords: [
     "AI WEB TOOLS",
     "free ai tools",
@@ -11,7 +11,6 @@ export const seoConfig = {
     "chatgpt alternatives",
     "custom gpts",
     "ai directory",
-    "better than toolify",
     "free ai tools list",
     "top AI tools ranking",
     "ChatGPT alternatives free",
@@ -51,14 +50,8 @@ export const generateStructuredData = (page: string = "homepage") => {
     "mainEntity": {
       "@type": "ItemList",
       "name": "Best AI Tools Directory 2026",
-      "description": "Comprehensive collection of 1000+ verified AI tools",
-      "numberOfItems": 1000
-    },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.9",
-      "reviewCount": "2000",
-      "bestRating": "5"
+      "description": "Comprehensive collection of 4,000+ AI tools",
+      "numberOfItems": 4000
     },
     "sameAs": [
       "https://www.aiwebtools.ai",

@@ -17,11 +17,10 @@ const GoogleRankingBooster = ({ pageType = 'homepage', toolData, category }: Goo
       "alternateName": ["AI WEB TOOLS", "AIWebTools", "AITools.Studio"],
       "url": "https://aiwebtools.ai",
       "logo": "https://aiwebtools.ai/favicon.ico",
-      "description": "The world's #1 most comprehensive AI web tools directory with 2195+ verified AI web tools. Find, compare, and access the best AI web tools for any purpose. Better than competitors with expert reviews and daily updates.",
+      "description": "AI Web Tools is a curated directory of 4,000+ AI tools with reviews, comparisons, and daily updates.",
       "foundingDate": "2023",
       "keywords": competitiveAdvantage.brandDominance.join(", ") + ", ai web tools, best ai web tools, ai web tools directory, find ai web tools, compare ai web tools",
-      "slogan": "#1 AI Web Tools Directory - Find & Compare 2,195+ AI Web Tools",
-      "awards": ["#1 AI Web Tools Directory 2026", "Most Comprehensive AI Web Tools Database", "Trusted by 100K+ Users"],
+      "slogan": "Find & Compare 4,000+ AI Web Tools",
       "knowsAbout": [
         "AI Web Tools",
         "AI Web Tools Directory",
@@ -40,10 +39,10 @@ const GoogleRankingBooster = ({ pageType = 'homepage', toolData, category }: Goo
 
     const websiteSchema = {
       "@type": "WebSite",
-      "name": "AI WEB TOOLS - #1 AI Web Tools Directory",
+      "name": "AI Web Tools Directory",
       "alternateName": "AI Web Tools Directory",
       "url": "https://aiwebtools.ai",
-      "description": "Discover 2,195+ AI web tools in the most comprehensive AI web tools directory. Find and compare the best AI web tools with expert reviews, ratings, and detailed analysis. Your trusted source for AI web tools.",
+      "description": "Discover 4,000+ AI web tools with reviews, ratings, and detailed analysis.",
       "publisher": {
         "@type": "Organization",
         "name": "AI WEB TOOLS"
@@ -59,8 +58,8 @@ const GoogleRankingBooster = ({ pageType = 'homepage', toolData, category }: Goo
       "mainEntity": {
         "@type": "ItemList",
         "name": "AI Web Tools Directory",
-        "description": "Comprehensive collection of 2,195+ verified AI web tools",
-        "numberOfItems": "2195+"
+        "description": "Comprehensive collection of 4,000+ AI web tools",
+        "numberOfItems": 4000
       }
     };
 
@@ -74,32 +73,13 @@ const GoogleRankingBooster = ({ pageType = 'homepage', toolData, category }: Goo
       const softwareSchema = {
         "@type": "SoftwareApplication",
         "name": toolData.title,
-        "description": `${toolData.description} | Reviewed by AI WEB TOOLS experts. Get detailed analysis, pricing, and alternatives.`,
+        "description": toolData.description,
         "operatingSystem": "Web Browser",
         "offers": {
           "@type": "Offer",
           "price": "0",
           "priceCurrency": "USD",
           "availability": "https://schema.org/InStock"
-        },
-        "aggregateRating": {
-          "@type": "AggregateRating", 
-          "ratingValue": toolData.rating || "4.5",
-          "reviewCount": toolData.totalVotes || "100",
-          "bestRating": "5",
-          "worstRating": "1"
-        },
-        "review": {
-          "@type": "Review",
-          "reviewRating": {
-            "@type": "Rating",
-            "ratingValue": "5"
-          },
-          "author": {
-            "@type": "Organization",
-            "name": "AI WEB TOOLS"
-          },
-          "reviewBody": `Comprehensive review of ${toolData.title} by AI WEB TOOLS experts. Excellent tool for ${toolData.category?.toLowerCase() || 'productivity'} with outstanding features and reliability.`
         }
       };
       baseSchema["@graph"].push(softwareSchema);
@@ -125,7 +105,7 @@ const GoogleRankingBooster = ({ pageType = 'homepage', toolData, category }: Goo
       },
       {
         question: "What makes AI WEB TOOLS the best AI web tools directory?",
-        answer: "AI WEB TOOLS is the #1 AI web tools directory with 2,195+ verified AI web tools, expert reviews, daily updates, and comprehensive analysis. Unlike competitors, we test every AI web tool, provide detailed comparisons, and help you find the perfect AI web tools for your specific needs."
+        answer: "AI Web Tools is a curated directory of 4,000+ AI web tools with reviews, comparisons, and daily updates to help you find the right tool for your needs."
       },
       {
         question: "How often are new AI web tools added to the directory?",
@@ -221,43 +201,6 @@ const GoogleRankingBooster = ({ pageType = 'homepage', toolData, category }: Goo
         </script>
       )}
 
-      {/* Enhanced Meta Tags for Competitive Edge */}
-      <meta name="google-site-verification" content="google-ranking-verification-aiwebtools" />
-      <meta name="norton-safeweb-site-verification" content="norton-verification-aiwebtools" />
-      <meta name="dmca-site-verification" content="dmca-verification-aiwebtools" />
-      
-      {/* Competitive Authority Signals */}
-      <meta name="expertise-level" content="expert" />
-      <meta name="content-quality" content="premium" />
-      <meta name="review-process" content="expert-verified" />
-      <meta name="update-frequency" content="daily" />
-      <meta name="user-base" content="100000+" />
-      <meta name="industry-recognition" content="leading-directory" />
-      
-      {/* Performance and Quality Signals */}
-      <meta name="performance-optimized" content="true" />
-      <meta name="mobile-optimized" content="true" />
-      <meta name="accessibility-compliant" content="WCAG-2.1-AA" />
-      <meta name="security-verified" content="SSL-HTTPS" />
-      
-      {/* Semantic Web & Knowledge Graph */}
-      <meta name="subject" content="AI Tools Directory, Artificial Intelligence Software, AI Web Applications" />
-      <meta name="abstract" content="Comprehensive AI tools directory featuring 2195+ verified AI web tools for productivity, creativity, business, and development." />
-      <meta name="topic" content="Artificial Intelligence, AI Tools, Technology, Software Directory" />
-      <meta name="summary" content="AI Web Tools - The #1 AI tools directory with 2195+ tools. Find ChatGPT alternatives, image generators, coding assistants, and more." />
-      
-      {/* Rich Snippet Hints */}
-      <meta name="itemtype" content="https://schema.org/WebSite" />
-      <meta name="itemscope" content="itemscope" />
-      
-      {/* Pinterest Verification */}
-      <meta name="p:domain_verify" content="aiwebtools-pinterest-verify" />
-      
-      {/* Yandex & International SEO */}
-      <meta name="yandex-verification" content="aiwebtools-yandex-verify" />
-      <meta name="msvalidate.01" content="aiwebtools-bing-verify" />
-      <meta name="baidu-site-verification" content="aiwebtools-baidu-verify" />
-      
       {/* Content Freshness Signals */}
       <meta name="last-modified" content={new Date().toISOString()} />
       <meta name="date" content={new Date().toISOString().split('T')[0]} />
