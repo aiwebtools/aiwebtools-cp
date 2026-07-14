@@ -93,8 +93,8 @@ export const enhancedSchemaMarkup = (tool: any, toolIndex: number) => {
         },
         "aggregateRating": {
           "@type": "AggregateRating",
-          "ratingValue": tool.rating || "4.5",
-          "reviewCount": tool.totalVotes || "100",
+          "ratingValue": tool.rating,
+          "reviewCount": tool.totalVotes,
           "bestRating": "5",
           "worstRating": "1"
         },

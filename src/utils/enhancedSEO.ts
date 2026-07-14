@@ -17,7 +17,7 @@ export const generateEnhancedStructuredData = () => {
           "width": 512,
           "height": 512
         },
-        "description": "AIWEBTOOLS.AI - The #1 comprehensive AI web tools directory with 1000+ curated AI tools. Better than Toolify. Discover the best AI tools 2026 for business, creativity, and productivity.",
+        "description": "AI Web Tools is a curated directory of 4,000+ AI tools for business, creativity, and productivity.",
         "foundingDate": "2024",
         "numberOfEmployees": "1-10",
         "industry": "Technology",
@@ -59,9 +59,9 @@ export const generateEnhancedStructuredData = () => {
         "@type": "WebSite",
         "@id": "https://aiwebtools.ai/#website",
         "url": "https://aiwebtools.ai",
-        "name": "AIWEBTOOLS.AI - #1 AI WEB TOOLS Directory",
+        "name": "AI Web Tools Directory",
         "alternateName": "AI WEB TOOLS Directory",
-        "description": "AIWEBTOOLS.AI - The #1 comprehensive AI web tools directory with 1000+ curated AI tools. Better than Toolify. Discover the best AI tools 2026 for business, creativity, and productivity.",
+        "description": "A curated directory of 4,000+ AI tools with reviews, comparisons, and daily updates.",
         "publisher": {
           "@id": "https://aiwebtools.ai/#organization"
         },
@@ -133,7 +133,7 @@ export const generateEnhancedStructuredData = () => {
             "name": "What is AIWEBTOOLS.AI?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "AIWEBTOOLS.AI is the #1 comprehensive AI web tools directory with 1000+ curated AI tools. We provide better service than Toolify with verified AI tools, detailed reviews, and direct access links."
+              "text": "AI Web Tools is a curated directory of 4,000+ AI tools with reviews, ratings, and direct access links."
             }
           },
           {

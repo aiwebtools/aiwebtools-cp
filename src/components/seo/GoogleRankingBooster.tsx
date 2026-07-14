@@ -105,7 +105,7 @@ const GoogleRankingBooster = ({ pageType = 'homepage', toolData, category }: Goo
       },
       {
         question: "What makes AI WEB TOOLS the best AI web tools directory?",
-        answer: "AI WEB TOOLS is the #1 AI web tools directory with 2,195+ verified AI web tools, expert reviews, daily updates, and comprehensive analysis. Unlike competitors, we test every AI web tool, provide detailed comparisons, and help you find the perfect AI web tools for your specific needs."
+        answer: "AI Web Tools is a curated directory of 4,000+ AI web tools with reviews, comparisons, and daily updates to help you find the right tool for your needs."
       },
       {
         question: "How often are new AI web tools added to the directory?",
