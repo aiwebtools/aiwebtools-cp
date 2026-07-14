@@ -1,7 +1,7 @@
 {
   "name": "AI Web Tools — AI Tools Directory",
   "short_name": "AI WEB TOOLS",
-  "description": "The world's #1 most comprehensive AI tools directory with 1000+ curated AI applications. Better than Toolify, Futurepedia, and all competitors.",
+  "description": "A curated directory of 4,000+ AI tools with reviews, comparisons, and category filtering.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#000000",
