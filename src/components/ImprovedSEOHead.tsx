@@ -136,14 +136,6 @@ const ImprovedSEOHead: React.FC<ImprovedSEOHeadProps> = ({
         "price": "0",
         "priceCurrency": "USD",
         "availability": "https://schema.org/InStock"
-      },
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": tool?.rating || 4.5,
-        "bestRating": "5",
-        "worstRating": "1",
-        "reviewCount": tool?.totalVotes || 1000,
-        "ratingCount": tool?.totalVotes || 1000
       }
     })
   };
