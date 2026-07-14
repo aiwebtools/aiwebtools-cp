@@ -120,24 +120,24 @@ const SearchPortal = () => {
       <div className="mt-16 max-w-4xl mx-auto">
         <div className="bg-gray-900/50 rounded-xl p-8 backdrop-blur-sm">
           <h2 className="text-3xl font-bold text-white mb-6 text-center">
-            Why AI WEB TOOLS is the #1 AI Directory
+            Why Choose AI WEB TOOLS
           </h2>
           <div className="grid md:grid-cols-2 gap-6 text-gray-300">
             <div>
-              <h3 className="text-xl font-semibold text-cyan-400 mb-3">🏆 Better Than Competitors</h3>
-              <p>More comprehensive than Toolify, Futurepedia, or any other AI directory. We provide verified tools with detailed expert analysis.</p>
+              <h3 className="text-xl font-semibold text-cyan-400 mb-3">🏆 Comprehensive Directory</h3>
+              <p>A broad, curated catalog of AI tools with detailed descriptions and category filtering.</p>
             </div>
             <div>
               <h3 className="text-xl font-semibold text-cyan-400 mb-3">✅ Expert Curation</h3>
-              <p>Every AI tool is manually reviewed, tested, and rated by our expert team. No automated listings or spam.</p>
+              <p>Tools are manually reviewed and organized so you can find what fits your workflow.</p>
             </div>
             <div>
               <h3 className="text-xl font-semibold text-cyan-400 mb-3">🔄 Always Updated</h3>
-              <p>Daily updates with the latest AI innovations. Be first to discover breakthrough artificial intelligence tools.</p>
+              <p>Regular updates as new AI tools launch so the directory stays current.</p>
             </div>
             <div>
-              <h3 className="text-xl font-semibold text-cyan-400 mb-3">👥 Trusted Community</h3>
-              <p>Used by 100K+ professionals, developers, creators, and businesses worldwide for AI tool discovery.</p>
+              <h3 className="text-xl font-semibold text-cyan-400 mb-3">👥 Built for Everyone</h3>
+              <p>Useful for professionals, developers, creators, and businesses exploring AI tools.</p>
             </div>
           </div>
         </div>

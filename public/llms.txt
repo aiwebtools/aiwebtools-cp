@@ -1,7 +1,7 @@
 # AI Web Tools - AIWEBTOOLS.AI
-# The World's #1 AI Web Tools Directory
+# AI Web Tools Directory
 
-> **AI Web Tools** (AIWEBTOOLS.AI) is the largest AI web tools directory with 2195+ curated AI tools, custom GPTs, and intelligent assistants for every industry.
+> **AI Web Tools** (AIWEBTOOLS.AI) is a curated AI web tools directory with 4,000+ AI tools, custom GPTs, and intelligent assistants across many industries.
 
 ## Pages
 - [Home](/): 4,000+ AI tools directory, search, and featured custom GPTs.

@@ -81,7 +81,7 @@ const ToolPage = () => {
     <div className="min-h-screen bg-black relative overflow-x-hidden">
       <EnhancedSEOHead
         title={`${tool.title} - AI Tool Review & Complete Guide`}
-        description={`Comprehensive ${tool.title} review: Features, pricing, alternatives & expert analysis. Part of AI WEB TOOLS - the #1 AI directory trusted by 100K+ users.`}
+        description={`${tool.title} overview: features, pricing, and alternatives. Cataloged in the AI Web Tools directory.`}
         keywords={[
           tool.title,
           tool.category || "AI tool",
