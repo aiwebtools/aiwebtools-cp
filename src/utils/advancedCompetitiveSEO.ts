@@ -91,27 +91,15 @@ export const enhancedSchemaMarkup = (tool: any, toolIndex: number) => {
             "name": "AI WEB TOOLS"
           }
         },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": tool.rating,
-          "reviewCount": tool.totalVotes,
-          "bestRating": "5",
-          "worstRating": "1"
-        },
-        "review": [
-          {
-            "@type": "Review",
-            "reviewRating": {
-              "@type": "Rating",
-              "ratingValue": "5"
-            },
-            "author": {
-              "@type": "Person",
-              "name": "AI Tools Expert"
-            },
-            "reviewBody": `Excellent AI tool for ${tool.category?.toLowerCase()}. Highly recommended by our team.`
+        ...(tool.rating && tool.totalVotes ? {
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": tool.rating,
+            "reviewCount": tool.totalVotes,
+            "bestRating": "5",
+            "worstRating": "1"
           }
-        ]
+        } : {})
       },
       {
         "@type": "Article",
