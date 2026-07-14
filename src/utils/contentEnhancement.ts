@@ -84,27 +84,27 @@ ${tool.title} stands as a testament to the power of modern AI technology. Its co
 export const generateCompetitivePageContent = (tools: Tool[], category?: string) => {
   return {
     heroContent: `
-# AI WEB TOOLS - The World's Most Comprehensive AI Directory
+# AI Web Tools — AI Tools Directory
 
-Discover 1000+ verified AI tools, expertly curated and continuously updated. Better than any competitor, trusted by 100K+ professionals worldwide.
+Discover 4,000+ curated AI tools with reviews, comparisons, and regular updates.
 
-## Why AI WEB TOOLS is the #1 Choice
+## Why Choose AI Web Tools
 
-- **Most Comprehensive**: 1000+ carefully verified AI tools across all categories
-- **Expert Curation**: Every tool reviewed and rated by our expert team
-- **Always Updated**: Latest AI innovations added daily
-- **User-Focused**: Detailed reviews, comparisons, and practical guides
-- **Trusted Platform**: Used by professionals, businesses, and developers globally
+- **Broad Catalog**: 4,000+ AI tools across many categories
+- **Curated**: Tools are reviewed and organized for discovery
+- **Regularly Updated**: New AI tools added as they launch
+- **User-Focused**: Detailed descriptions, comparisons, and guides
+- **Built for Everyone**: Useful for professionals, businesses, and developers
     `,
     
     categoryContent: category ? `
-## Best ${category} AI Tools - Complete Directory
+## ${category} AI Tools — Directory
 
-Explore the most comprehensive collection of ${category.toLowerCase()} AI tools available anywhere. Each tool has been expertly reviewed, tested, and rated by our team.
+Explore a curated collection of ${category.toLowerCase()} AI tools. Each tool has been reviewed and organized by our team.
 
-### Why Our ${category} AI Tools Directory is Superior
+### What Our ${category} AI Tools Directory Offers
 
-Our ${category.toLowerCase()} section features the most up-to-date, thoroughly vetted AI tools in the industry. Unlike other directories, we provide:
+Our ${category.toLowerCase()} section is regularly updated. Every listing includes:
 
 - Detailed expert reviews and analysis
 - Real user ratings and feedback  
@@ -125,13 +125,11 @@ AI WEB TOOLS is the world's leading AI tools directory, featuring the most compr
 
 ### Our Commitment to Excellence
 
-- **Accuracy**: Every listing is verified and regularly updated
-- **Completeness**: The most comprehensive AI directory available
-- **Expertise**: Reviewed by AI professionals and industry experts
-- **User Focus**: Designed to help you find exactly what you need
-- **Innovation**: First to feature the latest AI breakthroughs
-
-*Join 100K+ users who trust AI WEB TOOLS for their AI discovery needs.*
+- **Accuracy**: Listings are verified and regularly updated
+- **Breadth**: A wide-ranging catalog of AI tools
+- **Curation**: Reviewed and organized by our team
+- **User Focus**: Designed to help you find what you need
+- **Freshness**: New AI tools added as they launch
     `
   };
 };

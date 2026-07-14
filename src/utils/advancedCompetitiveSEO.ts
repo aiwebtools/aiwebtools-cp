@@ -39,7 +39,7 @@ export const competitiveKeywordTargeting = {
 export const generateCompetitiveContent = (tool: any, toolIndex: number) => {
   return {
     // Enhanced tool descriptions for SEO
-    enhancedDescription: `${tool.description} | Comprehensive review and analysis by AI WEB TOOLS experts. Compare features, pricing, and alternatives. Trusted by 100K+ professionals.`,
+    enhancedDescription: `${tool.description} Reviewed and cataloged by AI Web Tools. Compare features, pricing, and alternatives.`,
     
     // SEO-optimized content blocks
     contentBlocks: {
@@ -60,7 +60,7 @@ export const generateCompetitiveContent = (tool: any, toolIndex: number) => {
         `${tool.title} | Top-Rated AI Tool for ${tool.category} | AI WEB TOOLS`
       ],
       descriptionVariations: [
-        `Comprehensive ${tool.title} review: Features, pricing, alternatives & expert analysis. Part of AI WEB TOOLS - the #1 AI directory trusted by 100K+ users.`,
+        `${tool.title} overview: features, pricing, and alternatives. Cataloged in the AI Web Tools directory.`,
         `${tool.title} complete guide: In-depth review, user ratings, and comparison with alternatives. Verified by AI WEB TOOLS experts.`,
         `Discover ${tool.title} - top-rated AI tool for ${tool.category?.toLowerCase()}. Expert review, pricing guide & alternatives comparison.`
       ]

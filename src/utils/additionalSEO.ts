@@ -149,9 +149,9 @@ export const eatOptimization = {
   },
   
   authoritativeness: {
-    citations: "Featured in technology publications",
-    partnerships: "Partnerships with leading AI companies",
-    recognition: "Trusted by 100K+ professionals"
+    citations: "Referenced across AI communities",
+    partnerships: "Working with AI tool creators",
+    recognition: "A trusted resource for AI tool discovery"
   },
   
   trustworthiness: {
