@@ -201,43 +201,6 @@ const GoogleRankingBooster = ({ pageType = 'homepage', toolData, category }: Goo
         </script>
       )}
 
-      {/* Enhanced Meta Tags for Competitive Edge */}
-      <meta name="google-site-verification" content="google-ranking-verification-aiwebtools" />
-      <meta name="norton-safeweb-site-verification" content="norton-verification-aiwebtools" />
-      <meta name="dmca-site-verification" content="dmca-verification-aiwebtools" />
-      
-      {/* Competitive Authority Signals */}
-      <meta name="expertise-level" content="expert" />
-      <meta name="content-quality" content="premium" />
-      <meta name="review-process" content="expert-verified" />
-      <meta name="update-frequency" content="daily" />
-      <meta name="user-base" content="100000+" />
-      <meta name="industry-recognition" content="leading-directory" />
-      
-      {/* Performance and Quality Signals */}
-      <meta name="performance-optimized" content="true" />
-      <meta name="mobile-optimized" content="true" />
-      <meta name="accessibility-compliant" content="WCAG-2.1-AA" />
-      <meta name="security-verified" content="SSL-HTTPS" />
-      
-      {/* Semantic Web & Knowledge Graph */}
-      <meta name="subject" content="AI Tools Directory, Artificial Intelligence Software, AI Web Applications" />
-      <meta name="abstract" content="Comprehensive AI tools directory featuring 2195+ verified AI web tools for productivity, creativity, business, and development." />
-      <meta name="topic" content="Artificial Intelligence, AI Tools, Technology, Software Directory" />
-      <meta name="summary" content="AI Web Tools - The #1 AI tools directory with 2195+ tools. Find ChatGPT alternatives, image generators, coding assistants, and more." />
-      
-      {/* Rich Snippet Hints */}
-      <meta name="itemtype" content="https://schema.org/WebSite" />
-      <meta name="itemscope" content="itemscope" />
-      
-      {/* Pinterest Verification */}
-      <meta name="p:domain_verify" content="aiwebtools-pinterest-verify" />
-      
-      {/* Yandex & International SEO */}
-      <meta name="yandex-verification" content="aiwebtools-yandex-verify" />
-      <meta name="msvalidate.01" content="aiwebtools-bing-verify" />
-      <meta name="baidu-site-verification" content="aiwebtools-baidu-verify" />
-      
       {/* Content Freshness Signals */}
       <meta name="last-modified" content={new Date().toISOString()} />
       <meta name="date" content={new Date().toISOString().split('T')[0]} />
