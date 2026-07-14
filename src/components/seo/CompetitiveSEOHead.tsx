@@ -22,35 +22,25 @@ const CompetitiveSEOHead = ({ tool, toolIndex, category, isHomepage }: Competiti
     return (
       <Helmet>
         {/* Ultra-competitive homepage targeting */}
-        <title>AI WEB TOOLS - #1 AI Tools Directory | 1000+ Best AI Tools 2026 | Better Than Toolify</title>
-        <meta name="description" content="🏆 #1 AI Tools Directory with 1000+ verified tools. Better than Toolify, Futurepedia & competitors. Expert reviews, ratings & guides. Trusted by 100K+ professionals. Find ChatGPT alternatives & top AI tools 2026." />
+        <title>AI Web Tools — 4,000+ AI Tools Directory 2026</title>
+        <meta name="description" content="Curated directory of 4,000+ AI tools with reviews, comparisons, and category filtering. Discover ChatGPT alternatives and the latest AI tools for 2026." />
         
         {/* Competitive keyword targeting */}
-        <meta name="keywords" content="AI WEB TOOLS, best AI tools directory 2026, better than toolify, comprehensive AI tools, verified AI directory, top AI tools ranking, ChatGPT alternatives, professional AI tools, ai tools marketplace, curated AI collection, enterprise AI solutions, AI tools comparison, trusted AI platform, complete AI database, AI tools for business, AI directory leader, what is the best ai tool for, how to use ai tools, which ai tool is better, where to find ai tools" />
+        <meta name="keywords" content="AI Web Tools, AI tools directory 2026, ChatGPT alternatives, AI tools comparison, AI tools for business, curated AI tools, best AI tools" />
         <link rel="canonical" href="https://aiwebtools.ai" />
         <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
         <meta name="revisit-after" content="1 days" />
         <meta name="author" content="AI WEB TOOLS" />
         
         {/* Advanced competitive meta */}
-        <meta name="subject" content="World's Most Comprehensive AI Tools Directory - Better Than Any Competitor" />
-        <meta name="abstract" content="AI WEB TOOLS provides the most comprehensive, expertly curated directory of AI tools available anywhere. With 1000+ verified tools, detailed reviews, and expert analysis, we're the #1 choice for professionals seeking the best AI solutions." />
-        <meta name="topic" content="AI Tools Directory, Artificial Intelligence, Best AI Tools 2026, ChatGPT Alternatives" />
-        <meta name="summary" content="The definitive AI tools directory featuring 1000+ curated applications, expert reviews, and comprehensive comparisons. Better than Toolify and all competitors." />
-        
-        {/* Competitive advantage indicators */}
-        <meta name="rating" content="5 stars - Best AI Directory" />
-        <meta name="coverage" content="Comprehensive - 1000+ AI Tools" />
-        <meta name="expertise" content="Expert-Curated AI Tools Directory" />
-        <meta name="trustworthiness" content="Verified and Trusted by 100K+ Users" />
-        <meta name="uniqueness" content="Most Comprehensive AI Directory Available" />
+        <meta name="topic" content="AI Tools Directory, Artificial Intelligence, AI Tools 2026, ChatGPT Alternatives" />
         
         {/* Enhanced Open Graph */}
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://aiwebtools.ai" />
         <meta property="og:site_name" content="AI WEB TOOLS" />
-        <meta property="og:title" content="AI WEB TOOLS - #1 AI Tools Directory | Better Than Toolify" />
-        <meta property="og:description" content="Discover 1000+ verified AI tools with expert reviews. The most comprehensive AI directory - better than Toolify & Futurepedia." />
+        <meta property="og:title" content="AI Web Tools — 4,000+ AI Tools Directory 2026" />
+        <meta property="og:description" content="Curated directory of 4,000+ AI tools with reviews, comparisons, and category filtering." />
         <meta property="og:image" content="https://aiwebtools.ai/og-image-homepage.jpg" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
@@ -60,8 +50,8 @@ const CompetitiveSEOHead = ({ tool, toolIndex, category, isHomepage }: Competiti
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@AIWebTools" />
         <meta name="twitter:creator" content="@AIWebTools" />
-        <meta name="twitter:title" content="AI WEB TOOLS - #1 AI Tools Directory 2026" />
-        <meta name="twitter:description" content="1000+ verified AI tools with expert reviews and ratings" />
+        <meta name="twitter:title" content="AI Web Tools — AI Tools Directory 2026" />
+        <meta name="twitter:description" content="4,000+ curated AI tools with reviews and category filtering." />
         <meta name="twitter:image" content="https://aiwebtools.ai/og-image-homepage.jpg" />
         
         {/* Mobile optimization */}
@@ -74,10 +64,10 @@ const CompetitiveSEOHead = ({ tool, toolIndex, category, isHomepage }: Competiti
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebSite",
-            "name": "AI WEB TOOLS - #1 AI Tools Directory",
+            "name": "AI Web Tools Directory",
             "alternateName": "AITools.Studio",
             "url": "https://aiwebtools.ai",
-            "description": "The world's most comprehensive AI tools directory with 1000+ verified tools, expert reviews, and detailed analysis. Better than Toolify and all competitors.",
+            "description": "A curated directory of AI tools with reviews, comparisons, and category filtering.",
             "potentialAction": {
               "@type": "SearchAction",
               "target": {
@@ -88,15 +78,9 @@ const CompetitiveSEOHead = ({ tool, toolIndex, category, isHomepage }: Competiti
             },
             "mainEntity": {
               "@type": "ItemList",
-              "name": "Best AI Tools Directory 2026",
-              "description": "Comprehensive collection of 1000+ verified AI tools",
-              "numberOfItems": 1000
-            },
-            "aggregateRating": {
-              "@type": "AggregateRating",
-              "ratingValue": "4.9",
-              "reviewCount": "2000",
-              "bestRating": "5"
+              "name": "AI Tools Directory 2026",
+              "description": "Curated collection of AI tools",
+              "numberOfItems": 4000
             },
             "sameAs": [
               "https://aiwebtools.ai",
@@ -218,7 +202,7 @@ const CompetitiveSEOHead = ({ tool, toolIndex, category, isHomepage }: Competiti
     return (
       <Helmet>
         <title>{category} AI Tools - Best Directory 2026 | AI WEB TOOLS</title>
-        <meta name="description" content={`Discover the best ${category.toLowerCase()} AI tools in our comprehensive directory. Expert reviews, ratings, and comparisons. Part of AI WEB TOOLS - the #1 AI directory trusted by professionals.`} />
+        <meta name="description" content={`Discover ${category.toLowerCase()} AI tools in our curated directory with reviews and comparisons from AI Web Tools.`} />
         <meta name="keywords" content={`${category} AI tools, best ${category.toLowerCase()} AI, ${category.toLowerCase()} artificial intelligence, AI ${category.toLowerCase()} solutions, ${category.toLowerCase()} automation, AI WEB TOOLS directory`} />
         <link rel="canonical" href={`https://aiwebtools.ai/category/${encodeURIComponent(category)}`} />
         
