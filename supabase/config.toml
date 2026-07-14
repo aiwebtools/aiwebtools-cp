@@ -5,3 +5,12 @@ verify_jwt = false
 
 [functions.screen-tool-url]
 verify_jwt = false
+
+[functions.subscribe-email]
+verify_jwt = false
+
+[functions.confirm-subscription]
+verify_jwt = false
+
+[functions.send-weekly-digest]
+verify_jwt = false

@@ -14,6 +14,47 @@ Deno.serve(async (req) => {
     return new Response("ok", { headers: corsHeaders });
   }
 
+  // Authorization: allow either (a) a shared cron secret header, or
+  // (b) an authenticated admin JWT verified server-side via has_role().
+  const CRON_SECRET = Deno.env.get("DIGEST_CRON_SECRET");
+  const providedCronSecret = req.headers.get("x-cron-secret") || "";
+  const cronAuthorized = !!CRON_SECRET && providedCronSecret === CRON_SECRET;
+
+  let adminAuthorized = false;
+  const authHeader = req.headers.get("Authorization") || "";
+  if (!cronAuthorized && authHeader.startsWith("Bearer ")) {
+    try {
+      const authClient = createClient(
+        Deno.env.get("SUPABASE_URL")!,
+        Deno.env.get("SUPABASE_ANON_KEY")!,
+        { global: { headers: { Authorization: authHeader } } },
+      );
+      const token = authHeader.replace("Bearer ", "");
+      const { data: claimsData } = await authClient.auth.getClaims(token);
+      const userId = claimsData?.claims?.sub;
+      if (userId) {
+        const adminClient = createClient(
+          Deno.env.get("SUPABASE_URL")!,
+          Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!,
+        );
+        const { data: isAdmin } = await adminClient.rpc("has_role", {
+          _user_id: userId,
+          _role: "admin",
+        });
+        adminAuthorized = isAdmin === true;
+      }
+    } catch (e) {
+      console.warn("digest auth check failed:", e);
+    }
+  }
+
+  if (!cronAuthorized && !adminAuthorized) {
+    return new Response(
+      JSON.stringify({ error: "Unauthorized" }),
+      { status: 401, headers: { ...corsHeaders, "Content-Type": "application/json" } },
+    );
+  }
+
   const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
   const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
   if (!LOVABLE_API_KEY || !RESEND_API_KEY) {
