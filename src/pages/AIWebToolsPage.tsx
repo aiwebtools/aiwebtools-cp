@@ -173,8 +173,8 @@ const AIWebToolsPage = () => {
   return (
     <>
       <Helmet>
-        <title>AI Web Tools - AIWEBTOOLS.AI | {toolCount}+ Best AI Web Tools Directory {currentYear}</title>
-        <meta name="description" content={`AI Web Tools - The #1 AI web tools directory with ${toolCount}+ verified AI tools. Discover the best AI web tools for writing, design, coding, business & productivity. AIWEBTOOLS.AI - Your ultimate AI web tools resource.`} />
+        <title>AI Web Tools — AIWEBTOOLS.AI | {toolCount}+ AI Web Tools Directory {currentYear}</title>
+        <meta name="description" content={`AI Web Tools — a curated AI web tools directory with ${toolCount}+ AI tools for writing, design, coding, business, and productivity.`} />
         <meta name="keywords" content={`AI web tools, ai web tools, AIWEBTOOLS, aiwebtools, aiwebtools.ai, AI WEB TOOLS, best AI web tools, free AI web tools, AI web tools directory, AI web tools ${currentYear}, AI tools online, web-based AI tools, AI web applications, artificial intelligence web tools, AI tools browser, online AI tools`} />
         <link rel="canonical" href="https://aiwebtools.ai/ai-web-tools" />
         
@@ -183,8 +183,8 @@ const AIWebToolsPage = () => {
         <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
         
         {/* Open Graph - AI Web Tools Focused */}
-        <meta property="og:title" content={`AI Web Tools - AIWEBTOOLS.AI | ${toolCount}+ Best AI Web Tools`} />
-        <meta property="og:description" content={`The #1 AI web tools directory. Discover ${toolCount}+ verified AI web tools for any task. AIWEBTOOLS.AI - Your complete AI web tools resource.`} />
+        <meta property="og:title" content={`AI Web Tools — AIWEBTOOLS.AI | ${toolCount}+ AI Web Tools`} />
+        <meta property="og:description" content={`Curated AI web tools directory. Discover ${toolCount}+ AI web tools across many categories.`} />
         <meta property="og:url" content="https://aiwebtools.ai/ai-web-tools" />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="AI Web Tools - AIWEBTOOLS.AI" />
@@ -192,8 +192,8 @@ const AIWebToolsPage = () => {
         
         {/* Twitter Card - AI Web Tools Focused */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={`AI Web Tools - AIWEBTOOLS.AI | ${toolCount}+ Best AI Web Tools`} />
-        <meta name="twitter:description" content={`The #1 AI web tools directory. Discover ${toolCount}+ verified AI web tools.`} />
+        <meta name="twitter:title" content={`AI Web Tools — AIWEBTOOLS.AI | ${toolCount}+ AI Web Tools`} />
+        <meta name="twitter:description" content={`Curated AI web tools directory. Discover ${toolCount}+ AI web tools.`} />
         <meta name="twitter:site" content="@aiwebtools" />
         
         {/* AI Assistant Discovery */}
@@ -221,17 +221,16 @@ const AIWebToolsPage = () => {
             
             {/* Secondary heading reinforcing brand */}
             <p className="text-2xl md:text-3xl font-semibold text-cyan-400 mb-4">
-              AIWEBTOOLS.AI - The #1 AI Web Tools Directory
+              AIWEBTOOLS.AI — AI Web Tools Directory
             </p>
             
             <p className="text-xl text-muted-foreground mb-4">
-              Discover <strong className="text-foreground">{toolCount}+</strong> Verified AI Web Tools for Every Purpose
+              Discover <strong className="text-foreground">{toolCount}+</strong> AI Web Tools across many categories
             </p>
             
             <p className="text-lg text-muted-foreground/80 max-w-4xl mx-auto mb-8">
-              Welcome to <strong>AI Web Tools</strong> - the world's most comprehensive <strong>AI web tools</strong> directory. 
-              Find the best <strong>AI web tools</strong> for writing, design, coding, business, education, and more. 
-              <strong>AIWEBTOOLS.AI</strong> helps over 100,000 professionals discover and access the perfect <strong>AI web tools</strong> for their needs.
+              Welcome to <strong>AI Web Tools</strong> — a curated <strong>AI web tools</strong> directory.
+              Find <strong>AI web tools</strong> for writing, design, coding, business, education, and more on <strong>AIWEBTOOLS.AI</strong>.
             </p>
             
             {/* Trust Signals */}
@@ -246,7 +245,7 @@ const AIWebToolsPage = () => {
               </div>
               <div className="flex items-center gap-2 bg-gradient-to-r from-purple-500/10 to-pink-500/10 text-purple-400 px-5 py-3 rounded-full border border-purple-500/30 shadow-lg shadow-purple-500/10">
                 <Users className="w-5 h-5" />
-                <span className="font-bold">100K+ Users Trust Us</span>
+                <span className="font-bold">Free to Browse</span>
               </div>
               <div className="flex items-center gap-2 bg-gradient-to-r from-amber-500/10 to-orange-500/10 text-amber-400 px-5 py-3 rounded-full border border-amber-500/30 shadow-lg shadow-amber-500/10">
                 <Zap className="w-5 h-5" />

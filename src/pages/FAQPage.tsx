@@ -172,10 +172,10 @@ const FAQPage = () => {
           {/* Quick Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12 max-w-4xl mx-auto">
             {[
-              { icon: Search, label: "AI Tools", value: "2000+" },
-              { icon: Star, label: "Average Rating", value: "4.9★" },
+              { icon: Search, label: "AI Tools", value: "4,000+" },
+              { icon: Star, label: "Curated", value: "Daily" },
               { icon: Zap, label: "Categories", value: "15+" },
-              { icon: Users, label: "Users Served", value: "100K+" }
+              { icon: Users, label: "Built For", value: "Everyone" }
             ].map((stat, i) => (
               <div key={i} className="bg-gray-900/50 border border-green-500/20 rounded-xl p-4 text-center">
                 <stat.icon className="w-6 h-6 text-green-400 mx-auto mb-2" />
