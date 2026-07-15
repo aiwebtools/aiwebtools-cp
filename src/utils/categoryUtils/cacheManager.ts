@@ -101,9 +101,11 @@ export const resetCache = () => {
   console.log('🔄 Cache reset - will rebuild with 50+ new tools included v36');
 };
 
-// Force immediate cache reset for STRICT category detection update (v35)
-// Only reset when we actually have a browser DOM — never in Web Worker or SSR.
-if (hasLocalStorage()) resetCache();
+// NOTE: Do NOT force-reset the cache on every module load — the `cacheVersion`
+// bump (see CACHE_VERSION_KEY check in loadCacheFromStorage) already invalidates
+// stale caches. A blanket reset here forced a ~9 second synchronous rebuild on
+// every visit, blocking the main thread and making the first click after page
+// load feel frozen. Bump `cacheVersion` above when detection logic changes.
 
 // Helper function to combine subcategory and specialized tools efficiently
 const getCombinedTools = (tools: Tool[], mainCat: any, specializedTools: Tool[]) => {
