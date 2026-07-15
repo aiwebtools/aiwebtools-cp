@@ -420,13 +420,15 @@ const PostAcceptBoot: React.FC = () => {
         .catch(() => {});
     };
 
+    const cacheWarmDelay = typeof window !== 'undefined' && window.innerWidth < 768 ? 14000 : 7000;
+
     const id = window.setTimeout(() => {
       if ('requestIdleCallback' in window) {
-        (window as any).requestIdleCallback(warmCache);
+        (window as any).requestIdleCallback(warmCache, { timeout: 6000 });
       } else {
-        setTimeout(warmCache, 400);
+        setTimeout(warmCache, 1200);
       }
-    }, 400);
+    }, cacheWarmDelay);
 
     return () => {
       clearTimeout(id);
