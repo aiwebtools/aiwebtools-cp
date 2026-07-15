@@ -16,12 +16,10 @@ const ConfirmSubscriptionHandler = () => {
 
     const params = new URLSearchParams(window.location.search);
     const confirmToken = params.get("confirm");
-    const unsubToken = params.get("unsubscribe");
-    if (!confirmToken && !unsubToken) return;
+    if (!confirmToken) return;
 
     const cleanUrl = () => {
       params.delete("confirm");
-      params.delete("unsubscribe");
       const qs = params.toString();
       const url = window.location.pathname + (qs ? `?${qs}` : "") + window.location.hash;
       window.history.replaceState({}, "", url);
@@ -29,25 +27,14 @@ const ConfirmSubscriptionHandler = () => {
 
     (async () => {
       try {
-        if (confirmToken) {
-          const { error } = await supabase.functions.invoke("confirm-subscription", {
-            body: { token: confirmToken },
-          });
-          if (error) throw error;
-          toast({
-            title: "🕊️ Subscription confirmed",
-            description: "You're on the AIWebTools Signal. Welcome.",
-          });
-        } else if (unsubToken) {
-          const { error } = await supabase.functions.invoke("unsubscribe-email", {
-            body: { token: unsubToken },
-          });
-          if (error) throw error;
-          toast({
-            title: "Unsubscribed",
-            description: "You've been removed from the list.",
-          });
-        }
+        const { error } = await supabase.functions.invoke("confirm-subscription", {
+          body: { token: confirmToken },
+        });
+        if (error) throw error;
+        toast({
+          title: "🕊️ Subscription confirmed",
+          description: "You're on the AIWebTools Signal. Welcome.",
+        });
       } catch (err: any) {
         console.error("Subscription action failed:", err);
         toast({
