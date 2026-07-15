@@ -18,6 +18,7 @@ import "@/styles/loading-cube.css";
 import ScrollProgressIndicator from "@/components/ScrollProgressIndicator";
 import { getConsentAccepted } from "@/utils/consent";
 import { lazyWithRetry } from "@/utils/lazyWithRetry";
+import ConfirmSubscriptionHandler from "@/components/ConfirmSubscriptionHandler";
 
 // Eager load only the disclaimer gate; lazy-load heavy app routes to avoid black-screen startup
 import DisclaimerGate from "./pages/DisclaimerGate";
@@ -570,6 +571,7 @@ function App() {
                   <RouteGuard />
                   <PostAcceptBoot />
                   <GlobalOverlays />
+                  <ConfirmSubscriptionHandler />
                 </BrowserRouter>
               </TooltipProvider>
             </VideoManagerProvider>
