@@ -79,7 +79,19 @@ export async function initializeCategoryCache(): Promise<void> {
     categoryCounts = {};
     
     const tools = allTools;
-    
+
+    // Yield to the browser between category detections so the ~9s first-visit
+    // cache build never freezes the main thread. On idle this still completes
+    // in <10s of wall-clock but every click/scroll in between stays instant.
+    const yieldToBrowser = (): Promise<void> =>
+      new Promise((resolve) => {
+        const ric = (typeof window !== 'undefined' && (window as any).requestIdleCallback) as
+          | ((cb: () => void, opts?: { timeout: number }) => number)
+          | undefined;
+        if (ric) ric(() => resolve(), { timeout: 50 });
+        else setTimeout(resolve, 0);
+      });
+
     // Pre-compute each category
     for (const mainCat of mainCategories) {
       let categoryTools: Tool[] = [];
@@ -142,6 +154,8 @@ export async function initializeCategoryCache(): Promise<void> {
       
       categoryToolsCache.set(mainCat.name, categoryTools);
       categoryCounts[mainCat.name] = categoryTools.length;
+      // Give the browser a slice between categories.
+      await yieldToBrowser();
     }
     
     cacheInitialized = true;
