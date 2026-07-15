@@ -25,7 +25,7 @@ const getDetectors = async () => {
     { getEnhancedImageDesignTools },
     { getCodingDevelopmentTools },
     { getMarketingSalesTools },
-    { buildToolsCache, getToolsCacheByMainCategory }
+    { buildToolsCache, buildToolsCacheAsync, getToolsCacheByMainCategory }
   ] = await Promise.all([
     import('./healthDetection'),
     import('./healthDetection'),
@@ -61,6 +61,7 @@ const getDetectors = async () => {
     getCodingDevelopmentTools,
     getMarketingSalesTools,
     buildToolsCache,
+    buildToolsCacheAsync,
     getToolsCacheByMainCategory
   };
 };
@@ -145,8 +146,10 @@ export async function initializeCategoryCache(): Promise<void> {
           categoryTools = detectors.getMarketingSalesTools(tools);
           break;
         default:
-          // Use the legacy cache for other categories
-          detectors.buildToolsCache(tools);
+          // Use the legacy cache for other categories. The async builder yields
+          // between each category so the ~9s first-visit build never freezes
+          // clicks/scroll on the main thread.
+          await detectors.buildToolsCacheAsync(tools);
           const legacyCache = detectors.getToolsCacheByMainCategory();
           categoryTools = legacyCache.get(mainCat.name) || [];
           break;
