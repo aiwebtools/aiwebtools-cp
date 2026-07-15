@@ -32,13 +32,16 @@ const EmailSignupModal = ({ open, onOpenChange, source = "website" }: EmailSignu
       });
       if (error) throw error;
       setDone(true);
-      toast({ title: "🕊️ You're on the Signal", description: "Welcome email is on its way." });
+      toast({
+        title: "🕊️ Check your inbox",
+        description: "Click the confirmation link we just emailed to activate your subscription.",
+      });
       setTimeout(() => {
         onOpenChange(false);
         setDone(false);
         setEmail("");
         setName("");
-      }, 2000);
+      }, 3000);
     } catch (err: any) {
       console.error("Subscribe error:", err);
       toast({ title: "Signup failed", description: err?.message || "Please try again.", variant: "destructive" });
@@ -62,7 +65,10 @@ const EmailSignupModal = ({ open, onOpenChange, source = "website" }: EmailSignu
         {done ? (
           <div className="flex flex-col items-center justify-center py-8 text-center">
             <CheckCircle2 className="w-16 h-16 text-green-400 mb-3" style={{ filter: "drop-shadow(0 0 12px rgba(0,255,65,0.8))" }} />
-            <p className="text-green-300 font-mono">You're in. 🕊️ Welcome to the Signal.</p>
+            <p className="text-green-300 font-mono">Check your inbox 📬</p>
+            <p className="text-green-200/70 font-mono text-xs mt-2 max-w-sm">
+              Click the confirmation link we just sent to activate your subscription. If you don't see it, check spam.
+            </p>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-4 mt-2">
