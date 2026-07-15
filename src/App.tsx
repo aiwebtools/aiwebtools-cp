@@ -424,9 +424,9 @@ const PostAcceptBoot: React.FC = () => {
       if ('requestIdleCallback' in window) {
         (window as any).requestIdleCallback(warmCache);
       } else {
-        setTimeout(warmCache, 12000);
+        setTimeout(warmCache, 400);
       }
-    }, 30000);
+    }, 400);
 
     return () => {
       clearTimeout(id);

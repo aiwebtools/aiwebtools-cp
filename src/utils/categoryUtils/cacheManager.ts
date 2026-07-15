@@ -123,6 +123,208 @@ const getCombinedTools = (tools: Tool[], mainCat: any, specializedTools: Tool[])
 };
 
 // Ultra-optimized cache building with Web Workers support
+// Precompute the shared tool collections used by every category branch.
+const buildToolCollections = (tools: Tool[]) => {
+  const aiWebToolsSet = new Set(tools.filter(tool => isAIWebToolsGPT(tool)).map(t => t.title));
+  const chatRelatedSet = new Set(tools.filter(tool => isAIChatAssistantTool(tool)).map(t => t.title));
+  const healthSet = new Set(tools.filter(tool => isHealthAndWellnessTool(tool)).map(t => t.title));
+  const industrySet = new Set(tools.filter(tool => isIndustrySpecificTool(tool)).map(t => t.title));
+  const spiritualitySet = new Set(tools.filter(tool => isSpiritualityTool(tool)).map(t => t.title));
+  const threeDSet = new Set(tools.filter(tool => isThreeDVisualizationTool(tool)).map(t => t.title));
+  const audioMusicSet = new Set(tools.filter(tool => isAudioMusicTool(tool)).map(t => t.title));
+  const imageDesignSet = new Set(tools.filter(tool => isImageDesignTool(tool)).map(t => t.title));
+  const writingContentSet = new Set(tools.filter(tool => isWritingContentTool(tool)).map(t => t.title));
+  const codingDevSet = new Set(tools.filter(tool => isCodingDevelopmentTool(tool)).map(t => t.title));
+  const videoMultimediaSet = new Set(tools.filter(tool => isVideoMultimediaTool(tool)).map(t => t.title));
+  const marketingSalesSet = new Set(tools.filter(tool => isMarketingSalesTool(tool)).map(t => t.title));
+
+  return {
+    aiWebToolsGPTs: tools.filter(tool => aiWebToolsSet.has(tool.title)),
+    chatRelatedTools: tools.filter(tool => chatRelatedSet.has(tool.title)),
+    healthAndWellnessTools: tools.filter(tool => healthSet.has(tool.title)),
+    industrySpecificTools: tools.filter(tool => industrySet.has(tool.title)),
+    spiritualityTools: tools.filter(tool => spiritualitySet.has(tool.title)),
+    threeDVisualizationTools: tools.filter(tool => threeDSet.has(tool.title)),
+    audioMusicTools: tools.filter(tool => audioMusicSet.has(tool.title)),
+    imageDesignTools: tools.filter(tool => imageDesignSet.has(tool.title)),
+    writingContentTools: tools.filter(tool => writingContentSet.has(tool.title)),
+    codingDevTools: tools.filter(tool => codingDevSet.has(tool.title)),
+    videoMultimediaTools: tools.filter(tool => videoMultimediaSet.has(tool.title)),
+    marketingSalesTools: tools.filter(tool => marketingSalesSet.has(tool.title)),
+    strictHistoricalTools: tools.filter(tool => isStrictlyHistoricalTimeRelatedTool(tool)),
+    educationRelatedTools: tools.filter(tool => isEducationRelatedTool(tool)),
+    videoRelatedTools: tools.filter(tool => isVideoRelatedTool(tool)),
+    contentCreationTools: tools.filter(tool => isContentCreationTool(tool)),
+    dataAnalyticsTools: tools.filter(tool => isDataAnalyticsTool(tool)),
+    majorLLMs: tools.filter(tool => isMajorLLM(tool)),
+  };
+};
+
+type ToolCollections = ReturnType<typeof buildToolCollections>;
+
+// Compute the tools for a single main category. Extracted so both the sync
+// and async cache builders can share behaviour.
+const computeCategoryTools = (
+  mainCat: any,
+  tools: Tool[],
+  toolCollections: ToolCollections,
+): Tool[] => {
+  let categoryTools: Tool[] = [];
+  switch (mainCat.name) {
+    case "AI WEB TOOLS ORIGINALS":
+      categoryTools = [...toolCollections.aiWebToolsGPTs]; break;
+    case "ALL AI TOOLS":
+      categoryTools = [...tools]; break;
+    case "AI AGENTS": {
+      categoryTools = getEnhancedAgentTools(tools); break;
+    }
+    case "AI CHAT & ASSISTANTS": {
+      const subcategoryTools = tools.filter(tool => {
+        if (!tool.category) return false;
+        return mainCat.subcategories.some((subcat: string) => isSimilarCategory(tool.category, subcat));
+      });
+      const allChatTools = [...subcategoryTools, ...toolCollections.chatRelatedTools, ...toolCollections.majorLLMs];
+      categoryTools = allChatTools.filter((tool, index, self) => index === self.findIndex(t => t.title === tool.title));
+      break;
+    }
+    case "CONTENT CREATION & WRITING": {
+      const writingTools = [...toolCollections.writingContentTools, ...toolCollections.contentCreationTools];
+      categoryTools = getCombinedTools(tools, mainCat, writingTools); break;
+    }
+    case "DATA & ANALYTICS AI TOOLS": {
+      const enhancedDataTools = getDataAnalyticsTools(tools, mainCat.name);
+      categoryTools = getCombinedTools(tools, mainCat, [...enhancedDataTools, ...toolCollections.dataAnalyticsTools]);
+      break;
+    }
+    case "EDUCATION & LEARNING": {
+      categoryTools = [...toolCollections.educationRelatedTools];
+      const subcatTools = tools.filter(tool => {
+        if (!tool.category) return false;
+        return mainCat.subcategories.some((subcat: string) => isSimilarCategory(tool.category, subcat));
+      });
+      categoryTools = [...new Set([...categoryTools, ...subcatTools])].filter((tool, index, self) => index === self.findIndex(t => t.title === tool.title));
+      break;
+    }
+    case "HEALTH & WELLNESS":
+    case "HEALTH, WELLNESS & PERSONAL LIFESTYLE":
+      categoryTools = getCombinedTools(tools, mainCat, toolCollections.healthAndWellnessTools); break;
+    case "INDUSTRY SPECIFIC AI TOOLS":
+      categoryTools = getCombinedTools(tools, mainCat, toolCollections.industrySpecificTools); break;
+    case "HISTORICAL & TIME-BASED AI TOOLS":
+      categoryTools = [...toolCollections.strictHistoricalTools]; break;
+    case "VIDEO & MULTIMEDIA": {
+      const allVideoTools = [...toolCollections.videoMultimediaTools, ...toolCollections.videoRelatedTools];
+      categoryTools = getCombinedTools(tools, mainCat, allVideoTools); break;
+    }
+    case "AUDIO & VOICE TOOLS": {
+      categoryTools = [...toolCollections.audioMusicTools];
+      const audioSubcatTools = tools.filter(tool => {
+        if (!tool.category) return false;
+        return mainCat.subcategories.some((subcat: string) => isSimilarCategory(tool.category, subcat));
+      });
+      categoryTools = [...new Set([...categoryTools, ...audioSubcatTools])].filter((tool, index, self) => index === self.findIndex(t => t.title === tool.title));
+      break;
+    }
+    case "IMAGE & DESIGN AI TOOLS": {
+      const enhancedImageTools = getEnhancedImageDesignTools(tools);
+      categoryTools = getCombinedTools(tools, mainCat, [...toolCollections.imageDesignTools, ...enhancedImageTools]);
+      break;
+    }
+    case "MARKETING & SALES SOLUTIONS": {
+      const enhancedMarketingTools = getMarketingSalesTools(tools, mainCat.name);
+      categoryTools = getCombinedTools(tools, mainCat, [...toolCollections.marketingSalesTools, ...enhancedMarketingTools]);
+      break;
+    }
+    case "CODING & DEVELOPMENT":
+    case "AI DEVELOPMENT & CODING": {
+      categoryTools = getCodingDevelopmentTools(tools); break;
+    }
+    case "CREATIVE & ENTERTAINMENT": {
+      const creativeTools = tools.filter(tool => {
+        const category = (tool.category || '').toLowerCase();
+        const tags = (tool.tags || []).map(t => t.toLowerCase());
+        const description = (tool.description || '').toLowerCase();
+        const title = tool.title.toLowerCase();
+        const creativeKeywords = ['creative', 'entertainment', 'fun', 'game', 'play', 'trivia', 'quiz', 'story', 'interactive'];
+        return creativeKeywords.some(kw => category.includes(kw) || title.includes(kw) || description.includes(kw) || tags.some(t => t.includes(kw)));
+      });
+      categoryTools = getCombinedTools(tools, mainCat, creativeTools); break;
+    }
+    case "SPIRITUALITY & PHILOSOPHY":
+      categoryTools = getCombinedTools(tools, mainCat, toolCollections.spiritualityTools); break;
+    case "3D & VISUALIZATION": {
+      categoryTools = getThreeDVisualizationTools(tools); break;
+    }
+    case "AUTOMATION PLATFORMS":
+      categoryTools = getAutomationPlatformsTools(tools, mainCat.name); break;
+    case "COMMUNICATION & COLLABORATION AI TOOLS":
+      categoryTools = getCommunicationCollaborationTools(tools, mainCat.name); break;
+    case "BUSINESS OPERATIONS & PRODUCTIVITY": {
+      const businessCandidates = tools.filter(tool => {
+        if (!tool.category) return false;
+        return mainCat.subcategories.some((subcat: string) => isSimilarCategory(tool.category, subcat));
+      });
+      categoryTools = filterBusinessTools(businessCandidates); break;
+    }
+    case "WEB3 & BLOCKCHAIN":
+      categoryTools = tools.filter(tool => {
+        if (!tool.category) return false;
+        return mainCat.subcategories.some((subcat: string) => isSimilarCategory(tool.category, subcat)) || tool.tags?.includes("WEB3") || tool.tags?.includes("Blockchain");
+      });
+      break;
+    case "GAMING & ENTERTAINMENT":
+      categoryTools = tools.filter(tool => isGamingEntertainmentTool(tool)); break;
+    case "SECURITY & PRIVACY":
+      categoryTools = tools.filter(tool => isSecurityPrivacyTool(tool)); break;
+    default:
+      categoryTools = tools.filter(tool => {
+        if (!tool.category) return false;
+        return mainCat.subcategories.some((subcat: string) => isSimilarCategory(tool.category, subcat));
+      });
+  }
+  return categoryTools;
+};
+
+// Yield to the browser so the ~9s first-visit build never freezes the main
+// thread. Uses requestIdleCallback when available, otherwise a macrotask.
+const yieldToBrowser = (): Promise<void> =>
+  new Promise((resolve) => {
+    const ric = (typeof window !== 'undefined' && (window as any).requestIdleCallback) as
+      | ((cb: () => void, opts?: { timeout: number }) => number)
+      | undefined;
+    if (ric) ric(() => resolve(), { timeout: 50 });
+    else setTimeout(resolve, 0);
+  });
+
+// Async, non-blocking cache builder. Prefer this over `buildToolsCache` when
+// the caller can await — every category iteration yields to the browser so
+// clicks/scroll stay instant while the ~9s first-visit build is happening.
+export const buildToolsCacheAsync = async (tools: Tool[]): Promise<void> => {
+  if (!cacheBuilt && loadCacheFromStorage() && tools.length === lastToolsLength) {
+    cacheBuilt = true;
+    return;
+  }
+  if (cacheBuilt && tools.length === lastToolsLength) return;
+
+  console.log('🚀 Building tools cache (async, non-blocking)…');
+  const startTime = performance.now();
+  toolsCacheByMainCategory.clear();
+
+  const toolCollections = buildToolCollections(tools);
+  await yieldToBrowser();
+
+  for (const mainCat of mainCategories) {
+    const categoryTools = computeCategoryTools(mainCat, tools, toolCollections);
+    toolsCacheByMainCategory.set(mainCat.name, categoryTools);
+    await yieldToBrowser();
+  }
+
+  cacheBuilt = true;
+  lastToolsLength = tools.length;
+  saveCacheToStorage();
+  console.log(`✅ Async cache built in ${(performance.now() - startTime).toFixed(2)}ms`);
+};
+
 export const buildToolsCache = (tools: Tool[]) => {
   // Try loading from storage first
   if (!cacheBuilt && loadCacheFromStorage() && tools.length === lastToolsLength) {
