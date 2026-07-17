@@ -260,6 +260,7 @@ const BookPromotionCard = () => {
   const originalVideos = [
     // ── MTV LINE-UP (newest drops — play FIRST in the carousel) ──
     { id: "cxJMzuv_ccQ", title: "AIWEBTOOLS – Newest Drop | Official AI Music Video | AIWebTools.ai", gradient: "from-fuchsia-500/20 to-cyan-500/20" },
+    { id: "a9rRZzIsbiY", title: "Revelations Nearing Midnight | Original AI Music Video | AIWebTools.ai", gradient: "from-indigo-500/20 to-fuchsia-500/20" },
     { id: "I6kOI_q0aHE", title: "Mirror Mirror | Original AI Music Video | AIWebTools.ai", gradient: "from-fuchsia-500/20 to-cyan-500/20" },
     { id: "n6y0lqJym0c", title: "AIWEBTOOLS – Newest Drop | Official AI Music Video | AIWebTools.ai", gradient: "from-fuchsia-500/20 to-purple-500/20" },
     { id: "ZIr6c-fY9fs", title: "Just A Dream Baby | Original AI Music Video | AIWebTools.ai", gradient: "from-emerald-500/20 to-cyan-500/20" },
@@ -760,6 +761,7 @@ const BookPromotionCard = () => {
     // pinned to the front — it joins the lyric/audio tracks at the back.
     const verticalMusicVideoIds = [
       // MTV Lineup — newest drops, pinned to the very FRONT of the reel
+      "a9rRZzIsbiY",
       "zVfi5UkMjTM",
       "I6kOI_q0aHE",
       "ZIr6c-fY9fs",
