@@ -24,6 +24,7 @@ const MODE_SESSION_KEY = "pinned-video-mode"; // 'idle' | 'tools' | 'music'
 export const MUSIC_VIDEO_GALLERY: Array<{ id: string; title: string }> = [
   // ── MTV LINE-UP (newest drops — play FIRST in the 9:16 reel) ──
   { id: "cxJMzuv_ccQ", title: "AIWEBTOOLS – Newest Drop | Official AI Music Video | AIWebTools.ai" },
+  { id: "a9rRZzIsbiY", title: "Revelations Nearing Midnight | Original AI Music Video | AIWebTools.ai" },
   { id: "n6y0lqJym0c", title: "AIWEBTOOLS – Newest Drop | Official AI Music Video | AIWebTools.ai" },
   { id: "_O0G0oFO-GQ", title: "AIWEBTOOLS – Newest Drop | Official AI Music Video Short | AIWebTools.ai" },
   { id: "zVfi5UkMjTM", title: "Cosmic Divine Dimensions Inside Us – AI Music Video | AIWebTools.ai _OFFICAL MUSIC VIDEO_  GALACTICA" },
