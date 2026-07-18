@@ -684,3 +684,6 @@ export { openSourceLocal2026E } from './openSourceLocal2026E';
 export { openSourceLocal2026F } from './openSourceLocal2026F';
 export { openSourceLocal2026G } from './openSourceLocal2026G';
 export { openSourceLocal2026H } from './openSourceLocal2026H';
+
+// Free Awesome Batch I 2026 (9 verified free/OSS tools: AI Horde, AudioPen, Inkscape, Kroki, Mage AI, Marp, Mermaid Live, Presenton, Whimsical AI)
+export { freeAwesomeBatch2026I } from './freeAwesomeBatch2026I';
