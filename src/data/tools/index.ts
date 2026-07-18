@@ -687,3 +687,6 @@ export { openSourceLocal2026H } from './openSourceLocal2026H';
 
 // Free Awesome Batch I 2026 (9 verified free/OSS tools: AI Horde, AudioPen, Inkscape, Kroki, Mage AI, Marp, Mermaid Live, Presenton, Whimsical AI)
 export { freeAwesomeBatch2026I } from './freeAwesomeBatch2026I';
+
+// Free Awesome Batch II 2026 (8 verified free/OSS tools: Anytype, Novita AI, Cap, Screen Studio, Yoodli, Poised, Bluedot, FigJam AI)
+export { freeAwesomeBatch2026II } from './freeAwesomeBatch2026II';
