@@ -696,3 +696,6 @@ export { freeAwesomeBatch2026III } from './freeAwesomeBatch2026III';
 
 // Popular World Tools Batch IV 2026 (15 verified-unique high-traffic AI tools: Plaud Note, Limitless AI, Recall.ai, Kits AI, Mem AI, Logseq, Capacities, Pollo AI, RenderNet, Flora, Wegic, PlayHT, Rephrase.ai, Whisper by OpenAI, SoundHound AI)
 export { popularWorldToolsBatch2026IV } from './popularWorldToolsBatch2026IV';
+
+// Popular World Tools Batch V 2026 (16 verified-unique tools completing the 60-tool arc: Ninja AI, Cubby, Kimi/Moonshot, Rows AI, Bricks AI, Formula Bot, Jenni AI, Talkie AI, Kittl, Playground v3, Piggy Magic, Tripo3D, Wonder Studio, Rokoko Vision, Trade Ideas, TrendSpider)
+export { popularWorldToolsBatch2026V } from './popularWorldToolsBatch2026V';
