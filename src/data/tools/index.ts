@@ -690,3 +690,6 @@ export { freeAwesomeBatch2026I } from './freeAwesomeBatch2026I';
 
 // Free Awesome Batch II 2026 (8 verified free/OSS tools: Anytype, Novita AI, Cap, Screen Studio, Yoodli, Poised, Bluedot, FigJam AI)
 export { freeAwesomeBatch2026II } from './freeAwesomeBatch2026II';
+
+// Free Awesome Batch III 2026 (12 verified free AI tools: Google AI Studio, Chatbot Arena, Google Illuminate, Google Learn About, Google ImageFX, Google VideoFX, Microsoft Designer, Meta Imagine, Presearch, Marginalia Search, SearchGPT, AppFlowy AI)
+export { freeAwesomeBatch2026III } from './freeAwesomeBatch2026III';
