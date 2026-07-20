@@ -23,6 +23,7 @@ const MODE_SESSION_KEY = "pinned-video-mode"; // 'idle' | 'tools' | 'music'
 // always leads with the most eye-catching content.
 export const MUSIC_VIDEO_GALLERY: Array<{ id: string; title: string }> = [
   // ── MTV LINE-UP (newest drops — play FIRST in the 9:16 reel) ──
+  { id: "LXXPC-1lgOQ", title: "AIWEBTOOLS – Newest Drop | Official AI Music Video | AIWebTools.ai" },
   { id: "rXMTjCFycPM", title: "AIWEBTOOLS – Newest Drop | Official AI Music Video | AIWebTools.ai" },
   { id: "cxJMzuv_ccQ", title: "AIWEBTOOLS – Newest Drop | Official AI Music Video | AIWebTools.ai" },
   { id: "a9rRZzIsbiY", title: "Revelations Nearing Midnight | Original AI Music Video | AIWebTools.ai" },
