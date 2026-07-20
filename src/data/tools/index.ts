@@ -699,3 +699,6 @@ export { popularWorldToolsBatch2026IV } from './popularWorldToolsBatch2026IV';
 
 // Popular World Tools Batch V 2026 (16 verified-unique tools completing the 60-tool arc: Ninja AI, Cubby, Kimi/Moonshot, Rows AI, Bricks AI, Formula Bot, Jenni AI, Talkie AI, Kittl, Playground v3, Piggy Magic, Tripo3D, Wonder Studio, Rokoko Vision, Trade Ideas, TrendSpider)
 export { popularWorldToolsBatch2026V } from './popularWorldToolsBatch2026V';
+
+// Open & Free Agents Batch VI 2026 (25 verified-unique free/OSS agents & tools: Chat Nio, Fabric AI, Nari Dia, RA.Aid, Rill Data, Simple AI, Storm AI, Turboseek, smolagents, SWE-Kit, Cofounder, H2O.ai, Reflex, SearxNG, Storia Sage, Whisper WebGPU, Wren AI, PyGWalker, Data Formulator, Playwright MCP, Grok-1, PocketFlow, OpenELM, Open-Sora, Nomic Embed)
+export { openFreeAgentsBatch2026VI } from './openFreeAgentsBatch2026VI';
