@@ -705,3 +705,6 @@ export { openFreeAgentsBatch2026VI } from './openFreeAgentsBatch2026VI';
 
 // Verified Missing Batch VII 2026 (25 real free/free-tier AI + data tools not previously in DB: Airbyte, Fivetran, Metabase, Helicone, Portkey, Braintrust, Keywords AI, Vercel AI Gateway, Freshchat, Gorgias, Help Scout, Pipedrive AI, Slidesgo, Presentations.AI, Formularizer, Chatwoot, Google Vertex AI, AI21 Studio, Aleph Alpha, Databricks Mosaic AI, TrueFoundry, Typesense, Rev, PromptPerfect, Mode Analytics)
 export { verifiedMissingBatch2026VII } from './verifiedMissingBatch2026VII';
+
+// Verified Missing Batch VIII 2026 (25 real free/free-tier AI infra, doc-AI, voice & search tools not previously in DB: Neon, PocketBase, Xata, Turso, Upstash, Flyte, Unreal Speech, Fish Audio, Fireflies.ai, Otter.ai, Sembly AI, Notta, Docparser, Rossum, Klippa, Mindee, AWS Textract, Azure Document Intelligence, Google Document AI, Reducto, LlamaParse, LlamaCloud, Kagi, Andi, iAsk.Ai)
+export { verifiedMissingBatch2026VIII } from './verifiedMissingBatch2026VIII';
