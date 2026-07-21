@@ -4,6 +4,32 @@ import {
   ScanText, FileSearch, Search, MessageCircleQuestion, Bot, Cpu, Layers, Radio
 } from "lucide-react";
 
+import neonHero from "@/assets/tools/neon-hero.jpg";
+import pocketbaseHero from "@/assets/tools/pocketbase-hero.jpg";
+import xataHero from "@/assets/tools/xata-hero.jpg";
+import tursoHero from "@/assets/tools/turso-hero.jpg";
+import upstashHero from "@/assets/tools/upstash-hero.jpg";
+import flyteHero from "@/assets/tools/flyte-hero.jpg";
+import unrealSpeechHero from "@/assets/tools/unreal-speech-hero.jpg";
+import fishAudioHero from "@/assets/tools/fish-audio-hero.jpg";
+import firefliesAiHero from "@/assets/tools/fireflies-ai-hero.jpg";
+import otterAiHero from "@/assets/tools/otter-ai-hero.jpg";
+import semblyAiHero from "@/assets/tools/sembly-ai-hero.jpg";
+import nottaHero from "@/assets/tools/notta-hero.jpg";
+import docparserHero from "@/assets/tools/docparser-hero.jpg";
+import rossumHero from "@/assets/tools/rossum-hero.jpg";
+import klippaHero from "@/assets/tools/klippa-hero.jpg";
+import mindeeHero from "@/assets/tools/mindee-hero.jpg";
+import awsTextractHero from "@/assets/tools/aws-textract-hero.jpg";
+import azureDocumentIntelligenceHero from "@/assets/tools/azure-document-intelligence-hero.jpg";
+import googleDocumentAiHero from "@/assets/tools/google-document-ai-hero.jpg";
+import reductoHero from "@/assets/tools/reducto-hero.jpg";
+import llamaparseHero from "@/assets/tools/llamaparse-hero.jpg";
+import llamacloudHero from "@/assets/tools/llamacloud-hero.jpg";
+import kagiHero from "@/assets/tools/kagi-hero.jpg";
+import andiHero from "@/assets/tools/andi-hero.jpg";
+import iaskAiHero from "@/assets/tools/iask-ai-hero.jpg";
+
 // Batch VIII 2026 — 25 verified real AI / dev-infra / doc-AI tools not previously in the database.
 // All URLs verified as live products or OSS projects at time of writing. Free or free-tier available.
 export const verifiedMissingBatch2026VIII: Tool[] = [
