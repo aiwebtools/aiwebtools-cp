@@ -209,6 +209,7 @@ import { popularWorldToolsBatch2026V } from './tools/popularWorldToolsBatch2026V
 import { openFreeAgentsBatch2026VI } from './tools/openFreeAgentsBatch2026VI';
 import { verifiedMissingBatch2026VII } from './tools/verifiedMissingBatch2026VII';
 import { verifiedMissingBatch2026VIII } from './tools/verifiedMissingBatch2026VIII';
+import { verifiedMissingBatch2026IX } from './tools/verifiedMissingBatch2026IX';
 import { aiToolDatabases2026 } from './tools/aiToolDatabases2026';
 import { openSourceLocal2026 } from './tools/openSourceLocal2026';
 import { openSourceLocal2026B } from './tools/openSourceLocal2026B';
