@@ -4,7 +4,7 @@
 // Zero-op in server/worker contexts. Sample-rated and coalesced so we never
 // spam the log-error edge function.
 
-import { reportError } from "@/utils/errorReporting";
+import { reportError } from "./errorReporting";
 
 type Metric = { name: string; value: number; extra?: Record<string, unknown> };
 
