@@ -1,155 +1,169 @@
 import { Tool } from "@/types/tools";
 
 /**
- * GPT Power Ranking System - Categorizes AI Web Tools GPTs by power and impressiveness
+ * GPT Power Ranking System — HUMANITY ASCENSION ORDER
+ *
+ * Reordered per Master's directive: the tools that help humanity the most —
+ * free education, health, food, governance, truth, love, creativity, history,
+ * cosmos — rise to the top. Spiritual/mystical/entertainment tools sink lower.
  */
 
-// TIER 1: Astoundingly Cool & Wildly Powerful GPTs - The absolute pinnacle
+// TIER 1: HUMANITY ASCENSION — Education, Health, Food, Governance, Truth, Love
 export const TIER_1_LEGENDARY_GPTS = [
-  'G-Mode GPT',                        // Ultimate AI companion - most versatile
-  'TIME MACHINE GPT',                   // Time travel & exploration - mind-bending
-  'ImmortalizeME',                      // Digital clone creation - immortality tech
-  'ImmortalizeMe',
-  'PERFECT PROMPT ENGINE',              // AI optimization mastery
-  'Movie Maker Studio AI SUITE',       // Complete movie production suite
+  // Free education for all (post-collapse learning + upliftment)
+  'COLLEGE DEGREE GPT',                // Free full university education system
+  'LEARN ANY COURSE GPT',              // Free course tutor
+  'LEARN ANY SKILL GPT',               // Free skill mastery
+  'Home-Schooling Assistant GPT',      // Parent-led education
+  // Creating great books, movies, music (creativity fosters civilization)
+  'BOOK WRITER GPT',                   // Great books
+  'Children\'s Picture Book Maker GPT',
+  'Coloring Book Generator GPT',
+  'Movie Maker Studio AI SUITE',       // Complete movie production
   'MOVIE MAKER STUDIO',
-  'Music Video Maker AI Studio',       // Complete music video creation suite
-  'BOOK WRITER GPT',                   // Professional book creation system
-  'COLLEGE DEGREE GPT',                // Complete university education system
-  'Legislator Link GPT',               // Political engagement & democracy
-  'Legislation Writer GPT',            // Complete legal document creation
-  'Personalized DR. GPT',              // Advanced medical AI system
-  'Veterinarian GPT',                  // Complete veterinary care system
-  'Engineering GPT AI Suite',          // Complete engineering mastery
-  'TALK TO THE GODS GPT',              // Divine communication interface
-  'Stellaris: 🚀AI Space Explorer',    // Advanced space exploration
-  'Stellaris: AI Space Explorer',
-  'Phenomenon Explorer AI Suite',       // Paranormal investigation suite
-  'ENTER THE MATRIX GPT (NEO👁️MATRIX GPT)', // Reality exploration
-  'NEO👁️MATRIX GPT',
-  'NEOMATRIX GPT',
-  'STAGEMASTER AI SUITE',              // Complete performing arts suite
-  'STAGE MASTER SUITE',
-  'Drill Baby Drill Ai Suite For Oil & Gas', // Complete industry suite
-];
-
-// TIER 2: Highly Impressive & Powerful GPTs - Professional powerhouses
-export const TIER_2_PROFESSIONAL_GPTS = [
-  'Illuminous World Data Explorer GPT', // Global prediction engine  
-  'Criminologist GPT',                 // Advanced investigation system
-  'Nikola Tesla GPT',                  // Scientific innovation engine
-  'Data Research Analysis Report GPT',  // Advanced analytics
-  'Cyber Security GPT',                // Security infrastructure
-  'FACT CHECKER GPT',                  // Truth verification system
-  'Sustainable Futures GPT',          // Environmental solutions
-  'Global Peace Restoration Strategist GPT', // World peace engineering
-  'Uncovering Hidden Historical Patterns GPT', // Deep pattern recognition
-  'IF AI RULED THE WORLD',             // AI governance simulation
-  'Movie Script Writer GPT',          // Professional screenwriting
-  'Resurrection GPT',                 // Memory simulation technology
-  'Social Safety Net GPT',           // Social system design
-  'MULTITASKER GPT',                 // Multi-capability system
-  'Customizable GPT Maker',          // AI creation tool
-];
-
-// TIER 3: Specialized & Impressive GPTs - Domain experts
-export const TIER_3_SPECIALIST_GPTS = [
-  'AUTOMOBILE GPT',                    // Complete automotive expertise
-  'Survivalist GPT',                  // Ultimate survival companion
-  'Graphic & Cover Design GPT',       // Professional design
-  'TALK TO HISTORY GPT',             // Historical interaction
-  'The Resume & Job Finder Ai Suite', // Career advancement
-  'Training Manual Generator GPT',    // Professional training systems
-  'ALAN WATTS GPT',                  // Philosophical wisdom system
-  'Albert Einstein GPT',             // Scientific genius simulation
-  'Trader GPT',                      // Financial trading system
-  'Indiana Archeologist GPT',        // Archaeological exploration
-  'Playwriter GPT',                  // Professional theater creation
-  'Historical Apothecary GPT',       // Traditional medicine system
-  'Tattoo Designer GPT',             // Professional tattoo design
-  'Firearms Safety Instructor GPT',   // Professional safety training
-  'Firefighter GPT',                 // Emergency response system
-  'Genome GPT',                      // Genetic analysis system
-  'Game Design Document / Developer GPT', // Game development system
-];
-
-// TIER 4: Useful & Solid GPTs - Reliable tools
-export const TIER_4_UTILITY_GPTS = [
-  'Travel Advisor GPT',
-  'Clarity Omni GPT', 
-  'Food Quality Inspector GPT',
-  'Home Renovator GPT',
-  'Fisherman GPT',
-  'Agronomus AI Farming Expert',
-  'Antique and Collectible Appraisal GPT',
-  'Insurance Claims GPT',
-  'Cannabis GPT',
-  'LEARN ANY COURSE GPT',
-  'Public Defender GPT',
-  'Property Data Finder GPT',
-  'Algebraic Expression Inventor GPT',
-  'LEARN ANY SKILL GPT',
-  'MATERIAL VALUATION GPT',
-  'MicroSaaS GPT',
-  'Marriage Mender GPT',
-  'Solar Land Assessor GPT',
-  'Home-Schooling Assistant GPT',
-  'Pharmaceutical Assistant GPT',
+  'Music Video Maker AI Studio',       // Music/creative production
+  // Health & healing (medical access after collapse)
+  'Personalized DR. GPT',              // Medical care access
+  'Veterinarian GPT',                  // Pet & livestock care
+  'Mental Wellness GPT',               // Mental health
+  'Marriage Mender GPT',               // Love each other
+  // Food, farming, survival (feed the world)
+  'Survivalist GPT',                   // Post-collapse survival
+  'Agronomus AI Farming Expert',       // Farming
+  'Fisherman GPT',                     // Food from water
+  'Food Quality Inspector GPT',        // Food safety
+  'Home Renovator GPT',                // Shelter
+  'Firefighter GPT',                   // Emergency response
+  'Firearms Safety Instructor GPT',    // Safety training
+  // Governance, law, democracy (rebuild civilization)
+  'Legislator Link GPT',               // Direct political engagement
+  'Legislation Writer GPT',            // Draft real laws
+  'Public Testimony Writer GPT',       // Civic voice
+  'Public Defender GPT',               // Legal defense
+  'Legal Draftsmith GPT',
   'Contract Review Bot',
-  'Sora Prompt Assistant',
+  // Truth, safety, mutual aid (help each other)
+  'FACT CHECKER GPT',                  // Truth in dark times
+  'Cyber Security GPT',                // Digital defense
+  'Social Safety Net GPT',             // Help each other
+  'Universal Basic Income Strategist GPT',
+  'Global Peace Restoration Strategist GPT',
+  'Sustainable Futures GPT',
+];
+
+// TIER 2: HISTORY, COSMOS & TRUTH-SEEKING — Question history, explore reality
+export const TIER_2_PROFESSIONAL_GPTS = [
+  // History time-machines & questioning history
+  'TIME MACHINE GPT',
+  'TALK TO HISTORY GPT',
+  'Native American History Time Machine GPT',
+  'Historical Headlines GPT',
+  'Uncovering Hidden Historical Patterns GPT',
+  'Indiana Archeologist GPT',
+  'Titanic Resurrections GPT',
+  'Historical Apothecary GPT',
+  // Cosmos, science, questioning reality
+  'Stellaris: 🚀AI Space Explorer',
+  'Stellaris: AI Space Explorer',
+  'Phenomenon Explorer AI Suite',
+  'Nikola Tesla GPT',
+  'Albert Einstein GPT',
+  'Illuminous World Data Explorer GPT',
+  'Genome GPT',
+  'Alchemist Scientist GPT',
+  'Fungus GPT',
+];
+
+// TIER 3: PROFESSIONAL POWERHOUSES — Creativity, careers, industry
+export const TIER_3_SPECIALIST_GPTS = [
+  'Engineering GPT AI Suite',
+  'STAGEMASTER AI SUITE',
+  'STAGE MASTER SUITE',
+  'Movie Script Writer GPT',
+  'Playwriter GPT',
+  'Movie Scene Maker GPT',
+  'Graphic & Cover Design GPT',
+  'Music Melodies & Lessons GPT',
+  'Podcast Script Writer GPT',
+  'Training Manual Generator GPT',
+  'The Resume & Job Finder Ai Suite',
+  'Business Plan Generator GPT',
+  'Startup Validator GPT',
+  'MicroSaaS GPT',
+  'Grant Writer GPT',
+  'Data Research Analysis Report GPT',
+  'Criminologist GPT',
+  'Insurance Claims GPT',
+  'Taxes GPT',
+  'Trader GPT',
+  'PERFECT PROMPT ENGINE',
+  'MULTITASKER GPT',
+  'Customizable GPT Maker',
+  'Custom GPT Ideas & Brainstorming Assistant',
+  'G-Mode GPT',
+  'Game Design Document / Developer GPT',
+];
+
+// TIER 4: USEFUL DOMAIN EXPERTS — Reliable specialist tools
+export const TIER_4_UTILITY_GPTS = [
+  'Drill Baby Drill Ai Suite For Oil & Gas',
+  'Solar Land Assessor GPT',
+  'Property Data Finder GPT',
+  'MATERIAL VALUATION GPT',
+  'Antique and Collectible Appraisal GPT',
+  'Artwork & Vintage Appraisal GPT',
+  'Predictive Credit Score Checker GPT',
+  'Pharmaceutical Assistant GPT',
   'PHARMA RESEARCH PRO',
+  'AUTOMOBILE GPT',
+  'Travel Advisor GPT',
+  'Cannabis GPT',
+  'Tattoo Designer GPT',
+  'Restaurant Menu Maker GPT',
   'Mixologist GPT',
   'Chef "Sizzle" AI Culinary Assistant',
-  'RESTYLE ME GPT',
-  'Binary-Text-Image Converter GPT',
-  'Luma Dream Machine Prompt Assistant',
-  'Restaurant Menu Maker GPT',
-  'Course Maker GPT',
-  'Taxes GPT',
-  'Predictive Credit Score Checker GPT',
-  'Name Insight Research & Predictor GPT',
-  'Coloring Book Generator GPT',
-  'Native American History Time Machine GPT',
-  'Public Testimony Writer GPT',
-  'Startup Validator GPT',
-  'Business Plan Generator GPT',
-  'Fungus GPT',
-  'Dream Interpreter GPT',
-  'Podcast Script Writer GPT',
-  'Person Information Finder GPT',
-  'PPTx Powerpoint Maker GPT',
-  'Grant Writer GPT',
-  'Universal Basic Income Strategist GPT',
-  'Artwork & Vintage Appraisal GPT',
-  'Sketch Artist GPT',
-  'AI Tools Finder GPT',
+  'Clarity Omni GPT',
   'Article and Blog Rewriter GPT',
   'Video Second-by-Second Analysis GPT',
+  'PPTx Powerpoint Maker GPT',
+  'Person Information Finder GPT',
+  'AI Tools Finder GPT',
+  // Creative fun / prompt helpers
+  'RESTYLE ME GPT',
+  'Sketch Artist GPT',
+  'Sora Prompt Assistant',
+  'Luma Dream Machine Prompt Assistant',
   'MiddleJourney Midjourney Prompting Assistant',
-  'Legal Draftsmith GPT',
-  'Custom GPT Ideas & Brainstorming Assistant',
-  'Music Melodies & Lessons GPT',
-  'Children\'s Picture Book Maker GPT',
-  'Movie Scene Maker GPT',
-  'Mental Wellness GPT',
+  'Course Maker GPT',
+  'Quiz Maker Ai',
+  'Algebraic Expression Inventor GPT',
+  'Binary-Text-Image Converter GPT',
+  'King Blueberry GPT',
+  'ImmortalizeME',
+  'ImmortalizeMe',
+  'Resurrection GPT',
 ];
 
-// TIER 5: Entertainment & Simple GPTs - Fun but less complex
+// TIER 5: SPIRITUAL, MYSTICAL & ENTERTAINMENT — Lower priority per Master's directive
 export const TIER_5_ENTERTAINMENT_GPTS = [
-  'Trivia Night GPT',                 // Fun but simple trivia
-  'Imagination Traveler GPT',         // Creative storytelling
-  'Celebrity Chatline GPT',           // Entertainment chat
-  'Oraculum',                         // Mystery/entertainment
-  'Probability GPT',                  // Probability calculations
-  'Interpretis',                      // Word etymology
-  'Titanic Resurrections GPT',        // Historical recreation
-  'Historical Headlines GPT',         // Historical news simulation
-  'Alchemist Scientist GPT',          // Historical science simulation
-  'King Blueberry GPT',              // Algebraic conversion
-  'Quiz Maker Ai',                   // Simple quiz creation
-  'Snoop Image Ai',                  // Image detection
-  'Mary Magdalene GPT',              // Religious conversation
-  'Sophia Aeterna AI',               // Philosophical wisdom
+  'TALK TO THE GODS GPT',
+  'ENTER THE MATRIX GPT (NEO👁️MATRIX GPT)',
+  'NEO👁️MATRIX GPT',
+  'NEOMATRIX GPT',
+  'ALAN WATTS GPT',
+  'Mary Magdalene GPT',
+  'Sophia Aeterna AI',
+  'Oraculum',
+  'Interpretis',
+  'Dream Interpreter GPT',
+  'Fortune Teller GPT',
+  'Name Insight Research & Predictor GPT',
+  'Probability GPT',
+  'IF AI RULED THE WORLD',
+  'Imagination Traveler GPT',
+  'Celebrity Chatline GPT',
+  'Trivia Night GPT',
+  'Snoop Image Ai',
 ];
 
 /**
