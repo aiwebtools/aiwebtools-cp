@@ -687,8 +687,11 @@ const toolsWithFreeFlags = markFreeTools(filteredTools);
 const toolsWithSpiritualTags = applySpirtualTags(toolsWithFreeFlags);
 // Auto-tag every tool with its full title so exact-name searches always hit
 const toolsWithTags = ensureTitleTags(toolsWithSpiritualTags);
+// Tag every tool with its pricing model (Free / Freemium / Paid) so all
+// search bars can surface them and cards can badge them consistently.
+const toolsWithPricing = ensurePricingTags(toolsWithTags);
 
-export const allTools: Tool[] = toolsWithTags;
+export const allTools: Tool[] = toolsWithPricing;
 
 // Use filtered tools for all exports
 export const featuredTools: Tool[] = createFeaturedTools(filteredTools);
