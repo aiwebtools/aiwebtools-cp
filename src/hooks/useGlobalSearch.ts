@@ -2274,6 +2274,29 @@ export const useGlobalSearch = () => {
     // Prefer the main-thread quick index when tools are already loaded — the worker
     // path can silently break in dev when the tools module fails to fetch, so this
     // makes the dropdown resilient across devices.
+    // Pricing queries ("free", "freemium", "paid") always run on the main-thread
+    // index so we can return the FULL matching set for endless scrolling.
+    const isPricingQuery = /^(free|free tools|free ai tools|free ai|100% free|no cost|freemium|free tier|free trial|paid|paid tools|premium)$/i.test(cappedT.trim());
+    if (isPricingQuery) {
+      const applyPricing = () => {
+        if (currentId !== searchIdRef.current) return;
+        const res = quickSearch(cappedT);
+        if (res.length === 0) return;
+        searchCache.set(fullCacheKey, res);
+        startTransition(() => {
+          setSearchResults(res);
+          setDisplayedCount(50);
+          setIsOpen(true);
+        });
+      };
+      if (toolsRef.current.length === 0) {
+        void loadTools().then(applyPricing);
+      } else {
+        applyPricing();
+      }
+      return;
+    }
+
     const shouldUseWorker = toolsRef.current.length === 0 || cappedT.length > 24;
     if (shouldUseWorker) {
       pendingSearchRef.current = null;
