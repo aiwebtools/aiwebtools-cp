@@ -2298,7 +2298,6 @@ export const useGlobalSearch = () => {
         }
         matched.sort((a, b) => (b.rating || 0) - (a.rating || 0));
         const res = [...matched, ...rest];
-        console.log("[pricing-apply]", res.length);
         if (res.length === 0) return;
         searchCache.set(fullCacheKey, res);
         startTransition(() => {
