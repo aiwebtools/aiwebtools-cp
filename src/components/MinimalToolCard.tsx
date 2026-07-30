@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { generateToolSlug } from "@/utils/urlGenerator";
 import { prefetchToolData } from "@/utils/toolPrefetcher";
 import { isFreeTool } from "@/utils/freeToolDetection";
+import { getToolPricing, getPricingLabel } from "@/utils/pricingClassification";
 import FavoriteButton from "@/components/favorites/FavoriteButton";
 import AutoScaleTitle from "@/components/ui/auto-scale-title";
 
@@ -19,6 +20,8 @@ const MinimalToolCard = memo(({ tool, index = 0 }: MinimalToolCardProps) => {
   
   const isCustomGPT = isFreeTool(tool);
   const isAIWebToolsOriginal = isCustomGPT;
+  const pricing = getToolPricing(tool);
+  const pricingLabel = getPricingLabel(pricing);
 
   const previewDescription = (() => {
     const description = tool.description?.trim() || "Powerful AI tool for enhanced productivity.";
@@ -87,13 +90,19 @@ const MinimalToolCard = memo(({ tool, index = 0 }: MinimalToolCardProps) => {
     >
       <FavoriteButton tool={tool} size="sm" className="top-2 right-2 z-30" />
       
-      {isAIWebToolsOriginal && (
-        <div className="absolute top-0 left-0 z-20">
-          <div className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-black px-2 py-1 rounded-br-lg rounded-tl-lg text-xs font-bold shadow-lg">
-            FREE
-          </div>
+      <div className="absolute top-0 left-0 z-20">
+        <div
+          className={`px-2 py-1 rounded-br-lg rounded-tl-lg text-xs font-bold shadow-lg ${
+            pricing === "free"
+              ? "bg-gradient-to-r from-yellow-400 to-yellow-600 text-black"
+              : pricing === "freemium"
+              ? "bg-gradient-to-r from-cyan-500 to-blue-600 text-white"
+              : "bg-gradient-to-r from-gray-600 to-gray-800 text-white"
+          }`}
+        >
+          {pricingLabel}
         </div>
-      )}
+      </div>
       
       <CardContent className="p-4 pr-14 sm:pr-10 pt-6">
         <div className="flex items-start gap-3 sm:gap-4">
