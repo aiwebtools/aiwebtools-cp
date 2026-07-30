@@ -5,6 +5,7 @@ import { createTimePortalEffect } from "@/utils/timeEffects";
 import { generateToolSlug } from "@/utils/urlGenerator";
 import { getCurrentToolCount } from "@/utils/toolCounter";
 import { recordMetric } from "@/utils/perfTelemetry";
+import { getToolPricing } from "@/utils/pricingClassification";
 
 // ==================== LRU CACHE FOR SEARCH RESULTS ====================
 // Caches the last 50 search queries to avoid recomputation on repeated searches
