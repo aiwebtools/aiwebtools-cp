@@ -2278,9 +2278,24 @@ export const useGlobalSearch = () => {
     // index so we can return the FULL matching set for endless scrolling.
     const isPricingQuery = /^(free|free tools|free ai tools|free ai|100% free|no cost|freemium|free tier|free trial|paid|paid tools|premium)$/i.test(cappedT.trim());
     if (isPricingQuery) {
+      const pricingTarget = /^(paid|paid tools|premium)$/i.test(cappedT.trim())
+        ? "paid"
+        : /^(freemium|free tier|free trial)$/i.test(cappedT.trim())
+        ? "freemium"
+        : "free";
       const applyPricing = () => {
         if (currentId !== searchIdRef.current) return;
-        const res = quickSearch(cappedT);
+        // Read straight from the loaded tools ref (state may still be stale here)
+        const source = toolsRef.current;
+        if (!source || source.length === 0) return;
+        const matched: any[] = [];
+        const rest: any[] = [];
+        for (const t of source) {
+          if (getToolPricing(t) === pricingTarget) matched.push(t);
+          else rest.push(t);
+        }
+        matched.sort((a, b) => (b.rating || 0) - (a.rating || 0));
+        const res = [...matched, ...rest];
         if (res.length === 0) return;
         searchCache.set(fullCacheKey, res);
         startTransition(() => {
