@@ -2284,10 +2284,11 @@ export const useGlobalSearch = () => {
         : /^(freemium|free tier|free trial)$/i.test(cappedT.trim())
         ? "freemium"
         : "free";
-      const applyPricing = () => {
+      const applyPricing = (loaded?: any[]) => {
         if (currentId !== searchIdRef.current) return;
-        // Read straight from the loaded tools ref (state may still be stale here)
-        const source = toolsRef.current;
+        // Read straight from the loaded tools (state may still be stale here)
+        const source = (loaded && loaded.length > 0) ? loaded : toolsRef.current;
+        console.log("[pricing-apply]", source?.length);
         if (!source || source.length === 0) return;
         const matched: any[] = [];
         const rest: any[] = [];
@@ -2307,7 +2308,7 @@ export const useGlobalSearch = () => {
         });
       };
       if (toolsRef.current.length === 0) {
-        void loadTools().then(applyPricing);
+        void loadTools().then((loadedTools) => applyPricing(loadedTools));
       } else {
         applyPricing();
       }
