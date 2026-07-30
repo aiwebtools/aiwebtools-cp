@@ -1717,13 +1717,9 @@ export const useGlobalSearch = () => {
     const rawWords = qRaw.split(/\s+/).filter(word => word.length > 1);
     const isLongNaturalQuery = qRaw.length > 40 || rawWords.length > 6;
 
-    // === CHECK CACHE FIRST (instant return for repeated searches) ===
     const cacheKey = `${SEARCH_CACHE_VERSION}:${qRaw}`;
-    const cached = searchCache.get(cacheKey);
-    if (cached) return cached;
 
-    // === PRICING QUERIES: "free", "freemium", "paid" → return EVERY matching tool ===
-    // Endless scrolling handles the volume; free tools sort first.
+    // === PRICING QUERIES: "free", "freemium", "paid" -> return EVERY matching tool ===
     const PRICING_QUERIES: Record<string, "free" | "freemium" | "paid"> = {
       "free": "free",
       "free tools": "free",
@@ -1740,17 +1736,23 @@ export const useGlobalSearch = () => {
     };
     const pricingTarget = PRICING_QUERIES[qRaw];
     if (pricingTarget) {
+      const source = quickIndex.length > 0 ? quickIndex.map(i => i.tool) : toolsRef.current;
+      if (!source || source.length === 0) return [];
       const matched: any[] = [];
       const rest: any[] = [];
-      for (const it of quickIndex) {
-        if (getToolPricing(it.tool) === pricingTarget) matched.push(it.tool);
-        else rest.push(it.tool);
+      for (const t of source) {
+        if (getToolPricing(t) === pricingTarget) matched.push(t);
+        else rest.push(t);
       }
       matched.sort((a, b) => (b.rating || 0) - (a.rating || 0));
       const results = [...matched, ...rest];
       searchCache.set(cacheKey, results);
       return results;
     }
+
+    // === CHECK CACHE (instant return for repeated searches) ===
+    const cached = searchCache.get(cacheKey);
+    if (cached && cached.length > 0) return cached;
 
     if (isLongNaturalQuery) {
       const scored: { tool: any; score: number }[] = [];
@@ -2278,7 +2280,6 @@ export const useGlobalSearch = () => {
     // index so we can return the FULL matching set for endless scrolling.
     const isPricingQuery = /^(free|free tools|free ai tools|free ai|100% free|no cost|freemium|free tier|free trial|paid|paid tools|premium)$/i.test(cappedT.trim());
     if (isPricingQuery) {
-      console.log("[pricing-query]", cappedT, "tools:", toolsRef.current.length);
       const pricingTarget = /^(paid|paid tools|premium)$/i.test(cappedT.trim())
         ? "paid"
         : /^(freemium|free tier|free trial)$/i.test(cappedT.trim())
@@ -2288,7 +2289,6 @@ export const useGlobalSearch = () => {
         if (currentId !== searchIdRef.current) return;
         // Read straight from the loaded tools (state may still be stale here)
         const source = (loaded && loaded.length > 0) ? loaded : toolsRef.current;
-        console.log("[pricing-apply]", source?.length);
         if (!source || source.length === 0) return;
         const matched: any[] = [];
         const rest: any[] = [];
