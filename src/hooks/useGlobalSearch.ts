@@ -1721,6 +1721,36 @@ export const useGlobalSearch = () => {
     const cached = searchCache.get(cacheKey);
     if (cached) return cached;
 
+    // === PRICING QUERIES: "free", "freemium", "paid" → return EVERY matching tool ===
+    // Endless scrolling handles the volume; free tools sort first.
+    const PRICING_QUERIES: Record<string, "free" | "freemium" | "paid"> = {
+      "free": "free",
+      "free tools": "free",
+      "free ai tools": "free",
+      "free ai": "free",
+      "100% free": "free",
+      "no cost": "free",
+      "freemium": "freemium",
+      "free tier": "freemium",
+      "free trial": "freemium",
+      "paid": "paid",
+      "paid tools": "paid",
+      "premium": "paid",
+    };
+    const pricingTarget = PRICING_QUERIES[qRaw];
+    if (pricingTarget) {
+      const matched: any[] = [];
+      const rest: any[] = [];
+      for (const it of quickIndex) {
+        if (getToolPricing(it.tool) === pricingTarget) matched.push(it.tool);
+        else rest.push(it.tool);
+      }
+      matched.sort((a, b) => (b.rating || 0) - (a.rating || 0));
+      const results = [...matched, ...rest];
+      searchCache.set(cacheKey, results);
+      return results;
+    }
+
     if (isLongNaturalQuery) {
       const scored: { tool: any; score: number }[] = [];
       for (const it of quickIndex) {
