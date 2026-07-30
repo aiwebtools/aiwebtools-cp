@@ -6,6 +6,7 @@ import { Tool } from "@/types/tools";
 import StarRating from "@/components/tools/StarRating";
 import { useNavigate } from "react-router-dom";
 import { isFreeTool } from "@/utils/freeToolDetection";
+import { getToolPricing, getPricingLabel } from "@/utils/pricingClassification";
 import { createTimePortalEffect } from "@/utils/timeEffects";
 
 interface ToolHeaderProps {
@@ -33,17 +34,25 @@ const ToolHeader = ({ tool, defaultRating, defaultVotes, toolIndex }: ToolHeader
 
   // Check if this is a FREE custom GPT
   const isFreeCustomGPT = isFreeTool(tool);
+  const pricing = getToolPricing(tool);
+  const pricingLabel = getPricingLabel(pricing);
 
   return (
     <div className="text-center pb-6 bg-gradient-to-r from-gray-900/50 to-gray-800/30 relative">
-      {/* FREE Badge for custom GPTs */}
-      {isFreeCustomGPT && (
-        <div className="absolute top-4 right-4 z-20">
-          <div className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-black px-4 py-2 rounded-full text-sm font-bold shadow-lg transform rotate-12 animate-pulse">
-            FREE
-          </div>
+      {/* Pricing badge (FREE / FREEMIUM / PAID) */}
+      <div className="absolute top-4 right-4 z-20">
+        <div
+          className={`px-4 py-2 rounded-full text-sm font-bold shadow-lg ${
+            pricing === "free"
+              ? `bg-gradient-to-r from-yellow-400 to-yellow-600 text-black transform rotate-12${isFreeCustomGPT ? " animate-pulse" : ""}`
+              : pricing === "freemium"
+              ? "bg-gradient-to-r from-cyan-500 to-blue-600 text-white"
+              : "bg-gradient-to-r from-gray-600 to-gray-800 text-white"
+          }`}
+        >
+          {pricingLabel}
         </div>
-      )}
+      </div>
       
       <div className={`w-24 h-24 mx-auto mb-6 rounded-full bg-gradient-to-r ${tool.color} flex items-center justify-center text-white text-4xl shadow-lg shadow-cyan-500/30 glow-effect`}>
         {tool.emoji}

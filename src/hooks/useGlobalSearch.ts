@@ -5,6 +5,7 @@ import { createTimePortalEffect } from "@/utils/timeEffects";
 import { generateToolSlug } from "@/utils/urlGenerator";
 import { getCurrentToolCount } from "@/utils/toolCounter";
 import { recordMetric } from "@/utils/perfTelemetry";
+import { getToolPricing } from "@/utils/pricingClassification";
 
 // ==================== LRU CACHE FOR SEARCH RESULTS ====================
 // Caches the last 50 search queries to avoid recomputation on repeated searches
@@ -47,7 +48,7 @@ class LRUCache<K, V> {
 
 // Global search cache (persists across component re-renders)
 // NOTE: versioned to prevent "stale" cached results after search-intelligence updates.
-const SEARCH_CACHE_VERSION = "v52";
+const SEARCH_CACHE_VERSION = "v53";
 const searchCache = new LRUCache<string, any[]>(50);
 
 const isMobileViewport = () =>
@@ -1716,10 +1717,42 @@ export const useGlobalSearch = () => {
     const rawWords = qRaw.split(/\s+/).filter(word => word.length > 1);
     const isLongNaturalQuery = qRaw.length > 40 || rawWords.length > 6;
 
-    // === CHECK CACHE FIRST (instant return for repeated searches) ===
     const cacheKey = `${SEARCH_CACHE_VERSION}:${qRaw}`;
+
+    // === PRICING QUERIES: "free", "freemium", "paid" -> return EVERY matching tool ===
+    const PRICING_QUERIES: Record<string, "free" | "freemium" | "paid"> = {
+      "free": "free",
+      "free tools": "free",
+      "free ai tools": "free",
+      "free ai": "free",
+      "100% free": "free",
+      "no cost": "free",
+      "freemium": "freemium",
+      "free tier": "freemium",
+      "free trial": "freemium",
+      "paid": "paid",
+      "paid tools": "paid",
+      "premium": "paid",
+    };
+    const pricingTarget = PRICING_QUERIES[qRaw];
+    if (pricingTarget) {
+      const source = quickIndex.length > 0 ? quickIndex.map(i => i.tool) : toolsRef.current;
+      if (!source || source.length === 0) return [];
+      const matched: any[] = [];
+      const rest: any[] = [];
+      for (const t of source) {
+        if (getToolPricing(t) === pricingTarget) matched.push(t);
+        else rest.push(t);
+      }
+      matched.sort((a, b) => (b.rating || 0) - (a.rating || 0));
+      const results = [...matched, ...rest];
+      searchCache.set(cacheKey, results);
+      return results;
+    }
+
+    // === CHECK CACHE (instant return for repeated searches) ===
     const cached = searchCache.get(cacheKey);
-    if (cached) return cached;
+    if (cached && cached.length > 0) return cached;
 
     if (isLongNaturalQuery) {
       const scored: { tool: any; score: number }[] = [];
@@ -2243,6 +2276,44 @@ export const useGlobalSearch = () => {
     // Prefer the main-thread quick index when tools are already loaded — the worker
     // path can silently break in dev when the tools module fails to fetch, so this
     // makes the dropdown resilient across devices.
+    // Pricing queries ("free", "freemium", "paid") always run on the main-thread
+    // index so we can return the FULL matching set for endless scrolling.
+    const isPricingQuery = /^(free|free tools|free ai tools|free ai|100% free|no cost|freemium|free tier|free trial|paid|paid tools|premium)$/i.test(cappedT.trim());
+    if (isPricingQuery) {
+      const pricingTarget = /^(paid|paid tools|premium)$/i.test(cappedT.trim())
+        ? "paid"
+        : /^(freemium|free tier|free trial)$/i.test(cappedT.trim())
+        ? "freemium"
+        : "free";
+      const applyPricing = (loaded?: any[]) => {
+        if (currentId !== searchIdRef.current) return;
+        // Read straight from the loaded tools (state may still be stale here)
+        const source = (loaded && loaded.length > 0) ? loaded : toolsRef.current;
+        if (!source || source.length === 0) return;
+        const matched: any[] = [];
+        const rest: any[] = [];
+        for (const t of source) {
+          if (getToolPricing(t) === pricingTarget) matched.push(t);
+          else rest.push(t);
+        }
+        matched.sort((a, b) => (b.rating || 0) - (a.rating || 0));
+        const res = [...matched, ...rest];
+        if (res.length === 0) return;
+        searchCache.set(fullCacheKey, res);
+        startTransition(() => {
+          setSearchResults(res);
+          setDisplayedCount(50);
+          setIsOpen(true);
+        });
+      };
+      if (toolsRef.current.length === 0) {
+        void loadTools().then((loadedTools) => applyPricing(loadedTools));
+      } else {
+        applyPricing();
+      }
+      return;
+    }
+
     const shouldUseWorker = toolsRef.current.length === 0 || cappedT.length > 24;
     if (shouldUseWorker) {
       pendingSearchRef.current = null;

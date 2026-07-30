@@ -8,6 +8,7 @@ import { allTools } from "@/data/toolsData";
 import { Brain, Blocks, Smartphone, Monitor } from "lucide-react";
 import ToolDisclaimerBadges from "@/components/disclaimers/ToolDisclaimerBadges";
 import AutoScaleTitle from "@/components/ui/auto-scale-title";
+import { getToolPricing, getPricingLabel } from "@/utils/pricingClassification";
 
 interface ToolCardHeaderProps {
   tool: Tool;
@@ -45,6 +46,10 @@ const ToolCardHeader = ({
   const isWeb3Tool = tool.category === "WEB3 Domains" || tool.tags?.includes("WEB3") || tool.tags?.includes("Blockchain");
   const isAITool = !isWeb3Tool;
 
+  // Pricing model badge (FREE / FREEMIUM / PAID)
+  const pricing = getToolPricing(tool);
+  const pricingLabel = getPricingLabel(pricing);
+
   return (
     <CardHeader className="text-center pb-4 flex-shrink-0 relative z-10">
       {/* Favorites Button - top left */}
@@ -52,14 +57,20 @@ const ToolCardHeader = ({
         <FavoritesButton tool={tool} size="sm" />
       </div>
       
-      {/* FREE Badge for AI Web Tools original tools - top right */}
-      {isAIWebToolsOriginal && (
-        <div className="absolute top-0 right-0 z-20">
-          <div className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-black px-2 py-1 rounded-bl-lg rounded-tr-xl text-xs font-bold shadow-lg transform animate-pulse">
-            FREE
-          </div>
+      {/* Pricing badge - top right (FREE / FREEMIUM / PAID) */}
+      <div className="absolute top-0 right-0 z-20">
+        <div
+          className={`px-2 py-1 rounded-bl-lg rounded-tr-xl text-xs font-bold shadow-lg ${
+            pricing === "free"
+              ? `bg-gradient-to-r from-yellow-400 to-yellow-600 text-black${isAIWebToolsOriginal ? " animate-pulse" : ""}`
+              : pricing === "freemium"
+              ? "bg-gradient-to-r from-cyan-500 to-blue-600 text-white"
+              : "bg-gradient-to-r from-gray-600 to-gray-800 text-white"
+          }`}
+        >
+          {pricingLabel}
         </div>
-      )}
+      </div>
       
       <div className={`${cardSize} mx-auto mb-4 rounded-full bg-gradient-to-r ${tool.color} flex items-center justify-center text-white text-2xl group-hover:scale-110 transition-transform duration-300 shadow-lg group-hover:shadow-xl ${isAIWebToolsOriginal ? 'ring-2 ring-cyan-400/50' : ''}`}>
         {tool.emoji}
