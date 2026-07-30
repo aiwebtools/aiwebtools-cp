@@ -2278,6 +2278,7 @@ export const useGlobalSearch = () => {
     // index so we can return the FULL matching set for endless scrolling.
     const isPricingQuery = /^(free|free tools|free ai tools|free ai|100% free|no cost|freemium|free tier|free trial|paid|paid tools|premium)$/i.test(cappedT.trim());
     if (isPricingQuery) {
+      console.log("[pricing-query]", cappedT, "tools:", toolsRef.current.length);
       const pricingTarget = /^(paid|paid tools|premium)$/i.test(cappedT.trim())
         ? "paid"
         : /^(freemium|free tier|free trial)$/i.test(cappedT.trim())
@@ -2296,6 +2297,7 @@ export const useGlobalSearch = () => {
         }
         matched.sort((a, b) => (b.rating || 0) - (a.rating || 0));
         const res = [...matched, ...rest];
+        console.log("[pricing-apply]", res.length);
         if (res.length === 0) return;
         searchCache.set(fullCacheKey, res);
         startTransition(() => {
