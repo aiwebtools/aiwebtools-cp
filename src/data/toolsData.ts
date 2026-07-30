@@ -6,6 +6,7 @@ import { getCategoriesWithCounts, getToolsByCategory } from '@/utils/categoryUti
 import { consolidateTools } from '@/utils/categoryConsolidation';
 import { deduplicateTools } from '@/utils/toolDeduplication';
 import { markFreeTools, ensureTitleTags } from '@/utils/toolUtils';
+import { ensurePricingTags } from '@/utils/pricingClassification';
 import { applySpirtualTags } from '@/utils/spiritualTagging';
 
 // Import AI Web Tools GPTs - PRIORITY FEATURED TOOLS
