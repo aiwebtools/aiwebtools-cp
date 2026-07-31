@@ -144,7 +144,7 @@ const FAQPage = () => {
                 </Link>
               </Button>
               <Button asChild className="bg-purple-600/20 hover:bg-purple-600/30 border border-purple-500/30 text-purple-300">
-                <a href="https://lovable.dev/projects/be05dcba-063b-47c3-b8a5-bf7bdd86a447?via=aiwebtools" target="_blank" rel="noopener noreferrer">
+                <a href="https://lovable.dev/projects/cc49ec6f-7243-4d4b-a3ba-f7ca01ad7eaf?utm_source=lovable-badge" target="_blank" rel="noopener noreferrer">
                   <Copy className="w-4 h-4 mr-2" />
                   Clone AI Database
                 </a>
@@ -218,7 +218,7 @@ const FAQPage = () => {
                 Browse Best AI Tools
               </Link>
               <a 
-                href="https://lovable.dev/projects/be05dcba-063b-47c3-b8a5-bf7bdd86a447?via=aiwebtools"
+                href="https://lovable.dev/projects/cc49ec6f-7243-4d4b-a3ba-f7ca01ad7eaf?utm_source=lovable-badge"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold rounded-full hover:from-purple-400 hover:to-pink-400 transition-all"

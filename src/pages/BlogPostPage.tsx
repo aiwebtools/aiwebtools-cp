@@ -102,7 +102,7 @@ export default function BlogPostPage() {
                 </Link>
               </Button>
               <Button asChild size="sm" className="bg-purple-600/20 hover:bg-purple-600/30 border border-purple-500/30 text-purple-300">
-                <a href="https://lovable.dev/projects/be05dcba-063b-47c3-b8a5-bf7bdd86a447?via=aiwebtools" target="_blank" rel="noopener noreferrer">
+                <a href="https://lovable.dev/projects/cc49ec6f-7243-4d4b-a3ba-f7ca01ad7eaf?utm_source=lovable-badge" target="_blank" rel="noopener noreferrer">
                   <Copy className="w-3 h-3 mr-1" />
                   Clone
                 </a>
