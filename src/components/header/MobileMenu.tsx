@@ -106,7 +106,7 @@ const MobileMenu = () => {
       const meta = [
         ["# AIWebTools.ai — Complete AI Tools Directory Export"],
         ["# Website", "https://aiwebtools.ai"],
-        ["# Clone This AI Tool Empire (FREE)", "https://lovable.dev/projects/be05dcba-063b-47c3-b8a5-bf7bdd86a447?via=aiwebtools"],
+        ["# Clone This AI Tool Empire (FREE)", "https://lovable.dev/projects/cc49ec6f-7243-4d4b-a3ba-f7ca01ad7eaf?utm_source=lovable-badge"],
         ["# Total Tools", String(allTools.length)],
         ["# Exported", new Date().toISOString()],
         [""],
@@ -298,7 +298,7 @@ const MobileMenu = () => {
                   onClick={(e) => {
                     e.preventDefault();
                     e.stopPropagation();
-                    handleExternalLink('https://lovable.dev/projects/be05dcba-063b-47c3-b8a5-bf7bdd86a447?via=aiwebtools', e);
+                    handleExternalLink('https://lovable.dev/projects/cc49ec6f-7243-4d4b-a3ba-f7ca01ad7eaf?utm_source=lovable-badge', e);
                   }}
                   className="relative overflow-hidden rounded-lg p-2.5 text-black font-black text-[11px] leading-tight active:scale-[0.97] transition-transform flex flex-col items-center justify-center gap-0.5 min-h-[64px] border border-yellow-200/60"
                   style={{
@@ -468,7 +468,7 @@ const MobileMenu = () => {
                   <DropdownMenuItem 
                      onClick={(e) => { 
                        e.preventDefault();
-                       handleExternalLink("https://lovable.dev/projects/be05dcba-063b-47c3-b8a5-bf7bdd86a447?via=aiwebtools", e);
+                       handleExternalLink("https://lovable.dev/projects/cc49ec6f-7243-4d4b-a3ba-f7ca01ad7eaf?utm_source=lovable-badge", e);
                      }}
                     className="text-yellow-100 hover:bg-gradient-to-r hover:from-yellow-500/20 hover:to-amber-500/20 mb-2 rounded flex items-center space-x-2 bg-gradient-to-r from-yellow-600/10 to-amber-600/10 border border-yellow-500/30 p-2"
                   >
