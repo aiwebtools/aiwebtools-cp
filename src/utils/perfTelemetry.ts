@@ -283,3 +283,147 @@ export function installSlowClickObserver() {
     { passive: true, capture: true }
   );
 }
+
+// ============ Degraded-performance mode (prevention) ============
+// When the device demonstrably cannot keep up (sustained dropped frames while
+// scrolling, or a very slow first load), we flip a global flag. CSS and heavy
+// effect components read it to back off animations, so a slow device degrades
+// gracefully instead of freezing. This runs regardless of telemetry sampling.
+let degraded = false;
+export const isPerfDegraded = () => degraded;
+
+export function setPerfDegraded(reason: string) {
+  if (!isBrowser || degraded) return;
+  degraded = true;
+  try {
+    document.documentElement.setAttribute("data-perf-degraded", "1");
+    window.dispatchEvent(new CustomEvent("awt:perf-degraded", { detail: { reason } }));
+  } catch { /* noop */ }
+  recordMetric("perf.degraded", 1, { reason });
+}
+
+// ============ First-load vitals ============
+// TTFB / FCP / LCP / DOM-interactive + our own boot marks, recorded once.
+let bootVitalsInstalled = false;
+export function installBootVitals() {
+  if (!isBrowser || bootVitalsInstalled) return;
+  bootVitalsInstalled = true;
+
+  const observePaint = (type: string, metric: string, onValue?: (v: number) => void) => {
+    try {
+      if (typeof PerformanceObserver === "undefined") return;
+      const supported =
+        (PerformanceObserver as unknown as { supportedEntryTypes?: string[] }).supportedEntryTypes ?? [];
+      if (!supported.includes(type)) return;
+      const po = new PerformanceObserver((list) => {
+        const entries = list.getEntries();
+        const last = entries[entries.length - 1] as any;
+        if (!last) return;
+        const value = type === "largest-contentful-paint" ? last.startTime : last.startTime;
+        recordMetric(metric, value);
+        onValue?.(value);
+      });
+      po.observe({ type, buffered: true } as any);
+    } catch { /* noop */ }
+  };
+
+  observePaint("paint", "boot.fcp.ms");
+  observePaint("largest-contentful-paint", "boot.lcp.ms", (v) => {
+    // A >6s LCP means this device/network is struggling — degrade proactively.
+    if (v > 6000) setPerfDegraded("slow-lcp");
+  });
+
+  const readNav = () => {
+    try {
+      const nav = performance.getEntriesByType("navigation")[0] as PerformanceNavigationTiming | undefined;
+      if (!nav) return;
+      recordMetric("boot.ttfb.ms", nav.responseStart);
+      recordMetric("boot.dom_interactive.ms", nav.domInteractive);
+      recordMetric("boot.load.ms", nav.loadEventEnd || nav.domComplete);
+    } catch { /* noop */ }
+  };
+  if (document.readyState === "complete") readNav();
+  else window.addEventListener("load", () => window.setTimeout(readNav, 0), { once: true });
+}
+
+// ============ Scroll jank observer ============
+// Samples frame durations only while the user is scrolling. Frames over ~50ms
+// are visible stutters; a run of them means the page is freezing under the
+// user's finger. We record the worst frame per scroll burst, report severe
+// bursts, and auto-degrade after repeated bad bursts so it stops happening.
+let scrollJankInstalled = false;
+const JANK_FRAME_MS = 50;
+const SEVERE_BURST_MS = 300;
+let badBursts = 0;
+let lastJankReport = 0;
+
+export function installScrollJankObserver() {
+  if (!isBrowser || scrollJankInstalled) return;
+  scrollJankInstalled = true;
+
+  let sampling = false;
+  let lastFrame = 0;
+  let lastScrollAt = 0;
+  let worstFrame = 0;
+  let jankFrames = 0;
+  let frames = 0;
+
+  const endBurst = () => {
+    sampling = false;
+    if (frames > 4 && worstFrame >= JANK_FRAME_MS) {
+      recordMetric("scroll.jank.ms", worstFrame, { jankFrames, frames });
+      if (worstFrame >= SEVERE_BURST_MS) {
+        badBursts++;
+        const now = performance.now();
+        if (enabled && now - lastJankReport >= 10000) {
+          lastJankReport = now;
+          reportError({
+            error_type: "perf.scroll_jank",
+            message: `scroll stutter ${Math.round(worstFrame)}ms frame`,
+            severity: "warning",
+            metadata: {
+              mobile: isMobile(),
+              worstFrameMs: Math.round(worstFrame),
+              jankFrames,
+              frames,
+              path: typeof location !== "undefined" ? location.pathname : "",
+              breadcrumbs: recentBreadcrumbs(),
+            },
+          });
+        }
+        if (badBursts >= 3) setPerfDegraded("scroll-jank");
+      }
+    }
+    worstFrame = 0;
+    jankFrames = 0;
+    frames = 0;
+  };
+
+  const tick = () => {
+    const now = performance.now();
+    const delta = now - lastFrame;
+    lastFrame = now;
+    frames++;
+    if (delta > JANK_FRAME_MS) {
+      jankFrames++;
+      if (delta > worstFrame) worstFrame = delta;
+    }
+    // Stop sampling ~300ms after the last scroll event.
+    if (now - lastScrollAt > 300) {
+      endBurst();
+      return;
+    }
+    requestAnimationFrame(tick);
+  };
+
+  const onScroll = () => {
+    lastScrollAt = performance.now();
+    if (sampling) return;
+    sampling = true;
+    lastFrame = performance.now();
+    requestAnimationFrame(tick);
+  };
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("touchmove", onScroll, { passive: true });
+}
