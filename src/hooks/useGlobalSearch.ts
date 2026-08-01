@@ -1739,13 +1739,11 @@ export const useGlobalSearch = () => {
       const source = quickIndex.length > 0 ? quickIndex.map(i => i.tool) : toolsRef.current;
       if (!source || source.length === 0) return [];
       const matched: any[] = [];
-      const rest: any[] = [];
       for (const t of source) {
         if (getToolPricing(t) === pricingTarget) matched.push(t);
-        else rest.push(t);
       }
       matched.sort((a, b) => (b.rating || 0) - (a.rating || 0));
-      const results = [...matched, ...rest];
+      const results = matched;
       searchCache.set(cacheKey, results);
       return results;
     }
@@ -2291,13 +2289,11 @@ export const useGlobalSearch = () => {
         const source = (loaded && loaded.length > 0) ? loaded : toolsRef.current;
         if (!source || source.length === 0) return;
         const matched: any[] = [];
-        const rest: any[] = [];
         for (const t of source) {
           if (getToolPricing(t) === pricingTarget) matched.push(t);
-          else rest.push(t);
         }
         matched.sort((a, b) => (b.rating || 0) - (a.rating || 0));
-        const res = [...matched, ...rest];
+        const res = matched;
         if (res.length === 0) return;
         searchCache.set(fullCacheKey, res);
         startTransition(() => {
