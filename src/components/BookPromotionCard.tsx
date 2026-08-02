@@ -259,11 +259,17 @@ const BookPromotionCard = () => {
   // First video is always pinned, rest are shuffled
   const originalVideos = [
     // ── MTV LINE-UP (newest drops — play FIRST in the carousel) ──
+    { id: "IWijCkZUmrg", title: "AIWEBTOOLS – Newest Drop | Official AI Music Video | AIWebTools.ai", gradient: "from-cyan-500/20 to-purple-500/20" },
     { id: "LXXPC-1lgOQ", title: "AIWEBTOOLS – Newest Drop | Official AI Music Video | AIWebTools.ai", gradient: "from-fuchsia-500/20 to-cyan-500/20" },
     { id: "rXMTjCFycPM", title: "AIWEBTOOLS – Newest Drop | Official AI Music Video | AIWebTools.ai", gradient: "from-cyan-500/20 to-fuchsia-500/20" },
     { id: "cxJMzuv_ccQ", title: "AIWEBTOOLS – Newest Drop | Official AI Music Video | AIWebTools.ai", gradient: "from-fuchsia-500/20 to-cyan-500/20" },
     { id: "a9rRZzIsbiY", title: "Revelations Nearing Midnight | Original AI Music Video | AIWebTools.ai", gradient: "from-indigo-500/20 to-fuchsia-500/20" },
     // ── NEW MTV INTERLUDES / SHORTS (9:16 drops) ──
+    { id: "09CvnM4ZJAg", title: "AIWEBTOOLS Interlude | AI Music Video Short | AIWebTools.ai", gradient: "from-purple-500/20 to-cyan-500/20" },
+    { id: "EkiBNZ4orfI", title: "AIWEBTOOLS Interlude | AI Music Video Short | AIWebTools.ai", gradient: "from-fuchsia-500/20 to-indigo-500/20" },
+    { id: "H9PTc_hzsM8", title: "AIWEBTOOLS Interlude | AI Music Video Short | AIWebTools.ai", gradient: "from-cyan-500/20 to-emerald-500/20" },
+    { id: "IAP77Tl0izc", title: "AIWEBTOOLS Interlude | AI Music Video Short | AIWebTools.ai", gradient: "from-indigo-500/20 to-cyan-500/20" },
+    { id: "3wA9elcCEnE", title: "AIWEBTOOLS Interlude | AI Music Video Short | AIWebTools.ai", gradient: "from-purple-500/20 to-fuchsia-500/20" },
     { id: "KB1sRHXUUps", title: "AIWEBTOOLS Interlude | AI Music Video Short | AIWebTools.ai", gradient: "from-fuchsia-500/20 to-purple-500/20" },
     { id: "PktMrkD89fs", title: "AIWEBTOOLS Interlude | AI Commercial Short | AIWebTools.ai", gradient: "from-cyan-500/20 to-blue-500/20" },
     { id: "Lc0JUBiX6Zo", title: "AIWEBTOOLS Interlude | AI Music Video Short | AIWebTools.ai", gradient: "from-emerald-500/20 to-teal-500/20" },
@@ -779,9 +785,15 @@ const BookPromotionCard = () => {
     // pinned to the front — it joins the lyric/audio tracks at the back.
     const verticalMusicVideoIds = [
       // MTV Lineup — newest drops, pinned to the very FRONT of the reel
+      "IWijCkZUmrg",
       "LXXPC-1lgOQ",
       "rXMTjCFycPM",
       "a9rRZzIsbiY",
+      "09CvnM4ZJAg",
+      "EkiBNZ4orfI",
+      "H9PTc_hzsM8",
+      "IAP77Tl0izc",
+      "3wA9elcCEnE",
       "KB1sRHXUUps",
       "PktMrkD89fs",
       "Lc0JUBiX6Zo",
