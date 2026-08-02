@@ -74,13 +74,13 @@ const ImprovedSEOHead: React.FC<ImprovedSEOHeadProps> = ({
       case 'tool':
         // Use clean slug-based URL with proper utility
         const slug = generateToolSlug(tool?.title || '');
-        return `https://aiwebtools.ai/${slug}`;
+        return `https://aiwebtools.app/${slug}`;
       case 'category':
-        return `https://aiwebtools.ai/category/${category?.toLowerCase().replace(/\s+/g, '-')}`;
+        return `https://aiwebtools.app/category/${category?.toLowerCase().replace(/\s+/g, '-')}`;
       case 'search':
-        return `https://aiwebtools.ai/search?q=${encodeURIComponent(searchTerm || '')}`;
+        return `https://aiwebtools.app/search?q=${encodeURIComponent(searchTerm || '')}`;
       default:
-        return 'https://aiwebtools.ai';
+        return 'https://aiwebtools.app';
     }
   };
 
@@ -89,7 +89,7 @@ const ImprovedSEOHead: React.FC<ImprovedSEOHeadProps> = ({
     // absolute https:// URL and cannot fetch Vite-bundled or relative asset
     // paths. Normalize any tool image to a crawler-safe URL, and fall back to
     // our verified og-default.jpg when the image isn't remotely fetchable.
-    const SITE = 'https://aiwebtools.ai';
+    const SITE = 'https://aiwebtools.app';
     const DEFAULT_OG = `${SITE}/og-default.jpg`;
     const normalize = (raw?: string): string | null => {
       if (!raw || typeof raw !== 'string') return null;
@@ -160,7 +160,7 @@ const ImprovedSEOHead: React.FC<ImprovedSEOHeadProps> = ({
         "name": "AI Web Tools",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://aiwebtools.ai/logo.png"
+          "url": "https://aiwebtools.app/logo.png"
         }
       }
     };
@@ -174,13 +174,13 @@ const ImprovedSEOHead: React.FC<ImprovedSEOHeadProps> = ({
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://aiwebtools.ai"
+        "item": "https://aiwebtools.app"
       },
       ...(category ? [{
         "@type": "ListItem",
         "position": 2,
         "name": category,
-        "item": `https://aiwebtools.ai/category/${category.toLowerCase().replace(/\s+/g, '-')}`
+        "item": `https://aiwebtools.app/category/${category.toLowerCase().replace(/\s+/g, '-')}`
       }] : []),
       ...(tool ? [{
         "@type": "ListItem",
@@ -327,8 +327,8 @@ const ImprovedSEOHead: React.FC<ImprovedSEOHeadProps> = ({
           "@context": "https://schema.org",
           "@type": "Organization",
           "name": "AI Web Tools",
-          "url": "https://aiwebtools.ai",
-          "logo": "https://aiwebtools.ai/logo.png",
+          "url": "https://aiwebtools.app",
+          "logo": "https://aiwebtools.app/logo.png",
           "description": "The world's largest directory of 2195+ AI tools for productivity, creativity, and business.",
           "foundingDate": "2023",
           "numberOfEmployees": {

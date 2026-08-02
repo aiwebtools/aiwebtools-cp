@@ -135,7 +135,7 @@ const SEOHead = ({
       <meta property="og:locale:alternate" content="en_GB" />
       <meta property="og:determiner" content="the" />
       <meta property="og:updated_time" content={new Date().toISOString()} />
-      <meta property="og:see_also" content="https://aiwebtools.ai" />
+      <meta property="og:see_also" content="https://aiwebtools.app" />
       <meta property="og:see_also" content="https://www.aiwebtools.ai" />
       <meta property="og:see_also" content="https://AItoolwebsites.com" />
       <meta property="fb:app_id" content={seoConfig.facebookAppId} />
@@ -194,7 +194,7 @@ const SEOHead = ({
       
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-      <link rel="preconnect" href="https://aiwebtools.ai" />
+      <link rel="preconnect" href="https://aiwebtools.app" />
       <link rel="preconnect" href="https://www.aiwebtools.ai" />
       <link rel="preconnect" href="https://aitoolwebsites.com" />
       

@@ -9,7 +9,7 @@ import path from "path";
 import { allTools } from "../src/data/toolsData";
 import { generateToolSlug } from "../src/utils/urlGenerator";
 
-const BASE_URL = "https://aiwebtools.ai";
+const BASE_URL = "https://aiwebtools.app";
 const today = new Date().toISOString().slice(0, 10);
 
 const staticRoutes: Array<{ path: string; priority: string; changefreq: string }> = [

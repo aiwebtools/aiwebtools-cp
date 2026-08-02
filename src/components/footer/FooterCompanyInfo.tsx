@@ -31,10 +31,10 @@ const FooterCompanyInfo = () => {
         </div>
         <div className="text-xs text-gray-500">
           <button 
-            onClick={(e) => handleExternalLink("https://aiwebtools.lovable.app/?via=aiwebtools", e)}
+            onClick={(e) => handleExternalLink("https://aiwebtools.app/?via=aiwebtools", e)}
             className="text-gray-500 hover:text-green-400 transition-colors"
           >
-            An AI-WebTools.com
+            An AIWEBTOOLS.APP Property
           </button>
         </div>
       </div>
@@ -70,10 +70,10 @@ const FooterCompanyInfo = () => {
           <div className="flex items-center space-x-2">
             <span>🌐</span>
             <button 
-              onClick={(e) => handleExternalLink("https://aiwebtools.lovable.app/?via=aiwebtools", e)}
+              onClick={(e) => handleExternalLink("https://aiwebtools.app/?via=aiwebtools", e)}
               className="text-green-400 hover:text-green-300 transition-colors"
             >
-              www.aiwebtools.ai
+              www.aiwebtools.app
             </button>
           </div>
         </div>

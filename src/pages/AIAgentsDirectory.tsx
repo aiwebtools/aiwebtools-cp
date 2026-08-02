@@ -8,7 +8,7 @@ const AIAgentsDirectory = () => {
         <title>AI Agents Directory — Best AI Agents 2026</title>
         <meta name="description" content="Discover the best AI agents and autonomous AI systems. Compare intelligent agents, AI assistants, and automated AI solutions for business and personal use." />
         <meta name="keywords" content="ai agents, autonomous ai, intelligent agents, ai assistants, automated ai, ai bots, conversational ai, virtual agents, smart agents, ai automation, ai workforce, digital agents" />
-        <link rel="canonical" href="https://aiwebtools.ai/ai-agents-directory" />
+        <link rel="canonical" href="https://aiwebtools.app/ai-agents-directory" />
       </Helmet>
       
       <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-blue-900 text-white">

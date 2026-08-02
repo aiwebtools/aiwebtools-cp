@@ -8,7 +8,7 @@ const ChatGPTAlternatives = () => {
         <title>Best ChatGPT Alternatives 2026 - AI Chat & Conversational AI Tools</title>
         <meta name="description" content="Discover the best ChatGPT alternatives and AI chatbots. Compare features, pricing, and capabilities of top conversational AI tools and AI assistants." />
         <meta name="keywords" content="chatgpt alternatives, ai chatbots, conversational ai, ai chat, ai assistants, claude ai, bard ai, ai conversation, chatbot alternatives, ai text generation, language models" />
-        <link rel="canonical" href="https://aiwebtools.ai/chatgpt-alternatives" />
+        <link rel="canonical" href="https://aiwebtools.app/chatgpt-alternatives" />
       </Helmet>
       
       <div className="min-h-screen bg-gradient-to-br from-gray-900 via-green-900 to-blue-900 text-white">

@@ -34,7 +34,7 @@ const getSearchIndex = async () => {
           description: t.description,
           category: t.category,
           directUrl: t.directUrl,
-          pageUrl: `https://aiwebtools.ai/${slug}`,
+          pageUrl: `https://aiwebtools.app/${slug}`,
           tags: (t.tags || []).join(" "),
           haystack: `${t.title} ${t.description} ${t.category || ""} ${(t.tags || []).join(" ")}`.toLowerCase(),
         };

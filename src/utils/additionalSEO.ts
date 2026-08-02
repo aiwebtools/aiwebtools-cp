@@ -43,13 +43,13 @@ export const robotsOptimization = {
     "/api/*",
     "/admin/*"
   ],
-  sitemap: "https://aiwebtools.ai/sitemap.xml"
+  sitemap: "https://aiwebtools.app/sitemap.xml"
 };
 
 // Enhanced Open Graph and Twitter Cards
 export const socialMediaSEO = {
   generateOGImage: (toolName: string) => ({
-    url: `https://aiwebtools.ai/og-image-${encodeURIComponent(toolName)}.jpg`,
+    url: `https://aiwebtools.app/og-image-${encodeURIComponent(toolName)}.jpg`,
     width: 1200,
     height: 630,
     alt: `${toolName} AI Tool - Comprehensive Review & Guide`
@@ -202,9 +202,9 @@ export const mobileSEO = {
 // International SEO
 export const internationalSEO = {
   hreflang: [
-    { lang: "en", region: "us", url: "https://aiwebtools.ai" },
-    { lang: "en", region: "gb", url: "https://aiwebtools.ai" },
-    { lang: "x-default", url: "https://aiwebtools.ai" }
+    { lang: "en", region: "us", url: "https://aiwebtools.app" },
+    { lang: "en", region: "gb", url: "https://aiwebtools.app" },
+    { lang: "x-default", url: "https://aiwebtools.app" }
   ],
   
   globalTargeting: {
@@ -234,8 +234,8 @@ export const richSnippetsOptimization = {
   // Brand snippet
   brand: {
     name: "AI WEB TOOLS",
-    logo: "https://aiwebtools.ai/favicon.ico",
-    url: "https://aiwebtools.ai"
+    logo: "https://aiwebtools.app/favicon.ico",
+    url: "https://aiwebtools.app"
   }
 };
 

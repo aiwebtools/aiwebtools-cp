@@ -76,14 +76,14 @@ const FAQPage = () => {
     "@type": "WebPage",
     "name": "Best AI Tools Directory FAQ - AI WEB TOOLS",
     "description": "Frequently asked questions about finding the best AI tools. Learn how to use our AI tool directory to discover top-rated AI tools for any purpose.",
-    "url": "https://aiwebtools.ai/faq",
+    "url": "https://aiwebtools.app/faq",
     "mainEntity": {
       "@type": "FAQPage"
     },
     "publisher": {
       "@type": "Organization",
       "name": "AI WEB TOOLS",
-      "url": "https://aiwebtools.ai"
+      "url": "https://aiwebtools.app"
     }
   };
 
@@ -93,11 +93,11 @@ const FAQPage = () => {
         <title>AI Tools Directory FAQ | AI WEB TOOLS</title>
         <meta name="description" content="Frequently asked questions about the best AI tools directory. Learn how to find top AI tools, browse our 2000+ tool database, and discover the perfect AI tools for your needs." />
         <meta name="keywords" content="best ai tools, ai tool directory, ai tools directory, best ai tools 2026, top ai tools, ai directory, ai tools list, ai tools finder, best ai tools directory, ai tools faq" />
-        <link rel="canonical" href="https://aiwebtools.ai/faq" />
+        <link rel="canonical" href="https://aiwebtools.app/faq" />
         
         <meta property="og:title" content="Best AI Tools Directory FAQ | AI WEB TOOLS" />
         <meta property="og:description" content="Find answers about the best AI tools directory with 2000+ curated tools. Discover how to find the perfect AI tools for any purpose." />
-        <meta property="og:url" content="https://aiwebtools.ai/faq" />
+        <meta property="og:url" content="https://aiwebtools.app/faq" />
         <meta property="og:type" content="website" />
         
         <meta name="twitter:card" content="summary_large_image" />

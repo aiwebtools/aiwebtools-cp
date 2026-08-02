@@ -115,7 +115,7 @@ export const enhancedSchemaMarkup = (tool: any, toolIndex: number) => {
         },
         "datePublished": "2024-01-01",
         "dateModified": new Date().toISOString().split('T')[0],
-        "mainEntityOfPage": `https://aiwebtools.ai/tool/${toolIndex}`,
+        "mainEntityOfPage": `https://aiwebtools.app/tool/${toolIndex}`,
         "wordCount": 1500,
         "articleSection": tool.category,
         "keywords": `${tool.title}, ${tool.category}, AI tool review, best AI tools 2026`

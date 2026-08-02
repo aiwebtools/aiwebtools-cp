@@ -27,7 +27,7 @@ const CompetitiveSEOHead = ({ tool, toolIndex, category, isHomepage }: Competiti
         
         {/* Competitive keyword targeting */}
         <meta name="keywords" content="AI Web Tools, AI tools directory 2026, ChatGPT alternatives, AI tools comparison, AI tools for business, curated AI tools, best AI tools" />
-        <link rel="canonical" href="https://aiwebtools.ai" />
+        <link rel="canonical" href="https://aiwebtools.app" />
         <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
         <meta name="revisit-after" content="1 days" />
         <meta name="author" content="AI WEB TOOLS" />
@@ -37,11 +37,11 @@ const CompetitiveSEOHead = ({ tool, toolIndex, category, isHomepage }: Competiti
         
         {/* Enhanced Open Graph */}
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://aiwebtools.ai" />
+        <meta property="og:url" content="https://aiwebtools.app" />
         <meta property="og:site_name" content="AI WEB TOOLS" />
         <meta property="og:title" content="AI Web Tools — 4,000+ AI Tools Directory 2026" />
         <meta property="og:description" content="Curated directory of 4,000+ AI tools with reviews, comparisons, and category filtering." />
-        <meta property="og:image" content="https://aiwebtools.ai/og-image-homepage.jpg" />
+        <meta property="og:image" content="https://aiwebtools.app/og-image-homepage.jpg" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:image:alt" content="AI WEB TOOLS - Best AI Tools Directory 2026" />
@@ -52,7 +52,7 @@ const CompetitiveSEOHead = ({ tool, toolIndex, category, isHomepage }: Competiti
         <meta name="twitter:creator" content="@AIWebTools" />
         <meta name="twitter:title" content="AI Web Tools — AI Tools Directory 2026" />
         <meta name="twitter:description" content="4,000+ curated AI tools with reviews and category filtering." />
-        <meta name="twitter:image" content="https://aiwebtools.ai/og-image-homepage.jpg" />
+        <meta name="twitter:image" content="https://aiwebtools.app/og-image-homepage.jpg" />
         
         {/* Mobile optimization */}
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
@@ -66,13 +66,13 @@ const CompetitiveSEOHead = ({ tool, toolIndex, category, isHomepage }: Competiti
             "@type": "WebSite",
             "name": "AI Web Tools Directory",
             "alternateName": "AITools.Studio",
-            "url": "https://aiwebtools.ai",
+            "url": "https://aiwebtools.app",
             "description": "A curated directory of AI tools with reviews, comparisons, and category filtering.",
             "potentialAction": {
               "@type": "SearchAction",
               "target": {
                 "@type": "EntryPoint",
-                "urlTemplate": "https://aiwebtools.ai/?search={search_term_string}"
+                "urlTemplate": "https://aiwebtools.app/?search={search_term_string}"
               },
               "query-input": "required name=search_term_string"
             },
@@ -83,7 +83,7 @@ const CompetitiveSEOHead = ({ tool, toolIndex, category, isHomepage }: Competiti
               "numberOfItems": 4000
             },
             "sameAs": [
-              "https://aiwebtools.ai",
+              "https://aiwebtools.app",
               "https://www.aiwebtools.ai"
             ]
           })}
@@ -139,7 +139,7 @@ const CompetitiveSEOHead = ({ tool, toolIndex, category, isHomepage }: Competiti
         
         {/* Enhanced tool-specific keywords */}
         <meta name="keywords" content={`${tool.title}, ${tool.category}, AI tool review, best AI tools 2026, ${tool.tags?.join(', ') || ''}, AI WEB TOOLS directory, expert analysis, tool comparison, user reviews, professional AI tools`} />
-        <link rel="canonical" href={`https://aiwebtools.ai/${generateToolSlug(tool.title)}`} />
+        <link rel="canonical" href={`https://aiwebtools.app/${generateToolSlug(tool.title)}`} />
         
         {/* Tool authority indicators */}
         <meta name="expertise" content={`Expert review and analysis of ${tool.title}`} />
@@ -148,7 +148,7 @@ const CompetitiveSEOHead = ({ tool, toolIndex, category, isHomepage }: Competiti
         
         {/* Enhanced Open Graph for tools */}
         <meta property="og:type" content="article" />
-        <meta property="og:url" content={`https://aiwebtools.ai/${generateToolSlug(tool.title)}`} />
+        <meta property="og:url" content={`https://aiwebtools.app/${generateToolSlug(tool.title)}`} />
         <meta property="og:title" content={selectedTitle} />
         <meta property="og:description" content={selectedDescription} />
         <meta property="og:image" content={toolImage} />
@@ -204,11 +204,11 @@ const CompetitiveSEOHead = ({ tool, toolIndex, category, isHomepage }: Competiti
         <title>{category} AI Tools - Best Directory 2026 | AI WEB TOOLS</title>
         <meta name="description" content={`Discover ${category.toLowerCase()} AI tools in our curated directory with reviews and comparisons from AI Web Tools.`} />
         <meta name="keywords" content={`${category} AI tools, best ${category.toLowerCase()} AI, ${category.toLowerCase()} artificial intelligence, AI ${category.toLowerCase()} solutions, ${category.toLowerCase()} automation, AI WEB TOOLS directory`} />
-        <link rel="canonical" href={`https://aiwebtools.ai/category/${encodeURIComponent(category)}`} />
+        <link rel="canonical" href={`https://aiwebtools.app/category/${encodeURIComponent(category)}`} />
         
         {/* Category Open Graph */}
         <meta property="og:type" content="website" />
-        <meta property="og:url" content={`https://aiwebtools.ai/category/${encodeURIComponent(category)}`} />
+        <meta property="og:url" content={`https://aiwebtools.app/category/${encodeURIComponent(category)}`} />
         <meta property="og:title" content={`${category} AI Tools - Best Directory 2026`} />
         <meta property="og:description" content={`Expert-curated ${category.toLowerCase()} AI tools with reviews and ratings`} />
       </Helmet>

@@ -1,7 +1,7 @@
 
 export const seoConfig = {
   siteName: "AI WEB TOOLS",
-  siteUrl: "https://aiwebtools.ai",
+  siteUrl: "https://aiwebtools.app",
   description: "Discover 4,000+ free AI tools: ChatGPT alternatives, custom GPTs, AI agents, image, writing & business AI. Updated daily.",
   keywords: [
     "AI WEB TOOLS",

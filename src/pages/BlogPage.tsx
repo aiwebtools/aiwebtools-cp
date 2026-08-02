@@ -14,11 +14,11 @@ const structuredData = {
   "@type": "Blog",
   "name": "AI Web Tools Blog",
   "description": "Expert insights, tutorials, and reviews on AI tools for productivity, creativity, and business",
-  "url": "https://aiwebtools.ai/blog",
+  "url": "https://aiwebtools.app/blog",
   "publisher": {
     "@type": "Organization",
     "name": "AI Web Tools",
-    "url": "https://aiwebtools.ai"
+    "url": "https://aiwebtools.app"
   },
   "blogPost": blogPosts.map(post => ({
     "@type": "BlogPosting",
@@ -40,12 +40,12 @@ export default function BlogPage() {
         <title>AI Tools Blog | GPT-5 News, AI Reviews & Tutorials | AI Web Tools</title>
         <meta name="description" content="Latest AI news including GPT-5, Claude 4, Sora 2 & more. Expert tutorials, reviews, and guides on 2000+ AI tools. Stay ahead with trending AI developments." />
         <meta name="keywords" content="GPT-5, GPT-5 news, AI tools blog, AI tutorials, Claude 4, Sora 2, best AI tools, AI tool directory, Gemini 2.5, AI reviews, ChatGPT alternatives, DeepSeek, AI agents" />
-        <link rel="canonical" href="https://aiwebtools.ai/blog" />
+        <link rel="canonical" href="https://aiwebtools.app/blog" />
         
         <meta property="og:title" content="AI Tools Blog | Expert Reviews & Tutorials" />
         <meta property="og:description" content="Expert insights, tutorials, and reviews on 2195+ AI tools. Learn how AI can transform your business and creativity." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://aiwebtools.ai/blog" />
+        <meta property="og:url" content="https://aiwebtools.app/blog" />
         
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="AI Tools Blog | Expert Reviews & Tutorials" />

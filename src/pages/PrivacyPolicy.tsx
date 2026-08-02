@@ -13,16 +13,16 @@ const PrivacyPolicy = () => {
           content="AIWebTools.ai Privacy Policy: we do not collect personal information. Learn how we protect your privacy while browsing our directory of 4,000+ AI tools."
         />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://aiwebtools.ai/privacy-policy" />
+        <link rel="canonical" href="https://aiwebtools.app/privacy-policy" />
         <meta property="og:title" content="Privacy Policy | AIWebTools.ai" />
         <meta property="og:description" content="AIWebTools.ai does not collect personal information — clear, honest, and minimal." />
-        <meta property="og:url" content="https://aiwebtools.ai/privacy-policy" />
+        <meta property="og:url" content="https://aiwebtools.app/privacy-policy" />
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
           "@type": "WebPage",
           "name": "Privacy Policy",
-          "url": "https://aiwebtools.ai/privacy-policy",
-          "isPartOf": { "@type": "WebSite", "name": "AIWebTools.ai", "url": "https://aiwebtools.ai" },
+          "url": "https://aiwebtools.app/privacy-policy",
+          "isPartOf": { "@type": "WebSite", "name": "AIWebTools.ai", "url": "https://aiwebtools.app" },
           "dateModified": "2026-05-29"
         })}</script>
       </Helmet>
