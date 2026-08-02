@@ -236,9 +236,9 @@ User-agent: Screaming Frog SEO Spider
 Allow: /
 
 # Enhanced sitemap locations for maximum discovery
-Sitemap: https://aiwebtools.ai/sitemap.xml
-Sitemap: https://aiwebtools.ai/rss.xml
-Sitemap: https://aiwebtools.ai/atom.xml
+Sitemap: https://aiwebtools.app/sitemap.xml
+Sitemap: https://aiwebtools.app/rss.xml
+Sitemap: https://aiwebtools.app/atom.xml
 
 # LLMs.txt for AI Assistant Discovery
 # AI assistants can read /llms.txt for site information
