@@ -31,19 +31,19 @@ export const useCompetitiveSEO = (tool?: Tool, toolIndex?: number) => {
               "@type": "ListItem",
               "position": 1,
               "name": "AI Tools Directory",
-              "item": "https://aiwebtools.ai"
+              "item": "https://aiwebtools.app"
             },
             {
               "@type": "ListItem", 
               "position": 2,
               "name": tool.category,
-              "item": `https://aiwebtools.ai/category/${encodeURIComponent(tool.category || '')}`
+              "item": `https://aiwebtools.app/category/${encodeURIComponent(tool.category || '')}`
             },
             {
               "@type": "ListItem",
               "position": 3,
               "name": tool.title,
-              "item": `https://aiwebtools.ai/tool/${toolIndex}`
+              "item": `https://aiwebtools.app/tool/${toolIndex}`
             }
           ]
         };
@@ -100,10 +100,10 @@ export const useCompetitiveSEO = (tool?: Tool, toolIndex?: number) => {
   
   // Return SEO optimization utilities
   return {
-    generateCanonicalUrl: (path: string) => `https://aiwebtools.ai${path}`,
+    generateCanonicalUrl: (path: string) => `https://aiwebtools.app${path}`,
     generateAlternateLanguages: () => [
-      { lang: 'en', url: 'https://aiwebtools.ai' },
-      { lang: 'x-default', url: 'https://aiwebtools.ai' }
+      { lang: 'en', url: 'https://aiwebtools.app' },
+      { lang: 'x-default', url: 'https://aiwebtools.app' }
     ],
     getCompetitiveAdvantages: () => [
       'Most comprehensive AI directory',
