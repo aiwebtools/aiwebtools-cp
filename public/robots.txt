@@ -245,7 +245,7 @@ Sitemap: https://aiwebtools.app/atom.xml
 # See: https://llmstxt.org/
 
 # Host preference for canonical URLs and domain authority
-Host: aiwebtools.ai
+Host: aiwebtools.app
 
 # MAXIMUM CRAWLING PERFORMANCE
 Crawl-delay: 0
