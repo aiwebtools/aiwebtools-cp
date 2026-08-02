@@ -86,7 +86,7 @@ const Logo = ({ compact = false }: { compact?: boolean }) => {
         <div className={`flex items-center gap-1 md:gap-2 ${compact ? 'mb-0' : 'mb-0.5 md:mb-1'}`}>
           <div className={`font-bold ${compact ? 'text-[11px]' : 'text-[13px] sm:text-base md:text-lg'} tracking-wider letter-spacing-wide relative leading-tight`}>
             <span className="relative z-10 bg-gradient-to-r from-cyan-400 via-cyan-300 to-cyan-500 bg-clip-text text-transparent logo-text-crisp">AI WEB TOOLS</span>
-            <span className="relative z-10 bg-gradient-to-r from-cyan-400 via-cyan-300 to-cyan-500 bg-clip-text text-transparent logo-text-crisp hidden md:inline"> - AIWEBTOOLS.SOFTWARE</span>
+            <span className="relative z-10 bg-gradient-to-r from-cyan-400 via-cyan-300 to-cyan-500 bg-clip-text text-transparent logo-text-crisp hidden md:inline"> - AIWEBTOOLS.APP</span>
           </div>
           {!compact && (
             <span className="text-xs text-cyan-200/80 font-medium hidden lg:block tracking-wide">
@@ -98,14 +98,14 @@ const Logo = ({ compact = false }: { compact?: boolean }) => {
         {/* Mobile-visible branding info - now clickable link to new domain */}
         <div className={`${compact ? 'text-[8px]' : 'text-[9px] sm:text-[10px] md:text-xs'} -mt-0.5 truncate`}>
           <a
-            href="https://aiwebtools.ai"
+            href="https://aiwebtools.app"
             target="_blank"
             rel="noopener noreferrer"
-            onClick={(e) => handleExternalLink("https://aiwebtools.ai", e)}
+            onClick={(e) => handleExternalLink("https://aiwebtools.app", e)}
             className="font-light tracking-wide text-cyan-300 hover:text-cyan-200 transition-colors underline-offset-2 hover:underline"
-            title="Visit ai-webtools.com"
+            title="Visit AIWEBTOOLS.APP"
           >
-            ai-webtools.com
+            aiwebtools.app
           </a>
         </div>
 
