@@ -20,7 +20,7 @@ const SEOMetaTags: React.FC<SEOMetaTagsProps> = ({
   type = 'website',
   structuredData
 }) => {
-  const canonicalUrl = `https://aiwebtools.ai${url}`;
+  const canonicalUrl = `https://aiwebtools.app${url}`;
   const keywordsString = keywords.join(', ');
 
   return (

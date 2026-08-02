@@ -147,12 +147,12 @@ const AIWritingToolsPage = () => {
         <title>AI Writing Tools - Best AI Writers, Book Writers & Content Generators 2026</title>
         <meta name="description" content={`Discover ${writingToolCount}+ AI writing tools for books, scripts, blogs, and marketing. Free AI writers including Book Writer GPT, Script Writer GPT, and more. The ultimate AI writing tools directory.`} />
         <meta name="keywords" content="AI writing tools, AI writer, AI content generator, AI book writer, AI script writer, AI blog writer, best AI writing tool, free AI writing tools, AI copywriting, AI content creation, writing assistant AI" />
-        <link rel="canonical" href="https://aiwebtools.ai/ai-writing-tools" />
+        <link rel="canonical" href="https://aiwebtools.app/ai-writing-tools" />
         
         {/* Open Graph */}
         <meta property="og:title" content="AI Writing Tools - Best AI Writers & Content Generators 2026" />
         <meta property="og:description" content={`${writingToolCount}+ AI writing tools for books, scripts, blogs & more. Find the perfect AI writer for your needs.`} />
-        <meta property="og:url" content="https://aiwebtools.ai/ai-writing-tools" />
+        <meta property="og:url" content="https://aiwebtools.app/ai-writing-tools" />
         <meta property="og:type" content="website" />
         
         {/* Twitter */}

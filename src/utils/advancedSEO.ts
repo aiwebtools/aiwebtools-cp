@@ -5,25 +5,25 @@ export const generateArticleStructuredData = (tool: any, toolIndex: number) => {
     "@type": "Article",
     "headline": `${tool.title} - AI Tool Review & Complete Guide`,
     "description": tool.description,
-    "image": `https://aiwebtools.ai/placeholder.svg`,
+    "image": `https://aiwebtools.app/placeholder.svg`,
     "author": {
       "@type": "Organization",
       "name": "AI WEB TOOLS",
-      "url": "https://aiwebtools.ai"
+      "url": "https://aiwebtools.app"
     },
     "publisher": {
       "@type": "Organization",
       "name": "AI WEB TOOLS",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://aiwebtools.ai/favicon.ico"
+        "url": "https://aiwebtools.app/favicon.ico"
       }
     },
     "datePublished": "2024-01-01",
     "dateModified": new Date().toISOString().split('T')[0],
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": `https://aiwebtools.ai/tool/${toolIndex}`
+      "@id": `https://aiwebtools.app/tool/${toolIndex}`
     },
     "articleSection": tool.category,
     "keywords": [tool.title, tool.category, "AI tool", "artificial intelligence", ...(tool.tags || [])].join(", ")
@@ -36,7 +36,7 @@ export const generateHowToStructuredData = (tool: any) => {
     "@type": "HowTo",
     "name": `How to Use ${tool.title}`,
     "description": `Step-by-step guide to using ${tool.title} AI tool effectively`,
-    "image": "https://aiwebtools.ai/placeholder.svg",
+    "image": "https://aiwebtools.app/placeholder.svg",
     "totalTime": "PT5M",
     "estimatedCost": {
       "@type": "MonetaryAmount",
@@ -85,16 +85,16 @@ export const generateVideoObjectStructuredData = (tool: any) => {
     "@type": "VideoObject",
     "name": `${tool.title} Demo Video`,
     "description": `Watch how to use ${tool.title} AI tool`,
-    "thumbnailUrl": "https://aiwebtools.ai/placeholder.svg",
+    "thumbnailUrl": "https://aiwebtools.app/placeholder.svg",
     "uploadDate": "2024-01-01",
     "duration": "PT3M",
-    "embedUrl": `https://aiwebtools.ai/tool/${tool.title}#video`,
+    "embedUrl": `https://aiwebtools.app/tool/${tool.title}#video`,
     "publisher": {
       "@type": "Organization",
       "name": "AI WEB TOOLS",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://aiwebtools.ai/favicon.ico"
+        "url": "https://aiwebtools.app/favicon.ico"
       }
     }
   };
@@ -121,7 +121,7 @@ export const generateAdvancedMetaTags = (tool: any, toolIndex: number) => {
     "al:ios:url": `aitools://tool/${toolIndex}`,
     "al:android:app_name": "AITools.Studio",
     "al:android:url": `aitools://tool/${toolIndex}`,
-    "al:web:url": `https://aiwebtools.ai/tool/${toolIndex}`,
+    "al:web:url": `https://aiwebtools.app/tool/${toolIndex}`,
     
     // Additional SEO meta
     "DC.title": tool.title,
@@ -135,7 +135,7 @@ export const generateAdvancedMetaTags = (tool: any, toolIndex: number) => {
     
     // Pinterest meta
     "pinterest:description": tool.description,
-    "pinterest:url": `https://aiwebtools.ai/tool/${toolIndex}`,
+    "pinterest:url": `https://aiwebtools.app/tool/${toolIndex}`,
     
     // LinkedIn meta
     "linkedin:owner": "AI WEB TOOLS",
@@ -143,7 +143,7 @@ export const generateAdvancedMetaTags = (tool: any, toolIndex: number) => {
     // Additional Open Graph
     "og:determiner": "the",
     "og:updated_time": new Date().toISOString(),
-    "og:see_also": "https://aiwebtools.ai",
+    "og:see_also": "https://aiwebtools.app",
     
     // Business meta
     "business:contact_data:street_address": "Remote",

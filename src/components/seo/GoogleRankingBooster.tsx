@@ -15,8 +15,8 @@ const GoogleRankingBooster = ({ pageType = 'homepage', toolData, category }: Goo
       "@type": "Organization",
       "name": "AI WEB TOOLS",
       "alternateName": ["AI WEB TOOLS", "AIWebTools", "AITools.Studio"],
-      "url": "https://aiwebtools.ai",
-      "logo": "https://aiwebtools.ai/favicon.ico",
+      "url": "https://aiwebtools.app",
+      "logo": "https://aiwebtools.app/favicon.ico",
       "description": "AI Web Tools is a curated directory of 4,000+ AI tools with reviews, comparisons, and daily updates.",
       "foundingDate": "2023",
       "keywords": competitiveAdvantage.brandDominance.join(", ") + ", ai web tools, best ai web tools, ai web tools directory, find ai web tools, compare ai web tools",
@@ -32,8 +32,8 @@ const GoogleRankingBooster = ({ pageType = 'homepage', toolData, category }: Goo
         "Enterprise AI Solutions"
       ],
       "sameAs": [
-        "https://aiwebtools.ai",
-        "https://aiwebtools.ai"
+        "https://aiwebtools.app",
+        "https://aiwebtools.app"
       ]
     };
 
@@ -41,7 +41,7 @@ const GoogleRankingBooster = ({ pageType = 'homepage', toolData, category }: Goo
       "@type": "WebSite",
       "name": "AI Web Tools Directory",
       "alternateName": "AI Web Tools Directory",
-      "url": "https://aiwebtools.ai",
+      "url": "https://aiwebtools.app",
       "description": "Discover 4,000+ AI web tools with reviews, ratings, and detailed analysis.",
       "publisher": {
         "@type": "Organization",
@@ -51,7 +51,7 @@ const GoogleRankingBooster = ({ pageType = 'homepage', toolData, category }: Goo
         "@type": "SearchAction",
         "target": {
           "@type": "EntryPoint",
-          "urlTemplate": "https://aiwebtools.ai/?search={search_term_string}"
+          "urlTemplate": "https://aiwebtools.app/?search={search_term_string}"
         },
         "query-input": "required name=search_term_string"
       },
@@ -136,7 +136,7 @@ const GoogleRankingBooster = ({ pageType = 'homepage', toolData, category }: Goo
       "@type": "HowTo",
       "name": `How to Use ${toolData.title} - Complete Guide 2026`,
       "description": `Step-by-step guide to using ${toolData.title} effectively. Expert tips and best practices from AI WEB TOOLS.`,
-      "image": "https://aiwebtools.ai/placeholder.svg",
+      "image": "https://aiwebtools.app/placeholder.svg",
       "totalTime": "PT10M",
       "supply": [
         {
@@ -159,7 +159,7 @@ const GoogleRankingBooster = ({ pageType = 'homepage', toolData, category }: Goo
           "@type": "HowToStep",
           "name": "Access the Tool",
           "text": `Visit the ${toolData.title} website and create an account if required.`,
-          "url": `https://aiwebtools.ai/${generateToolSlug(toolData.title)}`
+          "url": `https://aiwebtools.app/${generateToolSlug(toolData.title)}`
         },
         {
           "@type": "HowToStep",
@@ -214,14 +214,14 @@ const GoogleRankingBooster = ({ pageType = 'homepage', toolData, category }: Goo
       <link rel="preconnect" href="https://api.ai-webtools.com" />
       
       {/* Competitive Advantage Links */}
-      <link rel="alternate" type="application/json" title="AI Tools API" href="https://aiwebtools.ai/api/tools" />
-      <link rel="alternate" type="application/rss+xml" title="AI Web Tools Feed" href="https://aiwebtools.ai/feed.xml" />
-      <link rel="sitemap" type="application/xml" href="https://aiwebtools.ai/sitemap.xml" />
+      <link rel="alternate" type="application/json" title="AI Tools API" href="https://aiwebtools.app/api/tools" />
+      <link rel="alternate" type="application/rss+xml" title="AI Web Tools Feed" href="https://aiwebtools.app/feed.xml" />
+      <link rel="sitemap" type="application/xml" href="https://aiwebtools.app/sitemap.xml" />
       <link rel="manifest" href="/manifest.json" />
       
       {/* Author & Publisher Links */}
-      <link rel="author" href="https://aiwebtools.ai/about" />
-      <link rel="publisher" href="https://aiwebtools.ai" />
+      <link rel="author" href="https://aiwebtools.app/about" />
+      <link rel="publisher" href="https://aiwebtools.app" />
       <link rel="me" href="https://twitter.com/aiwebtools" />
     </Helmet>
   );

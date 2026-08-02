@@ -8,7 +8,7 @@ const AIToolsHub = () => {
         <title>AI Tools Hub — AI Agents & ChatGPT Alternatives</title>
         <meta name="description" content="Explore the ultimate AI tools hub with 1000+ AI applications, agents, ChatGPT alternatives, and automation solutions. Find the perfect AI tool for any task." />
         <meta name="keywords" content="ai tools hub, ai agents, chatgpt alternatives, ai directory, artificial intelligence tools, ai applications, ai software, ai platforms, ai solutions, automation tools, machine learning tools" />
-        <link rel="canonical" href="https://aiwebtools.ai/ai-tools-hub" />
+        <link rel="canonical" href="https://aiwebtools.app/ai-tools-hub" />
       </Helmet>
       
       <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 text-white">

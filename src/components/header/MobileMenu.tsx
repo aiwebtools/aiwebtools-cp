@@ -105,7 +105,7 @@ const MobileMenu = () => {
       // Prepend a metadata banner so every export carries site + clone info
       const meta = [
         ["# AIWebTools.ai — Complete AI Tools Directory Export"],
-        ["# Website", "https://aiwebtools.ai"],
+        ["# Website", "https://aiwebtools.app"],
         ["# Clone This AI Tool Empire (FREE)", "https://lovable.dev/projects/cc49ec6f-7243-4d4b-a3ba-f7ca01ad7eaf?utm_source=lovable-badge"],
         ["# Total Tools", String(allTools.length)],
         ["# Exported", new Date().toISOString()],
