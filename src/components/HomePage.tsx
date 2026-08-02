@@ -76,19 +76,11 @@ const HomePage = () => {
   const handleLoadMore = useMemo(() => 
     createThrottledScrollHandler(() => {
       if (isLoading || !hasMoreTools) return;
-      
-      setIsLoading(true);
-      
-      // Reduce batch size on mobile for smoother performance
-      const batchSize = isMobile ? 30 : 60;
-      
-      // Use shorter delay on mobile to feel more responsive
-      const delay = isMobile ? 50 : 100;
-      
-      setTimeout(() => {
-        setDisplayedCount(prev => prev + batchSize);
-        setIsLoading(false);
-      }, delay);
+
+      // Instant append — no artificial delay, no loading flash. The grid is
+      // virtualized, so a larger batch costs nothing extra to render.
+      const batchSize = isMobile ? 60 : 120;
+      setDisplayedCount(prev => prev + batchSize);
     }), 
     [createThrottledScrollHandler, isLoading, hasMoreTools, isMobile, setIsLoading, setDisplayedCount]
   );
