@@ -38,8 +38,8 @@ const scheduleFlush = () => {
 
   const run = () => {
     // Mid-scroll: postpone so we never hijack the scroll frame.
-    if (performance.now() - lastScrollAt < 250) {
-      window.setTimeout(run, 200);
+    if (performance.now() - lastScrollAt < 120) {
+      window.setTimeout(run, 80);
       return;
     }
 
@@ -48,16 +48,16 @@ const scheduleFlush = () => {
 
     if (queue.length > 0) {
       const ric = (window as any).requestIdleCallback;
-      if (ric) ric(run, { timeout: 800 });
-      else window.setTimeout(run, 120);
+      if (ric) ric(run, { timeout: 250 });
+      else window.setTimeout(run, 32);
     } else {
       flushing = false;
     }
   };
 
   const ric = (window as any).requestIdleCallback;
-  if (ric) ric(run, { timeout: 800 });
-  else window.setTimeout(run, 60);
+  if (ric) ric(run, { timeout: 250 });
+  else window.setTimeout(run, 16);
 };
 
 const enqueueMount = (mount: () => void) => {
@@ -88,6 +88,14 @@ const DeferredMount = ({ children, delay = 100, fallback = null }: DeferredMount
       });
     };
 
+    // Immediate mount path: when the section is (nearly) on screen the user is
+    // looking at it right now — never queue it behind idle work.
+    const mountNow = () => {
+      if (!mounted) return;
+      queued = true;
+      setShouldMount(true);
+    };
+
     // Near-viewport mounting: scrolling toward a section pulls it in early.
     let observer: IntersectionObserver | null = null;
     if (placeholderRef.current && typeof IntersectionObserver !== 'undefined') {
@@ -95,10 +103,10 @@ const DeferredMount = ({ children, delay = 100, fallback = null }: DeferredMount
         (entries) => {
           if (entries.some((e) => e.isIntersecting)) {
             observer?.disconnect();
-            request();
+            mountNow();
           }
         },
-        { rootMargin: '600px 0px' }
+        { rootMargin: '1600px 0px' }
       );
       observer.observe(placeholderRef.current);
     }
