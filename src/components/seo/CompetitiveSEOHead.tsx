@@ -4,7 +4,7 @@ import { Tool } from '@/types/tools';
 import { enhancedSchemaMarkup, generateCompetitiveContent } from '@/utils/advancedCompetitiveSEO';
 import { enhancedFAQs, socialMediaSEO } from '@/utils/additionalSEO';
 import { generateToolSlug } from '@/utils/urlGenerator';
-import { seoConfig } from '@/utils/seo';
+import { buildCanonicalUrl, seoConfig } from '@/utils/seo';
 
 interface CompetitiveSEOHeadProps {
   tool?: Tool;
@@ -27,7 +27,7 @@ const CompetitiveSEOHead = ({ tool, toolIndex, category, isHomepage }: Competiti
         
         {/* Competitive keyword targeting */}
         <meta name="keywords" content="AI Web Tools, AI tools directory 2026, ChatGPT alternatives, AI tools comparison, AI tools for business, curated AI tools, best AI tools" />
-        <link rel="canonical" href="https://aiwebtools.app" />
+        <link rel="canonical" href={buildCanonicalUrl('/')} />
         <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
         <meta name="revisit-after" content="1 days" />
         <meta name="author" content="AI WEB TOOLS" />
@@ -37,7 +37,7 @@ const CompetitiveSEOHead = ({ tool, toolIndex, category, isHomepage }: Competiti
         
         {/* Enhanced Open Graph */}
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://aiwebtools.app" />
+        <meta property="og:url" content={buildCanonicalUrl('/')} />
         <meta property="og:site_name" content="AI WEB TOOLS" />
         <meta property="og:title" content="AI Web Tools — 4,000+ AI Tools Directory 2026" />
         <meta property="og:description" content="Curated directory of 4,000+ AI tools with reviews, comparisons, and category filtering." />
@@ -139,7 +139,7 @@ const CompetitiveSEOHead = ({ tool, toolIndex, category, isHomepage }: Competiti
         
         {/* Enhanced tool-specific keywords */}
         <meta name="keywords" content={`${tool.title}, ${tool.category}, AI tool review, best AI tools 2026, ${tool.tags?.join(', ') || ''}, AI WEB TOOLS directory, expert analysis, tool comparison, user reviews, professional AI tools`} />
-        <link rel="canonical" href={`https://aiwebtools.app/${generateToolSlug(tool.title)}`} />
+        <link rel="canonical" href={buildCanonicalUrl(`/${generateToolSlug(tool.title)}`)} />
         
         {/* Tool authority indicators */}
         <meta name="expertise" content={`Expert review and analysis of ${tool.title}`} />
@@ -148,7 +148,7 @@ const CompetitiveSEOHead = ({ tool, toolIndex, category, isHomepage }: Competiti
         
         {/* Enhanced Open Graph for tools */}
         <meta property="og:type" content="article" />
-        <meta property="og:url" content={`https://aiwebtools.app/${generateToolSlug(tool.title)}`} />
+        <meta property="og:url" content={buildCanonicalUrl(`/${generateToolSlug(tool.title)}`)} />
         <meta property="og:title" content={selectedTitle} />
         <meta property="og:description" content={selectedDescription} />
         <meta property="og:image" content={toolImage} />
@@ -204,11 +204,11 @@ const CompetitiveSEOHead = ({ tool, toolIndex, category, isHomepage }: Competiti
         <title>{category} AI Tools - Best Directory 2026 | AI WEB TOOLS</title>
         <meta name="description" content={`Discover ${category.toLowerCase()} AI tools in our curated directory with reviews and comparisons from AI Web Tools.`} />
         <meta name="keywords" content={`${category} AI tools, best ${category.toLowerCase()} AI, ${category.toLowerCase()} artificial intelligence, AI ${category.toLowerCase()} solutions, ${category.toLowerCase()} automation, AI WEB TOOLS directory`} />
-        <link rel="canonical" href={`https://aiwebtools.app/category/${encodeURIComponent(category)}`} />
+        <link rel="canonical" href={buildCanonicalUrl(`/category/${encodeURIComponent(category)}`)} />
         
         {/* Category Open Graph */}
         <meta property="og:type" content="website" />
-        <meta property="og:url" content={`https://aiwebtools.app/category/${encodeURIComponent(category)}`} />
+        <meta property="og:url" content={buildCanonicalUrl(`/category/${encodeURIComponent(category)}`)} />
         <meta property="og:title" content={`${category} AI Tools - Best Directory 2026`} />
         <meta property="og:description" content={`Expert-curated ${category.toLowerCase()} AI tools with reviews and ratings`} />
       </Helmet>

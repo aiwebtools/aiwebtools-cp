@@ -1,6 +1,6 @@
 
 import { Helmet } from 'react-helmet-async';
-import { seoConfig, generateStructuredData, generateFAQStructuredData, generateLocalBusinessStructuredData } from '@/utils/seo';
+import { buildAbsoluteAssetUrl, buildCanonicalUrl, seoConfig, generateStructuredData, generateFAQStructuredData, generateLocalBusinessStructuredData } from '@/utils/seo';
 
 interface EnhancedSEOHeadProps {
   title?: string;
@@ -30,7 +30,7 @@ const EnhancedSEOHead = ({
   const fullTitle = title
     ? `${title} | AI Web Tools`
     : "AI Web Tools — 4,000+ Best AI Tools Directory 2026";
-  const canonical = url.startsWith('http') ? url : `${seoConfig.siteUrl}${url}`;
+  const canonical = buildCanonicalUrl(url);
   // Open Graph titles render best ≤60 chars; clamp to avoid social-preview truncation.
   const ogTitle = fullTitle.length > 60 ? `${fullTitle.slice(0, 57).trimEnd()}…` : fullTitle;
   
@@ -52,7 +52,7 @@ const EnhancedSEOHead = ({
       return `${seoConfig.siteUrl}/og-default.jpg`;
     }
     // Use provided image or default
-    return image.startsWith('http') ? image : `${seoConfig.siteUrl}${image}`;
+    return buildAbsoluteAssetUrl(image);
   };
   
   const fullImage = getToolImage();

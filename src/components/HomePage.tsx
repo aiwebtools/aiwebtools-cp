@@ -79,7 +79,10 @@ const HomePage = () => {
 
       // Instant append — no artificial delay, no loading flash. The grid is
       // virtualized, so a larger batch costs nothing extra to render.
-      const batchSize = isMobile ? 60 : 120;
+      // Keep each React commit below a frame budget. The sentinel loads early,
+      // so small batches remain visually continuous without mounting 120 cards
+      // in one scroll frame.
+      const batchSize = isMobile ? 24 : 36;
       setDisplayedCount(prev => prev + batchSize);
     }), 
     [createThrottledScrollHandler, isLoading, hasMoreTools, isMobile, setIsLoading, setDisplayedCount]

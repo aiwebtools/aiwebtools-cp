@@ -1,5 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { buildAbsoluteAssetUrl, buildCanonicalUrl } from '@/utils/seo';
 
 interface SEOMetaTagsProps {
   title?: string;
@@ -20,7 +21,8 @@ const SEOMetaTags: React.FC<SEOMetaTagsProps> = ({
   type = 'website',
   structuredData
 }) => {
-  const canonicalUrl = `https://aiwebtools.app${url}`;
+  const canonicalUrl = buildCanonicalUrl(url);
+  const socialImage = buildAbsoluteAssetUrl(image);
   const keywordsString = keywords.join(', ');
 
   return (
@@ -39,7 +41,7 @@ const SEOMetaTags: React.FC<SEOMetaTagsProps> = ({
       <meta property="og:url" content={canonicalUrl} />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
-      <meta property="og:image" content={image} />
+      <meta property="og:image" content={socialImage} />
       <meta property="og:site_name" content="AI Web Tools" />
       
       {/* Twitter */}
@@ -47,7 +49,7 @@ const SEOMetaTags: React.FC<SEOMetaTagsProps> = ({
       <meta property="twitter:url" content={canonicalUrl} />
       <meta property="twitter:title" content={title} />
       <meta property="twitter:description" content={description} />
-      <meta property="twitter:image" content={image} />
+      <meta property="twitter:image" content={socialImage} />
       <meta name="twitter:creator" content="@aiwebtools" />
       
       {/* Additional SEO Meta Tags */}

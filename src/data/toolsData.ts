@@ -50,6 +50,7 @@ import { spiritualAndPhilosophyGPTs } from "./tools/aiWebTools/spiritualAndPhilo
 import { timeAndHistoryGPTs } from "./tools/aiWebTools/timeAndHistoryGPTs";
 import { technologyInnovationGPTs } from "./tools/aiWebTools/technologyInnovationGPTs";
 import { specializedNicheToolsGPTs } from "./tools/aiWebTools/specializedNicheToolsGPTs";
+import { verifiedMissingBatch2026XV } from "./tools/verifiedMissingBatch2026XV";
 
 // PREVIOUSLY MISSING IMPORTS - NOW INCLUDED TO RAISE TOOL COUNT
 import { customGeminiGems } from "./tools/aiWebTools/customGeminiGems";
@@ -416,6 +417,7 @@ const allToolCategories = consolidateTools([
 
   // New AI Agents Batch 2026 D (25 verified agents)
   ...newAIAgentsBatch2026D,
+  ...verifiedMissingBatch2026XV,
   
   // New AI Agents 2026 (15 verified: MultiOn, CodeRabbit, Phind, Induced, BrowserBase, LangGraph, Beam AI, Fixie, Sweep, Fine.dev, Adept, OpenHands, Dia Browser, Axiom, Ottogrid)
   ...newAIAgents2026,

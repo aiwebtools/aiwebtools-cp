@@ -215,6 +215,7 @@ import { verifiedMissingBatch2026XI } from './tools/verifiedMissingBatch2026XI';
 import { verifiedMissingBatch2026XII } from './tools/verifiedMissingBatch2026XII';
 import { verifiedMissingBatch2026XIII } from './tools/verifiedMissingBatch2026XIII';
 import { verifiedMissingBatch2026XIV } from './tools/verifiedMissingBatch2026XIV';
+import { verifiedMissingBatch2026XV } from './tools/verifiedMissingBatch2026XV';
 import { humanityAscensionBatch2026 } from './tools/humanityAscensionBatch2026';
 import { aiToolDatabases2026 } from './tools/aiToolDatabases2026';
 import { openSourceLocal2026 } from './tools/openSourceLocal2026';
@@ -356,6 +357,7 @@ export const getAllToolCategories = (): Tool[] => {
     ...verifiedMissingBatch2026XII, // +30 verified real tools: Rill, Datafold, Qodo, Sider, Wiseone, Vidnoz AI, Klap, Chalk, Novita AI, Gretel, MOSTLY AI, Hightouch, Census, Spice.ai, Orkes, Noteable, Zerve, Activepieces, Vald, Sentry AI, Raygun, LogRocket, Coralogix, Logtail, Better Stack, Graphite, Swimm, HyperDX, SigNoz, Checkly (2026 Batch XII)
     ...verifiedMissingBatch2026XIII, // +50 verified real tools: Plausible, Umami, Mautic, Payload CMS, Sanity, Strapi, Ghost, Papermark, Documenso, Erxes, Featherless, SambaNova Cloud, Cerebras Cloud, GroqCloud, Redash, Superset, Adrenaline, Novu, Knock, Resend, Loops, SavvyCal, Rows, Actiondesk, Sigma, Hex, Observable, Reflex, NiceGUI, Voila, Shiny, Rivery, Debezium, RisingWave, TimescaleDB, PlanetScale, SurrealDB, EdgeDB, Nhost, Amplication, Wasp, Panel, Chalice, Bruno, Hoppscotch, Insomnia, Instantly, Cal AI, Metriql, Nextcloud (2026 Batch XIII)
     ...verifiedMissingBatch2026XIV, // +50 verified real tools: open-source GitHub projects, AI agents, phone/voice agents, video agents, music video + movie making platforms (2026 Batch XIV)
+    ...verifiedMissingBatch2026XV, // +10 verified real tools with custom imagery and complete search metadata (2026 Batch XV)
     ...humanityAscensionBatch2026, // +10 humanity-uplifting free tools: MIT OpenCourseWare, OpenStax, Project Gutenberg, Standard Ebooks, Merlin Bird ID, Zooniverse, Mozilla Common Voice, Humanitarian OpenStreetMap, Ushahidi, Crisis Text Line
     ...mixedAgentsBatch2026, // Roo Code, Vapi, Retell, Lutra, MultiOn, STORM, Decagon, Sierra, Letta, Mem, Motion, Shortwave, Clay, 11x, etc.
     ...openSourceAgentsBatch2026Part3, // Dolphin 3, Mixtral 8x22B, Smaug, Zephyr, OpenChat, SOLAR, StarCoder2, DeepSeek Coder V2, Bielik, SmolLM2, MiniCPM-V, InternLM3, Molmo, Granite, Arcee, NeuralChat, Swarms, ShellGPT, Twinny, AIChat, Griptape, LocalGPT, Oobabooga, SGLang, TensorRT-LLM, Unsloth, Axolotl, Gorilla, Xinference, FastChat, ModelScope Agent, Qwen Agent, AutoGroq, LightLLM, KTransformers, PowerInfer, NextChat, Refuel, Hyperbee, MetaChain, ChatHub, Llama Stack, LangServe, NPCsh, KitOps, AIConfig, LlamaCoder, LitServe, Repomix
