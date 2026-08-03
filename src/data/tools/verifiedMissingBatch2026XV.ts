@@ -1,5 +1,5 @@
 import { Tool } from "@/types/tools";
-import { Bot, Captions, ChartNoAxesCombined, Film, Gem, Mail, Presentation, Search, Video } from "lucide-react";
+import { Bot, Captions, ChartNoAxesCombined, Gem, Presentation, Search, Video } from "lucide-react";
 
 import googleOpalHero from "@/assets/tools/google-opal-hero.jpg";
 import openArtHero from "@/assets/tools/openart-hero.jpg";
