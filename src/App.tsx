@@ -10,7 +10,6 @@ import { FavoritesProvider } from "@/hooks/useFavorites";
 import { VideoManagerProvider } from "@/hooks/useGlobalVideoManager";
 import { useCrossBrowserOptimization } from "@/hooks/useCrossBrowserOptimization";
 import { useChromebookOptimization } from "@/hooks/useChromebookOptimization";
-import { useScrollPerformance } from "@/hooks/useScrollPerformance";
 import { usePrefetchRoutes } from "@/hooks/usePrefetch";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import MatrixCursorEffect from "@/components/effects/MatrixCursorEffect";
@@ -420,7 +419,9 @@ const PostAcceptBoot: React.FC = () => {
         .catch(() => {});
     };
 
-    const cacheWarmDelay = typeof window !== 'undefined' && window.innerWidth < 768 ? 14000 : 7000;
+    // Keep the database/cache import out of the first-scroll window. An idle
+    // callback with a short timeout can legally fire while a user is scrolling.
+    const cacheWarmDelay = typeof window !== 'undefined' && window.innerWidth < 768 ? 20000 : 15000;
 
     const id = window.setTimeout(() => {
       if ('requestIdleCallback' in window) {
@@ -482,7 +483,9 @@ const GlobalOverlays: React.FC = () => {
       // Never mount heavy overlays on the first phone tap/scroll. Social in-app
       // browsers can freeze when pinned video + bot chunks import during clicks.
       const lightDelay = isTouchPhone ? 2500 : 1200;
-      const heavyDelay = isInAppBrowser ? 45000 : isTouchPhone ? 18000 : 1600;
+      // Pinned media and the care bot import substantial code. Never mount
+      // them in the desktop opening/first-scroll window.
+      const heavyDelay = isInAppBrowser ? 45000 : isTouchPhone ? 18000 : 10000;
 
       lightTimeoutId = window.setTimeout(() => {
         lightIdleId = scheduleIdle(() => setOverlaysReady(true), isTouchPhone ? 2500 : 1200);
@@ -557,9 +560,6 @@ function App() {
 
   // Initialize Chromebook-specific optimizations
   useChromebookOptimization();
-
-  // Scroll performance: adds 'is-scrolling' class during scroll for CSS optimizations
-  useScrollPerformance();
 
   return (
     <ErrorBoundary>

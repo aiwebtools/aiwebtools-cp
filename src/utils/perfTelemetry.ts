@@ -82,7 +82,9 @@ export function recordMetric(name: string, value: number, extra?: Record<string,
 // duration so we can spot regressions after code changes.
 let longTaskObserver: PerformanceObserver | null = null;
 export function installLongTaskObserver() {
-  if (!enabled || !isBrowser || longTaskObserver) return;
+  // Observe every session because this also drives automatic degradation;
+  // uploads remain sampled inside recordMetric/reportFreezeIfSevere.
+  if (!isBrowser || longTaskObserver) return;
   try {
     if (typeof PerformanceObserver === "undefined") return;
     const supported = (PerformanceObserver as unknown as { supportedEntryTypes?: string[] }).supportedEntryTypes ?? [];
@@ -106,6 +108,9 @@ export function installLongTaskObserver() {
             startTime: Math.round(entry.startTime),
             attribution,
           });
+          if (entry.duration >= 500 && entry.startTime < 15000) {
+            setPerfDegraded("opening-long-task");
+          }
         }
       }
     });
@@ -333,6 +338,30 @@ export function installBootVitals() {
     if (v > 6000) setPerfDegraded("slow-lcp");
   });
 
+  // Track layout instability and interaction latency so future regressions are
+  // diagnosable without reproducing them locally.
+  try {
+    const supported = (PerformanceObserver as unknown as { supportedEntryTypes?: string[] }).supportedEntryTypes ?? [];
+    if (supported.includes("layout-shift")) {
+      let cls = 0;
+      const po = new PerformanceObserver((list) => {
+        for (const entry of list.getEntries() as Array<PerformanceEntry & { value?: number; hadRecentInput?: boolean }>) {
+          if (!entry.hadRecentInput) cls += entry.value ?? 0;
+        }
+        recordMetric("boot.cls.x1000", cls * 1000);
+      });
+      po.observe({ type: "layout-shift", buffered: true } as any);
+    }
+    if (supported.includes("event")) {
+      const po = new PerformanceObserver((list) => {
+        for (const entry of list.getEntries()) {
+          if (entry.duration >= 100) recordMetric("interaction.inp.ms", entry.duration);
+        }
+      });
+      po.observe({ type: "event", buffered: true, durationThreshold: 100 } as any);
+    }
+  } catch { /* unsupported browser */ }
+
   const readNav = () => {
     try {
       const nav = performance.getEntriesByType("navigation")[0] as PerformanceNavigationTiming | undefined;
@@ -391,7 +420,7 @@ export function installScrollJankObserver() {
             },
           });
         }
-        if (badBursts >= 3) setPerfDegraded("scroll-jank");
+        if (badBursts >= 1) setPerfDegraded("scroll-jank");
       }
     }
     worstFrame = 0;

@@ -228,28 +228,6 @@ header, footer, [role="banner"], [role="contentinfo"] {
   }
 }
 
-/* During scroll, reduce visual complexity for 60fps */
-.is-scrolling * {
-  transition: none !important;
-  animation-play-state: paused !important;
-  will-change: auto !important;
-}
-
-.is-scrolling [data-card],
-.is-scrolling .tool-card {
-  transition: none !important;
-  animation: none !important;
-  transform: translateZ(0);
-}
-
-/* Disable hover effects during scroll */
-.is-scrolling button:hover,
-.is-scrolling a:hover,
-.is-scrolling [role="button"]:hover {
-  transform: none !important;
-  box-shadow: none !important;
-}
-
 /* Do not force main/grid into permanent GPU layers on mobile. */
 
 /* Optimize canvas elements */
