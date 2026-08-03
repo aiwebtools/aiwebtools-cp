@@ -1,6 +1,6 @@
 
 import { Helmet } from 'react-helmet-async';
-import { seoConfig, generateStructuredData, generateFAQStructuredData, generateLocalBusinessStructuredData } from '@/utils/seo';
+import { buildAbsoluteAssetUrl, buildCanonicalUrl, seoConfig, generateFAQStructuredData, generateLocalBusinessStructuredData } from '@/utils/seo';
 
 interface SEOHeadProps {
   title?: string;
@@ -32,8 +32,8 @@ const SEOHead = ({
   toolData
 }: SEOHeadProps) => {
   const fullTitle = title ? `${title} | AI Web Tools` : "AI Web Tools — 4,000+ Best Free AI Tools 2026";
-  const canonical = url.startsWith('http') ? url : `${seoConfig.siteUrl}${url}`;
-  const fullImage = image.startsWith('http') ? image : `${seoConfig.siteUrl}${image}`;
+  const canonical = buildCanonicalUrl(url);
+  const fullImage = buildAbsoluteAssetUrl(image);
 
   // Focused keyword set — over-stuffed lists trigger Google spam demotions.
   const competitiveKeywords = Array.from(new Set([
@@ -122,12 +122,12 @@ const SEOHead = ({
       {/* Open Graph */}
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={description} />
-      <meta property="og:image" content="https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-futuristic-ai-robot-with-glowing-blue-eyes-su.png" />
+      <meta property="og:image" content={fullImage} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
       <meta property="og:image:alt" content="AI WEB TOOLS - The Ultimate AI Tools Directory with 1000+ Curated AI Applications" />
       <meta property="og:image:type" content="image/png" />
-      <meta property="og:image:secure_url" content="https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-futuristic-ai-robot-with-glowing-blue-eyes-su.png" />
+      <meta property="og:image:secure_url" content={fullImage} />
       <meta property="og:url" content={canonical} />
       <meta property="og:type" content={type} />
       <meta property="og:site_name" content="AI WEB TOOLS - Best AI Tools Directory" />
@@ -144,11 +144,11 @@ const SEOHead = ({
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={fullTitle} />
       <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content="https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-futuristic-ai-robot-with-glowing-blue-eyes-su.png" />
+      <meta name="twitter:image" content={fullImage} />
       <meta name="twitter:image:alt" content="AI WEB TOOLS - Ultimate AI Tools Directory with 1000+ Curated AI Applications" />
       <meta name="twitter:site" content={seoConfig.twitterHandle} />
       <meta name="twitter:creator" content={seoConfig.twitterHandle} />
-      <meta name="twitter:domain" content="ai-webtools.com" />
+      <meta name="twitter:domain" content="aiwebtools.app" />
       <meta name="twitter:url" content={canonical} />
       <meta name="twitter:data1" content="1000+ AI Tools" />
       <meta name="twitter:label1" content="Directory Size" />

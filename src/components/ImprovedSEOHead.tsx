@@ -1,6 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { generateToolSlug } from '@/utils/urlGenerator';
+import { buildAbsoluteAssetUrl, buildCanonicalUrl } from '@/utils/seo';
 
 interface ImprovedSEOHeadProps {
   pageType?: 'homepage' | 'category' | 'tool' | 'search';
@@ -74,13 +75,13 @@ const ImprovedSEOHead: React.FC<ImprovedSEOHeadProps> = ({
       case 'tool':
         // Use clean slug-based URL with proper utility
         const slug = generateToolSlug(tool?.title || '');
-        return `https://aiwebtools.app/${slug}`;
+        return buildCanonicalUrl(`/${slug}`);
       case 'category':
-        return `https://aiwebtools.app/category/${category?.toLowerCase().replace(/\s+/g, '-')}`;
+        return buildCanonicalUrl(`/category/${category?.toLowerCase().replace(/\s+/g, '-')}`);
       case 'search':
-        return `https://aiwebtools.app/search?q=${encodeURIComponent(searchTerm || '')}`;
+        return buildCanonicalUrl(`/search?q=${encodeURIComponent(searchTerm || '')}`);
       default:
-        return 'https://aiwebtools.app';
+        return buildCanonicalUrl('/');
     }
   };
 
@@ -89,15 +90,14 @@ const ImprovedSEOHead: React.FC<ImprovedSEOHeadProps> = ({
     // absolute https:// URL and cannot fetch Vite-bundled or relative asset
     // paths. Normalize any tool image to a crawler-safe URL, and fall back to
     // our verified og-default.jpg when the image isn't remotely fetchable.
-    const SITE = 'https://aiwebtools.app';
-    const DEFAULT_OG = `${SITE}/og-default.jpg`;
+    const DEFAULT_OG = buildAbsoluteAssetUrl('/og-default.jpg');
     const normalize = (raw?: string): string | null => {
       if (!raw || typeof raw !== 'string') return null;
       const url = raw.trim();
       if (!url) return null;
       if (/^https?:\/\//i.test(url)) return url;
       if (url.startsWith('//')) return `https:${url}`;
-      if (url.startsWith('/')) return `${SITE}${url}`;
+      if (url.startsWith('/')) return buildAbsoluteAssetUrl(url);
       // bundled ES6 imports, data:, blob:, or relative — not scraper-safe
       return null;
     };
@@ -160,7 +160,7 @@ const ImprovedSEOHead: React.FC<ImprovedSEOHeadProps> = ({
         "name": "AI Web Tools",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://aiwebtools.app/logo.png"
+          "url": buildAbsoluteAssetUrl('/logo.png')
         }
       }
     };
@@ -174,13 +174,13 @@ const ImprovedSEOHead: React.FC<ImprovedSEOHeadProps> = ({
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://aiwebtools.app"
+        "item": buildCanonicalUrl('/')
       },
       ...(category ? [{
         "@type": "ListItem",
         "position": 2,
         "name": category,
-        "item": `https://aiwebtools.app/category/${category.toLowerCase().replace(/\s+/g, '-')}`
+        "item": buildCanonicalUrl(`/category/${category.toLowerCase().replace(/\s+/g, '-')}`)
       }] : []),
       ...(tool ? [{
         "@type": "ListItem",
@@ -327,8 +327,8 @@ const ImprovedSEOHead: React.FC<ImprovedSEOHeadProps> = ({
           "@context": "https://schema.org",
           "@type": "Organization",
           "name": "AI Web Tools",
-          "url": "https://aiwebtools.app",
-          "logo": "https://aiwebtools.app/logo.png",
+          "url": buildCanonicalUrl('/'),
+          "logo": buildAbsoluteAssetUrl('/logo.png'),
           "description": "The world's largest directory of 2195+ AI tools for productivity, creativity, and business.",
           "foundingDate": "2023",
           "numberOfEmployees": {

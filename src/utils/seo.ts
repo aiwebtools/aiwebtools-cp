@@ -1,7 +1,28 @@
 
+export const SITE_URL = "https://aiwebtools.app" as const;
+
+/** Keep every canonical URL on the one authoritative public origin. */
+export const buildCanonicalUrl = (value: string = "/"): string => {
+  try {
+    const parsed = new URL(value, SITE_URL);
+    const path = parsed.pathname === "/" ? "" : parsed.pathname.replace(/\/+$/, "");
+    return `${SITE_URL}${path}${parsed.search}`;
+  } catch {
+    const path = value.startsWith("/") ? value : `/${value}`;
+    return `${SITE_URL}${path}`;
+  }
+};
+
+export const buildAbsoluteAssetUrl = (value?: string): string => {
+  if (!value) return `${SITE_URL}/og-default.jpg`;
+  if (/^https:\/\//i.test(value)) return value;
+  if (value.startsWith("//")) return `https:${value}`;
+  return `${SITE_URL}${value.startsWith("/") ? value : `/${value}`}`;
+};
+
 export const seoConfig = {
   siteName: "AI WEB TOOLS",
-  siteUrl: "https://aiwebtools.app",
+  siteUrl: SITE_URL,
   description: "Discover 4,000+ free AI tools: ChatGPT alternatives, custom GPTs, AI agents, image, writing & business AI. Updated daily.",
   keywords: [
     "AI WEB TOOLS",
