@@ -1,5 +1,5 @@
 import { Tool } from "@/types/tools";
-import { Bot, BriefcaseBusiness, Captions, ChartNoAxesCombined, Film, Gem, Mail, Presentation, Search, Video } from "lucide-react";
+import { Bot, Captions, ChartNoAxesCombined, Film, Gem, Mail, Presentation, Search, Video } from "lucide-react";
 
 import viduAiHero from "@/assets/tools/vidu-ai-hero.jpg";
 import relevanceAiHero from "@/assets/tools/relevance-ai-hero.jpg";
