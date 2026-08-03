@@ -1,10 +1,10 @@
 import { Tool } from "@/types/tools";
 import { Bot, Captions, ChartNoAxesCombined, Film, Gem, Mail, Presentation, Search, Video } from "lucide-react";
 
-import viduAiHero from "@/assets/tools/vidu-ai-hero.jpg";
-import relevanceAiHero from "@/assets/tools/relevance-ai-hero.jpg";
-import fyxerAiHero from "@/assets/tools/fyxer-ai-hero.jpg";
-import hebbiaHero from "@/assets/tools/hebbia-hero.jpg";
+import googleOpalHero from "@/assets/tools/google-opal-hero.jpg";
+import openArtHero from "@/assets/tools/openart-hero.jpg";
+import simularHero from "@/assets/tools/simular-hero.jpg";
+import fellouHero from "@/assets/tools/fellou-hero.jpg";
 import synthesysHero from "@/assets/tools/synthesys-hero.jpg";
 import yepicAiHero from "@/assets/tools/yepic-ai-hero.jpg";
 import danelfinHero from "@/assets/tools/danelfin-hero.jpg";
@@ -16,32 +16,32 @@ import maestraAiHero from "@/assets/tools/maestra-ai-hero.jpg";
 // by title, alias, and official domain before indexing.
 export const verifiedMissingBatch2026XV: Tool[] = [
   {
-    icon: Film, title: "Vidu AI", emoji: "🎬", color: "from-cyan-500 to-orange-500",
-    description: "Vidu AI is an all-in-one generative video platform that turns text, images, and visual references into polished videos while preserving character and scene consistency.",
-    directUrl: "https://www.vidu.com/?via=aiwebtools", imageUrl: viduAiHero,
-    tags: ["Vidu AI", "AI video generator", "text to video", "image to video", "reference video", "consistent character", "AI animation", "freemium", "Video & Multimedia"],
-    category: "Video & Multimedia", rating: 4.6, isFree: true,
+    icon: Bot, title: "Google Opal", emoji: "🔷", color: "from-blue-500 to-amber-500",
+    description: "Google Opal is an experimental no-code tool for turning natural-language ideas into shareable mini apps built from editable AI workflow steps.",
+    directUrl: "https://opal.withgoogle.com/", imageUrl: googleOpalHero,
+    tags: ["Google Opal", "Google Labs", "no code AI", "mini app builder", "natural language apps", "AI workflow", "free", "AI Agents"],
+    category: "AI Agents", rating: 4.6, isFree: true,
   },
   {
-    icon: Bot, title: "Relevance AI", emoji: "🤖", color: "from-emerald-500 to-cyan-600",
-    description: "Relevance AI is a platform for building, deploying, and managing coordinated AI agent teams for sales, customer support, marketing, and operational workflows.",
-    directUrl: "https://relevanceai.com/?via=aiwebtools", imageUrl: relevanceAiHero,
-    tags: ["Relevance AI", "AI agents", "agent builder", "agent teams", "workflow automation", "no code agents", "enterprise AI", "freemium", "AI Agents"],
-    category: "AI Agents", rating: 4.7, isFree: true,
+    icon: Presentation, title: "OpenArt", emoji: "🎨", color: "from-emerald-500 to-fuchsia-600",
+    description: "OpenArt is an AI creative studio for generating and editing images, training personalized models, maintaining consistent characters, and transforming ideas into visual stories.",
+    directUrl: "https://openart.ai/?via=aiwebtools", imageUrl: openArtHero,
+    tags: ["OpenArt", "AI image generator", "AI art", "image editing", "consistent characters", "custom model", "freemium", "Image Generation"],
+    category: "Image Generation", rating: 4.6, isFree: true,
   },
   {
-    icon: Mail, title: "Fyxer AI", emoji: "📨", color: "from-teal-500 to-amber-500",
-    description: "Fyxer AI is an email and meeting assistant for Gmail and Outlook that organizes inboxes, drafts replies, and creates useful meeting notes automatically.",
-    directUrl: "https://www.fyxer.com/?via=aiwebtools", imageUrl: fyxerAiHero,
-    tags: ["Fyxer AI", "AI email assistant", "Gmail AI", "Outlook AI", "inbox management", "draft replies", "meeting notes", "free trial", "Business & Productivity"],
-    category: "Business & Productivity", rating: 4.5,
+    icon: Bot, title: "Simular", emoji: "🖱️", color: "from-cyan-500 to-amber-500",
+    description: "Simular develops computer-use AI agents that interact with desktop applications to complete multi-step digital workflows through familiar visual interfaces.",
+    directUrl: "https://www.simular.ai/?via=aiwebtools", imageUrl: simularHero,
+    tags: ["Simular", "computer use agent", "desktop agent", "workflow automation", "autonomous agent", "GUI agent", "AI Agents"],
+    category: "AI Agents", rating: 4.5,
   },
   {
-    icon: Search, title: "Hebbia", emoji: "🔎", color: "from-emerald-700 to-red-600",
-    description: "Hebbia is an institutional AI research platform that analyzes large document collections, surfaces cited answers, and helps finance teams produce rigorous reports and due diligence.",
-    directUrl: "https://www.hebbia.com/?via=aiwebtools", imageUrl: hebbiaHero,
-    tags: ["Hebbia", "enterprise research", "AI finance", "document analysis", "cited answers", "due diligence AI", "institutional research", "paid", "Research & Academic"],
-    category: "Research & Academic", rating: 4.7,
+    icon: Search, title: "Fellou", emoji: "🌐", color: "from-emerald-500 to-cyan-600",
+    description: "Fellou is an agentic browser that researches across websites, organizes findings, and executes complex web tasks through autonomous browsing workflows.",
+    directUrl: "https://fellou.ai/?via=aiwebtools", imageUrl: fellouHero,
+    tags: ["Fellou", "agentic browser", "AI browser", "web research agent", "browser automation", "autonomous research", "freemium", "AI Agents"],
+    category: "AI Agents", rating: 4.5, isFree: true,
   },
   {
     icon: Presentation, title: "Synthesys", emoji: "🎙️", color: "from-fuchsia-500 to-cyan-500",
