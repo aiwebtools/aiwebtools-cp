@@ -45,10 +45,9 @@ const MusicStream = () => {
     return buildMusicVideoOrder(MUSIC_VIDEO_GALLERY);
   }, []);
 
-  const [idx, setIdx] = useState(() => {
-    const len = MUSIC_VIDEO_GALLERY.length || 1;
-    return Math.floor(Math.random() * len);
-  });
+  // The queue itself is freshly randomized; begin at its first item so the
+  // two-long / one-short cadence is preserved from the moment the theater opens.
+  const [idx, setIdx] = useState(0);
   const current = playlist[idx % playlist.length];
 
   // Guards so YouTube can't double-fire "ended" / fire it during a buffer
