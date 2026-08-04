@@ -24,6 +24,8 @@ const MODE_SESSION_KEY = "pinned-video-mode"; // 'idle' | 'tools' | 'music'
 export const MUSIC_VIDEO_GALLERY: Array<{ id: string; title: string }> = [
   // ── MTV LINE-UP (newest drops — play FIRST in the 9:16 reel) ──
   { id: "IWijCkZUmrg", title: "AIWEBTOOLS – Newest Drop | Official AI Music Video | AIWebTools.ai" },
+  { id: "RSovmNDLSnM", title: "AIWEBTOOLS – New Music Video | Official AI Music Video | AIWebTools.ai" },
+  { id: "KB1sRHXUUps", title: "AIWEBTOOLS – New Music Video | Official AI Music Video | AIWebTools.ai" },
   { id: "LXXPC-1lgOQ", title: "AIWEBTOOLS – Newest Drop | Official AI Music Video | AIWebTools.ai" },
   { id: "rXMTjCFycPM", title: "AIWEBTOOLS – Newest Drop | Official AI Music Video | AIWebTools.ai" },
   { id: "cxJMzuv_ccQ", title: "AIWEBTOOLS – Newest Drop | Official AI Music Video | AIWebTools.ai" },
@@ -36,7 +38,20 @@ export const MUSIC_VIDEO_GALLERY: Array<{ id: string; title: string }> = [
   { id: "H9PTc_hzsM8", title: "AIWEBTOOLS Interlude | AI Music Video Short | AIWebTools.ai" },
   { id: "IAP77Tl0izc", title: "AIWEBTOOLS Interlude | AI Music Video Short | AIWebTools.ai" },
   { id: "3wA9elcCEnE", title: "AIWEBTOOLS Interlude | AI Music Video Short | AIWebTools.ai" },
-  { id: "KB1sRHXUUps", title: "AIWEBTOOLS Interlude | AI Music Video Short | AIWebTools.ai" },
+  { id: "mAsHosw2kwM", title: "AIWEBTOOLS Interlude | AI Music Video Short | AIWebTools.ai" },
+  { id: "IvFZGb7t0aw", title: "AIWEBTOOLS Interlude | AI Music Video Short | AIWebTools.ai" },
+  { id: "rByfuaw2BL8", title: "AIWEBTOOLS Interlude | AI Music Video Short | AIWebTools.ai" },
+  { id: "4mMGTriG0Fc", title: "AIWEBTOOLS Interlude | AI Music Video Short | AIWebTools.ai" },
+  { id: "Pcs6KNM0loI", title: "AIWEBTOOLS Interlude | AI Music Video Short | AIWebTools.ai" },
+  { id: "YHNRvs6g7zg", title: "AIWEBTOOLS Interlude | AI Music Video Short | AIWebTools.ai" },
+  { id: "E9MiAmubY7I", title: "AIWEBTOOLS Interlude | AI Music Video Short | AIWebTools.ai" },
+  { id: "j1O8TpqWWnU", title: "AIWEBTOOLS Interlude | AI Music Video Short | AIWebTools.ai" },
+  { id: "-k9D5MyN2Y8", title: "AIWEBTOOLS Interlude | AI Music Video Short | AIWebTools.ai" },
+  { id: "qIFhp8gudjw", title: "AIWEBTOOLS Interlude | AI Music Video Short | AIWebTools.ai" },
+  { id: "oUeh_EYb-HM", title: "AIWEBTOOLS Interlude | AI Music Video Short | AIWebTools.ai" },
+  { id: "8Ax-GpQJ2ZQ", title: "AIWEBTOOLS Interlude | AI Music Video Short | AIWebTools.ai" },
+  { id: "EcQnby6_EhA", title: "AIWEBTOOLS Interlude | AI Music Video Short | AIWebTools.ai" },
+  { id: "dno3F-SQr2I", title: "AIWEBTOOLS Interlude | AI Music Video Short | AIWebTools.ai" },
   { id: "PktMrkD89fs", title: "AIWEBTOOLS Interlude | AI Commercial Short | AIWebTools.ai" },
   { id: "Lc0JUBiX6Zo", title: "AIWEBTOOLS Interlude | AI Music Video Short | AIWebTools.ai" },
   { id: "uGLay-OBpxg", title: "AIWEBTOOLS Interlude | AI Music Video Short | AIWebTools.ai" },
@@ -207,12 +222,35 @@ const shuffleArray = <T,>(array: T[]): T[] => {
 // Build a randomized music-video order that ALWAYS leads with real cinematic
 // music videos and pushes Suno-style lyric tracks to the back of the line.
 // Within each group we shuffle so playback still feels fresh on every round.
-const buildMusicOrder = (): typeof MUSIC_VIDEO_GALLERY => {
-  const titleLooksLyric = (t: string) => / — Track$/i.test(t);
-  const visuals = MUSIC_VIDEO_GALLERY.filter(v => !titleLooksLyric(v.title));
-  const lyrics  = MUSIC_VIDEO_GALLERY.filter(v =>  titleLooksLyric(v.title));
-  return [...shuffleArray(visuals), ...shuffleArray(lyrics)];
+export const buildMusicVideoOrder = <T extends { id: string; title: string }>(gallery: T[]): T[] => {
+  const seen = new Set<string>();
+  const unique = gallery.filter((video) => {
+    if (seen.has(video.id)) return false;
+    seen.add(video.id);
+    return true;
+  });
+  const isShort = (video: T) => /\b(short|interlude|commercial)\b/i.test(video.title);
+  const shorts = shuffleArray(unique.filter(isShort));
+  const longVideos = shuffleArray(unique.filter((video) => !isShort(video)));
+  const ordered: T[] = [];
+  let longIndex = 0;
+  let shortIndex = 0;
+
+  while (longIndex < longVideos.length || shortIndex < shorts.length) {
+    for (let count = 0; count < 2 && longIndex < longVideos.length; count += 1) {
+      ordered.push(longVideos[longIndex]);
+      longIndex += 1;
+    }
+    if (shortIndex < shorts.length) {
+      ordered.push(shorts[shortIndex]);
+      shortIndex += 1;
+    }
+  }
+
+  return ordered;
 };
+
+const buildMusicOrder = (): typeof MUSIC_VIDEO_GALLERY => buildMusicVideoOrder(MUSIC_VIDEO_GALLERY);
 
 // Priority "wow factor" tools that blow minds - these play FIRST
 const WOW_FACTOR_TOOLS = new Set([

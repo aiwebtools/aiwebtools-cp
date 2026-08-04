@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { ArrowLeft, SkipForward, SkipBack, Volume2, VolumeX, Home, Search, X } from "lucide-react";
-import { MUSIC_VIDEO_GALLERY } from "@/components/PinnedVideoPlayer";
+import { buildMusicVideoOrder, MUSIC_VIDEO_GALLERY } from "@/components/PinnedVideoPlayer";
 import mtvAiWebToolsLogo from "@/assets/mtv-aiwebtools-logo.png";
 import GlobalSearchBar from "@/components/LazyGlobalSearchBar";
 
@@ -42,7 +42,7 @@ const MusicStream = () => {
   // meant the same shuffled-position-0 video felt biased toward "first".
   const playlist = useMemo(() => {
     void newSessionShuffleToken();
-    return shuffle(MUSIC_VIDEO_GALLERY);
+    return buildMusicVideoOrder(MUSIC_VIDEO_GALLERY);
   }, []);
 
   const [idx, setIdx] = useState(() => {
