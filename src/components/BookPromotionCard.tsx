@@ -9,6 +9,7 @@ import { triggerPublicDownload } from "@/utils/downloads";
 import { useNavigate } from "react-router-dom";
 import { playMtvFlash } from "@/utils/mtvFlash";
 import mtvAiWebToolsLogo from "@/assets/mtv-aiwebtools-logo.png";
+import { buildMusicVideoOrder } from "@/components/PinnedVideoPlayer";
 
 // Utility function to shuffle array
 const shuffleArray = <T,>(array: T[]): T[] => {
@@ -260,6 +261,8 @@ const BookPromotionCard = () => {
   const originalVideos = [
     // ── MTV LINE-UP (newest drops — play FIRST in the carousel) ──
     { id: "IWijCkZUmrg", title: "AIWEBTOOLS – Newest Drop | Official AI Music Video | AIWebTools.ai", gradient: "from-cyan-500/20 to-purple-500/20" },
+    { id: "RSovmNDLSnM", title: "Relatable Movie Scenes | Official AI Music Video | AIWebTools.ai", gradient: "from-emerald-500/20 to-cyan-500/20" },
+    { id: "KB1sRHXUUps", title: "Truth So Ya Know | Official AI Music Video | AIWebTools.ai", gradient: "from-fuchsia-500/20 to-purple-500/20" },
     { id: "LXXPC-1lgOQ", title: "AIWEBTOOLS – Newest Drop | Official AI Music Video | AIWebTools.ai", gradient: "from-fuchsia-500/20 to-cyan-500/20" },
     { id: "rXMTjCFycPM", title: "AIWEBTOOLS – Newest Drop | Official AI Music Video | AIWebTools.ai", gradient: "from-cyan-500/20 to-fuchsia-500/20" },
     { id: "cxJMzuv_ccQ", title: "AIWEBTOOLS – Newest Drop | Official AI Music Video | AIWebTools.ai", gradient: "from-fuchsia-500/20 to-cyan-500/20" },
@@ -270,7 +273,20 @@ const BookPromotionCard = () => {
     { id: "H9PTc_hzsM8", title: "AIWEBTOOLS Interlude | AI Music Video Short | AIWebTools.ai", gradient: "from-cyan-500/20 to-emerald-500/20" },
     { id: "IAP77Tl0izc", title: "AIWEBTOOLS Interlude | AI Music Video Short | AIWebTools.ai", gradient: "from-indigo-500/20 to-cyan-500/20" },
     { id: "3wA9elcCEnE", title: "AIWEBTOOLS Interlude | AI Music Video Short | AIWebTools.ai", gradient: "from-purple-500/20 to-fuchsia-500/20" },
-    { id: "KB1sRHXUUps", title: "AIWEBTOOLS Interlude | AI Music Video Short | AIWebTools.ai", gradient: "from-fuchsia-500/20 to-purple-500/20" },
+    { id: "mAsHosw2kwM", title: "August 3 Visions I | AI Music Video Short | AIWebTools.ai", gradient: "from-purple-500/20 to-cyan-500/20" },
+    { id: "IvFZGb7t0aw", title: "August 3 Visions II | AI Music Video Short | AIWebTools.ai", gradient: "from-fuchsia-500/20 to-indigo-500/20" },
+    { id: "rByfuaw2BL8", title: "August 3 Visions III | AI Music Video Short | AIWebTools.ai", gradient: "from-cyan-500/20 to-emerald-500/20" },
+    { id: "4mMGTriG0Fc", title: "August 3 Visions IV | AI Music Video Short | AIWebTools.ai", gradient: "from-indigo-500/20 to-cyan-500/20" },
+    { id: "Pcs6KNM0loI", title: "August 3 Visions V | AI Music Video Short | AIWebTools.ai", gradient: "from-purple-500/20 to-fuchsia-500/20" },
+    { id: "YHNRvs6g7zg", title: "August 3 Visions VI | AI Music Video Short | AIWebTools.ai", gradient: "from-cyan-500/20 to-blue-500/20" },
+    { id: "E9MiAmubY7I", title: "August 3 Visions VII | AI Music Video Short | AIWebTools.ai", gradient: "from-emerald-500/20 to-teal-500/20" },
+    { id: "j1O8TpqWWnU", title: "August 3 Visions VIII | AI Music Video Short | AIWebTools.ai", gradient: "from-rose-500/20 to-fuchsia-500/20" },
+    { id: "-k9D5MyN2Y8", title: "August 3 Visions IX | AI Music Video Short | AIWebTools.ai", gradient: "from-amber-500/20 to-orange-500/20" },
+    { id: "qIFhp8gudjw", title: "August 3 Visions X | AI Music Video Short | AIWebTools.ai", gradient: "from-violet-500/20 to-indigo-500/20" },
+    { id: "oUeh_EYb-HM", title: "August 3 Visions XI | AI Music Video Short | AIWebTools.ai", gradient: "from-sky-500/20 to-cyan-500/20" },
+    { id: "8Ax-GpQJ2ZQ", title: "August 3 Visions XII | AI Music Video Short | AIWebTools.ai", gradient: "from-lime-500/20 to-emerald-500/20" },
+    { id: "EcQnby6_EhA", title: "August 3 Visions XIII | AI Music Video Short | AIWebTools.ai", gradient: "from-fuchsia-500/20 to-rose-500/20" },
+    { id: "dno3F-SQr2I", title: "August 3 Visions XIV | AI Music Video Short | AIWebTools.ai", gradient: "from-indigo-500/20 to-cyan-500/20" },
     { id: "PktMrkD89fs", title: "AIWEBTOOLS Interlude | AI Commercial Short | AIWebTools.ai", gradient: "from-cyan-500/20 to-blue-500/20" },
     { id: "Lc0JUBiX6Zo", title: "AIWEBTOOLS Interlude | AI Music Video Short | AIWebTools.ai", gradient: "from-emerald-500/20 to-teal-500/20" },
     { id: "uGLay-OBpxg", title: "AIWEBTOOLS Interlude | AI Music Video Short | AIWebTools.ai", gradient: "from-rose-500/20 to-fuchsia-500/20" },
@@ -775,14 +791,14 @@ const BookPromotionCard = () => {
   const videos = useMemo(() => {
     // Defensive dedupe by video id so the same clip can never appear twice
     const seen = new Set<string>();
-    const uniqueVideos = originalVideos.filter(v => {
+    const uniqueVideos = originalVideos.filter((v): v is typeof originalVideos[number] & { id: string } => {
+      if (!v.id) return false;
       if (seen.has(v.id)) return false;
       seen.add(v.id);
       return true;
     });
-    // Pin the longest, most cinematic 9:16 vertical music videos at the FRONT
-    // of the lineup. FHEWZkP_3ew is a Suno-style lyric track, so it's NOT
-    // pinned to the front — it joins the lyric/audio tracks at the back.
+    // Build a fresh randomized queue per visit while systematically spacing
+    // shorts after every two long-form videos.
     const verticalMusicVideoIds = [
       // MTV Lineup — newest drops, pinned to the very FRONT of the reel
       "IWijCkZUmrg",
@@ -916,7 +932,7 @@ const BookPromotionCard = () => {
 
     const middle = uniqueVideos.filter(v => !verticalSet.has(v.id) && !sunoLyricIds.has(v.id));
     const tail   = uniqueVideos.filter(v => sunoLyricIds.has(v.id));
-    return [...verticals, ...shuffleArray(middle), ...shuffleArray(tail)];
+    return buildMusicVideoOrder([...verticals, ...middle, ...tail]);
   }, []);
 
   const videosPerPage = 3;

@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { ArrowLeft, SkipForward, SkipBack, Volume2, VolumeX, Home, Search, X } from "lucide-react";
-import { MUSIC_VIDEO_GALLERY } from "@/components/PinnedVideoPlayer";
+import { buildMusicVideoOrder, MUSIC_VIDEO_GALLERY } from "@/components/PinnedVideoPlayer";
 import mtvAiWebToolsLogo from "@/assets/mtv-aiwebtools-logo.png";
 import GlobalSearchBar from "@/components/LazyGlobalSearchBar";
 
@@ -42,13 +42,12 @@ const MusicStream = () => {
   // meant the same shuffled-position-0 video felt biased toward "first".
   const playlist = useMemo(() => {
     void newSessionShuffleToken();
-    return shuffle(MUSIC_VIDEO_GALLERY);
+    return buildMusicVideoOrder(MUSIC_VIDEO_GALLERY);
   }, []);
 
-  const [idx, setIdx] = useState(() => {
-    const len = MUSIC_VIDEO_GALLERY.length || 1;
-    return Math.floor(Math.random() * len);
-  });
+  // The queue itself is freshly randomized; begin at its first item so the
+  // two-long / one-short cadence is preserved from the moment the theater opens.
+  const [idx, setIdx] = useState(0);
   const current = playlist[idx % playlist.length];
 
   // Guards so YouTube can't double-fire "ended" / fire it during a buffer

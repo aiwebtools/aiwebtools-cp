@@ -5,6 +5,7 @@ import { Button } from "../components/ui/button";
 import ImprovedSEOHead from "@/components/ImprovedSEOHead";
 import { Helmet } from "react-helmet-async";
 import { getConsentAccepted, setConsentAccepted } from "@/utils/consent";
+import disclaimerWelcomeAudio from "@/assets/audio/disclaimer-welcome-2026.mp3.asset.json";
 
 // Creative rotating welcome messages - Spiritual Light, Matrix/AI, Humor themed
 // PRIORITY: Original 67 quotes first, then 114 Gospel of Thomas inspired quotes
@@ -326,7 +327,7 @@ const DisclaimerGate: React.FC = () => {
         try { w.__aiwtDisclaimerAudio.pause(); } catch {}
         w.__aiwtDisclaimerAudio = null;
       }
-      const audio = new Audio('/welcome-disclaimer.mp3');
+      const audio = new Audio(disclaimerWelcomeAudio.url);
       audio.volume = 0.8;
       audio.preload = 'none';
       w.__aiwtDisclaimerAudio = audio;
