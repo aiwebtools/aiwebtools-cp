@@ -791,7 +791,8 @@ const BookPromotionCard = () => {
   const videos = useMemo(() => {
     // Defensive dedupe by video id so the same clip can never appear twice
     const seen = new Set<string>();
-    const uniqueVideos = originalVideos.filter(v => {
+    const uniqueVideos = originalVideos.filter((v): v is typeof originalVideos[number] & { id: string } => {
+      if (!v.id) return false;
       if (seen.has(v.id)) return false;
       seen.add(v.id);
       return true;
