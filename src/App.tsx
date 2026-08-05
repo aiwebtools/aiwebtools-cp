@@ -45,7 +45,9 @@ async function importWithRetry<T>(
 
 // Lazy load - secondary pages for faster initial load
 const Index = lazyWithRetry(() => import("./pages/Index"));
-const ToolDetail = lazyWithRetry(() => import("./pages/ToolDetail"));
+// Direct tool URLs are a critical acquisition path. Keep this route eager so a
+// stale or slow lazy chunk can never strand visitors on a loading shell.
+import ToolDetail from "./pages/ToolDetail";
 const CategoryPage = lazyWithRetry(() => import("./pages/CategoryPage"));
 const MainCategoryPage = lazyWithRetry(() => import("./pages/MainCategoryPage"));
 const SimilarToolsPage = lazyWithRetry(() => import("./pages/SimilarTools"));
@@ -298,9 +300,8 @@ const AnimatedRoutes = () => {
       <Routes location={location}>
         <Route path="/category/:categoryName" element={<RouteReadySignal><CategoryPage /></RouteReadySignal>} />
         <Route path="/main-category/:mainCategoryName" element={<Suspense fallback={categoryFallback}><RouteReadySignal><MainCategoryPage /></RouteReadySignal></Suspense>} />
-        {/* Tool detail routes: no fallback — instant nav like before */}
-        <Route path="/tool/:toolId" element={<Suspense fallback={toolFallback}><RouteReadySignal><ToolDetail /></RouteReadySignal></Suspense>} />
-        <Route path="/:toolSlug" element={<Suspense fallback={toolFallback}><RouteReadySignal><ToolDetail /></RouteReadySignal></Suspense>} />
+        <Route path="/tool/:toolId" element={<RouteReadySignal><ToolDetail /></RouteReadySignal>} />
+        <Route path="/:toolSlug" element={<RouteReadySignal><ToolDetail /></RouteReadySignal>} />
         <Route path="/privacy-policy" element={<RouteReadySignal><PrivacyPolicy /></RouteReadySignal>} />
         <Route path="/similar-tools/:toolId" element={<RouteReadySignal><SimilarToolsPage /></RouteReadySignal>} />
         <Route path="/ai-tools-hub" element={<RouteReadySignal><AIToolsHub /></RouteReadySignal>} />
@@ -394,8 +395,8 @@ const PostAcceptBoot: React.FC = () => {
       // the loading skeleton. The ALL AI TOOLS path now has its own light shell.
       void Promise.allSettled(
         isTouchPhone
-          ? [import("./pages/ToolDetail"), import("./pages/AllToolsFastPage")]
-          : [import("./pages/ToolDetail"), import("./pages/MainCategoryPage")]
+          ? [import("./pages/AllToolsFastPage")]
+          : [import("./pages/MainCategoryPage")]
       );
     };
 

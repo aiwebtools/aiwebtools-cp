@@ -111,20 +111,25 @@ const GlobalSearchResults = ({
                     className={`relative overflow-hidden w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-gradient-to-br ${categoryStyle.bg} ${categoryStyle.border} border flex items-center justify-center text-sm sm:text-base flex-shrink-0 shadow-lg ${categoryStyle.glow} group-hover:scale-110`}
                     style={{ transition: 'none' }}
                   >
-                    <img
-                      src={heroImage}
-                      alt={`${tool.title} AI tool thumbnail`}
-                      loading={index < 12 ? "eager" : "lazy"}
-                      fetchPriority={index < 4 ? "high" : "auto"}
-                      decoding="async"
-                      width={40}
-                      height={40}
-                      className="absolute inset-0 h-full w-full rounded-lg object-cover"
-                      onError={(event) => {
-                        const image = event.currentTarget;
-                        if (!image.src.endsWith("/og-default.jpg")) image.src = "/og-default.jpg";
-                      }}
-                    />
+                    <span aria-hidden="true">{categoryStyle.icon}</span>
+                    {heroImage ? (
+                      <img
+                        src={heroImage}
+                        alt={`${tool.title} AI tool thumbnail`}
+                        loading={index < 12 ? "eager" : "lazy"}
+                        fetchPriority={index < 4 ? "high" : "auto"}
+                        decoding="async"
+                        referrerPolicy="no-referrer"
+                        width={40}
+                        height={40}
+                        className="absolute inset-0 h-full w-full rounded-lg object-cover"
+                        onError={(event) => {
+                          // Reveal this tool's category icon instead of replacing every
+                          // failed image with the same generic AI Web Tools artwork.
+                          event.currentTarget.hidden = true;
+                        }}
+                      />
+                    ) : null}
                   </div>
                   <div className="flex-1 min-w-0">
                     <h3 className="font-medium text-cyan-100 text-xs sm:text-sm leading-tight mb-1 group-hover:text-cyan-300 transition-colors">
