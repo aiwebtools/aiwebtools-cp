@@ -21,7 +21,7 @@ const SEOHead = ({
   title,
   description = seoConfig.description,
   keywords = seoConfig.keywords,
-  image = '/placeholder.svg',
+  image = '/og-default.jpg',
   url = seoConfig.siteUrl,
   type = 'website',
   structuredData,
@@ -126,7 +126,7 @@ const SEOHead = ({
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
       <meta property="og:image:alt" content="AI WEB TOOLS - The Ultimate AI Tools Directory with 1000+ Curated AI Applications" />
-      <meta property="og:image:type" content="image/png" />
+      <meta property="og:image:type" content="image/jpeg" />
       <meta property="og:image:secure_url" content={fullImage} />
       <meta property="og:url" content={canonical} />
       <meta property="og:type" content={type} />
@@ -201,7 +201,7 @@ const SEOHead = ({
       {/* Resource Hints for Performance */}
       <link rel="preload" href="/favicon.ico" as="image" type="image/x-icon" />
       <link rel="preload" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500;700&display=swap" as="style" />
-      <link rel="prefetch" href="/placeholder.svg" />
+      <link rel="prefetch" href="/og-default.jpg" />
       
       {/* Alternate Languages and Feeds */}
       <link rel="alternate" hrefLang="en" href={canonical} />
