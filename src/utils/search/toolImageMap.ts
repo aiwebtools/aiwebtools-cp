@@ -26,15 +26,54 @@ export const primeToolImageMap = (tools: unknown) => {
   cache = buildMap(tools as Array<{ title?: string; imageUrl?: string }>);
   listeners.forEach((fn) => fn(cache as Map<string, string>));
   listeners.clear();
+  resolveRawAssetPaths();
 };
 
+/**
+ * Some entries store hero images as raw "/src/assets/..." strings, which only work in dev.
+ * Swap them for real bundled URLs once the (lazy) asset map is available.
+ */
+let assetsResolved = false;
+const resolveRawAssetPaths = () => {
+  if (assetsResolved || !cache) return;
+  assetsResolved = true;
+  import("./toolAssetUrls")
+    .then(({ assetUrlByPath }) => {
+      if (!cache) return;
+      let changed = false;
+      cache.forEach((url, key) => {
+        if (!url.startsWith("/src/")) return;
+        const resolved = assetUrlByPath[url];
+        if (resolved) {
+          cache!.set(key, resolved);
+          changed = true;
+        } else {
+          cache!.delete(key);
+          changed = true;
+        }
+      });
+      if (changed) {
+        const snapshot = new Map(cache);
+        cache = snapshot;
+        readyListeners.forEach((fn) => fn(snapshot));
+      }
+    })
+    .catch(() => {});
+};
+
+const readyListeners = new Set<(map: Map<string, string>) => void>();
+
 export const onToolImageMapReady = (fn: (map: Map<string, string>) => void) => {
+  readyListeners.add(fn);
   if (cache) {
     fn(cache);
-    return () => {};
+    return () => readyListeners.delete(fn);
   }
   listeners.add(fn);
-  return () => listeners.delete(fn);
+  return () => {
+    listeners.delete(fn);
+    readyListeners.delete(fn);
+  };
 };
 
 export const loadToolImageMap = (): Promise<Map<string, string>> => {
