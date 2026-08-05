@@ -679,8 +679,9 @@ combinedTools = combinedTools.map(tool => {
     return {
       ...tool,
       directUrl: "https://college-degree-gpt.lovable.app/?via=aiwebtools",
-      videoUrl: "https://youtu.be/VkD_dX8kPy0",
-      imageUrl: "https://i.ytimg.com/vi/VkD_dX8kPy0/hqdefault.jpg",
+      videoUrl: "https://www.youtube.com/watch?v=Cd8uvD-smlM",
+      imageUrl: "https://i.ytimg.com/vi/Cd8uvD-smlM/hqdefault.jpg",
+      description: "College Degree GPT teaches every college class for any degree you choose, mirroring the structure of your selected institution or university. It provides a complete, in-depth educational experience while clearly stating that it does not issue an accredited degree.",
       category: "Education & Learning",
       isFree: true,
     };
@@ -688,7 +689,7 @@ combinedTools = combinedTools.map(tool => {
   if (tool.title === "Seedance 1.5 Pro" || tool.title === "Seedance 2.0") {
     return {
       ...tool,
-      directUrl: "https://www.seedance.ai/?via=aiwebtools",
+      directUrl: "https://seed.bytedance.com/en/?via=aiwebtools",
     };
   }
   if (tool.title === "C Dance AI") {
