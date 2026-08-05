@@ -30,9 +30,11 @@ const GlobalSearchResults = ({
   const [imageMap, setImageMap] = useState<Map<string, string> | null>(() => getToolImageMapSync());
 
   useEffect(() => {
+    console.log("[imgmap] effect", !!imageMap);
     if (imageMap) return;
     let cancelled = false;
     loadToolImageMap().then((map) => {
+      console.log("[imgmap] loaded", map.size, cancelled);
       if (!cancelled) setImageMap(map);
     });
     return () => {
