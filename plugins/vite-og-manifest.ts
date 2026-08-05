@@ -88,9 +88,12 @@ export function viteOGManifest(): Plugin {
         );
         
         console.log(`📋 OG Manifest: Found ${toolEntries.length} tools.`);
-        
-        // Now generate the OG pages directly
-        generateOGPages(toolEntries, distDir);
+
+        // IMPORTANT: We intentionally do NOT emit static per-slug HTML pages here.
+        // Those shadow files sat at dist/<slug>/index.html and took priority over the
+        // SPA fallback, and their `location.replace('/<slug>')` bounced to themselves,
+        // creating an infinite reload loop on every tool page. The SPA (React Router
+        // + SEOHead) renders tool pages and their meta tags instead.
         
       } catch (error) {
         console.error('⚠️ OG Manifest generation error:', error);
@@ -98,121 +101,4 @@ export function viteOGManifest(): Plugin {
       }
     }
   };
-}
-
-function generateToolSlug(title: string): string {
-  return title
-    .toLowerCase()
-    .replace(/[^\w\s-]/g, '')
-    .replace(/\s+/g, '-')
-    .replace(/-+/g, '-')
-    .replace(/^-|-$/g, '')
-    .substring(0, 50);
-}
-
-function escapeHtml(text: string): string {
-  return text
-    .replace(/&/g, '&amp;')
-    .replace(/"/g, '&quot;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;');
-}
-
-function generateOGPages(
-  tools: Array<{ title: string; description: string; category?: string }>,
-  distDir: string
-) {
-  const SITE_URL = 'https://aitools.studio';
-  const SITE_NAME = 'AIWEBTOOLS.AI - #1 AI Tools Directory';
-  const DEFAULT_IMAGE = `${SITE_URL}/social-thumbnail.png`;
-  
-  const usedSlugs = new Set<string>();
-  let generated = 0;
-
-  for (const tool of tools) {
-    let slug = generateToolSlug(tool.title);
-    if (!slug) continue;
-    
-    let uniqueSlug = slug;
-    let counter = 1;
-    while (usedSlugs.has(uniqueSlug)) {
-      uniqueSlug = `${slug}-${counter}`;
-      counter++;
-    }
-    usedSlugs.add(uniqueSlug);
-
-    const toolDir = path.join(distDir, uniqueSlug);
-    
-    // Don't overwrite if SPA already created this path
-    const indexPath = path.join(toolDir, 'index.html');
-    if (fs.existsSync(indexPath)) {
-      // Read existing and inject OG tags if missing
-      continue;
-    }
-
-    fs.mkdirSync(toolDir, { recursive: true });
-
-    const pageUrl = `${SITE_URL}/${uniqueSlug}`;
-    const title = `${tool.title} - AI Web Tools | AIWEBTOOLS.AI`;
-    const desc = tool.description.substring(0, 160);
-
-    const html = `<!DOCTYPE html>
-<html lang="en" prefix="og: https://ogp.me/ns#">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>${escapeHtml(title)}</title>
-<meta name="description" content="${escapeHtml(desc)}">
-
-<!-- Open Graph -->
-<meta property="og:type" content="website">
-<meta property="og:url" content="${pageUrl}">
-<meta property="og:title" content="${escapeHtml(title)}">
-<meta property="og:description" content="${escapeHtml(desc)}">
-<meta property="og:image" content="${DEFAULT_IMAGE}">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="${escapeHtml(tool.title)}">
-<meta property="og:site_name" content="${SITE_NAME}">
-<meta property="og:locale" content="en_US">
-
-<!-- Twitter -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:url" content="${pageUrl}">
-<meta name="twitter:title" content="${escapeHtml(title)}">
-<meta name="twitter:description" content="${escapeHtml(desc)}">
-<meta name="twitter:image" content="${DEFAULT_IMAGE}">
-<meta name="twitter:site" content="@aiwebtools">
-
-<link rel="canonical" href="${pageUrl}">
-<meta name="robots" content="index,follow,max-image-preview:large">
-
-<script type="application/ld+json">
-${JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  name: tool.title,
-  description: tool.description.substring(0, 300),
-  url: pageUrl,
-  applicationCategory: tool.category || "AI Tool",
-  operatingSystem: "Web Browser",
-  publisher: { "@type": "Organization", name: "AI WEB TOOLS", url: SITE_URL }
-})}
-</script>
-
-<script>window.location.replace("/${uniqueSlug}");</script>
-<noscript><meta http-equiv="refresh" content="0;url=/${uniqueSlug}"></noscript>
-</head>
-<body>
-<h1>${escapeHtml(tool.title)}</h1>
-<p>${escapeHtml(tool.description.substring(0, 300))}</p>
-<a href="${pageUrl}">View on AIWEBTOOLS.AI</a>
-</body>
-</html>`;
-
-    fs.writeFileSync(indexPath, html, 'utf-8');
-    generated++;
-  }
-
-  console.log(`✅ OG Pages: Generated ${generated} social sharing preview pages.`);
 }
