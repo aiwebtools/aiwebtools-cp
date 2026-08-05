@@ -1,7 +1,7 @@
 import { useParams, Navigate } from "react-router-dom";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { allTools } from "@/data/toolsData";
-import { getToolIndexBySlug, generateToolSlug } from "@/utils/urlGenerator";
+import { generateToolSlug } from "@/utils/urlGenerator";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SimilarTools from "@/components/SimilarTools";
@@ -103,7 +103,7 @@ const ToolDetail = () => {
   // Debug logging removed for production performance
 
   if (!tool) {
-    return <ToolNotFound toolIndex={toolIndex} totalTools={allTools.length} />;
+    return <ToolNotFound requestedSlug={toolSlug || toolId} totalTools={allTools.length} />;
   }
 
   const defaultRatings = [4.1, 4.2, 4.3, 4.4];

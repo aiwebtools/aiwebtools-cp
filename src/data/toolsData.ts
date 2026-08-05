@@ -675,6 +675,28 @@ combinedTools = combinedTools.map(tool => {
   if (tool.title === "Manicheism GPT") {
     return { ...tool, imageUrl: "/images/manicheism-gpt-hero.png", isFree: true };
   }
+  if (tool.title === "COLLEGE DEGREE GPT") {
+    return {
+      ...tool,
+      directUrl: "https://college-degree-gpt.lovable.app/?via=aiwebtools",
+      videoUrl: "https://youtu.be/VkD_dX8kPy0",
+      imageUrl: "https://i.ytimg.com/vi/VkD_dX8kPy0/hqdefault.jpg",
+      category: "Education & Learning",
+      isFree: true,
+    };
+  }
+  if (tool.title === "Seedance 1.5 Pro" || tool.title === "Seedance 2.0") {
+    return {
+      ...tool,
+      directUrl: "https://www.seedance.ai/?via=aiwebtools",
+    };
+  }
+  if (tool.title === "C Dance AI") {
+    return {
+      ...tool,
+      directUrl: "https://seevio.ai/?via=aiwebtools",
+    };
+  }
   return tool;
 });
 

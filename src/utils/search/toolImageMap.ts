@@ -16,10 +16,9 @@ const getYouTubeThumbnail = (videoUrl?: string): string | undefined => {
   return videoId ? `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg` : undefined;
 };
 
-const getMediaImage = (tool: { imageUrl?: string; videoUrl?: string }): string =>
+const getMediaImage = (tool: { imageUrl?: string; videoUrl?: string }): string | undefined =>
   (isUsable(tool.imageUrl) && !tool.imageUrl?.startsWith("/src/") ? tool.imageUrl : undefined) ??
-  getYouTubeThumbnail(tool.videoUrl) ??
-  "/og-default.jpg";
+  getYouTubeThumbnail(tool.videoUrl);
 
 export const getToolImageMapSync = () => cache;
 
@@ -30,9 +29,9 @@ const buildMap = (tools: Array<{ title?: string; imageUrl?: string; videoUrl?: s
     const key = tool.title.trim().toLowerCase();
     const candidate = getMediaImage(tool);
     const current = map.get(key);
-    // Duplicate records are common. Keep a real image/video thumbnail over
-    // the branded fallback, while preserving the first stable real asset.
-    if (!current || current === "/og-default.jpg") map.set(key, candidate);
+    // Duplicate records are common. Preserve the first real media asset and
+    // never force the same branded placeholder onto unrelated tools.
+    if (!current && candidate) map.set(key, candidate);
   }
   return map;
 };
@@ -109,8 +108,8 @@ export const loadToolImageMap = (): Promise<Map<string, string>> => {
 export const getToolImage = (
   tool: { title?: string; imageUrl?: string; videoUrl?: string } | null | undefined,
   map: Map<string, string> | null,
-): string => {
-  if (!tool) return "/og-default.jpg";
+): string | undefined => {
+  if (!tool) return undefined;
   const fromMap = map && tool.title ? map.get(tool.title.trim().toLowerCase()) : undefined;
   if (isUsable(tool.imageUrl) && !tool.imageUrl?.startsWith("/src/")) return tool.imageUrl as string;
   return fromMap ?? getMediaImage(tool);
