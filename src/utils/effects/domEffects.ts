@@ -328,7 +328,9 @@ export const openDestinationUrl = (destinationUrl: string): void => {
     return;
   }
 
-  const url = destinationUrl.trim();
+  // Strip affiliate params for destinations that reject them
+  // (v0.dev returns ERR_BLOCKED_BY_RESPONSE on ?via=aiwebtools).
+  const url = sanitizeExternalUrl(destinationUrl.trim());
 
   // Facebook/Instagram/TikTok in-app browsers often block or stall target=_blank.
   // Navigate same-tab immediately so menu/tool taps never appear frozen.
