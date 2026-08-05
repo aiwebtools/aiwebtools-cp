@@ -1,3 +1,4 @@
+import { sanitizeExternalUrl } from '@/utils/links/linkSafety';
 
 // Dynamic mobile detection - check at runtime, not module load
 const checkIsMobile = () => typeof window !== 'undefined' && window.innerWidth < 768;
