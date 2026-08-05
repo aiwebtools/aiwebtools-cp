@@ -17,6 +17,7 @@ import "@/styles/loading-cube.css";
 import ScrollProgressIndicator from "@/components/ScrollProgressIndicator";
 import { getConsentAccepted } from "@/utils/consent";
 import { lazyWithRetry } from "@/utils/lazyWithRetry";
+import disclaimerWelcomeAudio from "@/assets/audio/disclaimer-welcome-2026.mp3.asset.json";
 import ConfirmSubscriptionHandler from "@/components/ConfirmSubscriptionHandler";
 
 // Eager load only the disclaimer gate; lazy-load heavy app routes to avoid black-screen startup
@@ -110,7 +111,7 @@ const WelcomeNeoVoice = () => {
 
       timeoutRef.current = window.setTimeout(() => {
         try {
-          const audio = new Audio('/welcome-neo.mp3');
+          const audio = new Audio(disclaimerWelcomeAudio.url);
           audio.volume = 0.7;
           audio.preload = 'none';
           void audio.play().catch(() => {

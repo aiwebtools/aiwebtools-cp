@@ -316,6 +316,14 @@
         animation:aiwt-shimmer 700ms ease-in-out infinite; }
       .aiwt-progress-segments { position:absolute; inset:0; display:flex; pointer-events:none; }
       .aiwt-seg { flex:1; border-right:1px solid rgba(0,0,0,.42); }
+      /* Always-on indeterminate sweep so the track never looks frozen while
+         the app finishes booting (no dead screen, ever). */
+      .aiwt-progress-track::after { content:''; position:absolute; inset:0; pointer-events:none;
+        background:linear-gradient(90deg, transparent 0%, rgba(0,255,65,.32) 45%, rgba(140,255,190,.5) 50%, rgba(0,255,65,.32) 55%, transparent 100%);
+        transform:translateX(-100%); animation:aiwt-track-sweep 1500ms linear infinite; }
+      @keyframes aiwt-track-sweep { to { transform:translateX(100%); } }
+      #aiwt-progress-label { animation:aiwt-label-pulse 1600ms ease-in-out infinite; }
+      @keyframes aiwt-label-pulse { 0%,100%{opacity:.62} 50%{opacity:1} }
       .aiwt-stats-row { margin-top:clamp(10px,1.8vw,18px); display:grid; grid-template-columns:repeat(4,1fr); gap:clamp(8px,1.5vw,16px); }
       .aiwt-stat-box { border:1px solid rgba(0,255,65,.22); padding:clamp(8px,1.3vw,12px); background:rgba(0,10,0,.58);
         text-align:center; box-shadow:inset 0 0 16px rgba(0,25,0,.8); }
@@ -489,6 +497,14 @@
           };
 
           // RAF-based percentage counter (syncs with 8s CSS progressGrow timing)
+          var STANDBY_LINES = [
+            'OPTIMIZING RENDER PIPELINE',
+            'STREAMING TOOL INDEX',
+            'CALIBRATING SEARCH VECTORS',
+            'ALIGNING PORTAL GATEWAY',
+            'ALMOST THERE — HOLD TIGHT'
+          ];
+          var standbyIdx = 0, lastStandbyAt = 0;
           const updatePct = () => {
             if (removed || finishing) return;
             var elapsed = performance.now() - startTime;
@@ -502,6 +518,17 @@
             else p = 90 + ((routeReady ? 9 : 7) * ((t - 0.75) / 0.25));
             if (!routeReady) p = Math.min(p, 97);
             if (pct) pct.textContent = Math.round(p) + '%';
+            // Keep the label alive with rotating standby copy whenever the bar
+            // is parked waiting on the app — motion must never stop.
+            if (!routeReady && p >= 96.5) {
+              var now = performance.now();
+              if (now - lastStandbyAt > 1400) {
+                lastStandbyAt = now;
+                var lbl = document.getElementById('aiwt-progress-label');
+                if (lbl) lbl.textContent = STANDBY_LINES[standbyIdx % STANDBY_LINES.length];
+                standbyIdx++;
+              }
+            }
             // JS-driven width as a fallback for mobile browsers that pause
             // long CSS animations in the background (iOS Safari throttles).
             if (bar) bar.style.width = Math.round(p) + '%';
