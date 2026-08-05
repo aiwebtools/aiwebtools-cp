@@ -497,6 +497,14 @@
           };
 
           // RAF-based percentage counter (syncs with 8s CSS progressGrow timing)
+          var STANDBY_LINES = [
+            'OPTIMIZING RENDER PIPELINE',
+            'STREAMING TOOL INDEX',
+            'CALIBRATING SEARCH VECTORS',
+            'ALIGNING PORTAL GATEWAY',
+            'ALMOST THERE — HOLD TIGHT'
+          ];
+          var standbyIdx = 0, lastStandbyAt = 0;
           const updatePct = () => {
             if (removed || finishing) return;
             var elapsed = performance.now() - startTime;
