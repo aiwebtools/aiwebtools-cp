@@ -1,4 +1,5 @@
 
+import { primeToolImageMap } from "@/utils/search/toolImageMap";
 import { useState, useEffect, useRef, useCallback, useMemo, startTransition } from "react";
 import { useNavigate } from "react-router-dom";
 import { createTimePortalEffect } from "@/utils/timeEffects";
@@ -1576,6 +1577,7 @@ export const useGlobalSearch = () => {
       const attempt = (tries: number, delayMs: number): Promise<any[]> =>
         import("@/data/toolsData")
           .then(({ allTools }) => {
+            primeToolImageMap(allTools);
             toolsRef.current = allTools;
             setTools(allTools);
             return allTools;

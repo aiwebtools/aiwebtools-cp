@@ -1,9 +1,10 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { ChevronUp, ChevronDown } from "lucide-react";
 import { getToolCategoryColor } from "@/utils/search/categoryColors";
 import { generateToolSlug } from "@/utils/urlGenerator";
+import { getToolImage, getToolImageMapSync, onToolImageMapReady } from "@/utils/search/toolImageMap";
 interface GlobalSearchResultsProps {
   searchResults: any[];
   displayedCount: number;
@@ -26,6 +27,12 @@ const GlobalSearchResults = ({
   const displayedResults = searchResults.slice(0, displayedCount);
   const hasMoreToLoad = displayedCount < searchResults.length || isLoadingMore;
   const scrollRef = useRef<HTMLDivElement>(null);
+  const [imageMap, setImageMap] = useState<Map<string, string> | null>(() => getToolImageMapSync());
+
+  useEffect(() => {
+    if (imageMap) return;
+    return onToolImageMapReady(setImageMap);
+  }, [imageMap]);
   
   // Track if we've passed direct matches into recommendations
   const showingRecommendations = displayedCount > directMatchCount;
@@ -80,6 +87,7 @@ const GlobalSearchResults = ({
             const categoryStyle = getToolCategoryColor(tool);
             
             const toolPath = tool?.title ? `/${generateToolSlug(tool.title)}` : "/main-category/ALL%20AI%20TOOLS";
+            const heroImage = getToolImage(tool, imageMap);
 
             const toolItem = (
               <div
@@ -100,10 +108,22 @@ const GlobalSearchResults = ({
                 <div className="flex min-w-0 flex-1 items-center space-x-3" data-tool-path={toolPath}>
                   {/* Category color-coded icon */}
                   <div 
-                    className={`w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-gradient-to-br ${categoryStyle.bg} ${categoryStyle.border} border flex items-center justify-center text-sm sm:text-base flex-shrink-0 shadow-lg ${categoryStyle.glow} group-hover:scale-110`}
+                    className={`relative overflow-hidden w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-gradient-to-br ${categoryStyle.bg} ${categoryStyle.border} border flex items-center justify-center text-sm sm:text-base flex-shrink-0 shadow-lg ${categoryStyle.glow} group-hover:scale-110`}
                     style={{ transition: 'none' }}
                   >
-                    {categoryStyle.icon}
+                    <span aria-hidden="true">{categoryStyle.icon}</span>
+                    {heroImage && (
+                      <img
+                        src={heroImage}
+                        alt={`${tool.title} logo`}
+                        loading="lazy"
+                        decoding="async"
+                        width={40}
+                        height={40}
+                        className="absolute inset-0 w-full h-full object-cover rounded-lg"
+                        onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }}
+                      />
+                    )}
                   </div>
                   <div className="flex-1 min-w-0">
                     <h3 className="font-medium text-cyan-100 text-xs sm:text-sm leading-tight mb-1 group-hover:text-cyan-300 transition-colors">
