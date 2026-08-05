@@ -95,7 +95,7 @@ export const getToolImage = (
   map: Map<string, string> | null,
 ): string | undefined => {
   if (!tool) return undefined;
-  if (isUsable(tool.imageUrl)) return tool.imageUrl;
-  if (!map || !tool.title) return undefined;
-  return map.get(tool.title.trim().toLowerCase());
+  const fromMap = map && tool.title ? map.get(tool.title.trim().toLowerCase()) : undefined;
+  if (isUsable(tool.imageUrl) && !tool.imageUrl!.startsWith("/src/")) return tool.imageUrl;
+  return fromMap;
 };
