@@ -20,7 +20,8 @@ const ImprovedSEOHead: React.FC<ImprovedSEOHeadProps> = ({
     switch (pageType) {
       case 'tool': {
         const t = tool?.title || 'AI Tool';
-        const full = `${t} — Free ${tool?.category || 'AI'} Tool | AI Web Tools`;
+        const access = tool?.isFree ? 'Free ' : '';
+        const full = `${t} — ${access}${tool?.category || 'AI'} Tool | AI Web Tools`;
         return full.length > 60 ? `${t} | AI Web Tools` : full;
       }
       case 'category':
@@ -40,7 +41,7 @@ const ImprovedSEOHead: React.FC<ImprovedSEOHeadProps> = ({
     switch (pageType) {
       case 'tool': {
         const toolDesc = tool?.description || `Powerful ${tool?.category || 'AI'} tool for productivity and creativity.`;
-        const suffix = ` — Try ${tool?.title} free.`;
+    const suffix = tool?.isFree ? ` — Try ${tool?.title} free.` : ` — Explore ${tool?.title}.`;
         const max = 158;
         const room = max - suffix.length;
         const base = toolDesc.length > room ? toolDesc.substring(0, room - 1).trimEnd() + '…' : toolDesc;
@@ -131,16 +132,17 @@ const ImprovedSEOHead: React.FC<ImprovedSEOHeadProps> = ({
     ...(pageType === 'tool' && {
       "applicationCategory": tool?.category || "Artificial Intelligence",
       "operatingSystem": "Web Browser",
-      "offers": {
+        "offers": {
         "@type": "Offer",
-        "price": "0",
+          ...(tool?.isFree ? { "price": "0" } : {}),
         "priceCurrency": "USD",
         "availability": "https://schema.org/InStock"
       }
     })
   };
 
-  // Video schema for tools with YouTube URLs
+  // Video schema for tools with YouTube URLs. Do not fabricate upload dates
+  // or durations; search engines treat invented media metadata as invalid.
   const videoSchema = pageType === 'tool' && tool?.videoUrl ? (() => {
     const videoId = tool.videoUrl.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/)?.[1];
     if (!videoId) return null;
@@ -151,10 +153,8 @@ const ImprovedSEOHead: React.FC<ImprovedSEOHeadProps> = ({
       "name": `${tool.title} - Demo & Tutorial`,
       "description": tool.description || `Watch how to use ${tool.title}`,
       "thumbnailUrl": `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`,
-      "uploadDate": new Date().toISOString(),
       "contentUrl": tool.videoUrl,
       "embedUrl": `https://www.youtube.com/embed/${videoId}`,
-      "duration": "PT5M",
       "publisher": {
         "@type": "Organization",
         "name": "AI Web Tools",
@@ -202,7 +202,6 @@ const ImprovedSEOHead: React.FC<ImprovedSEOHeadProps> = ({
       <link rel="canonical" href={getCanonicalUrl()} />
       
       {/* Preload Critical Assets */}
-      <link rel="preload" as="image" href={getOgImage()} />
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       
@@ -238,8 +237,8 @@ const ImprovedSEOHead: React.FC<ImprovedSEOHeadProps> = ({
       {pageType === 'tool' && tool && (
         <>
           <meta property="product:category" content={tool.category || 'AI Tools'} />
-          <meta property="product:price:amount" content="0" />
-          <meta property="product:price:currency" content="USD" />
+           {tool.isFree && <meta property="product:price:amount" content="0" />}
+           {tool.isFree && <meta property="product:price:currency" content="USD" />}
           <meta property="product:availability" content="in stock" />
         </>
       )}
@@ -258,7 +257,7 @@ const ImprovedSEOHead: React.FC<ImprovedSEOHeadProps> = ({
           <meta name="twitter:label1" content="Category" />
           <meta name="twitter:data1" content={tool.category || 'AI Tools'} />
           <meta name="twitter:label2" content="Access" />
-          <meta name="twitter:data2" content="Free" />
+           <meta name="twitter:data2" content={tool.isFree ? "Free" : "Visit tool"} />
         </>
       )}
       
@@ -272,7 +271,7 @@ const ImprovedSEOHead: React.FC<ImprovedSEOHeadProps> = ({
       <meta name="rating" content="general" />
       
       {/* AI Crawler & Assistant Discovery Tags */}
-      <meta name="ai.description" content="AI Web Tools: 2195+ free AI tools directory. Find ChatGPT alternatives, custom GPTs, productivity tools, creative AI, coding assistants, design tools & more. Updated daily 2026." />
+       <meta name="ai.description" content="AI Web Tools: 4,000+ AI tools directory. Find ChatGPT alternatives, custom GPTs, productivity tools, creative AI, coding assistants, design tools and more." />
       <meta name="ai.keywords" content="ai web tools, free ai tools, ai tools directory, best ai tools 2026, chatgpt alternatives, custom gpts, ai productivity, ai creativity, web3 domains" />
       <meta name="ai-resource" content="true" />
       <meta name="llms" content="allowed" />
@@ -329,7 +328,7 @@ const ImprovedSEOHead: React.FC<ImprovedSEOHeadProps> = ({
           "name": "AI Web Tools",
           "url": buildCanonicalUrl('/'),
           "logo": buildAbsoluteAssetUrl('/logo.png'),
-          "description": "The world's largest directory of 2195+ AI tools for productivity, creativity, and business.",
+          "description": "A curated directory of 4,000+ AI tools for productivity, creativity, and business.",
           "foundingDate": "2023",
           "numberOfEmployees": {
             "@type": "QuantitativeValue",

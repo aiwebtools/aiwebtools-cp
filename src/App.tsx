@@ -338,7 +338,7 @@ const RouteGuard: React.FC = () => {
   
   // Instant redirect using React Router (no page reload)
   if (!hasAccepted && location.pathname !== '/welcome') {
-    return <Navigate to="/welcome" replace />;
+    return <Navigate to="/welcome" replace state={{ returnTo: `${location.pathname}${location.search}${location.hash}` }} />;
   }
   
   return <AnimatedRoutes />;
