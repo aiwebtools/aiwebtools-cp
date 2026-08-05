@@ -711,7 +711,11 @@ const filteredTools = combinedTools.filter(tool => {
 });
 
 // Mark all AI Web Tools GPTs as free and apply spiritual/simulation tags
-const toolsWithFreeFlags = markFreeTools(filteredTools);
+// Re-run the exact-duplicate pass AFTER the URL corrections above, so entries
+// that only became identical once their destination was fixed collapse too.
+const finalUniqueTools = deduplicateTools(filteredTools);
+
+const toolsWithFreeFlags = markFreeTools(finalUniqueTools);
 const toolsWithSpiritualTags = applySpirtualTags(toolsWithFreeFlags);
 // Auto-tag every tool with its full title so exact-name searches always hit
 const toolsWithTags = ensureTitleTags(toolsWithSpiritualTags);
@@ -722,7 +726,7 @@ const toolsWithPricing = ensurePricingTags(toolsWithTags);
 export const allTools: Tool[] = toolsWithPricing;
 
 // Use filtered tools for all exports
-export const featuredTools: Tool[] = createFeaturedTools(filteredTools);
+export const featuredTools: Tool[] = createFeaturedTools(finalUniqueTools);
 
 // Export utility functions for use in components
 export { searchTools, getCategoriesWithCounts, getToolsByCategory };
