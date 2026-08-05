@@ -4,10 +4,38 @@
  */
 let cache: Map<string, string> | null = null;
 let pending: Promise<Map<string, string>> | null = null;
+const listeners = new Set<(map: Map<string, string>) => void>();
 
 const isUsable = (url?: string) => typeof url === "string" && url.length > 0;
 
 export const getToolImageMapSync = () => cache;
+
+const buildMap = (tools: Array<{ title?: string; imageUrl?: string }>) => {
+  const map = new Map<string, string>();
+  for (const tool of tools) {
+    if (!tool?.title || !isUsable(tool.imageUrl)) continue;
+    const key = tool.title.trim().toLowerCase();
+    if (!map.has(key)) map.set(key, tool.imageUrl as string);
+  }
+  return map;
+};
+
+/** Called by the search engine once the full tools module is loaded. */
+export const primeToolImageMap = (tools: unknown) => {
+  if (cache || !Array.isArray(tools) || tools.length === 0) return;
+  cache = buildMap(tools as Array<{ title?: string; imageUrl?: string }>);
+  listeners.forEach((fn) => fn(cache as Map<string, string>));
+  listeners.clear();
+};
+
+export const onToolImageMapReady = (fn: (map: Map<string, string>) => void) => {
+  if (cache) {
+    fn(cache);
+    return () => {};
+  }
+  listeners.add(fn);
+  return () => listeners.delete(fn);
+};
 
 export const loadToolImageMap = (): Promise<Map<string, string>> => {
   if (cache) return Promise.resolve(cache);
@@ -15,14 +43,8 @@ export const loadToolImageMap = (): Promise<Map<string, string>> => {
 
   pending = import("@/data/toolsData")
     .then(({ allTools }) => {
-      const map = new Map<string, string>();
-      for (const tool of allTools as Array<{ title?: string; imageUrl?: string }>) {
-        if (!tool?.title || !isUsable(tool.imageUrl)) continue;
-        const key = tool.title.trim().toLowerCase();
-        if (!map.has(key)) map.set(key, tool.imageUrl as string);
-      }
-      cache = map;
-      return map;
+      primeToolImageMap(allTools);
+      return cache ?? new Map<string, string>();
     })
     .catch(() => new Map<string, string>());
 
