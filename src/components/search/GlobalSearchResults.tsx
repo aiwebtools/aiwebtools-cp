@@ -4,7 +4,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip
 import { ChevronUp, ChevronDown } from "lucide-react";
 import { getToolCategoryColor } from "@/utils/search/categoryColors";
 import { generateToolSlug } from "@/utils/urlGenerator";
-import { loadToolImageMap, getToolImage, getToolImageMapSync } from "@/utils/search/toolImageMap";
+import { getToolImage, getToolImageMapSync, onToolImageMapReady } from "@/utils/search/toolImageMap";
 interface GlobalSearchResultsProps {
   searchResults: any[];
   displayedCount: number;
@@ -30,16 +30,8 @@ const GlobalSearchResults = ({
   const [imageMap, setImageMap] = useState<Map<string, string> | null>(() => getToolImageMapSync());
 
   useEffect(() => {
-    console.log("[imgmap] effect", !!imageMap);
     if (imageMap) return;
-    let cancelled = false;
-    loadToolImageMap().then((map) => {
-      console.log("[imgmap] loaded", map.size, cancelled);
-      if (!cancelled) setImageMap(map);
-    });
-    return () => {
-      cancelled = true;
-    };
+    return onToolImageMapReady(setImageMap);
   }, [imageMap]);
   
   // Track if we've passed direct matches into recommendations
