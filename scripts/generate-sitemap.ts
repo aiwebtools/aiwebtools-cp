@@ -10,7 +10,6 @@ import { allTools } from "../src/data/toolsData";
 import { generateToolSlug } from "../src/utils/urlGenerator";
 
 const BASE_URL = "https://aiwebtools.app";
-const today = new Date().toISOString().slice(0, 10);
 
 const staticRoutes: Array<{ path: string; priority: string; changefreq: string }> = [
   { path: "/", priority: "1.0", changefreq: "daily" },
@@ -24,24 +23,21 @@ const used = new Set<string>();
 const slugs: string[] = [];
 for (const tool of allTools) {
   if (!tool?.title) continue;
-  let base = generateToolSlug(tool.title);
-  if (!base) continue;
-  let unique = base;
-  let n = 1;
-  while (used.has(unique)) unique = `${base}-${++n}`;
-  used.add(unique);
-  slugs.push(unique);
+  const slug = generateToolSlug(tool.title);
+  if (!slug || used.has(slug)) continue;
+  used.add(slug);
+  slugs.push(slug);
 }
 
 const urls: string[] = [];
 for (const r of staticRoutes) {
   urls.push(
-    `  <url><loc>${BASE_URL}${r.path}</loc><lastmod>${today}</lastmod><changefreq>${r.changefreq}</changefreq><priority>${r.priority}</priority></url>`
+    `  <url><loc>${BASE_URL}${r.path}</loc><changefreq>${r.changefreq}</changefreq><priority>${r.priority}</priority></url>`
   );
 }
 for (const slug of slugs) {
   urls.push(
-    `  <url><loc>${BASE_URL}/${slug}</loc><lastmod>${today}</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>`
+    `  <url><loc>${BASE_URL}/${slug}</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>`
   );
 }
 

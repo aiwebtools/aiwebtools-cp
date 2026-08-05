@@ -8,14 +8,31 @@ const listeners = new Set<(map: Map<string, string>) => void>();
 
 const isUsable = (url?: string) => typeof url === "string" && url.length > 0;
 
+const getYouTubeThumbnail = (videoUrl?: string): string | undefined => {
+  if (!videoUrl) return undefined;
+  const videoId = videoUrl.match(
+    /(?:youtube\.com\/(?:[^/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/|youtube\.com\/shorts\/)([^"&?/\s]{11})/,
+  )?.[1];
+  return videoId ? `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg` : undefined;
+};
+
+const getMediaImage = (tool: { imageUrl?: string; videoUrl?: string }): string =>
+  (isUsable(tool.imageUrl) && !tool.imageUrl?.startsWith("/src/") ? tool.imageUrl : undefined) ??
+  getYouTubeThumbnail(tool.videoUrl) ??
+  "/og-default.jpg";
+
 export const getToolImageMapSync = () => cache;
 
-const buildMap = (tools: Array<{ title?: string; imageUrl?: string }>) => {
+const buildMap = (tools: Array<{ title?: string; imageUrl?: string; videoUrl?: string }>) => {
   const map = new Map<string, string>();
   for (const tool of tools) {
-    if (!tool?.title || !isUsable(tool.imageUrl)) continue;
+    if (!tool?.title) continue;
     const key = tool.title.trim().toLowerCase();
-    if (!map.has(key)) map.set(key, tool.imageUrl as string);
+    const candidate = getMediaImage(tool);
+    const current = map.get(key);
+    // Duplicate records are common. Keep a real image/video thumbnail over
+    // the branded fallback, while preserving the first stable real asset.
+    if (!current || current === "/og-default.jpg") map.set(key, candidate);
   }
   return map;
 };
@@ -23,10 +40,9 @@ const buildMap = (tools: Array<{ title?: string; imageUrl?: string }>) => {
 /** Called by the search engine once the full tools module is loaded. */
 export const primeToolImageMap = (tools: unknown) => {
   if (cache || !Array.isArray(tools) || tools.length === 0) return;
-  cache = buildMap(tools as Array<{ title?: string; imageUrl?: string }>);
+  cache = buildMap(tools as Array<{ title?: string; imageUrl?: string; videoUrl?: string }>);
   listeners.forEach((fn) => fn(cache as Map<string, string>));
   listeners.clear();
-  resolveRawAssetPaths();
 };
 
 /**
@@ -91,11 +107,11 @@ export const loadToolImageMap = (): Promise<Map<string, string>> => {
 };
 
 export const getToolImage = (
-  tool: { title?: string; imageUrl?: string } | null | undefined,
+  tool: { title?: string; imageUrl?: string; videoUrl?: string } | null | undefined,
   map: Map<string, string> | null,
-): string | undefined => {
-  if (!tool) return undefined;
+): string => {
+  if (!tool) return "/og-default.jpg";
   const fromMap = map && tool.title ? map.get(tool.title.trim().toLowerCase()) : undefined;
-  if (isUsable(tool.imageUrl) && !tool.imageUrl!.startsWith("/src/")) return tool.imageUrl;
-  return fromMap;
+  if (isUsable(tool.imageUrl) && !tool.imageUrl?.startsWith("/src/")) return tool.imageUrl as string;
+  return fromMap ?? getMediaImage(tool);
 };

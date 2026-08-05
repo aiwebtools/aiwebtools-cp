@@ -1,5 +1,5 @@
 import React, { useEffect, useState, startTransition } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Check, Sparkles, Shield } from "lucide-react";
 import { Button } from "../components/ui/button";
 import ImprovedSEOHead from "@/components/ImprovedSEOHead";
@@ -275,6 +275,11 @@ const welcomeMessages = [
 
 const DisclaimerGate: React.FC = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const requestedPath = (location.state as { returnTo?: unknown } | null)?.returnTo;
+  const returnTo = typeof requestedPath === "string" && requestedPath.startsWith("/") && requestedPath !== "/welcome"
+    ? requestedPath
+    : "/";
   
   // Random starting message, rotates every 2s
   const [messageIndex, setMessageIndex] = useState(() => 
@@ -300,10 +305,10 @@ const DisclaimerGate: React.FC = () => {
   useEffect(() => {
     if (getConsentAccepted()) {
       startTransition(() => {
-        navigate("/", { replace: true });
+        navigate(returnTo, { replace: true });
       });
     }
-  }, [navigate]);
+  }, [navigate, returnTo]);
 
   useEffect(() => {
     const id = window.setTimeout(() => {
@@ -354,7 +359,7 @@ const DisclaimerGate: React.FC = () => {
     // "component suspended while responding to synchronous input" error.
     setConsentAccepted(true);
     startTransition(() => {
-      navigate("/", { replace: true });
+      navigate(returnTo, { replace: true });
     });
   };
 
