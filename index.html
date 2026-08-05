@@ -510,6 +510,17 @@
             else p = 90 + ((routeReady ? 9 : 7) * ((t - 0.75) / 0.25));
             if (!routeReady) p = Math.min(p, 97);
             if (pct) pct.textContent = Math.round(p) + '%';
+            // Keep the label alive with rotating standby copy whenever the bar
+            // is parked waiting on the app — motion must never stop.
+            if (!routeReady && p >= 96.5) {
+              var now = performance.now();
+              if (now - lastStandbyAt > 1400) {
+                lastStandbyAt = now;
+                var lbl = document.getElementById('aiwt-progress-label');
+                if (lbl) lbl.textContent = STANDBY_LINES[standbyIdx % STANDBY_LINES.length];
+                standbyIdx++;
+              }
+            }
             // JS-driven width as a fallback for mobile browsers that pause
             // long CSS animations in the background (iOS Safari throttles).
             if (bar) bar.style.width = Math.round(p) + '%';
