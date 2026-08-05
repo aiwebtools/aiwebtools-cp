@@ -1,3 +1,4 @@
+import { sanitizeExternalUrl } from "@/utils/links/linkSafety";
 import { useState, useRef, useEffect, useCallback } from "react";
 import { X, Send, Loader2, Sparkles, Bot } from "lucide-react";
 import ReactMarkdown from "react-markdown";
@@ -300,7 +301,7 @@ const CareBotWidget = () => {
                                     } else {
                                       // External tool launcher — open instantly in a
                                       // new tab, no time-warp, no middle-man loader.
-                                      window.open(url, "_blank", "noopener,noreferrer");
+                                      window.open(sanitizeExternalUrl(url), "_blank", "noopener,noreferrer");
                                     }
                                   }}
                                   className={
