@@ -11,6 +11,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import DeferredMount from "@/components/DeferredMount";
+import ToolThumb from "@/components/tools/ToolThumb";
 import { useInfiniteScroll } from "@/hooks/useInfiniteScroll";
 import SEOHead from "@/components/SEOHead";
 import { generateToolSlug } from "@/utils/urlGenerator";
@@ -173,8 +174,8 @@ const SimilarTools = () => {
               </Button>
               
               <div className="inline-flex items-center bg-gradient-to-r from-cyan-500/20 to-blue-500/20 backdrop-blur-sm border border-cyan-400/30 rounded-full px-8 py-4 mb-6">
-                <div className={`w-12 h-12 rounded-full bg-gradient-to-r ${baseTool.color} flex items-center justify-center text-white text-xl mr-4`}>
-                  {baseTool.emoji}
+                <div className={`w-12 h-12 rounded-full overflow-hidden bg-gradient-to-r ${baseTool.color} flex items-center justify-center text-white text-xl mr-4`}>
+                  <ToolThumb tool={baseTool} className="w-full h-full" rounded="rounded-full" emojiClassName="text-xl" />
                 </div>
                 <div className="text-left">
                   <h1 className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">

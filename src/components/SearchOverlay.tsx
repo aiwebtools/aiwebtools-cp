@@ -9,6 +9,7 @@ import { searchTools } from "@/utils/searchUtils";
 import { useNavigate } from "react-router-dom";
 import { createTimePortalEffect } from "@/utils/timeEffects";
 import { generateToolSlug } from "@/utils/urlGenerator";
+import ToolThumb from "@/components/tools/ToolThumb";
 
 interface SearchOverlayProps {
   isOpen: boolean;
@@ -127,8 +128,8 @@ const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
                   >
                     <CardContent className="p-4">
                       <div className="flex items-center space-x-3 mb-3">
-                        <div className={`w-10 h-10 rounded-lg bg-gradient-to-r ${tool.color} flex items-center justify-center text-lg`}>
-                          {tool.emoji}
+                        <div className={`w-10 h-10 rounded-lg overflow-hidden bg-gradient-to-r ${tool.color} flex items-center justify-center text-lg`}>
+                          <ToolThumb tool={tool} className="w-full h-full" emojiClassName="text-lg" />
                         </div>
                         <div className="flex-1 min-w-0">
                           <h3 className="font-semibold text-white text-sm truncate group-hover:text-cyan-400 transition-colors">

@@ -9,6 +9,7 @@ import { Brain, Blocks, Smartphone, Monitor } from "lucide-react";
 import ToolDisclaimerBadges from "@/components/disclaimers/ToolDisclaimerBadges";
 import AutoScaleTitle from "@/components/ui/auto-scale-title";
 import { getToolPricing, getPricingLabel } from "@/utils/pricingClassification";
+import ToolThumb from "@/components/tools/ToolThumb";
 
 interface ToolCardHeaderProps {
   tool: Tool;
@@ -72,8 +73,8 @@ const ToolCardHeader = ({
         </div>
       </div>
       
-      <div className={`${cardSize} mx-auto mb-4 rounded-full bg-gradient-to-r ${tool.color} flex items-center justify-center text-white text-2xl group-hover:scale-110 transition-transform duration-300 shadow-lg group-hover:shadow-xl ${isAIWebToolsOriginal ? 'ring-2 ring-cyan-400/50' : ''}`}>
-        {tool.emoji}
+      <div className={`${cardSize} mx-auto mb-4 rounded-full bg-gradient-to-r ${tool.color} flex items-center justify-center overflow-hidden text-white text-2xl group-hover:scale-110 transition-transform duration-300 shadow-lg group-hover:shadow-xl ${isAIWebToolsOriginal ? 'ring-2 ring-cyan-400/50' : ''}`}>
+        <ToolThumb tool={tool} className="w-full h-full" rounded="rounded-full" emojiClassName="text-2xl" />
       </div>
       <div className="space-y-2">
         <CardTitle 

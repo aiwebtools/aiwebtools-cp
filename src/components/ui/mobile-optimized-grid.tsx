@@ -2,6 +2,7 @@ import React, { memo, useMemo, useCallback, useState } from 'react';
 import { Tool } from '@/types/tools';
 import { useMobile } from '@/hooks/useMobile';
 import { Skeleton } from './skeleton';
+import ToolThumb from '@/components/tools/ToolThumb';
 
 interface MobileOptimizedGridProps {
   tools: Tool[];
@@ -22,9 +23,7 @@ const ToolCell = memo(({ tool, onToolClick }: { tool: Tool; onToolClick?: (tool:
         }}
       >
         <div className="flex items-center gap-3 mb-3">
-          <div className="text-2xl flex-shrink-0" style={{ contain: 'size layout' }}>
-            {tool.emoji}
-          </div>
+          <ToolThumb tool={tool} className="w-10 h-10" emojiClassName="text-2xl" />
           <h3 className="font-semibold text-white text-sm leading-tight line-clamp-2">
             {tool.title}
           </h3>

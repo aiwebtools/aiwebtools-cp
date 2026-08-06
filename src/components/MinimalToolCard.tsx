@@ -8,6 +8,7 @@ import { isFreeTool } from "@/utils/freeToolDetection";
 import { getToolPricing, getPricingLabel } from "@/utils/pricingClassification";
 import FavoriteButton from "@/components/favorites/FavoriteButton";
 import AutoScaleTitle from "@/components/ui/auto-scale-title";
+import ToolThumb from "@/components/tools/ToolThumb";
 
 interface MinimalToolCardProps {
   tool: Tool;
@@ -106,9 +107,7 @@ const MinimalToolCard = memo(({ tool, index = 0 }: MinimalToolCardProps) => {
       
       <CardContent className="p-4 pr-14 sm:pr-10 pt-6">
         <div className="flex items-start gap-3 sm:gap-4">
-          <div className="text-2xl flex-shrink-0 pt-0.5">
-            {tool.emoji}
-          </div>
+          <ToolThumb tool={tool} className="w-12 h-12" emojiClassName="text-2xl" />
           <div className="flex-1 min-w-0">
             <h3 
               className="font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-white to-cyan-300 mb-2 uppercase tracking-wide break-words hyphens-auto"
