@@ -5,6 +5,7 @@ import { allTools } from "@/data/toolsData";
 import { Link } from "react-router-dom";
 import { Gift, Sparkles, Check } from "lucide-react";
 import { generateToolSlug } from "@/utils/urlGenerator";
+import ToolThumb from "@/components/tools/ToolThumb";
 
 const FreeAIToolsPage = () => {
   // Filter for free tools (our custom GPTs and tools marked as free)
@@ -90,7 +91,7 @@ const FreeAIToolsPage = () => {
                   className="bg-card border border-border/50 rounded-lg p-4 hover:border-green-500/50 transition-all hover:shadow-lg group"
                 >
                   <div className="flex items-start gap-3">
-                    <span className="text-2xl">{tool.emoji}</span>
+                    <ToolThumb tool={tool} className="w-10 h-10" emojiClassName="text-2xl" />
                     <div className="flex-grow min-w-0">
                       <h3 className="font-semibold truncate group-hover:text-green-400 transition-colors">{tool.title}</h3>
                       <p className="text-sm text-muted-foreground line-clamp-2 mt-1">{tool.description}</p>
