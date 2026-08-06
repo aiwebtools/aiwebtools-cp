@@ -91,7 +91,10 @@ const BestAIToolsPage = () => {
                     {index + 1}
                   </div>
                   <div className="flex-grow min-w-0">
-                    <h3 className="font-semibold text-lg truncate">{tool.emoji} {tool.title}</h3>
+                    <h3 className="font-semibold text-lg truncate flex items-center gap-2">
+                      <ToolThumb tool={tool} className="w-7 h-7" emojiClassName="text-lg" rounded="rounded-md" />
+                      {tool.title}
+                    </h3>
                     <p className="text-sm text-muted-foreground line-clamp-1">{tool.description}</p>
                   </div>
                   <div className="flex-shrink-0 flex items-center gap-1 text-yellow-500">
