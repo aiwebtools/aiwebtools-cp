@@ -5,6 +5,7 @@ import { allTools } from "@/data/toolsData";
 import { Link } from "react-router-dom";
 import { Star, Trophy, TrendingUp, CheckCircle } from "lucide-react";
 import { generateToolSlug } from "@/utils/urlGenerator";
+import ToolThumb from "@/components/tools/ToolThumb";
 
 const BestAIToolsPage = () => {
   const toolCount = allTools.length;
