@@ -35,7 +35,7 @@ const Index = () => {
   // Keep animated full-screen canvases out of the opening interaction window
   // on every device. Fast desktops do not benefit from starting two animation
   // systems while the visitor makes their first scroll/click.
-  const matrixBgDelay = isMobile ? 6000 : 3500;
+  const matrixBgDelay = isMobile ? 15000 : 12000;
   const firstScrollSafeDelay = isMobile ? 12000 : 250;
 
   const [mainVideoActive, setMainVideoActive] = useState(false);
@@ -78,13 +78,13 @@ const Index = () => {
       <ImprovedSEOHead pageType="homepage" />
       
       {/* SEO booster - keep off the first paint path */}
-      <DeferredMount delay={firstScrollSafeDelay}>
+      <DeferredMount delay={firstScrollSafeDelay} mountOnVisible={false}>
         <GoogleRankingBooster pageType="homepage" />
       </DeferredMount>
       
       {/* Background effects - on mobile we defer aggressively so the first
           finger-scroll is instant and doesn't fight the matrix canvas rAF. */}
-      <DeferredMount delay={matrixBgDelay}>
+      <DeferredMount delay={matrixBgDelay} mountOnVisible={false}>
         <Suspense fallback={null}>
           <InteractiveMatrixBackground />
           <AnimatedBackground />

@@ -4,6 +4,7 @@ interface DeferredMountProps {
   children: ReactNode;
   delay?: number; // ms to wait after first paint
   fallback?: ReactNode;
+  mountOnVisible?: boolean;
 }
 
 /* ------------------------------------------------------------------ *
@@ -75,7 +76,7 @@ const enqueueMount = (mount: () => void) => {
  * reveals an empty gap), otherwise after `delay` — always through the
  * scroll-aware scheduler above, so the page never freezes mid-scroll.
  */
-const DeferredMount = ({ children, delay = 100, fallback = null }: DeferredMountProps) => {
+const DeferredMount = ({ children, delay = 100, fallback = null, mountOnVisible = true }: DeferredMountProps) => {
   const [shouldMount, setShouldMount] = useState(false);
   const placeholderRef = useRef<HTMLDivElement | null>(null);
 
@@ -96,7 +97,7 @@ const DeferredMount = ({ children, delay = 100, fallback = null }: DeferredMount
     // observer may flag all of them in one frame. Mounting them directly here
     // caused the exact "first scroll does not move" freeze we are preventing.
     let observer: IntersectionObserver | null = null;
-    if (placeholderRef.current && typeof IntersectionObserver !== 'undefined') {
+    if (mountOnVisible && placeholderRef.current && typeof IntersectionObserver !== 'undefined') {
       observer = new IntersectionObserver(
         (entries) => {
           if (entries.some((e) => e.isIntersecting)) {
@@ -116,7 +117,7 @@ const DeferredMount = ({ children, delay = 100, fallback = null }: DeferredMount
       observer?.disconnect();
       window.clearTimeout(timerId);
     };
-  }, [delay]);
+  }, [delay, mountOnVisible]);
 
   if (!shouldMount) {
     return (
