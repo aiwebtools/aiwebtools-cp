@@ -21,8 +21,13 @@ const queue: Array<() => void> = [];
 let flushing = false;
 let lastScrollAt = 0;
 let scrollBound = false;
+let interactionBound = false;
 
 const markScroll = () => {
+  lastScrollAt = performance.now();
+};
+
+const markInteraction = () => {
   lastScrollAt = performance.now();
 };
 
@@ -31,6 +36,12 @@ const bindScroll = () => {
   scrollBound = true;
   window.addEventListener('scroll', markScroll, { passive: true });
   window.addEventListener('touchmove', markScroll, { passive: true });
+  if (!interactionBound) {
+    interactionBound = true;
+    window.addEventListener('pointerdown', markInteraction, { passive: true, capture: true });
+    window.addEventListener('touchstart', markInteraction, { passive: true, capture: true });
+    window.addEventListener('wheel', markInteraction, { passive: true, capture: true });
+  }
 };
 
 const scheduleFlush = () => {

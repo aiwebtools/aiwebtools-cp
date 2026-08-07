@@ -167,31 +167,31 @@ const Index = () => {
           <CategoryPageSelection />
         </div>
         
-        <DeferredMount delay={3600} fallback={<div className="min-h-[35vh]" aria-hidden="true" />}>
+        <DeferredMount delay={12000} fallback={<div className="min-h-[35vh]" aria-hidden="true" />}>
           <Suspense fallback={null}>
             <AIWebToolsSEOSection />
           </Suspense>
         </DeferredMount>
    
-        <DeferredMount delay={4200} fallback={<div className="min-h-[55vh]" aria-hidden="true" />}>
+        <DeferredMount delay={13000} fallback={<div className="min-h-[55vh]" aria-hidden="true" />}>
           <Suspense fallback={null}>
             <LazyFeaturedTools onToolsLoaded={(count) => {}} />
           </Suspense>
         </DeferredMount>
         
-        <DeferredMount delay={4800} fallback={<div className="min-h-[55vh]" aria-hidden="true" />}>
+        <DeferredMount delay={14000} fallback={<div className="min-h-[55vh]" aria-hidden="true" />}>
           <Suspense fallback={null}>
             <SpecialServices />
           </Suspense>
         </DeferredMount>
 
-        <DeferredMount delay={5400} fallback={<div className="min-h-[35vh]" aria-hidden="true" />}>
+        <DeferredMount delay={15000} fallback={<div className="min-h-[35vh]" aria-hidden="true" />}>
           <Suspense fallback={null}>
             <BookPromotionCard />
           </Suspense>
         </DeferredMount>
         
-        <DeferredMount delay={6100} fallback={<div className="min-h-[45vh]" aria-hidden="true" />}>
+        <DeferredMount delay={16000} fallback={<div className="min-h-[45vh]" aria-hidden="true" />}>
           <Suspense fallback={null}>
             <section className="py-16 relative" style={{ background: 'linear-gradient(135deg, #0a0a0a 0%, #001a00 50%, #0a0a0a 100%)' }}>
               <div className="container mx-auto px-4">
