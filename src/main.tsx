@@ -2,7 +2,7 @@ import * as React from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import { installGlobalErrorHandlers } from './utils/errorReporting'
-import { installLongTaskObserver, installInteractionBreadcrumbs, installSlowClickObserver, installBootVitals, installScrollJankObserver, addBreadcrumb } from './utils/perfTelemetry'
+import { installLongTaskObserver, installInteractionBreadcrumbs, installSlowClickObserver, installBootVitals, installScrollJankObserver, installFirstInteractionObserver, addBreadcrumb } from './utils/perfTelemetry'
 
 // Install global crash/error handlers (window.onerror, unhandledrejection, console.error)
 installGlobalErrorHandlers();
@@ -14,6 +14,7 @@ installSlowClickObserver();
 // automatic graceful degradation on struggling devices.
 installBootVitals();
 installScrollJankObserver();
+installFirstInteractionObserver();
 addBreadcrumb('boot', 'main.tsx-eval');
 
 const rootElement = document.getElementById("root");

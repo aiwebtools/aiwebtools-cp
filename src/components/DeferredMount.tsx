@@ -88,22 +88,17 @@ const DeferredMount = ({ children, delay = 100, fallback = null }: DeferredMount
       });
     };
 
-    // Immediate mount path: when the section is (nearly) on screen the user is
-    // looking at it right now — never queue it behind idle work.
-    const mountNow = () => {
-      if (!mounted || queued) return;
-      queued = true;
-      setShouldMount(true);
-    };
-
-    // Near-viewport mounting: scrolling toward a section pulls it in early.
+    // Near-viewport mounting still goes through the global queue. Several
+    // deferred placeholders can share the same collapsed Y position, so an
+    // observer may flag all of them in one frame. Mounting them directly here
+    // caused the exact "first scroll does not move" freeze we are preventing.
     let observer: IntersectionObserver | null = null;
     if (placeholderRef.current && typeof IntersectionObserver !== 'undefined') {
       observer = new IntersectionObserver(
         (entries) => {
           if (entries.some((e) => e.isIntersecting)) {
             observer?.disconnect();
-            mountNow();
+            request();
           }
         },
         { rootMargin: '1600px 0px' }

@@ -32,7 +32,10 @@ const Index = () => {
   const { isMobile } = useMobile();
   // On mobile, defer the heavy matrix canvas way longer so the user's
   // very first scroll-touch isn't fighting a full-screen rAF loop.
-  const matrixBgDelay = isMobile ? 2800 : 120;
+  // Keep animated full-screen canvases out of the opening interaction window
+  // on every device. Fast desktops do not benefit from starting two animation
+  // systems while the visitor makes their first scroll/click.
+  const matrixBgDelay = isMobile ? 6000 : 3500;
   const firstScrollSafeDelay = isMobile ? 12000 : 250;
 
   const [mainVideoActive, setMainVideoActive] = useState(false);

@@ -143,7 +143,7 @@ const crumbs: Breadcrumb[] = [];
 const MAX_CRUMBS = 24;
 
 export function addBreadcrumb(kind: string, label: string) {
-  if (!enabled || !isBrowser) return;
+  if (!isBrowser) return;
   crumbs.push({ t: Math.round(performance.now()), kind, label: label.slice(0, 80) });
   if (crumbs.length > MAX_CRUMBS) crumbs.shift();
 }
@@ -156,7 +156,7 @@ export function recentBreadcrumbs(): Breadcrumb[] {
 // the very first interaction latency. Passive listeners keep scroll smooth.
 let interactionInstalled = false;
 export function installInteractionBreadcrumbs() {
-  if (!enabled || !isBrowser || interactionInstalled) return;
+  if (!isBrowser || interactionInstalled) return;
   interactionInstalled = true;
   const handler = (e: Event) => {
     const t = e.target as HTMLElement | null;
@@ -180,7 +180,9 @@ export function installInteractionBreadcrumbs() {
 // flooding the log-error edge function.
 let lastFreezeReport = 0;
 export function reportFreezeIfSevere(durationMs: number, extra?: Record<string, unknown>) {
-  if (!enabled || !isBrowser) return;
+  // Severe freezes are operational errors, not analytics. Capture them in
+  // every session; only routine aggregate metrics remain sample-rated.
+  if (!isBrowser) return;
   if (durationMs < 300) return;
   const now = performance.now();
   if (now - lastFreezeReport < 5000) return;
@@ -220,7 +222,7 @@ const REPORT_CLICK_MS = 450; // upgrade to a warning report above this
 let lastSlowClickReport = 0;
 
 export function installSlowClickObserver() {
-  if (!enabled || !isBrowser || slowClickInstalled) return;
+  if (!isBrowser || slowClickInstalled) return;
   slowClickInstalled = true;
   let pendingLabel: string | null = null;
   let pendingStart = 0;
@@ -404,7 +406,7 @@ export function installScrollJankObserver() {
       if (worstFrame >= SEVERE_BURST_MS) {
         badBursts++;
         const now = performance.now();
-        if (enabled && now - lastJankReport >= 10000) {
+        if (now - lastJankReport >= 10000) {
           lastJankReport = now;
           reportError({
             error_type: "perf.scroll_jank",
@@ -455,4 +457,41 @@ export function installScrollJankObserver() {
 
   window.addEventListener("scroll", onScroll, { passive: true });
   window.addEventListener("touchmove", onScroll, { passive: true });
+}
+
+// ============ First-interaction responsiveness ============
+// The opening route can look ready while a late import/commit monopolizes the
+// next frame. Measure the first real pointer or scroll response in every
+// session so this specific regression is visible in production telemetry.
+let firstInteractionInstalled = false;
+export function installFirstInteractionObserver() {
+  if (!isBrowser || firstInteractionInstalled) return;
+  firstInteractionInstalled = true;
+
+  const cleanup = () => {
+    window.removeEventListener("pointerdown", measure);
+    window.removeEventListener("touchstart", measure);
+    window.removeEventListener("scroll", measure);
+  };
+  const measure = (event: Event) => {
+    cleanup();
+    const startedAt = performance.now();
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        const duration = performance.now() - startedAt;
+        recordMetric("opening.first_interaction.ms", duration, { type: event.type });
+        if (duration >= 300) {
+          reportFreezeIfSevere(duration, {
+            phase: "first-interaction",
+            interactionType: event.type,
+          });
+          setPerfDegraded("slow-first-interaction");
+        }
+      });
+    });
+  };
+
+  window.addEventListener("pointerdown", measure, { passive: true });
+  window.addEventListener("touchstart", measure, { passive: true });
+  window.addEventListener("scroll", measure, { passive: true });
 }
