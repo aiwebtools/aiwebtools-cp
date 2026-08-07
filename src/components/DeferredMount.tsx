@@ -38,8 +38,11 @@ const scheduleFlush = () => {
 
   const run = () => {
     // Mid-scroll: postpone so we never hijack the scroll frame.
-    if (performance.now() - lastScrollAt < 120) {
-      window.setTimeout(run, 80);
+    // Require a real quiet window. Trackpads and touch momentum often leave
+    // 100–250ms gaps between events; treating those gaps as "scroll finished"
+    // allowed a heavy section commit to collide with the next gesture.
+    if (performance.now() - lastScrollAt < 700) {
+      window.setTimeout(run, 120);
       return;
     }
 
@@ -48,7 +51,7 @@ const scheduleFlush = () => {
 
     if (queue.length > 0) {
       const ric = (window as any).requestIdleCallback;
-      if (ric) ric(run, { timeout: 250 });
+      if (ric) ric(run, { timeout: 1000 });
       else window.setTimeout(run, 32);
     } else {
       flushing = false;
@@ -56,7 +59,7 @@ const scheduleFlush = () => {
   };
 
   const ric = (window as any).requestIdleCallback;
-  if (ric) ric(run, { timeout: 250 });
+  if (ric) ric(run, { timeout: 1000 });
   else window.setTimeout(run, 16);
 };
 
