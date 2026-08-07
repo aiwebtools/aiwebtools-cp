@@ -8,8 +8,8 @@ import { Button } from "../components/ui/button";
 import DeferredMount from "@/components/DeferredMount";
 import { lazyWithRetry as lazy } from "@/utils/lazyWithRetry";
 import { useMobile } from "@/hooks/useMobile";
+import CategoryPageSelection from "@/components/CategoryPageSelection";
 
-const CategoryPageSelection = lazy(() => import("@/components/CategoryPageSelection"));
 const SpecialServices = lazy(() => import("@/components/SpecialServices"));
 const Footer = lazy(() => import("@/components/Footer"));
 const ScrollToTop = lazy(() => import("@/components/ui/scroll-to-top"));
@@ -32,7 +32,10 @@ const Index = () => {
   const { isMobile } = useMobile();
   // On mobile, defer the heavy matrix canvas way longer so the user's
   // very first scroll-touch isn't fighting a full-screen rAF loop.
-  const matrixBgDelay = isMobile ? 2800 : 120;
+  // Keep animated full-screen canvases out of the opening interaction window
+  // on every device. Fast desktops do not benefit from starting two animation
+  // systems while the visitor makes their first scroll/click.
+  const matrixBgDelay = isMobile ? 15000 : 12000;
   const firstScrollSafeDelay = isMobile ? 12000 : 250;
 
   const [mainVideoActive, setMainVideoActive] = useState(false);
@@ -75,13 +78,13 @@ const Index = () => {
       <ImprovedSEOHead pageType="homepage" />
       
       {/* SEO booster - keep off the first paint path */}
-      <DeferredMount delay={firstScrollSafeDelay}>
+      <DeferredMount delay={firstScrollSafeDelay} mountOnVisible={false}>
         <GoogleRankingBooster pageType="homepage" />
       </DeferredMount>
       
       {/* Background effects - on mobile we defer aggressively so the first
           finger-scroll is instant and doesn't fight the matrix canvas rAF. */}
-      <DeferredMount delay={matrixBgDelay}>
+      <DeferredMount delay={matrixBgDelay} mountOnVisible={false}>
         <Suspense fallback={null}>
           <InteractiveMatrixBackground />
           <AnimatedBackground />
@@ -158,39 +161,37 @@ const Index = () => {
           </div>
         </section>
         
-        <DeferredMount delay={3200} fallback={null}>
-          <Suspense fallback={null}>
-            <div id="categories-section">
-              <CategoryPageSelection />
-            </div>
-          </Suspense>
-        </DeferredMount>
+        {/* Lightweight and immediately available: this is the first content a
+            visitor reaches, so never compile/mount it during their first scroll. */}
+        <div id="categories-section">
+          <CategoryPageSelection />
+        </div>
         
-        <DeferredMount delay={3600} fallback={null}>
+        <DeferredMount delay={12000} fallback={<div className="min-h-[35vh]" aria-hidden="true" />}>
           <Suspense fallback={null}>
             <AIWebToolsSEOSection />
           </Suspense>
         </DeferredMount>
    
-        <DeferredMount delay={4200} fallback={null}>
+        <DeferredMount delay={13000} fallback={<div className="min-h-[55vh]" aria-hidden="true" />}>
           <Suspense fallback={null}>
             <LazyFeaturedTools onToolsLoaded={(count) => {}} />
           </Suspense>
         </DeferredMount>
         
-        <DeferredMount delay={4800} fallback={null}>
+        <DeferredMount delay={14000} fallback={<div className="min-h-[55vh]" aria-hidden="true" />}>
           <Suspense fallback={null}>
             <SpecialServices />
           </Suspense>
         </DeferredMount>
 
-        <DeferredMount delay={5400} fallback={null}>
+        <DeferredMount delay={15000} fallback={<div className="min-h-[35vh]" aria-hidden="true" />}>
           <Suspense fallback={null}>
             <BookPromotionCard />
           </Suspense>
         </DeferredMount>
         
-        <DeferredMount delay={6100} fallback={null}>
+        <DeferredMount delay={16000} fallback={<div className="min-h-[45vh]" aria-hidden="true" />}>
           <Suspense fallback={null}>
             <section className="py-16 relative" style={{ background: 'linear-gradient(135deg, #0a0a0a 0%, #001a00 50%, #0a0a0a 100%)' }}>
               <div className="container mx-auto px-4">
