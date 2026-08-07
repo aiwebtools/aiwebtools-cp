@@ -45,9 +45,11 @@ async function importWithRetry<T>(
 
 // Lazy load - secondary pages for faster initial load
 const Index = lazyWithRetry(() => import("./pages/Index"));
-// Direct tool URLs are a critical acquisition path. Keep this route eager so a
-// stale or slow lazy chunk can never strand visitors on a loading shell.
-import ToolDetail from "./pages/ToolDetail";
+// ToolDetail pulls in the complete tool index. Keeping it eager made every
+// visitor download/compile that database before React could mount at all.
+// The route already has an instant content fallback and retry protection, so
+// isolate it from the opening bundle while preserving reliable deep links.
+const ToolDetail = lazyWithRetry(() => import("./pages/ToolDetail"));
 const CategoryPage = lazyWithRetry(() => import("./pages/CategoryPage"));
 const MainCategoryPage = lazyWithRetry(() => import("./pages/MainCategoryPage"));
 const SimilarToolsPage = lazyWithRetry(() => import("./pages/SimilarTools"));

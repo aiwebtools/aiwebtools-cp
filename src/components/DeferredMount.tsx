@@ -91,7 +91,7 @@ const DeferredMount = ({ children, delay = 100, fallback = null }: DeferredMount
     // Immediate mount path: when the section is (nearly) on screen the user is
     // looking at it right now — never queue it behind idle work.
     const mountNow = () => {
-      if (!mounted) return;
+      if (!mounted || queued) return;
       queued = true;
       setShouldMount(true);
     };
