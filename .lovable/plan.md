@@ -1,91 +1,50 @@
-# User Submitted Tools — Auto-Publishing Pipeline
+# Platform Automations — Proposed Suite
 
-Master, here's the full plan for turning your submission form into a self-publishing platform with AI safety screening. Approve and I'll build it in one pass.
+Right now the platform has zero scheduled automation: `pg_cron` is not enabled, so the weekly digest edge function only ever runs when triggered by hand, submissions wait for manual review, dead tool links are only found by users, and the analytics data collected in `tool_analytics` is never surfaced unless someone opens the admin dashboard.
 
-## What users get
+Below are the automations recommended, ranked by value to the directory and to the business.
 
-A "Submit Your AI Tool" flow that:
-1. Accepts **name, description, URL, category, image upload (or URL), optional YouTube demo**
-2. Sends the URL through an **AI safety screener** (Lovable AI Gateway, `google/gemini-2.5-flash`) that checks for malware/phishing/NSFW/scam patterns and cross-checks Google Safe Browsing-style heuristics
-3. On PASS → tool goes **live instantly** in a new **"User Submitted Tools"** category, fully searchable, with its own individual tool page
-4. On FAIL → held for manual admin review, submitter emailed the reason
-5. Submitter gets a confirmation email either way
+## Tier 1 — Highest value
 
-## Architecture
+**1. Weekly digest on a schedule**
+The `send-weekly-digest` function already exists and is fully built. Enable scheduling so it fires every Sunday morning to confirmed subscribers, with the subject/body auto-composed from tools added in the last 7 days instead of static copy.
 
-### 1. Database (Supabase)
-Reuse existing `tool_submissions` table, add columns:
-- `status` (`pending` / `approved` / `rejected` / `needs_review`) — default `pending`
-- `ai_safety_score` (0-100), `ai_safety_verdict` (text), `ai_safety_reason` (text)
-- `image_storage_path` (text) — for uploaded images in Storage
-- `slug` (text, unique) — for auto-generated tool page URL
-- `published_at` (timestamptz)
+**2. Automated dead-link / link-rot sweep**
+A nightly job walks a slice of the tool database (a few hundred per night, full rotation weekly), requests each destination URL, and records failures. Tools failing 3 consecutive checks get flagged in a report emailed to the admin addresses. Nothing is ever auto-removed from the database — flag only, you decide.
 
-New public read policy: anyone can `SELECT` rows where `status='approved'` (so the frontend can list them without auth).
+**3. Submission triage**
+New rows in `tool_submissions` trigger an instant admin notification email plus an automatic first-pass screen (URL reachable, not a duplicate of an existing tool, safe-content check) so approved-ready submissions land pre-vetted rather than raw.
 
-### 2. Storage
-New public bucket `user-submitted-tool-images` for user-uploaded hero images. 5MB limit, jpg/png/webp only, validated server-side.
+## Tier 2 — Growth and insight
 
-### 3. Edge function: `submit-tool` (upgrade existing)
-- Validates input (Zod)
-- Uploads image to Storage if provided as base64
-- Calls **new** `screen-tool-url` internally (see below)
-- Writes row with verdict + status
-- Sends confirmation email via existing Resend integration
-- Notifies admins if `needs_review`
+**4. Weekly analytics report to admin**
+Every Monday, a summary email from `tool_analytics`: top viewed/clicked tools, fastest risers, zero-traffic tools worth better imagery or tags, search terms returning nothing, and week-over-week traffic movement.
 
-### 4. Edge function: `screen-tool-url` (new)
-- Fetches URL metadata (HEAD + partial GET, timeout 5s)
-- Runs Lovable AI Gateway prompt: analyzes URL, domain reputation heuristics, page title/description for malware/phishing/NSFW/scam/non-AI content
-- Returns `{ verdict: "safe" | "suspicious" | "blocked", score, reason }`
-- Blocks: known bad TLDs w/ scam patterns, redirect chains to unrelated domains, obvious phishing keywords
-- Auto-approves only `safe` with score ≥ 80 AND not on a manual blocklist
+**5. Zero-result search capture → content gaps**
+Log searches that return nothing, then roll them into the weekly report as a ranked "tools people want that we don't have" list — this directly feeds the next tool batch and drives SEO.
 
-### 5. Frontend
-- **`UserSubmittedToolsPage`** (`/category/user-submitted`) — matrix-themed category page listing all approved submissions, sorted newest first, with search
-- **`ToolDetail`** — extended to hydrate from Supabase when slug matches a submission (no code file needed per tool)
-- **`SubmitToolModal`** — add image file upload (drag-drop), preview, show "AI is screening your tool…" state with the safety verdict displayed after submit
-- **Global search** — new hook `useUserSubmittedTools` fetches approved rows once and merges into the search corpus so submitted tools appear in all search bars
-- **Category system** — register `User Submitted Tools` in category mapping w/ green matrix gradient + 🌐 emoji
+**6. Automatic sitemap + RSS refresh**
+Regenerate `sitemap.xml`, `rss.xml`, and `atom.xml` on every deploy rather than only when the script is run by hand, so newly added tools are submitted to search engines immediately.
 
-### 6. Admin
-- `AdminAnalytics` gets a new "Pending Submissions" panel: approve/reject/re-screen buttons, view AI verdict + submitter info
+## Tier 3 — Maintenance hygiene
 
-## Safety layers (defense in depth)
+**7. Error-log digest and spike alert**
+Daily rollup of `error_logs`; an immediate alert email if error volume spikes beyond normal so regressions are caught before users report them.
 
-```text
-User submits
-   │
-   ▼
-Zod validation (URL format, length, mime type)
-   │
-   ▼
-Image upload → Storage (mime sniff, size limit)
-   │
-   ▼
-AI URL screener (Lovable AI Gateway)
-   │
-   ├── SAFE (score ≥ 80)  → auto-approve, publish live
-   ├── SUSPICIOUS         → hold for admin review
-   └── BLOCKED            → reject, email submitter
-   │
-   ▼
-Admin override always available in AdminAnalytics
-```
+**8. Nightly duplicate audit**
+Run the existing `scripts/audit-duplicates.ts` logic on a schedule and report any new exact duplicates introduced by a batch, rather than discovering them visually on a category page.
 
-External links still get `rel="noopener noreferrer nofollow"` + `?via=aiwebtools` affiliate tag on outbound clicks.
+**9. Image-coverage audit**
+Weekly list of tools still falling back to emoji instead of a custom hero image, so image batches always target real gaps.
 
-## Non-goals for v1
-- No user accounts required to submit (keeps friction low; email rate-limit already exists at DB layer — 5/hour)
-- No edit-after-submit (submitter emails support if they need changes)
-- No auto-generated hero image (user's uploaded image is used as-is; admin can regenerate via existing image tools)
+## Technical notes
 
-## Rollout order
-1. Migration: new columns + storage bucket + public read policy
-2. Edge function: `screen-tool-url`
-3. Edge function: `submit-tool` upgrade
-4. Frontend: SubmitToolModal upgrade, UserSubmittedToolsPage, search integration
-5. Admin panel additions
-6. Test end-to-end via preview + Playwright
+- Requires enabling `pg_cron` and `pg_net` on the project; cron jobs call the edge functions over HTTPS.
+- New edge functions: `link-health-sweep`, `weekly-analytics-report`, `error-digest`, `content-gap-report`. Existing `send-weekly-digest` and `screen-tool-url` are reused as-is.
+- New tables: `link_health` (tool title, url, last checked, consecutive failures, status) and `search_misses` (query, count, last seen), both with RLS restricting reads to admins and grants for `service_role`.
+- Digest/report emails go through the existing Resend connector and the `ADMIN_EMAIL_PRIMARY` / `ADMIN_EMAIL_SECONDARY` secrets.
+- No automation ever deletes or edits a tool record. Every destructive-looking finding is report-only and awaits your approval.
 
-Approve and I ship it, Master.
+## Suggested build order
+
+Start with Tier 1 (items 1–3) as one pass, verify the emails and the first sweep report land correctly, then move to Tier 2.
