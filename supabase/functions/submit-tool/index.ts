@@ -140,9 +140,29 @@ serve(async (req: Request) => {
       }
     } catch (screenErr) { console.error("screener call failed", screenErr); }
 
+    // First-pass triage: flag likely duplicates of tools already submitted.
+    // Report-only — never blocks or deletes anything.
+    let duplicateNote = "";
+    try {
+      const normalized = submission.url
+        .replace(/^https?:\/\//i, "")
+        .replace(/^www\./i, "")
+        .split(/[?#]/)[0]
+        .replace(/\/+$/, "")
+        .toLowerCase();
+      const { data: dupes } = await supabaseAdmin
+        .from("tool_submissions")
+        .select("id, name, url, status")
+        .ilike("url", `%${normalized}%`)
+        .limit(3);
+      if (dupes && dupes.length > 0) {
+        duplicateNote = dupes.map((d) => `${d.name} (${d.status})`).join(", ");
+      }
+    } catch (dupErr) { console.error("duplicate check failed", dupErr); }
+
     let status: "approved" | "pending" | "rejected" = "pending";
     let publishedAt: string | null = null;
-    if (verdict === "safe" && safetyScore >= 80) { status = "approved"; publishedAt = new Date().toISOString(); }
+    if (verdict === "safe" && safetyScore >= 80 && !duplicateNote) { status = "approved"; publishedAt = new Date().toISOString(); }
     else if (verdict === "blocked") { status = "rejected"; }
 
     const baseSlug = slugify(submission.name);
@@ -207,6 +227,7 @@ serve(async (req: Request) => {
           <h1>New Tool Submission</h1>
           <p><strong>Auto status:</strong> ${escapeHtml(status)} — verdict ${escapeHtml(verdict)} (score ${safetyScore})</p>
           <p><strong>AI reason:</strong> ${escapeHtml(safetyReason)}</p>
+          ${duplicateNote ? `<p style="color:#b45309;"><strong>⚠ Possible duplicate of:</strong> ${escapeHtml(duplicateNote)} — held for manual review.</p>` : ""}
           <h2>Submitter</h2>
           <p><strong>Name:</strong> ${safeSubmitterName}</p>
           <p><strong>Email:</strong> ${safeSubmitterEmail}</p>
