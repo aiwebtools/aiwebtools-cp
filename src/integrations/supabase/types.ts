@@ -155,6 +155,75 @@ export type Database = {
         }
         Relationships: []
       }
+      link_health: {
+        Row: {
+          consecutive_failures: number
+          created_at: string
+          id: string
+          last_checked_at: string | null
+          last_error: string | null
+          last_status_code: number | null
+          reported_at: string | null
+          status: string
+          tool_category: string | null
+          tool_title: string
+          updated_at: string
+          url: string
+        }
+        Insert: {
+          consecutive_failures?: number
+          created_at?: string
+          id?: string
+          last_checked_at?: string | null
+          last_error?: string | null
+          last_status_code?: number | null
+          reported_at?: string | null
+          status?: string
+          tool_category?: string | null
+          tool_title: string
+          updated_at?: string
+          url: string
+        }
+        Update: {
+          consecutive_failures?: number
+          created_at?: string
+          id?: string
+          last_checked_at?: string | null
+          last_error?: string | null
+          last_status_code?: number | null
+          reported_at?: string | null
+          status?: string
+          tool_category?: string | null
+          tool_title?: string
+          updated_at?: string
+          url?: string
+        }
+        Relationships: []
+      }
+      search_misses: {
+        Row: {
+          created_at: string
+          hit_count: number
+          id: string
+          last_seen_at: string
+          query: string
+        }
+        Insert: {
+          created_at?: string
+          hit_count?: number
+          id?: string
+          last_seen_at?: string
+          query: string
+        }
+        Update: {
+          created_at?: string
+          hit_count?: number
+          id?: string
+          last_seen_at?: string
+          query?: string
+        }
+        Relationships: []
+      }
       tool_analytics: {
         Row: {
           created_at: string
