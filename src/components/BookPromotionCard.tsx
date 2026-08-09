@@ -268,6 +268,7 @@ const BookPromotionCard = () => {
     { id: "cxJMzuv_ccQ", title: "AIWEBTOOLS – Newest Drop | Official AI Music Video | AIWebTools.ai", gradient: "from-fuchsia-500/20 to-cyan-500/20" },
     { id: "a9rRZzIsbiY", title: "Revelations Nearing Midnight | Original AI Music Video | AIWebTools.ai", gradient: "from-indigo-500/20 to-fuchsia-500/20" },
     // ── NEW MTV INTERLUDES / SHORTS (9:16 drops) ──
+    { id: "Tv5yo-2n5Rc", title: "AIWEBTOOLS Interlude | AI Music Video Short | AIWebTools.ai", gradient: "from-emerald-500/20 to-fuchsia-500/20" },
     { id: "09CvnM4ZJAg", title: "AIWEBTOOLS Interlude | AI Music Video Short | AIWebTools.ai", gradient: "from-purple-500/20 to-cyan-500/20" },
     { id: "EkiBNZ4orfI", title: "AIWEBTOOLS Interlude | AI Music Video Short | AIWebTools.ai", gradient: "from-fuchsia-500/20 to-indigo-500/20" },
     { id: "H9PTc_hzsM8", title: "AIWEBTOOLS Interlude | AI Music Video Short | AIWebTools.ai", gradient: "from-cyan-500/20 to-emerald-500/20" },
@@ -805,6 +806,7 @@ const BookPromotionCard = () => {
       "LXXPC-1lgOQ",
       "rXMTjCFycPM",
       "a9rRZzIsbiY",
+      "Tv5yo-2n5Rc",
       "09CvnM4ZJAg",
       "EkiBNZ4orfI",
       "H9PTc_hzsM8",
