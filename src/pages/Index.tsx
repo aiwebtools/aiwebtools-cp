@@ -36,7 +36,7 @@ const Index = () => {
   // on every device. Fast desktops do not benefit from starting two animation
   // systems while the visitor makes their first scroll/click.
   const matrixBgDelay = isMobile ? 15000 : 12000;
-  const firstScrollSafeDelay = isMobile ? 12000 : 250;
+  const firstScrollSafeDelay = 12000;
 
   const [mainVideoActive, setMainVideoActive] = useState(false);
 
@@ -47,29 +47,12 @@ const Index = () => {
     document.documentElement.scrollTop = 0;
     document.body.scrollTop = 0;
     
-    // Double-check after a frame (catches async layout issues)
-    requestAnimationFrame(() => {
-      window.scrollTo(0, 0);
-    });
     const id = window.setTimeout(() => {
       window.dispatchEvent(new Event("aiwt:route-ready"));
     }, 160);
 
-    const warmRouteChunks = window.setTimeout(() => {
-      const warm = () => {
-        void Promise.allSettled([
-          import("@/pages/MainCategoryPage"),
-          import("@/pages/ToolDetail"),
-        ]);
-      };
-      const ric = (window as any).requestIdleCallback;
-      if (ric) ric(warm, { timeout: 1500 });
-      else warm();
-    }, isMobile ? 900 : 450);
-
     return () => {
       window.clearTimeout(id);
-      window.clearTimeout(warmRouteChunks);
     };
   }, [isMobile]);
 

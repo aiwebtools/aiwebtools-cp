@@ -805,7 +805,9 @@
         function settings(){ var w=window.innerWidth; if(w<=480)return{f:12,c:.118,fd:.075}; if(w<=768)return{f:14,c:.13,fd:.068}; if(w<=1200)return{f:17,c:.155,fd:.056}; return{f:19,c:.168,fd:.048}; }
         function resize(){
           var s=settings(); fontSize=s.f; cubeScale=s.c; fade=s.fd;
-          dpr=Math.min(window.devicePixelRatio||1,2); vw=window.innerWidth; vh=window.innerHeight;
+          // One device pixel is enough for the transient phone loader and cuts
+          // its three-canvas paint workload by up to 75% during first scroll.
+          dpr=window.innerWidth<=768?1:Math.min(window.devicePixelRatio||1,1.5); vw=window.innerWidth; vh=window.innerHeight;
           [matrixCanvas,cubeCanvas,burstCanvas].forEach(function(c){
             c.width=Math.floor(vw*dpr); c.height=Math.floor(vh*dpr);
             c.style.width=vw+'px'; c.style.height=vh+'px';
@@ -818,8 +820,8 @@
         var lastMatrix=0;
         function drawMatrix(ts){
           if(overlay.classList.contains('fade-out')) return;
-          // Smooth Matrix rain: ~45fps keeps motion alive without starving React.
-          if(ts && ts-lastMatrix < 20){ requestAnimationFrame(drawMatrix); return; }
+           // Keep visible motion without starving React during first interaction.
+           if(ts && ts-lastMatrix < (vw<=768?34:24)){ requestAnimationFrame(drawMatrix); return; }
           var delta = lastMatrix ? Math.min(2.2, Math.max(.7, ((ts || lastMatrix) - lastMatrix) / 22)) : 1;
           lastMatrix = ts || 0;
           matrixCtx.fillStyle='rgba(0,0,0,'+fade+')'; matrixCtx.fillRect(0,0,vw,vh);
