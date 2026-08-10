@@ -15,7 +15,11 @@ import ErrorBoundary from "@/components/ErrorBoundary";
 import MatrixCursorEffect from "@/components/effects/MatrixCursorEffect";
 import "@/styles/loading-cube.css";
 import ScrollProgressIndicator from "@/components/ScrollProgressIndicator";
-import { getConsentAccepted } from "@/utils/consent";
+import {
+  canPlayWeeklyWelcomeAudio,
+  getConsentAccepted,
+  markWeeklyWelcomeAudioPlayed,
+} from "@/utils/consent";
 import { lazyWithRetry } from "@/utils/lazyWithRetry";
 import disclaimerWelcomeAudio from "@/assets/audio/disclaimer-welcome-2026.mp3.asset.json";
 import ConfirmSubscriptionHandler from "@/components/ConfirmSubscriptionHandler";
@@ -102,19 +106,23 @@ const WelcomeNeoVoice = () => {
     const recentlyPlayedDisclaimerAudio =
       disclaimerPlayedAt > 0 && Date.now() - disclaimerPlayedAt < 15000;
 
-    // Only play on main page ("/"), after disclaimer accepted, once per session,
-    // and NOT if the disclaimer audio fired in the last 15s.
+    // Only play on the main page after consent, never more than once per week,
+    // and not when the disclaimer audio just fired.
     if (
       location.pathname === '/' &&
       hasAccepted &&
       !hasPlayedRef.current &&
-      !recentlyPlayedDisclaimerAudio
+      !recentlyPlayedDisclaimerAudio &&
+      canPlayWeeklyWelcomeAudio()
     ) {
       hasPlayedRef.current = true;
       (window as any).__aiwtBootTrace?.('welcome-neo-scheduled');
 
       timeoutRef.current = window.setTimeout(() => {
         try {
+          // Re-check after the delay in case another welcome source played.
+          if (!canPlayWeeklyWelcomeAudio()) return;
+          markWeeklyWelcomeAudioPlayed();
           const audio = new Audio(disclaimerWelcomeAudio.url);
           audio.volume = 0.7;
           audio.preload = 'none';
@@ -354,8 +362,8 @@ const PostAcceptBoot: React.FC = () => {
   // Never run heavy boot work on disclaimer gate
   const enabled = hasAccepted && location.pathname !== "/welcome";
 
-  // Prefetch common routes - hook must be called unconditionally (React rules)
-  // The hook internally handles the enabled check via useEffect
+  // Keep route prefetching outside the first interaction window. Eight eager
+  // document prefetches previously competed with the homepage on first load.
   React.useEffect(() => {
     if (!enabled) return;
     
@@ -371,8 +379,7 @@ const PostAcceptBoot: React.FC = () => {
       '/favorites',
     ];
     
-    // Prefetch in microtask to not block render
-    queueMicrotask(() => {
+    const prefetchId = window.setTimeout(() => {
       PRIORITY_ROUTES.forEach(route => {
         if (document.querySelector(`link[href="${route}"]`)) return;
         const link = document.createElement('link');
@@ -381,7 +388,9 @@ const PostAcceptBoot: React.FC = () => {
         link.as = 'document';
         document.head.appendChild(link);
       });
-    });
+    }, 20000);
+
+    return () => window.clearTimeout(prefetchId);
   }, [enabled]);
 
   React.useEffect(() => {
@@ -404,9 +413,9 @@ const PostAcceptBoot: React.FC = () => {
 
     const id = window.setTimeout(() => {
       const ric = (window as any).requestIdleCallback;
-      if (ric) ric(warmCriticalRoutes, { timeout: 2500 });
+      if (ric) ric(warmCriticalRoutes, { timeout: 6000 });
       else warmCriticalRoutes();
-    }, typeof window !== 'undefined' && window.innerWidth < 768 ? 9000 : 1400);
+    }, 20000);
 
     return () => window.clearTimeout(id);
   }, [enabled]);

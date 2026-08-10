@@ -4,7 +4,12 @@ import { Check, Sparkles, Shield } from "lucide-react";
 import { Button } from "../components/ui/button";
 import ImprovedSEOHead from "@/components/ImprovedSEOHead";
 import { Helmet } from "react-helmet-async";
-import { getConsentAccepted, setConsentAccepted } from "@/utils/consent";
+import {
+  canPlayWeeklyWelcomeAudio,
+  getConsentAccepted,
+  markWeeklyWelcomeAudioPlayed,
+  setConsentAccepted,
+} from "@/utils/consent";
 import disclaimerWelcomeAudio from "@/assets/audio/disclaimer-welcome-2026.mp3.asset.json";
 
 // Creative rotating welcome messages - Spiritual Light, Matrix/AI, Humor themed
@@ -325,8 +330,11 @@ const DisclaimerGate: React.FC = () => {
     if (w.__aiwtDisclaimerAccepted) return;
     w.__aiwtDisclaimerAccepted = true;
 
-    // Play welcome audio immediately on user gesture (bypasses autoplay restrictions)
-    try {
+    // The spoken welcome is intentionally limited to once per rolling week.
+    // Mark before playback so rapid navigation or a blocked autoplay attempt can
+    // never create repeated audio during the same visit.
+    if (canPlayWeeklyWelcomeAudio()) try {
+      markWeeklyWelcomeAudioPlayed();
       // Stop any prior instance just in case (HMR, back-nav, etc.)
       if (w.__aiwtDisclaimerAudio) {
         try { w.__aiwtDisclaimerAudio.pause(); } catch {}

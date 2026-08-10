@@ -3,6 +3,8 @@
 // which can break the disclaimer accept → navigate flow.
 
 export const CONSENT_KEY = "aitools-consent-v3";
+const WELCOME_AUDIO_KEY = "aiwt:welcome-audio-at";
+const WELCOME_AUDIO_COOLDOWN_MS = 7 * 24 * 60 * 60 * 1000;
 
 const getCookie = (name: string): string | null => {
   try {
@@ -84,4 +86,32 @@ export const setConsentAccepted = (accepted = true) => {
   }
 
   setCookie(CONSENT_KEY, "true");
+};
+
+/** The spoken welcome may play at most once in a rolling seven-day period. */
+export const canPlayWeeklyWelcomeAudio = (): boolean => {
+  try {
+    const lastPlayedAt = Number(window.localStorage?.getItem(WELCOME_AUDIO_KEY) || "0");
+    return !lastPlayedAt || Date.now() - lastPlayedAt >= WELCOME_AUDIO_COOLDOWN_MS;
+  } catch {
+    // Privacy modes without persistent storage should not repeat audio during a session.
+    try {
+      return !window.sessionStorage?.getItem(WELCOME_AUDIO_KEY);
+    } catch {
+      return false;
+    }
+  }
+};
+
+export const markWeeklyWelcomeAudioPlayed = () => {
+  const playedAt = String(Date.now());
+  try {
+    window.localStorage?.setItem(WELCOME_AUDIO_KEY, playedAt);
+  } catch {
+    try {
+      window.sessionStorage?.setItem(WELCOME_AUDIO_KEY, playedAt);
+    } catch {
+      // Audio cooldown is best-effort when all browser storage is disabled.
+    }
+  }
 };
