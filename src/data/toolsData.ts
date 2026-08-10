@@ -272,6 +272,7 @@ import { vr3DWorldsBatch2026 } from "./tools/vr3DWorldsBatch2026";
 import { wearablesRobotsBatch2026 } from "./tools/wearablesRobotsBatch2026";
 import { wearablesRobotsBatch2026Part2 } from "./tools/wearablesRobotsBatch2026Part2";
 import { wearablesRobotsBatch2026Part3 } from "./tools/wearablesRobotsBatch2026Part3";
+import { verifiedBatch2026Aug } from "./tools/verifiedBatch2026Aug";
 
 const allToolCategories = consolidateTools([
   ...getAllToolCategories(),
@@ -653,7 +654,10 @@ const allToolCategories = consolidateTools([
   ...wearablesRobotsBatch2026Part2,
 
   // Wearables & Robots Batch 2026 Part 3 (5 tools: Boston Dynamics Atlas Electric, Agility Digit, Apptronik Apollo, Sanctuary Phoenix, Tesla Optimus Gen 3)
-  ...wearablesRobotsBatch2026Part3
+  ...wearablesRobotsBatch2026Part3,
+
+  // Verified Batch 2026 August (10 tools: OpenEvidence, Legora, Chai Discovery, Mistral Le Chat, Sana AI, Scribe, Amp Code, Void Editor, Ellipsis, Ultralytics YOLO)
+  ...verifiedBatch2026Aug
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories
