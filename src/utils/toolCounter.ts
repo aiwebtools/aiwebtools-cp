@@ -1,14 +1,16 @@
 import { mainCategories } from '@/utils/mainCategoryMapping';
+import { TOTAL_TOOLS, MARKETING_TOOL_COUNT } from '@/data/generated/toolCount';
 
 // Keep the first paint path tiny. Importing the full tool database and all
 // integrity/category verifiers here was blocking the homepage lazy route for
 // many seconds before React could mount. The browser gets a fast static count;
 // heavyweight audits are loaded dynamically only when explicitly requested.
-const FAST_TOOL_TOTAL = 4571;
+// Auto-generated at build time from the real database (see scripts/generate-sitemap.ts)
+const FAST_TOOL_TOTAL = TOTAL_TOOLS;
 
 const getFastCountResult = () => ({
   exactTotal: FAST_TOOL_TOTAL,
-  marketingNumber: '4,000+',
+  marketingNumber: MARKETING_TOOL_COUNT,
   totalTools: FAST_TOOL_TOTAL,
   categoryBreakdown: {},
   mainCategoryCounts: { 'ALL AI TOOLS': FAST_TOOL_TOTAL },
