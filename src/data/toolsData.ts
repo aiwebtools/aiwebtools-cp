@@ -273,6 +273,7 @@ import { wearablesRobotsBatch2026 } from "./tools/wearablesRobotsBatch2026";
 import { wearablesRobotsBatch2026Part2 } from "./tools/wearablesRobotsBatch2026Part2";
 import { wearablesRobotsBatch2026Part3 } from "./tools/wearablesRobotsBatch2026Part3";
 import { verifiedBatch2026Aug } from "./tools/verifiedBatch2026Aug";
+import { trendingBatch2026 } from "./tools/trendingBatch2026";
 
 const allToolCategories = consolidateTools([
   ...getAllToolCategories(),
@@ -657,7 +658,10 @@ const allToolCategories = consolidateTools([
   ...wearablesRobotsBatch2026Part3,
 
   // Verified Batch 2026 August (10 tools: OpenEvidence, Legora, Chai Discovery, Mistral Le Chat, Sana AI, Scribe, Amp Code, Void Editor, Ellipsis, Ultralytics YOLO)
-  ...verifiedBatch2026Aug
+  ...verifiedBatch2026Aug,
+
+  // Trending Batch 2026 (20 tools: Kosmos, FutureHouse, Sonauto, MacWhisper, Aqua Voice, Willow Voice, Atlassian Rovo, Northflank, Chutes, Chonkie, Visual Electric, Playbook, Backflip AI, Adam CAD, Tembo, Traversal, Rootly AI, Enconvo, Polar, Scalar)
+  ...trendingBatch2026
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories
