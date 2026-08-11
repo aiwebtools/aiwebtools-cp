@@ -8,7 +8,7 @@ import {
   Keyboard,
   Bot,
   Server,
-  Parachute,
+  CloudLightning,
   Scissors,
   Sparkles,
   FolderOpen,
@@ -196,7 +196,7 @@ export const trendingBatch2026: Tool[] = [
     isFree: true
   },
   {
-    icon: Parachute,
+    icon: CloudLightning,
     title: "Chutes",
     description:
       "Decentralized serverless AI compute network on Bittensor that runs open-source LLMs, image and audio models at low cost. Deploy any model as an API endpoint or use free and pay-as-you-go inference for open weights.",
