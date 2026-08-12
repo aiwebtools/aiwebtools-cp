@@ -205,3 +205,39 @@
   decoding: async;
   content-visibility: auto;
 }
+
+/* ---- Instant tap response on phones/tablets ---- */
+@media (hover: none) and (pointer: coarse) {
+  /* Kill the browser double-tap-zoom wait so taps register immediately */
+  a,
+  button,
+  [role="button"],
+  [role="link"],
+  [role="option"],
+  [role="menuitem"],
+  input,
+  select,
+  textarea,
+  label,
+  .tool-card,
+  [data-card] {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Hover styles never apply on touch; skip the paint work entirely */
+  a:hover,
+  button:hover,
+  [role="button"]:hover,
+  .tool-card:hover,
+  [data-card]:hover {
+    transform: none !important;
+    filter: none !important;
+  }
+
+  /* Keep gesture handling on the compositor */
+  body {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: none;
+  }
+}

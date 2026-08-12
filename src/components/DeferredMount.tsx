@@ -44,16 +44,34 @@ const bindScroll = () => {
   }
 };
 
-const scheduleFlush = () => {
+const isTouchDevice = () =>
+  typeof window !== 'undefined' &&
+  ('ontouchstart' in window || (navigator.maxTouchPoints ?? 0) > 0);
+
+/**
+ * Urgent mount: the placeholder is at/near the real viewport, so the user is
+ * looking at an empty gap. Jump it to the front of the queue and flush on the
+ * next frame instead of waiting for a long scroll-quiet window.
+ */
+const enqueueUrgent = (mount: () => void) => {
+  bindScroll();
+  queue.unshift(mount);
+  const next = queue.shift();
+  next?.();
+  if (queue.length > 0) scheduleFlush();
+};
+
+function scheduleFlush() {
   if (flushing) return;
   flushing = true;
 
+  // Touch scrolling fires events continuously through momentum, so a long
+  // quiet window meant sections never mounted while the user scrolled — the
+  // page looked empty and "slow". Touch gets a much shorter window.
+  const quietWindow = isTouchDevice() ? 220 : 700;
+
   const run = () => {
-    // Mid-scroll: postpone so we never hijack the scroll frame.
-    // Require a real quiet window. Trackpads and touch momentum often leave
-    // 100–250ms gaps between events; treating those gaps as "scroll finished"
-    // allowed a heavy section commit to collide with the next gesture.
-    if (performance.now() - lastScrollAt < 700) {
+    if (performance.now() - lastScrollAt < quietWindow) {
       window.setTimeout(run, 120);
       return;
     }
@@ -73,7 +91,7 @@ const scheduleFlush = () => {
   const ric = (window as any).requestIdleCallback;
   if (ric) ric(run, { timeout: 1000 });
   else window.setTimeout(run, 16);
-};
+}
 
 const enqueueMount = (mount: () => void) => {
   bindScroll();
@@ -108,6 +126,7 @@ const DeferredMount = ({ children, delay = 100, fallback = null, mountOnVisible 
     // observer may flag all of them in one frame. Mounting them directly here
     // caused the exact "first scroll does not move" freeze we are preventing.
     let observer: IntersectionObserver | null = null;
+    let urgentObserver: IntersectionObserver | null = null;
     if (mountOnVisible && placeholderRef.current && typeof IntersectionObserver !== 'undefined') {
       observer = new IntersectionObserver(
         (entries) => {
@@ -119,6 +138,25 @@ const DeferredMount = ({ children, delay = 100, fallback = null, mountOnVisible 
         { rootMargin: '1600px 0px' }
       );
       observer.observe(placeholderRef.current);
+
+      // Second, tighter observer: if the gap actually reaches the screen we
+      // stop being polite and mount right away.
+      urgentObserver = new IntersectionObserver(
+        (entries) => {
+          if (entries.some((e) => e.isIntersecting)) {
+            urgentObserver?.disconnect();
+            observer?.disconnect();
+            if (!queued && mounted) {
+              queued = true;
+              enqueueUrgent(() => {
+                if (mounted) setShouldMount(true);
+              });
+            }
+          }
+        },
+        { rootMargin: '250px 0px' }
+      );
+      urgentObserver.observe(placeholderRef.current);
     }
 
     const timerId = window.setTimeout(request, delay);
@@ -126,6 +164,7 @@ const DeferredMount = ({ children, delay = 100, fallback = null, mountOnVisible 
     return () => {
       mounted = false;
       observer?.disconnect();
+      urgentObserver?.disconnect();
       window.clearTimeout(timerId);
     };
   }, [delay, mountOnVisible]);
