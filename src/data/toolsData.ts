@@ -274,6 +274,7 @@ import { wearablesRobotsBatch2026Part2 } from "./tools/wearablesRobotsBatch2026P
 import { wearablesRobotsBatch2026Part3 } from "./tools/wearablesRobotsBatch2026Part3";
 import { verifiedBatch2026Aug } from "./tools/verifiedBatch2026Aug";
 import { trendingBatch2026 } from "./tools/trendingBatch2026";
+import { agentOpsSecurityBatch2026 } from "./tools/agentOpsSecurityBatch2026";
 
 const allToolCategories = consolidateTools([
   ...getAllToolCategories(),
@@ -661,7 +662,10 @@ const allToolCategories = consolidateTools([
   ...verifiedBatch2026Aug,
 
   // Trending Batch 2026 (20 tools: Kosmos, FutureHouse, Sonauto, MacWhisper, Aqua Voice, Willow Voice, Atlassian Rovo, Northflank, Chutes, Chonkie, Visual Electric, Playbook, Backflip AI, Adam CAD, Tembo, Traversal, Rootly AI, Enconvo, Polar, Scalar)
-  ...trendingBatch2026
+  ...trendingBatch2026,
+
+  // Agent Ops & AI Security Batch 2026 (12 tools: Parahelp, Momentic, Antithesis, Zenity, Noma Security, Pillar Security, Aim Security, Dropzone AI, Intezer, Tines, Meticulous, Freestyle)
+  ...agentOpsSecurityBatch2026
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories
