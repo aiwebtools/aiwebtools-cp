@@ -276,6 +276,7 @@ import { verifiedBatch2026Aug } from "./tools/verifiedBatch2026Aug";
 import { trendingBatch2026 } from "./tools/trendingBatch2026";
 import { agentOpsSecurityBatch2026 } from "./tools/agentOpsSecurityBatch2026";
 import { aiNativeBatch2026 } from "./tools/aiNativeBatch2026";
+import { devAiBatch2026Aug } from "./tools/devAiBatch2026Aug";
 
 const allToolCategories = consolidateTools([
   ...getAllToolCategories(),
@@ -669,7 +670,10 @@ const allToolCategories = consolidateTools([
   ...agentOpsSecurityBatch2026,
 
   // AI-Native Batch 2026 (50 tools: agent orchestration, AI security, QA automation, AI user research)
-  ...aiNativeBatch2026
+  ...aiNativeBatch2026,
+
+  // Dev & Agent Infrastructure Batch — August 2026 (12 tools: Sculptor, Bito AI, Baz, Entelligence AI, Nia, Devlo, Tusk, Kernel, Steel.dev, Cased, Cleric, Macroscope)
+  ...devAiBatch2026Aug
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories

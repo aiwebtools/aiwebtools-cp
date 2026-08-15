@@ -18,6 +18,10 @@ interface DeferredMountProps {
  *      small enough to keep the frame budget.
  * ------------------------------------------------------------------ */
 const queue: Array<() => void> = [];
+const queuedAt = new WeakMap<() => void, number>();
+// Never let a queued section wait longer than this, even mid-scroll — an empty
+// black gap is far worse than one extra commit during momentum scrolling.
+const MAX_WAIT_MS = 900;
 let flushing = false;
 let lastScrollAt = 0;
 let scrollBound = false;
@@ -68,10 +72,12 @@ function scheduleFlush() {
   // Touch scrolling fires events continuously through momentum, so a long
   // quiet window meant sections never mounted while the user scrolled — the
   // page looked empty and "slow". Touch gets a much shorter window.
-  const quietWindow = isTouchDevice() ? 220 : 700;
+  const quietWindow = isTouchDevice() ? 120 : 400;
 
   const run = () => {
-    if (performance.now() - lastScrollAt < quietWindow) {
+    const head = queue[0];
+    const waited = head ? performance.now() - (queuedAt.get(head) ?? performance.now()) : 0;
+    if (performance.now() - lastScrollAt < quietWindow && waited < MAX_WAIT_MS) {
       window.setTimeout(run, 120);
       return;
     }
@@ -95,6 +101,7 @@ function scheduleFlush() {
 
 const enqueueMount = (mount: () => void) => {
   bindScroll();
+  queuedAt.set(mount, performance.now());
   queue.push(mount);
   scheduleFlush();
 };
