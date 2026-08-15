@@ -150,31 +150,31 @@ const Index = () => {
           <CategoryPageSelection />
         </div>
         
-        <DeferredMount delay={12000} fallback={<div className="min-h-[35vh]" aria-hidden="true" />}>
+        <DeferredMount delay={2400} fallback={<div className="min-h-[35vh]" aria-hidden="true" />}>
           <Suspense fallback={null}>
             <AIWebToolsSEOSection />
           </Suspense>
         </DeferredMount>
    
-        <DeferredMount delay={13000} fallback={<div className="min-h-[55vh]" aria-hidden="true" />}>
+        <DeferredMount delay={900} fallback={<div className="min-h-[55vh]" aria-hidden="true" />}>
           <Suspense fallback={null}>
             <LazyFeaturedTools onToolsLoaded={(count) => {}} />
           </Suspense>
         </DeferredMount>
         
-        <DeferredMount delay={14000} fallback={<div className="min-h-[55vh]" aria-hidden="true" />}>
+        <DeferredMount delay={1200} fallback={<div className="min-h-[55vh]" aria-hidden="true" />}>
           <Suspense fallback={null}>
             <SpecialServices />
           </Suspense>
         </DeferredMount>
 
-        <DeferredMount delay={15000} fallback={<div className="min-h-[35vh]" aria-hidden="true" />}>
+        <DeferredMount delay={2000} fallback={<div className="min-h-[35vh]" aria-hidden="true" />}>
           <Suspense fallback={null}>
             <BookPromotionCard />
           </Suspense>
         </DeferredMount>
         
-        <DeferredMount delay={16000} fallback={<div className="min-h-[45vh]" aria-hidden="true" />}>
+        <DeferredMount delay={2800} fallback={<div className="min-h-[45vh]" aria-hidden="true" />}>
           <Suspense fallback={null}>
             <section className="py-16 relative" style={{ background: 'linear-gradient(135deg, #0a0a0a 0%, #001a00 50%, #0a0a0a 100%)' }}>
               <div className="container mx-auto px-4">
@@ -193,13 +193,13 @@ const Index = () => {
           </Suspense>
         </DeferredMount>
         
-        <DeferredMount delay={isMobile ? 13500 : 860} fallback={<div className="min-h-[16vh]" aria-hidden="true" />}>
+        <DeferredMount delay={isMobile ? 3200 : 860} fallback={<div className="min-h-[16vh]" aria-hidden="true" />}>
           <Suspense fallback={null}>
             <EthicalAIQuoteSection />
           </Suspense>
         </DeferredMount>
         
-        <DeferredMount delay={isMobile ? 14500 : 920} fallback={<div className="min-h-[24vh]" aria-hidden="true" />}>
+        <DeferredMount delay={isMobile ? 3600 : 920} fallback={<div className="min-h-[24vh]" aria-hidden="true" />}>
           <Suspense fallback={null}>
             <InspirationCarousel />
           </Suspense>
