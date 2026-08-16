@@ -430,7 +430,10 @@
           const startTime = performance.now();
            // React content wins immediately. The former multi-second minimum
            // made a healthy app feel frozen and kept this overlay above usable UI.
-           const MIN_BOOT_MS = 250;
+           // Phones need a moment more before the curtain lifts, otherwise the
+           // first tap lands while React is still hydrating below-hero work.
+           const IS_TOUCH = ('ontouchstart' in window) || (navigator.maxTouchPoints || 0) > 0;
+           const MIN_BOOT_MS = IS_TOUCH ? 1500 : 700;
            const MAX_BOOT_MS = 5000;
            const FINISH_DELAY_MS = 100;
 

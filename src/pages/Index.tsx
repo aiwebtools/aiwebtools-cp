@@ -156,13 +156,13 @@ const Index = () => {
           </Suspense>
         </DeferredMount>
    
-        <DeferredMount delay={900} fallback={<div className="min-h-[55vh]" aria-hidden="true" />}>
+        <DeferredMount delay={250} fallback={<div className="min-h-[55vh]" aria-hidden="true" />}>
           <Suspense fallback={null}>
             <LazyFeaturedTools onToolsLoaded={(count) => {}} />
           </Suspense>
         </DeferredMount>
         
-        <DeferredMount delay={1200} fallback={<div className="min-h-[55vh]" aria-hidden="true" />}>
+        <DeferredMount delay={500} fallback={<div className="min-h-[55vh]" aria-hidden="true" />}>
           <Suspense fallback={null}>
             <SpecialServices />
           </Suspense>
