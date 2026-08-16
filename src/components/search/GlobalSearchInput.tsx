@@ -119,16 +119,20 @@ const GlobalSearchInput = memo(({
   }, [onClear]);
 
   return (
-    <div className="relative rounded-lg border border-border cursor-text" onClick={handleContainerClick}>
-      <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-300 w-4 h-4 pointer-events-none z-10" />
+    <div
+      className="relative rounded-lg border-2 border-emerald-500/70 cursor-text overflow-hidden shadow-[0_0_18px_rgba(16,185,129,0.25)]"
+      style={{ backgroundColor: "#ffffff" }}
+      onClick={handleContainerClick}
+    >
+      <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-neutral-600 w-4 h-4 pointer-events-none z-10" />
 
       {ghostText && (
         <div className="absolute inset-0 flex items-center pointer-events-none z-[2]">
           <span className="pl-10 text-transparent select-none">{localValue}</span>
-          <span className="text-emerald-300/90 font-medium drop-shadow-[0_0_4px_rgba(16,185,129,0.45)]">
+          <span className="text-emerald-700/80 font-medium">
             {ghostText}
           </span>
-          <span className="ml-2 px-1.5 py-0.5 rounded text-[10px] font-semibold tracking-wide text-emerald-200 bg-emerald-500/15 border border-emerald-400/30 hidden sm:inline">
+          <span className="ml-2 px-1.5 py-0.5 rounded text-[10px] font-semibold tracking-wide text-emerald-800 bg-emerald-500/15 border border-emerald-600/40 hidden sm:inline">
             Tab ↹
           </span>
         </div>
@@ -142,7 +146,7 @@ const GlobalSearchInput = memo(({
         onChange={handleChange}
         onFocus={onFocus}
         onKeyDown={handleKeyDown}
-        className="pl-10 pr-10 bg-black/60 border-0 text-white placeholder-gray-300 focus:ring-0 focus:outline-none rounded-lg focus:bg-black/80 relative z-[1] bg-transparent cursor-text"
+        className="pl-10 pr-10 border-0 bg-transparent text-neutral-900 placeholder:text-neutral-500 focus:ring-0 focus:outline-none rounded-lg relative z-[1] cursor-text font-medium"
         autoComplete="off"
         spellCheck={false}
         inputMode="search"
@@ -162,7 +166,7 @@ const GlobalSearchInput = memo(({
           variant="ghost"
           size="sm"
           onClick={handleClear}
-          className="absolute right-1 top-1/2 transform -translate-y-1/2 h-6 w-6 p-0 text-gray-300 hover:text-white hover:bg-white/10 z-10"
+          className="absolute right-1 top-1/2 transform -translate-y-1/2 h-6 w-6 p-0 text-neutral-600 hover:text-black hover:bg-black/10 z-10"
           aria-label="Clear search"
         >
           <X className="w-3 h-3" />
