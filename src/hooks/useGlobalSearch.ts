@@ -1644,8 +1644,15 @@ export const useGlobalSearch = () => {
   }, [getSearchWorker]);
 
   const prepareSearch = useCallback(() => {
+    // The worker parses the 5k+ tool database OFF the main thread, so typing is
+    // instant even before the main-thread module finishes importing.
     getSearchWorker();
-    void loadTools();
+    // Importing the full database on the main thread is a multi-hundred-ms parse.
+    // On phones that landed exactly on the first keystroke and froze the UI, so
+    // we push it into an idle slot instead of doing it inside the focus handler.
+    const ric = (window as any).requestIdleCallback;
+    if (ric) ric(() => { void loadTools(); }, { timeout: 2500 });
+    else window.setTimeout(() => { void loadTools(); }, 300);
   }, [getSearchWorker, loadTools]);
 
   // Precompute lowercase fields once (keeps search snappy)
