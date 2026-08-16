@@ -1579,7 +1579,9 @@ export const useGlobalSearch = () => {
           .then(({ allTools }) => {
             primeToolImageMap(allTools);
             toolsRef.current = allTools;
-            setTools(allTools);
+            // Non-urgent: keeps the giant re-render/index build interruptible so
+            // taps and scrolls stay responsive while it lands.
+            startTransition(() => setTools(allTools));
             return allTools;
           })
           .catch((error) => {
