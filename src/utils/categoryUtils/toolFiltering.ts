@@ -143,9 +143,9 @@ export const getToolsByCategory = (tools: Tool[], categoryName: string): Tool[] 
   // Combine: category-relevant tools first, then others
   const finalResult = [...prioritizedCategoryTools, ...prioritizedOtherTools];
   
-  console.log(`🎯 Category "${categoryName}": ${finalResult.length} total tools`);
-  console.log(`   📂 Category-relevant: ${prioritizedCategoryTools.length} tools`);
-  console.log(`   🔗 Related/other: ${prioritizedOtherTools.length} tools`);
+  if (import.meta.env.DEV) console.log(`🎯 Category "${categoryName}": ${finalResult.length} total tools`);
+  if (import.meta.env.DEV) console.log(`   📂 Category-relevant: ${prioritizedCategoryTools.length} tools`);
+  if (import.meta.env.DEV) console.log(`   🔗 Related/other: ${prioritizedOtherTools.length} tools`);
   
   return finalResult;
 };
@@ -396,7 +396,7 @@ const interleaveAIWebToolsGPTs = (categoryTools: Tool[]): Tool[] => {
     }
   });
   
-  console.log(`🔄 Interleaving: ${nonGPTsInCategory.length} category tools + ${gptsInCategory.length} AI Web Tools GPTs available for injection`);
+  if (import.meta.env.DEV) console.log(`🔄 Interleaving: ${nonGPTsInCategory.length} category tools + ${gptsInCategory.length} AI Web Tools GPTs available for injection`);
   
   // If no GPTs in this category, just return category tools as-is
   if (gptsInCategory.length === 0) {
@@ -433,7 +433,7 @@ const interleaveAIWebToolsGPTs = (categoryTools: Tool[]): Tool[] => {
     gptIndex++;
   }
   
-  console.log(`✅ Interleaved result: ${result.length} tools (${gptIndex} GPTs injected)`);
+  if (import.meta.env.DEV) console.log(`✅ Interleaved result: ${result.length} tools (${gptIndex} GPTs injected)`);
   
   return result;
 };
@@ -474,7 +474,7 @@ const sortToolsByDirectCategoryMatch = (tools: Tool[], mainCategoryName: string)
     }
   });
   
-  console.log(`📂 Direct category matches: ${directMatches.length}, Related: ${relatedTools.length}`);
+  if (import.meta.env.DEV) console.log(`📂 Direct category matches: ${directMatches.length}, Related: ${relatedTools.length}`);
   
   // Return direct matches first, then related tools
   return [...directMatches, ...relatedTools];
