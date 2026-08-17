@@ -350,17 +350,17 @@ const yieldToBrowser = (): Promise<void> =>
 // the caller can await — every category iteration yields to the browser so
 // clicks/scroll stay instant while the ~9s first-visit build is happening.
 export const buildToolsCacheAsync = async (tools: Tool[]): Promise<void> => {
-  if (!cacheBuilt && loadCacheFromStorage() && tools.length === lastToolsLength) {
+  if (!cacheBuilt && hydrateCacheFromStorage(tools)) {
     cacheBuilt = true;
+    lastToolsLength = tools.length;
     return;
   }
   if (cacheBuilt && tools.length === lastToolsLength) return;
 
-  console.log('🚀 Building tools cache (async, non-blocking)…');
   const startTime = performance.now();
   toolsCacheByMainCategory.clear();
 
-  const toolCollections = buildToolCollections(tools);
+  const toolCollections = createLazyCollections(tools);
   await yieldToBrowser();
 
   for (const mainCat of mainCategories) {
@@ -371,8 +371,10 @@ export const buildToolsCacheAsync = async (tools: Tool[]): Promise<void> => {
 
   cacheBuilt = true;
   lastToolsLength = tools.length;
-  saveCacheToStorage();
-  console.log(`✅ Async cache built in ${(performance.now() - startTime).toFixed(2)}ms`);
+  saveCacheToStorage(tools);
+  if (import.meta.env.DEV) {
+    console.log(`✅ Async cache built in ${(performance.now() - startTime).toFixed(2)}ms`);
+  }
 };
 
 // Lazily-computed tool collections. `computeCategoryTools` only touches 1-3
@@ -471,5 +473,6 @@ export const buildSingleCategoryTools = (categoryName: string, tools: Tool[]): T
 export const getToolsCacheByMainCategory = () => toolsCacheByMainCategory;
 export const isCacheBuilt = () => cacheBuilt;
 
-// Initialize cache from storage on module load
-loadCacheFromStorage();
+// Read the (small) persisted index payload on module load so the first
+// hydrate call is instant. Hydration itself waits until tools are available.
+readStoredCache();
