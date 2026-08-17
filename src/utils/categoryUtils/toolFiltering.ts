@@ -366,19 +366,9 @@ export const getToolsByMainCategory = (tools: Tool[], mainCategoryName: string):
   }
   
   else {
-    // Build cache efficiently if not built yet for other categories
-    buildToolsCache(tools);
-    
-    const toolsCacheByMainCategory = getToolsCacheByMainCategory();
-    
-    // Return cached results instantly for other categories
-    const cachedTools = toolsCacheByMainCategory.get(mainCategoryName);
-    
-    if (cachedTools) {
-      categoryTools = cachedTools;
-    } else {
-      return [];
-    }
+    // Compute only the requested category instead of sweeping all ~25.
+    categoryTools = buildSingleCategoryTools(mainCategoryName, tools);
+    if (categoryTools.length === 0) return [];
   }
   
   // Priority sorting and interleaving
