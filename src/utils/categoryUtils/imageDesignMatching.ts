@@ -37,12 +37,12 @@ const isPriorityImageTool = (tool: Tool): boolean => {
  * Get tools specifically for Image & Design category with strict filtering and priority ordering
  */
 export const getImageAndDesignTools = (tools: Tool[], categoryName: string): Tool[] => {
-  console.log(`🎨 Getting Image & Design tools for category: ${categoryName}`);
+  if (import.meta.env.DEV) console.log(`🎨 Getting Image & Design tools for category: ${categoryName}`);
   
   const imageDesignTools = tools.filter(tool => {
     // EXCLUDE video/entertainment tools FIRST (HIGHEST EXCLUSION PRIORITY)
     if (isVideoEntertainmentTool(tool)) {
-      console.log(`❌ EXCLUDING video/entertainment tool: ${tool.title}`);
+      if (import.meta.env.DEV) console.log(`❌ EXCLUDING video/entertainment tool: ${tool.title}`);
       return false;
     }
     
@@ -51,7 +51,7 @@ export const getImageAndDesignTools = (tools: Tool[], categoryName: string): Too
       const matchType = isPriorityImageTool(tool) ? 'PRIORITY' : 
                        isCoreImageTool(tool) ? 'core-image' : 
                        isPureDesignTool(tool) ? 'pure-design' : 'category-match';
-      console.log(`✅ Including in Image & Design: ${tool.title} (${matchType})`);
+      if (import.meta.env.DEV) console.log(`✅ Including in Image & Design: ${tool.title} (${matchType})`);
       return true;
     }
     
@@ -61,7 +61,7 @@ export const getImageAndDesignTools = (tools: Tool[], categoryName: string): Too
   // 🚀 Apply AI Web Tools GPT prioritization (GPTs with videos/images first)
   const prioritizedTools = applyAIWebToolsPrioritization(imageDesignTools);
   
-  console.log(`🎨 Image & Design category: ${prioritizedTools.length} tools with AI Web Tools GPTs prioritized first`);
+  if (import.meta.env.DEV) console.log(`🎨 Image & Design category: ${prioritizedTools.length} tools with AI Web Tools GPTs prioritized first`);
   
   return prioritizedTools;
 };

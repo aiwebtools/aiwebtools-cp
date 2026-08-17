@@ -55,7 +55,7 @@ export const isHealthAndWellnessTool = (tool: Tool): boolean => {
   const isHealthTool = (hasStrongHealthKeywords && isStrictlyHealthCategory) || isObviouslyHealth;
 
   if (false && isHealthTool) {
-    console.log(`🏥 HEALTH & WELLNESS (STRICT): ${tool.title} (${tool.category})`);
+    if (import.meta.env.DEV) console.log(`🏥 HEALTH & WELLNESS (STRICT): ${tool.title} (${tool.category})`);
   }
 
   return isHealthTool;

@@ -225,6 +225,6 @@ export const getEnhancedImageDesignTools = (tools: Tool[]): Tool[] => {
     return false;
   });
 
-  console.log(`🎨 Enhanced Image/Design Detection: Found ${imageTools.length} tools`);
+  if (import.meta.env.DEV) console.log(`🎨 Enhanced Image/Design Detection: Found ${imageTools.length} tools`);
   return imageTools;
 };
