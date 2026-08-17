@@ -39,9 +39,18 @@ let cacheBuilt = false;
 let lastToolsLength = 0;
 let cacheVersion = 47; // Phase 27: Expanded historical detection with 89+ verified AIWebTools GPTs (philosophers, saints, scientists, ancient civilization tools)
 
-// Persistent cache storage for instant loads
-const CACHE_KEY = 'aitools_category_cache_v2';
+// Persistent cache storage for instant loads.
+// v3 stores tool *indices* rather than whole Tool objects. The previous format
+// serialized every duplicated tool object across ~25 categories (~41k entries,
+// several MB), which always tripped the 1.5MB guard below and got discarded —
+// so the cache never actually persisted and every single page load paid for a
+// full multi-second rebuild. Indices keep it small enough to always persist.
+const CACHE_KEY = 'aitools_category_cache_v3';
 const CACHE_VERSION_KEY = 'aitools_cache_version';
+const CACHE_LENGTH_KEY = 'aitools_cache_tools_length';
+
+// Legacy keys, removed on first run so old multi-MB blobs stop wasting quota.
+const LEGACY_CACHE_KEYS = ['aitools_category_cache_v2'];
 
 // Guard: worker contexts and SSR have no localStorage — access must be safe.
 const hasLocalStorage = (): boolean => {
@@ -49,44 +58,88 @@ const hasLocalStorage = (): boolean => {
   catch { return false; }
 };
 
-// Load cache from localStorage on startup
-const loadCacheFromStorage = () => {
-  if (!hasLocalStorage()) return false;
-  try {
-    const stored = localStorage.getItem(CACHE_KEY);
-    const version = localStorage.getItem(CACHE_VERSION_KEY);
-    
-    if (stored && version === cacheVersion.toString()) {
-      const parsedCache = JSON.parse(stored);
-      toolsCacheByMainCategory = new Map(Object.entries(parsedCache));
-      console.log('🚀 Cache loaded from storage instantly!');
-      return true;
-    }
-  } catch (error) {
-    console.warn('Cache storage load failed:', error);
-  }
-  return false;
-};
+// Raw index payload read once at module load, hydrated when tools arrive.
+let storedIndices: Record<string, number[]> | null = null;
+let storedToolsLength = -1;
+let storageRead = false;
 
-// Save cache to localStorage
-const saveCacheToStorage = () => {
+const clearStoredCache = () => {
   if (!hasLocalStorage()) return;
   try {
-    const cacheObject = Object.fromEntries(toolsCacheByMainCategory);
-    const serialized = JSON.stringify(cacheObject);
-    // The full category cache can exceed mobile/private-mode storage quotas.
-    // Keep the fast in-memory cache and skip persistent storage instead of
-    // throwing quota warnings that slow startup.
-    if (serialized.length > 1_500_000) {
-      localStorage.removeItem(CACHE_KEY);
-      localStorage.removeItem(CACHE_VERSION_KEY);
-      return;
+    [CACHE_KEY, CACHE_VERSION_KEY, CACHE_LENGTH_KEY, ...LEGACY_CACHE_KEYS].forEach((key) =>
+      localStorage.removeItem(key)
+    );
+  } catch { /* noop */ }
+  storedIndices = null;
+  storedToolsLength = -1;
+};
+
+// Read the persisted index payload. Cheap: a few hundred KB of integers.
+const readStoredCache = () => {
+  if (storageRead || !hasLocalStorage()) return;
+  storageRead = true;
+  try {
+    LEGACY_CACHE_KEYS.forEach((key) => localStorage.removeItem(key));
+    const stored = localStorage.getItem(CACHE_KEY);
+    const version = localStorage.getItem(CACHE_VERSION_KEY);
+    const length = Number(localStorage.getItem(CACHE_LENGTH_KEY));
+    if (stored && version === cacheVersion.toString() && Number.isFinite(length)) {
+      storedIndices = JSON.parse(stored);
+      storedToolsLength = length;
     }
-    localStorage.setItem(CACHE_KEY, serialized);
+  } catch {
+    clearStoredCache();
+  }
+};
+
+/**
+ * Rebuild the in-memory cache from persisted indices. Only valid when the tools
+ * array is identical in length to the one the cache was built from.
+ */
+const hydrateCacheFromStorage = (tools: Tool[]): boolean => {
+  readStoredCache();
+  if (!storedIndices || storedToolsLength !== tools.length) return false;
+  try {
+    toolsCacheByMainCategory = new Map(
+      Object.entries(storedIndices).map(([name, indices]) => [
+        name,
+        indices.map((index) => tools[index]).filter(Boolean),
+      ])
+    );
+    return toolsCacheByMainCategory.size > 0;
+  } catch {
+    clearStoredCache();
+    return false;
+  }
+};
+
+// Persist the cache as compact index arrays.
+const saveCacheToStorage = (tools: Tool[]) => {
+  if (!hasLocalStorage()) return;
+  try {
+    const indexByTitle = new Map<string, number>();
+    tools.forEach((tool, index) => {
+      if (!indexByTitle.has(tool.title)) indexByTitle.set(tool.title, index);
+    });
+
+    const payload: Record<string, number[]> = {};
+    toolsCacheByMainCategory.forEach((categoryTools, name) => {
+      const indices: number[] = [];
+      for (const tool of categoryTools) {
+        const index = indexByTitle.get(tool.title);
+        if (index !== undefined) indices.push(index);
+      }
+      payload[name] = indices;
+    });
+
+    localStorage.setItem(CACHE_KEY, JSON.stringify(payload));
     localStorage.setItem(CACHE_VERSION_KEY, cacheVersion.toString());
-    console.log('💾 Cache saved to storage');
-  } catch (error) {
-    try { localStorage.removeItem(CACHE_KEY); localStorage.removeItem(CACHE_VERSION_KEY); } catch { /* noop */ }
+    localStorage.setItem(CACHE_LENGTH_KEY, String(tools.length));
+    storedIndices = payload;
+    storedToolsLength = tools.length;
+  } catch {
+    // Quota exceeded / private mode: keep the fast in-memory cache and move on.
+    clearStoredCache();
   }
 };
 
@@ -95,10 +148,7 @@ export const resetCache = () => {
   toolsCacheByMainCategory.clear();
   cacheBuilt = false;
   lastToolsLength = 0;
-  if (hasLocalStorage()) {
-    try { localStorage.removeItem(CACHE_KEY); localStorage.removeItem(CACHE_VERSION_KEY); } catch { /* noop */ }
-  }
-  console.log('🔄 Cache reset - will rebuild with 50+ new tools included v36');
+  clearStoredCache();
 };
 
 // NOTE: Do NOT force-reset the cache on every module load — the `cacheVersion`
