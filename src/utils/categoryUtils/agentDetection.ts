@@ -308,6 +308,6 @@ export const getEnhancedAgentTools = (tools: Tool[]): Tool[] => {
     return false;
   });
 
-  console.log(`🤖 Enhanced Agent Detection: Found ${agentTools.length} agent tools`);
+  if (import.meta.env.DEV) console.log(`🤖 Enhanced Agent Detection: Found ${agentTools.length} agent tools`);
   return agentTools;
 };

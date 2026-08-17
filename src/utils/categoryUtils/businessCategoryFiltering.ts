@@ -74,7 +74,7 @@ export const filterBusinessTools = (tools: Tool[]): Tool[] => {
   return tools.filter(tool => {
     // First check if it's an entertainment tool - if so, exclude it
     if (isEntertainmentTool(tool)) {
-      console.log(`❌ Excluding entertainment tool from business category: ${tool.title}`);
+      if (import.meta.env.DEV) console.log(`❌ Excluding entertainment tool from business category: ${tool.title}`);
       return false;
     }
     
@@ -91,7 +91,7 @@ export const filterBusinessTools = (tools: Tool[]): Tool[] => {
       );
       
       if (isObviousEntertainment) {
-        console.log(`❌ Excluding AI Web Tools entertainment GPT from business: ${tool.title}`);
+        if (import.meta.env.DEV) console.log(`❌ Excluding AI Web Tools entertainment GPT from business: ${tool.title}`);
         return false;
       }
       
@@ -106,4 +106,4 @@ export const filterBusinessTools = (tools: Tool[]): Tool[] => {
   });
 };
 
-console.log('🏢 Business category filtering loaded - entertainment tools will be excluded from business categories!');
+if (import.meta.env.DEV) console.log('🏢 Business category filtering loaded - entertainment tools will be excluded from business categories!');

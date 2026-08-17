@@ -12,7 +12,7 @@ import {
   getImageAndDesignTools
 } from "./categoryMatching";
 import { CategoryCounts, MainCategoryCounts } from "./types";
-import { buildToolsCache, getToolsCacheByMainCategory, isCacheBuilt } from "./cacheManager";
+import { buildToolsCache, buildSingleCategoryTools, getToolsCacheByMainCategory, isCacheBuilt } from "./cacheManager";
 import { isAIWebToolsGPT, isEducationRelatedTool } from "./specializedDetection";
 import { applyAIWebToolsPrioritization, getAIWebToolsPriorityScore } from "@/utils/aiWebToolsPrioritization";
 import { filterBusinessTools } from "./businessCategoryFiltering";
@@ -143,9 +143,9 @@ export const getToolsByCategory = (tools: Tool[], categoryName: string): Tool[] 
   // Combine: category-relevant tools first, then others
   const finalResult = [...prioritizedCategoryTools, ...prioritizedOtherTools];
   
-  console.log(`🎯 Category "${categoryName}": ${finalResult.length} total tools`);
-  console.log(`   📂 Category-relevant: ${prioritizedCategoryTools.length} tools`);
-  console.log(`   🔗 Related/other: ${prioritizedOtherTools.length} tools`);
+  if (import.meta.env.DEV) console.log(`🎯 Category "${categoryName}": ${finalResult.length} total tools`);
+  if (import.meta.env.DEV) console.log(`   📂 Category-relevant: ${prioritizedCategoryTools.length} tools`);
+  if (import.meta.env.DEV) console.log(`   🔗 Related/other: ${prioritizedOtherTools.length} tools`);
   
   return finalResult;
 };
@@ -249,11 +249,11 @@ export const getMainCategoriesWithCounts = (tools: Tool[]): MainCategoryCounts =
         break;
       }
       default: {
-        // Build cache if needed and get cached results
-        buildToolsCache(tools);
-        const toolsCacheByMainCategory = getToolsCacheByMainCategory();
-        const cachedTools = toolsCacheByMainCategory.get(mainCat.name);
-        toolCount = cachedTools ? cachedTools.length : 0;
+        // Compute only this category. Previously this called the full
+        // `buildToolsCache`, so counting one category swept the entire
+        // ~5.4k tool database across all ~25 categories synchronously —
+        // a multi-second main-thread freeze, repeated per category.
+        toolCount = buildSingleCategoryTools(mainCat.name, tools).length;
         break;
       }
     }
@@ -366,19 +366,9 @@ export const getToolsByMainCategory = (tools: Tool[], mainCategoryName: string):
   }
   
   else {
-    // Build cache efficiently if not built yet for other categories
-    buildToolsCache(tools);
-    
-    const toolsCacheByMainCategory = getToolsCacheByMainCategory();
-    
-    // Return cached results instantly for other categories
-    const cachedTools = toolsCacheByMainCategory.get(mainCategoryName);
-    
-    if (cachedTools) {
-      categoryTools = cachedTools;
-    } else {
-      return [];
-    }
+    // Compute only the requested category instead of sweeping all ~25.
+    categoryTools = buildSingleCategoryTools(mainCategoryName, tools);
+    if (categoryTools.length === 0) return [];
   }
   
   // Priority sorting and interleaving
@@ -406,7 +396,7 @@ const interleaveAIWebToolsGPTs = (categoryTools: Tool[]): Tool[] => {
     }
   });
   
-  console.log(`🔄 Interleaving: ${nonGPTsInCategory.length} category tools + ${gptsInCategory.length} AI Web Tools GPTs available for injection`);
+  if (import.meta.env.DEV) console.log(`🔄 Interleaving: ${nonGPTsInCategory.length} category tools + ${gptsInCategory.length} AI Web Tools GPTs available for injection`);
   
   // If no GPTs in this category, just return category tools as-is
   if (gptsInCategory.length === 0) {
@@ -443,7 +433,7 @@ const interleaveAIWebToolsGPTs = (categoryTools: Tool[]): Tool[] => {
     gptIndex++;
   }
   
-  console.log(`✅ Interleaved result: ${result.length} tools (${gptIndex} GPTs injected)`);
+  if (import.meta.env.DEV) console.log(`✅ Interleaved result: ${result.length} tools (${gptIndex} GPTs injected)`);
   
   return result;
 };
@@ -484,7 +474,7 @@ const sortToolsByDirectCategoryMatch = (tools: Tool[], mainCategoryName: string)
     }
   });
   
-  console.log(`📂 Direct category matches: ${directMatches.length}, Related: ${relatedTools.length}`);
+  if (import.meta.env.DEV) console.log(`📂 Direct category matches: ${directMatches.length}, Related: ${relatedTools.length}`);
   
   // Return direct matches first, then related tools
   return [...directMatches, ...relatedTools];

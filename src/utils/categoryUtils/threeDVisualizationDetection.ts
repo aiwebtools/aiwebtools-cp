@@ -203,7 +203,7 @@ export const getThreeDVisualizationTools = (tools: Tool[]): Tool[] => {
     index === self.findIndex(t => t.title === tool.title)
   );
   
-  console.log(`🧊 3D & VISUALIZATION: Found ${uniqueTools.length} tools with enhanced detection`);
+  if (import.meta.env.DEV) console.log(`🧊 3D & VISUALIZATION: Found ${uniqueTools.length} tools with enhanced detection`);
   
   return uniqueTools;
 };
