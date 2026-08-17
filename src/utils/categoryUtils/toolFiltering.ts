@@ -12,7 +12,7 @@ import {
   getImageAndDesignTools
 } from "./categoryMatching";
 import { CategoryCounts, MainCategoryCounts } from "./types";
-import { buildToolsCache, getToolsCacheByMainCategory, isCacheBuilt } from "./cacheManager";
+import { buildToolsCache, buildSingleCategoryTools, getToolsCacheByMainCategory, isCacheBuilt } from "./cacheManager";
 import { isAIWebToolsGPT, isEducationRelatedTool } from "./specializedDetection";
 import { applyAIWebToolsPrioritization, getAIWebToolsPriorityScore } from "@/utils/aiWebToolsPrioritization";
 import { filterBusinessTools } from "./businessCategoryFiltering";
@@ -249,11 +249,11 @@ export const getMainCategoriesWithCounts = (tools: Tool[]): MainCategoryCounts =
         break;
       }
       default: {
-        // Build cache if needed and get cached results
-        buildToolsCache(tools);
-        const toolsCacheByMainCategory = getToolsCacheByMainCategory();
-        const cachedTools = toolsCacheByMainCategory.get(mainCat.name);
-        toolCount = cachedTools ? cachedTools.length : 0;
+        // Compute only this category. Previously this called the full
+        // `buildToolsCache`, so counting one category swept the entire
+        // ~5.4k tool database across all ~25 categories synchronously —
+        // a multi-second main-thread freeze, repeated per category.
+        toolCount = buildSingleCategoryTools(mainCat.name, tools).length;
         break;
       }
     }
