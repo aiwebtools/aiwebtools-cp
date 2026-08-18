@@ -48,8 +48,7 @@ const ToolsGrid = memo(({
     const shouldShowSimilar = false; // Disabled for performance
     const similarTools = []; // Disabled for performance
     
-    // Always allow more loading for categories, check count for search/main
-    const hasMoreTools = selectedCategory ? true : displayedCount < tools.length;
+    const hasMoreTools = displayedCount < tools.length;
     const categoriesWithCounts = {}; // Simplified for performance
     const shouldShowCategoriesButton = false; // Disabled for performance
     
@@ -68,7 +67,7 @@ const ToolsGrid = memo(({
     isLoading,
     showLoadMoreButton: false, // Never show manual buttons
     displayedCount,
-    totalTools: (selectedCategory && !searchTerm) ? Number.MAX_SAFE_INTEGER : tools.length, // Endless for categories without search
+    totalTools: tools.length,
     onLoadMore,
     searchTerm,
     selectedCategory,
@@ -78,17 +77,17 @@ const ToolsGrid = memo(({
   // IntersectionObserver sentinel as a robust fallback to trigger loading EARLY
   const sentinelRef = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
-    if (!hasInfiniteScroll) return;
+    if (!hasInfiniteScroll || displayedCount >= tools.length) return;
     const observer = new IntersectionObserver((entries) => {
       const entry = entries[0];
-      if (entry?.isIntersecting && !isLoading) {
+      if (entry?.isIntersecting && !isLoading && displayedCount < tools.length) {
         onLoadMore();
       }
     }, { root: null, rootMargin: '1500px', threshold: 0 }); // Trigger 1500px before visible
     const el = sentinelRef.current;
     if (el) observer.observe(el);
     return () => observer.disconnect();
-  }, [hasInfiniteScroll, isLoading, onLoadMore]);
+  }, [hasInfiniteScroll, isLoading, onLoadMore, displayedCount, tools.length]);
 
   const getSectionTitle = useMemo(() => {
     if (selectedCategory) {
