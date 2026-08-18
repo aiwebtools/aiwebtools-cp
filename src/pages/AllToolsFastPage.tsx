@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
 import ToolsGridSkeleton from "@/components/tools/ToolsGridSkeleton";
 import MinimalToolCard from "@/components/MinimalToolCard";
+import ToolsGrid from "@/components/tools/ToolsGrid";
 import GlobalSearchBar from "@/components/LazyGlobalSearchBar";
 import BreadcrumbNav from "@/components/navigation/BreadcrumbNav";
 import ScrollToTop from "@/components/ui/scroll-to-top";
@@ -27,6 +28,7 @@ const AllToolsFastPage = () => {
         .then(({ allTools }) => {
           if (cancelled) return;
           setTools(allTools);
+          window.dispatchEvent(new Event("aiwt:page-data-ready"));
         })
         .catch((error) => {
           if (!cancelled) console.error("Failed to load all tools", error);
@@ -97,11 +99,15 @@ const AllToolsFastPage = () => {
               </div>
 
               <div id="tools-section">
-                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-3 gap-4" style={{ touchAction: "pan-y", WebkitOverflowScrolling: "touch" }}>
-                  {displayedTools.map((tool, index) => (
-                    <MinimalToolCard key={`${tool.title}__${tool.directUrl ?? ""}`} tool={tool} index={index} />
-                  ))}
-                </div>
+                <ToolsGrid
+                  tools={tools}
+                  displayedCount={displayedCount}
+                  selectedCategory={null}
+                  searchTerm=""
+                  onLoadMore={handleLoadMore}
+                  hasInfiniteScroll
+                  isLoading={isLoadingMore}
+                />
 
                 {displayedCount < tools.length && (
                   <div className="mt-8 flex justify-center">

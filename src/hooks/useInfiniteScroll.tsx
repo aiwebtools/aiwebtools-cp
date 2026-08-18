@@ -44,17 +44,16 @@ export const useInfiniteScroll = ({
     onLoadMore();
   }, [onLoadMore, searchTerm, selectedCategory, totalTools]);
 
-  // Enhanced infinite scroll with performance optimizations
+  // IntersectionObserver in ToolsGrid is the primary trigger. This passive
+  // scroll fallback covers browsers/webviews with unreliable observers.
   useEffect(() => {
     // Don't enable infinite scroll if explicitly disabled or if load more button is preferred
     if (!enableInfiniteScroll || showLoadMoreButton) return;
     
-    // For endless scroll (categories or main page), always enable
-    const isEndlessScroll = selectedCategory && !searchTerm;
-    const hasMoreToLoad = displayedCount < totalTools || isEndlessScroll;
+    const hasMoreToLoad = displayedCount < totalTools;
     
     // For search results, only enable if there are more tools to load
-    if (!hasMoreToLoad && !isEndlessScroll) return;
+    if (!hasMoreToLoad) return;
     
     let ticking = false;
     
@@ -86,12 +85,10 @@ export const useInfiniteScroll = ({
           const nearBottom = scrollTop + windowHeight >= documentHeight - threshold;
           
           if (nearBottom && !isLoadingRef.current) {
-            const isEndlessScrollCheck = (selectedCategory && !searchTerm) || totalToolsRef.current === Number.MAX_SAFE_INTEGER;
             const hasMoreToShow = displayedCountRef.current < totalToolsRef.current;
-            const shouldLoad = isEndlessScrollCheck || hasMoreToShow;
+            const shouldLoad = hasMoreToShow;
             
             if (shouldLoad) {
-              console.log(`🎯 Auto-loading more tools - Context: ${searchTerm ? 'Search' : selectedCategory ? 'Category (Endless)' : 'Main'}, Displayed: ${displayedCountRef.current}/${totalToolsRef.current}, Endless: ${isEndlessScrollCheck}`);
               // NO DELAY - load immediately for instant feel
               handleLoadMore();
             }
@@ -107,10 +104,11 @@ export const useInfiniteScroll = ({
     window.addEventListener('scroll', handleScroll, { passive: true });
     
     // Also trigger on initial mount in case we need more content
-    setTimeout(() => handleScroll(), 50);
+    const initialCheckId = window.setTimeout(() => handleScroll(), 50);
     
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      window.clearTimeout(initialCheckId);
     };
   }, [displayedCount, handleLoadMore, isLoading, showLoadMoreButton, totalTools, searchTerm, selectedCategory, enableInfiniteScroll]);
 
@@ -118,8 +116,7 @@ export const useInfiniteScroll = ({
   useEffect(() => {
     if (!enableInfiniteScroll || showLoadMoreButton) return;
 
-    const isEndlessCategory = selectedCategory && !searchTerm;
-    if (!isEndlessCategory) return;
+    if (displayedCount >= totalTools) return;
 
     // If content height is not enough to enable scrolling, load more automatically
     const documentHeight = document.documentElement.scrollHeight;

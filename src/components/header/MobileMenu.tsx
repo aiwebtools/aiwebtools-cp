@@ -191,7 +191,7 @@ const MobileMenu = () => {
           </DropdownMenuTrigger>
           <DropdownMenuContent 
             ref={dropdownRef}
-            className="w-[95vw] max-w-[400px] bg-black border-2 border-cyan-500/50 max-h-[68vh] overflow-hidden z-[110]"
+            className="w-[95vw] max-w-[400px] bg-black border-2 border-cyan-500/50 max-h-[68vh] overflow-visible z-[110]"
             align="end"
             side="bottom"
             alignOffset={0}

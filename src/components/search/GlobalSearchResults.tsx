@@ -66,6 +66,7 @@ const GlobalSearchResults = ({
         className="absolute top-full left-0 right-0 mt-2 bg-black border border-cyan-500/30 shadow-2xl shadow-cyan-500/20 z-[9999] max-h-[60vh] overflow-y-scroll overflow-x-hidden rounded-lg" 
         onScroll={onScroll}
         style={{ 
+          maxHeight: 'min(60vh, 60dvh)',
           overscrollBehavior: 'contain',
           WebkitOverflowScrolling: 'touch',
           touchAction: 'auto',

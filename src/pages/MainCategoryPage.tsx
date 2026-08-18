@@ -116,16 +116,16 @@ const MainCategoryPage = () => {
 
   // ALL EVENT HANDLERS - optimized for mobile
   const handleLoadMore = useCallback(() => {
-    if (isLoading) return;
+    if (isLoading || displayedCount >= finalFilteredTools.length) return;
     
     setIsLoading(true);
     
     // INSTANT loading - no artificial delay needed
     requestAnimationFrame(() => {
-      setDisplayedCount(prev => prev + 48);
+      setDisplayedCount(prev => Math.min(prev + 48, finalFilteredTools.length));
       setIsLoading(false);
     });
-  }, [isLoading]);
+  }, [isLoading, displayedCount, finalFilteredTools.length]);
 
   // INSTANT filter updates - no debouncing for snappy feel
   const handleFilteredToolsChange = useCallback((filtered: Tool[]) => {
