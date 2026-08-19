@@ -1579,9 +1579,10 @@ export const useGlobalSearch = () => {
           .then(({ allTools }) => {
             primeToolImageMap(allTools);
             toolsRef.current = allTools;
-            // Non-urgent: keeps the giant re-render/index build interruptible so
-            // taps and scrolls stay responsive while it lands.
-            startTransition(() => setTools(allTools));
+            // Do not publish the 5k+ records into React state here. Doing so
+            // synchronously rebuilt quickIndex during render and was the main
+            // first-search freeze. The worker owns live searching; the main
+            // thread keeps this ref only for explicit pricing/recommendation work.
             return allTools;
           })
           .catch((error) => {
@@ -1646,16 +1647,11 @@ export const useGlobalSearch = () => {
   }, [getSearchWorker]);
 
   const prepareSearch = useCallback(() => {
-    // The worker parses the 5k+ tool database OFF the main thread, so typing is
-    // instant even before the main-thread module finishes importing.
-    getSearchWorker();
-    // Importing the full database on the main thread is a multi-hundred-ms parse.
-    // On phones that landed exactly on the first keystroke and froze the UI, so
-    // we push it into an idle slot instead of doing it inside the focus handler.
-    const ric = (window as any).requestIdleCallback;
-    if (ric) ric(() => { void loadTools(); }, { timeout: 2500 });
-    else window.setTimeout(() => { void loadTools(); }, 300);
-  }, [getSearchWorker, loadTools]);
+    // Focus must remain a zero-work interaction. Starting the worker or parsing
+    // the full database here made the very first caret/keystroke stall. The
+    // lightweight fallback answers immediately; worker startup happens only
+    // after an actual query is dispatched.
+  }, []);
 
   // Precompute lowercase fields once (keeps search snappy)
   const quickIndex = useMemo(() => {
@@ -2324,22 +2320,9 @@ export const useGlobalSearch = () => {
     const shouldUseWorker = toolsRef.current.length === 0 || cappedT.length > 24;
     if (shouldUseWorker) {
       pendingSearchRef.current = null;
-      if (toolsRef.current.length === 0) {
-        pendingSearchRef.current = cappedT;
-        void loadTools().then((loadedTools) => {
-          if (currentId !== searchIdRef.current || loadedTools.length === 0) return;
-          const fast = ensureExactTitleHit(quickSearch(cappedT), cappedT);
-          if (fast.length > 0) {
-            searchCache.set(fullCacheKey, fast);
-            startTransition(() => {
-              setSearchResults(fast);
-              setDisplayedCount(50);
-              setIsOpen(true);
-            });
-          }
-        });
-      }
-      void runWorkerSearch(cappedT)
+      // Give the input one painted frame before worker/module startup. Never
+      // import the same giant database on the main thread in parallel.
+      window.setTimeout(() => void runWorkerSearch(cappedT)
         .catch((err) => {
           return [] as any[];
         })
@@ -2349,12 +2332,6 @@ export const useGlobalSearch = () => {
           const results = workerResults.length > 0
             ? workerResults
             : (haveTools ? ensureExactTitleHit(quickSearch(cappedT), cappedT) : lightweightResults);
-          // Worker returned nothing AND tools not loaded — kick off tools load so
-          // the pending-search effect can finally surface results once modules arrive.
-          if (workerResults.length === 0 && !haveTools) {
-            pendingSearchRef.current = cappedT;
-            void loadTools();
-          }
           if (results.length > 0 || haveTools) {
             searchCache.set(fullCacheKey, results);
           }
@@ -2366,7 +2343,7 @@ export const useGlobalSearch = () => {
             });
           }
           recordMetric("search.worker.ms", performance.now() - keystrokeAt, { len: cappedT.length });
-        });
+        }), 40);
       return;
     }
 
@@ -2423,42 +2400,24 @@ export const useGlobalSearch = () => {
     };
   }, []);
 
-  // ⚡ SEARCH INDEX WARM-UP: never compete with the first phone scroll. The full
-  // tool database is imported on first search interaction, or much later on
-  // mobile once the page is already usable.
+  // Worker warm-up only. Never auto-import the full database into the React
+  // tree: that duplicated worker parsing and could freeze a later first tap.
   useEffect(() => {
     let cancelled = false;
-    const warm = () => {
-      if (cancelled || toolsRef.current.length === 0) return;
-      const stems = ["a", "c", "g", "m", "s", "ai", "gpt", "chat", "image", "video"];
-      for (const s of stems) {
-        try { quickSearch(s); } catch {}
-      }
-    };
-
-    const delay = isMobileViewport() ? 4000 : 1800;
+    const delay = isMobileViewport() ? 15000 : 10000;
     const handle = window.setTimeout(() => {
       if (cancelled) return;
       const ric = (window as any).requestIdleCallback;
-      const scheduleWarm = () => {
-        if (isMobileViewport()) {
-          getSearchWorker();
-        }
-        if (toolsRef.current.length === 0) {
-          void loadTools().then(() => warm());
-        } else {
-          warm();
-        }
-      };
-      if (ric) ric(scheduleWarm, { timeout: isMobileViewport() ? 5000 : 2000 });
-      else scheduleWarm();
+      const scheduleWarm = () => { if (!cancelled) getSearchWorker(); };
+      if (ric) ric(scheduleWarm, { timeout: 8000 });
+      else window.setTimeout(scheduleWarm, 2000);
     }, delay);
 
     return () => {
       cancelled = true;
       window.clearTimeout(handle);
     };
-  }, [quickSearch, loadTools, getSearchWorker]);
+  }, [getSearchWorker]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {

@@ -56,7 +56,9 @@ const DesktopMenu = () => {
       return;
     }
 
-    const id = window.setTimeout(() => setRenderSearch(true), 0);
+    // Let Radix paint the menu before downloading/mounting the large search
+    // module. This keeps the very first menu click visually immediate.
+    const id = window.setTimeout(() => setRenderSearch(true), 450);
     return () => window.clearTimeout(id);
   }, [isMenuOpen]);
 

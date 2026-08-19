@@ -31,16 +31,15 @@
           };
           document.head.appendChild(s);
         }
-        // Do NOT load analytics on the first mobile scroll/touch. Injecting
-        // third-party JS exactly when a visitor swipes was causing the page to
-        // feel frozen for the first few seconds on phones.
-        var events = ['click', 'keydown'];
-        function trigger() {
-          events.forEach(function (e) { window.removeEventListener(e, trigger); });
-          loadGtag();
-        }
-        events.forEach(function (e) { window.addEventListener(e, trigger, { passive: true, once: true }); });
-        setTimeout(loadGtag, 12000);
+        // Never inject third-party code in response to the visitor's first
+        // click/keystroke. That made the menu and first search input appear to
+        // freeze while the analytics bundle parsed. Load only after the opening
+        // interaction window, and yield to an idle period when available.
+        setTimeout(function () {
+          var ric = window.requestIdleCallback;
+          if (ric) ric(loadGtag, { timeout: 8000 });
+          else setTimeout(loadGtag, 2000);
+        }, 20000);
       })();
     </script>
     
@@ -58,16 +57,13 @@
           s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5053006805192587';
           document.head.appendChild(s);
         }
-        // Keep ads off the first scroll/touch path; phones must be instantly
-        // navigable as soon as the Matrix loader fades.
-        var events = ['click', 'keydown'];
-        function trigger() {
-          events.forEach(function (e) { window.removeEventListener(e, trigger, { passive: true }); });
-          loadAdSense();
-        }
-        events.forEach(function (e) { window.addEventListener(e, trigger, { passive: true, once: true }); });
-        // Fallback: load after the first interaction window has passed.
-        setTimeout(loadAdSense, 15000);
+        // Ads are non-critical and must never compete with the first menu tap,
+        // keystroke, or scroll. Wait for a genuinely quiet post-boot window.
+        setTimeout(function () {
+          var ric = window.requestIdleCallback;
+          if (ric) ric(loadAdSense, { timeout: 10000 });
+          else setTimeout(loadAdSense, 3000);
+        }, 30000);
       })();
     </script>
     

@@ -1,6 +1,6 @@
 import { Menu, Phone, X, Globe, ChevronDown, Download, Trees, Clapperboard, Heart, Copy, Clock } from "lucide-react";
 import mtvAiWebToolsLogo from "@/assets/mtv-aiwebtools-logo.png";
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
@@ -28,6 +28,7 @@ const MobileMenu = () => {
   const [isWeb3Open, setIsWeb3Open] = useState(false);
   const [isAboutOpen, setIsAboutOpen] = useState(false);
   const [isToolsOpen, setIsToolsOpen] = useState(false);
+  const [renderSearch, setRenderSearch] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   
   // Only load heavy data when menu is open
@@ -45,6 +46,15 @@ const MobileMenu = () => {
   const handleMenuToggle = useCallback((open: boolean) => {
     setIsMenuOpen(open);
   }, []);
+
+  useEffect(() => {
+    if (!isMenuOpen) {
+      setRenderSearch(false);
+      return;
+    }
+    const id = window.setTimeout(() => setRenderSearch(true), 450);
+    return () => window.clearTimeout(id);
+  }, [isMenuOpen]);
 
   const handleExternalLink = useCallback((url: string, e: React.MouseEvent) => {
     e.preventDefault();
@@ -254,7 +264,11 @@ const MobileMenu = () => {
               {/* Search Bar - At top for easy access */}
               <div className="mb-4">
                 <div className="text-xs text-cyan-400 mb-2">🔍 Search AI Tools</div>
-                <GlobalSearchBar />
+                {renderSearch ? (
+                  <GlobalSearchBar />
+                ) : (
+                  <div className="h-10 rounded-lg border-2 border-emerald-500/70 bg-background" aria-hidden="true" />
+                )}
               </div>
 
               <>
