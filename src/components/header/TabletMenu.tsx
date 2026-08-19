@@ -1,6 +1,6 @@
 
 import { Menu, Phone, Globe, ChevronDown, Download, Copy, Gift, Clock } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -22,8 +22,19 @@ import { useRecentlyVisitedTools } from "@/hooks/useRecentlyVisitedTools";
 
 const TabletMenu = () => {
   const navigate = useNavigate();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [renderSearch, setRenderSearch] = useState(false);
   const [isWeb3Open, setIsWeb3Open] = useState(false);
   const { recentTools } = useRecentlyVisitedTools();
+
+  useEffect(() => {
+    if (!isMenuOpen) {
+      setRenderSearch(false);
+      return;
+    }
+    const id = window.setTimeout(() => setRenderSearch(true), 450);
+    return () => window.clearTimeout(id);
+  }, [isMenuOpen]);
 
   const handleBrowseAITools = () => {
     // Navigate to ALL AI TOOLS main category page
@@ -107,7 +118,7 @@ const TabletMenu = () => {
   return (
     <TooltipProvider>
       <div className="hidden md:block lg:hidden">
-        <DropdownMenu>
+        <DropdownMenu open={isMenuOpen} onOpenChange={setIsMenuOpen}>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" size="sm" className="border-cyan-500/30 bg-black/80 text-cyan-100 hover:bg-cyan-500/20 flex-shrink-0">
               <Menu className="w-4 h-4" />
@@ -125,7 +136,11 @@ const TabletMenu = () => {
 
               {/* Search Bar - use the SAME global search as hero/category pages */}
               <div className="mb-4">
-                <GlobalSearchBar />
+                {renderSearch ? (
+                  <GlobalSearchBar />
+                ) : (
+                  <div className="h-10 rounded-lg border-2 border-emerald-500/70 bg-background" aria-hidden="true" />
+                )}
               </div>
 
               <DropdownMenuItem onClick={() => navigate('/')} className="text-cyan-100 hover:bg-cyan-500/20 mb-2 rounded">
