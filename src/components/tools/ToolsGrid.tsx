@@ -63,7 +63,7 @@ const ToolsGrid = memo(({
   }, [tools, displayedCount, searchTerm, selectedCategory]);
 
   // Enable infinite scroll when hasInfiniteScroll is true
-  useInfiniteScroll({
+  const { handleLoadMore } = useInfiniteScroll({
     isLoading,
     showLoadMoreButton: false, // Never show manual buttons
     displayedCount,
@@ -74,20 +74,21 @@ const ToolsGrid = memo(({
     enableInfiniteScroll: hasInfiniteScroll
   });
 
-  // IntersectionObserver sentinel as a robust fallback to trigger loading EARLY
+  // IntersectionObserver sentinel is the primary trigger. It routes through the
+  // hook's guarded loader so it can never double-fire alongside the scroll
+  // fallback, and it is not re-created on every isLoading flip.
   const sentinelRef = useRef<HTMLDivElement | null>(null);
+  const loadMoreRef = useRef(handleLoadMore);
+  loadMoreRef.current = handleLoadMore;
   useEffect(() => {
     if (!hasInfiniteScroll || displayedCount >= tools.length) return;
     const observer = new IntersectionObserver((entries) => {
-      const entry = entries[0];
-      if (entry?.isIntersecting && !isLoading && displayedCount < tools.length) {
-        onLoadMore();
-      }
+      if (entries[0]?.isIntersecting) loadMoreRef.current();
     }, { root: null, rootMargin: '1500px', threshold: 0 }); // Trigger 1500px before visible
     const el = sentinelRef.current;
     if (el) observer.observe(el);
     return () => observer.disconnect();
-  }, [hasInfiniteScroll, isLoading, onLoadMore, displayedCount, tools.length]);
+  }, [hasInfiniteScroll, displayedCount, tools.length]);
 
   const getSectionTitle = useMemo(() => {
     if (selectedCategory) {
