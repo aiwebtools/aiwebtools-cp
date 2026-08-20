@@ -27,6 +27,7 @@ export const useInfiniteScroll = ({
   const displayedCountRef = useRef(displayedCount);
   const totalToolsRef = useRef(totalTools);
   const lastScrollY = useRef(0);
+  const lastLoadAt = useRef(0);
   
   // Update refs for current values
   isLoadingRef.current = isLoading;
@@ -39,8 +40,16 @@ export const useInfiniteScroll = ({
     
     if (isLoadingRef.current) return;
     if (!isEndlessScroll && displayedCountRef.current >= totalToolsRef.current) return;
-    
-    console.log(`🔄 Infinite scroll triggered - Loading more tools... Search: "${searchTerm}", Category: "${selectedCategory}", Endless: ${isEndlessScroll}`);
+
+    // Shared cooldown so the scroll listener and the IntersectionObserver
+    // sentinel can never double-fire for the same batch.
+    const now = Date.now();
+    if (now - lastLoadAt.current < 300) return;
+    lastLoadAt.current = now;
+
+    if (import.meta.env.DEV) {
+      console.log(`🔄 Infinite scroll triggered (search: "${searchTerm}", category: "${selectedCategory}")`);
+    }
     onLoadMore();
   }, [onLoadMore, searchTerm, selectedCategory, totalTools]);
 

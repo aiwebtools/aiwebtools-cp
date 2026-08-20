@@ -1,6 +1,6 @@
 
 import { useParams } from "react-router-dom";
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import AnimatedBackground from "@/components/AnimatedBackground";
@@ -28,9 +28,10 @@ const CategoryPage = () => {
   
   // Get tools for this category
   const categoryTools = useMemo(() => {
-    console.log(`📂 Loading category page for: "${standardizedCategory}"`);
     const tools = getToolsByCategory(allTools, standardizedCategory);
-    console.log(`📊 Found ${tools.length} tools in category "${standardizedCategory}"`);
+    if (import.meta.env.DEV) {
+      console.log(`📊 Found ${tools.length} tools in category "${standardizedCategory}"`);
+    }
     return tools;
   }, [standardizedCategory]);
 
@@ -40,10 +41,8 @@ const CategoryPage = () => {
     
     // If filter search is active, use intelligent search across ALL tools
     if (filterSearchTerm.trim()) {
-      console.log(`🔍 Filter search active: "${filterSearchTerm}" - searching all ${allTools.length} tools`);
       const searchResults = searchTools(allTools, filterSearchTerm);
-      console.log(`🎯 Filter search results: ${searchResults.length} tools found`);
-      
+
       // Use search results but still apply endless scroll logic
       endlessTools = searchResults;
       const remaining = displayedCount - endlessTools.length;
@@ -84,26 +83,24 @@ const CategoryPage = () => {
     window.scrollTo(0, 0);
     setDisplayedCount(48);
     setFilterSearchTerm(""); // Clear filter when category changes
-    
-    // Log category page load for verification
-    console.log(`📄 Category page loaded: "${standardizedCategory}" (${categoryTools.length} tools)`);
   }, [standardizedCategory, categoryTools.length]);
 
-  const handleLoadMore = () => {
-    if (isLoading) return;
-    setIsLoading(true);
-    setTimeout(() => {
-      setDisplayedCount(prev => prev + 48);
-      setIsLoading(false);
-    }, 100);
-  };
+  const handleLoadMore = useCallback(() => {
+    setIsLoading((loading) => {
+      if (loading) return loading;
+      setTimeout(() => {
+        setDisplayedCount(prev => prev + 48);
+        setIsLoading(false);
+      }, 100);
+      return true;
+    });
+  }, []);
 
-  const handleFilterSearch = (searchTerm: string) => {
-    console.log(`🔍 Filter search initiated: "${searchTerm}"`);
+  const handleFilterSearch = useCallback((searchTerm: string) => {
     setFilterSearchTerm(searchTerm);
     setDisplayedCount(48); // Reset count when new filter is applied
     window.scrollTo(0, 0); // Scroll to top to see results
-  };
+  }, []);
 
   if (!decodedCategory) {
     return (
