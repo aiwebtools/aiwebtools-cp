@@ -123,6 +123,8 @@ const GlobalSearchInput = memo(({
       className="relative rounded-lg border-2 border-emerald-500/70 cursor-text overflow-hidden shadow-[0_0_18px_rgba(16,185,129,0.25)]"
       style={{ backgroundColor: "#ffffff" }}
       onClick={handleContainerClick}
+      onPointerDown={onFocus}
+      onPointerEnter={onFocus}
     >
       <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-neutral-600 w-4 h-4 pointer-events-none z-10" />
 
