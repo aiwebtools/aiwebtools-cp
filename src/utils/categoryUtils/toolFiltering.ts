@@ -285,7 +285,15 @@ export const getToolsByMainCategory = (tools: Tool[], mainCategoryName: string):
   
   let categoryTools: Tool[] = [];
   
-  // CORRECTED handling for Health, Wellness & Personal Lifestyle
+  // Perplexity Bots — AIWebTools.ai Perplexity Project editions
+  if (mainCategoryName === "PERPLEXITY BOTS") {
+    categoryTools = tools.filter(tool =>
+      (tool.category || "").toLowerCase() === "perplexity bots" ||
+      tool.title.toUpperCase().includes("PERPLEXITY BOT")
+    );
+  }
+
+  else // CORRECTED handling for Health, Wellness & Personal Lifestyle
   if (mainCategoryName === "HEALTH, WELLNESS & PERSONAL LIFESTYLE" || mainCategoryName === "HEALTH & WELLNESS") {
     categoryTools = tools.filter(tool => isHealthAndWellnessTool(tool));
   }

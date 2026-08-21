@@ -277,6 +277,7 @@ import { trendingBatch2026 } from "./tools/trendingBatch2026";
 import { agentOpsSecurityBatch2026 } from "./tools/agentOpsSecurityBatch2026";
 import { aiNativeBatch2026 } from "./tools/aiNativeBatch2026";
 import { devAiBatch2026Aug } from "./tools/devAiBatch2026Aug";
+import { perplexityBotsBatch2026 } from "./tools/perplexityBotsBatch2026";
 
 const allToolCategories = consolidateTools([
   ...getAllToolCategories(),
@@ -673,7 +674,10 @@ const allToolCategories = consolidateTools([
   ...aiNativeBatch2026,
 
   // Dev & Agent Infrastructure Batch — August 2026 (12 tools: Sculptor, Bito AI, Baz, Entelligence AI, Nia, Devlo, Tusk, Kernel, Steel.dev, Cased, Cleric, Macroscope)
-  ...devAiBatch2026Aug
+  ...devAiBatch2026Aug,
+
+  // AIWebTools.ai Perplexity Bot Directory — 187 Perplexity Project editions of our custom GPTs
+  ...perplexityBotsBatch2026
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories
