@@ -277,6 +277,7 @@ import { trendingBatch2026 } from "./tools/trendingBatch2026";
 import { agentOpsSecurityBatch2026 } from "./tools/agentOpsSecurityBatch2026";
 import { aiNativeBatch2026 } from "./tools/aiNativeBatch2026";
 import { devAiBatch2026Aug } from "./tools/devAiBatch2026Aug";
+import { perplexityBotsBatch2026 } from "./tools/perplexityBotsBatch2026";
 
 const allToolCategories = consolidateTools([
   ...getAllToolCategories(),
