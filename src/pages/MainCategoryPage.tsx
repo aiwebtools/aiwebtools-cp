@@ -62,6 +62,26 @@ const MainCategoryPage = () => {
       return;
     }
 
+    // This collection is already curated as a complete standalone batch. Load
+    // it directly so the category paints immediately instead of waiting for
+    // the full 5,000+ tool catalogue and every detector module to initialize.
+    if (decodedCategoryName === "PERPLEXITY BOTS") {
+      import("@/data/tools/perplexityBotsBatch2026")
+        .then(({ perplexityBotsBatch2026 }) => {
+          if (cancelled) return;
+          setAllCategoryTools(perplexityBotsBatch2026);
+          setCategoryTools(perplexityBotsBatch2026);
+          setFilteredToolsByCategory(perplexityBotsBatch2026);
+          setIsToolsReady(true);
+        })
+        .catch((error) => {
+          if (cancelled) return;
+          console.error("Failed to load Perplexity Bots", error);
+          setIsToolsReady(true);
+        });
+      return;
+    }
+
     // Fallback for other categories: lazy-load detector stack only after route paints.
     setTimeout(() => {
       Promise.all([
