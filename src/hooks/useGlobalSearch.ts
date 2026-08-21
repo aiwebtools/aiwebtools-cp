@@ -2570,7 +2570,7 @@ export const useGlobalSearch = () => {
       if (displayedCount < searchResults.length) {
         setIsLoadingMore(true);
         requestAnimationFrame(() => {
-          setDisplayedCount(prev => Math.min(prev + 50, searchResults.length));
+          setDisplayedCount(prev => Math.min(prev + 20, searchResults.length));
           setIsLoadingMore(false);
         });
       } 
@@ -2578,7 +2578,7 @@ export const useGlobalSearch = () => {
       else if (displayedCount < combinedResults.length) {
         setIsLoadingMore(true);
         requestAnimationFrame(() => {
-          setDisplayedCount(prev => Math.min(prev + 30, combinedResults.length));
+          setDisplayedCount(prev => Math.min(prev + 15, combinedResults.length));
           setIsLoadingMore(false);
         });
       }
