@@ -13,14 +13,10 @@ import pxbLegalHero from "@/assets/perplexity-bot-legal-hero.jpg";
 import pxbVideoHero from "@/assets/perplexity-bot-video-hero.jpg";
 import { BarChart3, Briefcase, Clapperboard, Code2, Globe, GraduationCap, Leaf, Palette, PenTool, Scale, Sparkles, Stethoscope } from "lucide-react";
 
-const uniquePerplexityBotImages = import.meta.glob("../../assets/perplexity-bots/*.webp", {
-  eager: true,
-  import: "default",
-  query: "?url",
-}) as Record<string, string>;
-
-const perplexityBotImage = (slug: string, fallback: string): string =>
-  uniquePerplexityBotImages[`../../assets/perplexity-bots/${slug}.webp`] || fallback;
+// Unique bot artwork lives in public so this 187-record module stays a single
+// fast request instead of expanding into 166 extra JavaScript import requests.
+const perplexityBotImage = (slug: string, _fallback: string): string =>
+  `/images/perplexity-bots/${slug}.webp`;
 
 // AIWebTools.ai Perplexity Bot Directory — the Perplexity Project editions of our
 // custom GPT lineup. Each bot is an independent public Perplexity Project with its
