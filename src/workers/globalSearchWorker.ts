@@ -95,6 +95,7 @@ const detectSearchIntent = (query: string): string[] => {
   if (q.includes("game") || q.includes("gaming")) intents.push("gaming");
   if (q.includes("security") || q.includes("cyber") || q.includes("hack")) intents.push("security");
   if (q.includes("philosophy") || q.includes("philosopher") || q.includes("wisdom")) intents.push("philosophy");
+  if (q.includes("perplexity")) intents.push("perplexity bots");
 
   return [...new Set(intents)];
 };

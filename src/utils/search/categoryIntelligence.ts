@@ -193,6 +193,10 @@ export const CATEGORY_TITLE_KEYWORDS: Record<string, string[]> = {
     'worldpeace', 'worldtrade', 'transfermoney', 'transfercoin', 'cashtransfer',
     'domain', 'freename', 'unstoppable', 'ens', '.eth', '.sol', '.crypto'
   ]
+  "perplexity bots": [
+    "perplexity bot", "perplexity bots", "perplexity project", "perplexity ai",
+    "perplexity-powered", "perplexity search", "perplexity research"
+  ],
 };
 
 // Get all sibling categories for a search type (for mutual boosting)
