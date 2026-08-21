@@ -171,13 +171,10 @@ const VirtualizedToolsGrid = memo(({
     </>
   );
 }, (prevProps, nextProps) => {
-  // Detect shuffle by checking first tool
-  const sameFirstTool = prevProps.tools[0]?.title === nextProps.tools[0]?.title;
   return (
-    prevProps.tools.length === nextProps.tools.length &&
+    prevProps.tools === nextProps.tools &&
     prevProps.displayedCount === nextProps.displayedCount &&
-    prevProps.filteredToolsCount === nextProps.filteredToolsCount &&
-    sameFirstTool
+    prevProps.filteredToolsCount === nextProps.filteredToolsCount
   );
 });
 

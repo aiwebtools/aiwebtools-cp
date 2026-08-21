@@ -49,7 +49,7 @@ class LRUCache<K, V> {
 
 // Global search cache (persists across component re-renders)
 // NOTE: versioned to prevent "stale" cached results after search-intelligence updates.
-const SEARCH_CACHE_VERSION = "v53";
+const SEARCH_CACHE_VERSION = "v54";
 const searchCache = new LRUCache<string, any[]>(50);
 
 const isMobileViewport = () =>
@@ -118,6 +118,22 @@ const fallbackSearch = (term: string) => {
     .filter(({ score }) => score > 0)
     .sort((a, b) => b.score - a.score)
     .map(({ tool }) => tool);
+};
+
+const PERPLEXITY_BOTS_CATEGORY_RESULT = {
+  title: "Browse All Perplexity Bots",
+  category: "Perplexity Bots",
+  description: "Open the complete AIWebTools.ai collection of free Perplexity Project bots.",
+  tags: ["perplexity bots", "perplexity bot", "category"],
+  emoji: "🔎",
+  categoryPath: "/main-category/PERPLEXITY%20BOTS",
+  isFree: true,
+};
+
+const withCategoryDiscovery = (results: any[], query: string): any[] => {
+  const normalized = normalizeSearchText(query).trim();
+  if (!normalized.includes("perplex") || !normalized.includes("bot")) return results;
+  return [PERPLEXITY_BOTS_CATEGORY_RESULT, ...results.filter((item) => !item?.categoryPath)];
 };
 
 type WorkerSearchResponse = {
@@ -2332,12 +2348,13 @@ export const useGlobalSearch = () => {
           const results = workerResults.length > 0
             ? workerResults
             : (haveTools ? ensureExactTitleHit(quickSearch(cappedT), cappedT) : lightweightResults);
-          if (results.length > 0 || haveTools) {
-            searchCache.set(fullCacheKey, results);
+          const discoverableResults = withCategoryDiscovery(results, cappedT);
+          if (discoverableResults.length > 0 || haveTools) {
+            searchCache.set(fullCacheKey, discoverableResults);
           }
-          if (results.length > 0 || haveTools) {
+          if (discoverableResults.length > 0 || haveTools) {
             startTransition(() => {
-              setSearchResults(results);
+              setSearchResults(discoverableResults);
               setDisplayedCount(50);
               setIsOpen(true);
             });
@@ -2357,7 +2374,7 @@ export const useGlobalSearch = () => {
     // 4) Run quick search AFTER paint to prevent any typing lag
     quickRef.current = setTimeout(() => {
       if (currentId !== searchIdRef.current) return;
-      const fast = ensureExactTitleHit(quickSearch(cappedT), cappedT);
+      const fast = withCategoryDiscovery(ensureExactTitleHit(quickSearch(cappedT), cappedT), cappedT);
       if (currentId !== searchIdRef.current) return;
       startTransition(() => {
         setSearchResults(fast);
@@ -2433,7 +2450,7 @@ export const useGlobalSearch = () => {
   const handleToolClick = useCallback((toolOrIndex: any) => {
     // Navigate FIRST before clearing state to avoid re-render blocking navigation
     const tool = typeof toolOrIndex === "number" ? toolsRef.current[toolOrIndex] : toolOrIndex;
-    const path = tool?.title ? `/${generateToolSlug(tool.title)}` : `/main-category/ALL%20AI%20TOOLS`;
+    const path = tool?.categoryPath || (tool?.title ? `/${generateToolSlug(tool.title)}` : `/main-category/ALL%20AI%20TOOLS`);
 
     // Cancel any pending search work immediately
     if (quickRef.current) clearTimeout(quickRef.current);
@@ -2570,7 +2587,7 @@ export const useGlobalSearch = () => {
       if (displayedCount < searchResults.length) {
         setIsLoadingMore(true);
         requestAnimationFrame(() => {
-          setDisplayedCount(prev => Math.min(prev + 50, searchResults.length));
+          setDisplayedCount(prev => Math.min(prev + 20, searchResults.length));
           setIsLoadingMore(false);
         });
       } 
@@ -2578,7 +2595,7 @@ export const useGlobalSearch = () => {
       else if (displayedCount < combinedResults.length) {
         setIsLoadingMore(true);
         requestAnimationFrame(() => {
-          setDisplayedCount(prev => Math.min(prev + 30, combinedResults.length));
+          setDisplayedCount(prev => Math.min(prev + 15, combinedResults.length));
           setIsLoadingMore(false);
         });
       }

@@ -62,6 +62,26 @@ const MainCategoryPage = () => {
       return;
     }
 
+    // This collection is already curated as a complete standalone batch. Load
+    // it directly so the category paints immediately instead of waiting for
+    // the full 5,000+ tool catalogue and every detector module to initialize.
+    if (decodedCategoryName === "PERPLEXITY BOTS") {
+      import("@/data/tools/perplexityBotsBatch2026")
+        .then(({ perplexityBotsBatch2026 }) => {
+          if (cancelled) return;
+          setAllCategoryTools(perplexityBotsBatch2026);
+          setCategoryTools(perplexityBotsBatch2026);
+          setFilteredToolsByCategory(perplexityBotsBatch2026);
+          setIsToolsReady(true);
+        })
+        .catch((error) => {
+          if (cancelled) return;
+          console.error("Failed to load Perplexity Bots", error);
+          setIsToolsReady(true);
+        });
+      return;
+    }
+
     // Fallback for other categories: lazy-load detector stack only after route paints.
     setTimeout(() => {
       Promise.all([
@@ -94,20 +114,18 @@ const MainCategoryPage = () => {
   // Use filtered tools from category filter - this is the SOURCE OF TRUTH when filter is active
   const toolsToShow = filteredToolsByCategory;
   
-  // Create endless tools list with better performance
+  // Keep category pagination finite and stable. Recommendations previously
+  // changed the source list as displayedCount grew, which could make a scroll
+  // window appear to repeat cards and made the category count misleading.
   const finalFilteredTools = useMemo(() => {
-    let endlessTools = [...toolsToShow];
-    const remainingCount = displayedCount - toolsToShow.length;
-    
-    if (remainingCount > 0) {
-      const otherTools = allCategoryTools.filter(tool => 
-        !endlessTools.some(existing => existing.title === tool.title)
-      );
-      endlessTools = [...endlessTools, ...otherTools.slice(0, remainingCount)];
-    }
-    
-    return endlessTools;
-  }, [toolsToShow, displayedCount, decodedCategoryName, allCategoryTools]);
+    const seen = new Set<string>();
+    return toolsToShow.filter((tool) => {
+      const key = `${tool.title.toLowerCase().trim()}|||${tool.directUrl || ""}`;
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
+  }, [toolsToShow]);
 
   const displayedTools = useMemo(() => 
     finalFilteredTools.slice(0, displayedCount), 
@@ -240,7 +258,7 @@ const MainCategoryPage = () => {
                 <div className="text-cyan-400 font-semibold">
                   {toolsToShow.length > 0 ? (
                     displayedCount >= toolsToShow.length 
-                      ? `Showing all ${toolsToShow.length} filtered tools + recommendations`
+                      ? `Showing all ${toolsToShow.length} tools`
                       : `Showing ${Math.min(displayedCount, toolsToShow.length)} of ${toolsToShow.length} filtered tools — scroll for more`
                   ) : (
                     "No tools found"
@@ -259,7 +277,7 @@ const MainCategoryPage = () => {
                     onLoadMore={handleLoadMore}
                     hasInfiniteScroll={true}
                     isLoading={isLoading}
-                    filteredToolsCount={toolsToShow.length}
+                    filteredToolsCount={0}
                   />
                 ) : (
                   <div className="text-center py-16">

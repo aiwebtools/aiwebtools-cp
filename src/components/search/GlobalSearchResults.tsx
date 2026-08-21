@@ -97,7 +97,7 @@ const GlobalSearchResults = ({
                 data-tool-title={tool.title}
                 aria-label={`Open ${tool.title}`}
                 className={`flex items-center space-x-3 p-3 rounded-lg hover:bg-cyan-500/10 cursor-pointer group border border-transparent hover:border-cyan-500/30 ${isRecommendation ? 'opacity-90' : ''}`}
-                onClick={() => onToolClick(tool)}
+                onClick={() => { if (tool.isCategory && tool.path) { window.location.href = tool.path; } else { onToolClick(tool); } }}
                 onKeyDown={(e) => {
                   if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
