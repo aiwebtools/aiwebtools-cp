@@ -23,6 +23,17 @@ export const coreCategories: MainCategory[] = [
     ]
   },
   {
+    name: "PERPLEXITY BOTS",
+    emoji: "🔎",
+    description: "AIWebTools.ai Perplexity Bots — the Perplexity Project editions of our custom GPT lineup, free to open and use with live web grounding and cited sources",
+    subcategories: [
+      "Perplexity Bots",
+      "Perplexity Projects",
+      "AIWebTools Perplexity Bots",
+      "Research Bots"
+    ]
+  },
+  {
     name: "AI CHAT & ASSISTANTS",
     emoji: "💬",
     description: "Advanced AI chatbots, virtual assistants, and conversational AI platforms",
