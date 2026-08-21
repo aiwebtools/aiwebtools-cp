@@ -674,7 +674,10 @@ const allToolCategories = consolidateTools([
   ...aiNativeBatch2026,
 
   // Dev & Agent Infrastructure Batch — August 2026 (12 tools: Sculptor, Bito AI, Baz, Entelligence AI, Nia, Devlo, Tusk, Kernel, Steel.dev, Cased, Cleric, Macroscope)
-  ...devAiBatch2026Aug
+  ...devAiBatch2026Aug,
+
+  // AIWebTools.ai Perplexity Bot Directory — 187 Perplexity Project editions of our custom GPTs
+  ...perplexityBotsBatch2026
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories
