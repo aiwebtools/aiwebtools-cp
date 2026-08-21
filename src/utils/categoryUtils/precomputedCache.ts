@@ -101,6 +101,12 @@ export async function initializeCategoryCache(): Promise<void> {
         case "ALL AI TOOLS":
           categoryTools = [...tools];
           break;
+        case "PERPLEXITY BOTS":
+          categoryTools = tools.filter((tool) =>
+            (tool.category || "").toLowerCase() === "perplexity bots" ||
+            tool.title.toUpperCase().includes("PERPLEXITY BOT")
+          );
+          break;
         case "HEALTH, WELLNESS & PERSONAL LIFESTYLE":
         case "HEALTH & WELLNESS":
           categoryTools = tools.filter(detectors.isHealthAndWellnessTool);

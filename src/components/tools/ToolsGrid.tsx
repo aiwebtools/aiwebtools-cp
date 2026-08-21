@@ -235,18 +235,15 @@ const ToolsGrid = memo(({
     </>
   );
 }, (prevProps, nextProps) => {
-  // Custom comparison for performance - also check first tool to detect shuffle
-  const sameFirstTool = prevProps.tools[0]?.title === nextProps.tools[0]?.title;
-  const sameFilteredCount = prevProps.filteredToolsCount === nextProps.filteredToolsCount;
-  
+  // A same-length filter/shuffle can contain completely different tools. Use
+  // array identity so React never preserves stale/repeated cards.
   return (
-    prevProps.tools.length === nextProps.tools.length &&
+    prevProps.tools === nextProps.tools &&
     prevProps.displayedCount === nextProps.displayedCount &&
     prevProps.selectedCategory === nextProps.selectedCategory &&
     prevProps.searchTerm === nextProps.searchTerm &&
     prevProps.isLoading === nextProps.isLoading &&
-    sameFirstTool &&
-    sameFilteredCount
+    prevProps.filteredToolsCount === nextProps.filteredToolsCount
   );
 });
 

@@ -360,7 +360,9 @@ const workerScope = globalThis as typeof globalThis & {
 workerScope.onmessage = (event: MessageEvent<SearchRequest>) => {
   const { id, query } = event.data;
   const indices = runFullSearch(query);
-  const results = indices.slice(0, 140).map((index) => sanitizeToolForMainThread(allTools[index]));
+  // Keep the full relevant result set available to dropdown pagination. The
+  // former 140-result cap silently hid 47 Perplexity Bots from a 187-bot query.
+  const results = indices.slice(0, 600).map((index) => sanitizeToolForMainThread(allTools[index]));
   const response: SearchResponse = { id, query, indices, results };
   workerScope.postMessage(response);
 };
