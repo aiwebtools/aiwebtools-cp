@@ -52,6 +52,21 @@ class LRUCache<K, V> {
 const SEARCH_CACHE_VERSION = "v54";
 const searchCache = new LRUCache<string, any[]>(50);
 
+let perplexityBotsPromise: Promise<any[]> | null = null;
+
+const loadPerplexityBots = (): Promise<any[]> => {
+  if (!perplexityBotsPromise) {
+    perplexityBotsPromise = import("@/data/tools/perplexityBotsBatch2026")
+      .then(({ perplexityBotsBatch2026 }) => perplexityBotsBatch2026)
+      .catch((error) => {
+        perplexityBotsPromise = null;
+        console.error("[search] Unable to load Perplexity Bots:", error);
+        return [];
+      });
+  }
+  return perplexityBotsPromise;
+};
+
 const isMobileViewport = () =>
   typeof window !== "undefined" &&
   (window.innerWidth <= 768 || window.matchMedia?.("(hover: none) and (pointer: coarse)").matches);
@@ -132,8 +147,39 @@ const PERPLEXITY_BOTS_CATEGORY_RESULT = {
 
 const withCategoryDiscovery = (results: any[], query: string): any[] => {
   const normalized = normalizeSearchText(query).trim();
-  if (!normalized.includes("perplex") || !normalized.includes("bot")) return results;
+  const asksForPerplexity = normalized.includes("perplex");
+  const asksForBots = /(^|\s)bots?($|\s)/.test(normalized);
+  if (!asksForPerplexity && !asksForBots) return results;
   return [PERPLEXITY_BOTS_CATEGORY_RESULT, ...results.filter((item) => !item?.categoryPath)];
+};
+
+const searchPerplexityBots = (bots: any[], query: string): any[] => {
+  const normalized = normalizeSearchText(query).trim();
+  const meaningfulWords = normalized
+    .split(/\s+/)
+    .filter((word) => word.length > 1 && word !== "perplexity" && word !== "perplex" && word !== "bot" && word !== "bots");
+
+  if (meaningfulWords.length === 0) return bots.map(toInstantToolState);
+
+  return bots
+    .map((tool) => {
+      const title = normalizeSearchText(tool.title || "");
+      const category = normalizeSearchText(tool.category || "");
+      const tags = normalizeSearchText((tool.tags || []).join(" "));
+      const description = normalizeSearchText(tool.description || "");
+      let score = 0;
+      for (const word of meaningfulWords) {
+        if (title.startsWith(word)) score += 6000;
+        else if (title.includes(word)) score += 4000;
+        else if (tags.includes(word)) score += 1800;
+        else if (category.includes(word)) score += 900;
+        else if (description.includes(word)) score += 250;
+      }
+      return { tool, score };
+    })
+    .filter(({ score }) => score > 0)
+    .sort((a, b) => b.score - a.score || String(a.tool.title).localeCompare(String(b.tool.title)))
+    .map(({ tool }) => toInstantToolState(tool));
 };
 
 type WorkerSearchResponse = {
@@ -2260,6 +2306,9 @@ export const useGlobalSearch = () => {
     // Full UI text can be long; search work uses quick long-query scoring
     // instead of slicing/locking the visible input.
     const cappedT = t;
+    const normalizedQuery = normalizeSearchText(cappedT);
+    const isPerplexityBotQuery =
+      normalizedQuery.includes("perplex") || /(^|\s)bots?($|\s)/.test(normalizedQuery);
 
     setIsOpen(true);
     const currentId = ++searchIdRef.current;
@@ -2291,6 +2340,25 @@ export const useGlobalSearch = () => {
         });
         recordMetric("search.cachehit.ms", performance.now() - keystrokeAt);
       }
+      return;
+    }
+
+    // Perplexity bot discovery has its own compact 187-tool chunk. Searching
+    // this collection must never wait for the full 5,000+ tool worker to parse.
+    if (isPerplexityBotQuery) {
+      window.setTimeout(() => {
+        void loadPerplexityBots().then((bots) => {
+          if (currentId !== searchIdRef.current) return;
+          const botResults = withCategoryDiscovery(searchPerplexityBots(bots, cappedT), cappedT);
+          searchCache.set(fullCacheKey, botResults);
+          startTransition(() => {
+            setSearchResults(botResults);
+            setDisplayedCount(50);
+            setIsOpen(true);
+          });
+          recordMetric("search.perplexity-bots.ms", performance.now() - keystrokeAt, { count: botResults.length });
+        });
+      }, 0);
       return;
     }
 
@@ -2417,17 +2485,18 @@ export const useGlobalSearch = () => {
     };
   }, []);
 
-  // Worker warm-up only. Never auto-import the full database into the React
-  // tree: that duplicated worker parsing and could freeze a later first tap.
+  // Warm the worker shortly after first paint, away from the focus/caret event.
+  // This keeps clicking the field zero-work while avoiding a cold 5k-tool parse
+  // on the user's first real query.
   useEffect(() => {
     let cancelled = false;
-    const delay = isMobileViewport() ? 15000 : 10000;
+    const delay = isMobileViewport() ? 1800 : 1200;
     const handle = window.setTimeout(() => {
       if (cancelled) return;
       const ric = (window as any).requestIdleCallback;
       const scheduleWarm = () => { if (!cancelled) getSearchWorker(); };
-      if (ric) ric(scheduleWarm, { timeout: 8000 });
-      else window.setTimeout(scheduleWarm, 2000);
+      if (ric) ric(scheduleWarm, { timeout: 2500 });
+      else window.setTimeout(scheduleWarm, 250);
     }, delay);
 
     return () => {
