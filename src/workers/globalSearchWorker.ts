@@ -1,4 +1,4 @@
-import searchCatalog from "@/data/generated/searchCatalogLite.json";
+import searchCatalog from "@/data/generated/searchCatalogCompact.json";
 
 type SearchRequest = { id: number; query: string };
 
@@ -48,11 +48,16 @@ const editDistance = (a: string, b: string) => {
   return row[b.length];
 };
 
-const indexedTools = (searchCatalog as SearchResultLite[]).map((tool, order) => {
+const catalogKeys = ["title", "category", "tags", "directUrl", "imageUrl", "videoUrl", "emoji", "color", "rating", "totalVotes", "isFree"] as const;
+const tools = (searchCatalog as unknown[][]).map((row) =>
+  Object.fromEntries(catalogKeys.map((key, index) => [key, row[index]]).filter(([, value]) => value !== null)) as SearchResultLite
+);
+
+const indexedTools = tools.map((tool, order) => {
   const title = normalize(tool.title || "");
   const category = normalize(tool.category || "");
   const tags = normalize((tool.tags || []).join(" "));
-  const description = normalize(tool.description || "");
+  const description = "";
   return {
     tool,
     order,
