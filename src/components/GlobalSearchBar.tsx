@@ -58,6 +58,9 @@ const GlobalSearchBar = () => {
               onScroll={handleScroll}
             />
           )}
+
+          <SearchDebugDashboard diagnostics={diagnostics} />
+
         </div>
       </div>
     </TooltipProvider>
