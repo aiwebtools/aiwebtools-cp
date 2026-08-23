@@ -1667,10 +1667,9 @@ export const useGlobalSearch = () => {
     if (searchWorkerRef.current) return searchWorkerRef.current;
 
     try {
-      const worker = new Worker("/global-search-worker.js");
+      const worker = new Worker("/global-search-worker.js?v=2");
       worker.onmessage = (event: MessageEvent<WorkerSearchResponse>) => {
         const { id, results = [] } = event.data;
-        if (import.meta.env.DEV) console.debug("[search-worker] response", id, results.length);
         const pending = workerResolversRef.current.get(id);
         if (!pending) return;
         window.clearTimeout(pending.timeoutId);
@@ -1678,7 +1677,6 @@ export const useGlobalSearch = () => {
         pending.resolve(results);
       };
       worker.onerror = (error) => {
-        if (import.meta.env.DEV) console.error("[search-worker] error", error.message);
         workerResolversRef.current.forEach((pending) => {
           window.clearTimeout(pending.timeoutId);
           pending.reject(error);
@@ -1699,7 +1697,6 @@ export const useGlobalSearch = () => {
     if (!worker) return Promise.resolve([]);
 
     const id = ++workerRequestIdRef.current;
-    if (import.meta.env.DEV) console.debug("[search-worker] request", id, query);
     return new Promise((resolve, reject) => {
       const timeoutId = window.setTimeout(() => {
         workerResolversRef.current.delete(id);
@@ -2457,24 +2454,11 @@ export const useGlobalSearch = () => {
     };
   }, []);
 
-  // Warm the worker shortly after first paint, away from the focus/caret event.
-  // This keeps clicking the field zero-work while avoiding a cold 5k-tool parse
-  // on the user's first real query.
+  // Start catalog loading in the background immediately. Worker parsing never
+  // touches the UI thread, and completing this before interaction removes the
+  // cold first-query wait on mobile browsers.
   useEffect(() => {
-    let cancelled = false;
-    const delay = isMobileViewport() ? 1800 : 1200;
-    const handle = window.setTimeout(() => {
-      if (cancelled) return;
-      const ric = (window as any).requestIdleCallback;
-      const scheduleWarm = () => { if (!cancelled) getSearchWorker(); };
-      if (ric) ric(scheduleWarm, { timeout: 2500 });
-      else window.setTimeout(scheduleWarm, 250);
-    }, delay);
-
-    return () => {
-      cancelled = true;
-      window.clearTimeout(handle);
-    };
+    getSearchWorker();
   }, [getSearchWorker]);
 
   useEffect(() => {
