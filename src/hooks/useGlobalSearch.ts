@@ -187,7 +187,28 @@ type WorkerSearchResponse = {
   query: string;
   indices?: number[];
   results?: any[];
+  type?: string;
+  ready?: boolean;
+  size?: number;
+  loadMs?: number;
+  error?: string;
+  meta?: { indexSize?: number; elapsedMs?: number; terms?: string[]; matched?: number };
 };
+
+export type SearchDiagnostics = {
+  indexReady: boolean;
+  indexSize: number;
+  indexLoadMs: number;
+  lastQuery: string;
+  lastSource: string;
+  lastElapsedMs: number;
+  lastTerms: string[];
+  resultCount: number;
+  displayedCount: number;
+  pageLoads: number;
+  lastError: string;
+};
+
 
 const toInstantToolState = (tool: any) => {
   if (!tool || typeof tool !== "object") return undefined;
