@@ -1635,7 +1635,21 @@ export const useGlobalSearch = () => {
   const [displayedCount, setDisplayedCount] = useState(50);
   const [isOpen, setIsOpen] = useState(false);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
+  const [diagnostics, setDiagnostics] = useState<SearchDiagnostics>({
+    indexReady: false,
+    indexSize: 0,
+    indexLoadMs: 0,
+    lastQuery: "",
+    lastSource: "idle",
+    lastElapsedMs: 0,
+    lastTerms: [],
+    resultCount: 0,
+    displayedCount: 0,
+    pageLoads: 0,
+    lastError: "",
+  });
   const searchRef = useRef<HTMLDivElement>(null);
+
   const navigate = useNavigate();
   
   const toolStats = useMemo(() => getCurrentToolCount(), []);
