@@ -152,9 +152,11 @@
     transform: none;
   }
   
-  /* Ultra-fast search for low-end devices - INSTANT input */
-  .search-glow-optimized, .search-glow-optimized *, 
-  input, button, div, span, label {
+  /* Ultra-fast search for low-end devices - INSTANT input.
+     NOTE: never include generic `div` here — it breaks transform-based
+     virtualization (tool grids) and hides every card. */
+  .search-glow-optimized, .search-glow-optimized *,
+  input, button, label {
     transition: none !important;
     animation: none !important;
     transform: none !important;
@@ -162,6 +164,7 @@
     -moz-transition: none !important;
     will-change: auto !important;
   }
+
   
   .transitioning-word {
     width: 200px !important;

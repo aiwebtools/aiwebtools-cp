@@ -108,7 +108,7 @@ const WindowedSection = memo(({ tools, indexOffset = 0, keyPrefix = "tool" }: Wi
     <div ref={containerRef} className="relative w-full" style={{ height: `${totalHeight}px`, contain: "layout style" }}>
       <div
         className="absolute left-0 right-0 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4"
-        style={{ transform: `translateY(${range.start * stride}px)`, touchAction: "pan-y" }}
+        style={{ top: `${range.start * stride}px`, touchAction: "pan-y" }}
       >
         {visibleTools.map((tool, localIndex) => {
           const absoluteIndex = startIndex + localIndex;
