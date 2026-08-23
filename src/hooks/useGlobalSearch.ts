@@ -1670,6 +1670,7 @@ export const useGlobalSearch = () => {
       const worker = new Worker("/global-search-worker.js");
       worker.onmessage = (event: MessageEvent<WorkerSearchResponse>) => {
         const { id, results = [] } = event.data;
+        if (import.meta.env.DEV) console.debug("[search-worker] response", id, results.length);
         const pending = workerResolversRef.current.get(id);
         if (!pending) return;
         window.clearTimeout(pending.timeoutId);
@@ -1677,6 +1678,7 @@ export const useGlobalSearch = () => {
         pending.resolve(results);
       };
       worker.onerror = (error) => {
+        if (import.meta.env.DEV) console.error("[search-worker] error", error.message);
         workerResolversRef.current.forEach((pending) => {
           window.clearTimeout(pending.timeoutId);
           pending.reject(error);
@@ -1697,6 +1699,7 @@ export const useGlobalSearch = () => {
     if (!worker) return Promise.resolve([]);
 
     const id = ++workerRequestIdRef.current;
+    if (import.meta.env.DEV) console.debug("[search-worker] request", id, query);
     return new Promise((resolve, reject) => {
       const timeoutId = window.setTimeout(() => {
         workerResolversRef.current.delete(id);
