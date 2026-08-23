@@ -1,4 +1,4 @@
-import { memo, useEffect, useState } from "react";
+import { memo, useState } from "react";
 import { Tool } from "@/types/tools";
 
 /**
@@ -6,22 +6,6 @@ import { Tool } from "@/types/tools";
  * Shows the tool's own hero image (or its YouTube thumbnail) and only falls
  * back to the emoji when no media exists. Fully lazy — no first-paint cost.
  */
-
-let assetMap: Record<string, string> | null = null;
-let assetPending: Promise<Record<string, string>> | null = null;
-const assetListeners = new Set<() => void>();
-
-const loadAssetMap = () => {
-  if (assetMap || assetPending) return;
-  assetPending = import("@/utils/search/toolAssetUrls")
-    .then(({ assetUrlByPath }) => {
-      assetMap = assetUrlByPath;
-      assetListeners.forEach((fn) => fn());
-      assetListeners.clear();
-      return assetUrlByPath;
-    })
-    .catch(() => ({}));
-};
 
 const youTubeThumb = (videoUrl?: string): string | undefined => {
   if (!videoUrl) return undefined;
@@ -50,26 +34,12 @@ interface ToolThumbProps {
 }
 
 const ToolThumb = memo(({ tool, className = "w-11 h-11", emojiClassName = "text-2xl", rounded = "rounded-lg" }: ToolThumbProps) => {
-  const [, force] = useState(0);
   const [failed, setFailed] = useState(false);
-  const needsAssets = typeof tool.imageUrl === "string" && tool.imageUrl.startsWith("/src/");
 
-  useEffect(() => {
-    if (!needsAssets || assetMap) return;
-    const notify = () => force((n) => n + 1);
-    assetListeners.add(notify);
-    // Never expand the full legacy asset manifest during initial rendering.
-    // Do it after the page is interactive; public/remote images need no map.
-    const idle = window.requestIdleCallback?.(() => loadAssetMap(), { timeout: 4000 });
-    const timer = idle === undefined ? window.setTimeout(loadAssetMap, 2500) : undefined;
-    return () => {
-      assetListeners.delete(notify);
-      if (idle !== undefined) window.cancelIdleCallback?.(idle);
-      if (timer !== undefined) window.clearTimeout(timer);
-    };
-  }, [needsAssets]);
-
-  const src = failed ? undefined : resolveToolThumb(tool, assetMap);
+  // Raw /src paths belong to old records and cannot be resolved without
+  // eagerly importing every image in the project. Never do that from a card:
+  // it creates hundreds of requests and blocks mobile category rendering.
+  const src = failed ? undefined : resolveToolThumb(tool, null);
 
   if (!src) {
     return (
