@@ -3,8 +3,9 @@ import { Tool } from "@/types/tools";
 import ToolCard from "@/components/tools/ToolCard";
 import SimilarToolsRecommendation from "@/components/tools/SimilarToolsRecommendation";
 import SeeMoreCategoriesButton from "@/components/tools/SeeMoreCategoriesButton";
-import { getContextAwareSimilarTools, shouldShowSimilarTools } from "@/utils/contextAwareSimilarTools";
-import { getStandardizedCategoriesWithCounts } from "@/utils/categoryTitles";
+// NOTE: never statically import allTools-backed utils here — it pulls the whole
+// 5,600-tool database into every route chunk that renders a grid.
+
 import { useInfiniteScroll } from "@/hooks/useInfiniteScroll";
 
 // Regular import instead of lazy loading to prevent module loading errors
