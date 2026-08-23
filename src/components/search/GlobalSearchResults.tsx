@@ -117,7 +117,6 @@ const GlobalSearchResults = ({
                         src={heroImage}
                         alt={`${tool.title} AI tool thumbnail`}
                         loading={index < 12 ? "eager" : "lazy"}
-                        fetchPriority={index < 4 ? "high" : "auto"}
                         decoding="async"
                         referrerPolicy="no-referrer"
                         width={40}
