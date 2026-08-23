@@ -6,18 +6,11 @@ import { ChevronDown, ChevronUp, Filter, X, Shuffle, ArrowDownAZ, ArrowUpZA, Bot
 import { Badge } from "@/components/ui/badge";
 import { Tool } from "@/types/tools";
 import { mainCategories } from "@/utils/mainCategoryMapping";
-import { getToolsByMainCategory, getMainCategoriesWithCounts } from "@/utils/categoryUtils/toolFiltering";
-import { allTools } from "@/data/toolsData";
 import { 
   applySmartInterleavedSorting, 
   applyAlphabeticalWithDeprioritization,
   SortMode 
 } from "@/utils/toolSorting/smartToolSorting";
-import { 
-  getCachedToolsByMainCategory, 
-  getCachedCategoryCounts,
-  isCategoryCacheReady 
-} from "@/utils/categoryUtils/precomputedCache";
 
 // Agent sub-type definitions with emoji and keywords for filtering
 const AGENT_SUBTYPES: Array<{ id: string; label: string; emoji: string; keywords: string[] }> = [
@@ -37,20 +30,6 @@ const AGENT_SUBTYPES: Array<{ id: string; label: string; emoji: string; keywords
   { id: 'support', label: 'Support Agents', emoji: '🎧', keywords: ['support agent', 'customer support', 'helpdesk', 'ticket'] },
 ];
 
-// Pre-compute global category counts once at module level - use cache if available
-let cachedGlobalCounts: Record<string, number> | null = null;
-const getGlobalCategoryCounts = () => {
-  // Try pre-computed cache first (instant)
-  const precomputed = getCachedCategoryCounts();
-  if (precomputed) return precomputed;
-  
-  // Fallback to synchronous computation
-  if (!cachedGlobalCounts) {
-    cachedGlobalCounts = getMainCategoriesWithCounts(allTools);
-  }
-  return cachedGlobalCounts;
-};
-
 interface MainCategoryFilterProps {
   tools: Tool[];
   onFilteredToolsChange: (filteredTools: Tool[]) => void;
@@ -69,30 +48,9 @@ const MainCategoryFilter = memo(({ tools, onFilteredToolsChange, currentMainCate
 
   // Cache the categories data using pre-computed global counts
   const mainCategoriesWithCounts = useMemo(() => {
-    const globalCounts = getGlobalCategoryCounts();
-    
-    const uniqueCategoriesMap = new Map<string, { name: string; emoji: string; count: number }>();
-    
-    mainCategories.forEach(mainCat => {
-      const count = mainCat.name === "ALL AI TOOLS" ? allTools.length : (globalCounts[mainCat.name] || 0);
-      
-      if (!uniqueCategoriesMap.has(mainCat.name)) {
-        uniqueCategoriesMap.set(mainCat.name, {
-          name: mainCat.name,
-          emoji: mainCat.emoji,
-          count: count
-        });
-      }
-    });
-    
-    return Array.from(uniqueCategoriesMap.values())
-      .filter(cat => cat.count > 0 || cat.name === "ALL AI TOOLS")
-      .sort((a, b) => {
-        if (a.name === "ALL AI TOOLS") return -1;
-        if (b.name === "ALL AI TOOLS") return 1;
-        return b.count - a.count;
-      });
-  }, []);
+    const current = mainCategories.find((category) => category.name === currentMainCategory);
+    return current ? [{ ...current, count: tools.length }] : [];
+  }, [currentMainCategory, tools.length]);
 
   // Reset selected categories when current category changes (navigating to different category page)
   useEffect(() => {
@@ -124,26 +82,44 @@ const MainCategoryFilter = memo(({ tools, onFilteredToolsChange, currentMainCate
     const categoriesToUse = selectedMainCategories.length === 0 
       ? [currentMainCategory] 
       : selectedMainCategories;
-    
-    const selectedCategoryTools = new Map<string, Tool>();
-    
-    categoriesToUse.forEach(categoryName => {
-      // Try pre-computed cache first (instant lookup)
-      let categoryTools = getCachedToolsByMainCategory(categoryName);
-      
-      // Fallback to synchronous computation if cache not ready
-      if (!categoryTools) {
-        categoryTools = getToolsByMainCategory(allTools, categoryName);
+
+    // The parent already resolved the current category. Reuse that exact,
+    // stable list instead of running the full 5,000+ tool detector stack again
+    // on mobile. This also prevents different category pages from briefly
+    // showing the same globally-prioritized first cards.
+    if (categoriesToUse.length === 1 && categoriesToUse[0] === currentMainCategory) {
+      let toolsArray = tools;
+
+      if (isAgentsPage && selectedAgentTypes.length > 0) {
+        toolsArray = toolsArray.filter(tool => {
+          const title = tool.title.toLowerCase();
+          const description = (tool.description || '').toLowerCase();
+          const tags = (tool.tags || []).map(t => t.toLowerCase());
+          const directUrl = (tool.directUrl || '').toLowerCase();
+
+          return selectedAgentTypes.some(agentTypeId => {
+            const agentSubtype = AGENT_SUBTYPES.find(t => t.id === agentTypeId);
+            if (!agentSubtype) return false;
+            if (agentTypeId === 'custom-gpt') {
+              return directUrl.includes('chatgpt.com/g/') ||
+                directUrl.includes('.lovable.app') ||
+                directUrl.includes('gemini.google.com/gem/') ||
+                tags.some(tag => tag.includes('custom gpt') || tag.includes('gemini gem') || tag.includes('custom gem'));
+            }
+            return agentSubtype.keywords.some(keyword => {
+              const kw = keyword.toLowerCase();
+              return title.includes(kw) || description.includes(kw) || tags.some(tag => tag.includes(kw));
+            });
+          });
+        });
       }
-      
-      categoryTools.forEach(tool => {
-        if (!selectedCategoryTools.has(tool.title)) {
-          selectedCategoryTools.set(tool.title, tool);
-        }
-      });
-    });
+
+      return toolsArray;
+    }
     
-    let toolsArray = Array.from(selectedCategoryTools.values());
+    // The category route owns the resolved tool list. Keeping filtering scoped
+    // to that list avoids importing the complete catalogue into this control.
+    let toolsArray = tools;
     
     // Apply agent sub-type filter if on AI AGENTS page and specific types are selected
     if (isAgentsPage && selectedAgentTypes.length > 0) {
@@ -179,7 +155,7 @@ const MainCategoryFilter = memo(({ tools, onFilteredToolsChange, currentMainCate
     }
     
     return toolsArray;
-  }, [selectedMainCategories, currentMainCategory, isAgentsPage, selectedAgentTypes]);
+  }, [selectedMainCategories, currentMainCategory, isAgentsPage, selectedAgentTypes, tools]);
 
   // Track sort state for cache
   const lastSortRef = React.useRef<{ mode: SortMode; key: number; tools: Tool[] }>({ mode: 'smart', key: 0, tools: [] });

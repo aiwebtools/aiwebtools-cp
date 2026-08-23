@@ -16,7 +16,6 @@ import { buildToolsCache, buildSingleCategoryTools, getToolsCacheByMainCategory,
 import { isAIWebToolsGPT, isEducationRelatedTool } from "./specializedDetection";
 import { applyAIWebToolsPrioritization, getAIWebToolsPriorityScore } from "@/utils/aiWebToolsPrioritization";
 import { filterBusinessTools } from "./businessCategoryFiltering";
-import { allTools } from "@/data/toolsData";
 import { isGamingEntertainmentTool } from "./gamingEntertainmentDetection";
 import { isSecurityPrivacyTool } from "./securityPrivacyDetection";
 import { isIndustrySpecificTool } from "./industryDetection";

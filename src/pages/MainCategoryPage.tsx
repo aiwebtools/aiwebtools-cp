@@ -1,5 +1,5 @@
 
-import { useState, useEffect, useMemo, useCallback, useTransition, lazy, Suspense } from "react";
+import { useState, useEffect, useMemo, useCallback, useTransition } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -15,8 +15,7 @@ import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
 import { mainCategories } from "@/utils/mainCategoryMapping";
 import { Tool } from "@/types/tools";
-
-const MainCategoryFilter = lazy(() => import("@/components/category/MainCategoryFilter"));
+import MainCategoryFilter from "@/components/category/MainCategoryFilter";
 
 const MainCategoryPage = () => {
   const { mainCategoryName } = useParams<{ mainCategoryName: string }>();
@@ -28,7 +27,6 @@ const MainCategoryPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isToolsReady, setIsToolsReady] = useState(false);
   const [categoryTools, setCategoryTools] = useState<Tool[]>([]);
-  const [allCategoryTools, setAllCategoryTools] = useState<Tool[]>([]);
   const [isPending, startTransition] = useTransition();
 
   const decodedCategoryName = mainCategoryName ? decodeURIComponent(mainCategoryName) : "";
@@ -53,7 +51,6 @@ const MainCategoryPage = () => {
     if (decodedCategoryName === "ALL AI TOOLS") {
       import("@/data/toolsData").then(({ allTools }) => {
         if (cancelled) return;
-        setAllCategoryTools(allTools);
         setCategoryTools(allTools);
         setFilteredToolsByCategory(allTools);
         setIsToolsReady(true);
@@ -69,7 +66,6 @@ const MainCategoryPage = () => {
       import("@/data/tools/perplexityBotsBatch2026")
         .then(({ perplexityBotsBatch2026 }) => {
           if (cancelled) return;
-          setAllCategoryTools(perplexityBotsBatch2026);
           setCategoryTools(perplexityBotsBatch2026);
           setFilteredToolsByCategory(perplexityBotsBatch2026);
           setIsToolsReady(true);
@@ -91,7 +87,6 @@ const MainCategoryPage = () => {
         .then(([{ allTools }, { getToolsByMainCategory }]) => {
           if (cancelled) return;
           startTransition(() => {
-            setAllCategoryTools(allTools);
             const tools = getToolsByMainCategory(allTools, decodedCategoryName);
             console.log(`📂 Loaded ${tools.length} tools for category: ${decodedCategoryName}`);
             setCategoryTools(tools);
@@ -178,7 +173,10 @@ const MainCategoryPage = () => {
   }
 
   // Loading state shown inline in the filter area
-  const showToolsLoading = !isToolsReady || isPending;
+  // A background filter transition must never replace an already-visible grid
+  // with full-page skeletons. That unmount/remount cycle looked like a black
+  // flicker on mobile and reset the virtual window during momentum scrolling.
+  const showToolsLoading = !isToolsReady;
 
   return (
     <div className="min-h-screen bg-black relative overflow-x-hidden">
@@ -244,13 +242,11 @@ const MainCategoryPage = () => {
             <>
               {/* Category Filter Component */}
               {decodedCategoryName !== "ALL AI TOOLS" && (
-                <Suspense fallback={null}>
-                  <MainCategoryFilter
-                    tools={categoryTools}
-                    onFilteredToolsChange={handleFilteredToolsChange}
-                    currentMainCategory={decodedCategoryName}
-                  />
-                </Suspense>
+                <MainCategoryFilter
+                  tools={categoryTools}
+                  onFilteredToolsChange={handleFilteredToolsChange}
+                  currentMainCategory={decodedCategoryName}
+                />
               )}
 
               {/* Tools Count Display - Shows actual filtered count */}
