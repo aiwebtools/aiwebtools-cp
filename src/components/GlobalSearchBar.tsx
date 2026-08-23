@@ -3,6 +3,8 @@ import { useGlobalSearch } from "@/hooks/useGlobalSearch";
 import GlobalSearchInput from "@/components/search/GlobalSearchInput";
 import GlobalSearchResults from "@/components/search/GlobalSearchResults";
 import FunnyQuotesRotator from "@/components/search/FunnyQuotesRotator";
+import SearchDebugDashboard from "@/components/search/SearchDebugDashboard";
+
 
 const GlobalSearchBar = () => {
   const {
@@ -23,7 +25,9 @@ const GlobalSearchBar = () => {
     handleScroll,
     acceptPrediction,
     prepareSearch,
+    diagnostics,
   } = useGlobalSearch();
+
 
   return (
     <TooltipProvider>
@@ -54,6 +58,9 @@ const GlobalSearchBar = () => {
               onScroll={handleScroll}
             />
           )}
+
+          <SearchDebugDashboard diagnostics={diagnostics} />
+
         </div>
       </div>
     </TooltipProvider>

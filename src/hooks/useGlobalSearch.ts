@@ -187,7 +187,28 @@ type WorkerSearchResponse = {
   query: string;
   indices?: number[];
   results?: any[];
+  type?: string;
+  ready?: boolean;
+  size?: number;
+  loadMs?: number;
+  error?: string;
+  meta?: { indexSize?: number; elapsedMs?: number; terms?: string[]; matched?: number };
 };
+
+export type SearchDiagnostics = {
+  indexReady: boolean;
+  indexSize: number;
+  indexLoadMs: number;
+  lastQuery: string;
+  lastSource: string;
+  lastElapsedMs: number;
+  lastTerms: string[];
+  resultCount: number;
+  displayedCount: number;
+  pageLoads: number;
+  lastError: string;
+};
+
 
 const toInstantToolState = (tool: any) => {
   if (!tool || typeof tool !== "object") return undefined;
@@ -1614,7 +1635,21 @@ export const useGlobalSearch = () => {
   const [displayedCount, setDisplayedCount] = useState(50);
   const [isOpen, setIsOpen] = useState(false);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
+  const [diagnostics, setDiagnostics] = useState<SearchDiagnostics>({
+    indexReady: false,
+    indexSize: 0,
+    indexLoadMs: 0,
+    lastQuery: "",
+    lastSource: "idle",
+    lastElapsedMs: 0,
+    lastTerms: [],
+    resultCount: 0,
+    displayedCount: 0,
+    pageLoads: 0,
+    lastError: "",
+  });
   const searchRef = useRef<HTMLDivElement>(null);
+
   const navigate = useNavigate();
   
   const toolStats = useMemo(() => getCurrentToolCount(), []);
@@ -1667,9 +1702,29 @@ export const useGlobalSearch = () => {
     if (searchWorkerRef.current) return searchWorkerRef.current;
 
     try {
-      const worker = new Worker("/global-search-worker.js?v=2");
+      const worker = new Worker("/global-search-worker.js?v=4");
       worker.onmessage = (event: MessageEvent<WorkerSearchResponse>) => {
-        const { id, results = [] } = event.data;
+        const { id, results = [], type, ready, size, loadMs, meta, error } = event.data || ({} as WorkerSearchResponse);
+        if (type === "status") {
+          setDiagnostics((prev) => ({
+            ...prev,
+            indexReady: Boolean(ready),
+            indexSize: size ?? prev.indexSize,
+            indexLoadMs: loadMs ?? prev.indexLoadMs,
+            lastError: error || prev.lastError,
+          }));
+          return;
+        }
+        if (meta || error) {
+          setDiagnostics((prev) => ({
+            ...prev,
+            indexReady: prev.indexReady || Boolean(meta?.indexSize),
+            indexSize: meta?.indexSize || prev.indexSize,
+            lastElapsedMs: meta?.elapsedMs ?? prev.lastElapsedMs,
+            lastTerms: meta?.terms ?? prev.lastTerms,
+            lastError: error || "",
+          }));
+        }
         const pending = workerResolversRef.current.get(id);
         if (!pending) return;
         window.clearTimeout(pending.timeoutId);
@@ -1684,6 +1739,7 @@ export const useGlobalSearch = () => {
         workerResolversRef.current.clear();
         searchWorkerRef.current?.terminate();
         searchWorkerRef.current = null;
+        setDiagnostics((prev) => ({ ...prev, indexReady: false, lastError: "worker crashed — restarting" }));
       };
       searchWorkerRef.current = worker;
       return worker;
@@ -1709,11 +1765,13 @@ export const useGlobalSearch = () => {
   }, [getSearchWorker]);
 
   const prepareSearch = useCallback(() => {
-    // Focus must remain a zero-work interaction. Starting the worker or parsing
-    // the full database here made the very first caret/keystroke stall. The
-    // lightweight fallback answers immediately; worker startup happens only
-    // after an actual query is dispatched.
-  }, []);
+    // Focus stays a zero-work interaction on the main thread: we only nudge the
+    // (already spawned) worker so the catalog is parsed off-thread before the
+    // first keystroke. No parsing, no state churn, no layout work here.
+    const worker = getSearchWorker();
+    try { worker?.postMessage({ type: "ping" }); } catch { /* noop */ }
+  }, [getSearchWorker]);
+
 
   // Precompute lowercase fields once (keeps search snappy)
   const quickIndex = useMemo(() => {
@@ -2552,36 +2610,44 @@ export const useGlobalSearch = () => {
     return [...searchResults, ...recommendedTools];
   }, [searchResults, recommendedTools]);
 
-  // INFINITE SCROLL - Load more results as user scrolls
+  // INFINITE SCROLL — keeps revealing the FULL result set in generous batches.
+  // Uses a ref guard (not state) so fast momentum scrolling never drops a page.
+  const scrollLoadingRef = useRef(false);
   const handleScroll = useCallback((e: React.UIEvent<HTMLDivElement>) => {
     const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
-    
-    // Don't trigger if already loading
-    if (isLoadingMore || isLoadingRecommendations) return;
-    
-    // Trigger load when within 300px of bottom
-    const threshold = 300;
-    const nearBottom = scrollTop + clientHeight >= scrollHeight - threshold;
-    
-    if (nearBottom) {
-      // If we haven't shown all direct matches yet
-      if (displayedCount < searchResults.length) {
-        setIsLoadingMore(true);
-        requestAnimationFrame(() => {
-          setDisplayedCount(prev => Math.min(prev + 20, searchResults.length));
-          setIsLoadingMore(false);
-        });
-      } 
-      // Continue revealing the complete worker result set in stable batches.
-      else if (displayedCount < combinedResults.length) {
-        setIsLoadingMore(true);
-        requestAnimationFrame(() => {
-          setDisplayedCount(prev => Math.min(prev + 15, combinedResults.length));
-          setIsLoadingMore(false);
-        });
-      }
-    }
-  }, [displayedCount, searchResults.length, combinedResults.length, isLoadingMore, isLoadingRecommendations]);
+    if (scrollLoadingRef.current) return;
+
+    const total = Math.max(searchResults.length, combinedResults.length);
+    if (displayedCount >= total) return;
+
+    // Generous threshold so the next page is ready before the user reaches it.
+    const threshold = Math.max(600, clientHeight);
+    if (scrollTop + clientHeight < scrollHeight - threshold) return;
+
+    scrollLoadingRef.current = true;
+    setIsLoadingMore(true);
+    requestAnimationFrame(() => {
+      setDisplayedCount((prev) => {
+        const next = Math.min(prev + 60, total);
+        setDiagnostics((d) => ({ ...d, displayedCount: next, pageLoads: d.pageLoads + 1 }));
+        return next;
+      });
+      setIsLoadingMore(false);
+      scrollLoadingRef.current = false;
+    });
+  }, [displayedCount, searchResults.length, combinedResults.length]);
+
+  // Keep the dashboard in sync with result/pagination state.
+  useEffect(() => {
+    setDiagnostics((prev) => ({
+      ...prev,
+      lastQuery: searchTerm,
+      resultCount: combinedResults.length,
+      displayedCount: Math.min(displayedCount, combinedResults.length),
+      lastSource: combinedResults.length > 0 ? "worker/index" : (searchTerm ? "no-match" : "idle"),
+    }));
+  }, [searchTerm, combinedResults.length, displayedCount]);
+
 
   // Generate prediction based on top result
   const prediction = useMemo(() => {
@@ -2643,5 +2709,7 @@ export const useGlobalSearch = () => {
     handleScroll,
     acceptPrediction,
     prepareSearch,
+    diagnostics,
+
   };
 };
