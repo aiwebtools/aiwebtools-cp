@@ -1,5 +1,5 @@
 
-import { useState, useEffect, useMemo, useCallback, useTransition, lazy, Suspense } from "react";
+import { useState, useEffect, useMemo, useCallback, useTransition } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -15,8 +15,7 @@ import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
 import { mainCategories } from "@/utils/mainCategoryMapping";
 import { Tool } from "@/types/tools";
-
-const MainCategoryFilter = lazy(() => import("@/components/category/MainCategoryFilter"));
+import MainCategoryFilter from "@/components/category/MainCategoryFilter";
 
 const MainCategoryPage = () => {
   const { mainCategoryName } = useParams<{ mainCategoryName: string }>();
@@ -247,13 +246,11 @@ const MainCategoryPage = () => {
             <>
               {/* Category Filter Component */}
               {decodedCategoryName !== "ALL AI TOOLS" && (
-                <Suspense fallback={null}>
-                  <MainCategoryFilter
-                    tools={categoryTools}
-                    onFilteredToolsChange={handleFilteredToolsChange}
-                    currentMainCategory={decodedCategoryName}
-                  />
-                </Suspense>
+                <MainCategoryFilter
+                  tools={categoryTools}
+                  onFilteredToolsChange={handleFilteredToolsChange}
+                  currentMainCategory={decodedCategoryName}
+                />
               )}
 
               {/* Tools Count Display - Shows actual filtered count */}
