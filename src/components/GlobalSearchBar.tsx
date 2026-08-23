@@ -23,7 +23,9 @@ const GlobalSearchBar = () => {
     handleScroll,
     acceptPrediction,
     prepareSearch,
+    diagnostics,
   } = useGlobalSearch();
+
 
   return (
     <TooltipProvider>
