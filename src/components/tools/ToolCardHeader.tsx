@@ -35,15 +35,9 @@ const ToolCardHeader = ({
   defaultVotes 
 }: ToolCardHeaderProps) => {
   
-  // Find the correct index in allTools array
-  const correctToolIndex = allTools.findIndex(t => 
-    t.title === tool.title && 
-    t.directUrl === tool.directUrl && 
-    t.category === tool.category
-  );
+  // Stable per-tool id for analytics without touching the full database.
+  const linkIndex = toolIndex;
 
-  // Use the correct index, fallback to provided index if not found
-  const linkIndex = correctToolIndex !== -1 ? correctToolIndex : toolIndex;
 
   // Determine tool type for category badges
   const isWeb3Tool = tool.category === "WEB3 Domains" || tool.tags?.includes("WEB3") || tool.tags?.includes("Blockchain");
