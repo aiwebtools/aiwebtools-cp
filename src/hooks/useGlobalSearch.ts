@@ -1702,7 +1702,7 @@ export const useGlobalSearch = () => {
     if (searchWorkerRef.current) return searchWorkerRef.current;
 
     try {
-      const worker = new Worker("/global-search-worker.js?v=3");
+      const worker = new Worker("/global-search-worker.js?v=4");
       worker.onmessage = (event: MessageEvent<WorkerSearchResponse>) => {
         const { id, results = [], type, ready, size, loadMs, meta, error } = event.data || ({} as WorkerSearchResponse);
         if (type === "status") {
