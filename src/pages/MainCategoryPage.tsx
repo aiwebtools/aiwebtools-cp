@@ -27,7 +27,6 @@ const MainCategoryPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isToolsReady, setIsToolsReady] = useState(false);
   const [categoryTools, setCategoryTools] = useState<Tool[]>([]);
-  const [allCategoryTools, setAllCategoryTools] = useState<Tool[]>([]);
   const [isPending, startTransition] = useTransition();
 
   const decodedCategoryName = mainCategoryName ? decodeURIComponent(mainCategoryName) : "";
@@ -52,7 +51,6 @@ const MainCategoryPage = () => {
     if (decodedCategoryName === "ALL AI TOOLS") {
       import("@/data/toolsData").then(({ allTools }) => {
         if (cancelled) return;
-        setAllCategoryTools(allTools);
         setCategoryTools(allTools);
         setFilteredToolsByCategory(allTools);
         setIsToolsReady(true);
@@ -68,7 +66,6 @@ const MainCategoryPage = () => {
       import("@/data/tools/perplexityBotsBatch2026")
         .then(({ perplexityBotsBatch2026 }) => {
           if (cancelled) return;
-          setAllCategoryTools(perplexityBotsBatch2026);
           setCategoryTools(perplexityBotsBatch2026);
           setFilteredToolsByCategory(perplexityBotsBatch2026);
           setIsToolsReady(true);
@@ -90,7 +87,6 @@ const MainCategoryPage = () => {
         .then(([{ allTools }, { getToolsByMainCategory }]) => {
           if (cancelled) return;
           startTransition(() => {
-            setAllCategoryTools(allTools);
             const tools = getToolsByMainCategory(allTools, decodedCategoryName);
             console.log(`📂 Loaded ${tools.length} tools for category: ${decodedCategoryName}`);
             setCategoryTools(tools);

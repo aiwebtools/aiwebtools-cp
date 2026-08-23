@@ -6,8 +6,7 @@ import { ChevronDown, ChevronUp, Filter, X, Shuffle, ArrowDownAZ, ArrowUpZA, Bot
 import { Badge } from "@/components/ui/badge";
 import { Tool } from "@/types/tools";
 import { mainCategories } from "@/utils/mainCategoryMapping";
-import { getToolsByMainCategory, getMainCategoriesWithCounts } from "@/utils/categoryUtils/toolFiltering";
-import { allTools } from "@/data/toolsData";
+import { getToolsByMainCategory } from "@/utils/categoryUtils/toolFiltering";
 import { 
   applySmartInterleavedSorting, 
   applyAlphabeticalWithDeprioritization,
@@ -37,20 +36,6 @@ const AGENT_SUBTYPES: Array<{ id: string; label: string; emoji: string; keywords
   { id: 'support', label: 'Support Agents', emoji: '🎧', keywords: ['support agent', 'customer support', 'helpdesk', 'ticket'] },
 ];
 
-// Pre-compute global category counts once at module level - use cache if available
-let cachedGlobalCounts: Record<string, number> | null = null;
-const getGlobalCategoryCounts = () => {
-  // Try pre-computed cache first (instant)
-  const precomputed = getCachedCategoryCounts();
-  if (precomputed) return precomputed;
-  
-  // Fallback to synchronous computation
-  if (!cachedGlobalCounts) {
-    cachedGlobalCounts = getMainCategoriesWithCounts(allTools);
-  }
-  return cachedGlobalCounts;
-};
-
 interface MainCategoryFilterProps {
   tools: Tool[];
   onFilteredToolsChange: (filteredTools: Tool[]) => void;
@@ -69,12 +54,14 @@ const MainCategoryFilter = memo(({ tools, onFilteredToolsChange, currentMainCate
 
   // Cache the categories data using pre-computed global counts
   const mainCategoriesWithCounts = useMemo(() => {
-    const globalCounts = getGlobalCategoryCounts();
+    const globalCounts = getCachedCategoryCounts();
     
     const uniqueCategoriesMap = new Map<string, { name: string; emoji: string; count: number }>();
     
     mainCategories.forEach(mainCat => {
-      const count = mainCat.name === "ALL AI TOOLS" ? allTools.length : (globalCounts[mainCat.name] || 0);
+      const count = mainCat.name === currentMainCategory
+        ? tools.length
+        : (globalCounts?.[mainCat.name] || 0);
       
       if (!uniqueCategoriesMap.has(mainCat.name)) {
         uniqueCategoriesMap.set(mainCat.name, {
@@ -86,13 +73,13 @@ const MainCategoryFilter = memo(({ tools, onFilteredToolsChange, currentMainCate
     });
     
     return Array.from(uniqueCategoriesMap.values())
-      .filter(cat => cat.count > 0 || cat.name === "ALL AI TOOLS")
+      .filter(cat => cat.count > 0 || cat.name === "ALL AI TOOLS" || cat.name === currentMainCategory)
       .sort((a, b) => {
         if (a.name === "ALL AI TOOLS") return -1;
         if (b.name === "ALL AI TOOLS") return 1;
         return b.count - a.count;
       });
-  }, []);
+  }, [currentMainCategory, tools.length]);
 
   // Reset selected categories when current category changes (navigating to different category page)
   useEffect(() => {
@@ -162,12 +149,13 @@ const MainCategoryFilter = memo(({ tools, onFilteredToolsChange, currentMainCate
     const selectedCategoryTools = new Map<string, Tool>();
     
     categoriesToUse.forEach(categoryName => {
-      // Try pre-computed cache first (instant lookup)
+      // Mixed categories are opt-in. Only then load the catalogue lazily;
+      // the normal category path above never pulls it onto the main thread.
       let categoryTools = getCachedToolsByMainCategory(categoryName);
       
-      // Fallback to synchronous computation if cache not ready
+      // Fallback for an explicitly selected mixed category.
       if (!categoryTools) {
-        categoryTools = getToolsByMainCategory(allTools, categoryName);
+        categoryTools = getToolsByMainCategory(tools, categoryName);
       }
       
       categoryTools.forEach(tool => {
