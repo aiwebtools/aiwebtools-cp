@@ -2590,7 +2590,6 @@ export const useGlobalSearch = () => {
           setIsLoadingMore(false);
         });
       }
-      }
     }
   }, [displayedCount, searchResults.length, combinedResults.length, isLoadingMore, isLoadingRecommendations]);
 
