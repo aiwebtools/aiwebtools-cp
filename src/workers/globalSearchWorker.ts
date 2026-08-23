@@ -1,5 +1,3 @@
-import searchCatalog from "@/data/generated/searchCatalogCompact.json";
-
 type SearchRequest = { id: number; query: string };
 
 type SearchResultLite = {
@@ -49,11 +47,31 @@ const editDistance = (a: string, b: string) => {
 };
 
 const catalogKeys = ["title", "category", "tags", "directUrl", "imageUrl", "videoUrl", "emoji", "color", "rating", "totalVotes", "isFree"] as const;
-const tools = (searchCatalog as unknown[][]).map((row) =>
-  Object.fromEntries(catalogKeys.map((key, index) => [key, row[index]]).filter(([, value]) => value !== null)) as SearchResultLite
-);
+type IndexedTool = {
+  tool: SearchResultLite;
+  order: number;
+  title: string;
+  titleCompact: string;
+  titleWords: string[];
+  category: string;
+  tags: string;
+  description: string;
+  searchable: string;
+};
 
-const indexedTools = tools.map((tool, order) => {
+let indexedToolsPromise: Promise<IndexedTool[]> | null = null;
+
+const getIndexedTools = () => {
+  if (indexedToolsPromise) return indexedToolsPromise;
+  indexedToolsPromise = fetch("/search-catalog.json", { cache: "force-cache" })
+    .then((response) => {
+      if (!response.ok) throw new Error(`Search catalog HTTP ${response.status}`);
+      return response.json() as Promise<unknown[][]>;
+    })
+    .then((rows) => rows.map((row) =>
+      Object.fromEntries(catalogKeys.map((key, index) => [key, row[index]]).filter(([, value]) => value !== null)) as SearchResultLite
+    ))
+    .then((tools) => tools.map((tool, order) => {
   const title = normalize(tool.title || "");
   const category = normalize(tool.category || "");
   const tags = normalize((tool.tags || []).join(" "));
@@ -69,9 +87,11 @@ const indexedTools = tools.map((tool, order) => {
     description,
     searchable: `${title} ${category} ${tags} ${description}`,
   };
-});
+    }));
+  return indexedToolsPromise;
+};
 
-const scoreTool = (entry: (typeof indexedTools)[number], query: string, words: string[]) => {
+const scoreTool = (entry: IndexedTool, query: string, words: string[]) => {
   const compactQuery = query.replace(/\s+/g, "");
   let score = 0;
 
@@ -111,10 +131,11 @@ const scoreTool = (entry: (typeof indexedTools)[number], query: string, words: s
   return score;
 };
 
-const runSearch = (rawQuery: string) => {
+const runSearch = async (rawQuery: string) => {
   const query = normalize(rawQuery);
   if (!query) return [];
   const words = query.split(" ").filter(Boolean);
+  const indexedTools = await getIndexedTools();
 
   return indexedTools
     .map((entry) => ({ entry, score: scoreTool(entry, query, words) }))
@@ -128,9 +149,13 @@ const workerScope = globalThis as typeof globalThis & {
   postMessage: (message: SearchResponse) => void;
 };
 
-workerScope.onmessage = (event: MessageEvent<SearchRequest>) => {
+workerScope.onmessage = async (event: MessageEvent<SearchRequest>) => {
   const { id, query } = event.data;
-  workerScope.postMessage({ id, query, results: runSearch(query) });
+  try {
+    workerScope.postMessage({ id, query, results: await runSearch(query) });
+  } catch {
+    workerScope.postMessage({ id, query, results: [] });
+  }
 };
 
 export {};
