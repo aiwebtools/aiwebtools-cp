@@ -4,7 +4,9 @@ import { Badge } from "@/components/ui/badge";
 import { Tool } from "@/types/tools";
 import StarRating from "./StarRating";
 import { FavoritesButton } from "@/components/favorites/FavoritesButton";
-import { allTools } from "@/data/toolsData";
+// NOTE: never import allTools here — it pulls the entire tool database into
+// every route chunk that renders a card and stalls category pages.
+
 import { Brain, Blocks, Smartphone, Monitor } from "lucide-react";
 import ToolDisclaimerBadges from "@/components/disclaimers/ToolDisclaimerBadges";
 import AutoScaleTitle from "@/components/ui/auto-scale-title";
