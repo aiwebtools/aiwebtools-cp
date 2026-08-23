@@ -1,5 +1,4 @@
 // Tool detail page prefetching utility for instant navigation
-import { allTools } from "@/data/toolsData";
 
 // Cache of prefetched tool slugs
 const prefetchedTools = new Set<string>();
