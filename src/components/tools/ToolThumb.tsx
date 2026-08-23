@@ -58,9 +58,14 @@ const ToolThumb = memo(({ tool, className = "w-11 h-11", emojiClassName = "text-
     if (!needsAssets || assetMap) return;
     const notify = () => force((n) => n + 1);
     assetListeners.add(notify);
-    loadAssetMap();
+    // Never expand the full legacy asset manifest during initial rendering.
+    // Do it after the page is interactive; public/remote images need no map.
+    const idle = window.requestIdleCallback?.(() => loadAssetMap(), { timeout: 4000 });
+    const timer = idle === undefined ? window.setTimeout(loadAssetMap, 2500) : undefined;
     return () => {
       assetListeners.delete(notify);
+      if (idle !== undefined) window.cancelIdleCallback?.(idle);
+      if (timer !== undefined) window.clearTimeout(timer);
     };
   }, [needsAssets]);
 
