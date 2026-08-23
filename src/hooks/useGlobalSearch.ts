@@ -1702,9 +1702,29 @@ export const useGlobalSearch = () => {
     if (searchWorkerRef.current) return searchWorkerRef.current;
 
     try {
-      const worker = new Worker("/global-search-worker.js?v=2");
+      const worker = new Worker("/global-search-worker.js?v=3");
       worker.onmessage = (event: MessageEvent<WorkerSearchResponse>) => {
-        const { id, results = [] } = event.data;
+        const { id, results = [], type, ready, size, loadMs, meta, error } = event.data || ({} as WorkerSearchResponse);
+        if (type === "status") {
+          setDiagnostics((prev) => ({
+            ...prev,
+            indexReady: Boolean(ready),
+            indexSize: size ?? prev.indexSize,
+            indexLoadMs: loadMs ?? prev.indexLoadMs,
+            lastError: error || prev.lastError,
+          }));
+          return;
+        }
+        if (meta || error) {
+          setDiagnostics((prev) => ({
+            ...prev,
+            indexReady: prev.indexReady || Boolean(meta?.indexSize),
+            indexSize: meta?.indexSize || prev.indexSize,
+            lastElapsedMs: meta?.elapsedMs ?? prev.lastElapsedMs,
+            lastTerms: meta?.terms ?? prev.lastTerms,
+            lastError: error || "",
+          }));
+        }
         const pending = workerResolversRef.current.get(id);
         if (!pending) return;
         window.clearTimeout(pending.timeoutId);
@@ -1719,6 +1739,7 @@ export const useGlobalSearch = () => {
         workerResolversRef.current.clear();
         searchWorkerRef.current?.terminate();
         searchWorkerRef.current = null;
+        setDiagnostics((prev) => ({ ...prev, indexReady: false, lastError: "worker crashed — restarting" }));
       };
       searchWorkerRef.current = worker;
       return worker;
@@ -1744,11 +1765,13 @@ export const useGlobalSearch = () => {
   }, [getSearchWorker]);
 
   const prepareSearch = useCallback(() => {
-    // Focus must remain a zero-work interaction. Starting the worker or parsing
-    // the full database here made the very first caret/keystroke stall. The
-    // lightweight fallback answers immediately; worker startup happens only
-    // after an actual query is dispatched.
-  }, []);
+    // Focus stays a zero-work interaction on the main thread: we only nudge the
+    // (already spawned) worker so the catalog is parsed off-thread before the
+    // first keystroke. No parsing, no state churn, no layout work here.
+    const worker = getSearchWorker();
+    try { worker?.postMessage({ type: "ping" }); } catch { /* noop */ }
+  }, [getSearchWorker]);
+
 
   // Precompute lowercase fields once (keeps search snappy)
   const quickIndex = useMemo(() => {
