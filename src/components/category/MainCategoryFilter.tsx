@@ -6,17 +6,11 @@ import { ChevronDown, ChevronUp, Filter, X, Shuffle, ArrowDownAZ, ArrowUpZA, Bot
 import { Badge } from "@/components/ui/badge";
 import { Tool } from "@/types/tools";
 import { mainCategories } from "@/utils/mainCategoryMapping";
-import { getToolsByMainCategory } from "@/utils/categoryUtils/toolFiltering";
 import { 
   applySmartInterleavedSorting, 
   applyAlphabeticalWithDeprioritization,
   SortMode 
 } from "@/utils/toolSorting/smartToolSorting";
-import { 
-  getCachedToolsByMainCategory, 
-  getCachedCategoryCounts,
-  isCategoryCacheReady 
-} from "@/utils/categoryUtils/precomputedCache";
 
 // Agent sub-type definitions with emoji and keywords for filtering
 const AGENT_SUBTYPES: Array<{ id: string; label: string; emoji: string; keywords: string[] }> = [
@@ -54,31 +48,8 @@ const MainCategoryFilter = memo(({ tools, onFilteredToolsChange, currentMainCate
 
   // Cache the categories data using pre-computed global counts
   const mainCategoriesWithCounts = useMemo(() => {
-    const globalCounts = getCachedCategoryCounts();
-    
-    const uniqueCategoriesMap = new Map<string, { name: string; emoji: string; count: number }>();
-    
-    mainCategories.forEach(mainCat => {
-      const count = mainCat.name === currentMainCategory
-        ? tools.length
-        : (globalCounts?.[mainCat.name] || 0);
-      
-      if (!uniqueCategoriesMap.has(mainCat.name)) {
-        uniqueCategoriesMap.set(mainCat.name, {
-          name: mainCat.name,
-          emoji: mainCat.emoji,
-          count: count
-        });
-      }
-    });
-    
-    return Array.from(uniqueCategoriesMap.values())
-      .filter(cat => cat.count > 0 || cat.name === "ALL AI TOOLS" || cat.name === currentMainCategory)
-      .sort((a, b) => {
-        if (a.name === "ALL AI TOOLS") return -1;
-        if (b.name === "ALL AI TOOLS") return 1;
-        return b.count - a.count;
-      });
+    const current = mainCategories.find((category) => category.name === currentMainCategory);
+    return current ? [{ ...current, count: tools.length }] : [];
   }, [currentMainCategory, tools.length]);
 
   // Reset selected categories when current category changes (navigating to different category page)
@@ -146,26 +117,9 @@ const MainCategoryFilter = memo(({ tools, onFilteredToolsChange, currentMainCate
       return toolsArray;
     }
     
-    const selectedCategoryTools = new Map<string, Tool>();
-    
-    categoriesToUse.forEach(categoryName => {
-      // Mixed categories are opt-in. Only then load the catalogue lazily;
-      // the normal category path above never pulls it onto the main thread.
-      let categoryTools = getCachedToolsByMainCategory(categoryName);
-      
-      // Fallback for an explicitly selected mixed category.
-      if (!categoryTools) {
-        categoryTools = getToolsByMainCategory(tools, categoryName);
-      }
-      
-      categoryTools.forEach(tool => {
-        if (!selectedCategoryTools.has(tool.title)) {
-          selectedCategoryTools.set(tool.title, tool);
-        }
-      });
-    });
-    
-    let toolsArray = Array.from(selectedCategoryTools.values());
+    // The category route owns the resolved tool list. Keeping filtering scoped
+    // to that list avoids importing the complete catalogue into this control.
+    let toolsArray = tools;
     
     // Apply agent sub-type filter if on AI AGENTS page and specific types are selected
     if (isAgentsPage && selectedAgentTypes.length > 0) {
