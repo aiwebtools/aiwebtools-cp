@@ -49,7 +49,7 @@ class LRUCache<K, V> {
 
 // Global search cache (persists across component re-renders)
 // NOTE: versioned to prevent "stale" cached results after search-intelligence updates.
-const SEARCH_CACHE_VERSION = "v54";
+const SEARCH_CACHE_VERSION = "v55";
 const searchCache = new LRUCache<string, any[]>(50);
 
 let perplexityBotsPromise: Promise<any[]> | null = null;
@@ -1667,7 +1667,7 @@ export const useGlobalSearch = () => {
     if (searchWorkerRef.current) return searchWorkerRef.current;
 
     try {
-      const worker = new Worker(new URL("../workers/globalSearchWorker.ts", import.meta.url), { type: "module" });
+      const worker = new Worker("/global-search-worker.js?v=2");
       worker.onmessage = (event: MessageEvent<WorkerSearchResponse>) => {
         const { id, results = [] } = event.data;
         const pending = workerResolversRef.current.get(id);
@@ -2367,41 +2367,10 @@ export const useGlobalSearch = () => {
     // makes the dropdown resilient across devices.
     // Pricing queries ("free", "freemium", "paid") always run on the main-thread
     // index so we can return the FULL matching set for endless scrolling.
-    const isPricingQuery = /^(free|free tools|free ai tools|free ai|100% free|no cost|freemium|free tier|free trial|paid|paid tools|premium)$/i.test(cappedT.trim());
-    if (isPricingQuery) {
-      const pricingTarget = /^(paid|paid tools|premium)$/i.test(cappedT.trim())
-        ? "paid"
-        : /^(freemium|free tier|free trial)$/i.test(cappedT.trim())
-        ? "freemium"
-        : "free";
-      const applyPricing = (loaded?: any[]) => {
-        if (currentId !== searchIdRef.current) return;
-        // Read straight from the loaded tools (state may still be stale here)
-        const source = (loaded && loaded.length > 0) ? loaded : toolsRef.current;
-        if (!source || source.length === 0) return;
-        const matched: any[] = [];
-        for (const t of source) {
-          if (getToolPricing(t) === pricingTarget) matched.push(t);
-        }
-        matched.sort((a, b) => (b.rating || 0) - (a.rating || 0));
-        const res = matched;
-        if (res.length === 0) return;
-        searchCache.set(fullCacheKey, res);
-        startTransition(() => {
-          setSearchResults(res);
-          setDisplayedCount(50);
-          setIsOpen(true);
-        });
-      };
-      if (toolsRef.current.length === 0) {
-        void loadTools().then((loadedTools) => applyPricing(loadedTools));
-      } else {
-        applyPricing();
-      }
-      return;
-    }
-
-    const shouldUseWorker = toolsRef.current.length === 0 || cappedT.length > 24;
+    // The static worker owns every normal query. Never switch to the image-heavy
+    // main-thread database after background warmup, which previously reintroduced
+    // freezing and incomplete fallback results depending on timing.
+    const shouldUseWorker = true;
     if (shouldUseWorker) {
       pendingSearchRef.current = null;
       // Give the input one painted frame before worker/module startup. Never
@@ -2414,7 +2383,7 @@ export const useGlobalSearch = () => {
           if (currentId !== searchIdRef.current) return;
           const haveTools = toolsRef.current.length > 0;
           const results = workerResults.length > 0
-            ? workerResults
+            ? ensureExactTitleHit(workerResults, cappedT)
             : (haveTools ? ensureExactTitleHit(quickSearch(cappedT), cappedT) : lightweightResults);
           const discoverableResults = withCategoryDiscovery(results, cappedT);
           if (discoverableResults.length > 0 || haveTools) {
@@ -2428,7 +2397,7 @@ export const useGlobalSearch = () => {
             });
           }
           recordMetric("search.worker.ms", performance.now() - keystrokeAt, { len: cappedT.length });
-        }), 40);
+        }), 0);
       return;
     }
 
@@ -2485,24 +2454,11 @@ export const useGlobalSearch = () => {
     };
   }, []);
 
-  // Warm the worker shortly after first paint, away from the focus/caret event.
-  // This keeps clicking the field zero-work while avoiding a cold 5k-tool parse
-  // on the user's first real query.
+  // Start catalog loading in the background immediately. Worker parsing never
+  // touches the UI thread, and completing this before interaction removes the
+  // cold first-query wait on mobile browsers.
   useEffect(() => {
-    let cancelled = false;
-    const delay = isMobileViewport() ? 1800 : 1200;
-    const handle = window.setTimeout(() => {
-      if (cancelled) return;
-      const ric = (window as any).requestIdleCallback;
-      const scheduleWarm = () => { if (!cancelled) getSearchWorker(); };
-      if (ric) ric(scheduleWarm, { timeout: 2500 });
-      else window.setTimeout(scheduleWarm, 250);
-    }, delay);
-
-    return () => {
-      cancelled = true;
-      window.clearTimeout(handle);
-    };
+    getSearchWorker();
   }, [getSearchWorker]);
 
   useEffect(() => {
@@ -2589,51 +2545,7 @@ export const useGlobalSearch = () => {
     setRecommendedTools([]);
   }, [searchResults]);
 
-  // Generate recommended tools when direct matches are exhausted
-  const loadMoreRecommendations = useCallback(() => {
-    if (isLoadingRecommendations) return;
-    
-    setIsLoadingRecommendations(true);
-    
-    // Get tools NOT already in search results
-    const existingTitles = new Set([
-      ...searchResults.map(t => t?.title?.toLowerCase()),
-      ...recommendedTools.map(t => t?.title?.toLowerCase())
-    ]);
-    
-    // Get category preferences from search results to find similar tools
-    const categoryBoosts = new Map<string, number>();
-    searchResults.forEach(tool => {
-      if (tool?.category) {
-        categoryBoosts.set(tool.category, (categoryBoosts.get(tool.category) || 0) + 1);
-      }
-    });
-    
-    // Filter and score remaining tools
-    const remaining = tools.filter(t => 
-      t?.title && !existingTitles.has(t.title.toLowerCase())
-    );
-    
-    // Score by category similarity to search results
-    const scored = remaining.map(tool => {
-      let score = 0;
-      if (tool?.category && categoryBoosts.has(tool.category)) {
-        score += categoryBoosts.get(tool.category)! * 10;
-      }
-      // Add some randomization to keep it interesting
-      score += Math.random() * 5;
-      return { tool, score };
-    });
-    
-    // Sort by score and take next batch
-    scored.sort((a, b) => b.score - a.score);
-    const nextBatch = scored.slice(0, 30).map(s => s.tool);
-    
-    requestAnimationFrame(() => {
-      setRecommendedTools(prev => [...prev, ...nextBatch]);
-      setIsLoadingRecommendations(false);
-    });
-  }, [searchResults, recommendedTools, isLoadingRecommendations, tools]);
+  const loadMoreRecommendations = useCallback(() => {}, []);
 
   // Combined results: direct matches + recommendations
   const combinedResults = useMemo(() => {
@@ -2660,7 +2572,7 @@ export const useGlobalSearch = () => {
           setIsLoadingMore(false);
         });
       } 
-      // If direct matches exhausted, load recommendations
+      // Continue revealing the complete worker result set in stable batches.
       else if (displayedCount < combinedResults.length) {
         setIsLoadingMore(true);
         requestAnimationFrame(() => {
@@ -2668,12 +2580,8 @@ export const useGlobalSearch = () => {
           setIsLoadingMore(false);
         });
       }
-      // If showing all combined results, load more recommendations
-      else if (recommendedTools.length < tools.length - searchResults.length) {
-        loadMoreRecommendations();
-      }
     }
-  }, [displayedCount, searchResults.length, combinedResults.length, recommendedTools.length, isLoadingMore, isLoadingRecommendations, loadMoreRecommendations, tools.length]);
+  }, [displayedCount, searchResults.length, combinedResults.length, isLoadingMore, isLoadingRecommendations]);
 
   // Generate prediction based on top result
   const prediction = useMemo(() => {

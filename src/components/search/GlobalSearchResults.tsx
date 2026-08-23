@@ -1,6 +1,5 @@
 import { useRef, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { ChevronUp, ChevronDown } from "lucide-react";
 import { getToolCategoryColor } from "@/utils/search/categoryColors";
 import { generateToolSlug } from "@/utils/urlGenerator";
@@ -118,7 +117,6 @@ const GlobalSearchResults = ({
                         src={heroImage}
                         alt={`${tool.title} AI tool thumbnail`}
                         loading={index < 12 ? "eager" : "lazy"}
-                        fetchPriority={index < 4 ? "high" : "auto"}
                         decoding="async"
                         referrerPolicy="no-referrer"
                         width={40}
@@ -175,46 +173,7 @@ const GlobalSearchResults = ({
                   </div>
                 )}
                 
-                {/* Show tooltip only on desktop (md and above) */}
-                <div className="hidden md:block" data-testid="global-search-result" data-tool-title={tool.title}>
-                  <Tooltip delayDuration={300}>
-                    <TooltipTrigger asChild>
-                      {toolItem}
-                    </TooltipTrigger>
-                    <TooltipContent 
-                      side="right" 
-                      className="max-w-sm p-3 bg-gray-900/95 text-cyan-100 border-cyan-500/30 shadow-xl z-[60]"
-                      sideOffset={10}
-                    >
-                      <div className="space-y-2">
-                        <div className="flex items-center space-x-2">
-                          <div className={`w-8 h-8 rounded-lg bg-gradient-to-br ${categoryStyle.bg} flex items-center justify-center text-sm`}>
-                            {categoryStyle.icon}
-                          </div>
-                          <span className="font-semibold text-cyan-300">{tool.title}</span>
-                        </div>
-                        <p className="text-sm text-cyan-200/80 leading-relaxed">
-                          {tool.description}
-                        </p>
-                        {tool.tags && tool.tags.length > 0 && (
-                          <div className="flex flex-wrap gap-1 mt-2">
-                            {tool.tags.slice(0, 3).map((tag, tagIndex) => (
-                              <span 
-                                key={tagIndex}
-                                className="px-2 py-1 bg-cyan-500/20 text-xs rounded-full text-cyan-300 border border-cyan-500/30"
-                              >
-                                {tag}
-                              </span>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                    </TooltipContent>
-                  </Tooltip>
-                </div>
-                
-                {/* Show plain item on mobile (below md) */}
-                <div className="block md:hidden" data-testid="global-search-result" data-tool-title={tool.title}>
+                <div data-testid="global-search-result" data-tool-title={tool.title}>
                   {toolItem}
                 </div>
               </div>
