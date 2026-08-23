@@ -114,7 +114,7 @@ const score = (entry, query, terms) => {
   const compact = query.replace(/\s+/g, "");
   if (entry.title === query) value += 1000000;
   else if (entry.compact === compact) value += 950000;
-  else if (entry.title.startsWith(query)) value += 500000;
+  else if (entry.title.startsWith(query)) value += 500000 + Math.round(180000 * (query.length / Math.max(query.length, entry.title.length)));
   else if (entry.title.includes(query)) value += 300000;
   else if (entry.compact.includes(compact)) value += 220000;
   else if (entry.searchable.includes(query)) value += 90000;
@@ -133,7 +133,7 @@ const score = (entry, query, terms) => {
       else if (entry.tags.includes(word)) hit = 10000;
       else if (entry.category.includes(word)) hit = 8000;
       else if (word.length >= 4 && entry.description.includes(word)) hit = 4200;
-      else if (word.length >= 4 && entry.words.some((candidate) => Math.abs(candidate.length - word.length) <= 2 && distance(candidate, word) <= (word.length >= 8 ? 2 : 1))) hit = 14000;
+      else if (word.length >= 4 && entry.words.some((candidate) => Math.abs(candidate.length - word.length) <= 2 && distance(candidate, word) <= (word.length >= 5 ? 2 : 1))) hit = 14000;
       const scaled = hit * weight;
       if (scaled > best) best = scaled;
     }
@@ -142,7 +142,10 @@ const score = (entry, query, terms) => {
 
   if (terms.length > 1 && matches === terms.length) value += 80000;
   if (!matches && !value) return 0;
-  if (entry.tags.includes("aiwebtools") || entry.tags.includes("custom gpt")) value += 8000;
+  // AIWebTools' own GPTs always take priority over lookalike entries.
+  if (entry.tags.includes("aiwebtools") || entry.tags.includes("custom gpt")) value += 60000;
+  // Prefer concise, on-the-nose titles over long ones that merely contain the query.
+  value += Math.max(0, 12000 - entry.title.length * 120);
   return value + Math.min(1000, Number(entry.tool.rating || 0) * 100);
 };
 
