@@ -1667,7 +1667,7 @@ export const useGlobalSearch = () => {
     if (searchWorkerRef.current) return searchWorkerRef.current;
 
     try {
-      const worker = new Worker(new URL("../workers/globalSearchWorker.ts", import.meta.url), { type: "module" });
+      const worker = new Worker("/global-search-worker.js");
       worker.onmessage = (event: MessageEvent<WorkerSearchResponse>) => {
         const { id, results = [] } = event.data;
         const pending = workerResolversRef.current.get(id);
