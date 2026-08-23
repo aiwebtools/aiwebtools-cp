@@ -2610,36 +2610,44 @@ export const useGlobalSearch = () => {
     return [...searchResults, ...recommendedTools];
   }, [searchResults, recommendedTools]);
 
-  // INFINITE SCROLL - Load more results as user scrolls
+  // INFINITE SCROLL — keeps revealing the FULL result set in generous batches.
+  // Uses a ref guard (not state) so fast momentum scrolling never drops a page.
+  const scrollLoadingRef = useRef(false);
   const handleScroll = useCallback((e: React.UIEvent<HTMLDivElement>) => {
     const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
-    
-    // Don't trigger if already loading
-    if (isLoadingMore || isLoadingRecommendations) return;
-    
-    // Trigger load when within 300px of bottom
-    const threshold = 300;
-    const nearBottom = scrollTop + clientHeight >= scrollHeight - threshold;
-    
-    if (nearBottom) {
-      // If we haven't shown all direct matches yet
-      if (displayedCount < searchResults.length) {
-        setIsLoadingMore(true);
-        requestAnimationFrame(() => {
-          setDisplayedCount(prev => Math.min(prev + 20, searchResults.length));
-          setIsLoadingMore(false);
-        });
-      } 
-      // Continue revealing the complete worker result set in stable batches.
-      else if (displayedCount < combinedResults.length) {
-        setIsLoadingMore(true);
-        requestAnimationFrame(() => {
-          setDisplayedCount(prev => Math.min(prev + 15, combinedResults.length));
-          setIsLoadingMore(false);
-        });
-      }
-    }
-  }, [displayedCount, searchResults.length, combinedResults.length, isLoadingMore, isLoadingRecommendations]);
+    if (scrollLoadingRef.current) return;
+
+    const total = Math.max(searchResults.length, combinedResults.length);
+    if (displayedCount >= total) return;
+
+    // Generous threshold so the next page is ready before the user reaches it.
+    const threshold = Math.max(600, clientHeight);
+    if (scrollTop + clientHeight < scrollHeight - threshold) return;
+
+    scrollLoadingRef.current = true;
+    setIsLoadingMore(true);
+    requestAnimationFrame(() => {
+      setDisplayedCount((prev) => {
+        const next = Math.min(prev + 60, total);
+        setDiagnostics((d) => ({ ...d, displayedCount: next, pageLoads: d.pageLoads + 1 }));
+        return next;
+      });
+      setIsLoadingMore(false);
+      scrollLoadingRef.current = false;
+    });
+  }, [displayedCount, searchResults.length, combinedResults.length]);
+
+  // Keep the dashboard in sync with result/pagination state.
+  useEffect(() => {
+    setDiagnostics((prev) => ({
+      ...prev,
+      lastQuery: searchTerm,
+      resultCount: combinedResults.length,
+      displayedCount: Math.min(displayedCount, combinedResults.length),
+      lastSource: combinedResults.length > 0 ? "worker/index" : (searchTerm ? "no-match" : "idle"),
+    }));
+  }, [searchTerm, combinedResults.length, displayedCount]);
+
 
   // Generate prediction based on top result
   const prediction = useMemo(() => {
