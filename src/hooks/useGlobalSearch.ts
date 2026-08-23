@@ -2367,7 +2367,10 @@ export const useGlobalSearch = () => {
     // makes the dropdown resilient across devices.
     // Pricing queries ("free", "freemium", "paid") always run on the main-thread
     // index so we can return the FULL matching set for endless scrolling.
-    const shouldUseWorker = toolsRef.current.length === 0 || cappedT.length > 24;
+    // The static worker owns every normal query. Never switch to the image-heavy
+    // main-thread database after background warmup, which previously reintroduced
+    // freezing and incomplete fallback results depending on timing.
+    const shouldUseWorker = true;
     if (shouldUseWorker) {
       pendingSearchRef.current = null;
       // Give the input one painted frame before worker/module startup. Never
