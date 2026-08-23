@@ -178,7 +178,10 @@ const MainCategoryPage = () => {
   }
 
   // Loading state shown inline in the filter area
-  const showToolsLoading = !isToolsReady || isPending;
+  // A background filter transition must never replace an already-visible grid
+  // with full-page skeletons. That unmount/remount cycle looked like a black
+  // flicker on mobile and reset the virtual window during momentum scrolling.
+  const showToolsLoading = !isToolsReady;
 
   return (
     <div className="min-h-screen bg-black relative overflow-x-hidden">

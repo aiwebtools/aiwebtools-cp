@@ -11,7 +11,10 @@ export interface VirtualizedToolsGridProps {
   filteredToolsCount?: number; // Number of tools from selected categories (before recommendations)
 }
 
-const DEFAULT_ROW_HEIGHT = 190;
+// MinimalToolCard is intentionally given a stable height below. Keeping this
+// value in sync prevents the mobile window from drifting away from the real
+// card positions and rendering an empty viewport.
+const DEFAULT_ROW_HEIGHT = 220;
 const ROW_GAP = 16;
 const OVERSCAN_ROWS = 3;
 
@@ -44,12 +47,23 @@ const WindowedSection = memo(({ tools, indexOffset = 0, keyPrefix = "tool" }: Wi
     const container = containerRef.current;
     if (!container) return;
     const rect = container.getBoundingClientRect();
-    const topInside = Math.max(0, -rect.top);
-    const visibleBottom = Math.min(totalHeight, window.innerHeight - rect.top);
-    const start = Math.max(0, Math.floor(topInside / stride) - OVERSCAN_ROWS);
-    const end = Math.min(rowCount, Math.ceil(visibleBottom / stride) + OVERSCAN_ROWS);
+    const viewportTop = -rect.top;
+    const viewportBottom = viewportTop + window.innerHeight;
+
+    // Clamp both edges. The old calculation produced a negative `end` while
+    // the grid was below the viewport (mounting almost every card via
+    // Array.slice) and a `start` beyond rowCount after mobile momentum scroll,
+    // which caused the visible black/flickering gaps.
+    const start = Math.min(
+      rowCount,
+      Math.max(0, Math.floor(viewportTop / stride) - OVERSCAN_ROWS)
+    );
+    const end = Math.max(
+      start,
+      Math.min(rowCount, Math.ceil(viewportBottom / stride) + OVERSCAN_ROWS)
+    );
     setRange((current) => current.start === start && current.end === end ? current : { start, end });
-  }, [rowCount, stride, totalHeight]);
+  }, [rowCount, stride]);
 
   useEffect(() => {
     const schedule = () => {
@@ -99,7 +113,11 @@ const WindowedSection = memo(({ tools, indexOffset = 0, keyPrefix = "tool" }: Wi
         {visibleTools.map((tool, localIndex) => {
           const absoluteIndex = startIndex + localIndex;
           return (
-            <div ref={localIndex === 0 ? measureRef : undefined} key={`${keyPrefix}__${tool.title}__${tool.directUrl ?? absoluteIndex}`}>
+            <div
+              ref={localIndex === 0 ? measureRef : undefined}
+              className="h-[220px] min-w-0"
+              key={`${keyPrefix}__${tool.title}__${tool.directUrl ?? absoluteIndex}`}
+            >
               <MinimalToolCard tool={tool} index={indexOffset + absoluteIndex} />
             </div>
           );

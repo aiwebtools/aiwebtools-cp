@@ -124,6 +124,40 @@ const MainCategoryFilter = memo(({ tools, onFilteredToolsChange, currentMainCate
     const categoriesToUse = selectedMainCategories.length === 0 
       ? [currentMainCategory] 
       : selectedMainCategories;
+
+    // The parent already resolved the current category. Reuse that exact,
+    // stable list instead of running the full 5,000+ tool detector stack again
+    // on mobile. This also prevents different category pages from briefly
+    // showing the same globally-prioritized first cards.
+    if (categoriesToUse.length === 1 && categoriesToUse[0] === currentMainCategory) {
+      let toolsArray = tools;
+
+      if (isAgentsPage && selectedAgentTypes.length > 0) {
+        toolsArray = toolsArray.filter(tool => {
+          const title = tool.title.toLowerCase();
+          const description = (tool.description || '').toLowerCase();
+          const tags = (tool.tags || []).map(t => t.toLowerCase());
+          const directUrl = (tool.directUrl || '').toLowerCase();
+
+          return selectedAgentTypes.some(agentTypeId => {
+            const agentSubtype = AGENT_SUBTYPES.find(t => t.id === agentTypeId);
+            if (!agentSubtype) return false;
+            if (agentTypeId === 'custom-gpt') {
+              return directUrl.includes('chatgpt.com/g/') ||
+                directUrl.includes('.lovable.app') ||
+                directUrl.includes('gemini.google.com/gem/') ||
+                tags.some(tag => tag.includes('custom gpt') || tag.includes('gemini gem') || tag.includes('custom gem'));
+            }
+            return agentSubtype.keywords.some(keyword => {
+              const kw = keyword.toLowerCase();
+              return title.includes(kw) || description.includes(kw) || tags.some(tag => tag.includes(kw));
+            });
+          });
+        });
+      }
+
+      return toolsArray;
+    }
     
     const selectedCategoryTools = new Map<string, Tool>();
     
@@ -179,7 +213,7 @@ const MainCategoryFilter = memo(({ tools, onFilteredToolsChange, currentMainCate
     }
     
     return toolsArray;
-  }, [selectedMainCategories, currentMainCategory, isAgentsPage, selectedAgentTypes]);
+  }, [selectedMainCategories, currentMainCategory, isAgentsPage, selectedAgentTypes, tools]);
 
   // Track sort state for cache
   const lastSortRef = React.useRef<{ mode: SortMode; key: number; tools: Tool[] }>({ mode: 'smart', key: 0, tools: [] });
