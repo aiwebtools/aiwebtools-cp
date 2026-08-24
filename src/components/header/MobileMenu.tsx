@@ -29,7 +29,6 @@ const MobileMenu = () => {
   const [isAboutOpen, setIsAboutOpen] = useState(false);
   const [isToolsOpen, setIsToolsOpen] = useState(false);
   const [renderSearch, setRenderSearch] = useState(false);
-  const [showBackdrop, setShowBackdrop] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   
   // Only load heavy data when menu is open
@@ -53,23 +52,22 @@ const MobileMenu = () => {
       return;
     }
     // Ignore the phantom close that fires from the same tap that opened the menu
-    if (Date.now() - openedAtRef.current < 400) return;
+    // (mobile browsers emit a delayed synthetic click ~300-500ms after touchend)
+    if (Date.now() - openedAtRef.current < 700) return;
     setIsMenuOpen(false);
   }, []);
 
   useEffect(() => {
     if (!isMenuOpen) {
       setRenderSearch(false);
-      setShowBackdrop(false);
       return;
     }
-    const backdropId = window.setTimeout(() => setShowBackdrop(true), 400);
     const id = window.setTimeout(() => setRenderSearch(true), 450);
     return () => {
-      window.clearTimeout(backdropId);
       window.clearTimeout(id);
     };
   }, [isMenuOpen]);
+
 
   const handleExternalLink = useCallback((url: string, e: React.MouseEvent) => {
     e.preventDefault();
@@ -194,15 +192,9 @@ const MobileMenu = () => {
   return (
     <>
       <div className="md:hidden">  {/* Show on mobile only */}
-        {/* Backdrop overlay - click to close */}
-        {isMenuOpen && (
-          <div
-            className="fixed inset-0 bg-black/30 z-[100]"
-            onClick={showBackdrop ? closeMenu : undefined}
-            aria-hidden="true"
-            style={{ pointerEvents: showBackdrop ? "auto" : "none" }}
-          />
-        )}
+        {/* No custom backdrop: Radix handles outside dismissal. A manual overlay
+            caught the delayed synthetic tap-click and closed the menu instantly. */}
+
         
         <DropdownMenu open={isMenuOpen} onOpenChange={handleMenuToggle} modal={false}>
           <DropdownMenuTrigger asChild>
