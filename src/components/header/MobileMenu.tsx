@@ -194,15 +194,9 @@ const MobileMenu = () => {
   return (
     <>
       <div className="md:hidden">  {/* Show on mobile only */}
-        {/* Backdrop overlay - click to close */}
-        {isMenuOpen && (
-          <div
-            className="fixed inset-0 bg-black/30 z-[100]"
-            onClick={showBackdrop ? closeMenu : undefined}
-            aria-hidden="true"
-            style={{ pointerEvents: showBackdrop ? "auto" : "none" }}
-          />
-        )}
+        {/* No custom backdrop: Radix handles outside dismissal. A manual overlay
+            caught the delayed synthetic tap-click and closed the menu instantly. */}
+
         
         <DropdownMenu open={isMenuOpen} onOpenChange={handleMenuToggle} modal={false}>
           <DropdownMenuTrigger asChild>
