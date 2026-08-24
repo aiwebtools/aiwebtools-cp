@@ -29,6 +29,7 @@ const MobileMenu = () => {
   const [isAboutOpen, setIsAboutOpen] = useState(false);
   const [isToolsOpen, setIsToolsOpen] = useState(false);
   const [renderSearch, setRenderSearch] = useState(false);
+  const [showBackdrop, setShowBackdrop] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   
   // Only load heavy data when menu is open
@@ -43,17 +44,31 @@ const MobileMenu = () => {
     // Fallback silently
   }
   
+  const openedAtRef = useRef(0);
+
   const handleMenuToggle = useCallback((open: boolean) => {
-    setIsMenuOpen(open);
+    if (open) {
+      openedAtRef.current = Date.now();
+      setIsMenuOpen(true);
+      return;
+    }
+    // Ignore the phantom close that fires from the same tap that opened the menu
+    if (Date.now() - openedAtRef.current < 400) return;
+    setIsMenuOpen(false);
   }, []);
 
   useEffect(() => {
     if (!isMenuOpen) {
       setRenderSearch(false);
+      setShowBackdrop(false);
       return;
     }
+    const backdropId = window.setTimeout(() => setShowBackdrop(true), 400);
     const id = window.setTimeout(() => setRenderSearch(true), 450);
-    return () => window.clearTimeout(id);
+    return () => {
+      window.clearTimeout(backdropId);
+      window.clearTimeout(id);
+    };
   }, [isMenuOpen]);
 
   const handleExternalLink = useCallback((url: string, e: React.MouseEvent) => {
@@ -69,8 +84,9 @@ const MobileMenu = () => {
   }, [navigate, handleMenuToggle]);
 
   const closeMenu = useCallback(() => {
-    handleMenuToggle(false);
-  }, [handleMenuToggle]);
+    openedAtRef.current = 0;
+    setIsMenuOpen(false);
+  }, []);
 
   // Enhanced CSV download with all comprehensive data fields
   const handleDownloadAllToolsCSV = async () => {
@@ -180,10 +196,11 @@ const MobileMenu = () => {
       <div className="md:hidden">  {/* Show on mobile only */}
         {/* Backdrop overlay - click to close */}
         {isMenuOpen && (
-          <div 
+          <div
             className="fixed inset-0 bg-black/30 z-[100]"
-            onClick={closeMenu}
+            onClick={showBackdrop ? closeMenu : undefined}
             aria-hidden="true"
+            style={{ pointerEvents: showBackdrop ? "auto" : "none" }}
           />
         )}
         
