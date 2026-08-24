@@ -53,23 +53,22 @@ const MobileMenu = () => {
       return;
     }
     // Ignore the phantom close that fires from the same tap that opened the menu
-    if (Date.now() - openedAtRef.current < 400) return;
+    // (mobile browsers emit a delayed synthetic click ~300-500ms after touchend)
+    if (Date.now() - openedAtRef.current < 700) return;
     setIsMenuOpen(false);
   }, []);
 
   useEffect(() => {
     if (!isMenuOpen) {
       setRenderSearch(false);
-      setShowBackdrop(false);
       return;
     }
-    const backdropId = window.setTimeout(() => setShowBackdrop(true), 400);
     const id = window.setTimeout(() => setRenderSearch(true), 450);
     return () => {
-      window.clearTimeout(backdropId);
       window.clearTimeout(id);
     };
   }, [isMenuOpen]);
+
 
   const handleExternalLink = useCallback((url: string, e: React.MouseEvent) => {
     e.preventDefault();
