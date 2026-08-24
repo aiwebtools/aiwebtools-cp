@@ -43,17 +43,31 @@ const MobileMenu = () => {
     // Fallback silently
   }
   
+  const openedAtRef = useRef(0);
+
   const handleMenuToggle = useCallback((open: boolean) => {
-    setIsMenuOpen(open);
+    if (open) {
+      openedAtRef.current = Date.now();
+      setIsMenuOpen(true);
+      return;
+    }
+    // Ignore the phantom close that fires from the same tap that opened the menu
+    if (Date.now() - openedAtRef.current < 400) return;
+    setIsMenuOpen(false);
   }, []);
 
   useEffect(() => {
     if (!isMenuOpen) {
       setRenderSearch(false);
+      setShowBackdrop(false);
       return;
     }
+    const backdropId = window.setTimeout(() => setShowBackdrop(true), 400);
     const id = window.setTimeout(() => setRenderSearch(true), 450);
-    return () => window.clearTimeout(id);
+    return () => {
+      window.clearTimeout(backdropId);
+      window.clearTimeout(id);
+    };
   }, [isMenuOpen]);
 
   const handleExternalLink = useCallback((url: string, e: React.MouseEvent) => {
