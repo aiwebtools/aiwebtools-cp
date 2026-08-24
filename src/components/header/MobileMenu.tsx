@@ -29,7 +29,6 @@ const MobileMenu = () => {
   const [isAboutOpen, setIsAboutOpen] = useState(false);
   const [isToolsOpen, setIsToolsOpen] = useState(false);
   const [renderSearch, setRenderSearch] = useState(false);
-  const [showBackdrop, setShowBackdrop] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   
   // Only load heavy data when menu is open
