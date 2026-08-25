@@ -33,6 +33,11 @@ const GlobalSearchBar = ({ autoFocus = false }: GlobalSearchBarProps) => {
     diagnostics,
   } = useGlobalSearch();
 
+  // Warm the search worker as soon as the bar mounts (menu-open time) instead of
+  // waiting for the first focus, so the first keystroke is never a cold start.
+  useEffect(() => {
+    prepareSearch();
+  }, [prepareSearch]);
 
   return (
     <TooltipProvider>
