@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { useGlobalSearch } from "@/hooks/useGlobalSearch";
 import GlobalSearchInput from "@/components/search/GlobalSearchInput";
