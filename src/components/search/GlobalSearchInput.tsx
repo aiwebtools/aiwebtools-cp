@@ -15,6 +15,7 @@ const getInputDispatchDelay = (value: string, gapMs: number): number => {
 };
 
 interface GlobalSearchInputProps {
+  autoFocus?: boolean;
   searchTerm: string;
   toolStats: { marketing: string };
   prediction?: string;
