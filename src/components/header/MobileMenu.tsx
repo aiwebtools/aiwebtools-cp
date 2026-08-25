@@ -265,11 +265,7 @@ const MobileMenu = () => {
               {/* Search Bar - At top for easy access */}
               <div className="mb-4">
                 <div className="text-xs text-cyan-400 mb-2">🔍 Search AI Tools</div>
-                {renderSearch ? (
-                  <GlobalSearchBar />
-                ) : (
-                  <div className="h-10 rounded-lg border-2 border-emerald-500/70 bg-background" aria-hidden="true" />
-                )}
+                <GlobalSearchBar autoFocus />
               </div>
 
               <>
