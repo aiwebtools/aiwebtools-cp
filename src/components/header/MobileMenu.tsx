@@ -47,6 +47,8 @@ const MobileMenu = () => {
   const handleMenuToggle = useCallback((open: boolean) => {
     if (open) {
       openedAtRef.current = Date.now();
+      // Chunk is already warming from the trigger's pointerdown; ensure it either way.
+      prefetchGlobalSearchBar();
       setIsMenuOpen(true);
       return;
     }
@@ -56,16 +58,7 @@ const MobileMenu = () => {
     setIsMenuOpen(false);
   }, []);
 
-  useEffect(() => {
-    if (!isMenuOpen) {
-      setRenderSearch(false);
-      return;
-    }
-    const id = window.setTimeout(() => setRenderSearch(true), 450);
-    return () => {
-      window.clearTimeout(id);
-    };
-  }, [isMenuOpen]);
+
 
 
   const handleExternalLink = useCallback((url: string, e: React.MouseEvent) => {
