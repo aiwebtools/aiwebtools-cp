@@ -17,7 +17,7 @@ import { triggerPublicDownload } from "@/utils/downloads";
 import { playMtvFlash } from "@/utils/mtvFlash";
 import { createConfettiCelebration } from "@/utils/effects/audioEffects";
 import Logo from "./Logo";
-import GlobalSearchBar from "@/components/LazyGlobalSearchBar";
+import GlobalSearchBar, { prefetchGlobalSearchBar } from "@/components/LazyGlobalSearchBar";
 import JoinEmailListButton from "@/components/JoinEmailListButton";
 
 import { useRecentlyVisitedTools } from "@/hooks/useRecentlyVisitedTools";
@@ -28,7 +28,6 @@ const MobileMenu = () => {
   const [isWeb3Open, setIsWeb3Open] = useState(false);
   const [isAboutOpen, setIsAboutOpen] = useState(false);
   const [isToolsOpen, setIsToolsOpen] = useState(false);
-  const [renderSearch, setRenderSearch] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   
   // Only load heavy data when menu is open
@@ -48,6 +47,8 @@ const MobileMenu = () => {
   const handleMenuToggle = useCallback((open: boolean) => {
     if (open) {
       openedAtRef.current = Date.now();
+      // Chunk is already warming from the trigger's pointerdown; ensure it either way.
+      prefetchGlobalSearchBar();
       setIsMenuOpen(true);
       return;
     }
@@ -57,16 +58,7 @@ const MobileMenu = () => {
     setIsMenuOpen(false);
   }, []);
 
-  useEffect(() => {
-    if (!isMenuOpen) {
-      setRenderSearch(false);
-      return;
-    }
-    const id = window.setTimeout(() => setRenderSearch(true), 450);
-    return () => {
-      window.clearTimeout(id);
-    };
-  }, [isMenuOpen]);
+
 
 
   const handleExternalLink = useCallback((url: string, e: React.MouseEvent) => {
@@ -203,6 +195,7 @@ const MobileMenu = () => {
               size="lg" 
               className="border-2 border-cyan-400 bg-cyan-500/20 text-cyan-100 px-4 py-3 min-w-[56px] min-h-[56px] rounded-xl active:bg-cyan-500/40"
               aria-label="Open menu"
+              onPointerDown={prefetchGlobalSearchBar}
               style={{ touchAction: 'manipulation', transform: 'translateZ(0)' }}
             >
               <Menu className="w-7 h-7" />
@@ -273,11 +266,7 @@ const MobileMenu = () => {
               {/* Search Bar - At top for easy access */}
               <div className="mb-4">
                 <div className="text-xs text-cyan-400 mb-2">🔍 Search AI Tools</div>
-                {renderSearch ? (
-                  <GlobalSearchBar />
-                ) : (
-                  <div className="h-10 rounded-lg border-2 border-emerald-500/70 bg-background" aria-hidden="true" />
-                )}
+                <GlobalSearchBar autoFocus />
               </div>
 
               <>

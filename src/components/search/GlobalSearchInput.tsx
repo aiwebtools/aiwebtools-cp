@@ -15,6 +15,7 @@ const getInputDispatchDelay = (value: string, gapMs: number): number => {
 };
 
 interface GlobalSearchInputProps {
+  autoFocus?: boolean;
   searchTerm: string;
   toolStats: { marketing: string };
   prediction?: string;
@@ -26,6 +27,7 @@ interface GlobalSearchInputProps {
 }
 
 const GlobalSearchInput = memo(({
+  autoFocus = false,
   searchTerm,
   toolStats,
   prediction,
@@ -42,6 +44,13 @@ const GlobalSearchInput = memo(({
 
   // Keep visual typing fully local and instant
   const [localValue, setLocalValue] = useState(searchTerm);
+
+  // Caret appears without a second tap when opened from a menu.
+  useEffect(() => {
+    if (!autoFocus) return;
+    const id = requestAnimationFrame(() => inputRef.current?.focus({ preventScroll: true }));
+    return () => cancelAnimationFrame(id);
+  }, [autoFocus]);
 
   // Sync external changes (clear, navigation, prediction accept) without
   // letting the intentionally-debounced parent value overwrite fast typing.

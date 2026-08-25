@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { useGlobalSearch } from "@/hooks/useGlobalSearch";
 import GlobalSearchInput from "@/components/search/GlobalSearchInput";
@@ -6,7 +7,11 @@ import FunnyQuotesRotator from "@/components/search/FunnyQuotesRotator";
 import SearchDebugDashboard from "@/components/search/SearchDebugDashboard";
 
 
-const GlobalSearchBar = () => {
+interface GlobalSearchBarProps {
+  autoFocus?: boolean;
+}
+
+const GlobalSearchBar = ({ autoFocus = false }: GlobalSearchBarProps) => {
   const {
     searchTerm,
     setSearchTerm,
@@ -28,12 +33,18 @@ const GlobalSearchBar = () => {
     diagnostics,
   } = useGlobalSearch();
 
+  // Warm the search worker as soon as the bar mounts (menu-open time) instead of
+  // waiting for the first focus, so the first keystroke is never a cold start.
+  useEffect(() => {
+    prepareSearch();
+  }, [prepareSearch]);
 
   return (
     <TooltipProvider>
       <div className="w-full flex justify-center">
         <div ref={searchRef} className="relative w-full max-w-2xl mx-auto">
           <GlobalSearchInput
+            autoFocus={autoFocus}
             searchTerm={searchTerm}
             toolStats={toolStats}
             prediction={prediction}
