@@ -7,7 +7,11 @@ import FunnyQuotesRotator from "@/components/search/FunnyQuotesRotator";
 import SearchDebugDashboard from "@/components/search/SearchDebugDashboard";
 
 
-const GlobalSearchBar = () => {
+interface GlobalSearchBarProps {
+  autoFocus?: boolean;
+}
+
+const GlobalSearchBar = ({ autoFocus = false }: GlobalSearchBarProps) => {
   const {
     searchTerm,
     setSearchTerm,
