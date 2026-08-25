@@ -195,6 +195,7 @@ const MobileMenu = () => {
               size="lg" 
               className="border-2 border-cyan-400 bg-cyan-500/20 text-cyan-100 px-4 py-3 min-w-[56px] min-h-[56px] rounded-xl active:bg-cyan-500/40"
               aria-label="Open menu"
+              onPointerDown={prefetchGlobalSearchBar}
               style={{ touchAction: 'manipulation', transform: 'translateZ(0)' }}
             >
               <Menu className="w-7 h-7" />
