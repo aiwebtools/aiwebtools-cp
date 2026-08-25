@@ -44,6 +44,7 @@ const GlobalSearchBar = ({ autoFocus = false }: GlobalSearchBarProps) => {
       <div className="w-full flex justify-center">
         <div ref={searchRef} className="relative w-full max-w-2xl mx-auto">
           <GlobalSearchInput
+            autoFocus={autoFocus}
             searchTerm={searchTerm}
             toolStats={toolStats}
             prediction={prediction}
