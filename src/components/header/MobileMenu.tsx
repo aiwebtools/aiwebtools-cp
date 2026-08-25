@@ -17,7 +17,7 @@ import { triggerPublicDownload } from "@/utils/downloads";
 import { playMtvFlash } from "@/utils/mtvFlash";
 import { createConfettiCelebration } from "@/utils/effects/audioEffects";
 import Logo from "./Logo";
-import GlobalSearchBar from "@/components/LazyGlobalSearchBar";
+import GlobalSearchBar, { prefetchGlobalSearchBar } from "@/components/LazyGlobalSearchBar";
 import JoinEmailListButton from "@/components/JoinEmailListButton";
 
 import { useRecentlyVisitedTools } from "@/hooks/useRecentlyVisitedTools";
