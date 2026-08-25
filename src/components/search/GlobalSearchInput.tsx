@@ -27,6 +27,7 @@ interface GlobalSearchInputProps {
 }
 
 const GlobalSearchInput = memo(({
+  autoFocus = false,
   searchTerm,
   toolStats,
   prediction,
