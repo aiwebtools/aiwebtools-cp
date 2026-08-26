@@ -1660,13 +1660,14 @@ export const useGlobalSearch = () => {
   const toolsRef = useRef<any[]>([]);
   const toolsLoadingRef = useRef<Promise<any[]> | null>(null);
   const pendingSearchRef = useRef<string | null>(null);
-  const searchWorkerRef = useRef<Worker | null>(null);
-  const workerRequestIdRef = useRef(0);
-  const workerResolversRef = useRef(new Map<number, {
-    resolve: (results: any[]) => void;
-    reject: (error: unknown) => void;
-    timeoutId: number;
-  }>());
+  // The catalog worker is shared process-wide: every search bar instance (hero,
+  // mobile menu, category pages) reuses one parsed index instead of spawning a
+  // duplicate worker that re-fetches the 2MB catalog and times out on mobile.
+  const searchWorkerRef = sharedWorkerBox;
+  const workerRequestIdRef = sharedWorkerRequestId;
+  const workerResolversRef = sharedWorkerResolvers;
+  const ownRequestIdsRef = useRef(new Set<number>());
+
 
   const loadTools = useCallback(() => {
     if (toolsRef.current.length > 0) return Promise.resolve(toolsRef.current);
