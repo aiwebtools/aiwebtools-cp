@@ -1629,7 +1629,19 @@ const quickLevenshtein = (a: string, b: string): number => {
   return dp[m][n];
 };
 
+// Process-wide singletons so hero / mobile-menu / page search bars all share a
+// single parsed catalog worker.
+type SharedPending = {
+  resolve: (results: any[]) => void;
+  reject: (error: unknown) => void;
+  timeoutId: number;
+};
+const sharedWorkerBox: { current: Worker | null } = { current: null };
+const sharedWorkerRequestId = { current: 0 };
+const sharedWorkerResolvers = { current: new Map<number, SharedPending>() };
+
 export const useGlobalSearch = () => {
+
   const [searchTerm, setSearchTermInternal] = useState("");
   const [searchResults, setSearchResults] = useState<any[]>([]);
   const [displayedCount, setDisplayedCount] = useState(50);
