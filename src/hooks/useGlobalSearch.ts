@@ -2359,12 +2359,17 @@ export const useGlobalSearch = () => {
     // 2) Cancel any pending search operations
     if (quickRef.current) clearTimeout(quickRef.current);
     if (fullRef.current) clearTimeout(fullRef.current);
-    // Cancel any in-flight worker request so its result is ignored on arrival.
-    workerResolversRef.current.forEach((pending) => {
+    // Cancel only THIS instance's in-flight worker requests — the worker is
+    // shared, so other mounted search bars must keep their pending results.
+    ownRequestIdsRef.current.forEach((id) => {
+      const pending = workerResolversRef.current.get(id);
+      if (!pending) return;
       window.clearTimeout(pending.timeoutId);
+      workerResolversRef.current.delete(id);
       try { pending.resolve([]); } catch { /* noop */ }
     });
-    workerResolversRef.current.clear();
+    ownRequestIdsRef.current.clear();
+
 
     const t = value.trim();
     if (!t) {
