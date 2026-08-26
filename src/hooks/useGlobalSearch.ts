@@ -1766,15 +1766,18 @@ export const useGlobalSearch = () => {
     if (!worker) return Promise.resolve([]);
 
     const id = ++workerRequestIdRef.current;
+    ownRequestIdsRef.current.add(id);
     return new Promise((resolve, reject) => {
       const timeoutId = window.setTimeout(() => {
         workerResolversRef.current.delete(id);
+        ownRequestIdsRef.current.delete(id);
         resolve([]);
       }, isMobileViewport() ? 8000 : 5000);
 
       workerResolversRef.current.set(id, { resolve, reject, timeoutId });
       worker.postMessage({ id, query });
     });
+
   }, [getSearchWorker]);
 
   const prepareSearch = useCallback(() => {
