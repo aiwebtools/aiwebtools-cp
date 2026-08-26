@@ -2526,10 +2526,16 @@ export const useGlobalSearch = () => {
     return () => {
       if (quickRef.current) clearTimeout(quickRef.current);
       if (fullRef.current) clearTimeout(fullRef.current);
-      workerResolversRef.current.forEach((pending) => window.clearTimeout(pending.timeoutId));
-      workerResolversRef.current.clear();
-      searchWorkerRef.current?.terminate();
-      searchWorkerRef.current = null;
+      // Only drop this instance's pending requests. The worker itself is shared
+      // and stays warm so the next search bar mount is instant.
+      ownRequestIdsRef.current.forEach((id) => {
+        const pending = workerResolversRef.current.get(id);
+        if (!pending) return;
+        window.clearTimeout(pending.timeoutId);
+        workerResolversRef.current.delete(id);
+      });
+      ownRequestIdsRef.current.clear();
+
     };
   }, []);
 
