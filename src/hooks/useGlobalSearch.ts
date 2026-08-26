@@ -1629,7 +1629,19 @@ const quickLevenshtein = (a: string, b: string): number => {
   return dp[m][n];
 };
 
+// Process-wide singletons so hero / mobile-menu / page search bars all share a
+// single parsed catalog worker.
+type SharedPending = {
+  resolve: (results: any[]) => void;
+  reject: (error: unknown) => void;
+  timeoutId: number;
+};
+const sharedWorkerBox: { current: Worker | null } = { current: null };
+const sharedWorkerRequestId = { current: 0 };
+const sharedWorkerResolvers = { current: new Map<number, SharedPending>() };
+
 export const useGlobalSearch = () => {
+
   const [searchTerm, setSearchTermInternal] = useState("");
   const [searchResults, setSearchResults] = useState<any[]>([]);
   const [displayedCount, setDisplayedCount] = useState(50);
@@ -1660,13 +1672,14 @@ export const useGlobalSearch = () => {
   const toolsRef = useRef<any[]>([]);
   const toolsLoadingRef = useRef<Promise<any[]> | null>(null);
   const pendingSearchRef = useRef<string | null>(null);
-  const searchWorkerRef = useRef<Worker | null>(null);
-  const workerRequestIdRef = useRef(0);
-  const workerResolversRef = useRef(new Map<number, {
-    resolve: (results: any[]) => void;
-    reject: (error: unknown) => void;
-    timeoutId: number;
-  }>());
+  // The catalog worker is shared process-wide: every search bar instance (hero,
+  // mobile menu, category pages) reuses one parsed index instead of spawning a
+  // duplicate worker that re-fetches the 2MB catalog and times out on mobile.
+  const searchWorkerRef = sharedWorkerBox;
+  const workerRequestIdRef = sharedWorkerRequestId;
+  const workerResolversRef = sharedWorkerResolvers;
+  const ownRequestIdsRef = useRef(new Set<number>());
+
 
   const loadTools = useCallback(() => {
     if (toolsRef.current.length > 0) return Promise.resolve(toolsRef.current);
@@ -1753,15 +1766,18 @@ export const useGlobalSearch = () => {
     if (!worker) return Promise.resolve([]);
 
     const id = ++workerRequestIdRef.current;
+    ownRequestIdsRef.current.add(id);
     return new Promise((resolve, reject) => {
       const timeoutId = window.setTimeout(() => {
         workerResolversRef.current.delete(id);
+        ownRequestIdsRef.current.delete(id);
         resolve([]);
       }, isMobileViewport() ? 8000 : 5000);
 
       workerResolversRef.current.set(id, { resolve, reject, timeoutId });
       worker.postMessage({ id, query });
     });
+
   }, [getSearchWorker]);
 
   const prepareSearch = useCallback(() => {
@@ -2343,12 +2359,17 @@ export const useGlobalSearch = () => {
     // 2) Cancel any pending search operations
     if (quickRef.current) clearTimeout(quickRef.current);
     if (fullRef.current) clearTimeout(fullRef.current);
-    // Cancel any in-flight worker request so its result is ignored on arrival.
-    workerResolversRef.current.forEach((pending) => {
+    // Cancel only THIS instance's in-flight worker requests — the worker is
+    // shared, so other mounted search bars must keep their pending results.
+    ownRequestIdsRef.current.forEach((id) => {
+      const pending = workerResolversRef.current.get(id);
+      if (!pending) return;
       window.clearTimeout(pending.timeoutId);
+      workerResolversRef.current.delete(id);
       try { pending.resolve([]); } catch { /* noop */ }
     });
-    workerResolversRef.current.clear();
+    ownRequestIdsRef.current.clear();
+
 
     const t = value.trim();
     if (!t) {
@@ -2505,10 +2526,16 @@ export const useGlobalSearch = () => {
     return () => {
       if (quickRef.current) clearTimeout(quickRef.current);
       if (fullRef.current) clearTimeout(fullRef.current);
-      workerResolversRef.current.forEach((pending) => window.clearTimeout(pending.timeoutId));
-      workerResolversRef.current.clear();
-      searchWorkerRef.current?.terminate();
-      searchWorkerRef.current = null;
+      // Only drop this instance's pending requests. The worker itself is shared
+      // and stays warm so the next search bar mount is instant.
+      ownRequestIdsRef.current.forEach((id) => {
+        const pending = workerResolversRef.current.get(id);
+        if (!pending) return;
+        window.clearTimeout(pending.timeoutId);
+        workerResolversRef.current.delete(id);
+      });
+      ownRequestIdsRef.current.clear();
+
     };
   }, []);
 
