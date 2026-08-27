@@ -68,10 +68,22 @@ const MobileMenu = () => {
     setIsMenuOpen(false);
   }, []);
 
+  /**
+   * Navigate without the tap→page freeze: close the menu first so the UI
+   * responds on the same frame, then route inside a transition on the next
+   * frame so the lazy route chunk never blocks the click handler.
+   */
+  const go = useCallback((path: string) => {
+    openedAtRef.current = 0;
+    setIsMenuOpen(false);
+    requestAnimationFrame(() => {
+      startTransition(() => navigate(path));
+    });
+  }, [navigate]);
+
   const handleBrowseAITools = useCallback(() => {
-    navigate('/main-category/ALL%20AI%20TOOLS');
-    handleMenuToggle(false);
-  }, [navigate, handleMenuToggle]);
+    go('/main-category/ALL%20AI%20TOOLS');
+  }, [go]);
 
   const closeMenu = useCallback(() => {
     openedAtRef.current = 0;
