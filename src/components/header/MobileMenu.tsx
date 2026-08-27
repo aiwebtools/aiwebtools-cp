@@ -1,6 +1,6 @@
 import { Menu, Phone, X, Globe, ChevronDown, Download, Trees, Clapperboard, Heart, Copy, Clock } from "lucide-react";
 import mtvAiWebToolsLogo from "@/assets/mtv-aiwebtools-logo.png";
-import { useState, useRef, useCallback, useEffect } from "react";
+import { useState, useRef, useCallback, useEffect, startTransition } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
