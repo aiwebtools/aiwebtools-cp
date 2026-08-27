@@ -87,30 +87,47 @@ export const setConsentAccepted = (accepted = true) => {
   setCookie(CONSENT_KEY, "true");
 };
 
-/** The spoken welcome may play at most once in a rolling seven-day period. */
+/**
+ * The spoken welcome plays exactly once per device, ever.
+ * Backed by localStorage AND a one-year cookie so clearing one store (or
+ * browsing in a mode that blocks one of them) never replays the voice.
+ */
 export const canPlayWeeklyWelcomeAudio = (): boolean => {
   try {
-    const lastPlayedAt = Number(window.localStorage?.getItem(WELCOME_AUDIO_KEY) || "0");
-    return !lastPlayedAt || Date.now() - lastPlayedAt >= WELCOME_AUDIO_COOLDOWN_MS;
+    if ((window as any).__AIWT_WELCOME_AUDIO_PLAYED__ === true) return false;
   } catch {
-    // Privacy modes without persistent storage should not repeat audio during a session.
-    try {
-      return !window.sessionStorage?.getItem(WELCOME_AUDIO_KEY);
-    } catch {
-      return false;
-    }
+    // ignore
   }
+  try {
+    if (window.localStorage?.getItem(WELCOME_AUDIO_KEY)) return false;
+  } catch {
+    // ignore
+  }
+  try {
+    if (window.sessionStorage?.getItem(WELCOME_AUDIO_KEY)) return false;
+  } catch {
+    // ignore
+  }
+  if (getCookie(WELCOME_AUDIO_KEY)) return false;
+  return true;
 };
 
 export const markWeeklyWelcomeAudioPlayed = () => {
   const playedAt = String(Date.now());
   try {
+    (window as any).__AIWT_WELCOME_AUDIO_PLAYED__ = true;
+  } catch {
+    // ignore
+  }
+  try {
     window.localStorage?.setItem(WELCOME_AUDIO_KEY, playedAt);
   } catch {
-    try {
-      window.sessionStorage?.setItem(WELCOME_AUDIO_KEY, playedAt);
-    } catch {
-      // Audio cooldown is best-effort when all browser storage is disabled.
-    }
+    // ignore
   }
+  try {
+    window.sessionStorage?.setItem(WELCOME_AUDIO_KEY, playedAt);
+  } catch {
+    // ignore
+  }
+  setCookie(WELCOME_AUDIO_KEY, playedAt);
 };
