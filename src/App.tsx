@@ -355,6 +355,25 @@ const RouteGuard: React.FC = () => {
   return <AnimatedRoutes />;
 };
 
+/**
+ * Zero prefetching while the Matrix boot overlay is still on screen.
+ * Resolves as soon as #aiwt-loader-overlay is gone (or immediately if it
+ * never existed), so warmup work can never compete with the opening frames.
+ */
+const afterLoaderGone = (run: () => void): (() => void) => {
+  const loaderGone = () => !document.getElementById("aiwt-loader-overlay");
+  if (loaderGone()) {
+    run();
+    return () => {};
+  }
+  const id = window.setInterval(() => {
+    if (!loaderGone()) return;
+    window.clearInterval(id);
+    run();
+  }, 400);
+  return () => window.clearInterval(id);
+};
+
 const PostAcceptBoot: React.FC = () => {
   const location = useLocation();
   const hasAccepted = getConsentAccepted();
