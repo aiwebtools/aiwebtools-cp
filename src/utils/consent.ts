@@ -4,7 +4,6 @@
 
 export const CONSENT_KEY = "aitools-consent-v3";
 const WELCOME_AUDIO_KEY = "aiwt:welcome-audio-at";
-const WELCOME_AUDIO_COOLDOWN_MS = 7 * 24 * 60 * 60 * 1000;
 
 const getCookie = (name: string): string | null => {
   try {
