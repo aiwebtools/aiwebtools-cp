@@ -15,11 +15,19 @@ const youTubeThumb = (videoUrl?: string): string | undefined => {
   return id ? `https://i.ytimg.com/vi/${id}/hqdefault.jpg` : undefined;
 };
 
+/**
+ * Discord CDN links are signed and expire, so every one of them now returns a
+ * 404. Skip them entirely instead of paying for a failed request per card.
+ */
+const isExpiredHost = (url: string) =>
+  url.includes("discordapp.net") || url.includes("cdn.discordapp.com");
+
 export const resolveToolThumb = (
   tool: Pick<Tool, "imageUrl" | "videoUrl">,
   assets: Record<string, string> | null,
 ): string | undefined => {
   const raw = typeof tool.imageUrl === "string" ? tool.imageUrl.trim() : "";
+  if (raw && isExpiredHost(raw)) return youTubeThumb(tool.videoUrl);
   if (raw && !raw.startsWith("/src/")) return raw;
   if (raw && assets?.[raw]) return assets[raw];
   return youTubeThumb(tool.videoUrl);

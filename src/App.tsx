@@ -355,6 +355,25 @@ const RouteGuard: React.FC = () => {
   return <AnimatedRoutes />;
 };
 
+/**
+ * Zero prefetching while the Matrix boot overlay is still on screen.
+ * Resolves as soon as #aiwt-loader-overlay is gone (or immediately if it
+ * never existed), so warmup work can never compete with the opening frames.
+ */
+const afterLoaderGone = (run: () => void): (() => void) => {
+  const loaderGone = () => !document.getElementById("aiwt-loader-overlay");
+  if (loaderGone()) {
+    run();
+    return () => {};
+  }
+  const id = window.setInterval(() => {
+    if (!loaderGone()) return;
+    window.clearInterval(id);
+    run();
+  }, 400);
+  return () => window.clearInterval(id);
+};
+
 const PostAcceptBoot: React.FC = () => {
   const location = useLocation();
   const hasAccepted = getConsentAccepted();
@@ -379,7 +398,9 @@ const PostAcceptBoot: React.FC = () => {
       '/favorites',
     ];
     
+    let cancelWait = () => {};
     const prefetchId = window.setTimeout(() => {
+      cancelWait = afterLoaderGone(() => {
       PRIORITY_ROUTES.forEach(route => {
         if (document.querySelector(`link[href="${route}"]`)) return;
         const link = document.createElement('link');
@@ -388,9 +409,10 @@ const PostAcceptBoot: React.FC = () => {
         link.as = 'document';
         document.head.appendChild(link);
       });
+      });
     }, 20000);
 
-    return () => window.clearTimeout(prefetchId);
+    return () => { window.clearTimeout(prefetchId); cancelWait(); };
   }, [enabled]);
 
   React.useEffect(() => {
@@ -411,13 +433,16 @@ const PostAcceptBoot: React.FC = () => {
       );
     };
 
+    let cancelWait = () => {};
     const id = window.setTimeout(() => {
-      const ric = (window as any).requestIdleCallback;
-      if (ric) ric(warmCriticalRoutes, { timeout: 6000 });
-      else warmCriticalRoutes();
+      cancelWait = afterLoaderGone(() => {
+        const ric = (window as any).requestIdleCallback;
+        if (ric) ric(warmCriticalRoutes, { timeout: 6000 });
+        else warmCriticalRoutes();
+      });
     }, 20000);
 
-    return () => window.clearTimeout(id);
+    return () => { window.clearTimeout(id); cancelWait(); };
   }, [enabled]);
 
   React.useEffect(() => {
@@ -436,16 +461,20 @@ const PostAcceptBoot: React.FC = () => {
     // callback with a short timeout can legally fire while a user is scrolling.
     const cacheWarmDelay = typeof window !== 'undefined' && window.innerWidth < 768 ? 20000 : 15000;
 
+    let cancelWait = () => {};
     const id = window.setTimeout(() => {
-      if ('requestIdleCallback' in window) {
-        (window as any).requestIdleCallback(warmCache, { timeout: 6000 });
-      } else {
-        setTimeout(warmCache, 1200);
-      }
+      cancelWait = afterLoaderGone(() => {
+        if ('requestIdleCallback' in window) {
+          (window as any).requestIdleCallback(warmCache, { timeout: 6000 });
+        } else {
+          setTimeout(warmCache, 1200);
+        }
+      });
     }, cacheWarmDelay);
 
     return () => {
       clearTimeout(id);
+      cancelWait();
     };
   }, [enabled]);
 
