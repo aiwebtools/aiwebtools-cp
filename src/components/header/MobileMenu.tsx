@@ -286,7 +286,7 @@ const MobileMenu = () => {
               <button
                 onClick={() => {
                   setIsMenuOpen(false);
-                  playMtvFlash().then(() => navigate('/music-stream'));
+                  playMtvFlash().then(() => go('/music-stream'));
                 }}
                 className="w-full mb-3 flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl border border-fuchsia-500/50 bg-gradient-to-r from-fuchsia-600/30 via-purple-600/30 to-cyan-600/30 active:from-fuchsia-500/40 active:via-purple-500/40 active:to-cyan-500/40 shadow-[0_0_20px_rgba(168,85,247,0.35)]"
                 aria-label="Open MTVai Theater"
@@ -305,7 +305,7 @@ const MobileMenu = () => {
               </button>
 
               {/* Navigation Section */}
-              <DropdownMenuItem onClick={() => { navigate('/'); setIsMenuOpen(false); }} className="text-cyan-100 hover:bg-cyan-500/20 mb-3 rounded-lg h-12 text-sm font-medium px-3">
+              <DropdownMenuItem onClick={() => go('/')} className="text-cyan-100 hover:bg-cyan-500/20 mb-3 rounded-lg h-12 text-sm font-medium px-3">
                 <span className="mr-3 text-lg">🏠</span> Home
               </DropdownMenuItem>
               
@@ -525,7 +525,7 @@ const MobileMenu = () => {
               )}
 
               {/* Favorites - Standalone */}
-              <DropdownMenuItem onClick={() => { navigate('/favorites'); setIsMenuOpen(false); }} className="text-cyan-100 hover:bg-cyan-500/20 mb-2 rounded flex items-center space-x-2 text-sm">
+              <DropdownMenuItem onClick={() => go('/favorites')} className="text-cyan-100 hover:bg-cyan-500/20 mb-2 rounded flex items-center space-x-2 text-sm">
                 <Heart className="w-3 h-3 fill-current text-red-500" />
                 <span>Favorites ({getFavoritesCount()})</span>
               </DropdownMenuItem>
