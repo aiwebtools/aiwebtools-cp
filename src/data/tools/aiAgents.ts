@@ -354,7 +354,7 @@ export const aiAgents: Tool[] = [
     description: "Advanced agentic AI coding platform that enables autonomous code generation, debugging, and software development with intelligent decision-making capabilities.",
     emoji: "⚡",
     color: "from-purple-500 to-blue-600",
-    directUrl: "https://app.emergent.sh/",
+    directUrl: "https://app.emergent.sh/register?ref=kgma581402",
     imageUrl: "/src/assets/tools/emergent-hero.png",
     tags: ["Coding Agent", "agentic AI", "autonomous development", "Emergent", "code generation", "software development"],
     category: "AI Agents",

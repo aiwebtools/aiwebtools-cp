@@ -180,7 +180,7 @@ export const aiChatPlatforms: Tool[] = [
     description: "Advanced AI agent platform providing intelligent automation, task execution, and autonomous workflows. Features sophisticated agent capabilities for complex problem-solving and automated processes.",
     emoji: "🌟",
     color: "from-emerald-500 to-teal-600",
-    directUrl: "https://www.emergent.sh/?via=aiwebtools",
+    directUrl: "https://app.emergent.sh/register?ref=kgma581402",
     imageUrl: "/src/assets/tools/emergent-agent-hero.png",
     tags: ["AI agent", "Coding Agent", "automation", "task execution", "autonomous workflows", "intelligent agent", "problem-solving"],
     category: "AI CHAT & ASSISTANTS",
