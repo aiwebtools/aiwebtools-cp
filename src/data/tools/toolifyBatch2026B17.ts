@@ -95,7 +95,7 @@ export const toolifyBatch2026B17: Tool[] = [
     emoji: "🌱",
     color: "green",
     imageUrl: emergentHero,
-    directUrl: "https://www.emergent.sh/?via=aiwebtools",
+    directUrl: "https://app.emergent.sh/register?ref=kgma581402",
     tags: ["no-code", "AI app builder", "software development", "web app creator", "mobile app development", "AI coding assistant", "rapid application development"],
     category: "No-Code & App Builders",
     tagline: "Software emerges from your vision — no coding required, just imagination"

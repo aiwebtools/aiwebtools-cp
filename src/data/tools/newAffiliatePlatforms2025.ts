@@ -173,7 +173,7 @@ export const newAffiliatePlatforms2025: Tool[] = [
     description: "AI agent platform for automating complex workflows and business processes with intelligent decision-making capabilities.",
     emoji: "⚡",
     color: "from-yellow-500 to-orange-600",
-    directUrl: "https://app.emergent.sh/?via=aiwebtools",
+    directUrl: "https://app.emergent.sh/register?ref=kgma581402",
     tags: ["AI agents", "workflow automation", "business processes", "intelligent automation", "AI platform"],
     category: "AI Assistants & Search",
     rating: 4.5,
