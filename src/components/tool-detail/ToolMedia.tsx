@@ -1,7 +1,8 @@
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useEffect, useCallback, useMemo } from "react";
 import { Image as ImageIcon } from "lucide-react";
 import { Tool } from "@/types/tools";
 import { getToolTagline } from "@/data/toolTaglines";
+import { isExpiredHost, getYouTubeId, getResolvedAssetUrl, getYouTubeThumbnail } from "@/utils/imageUtils";
 
 interface ToolMediaProps {
   tool: Tool;
@@ -16,9 +17,12 @@ const ToolMedia = ({ tool, toolIndex }: ToolMediaProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
+  const videoId = useMemo(() => getYouTubeId(tool.videoUrl), [tool.videoUrl]);
+  const youtubeThumbnail = useMemo(() => getYouTubeThumbnail(tool.videoUrl), [tool.videoUrl]);
+
   // Unmute this video (after user clicks or interacts)
   const unmuteToolVideo = useCallback(() => {
-    if (iframeRef.current) {
+    if (iframeRef.current && videoId) {
       try {
         iframeRef.current.contentWindow?.postMessage(
           JSON.stringify({ event: 'command', func: 'unMute' }),
@@ -26,57 +30,32 @@ const ToolMedia = ({ tool, toolIndex }: ToolMediaProps) => {
         );
       } catch {}
     }
-  }, []);
-
-  // Mute this video when pinned player starts playing
-  const handlePinnedPlayerPlaying = useCallback(() => {
-    if (iframeRef.current) {
-      try {
-        iframeRef.current.contentWindow?.postMessage(
-          JSON.stringify({ event: 'command', func: 'mute' }),
-          'https://www.youtube.com'
-        );
-      } catch {}
-    }
-  }, []);
-
-  // NOTE: Tool pages do not show the pinned player; avoid listening for pinned-player events here
-  // (this was causing occasional unexpected muting on individual tool pages).
+  }, [videoId]);
 
   // Track last visibility state to prevent redundant events
   const lastVisibilityRef = useRef<boolean | null>(null);
   const visibilityTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Intersection observer to detect when video is in viewport - with debouncing
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           const nowVisible = entry.isIntersecting;
-          
-          // Skip if visibility hasn't actually changed
           if (lastVisibilityRef.current === nowVisible) return;
           
-          // Clear any pending visibility change
           if (visibilityTimeoutRef.current) {
             clearTimeout(visibilityTimeoutRef.current);
           }
           
-          // Debounce visibility changes to prevent flickering during scroll
           visibilityTimeoutRef.current = setTimeout(() => {
             lastVisibilityRef.current = nowVisible;
-            
-            // Dispatch stable visibility event
             window.dispatchEvent(new CustomEvent('toolVideoVisibility', { 
               detail: { isVisible: nowVisible } 
             }));
             
             if (nowVisible) {
               setIsVisible(true);
-              // When tool video becomes visible, mute the pinned player and unmute this video
               window.dispatchEvent(new CustomEvent('toolVideoPlaying'));
-              // Try to force immediate sound + playback when it becomes visible
-              // (Autoplay-with-sound may still be blocked until a user gesture in some browsers)
               setTimeout(() => {
                 unmuteToolVideo();
                 try {
@@ -87,12 +66,12 @@ const ToolMedia = ({ tool, toolIndex }: ToolMediaProps) => {
                 } catch {}
               }, 0);
             }
-          }, 150); // 150ms debounce prevents flickering
+          }, 150);
         });
       },
       { 
-        threshold: [0.2, 0.5], // Multiple thresholds for smoother detection
-        rootMargin: '-50px 0px' // Requires more of the video to be visible
+        threshold: [0.2, 0.5],
+        rootMargin: '-50px 0px'
       }
     );
 
@@ -102,11 +81,9 @@ const ToolMedia = ({ tool, toolIndex }: ToolMediaProps) => {
 
     return () => {
       observer.disconnect();
-      // Clear pending timeout
       if (visibilityTimeoutRef.current) {
         clearTimeout(visibilityTimeoutRef.current);
       }
-      // Reset visibility when unmounting
       lastVisibilityRef.current = null;
       window.dispatchEvent(new CustomEvent('toolVideoVisibility', { 
         detail: { isVisible: false } 
@@ -115,28 +92,12 @@ const ToolMedia = ({ tool, toolIndex }: ToolMediaProps) => {
   }, [unmuteToolVideo]);
 
   const getOptimizedEmbedUrl = (url: string) => {
-    // Extract video ID from various YouTube formats
-    let videoId = '';
-    
-    if (url.includes('youtu.be/')) {
-      const pathPart = url.split('youtu.be/')[1];
-      videoId = pathPart.split(/[?&#]/)[0];
-    } else if (url.includes('youtube.com/watch?v=')) {
-      videoId = url.split('v=')[1].split('&')[0];
-    } else if (url.includes('youtube.com/embed/')) {
-      videoId = url.split('embed/')[1].split(/[?&#]/)[0];
-    }
-    
     if (videoId) {
-      // Force 1080p HD quality with immediate autoplay unmuted
-      // Using multiple quality parameters for maximum compatibility
-      // Adaptive quality — YouTube picks the best stream for the player size & connection (prevents buffer/glitch).
       return `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0&controls=1&rel=0&enablejsapi=1&origin=${encodeURIComponent(window.location.origin)}&playsinline=1&modestbranding=1&fs=1&iv_load_policy=3&cc_load_policy=0&start=0`;
     }
     
     if (url.includes('vimeo.com/')) {
       const vimeoId = url.split('vimeo.com/')[1].split('?')[0];
-      // Force 1080p quality with immediate autoplay unmuted
       return `https://player.vimeo.com/video/${vimeoId}?autoplay=1&loop=0&autopause=0&muted=0&quality=1080p&dnt=1`;
     }
     
@@ -148,13 +109,11 @@ const ToolMedia = ({ tool, toolIndex }: ToolMediaProps) => {
   };
 
   const MediaComponent = () => {
-    // Prioritize video if available, then fallback to image
     if (tool.videoUrl && !videoError) {
       const embedUrl = getOptimizedEmbedUrl(tool.videoUrl);
       
       return (
         <div className="relative w-full overflow-hidden rounded-xl bg-gray-800" style={{ aspectRatio: '16/9' }}>
-          {/* Render immediately on individual tool pages so media is present as soon as the page opens. */}
           {isVisible ? (
             <iframe
               ref={iframeRef}
@@ -176,25 +135,20 @@ const ToolMedia = ({ tool, toolIndex }: ToolMediaProps) => {
               onError={handleVideoError}
             />
           ) : (
-            /* Safety placeholder only if rendering is intentionally paused. */
             <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900" />
           )}
         </div>
       );
     }
 
-    // Convert /src/assets/ path to proper import URL for Vite (same as SpecialServices)
-    const getResolvedImageUrl = (url: string): string => {
-      if (url.startsWith('/src/assets/')) {
-        const filename = url.replace('/src/assets/', '');
-        return new URL(`../../assets/${filename}`, import.meta.url).href;
-      }
-      return url;
-    };
+    let resolvedImageUrl = tool.imageUrl ? getResolvedAssetUrl(tool.imageUrl) : '';
+    if (resolvedImageUrl && isExpiredHost(resolvedImageUrl)) {
+      resolvedImageUrl = '';
+    }
+    
+    const effectiveImageUrl = (resolvedImageUrl && !imageError) ? resolvedImageUrl : youtubeThumbnail;
 
-    if (tool.imageUrl && !imageError) {
-      const resolvedImageUrl = getResolvedImageUrl(tool.imageUrl);
-      
+    if (effectiveImageUrl) {
       return (
         <div className="relative w-full overflow-hidden rounded-xl bg-gray-800" style={{ aspectRatio: '16/9' }}>
           {!imageLoaded && (
@@ -203,7 +157,7 @@ const ToolMedia = ({ tool, toolIndex }: ToolMediaProps) => {
             </div>
           )}
           <img
-            src={resolvedImageUrl}
+            src={effectiveImageUrl}
             alt={`${tool.title} Preview`}
             className={`w-full h-full object-cover transition-all duration-500 ${
               imageLoaded ? 'opacity-100' : 'opacity-0'
@@ -224,12 +178,10 @@ const ToolMedia = ({ tool, toolIndex }: ToolMediaProps) => {
     );
   };
 
-  // Get custom tagline or generate from description
   const tagline = getToolTagline(tool.title, tool.description);
 
   return (
     <div ref={containerRef} className="mb-4 sm:mb-6 px-4 sm:px-0">
-      {/* Compact tagline above video */}
       {tagline && (
         <p className="text-gray-400 text-xs mb-2 text-center leading-snug max-w-lg mx-auto">
           {tagline}
