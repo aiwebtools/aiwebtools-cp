@@ -1,4 +1,4 @@
-import { memo, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { Tool } from "@/types/tools";
 
 /**
@@ -43,11 +43,29 @@ interface ToolThumbProps {
 
 const ToolThumb = memo(({ tool, className = "w-11 h-11", emojiClassName = "text-2xl", rounded = "rounded-lg" }: ToolThumbProps) => {
   const [failed, setFailed] = useState(false);
+  const [resolvedAsset, setResolvedAsset] = useState<string>();
+
+  useEffect(() => {
+    let active = true;
+    const raw = typeof tool.imageUrl === "string" ? tool.imageUrl.trim() : "";
+    setFailed(false);
+    setResolvedAsset(undefined);
+    if (!raw.startsWith("/src/")) return () => { active = false; };
+
+    // Resolve legacy source paths only when a card that needs one is mounted.
+    // The module is cached after the first request and images remain lazy.
+    import("@/utils/search/toolAssetUrls")
+      .then(({ assetUrlByPath }) => {
+        if (active) setResolvedAsset(assetUrlByPath[raw]);
+      })
+      .catch(() => {});
+    return () => { active = false; };
+  }, [tool.imageUrl]);
 
   // Raw /src paths belong to old records and cannot be resolved without
   // eagerly importing every image in the project. Never do that from a card:
   // it creates hundreds of requests and blocks mobile category rendering.
-  const src = failed ? undefined : resolveToolThumb(tool, null);
+  const src = failed ? undefined : resolvedAsset ?? resolveToolThumb(tool, null);
 
   if (!src) {
     return (

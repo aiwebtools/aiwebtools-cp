@@ -1,5 +1,5 @@
 
-import { useState, useEffect, useMemo, useCallback, useTransition } from "react";
+import { useState, useEffect, useMemo, useCallback, useTransition, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -28,6 +28,8 @@ const MainCategoryPage = () => {
   const [isToolsReady, setIsToolsReady] = useState(false);
   const [categoryTools, setCategoryTools] = useState<Tool[]>([]);
   const [isPending, startTransition] = useTransition();
+  const loadingRef = useRef(false);
+  const scrolledCategoryRef = useRef<string | null>(null);
 
   const decodedCategoryName = mainCategoryName ? decodeURIComponent(mainCategoryName) : "";
   
@@ -129,16 +131,18 @@ const MainCategoryPage = () => {
 
   // ALL EVENT HANDLERS - optimized for mobile
   const handleLoadMore = useCallback(() => {
-    if (isLoading || displayedCount >= finalFilteredTools.length) return;
+    if (loadingRef.current || displayedCount >= finalFilteredTools.length) return;
     
+    loadingRef.current = true;
     setIsLoading(true);
     
     // INSTANT loading - no artificial delay needed
     requestAnimationFrame(() => {
       setDisplayedCount(prev => Math.min(prev + 48, finalFilteredTools.length));
+      loadingRef.current = false;
       setIsLoading(false);
     });
-  }, [isLoading, displayedCount, finalFilteredTools.length]);
+  }, [displayedCount, finalFilteredTools.length]);
 
   // INSTANT filter updates - no debouncing for snappy feel
   const handleFilteredToolsChange = useCallback((filtered: Tool[]) => {
@@ -151,6 +155,8 @@ const MainCategoryPage = () => {
 
   // Scroll to top immediately
   useEffect(() => {
+    if (scrolledCategoryRef.current === decodedCategoryName) return;
+    scrolledCategoryRef.current = decodedCategoryName;
     window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
   }, [decodedCategoryName]);
   
