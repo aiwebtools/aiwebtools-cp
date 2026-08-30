@@ -1,23 +1,40 @@
 
-import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useEffect, useRef } from "react";
+import { useLocation, useNavigationType } from "react-router-dom";
 
 interface UseScrollMemoryProps {
   displayedCount: number;
   selectedCategory: string | null;
   searchTerm: string;
+  ready?: boolean;
+  onRestoreDisplayedCount?: (count: number) => void;
 }
 
-export const useScrollMemory = ({ displayedCount, selectedCategory, searchTerm }: UseScrollMemoryProps) => {
+export const useScrollMemory = ({
+  displayedCount,
+  selectedCategory,
+  searchTerm,
+  ready = true,
+  onRestoreDisplayedCount,
+}: UseScrollMemoryProps) => {
   const location = useLocation();
+  const navigationType = useNavigationType();
+  const stateRef = useRef({ displayedCount, selectedCategory, searchTerm });
+  const restoredLocationRef = useRef<string | null>(null);
+  stateRef.current = { displayedCount, selectedCategory, searchTerm };
+
+  const storageKey = `aitools-scroll:${location.pathname}${location.search}`;
 
   // Save scroll position when navigating away
   useEffect(() => {
     const saveScrollPosition = () => {
-      sessionStorage.setItem('aitools-scroll-position', window.pageYOffset.toString());
-      sessionStorage.setItem('aitools-displayed-count', displayedCount.toString());
-      sessionStorage.setItem('aitools-selected-category', selectedCategory || '');
-      sessionStorage.setItem('aitools-search-term', searchTerm);
+      const current = stateRef.current;
+      sessionStorage.setItem(storageKey, JSON.stringify({
+        scrollY: window.scrollY,
+        displayedCount: current.displayedCount,
+        selectedCategory: current.selectedCategory || "",
+        searchTerm: current.searchTerm,
+      }));
     };
 
     // Save position before page unload or navigation
@@ -27,28 +44,39 @@ export const useScrollMemory = ({ displayedCount, selectedCategory, searchTerm }
       window.removeEventListener('beforeunload', saveScrollPosition);
       saveScrollPosition(); // Save when component unmounts
     };
-  }, [displayedCount, selectedCategory, searchTerm]);
+  }, [storageKey]);
 
   // Restore scroll position and state when coming back
   useEffect(() => {
-    const restoreState = () => {
-      const savedScrollPosition = sessionStorage.getItem('aitools-scroll-position');
-      const savedDisplayedCount = sessionStorage.getItem('aitools-displayed-count');
-      const savedCategory = sessionStorage.getItem('aitools-selected-category');
-      const savedSearchTerm = sessionStorage.getItem('aitools-search-term');
+    // Restoration belongs only to browser back/forward navigation. Mark this
+    // location before scheduling so it can never run twice for the same mount.
+    if (!ready || navigationType !== "POP" || restoredLocationRef.current === location.key) return;
+    restoredLocationRef.current = location.key;
 
-      // Restore scroll position after a short delay to ensure content is rendered
-      if (savedScrollPosition) {
-        const scrollPosition = parseInt(savedScrollPosition, 10);
-        setTimeout(() => {
-          window.scrollTo(0, scrollPosition);
-        }, 100);
+    const raw = sessionStorage.getItem(storageKey);
+    if (!raw) return;
+
+    let scrollY = 0;
+    try {
+      const saved = JSON.parse(raw) as { scrollY?: number; displayedCount?: number };
+      scrollY = Number.isFinite(saved.scrollY) ? Math.max(0, saved.scrollY || 0) : 0;
+      if (Number.isFinite(saved.displayedCount) && saved.displayedCount) {
+        onRestoreDisplayedCount?.(Math.max(1, saved.displayedCount));
       }
-    };
-
-    // Only restore state when navigating back (not on initial load)
-    if (location.key !== 'default') {
-      restoreState();
+    } catch {
+      return;
     }
-  }, [location.key]);
+
+    let secondFrame = 0;
+    const firstFrame = requestAnimationFrame(() => {
+      secondFrame = requestAnimationFrame(() => window.scrollTo({ top: scrollY, behavior: "auto" }));
+    });
+
+    // Cancelling both frames is critical: an old page must never scroll a newly
+    // mounted category after navigation.
+    return () => {
+      cancelAnimationFrame(firstFrame);
+      if (secondFrame) cancelAnimationFrame(secondFrame);
+    };
+  }, [location.key, navigationType, onRestoreDisplayedCount, ready, storageKey]);
 };

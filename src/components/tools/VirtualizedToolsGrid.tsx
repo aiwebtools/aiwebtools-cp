@@ -1,5 +1,5 @@
 
-import React, { memo, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Tool } from "@/types/tools";
 import MinimalToolCard from "../MinimalToolCard";
 
@@ -33,14 +33,12 @@ interface WindowedSectionProps {
 
 const WindowedSection = memo(({ tools, indexOffset = 0, keyPrefix = "tool" }: WindowedSectionProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const measureRef = useRef<HTMLDivElement>(null);
   const frameRef = useRef<number | null>(null);
   const [columns, setColumns] = useState(getColumnCount);
-  const [rowHeight, setRowHeight] = useState(DEFAULT_ROW_HEIGHT);
   const [range, setRange] = useState({ start: 0, end: 10 });
 
   const rowCount = Math.ceil(tools.length / columns);
-  const stride = rowHeight + ROW_GAP;
+  const stride = DEFAULT_ROW_HEIGHT + ROW_GAP;
   const totalHeight = Math.max(0, rowCount * stride - ROW_GAP);
 
   const updateRange = useCallback(() => {
@@ -87,18 +85,7 @@ const WindowedSection = memo(({ tools, indexOffset = 0, keyPrefix = "tool" }: Wi
     };
   }, [updateRange]);
 
-  useLayoutEffect(() => {
-    const measured = measureRef.current;
-    if (!measured || typeof ResizeObserver === "undefined") return;
-    const observer = new ResizeObserver(([entry]) => {
-      const nextHeight = Math.ceil(entry?.contentRect.height || DEFAULT_ROW_HEIGHT);
-      if (nextHeight > 0) setRowHeight((current) => current === nextHeight ? current : nextHeight);
-    });
-    observer.observe(measured);
-    return () => observer.disconnect();
-  }, [range.start, columns]);
-
-  useEffect(() => updateRange(), [tools.length, columns, rowHeight, updateRange]);
+  useEffect(() => updateRange(), [tools.length, columns, updateRange]);
 
   const startIndex = range.start * columns;
   const endIndex = Math.min(tools.length, range.end * columns);
@@ -114,7 +101,6 @@ const WindowedSection = memo(({ tools, indexOffset = 0, keyPrefix = "tool" }: Wi
           const absoluteIndex = startIndex + localIndex;
           return (
             <div
-              ref={localIndex === 0 ? measureRef : undefined}
               className="h-[220px] min-w-0"
               key={`${keyPrefix}__${tool.title}__${tool.directUrl ?? absoluteIndex}`}
             >
