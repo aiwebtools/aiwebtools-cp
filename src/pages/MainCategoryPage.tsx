@@ -1,6 +1,6 @@
 
 import { useState, useEffect, useMemo, useCallback, useTransition, useRef } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useNavigationType } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import AnimatedBackground from "@/components/AnimatedBackground";
@@ -16,10 +16,12 @@ import { Loader2 } from "lucide-react";
 import { mainCategories } from "@/utils/mainCategoryMapping";
 import { Tool } from "@/types/tools";
 import MainCategoryFilter from "@/components/category/MainCategoryFilter";
+import { useScrollMemory } from "@/hooks/useScrollMemory";
 
 const MainCategoryPage = () => {
   const { mainCategoryName } = useParams<{ mainCategoryName: string }>();
   const navigate = useNavigate();
+  const navigationType = useNavigationType();
   
   // ALL HOOKS MUST BE DECLARED AT THE TOP - NO CONDITIONAL HOOKS
   const [displayedCount, setDisplayedCount] = useState(48);
@@ -153,12 +155,24 @@ const MainCategoryPage = () => {
     });
   }, []);
 
+  const restoreDisplayedCount = useCallback((count: number) => {
+    setDisplayedCount((current) => Math.max(current, count));
+  }, []);
+
+  useScrollMemory({
+    displayedCount,
+    selectedCategory: decodedCategoryName || null,
+    searchTerm: "",
+    ready: isToolsReady,
+    onRestoreDisplayedCount: restoreDisplayedCount,
+  });
+
   // Scroll to top immediately
   useEffect(() => {
-    if (scrolledCategoryRef.current === decodedCategoryName) return;
+    if (navigationType === "POP" || scrolledCategoryRef.current === decodedCategoryName) return;
     scrolledCategoryRef.current = decodedCategoryName;
     window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
-  }, [decodedCategoryName]);
+  }, [decodedCategoryName, navigationType]);
   
   // Handle invalid category - redirect to homepage
   useEffect(() => {

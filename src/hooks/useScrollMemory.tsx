@@ -6,9 +6,17 @@ interface UseScrollMemoryProps {
   displayedCount: number;
   selectedCategory: string | null;
   searchTerm: string;
+  ready?: boolean;
+  onRestoreDisplayedCount?: (count: number) => void;
 }
 
-export const useScrollMemory = ({ displayedCount, selectedCategory, searchTerm }: UseScrollMemoryProps) => {
+export const useScrollMemory = ({
+  displayedCount,
+  selectedCategory,
+  searchTerm,
+  ready = true,
+  onRestoreDisplayedCount,
+}: UseScrollMemoryProps) => {
   const location = useLocation();
   const navigationType = useNavigationType();
   const stateRef = useRef({ displayedCount, selectedCategory, searchTerm });
@@ -42,7 +50,7 @@ export const useScrollMemory = ({ displayedCount, selectedCategory, searchTerm }
   useEffect(() => {
     // Restoration belongs only to browser back/forward navigation. Mark this
     // location before scheduling so it can never run twice for the same mount.
-    if (navigationType !== "POP" || restoredLocationRef.current === location.key) return;
+    if (!ready || navigationType !== "POP" || restoredLocationRef.current === location.key) return;
     restoredLocationRef.current = location.key;
 
     const raw = sessionStorage.getItem(storageKey);
@@ -50,8 +58,11 @@ export const useScrollMemory = ({ displayedCount, selectedCategory, searchTerm }
 
     let scrollY = 0;
     try {
-      const saved = JSON.parse(raw) as { scrollY?: number };
+      const saved = JSON.parse(raw) as { scrollY?: number; displayedCount?: number };
       scrollY = Number.isFinite(saved.scrollY) ? Math.max(0, saved.scrollY || 0) : 0;
+      if (Number.isFinite(saved.displayedCount) && saved.displayedCount) {
+        onRestoreDisplayedCount?.(Math.max(1, saved.displayedCount));
+      }
     } catch {
       return;
     }
@@ -67,5 +78,5 @@ export const useScrollMemory = ({ displayedCount, selectedCategory, searchTerm }
       cancelAnimationFrame(firstFrame);
       if (secondFrame) cancelAnimationFrame(secondFrame);
     };
-  }, [location.key, navigationType, storageKey]);
+  }, [location.key, navigationType, onRestoreDisplayedCount, ready, storageKey]);
 };
