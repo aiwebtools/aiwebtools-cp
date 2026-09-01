@@ -72,17 +72,18 @@ const ToolThumb = memo(({ tool, className = "w-11 h-11", emojiClassName = "text-
       width={64}
       height={64}
       onError={() => {
-        // If image fails, try falling back to YouTube thumbnail if not already tried
-        if (src !== getYouTubeThumbnail(tool.videoUrl)) {
-           setFailed(false); // Reset failed to try fallback
-           setResolvedAsset(getYouTubeThumbnail(tool.videoUrl));
+        const ytFallback = getYouTubeThumbnail(tool.videoUrl);
+        // Try the YouTube thumbnail once; otherwise fall back to the emoji tile.
+        if (ytFallback && src !== ytFallback) {
+          setResolvedAsset(ytFallback);
         } else {
-           setFailed(true);
+          setFailed(true);
         }
       }}
       className={`${className} ${rounded} flex-shrink-0 object-cover bg-gray-800 border border-gray-700/60`}
     />
   );
+
 });
 
 ToolThumb.displayName = "ToolThumb";
