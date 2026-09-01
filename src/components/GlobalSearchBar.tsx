@@ -70,6 +70,18 @@ const GlobalSearchBar = ({ autoFocus = false }: GlobalSearchBarProps) => {
             />
           )}
 
+          {isOpen && searchResults.length === 0 && searchTerm.trim().length > 0 && (
+            <div className="absolute z-50 mt-2 w-full rounded-xl border border-emerald-500/30 bg-gray-950/95 backdrop-blur px-4 py-5 text-center shadow-xl">
+              <p className="text-sm font-semibold text-emerald-300">
+                No AI tools match "{searchTerm.trim()}"
+              </p>
+              <p className="mt-1 text-xs text-gray-400">
+                Try a different spelling, a shorter phrase, or a category name.
+              </p>
+            </div>
+          )}
+
+
           <SearchDebugDashboard diagnostics={diagnostics} />
 
         </div>
