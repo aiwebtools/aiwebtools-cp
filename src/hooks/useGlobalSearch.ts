@@ -2468,13 +2468,13 @@ export const useGlobalSearch = () => {
           if (discoverableResults.length > 0 || haveTools) {
             searchCache.set(fullCacheKey, discoverableResults);
           }
-          if (discoverableResults.length > 0 || haveTools) {
-            startTransition(() => {
-              setSearchResults(discoverableResults);
-              setDisplayedCount(50);
-              setIsOpen(true);
-            });
-          }
+          // Always publish the outcome — including an empty set — so a query
+          // with no matches shows "no results" instead of the previous list.
+          startTransition(() => {
+            setSearchResults(discoverableResults);
+            setDisplayedCount(50);
+            setIsOpen(true);
+          });
           recordMetric("search.worker.ms", performance.now() - keystrokeAt, { len: cappedT.length });
         }), 0);
       return;
