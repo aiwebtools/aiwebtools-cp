@@ -22,6 +22,9 @@ const MODE_SESSION_KEY = "pinned-video-mode"; // 'idle' | 'tools' | 'music'
 // Suno-style lyric/audio tracks (just lyrics on screen) play LAST, so the reel
 // always leads with the most eye-catching content.
 export const MUSIC_VIDEO_GALLERY: Array<{ id: string; title: string }> = [
+  // ── NEWEST DROP (Sept 2026) ──
+  { id: "p6gPljLI5xM", title: "Our First Movie Trailer | Official AI Movie Trailer | AIWebTools.ai" },
+  { id: "Ag0bWNnStTY", title: "September Drop I | Official AI Music Video | AIWebTools.ai" },
   // ── AUGUST 25 MTV DROP (newest — play FIRST in the 9:16 reel) ──
   { id: "v9a0cOxhY78", title: "August 25 Drop I | Official AI Music Video | AIWebTools.ai" },
   { id: "X-0Cl058cTk", title: "August 25 Drop II | Official AI Music Video | AIWebTools.ai" },

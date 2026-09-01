@@ -259,6 +259,9 @@ const BookPromotionCard = () => {
   
   // First video is always pinned, rest are shuffled
   const originalVideos = [
+    // ── NEWEST DROP (Sept 2026) ──
+    { id: "p6gPljLI5xM", title: "Our First Movie Trailer | Official AI Movie Trailer | AIWebTools.ai", gradient: "from-amber-500/20 to-rose-500/20" },
+    { id: "Ag0bWNnStTY", title: "September Drop I | Official AI Music Video | AIWebTools.ai", gradient: "from-cyan-500/20 to-emerald-500/20" },
     // ── AUGUST 25 MTV DROP (newest drops — play FIRST) ──
     { id: "v9a0cOxhY78", title: "August 25 Drop I | Official AI Music Video | AIWebTools.ai", gradient: "from-cyan-500/20 to-fuchsia-500/20" },
     { id: "X-0Cl058cTk", title: "August 25 Drop II | Official AI Music Video | AIWebTools.ai", gradient: "from-emerald-500/20 to-cyan-500/20" },
