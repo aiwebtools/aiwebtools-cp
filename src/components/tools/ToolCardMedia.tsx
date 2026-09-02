@@ -1,7 +1,8 @@
 import { useState, useRef, useEffect } from "react";
 import { Tool } from "@/types/tools";
 import { Play } from "lucide-react";
-import { isExpiredHost, getYouTubeId, getYouTubeThumbnail, getResolvedAssetUrl } from "@/utils/imageUtils";
+import { isExpiredHost, getYouTubeId, getYouTubeThumbnail } from "@/utils/imageUtils";
+import { useResolvedToolImage } from "@/utils/assetResolver";
 
 interface ToolCardMediaProps {
   tool: Tool;
@@ -19,11 +20,9 @@ const ToolCardMedia = ({ tool, isFeatured, imageHeight }: ToolCardMediaProps) =>
   const isYouTube = !!videoId;
   const youtubeThumbnail = getYouTubeThumbnail(tool.videoUrl);
   
-  // Resolve image URL
-  let resolvedImageUrl = tool.imageUrl ? getResolvedAssetUrl(tool.imageUrl) : '';
-  if (resolvedImageUrl && isExpiredHost(resolvedImageUrl)) {
-    resolvedImageUrl = '';
-  }
+  // Resolve image URL (build-time asset map for legacy "/src/assets/..." paths)
+  const rawImageUrl = typeof tool.imageUrl === 'string' ? tool.imageUrl.trim() : '';
+  const resolvedImageUrl = useResolvedToolImage(isExpiredHost(rawImageUrl) ? '' : rawImageUrl) || '';
 
   const hasVideo = !!tool.videoUrl;
   const hasImage = !!resolvedImageUrl && !imageFailed;
@@ -83,7 +82,7 @@ const ToolCardMedia = ({ tool, isFeatured, imageHeight }: ToolCardMediaProps) =>
               src={youtubeThumbnail}
               alt={`${tool.title} video thumbnail`}
               className="absolute inset-0 w-full h-full object-cover"
-              loading="lazy"
+              loading="eager"
             />
           ) : (
             <div className="absolute inset-0 bg-gradient-to-br from-gray-700 to-gray-900 animate-pulse" />
@@ -126,7 +125,7 @@ const ToolCardMedia = ({ tool, isFeatured, imageHeight }: ToolCardMediaProps) =>
             src={effectiveImageUrl} 
             alt={`${tool.title} screenshot`}
             className="w-full h-full object-cover"
-            loading="lazy"
+            loading="eager"
             decoding="async"
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             onError={() => setImageFailed(true)}
