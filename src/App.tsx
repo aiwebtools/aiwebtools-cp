@@ -309,6 +309,10 @@ const AnimatedRoutes = () => {
     <Suspense fallback={<PageLoader />}>
       <Routes location={location}>
         <Route path="/category/:categoryName" element={<RouteReadySignal><CategoryPage /></RouteReadySignal>} />
+        {/* Canonical category path is /main-category/:name — keep legacy/plural links alive. */}
+        <Route path="/categories" element={<Navigate to="/main-category/ALL%20AI%20TOOLS" replace />} />
+        <Route path="/categories/:mainCategoryName" element={<LegacyCategoryRedirect />} />
+
         <Route path="/main-category/:mainCategoryName" element={<Suspense fallback={categoryFallback}><RouteReadySignal><MainCategoryPage /></RouteReadySignal></Suspense>} />
         <Route path="/tool/:toolId" element={<RouteReadySignal><ToolDetail /></RouteReadySignal>} />
         <Route path="/:toolSlug" element={<RouteReadySignal><ToolDetail /></RouteReadySignal>} />
