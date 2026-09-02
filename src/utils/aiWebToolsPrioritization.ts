@@ -23,9 +23,11 @@ export const isAIWebToolsGPT = (tool: Tool): boolean => {
   const isGeminiGemUrl = tool.directUrl?.includes('gemini.google.com/gem/');
   const isGeminiGemCategory = tool.category?.toLowerCase().includes('gemini gem');
   
-  // Check for AIWebTools indicators
-  const hasAIWebToolsUrl = tool.directUrl?.includes('lovable.app') || 
-                            tool.directUrl?.includes('aiwebtools');
+  // Check for AIWebTools indicators. IMPORTANT: strip the query string first —
+  // every third-party link carries our `?via=aiwebtools` affiliate parameter and
+  // would otherwise be misread as one of our own properties.
+  const baseUrl = (tool.directUrl || '').split('?')[0].toLowerCase();
+  const hasAIWebToolsUrl = baseUrl.includes('lovable.app') || baseUrl.includes('aiwebtools');
   const hasAIWebToolsDescription = tool.description?.toLowerCase().includes('aiwebtools');
   const hasAIWebToolsTag = tool.tags?.some(tag => tag.toLowerCase().includes('aiwebtools'));
   
