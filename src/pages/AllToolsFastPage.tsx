@@ -24,10 +24,14 @@ const AllToolsFastPage = () => {
     window.scrollTo({ top: 0, behavior: "auto" });
 
     requestAnimationFrame(() => {
-      import("@/data/toolsData")
-        .then(({ allTools }) => {
+      Promise.all([
+        import("@/data/toolsData"),
+        import("@/utils/category/categoryOrdering"),
+      ])
+        .then(([{ allTools }, { orderCategoryTools }]) => {
           if (cancelled) return;
-          setTools(allTools);
+          // Dedupe + GPT-first deterministic ordering, same as every other category page.
+          setTools(orderCategoryTools(allTools, PAGE_TITLE));
           window.dispatchEvent(new Event("aiwt:page-data-ready"));
         })
         .catch((error) => {
