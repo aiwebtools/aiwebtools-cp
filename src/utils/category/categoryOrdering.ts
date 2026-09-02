@@ -34,12 +34,26 @@ const qualityScore = (tool: Tool): number => {
   return score;
 };
 
+const DIRECTORY_TITLE_HINTS = [
+  "directory", "directories", "tool database", "tools database", "ai tools list",
+  "toolify", "futurepedia", "there's an ai", "theres an ai", "futuretools",
+  "aitools", "ai tool hunt", "insidr", "topai", "supertools", "aixploria",
+  "product hunt", "ai finder", "tool finder", "ai marketplace", "ai hub list",
+];
+
 const isCompetingDirectory = (tool: Tool, categoryKey: string): boolean => {
   if (categoryKey === "AI TOOL DATABASES") return false;
+  // Never demote our own properties.
+  if (isAIWebToolsGPT(tool)) return false;
+  const url = (tool.directUrl || "").toLowerCase();
+  if (url.includes("aiwebtools")) return false;
   const category = (tool.category || "").toLowerCase();
   const tags = Array.isArray(tool.tags) ? tool.tags.join(" ").toLowerCase() : "";
-  return category.includes("tool database") || category.includes("ai director") ||
-    tags.includes("ai tool directory") || tags.includes("tool aggregator");
+  const title = (tool.title || "").toLowerCase();
+  if (category.includes("tool database") || category.includes("ai director")) return true;
+  if (tags.includes("ai tool directory") || tags.includes("tool aggregator") ||
+      tags.includes("ai directory") || tags.includes("tool database")) return true;
+  return DIRECTORY_TITLE_HINTS.some((hint) => title.includes(hint));
 };
 
 const normalizeTitle = (title: string): string =>
@@ -56,6 +70,15 @@ const removeRepeatedTitles = (tools: Tool[]): Tool[] => {
 };
 
 export const GPT_FEATURE_INTERVAL = 6;
+
+/** Number of AIWebTools custom GPTs that always lead a category page. */
+export const GPT_LEAD_COUNT = 6;
+
+/**
+ * Remove exact repeats (same normalized title) keeping the most complete
+ * record. Exported so alternative sort modes stay duplicate-free too.
+ */
+export const dedupeTools = (tools: Tool[]): Tool[] => removeRepeatedTitles(tools);
 
 export const orderCategoryTools = (tools: Tool[], categoryKey: string): Tool[] => {
   const uniqueTools = removeRepeatedTitles(tools);
@@ -79,10 +102,15 @@ export const orderCategoryTools = (tools: Tool[], categoryKey: string): Tool[] =
 
   if (!gpts.length) return rest;
 
-  // Weave one AIWebTools GPT into every 6th position; leftovers append at the end.
+  // Our own custom GPTs lead every category, then one is woven into every 6th
+  // slot. Competing directories can never occupy the prime positions.
   const ordered: Tool[] = [];
   let gptIndex = 0;
   let restIndex = 0;
+
+  while (gptIndex < Math.min(GPT_LEAD_COUNT, gpts.length)) {
+    ordered.push(gpts[gptIndex++]);
+  }
 
   while (restIndex < rest.length) {
     const isFeatureSlot =

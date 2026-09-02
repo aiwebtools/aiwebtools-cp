@@ -184,7 +184,7 @@ const MainCategoryPage = () => {
   // Reset displayed count when filtered tools change
   useEffect(() => {
     setDisplayedCount(48);
-  }, [toolsToShow.length]);
+  }, [finalFilteredTools.length]);
 
   // If invalid category, show nothing (will redirect)
   if (!mainCategory) {
@@ -269,10 +269,10 @@ const MainCategoryPage = () => {
               {/* Tools Count Display - Shows actual filtered count */}
               <div className="text-center mb-8">
                 <div className="text-cyan-400 font-semibold">
-                  {toolsToShow.length > 0 ? (
-                    displayedCount >= toolsToShow.length 
-                      ? `Showing all ${toolsToShow.length} tools`
-                      : `Showing ${Math.min(displayedCount, toolsToShow.length)} of ${toolsToShow.length} filtered tools — scroll for more`
+                  {finalFilteredTools.length > 0 ? (
+                    displayedCount >= finalFilteredTools.length 
+                      ? `Showing all ${finalFilteredTools.length} tools`
+                      : `Showing ${Math.min(displayedCount, finalFilteredTools.length)} of ${finalFilteredTools.length} filtered tools — scroll for more`
                   ) : (
                     "No tools found"
                   )}

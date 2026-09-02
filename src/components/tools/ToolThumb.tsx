@@ -1,11 +1,12 @@
 import { memo, useEffect, useState } from "react";
 import { Tool } from "@/types/tools";
-import { isExpiredHost, getYouTubeThumbnail, getResolvedAssetUrl } from "@/utils/imageUtils";
+import { isExpiredHost, getYouTubeThumbnail } from "@/utils/imageUtils";
+import { useResolvedToolImage } from "@/utils/assetResolver";
 
 /**
  * Small square thumbnail for tool cards / lists.
  * Shows the tool's own hero image (or its YouTube thumbnail) and only falls
- * back to the emoji when no media exists. Fully lazy — no first-paint cost.
+ * back to the emoji when no media exists at all.
  */
 
 export const resolveToolThumb = (
@@ -13,14 +14,14 @@ export const resolveToolThumb = (
   assets: Record<string, string> | null,
 ): string | undefined => {
   const raw = typeof tool.imageUrl === "string" ? tool.imageUrl.trim() : "";
-  
+
   if (raw && isExpiredHost(raw)) return getYouTubeThumbnail(tool.videoUrl);
-  
+
   if (raw) {
     if (!raw.startsWith("/src/")) return raw;
     if (assets?.[raw]) return assets[raw];
   }
-  
+
   return getYouTubeThumbnail(tool.videoUrl);
 };
 
@@ -34,26 +35,17 @@ interface ToolThumbProps {
 
 const ToolThumb = memo(({ tool, className = "w-11 h-11", emojiClassName = "text-2xl", rounded = "rounded-lg" }: ToolThumbProps) => {
   const [failed, setFailed] = useState(false);
-  const [resolvedAsset, setResolvedAsset] = useState<string>();
+  const [override, setOverride] = useState<string>();
+  const raw = typeof tool.imageUrl === "string" ? tool.imageUrl.trim() : "";
+  const expired = raw ? isExpiredHost(raw) : false;
+  const resolved = useResolvedToolImage(expired ? "" : raw);
 
   useEffect(() => {
-    let active = true;
-    const raw = typeof tool.imageUrl === "string" ? tool.imageUrl.trim() : "";
     setFailed(false);
-    setResolvedAsset(undefined);
-    
-    if (!raw.startsWith("/src/")) return () => { active = false; };
-
-    // Resolve legacy source paths only when a card that needs one is mounted.
-    import("@/utils/search/toolAssetUrls")
-      .then(({ assetUrlByPath }) => {
-        if (active) setResolvedAsset(assetUrlByPath[raw]);
-      })
-      .catch(() => {});
-    return () => { active = false; };
+    setOverride(undefined);
   }, [tool.imageUrl]);
 
-  const src = failed ? undefined : (resolvedAsset || resolveToolThumb(tool, null));
+  const src = failed ? undefined : (override || resolved || getYouTubeThumbnail(tool.videoUrl));
 
   if (!src) {
     return (
@@ -67,7 +59,7 @@ const ToolThumb = memo(({ tool, className = "w-11 h-11", emojiClassName = "text-
     <img
       src={src}
       alt={`${tool.title} logo`}
-      loading="lazy"
+      loading="eager"
       decoding="async"
       width={64}
       height={64}
@@ -75,7 +67,7 @@ const ToolThumb = memo(({ tool, className = "w-11 h-11", emojiClassName = "text-
         const ytFallback = getYouTubeThumbnail(tool.videoUrl);
         // Try the YouTube thumbnail once; otherwise fall back to the emoji tile.
         if (ytFallback && src !== ytFallback) {
-          setResolvedAsset(ytFallback);
+          setOverride(ytFallback);
         } else {
           setFailed(true);
         }
