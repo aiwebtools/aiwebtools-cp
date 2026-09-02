@@ -156,13 +156,16 @@ const Index = () => {
           </Suspense>
         </DeferredMount>
    
-        <DeferredMount delay={250} fallback={<div className="min-h-[55vh]" aria-hidden="true" />}>
+        {/* Featured tools + the custom GPT / Gem / Perplexity showcase are the
+            sections visitors scroll to first, so they mount right after paint
+            instead of waiting behind the idle queue. */}
+        <DeferredMount delay={0} fallback={<div className="min-h-[55vh]" aria-hidden="true" />}>
           <Suspense fallback={null}>
             <LazyFeaturedTools onToolsLoaded={(count) => {}} />
           </Suspense>
         </DeferredMount>
         
-        <DeferredMount delay={500} fallback={<div className="min-h-[55vh]" aria-hidden="true" />}>
+        <DeferredMount delay={0} fallback={<div className="min-h-[55vh]" aria-hidden="true" />}>
           <Suspense fallback={null}>
             <SpecialServices />
           </Suspense>

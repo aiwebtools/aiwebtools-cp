@@ -10,12 +10,19 @@ import { useEffect, useState } from "react";
 let cache: Record<string, string> | null = null;
 let pending: Promise<Record<string, string>> | null = null;
 
+// In dev, Vite serves "/src/assets/..." directly, so the eager glob map is not
+// needed — importing it would fire thousands of module requests that saturate
+// the connection pool and stall every lazily loaded page section.
+const DEV_PASSTHROUGH = import.meta.env.DEV;
+
 export const isLegacyAssetPath = (url?: string | null): boolean =>
   typeof url === "string" && url.trim().startsWith("/src/");
 
-export const getCachedAssetUrl = (path: string): string | undefined => cache?.[path];
+export const getCachedAssetUrl = (path: string): string | undefined =>
+  DEV_PASSTHROUGH ? path : cache?.[path];
 
 export const loadAssetUrls = (): Promise<Record<string, string>> => {
+  if (DEV_PASSTHROUGH) return Promise.resolve({});
   if (cache) return Promise.resolve(cache);
   pending ??= import("@/utils/search/toolAssetUrls")
     .then((mod) => {
@@ -53,7 +60,7 @@ export const useResolvedToolImage = (rawUrl?: string | null): string | undefined
       };
     }
     loadAssetUrls().then((map) => {
-      if (active) setResolved(map[raw]);
+      if (active) setResolved(map[raw] ?? getCachedAssetUrl(raw));
     });
     return () => {
       active = false;
