@@ -88,7 +88,7 @@
     user-select: none;
     
     /* Note: transform on body breaks position:fixed — removed for clone btn & pinned video */
-    will-change: scroll-position;
+    /* Do not promote the entire document into a continuously repainting layer. */
   }
   
   /* Allow text selection in form elements */
@@ -122,11 +122,6 @@
   img, video, iframe {
     max-width: 100%;
     height: auto;
-    -webkit-transform: translateZ(0);
-    -moz-transform: translateZ(0);
-    -ms-transform: translateZ(0);
-    -o-transform: translateZ(0);
-    transform: translateZ(0);
   }
   
   /* Cross-browser video support */

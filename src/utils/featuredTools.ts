@@ -38,6 +38,8 @@ export const createFeaturedTools = (allTools: Tool[]): Tool[] => {
   const aiWebToolsGPTsInMain = allTools.filter(tool => 
     !isExcludedFromFeatured(tool) && // Exclude bolt.new and gemini from featured
     (aiWebToolsGPTs.some(awTool => awTool.title === tool.title) ||
+     tool.category === 'Perplexity Bots' ||
+     tool.category === 'Custom Gemini Gems' ||
      tool.directUrl?.includes('lovable.app'))
   );
   

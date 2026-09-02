@@ -14,6 +14,7 @@ import AutoScaleTitle from "@/components/ui/auto-scale-title";
 import { trackToolClickEvent } from "@/hooks/useToolAnalytics";
 import { civicTransparencyBatch2026 } from "@/data/tools/civicTransparencyBatch2026";
 import { toFeatureLabels } from "@/utils/search/featuredCardHelpers";
+import cannabisInspectorHero from "@/assets/cannabis-inspector-hero.jpg";
 
 // Weighted shuffle - keeps high-quality tools near the top but adds randomness
 // PRIORITY: Dream-conquering practical tools FIRST, then spirituality/awakening
@@ -527,7 +528,7 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     features: ["Cultivation Guide", "Strain Information", "Medical Applications", "Legal Guidance"],
     directUrl: "https://cannabisgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/1fOxuIyl1C8",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-sleek-and-modern-advertisement-for-an-ai-.jpeg/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:98",
+    imageUrl: cannabisInspectorHero,
     emoji: "🌿"
   },
   {

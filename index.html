@@ -429,7 +429,9 @@
            // Phones need a moment more before the curtain lifts, otherwise the
            // first tap lands while React is still hydrating below-hero work.
            const IS_TOUCH = ('ontouchstart' in window) || (navigator.maxTouchPoints || 0) > 0;
-           const MIN_BOOT_MS = IS_TOUCH ? 1500 : 700;
+           // Keep the cinematic entry, but never leave an invisible full-screen
+           // hit target over an already-interactive directory.
+           const MIN_BOOT_MS = IS_TOUCH ? 350 : 250;
            const MAX_BOOT_MS = 5000;
            const FINISH_DELAY_MS = 100;
 
@@ -458,7 +460,9 @@
               trace('spinner-removed', reason || null);
               if (spinner) {
                 spinner.classList.add('fade-out');
-                 setTimeout(() => spinner.remove(), 220);
+                spinner.setAttribute('aria-busy', 'false');
+                spinner.style.pointerEvents = 'none';
+                setTimeout(() => spinner.remove(), 220);
               }
             }, FINISH_DELAY_MS);
           };
@@ -479,7 +483,9 @@
             const spinner = document.querySelector('.loading-spinner');
             if (spinner) {
               spinner.classList.add('fade-out');
-               setTimeout(() => spinner.remove(), 220);
+              spinner.setAttribute('aria-busy', 'false');
+              spinner.style.pointerEvents = 'none';
+              setTimeout(() => spinner.remove(), 220);
             }
           };
 

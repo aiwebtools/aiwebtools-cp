@@ -6,6 +6,7 @@ import {
 
 import materiumorHero from "@/assets/tools/materiumor-hero.jpg";
 import desalinizationSentinelHero from "@/assets/tools/desalinization-sentinel-hero.jpg";
+import cannabisInspectorHero from "@/assets/cannabis-inspector-hero.jpg";
 
 export const specializedAndNiche: Tool[] = [
   {
@@ -30,7 +31,7 @@ export const specializedAndNiche: Tool[] = [
     color: "from-green-500 to-emerald-600",
     directUrl: "https://cannabisgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/1fOxuIyl1C8",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-sleek-and-modern-advertisement-for-an-ai-.jpeg/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:98",
+    imageUrl: cannabisInspectorHero,
     tags: ["cannabis", "cultivation", "strain genetics", "legal cannabis", "plant health"],
     category: "Specialized & Niche",
     rating: 4.3,

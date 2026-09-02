@@ -221,7 +221,7 @@ export const perplexityBotsBatch2026: Tool[] = [
     icon: Leaf, title: "Cannabis PERPLEXITY BOT", emoji: "🌿", color: "from-lime-500 to-green-600",
     description: "Cannabis PERPLEXITY BOT is the Perplexity-powered edition of the AIWebTools.ai Cannabis custom GPT, published as an independent public Perplexity Project with its own full operational instructions. It answers with live web grounding and cited sources, and anyone can open the link and use it free — no sign-in required to view.",
     directUrl: "https://www.perplexity.ai/projects/cannabis-gpt-6lyqFVHWT42k54gqO.chpg",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-sleek-and-modern-advertisement-for-an-ai-.jpeg/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:98",
+    imageUrl: perplexityBotImage("new-cannabis-perplexity-bot"),
     tags: ["Cannabis PERPLEXITY BOT", "Cannabis", "Cannabis GPT", "Cannabis Perplexity", "Perplexity Bots", "Perplexity Bot", "Perplexity Project", "AIWebTools", "AIWebTools GPT", "custom GPT", "Perplexity AI", "free", "Free", "agri"],
     category: "Perplexity Bots", rating: 4.8, totalVotes: 120, isFree: true,
     tagline: "The Perplexity Bot edition of Cannabis by AIWebTools.ai"

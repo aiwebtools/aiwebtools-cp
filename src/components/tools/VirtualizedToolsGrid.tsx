@@ -24,14 +24,14 @@ const WindowedSection = memo(({ tools, indexOffset = 0, keyPrefix = "tool" }: Wi
       style={{ contain: "layout style", touchAction: "pan-y" }}
     >
         {tools.map((tool, localIndex) => {
-          const absoluteIndex = localIndex;
+          const absoluteIndex = indexOffset + localIndex;
+          const identity = tool.directUrl?.trim() || `${tool.title.toLowerCase().trim()}__${absoluteIndex}`;
           return (
             <div
               className="h-[220px] min-w-0"
-              key={`${keyPrefix}__${tool.title.toLowerCase().trim()}__${tool.directUrl ?? absoluteIndex}`}
-              style={{ contentVisibility: "auto", containIntrinsicSize: "220px" }}
+              key={`${keyPrefix}__${identity}`}
             >
-              <MinimalToolCard tool={tool} index={indexOffset + absoluteIndex} />
+              <MinimalToolCard tool={tool} index={absoluteIndex} />
             </div>
           );
         })}
@@ -41,11 +41,9 @@ const WindowedSection = memo(({ tools, indexOffset = 0, keyPrefix = "tool" }: Wi
 
 WindowedSection.displayName = "WindowedSection";
 
-// Pagination bounds the mounted cards. CSS content-visibility skips offscreen
-// painting without removing/repositioning rows while the user is scrolling.
-// This is intentionally more conservative than JS windowing: mobile browser
-// chrome changes viewport height during momentum scrolling, which previously
-// made absolute rows flicker, appear duplicated, or temporarily disappear.
+// Pagination bounds the mounted cards. Cards remain in normal document flow:
+// mobile browsers can safely resize their visual viewport during momentum
+// scrolling without content-visibility placeholders flashing or jumping.
 const VirtualizedToolsGrid = memo(({ 
   tools, 
   displayedCount,
