@@ -34,17 +34,31 @@ const qualityScore = (tool: Tool): number => {
   return score;
 };
 
+const normalizeTitle = (title: string): string =>
+  title.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+
+const removeRepeatedTitles = (tools: Tool[]): Tool[] => {
+  const winners = new Map<string, Tool>();
+  for (const tool of tools) {
+    const key = normalizeTitle(tool.title);
+    const current = winners.get(key);
+    if (!current || qualityScore(tool) > qualityScore(current)) winners.set(key, tool);
+  }
+  return Array.from(winners.values());
+};
+
 export const GPT_FEATURE_INTERVAL = 6;
 
 export const orderCategoryTools = (tools: Tool[], categoryKey: string): Tool[] => {
-  if (tools.length < 2) return tools;
+  const uniqueTools = removeRepeatedTitles(tools);
+  if (uniqueTools.length < 2) return uniqueTools;
 
   const rank = (tool: Tool) =>
     qualityScore(tool) + hash(`${categoryKey}::${tool.title}`) * 15;
 
   const gpts: Tool[] = [];
   const rest: Tool[] = [];
-  for (const tool of tools) {
+  for (const tool of uniqueTools) {
     (isAIWebToolsGPT(tool) ? gpts : rest).push(tool);
   }
 

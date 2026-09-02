@@ -17,7 +17,6 @@ import { mainCategories } from "@/utils/mainCategoryMapping";
 import { Tool } from "@/types/tools";
 import MainCategoryFilter from "@/components/category/MainCategoryFilter";
 import { useScrollMemory } from "@/hooks/useScrollMemory";
-import { orderCategoryTools } from "@/utils/category/categoryOrdering";
 
 const MainCategoryPage = () => {
   const { mainCategoryName } = useParams<{ mainCategoryName: string }>();
@@ -117,25 +116,14 @@ const MainCategoryPage = () => {
   // Keep category pagination finite and stable. Recommendations previously
   // changed the source list as displayedCount grew, which could make a scroll
   // window appear to repeat cards and made the category count misleading.
-  const finalFilteredTools = useMemo(() => {
-    const seen = new Set<string>();
-    const unique = toolsToShow.filter((tool) => {
-      const key = `${tool.title.toLowerCase().trim()}|||${tool.directUrl || ""}`;
-      if (seen.has(key)) return false;
-      seen.add(key);
-      return true;
-    });
-    // Deterministic ordering: strongest tools first with one AIWebTools custom
-    // GPT featured every 6th slot. Stable across pagination, so scrolling only
-    // ever reveals new, unique cards.
-    return orderCategoryTools(unique, decodedCategoryName);
-  }, [toolsToShow, decodedCategoryName]);
-
-
-  const displayedTools = useMemo(() => 
-    finalFilteredTools.slice(0, displayedCount), 
-    [finalFilteredTools, displayedCount]
+  const finalFilteredTools = useMemo(
+    // MainCategoryFilter owns the selected order (smart, alphabetical, or
+    // shuffle). Re-sorting its output here made controls snap back and caused
+    // already-seen cards to move while scrolling.
+    () => toolsToShow,
+    [toolsToShow]
   );
+
 
   // ALL EVENT HANDLERS - optimized for mobile
   const handleLoadMore = useCallback(() => {
@@ -290,7 +278,7 @@ const MainCategoryPage = () => {
 
               {/* Tools Grid with Infinite Scroll */}
               <div id="tools-section">
-                {displayedTools.length > 0 ? (
+                {finalFilteredTools.length > 0 ? (
                   <ToolsGrid
                     tools={finalFilteredTools}
                     displayedCount={displayedCount}

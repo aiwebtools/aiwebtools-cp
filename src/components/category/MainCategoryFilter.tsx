@@ -7,10 +7,10 @@ import { Badge } from "@/components/ui/badge";
 import { Tool } from "@/types/tools";
 import { mainCategories } from "@/utils/mainCategoryMapping";
 import { 
-  applySmartInterleavedSorting, 
   applyAlphabeticalWithDeprioritization,
   SortMode 
 } from "@/utils/toolSorting/smartToolSorting";
+import { orderCategoryTools } from "@/utils/category/categoryOrdering";
 
 // Agent sub-type definitions with emoji and keywords for filtering
 const AGENT_SUBTYPES: Array<{ id: string; label: string; emoji: string; keywords: string[] }> = [
@@ -187,8 +187,8 @@ const MainCategoryFilter = memo(({ tools, onFilteredToolsChange, currentMainCate
         break;
       case 'smart':
       default:
-        sortedTools = applySmartInterleavedSorting(baseFilteredTools, currentMainCategory);
-        console.log(`🎯 Smart Sort: ${sortedTools.length} tools with 2:1 interleaving`);
+        sortedTools = orderCategoryTools(baseFilteredTools, currentMainCategory);
+        console.log(`🎯 Smart Sort: ${sortedTools.length} unique tools with stable featured placement`);
         break;
     }
     

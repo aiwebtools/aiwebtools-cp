@@ -1,5 +1,5 @@
 
-import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import React, { memo, useMemo } from "react";
 import { Tool } from "@/types/tools";
 import MinimalToolCard from "../MinimalToolCard";
 
@@ -11,20 +11,6 @@ export interface VirtualizedToolsGridProps {
   filteredToolsCount?: number; // Number of tools from selected categories (before recommendations)
 }
 
-// MinimalToolCard is intentionally given a stable height below. Keeping this
-// value in sync prevents the mobile window from drifting away from the real
-// card positions and rendering an empty viewport.
-const DEFAULT_ROW_HEIGHT = 220;
-const ROW_GAP = 16;
-const OVERSCAN_ROWS = 3;
-
-const getColumnCount = () => {
-  if (typeof window === "undefined") return 1;
-  if (window.innerWidth >= 1280) return 3;
-  if (window.innerWidth >= 768) return 2;
-  return 1;
-};
-
 interface WindowedSectionProps {
   tools: Tool[];
   indexOffset?: number;
@@ -32,91 +18,34 @@ interface WindowedSectionProps {
 }
 
 const WindowedSection = memo(({ tools, indexOffset = 0, keyPrefix = "tool" }: WindowedSectionProps) => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const frameRef = useRef<number | null>(null);
-  const [columns, setColumns] = useState(getColumnCount);
-  const [range, setRange] = useState({ start: 0, end: 10 });
-
-  const rowCount = Math.ceil(tools.length / columns);
-  const stride = DEFAULT_ROW_HEIGHT + ROW_GAP;
-  const totalHeight = Math.max(0, rowCount * stride - ROW_GAP);
-
-  const updateRange = useCallback(() => {
-    const container = containerRef.current;
-    if (!container) return;
-    const rect = container.getBoundingClientRect();
-    const viewportTop = -rect.top;
-    const viewportBottom = viewportTop + window.innerHeight;
-
-    // Clamp both edges. The old calculation produced a negative `end` while
-    // the grid was below the viewport (mounting almost every card via
-    // Array.slice) and a `start` beyond rowCount after mobile momentum scroll,
-    // which caused the visible black/flickering gaps.
-    const start = Math.min(
-      rowCount,
-      Math.max(0, Math.floor(viewportTop / stride) - OVERSCAN_ROWS)
-    );
-    const end = Math.max(
-      start,
-      Math.min(rowCount, Math.ceil(viewportBottom / stride) + OVERSCAN_ROWS)
-    );
-    setRange((current) => current.start === start && current.end === end ? current : { start, end });
-  }, [rowCount, stride]);
-
-  useEffect(() => {
-    const schedule = () => {
-      if (frameRef.current !== null) return;
-      frameRef.current = requestAnimationFrame(() => {
-        frameRef.current = null;
-        updateRange();
-      });
-    };
-    const handleResize = () => {
-      setColumns(getColumnCount());
-      schedule();
-    };
-    window.addEventListener("scroll", schedule, { passive: true });
-    window.addEventListener("resize", handleResize, { passive: true });
-    schedule();
-    return () => {
-      window.removeEventListener("scroll", schedule);
-      window.removeEventListener("resize", handleResize);
-      if (frameRef.current !== null) cancelAnimationFrame(frameRef.current);
-    };
-  }, [updateRange]);
-
-  useEffect(() => updateRange(), [tools.length, columns, updateRange]);
-
-  const startIndex = range.start * columns;
-  const endIndex = Math.min(tools.length, range.end * columns);
-  const visibleTools = useMemo(() => tools.slice(startIndex, endIndex), [tools, startIndex, endIndex]);
-
   return (
-    <div ref={containerRef} className="relative w-full" style={{ height: `${totalHeight}px`, contain: "layout style" }}>
-      <div
-        className="absolute left-0 right-0 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4"
-        style={{ top: `${range.start * stride}px`, touchAction: "pan-y" }}
-      >
-        {visibleTools.map((tool, localIndex) => {
-          const absoluteIndex = startIndex + localIndex;
+    <div
+      className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4"
+      style={{ contain: "layout style", touchAction: "pan-y" }}
+    >
+        {tools.map((tool, localIndex) => {
+          const absoluteIndex = localIndex;
           return (
             <div
               className="h-[220px] min-w-0"
-              key={`${keyPrefix}__${tool.title}__${tool.directUrl ?? absoluteIndex}`}
+              key={`${keyPrefix}__${tool.title.toLowerCase().trim()}__${tool.directUrl ?? absoluteIndex}`}
+              style={{ contentVisibility: "auto", containIntrinsicSize: "220px" }}
             >
               <MinimalToolCard tool={tool} index={indexOffset + absoluteIndex} />
             </div>
           );
         })}
-      </div>
     </div>
   );
 });
 
 WindowedSection.displayName = "WindowedSection";
 
-// Real row-windowed grid: loaded tools remain available while only nearby rows
-// are mounted, keeping DOM size bounded even after thousands of results load.
+// Pagination bounds the mounted cards. CSS content-visibility skips offscreen
+// painting without removing/repositioning rows while the user is scrolling.
+// This is intentionally more conservative than JS windowing: mobile browser
+// chrome changes viewport height during momentum scrolling, which previously
+// made absolute rows flicker, appear duplicated, or temporarily disappear.
 const VirtualizedToolsGrid = memo(({ 
   tools, 
   displayedCount,
