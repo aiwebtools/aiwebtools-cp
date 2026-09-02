@@ -14,6 +14,7 @@ import AutoScaleTitle from "@/components/ui/auto-scale-title";
 import { trackToolClickEvent } from "@/hooks/useToolAnalytics";
 import { civicTransparencyBatch2026 } from "@/data/tools/civicTransparencyBatch2026";
 import { toFeatureLabels } from "@/utils/search/featuredCardHelpers";
+import cannabisInspectorHero from "@/assets/cannabis-inspector-hero.jpg";
 
 // Weighted shuffle - keeps high-quality tools near the top but adds randomness
 // PRIORITY: Dream-conquering practical tools FIRST, then spirituality/awakening
