@@ -13,8 +13,8 @@ import { allTools } from "@/data/toolsData";
 import { getToolsByCategory } from "@/utils/categoryUtils";
 import { getStandardizedCategoryTitle } from "@/utils/categoryTitles";
 import { generateStructuredData } from "@/utils/seo";
-import { getContextAwareAdditionalTools } from "@/utils/contextAwareSimilarTools";
 import { searchTools } from "@/utils/searchUtils";
+import { orderCategoryTools } from "@/utils/category/categoryOrdering";
 
 const CategoryPage = () => {
   const { categoryName } = useParams();
