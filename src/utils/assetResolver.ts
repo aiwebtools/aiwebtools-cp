@@ -60,7 +60,7 @@ export const useResolvedToolImage = (rawUrl?: string | null): string | undefined
       };
     }
     loadAssetUrls().then((map) => {
-      if (active) setResolved(map[raw]);
+      if (active) setResolved(map[raw] ?? getCachedAssetUrl(raw));
     });
     return () => {
       active = false;
