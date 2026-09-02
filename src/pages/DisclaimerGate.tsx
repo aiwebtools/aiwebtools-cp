@@ -375,12 +375,18 @@ const DisclaimerGate: React.FC = () => {
     <div className="min-h-screen bg-black flex items-center justify-center px-4">
       <ImprovedSEOHead pageType="homepage" />
       <Helmet>
-        <title>Welcome — AIWEBTOOLS Disclaimer & Consent</title>
-        <meta name="description" content="Welcome to AIWEBTOOLS. Review the disclaimer and enter the 4,000+ AI tools directory — ChatGPT alternatives, custom GPTs, AI agents and more." />
-        <meta property="og:title" content="Welcome — AIWEBTOOLS Disclaimer & Consent" />
-        <meta property="og:description" content="Review the disclaimer and enter the 4,000+ AI tools directory." />
-        <link rel="canonical" href="https://aiwebtools.app/welcome" />
+        <title>AI Web Tools — 4,000+ Best Free AI Tools Directory</title>
+        <meta name="description" content="Explore 4,000+ AI tools: ChatGPT alternatives, custom GPTs, AI agents, image, video, writing and business AI — free and updated daily." />
+        <meta name="robots" content="noindex, follow" />
+        <meta property="og:title" content="AI Web Tools — 4,000+ Best Free AI Tools Directory" />
+        <meta property="og:description" content="Explore 4,000+ AI tools: ChatGPT alternatives, custom GPTs, AI agents, image, video, writing and business AI — free and updated daily." />
+        <meta property="og:image" content="https://aiwebtools.app/og-default.jpg" />
+        <meta name="twitter:title" content="AI Web Tools — 4,000+ Best Free AI Tools Directory" />
+        <meta name="twitter:description" content="Explore 4,000+ AI tools: ChatGPT alternatives, custom GPTs, AI agents, image, video, writing and business AI — free and updated daily." />
+        <meta name="twitter:image" content="https://aiwebtools.app/og-default.jpg" />
+        <link rel="canonical" href="https://aiwebtools.app/" />
       </Helmet>
+
       <div className="max-w-md w-full bg-gray-900 border-2 border-cyan-500 rounded-2xl p-6 shadow-2xl shadow-cyan-500/30 animate-fade-in">
         <div className="text-center mb-6">
           <div className="flex items-center justify-center gap-3 mb-3">
