@@ -28,14 +28,6 @@
 
 /* Hardware acceleration for mobile */
 @media (max-width: 768px) {
-  .tool-card,
-  .category-filter,
-  .search-input {
-    transform: translateZ(0);
-    backface-visibility: hidden;
-    perspective: 1000px;
-  }
-
   /* Optimize touch interactions - pan-y allows vertical scroll on cards */
   .tool-card {
     touch-action: pan-y;
@@ -53,9 +45,7 @@
 
   /* Optimize scrolling performance */
   .tools-grid {
-    contain: layout style paint;
-    content-visibility: auto;
-    contain-intrinsic-size: 300px 400px;
+    contain: layout style;
   }
 
   /* Reduce reflow/repaint on mobile */

@@ -34,6 +34,14 @@ const qualityScore = (tool: Tool): number => {
   return score;
 };
 
+const isCompetingDirectory = (tool: Tool, categoryKey: string): boolean => {
+  if (categoryKey === "AI TOOL DATABASES") return false;
+  const category = (tool.category || "").toLowerCase();
+  const tags = Array.isArray(tool.tags) ? tool.tags.join(" ").toLowerCase() : "";
+  return category.includes("tool database") || category.includes("ai director") ||
+    tags.includes("ai tool directory") || tags.includes("tool aggregator");
+};
+
 const normalizeTitle = (title: string): string =>
   title.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
 
@@ -53,8 +61,12 @@ export const orderCategoryTools = (tools: Tool[], categoryKey: string): Tool[] =
   const uniqueTools = removeRepeatedTitles(tools);
   if (uniqueTools.length < 2) return uniqueTools;
 
+  // Category-specific variety drives position; metadata completeness is only a
+  // tiebreaker. Competing directories stay discoverable but never monopolize
+  // the prime slots outside their own category.
   const rank = (tool: Tool) =>
-    qualityScore(tool) + hash(`${categoryKey}::${tool.title}`) * 15;
+    hash(`${categoryKey}::${tool.title}`) * 100 + qualityScore(tool) * 0.15 -
+    (isCompetingDirectory(tool, categoryKey) ? 500 : 0);
 
   const gpts: Tool[] = [];
   const rest: Tool[] = [];

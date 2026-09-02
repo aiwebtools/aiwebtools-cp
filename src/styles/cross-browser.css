@@ -78,10 +78,11 @@
     transform: none;
   }
   
-  /* Optimize scrolling - pan-y allows vertical scroll on all elements */
-  * {
+  /* Keep native page and carousel gestures available; only tap targets need
+     manipulation. A blanket pan-y rule made nested scrollers feel locked. */
+  [data-scroll-region], .overflow-x-auto, .overflow-y-auto {
     -webkit-overflow-scrolling: touch;
-    touch-action: pan-y;
+    touch-action: auto;
   }
 
   /* Keep actual tap targets clickable in mobile in-app browsers. */

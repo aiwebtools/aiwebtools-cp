@@ -68,15 +68,29 @@ export const useScrollMemory = ({
     }
 
     let secondFrame = 0;
+    let cancelledByUser = false;
+    const cancelRestore = () => {
+      cancelledByUser = true;
+      cancelAnimationFrame(firstFrame);
+      if (secondFrame) cancelAnimationFrame(secondFrame);
+    };
     const firstFrame = requestAnimationFrame(() => {
-      secondFrame = requestAnimationFrame(() => window.scrollTo({ top: scrollY, behavior: "auto" }));
+      secondFrame = requestAnimationFrame(() => {
+        if (!cancelledByUser) window.scrollTo({ top: scrollY, behavior: "auto" });
+      });
     });
+    window.addEventListener("wheel", cancelRestore, { passive: true, once: true });
+    window.addEventListener("touchmove", cancelRestore, { passive: true, once: true });
+    window.addEventListener("pointerdown", cancelRestore, { passive: true, once: true });
 
     // Cancelling both frames is critical: an old page must never scroll a newly
     // mounted category after navigation.
     return () => {
       cancelAnimationFrame(firstFrame);
       if (secondFrame) cancelAnimationFrame(secondFrame);
+      window.removeEventListener("wheel", cancelRestore);
+      window.removeEventListener("touchmove", cancelRestore);
+      window.removeEventListener("pointerdown", cancelRestore);
     };
   }, [location.key, navigationType, onRestoreDisplayedCount, ready, storageKey]);
 };

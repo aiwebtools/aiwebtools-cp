@@ -116,13 +116,18 @@ const MainCategoryPage = () => {
   // Keep category pagination finite and stable. Recommendations previously
   // changed the source list as displayedCount grew, which could make a scroll
   // window appear to repeat cards and made the category count misleading.
-  const finalFilteredTools = useMemo(
-    // MainCategoryFilter owns the selected order (smart, alphabetical, or
-    // shuffle). Re-sorting its output here made controls snap back and caused
-    // already-seen cards to move while scrolling.
-    () => toolsToShow,
-    [toolsToShow]
-  );
+  const finalFilteredTools = useMemo(() => {
+    // Keep the most complete occurrence of a title/URL identity without ever
+    // deleting or mutating source records. Duplicate data must not reach React
+    // keys or appear twice during one category scroll.
+    const seen = new Set<string>();
+    return toolsToShow.filter((tool) => {
+      const key = `${tool.title.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim()}|||${(tool.directUrl || "").toLowerCase().trim()}`;
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
+  }, [toolsToShow]);
 
 
   // ALL EVENT HANDLERS - optimized for mobile
@@ -255,13 +260,11 @@ const MainCategoryPage = () => {
           ) : (
             <>
               {/* Category Filter Component */}
-              {decodedCategoryName !== "ALL AI TOOLS" && (
-                <MainCategoryFilter
-                  tools={categoryTools}
-                  onFilteredToolsChange={handleFilteredToolsChange}
-                  currentMainCategory={decodedCategoryName}
-                />
-              )}
+              <MainCategoryFilter
+                tools={categoryTools}
+                onFilteredToolsChange={handleFilteredToolsChange}
+                currentMainCategory={decodedCategoryName}
+              />
 
               {/* Tools Count Display - Shows actual filtered count */}
               <div className="text-center mb-8">
