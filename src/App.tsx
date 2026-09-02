@@ -266,7 +266,20 @@ const queryClient = new QueryClient({
   },
 });
 
+// Legacy/plural category links (/categories/:name) map to the canonical
+// /main-category/:name path so deep links never dead-end on the 404 page.
+const LegacyCategoryRedirect = () => {
+  const { mainCategoryName } = useParams<{ mainCategoryName: string }>();
+  return (
+    <Navigate
+      to={`/main-category/${encodeURIComponent(decodeURIComponent(mainCategoryName || "ALL AI TOOLS"))}`}
+      replace
+    />
+  );
+};
+
 // Routes wrapper - eager pages render instantly, lazy pages show loader
+
 const AnimatedRoutes = () => {
   const location = useLocation();
 
