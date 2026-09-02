@@ -35,55 +35,33 @@ const CategoryPage = () => {
     return tools;
   }, [standardizedCategory]);
 
-  // Endless tools generation for categories
+  // Stable, deduplicated, deterministically ordered list. No random filler:
+  // random re-shuffles on every "load more" made scrolled cards appear to
+  // repeat. Pagination now only ever appends new, unique tools.
   const finalFilteredTools = useMemo(() => {
-    let endlessTools = [...categoryTools];
-    
-    // If filter search is active, use intelligent search across ALL tools
-    if (filterSearchTerm.trim()) {
-      const searchResults = searchTools(allTools, filterSearchTerm);
+    const source = filterSearchTerm.trim()
+      ? searchTools(allTools, filterSearchTerm)
+      : categoryTools;
 
-      // Use search results but still apply endless scroll logic
-      endlessTools = searchResults;
-      const remaining = displayedCount - endlessTools.length;
-      if (remaining > 0) {
-        // Add more tools from the search results if available
-        const additionalResults = searchResults.slice(endlessTools.length, endlessTools.length + remaining);
-        endlessTools = [...endlessTools, ...additionalResults];
-      }
-    } else {
-      // Original category-based logic when no filter is active
-      const remaining = displayedCount - endlessTools.length;
-      if (remaining > 0) {
-        const similar = getContextAwareAdditionalTools(
-          endlessTools,
-          "",
-          standardizedCategory,
-          Math.min(remaining, 100)
-        );
-        const uniqueSimilar = similar.filter(tool => 
-          !endlessTools.some(existing => existing.title === tool.title)
-        );
-        endlessTools = [...endlessTools, ...uniqueSimilar];
-        const stillNeeded = displayedCount - endlessTools.length;
-        if (stillNeeded > 0) {
-          const others = allTools.filter(tool => 
-            !endlessTools.some(existing => existing.title === tool.title)
-          );
-          endlessTools = [...endlessTools, ...others.slice(0, stillNeeded)];
-        }
-      }
-    }
-    
-    return endlessTools;
-  }, [categoryTools, displayedCount, standardizedCategory, filterSearchTerm]);
+    const seen = new Set<string>();
+    const unique = source.filter((tool) => {
+      const key = `${tool.title.toLowerCase().trim()}|||${tool.directUrl || ""}`;
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
+
+    if (filterSearchTerm.trim()) return unique;
+    return orderCategoryTools(unique, standardizedCategory);
+  }, [categoryTools, standardizedCategory, filterSearchTerm]);
 
   useEffect(() => {
-    // Scroll to top when category changes
+    // Scroll to top when the category itself changes.
     window.scrollTo(0, 0);
     setDisplayedCount(48);
     setFilterSearchTerm(""); // Clear filter when category changes
-  }, [standardizedCategory, categoryTools.length]);
+  }, [standardizedCategory]);
+
 
   const handleLoadMore = useCallback(() => {
     setIsLoading((loading) => {

@@ -17,6 +17,7 @@ import { mainCategories } from "@/utils/mainCategoryMapping";
 import { Tool } from "@/types/tools";
 import MainCategoryFilter from "@/components/category/MainCategoryFilter";
 import { useScrollMemory } from "@/hooks/useScrollMemory";
+import { orderCategoryTools } from "@/utils/category/categoryOrdering";
 
 const MainCategoryPage = () => {
   const { mainCategoryName } = useParams<{ mainCategoryName: string }>();
