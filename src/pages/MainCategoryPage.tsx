@@ -17,6 +17,7 @@ import { mainCategories } from "@/utils/mainCategoryMapping";
 import { Tool } from "@/types/tools";
 import MainCategoryFilter from "@/components/category/MainCategoryFilter";
 import { useScrollMemory } from "@/hooks/useScrollMemory";
+import { orderCategoryTools } from "@/utils/category/categoryOrdering";
 
 const MainCategoryPage = () => {
   const { mainCategoryName } = useParams<{ mainCategoryName: string }>();
@@ -118,13 +119,18 @@ const MainCategoryPage = () => {
   // window appear to repeat cards and made the category count misleading.
   const finalFilteredTools = useMemo(() => {
     const seen = new Set<string>();
-    return toolsToShow.filter((tool) => {
+    const unique = toolsToShow.filter((tool) => {
       const key = `${tool.title.toLowerCase().trim()}|||${tool.directUrl || ""}`;
       if (seen.has(key)) return false;
       seen.add(key);
       return true;
     });
-  }, [toolsToShow]);
+    // Deterministic ordering: strongest tools first with one AIWebTools custom
+    // GPT featured every 6th slot. Stable across pagination, so scrolling only
+    // ever reveals new, unique cards.
+    return orderCategoryTools(unique, decodedCategoryName);
+  }, [toolsToShow, decodedCategoryName]);
+
 
   const displayedTools = useMemo(() => 
     finalFilteredTools.slice(0, displayedCount), 

@@ -4,7 +4,7 @@ import { Suspense } from 'react';
 import { Toaster } from "./components/ui/sonner";
 import { TooltipProvider } from "./components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, useLocation, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation, useParams, Navigate } from "react-router-dom";
 import { HelmetProvider } from 'react-helmet-async';
 import { FavoritesProvider } from "@/hooks/useFavorites";
 import { VideoManagerProvider } from "@/hooks/useGlobalVideoManager";
@@ -266,7 +266,20 @@ const queryClient = new QueryClient({
   },
 });
 
+// Legacy/plural category links (/categories/:name) map to the canonical
+// /main-category/:name path so deep links never dead-end on the 404 page.
+const LegacyCategoryRedirect = () => {
+  const { mainCategoryName } = useParams<{ mainCategoryName: string }>();
+  return (
+    <Navigate
+      to={`/main-category/${encodeURIComponent(decodeURIComponent(mainCategoryName || "ALL AI TOOLS"))}`}
+      replace
+    />
+  );
+};
+
 // Routes wrapper - eager pages render instantly, lazy pages show loader
+
 const AnimatedRoutes = () => {
   const location = useLocation();
 
@@ -293,6 +306,7 @@ const AnimatedRoutes = () => {
   const instantTool = (location.state as any)?.instantTool;
   const toolFallback = <InstantToolFallback tool={instantTool} />;
   const categoryFallback = <InstantCategoryFallback />;
+
   const isAllToolsRoute = decodeURIComponent(location.pathname) === "/main-category/ALL AI TOOLS";
 
   if (isAllToolsRoute) {
@@ -309,6 +323,10 @@ const AnimatedRoutes = () => {
     <Suspense fallback={<PageLoader />}>
       <Routes location={location}>
         <Route path="/category/:categoryName" element={<RouteReadySignal><CategoryPage /></RouteReadySignal>} />
+        {/* Canonical category path is /main-category/:name — keep legacy/plural links alive. */}
+        <Route path="/categories" element={<Navigate to="/main-category/ALL%20AI%20TOOLS" replace />} />
+        <Route path="/categories/:mainCategoryName" element={<LegacyCategoryRedirect />} />
+
         <Route path="/main-category/:mainCategoryName" element={<Suspense fallback={categoryFallback}><RouteReadySignal><MainCategoryPage /></RouteReadySignal></Suspense>} />
         <Route path="/tool/:toolId" element={<RouteReadySignal><ToolDetail /></RouteReadySignal>} />
         <Route path="/:toolSlug" element={<RouteReadySignal><ToolDetail /></RouteReadySignal>} />
