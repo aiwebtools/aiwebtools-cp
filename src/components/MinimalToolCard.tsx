@@ -76,7 +76,7 @@ const MinimalToolCard = memo(({ tool, index = 0 }: MinimalToolCardProps) => {
 
   return (
     <Card 
-      className="group h-full overflow-hidden cursor-pointer hover:shadow-lg transition-all duration-200 border-gray-800 bg-gray-900/50 hover:bg-gray-800/70 relative"
+      className="group h-full overflow-hidden cursor-pointer hover:shadow-lg transition-colors duration-150 border-gray-800 bg-gray-900/50 hover:bg-gray-800/70 relative"
       onClick={handleClick}
       onKeyDown={(e) => {
         if (e.key === "Enter" || e.key === " ") {

@@ -314,9 +314,18 @@ let smartSortCache: Map<string, Tool[]> = new Map();
 const MAX_CACHE_SIZE = 20;
 
 const getToolsHash = (tools: Tool[]): string => {
-  // Fast hash: use length + first/last titles
+  // Fingerprint every item. Length + first/last collided for different filter
+  // subsets and returned a stale list from another category/filter state.
   if (tools.length === 0) return 'empty';
-  return `${tools.length}-${tools[0]?.title || ''}-${tools[tools.length - 1]?.title || ''}`;
+  let hash = 2166136261;
+  for (const tool of tools) {
+    const value = `${tool.title}\u0000${tool.directUrl || ''}`;
+    for (let i = 0; i < value.length; i++) {
+      hash ^= value.charCodeAt(i);
+      hash = Math.imul(hash, 16777619);
+    }
+  }
+  return `${tools.length}-${hash >>> 0}`;
 };
 
 /**

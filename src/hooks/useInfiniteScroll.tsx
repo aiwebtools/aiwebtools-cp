@@ -26,7 +26,6 @@ export const useInfiniteScroll = ({
   const isLoadingRef = useRef(isLoading);
   const displayedCountRef = useRef(displayedCount);
   const totalToolsRef = useRef(totalTools);
-  const lastScrollY = useRef(0);
   const lastLoadAt = useRef(0);
   
   // Update refs for current values
@@ -52,74 +51,6 @@ export const useInfiniteScroll = ({
     }
     onLoadMore();
   }, [onLoadMore, searchTerm, selectedCategory, totalTools]);
-
-  // IntersectionObserver in ToolsGrid is the primary trigger. This passive
-  // scroll fallback covers browsers/webviews with unreliable observers.
-  useEffect(() => {
-    // Don't enable infinite scroll if explicitly disabled or if load more button is preferred
-    if (!enableInfiniteScroll || showLoadMoreButton) return;
-    
-    const hasMoreToLoad = displayedCount < totalTools;
-    
-    // For search results, only enable if there are more tools to load
-    if (!hasMoreToLoad) return;
-    
-    let ticking = false;
-    
-    const handleScroll = () => {
-      // Throttle scroll events using requestAnimationFrame for smooth performance
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          const scrollTop = window.pageYOffset;
-          const windowHeight = window.innerHeight;
-          const documentHeight = document.documentElement.scrollHeight;
-          
-          // Only trigger if scrolling down (prevent accidental triggers when scrolling up)
-          const isScrollingDown = scrollTop > lastScrollY.current;
-          lastScrollY.current = scrollTop;
-          
-          if (!isScrollingDown) {
-            ticking = false;
-            return;
-          }
-          
-          // INCREASED thresholds - trigger loading MUCH earlier before user reaches bottom
-          let threshold = 1500; // Default for main page - start loading 1500px before bottom
-          if (searchTerm) {
-            threshold = 1200; // Aggressive for search results
-          } else if (selectedCategory) {
-            threshold = 1800; // Very aggressive for categories - load well ahead
-          }
-          
-          const nearBottom = scrollTop + windowHeight >= documentHeight - threshold;
-          
-          if (nearBottom && !isLoadingRef.current) {
-            const hasMoreToShow = displayedCountRef.current < totalToolsRef.current;
-            const shouldLoad = hasMoreToShow;
-            
-            if (shouldLoad) {
-              // NO DELAY - load immediately for instant feel
-              handleLoadMore();
-            }
-          }
-          
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
-
-    // Use passive listener for better scroll performance
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    
-    // Also trigger on initial mount in case we need more content
-    const initialCheckId = window.setTimeout(() => handleScroll(), 50);
-    
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.clearTimeout(initialCheckId);
-    };
-  }, [displayedCount, handleLoadMore, isLoading, showLoadMoreButton, totalTools, searchTerm, selectedCategory, enableInfiniteScroll]);
 
   // Auto-top-up for short pages (ensure viewport is filled on category pages)
   useEffect(() => {
