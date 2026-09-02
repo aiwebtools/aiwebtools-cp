@@ -293,6 +293,7 @@ const AnimatedRoutes = () => {
   const instantTool = (location.state as any)?.instantTool;
   const toolFallback = <InstantToolFallback tool={instantTool} />;
   const categoryFallback = <InstantCategoryFallback />;
+
   const isAllToolsRoute = decodeURIComponent(location.pathname) === "/main-category/ALL AI TOOLS";
 
   if (isAllToolsRoute) {
