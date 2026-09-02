@@ -52,6 +52,9 @@ let assetsResolved = false;
 const resolveRawAssetPaths = () => {
   if (assetsResolved || !cache) return;
   assetsResolved = true;
+  // Dev serves "/src/assets/..." straight from Vite; importing the eager glob
+  // map here would fire thousands of module requests and stall the page.
+  if (import.meta.env.DEV) return;
   import("./toolAssetUrls")
     .then(({ assetUrlByPath }) => {
       if (!cache) return;
