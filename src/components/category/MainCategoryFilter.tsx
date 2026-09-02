@@ -10,7 +10,7 @@ import {
   applyAlphabeticalWithDeprioritization,
   SortMode 
 } from "@/utils/toolSorting/smartToolSorting";
-import { orderCategoryTools } from "@/utils/category/categoryOrdering";
+import { orderCategoryTools, dedupeTools } from "@/utils/category/categoryOrdering";
 
 // Agent sub-type definitions with emoji and keywords for filtering
 const AGENT_SUBTYPES: Array<{ id: string; label: string; emoji: string; keywords: string[] }> = [
@@ -169,11 +169,11 @@ const MainCategoryFilter = memo(({ tools, onFilteredToolsChange, currentMainCate
     
     switch (sortMode) {
       case 'az':
-        sortedTools = applyAlphabeticalWithDeprioritization(baseFilteredTools, 'asc');
+        sortedTools = applyAlphabeticalWithDeprioritization(dedupeTools(baseFilteredTools), 'asc');
         console.log(`🔤 A-Z Sort: ${sortedTools.length} tools`);
         break;
       case 'za':
-        sortedTools = applyAlphabeticalWithDeprioritization(baseFilteredTools, 'desc');
+        sortedTools = applyAlphabeticalWithDeprioritization(dedupeTools(baseFilteredTools), 'desc');
         console.log(`🔤 Z-A Sort: ${sortedTools.length} tools`);
         break;
       case 'shuffle':
@@ -182,7 +182,7 @@ const MainCategoryFilter = memo(({ tools, onFilteredToolsChange, currentMainCate
           return lastSortRef.current.tools;
         }
         const seed = Date.now() + shuffleKey * 12345;
-        sortedTools = shuffleArray(baseFilteredTools, seed);
+        sortedTools = shuffleArray(dedupeTools(baseFilteredTools), seed);
         console.log(`🔀 Shuffle #${shuffleKey}: ${sortedTools.length} tools (first 3: ${sortedTools.slice(0, 3).map(t => t.title).join(', ')})`);
         break;
       case 'smart':
