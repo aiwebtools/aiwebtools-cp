@@ -25,7 +25,13 @@ const WindowedSection = memo(({ tools, indexOffset = 0, keyPrefix = "tool" }: Wi
     >
         {tools.map((tool, localIndex) => {
           const absoluteIndex = indexOffset + localIndex;
-          const identity = tool.directUrl?.trim() || `${tool.title.toLowerCase().trim()}__${absoluteIndex}`;
+          // A URL alone is not unique: suites and provider families frequently
+          // expose several distinct tools through the same destination. Keep
+          // both identity fields in the key so React never reuses the wrong card
+          // after A–Z, Z–A, shuffle, or incremental pagination updates.
+          const normalizedTitle = tool.title.toLowerCase().trim();
+          const normalizedUrl = tool.directUrl?.trim().toLowerCase() || "no-url";
+          const identity = `${normalizedTitle}__${normalizedUrl}`;
           return (
             <div
               className="h-[220px] min-w-0"
