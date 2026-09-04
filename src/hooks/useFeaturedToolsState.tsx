@@ -1,6 +1,6 @@
 
 import { useState, useMemo, useCallback } from "react";
-import { allTools, featuredTools } from "@/data/toolsData";
+import { allTools } from "@/data/toolsData";
 import { searchTools } from "@/utils/search/searchUtils";
 import { getToolsByCategory } from "@/utils/categoryUtils";
 import { getSortedStandardizedCategories } from "@/utils/categoryTitles";
@@ -70,9 +70,11 @@ export const useFeaturedToolsState = () => {
         tools = searchTools(allTools, trimmedTerm);
       }
     } else {
-      // The featured collection is the complete AIWebTools portfolio: custom
-      // GPTs, Gemini Gems, and Perplexity Bots, already power-ranked once.
-      tools = featuredTools;
+      // This hook powers the homepage's full search portal. Dedicated featured
+      // sections already showcase our GPTs, Gems, and Perplexity Bots above it;
+      // the default browse grid must retain the complete directory so infinite
+      // scroll can reach every catalogued tool.
+      tools = allTools;
     }
 
     // Apply FREE filter if enabled
