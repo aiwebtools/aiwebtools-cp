@@ -156,7 +156,7 @@ const buildSpotlight = (tool: Tool, index: number, siblings: Tool[]): Spotlight 
     emoji: tool.emoji || "🤖",
     imageUrl: tool.imageUrl,
     title,
-    metaTitle: truncate(`${title} | AIWebTools.ai`, 60),
+    metaTitle: title.length <= 45 ? `${title} | AIWebTools.ai` : truncate(title, 60),
     metaDescription,
     intro: `${description}`,
     keywords: Array.from(
