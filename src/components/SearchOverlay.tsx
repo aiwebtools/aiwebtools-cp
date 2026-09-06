@@ -115,6 +115,16 @@ const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
               {displayedCount < searchResults.length && ` • Showing first ${displayedCount}`}
             </div>
 
+            {searchTerm.trim() && (
+              <AISearchAssistant
+                query={searchTerm.trim()}
+                candidates={searchResults}
+                onPick={handleToolClick}
+              />
+            )}
+
+
+
             <div 
               className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-h-96 overflow-y-auto scrollbar-thin scrollbar-thumb-cyan-500/50 scrollbar-track-gray-800"
               onScroll={handleScroll}
