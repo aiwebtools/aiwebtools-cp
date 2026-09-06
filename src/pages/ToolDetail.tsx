@@ -181,6 +181,8 @@ const ToolDetail = () => {
                 <ToolMedia tool={tool} toolIndex={toolIndex} />
                 <ToolActions tool={tool} />
                 <ToolDescription tool={tool} />
+                <ToolAIExplainer tool={tool} />
+                <ToolPromptHelper tool={tool} />
                 <ToolTags tool={tool} />
               </CardContent>
             </Card>
