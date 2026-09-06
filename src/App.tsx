@@ -339,6 +339,8 @@ const AnimatedRoutes = () => {
         <Route path="/chatgpt-alternatives" element={<RouteReadySignal><ChatGPTAlternatives /></RouteReadySignal>} />
         <Route path="/blog" element={<RouteReadySignal><BlogPage /></RouteReadySignal>} />
         <Route path="/blog/:slug" element={<RouteReadySignal><BlogPostPage /></RouteReadySignal>} />
+        <Route path="/spotlights" element={<RouteReadySignal><SpotlightsPage /></RouteReadySignal>} />
+        <Route path="/spotlight/:slug" element={<RouteReadySignal><SpotlightPage /></RouteReadySignal>} />
         <Route path="/gaming-entertainment" element={<RouteReadySignal><GamingEntertainmentPage /></RouteReadySignal>} />
         <Route path="/faq" element={<RouteReadySignal><FAQPage /></RouteReadySignal>} />
         <Route path="/ai-tools" element={<RouteReadySignal><AIToolsPage /></RouteReadySignal>} />
