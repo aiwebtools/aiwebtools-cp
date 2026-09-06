@@ -55,6 +55,7 @@ export const MUSIC_VIDEO_GALLERY: Array<{ id: string; title: string }> = [
   { id: "TJA23SQmTu0", title: "August 25 Drop XXVII | Official AI Music Video | AIWebTools.ai" },
   // ── MTV LINE-UP (newest drops — play FIRST in the 9:16 reel) ──
   { id: "mSJtr_jW3vY", title: "AIWEBTOOLS – Newest Drop | Official AI Music Video | AIWebTools.ai" },
+  { id: "MMpCWkhjuas", title: "AIWEBTOOLS – Newest Drop | Official AI Music Video | AIWebTools.ai" },
   { id: "IWijCkZUmrg", title: "AIWEBTOOLS – Newest Drop | Official AI Music Video | AIWebTools.ai" },
   { id: "RSovmNDLSnM", title: "Relatable Movie Scenes | Official AI Music Video | AIWebTools.ai" },
   { id: "KB1sRHXUUps", title: "Truth So Ya Know | Official AI Music Video | AIWebTools.ai" },

@@ -292,6 +292,7 @@ const BookPromotionCard = () => {
     { id: "TJA23SQmTu0", title: "August 25 Drop XXVII | Official AI Music Video | AIWebTools.ai", gradient: "from-fuchsia-500/20 to-purple-500/20" },
     // ── MTV LINE-UP (newest drops — play FIRST in the carousel) ──
     { id: "mSJtr_jW3vY", title: "AIWEBTOOLS – Newest Drop | Official AI Music Video | AIWebTools.ai", gradient: "from-violet-500/20 to-cyan-500/20" },
+    { id: "MMpCWkhjuas", title: "AIWEBTOOLS – Newest Drop | Official AI Music Video | AIWebTools.ai", gradient: "from-emerald-500/20 to-violet-500/20" },
     { id: "IWijCkZUmrg", title: "AIWEBTOOLS – Newest Drop | Official AI Music Video | AIWebTools.ai", gradient: "from-cyan-500/20 to-purple-500/20" },
     { id: "RSovmNDLSnM", title: "Relatable Movie Scenes | Official AI Music Video | AIWebTools.ai", gradient: "from-emerald-500/20 to-cyan-500/20" },
     { id: "KB1sRHXUUps", title: "Truth So Ya Know | Official AI Music Video | AIWebTools.ai", gradient: "from-fuchsia-500/20 to-purple-500/20" },
@@ -873,6 +874,7 @@ const BookPromotionCard = () => {
       "TJA23SQmTu0",
       // MTV Lineup — newest drops, pinned to the very FRONT of the reel
       "mSJtr_jW3vY",
+      "MMpCWkhjuas",
       "IWijCkZUmrg",
       "LXXPC-1lgOQ",
       "rXMTjCFycPM",
