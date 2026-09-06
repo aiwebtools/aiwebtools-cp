@@ -228,6 +228,7 @@ export type Database = {
           slug: string
           source_file: string | null
           starter_prompts: string[]
+          supports_images: boolean
           tagline: string | null
           tool_title: string | null
           updated_at: string
@@ -242,6 +243,7 @@ export type Database = {
           slug: string
           source_file?: string | null
           starter_prompts?: string[]
+          supports_images?: boolean
           tagline?: string | null
           tool_title?: string | null
           updated_at?: string
@@ -256,6 +258,7 @@ export type Database = {
           slug?: string
           source_file?: string | null
           starter_prompts?: string[]
+          supports_images?: boolean
           tagline?: string | null
           tool_title?: string | null
           updated_at?: string
@@ -285,6 +288,27 @@ export type Database = {
           id?: string
           title?: string
           updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      gpt_favorites: {
+        Row: {
+          app_slug: string
+          created_at: string
+          id: string
+          user_id: string
+        }
+        Insert: {
+          app_slug: string
+          created_at?: string
+          id?: string
+          user_id: string
+        }
+        Update: {
+          app_slug?: string
+          created_at?: string
+          id?: string
           user_id?: string
         }
         Relationships: []
