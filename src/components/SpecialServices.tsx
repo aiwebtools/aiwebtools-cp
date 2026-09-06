@@ -13,6 +13,7 @@ import { generateToolSlug } from "@/utils/urlGenerator";
 import AutoScaleTitle from "@/components/ui/auto-scale-title";
 import { trackToolClickEvent } from "@/hooks/useToolAnalytics";
 import { civicTransparencyBatch2026 } from "@/data/tools/civicTransparencyBatch2026";
+import { perplexityBotsBatch2026 } from "@/data/tools/perplexityBotsBatch2026";
 import { toFeatureLabels } from "@/utils/search/featuredCardHelpers";
 import cannabisInspectorHero from "@/assets/cannabis-inspector-hero.jpg";
 
@@ -304,8 +305,21 @@ const civicTransparencyFeaturedGPTs: FeaturedSpecialService[] = civicTransparenc
   emoji: tool.emoji || "🏛️"
 }));
 
+const perplexityBotsFeaturedGPTs: FeaturedSpecialService[] = perplexityBotsBatch2026.map((tool) => ({
+  title: tool.title,
+  description: tool.description,
+  badge: "PERPLEXITY BOT",
+  color: tool.color || "from-teal-500 to-cyan-600",
+  features: toFeatureLabels(tool.tags, ["Perplexity Project", "Live Web Grounding", "Cited Sources", "Free To Use"]),
+  directUrl: tool.directUrl,
+  imageUrl: tool.imageUrl,
+  emoji: tool.emoji || "🔎",
+  tags: tool.tags
+}));
+
 const featuredGPTsUnsorted: FeaturedSpecialService[] = [
   ...civicTransparencyFeaturedGPTs,
+  ...perplexityBotsFeaturedGPTs,
   {
     title: "AI HUMAN BILL OF RIGHTS",
     description: "As AI progresses, concerns will grow. Rather than wait until it is too late, AIWebTools.ai plants this suggestion into the psyche of the public: preserve human dignity, freedom, privacy, autonomy, and mankind's authority over machines before the machines become self-aware. A Bill of Rights for humanity in the AI age — just a suggestion from the Light.",
