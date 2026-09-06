@@ -871,6 +871,7 @@ const BookPromotionCard = () => {
       "1V3WsMYVJ9Y",
       "TJA23SQmTu0",
       // MTV Lineup — newest drops, pinned to the very FRONT of the reel
+      "mSJtr_jW3vY",
       "IWijCkZUmrg",
       "LXXPC-1lgOQ",
       "rXMTjCFycPM",
