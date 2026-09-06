@@ -800,7 +800,6 @@
   <url><loc>https://aiwebtools.app/bolna-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/vogent</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/vibevoice</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://aiwebtools.app/chatterbox-tts</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/orpheus-tts</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/rvc-webui</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/applio</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -881,7 +880,7 @@
   <url><loc>https://aiwebtools.app/magic-patterns</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/vapi</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/retell-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://aiwebtools.app/bland-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://aiwebtools.app/blandai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/lutra</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/multion</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/adept</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -896,7 +895,7 @@
   <url><loc>https://aiwebtools.app/motion</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/shortwave</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/clay-agent</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://aiwebtools.app/11xai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://aiwebtools.app/11x-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/dolphin-30</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/mixtral-8x22b</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/wizardlm-2</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -981,7 +980,7 @@
   <url><loc>https://aiwebtools.app/f5-tts</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/parler-tts</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/coqui-xtts</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://aiwebtools.app/styletts2</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://aiwebtools.app/styletts-2</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/melotts</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/espnet</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/speechbrain</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -1092,7 +1091,7 @@
   <url><loc>https://aiwebtools.app/unstructured</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/marker</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/kernel-memory</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://aiwebtools.app/prompt-flow</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://aiwebtools.app/promptflow</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/openlit</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/text-embeddings-inference</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/vigil</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -1135,7 +1134,6 @@
   <url><loc>https://aiwebtools.app/10web-website-generator</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/make-automations</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/pinokiocomputer</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://aiwebtools.app/anything-llm</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/github-copilot</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/cursor</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/codeium</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -1266,7 +1264,6 @@
   <url><loc>https://aiwebtools.app/exactlyai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/recraft-ai-image-generator</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/seelabai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://aiwebtools.app/leonardo-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/nano-banana-image-editing-suite</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/letsenhanceio</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/fotor</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -1338,7 +1335,7 @@
   <url><loc>https://aiwebtools.app/pixverse</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/viggle-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/captions-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://aiwebtools.app/domo-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://aiwebtools.app/domoai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/wondershare-virbo</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/genmo-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/morph-studio</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -1347,7 +1344,7 @@
   <url><loc>https://aiwebtools.app/descript</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/kapwing</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/wondershare-filmora</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://aiwebtools.app/opus-clip</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://aiwebtools.app/opusclip</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/vidyoai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/munch</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/vadoo-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -1435,7 +1432,6 @@
   <url><loc>https://aiwebtools.app/vizzy-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/wisecut</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/ideogram-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://aiwebtools.app/kaiber-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/stable-audio</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/musiclm-google</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/audiocraft-meta</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -1467,7 +1463,7 @@
   <url><loc>https://aiwebtools.app/voiceai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/myvocalai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/voicemod</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://aiwebtools.app/resembleai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://aiwebtools.app/resemble-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/vocal-remover</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/autopodfm</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/resoundfm</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -1486,7 +1482,6 @@
   <url><loc>https://aiwebtools.app/uberduckai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/tunereel</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/listnr</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://aiwebtools.app/blandai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/vapiai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/airai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/synthflow-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -1496,7 +1491,6 @@
   <url><loc>https://aiwebtools.app/gongio</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/chorusai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/callrail</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://aiwebtools.app/resemble-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/audiogen</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/cleanvoice</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/hume-lifelike-voice-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -1549,6 +1543,7 @@
   <url><loc>https://aiwebtools.app/dalle-3</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/nightcafe-creator</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/sketch-artist-gpt</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://aiwebtools.app/leonardo-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/spline</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/vectary</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/meshcapade</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -1667,10 +1662,8 @@
   <url><loc>https://aiwebtools.app/uizard</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/google-nano-banana-ai-studio</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/middlejourney-midjourney-prompting-assistant</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://aiwebtools.app/runwayml</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/dreamstudio</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/stable-diffusion-online</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://aiwebtools.app/krea-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/clipdrop</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/canva-ai-image-generator</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/tensorart</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -1691,7 +1684,7 @@
   <url><loc>https://aiwebtools.app/dezgo</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/flux-ai-image-generator</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/firefly-ai-by-adobe</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://aiwebtools.app/scenario-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://aiwebtools.app/scenarioai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/generated-photos</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/removalai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/upscalemedia</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -1729,7 +1722,7 @@
   <url><loc>https://aiwebtools.app/zoominfo</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/mondaycom</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/3d-print-gpt</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://aiwebtools.app/reclaim-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://aiwebtools.app/reclaimai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/clickup-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/clockify-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/gptgoai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -1770,7 +1763,7 @@
   <url><loc>https://aiwebtools.app/spokenio</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/aweber</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/mailrushio</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://aiwebtools.app/sales-handy</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://aiwebtools.app/saleshandy</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/activecampaign</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/groupmail</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/warmbox</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -1795,7 +1788,7 @@
   <url><loc>https://aiwebtools.app/luna</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/best-regards</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/getresponse</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://aiwebtools.app/regieai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://aiwebtools.app/regie-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/folk</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/hunterio</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/contactout</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -1878,12 +1871,10 @@
   <url><loc>https://aiwebtools.app/greenhouse</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/phenom</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/speakai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://aiwebtools.app/fireflies-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://aiwebtools.app/rewindai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://aiwebtools.app/rewind-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/meetgeek</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/tldv</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/traqai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://aiwebtools.app/semblyai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/cogram</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/read</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/grain</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -1909,7 +1900,6 @@
   <url><loc>https://aiwebtools.app/scholarcy</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/scite</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/elicit</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://aiwebtools.app/researchrabbit</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/connected-papers</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/scispace-typeset</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/chatdoc</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -2137,7 +2127,6 @@
   <url><loc>https://aiwebtools.app/sanebox</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/mixmax</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/bitai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://aiwebtools.app/vapi-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/synthflow</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/aircall-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/outreachio</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -2160,13 +2149,11 @@
   <url><loc>https://aiwebtools.app/mirage-2-generative-world-engine</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/scenario-ai-game-asset-generator</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/leonardoai-for-game-art</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://aiwebtools.app/ludo-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://aiwebtools.app/ludoai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/charismaai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/promethean-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/soundraw-ai-game-music</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/inworld-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://aiwebtools.app/scenarioai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://aiwebtools.app/ludoai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/rosebud-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/convai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/unity</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -2712,7 +2699,6 @@
   <url><loc>https://aiwebtools.app/alpha3d</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/csmai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/instantmesh</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://aiwebtools.app/3dfy-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/wikipedia</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/allsides</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/unitree-robotics-g1-humanoid-go-series</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -2828,7 +2814,6 @@
   <url><loc>https://aiwebtools.app/ultimate-vocal-remover</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/vosk</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/piper</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://aiwebtools.app/styletts-2</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/metavoice</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/chatterbox</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/framepack</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -2949,7 +2934,6 @@
   <url><loc>https://aiwebtools.app/glide-apps</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/laxis</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/supermakerai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://aiwebtools.app/reclaimai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/replyio</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/seamlessai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/socialbee</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -3043,7 +3027,6 @@
   <url><loc>https://aiwebtools.app/hostinger-reach</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/explee</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/beehiiv-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://aiwebtools.app/instantly-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/reply-io</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/tuganai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/harpa-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -3132,7 +3115,7 @@
   <url><loc>https://aiwebtools.app/qoder</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/codemender</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/kogents-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://aiwebtools.app/skyworkai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://aiwebtools.app/skywork-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/agent2agent-protocol</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/mixus</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/noiz-agent</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -3206,7 +3189,6 @@
   <url><loc>https://aiwebtools.app/lovegpt</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/ai-passport-photo-maker</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/doppl</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://aiwebtools.app/rewind-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/reflect-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/memoriesai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/memoru-flashcards</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -3311,9 +3293,7 @@
   <url><loc>https://aiwebtools.app/writehybrid-ai-humanizer</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/kirkify-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/rpggo-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://aiwebtools.app/otter-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/notta-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://aiwebtools.app/flair-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/visme</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/taplio</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/facelessvideo</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -3376,7 +3356,6 @@
   <url><loc>https://aiwebtools.app/le-chat-by-mistral-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/amazon-nova</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/seedance-15-pro</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://aiwebtools.app/hunyuan-video</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/wan26</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/speech-synthesis</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/liner-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -3484,7 +3463,6 @@
   <url><loc>https://aiwebtools.app/beducated</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/realfake</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/odoo</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://aiwebtools.app/tts-reader</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/all-in-one-accessibility</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/google-signgemma</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/neuralink</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -3556,7 +3534,6 @@
   <url><loc>https://aiwebtools.app/hero-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/voicebox-by-meta</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/miqu-1-70b</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://aiwebtools.app/animate-anyone</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/ernie-x1-by-baidu</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/earth-species-project</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/alphacode-2-by-deepmind</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -3582,9 +3559,9 @@
   <url><loc>https://aiwebtools.app/cresta</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/hebbia</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/glia</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://aiwebtools.app/magicdev</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://aiwebtools.app/magic-dev</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/reflection-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://aiwebtools.app/sema4ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://aiwebtools.app/sema4-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/imbue</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/kortix-suna</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/klarity-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -3762,7 +3739,6 @@
   <url><loc>https://aiwebtools.app/langsmith</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/trulens</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/giskard</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://aiwebtools.app/promptflow</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/deepsource-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/cerebras</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/modal</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -3829,7 +3805,6 @@
   <url><loc>https://aiwebtools.app/deepseek-r1</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/subframe</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/perplexity-labs</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://aiwebtools.app/skywork-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/tonic-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/chatgpt-pulse</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/wan-25</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -3902,7 +3877,6 @@
   <url><loc>https://aiwebtools.app/prime-intellect</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/ritual</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/factory-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://aiwebtools.app/refact-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/bito-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/zencoder</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/near-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -3915,7 +3889,6 @@
   <url><loc>https://aiwebtools.app/pythagora</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/all-hands-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/gpt-engineer</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://aiwebtools.app/sema4-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/decagon-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/11x</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/artisan-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -3937,7 +3910,6 @@
   <url><loc>https://aiwebtools.app/confident-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/octotools</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/langgraph</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://aiwebtools.app/magic-dev</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/sentry-seer</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/korbit</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/diamond</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -3948,7 +3920,6 @@
   <url><loc>https://aiwebtools.app/gumloop</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/ema-unlimited</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/asapp</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://aiwebtools.app/kore-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/bugbot</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/devon-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/pr-agent</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -3957,7 +3928,6 @@
   <url><loc>https://aiwebtools.app/cassidy-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/manus-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/autogen</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://aiwebtools.app/pydantic-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/cognition-devin</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/agentql</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/smithery</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -3995,7 +3965,6 @@
   <url><loc>https://aiwebtools.app/dosu</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/fireworks-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/beam-cloud</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://aiwebtools.app/vast-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/sieve</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/traceloop</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/klu</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -4029,12 +3998,12 @@
   <url><loc>https://aiwebtools.app/microsoft-copilot-studio</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/dropbox-dash</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/nanobrowser</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://aiwebtools.app/praison-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://aiwebtools.app/praisonai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/resolve-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/sana-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/sindarin</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/solver-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://aiwebtools.app/boltdiy</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://aiwebtools.app/bolt-diy</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/devstral</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/tinytroupe</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/mistral-code</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -4047,7 +4016,7 @@
   <url><loc>https://aiwebtools.app/replit-agent-3</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/bloop-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/langwatch</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://aiwebtools.app/kapa-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://aiwebtools.app/kapaai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/notte</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/magentic-ui</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/genspark-super-agent</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -4055,7 +4024,6 @@
   <url><loc>https://aiwebtools.app/fastgpt</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/hyperwrite</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/cartesia-sonic</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://aiwebtools.app/air-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/aide-ide</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/trae</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/openai-operator</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -4096,7 +4064,6 @@
   <url><loc>https://aiwebtools.app/cleo-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/sybill</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/cognism</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://aiwebtools.app/saleshandy</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/mailshake</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/woodpecker</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/quickmail</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -4137,7 +4104,6 @@
   <url><loc>https://aiwebtools.app/fixie</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/embra</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/aomni</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://aiwebtools.app/regie-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/eve-legal</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/robin-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/evisort</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -4200,7 +4166,6 @@
   <url><loc>https://aiwebtools.app/skywork</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/h-company-runner-h</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/webdraw</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://aiwebtools.app/kapaai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/writer-palmyra</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/turbopuffer</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/tinybird</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -4236,7 +4201,7 @@
   <url><loc>https://aiwebtools.app/cekura</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/kyutai-moshi</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/deepgram-aura</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://aiwebtools.app/regal-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://aiwebtools.app/regalai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/replicant</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/soniox</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/twilio-conversationrelay</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -4285,7 +4250,6 @@
   <url><loc>https://aiwebtools.app/appagent</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/eko</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/lavague</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://aiwebtools.app/praisonai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/agentscope</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/xagent</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/sweep</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -4298,7 +4262,6 @@
   <url><loc>https://aiwebtools.app/llmstack</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/chatall</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/openllm</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://aiwebtools.app/web-llm</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/bisheng</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/embedchain</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/maxkb</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -4326,7 +4289,7 @@
   <url><loc>https://aiwebtools.app/agentic</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/motia</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/continue</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://aiwebtools.app/lobe-chat</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://aiwebtools.app/lobechat</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/e2b</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/skyvern</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/gpt-researcher</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -4394,7 +4357,6 @@
   <url><loc>https://aiwebtools.app/intuz</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/solulab</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/artisan</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://aiwebtools.app/11x-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/vendr</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/linkup</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/nurix-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -4449,7 +4411,6 @@
   <url><loc>https://aiwebtools.app/insightoai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/smallestai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/qwen3-tts</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://aiwebtools.app/regalai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/calldesk</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/dialpad</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/ringcentral</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -4487,7 +4448,6 @@
   <url><loc>https://aiwebtools.app/storychief-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/ardigen</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/accuknox</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://aiwebtools.app/chromadb</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/aloware</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/nooks</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/squadstack-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -4899,7 +4859,6 @@
   <url><loc>https://aiwebtools.app/coderabbit</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/mastra</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/meshy</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://aiwebtools.app/opusclip</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/recraft</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/mai-image-2-by-microsoft</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/runcomfy</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -5085,13 +5044,11 @@
   <url><loc>https://aiwebtools.app/dataiku</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/promptfoo</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/nomic-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://aiwebtools.app/bolt-diy</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/llamafile</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/litellm</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/mlx</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/google-idx</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/gitpod</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://aiwebtools.app/lobechat</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/mlflow</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/neptune-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/langtrace</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -5149,7 +5106,6 @@
   <url><loc>https://aiwebtools.app/elai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/lovo-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/phind</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://aiwebtools.app/domoai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/wan-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/flowiseai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/devvai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>

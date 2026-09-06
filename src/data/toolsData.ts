@@ -8,6 +8,8 @@ import { deduplicateTools } from '@/utils/toolDeduplication';
 import { markFreeTools, ensureTitleTags } from '@/utils/toolUtils';
 import { ensurePricingTags } from '@/utils/pricingClassification';
 import { applySpirtualTags } from '@/utils/spiritualTagging';
+import { normalizeToolCategories } from '@/utils/category/canonicalCategory';
+
 
 // Import AI Web Tools GPTs - PRIORITY FEATURED TOOLS
 import { priorityFeaturedGPTs } from "./tools/aiWebTools/priorityFeaturedGPTs";
@@ -746,8 +748,12 @@ const toolsWithTags = ensureTitleTags(toolsWithSpiritualTags);
 // Tag every tool with its pricing model (Free / Freemium / Paid) so all
 // search bars can surface them and cards can badge them consistently.
 const toolsWithPricing = ensurePricingTags(toolsWithTags);
+// Normalise legacy ALL-CAPS category labels so the same category never shows
+// up twice with different casing on cards, chips and filters.
+const toolsWithCanonicalCategories = normalizeToolCategories(toolsWithPricing);
 
-export const allTools: Tool[] = toolsWithPricing;
+export const allTools: Tool[] = toolsWithCanonicalCategories;
+
 
 // Use filtered tools for all exports
 export const featuredTools: Tool[] = createFeaturedTools(finalUniqueTools);
