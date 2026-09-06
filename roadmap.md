@@ -2,8 +2,8 @@
 
 ## In progress
 - [x] Spotlight pages: 100 → 200 (SEO back pages, one per custom GPT)
-- [ ] Spotlight pages: 200 → 300
-- [ ] AEO (Answer Engine Optimization) across spotlights + site
+- [x] Spotlight pages: 200 → 300 (5,779 sitemap URLs)
+- [x] AEO (Answer Engine Optimization) across spotlights + site
       - direct-answer summary block at top of each spotlight
       - FAQPage + Article + BreadcrumbList schema (already partly present)
       - speakable schema, concise Q/A phrasing for AI assistants
@@ -13,7 +13,7 @@
       - verification meta tag added to index.html (needs publish to go live)
       - after publish: verify → add site → submit sitemap
 - [ ] Bing / Yahoo coverage (Yahoo is powered by Bing)
-      - IndexNow key file + ping so Bing indexes new URLs instantly
+      - [x] IndexNow key file public/cd0693f53b8d4013adc25e06c5e03890.txt (ping after publish)
       - robots.txt confirms Bingbot + Slurp allowed
 
 ## Backlog (standing instructions)
