@@ -1,4 +1,5 @@
 // Streams a hosted AIWebTools GPT. Members only. Instructions stay server-side.
+// Supports image generation (Nano Banana) for bots whose instructions require it.
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.45.0";
 
 const corsHeaders = {
@@ -9,6 +10,38 @@ const corsHeaders = {
 
 const DAILY_LIMIT = 60;
 const MAX_HISTORY = 24;
+const CHAT_URL = "https://ai.gateway.lovable.dev/v1/chat/completions";
+const IMAGE_URL = "https://ai.gateway.lovable.dev/v1/images/generations";
+const IMAGE_MODEL = "google/gemini-3.1-flash-image";
+const SIGNED_URL_TTL = 60 * 60 * 24 * 365;
+
+const IMAGE_TOOL = {
+  type: "function",
+  function: {
+    name: "generate_image",
+    description:
+      "Create an image, illustration, diagram, infographic, logo or any other visual for the user. Use it whenever a visual would answer better than text, or whenever the user asks for one.",
+    parameters: {
+      type: "object",
+      properties: {
+        prompt: {
+          type: "string",
+          description:
+            "A rich, detailed visual description of the image to create, including style, composition, colours and any text that must appear inside the image.",
+        },
+      },
+      required: ["prompt"],
+      additionalProperties: false,
+    },
+  },
+};
+
+interface ChatMsg {
+  role: string;
+  content: string | null;
+  tool_calls?: unknown;
+  tool_call_id?: string;
+}
 
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return new Response("ok", { headers: corsHeaders });
@@ -79,7 +112,7 @@ Deno.serve(async (req) => {
 
   const { data: app } = await admin
     .from("gpt_apps")
-    .select("slug, display_name, model, is_active")
+    .select("slug, display_name, model, is_active, supports_images")
     .eq("slug", slug)
     .maybeSingle();
   if (!app || !app.is_active) return json({ error: "This tool is not available." }, 404);
@@ -90,6 +123,21 @@ Deno.serve(async (req) => {
     .eq("app_slug", slug)
     .maybeSingle();
   if (!promptRow?.system_prompt) return json({ error: "This tool is not available." }, 404);
+
+  const { data: profile } = await admin
+    .from("profiles")
+    .select("display_name")
+    .eq("id", userId)
+    .maybeSingle();
+
+  let systemPrompt = promptRow.system_prompt;
+  if (profile?.display_name) {
+    systemPrompt += `\n\nThe member you are speaking with is called ${profile.display_name}. Remember details they share during this conversation and refer back to them naturally.`;
+  }
+  if (app.supports_images) {
+    systemPrompt +=
+      "\n\nYou can create images. Call the generate_image tool whenever a picture, illustration, diagram, infographic, chart, logo or any other visual would help — and always when the user asks for one. Describe the visual richly in the tool prompt.";
+  }
 
   // Conversation bookkeeping
   let conversationId = body.conversationId || null;
@@ -120,17 +168,22 @@ Deno.serve(async (req) => {
     { onConflict: "user_id,usage_date" },
   );
 
-  const upstream = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "Lovable-API-Key": LOVABLE_API_KEY,
-    },
-    body: JSON.stringify({
-      model: app.model || "google/gemini-3.7-flash",
-      stream: true,
-      messages: [{ role: "system", content: promptRow.system_prompt }, ...messages],
-    }),
+  const callGateway = (payload: Record<string, unknown>) =>
+    fetch(CHAT_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Lovable-API-Key": LOVABLE_API_KEY },
+      body: JSON.stringify(payload),
+    });
+
+  const basePayload = {
+    model: app.model || "google/gemini-3.7-flash",
+    stream: true,
+    ...(app.supports_images ? { tools: [IMAGE_TOOL] } : {}),
+  };
+
+  const upstream = await callGateway({
+    ...basePayload,
+    messages: [{ role: "system", content: systemPrompt }, ...messages],
   });
 
   if (!upstream.ok || !upstream.body) {
@@ -143,40 +196,148 @@ Deno.serve(async (req) => {
     return json({ error: "The AI could not respond right now." }, 502);
   }
 
-  // Pass the stream through while collecting the reply for the saved conversation.
-  let assistant = "";
+  const encoder = new TextEncoder();
   const decoder = new TextDecoder();
-  const transform = new TransformStream<Uint8Array, Uint8Array>({
-    transform(chunk, controller) {
-      const text = decoder.decode(chunk, { stream: true });
-      for (const line of text.split("\n")) {
+  const frame = (text: string) =>
+    encoder.encode(`data: ${JSON.stringify({ choices: [{ delta: { content: text } }] })}\n\n`);
+
+  let assistant = "";
+
+  const makeImage = async (prompt: string): Promise<string> => {
+    const res = await fetch(IMAGE_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Lovable-API-Key": LOVABLE_API_KEY },
+      body: JSON.stringify({
+        model: IMAGE_MODEL,
+        messages: [{ role: "user", content: prompt }],
+        modalities: ["image", "text"],
+      }),
+    });
+    if (!res.ok) {
+      const detail = await res.text().catch(() => "");
+      console.error("image error", res.status, detail.slice(0, 300));
+      throw new Error("image failed");
+    }
+    const payload = await res.json();
+    const b64 = payload?.data?.[0]?.b64_json;
+    if (!b64) throw new Error("image failed");
+    const bytes = Uint8Array.from(atob(b64), (c) => c.charCodeAt(0));
+    const path = `${userId}/${slug}/${crypto.randomUUID()}.png`;
+    const { error: upErr } = await admin.storage
+      .from("gpt-images")
+      .upload(path, bytes, { contentType: "image/png", upsert: false });
+    if (upErr) throw new Error("image failed");
+    const { data: signed } = await admin.storage.from("gpt-images").createSignedUrl(path, SIGNED_URL_TTL);
+    if (!signed?.signedUrl) throw new Error("image failed");
+    return signed.signedUrl;
+  };
+
+  // Reads an upstream SSE stream, forwards text deltas, collects tool calls.
+  const pump = async (
+    res: Response,
+    controller: ReadableStreamDefaultController<Uint8Array>,
+  ): Promise<{ name: string; args: string; id: string }[]> => {
+    const reader = res.body!.getReader();
+    const calls: { name: string; args: string; id: string }[] = [];
+    let buffer = "";
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      buffer += decoder.decode(value, { stream: true });
+      const lines = buffer.split("\n");
+      buffer = lines.pop() ?? "";
+      for (const line of lines) {
         if (!line.startsWith("data: ")) continue;
         const payload = line.slice(6).trim();
         if (!payload || payload === "[DONE]") continue;
         try {
-          const delta = JSON.parse(payload)?.choices?.[0]?.delta?.content;
-          if (typeof delta === "string") assistant += delta;
-        } catch { /* partial frame */ }
+          const delta = JSON.parse(payload)?.choices?.[0]?.delta;
+          if (typeof delta?.content === "string" && delta.content) {
+            assistant += delta.content;
+            controller.enqueue(frame(delta.content));
+          }
+          if (Array.isArray(delta?.tool_calls)) {
+            for (const tc of delta.tool_calls) {
+              const index = tc.index ?? 0;
+              calls[index] = calls[index] || { name: "", args: "", id: "" };
+              if (tc.id) calls[index].id = tc.id;
+              if (tc.function?.name) calls[index].name += tc.function.name;
+              if (tc.function?.arguments) calls[index].args += tc.function.arguments;
+            }
+          }
+        } catch {
+          /* partial frame */
+        }
       }
-      controller.enqueue(chunk);
-    },
-    async flush() {
-      if (conversationId && assistant.trim()) {
-        await admin.from("gpt_messages").insert({
-          conversation_id: conversationId,
-          user_id: userId,
-          role: "assistant",
-          content: assistant.slice(0, 40000),
-        });
-        await admin
-          .from("gpt_conversations")
-          .update({ updated_at: new Date().toISOString() })
-          .eq("id", conversationId);
+    }
+    return calls.filter(Boolean);
+  };
+
+  const stream = new ReadableStream<Uint8Array>({
+    async start(controller) {
+      try {
+        const calls = await pump(upstream, controller);
+        const imageCall = calls.find((c) => c.name === "generate_image");
+
+        if (imageCall) {
+          controller.enqueue(frame("\n\n_Creating your image…_\n\n"));
+          let toolResult = "The image could not be created this time. Apologise briefly and offer to try again.";
+          try {
+            const parsed = JSON.parse(imageCall.args || "{}");
+            const url = await makeImage(String(parsed.prompt || "").slice(0, 2000));
+            const md = `![Generated image](${url})`;
+            assistant += `\n\n${md}\n\n`;
+            controller.enqueue(frame(`${md}\n\n`));
+            toolResult = "The image was created and is already shown to the user. Briefly describe it and offer refinements. Do not include a markdown image link yourself.";
+          } catch (_e) {
+            /* handled by toolResult */
+          }
+
+          const follow = await callGateway({
+            ...basePayload,
+            messages: [
+              { role: "system", content: systemPrompt },
+              ...messages,
+              {
+                role: "assistant",
+                content: null,
+                tool_calls: [
+                  {
+                    id: imageCall.id || "call_1",
+                    type: "function",
+                    function: { name: "generate_image", arguments: imageCall.args || "{}" },
+                  },
+                ],
+              } as ChatMsg,
+              { role: "tool", tool_call_id: imageCall.id || "call_1", content: toolResult } as ChatMsg,
+            ],
+          });
+          if (follow.ok && follow.body) {
+            await pump(follow, controller);
+          }
+        }
+      } catch (err) {
+        console.error("stream error", err);
+      } finally {
+        controller.enqueue(encoder.encode("data: [DONE]\n\n"));
+        controller.close();
+        if (conversationId && assistant.trim()) {
+          await admin.from("gpt_messages").insert({
+            conversation_id: conversationId,
+            user_id: userId,
+            role: "assistant",
+            content: assistant.slice(0, 40000),
+          });
+          await admin
+            .from("gpt_conversations")
+            .update({ updated_at: new Date().toISOString() })
+            .eq("id", conversationId);
+        }
       }
     },
   });
 
-  return new Response(upstream.body.pipeThrough(transform), {
+  return new Response(stream, {
     headers: {
       ...corsHeaders,
       "Content-Type": "text/event-stream",
