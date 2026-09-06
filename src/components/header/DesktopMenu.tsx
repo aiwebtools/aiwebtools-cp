@@ -360,6 +360,9 @@ const DesktopMenu = () => {
                     <DropdownMenuItem onClick={(e) => handleExternalLink('https://www.tiktok.com/@aiwebtools', e)} className="text-cyan-100 hover:bg-cyan-500/20 rounded text-sm px-2 py-1.5">
                       <Clapperboard className="w-3 h-3 mr-2" /> TikTok
                     </DropdownMenuItem>
+                    <DropdownMenuItem onClick={(e) => handleExternalLink('https://github.com/aiwebtools/', e)} className="text-cyan-100 hover:bg-cyan-500/20 rounded text-sm px-2 py-1.5">
+                      <Github className="w-3 h-3 mr-2" /> GitHub — Open Source
+                    </DropdownMenuItem>
                     <div className="flex items-center space-x-2 text-cyan-100 px-2 py-1.5 rounded hover:bg-cyan-500/20 text-sm">
                       <Phone className="w-3 h-3" />
                       <a href="tel:+14758008096" className="hover:text-cyan-400 transition-colors text-xs">475-800-8096</a>

@@ -1,4 +1,4 @@
-import { Menu, Phone, X, Globe, ChevronDown, Download, Trees, Clapperboard, Heart, Copy, Clock } from "lucide-react";
+import { Menu, Phone, X, Globe, ChevronDown, Download, Trees, Clapperboard, Heart, Copy, Clock, Github } from "lucide-react";
 import mtvAiWebToolsLogo from "@/assets/mtv-aiwebtools-logo.png";
 import { useState, useRef, useCallback, useEffect, startTransition } from "react";
 import { useNavigate } from "react-router-dom";
@@ -459,6 +459,9 @@ const MobileMenu = () => {
                   </DropdownMenuItem>
                   <DropdownMenuItem onClick={(e) => handleExternalLink('https://www.tiktok.com/@aiwebtools', e)} className="text-cyan-100 hover:bg-cyan-500/20 mb-1 rounded text-sm">
                     <Clapperboard className="w-3 h-3 mr-2" /> TikTok
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={(e) => handleExternalLink('https://github.com/aiwebtools/', e)} className="text-cyan-100 hover:bg-cyan-500/20 mb-1 rounded text-sm">
+                    <Github className="w-3 h-3 mr-2" /> GitHub — Open Source
                   </DropdownMenuItem>
                   <div className="flex items-center space-x-2 text-cyan-100 px-3 py-1 rounded hover:bg-cyan-500/20 mb-2 text-sm">
                     <Phone className="w-3 h-3" />
