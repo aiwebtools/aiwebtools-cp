@@ -17,3 +17,6 @@ verify_jwt = false
 
 [functions.link-health-sweep]
 verify_jwt = false
+
+[functions.site-ai]
+verify_jwt = false
