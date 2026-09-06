@@ -5,19 +5,29 @@ import { generateToolSlug } from "@/utils/urlGenerator";
 /**
  * SPOTLIGHT PAGES ("back pages")
  * -----------------------------------------------------------------------------
- * 200 long-form, SEO-optimised write-ups — one per AIWebTools.ai custom GPT /
- * Gem — that each link back into the tool's own page, its category and the
- * wider directory. Everything below is derived from the REAL tool records in
- * our database (title, description, category, tags, live URL). Nothing is
+ * 300 long-form, SEO + AEO optimised write-ups — one per AIWebTools.ai custom
+ * GPT / Gem — that each link back into the tool's own page, its category and
+ * the wider directory. Everything below is derived from the REAL tool records
+ * in our database (title, description, category, tags, live URL). Nothing is
  * invented: no ratings, no testimonials, no fabricated statistics.
+ *
+ * AEO (Answer Engine Optimization): every page opens with a single-sentence
+ * direct answer plus a quick-facts table, and closes with an expanded FAQ, so
+ * ChatGPT, Perplexity, Gemini and Google AI Overviews can lift a clean,
+ * attributable answer straight from the page.
  */
 
-export const SPOTLIGHT_COUNT = 200;
+export const SPOTLIGHT_COUNT = 300;
 
 export interface SpotlightSection {
   heading: string;
   body: string;
   bullets?: string[];
+}
+
+export interface SpotlightFact {
+  label: string;
+  value: string;
 }
 
 export interface Spotlight {
@@ -31,6 +41,10 @@ export interface Spotlight {
   title: string;
   metaTitle: string;
   metaDescription: string;
+  /** AEO: one-sentence extractable answer to "what is X?" */
+  answer: string;
+  /** AEO: scannable key/value facts for answer engines */
+  quickFacts: SpotlightFact[];
   intro: string;
   keywords: string[];
   publishDate: string;
@@ -127,7 +141,31 @@ const buildSpotlight = (tool: Tool, index: number, siblings: Tool[]): Spotlight 
     },
   ];
 
+  // ---------------------------------------------------------------------
+  // AEO: a single, self-contained sentence an answer engine can quote.
+  // ---------------------------------------------------------------------
+  const answer = truncate(
+    `${name} is a free ${category.toLowerCase()} AI tool from AIWebTools.ai. ${firstSentence(description)}`,
+    300
+  );
+
+  const quickFacts: SpotlightFact[] = [
+    { label: "Tool name", value: name },
+    { label: "Category", value: category },
+    { label: "Price", value: "Free to open — no account required on our side" },
+    { label: "Platform", value: "Web browser (desktop and mobile)" },
+    { label: "Made by", value: "AIWebTools.ai" },
+    {
+      label: "Best for",
+      value: tags.length ? tags.slice(0, 4).join(", ") : `${category} tasks`,
+    },
+  ];
+
   const faq = [
+    {
+      q: `What is ${name}?`,
+      a: answer,
+    },
     {
       q: `Is ${name} free to use?`,
       a: `Yes — ${name} opens directly from AIWebTools.ai at no cost. Any usage limits come from the underlying model provider, not from us.`,
@@ -137,8 +175,20 @@ const buildSpotlight = (tool: Tool, index: number, siblings: Tool[]): Spotlight 
       a: firstSentence(description),
     },
     {
-      q: `Where can I find similar AI tools?`,
-      a: `The ${category} category on AIWebTools.ai lists every related tool we have catalogued, and the site-wide search bar indexes the full directory.`,
+      q: `Who should use ${name}?`,
+      a: `Anyone working on ${category.toLowerCase()} tasks who wants a purpose-built assistant instead of a blank chat window — ${name} starts from a fixed brief, so you skip the setup prompting.`,
+    },
+    {
+      q: `Do I need to install anything to use ${name}?`,
+      a: `No. ${name} runs in any modern web browser on desktop or mobile — there is nothing to download or install.`,
+    },
+    {
+      q: `How do I get the best results from ${name}?`,
+      a: `Open with the outcome you want rather than the steps, include any real names, numbers or constraints, then refine in the same session so it keeps your context.`,
+    },
+    {
+      q: `Where can I find AI tools similar to ${name}?`,
+      a: `The ${category} category on AIWebTools.ai lists every related tool we have catalogued, and the site-wide search bar indexes the full directory of thousands of AI tools.`,
     },
   ];
 
@@ -158,19 +208,23 @@ const buildSpotlight = (tool: Tool, index: number, siblings: Tool[]): Spotlight 
     title,
     metaTitle: title.length <= 45 ? `${title} | AIWebTools.ai` : truncate(title, 60),
     metaDescription,
+    answer,
+    quickFacts,
     intro: `${description}`,
     keywords: Array.from(
       new Set([
         name.toLowerCase(),
         `${name.toLowerCase()} review`,
         `${name.toLowerCase()} ai tool`,
+        `what is ${name.toLowerCase()}`,
+        `is ${name.toLowerCase()} free`,
         category.toLowerCase(),
         "ai tools",
         "free ai tools",
         "custom gpt",
         ...tags.map((t) => t.toLowerCase()),
       ])
-    ).slice(0, 12),
+    ).slice(0, 14),
     publishDate: "2026-01-15",
     readTime: "5 min",
     sections,

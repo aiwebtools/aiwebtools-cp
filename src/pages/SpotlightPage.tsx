@@ -57,6 +57,28 @@ export default function SpotlightPage() {
         { "@type": "ListItem", position: 3, name: spotlight.toolTitle, item: url },
       ],
     },
+    // AEO: machine-readable Q&A so answer engines can quote this page directly.
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: spotlight.faq.map((item) => ({
+        "@type": "Question",
+        name: item.q,
+        acceptedAnswer: { "@type": "Answer", text: item.a },
+      })),
+    },
+    // AEO: flag the direct-answer block for voice and assistant surfaces.
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "@id": url,
+      name: spotlight.title,
+      description: spotlight.metaDescription,
+      speakable: {
+        "@type": "SpeakableSpecification",
+        cssSelector: [".aeo-answer", ".aeo-quick-facts"],
+      },
+    },
   ];
 
   return (
@@ -97,6 +119,32 @@ export default function SpotlightPage() {
             </h1>
             <p className="mt-4 text-base text-gray-300 leading-relaxed">{spotlight.intro}</p>
           </header>
+
+          {/* AEO: direct-answer block — the sentence answer engines quote. */}
+          <section
+            className="aeo-answer mb-6 rounded-lg border-l-4 border-green-500 bg-green-950/25 p-5"
+            aria-label={`Quick answer: what is ${spotlight.toolTitle}`}
+          >
+            <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-green-400">
+              Quick answer
+            </h2>
+            <p className="text-lg leading-relaxed text-green-100">{spotlight.answer}</p>
+          </section>
+
+          {/* AEO: scannable key facts. */}
+          <section className="aeo-quick-facts mb-8" aria-label={`${spotlight.toolTitle} at a glance`}>
+            <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-cyan-400">
+              {spotlight.toolTitle} at a glance
+            </h2>
+            <dl className="grid gap-x-6 gap-y-2 rounded-lg border border-green-500/20 bg-black/40 p-4 sm:grid-cols-2">
+              {spotlight.quickFacts.map((fact) => (
+                <div key={fact.label} className="flex flex-col sm:flex-row sm:gap-2">
+                  <dt className="shrink-0 font-semibold text-green-300">{fact.label}:</dt>
+                  <dd className="text-gray-300">{fact.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </section>
 
           {spotlight.imageUrl && (
             <img
