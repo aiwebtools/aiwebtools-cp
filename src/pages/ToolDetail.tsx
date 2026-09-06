@@ -11,6 +11,8 @@ import ToolDisclaimer from "@/components/ToolDisclaimer";
 import AIWebToolsDisclaimer from "@/components/AIWebToolsDisclaimer";
 import ToolHeader from "@/components/tool-detail/ToolHeader";
 import ToolDescription from "@/components/tool-detail/ToolDescription";
+import ToolReviews from "@/components/tool-detail/ToolReviews";
+import PerplexityBotGuide from "@/components/tool-detail/PerplexityBotGuide";
 import ToolMedia from "@/components/tool-detail/ToolMedia";
 import ToolTags from "@/components/tool-detail/ToolTags";
 import ToolActions from "@/components/tool-detail/ToolActions";
@@ -123,6 +125,11 @@ const ToolDetail = () => {
 
   // Check if this is an AI Web Tools GPT (has lovable.app in the URL)
   const isAIWebToolsGPT = tool.directUrl?.includes('lovable.app') || false;
+
+  // Perplexity Bot pages get their own long-form, indexable guide section.
+  const isPerplexityBot =
+    tool.category === 'Perplexity Bots' || /PERPLEXITY BOT$/i.test(tool.title);
+
   
   // Check for required disclaimers
   const showSpiritualDisclaimer = needsSpiritualDisclaimer(tool);
@@ -183,9 +190,17 @@ const ToolDetail = () => {
                 <ToolMedia tool={tool} toolIndex={toolIndex} />
                 <ToolActions tool={tool} />
                 <ToolDescription tool={tool} />
+                {isPerplexityBot && <PerplexityBotGuide tool={tool} />}
                 <ToolAIExplainer tool={tool} />
                 <ToolPromptHelper tool={tool} />
                 <ToolTags tool={tool} />
+                <DeferredMount delay={200}>
+                  <ToolReviews
+                    tool={tool}
+                    fallbackRating={defaultRating}
+                    fallbackVotes={defaultVotes}
+                  />
+                </DeferredMount>
               </CardContent>
             </Card>
 

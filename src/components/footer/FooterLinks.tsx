@@ -60,6 +60,13 @@ const FooterLinks = () => {
             ✨ AI Tool Spotlights
           </a>
           <a
+            href="/rankings"
+            className="block text-green-200 hover:text-green-400 transition-colors text-left"
+          >
+            🏆 Most Popular AI Tools
+          </a>
+
+          <a
             href="/privacy-policy"
             className="block text-green-200 hover:text-green-400 transition-colors text-left"
           >

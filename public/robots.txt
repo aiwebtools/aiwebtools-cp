@@ -22,6 +22,7 @@ Allow: /best-ai-tools
 Allow: /free-ai-tools
 Allow: /ai-agents-directory
 Allow: /ai-tools-hub
+Allow: /rankings
 Allow: /chatgpt-alternatives
 Crawl-delay: 0
 

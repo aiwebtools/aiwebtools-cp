@@ -260,6 +260,33 @@ export type Database = {
         }
         Relationships: []
       }
+      tool_popularity: {
+        Row: {
+          clicks: number
+          popularity: number
+          tool_category: string
+          tool_title: string
+          updated_at: string
+          views: number
+        }
+        Insert: {
+          clicks?: number
+          popularity?: number
+          tool_category?: string
+          tool_title: string
+          updated_at?: string
+          views?: number
+        }
+        Update: {
+          clicks?: number
+          popularity?: number
+          tool_category?: string
+          tool_title?: string
+          updated_at?: string
+          views?: number
+        }
+        Relationships: []
+      }
       tool_reviews: {
         Row: {
           author_name: string
@@ -391,16 +418,7 @@ export type Database = {
       }
     }
     Views: {
-      category_popularity: {
-        Row: {
-          clicks: number | null
-          popularity: number | null
-          tool_category: string | null
-          tool_title: string | null
-          views: number | null
-        }
-        Relationships: []
-      }
+      [_ in never]: never
     }
     Functions: {
       get_tool_popularity_stats: {

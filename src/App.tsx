@@ -68,6 +68,7 @@ const ChatGPTAlternatives = lazyWithRetry(() => import("./pages/ChatGPTAlternati
 const BlogPage = lazyWithRetry(() => import("./pages/BlogPage"));
 const BlogPostPage = lazyWithRetry(() => import("./pages/BlogPostPage"));
 const SpotlightsPage = lazyWithRetry(() => import("./pages/SpotlightsPage"));
+const RankingsPage = lazyWithRetry(() => import("./pages/RankingsPage"));
 const SpotlightPage = lazyWithRetry(() => import("./pages/SpotlightPage"));
 const GamingEntertainmentPage = lazyWithRetry(() => import("./pages/GamingEntertainmentPage"));
 const FAQPage = lazyWithRetry(() => import("./pages/FAQPage"));
@@ -340,6 +341,7 @@ const AnimatedRoutes = () => {
         <Route path="/blog" element={<RouteReadySignal><BlogPage /></RouteReadySignal>} />
         <Route path="/blog/:slug" element={<RouteReadySignal><BlogPostPage /></RouteReadySignal>} />
         <Route path="/spotlights" element={<RouteReadySignal><SpotlightsPage /></RouteReadySignal>} />
+        <Route path="/rankings" element={<RouteReadySignal><RankingsPage /></RouteReadySignal>} />
         <Route path="/spotlight/:slug" element={<RouteReadySignal><SpotlightPage /></RouteReadySignal>} />
         <Route path="/gaming-entertainment" element={<RouteReadySignal><GamingEntertainmentPage /></RouteReadySignal>} />
         <Route path="/faq" element={<RouteReadySignal><FAQPage /></RouteReadySignal>} />
