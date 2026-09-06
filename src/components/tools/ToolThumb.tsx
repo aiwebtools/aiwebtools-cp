@@ -1,6 +1,7 @@
 import { memo, useEffect, useState } from "react";
 import { Tool } from "@/types/tools";
-import { isExpiredHost, getYouTubeThumbnail } from "@/utils/imageUtils";
+import { isExpiredHost, getYouTubeThumbnail, getBrandLogo } from "@/utils/imageUtils";
+
 import { useResolvedToolImage } from "@/utils/assetResolver";
 
 /**
@@ -45,7 +46,10 @@ const ToolThumb = memo(({ tool, className = "w-11 h-11", emojiClassName = "text-
     setOverride(undefined);
   }, [tool.imageUrl]);
 
-  const src = failed ? undefined : (override || resolved || getYouTubeThumbnail(tool.videoUrl));
+  const brandLogo = getBrandLogo(tool.directUrl, 128);
+  const src = failed
+    ? undefined
+    : override || resolved || getYouTubeThumbnail(tool.videoUrl) || brandLogo;
 
   if (!src) {
     return (
@@ -65,9 +69,12 @@ const ToolThumb = memo(({ tool, className = "w-11 h-11", emojiClassName = "text-
       height={64}
       onError={() => {
         const ytFallback = getYouTubeThumbnail(tool.videoUrl);
-        // Try the YouTube thumbnail once; otherwise fall back to the emoji tile.
+        // Try the YouTube thumbnail, then the tool's own site logo, and only
+        // then fall back to the emoji tile.
         if (ytFallback && src !== ytFallback) {
           setOverride(ytFallback);
+        } else if (brandLogo && src !== brandLogo) {
+          setOverride(brandLogo);
         } else {
           setFailed(true);
         }

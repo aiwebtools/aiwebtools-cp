@@ -38,3 +38,25 @@ export const getResolvedAssetUrl = (url: string | null | undefined): string => {
   }
   return url;
 };
+
+/**
+ * Real brand logo for tools that ship no hero image or video.
+ *
+ * Instead of showing a bare emoji tile, the card displays the tool's OWN
+ * site icon (fetched from Google's public favicon service, cached on their
+ * edge, no key, no cost). This gives every single card in the directory a
+ * genuine visual preview of the tool it links to.
+ */
+export const getBrandLogo = (
+  directUrl: string | null | undefined,
+  size: 32 | 64 | 128 | 256 = 128,
+): string | undefined => {
+  if (!directUrl) return undefined;
+  try {
+    const host = new URL(directUrl.trim()).hostname.replace(/^www\./i, "");
+    if (!host || !host.includes(".")) return undefined;
+    return `https://www.google.com/s2/favicons?domain=${encodeURIComponent(host)}&sz=${size}`;
+  } catch {
+    return undefined;
+  }
+};

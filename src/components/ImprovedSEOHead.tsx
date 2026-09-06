@@ -137,7 +137,23 @@ const ImprovedSEOHead: React.FC<ImprovedSEOHeadProps> = ({
           ...(tool?.isFree ? { "price": "0" } : {}),
         "priceCurrency": "USD",
         "availability": "https://schema.org/InStock"
-      }
+      },
+      // Star ratings in Google results: only emitted from real stored
+      // rating data, never fabricated.
+      ...(tool?.rating && tool?.totalVotes
+        ? {
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": Number(tool.rating).toFixed(1),
+              "ratingCount": tool.totalVotes,
+              "bestRating": "5",
+              "worstRating": "1"
+            }
+          }
+        : {}),
+      ...(Array.isArray(tool?.tags) && tool.tags.length
+        ? { "keywords": tool.tags.slice(0, 25).join(", ") }
+        : {})
     })
   };
 

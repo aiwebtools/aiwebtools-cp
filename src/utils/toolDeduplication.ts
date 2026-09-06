@@ -73,7 +73,11 @@ export const deduplicateTools = (tools: Tool[]): Tool[] => {
   const deduplicated: Tool[] = [];
 
   for (const tool of tools) {
-    const titleKey = tool.title.toLowerCase().trim();
+    // Titles are compared on their letters/digits only, so cosmetic spelling
+    // differences of the SAME destination ("Leonardo.ai" vs "Leonardo AI")
+    // collapse into one card instead of polluting the directory.
+    const titleKey = tool.title.toLowerCase().replace(/[^a-z0-9]+/g, "");
+
     const destination = normalizeDestination(tool.directUrl);
 
     // No destination = we cannot prove it is the same tool -> always keep it.

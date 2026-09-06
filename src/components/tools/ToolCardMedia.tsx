@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { Tool } from "@/types/tools";
 import { Play } from "lucide-react";
-import { isExpiredHost, getYouTubeId, getYouTubeThumbnail } from "@/utils/imageUtils";
+import { isExpiredHost, getYouTubeId, getYouTubeThumbnail, getBrandLogo } from "@/utils/imageUtils";
 import { useResolvedToolImage } from "@/utils/assetResolver";
 
 interface ToolCardMediaProps {
@@ -29,6 +29,9 @@ const ToolCardMedia = ({ tool, isFeatured, imageHeight }: ToolCardMediaProps) =>
   
   // Effective image for display (Image -> YT Thumb -> Fallback)
   const effectiveImageUrl = hasImage ? resolvedImageUrl : youtubeThumbnail;
+  // No hero image and no video: show the tool's OWN site logo on a branded
+  // tile so every card still previews the real product.
+  const brandLogo = !effectiveImageUrl ? getBrandLogo(tool.directUrl, 256) : undefined;
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -136,6 +139,24 @@ const ToolCardMedia = ({ tool, isFeatured, imageHeight }: ToolCardMediaProps) =>
             </div>
           )}
         </>
+      ) : brandLogo ? (
+        <div className="w-full h-full flex flex-col items-center justify-center gap-2 px-3 text-center">
+          <img
+            src={brandLogo}
+            alt={`${tool.title} logo`}
+            width={64}
+            height={64}
+            loading="lazy"
+            decoding="async"
+            className="w-14 h-14 object-contain drop-shadow-[0_0_12px_rgba(34,197,94,0.35)]"
+            onError={(e) => {
+              (e.currentTarget as HTMLImageElement).style.display = "none";
+            }}
+          />
+          <span className="text-xs font-semibold text-foreground/80 line-clamp-2">
+            {tool.title}
+          </span>
+        </div>
       ) : (
         <div className="flex items-center justify-center text-6xl opacity-50 w-full h-full">
           {tool.emoji}
