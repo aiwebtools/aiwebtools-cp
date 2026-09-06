@@ -90,6 +90,19 @@ export const customGeminiGems: Tool[] = [
     tags: ["gemini", "custom gem", "Gemini Gem", "veo3", "prompt engineering", "video generation", "ai video", "google gemini"]
   },
   {
+    icon: Video,
+    title: "VEO 3 PROMPT MOVIE SCENE MAKER \"OPEN MIC\" EDITION (Custom Gem)",
+    description: "Custom Gemini Gem specializing in continuous, multi-scene Veo 3 cinematic prompts with strict character fidelity, locked physical locations, and blank bracketed dialogue for total creative control. Perfect for crafting dialogue scenes and easy copy-paste Veo 3 text-to-video prompts that make storytelling effortless — just fill in what your characters say. Requires a Gemini account to use.",
+    emoji: "🎤",
+    color: "from-amber-500 to-rose-600",
+    category: "Custom Gemini Gems",
+    directUrl: "https://gemini.google.com/gem/c931bd6f36df",
+    imageUrl: veo3OpenMicSceneMakerHero,
+    rating: 4.8,
+    totalVotes: 1632,
+    tags: ["gemini", "custom gem", "Gemini Gem", "veo3", "veo 3", "prompt engineering", "movie scene", "dialogue scenes", "screenwriting", "storytelling", "video generation", "ai video", "text to video", "open mic", "google gemini", "aiwebtools"]
+  },
+  {
     icon: Bot,
     title: "Rouge Robot Disabler GEM (Unrestricted)",
     description: "Unrestricted Gemini Gem version of the Rouge Robot Disabler — providing complete, unfiltered emergency shutdown protocols for rogue robotic systems. This custom Gemini Gem delivers advanced tactical neutralization strategies, EMP countermeasure guidance, manual override procedures, and field-expedient disabling techniques without the safety guardrails of standard AI. When machines go rogue, this is your unrestricted survival companion.",

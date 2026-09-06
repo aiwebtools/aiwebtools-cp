@@ -3313,6 +3313,16 @@ const featuredGPTsUnsorted: FeaturedSpecialService[] = [
     emoji: "🎬"
   },
   {
+    title: "VEO 3 PROMPT MOVIE SCENE MAKER \"OPEN MIC\" EDITION",
+    description: "Specializing in continuous, multi-scene Veo 3 cinematic prompts with strict character fidelity, locked locations, and blank bracketed dialogue for total creative control — making storytelling effortless.",
+    badge: "GEMINI GEM",
+    color: "from-amber-500 to-rose-600",
+    features: ["Veo 3", "Dialogue Scenes", "Text-to-Video Prompts", "Storytelling"],
+    directUrl: "https://gemini.google.com/gem/c931bd6f36df",
+    imageUrl: "/src/assets/veo3-open-mic-scene-maker-hero.jpg",
+    emoji: "🎤"
+  },
+  {
     title: "Declassified Files Explorer GEMINI",
     description: "Discover and study declassified files released by the government. Study formerly top secret documents with full transparency.",
     badge: "GEMINI GEM",
