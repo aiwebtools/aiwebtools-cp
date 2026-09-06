@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ExternalLink, Plus, Search, Download } from "lucide-react";
+import { ExternalLink, Plus, Search, Download, Github } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { downloadToolsCSV } from "@/utils/csvExport";
 import { createConfettiCelebration } from "@/utils/effects/audioEffects";
@@ -96,6 +96,16 @@ const FooterActions = ({ handleExternalLink, handleSubmitTool, handleRequestTool
         >
           <ExternalLink className="mr-2 h-5 w-5 flex-shrink-0" />
           REQUEST CUSTOM TOOL
+        </Button>
+
+        <Button
+          onClick={(e) => handleExternalLink('https://github.com/aiwebtools/', e)}
+          variant="outline"
+          size="lg"
+          className="w-full sm:w-auto border-gray-400 text-gray-200 hover:bg-gray-400/20 hover:text-white transition-all duration-300 px-6 py-3 h-auto min-h-[3rem] whitespace-nowrap text-sm md:text-base font-bold tracking-wide"
+        >
+          <Github className="mr-2 h-5 w-5 flex-shrink-0" />
+          GITHUB — OPEN SOURCE
         </Button>
       </div>
     </div>
