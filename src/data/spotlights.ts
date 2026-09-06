@@ -5,19 +5,29 @@ import { generateToolSlug } from "@/utils/urlGenerator";
 /**
  * SPOTLIGHT PAGES ("back pages")
  * -----------------------------------------------------------------------------
- * 200 long-form, SEO-optimised write-ups — one per AIWebTools.ai custom GPT /
- * Gem — that each link back into the tool's own page, its category and the
- * wider directory. Everything below is derived from the REAL tool records in
- * our database (title, description, category, tags, live URL). Nothing is
+ * 300 long-form, SEO + AEO optimised write-ups — one per AIWebTools.ai custom
+ * GPT / Gem — that each link back into the tool's own page, its category and
+ * the wider directory. Everything below is derived from the REAL tool records
+ * in our database (title, description, category, tags, live URL). Nothing is
  * invented: no ratings, no testimonials, no fabricated statistics.
+ *
+ * AEO (Answer Engine Optimization): every page opens with a single-sentence
+ * direct answer plus a quick-facts table, and closes with an expanded FAQ, so
+ * ChatGPT, Perplexity, Gemini and Google AI Overviews can lift a clean,
+ * attributable answer straight from the page.
  */
 
-export const SPOTLIGHT_COUNT = 200;
+export const SPOTLIGHT_COUNT = 300;
 
 export interface SpotlightSection {
   heading: string;
   body: string;
   bullets?: string[];
+}
+
+export interface SpotlightFact {
+  label: string;
+  value: string;
 }
 
 export interface Spotlight {
@@ -31,6 +41,10 @@ export interface Spotlight {
   title: string;
   metaTitle: string;
   metaDescription: string;
+  /** AEO: one-sentence extractable answer to "what is X?" */
+  answer: string;
+  /** AEO: scannable key/value facts for answer engines */
+  quickFacts: SpotlightFact[];
   intro: string;
   keywords: string[];
   publishDate: string;
