@@ -191,6 +191,32 @@ export type Database = {
         }
         Relationships: []
       }
+      gpt_app_prompts: {
+        Row: {
+          app_slug: string
+          system_prompt: string
+          updated_at: string
+        }
+        Insert: {
+          app_slug: string
+          system_prompt: string
+          updated_at?: string
+        }
+        Update: {
+          app_slug?: string
+          system_prompt?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "gpt_app_prompts_app_slug_fkey"
+            columns: ["app_slug"]
+            isOneToOne: true
+            referencedRelation: "gpt_apps"
+            referencedColumns: ["slug"]
+          },
+        ]
+      }
       gpt_apps: {
         Row: {
           created_at: string
@@ -202,7 +228,6 @@ export type Database = {
           slug: string
           source_file: string | null
           starter_prompts: string[]
-          system_prompt: string
           tagline: string | null
           tool_title: string | null
           updated_at: string
@@ -217,7 +242,6 @@ export type Database = {
           slug: string
           source_file?: string | null
           starter_prompts?: string[]
-          system_prompt: string
           tagline?: string | null
           tool_title?: string | null
           updated_at?: string
@@ -232,7 +256,6 @@ export type Database = {
           slug?: string
           source_file?: string | null
           starter_prompts?: string[]
-          system_prompt?: string
           tagline?: string | null
           tool_title?: string | null
           updated_at?: string
@@ -615,36 +638,7 @@ export type Database = {
       }
     }
     Views: {
-      gpt_public: {
-        Row: {
-          display_name: string | null
-          greeting: string | null
-          slug: string | null
-          starter_prompts: string[] | null
-          tagline: string | null
-          tool_title: string | null
-          updated_at: string | null
-        }
-        Insert: {
-          display_name?: string | null
-          greeting?: string | null
-          slug?: string | null
-          starter_prompts?: string[] | null
-          tagline?: string | null
-          tool_title?: string | null
-          updated_at?: string | null
-        }
-        Update: {
-          display_name?: string | null
-          greeting?: string | null
-          slug?: string | null
-          starter_prompts?: string[] | null
-          tagline?: string | null
-          tool_title?: string | null
-          updated_at?: string | null
-        }
-        Relationships: []
-      }
+      [_ in never]: never
     }
     Functions: {
       get_tool_popularity_stats: {
