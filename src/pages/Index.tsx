@@ -23,6 +23,8 @@ const LovableInvitePopup = lazy(() => import("@/components/LovableInvitePopup"))
 const AIWebToolsSEOSection = lazy(() => import("@/components/seo/AIWebToolsSEOSection"));
 const EthicalAIQuoteSection = lazy(() => import("@/components/EthicalAIQuoteSection"));
 const InspirationCarousel = lazy(() => import("@/components/InspirationCarousel"));
+const TikTokFeedSection = lazy(() => import("@/components/social/TikTokFeedSection"));
+
 
 
 // Removed loading spinner - causes perceived slowness on refresh
