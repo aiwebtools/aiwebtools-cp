@@ -260,6 +260,42 @@ export type Database = {
         }
         Relationships: []
       }
+      tool_reviews: {
+        Row: {
+          author_name: string
+          avatar_seed: string
+          comment: string | null
+          created_at: string
+          id: string
+          rating: number
+          session_id: string | null
+          tool_slug: string
+          tool_title: string
+        }
+        Insert: {
+          author_name?: string
+          avatar_seed?: string
+          comment?: string | null
+          created_at?: string
+          id?: string
+          rating: number
+          session_id?: string | null
+          tool_slug: string
+          tool_title: string
+        }
+        Update: {
+          author_name?: string
+          avatar_seed?: string
+          comment?: string | null
+          created_at?: string
+          id?: string
+          rating?: number
+          session_id?: string | null
+          tool_slug?: string
+          tool_title?: string
+        }
+        Relationships: []
+      }
       tool_submissions: {
         Row: {
           admin_notes: string | null
@@ -358,6 +394,16 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      get_category_popularity: {
+        Args: { _limit?: number }
+        Returns: {
+          clicks: number
+          popularity: number
+          tool_category: string
+          tool_title: string
+          views: number
+        }[]
+      }
       get_tool_popularity_stats: {
         Args: never
         Returns: {
@@ -369,6 +415,13 @@ export type Database = {
           total_clicks: number
           total_views: number
           unique_sessions: number
+        }[]
+      }
+      get_tool_review_summary: {
+        Args: { _tool_slug: string }
+        Returns: {
+          average_rating: number
+          review_count: number
         }[]
       }
       has_role: {
