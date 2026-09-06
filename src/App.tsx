@@ -67,6 +67,8 @@ const AIAgentsDirectory = lazyWithRetry(() => import("./pages/AIAgentsDirectory"
 const ChatGPTAlternatives = lazyWithRetry(() => import("./pages/ChatGPTAlternatives"));
 const BlogPage = lazyWithRetry(() => import("./pages/BlogPage"));
 const BlogPostPage = lazyWithRetry(() => import("./pages/BlogPostPage"));
+const SpotlightsPage = lazyWithRetry(() => import("./pages/SpotlightsPage"));
+const SpotlightPage = lazyWithRetry(() => import("./pages/SpotlightPage"));
 const GamingEntertainmentPage = lazyWithRetry(() => import("./pages/GamingEntertainmentPage"));
 const FAQPage = lazyWithRetry(() => import("./pages/FAQPage"));
 const AIToolsPage = lazyWithRetry(() => import("./pages/AIToolsPage"));
