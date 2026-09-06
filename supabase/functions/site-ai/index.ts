@@ -112,7 +112,7 @@ const buildMessages = (body: Payload) => {
   return null;
 };
 
-const MAX_TOKENS: Record<string, number> = { match: 160, explain: 180, prompt: 140 };
+const MAX_TOKENS: Record<string, number> = { match: 700, explain: 700, prompt: 600 };
 
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
@@ -157,7 +157,10 @@ Deno.serve(async (req) => {
         model: MODEL,
         messages,
         temperature: 0.4,
-        max_tokens: MAX_TOKENS[body.mode as string] ?? 160,
+        // Thinking off — these are short, cheap answers; reasoning tokens would
+        // burn credits and eat the output budget.
+        reasoning: { enabled: false },
+        max_tokens: MAX_TOKENS[body.mode as string] ?? 700,
       }),
     });
 
