@@ -14,6 +14,42 @@ export type Database = {
   }
   public: {
     Tables: {
+      ai_digests: {
+        Row: {
+          created_at: string
+          html: string
+          id: string
+          issue_date: string
+          markdown: string | null
+          sent_at: string | null
+          status: string
+          summary: string | null
+          title: string
+        }
+        Insert: {
+          created_at?: string
+          html: string
+          id?: string
+          issue_date: string
+          markdown?: string | null
+          sent_at?: string | null
+          status?: string
+          summary?: string | null
+          title: string
+        }
+        Update: {
+          created_at?: string
+          html?: string
+          id?: string
+          issue_date?: string
+          markdown?: string | null
+          sent_at?: string | null
+          status?: string
+          summary?: string | null
+          title?: string
+        }
+        Relationships: []
+      }
       care_bot_logs: {
         Row: {
           assistant_reply: string | null
@@ -155,6 +191,137 @@ export type Database = {
         }
         Relationships: []
       }
+      gpt_apps: {
+        Row: {
+          created_at: string
+          display_name: string
+          greeting: string | null
+          id: string
+          is_active: boolean
+          model: string
+          slug: string
+          source_file: string | null
+          starter_prompts: string[]
+          system_prompt: string
+          tagline: string | null
+          tool_title: string | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          display_name: string
+          greeting?: string | null
+          id?: string
+          is_active?: boolean
+          model?: string
+          slug: string
+          source_file?: string | null
+          starter_prompts?: string[]
+          system_prompt: string
+          tagline?: string | null
+          tool_title?: string | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          display_name?: string
+          greeting?: string | null
+          id?: string
+          is_active?: boolean
+          model?: string
+          slug?: string
+          source_file?: string | null
+          starter_prompts?: string[]
+          system_prompt?: string
+          tagline?: string | null
+          tool_title?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      gpt_conversations: {
+        Row: {
+          app_slug: string
+          created_at: string
+          id: string
+          title: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          app_slug: string
+          created_at?: string
+          id?: string
+          title?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          app_slug?: string
+          created_at?: string
+          id?: string
+          title?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      gpt_messages: {
+        Row: {
+          content: string
+          conversation_id: string
+          created_at: string
+          id: string
+          role: string
+          user_id: string
+        }
+        Insert: {
+          content: string
+          conversation_id: string
+          created_at?: string
+          id?: string
+          role: string
+          user_id: string
+        }
+        Update: {
+          content?: string
+          conversation_id?: string
+          created_at?: string
+          id?: string
+          role?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "gpt_messages_conversation_id_fkey"
+            columns: ["conversation_id"]
+            isOneToOne: false
+            referencedRelation: "gpt_conversations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      gpt_usage: {
+        Row: {
+          message_count: number
+          updated_at: string
+          usage_date: string
+          user_id: string
+        }
+        Insert: {
+          message_count?: number
+          updated_at?: string
+          usage_date?: string
+          user_id: string
+        }
+        Update: {
+          message_count?: number
+          updated_at?: string
+          usage_date?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       link_health: {
         Row: {
           consecutive_failures: number
@@ -197,6 +364,36 @@ export type Database = {
           tool_title?: string
           updated_at?: string
           url?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          display_name: string | null
+          email: string | null
+          id: string
+          pref_new_tools: boolean
+          pref_weekly_digest: boolean
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          display_name?: string | null
+          email?: string | null
+          id: string
+          pref_new_tools?: boolean
+          pref_weekly_digest?: boolean
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          display_name?: string | null
+          email?: string | null
+          id?: string
+          pref_new_tools?: boolean
+          pref_weekly_digest?: boolean
+          updated_at?: string
         }
         Relationships: []
       }
@@ -418,7 +615,36 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      gpt_public: {
+        Row: {
+          display_name: string | null
+          greeting: string | null
+          slug: string | null
+          starter_prompts: string[] | null
+          tagline: string | null
+          tool_title: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          display_name?: string | null
+          greeting?: string | null
+          slug?: string | null
+          starter_prompts?: string[] | null
+          tagline?: string | null
+          tool_title?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          display_name?: string | null
+          greeting?: string | null
+          slug?: string | null
+          starter_prompts?: string[] | null
+          tagline?: string | null
+          tool_title?: string | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       get_tool_popularity_stats: {
