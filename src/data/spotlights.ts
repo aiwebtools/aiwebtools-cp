@@ -5,14 +5,14 @@ import { generateToolSlug } from "@/utils/urlGenerator";
 /**
  * SPOTLIGHT PAGES ("back pages")
  * -----------------------------------------------------------------------------
- * 100 long-form, SEO-optimised write-ups — one per AIWebTools.ai custom GPT /
+ * 200 long-form, SEO-optimised write-ups — one per AIWebTools.ai custom GPT /
  * Gem — that each link back into the tool's own page, its category and the
  * wider directory. Everything below is derived from the REAL tool records in
  * our database (title, description, category, tags, live URL). Nothing is
  * invented: no ratings, no testimonials, no fabricated statistics.
  */
 
-export const SPOTLIGHT_COUNT = 100;
+export const SPOTLIGHT_COUNT = 200;
 
 export interface SpotlightSection {
   heading: string;
