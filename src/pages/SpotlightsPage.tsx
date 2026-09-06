@@ -32,7 +32,7 @@ export default function SpotlightsPage() {
   return (
     <>
       <Helmet>
-        <title>AI Tool Spotlights — {spotlights.length} Custom GPT Write-Ups</title>
+        <title>{`AI Tool Spotlights — ${spotlights.length} Custom GPT Write-Ups`}</title>
         <meta
           name="description"
           content={`${spotlights.length} in-depth write-ups on the custom AI GPTs and Gems built by AIWebTools.ai — what each tool does, who it is for and why it stands out.`}
