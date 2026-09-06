@@ -80,7 +80,7 @@ export default function SpotlightPage() {
       <Header />
 
       <main className="min-h-screen bg-black">
-        <div className="container mx-auto max-w-4xl px-4 pt-28 pb-16">
+        <div className="container mx-auto max-w-4xl px-4 pt-40 pb-16">
           <nav aria-label="Breadcrumb" className="pt-8 text-sm text-green-400/80">
             <Link to="/" className="hover:text-green-300">Home</Link>
             <span className="mx-2">/</span>

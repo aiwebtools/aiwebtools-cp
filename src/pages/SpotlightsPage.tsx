@@ -53,7 +53,7 @@ export default function SpotlightsPage() {
       <Header />
 
       <main className="min-h-screen bg-black">
-        <div className="container mx-auto max-w-5xl px-4 pt-28 pb-16">
+        <div className="container mx-auto max-w-5xl px-4 pt-40 pb-16">
           <header className="pt-8">
             <h1 className="text-3xl md:text-4xl font-bold text-green-300">AI Tool Spotlights</h1>
             <p className="mt-4 max-w-3xl text-gray-300">
