@@ -190,6 +190,9 @@ const ToolDetail = () => {
               <CardContent className="p-8 bg-gray-900/50">
                 <ToolMedia tool={tool} toolIndex={toolIndex} />
                 <ToolActions tool={tool} />
+                <div className="mb-6">
+                  <InSiteGptButton tool={tool} />
+                </div>
                 <ToolDescription tool={tool} />
                 {isPerplexityBot && <PerplexityBotGuide tool={tool} />}
                 <ToolAIExplainer tool={tool} />
