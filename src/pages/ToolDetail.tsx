@@ -14,6 +14,8 @@ import ToolDescription from "@/components/tool-detail/ToolDescription";
 import ToolMedia from "@/components/tool-detail/ToolMedia";
 import ToolTags from "@/components/tool-detail/ToolTags";
 import ToolActions from "@/components/tool-detail/ToolActions";
+import ToolAIExplainer from "@/components/ai/ToolAIExplainer";
+import ToolPromptHelper from "@/components/ai/ToolPromptHelper";
 import ImprovedSEOHead from "@/components/ImprovedSEOHead";
 import BreadcrumbSEO from "@/components/BreadcrumbSEO";
 import BreadcrumbNav from "@/components/navigation/BreadcrumbNav";
