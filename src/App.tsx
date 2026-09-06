@@ -67,6 +67,8 @@ const AIAgentsDirectory = lazyWithRetry(() => import("./pages/AIAgentsDirectory"
 const ChatGPTAlternatives = lazyWithRetry(() => import("./pages/ChatGPTAlternatives"));
 const BlogPage = lazyWithRetry(() => import("./pages/BlogPage"));
 const BlogPostPage = lazyWithRetry(() => import("./pages/BlogPostPage"));
+const SpotlightsPage = lazyWithRetry(() => import("./pages/SpotlightsPage"));
+const SpotlightPage = lazyWithRetry(() => import("./pages/SpotlightPage"));
 const GamingEntertainmentPage = lazyWithRetry(() => import("./pages/GamingEntertainmentPage"));
 const FAQPage = lazyWithRetry(() => import("./pages/FAQPage"));
 const AIToolsPage = lazyWithRetry(() => import("./pages/AIToolsPage"));
@@ -337,6 +339,8 @@ const AnimatedRoutes = () => {
         <Route path="/chatgpt-alternatives" element={<RouteReadySignal><ChatGPTAlternatives /></RouteReadySignal>} />
         <Route path="/blog" element={<RouteReadySignal><BlogPage /></RouteReadySignal>} />
         <Route path="/blog/:slug" element={<RouteReadySignal><BlogPostPage /></RouteReadySignal>} />
+        <Route path="/spotlights" element={<RouteReadySignal><SpotlightsPage /></RouteReadySignal>} />
+        <Route path="/spotlight/:slug" element={<RouteReadySignal><SpotlightPage /></RouteReadySignal>} />
         <Route path="/gaming-entertainment" element={<RouteReadySignal><GamingEntertainmentPage /></RouteReadySignal>} />
         <Route path="/faq" element={<RouteReadySignal><FAQPage /></RouteReadySignal>} />
         <Route path="/ai-tools" element={<RouteReadySignal><AIToolsPage /></RouteReadySignal>} />

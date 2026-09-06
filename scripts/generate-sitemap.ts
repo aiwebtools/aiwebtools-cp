@@ -8,6 +8,7 @@ import fs from "fs";
 import path from "path";
 import { allTools } from "../src/data/toolsData";
 import { generateToolSlug } from "../src/utils/urlGenerator";
+import { getSpotlights } from "../src/data/spotlights";
 
 const BASE_URL = "https://aiwebtools.app";
 
@@ -17,6 +18,7 @@ const staticRoutes: Array<{ path: string; priority: string; changefreq: string }
   { path: "/best-ai-tools", priority: "0.9", changefreq: "weekly" },
   { path: "/free-ai-tools", priority: "0.9", changefreq: "weekly" },
   { path: "/blog", priority: "0.8", changefreq: "weekly" },
+  { path: "/spotlights", priority: "0.9", changefreq: "weekly" },
 ];
 
 const used = new Set<string>();
@@ -41,6 +43,14 @@ for (const slug of slugs) {
   );
 }
 
+// SEO "back pages": one long-form spotlight per custom GPT / Gem.
+const spotlights = getSpotlights();
+for (const spotlight of spotlights) {
+  urls.push(
+    `  <url><loc>${BASE_URL}/spotlight/${spotlight.slug}</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>`
+  );
+}
+
 const xml =
   `<?xml version="1.0" encoding="UTF-8"?>\n` +
   `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
@@ -49,7 +59,7 @@ const xml =
 
 const outPath = path.resolve(process.cwd(), "public/sitemap.xml");
 fs.writeFileSync(outPath, xml, "utf-8");
-console.log(`✅ sitemap.xml written with ${urls.length} URLs (${slugs.length} tool slugs)`);
+console.log(`✅ sitemap.xml written with ${urls.length} URLs (${slugs.length} tool slugs, ${spotlights.length} spotlights)`);
 
 // ---------------------------------------------------------------------------
 // Generate the authoritative tool count so on-site counters never go stale.
