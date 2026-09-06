@@ -176,6 +176,13 @@ const Index = () => {
             <BookPromotionCard />
           </Suspense>
         </DeferredMount>
+
+        <DeferredMount delay={2600} fallback={<div className="min-h-[45vh]" aria-hidden="true" />}>
+          <Suspense fallback={null}>
+            <TikTokFeedSection />
+          </Suspense>
+        </DeferredMount>
+
         
         <DeferredMount delay={2800} fallback={<div className="min-h-[45vh]" aria-hidden="true" />}>
           <Suspense fallback={null}>
