@@ -19,6 +19,7 @@ const staticRoutes: Array<{ path: string; priority: string; changefreq: string }
   { path: "/free-ai-tools", priority: "0.9", changefreq: "weekly" },
   { path: "/blog", priority: "0.8", changefreq: "weekly" },
   { path: "/spotlights", priority: "0.9", changefreq: "weekly" },
+  { path: "/rankings", priority: "0.9", changefreq: "daily" },
 ];
 
 const used = new Set<string>();
