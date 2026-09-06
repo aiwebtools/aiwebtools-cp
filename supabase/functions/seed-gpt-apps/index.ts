@@ -23,7 +23,7 @@ type SeedApp = {
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return new Response("ok", { headers: corsHeaders });
 
-  const CRON_SECRET = Deno.env.get("DIGEST_CRON_SECRET");
+  const CRON_SECRET = Deno.env.get("GPT_SEED_SECRET") || Deno.env.get("DIGEST_CRON_SECRET");
   const cronAuthorized = !!CRON_SECRET && req.headers.get("x-cron-secret") === CRON_SECRET;
 
   const admin = createClient(
