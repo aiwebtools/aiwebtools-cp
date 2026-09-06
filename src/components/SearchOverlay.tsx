@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { createTimePortalEffect } from "@/utils/timeEffects";
 import { generateToolSlug } from "@/utils/urlGenerator";
 import ToolThumb from "@/components/tools/ToolThumb";
+import AISearchAssistant from "@/components/ai/AISearchAssistant";
 
 interface SearchOverlayProps {
   isOpen: boolean;
@@ -113,6 +114,16 @@ const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
               {searchTerm ? `Found ${searchResults.length} ${searchResults.length === 1 ? 'tool' : 'tools'}` : `Browsing ${searchResults.length} tools`}
               {displayedCount < searchResults.length && ` • Showing first ${displayedCount}`}
             </div>
+
+            {searchTerm.trim() && (
+              <AISearchAssistant
+                query={searchTerm.trim()}
+                candidates={searchResults}
+                onPick={handleToolClick}
+              />
+            )}
+
+
 
             <div 
               className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-h-96 overflow-y-auto scrollbar-thin scrollbar-thumb-cyan-500/50 scrollbar-track-gray-800"
