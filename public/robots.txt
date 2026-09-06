@@ -13,6 +13,8 @@ Allow: /*?search=*
 Allow: /sitemap.xml
 Allow: /blog
 Allow: /blog/
+Allow: /spotlights
+Allow: /spotlight/
 Allow: /tool/
 Allow: /category/
 Allow: /main-category/
@@ -265,6 +267,8 @@ Allow: /llms.txt
 Allow: /ai-tools-hub
 Allow: /ai-agents-directory
 Allow: /chatgpt-alternatives
+Allow: /spotlights
+Allow: /spotlight/
 Allow: /gaming-entertainment
 Allow: /our-story
 Allow: /disclaimers
