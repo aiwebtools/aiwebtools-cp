@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { createTimePortalEffect } from "@/utils/timeEffects";
 import { generateToolSlug } from "@/utils/urlGenerator";
 import ToolThumb from "@/components/tools/ToolThumb";
+import AISearchAssistant from "@/components/ai/AISearchAssistant";
 
 interface SearchOverlayProps {
   isOpen: boolean;
