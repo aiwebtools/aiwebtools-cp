@@ -57,6 +57,28 @@ export default function SpotlightPage() {
         { "@type": "ListItem", position: 3, name: spotlight.toolTitle, item: url },
       ],
     },
+    // AEO: machine-readable Q&A so answer engines can quote this page directly.
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: spotlight.faq.map((item) => ({
+        "@type": "Question",
+        name: item.q,
+        acceptedAnswer: { "@type": "Answer", text: item.a },
+      })),
+    },
+    // AEO: flag the direct-answer block for voice and assistant surfaces.
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "@id": url,
+      name: spotlight.title,
+      description: spotlight.metaDescription,
+      speakable: {
+        "@type": "SpeakableSpecification",
+        cssSelector: [".aeo-answer", ".aeo-quick-facts"],
+      },
+    },
   ];
 
   return (
