@@ -13,6 +13,7 @@ import ToolHeader from "@/components/tool-detail/ToolHeader";
 import ToolDescription from "@/components/tool-detail/ToolDescription";
 import ToolReviews from "@/components/tool-detail/ToolReviews";
 import PerplexityBotGuide from "@/components/tool-detail/PerplexityBotGuide";
+import InSiteGptButton from "@/components/tool-detail/InSiteGptButton";
 import ToolMedia from "@/components/tool-detail/ToolMedia";
 import ToolTags from "@/components/tool-detail/ToolTags";
 import ToolActions from "@/components/tool-detail/ToolActions";

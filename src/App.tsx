@@ -69,6 +69,10 @@ const BlogPage = lazyWithRetry(() => import("./pages/BlogPage"));
 const BlogPostPage = lazyWithRetry(() => import("./pages/BlogPostPage"));
 const SpotlightsPage = lazyWithRetry(() => import("./pages/SpotlightsPage"));
 const RankingsPage = lazyWithRetry(() => import("./pages/RankingsPage"));
+const JoinPage = lazyWithRetry(() => import("./pages/JoinPage"));
+const AccountPage = lazyWithRetry(() => import("./pages/AccountPage"));
+const GptAppPage = lazyWithRetry(() => import("./pages/GptAppPage"));
+const DigestPage = lazyWithRetry(() => import("./pages/DigestPage"));
 const SpotlightPage = lazyWithRetry(() => import("./pages/SpotlightPage"));
 const GamingEntertainmentPage = lazyWithRetry(() => import("./pages/GamingEntertainmentPage"));
 const FAQPage = lazyWithRetry(() => import("./pages/FAQPage"));
@@ -342,6 +346,11 @@ const AnimatedRoutes = () => {
         <Route path="/blog/:slug" element={<RouteReadySignal><BlogPostPage /></RouteReadySignal>} />
         <Route path="/spotlights" element={<RouteReadySignal><SpotlightsPage /></RouteReadySignal>} />
         <Route path="/rankings" element={<RouteReadySignal><RankingsPage /></RouteReadySignal>} />
+        <Route path="/join" element={<RouteReadySignal><JoinPage /></RouteReadySignal>} />
+        <Route path="/account" element={<RouteReadySignal><AccountPage /></RouteReadySignal>} />
+        <Route path="/app/:slug" element={<RouteReadySignal><GptAppPage /></RouteReadySignal>} />
+        <Route path="/digest" element={<RouteReadySignal><DigestPage /></RouteReadySignal>} />
+        <Route path="/digest/:date" element={<RouteReadySignal><DigestPage /></RouteReadySignal>} />
         <Route path="/spotlight/:slug" element={<RouteReadySignal><SpotlightPage /></RouteReadySignal>} />
         <Route path="/gaming-entertainment" element={<RouteReadySignal><GamingEntertainmentPage /></RouteReadySignal>} />
         <Route path="/faq" element={<RouteReadySignal><FAQPage /></RouteReadySignal>} />

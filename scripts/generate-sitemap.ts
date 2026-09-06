@@ -20,6 +20,7 @@ const staticRoutes: Array<{ path: string; priority: string; changefreq: string }
   { path: "/blog", priority: "0.8", changefreq: "weekly" },
   { path: "/spotlights", priority: "0.9", changefreq: "weekly" },
   { path: "/rankings", priority: "0.9", changefreq: "daily" },
+  { path: "/digest", priority: "0.8", changefreq: "weekly" },
 ];
 
 const used = new Set<string>();

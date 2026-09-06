@@ -23,6 +23,9 @@ Allow: /free-ai-tools
 Allow: /ai-agents-directory
 Allow: /ai-tools-hub
 Allow: /rankings
+Allow: /digest
+Disallow: /account
+Disallow: /join
 Allow: /chatgpt-alternatives
 Crawl-delay: 0
 
