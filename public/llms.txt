@@ -13,6 +13,7 @@
 - [AI Writing Tools](/ai-writing-tools): AI writing assistants and content tools.
 - [AI Web Tools](/ai-web-tools): Web-based AI tools directory.
 - [Blog](/blog): Articles, guides, and AI tool reviews.
+- [AI Tool Spotlights](/spotlights): 300 in-depth write-ups of our custom AI tools, each with a direct answer, quick facts and FAQ.
 - [Gaming & Entertainment](/gaming-entertainment): AI tools for games and media.
 - [FAQ](/faq): Frequently asked questions.
 - [Our Story](/our-story): About AI Web Tools.
@@ -33,7 +34,7 @@
 **AI Web Tools** is a comprehensive AI tools directory helping users discover, compare, and access the best AI-powered web tools across all categories. We feature productivity tools, creative AI, business automation, education, healthcare, spiritual exploration, and much more.
 
 ### Why Choose AI Web Tools?
-- **2195+ AI Web Tools** cataloged and searchable
+- **4,000+ AI Tools** cataloged and searchable
 - **100+ Custom GPT collection** with original AI assistants
 - **Category-based browsing** (Video, Image, Writing, Business, Education, etc.)
 - **Detailed tool pages** with descriptions, videos, and direct access
