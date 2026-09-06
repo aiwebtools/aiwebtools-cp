@@ -391,19 +391,18 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      category_popularity: {
+        Row: {
+          clicks: number | null
+          popularity: number | null
+          tool_category: string | null
+          tool_title: string | null
+          views: number | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
-      get_category_popularity: {
-        Args: { _limit?: number }
-        Returns: {
-          clicks: number
-          popularity: number
-          tool_category: string
-          tool_title: string
-          views: number
-        }[]
-      }
       get_tool_popularity_stats: {
         Args: never
         Returns: {
