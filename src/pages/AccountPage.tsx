@@ -28,6 +28,9 @@ const AccountPage = () => {
   const [saving, setSaving] = useState(false);
   const [usage, setUsage] = useState<number>(0);
   const [apps, setApps] = useState<AppRow[]>([]);
+  const [savedSlugs, setSavedSlugs] = useState<string[]>([]);
+  const [recent, setRecent] = useState<{ id: string; app_slug: string; title: string | null }[]>([]);
+
 
   useEffect(() => {
     if (!loading && !user) navigate("/join?next=/account", { replace: true });
