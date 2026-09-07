@@ -72,10 +72,35 @@ const AccountPage = () => {
         if (alive) setApps((data as AppRow[]) ?? []);
       });
 
+    supabase
+      .from("gpt_favorites")
+      .select("app_slug")
+      .eq("user_id", user.id)
+      .then(({ data }) => {
+        if (alive) setSavedSlugs((data ?? []).map((row) => row.app_slug as string));
+      });
+
+    supabase
+      .from("gpt_conversations")
+      .select("id, app_slug, title")
+      .eq("user_id", user.id)
+      .order("updated_at", { ascending: false })
+      .limit(8)
+      .then(({ data }) => {
+        if (alive) setRecent((data as { id: string; app_slug: string; title: string | null }[]) ?? []);
+      });
+
     return () => {
       alive = false;
     };
   }, [user]);
+
+  const savedApps = useMemo(
+    () => apps.filter((app) => savedSlugs.includes(app.slug)),
+    [apps, savedSlugs],
+  );
+  const appName = (slug: string) => apps.find((a) => a.slug === slug)?.display_name ?? slug;
+
 
   const remaining = useMemo(() => Math.max(0, 60 - usage), [usage]);
 
