@@ -28,6 +28,9 @@ const AccountPage = () => {
   const [saving, setSaving] = useState(false);
   const [usage, setUsage] = useState<number>(0);
   const [apps, setApps] = useState<AppRow[]>([]);
+  const [savedSlugs, setSavedSlugs] = useState<string[]>([]);
+  const [recent, setRecent] = useState<{ id: string; app_slug: string; title: string | null }[]>([]);
+
 
   useEffect(() => {
     if (!loading && !user) navigate("/join?next=/account", { replace: true });
@@ -69,10 +72,35 @@ const AccountPage = () => {
         if (alive) setApps((data as AppRow[]) ?? []);
       });
 
+    supabase
+      .from("gpt_favorites")
+      .select("app_slug")
+      .eq("user_id", user.id)
+      .then(({ data }) => {
+        if (alive) setSavedSlugs((data ?? []).map((row) => row.app_slug as string));
+      });
+
+    supabase
+      .from("gpt_conversations")
+      .select("id, app_slug, title")
+      .eq("user_id", user.id)
+      .order("updated_at", { ascending: false })
+      .limit(8)
+      .then(({ data }) => {
+        if (alive) setRecent((data as { id: string; app_slug: string; title: string | null }[]) ?? []);
+      });
+
     return () => {
       alive = false;
     };
   }, [user]);
+
+  const savedApps = useMemo(
+    () => apps.filter((app) => savedSlugs.includes(app.slug)),
+    [apps, savedSlugs],
+  );
+  const appName = (slug: string) => apps.find((a) => a.slug === slug)?.display_name ?? slug;
+
 
   const remaining = useMemo(() => Math.max(0, 60 - usage), [usage]);
 
@@ -157,6 +185,44 @@ const AccountPage = () => {
             {usage} of 60 messages used — {remaining} left. Your allowance resets at midnight UTC.
           </p>
         </section>
+
+        {savedApps.length > 0 && (
+          <section className="rounded-2xl border border-primary/25 bg-card/60 p-5">
+            <h2 className="mb-3 text-lg font-semibold">Your saved tools ({savedApps.length})</h2>
+            <div className="grid gap-2 sm:grid-cols-2">
+              {savedApps.map((app) => (
+                <Link
+                  key={app.slug}
+                  to={`/app/${app.slug}`}
+                  className="rounded-lg border border-border/70 bg-background/60 p-3 transition hover:border-primary/50"
+                >
+                  <span className="block text-sm font-semibold text-foreground">{app.display_name}</span>
+                  {app.tagline && <span className="mt-1 block text-xs text-muted-foreground">{app.tagline}</span>}
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {recent.length > 0 && (
+          <section className="rounded-2xl border border-primary/25 bg-card/60 p-5">
+            <h2 className="mb-3 text-lg font-semibold">Pick up where you left off</h2>
+            <div className="grid gap-2 sm:grid-cols-2">
+              {recent.map((row) => (
+                <Link
+                  key={row.id}
+                  to={`/app/${row.app_slug}`}
+                  className="rounded-lg border border-border/70 bg-background/60 p-3 transition hover:border-primary/50"
+                >
+                  <span className="block text-sm font-semibold text-foreground">{appName(row.app_slug)}</span>
+                  {row.title && <span className="mt-1 block truncate text-xs text-muted-foreground">{row.title}</span>}
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
+
+
 
         <section className="rounded-2xl border border-primary/25 bg-card/60 p-5">
           <h2 className="mb-3 flex items-center gap-2 text-lg font-semibold">
