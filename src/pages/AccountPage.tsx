@@ -186,6 +186,44 @@ const AccountPage = () => {
           </p>
         </section>
 
+        {savedApps.length > 0 && (
+          <section className="rounded-2xl border border-primary/25 bg-card/60 p-5">
+            <h2 className="mb-3 text-lg font-semibold">Your saved tools ({savedApps.length})</h2>
+            <div className="grid gap-2 sm:grid-cols-2">
+              {savedApps.map((app) => (
+                <Link
+                  key={app.slug}
+                  to={`/app/${app.slug}`}
+                  className="rounded-lg border border-border/70 bg-background/60 p-3 transition hover:border-primary/50"
+                >
+                  <span className="block text-sm font-semibold text-foreground">{app.display_name}</span>
+                  {app.tagline && <span className="mt-1 block text-xs text-muted-foreground">{app.tagline}</span>}
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {recent.length > 0 && (
+          <section className="rounded-2xl border border-primary/25 bg-card/60 p-5">
+            <h2 className="mb-3 text-lg font-semibold">Pick up where you left off</h2>
+            <div className="grid gap-2 sm:grid-cols-2">
+              {recent.map((row) => (
+                <Link
+                  key={row.id}
+                  to={`/app/${row.app_slug}`}
+                  className="rounded-lg border border-border/70 bg-background/60 p-3 transition hover:border-primary/50"
+                >
+                  <span className="block text-sm font-semibold text-foreground">{appName(row.app_slug)}</span>
+                  {row.title && <span className="mt-1 block truncate text-xs text-muted-foreground">{row.title}</span>}
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
+
+
+
         <section className="rounded-2xl border border-primary/25 bg-card/60 p-5">
           <h2 className="mb-3 flex items-center gap-2 text-lg font-semibold">
             <Sparkles className="h-4 w-4 text-primary" aria-hidden="true" /> In-site AI tools ({apps.length})
