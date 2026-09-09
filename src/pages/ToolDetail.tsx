@@ -50,10 +50,20 @@ const ToolDetail = () => {
   let shouldRedirect = false;
   let redirectSlug = '';
 
+  // Loose key: ignores hyphens/spacing/punctuation so retired addresses
+  // (e.g. /anything-llm, /bland-ai, /chatterbox-tts) still reach the merged tool.
+  const looseKey = (value: string) => value.toLowerCase().replace(/[^a-z0-9]+/g, "");
+
   const pickBestToolIndexForSlug = (slug: string): number => {
-    const matches = allTools
+    const exact = allTools
       .map((tool, idx) => ({ tool, idx }))
       .filter(({ tool }) => generateToolSlug(tool.title) === slug);
+
+    const matches = exact.length
+      ? exact
+      : allTools
+          .map((tool, idx) => ({ tool, idx }))
+          .filter(({ tool }) => looseKey(generateToolSlug(tool.title)) === looseKey(slug));
 
     if (matches.length === 0) return -1;
     if (matches.length === 1) return matches[0].idx;
@@ -70,6 +80,13 @@ const ToolDetail = () => {
   if (toolSlug) {
     // If accessing via slug route (/:toolSlug)
     toolIndex = pickBestToolIndexForSlug(toolSlug);
+    if (toolIndex !== -1) {
+      const canonical = generateToolSlug(allTools[toolIndex].title);
+      if (canonical && canonical !== toolSlug) {
+        shouldRedirect = true;
+        redirectSlug = canonical;
+      }
+    }
   } else if (toolId) {
     // If accessing via legacy numeric route (/tool/:toolId)
     const numericId = parseInt(toolId);
