@@ -11,8 +11,23 @@ import {
 
 import mindReaderGptHero from "@/assets/tools/mind-reader-gpt-hero.jpg";
 import magnetismGptHero from "@/assets/tools/magnetism-gpt-hero.jpg";
+import fortuneTellerGptHero from "@/assets/tools/fortune-teller-gpt-hero.jpg";
 
 export const mysteriousAndUnusualGPTs: Tool[] = [
+  {
+    icon: "🔮" as any,
+    title: "Fortune Teller GPT",
+    description: "Fortune Teller GPT is an advanced AI-powered analytical tool designed to predict trends, analyze data, and provide insights based on real-world patterns. It combines web searches, statistical modeling, and Python-driven calculations to generate data-backed forecasts on various topics, including economics, technology, resource management, and geopolitical shifts. Unlike traditional fortune-telling, Fortune Teller GPT relies on factual data, historical patterns, and predictive algorithms to uncover likely future outcomes.",
+    emoji: "🔮",
+    color: "from-purple-600 to-emerald-600",
+    directUrl: "https://fortunetellergpt.lovable.app/?via=aiwebtools",
+    imageUrl: fortuneTellerGptHero,
+    tags: ["fortune teller", "fortune teller gpt", "predictions", "forecasting", "trend analysis", "probability", "data analysis", "future", "oracle", "predictive analytics", "statistics", "aiwebtools", "Custom GPT"],
+    category: "Mysterious & Unusual",
+    rating: 4.7,
+    totalVotes: 1846,
+    isFree: true
+  },
   {
     icon: "🧠" as any,
     title: "Mind Reader GPT",
