@@ -81,7 +81,10 @@ for (const slug of slugs) {
   );
 }
 
+const blogSlugs = new Set<string>();
 for (const post of blogPosts) {
+  if (!post.slug || blogSlugs.has(post.slug)) continue;
+  blogSlugs.add(post.slug);
   urls.push(
     `  <url><loc>${BASE_URL}/blog/${encodePathSegment(post.slug)}</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>`
   );
