@@ -9,19 +9,36 @@ import path from "path";
 import { allTools } from "../src/data/toolsData";
 import { generateToolSlug } from "../src/utils/urlGenerator";
 import { getSpotlights } from "../src/data/spotlights";
+import { blogPosts } from "../src/data/blogPostContent";
+import { mainCategories } from "../src/utils/mainCategoryMapping";
 
 const BASE_URL = "https://aiwebtools.app";
 
 const staticRoutes: Array<{ path: string; priority: string; changefreq: string }> = [
   { path: "/", priority: "1.0", changefreq: "daily" },
   { path: "/mtvai", priority: "0.9", changefreq: "weekly" },
+  { path: "/ai-tools", priority: "0.9", changefreq: "daily" },
+  { path: "/ai-tools-hub", priority: "0.9", changefreq: "weekly" },
+  { path: "/ai-agents-directory", priority: "0.9", changefreq: "weekly" },
+  { path: "/chatgpt-alternatives", priority: "0.8", changefreq: "weekly" },
   { path: "/best-ai-tools", priority: "0.9", changefreq: "weekly" },
   { path: "/free-ai-tools", priority: "0.9", changefreq: "weekly" },
+  { path: "/ai-writing-tools", priority: "0.8", changefreq: "weekly" },
+  { path: "/ai-web-tools", priority: "0.8", changefreq: "weekly" },
   { path: "/blog", priority: "0.8", changefreq: "weekly" },
   { path: "/spotlights", priority: "0.9", changefreq: "weekly" },
   { path: "/rankings", priority: "0.9", changefreq: "daily" },
   { path: "/digest", priority: "0.8", changefreq: "weekly" },
+  { path: "/gaming-entertainment", priority: "0.8", changefreq: "weekly" },
+  { path: "/faq", priority: "0.7", changefreq: "monthly" },
+  { path: "/our-story", priority: "0.6", changefreq: "monthly" },
+  { path: "/privacy-policy", priority: "0.4", changefreq: "yearly" },
+  { path: "/disclaimers", priority: "0.4", changefreq: "yearly" },
+  { path: "/submit-tool", priority: "0.6", changefreq: "monthly" },
+  { path: "/user-submitted", priority: "0.7", changefreq: "daily" },
 ];
+
+const encodePathSegment = (value: string) => encodeURIComponent(value.trim());
 
 const used = new Set<string>();
 const slugs: string[] = [];
@@ -39,9 +56,37 @@ for (const r of staticRoutes) {
     `  <url><loc>${BASE_URL}${r.path}</loc><changefreq>${r.changefreq}</changefreq><priority>${r.priority}</priority></url>`
   );
 }
+
+
+// Every real category landing page. These are generated from the same data
+// sources used by the category routes so the sitemap stays synchronized.
+const toolCategories = Array.from(
+  new Set(allTools.map((tool) => tool.category?.trim()).filter((category): category is string => Boolean(category)))
+).sort((a, b) => a.localeCompare(b));
+for (const category of toolCategories) {
+  urls.push(
+    `  <url><loc>${BASE_URL}/category/${encodePathSegment(category)}</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>`
+  );
+}
+
+for (const category of mainCategories) {
+  urls.push(
+    `  <url><loc>${BASE_URL}/main-category/${encodePathSegment(category.name)}</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>`
+  );
+}
+
 for (const slug of slugs) {
   urls.push(
     `  <url><loc>${BASE_URL}/${slug}</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>`
+  );
+}
+
+const blogSlugs = new Set<string>();
+for (const post of blogPosts) {
+  if (!post.slug || blogSlugs.has(post.slug)) continue;
+  blogSlugs.add(post.slug);
+  urls.push(
+    `  <url><loc>${BASE_URL}/blog/${encodePathSegment(post.slug)}</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>`
   );
 }
 
