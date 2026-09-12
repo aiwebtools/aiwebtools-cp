@@ -85,7 +85,7 @@ const Logo = ({ compact = false }: { compact?: boolean }) => {
         {/* Main title row */}
         <div className={`flex items-center gap-1 md:gap-2 ${compact ? 'mb-0' : 'mb-0.5 md:mb-1'}`}>
           <div className={`font-bold ${compact ? 'text-[11px]' : 'text-[13px] sm:text-base md:text-lg'} tracking-wider letter-spacing-wide relative leading-tight`}>
-            <span className="relative z-10 bg-gradient-to-r from-cyan-400 via-cyan-300 to-cyan-500 bg-clip-text text-transparent logo-text-crisp">AI WEB TOOLS</span>
+            <span className="relative z-10 bg-gradient-to-r from-cyan-400 via-cyan-300 to-cyan-500 bg-clip-text text-transparent logo-text-crisp">AI WEB TOOLS DIRECTORY</span>
             <span className="relative z-10 bg-gradient-to-r from-cyan-400 via-cyan-300 to-cyan-500 bg-clip-text text-transparent logo-text-crisp hidden md:inline"> - AIWEBTOOLS.APP</span>
           </div>
           {!compact && (
@@ -111,7 +111,7 @@ const Logo = ({ compact = false }: { compact?: boolean }) => {
 
         {/* AIWebTools.ai link - always visible */}
         <div className={`${compact ? 'text-[8px]' : 'text-[9px] sm:text-[10px] md:text-xs'} text-gray-400 mt-0 truncate`}>
-          BY{" "}
+          MADE BY AWT-{" "}
           <button
             onClick={(e) => handleExternalLink("https://aiwebtools.lovable.app/?via=aiwebtools", e)}
             className="text-cyan-400 hover:text-cyan-300 transition-all duration-200 hover:text-shadow-glow font-medium tracking-wide"
