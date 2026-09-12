@@ -200,14 +200,14 @@ const CareBotWidget = () => {
             <Bot className="w-7 h-7 relative z-10" strokeWidth={2.5} />
             {/* 24/7 badge */}
             <span className="absolute -top-1 -right-1 z-20 text-[8px] font-mono font-bold px-1.5 py-0.5 rounded-full bg-black text-green-300 border border-green-400 leading-none">
-              24/7
+              24/7 TOOL GUIDNECE
             </span>
           </span>
           <span
             className="text-[9px] font-mono font-bold uppercase tracking-wider text-green-300 bg-black/80 px-2 py-0.5 rounded border border-green-500/40 whitespace-nowrap"
             style={{ textShadow: "0 0 6px #00ff41" }}
           >
-            Web Tools Q&amp;A
+            ASK AI WEB TOOLS Q&amp;A
           </span>
         </button>
       )}
