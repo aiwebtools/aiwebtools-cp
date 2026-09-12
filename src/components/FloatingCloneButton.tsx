@@ -75,7 +75,7 @@ const FloatingCloneButton = () => {
             <Copy className="w-4 h-4 md:w-5 md:h-5 mb-0.5" />
             <div className="text-[7px] md:text-[9px] font-bold leading-tight tracking-wide">
               <div>CLONE</div>
-              <div>SITE</div>
+              <div>THIS SITE</div>
               <div className="text-yellow-300" style={{ textShadow: '0 0 8px #FFD700' }}>FREE</div>
             </div>
           </div>
