@@ -6,7 +6,7 @@ import GlobalSearchBar from "./GlobalSearchBar";
 import { useDeferredAnimation } from "@/hooks/useReducedMotion";
 import DeferredMount from "./DeferredMount";
 
-const HERO_TOOL_STATS = { total: 4571, marketing: "4,000+", categories: 21 };
+const HERO_TOOL_STATS = { total: 4571, marketing: "5,000+", categories: 21 };
 
 const HeroSection = () => {
   const navigate = useNavigate();
@@ -110,7 +110,7 @@ const HeroSection = () => {
           {/* Clear value proposition subtitle */}
           <div className="mb-8">
             <p className="text-xl md:text-2xl text-green-100 font-medium max-w-4xl mx-auto leading-relaxed hero-white-stroke">
-              The largest directory of AI tools for productivity, creativity, and business. 
+              The largest directory of AI Web tools for productivity, creativity, education, and business.{"\u00a0"}
               <span className="text-green-400 font-semibold hero-white-stroke" style={{ textShadow: '0 0 10px rgba(0, 255, 0, 0.5)' }}> Find the perfect AI tool for any task.</span>
             </p>
           </div>
@@ -147,15 +147,15 @@ const HeroSection = () => {
         <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto">
           <div className="text-center">
             <div className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-green-400 to-emerald-600 bg-clip-text text-transparent" style={{ textShadow: '0 0 15px rgba(0, 255, 0, 0.3)' }}>{toolStats.marketing}</div>
-            <div className="text-green-200 text-sm">AI TOOLS</div>
+            <div className="text-green-200 text-sm">AI WEB TOOLS</div>
           </div>
           <div className="text-center">
             <div className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-green-400 to-emerald-600 bg-clip-text text-transparent" style={{ textShadow: '0 0 15px rgba(0, 255, 0, 0.3)' }}>100%</div>
-            <div className="text-green-200 text-sm">Free AI Resource</div>
+            <div className="text-green-200 text-sm">Free AI Web Tool Resources</div>
           </div>
           <div className="text-center">
             <div className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-green-400 to-emerald-600 bg-clip-text text-transparent" style={{ textShadow: '0 0 15px rgba(0, 255, 0, 0.3)' }}>24/7</div>
-            <div className="text-green-200 text-sm">Availability</div>
+            <div className="text-green-200 text-sm">FREE TO CLONE / MAKE YOUR OWN VERSION</div>
           </div>
         </div>
       </div>
