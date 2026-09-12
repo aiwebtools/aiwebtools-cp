@@ -83,7 +83,7 @@ Best regards,
       {/* Search bar above footer for easy navigation */}
       <div className="bg-gradient-to-b from-black/50 to-black py-8 border-t border-green-500/20">
         <div className="container mx-auto px-4">
-          <p className="text-center text-green-400 text-sm mb-4 font-medium" style={{ textShadow: '0 0 10px rgba(0, 255, 0, 0.5)' }}>🔍 Quick Search - Find Any AI Tool Instantly</p>
+           <p className="text-center text-green-400 text-sm mb-4 font-medium" style={{ textShadow: '0 0 10px rgba(0, 255, 0, 0.5)' }}>🔍 Quick Ai Web Tools Search - Find Any AI Tool Instantly</p>
           <GlobalSearchBar />
           <div className="flex justify-center mt-6">
             <JoinEmailListButton source="footer-search" />
