@@ -178,8 +178,10 @@ Deno.serve(async (req) => {
   }
 
   const aiJson = await aiRes.json();
-  const html: string = aiJson?.choices?.[0]?.message?.content?.trim() || "";
-  if (!html) return json({ error: "Empty digest" }, 502);
+  const rawHtml: string = aiJson?.choices?.[0]?.message?.content?.trim() || "";
+  if (!rawHtml) return json({ error: "Empty digest" }, 502);
+  const html = sanitizeDigestHtml(rawHtml);
+  if (!html) return json({ error: "Digest sanitized to empty" }, 502);
 
   const issueDate = new Date().toISOString().slice(0, 10);
   const title = stripTags(html.match(/<h2[^>]*>([\s\S]*?)<\/h2>/)?.[1] ?? `AI Signal — ${issueDate}`);
