@@ -75,9 +75,9 @@ const HeroSection = () => {
                 className={`absolute text-white hero-3d-text hero-stroke-text transition-all duration-1000 ease-in-out ${
                   showBrandName ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'
                 }`}
-                data-text={`${toolStats.marketing} Ai TOOLS DIRECTORY`}
+                data-text={`${toolStats.marketing} TOOLS`}
               >
-                {toolStats.marketing} Ai TOOLS DIRECTORY
+                {toolStats.marketing} TOOLS
               </span>
               <span 
                 className={`absolute text-white hero-3d-glow hero-stroke-text transition-all duration-1000 ease-in-out ${
