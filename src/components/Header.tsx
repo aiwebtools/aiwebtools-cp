@@ -42,7 +42,7 @@ const Header = () => {
       >
         <div className="cosmic-marquee-track whitespace-nowrap text-[10px] md:text-[11px] font-mono tracking-[0.18em] text-matrix-green/90">
           <span className="mx-8 inline-block">
-            ✦ THE COSMIC LIGHT IS WITHIN ✦
+            ✦ THE COSMIC LIGHT AND COMSIC FIRE ARE WITHIN US ALL ✦
           </span>
         </div>
       </div>
