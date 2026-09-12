@@ -35,7 +35,7 @@ const JoinEmailListButton = ({ source = "website", variant = "default", classNam
         aria-label="Join our email list"
       >
         <Mail className="w-4 h-4" />
-        <span>Join Email List</span>
+         <span>Join the AWT Email List</span>
       </button>
       <EmailSignupModal open={open} onOpenChange={setOpen} source={source} />
     </>

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { downloadToolsCSV } from "@/utils/csvExport";
 import { createConfettiCelebration } from "@/utils/effects/audioEffects";
 
-const TOOL_COUNT = 4571;
+const TOOL_COUNT = 5000;
 
 interface FooterActionsProps {
   handleExternalLink: (url: string, e: React.MouseEvent) => void;
@@ -85,7 +85,7 @@ const FooterActions = ({ handleExternalLink, handleSubmitTool, handleRequestTool
           className="w-full sm:w-auto border-emerald-500 text-emerald-300 hover:bg-emerald-500/20 hover:text-white transition-all duration-300 px-6 py-3 h-auto min-h-[3rem] whitespace-nowrap text-sm md:text-base font-bold tracking-wide"
         >
           <Plus className="mr-2 h-5 w-5 flex-shrink-0" />
-          SUBMIT YOUR TOOL
+           SUBMIT YOUR AI TOOL TO OUR DIRECTORY
         </Button>
         
         <Button
@@ -95,7 +95,7 @@ const FooterActions = ({ handleExternalLink, handleSubmitTool, handleRequestTool
           className="w-full sm:w-auto border-green-400 text-green-400 hover:bg-green-400/20 hover:text-white transition-all duration-300 px-6 py-3 h-auto min-h-[3rem] whitespace-nowrap text-sm md:text-base font-bold tracking-wide"
         >
           <ExternalLink className="mr-2 h-5 w-5 flex-shrink-0" />
-          REQUEST CUSTOM TOOL
+           SUBMIT REQUEST A CUSTOM AI TOOL BUILD
         </Button>
 
         <Button
@@ -105,7 +105,7 @@ const FooterActions = ({ handleExternalLink, handleSubmitTool, handleRequestTool
           className="w-full sm:w-auto border-gray-400 text-gray-200 hover:bg-gray-400/20 hover:text-white transition-all duration-300 px-6 py-3 h-auto min-h-[3rem] whitespace-nowrap text-sm md:text-base font-bold tracking-wide"
         >
           <Github className="mr-2 h-5 w-5 flex-shrink-0" />
-          GITHUB — OPEN SOURCE
+           AWT GITHUB — OPEN SOURCE
         </Button>
       </div>
     </div>
