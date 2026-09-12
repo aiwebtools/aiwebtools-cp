@@ -1229,7 +1229,7 @@ const PinnedVideoPlayer = memo(() => {
             title={currentTitle}
           >
             {mode === 'idle'
-              ? '🎬 Whatcha in the mood for?'
+              ? 'AI Tool Commericals / MTVai'
               : `${currentEmoji} ${currentTitle}`}
           </p>
           <button
