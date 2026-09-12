@@ -150,7 +150,7 @@ const FooterBottom = ({
         <div className="flex items-center text-green-300">
           <button onClick={e => handleExternalLink("https://freename.io?ref=olive-ears-obey&utm_source=clipboard", e)} className="flex items-center space-x-2 hover:text-green-400 transition-colors cursor-pointer text-sm md:text-base">
             <Globe className="w-4 h-4 flex-shrink-0" />
-            <span className="text-center">Launch your next idea with .aiwebtools or .ai-tools<br />Check Out Our Web 3 TLD Portfolio In the Drop Down Menu in the AIWEBTOOLS.AI Header</span>
+            <span className="text-center">{"\n"}</span>
           </button>
         </div>
       </div>
