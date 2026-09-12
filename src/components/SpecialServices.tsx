@@ -4090,10 +4090,12 @@ const SpecialServices = () => {
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-6 md:mb-8">
           <h2 className="text-2xl md:text-4xl font-bold mb-2 md:mb-3 bg-gradient-to-r from-purple-400 via-pink-500 to-cyan-400 bg-clip-text text-transparent">
-            ⭐ Our Custom GPT & GEM Collection ⭐
+             ⭐ Our Exclusive 1 of a kind Custom GPT & GEM Collection ⭐
           </h2>
           <p className="text-sm md:text-lg text-muted-foreground px-2">
-            200+ Premium AI GPTs crafted by AI Web Tools - All completely FREE to use
+             500+ Premium GPTs, Gems, and Perplexity Bots were creatively crafted by AWT - AiWebTools.Ai -
+             &nbsp;All tools below were made by AI WEB TOOLS LLC and are completely FREE to use and were made with good intentions. Tools are for research, information, and self educational purposes only.&nbsp;
+             WARNING: Please use all Ai Tools offered on this site ethically per our user agreement.
           </p>
           <div className="mt-4 max-w-2xl mx-auto">
             <GlobalSearchBar />

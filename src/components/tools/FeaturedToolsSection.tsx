@@ -58,10 +58,10 @@ const FeaturedToolsSection = ({ onToolsLoaded }: FeaturedToolsSectionProps) => {
             Professional-grade & reality bending AI solutions created by AIWebTools.ai for outside the box capabilites.
           </p>
           <div className="inline-block px-6 py-3 bg-gradient-to-r from-green-500/20 to-emerald-500/20 border border-green-400/50 rounded-full text-green-300 font-bold">
-            ✨ Complete AI Web Tools Custom AI Collection - 100% Free Access ✨
+             ✨AWT MADE THIS DIRECTORY TO KEEP UP WITH TOOL RELEASES AND TO STAY SLIGHTLY MORE ORGANIZED BECAUSE REMEMEBERING THE URLs FOR SO MANY TOOLS IS FRANKLY IMPOSSIBLE✨
           </div>
           <div className="mt-4 text-cyan-300 text-lg font-semibold">
-            🎯 Featured Priority Tools + Complete GPT Suite Available Now!
+             🎯 Explore Our Featured Complete Ai-Tools & Custom GPT/GEM Suite all of which was crafted from the heart with good intentions.
           </div>
         </div>
         
