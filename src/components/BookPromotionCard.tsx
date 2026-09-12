@@ -1455,7 +1455,7 @@ const BookPromotionCard = () => {
                 <div className="text-center lg:text-left">
                   <h2 className="text-xl md:text-2xl font-bold text-white mb-2">
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">
-                      The Book Of Deployable Robot Prompts
+                      The Book Of Deployable ChatBot Prompts
                     </span>
                   </h2>
                   
@@ -1466,11 +1466,11 @@ const BookPromotionCard = () => {
                   <div className="space-y-1 mb-3 text-sm">
                     <div className="flex items-center justify-center lg:justify-start gap-2 text-green-300">
                       <span className="text-green-400">🤖</span>
-                      <span>Over 60 Deployable Robots & Key AI Insights</span>
+                      <span>Over 60+ Deployable Chatbots & Key AI Insights</span>
                     </div>
                     <div className="flex items-center justify-center lg:justify-start gap-2 text-green-300">
                       <span className="text-green-400">⚡</span>
-                      <span>Put you ahead of the game with cutting-edge AI</span>
+                      <span>Put you ahead of the game with cutting-edge prewritten copy paste prompts</span>
                     </div>
                     <div className="flex items-center justify-center lg:justify-start gap-2 text-green-300">
                       <span className="text-green-400">📋</span>
@@ -1486,7 +1486,7 @@ const BookPromotionCard = () => {
                         className="bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold px-4 py-2 rounded-lg text-sm shadow-lg hover:shadow-orange-500/25 transition-all duration-300 transform hover:scale-105"
                       >
                         <BookOpen className="mr-1.5" size={16} />
-                        📖 Buy on Amazon
+                        📖 Buy Book on Amazon
                         <ExternalLink className="ml-1.5" size={14} />
                       </Button>
 
@@ -1496,7 +1496,7 @@ const BookPromotionCard = () => {
                         className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold px-4 py-2 rounded-lg text-sm shadow-lg hover:shadow-cyan-500/25 transition-all duration-300 transform hover:scale-105"
                       >
                         <Download className="mr-1.5" size={16} />
-                        📥 Free Copy (DOCX)
+                        📥 Download Free Book Copy (DOCX)
                         <ExternalLink className="ml-1.5" size={14} />
                       </Button>
                     </div>
@@ -1508,7 +1508,7 @@ const BookPromotionCard = () => {
                           className="bg-gradient-to-r from-green-600 to-emerald-700 hover:from-green-700 hover:to-emerald-800 text-white font-bold px-4 py-2 rounded-lg text-sm shadow-lg hover:shadow-green-500/25 transition-all duration-300 transform hover:scale-105 border border-green-400/30"
                         >
                           <Eye className="mr-1.5" size={16} />
-                          👁️ View Preview
+                          👁️ View Preview of Amazon Book
                         </Button>
                       </DialogTrigger>
                       <DialogContent className="max-w-4xl h-[80vh]">
@@ -1551,7 +1551,7 @@ const BookPromotionCard = () => {
                         draggable={false}
                         className="mr-1.5 w-4 h-4 drop-shadow-[0_0_6px_rgba(168,85,247,0.9)]"
                       />
-                      🎬 MTVai.live
+                      WATCH 🎬 MTVai.live - AWT Creative Music Television
                     </Button>
 
                         <Button
@@ -1566,7 +1566,7 @@ const BookPromotionCard = () => {
                           className="bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-bold px-4 py-2 rounded-lg text-sm shadow-lg hover:shadow-yellow-500/25 transition-all duration-300 transform hover:scale-105 border border-yellow-400/40"
                         >
                           <Download className="mr-1.5" size={16} />
-                          📊 Download {allTools.length}+ AI Tools (CSV)
+                          📊 Download List of All 5556+ AI Tools on this app (CSV)
                         </Button>
 
                         <Button
@@ -1581,7 +1581,7 @@ const BookPromotionCard = () => {
                           className="bg-gradient-to-r from-purple-600 to-fuchsia-700 hover:from-purple-700 hover:to-fuchsia-800 text-white font-bold px-4 py-2 rounded-lg text-sm shadow-lg hover:shadow-purple-500/25 transition-all duration-300 transform hover:scale-105 border border-purple-400/40"
                         >
                           <Download className="mr-1.5" size={16} />
-                          🧠 150+ GPT Instructions (ZIP)
+                          🧠 DOWNLOAD 150+ GPT OPERATIONAL Instructions (ZIP)
                         </Button>
                   </div>
                 </div>
