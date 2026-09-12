@@ -167,7 +167,7 @@ Best regards,
             protecting humanity from the rise of self-aware machines. Remember
              the <span className="font-bold text-green-400">Light of Yah within</span>,
             build a good world for our children to inherit.{' '}
-              <span className="italic">The choice is ours to reflect outwardly. An Angel did warn me that AI was the devil (of course after I made this tools directory)..... so since that day we have dramatically slowed down development of this platform... AWT wishes you the best. </span>
+              <span className="italic">The choice is ours to reflect outwardly. An Angel did warn me that "AI was the devil" (of course after I made this tools directory)..... so since that day here at AWT we have dramatically slowed down development of this community empowerment project... AWT wishes you the best and I have made my work open source. </span>
           </p>
         </div>
         </div>
