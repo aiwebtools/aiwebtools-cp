@@ -1,5 +1,7 @@
 // Screens a submitted tool URL for safety using Lovable AI Gateway.
 // Returns { verdict: "safe" | "suspicious" | "blocked", score, reason }.
+// SSRF-hardened: only public http(s) hosts are fetched; redirects are
+// followed manually with DNS re-validation on every hop.
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 
 const corsHeaders = {
@@ -14,29 +16,154 @@ const HARD_BLOCK_KEYWORDS = [
 
 const HARD_BLOCK_TLDS = [".zip", ".mov", ".click", ".xyz.link"];
 
-async function fetchMeta(url: string): Promise<{ status: number; title: string; description: string; finalUrl: string } | null> {
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 6000);
+const MAX_REDIRECTS = 4;
+const MAX_BODY_BYTES = 512 * 1024; // hard cap on what we download
+
+const BLOCKED_HOSTNAMES = new Set([
+  "localhost", "metadata.google.internal", "instance-data", "169.254.169.254",
+]);
+
+function isPrivateIPv4(ip: string): boolean {
+  const parts = ip.split(".").map((p) => parseInt(p, 10));
+  if (parts.length !== 4 || parts.some((n) => Number.isNaN(n) || n < 0 || n > 255)) return true; // malformed = unsafe
+  const [a, b] = parts;
+  if (a === 0 || a === 10 || a === 127) return true;               // loopback / private / "this" net
+  if (a === 169 && b === 254) return true;                          // link-local (cloud metadata)
+  if (a === 172 && b >= 16 && b <= 31) return true;                 // private
+  if (a === 192 && b === 168) return true;                          // private
+  if (a === 100 && b >= 64 && b <= 127) return true;                // CGNAT
+  if (a >= 224) return true;                                        // multicast / reserved
+  if (a === 192 && b === 0) return true;                            // IETF protocol assignments
+  if (a === 198 && (b === 18 || b === 19)) return true;             // benchmarking
+  if (a === 198 && b === 51) return true;                           // documentation
+  if (a === 203 && b === 0) return true;                            // documentation
+  return false;
+}
+
+function isPrivateIPv6(ip: string): boolean {
+  const s = ip.toLowerCase();
+  return (
+    s === "::1" || s === "::" ||
+    s.startsWith("fe80:") ||          // link-local
+    s.startsWith("fc") || s.startsWith("fd") || // unique local
+    s.startsWith("::ffff:127.") || s.startsWith("::ffff:10.") ||
+    s.startsWith("::ffff:169.254") || s.startsWith("::ffff:192.168")
+  );
+}
+
+// Numeric IP supplied directly in the URL must also be a public address.
+function hostIsBlocked(hostname: string): boolean {
+  const h = hostname.toLowerCase().replace(/^\[|\]$/g, "");
+  if (BLOCKED_HOSTNAMES.has(h) || h.endsWith(".internal") || h.endsWith(".local")) return true;
+  if (/^\d+\.\d+\.\d+\.\d+$/.test(h)) return isPrivateIPv4(h);
+  if (h.includes(":")) return isPrivateIPv6(h);
+  return false;
+}
+
+// Resolve DNS and refuse any hostname that points at a private/reserved IP.
+async function resolvesToPrivateIP(hostname: string): Promise<boolean> {
   try {
-    const res = await fetch(url, {
-      redirect: "follow",
-      signal: controller.signal,
-      headers: {
-        "User-Agent": "Mozilla/5.0 (compatible; AIWebToolsBot/1.0; +https://aiwebtools.ai)",
-        "Accept": "text/html,application/xhtml+xml",
-      },
-    });
-    const buf = await res.arrayBuffer();
-    const text = new TextDecoder("utf-8", { fatal: false }).decode(buf.slice(0, 50000));
+    const [a, aaaa] = await Promise.allSettled([
+      Deno.resolveDns(hostname, "A"),
+      Deno.resolveDns(hostname, "AAAA"),
+    ]);
+    const addrs: string[] = [];
+    if (a.status === "fulfilled") addrs.push(...a.value);
+    if (aaaa.status === "fulfilled") addrs.push(...aaaa.value);
+    if (addrs.length === 0) return true; // cannot resolve = do not fetch
+    return addrs.some((ip) => (ip.includes(":") ? isPrivateIPv6(ip) : isPrivateIPv4(ip)));
+  } catch {
+    return true; // DNS failure = do not fetch
+  }
+}
+
+async function validateTarget(url: URL): Promise<{ ok: boolean; reason: string }> {
+  if (url.protocol !== "http:" && url.protocol !== "https:") {
+    return { ok: false, reason: "Only http(s) URLs allowed" };
+  }
+  if (url.username || url.password) {
+    return { ok: false, reason: "URLs with embedded credentials are not allowed" };
+  }
+  const hostname = url.hostname;
+  if (hostIsBlocked(hostname)) {
+    return { ok: false, reason: "Internal or private network addresses are not allowed" };
+  }
+  if (await resolvesToPrivateIP(hostname)) {
+    return { ok: false, reason: "Host resolves to a private or reserved address" };
+  }
+  return { ok: true, reason: "" };
+}
+
+// Fetch with manual redirect following; every hop is re-validated so a
+// public-looking URL cannot bounce us into an internal network.
+async function fetchMeta(url: string): Promise<{ status: number; title: string; description: string; finalUrl: string } | null> {
+  let current = url;
+  for (let hop = 0; hop <= MAX_REDIRECTS; hop++) {
+    let parsed: URL;
+    try { parsed = new URL(current); } catch { return null; }
+    const check = await validateTarget(parsed);
+    if (!check.ok) {
+      console.warn("blocked fetch target", current, check.reason);
+      return null;
+    }
+
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 6000);
+    let res: Response;
+    try {
+      res = await fetch(current, {
+        redirect: "manual",
+        signal: controller.signal,
+        headers: {
+          "User-Agent": "Mozilla/5.0 (compatible; AIWebToolsBot/1.0; +https://aiwebtools.ai)",
+          "Accept": "text/html,application/xhtml+xml",
+        },
+      });
+    } catch (err) {
+      console.error("fetchMeta failed", err);
+      return null;
+    } finally {
+      clearTimeout(timeout);
+    }
+
+    if (res.status >= 300 && res.status < 400) {
+      const location = res.headers.get("location");
+      await res.body?.cancel().catch(() => {});
+      if (!location) return null;
+      try {
+        current = new URL(location, current).href;
+      } catch {
+        return null;
+      }
+      continue;
+    }
+
+    // Cap download size: read at most MAX_BODY_BYTES then abort the rest.
+    const reader = res.body?.getReader();
+    if (!reader) return { status: res.status, title: "", description: "", finalUrl: res.url };
+    const chunks: Uint8Array[] = [];
+    let total = 0;
+    try {
+      for (;;) {
+        const { done, value } = await reader.read();
+        if (done || !value) break;
+        total += value.byteLength;
+        if (total > MAX_BODY_BYTES) { chunks.push(value.slice(0, value.byteLength - (total - MAX_BODY_BYTES))); break; }
+        chunks.push(value);
+      }
+    } catch { /* partial read is fine */ } finally {
+      reader.cancel().catch(() => {});
+    }
+    const merged = new Uint8Array(Math.min(total, MAX_BODY_BYTES));
+    let offset = 0;
+    for (const c of chunks) { merged.set(c, offset); offset += c.byteLength; }
+
+    const text = new TextDecoder("utf-8", { fatal: false }).decode(merged.slice(0, 50000));
     const title = /<title[^>]*>([^<]{0,300})<\/title>/i.exec(text)?.[1]?.trim() ?? "";
     const description = /<meta[^>]+name=["']description["'][^>]+content=["']([^"']{0,500})["']/i.exec(text)?.[1]?.trim() ?? "";
     return { status: res.status, title, description, finalUrl: res.url };
-  } catch (err) {
-    console.error("fetchMeta failed", err);
-    return null;
-  } finally {
-    clearTimeout(timeout);
   }
+  return null; // too many redirects
 }
 
 serve(async (req) => {
@@ -44,8 +171,8 @@ serve(async (req) => {
 
   try {
     const { url, name, description } = await req.json();
-    if (!url || typeof url !== "string") {
-      return new Response(JSON.stringify({ error: "url required" }), { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } });
+    if (!url || typeof url !== "string" || url.length > 2048) {
+      return new Response(JSON.stringify({ error: "valid url required" }), { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } });
     }
 
     let parsed: URL;
@@ -54,6 +181,11 @@ serve(async (req) => {
     }
     if (parsed.protocol !== "http:" && parsed.protocol !== "https:") {
       return new Response(JSON.stringify({ verdict: "blocked", score: 0, reason: "Only http(s) URLs allowed" }), { headers: { ...corsHeaders, "Content-Type": "application/json" } });
+    }
+
+    const target = await validateTarget(parsed);
+    if (!target.ok) {
+      return new Response(JSON.stringify({ verdict: "blocked", score: 0, reason: target.reason }), { headers: { ...corsHeaders, "Content-Type": "application/json" } });
     }
 
     const lowerHost = parsed.hostname.toLowerCase();
@@ -71,10 +203,10 @@ serve(async (req) => {
       }
     }
 
-    // Fetch page metadata
+    // Fetch page metadata (validated at every redirect hop)
     const meta = await fetchMeta(url);
     if (!meta) {
-      return new Response(JSON.stringify({ verdict: "suspicious", score: 45, reason: "Site unreachable during screening" }), { headers: { ...corsHeaders, "Content-Type": "application/json" } });
+      return new Response(JSON.stringify({ verdict: "suspicious", score: 45, reason: "Site unreachable or disallowed during screening" }), { headers: { ...corsHeaders, "Content-Type": "application/json" } });
     }
     if (meta.status >= 400) {
       return new Response(JSON.stringify({ verdict: "suspicious", score: 40, reason: `Site returned HTTP ${meta.status}` }), { headers: { ...corsHeaders, "Content-Type": "application/json" } });
