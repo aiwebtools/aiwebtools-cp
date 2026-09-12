@@ -110,7 +110,7 @@ const HeroSection = () => {
           {/* Clear value proposition subtitle */}
           <div className="mb-8">
             <p className="text-xl md:text-2xl text-green-100 font-medium max-w-4xl mx-auto leading-relaxed hero-white-stroke">
-              The largest directory of AI Web tools for productivity, creativity, education, and business.{"\u00a0"}
+               The largest directory of AI Web Tools for productivity, creativity, education, and business.{"\u00a0"}
               <span className="text-green-400 font-semibold hero-white-stroke" style={{ textShadow: '0 0 10px rgba(0, 255, 0, 0.5)' }}> Find the perfect AI tool for any task.</span>
             </p>
           </div>
