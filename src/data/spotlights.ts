@@ -1,5 +1,6 @@
 import { Tool } from "@/types/tools";
 import { aiWebToolsGPTs } from "@/data/tools/aiWebTools/aiWebToolsGPTs";
+import { perplexityBotsBatch2026 } from "@/data/tools/perplexityBotsBatch2026";
 import { generateToolSlug } from "@/utils/urlGenerator";
 
 /**
@@ -252,6 +253,21 @@ export const getSpotlights = (): Spotlight[] => {
 
   picked.forEach((tool, index) => {
     const spotlight = buildSpotlight(tool, index, source);
+    if (!spotlight.slug || usedSlugs.has(spotlight.slug)) return;
+    usedSlugs.add(spotlight.slug);
+    built.push(spotlight);
+  });
+
+  // Every AIWebTools.ai Perplexity Bot also gets its own long-form page.
+  const botSource = perplexityBotsBatch2026.filter((tool) => {
+    const key = clean(tool.title).toLowerCase();
+    if (!key || seen.has(key)) return false;
+    if (!clean(tool.description)) return false;
+    seen.add(key);
+    return true;
+  });
+  botSource.forEach((tool, botIndex) => {
+    const spotlight = buildSpotlight(tool, botIndex + picked.length, botSource);
     if (!spotlight.slug || usedSlugs.has(spotlight.slug)) return;
     usedSlugs.add(spotlight.slug);
     built.push(spotlight);
