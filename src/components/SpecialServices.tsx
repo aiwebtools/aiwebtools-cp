@@ -4094,7 +4094,7 @@ const SpecialServices = () => {
           </h2>
           <p className="text-sm md:text-lg text-muted-foreground px-2">
              500+ Premium GPTs, Gems, and Perplexity Bots were creatively crafted by AWT - AiWebTools.Ai -
-             &nbsp;All tools below were made by AI WEB TOOLS LLC and are completely FREE to use and were made with good intentions. Tools are for research, information, and self educational purposes only.&nbsp;
+              &nbsp;All tools below were made by AI WEB TOOLS LLC and are completely FREE to use and were made with good intentions.&nbsp;{"\n"}Tools are for research, information, and self educational purposes only.&nbsp;
              WARNING: Please use all Ai Tools offered on this site ethically per our user agreement.
           </p>
           <div className="mt-4 max-w-2xl mx-auto">
