@@ -115,10 +115,10 @@ const FooterBottom = ({
                   transformOrigin: 'center',
                 }}
               >
-                AI WEB TOOLS
+                AI WEB TOOLS<br/>-<br/>AiWebTools.App&nbsp;
               </span>
             </span>
-            <span className="block text-sm mt-1 text-green-300/80">All Rights Reserved</span>
+            <span className="block text-sm mt-1 text-green-300/80">All Rights Reserved AI WEB TOOLS LLC</span>
           </button>
           <div className="flex flex-wrap justify-center gap-4">
             <Link to="/privacy-policy" className="text-green-300 hover:text-green-400 transition-colors text-sm">
