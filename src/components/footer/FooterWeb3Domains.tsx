@@ -20,7 +20,8 @@ const FooterWeb3Domains = () => {
       <div className="mb-4 p-3 bg-gradient-to-r from-green-900/50 to-emerald-900/50 rounded-lg border border-green-500/30">
         <p className="text-xs text-gray-300 leading-relaxed">
           🔗 <span className="font-semibold text-green-400" style={{ textShadow: '0 0 8px rgba(0, 255, 0, 0.4)' }}>Connect to Your Crypto Wallet or Project to a WEB3 Domain&nbsp;<br/>VIEW OUR WEB3 TLD PORTFOLIO BELOW</span><br/>
-          Own forever • Resell for profit • Minted as NFT • Trade anytime
+          Own forever • Resell for profit • Minted as NFT • Trade anytime&nbsp;<br/>
+          _ HOSTED BY FREENAME.IO _
         </p>
       </div>
       
