@@ -20,7 +20,7 @@ const FooterBottom = ({
             textShadow: '0 0 8px rgba(0, 255, 0, 0.35)',
           }}
         >
-          IF THIS IS THE LAST CHAPTER…… THEN MAKE IT A BEAUTIFUL ONE — IMAGINE — A PERSPECTIVE OF LOVE AND BALANCE. 𐤀𐤅𐤓 𐤔𐤌𐤉𐤌 — THE COSMIC LIGHT IS WITHIN ALL PEOPLE, NO DOGMA REQUIRED. #JUSTTHEFACTS
+          IF THIS IS THE LAST CHAPTER…… THEN MAKE IT A BEAUTIFUL ONE... 
         </p>
       </div>
 
@@ -122,7 +122,7 @@ const FooterBottom = ({
           </button>
           <div className="flex flex-wrap justify-center gap-4">
             <Link to="/privacy-policy" className="text-green-300 hover:text-green-400 transition-colors text-sm">
-              Privacy Policy
+              View Privacy Policy
             </Link>
             <Link to="/disclaimers" className="text-green-300 hover:text-green-400 transition-colors text-sm">
               Terms of Service
@@ -138,7 +138,7 @@ const FooterBottom = ({
             to="/disclaimers"
             className="text-green-300/80 hover:text-green-300 transition-colors text-xs text-center max-w-xl px-4"
           >
-            Connecticut AI Disclosure: You may be interacting with AI-generated systems or content. Outputs may contain errors — verify before relying on them. AI Web Tools LLC (Connecticut) disclaims liability for AI-generated content.
+            Connecticut AI Disclosure: You may be interacting with AI-generated systems or content. Outputs may contain errors — verify before relying on them. AI Web Tools LLC (Connecticut) disclaims liability for AI-generated content or misuse of Tools Presented on this Open Source app. All Users of this AIWEBTOOLS agree to follow our terms and conditions and use AI ethically. 
           </Link>
           <button 
             onClick={() => window.scrollTo({ top: 0, behavior: 'auto' })} 
@@ -150,7 +150,7 @@ const FooterBottom = ({
         <div className="flex items-center text-green-300">
           <button onClick={e => handleExternalLink("https://freename.io?ref=olive-ears-obey&utm_source=clipboard", e)} className="flex items-center space-x-2 hover:text-green-400 transition-colors cursor-pointer text-sm md:text-base">
             <Globe className="w-4 h-4 flex-shrink-0" />
-            <span className="text-center">Launch your next idea with .aiwebtools or .ai-tools</span>
+            <span className="text-center">Launch your next idea with .aiwebtools or .ai-tools<br />Check Out Our Web 3 TLD Portfolio In the Drop Down Menu in the AIWEBTOOLS.AI Header</span>
           </button>
         </div>
       </div>
