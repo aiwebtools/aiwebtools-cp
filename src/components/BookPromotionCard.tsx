@@ -1261,7 +1261,7 @@ const BookPromotionCard = () => {
               filter: 'drop-shadow(0 2px 4px rgba(255, 215, 0, 0.3))'
             }}
           >
-            Light or Fire - Music For the Soul
+            "Light or Fire" - Random Music N Stuff For the Spiritual Light Body - BY AWT
           </h2>
           
           <div className="bg-gradient-to-r from-green-900/60 to-emerald-900/60 backdrop-blur-sm border border-green-500/40 rounded-2xl overflow-hidden shadow-2xl shadow-green-500/10">
