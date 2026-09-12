@@ -15,7 +15,7 @@ const FooterWeb3Domains = () => {
     <div className="mt-8">
       <div className="flex items-center gap-2 mb-2 text-green-400" style={{ textShadow: '0 0 10px rgba(0, 255, 0, 0.4)' }}>
         <Globe className="w-4 h-4" />
-        <h4 className="font-semibold">Register WEB3 Domains</h4>
+        <h4 className="font-semibold">Register WEB3 Domains/ OUR WEB3 TLD Portfolio</h4>
       </div>
       <div className="mb-4 p-3 bg-gradient-to-r from-green-900/50 to-emerald-900/50 rounded-lg border border-green-500/30">
         <p className="text-xs text-gray-300 leading-relaxed">
