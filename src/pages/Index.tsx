@@ -192,7 +192,7 @@ const Index = () => {
               <div className="container mx-auto px-4">
                 <div className="text-center mb-12">
                   <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-                    <span className="text-green-400" style={{ textShadow: '0 0 20px rgba(0, 255, 0, 0.5)' }}>🔍 SEARCH ALL AI TOOLS</span>
+                     <span className="text-green-400" style={{ textShadow: '0 0 20px rgba(0, 255, 0, 0.5)' }}>🔍 SEARCH ALL OTHER AI TOOLS</span>
                   </h2>
                   <p className="text-xl text-green-200 max-w-3xl mx-auto mb-4">
                     Explore our complete database of AI tools with advanced search and filtering
