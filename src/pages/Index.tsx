@@ -87,7 +87,7 @@ const Index = () => {
           <div className="container mx-auto px-4">
             <div className="text-center mb-8">
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                <span className="text-green-400" style={{ textShadow: '0 0 20px rgba(0, 255, 0, 0.5)' }}>AI TOOLS THAT BEND THE FABRIC OF TIME...LITERALLY</span>
+                <span className="text-green-400" style={{ textShadow: '0 0 20px rgba(0, 255, 0, 0.5)' }}>AI WEB TOOLS THAT BEND THE FABRIC OF WHAT IS POSSIBLE</span>
               </h2>
             </div>
             
