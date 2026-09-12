@@ -55,7 +55,7 @@ const FeaturedToolsSection = ({ onToolsLoaded }: FeaturedToolsSectionProps) => {
             🚀 <span className="bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">FEATURED OTHER AI TOOL DIRECTORIES</span>
           </h2>
           <p className="text-xl text-cyan-200 max-w-3xl mx-auto mb-4">
-            Professional-grade & reality bending AI solutions created by AIWebTools.ai for outside the box capabilites.
+             AI solutions created by AIWebTools.ai for outside the box capabilities.
           </p>
           <div className="inline-block px-6 py-3 bg-gradient-to-r from-green-500/20 to-emerald-500/20 border border-green-400/50 rounded-full text-green-300 font-bold">
              ✨AWT MADE THIS DIRECTORY TO KEEP UP WITH TOOL RELEASES AND TO STAY SLIGHTLY MORE ORGANIZED BECAUSE REMEMEBERING THE URLs FOR SO MANY TOOLS IS FRANKLY IMPOSSIBLE✨
