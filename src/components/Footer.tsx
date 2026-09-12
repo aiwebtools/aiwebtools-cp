@@ -113,7 +113,7 @@ Best regards,
             
             {/* Button content */}
             <span className="relative z-10 text-center block leading-tight">
-              <span className="hidden sm:inline">CLONE THIS WEBSITE AND MAKE IT YOUR OWN WITH AI</span>
+              <span className="hidden sm:inline">YOU CAN CLONE THIS WEBSITE AND MAKE IT YOUR OWN</span>
               <span className="sm:hidden">CLONE THIS WEBSITE & MAKE IT YOUR OWN</span>
             </span>
             
