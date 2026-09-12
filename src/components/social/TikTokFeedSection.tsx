@@ -72,11 +72,9 @@ const TikTokFeedSection: React.FC = () => {
               🎵 AIWEBTOOLS ON TIKTOK
             </span>
           </h2>
-          <p className="text-lg text-green-200 max-w-2xl mx-auto mb-6">
-            Watch our newest AI tool demos, tips and drops as we post them —
-            straight from{" "}
-            <span className="text-green-400 font-semibold">@aiwebtools</span>.
-          </p>
+           <p className="text-lg text-green-200 max-w-2xl mx-auto mb-6">
+             +FOLLOW AI WEB TOOLS ON SOCIAL -{"\u00a0"}@aiwebtools.
+           </p>
 
           <a
             href={`${TIKTOK_URL}?refer=creator_embed`}

@@ -139,7 +139,7 @@ const HeroSection = () => {
         {/* Secondary CTA - Search hint */}
         <div className="mb-8">
           <p className="text-green-200/80 text-base">
-            💡 Try searching: "ChatGPT", "image generator", "video editor", or any task
+             💡 Try searching: "ChatGPT", "image generator", "video editor", or I want to make a movie"
           </p>
         </div>
 
