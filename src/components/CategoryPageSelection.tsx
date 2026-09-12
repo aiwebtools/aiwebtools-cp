@@ -35,10 +35,10 @@ const CategoryPageSelection = memo(() => {
     <section className="py-16 px-4 relative">
       <div className="max-w-7xl mx-auto text-center">
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-green-400 via-emerald-500 to-green-600 bg-clip-text text-transparent" style={{ textShadow: '0 0 30px rgba(0, 255, 0, 0.3)' }}>
-          🎯 Choose Your AI Tool Category
+          🎯 Select Your AI Tool Category
         </h2>
         <p className="text-lg text-gray-300 mb-12 max-w-2xl mx-auto">
-          Select a category to explore an endless stream of AI tools tailored to your needs
+          Select a category to explore an endless stream of AI tools that will suit your needs
         </p>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
