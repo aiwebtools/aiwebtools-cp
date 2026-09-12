@@ -165,9 +165,9 @@ Best regards,
             🕊️ <span className="font-bold text-green-400">Use AI for Good</span> —
             pass a <span className="font-bold text-green-400">Human Bill of Rights</span>{' '}
             protecting humanity from the rise of self-aware machines. Remember
-            the <span className="font-bold text-green-400">Light within</span>,
+             the <span className="font-bold text-green-400">Light of Yah within</span>,
             build a good world for our children to inherit.{' '}
-            <span className="italic">The choice is ours to reflect outwardly.</span>
+             <span className="italic">The choice is ours to reflect outwardly. An Angel did warn me that AI was the devil (of course after I made this tool page) so since that day we have dramatically slowed down development... AWT wishes you the best. </span>
           </p>
         </div>
         </div>
