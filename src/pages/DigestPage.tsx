@@ -104,7 +104,16 @@ const DigestPage = () => {
         {!loading && single && (
           <article
             className="prose prose-sm prose-invert max-w-none rounded-2xl border border-primary/25 bg-card/60 p-6"
-            dangerouslySetInnerHTML={{ __html: single.html }}
+            dangerouslySetInnerHTML={{
+              __html: DOMPurify.sanitize(single.html, {
+                ALLOWED_TAGS: [
+                  "h2", "h3", "h4", "p", "ul", "ol", "li", "a", "strong", "em", "b", "i",
+                  "br", "hr", "blockquote", "span",
+                ],
+                ALLOWED_ATTR: ["href", "target", "rel"],
+                ALLOWED_URI_REGEXP: /^https:\/\//i,
+              }),
+            }}
           />
         )}
 
