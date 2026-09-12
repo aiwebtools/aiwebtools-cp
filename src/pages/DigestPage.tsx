@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link, useParams } from "react-router-dom";
 import { Loader2, Mail } from "lucide-react";
+import DOMPurify from "dompurify";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { buildCanonicalUrl } from "@/utils/seo";
@@ -103,7 +104,16 @@ const DigestPage = () => {
         {!loading && single && (
           <article
             className="prose prose-sm prose-invert max-w-none rounded-2xl border border-primary/25 bg-card/60 p-6"
-            dangerouslySetInnerHTML={{ __html: single.html }}
+            dangerouslySetInnerHTML={{
+              __html: DOMPurify.sanitize(single.html, {
+                ALLOWED_TAGS: [
+                  "h2", "h3", "h4", "p", "ul", "ol", "li", "a", "strong", "em", "b", "i",
+                  "br", "hr", "blockquote", "span",
+                ],
+                ALLOWED_ATTR: ["href", "target", "rel"],
+                ALLOWED_URI_REGEXP: /^https:\/\//i,
+              }),
+            }}
           />
         )}
 

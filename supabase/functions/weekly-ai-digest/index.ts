@@ -22,6 +22,49 @@ function stripTags(s: string) {
   return s.replace(/<!\[CDATA\[|\]\]>/g, "").replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();
 }
 
+// Strict allow-list HTML sanitizer for LLM output built from untrusted feeds.
+// Blocks stored XSS: no scripts, event handlers, styles, iframes, or exotic schemes.
+const ALLOWED_TAGS = new Set([
+  "h2", "h3", "h4", "p", "ul", "ol", "li", "a", "strong", "em", "b", "i",
+  "br", "hr", "blockquote", "span",
+]);
+const VOID_TAGS = new Set(["br", "hr"]);
+
+function escapeHtml(s: string) {
+  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+function sanitizeDigestHtml(input: string): string {
+  let out = "";
+  const re = /<\/?([a-zA-Z][a-zA-Z0-9]*)((?:"[^"]*"|'[^']*'|[^"'>])*)>/g;
+  let last = 0;
+  let m: RegExpExecArray | null;
+  while ((m = re.exec(input)) !== null) {
+    out += escapeHtml(input.slice(last, m.index));
+    last = m.index + m[0].length;
+    const closing = m[0].startsWith("</");
+    const tag = m[1].toLowerCase();
+    if (!ALLOWED_TAGS.has(tag)) continue;
+    if (closing) {
+      if (!VOID_TAGS.has(tag)) out += `</${tag}>`;
+      continue;
+    }
+    if (tag === "a") {
+      const href = /\bhref\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s>]+))/i.exec(m[2]);
+      const url = (href?.[1] ?? href?.[2] ?? href?.[3] ?? "").trim();
+      if (/^https:\/\//i.test(url)) {
+        out += `<a href="${url.replace(/"/g, "&quot;")}" target="_blank" rel="noopener noreferrer nofollow">`;
+      } else {
+        out += "<a>"; // drop unsafe/absent href
+      }
+      continue;
+    }
+    out += `<${tag}${VOID_TAGS.has(tag) ? " /" : ""}>`;
+  }
+  out += escapeHtml(input.slice(last));
+  return out.trim();
+}
+
 async function fetchFeed(url: string) {
   try {
     const res = await fetch(url, { headers: { "User-Agent": "AIWebToolsDigestBot/1.0" } });
@@ -135,8 +178,10 @@ Deno.serve(async (req) => {
   }
 
   const aiJson = await aiRes.json();
-  const html: string = aiJson?.choices?.[0]?.message?.content?.trim() || "";
-  if (!html) return json({ error: "Empty digest" }, 502);
+  const rawHtml: string = aiJson?.choices?.[0]?.message?.content?.trim() || "";
+  if (!rawHtml) return json({ error: "Empty digest" }, 502);
+  const html = sanitizeDigestHtml(rawHtml);
+  if (!html) return json({ error: "Digest sanitized to empty" }, 502);
 
   const issueDate = new Date().toISOString().slice(0, 10);
   const title = stripTags(html.match(/<h2[^>]*>([\s\S]*?)<\/h2>/)?.[1] ?? `AI Signal — ${issueDate}`);
