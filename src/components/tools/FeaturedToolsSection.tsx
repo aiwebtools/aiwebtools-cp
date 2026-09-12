@@ -52,7 +52,7 @@ const FeaturedToolsSection = ({ onToolsLoaded }: FeaturedToolsSectionProps) => {
       <div className="container mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 cyber-glow">
-            🚀 <span className="bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">FEATURED GPTs, GEMS &amp; CUSTOM PERPLEXITY BOTS</span>
+            🚀 <span className="bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">FEATURED OTHER AI TOOL DIRECTORIES</span>
           </h2>
           <p className="text-xl text-cyan-200 max-w-3xl mx-auto mb-4">
             Professional-grade & reality bending AI solutions created by AIWebTools.ai for outside the box capabilites.
