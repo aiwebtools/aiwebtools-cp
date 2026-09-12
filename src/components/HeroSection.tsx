@@ -63,7 +63,7 @@ const HeroSection = () => {
         {/* SEO + accessibility — visible H1 (small, unobtrusive) so screen readers
             and crawlers see a real visual heading, not display:none text. */}
         <h1 className="text-center text-[11px] md:text-xs font-mono uppercase tracking-[0.25em] text-cyan-300/80 mb-2">
-          AI Web Tools — 4,000+ AI Web Tools Directory for 2026
+          AI WEB TOOLS — 5,000+ AI WEB TOOLS DIRECTORY FOR 2026 AND BEYOND
         </h1>
         
         {/* Main heading with stabilized layout */}
