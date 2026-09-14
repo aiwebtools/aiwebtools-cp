@@ -133,13 +133,6 @@ const ToolDetail = () => {
 
   const toolStructuredData = generateStructuredData('tool');
 
-  const breadcrumbItems = [
-    { name: "Home", url: "https://aiwebtools.app" },
-    { name: "AI Tools", url: "https://aiwebtools.app/#tools-section" },
-    { name: tool.category || "Tools", url: `https://aiwebtools.app/category/${encodeURIComponent(tool.category || "")}` },
-    { name: tool.title, url: `https://aiwebtools.app/${generateToolSlug(tool.title)}` }
-  ];
-
   // Check if this is an AI Web Tools GPT (has lovable.app in the URL)
   const isAIWebToolsGPT = tool.directUrl?.includes('lovable.app') || false;
 

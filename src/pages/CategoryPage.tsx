@@ -100,12 +100,6 @@ const CategoryPage = () => {
 
   const categoryStructuredData = generateStructuredData('category');
 
-  const breadcrumbItems = [
-    { name: "Home", url: "https://aiwebtools.app" },
-    { name: "AI Tools", url: "https://aiwebtools.app/#tools-section" },
-    { name: standardizedCategory, url: `https://aiwebtools.app/category/${encodeURIComponent(standardizedCategory)}` }
-  ];
-
   return (
     <div className="min-h-screen bg-black relative overflow-x-hidden">
       <SEOHead
