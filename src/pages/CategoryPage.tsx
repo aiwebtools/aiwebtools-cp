@@ -8,7 +8,6 @@ import CategoryHeader from "@/components/category/CategoryHeader";
 import ToolsGrid from "@/components/tools/ToolsGrid";
 import ScrollToTopButton from "@/components/category/ScrollToTopButton";
 import SEOHead from "@/components/SEOHead";
-import BreadcrumbSEO from "@/components/BreadcrumbSEO";
 import { allTools } from "@/data/toolsData";
 import { getToolsByCategory } from "@/utils/categoryUtils";
 import { getStandardizedCategoryTitle } from "@/utils/categoryTitles";
@@ -125,8 +124,6 @@ const CategoryPage = () => {
         structuredData={categoryStructuredData}
         category={standardizedCategory}
       />
-      
-      <BreadcrumbSEO items={breadcrumbItems} />
       
       <AnimatedBackground />
       <div className="relative z-10 cyber-grid">

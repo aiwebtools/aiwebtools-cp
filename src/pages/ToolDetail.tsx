@@ -20,7 +20,6 @@ import ToolActions from "@/components/tool-detail/ToolActions";
 import ToolAIExplainer from "@/components/ai/ToolAIExplainer";
 import ToolPromptHelper from "@/components/ai/ToolPromptHelper";
 import ImprovedSEOHead from "@/components/ImprovedSEOHead";
-import BreadcrumbSEO from "@/components/BreadcrumbSEO";
 import BreadcrumbNav from "@/components/navigation/BreadcrumbNav";
 import { generateStructuredData } from "@/utils/seo";
 import { useToolDetail } from "@/hooks/useToolDetail";
@@ -175,7 +174,7 @@ const ToolDetail = () => {
   return (
     <div className="min-h-screen bg-black relative">
       <ImprovedSEOHead pageType="tool" tool={tool} />
-      <BreadcrumbSEO items={breadcrumbItems} />
+      
       
       <DeferredMount delay={50}>
         <AnimatedBackground />

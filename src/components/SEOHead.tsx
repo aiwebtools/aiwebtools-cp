@@ -35,6 +35,26 @@ const SEOHead = ({
   const canonical = buildCanonicalUrl(url);
   const fullImage = buildAbsoluteAssetUrl(image);
 
+  // Canonical breadcrumb schema for category pages (replaces redundant BreadcrumbSEO)
+  const breadcrumbSchema = category ? {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": buildCanonicalUrl('/')
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": category,
+        "item": canonical
+      }
+    ]
+  } : null;
+
   // Focused keyword set — over-stuffed lists trigger Google spam demotions.
   const competitiveKeywords = Array.from(new Set([
     "ai tools",
@@ -214,6 +234,13 @@ const SEOHead = ({
       {structuredData && (
         <script type="application/ld+json">
           {JSON.stringify(Array.isArray(structuredData) ? structuredData : [structuredData])}
+        </script>
+      )}
+
+      {/* Breadcrumb Schema */}
+      {breadcrumbSchema && (
+        <script type="application/ld+json">
+          {JSON.stringify(breadcrumbSchema)}
         </script>
       )}
       
