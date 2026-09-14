@@ -3,6 +3,8 @@ import { Crown, Heart, GraduationCap, Music, Stars, Flower2 } from "lucide-react
 import bobMarleyGptImage from "@/assets/tools/bob-marley-gpt.png";
 import talkToTheStarsGptHero from "@/assets/talk-to-the-stars-gpt-hero.jpg";
 import transcendanceGptHero from "@/assets/transcendance-gpt-hero.jpg";
+import aiWellnessCoachHero from "@/assets/tools/ai-wellness-coach-hero.png";
+import aiEducationPlatformHero from "@/assets/tools/ai-education-platform-hero.png";
 
 export const priorityFeaturedGPTs: Tool[] = [
   {
@@ -38,7 +40,7 @@ export const priorityFeaturedGPTs: Tool[] = [
     emoji: "❤️",
     color: "from-red-500 to-pink-600",
     directUrl: "https://chatgpt.com/g/g-68ae1e75dd988191b4629abab71e625f-wellness-warrior-ai-coach-mentor-gpt",
-    imageUrl: "/src/assets/tools/ai-wellness-coach-hero.png",
+    imageUrl: aiWellnessCoachHero,
     tags: ["wellness coach", "fitness plans", "nutrition advice", "mental health", "Custom GPT"],
     category: "AI Assistants & Search",
     rating: 4.4,
@@ -51,7 +53,7 @@ export const priorityFeaturedGPTs: Tool[] = [
     emoji: "🎓",
     color: "from-blue-500 to-green-600",
     directUrl: "https://college-degree-gpt.lovable.app/?via=aiwebtools",
-    imageUrl: "/src/assets/tools/ai-education-platform-hero.png",
+    imageUrl: aiEducationPlatformHero,
     tags: ["education platform", "personalized learning", "educational resources", "Custom GPT"],
     category: "AI Assistants & Search",
     rating: 4.6,

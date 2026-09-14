@@ -20,7 +20,6 @@ import ToolActions from "@/components/tool-detail/ToolActions";
 import ToolAIExplainer from "@/components/ai/ToolAIExplainer";
 import ToolPromptHelper from "@/components/ai/ToolPromptHelper";
 import ImprovedSEOHead from "@/components/ImprovedSEOHead";
-import BreadcrumbSEO from "@/components/BreadcrumbSEO";
 import BreadcrumbNav from "@/components/navigation/BreadcrumbNav";
 import { generateStructuredData } from "@/utils/seo";
 import { useToolDetail } from "@/hooks/useToolDetail";
@@ -134,13 +133,6 @@ const ToolDetail = () => {
 
   const toolStructuredData = generateStructuredData('tool');
 
-  const breadcrumbItems = [
-    { name: "Home", url: "https://aiwebtools.app" },
-    { name: "AI Tools", url: "https://aiwebtools.app/#tools-section" },
-    { name: tool.category || "Tools", url: `https://aiwebtools.app/category/${encodeURIComponent(tool.category || "")}` },
-    { name: tool.title, url: `https://aiwebtools.app/${generateToolSlug(tool.title)}` }
-  ];
-
   // Check if this is an AI Web Tools GPT (has lovable.app in the URL)
   const isAIWebToolsGPT = tool.directUrl?.includes('lovable.app') || false;
 
@@ -175,7 +167,7 @@ const ToolDetail = () => {
   return (
     <div className="min-h-screen bg-black relative">
       <ImprovedSEOHead pageType="tool" tool={tool} />
-      <BreadcrumbSEO items={breadcrumbItems} />
+      
       
       <DeferredMount delay={50}>
         <AnimatedBackground />

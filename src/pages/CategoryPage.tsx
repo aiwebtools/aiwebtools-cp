@@ -8,7 +8,6 @@ import CategoryHeader from "@/components/category/CategoryHeader";
 import ToolsGrid from "@/components/tools/ToolsGrid";
 import ScrollToTopButton from "@/components/category/ScrollToTopButton";
 import SEOHead from "@/components/SEOHead";
-import BreadcrumbSEO from "@/components/BreadcrumbSEO";
 import { allTools } from "@/data/toolsData";
 import { getToolsByCategory } from "@/utils/categoryUtils";
 import { getStandardizedCategoryTitle } from "@/utils/categoryTitles";
@@ -101,12 +100,6 @@ const CategoryPage = () => {
 
   const categoryStructuredData = generateStructuredData('category');
 
-  const breadcrumbItems = [
-    { name: "Home", url: "https://aiwebtools.app" },
-    { name: "AI Tools", url: "https://aiwebtools.app/#tools-section" },
-    { name: standardizedCategory, url: `https://aiwebtools.app/category/${encodeURIComponent(standardizedCategory)}` }
-  ];
-
   return (
     <div className="min-h-screen bg-black relative overflow-x-hidden">
       <SEOHead
@@ -125,8 +118,6 @@ const CategoryPage = () => {
         structuredData={categoryStructuredData}
         category={standardizedCategory}
       />
-      
-      <BreadcrumbSEO items={breadcrumbItems} />
       
       <AnimatedBackground />
       <div className="relative z-10 cyber-grid">
