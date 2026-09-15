@@ -14,7 +14,7 @@
   <g font-family="'Courier New', monospace" fill="#00ff41" font-size="14" opacity="0.35">
     <text x="30" y="40">&gt; init open_source_ai --tool=serge</text>
     <text x="30" y="60">&gt; license: MIT · Apache · Free</text>
-    <text x="30" y="640">&gt; indexed on AIWEBTOOLS.AI · 4,000+ tools</text>
+    <text x="30" y="640">&gt; indexed on AIWEBTOOLS.AI · 5,500+ tools</text>
   </g>
   <text x="600" y="300" font-family="'Segoe UI Emoji','Apple Color Emoji',system-ui" font-size="180" text-anchor="middle">🐑</text>
   <text x="600" y="440" font-family="'Segoe UI',system-ui,sans-serif" font-weight="800" font-size="72" fill="#ffffff" text-anchor="middle" stroke="#000" stroke-width="1.5" paint-order="stroke">Serge</text>

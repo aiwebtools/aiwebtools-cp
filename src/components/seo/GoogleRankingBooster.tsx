@@ -17,10 +17,10 @@ const GoogleRankingBooster = ({ pageType = 'homepage', toolData, category }: Goo
       "alternateName": ["AI WEB TOOLS", "AIWebTools", "AITools.Studio"],
       "url": "https://aiwebtools.app",
       "logo": "https://aiwebtools.app/favicon.ico",
-      "description": "AI Web Tools is a curated directory of 4,000+ AI tools with reviews, comparisons, and daily updates.",
+      "description": "AI Web Tools is a curated directory of 5,500+ AI tools with reviews, comparisons, and daily updates.",
       "foundingDate": "2023",
       "keywords": competitiveAdvantage.brandDominance.join(", ") + ", ai web tools, best ai web tools, ai web tools directory, find ai web tools, compare ai web tools",
-      "slogan": "Find & Compare 4,000+ AI Web Tools",
+      "slogan": "Find & Compare 5,500+ AI Web Tools",
       "knowsAbout": [
         "AI Web Tools",
         "AI Web Tools Directory",
@@ -42,7 +42,7 @@ const GoogleRankingBooster = ({ pageType = 'homepage', toolData, category }: Goo
       "name": "AI Web Tools Directory",
       "alternateName": "AI Web Tools Directory",
       "url": "https://aiwebtools.app",
-      "description": "Discover 4,000+ AI web tools with reviews, ratings, and detailed analysis.",
+      "description": "Discover 5,500+ AI web tools with reviews, ratings, and detailed analysis.",
       "publisher": {
         "@type": "Organization",
         "name": "AI WEB TOOLS"
@@ -58,7 +58,7 @@ const GoogleRankingBooster = ({ pageType = 'homepage', toolData, category }: Goo
       "mainEntity": {
         "@type": "ItemList",
         "name": "AI Web Tools Directory",
-        "description": "Comprehensive collection of 4,000+ AI web tools",
+        "description": "Comprehensive collection of 5,500+ AI web tools",
         "numberOfItems": 4000
       }
     };
@@ -105,7 +105,7 @@ const GoogleRankingBooster = ({ pageType = 'homepage', toolData, category }: Goo
       },
       {
         question: "What makes AI WEB TOOLS the best AI web tools directory?",
-        answer: "AI Web Tools is a curated directory of 4,000+ AI web tools with reviews, comparisons, and daily updates to help you find the right tool for your needs."
+        answer: "AI Web Tools is a curated directory of 5,500+ AI web tools with reviews, comparisons, and daily updates to help you find the right tool for your needs."
       },
       {
         question: "How often are new AI web tools added to the directory?",
