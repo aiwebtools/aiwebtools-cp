@@ -375,10 +375,11 @@ const GptAppPage = () => {
             )}
             {!session && (
               <p className="mt-4 text-xs text-muted-foreground">
+                Free to try — 10 messages a day.{" "}
                 <Link className="font-semibold text-primary hover:underline" to={`/join?next=/app/${app.slug}`}>
                   Create a free account
                 </Link>{" "}
-                to start the conversation.
+                to save your chats and get more.
               </p>
             )}
           </section>
@@ -430,10 +431,7 @@ const GptAppPage = () => {
               }
             }}
             placeholder={
-              session
-                ? app.supports_images
-                  ? "Ask anything — or ask for a picture…"
-                  : "Ask anything…"
+              app.supports_images ? "Ask anything — or ask for a picture…" : "Ask anything…"
             }
             rows={1}
             maxLength={6000}
