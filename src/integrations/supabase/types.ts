@@ -313,6 +313,33 @@ export type Database = {
         }
         Relationships: []
       }
+      gpt_guest_usage: {
+        Row: {
+          created_at: string
+          guest_key: string
+          id: string
+          message_count: number
+          updated_at: string
+          usage_date: string
+        }
+        Insert: {
+          created_at?: string
+          guest_key: string
+          id?: string
+          message_count?: number
+          updated_at?: string
+          usage_date?: string
+        }
+        Update: {
+          created_at?: string
+          guest_key?: string
+          id?: string
+          message_count?: number
+          updated_at?: string
+          usage_date?: string
+        }
+        Relationships: []
+      }
       gpt_messages: {
         Row: {
           content: string
