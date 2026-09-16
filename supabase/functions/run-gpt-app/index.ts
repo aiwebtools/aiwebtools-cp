@@ -161,11 +161,9 @@ Deno.serve(async (req) => {
     .maybeSingle();
   if (!promptRow?.system_prompt) return json({ error: "This tool is not available." }, 404);
 
-  const { data: profile } = await admin
-    .from("profiles")
-    .select("display_name")
-    .eq("id", userId)
-    .maybeSingle();
+  const { data: profile } = userId
+    ? await admin.from("profiles").select("display_name").eq("id", userId).maybeSingle()
+    : { data: null as { display_name?: string } | null };
 
   let systemPrompt = promptRow.system_prompt;
   if (profile?.display_name) {
