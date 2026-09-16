@@ -57,7 +57,6 @@ Deno.serve(async (req) => {
   if (!LOVABLE_API_KEY) return json({ error: "AI is not configured" }, 500);
 
   const authHeader = req.headers.get("Authorization") || "";
-  if (!authHeader.startsWith("Bearer ")) return json({ error: "Please sign in to use this tool." }, 401);
 
   const admin = createClient(
     Deno.env.get("SUPABASE_URL")!,
@@ -65,24 +64,49 @@ Deno.serve(async (req) => {
   );
 
   let userId: string | undefined;
-  try {
-    const authClient = createClient(
-      Deno.env.get("SUPABASE_URL")!,
-      Deno.env.get("SUPABASE_ANON_KEY")!,
-      { global: { headers: { Authorization: authHeader } } },
-    );
-    const { data } = await authClient.auth.getClaims(authHeader.replace("Bearer ", ""));
-    userId = data?.claims?.sub as string | undefined;
-  } catch (_e) {
-    userId = undefined;
+  if (authHeader.startsWith("Bearer ")) {
+    try {
+      const authClient = createClient(
+        Deno.env.get("SUPABASE_URL")!,
+        Deno.env.get("SUPABASE_ANON_KEY")!,
+        { global: { headers: { Authorization: authHeader } } },
+      );
+      const { data } = await authClient.auth.getClaims(authHeader.replace("Bearer ", ""));
+      userId = data?.claims?.sub as string | undefined;
+    } catch (_e) {
+      userId = undefined;
+    }
   }
-  if (!userId) return json({ error: "Please sign in to use this tool." }, 401);
 
-  let body: { slug?: string; messages?: { role: string; content: string }[]; conversationId?: string | null } = {};
+  let body: {
+    slug?: string;
+    messages?: { role: string; content: string }[];
+    conversationId?: string | null;
+    guestId?: string;
+  } = {};
   try {
     body = await req.json();
   } catch {
     return json({ error: "Invalid request" }, 400);
+  }
+
+  // Guests may run tools for free with a smaller daily allowance.
+  const isGuest = !userId;
+  let guestKey = "";
+  if (isGuest) {
+    const rawGuestId = typeof body.guestId === "string" ? body.guestId.slice(0, 80) : "";
+    if (rawGuestId.length < 8) return json({ error: "Invalid request" }, 400);
+    const ip =
+      (req.headers.get("x-forwarded-for") || "").split(",")[0].trim() ||
+      req.headers.get("cf-connecting-ip") ||
+      "unknown";
+    const digest = await crypto.subtle.digest(
+      "SHA-256",
+      new TextEncoder().encode(`${rawGuestId}|${ip}`),
+    );
+    guestKey = Array.from(new Uint8Array(digest))
+      .map((b) => b.toString(16).padStart(2, "0"))
+      .join("");
   }
 
   const slug = typeof body.slug === "string" ? body.slug.slice(0, 120) : "";
