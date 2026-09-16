@@ -9,6 +9,7 @@ const corsHeaders = {
 };
 
 const DAILY_LIMIT = 60;
+const GUEST_DAILY_LIMIT = 10;
 const MAX_HISTORY = 24;
 const CHAT_URL = "https://ai.gateway.lovable.dev/v1/chat/completions";
 const IMAGE_URL = "https://ai.gateway.lovable.dev/v1/images/generations";
@@ -56,7 +57,6 @@ Deno.serve(async (req) => {
   if (!LOVABLE_API_KEY) return json({ error: "AI is not configured" }, 500);
 
   const authHeader = req.headers.get("Authorization") || "";
-  if (!authHeader.startsWith("Bearer ")) return json({ error: "Please sign in to use this tool." }, 401);
 
   const admin = createClient(
     Deno.env.get("SUPABASE_URL")!,
@@ -64,24 +64,49 @@ Deno.serve(async (req) => {
   );
 
   let userId: string | undefined;
-  try {
-    const authClient = createClient(
-      Deno.env.get("SUPABASE_URL")!,
-      Deno.env.get("SUPABASE_ANON_KEY")!,
-      { global: { headers: { Authorization: authHeader } } },
-    );
-    const { data } = await authClient.auth.getClaims(authHeader.replace("Bearer ", ""));
-    userId = data?.claims?.sub as string | undefined;
-  } catch (_e) {
-    userId = undefined;
+  if (authHeader.startsWith("Bearer ")) {
+    try {
+      const authClient = createClient(
+        Deno.env.get("SUPABASE_URL")!,
+        Deno.env.get("SUPABASE_ANON_KEY")!,
+        { global: { headers: { Authorization: authHeader } } },
+      );
+      const { data } = await authClient.auth.getClaims(authHeader.replace("Bearer ", ""));
+      userId = data?.claims?.sub as string | undefined;
+    } catch (_e) {
+      userId = undefined;
+    }
   }
-  if (!userId) return json({ error: "Please sign in to use this tool." }, 401);
 
-  let body: { slug?: string; messages?: { role: string; content: string }[]; conversationId?: string | null } = {};
+  let body: {
+    slug?: string;
+    messages?: { role: string; content: string }[];
+    conversationId?: string | null;
+    guestId?: string;
+  } = {};
   try {
     body = await req.json();
   } catch {
     return json({ error: "Invalid request" }, 400);
+  }
+
+  // Guests may run tools for free with a smaller daily allowance.
+  const isGuest = !userId;
+  let guestKey = "";
+  if (isGuest) {
+    const rawGuestId = typeof body.guestId === "string" ? body.guestId.slice(0, 80) : "";
+    if (rawGuestId.length < 8) return json({ error: "Invalid request" }, 400);
+    const ip =
+      (req.headers.get("x-forwarded-for") || "").split(",")[0].trim() ||
+      req.headers.get("cf-connecting-ip") ||
+      "unknown";
+    const digest = await crypto.subtle.digest(
+      "SHA-256",
+      new TextEncoder().encode(`${rawGuestId}|${ip}`),
+    );
+    guestKey = Array.from(new Uint8Array(digest))
+      .map((b) => b.toString(16).padStart(2, "0"))
+      .join("");
   }
 
   const slug = typeof body.slug === "string" ? body.slug.slice(0, 120) : "";
@@ -94,18 +119,30 @@ Deno.serve(async (req) => {
     .map((m) => ({ role: m.role, content: m.content.slice(0, 8000) }));
   if (messages.length === 0) return json({ error: "Invalid request" }, 400);
 
-  // Daily usage cap
+  // Daily usage cap (members get the full allowance, guests a free taster)
   const today = new Date().toISOString().slice(0, 10);
-  const { data: usage } = await admin
-    .from("gpt_usage")
-    .select("message_count")
-    .eq("user_id", userId)
-    .eq("usage_date", today)
-    .maybeSingle();
+  const limit = isGuest ? GUEST_DAILY_LIMIT : DAILY_LIMIT;
+  const { data: usage } = isGuest
+    ? await admin
+        .from("gpt_guest_usage")
+        .select("message_count")
+        .eq("guest_key", guestKey)
+        .eq("usage_date", today)
+        .maybeSingle()
+    : await admin
+        .from("gpt_usage")
+        .select("message_count")
+        .eq("user_id", userId)
+        .eq("usage_date", today)
+        .maybeSingle();
   const used = usage?.message_count ?? 0;
-  if (used >= DAILY_LIMIT) {
+  if (used >= limit) {
     return json(
-      { error: `You have reached today's limit of ${DAILY_LIMIT} messages. It resets at midnight UTC.` },
+      {
+        error: isGuest
+          ? `You have used today's ${GUEST_DAILY_LIMIT} free messages. Create a free account to keep going, or come back tomorrow.`
+          : `You have reached today's limit of ${DAILY_LIMIT} messages. It resets at midnight UTC.`,
+      },
       429,
     );
   }
@@ -124,11 +161,9 @@ Deno.serve(async (req) => {
     .maybeSingle();
   if (!promptRow?.system_prompt) return json({ error: "This tool is not available." }, 404);
 
-  const { data: profile } = await admin
-    .from("profiles")
-    .select("display_name")
-    .eq("id", userId)
-    .maybeSingle();
+  const { data: profile } = userId
+    ? await admin.from("profiles").select("display_name").eq("id", userId).maybeSingle()
+    : { data: null as { display_name?: string } | null };
 
   let systemPrompt = promptRow.system_prompt;
   if (profile?.display_name) {
@@ -139,34 +174,50 @@ Deno.serve(async (req) => {
       "\n\nYou can create images. Call the generate_image tool whenever a picture, illustration, diagram, infographic, chart, logo or any other visual would help — and always when the user asks for one. Describe the visual richly in the tool prompt.";
   }
 
-  // Conversation bookkeeping
+  // Conversation bookkeeping (members only — guest chats are not stored)
   let conversationId = body.conversationId || null;
   const lastUser = [...messages].reverse().find((m) => m.role === "user");
-  if (!conversationId) {
-    const { data: conv } = await admin
-      .from("gpt_conversations")
-      .insert({
+  if (userId) {
+    if (!conversationId) {
+      const { data: conv } = await admin
+        .from("gpt_conversations")
+        .insert({
+          user_id: userId,
+          app_slug: slug,
+          title: (lastUser?.content || app.display_name).slice(0, 80),
+        })
+        .select("id")
+        .single();
+      conversationId = conv?.id ?? null;
+    }
+    if (conversationId && lastUser) {
+      await admin.from("gpt_messages").insert({
+        conversation_id: conversationId,
         user_id: userId,
-        app_slug: slug,
-        title: (lastUser?.content || app.display_name).slice(0, 80),
-      })
-      .select("id")
-      .single();
-    conversationId = conv?.id ?? null;
-  }
-  if (conversationId && lastUser) {
-    await admin.from("gpt_messages").insert({
-      conversation_id: conversationId,
-      user_id: userId,
-      role: "user",
-      content: lastUser.content,
-    });
+        role: "user",
+        content: lastUser.content,
+      });
+    }
+  } else {
+    conversationId = null;
   }
 
-  await admin.from("gpt_usage").upsert(
-    { user_id: userId, usage_date: today, message_count: used + 1, updated_at: new Date().toISOString() },
-    { onConflict: "user_id,usage_date" },
-  );
+  if (isGuest) {
+    await admin.from("gpt_guest_usage").upsert(
+      {
+        guest_key: guestKey,
+        usage_date: today,
+        message_count: used + 1,
+        updated_at: new Date().toISOString(),
+      },
+      { onConflict: "guest_key,usage_date" },
+    );
+  } else {
+    await admin.from("gpt_usage").upsert(
+      { user_id: userId, usage_date: today, message_count: used + 1, updated_at: new Date().toISOString() },
+      { onConflict: "user_id,usage_date" },
+    );
+  }
 
   const callGateway = (payload: Record<string, unknown>) =>
     fetch(CHAT_URL, {
@@ -222,7 +273,7 @@ Deno.serve(async (req) => {
     const b64 = payload?.data?.[0]?.b64_json;
     if (!b64) throw new Error("image failed");
     const bytes = Uint8Array.from(atob(b64), (c) => c.charCodeAt(0));
-    const path = `${userId}/${slug}/${crypto.randomUUID()}.png`;
+    const path = `${userId ?? `guest-${guestKey.slice(0, 16)}`}/${slug}/${crypto.randomUUID()}.png`;
     const { error: upErr } = await admin.storage
       .from("gpt-images")
       .upload(path, bytes, { contentType: "image/png", upsert: false });

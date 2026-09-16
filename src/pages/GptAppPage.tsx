@@ -10,6 +10,7 @@ import { useToast } from "@/hooks/use-toast";
 import { useAuthSession } from "@/hooks/useAuthSession";
 import { buildCanonicalUrl } from "@/utils/seo";
 import { getGptAppTheme } from "@/utils/gptAppTheme";
+import { getGuestId } from "@/utils/guestId";
 
 interface GptApp {
   slug: string;
@@ -147,11 +148,6 @@ const GptAppPage = () => {
     async (text: string) => {
       const trimmed = text.trim();
       if (!trimmed || streaming) return;
-      if (!session) {
-        navigate(`/join?next=/app/${slug}`);
-        return;
-      }
-
       const nextMessages: ChatMessage[] = [...messages, { role: "user", content: trimmed }];
       setMessages(nextMessages);
       setInput("");
@@ -162,12 +158,13 @@ const GptAppPage = () => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${session.access_token}`,
+            ...(session ? { Authorization: `Bearer ${session.access_token}` } : {}),
           },
           body: JSON.stringify({
             slug,
             conversationId: conversationIdRef.current,
             messages: nextMessages,
+            ...(session ? {} : { guestId: getGuestId() }),
           }),
         });
 
@@ -378,10 +375,11 @@ const GptAppPage = () => {
             )}
             {!session && (
               <p className="mt-4 text-xs text-muted-foreground">
+                Free to try — 10 messages a day.{" "}
                 <Link className="font-semibold text-primary hover:underline" to={`/join?next=/app/${app.slug}`}>
                   Create a free account
                 </Link>{" "}
-                to start the conversation.
+                to save your chats and get more.
               </p>
             )}
           </section>
@@ -433,11 +431,7 @@ const GptAppPage = () => {
               }
             }}
             placeholder={
-              session
-                ? app.supports_images
-                  ? "Ask anything — or ask for a picture…"
-                  : "Ask anything…"
-                : "Sign in free to start chatting"
+              app.supports_images ? "Ask anything — or ask for a picture…" : "Ask anything…"
             }
             rows={1}
             maxLength={6000}
