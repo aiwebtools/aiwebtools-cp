@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { useAuthSession } from "@/hooks/useAuthSession";
 import { Tool } from "@/types/tools";
+import { getGuestId } from "@/utils/guestId";
 
 interface GptApp {
   slug: string;
@@ -23,20 +24,6 @@ interface ChatMessage {
 }
 
 const FUNCTIONS_URL = "https://huupailptzvcykyqdkar.supabase.co/functions/v1/run-gpt-app";
-const GUEST_KEY = "awt_guest_id";
-
-const getGuestId = (): string => {
-  try {
-    let id = localStorage.getItem(GUEST_KEY);
-    if (!id) {
-      id = crypto.randomUUID();
-      localStorage.setItem(GUEST_KEY, id);
-    }
-    return id;
-  } catch {
-    return "guest-session-fallback-key";
-  }
-};
 
 /**
  * Runs the real, working in-site version of an AIWebTools GPT directly on the
