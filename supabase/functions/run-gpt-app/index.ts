@@ -273,7 +273,7 @@ Deno.serve(async (req) => {
     const b64 = payload?.data?.[0]?.b64_json;
     if (!b64) throw new Error("image failed");
     const bytes = Uint8Array.from(atob(b64), (c) => c.charCodeAt(0));
-    const path = `${userId}/${slug}/${crypto.randomUUID()}.png`;
+    const path = `${userId ?? `guest-${guestKey.slice(0, 16)}`}/${slug}/${crypto.randomUUID()}.png`;
     const { error: upErr } = await admin.storage
       .from("gpt-images")
       .upload(path, bytes, { contentType: "image/png", upsert: false });
