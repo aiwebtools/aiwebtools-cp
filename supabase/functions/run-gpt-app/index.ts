@@ -119,18 +119,30 @@ Deno.serve(async (req) => {
     .map((m) => ({ role: m.role, content: m.content.slice(0, 8000) }));
   if (messages.length === 0) return json({ error: "Invalid request" }, 400);
 
-  // Daily usage cap
+  // Daily usage cap (members get the full allowance, guests a free taster)
   const today = new Date().toISOString().slice(0, 10);
-  const { data: usage } = await admin
-    .from("gpt_usage")
-    .select("message_count")
-    .eq("user_id", userId)
-    .eq("usage_date", today)
-    .maybeSingle();
+  const limit = isGuest ? GUEST_DAILY_LIMIT : DAILY_LIMIT;
+  const { data: usage } = isGuest
+    ? await admin
+        .from("gpt_guest_usage")
+        .select("message_count")
+        .eq("guest_key", guestKey)
+        .eq("usage_date", today)
+        .maybeSingle()
+    : await admin
+        .from("gpt_usage")
+        .select("message_count")
+        .eq("user_id", userId)
+        .eq("usage_date", today)
+        .maybeSingle();
   const used = usage?.message_count ?? 0;
-  if (used >= DAILY_LIMIT) {
+  if (used >= limit) {
     return json(
-      { error: `You have reached today's limit of ${DAILY_LIMIT} messages. It resets at midnight UTC.` },
+      {
+        error: isGuest
+          ? `You have used today's ${GUEST_DAILY_LIMIT} free messages. Create a free account to keep going, or come back tomorrow.`
+          : `You have reached today's limit of ${DAILY_LIMIT} messages. It resets at midnight UTC.`,
+      },
       429,
     );
   }
