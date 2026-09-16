@@ -13,7 +13,7 @@ import ToolHeader from "@/components/tool-detail/ToolHeader";
 import ToolDescription from "@/components/tool-detail/ToolDescription";
 import ToolReviews from "@/components/tool-detail/ToolReviews";
 import PerplexityBotGuide from "@/components/tool-detail/PerplexityBotGuide";
-import InSiteGptButton from "@/components/tool-detail/InSiteGptButton";
+import InSiteGptRunner from "@/components/tool-detail/InSiteGptRunner";
 import ToolMedia from "@/components/tool-detail/ToolMedia";
 import ToolTags from "@/components/tool-detail/ToolTags";
 import ToolActions from "@/components/tool-detail/ToolActions";
@@ -199,9 +199,7 @@ const ToolDetail = () => {
               <CardContent className="p-8 bg-gray-900/50">
                 <ToolMedia tool={tool} toolIndex={toolIndex} />
                 <ToolActions tool={tool} />
-                <div className="mb-6">
-                  <InSiteGptButton tool={tool} />
-                </div>
+                <InSiteGptRunner tool={tool} />
                 <ToolDescription tool={tool} />
                 {isPerplexityBot && <PerplexityBotGuide tool={tool} />}
                 <ToolAIExplainer tool={tool} />
