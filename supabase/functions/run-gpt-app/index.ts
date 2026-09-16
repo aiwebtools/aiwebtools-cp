@@ -174,34 +174,50 @@ Deno.serve(async (req) => {
       "\n\nYou can create images. Call the generate_image tool whenever a picture, illustration, diagram, infographic, chart, logo or any other visual would help — and always when the user asks for one. Describe the visual richly in the tool prompt.";
   }
 
-  // Conversation bookkeeping
+  // Conversation bookkeeping (members only — guest chats are not stored)
   let conversationId = body.conversationId || null;
   const lastUser = [...messages].reverse().find((m) => m.role === "user");
-  if (!conversationId) {
-    const { data: conv } = await admin
-      .from("gpt_conversations")
-      .insert({
+  if (userId) {
+    if (!conversationId) {
+      const { data: conv } = await admin
+        .from("gpt_conversations")
+        .insert({
+          user_id: userId,
+          app_slug: slug,
+          title: (lastUser?.content || app.display_name).slice(0, 80),
+        })
+        .select("id")
+        .single();
+      conversationId = conv?.id ?? null;
+    }
+    if (conversationId && lastUser) {
+      await admin.from("gpt_messages").insert({
+        conversation_id: conversationId,
         user_id: userId,
-        app_slug: slug,
-        title: (lastUser?.content || app.display_name).slice(0, 80),
-      })
-      .select("id")
-      .single();
-    conversationId = conv?.id ?? null;
-  }
-  if (conversationId && lastUser) {
-    await admin.from("gpt_messages").insert({
-      conversation_id: conversationId,
-      user_id: userId,
-      role: "user",
-      content: lastUser.content,
-    });
+        role: "user",
+        content: lastUser.content,
+      });
+    }
+  } else {
+    conversationId = null;
   }
 
-  await admin.from("gpt_usage").upsert(
-    { user_id: userId, usage_date: today, message_count: used + 1, updated_at: new Date().toISOString() },
-    { onConflict: "user_id,usage_date" },
-  );
+  if (isGuest) {
+    await admin.from("gpt_guest_usage").upsert(
+      {
+        guest_key: guestKey,
+        usage_date: today,
+        message_count: used + 1,
+        updated_at: new Date().toISOString(),
+      },
+      { onConflict: "guest_key,usage_date" },
+    );
+  } else {
+    await admin.from("gpt_usage").upsert(
+      { user_id: userId, usage_date: today, message_count: used + 1, updated_at: new Date().toISOString() },
+      { onConflict: "user_id,usage_date" },
+    );
+  }
 
   const callGateway = (payload: Record<string, unknown>) =>
     fetch(CHAT_URL, {
