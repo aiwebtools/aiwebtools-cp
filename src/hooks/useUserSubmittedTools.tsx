@@ -24,9 +24,8 @@ export function useUserSubmittedTools() {
     let cancelled = false;
     (async () => {
       const { data, error } = await supabase
-        .from("tool_submissions")
+        .from("approved_tool_submissions")
         .select("id, slug, name, description, url, category, image_url, video_url, submitter_name, published_at, ai_safety_score")
-        .eq("status", "approved")
         .not("slug", "is", null)
         .order("published_at", { ascending: false })
         .limit(500);
@@ -43,9 +42,8 @@ export function useUserSubmittedTools() {
 
 export async function fetchUserSubmittedToolBySlug(slug: string): Promise<UserSubmittedTool | null> {
   const { data, error } = await supabase
-    .from("tool_submissions")
+    .from("approved_tool_submissions")
     .select("id, slug, name, description, url, category, image_url, video_url, submitter_name, published_at, ai_safety_score")
-    .eq("status", "approved")
     .eq("slug", slug)
     .maybeSingle();
   if (error) { console.error(error); return null; }
