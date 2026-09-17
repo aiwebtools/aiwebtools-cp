@@ -689,7 +689,54 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      approved_tool_submissions: {
+        Row: {
+          ai_safety_score: number | null
+          ai_safety_verdict: string | null
+          category: string | null
+          description: string | null
+          id: string | null
+          image_url: string | null
+          name: string | null
+          published_at: string | null
+          slug: string | null
+          submitted_at: string | null
+          submitter_name: string | null
+          url: string | null
+          video_url: string | null
+        }
+        Insert: {
+          ai_safety_score?: number | null
+          ai_safety_verdict?: string | null
+          category?: string | null
+          description?: string | null
+          id?: string | null
+          image_url?: string | null
+          name?: string | null
+          published_at?: string | null
+          slug?: string | null
+          submitted_at?: string | null
+          submitter_name?: string | null
+          url?: string | null
+          video_url?: string | null
+        }
+        Update: {
+          ai_safety_score?: number | null
+          ai_safety_verdict?: string | null
+          category?: string | null
+          description?: string | null
+          id?: string | null
+          image_url?: string | null
+          name?: string | null
+          published_at?: string | null
+          slug?: string | null
+          submitted_at?: string | null
+          submitter_name?: string | null
+          url?: string | null
+          video_url?: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       get_tool_popularity_stats: {
