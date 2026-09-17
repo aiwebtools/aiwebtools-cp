@@ -1,0 +1,42 @@
+UPDATE public.gpt_apps AS g SET tool_title = v.title, updated_at = now()
+FROM (VALUES
+ ('cover-design-graphic-design-gpt','Graphic & Cover Design GPT'),
+ ('data-analysis-and-report-gpt','Data Research Analysis Report GPT'),
+ ('illuminous-data-explorer-instrucutions','Illuminous World Data Explorer GPT'),
+ ('material-valuation-ai-for-post-collapse-world-open-source-for-humanity-asap','MATERIAL VALUATION GPT'),
+ ('talk-to-your-god-gpt','TALK TO THE GODS GPT'),
+ ('multitasker-gpt4-turbo-newer-segmented-approach-to-handle-tasks','MULTITASKER GPT'),
+ ('survivalist-gpt-public-open-source-for-local-deployment-by-aiwebtools','Survivalist GPT'),
+ ('coloring-book-generator-with-compiler','Coloring Book Generator GPT'),
+ ('testimony-writer-gpt','Public Testimony Writer GPT'),
+ ('oraculum-u-the-illuminator-of-hidden-truths-safer','Oraculum – The Revealer of Hidden Truths'),
+ ('game-developer-gpt','Game Design Document / Developer GPT'),
+ ('neo-matrix-gpt','ENTER THE MATRIX GPT (NEO👁️MATRIX GPT)'),
+ ('hemp-gpt-cannabis-gpt-to-prepare-for-4o1','🌿Cannabis GPT'),
+ ('travel-agent-gpt','Travel Advisor GPT'),
+ ('agronomus-the-ai-farmer','Agronomus AI Farming Expert'),
+ ('home-school-gpt','Home-Schooling Assistant GPT'),
+ ('course-creator-gpt','LEARN ANY COURSE GPT'),
+ ('custom-gpt-maker','Customizable GPT Maker'),
+ ('gpt-ideas-creator','Custom GPT Ideas & Brainstorming Assistant'),
+ ('talk-to-the-dead-gpt-best-ever-so-real','GPTPastVoices - Resurrection GPT'),
+ ('father-blueberry-method-gpt','King Blueberry GPT'),
+ ('legistlator-link-prompt-state-rep-finder-writer-and-insights','Legislator Link GPT'),
+ ('clarity-writer-gpt','Clarity Omni GPT'),
+ ('ad-maker-gpt','LOGO AND AD GENERATOR GPT'),
+ ('postcard-designer-gpt','Postcard Maker GPT'),
+ ('mid-journey-prompt-optimizer-open-source','"MiddleJourney" Midjourney Prompting Assistant'),
+ ('image-seed-gpt','GPT-4o Image Generation'),
+ ('draw-it-gpt','Sketch Artist GPT'),
+ ('heartbreak-gpt','Relationship Advisor GPT'),
+ ('lyrics-creator-gpt','Music Melodies & Lessons GPT'),
+ ('diplomatica-world-peace-nuclear-disarmament-advisor','Global Peace Restoration Strategist GPT'),
+ ('resourcium-global-resource-manager','World Resource Clock'),
+ ('luma-dream-machine-prompt-assistant','Text to Video Prompt Generator'),
+ ('louis-the-human-testimony-writer-gpt','Politician Outreach GPT'),
+ ('true-history-truth-seeker-gpt','Hidden Histories GPT'),
+ ('study-guide-maker-gpt','🎓 AI Education Platform')
+) AS v(slug, title)
+WHERE g.slug = v.slug
+  AND (g.tool_title IS NULL OR g.tool_title = '')
+  AND NOT EXISTS (SELECT 1 FROM public.gpt_apps x WHERE x.tool_title = v.title);
