@@ -363,13 +363,12 @@ const DisclaimerGate: React.FC = () => {
     document.documentElement.scrollTop = 0;
     document.body.scrollTop = 0;
     
-    // Set consent and navigate inside a transition so any lazy/Suspense
-    // boundaries during route change don't throw the
-    // "component suspended while responding to synchronous input" error.
+    // Set consent, then navigate immediately. A startTransition here kept this
+    // gate painted while the destination's lazy chunk loaded, so arriving from
+    // a search result looked like the tool page never opened. Navigating
+    // outside a transition lets the route's own loader show instead.
     setConsentAccepted(true);
-    startTransition(() => {
-      navigate(returnTo, { replace: true });
-    });
+    navigate(returnTo, { replace: true });
   };
 
   return (
