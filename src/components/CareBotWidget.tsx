@@ -189,22 +189,23 @@ const CareBotWidget = () => {
           onClick={() => setOpen(true)}
           aria-label="Open AIWebTools Care Bot — Web Tools 24/7 Questions"
           title="Web Tools 24/7 Questions"
-          className="fixed bottom-4 right-4 z-[9998] group flex flex-col items-center gap-1 focus:outline-none"
+          className="fixed z-[9998] group flex flex-col items-center gap-1 focus:outline-none
+                     bottom-3 left-3 sm:bottom-4 sm:left-auto sm:right-4"
         >
           <span
-            className="relative flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-green-400 via-emerald-500 to-green-700 text-black transition-transform group-hover:scale-110 group-focus:ring-4 group-focus:ring-green-400/50"
+            className="relative flex items-center justify-center w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-gradient-to-br from-green-400 via-emerald-500 to-green-700 text-black transition-transform group-hover:scale-110 group-focus:ring-4 group-focus:ring-green-400/50"
             style={{ boxShadow: "0 0 22px rgba(0,255,65,0.55), 0 0 44px rgba(0,255,65,0.25)" }}
           >
             {/* Pulsing ring */}
             <span className="absolute inset-0 rounded-full border-2 border-green-300/60" />
-            <Bot className="w-7 h-7 relative z-10" strokeWidth={2.5} />
+            <Bot className="w-6 h-6 sm:w-7 sm:h-7 relative z-10" strokeWidth={2.5} />
             {/* 24/7 badge */}
-            <span className="absolute -top-1 -right-1 z-20 text-[8px] font-mono font-bold px-1.5 py-0.5 rounded-full bg-black text-green-300 border border-green-400 leading-none">
-              24/7 AI TOOLS GUIDNECE
+            <span className="absolute -top-1 -right-1 z-20 text-[7px] sm:text-[8px] font-mono font-bold px-1 sm:px-1.5 py-0.5 rounded-full bg-black text-green-300 border border-green-400 leading-none">
+              24/7
             </span>
           </span>
           <span
-            className="text-[9px] font-mono font-bold uppercase tracking-wider text-green-300 bg-black/80 px-2 py-0.5 rounded border border-green-500/40 whitespace-nowrap"
+            className="hidden sm:inline text-[9px] font-mono font-bold uppercase tracking-wider text-green-300 bg-black/80 px-2 py-0.5 rounded border border-green-500/40 whitespace-nowrap"
             style={{ textShadow: "0 0 6px #00ff41" }}
           >
             ASK OUR AI WEB TOOLS HELPER
