@@ -1,15 +1,17 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import ReactMarkdown from "react-markdown";
-import { Loader2, Send, ArrowLeft, Star, ImageIcon, Repeat } from "lucide-react";
+import { Loader2, ArrowLeft, Star, ImageIcon, Repeat } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
+import { Message, MessageContent, MessageResponse } from "@/components/ai-elements/message";
+import { PromptInput, PromptInputFooter, PromptInputSubmit, PromptInputTextarea } from "@/components/ai-elements/prompt-input";
+import { Shimmer } from "@/components/ai-elements/shimmer";
 import { useToast } from "@/hooks/use-toast";
 import { useAuthSession } from "@/hooks/useAuthSession";
 import { buildCanonicalUrl } from "@/utils/seo";
 import { getGptAppTheme } from "@/utils/gptAppTheme";
+import { getRoomMotto } from "@/components/tool-detail/gptRoomThemes";
 import { getGuestId } from "@/utils/guestId";
 
 interface GptApp {
@@ -153,6 +155,7 @@ const GptAppPage = () => {
       setInput("");
       setStreaming(true);
 
+      let assistant = "";
       try {
         const response = await fetch(FUNCTIONS_URL, {
           method: "POST",
@@ -179,7 +182,6 @@ const GptAppPage = () => {
         const reader = response.body.getReader();
         const decoder = new TextDecoder();
         let buffer = "";
-        let assistant = "";
         setMessages([...nextMessages, { role: "assistant", content: "" }]);
 
         while (true) {
@@ -204,10 +206,14 @@ const GptAppPage = () => {
             }
           }
         }
+        if (!assistant.trim()) {
+          setMessages(nextMessages);
+          toast({ title: "Reply interrupted", description: "The assistant returned an empty reply. Please try again.", variant: "destructive" });
+        }
       } catch (err) {
         const message = err instanceof Error ? err.message : "Something went wrong.";
         toast({ title: "Assistant paused", description: message, variant: "destructive" });
-        setMessages(nextMessages);
+        if (!assistant.trim()) setMessages(nextMessages);
       } finally {
         setStreaming(false);
       }
@@ -241,11 +247,13 @@ const GptAppPage = () => {
 
   const themeVars = {
     "--bot-accent": theme.accent,
-    "--bot-soft": theme.accentSoft,
+    "--bot-accent-2": theme.accent2,
+    "--bot-soft": theme.soft,
+    "--bot-deep": theme.deep,
   } as React.CSSProperties;
 
   return (
-    <div className="min-h-screen bg-background text-foreground" style={themeVars}>
+    <div className="gpt-app-room min-h-screen bg-background text-foreground" data-room-pattern={theme.pattern} style={themeVars}>
       <Helmet>
         <title>{`${app.display_name} — Run it free on AIWebTools.ai`}</title>
         <meta
@@ -287,7 +295,7 @@ const GptAppPage = () => {
               {app.display_name}
             </h1>
             <p className="truncate text-xs text-muted-foreground">
-              {theme.vibe}
+              {theme.roomLabel} · UNIT {theme.consoleNumber}
               {app.tagline ? ` · ${app.tagline}` : ""}
             </p>
           </div>
@@ -386,62 +394,40 @@ const GptAppPage = () => {
         )}
 
         {messages.map((message, index) => (
-          <article
+          <Message
             key={`${message.role}-${index}`}
-            className={
-              message.role === "user"
-                ? "ml-auto max-w-[85%] rounded-2xl px-4 py-3 text-sm"
-                : "mr-auto max-w-[92%] rounded-2xl border border-border/60 bg-card/60 px-4 py-3 text-sm"
-            }
-            style={
-              message.role === "user"
-                ? { background: "hsl(var(--bot-accent) / 0.18)" }
-                : undefined
-            }
+            from={message.role}
           >
-            {message.role === "assistant" ? (
-              <div className="prose prose-sm prose-invert max-w-none prose-img:rounded-xl prose-img:border prose-img:border-border/60">
-                <ReactMarkdown>{message.content || "…"}</ReactMarkdown>
-              </div>
-            ) : (
-              <p className="whitespace-pre-wrap">{message.content}</p>
-            )}
-          </article>
+            <MessageContent className={message.role === "user" ? "gpt-room-user-bubble text-foreground" : "text-foreground"}>
+              {message.role === "assistant" ? (message.content ? <MessageResponse>{message.content}</MessageResponse> : <Shimmer>Thinking…</Shimmer>) : <p className="whitespace-pre-wrap">{message.content}</p>}
+            </MessageContent>
+          </Message>
         ))}
         <div ref={bottomRef} />
       </main>
 
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          send(input);
-        }}
+      <div
         className="fixed inset-x-0 bottom-0 z-20 border-t bg-background/95 p-3 backdrop-blur"
         style={{ borderColor: "hsl(var(--bot-accent) / 0.35)" }}
       >
-        <div className="mx-auto flex max-w-3xl items-end gap-2">
-          <Textarea
+        <PromptInput onSubmit={({ text }) => send(text)} className="gpt-room-input mx-auto max-w-3xl">
+          <PromptInputTextarea
             ref={inputRef}
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter" && !e.shiftKey) {
-                e.preventDefault();
-                send(input);
-              }
-            }}
             placeholder={
               app.supports_images ? "Ask anything — or ask for a picture…" : "Ask anything…"
             }
-            rows={1}
+            rows={2}
             maxLength={6000}
-            className="max-h-40 min-h-[46px] resize-none"
+            className="max-h-40 min-h-[64px] resize-none"
           />
-          <Button type="submit" size="icon" disabled={streaming || !input.trim()} aria-label="Send message">
-            {streaming ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}
-          </Button>
-        </div>
-      </form>
+          <PromptInputFooter>
+            <span className="text-[10px] font-bold uppercase tracking-[0.18em]" style={{ color: "hsl(var(--bot-accent))" }}>{getRoomMotto(theme)}</span>
+            <PromptInputSubmit status={streaming ? "streaming" : "ready"} disabled={streaming || !input.trim()} className="gpt-room-send" />
+          </PromptInputFooter>
+        </PromptInput>
+      </div>
     </div>
   );
 };
