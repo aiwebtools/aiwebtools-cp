@@ -153,7 +153,12 @@ const InSiteGptRunner = ({ tool }: { tool: Tool }) => {
     >
       {/* Console header plate */}
       <div className="flex flex-wrap items-center gap-2 border-b border-white/10 px-4 py-3 sm:px-5">
-        <Sparkles className={`h-4 w-4 shrink-0 ${theme.headline}`} aria-hidden="true" />
+        <span
+          className={`grid h-7 w-7 shrink-0 place-items-center rounded-md border border-white/15 bg-white/5 text-sm ${theme.headline}`}
+          aria-hidden="true"
+        >
+          {theme.emblem}
+        </span>
         <span className={`text-[10px] font-bold uppercase tracking-[0.25em] ${theme.headline}`}>
           {theme.roomLabel}
         </span>
