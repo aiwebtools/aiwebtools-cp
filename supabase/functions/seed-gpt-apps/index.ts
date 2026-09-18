@@ -73,7 +73,6 @@ Deno.serve(async (req) => {
         greeting: a.greeting,
         starter_prompts: a.starter_prompts,
         source_file: a.source_file,
-        is_active: true,
       })),
       { onConflict: "slug" },
     );
