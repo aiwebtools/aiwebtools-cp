@@ -257,6 +257,7 @@ const InSiteGptRunner = ({ tool }: { tool: Tool }) => {
             <Button
               type="submit"
               disabled={streaming || !input.trim()}
+              variant="ghost"
               className={`h-10 gap-2 px-5 font-bold ${theme.send}`}
             >
               {streaming ? (
