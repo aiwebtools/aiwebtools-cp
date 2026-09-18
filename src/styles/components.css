@@ -5,6 +5,54 @@
   box-shadow: 0 0 10px rgba(0, 255, 255, 0.3), inset 0 0 10px rgba(255, 0, 255, 0.1);
 }
 
+/* Hosted GPT rooms: a fitting archetype with a stable identity for each bot. */
+.gpt-room,
+.gpt-app-room {
+  --bot-accent: 142 76% 45%;
+  --bot-accent-2: 199 89% 55%;
+  --bot-soft: 142 60% 12%;
+  --bot-deep: 142 55% 5%;
+}
+
+.gpt-room {
+  border-color: hsl(var(--bot-accent) / 0.5);
+  background-color: hsl(var(--bot-deep));
+  background-image: radial-gradient(circle at 92% 0%, hsl(var(--bot-accent-2) / 0.16), transparent 30%), linear-gradient(180deg, hsl(var(--bot-soft) / 0.82), hsl(var(--bot-deep)) 68%);
+  box-shadow: 0 0 42px -16px hsl(var(--bot-accent) / 0.7);
+}
+
+.gpt-room::before,
+.gpt-app-room::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.1;
+  background-size: 32px 32px;
+}
+
+[data-room-pattern="grid"]::before { background-image: linear-gradient(hsl(var(--bot-accent) / .45) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--bot-accent) / .45) 1px, transparent 1px); }
+[data-room-pattern="circuit"]::before { background-image: linear-gradient(90deg, transparent 48%, hsl(var(--bot-accent) / .5) 49%, transparent 51%), linear-gradient(transparent 48%, hsl(var(--bot-accent-2) / .4) 49%, transparent 51%); background-size: 48px 48px; }
+[data-room-pattern="wave"]::before { background-image: repeating-radial-gradient(ellipse at bottom, transparent 0 18px, hsl(var(--bot-accent) / .4) 19px 20px); }
+[data-room-pattern="stars"]::before { background-image: radial-gradient(circle, hsl(var(--bot-accent) / .9) 1px, transparent 1.5px); background-size: 27px 27px; }
+[data-room-pattern="radar"]::before { background-image: repeating-radial-gradient(circle at center, transparent 0 24px, hsl(var(--bot-accent) / .45) 25px 26px); background-size: 140px 140px; }
+[data-room-pattern="rings"]::before { background-image: repeating-radial-gradient(ellipse at center, transparent 0 28px, hsl(var(--bot-accent-2) / .45) 29px 30px); background-size: 180px 90px; }
+
+.gpt-room-emblem { color: hsl(var(--bot-accent)); border-color: hsl(var(--bot-accent) / .45); background: hsl(var(--bot-soft) / .8); box-shadow: inset 0 0 12px hsl(var(--bot-accent) / .16), 0 0 14px hsl(var(--bot-accent) / .25); }
+.gpt-room-accent { color: hsl(var(--bot-accent)); }
+.gpt-room-accent:hover { color: hsl(var(--bot-accent-2)); }
+.gpt-room-well { border-color: hsl(var(--bot-accent) / .25); background: hsl(var(--bot-deep) / .84); }
+.gpt-room-chip { border-color: hsl(var(--bot-accent) / .32); background: hsl(var(--bot-soft) / .58); color: hsl(var(--foreground) / .84); }
+.gpt-room-chip:hover { border-color: hsl(var(--bot-accent) / .8); color: hsl(var(--foreground)); }
+.gpt-room-user-bubble { background: hsl(var(--bot-accent) / .2) !important; color: hsl(var(--foreground)) !important; }
+.gpt-room-input { border-color: hsl(var(--bot-accent) / .45); background: hsl(var(--bot-deep) / .9); }
+.gpt-room-input:focus-within { box-shadow: 0 0 0 1px hsl(var(--bot-accent) / .65), 0 0 22px hsl(var(--bot-accent) / .15); }
+.gpt-room-send { background: hsl(var(--bot-accent)); color: hsl(var(--background)); }
+.gpt-room-send:hover { background: hsl(var(--bot-accent-2)); }
+.gpt-room-scroll { border-color: hsl(var(--bot-accent) / .45); background: hsl(var(--bot-soft)); color: hsl(var(--bot-accent)); }
+.gpt-room-motto { border-color: hsl(var(--bot-accent) / .2); color: hsl(var(--bot-accent) / .7); }
+
 /* Featured Tools Transparency */
 .featured-tools-transparent {
   background: rgba(0, 0, 0, 0.3);

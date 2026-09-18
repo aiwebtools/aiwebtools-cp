@@ -25,7 +25,7 @@ type RoomBlueprint = Omit<GptRoomTheme, "accent" | "accent2" | "soft" | "deep" |
 const ROOMS: Record<string, RoomBlueprint> = {
   matrix: { key: "matrix", hue: 142, emblem: "⟨⟩", roomLabel: "LIVE CONSOLE", placeholder: "Type your request here…", mottoText: "ENTER THE MATRIX", pattern: "circuit" },
   "time-machine": { key: "time-machine", hue: 38, emblem: "🕰️", roomLabel: "TIME MACHINE · PAST · PRESENT · FUTURE", placeholder: "WHERE WOULD YOU LIKE TO GO?", mottoText: "THE TIMELINE AWAITS", pattern: "rings" },
-  clinic: { key: "clinic", hue: 173, emblem: "⚕", roomLabel: "CONSULTATION ROOM", placeholder: "Describe the symptoms, history and what worries you…", mottoText: "INFORMATION ONLY — NOT A REPLACEMENT FOR YOUR DOCTOR", pattern: "pulse" as "wave" },
+  clinic: { key: "clinic", hue: 173, emblem: "⚕", roomLabel: "CONSULTATION ROOM", placeholder: "Describe the symptoms, history and what worries you…", mottoText: "INFORMATION ONLY — NOT A REPLACEMENT FOR YOUR DOCTOR", pattern: "wave" },
   chambers: { key: "chambers", hue: 221, emblem: "⚖", roomLabel: "THE CHAMBERS", placeholder: "State the matter, the parties and the outcome you need…", mottoText: "EVERY SIDE DESERVES A VOICE", pattern: "grid" },
   ledger: { key: "ledger", hue: 145, emblem: "↗", roomLabel: "THE TRADING FLOOR", placeholder: "Share the numbers, goal and timeline…", mottoText: "NUMBERS NEVER LIE", pattern: "wave" },
   observatory: { key: "observatory", hue: 199, emblem: "⌾", roomLabel: "THE OBSERVATORY", placeholder: "Pose the question and we will test it…", mottoText: "QUESTION EVERYTHING", pattern: "stars" },
