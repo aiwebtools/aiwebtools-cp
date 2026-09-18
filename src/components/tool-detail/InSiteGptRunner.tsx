@@ -8,6 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useAuthSession } from "@/hooks/useAuthSession";
 import { Tool } from "@/types/tools";
 import { getGuestId } from "@/utils/guestId";
+import { getGptRoomTheme, getRoomMotto } from "./gptRoomThemes";
 
 interface GptApp {
   slug: string;
