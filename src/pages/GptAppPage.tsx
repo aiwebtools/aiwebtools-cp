@@ -399,7 +399,7 @@ const GptAppPage = () => {
             from={message.role}
           >
             <MessageContent className={message.role === "user" ? "gpt-room-user-bubble text-foreground" : "text-foreground"}>
-              {message.role === "assistant" ? (message.content ? <MessageResponse>{message.content}</MessageResponse> : <Shimmer>Thinking…</Shimmer>) : <p className="whitespace-pre-wrap">{message.content}</p>}
+              {message.role === "assistant" ? (message.content ? <MessageResponse className="gpt-generated-content">{message.content}</MessageResponse> : <Shimmer>Thinking…</Shimmer>) : <p className="whitespace-pre-wrap">{message.content}</p>}
             </MessageContent>
           </Message>
         ))}

@@ -1,15 +1,34 @@
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Mail } from "lucide-react";
 import { Tool } from "@/types/tools";
 import { createTimePortalEffect } from "@/utils/timeEffects";
+import { supabase } from "@/integrations/supabase/client";
 
 interface ToolActionsProps {
   tool: Tool;
 }
 
 const ToolActions = ({ tool }: ToolActionsProps) => {
+  const [hasHostedPreview, setHasHostedPreview] = useState(false);
+
+  useEffect(() => {
+    let alive = true;
+    if (!tool.title) return;
+    supabase
+      .from("gpt_apps")
+      .select("slug")
+      .eq("tool_title", tool.title)
+      .eq("is_active", true)
+      .maybeSingle()
+      .then(({ data }) => {
+        if (alive) setHasHostedPreview(Boolean(data));
+      });
+    return () => {
+      alive = false;
+    };
+  }, [tool.title]);
   const handleUseItNow = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
@@ -49,7 +68,13 @@ Thank you!`);
           className="w-full sm:w-auto bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white px-8 sm:px-12 py-4 text-base sm:text-lg rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg shadow-cyan-500/30 interactive-button glow-effect"
         >
           <ExternalLink className="w-5 h-5 mr-2" />
-          {!tool.directUrl ? "COMING SOON" : isCsvDownload ? "DOWNLOAD CSV (FREE)" : "USE IT NOW"}
+          {!tool.directUrl
+            ? "COMING SOON"
+            : isCsvDownload
+              ? "DOWNLOAD CSV (FREE)"
+              : hasHostedPreview
+                ? "USE THE OFFICIAL VERSION — CLICK HERE"
+                : "USE IT NOW"}
         </Button>
         
         {isAIWebToolsOriginal && (
@@ -71,7 +96,9 @@ Thank you!`);
       
       <p className="text-sm text-gray-400 mt-3 px-4">
         {isCsvDownload
-          ? "Click to instantly download the complete AI Web Tools directory as a CSV file"
+            ? "Click to instantly download the complete AI Web Tools directory as a CSV file"
+          : hasHostedPreview
+            ? "The chat below is an AIWebTools preview. This button opens the official version in a new window."
           : tool.directUrl 
             ? "Click to access this AI tool and start using it immediately"
             : "Direct access coming soon - check back later"}

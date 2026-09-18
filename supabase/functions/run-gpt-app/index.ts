@@ -13,7 +13,7 @@ const GUEST_DAILY_LIMIT = 10;
 const MAX_HISTORY = 24;
 const CHAT_URL = "https://ai.gateway.lovable.dev/v1/chat/completions";
 const IMAGE_URL = "https://ai.gateway.lovable.dev/v1/images/generations";
-const IMAGE_MODEL = "google/gemini-3.1-flash-image";
+const IMAGE_MODEL = "openai/gpt-image-2.5-sunburst";
 const SIGNED_URL_TTL = 60 * 60 * 24 * 365;
 
 const IMAGE_TOOL = {
@@ -169,10 +169,8 @@ Deno.serve(async (req) => {
   if (profile?.display_name) {
     systemPrompt += `\n\nThe member you are speaking with is called ${profile.display_name}. Remember details they share during this conversation and refer back to them naturally.`;
   }
-  if (app.supports_images) {
-    systemPrompt +=
-      "\n\nYou can create images. Call the generate_image tool whenever a picture, illustration, diagram, infographic, chart, logo or any other visual would help — and always when the user asks for one. Describe the visual richly in the tool prompt.";
-  }
+  systemPrompt +=
+    "\n\nYou can create images. Call the generate_image tool whenever the user explicitly asks for a picture, image, illustration, diagram, infographic, chart, logo, artwork, visual, scene, portrait, design, or photo. Never merely promise to create it: call the tool in the same response. Describe the visual richly and preserve every requested detail in the tool prompt.";
 
   // Conversation bookkeeping (members only — guest chats are not stored)
   let conversationId = body.conversationId || null;
@@ -229,7 +227,7 @@ Deno.serve(async (req) => {
   const basePayload = {
     model: app.model || "google/gemini-3.7-flash",
     stream: true,
-    ...(app.supports_images ? { tools: [IMAGE_TOOL] } : {}),
+    tools: [IMAGE_TOOL],
   };
 
   const upstream = await callGateway({
@@ -255,23 +253,57 @@ Deno.serve(async (req) => {
   let assistant = "";
 
   const makeImage = async (prompt: string): Promise<string> => {
-    const res = await fetch(IMAGE_URL, {
+    const requestImage = () => fetch(IMAGE_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json", "Lovable-API-Key": LOVABLE_API_KEY },
-      body: JSON.stringify({
-        model: IMAGE_MODEL,
-        messages: [{ role: "user", content: prompt }],
-        modalities: ["image", "text"],
-      }),
+      body: JSON.stringify({ model: IMAGE_MODEL, prompt, stream: true, partial_images: 1 }),
     });
-    if (!res.ok) {
+    let res = await requestImage();
+    if (res.status === 429 || res.status >= 500) {
+      const retryAfter = Math.min(Number(res.headers.get("Retry-After") || "2"), 8);
+      await new Promise((resolve) => setTimeout(resolve, Math.max(1, retryAfter) * 1000));
+      res = await requestImage();
+    }
+    if (!res.ok || !res.body) {
       const detail = await res.text().catch(() => "");
       console.error("image error", res.status, detail.slice(0, 300));
-      throw new Error("image failed");
+      if (res.status === 402) throw new Error("Picture credits are temporarily unavailable.");
+      if (res.status === 429) throw new Error("Picture generation is busy. Please try again shortly.");
+      throw new Error("The picture could not be created this time.");
     }
-    const payload = await res.json();
-    const b64 = payload?.data?.[0]?.b64_json;
-    if (!b64) throw new Error("image failed");
+    const imageReader = res.body.getReader();
+    const imageDecoder = new TextDecoder();
+    let imageBuffer = "";
+    let b64 = "";
+    let imageError = "";
+    let completed = false;
+    while (true) {
+      const { done, value } = await imageReader.read();
+      if (done) break;
+      imageBuffer += imageDecoder.decode(value, { stream: true });
+      const frames = imageBuffer.split("\n\n");
+      imageBuffer = frames.pop() ?? "";
+      for (const frameText of frames) {
+        const eventName = frameText.split("\n").find((line) => line.startsWith("event:"))?.slice(6).trim() ?? "";
+        const data = frameText.split("\n").filter((line) => line.startsWith("data:"))
+          .map((line) => line.slice(5).trim()).join("\n");
+        if (!data || data === "[DONE]") continue;
+        try {
+          const payload = JSON.parse(data);
+          if (eventName === "error" || payload?.type === "error") {
+            imageError = payload?.error?.message || "Picture generation failed.";
+          }
+          if (eventName === "image_generation.completed" || payload?.type === "image_generation.completed") {
+            b64 = payload?.b64_json || "";
+            completed = Boolean(b64);
+          }
+        } catch {
+          console.warn("image stream frame could not be parsed");
+        }
+      }
+    }
+    if (imageError) throw new Error(imageError);
+    if (!completed || !b64) throw new Error("Picture generation ended before the final image was ready.");
     const bytes = Uint8Array.from(atob(b64), (c) => c.charCodeAt(0));
     const path = `${userId ?? `guest-${guestKey.slice(0, 16)}`}/${slug}/${crypto.randomUUID()}.png`;
     const { error: upErr } = await admin.storage
@@ -328,20 +360,25 @@ Deno.serve(async (req) => {
     async start(controller) {
       try {
         const calls = await pump(upstream, controller);
-        const imageCall = calls.find((c) => c.name === "generate_image");
+        const imageCalls = calls.filter((c) => c.name === "generate_image").slice(0, 2);
 
-        if (imageCall) {
+        if (imageCalls.length > 0) {
           controller.enqueue(frame("\n\n_Creating your image…_\n\n"));
-          let toolResult = "The image could not be created this time. Apologise briefly and offer to try again.";
-          try {
-            const parsed = JSON.parse(imageCall.args || "{}");
-            const url = await makeImage(String(parsed.prompt || "").slice(0, 2000));
-            const md = `![Generated image](${url})`;
-            assistant += `\n\n${md}\n\n`;
-            controller.enqueue(frame(`${md}\n\n`));
-            toolResult = "The image was created and is already shown to the user. Briefly describe it and offer refinements. Do not include a markdown image link yourself.";
-          } catch (_e) {
-            /* handled by toolResult */
+          const toolResults: ChatMsg[] = [];
+          for (const [index, imageCall] of imageCalls.entries()) {
+            let toolResult = "The picture could not be created this time. Explain that clearly and offer to try again.";
+            try {
+              const parsed = JSON.parse(imageCall.args || "{}");
+              const url = await makeImage(String(parsed.prompt || "").slice(0, 4000));
+              const md = `![Generated image ${index + 1}](${url})`;
+              assistant += `\n\n${md}\n\n`;
+              controller.enqueue(frame(`${md}\n\n`));
+              toolResult = "The picture was created and is already visible in the chat. Briefly describe it and offer refinements. Do not repeat the image link.";
+            } catch (error) {
+              toolResult = error instanceof Error ? error.message : toolResult;
+              controller.enqueue(frame(`\n\n_${toolResult}_\n\n`));
+            }
+            toolResults.push({ role: "tool", tool_call_id: imageCall.id || `call_${index + 1}`, content: toolResult });
           }
 
           const follow = await callGateway({
@@ -352,15 +389,13 @@ Deno.serve(async (req) => {
               {
                 role: "assistant",
                 content: null,
-                tool_calls: [
-                  {
-                    id: imageCall.id || "call_1",
+                tool_calls: imageCalls.map((imageCall, index) => ({
+                    id: imageCall.id || `call_${index + 1}`,
                     type: "function",
                     function: { name: "generate_image", arguments: imageCall.args || "{}" },
-                  },
-                ],
+                  })),
               } as ChatMsg,
-              { role: "tool", tool_call_id: imageCall.id || "call_1", content: toolResult } as ChatMsg,
+              ...toolResults,
             ],
           });
           if (follow.ok && follow.body) {
