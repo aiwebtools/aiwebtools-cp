@@ -7,5 +7,5 @@
 - [x] Preserve disabled bots during future seed updates
 - [x] Repair AI Tools GPT directory mapping
 - [x] Add and run catalog-wide integrity checks
-- [ ] Verify representative rooms and Care Bot on desktop/mobile
-- [ ] Publish the completed changes
+- [x] Verify representative rooms and Care Bot on desktop/mobile
+- [x] Publish the completed changes
