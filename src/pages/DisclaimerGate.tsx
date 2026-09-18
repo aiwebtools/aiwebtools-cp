@@ -1,4 +1,4 @@
-import React, { useEffect, useState, startTransition } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Check, Sparkles, Shield } from "lucide-react";
 import { Button } from "../components/ui/button";
