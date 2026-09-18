@@ -190,7 +190,7 @@ const CareBotWidget = () => {
           aria-label="Open AIWebTools Care Bot — Web Tools 24/7 Questions"
           title="Web Tools 24/7 Questions"
           className="fixed z-[9998] group flex flex-col items-center gap-1 focus:outline-none
-                     bottom-3 left-3 sm:bottom-4 sm:left-auto sm:right-4"
+                     bottom-3 right-3 sm:bottom-4 sm:right-4"
         >
           <span
             className="relative flex items-center justify-center w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-gradient-to-br from-green-400 via-emerald-500 to-green-700 text-black transition-transform group-hover:scale-110 group-focus:ring-4 group-focus:ring-green-400/50"
@@ -215,7 +215,7 @@ const CareBotWidget = () => {
 
       {/* Chat panel */}
       {open && (
-        <div className="fixed inset-x-2 bottom-2 sm:inset-x-auto sm:right-4 sm:bottom-4 z-[9999] w-auto sm:w-[380px] max-h-[80vh] flex flex-col rounded-2xl border border-green-500/40 bg-black/95 shadow-2xl"
+        <div className="fixed inset-x-2 bottom-16 sm:inset-x-auto sm:right-4 sm:bottom-4 z-[9999] w-auto sm:w-[380px] max-h-[72vh] sm:max-h-[80vh] flex flex-col rounded-2xl border border-green-500/40 bg-black/95 shadow-2xl"
           style={{ boxShadow: "0 0 40px rgba(0, 255, 0, 0.35)" }}
         >
           {/* Header */}
