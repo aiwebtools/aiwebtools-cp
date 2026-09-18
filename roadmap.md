@@ -12,9 +12,9 @@
 
 # Official-version and image reliability
 
-- [ ] Relabel hosted-tool launch buttons as official-version links
-- [ ] Make image requests deterministic with bounded retry and clear failures
-- [ ] Ensure generated pictures render responsively in both chat surfaces
-- [ ] Add lightweight room glow effects with reduced-motion safeguards
+- [x] Relabel hosted-tool launch buttons as official-version links
+- [x] Make image requests deterministic with bounded retry and clear failures
+- [x] Ensure generated pictures render responsively in both chat surfaces
+- [x] Add lightweight room glow effects with reduced-motion safeguards
 - [ ] Verify representative text and image bots across mobile, tablet, and desktop
 - [ ] Confirm clean build and browser logs
