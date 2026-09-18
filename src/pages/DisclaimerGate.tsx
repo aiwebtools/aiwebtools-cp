@@ -306,12 +306,13 @@ const DisclaimerGate: React.FC = () => {
     return () => clearInterval(interval);
   }, []);
 
-  // If already accepted, skip this page
+  // If already accepted, skip this page.
+  // NOTE: no startTransition here — a transition keeps this gate painted on
+  // screen until the destination chunk resolves, which looked like a frozen
+  // page when arriving from a search result (e.g. /time-machine-gpt).
   useEffect(() => {
     if (getConsentAccepted()) {
-      startTransition(() => {
-        navigate(returnTo, { replace: true });
-      });
+      navigate(returnTo, { replace: true });
     }
   }, [navigate, returnTo]);
 
