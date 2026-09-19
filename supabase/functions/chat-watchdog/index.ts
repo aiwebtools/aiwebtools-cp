@@ -168,14 +168,10 @@ Deno.serve(async (req) => {
         <td style="padding:4px 8px;font-size:11px;">${escapeHtml(r.lastError || "—")}</td>
       </tr>`).join("");
 
-    try {
-      const res = await fetch(`${GATEWAY_URL}/emails`, {
+    const sendEmail = async (url: string, headers: Record<string, string>) =>
+      await fetch(url, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${LOVABLE_API_KEY}`,
-          "X-Connection-Api-Key": RESEND_API_KEY,
-        },
+        headers: { "Content-Type": "application/json", ...headers },
         body: JSON.stringify({
           from: "AIWebTools Chat Watchdog <onboarding@resend.dev>",
           to: admins,
