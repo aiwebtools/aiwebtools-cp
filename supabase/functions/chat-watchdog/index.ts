@@ -168,13 +168,13 @@ Deno.serve(async (req) => {
         <td style="padding:4px 8px;font-size:11px;">${escapeHtml(r.lastError || "—")}</td>
       </tr>`).join("");
 
-    const sendEmail = async (url: string, headers: Record<string, string>) =>
+    const sendEmail = async (url: string, headers: Record<string, string>, to: string[] = admins) =>
       await fetch(url, {
         method: "POST",
         headers: { "Content-Type": "application/json", ...headers },
         body: JSON.stringify({
           from: "AIWebTools Chat Watchdog <onboarding@resend.dev>",
-          to: admins,
+          to,
           subject: `🤖 Chat watchdog: ${troubled.length} room(s) reporting failures`,
           html: `
             <div style="background:#000;color:#00ff41;font-family:'Courier New',monospace;padding:24px;">
