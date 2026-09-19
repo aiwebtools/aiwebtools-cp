@@ -1,18 +1,21 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { Loader2, ArrowLeft, Star, ImageIcon, Repeat } from "lucide-react";
+import { Loader2, ArrowLeft, Star, ImageIcon, Repeat, SendHorizontal } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Message, MessageContent, MessageResponse } from "@/components/ai-elements/message";
 import { PromptInput, PromptInputFooter, PromptInputSubmit, PromptInputTextarea } from "@/components/ai-elements/prompt-input";
 import { Shimmer } from "@/components/ai-elements/shimmer";
 import { ImageProgress, splitImageProgress } from "@/components/ai-elements/image-progress";
+import { ThinkingStatus } from "@/components/ai-elements/thinking-status";
 import { useToast } from "@/hooks/use-toast";
 import { useAuthSession } from "@/hooks/useAuthSession";
 import { buildCanonicalUrl } from "@/utils/seo";
 import { getGptAppTheme } from "@/utils/gptAppTheme";
 import { getRoomMotto } from "@/components/tool-detail/gptRoomThemes";
+import { getGptAvatar } from "@/components/tool-detail/gptAvatars";
+import { loadToolImageMap } from "@/utils/search/toolImageMap";
 import { getGuestId } from "@/utils/guestId";
 
 interface GptApp {
@@ -46,11 +49,20 @@ const GptAppPage = () => {
   const [favorite, setFavorite] = useState(false);
   const [siblings, setSiblings] = useState<GptApp[]>([]);
   const [switcherOpen, setSwitcherOpen] = useState(false);
+  const [toolImages, setToolImages] = useState<Map<string, string> | null>(null);
   const conversationIdRef = useRef<string | null>(null);
   const bottomRef = useRef<HTMLDivElement | null>(null);
   const inputRef = useRef<HTMLTextAreaElement | null>(null);
 
   const theme = useMemo(() => getGptAppTheme(slug, app?.display_name ?? ""), [slug, app]);
+  const avatar = useMemo(() => {
+    const matchingToolImage = app?.tool_title && toolImages?.get(app.tool_title.trim().toLowerCase());
+    return matchingToolImage ?? getGptAvatar(theme.key);
+  }, [app?.tool_title, theme.key, toolImages]);
+
+  useEffect(() => {
+    loadToolImageMap().then(setToolImages);
+  }, []);
 
   useEffect(() => {
     let alive = true;
@@ -281,16 +293,7 @@ const GptAppPage = () => {
           <Button variant="ghost" size="icon" onClick={() => navigate(-1)} aria-label="Go back">
             <ArrowLeft className="h-4 w-4" />
           </Button>
-          <span
-            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl text-lg"
-            style={{
-              background: "hsl(var(--bot-accent) / 0.15)",
-              boxShadow: "0 0 18px hsl(var(--bot-accent) / 0.35)",
-            }}
-            aria-hidden="true"
-          >
-            {theme.emblem}
-          </span>
+          <img src={avatar} alt={`${app.display_name} AI assistant avatar`} className="gpt-room-avatar h-10 w-10 shrink-0 rounded-full" onError={(event) => { event.currentTarget.src = getGptAvatar(theme.key); }} />
           <div className="min-w-0">
             <h1 className="truncate text-base font-bold" style={{ color: "hsl(var(--bot-accent))" }}>
               {app.display_name}
@@ -355,9 +358,7 @@ const GptAppPage = () => {
               background: "hsl(var(--bot-soft) / 0.45)",
             }}
           >
-            <span className="mb-2 block text-2xl" aria-hidden="true">
-              {theme.emblem}
-            </span>
+            <img src={avatar} alt={`${app.display_name} AI assistant`} className="gpt-room-avatar mb-3 h-20 w-20 rounded-full" onError={(event) => { event.currentTarget.src = getGptAvatar(theme.key); }} />
             <p className="text-sm text-foreground/90">
               {app.greeting || `Hello. I am ${app.display_name}. What would you like to work on?`}
             </p>
@@ -368,7 +369,9 @@ const GptAppPage = () => {
               </p>
             )}
             {starters.length > 0 && (
-              <div className="mt-4 grid gap-2 sm:grid-cols-2">
+              <>
+              <p className="gpt-room-accent mt-4 text-[10px] font-bold uppercase tracking-[0.2em]">Try one of these</p>
+              <div className="mt-2 grid gap-2 sm:grid-cols-2">
                 {starters.map((prompt) => (
                   <button
                     key={prompt}
@@ -381,6 +384,7 @@ const GptAppPage = () => {
                   </button>
                 ))}
               </div>
+              </>
             )}
             {!session && (
               <p className="mt-4 text-xs text-muted-foreground">
@@ -399,11 +403,15 @@ const GptAppPage = () => {
             key={`${message.role}-${index}`}
             from={message.role}
           >
-            <MessageContent className={message.role === "user" ? "gpt-room-user-bubble text-foreground" : "text-foreground"}>
+            <MessageContent className={message.role === "user" ? "gpt-msg-user" : "gpt-msg-bot"}>
+              <div className="gpt-msg-meta">
+                {message.role === "assistant" && <img src={avatar} alt="" className="gpt-msg-avatar" aria-hidden="true" onError={(event) => { event.currentTarget.src = getGptAvatar(theme.key); }} />}
+                <span>{message.role === "user" ? "You" : app.display_name}</span>
+              </div>
               {message.role === "assistant" ? (
                 (() => {
                   const { text, working } = splitImageProgress(message.content);
-                  if (!text && !working) return <Shimmer>Thinking…</Shimmer>;
+                  if (!text && !working) return <Shimmer>Writing…</Shimmer>;
                   return (
                     <>
                       {text && <MessageResponse className="gpt-generated-content">{text}</MessageResponse>}
@@ -415,6 +423,9 @@ const GptAppPage = () => {
             </MessageContent>
           </Message>
         ))}
+        {streaming && messages.at(-1)?.role !== "assistant" && (
+          <ThinkingStatus avatar={avatar} name={app.display_name} />
+        )}
         <div ref={bottomRef} />
       </main>
 
@@ -436,9 +447,19 @@ const GptAppPage = () => {
           />
           <PromptInputFooter>
             <span className="text-[10px] font-bold uppercase tracking-[0.18em]" style={{ color: "hsl(var(--bot-accent))" }}>{getRoomMotto(theme)}</span>
-            <PromptInputSubmit status={streaming ? "streaming" : "ready"} disabled={streaming || !input.trim()} className="gpt-room-send" />
+            <PromptInputSubmit
+              status={streaming ? "streaming" : "ready"}
+              disabled={streaming || !input.trim()}
+              className="gpt-room-send min-w-[8.5rem] px-3"
+              size="sm"
+              aria-label={`Send message to ${app.display_name}`}
+            >
+              <SendHorizontal className="h-4 w-4" aria-hidden="true" />
+              Send message
+            </PromptInputSubmit>
           </PromptInputFooter>
         </PromptInput>
+        <p className="mx-auto mt-1 max-w-3xl text-right text-[10px] text-muted-foreground">Press Enter to send · Shift+Enter for a new line</p>
       </div>
     </div>
   );

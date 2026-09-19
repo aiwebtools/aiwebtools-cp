@@ -10,7 +10,9 @@ const corsHeaders = {
 
 const DAILY_LIMIT = 60;
 const GUEST_DAILY_LIMIT = 10;
-const MAX_HISTORY = 24;
+const MAX_HISTORY = 60;
+const MAX_CLIENT_HISTORY = 500;
+const EARLIER_CONTEXT_CHARS = 20_000;
 const CHAT_URL = "https://ai.gateway.lovable.dev/v1/chat/completions";
 const IMAGE_URL = "https://ai.gateway.lovable.dev/v1/images/generations";
 const IMAGE_MODEL = "openai/gpt-image-2.5-sunburst";
@@ -113,11 +115,22 @@ Deno.serve(async (req) => {
   const incoming = Array.isArray(body.messages) ? body.messages : [];
   if (!slug || incoming.length === 0) return json({ error: "Invalid request" }, 400);
 
-  const messages = incoming
+  const validIncoming = incoming
     .filter((m) => (m.role === "user" || m.role === "assistant") && typeof m.content === "string")
-    .slice(-MAX_HISTORY)
+    .slice(-MAX_CLIENT_HISTORY)
     .map((m) => ({ role: m.role, content: m.content.slice(0, 8000) }));
-  if (messages.length === 0) return json({ error: "Invalid request" }, 400);
+  const recentMessages = validIncoming.slice(-MAX_HISTORY);
+  const earlierMessages = validIncoming.slice(0, -MAX_HISTORY);
+  const earlierContext = earlierMessages.length > 0
+    ? earlierMessages
+        .map((m) => `${m.role === "user" ? "Member" : "Assistant"}: ${m.content}`)
+        .join("\n")
+        .slice(-EARLIER_CONTEXT_CHARS)
+    : "";
+  const messages = earlierContext
+    ? [{ role: "system", content: `Earlier conversation context to remember:\n${earlierContext}` }, ...recentMessages]
+    : recentMessages;
+  if (recentMessages.length === 0) return json({ error: "Invalid request" }, 400);
 
   // Daily usage cap (members get the full allowance, guests a free taster)
   const today = new Date().toISOString().slice(0, 10);
@@ -225,7 +238,7 @@ Deno.serve(async (req) => {
     });
 
   const basePayload = {
-    model: app.model || "google/gemini-3.7-flash",
+    model: app.model || "openai/gpt-6-astra",
     stream: true,
     tools: [IMAGE_TOOL],
   };
@@ -251,6 +264,31 @@ Deno.serve(async (req) => {
     encoder.encode(`data: ${JSON.stringify({ choices: [{ delta: { content: text } }] })}\n\n`);
 
   let assistant = "";
+  const requestStartedAt = Date.now();
+  let imageRequested = false;
+  let imageSucceeded = false;
+  let finalStatus = "ok";
+  let finalError: string | null = null;
+
+  const writeChatLog = async () => {
+    const { error } = await admin.from("gpt_chat_logs").insert({
+      app_slug: slug,
+      is_guest: isGuest,
+      user_id: userId ?? null,
+      model: basePayload.model,
+      turn_count: recentMessages.length,
+      prompt_chars: lastUser?.content?.length ?? 0,
+      reply_chars: assistant.length,
+      image_requested: imageRequested,
+      image_succeeded: imageSucceeded,
+      latency_ms: Date.now() - requestStartedAt,
+      status: finalStatus,
+      error: finalError,
+      user_message: lastUser?.content?.slice(0, 8000) ?? null,
+      assistant_reply: assistant.slice(0, 40000) || null,
+    });
+    if (error) console.error("chat log failed", error.message);
+  };
 
   // Decodes base64 in slices so a large picture never doubles memory at once.
   const decodeBase64 = (b64: string): Uint8Array => {
@@ -350,6 +388,7 @@ Deno.serve(async (req) => {
       try {
         const calls = await pump(upstream, controller);
         const imageCalls = calls.filter((c) => c.name === "generate_image").slice(0, 2);
+        imageRequested = imageCalls.length > 0;
 
         if (imageCalls.length > 0) {
           controller.enqueue(frame("\n\n_Creating your image…_\n\n"));
@@ -362,9 +401,12 @@ Deno.serve(async (req) => {
               const md = `![Generated image ${index + 1}](${url})`;
               assistant += `\n\n${md}\n\n`;
               controller.enqueue(frame(`${md}\n\n`));
+              imageSucceeded = true;
               toolResult = "The picture was created and is already visible in the chat. Briefly describe it and offer refinements. Do not repeat the image link.";
             } catch (error) {
-              toolResult = error instanceof Error ? error.message : toolResult;
+              finalStatus = "image_error";
+              finalError = error instanceof Error ? error.message : "Unknown picture error";
+              toolResult = finalError;
               controller.enqueue(frame(`\n\n_${toolResult}_\n\n`));
             }
             toolResults.push({ role: "tool", tool_call_id: imageCall.id || `call_${index + 1}`, content: toolResult });
@@ -392,10 +434,10 @@ Deno.serve(async (req) => {
           }
         }
       } catch (err) {
+        finalStatus = "stream_error";
+        finalError = err instanceof Error ? err.message : "Unknown stream error";
         console.error("stream error", err);
       } finally {
-        controller.enqueue(encoder.encode("data: [DONE]\n\n"));
-        controller.close();
         if (conversationId && assistant.trim()) {
           await admin.from("gpt_messages").insert({
             conversation_id: conversationId,
@@ -408,6 +450,13 @@ Deno.serve(async (req) => {
             .update({ updated_at: new Date().toISOString() })
             .eq("id", conversationId);
         }
+        if (!assistant.trim() && finalStatus === "ok") {
+          finalStatus = "empty_reply";
+          finalError = "The model returned no visible reply.";
+        }
+        await writeChatLog();
+        controller.enqueue(encoder.encode("data: [DONE]\n\n"));
+        controller.close();
       }
     },
   });
