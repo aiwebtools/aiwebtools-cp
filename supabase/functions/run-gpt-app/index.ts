@@ -252,11 +252,27 @@ Deno.serve(async (req) => {
 
   let assistant = "";
 
+  // Decodes base64 in slices so a large picture never doubles memory at once.
+  const decodeBase64 = (b64: string): Uint8Array => {
+    const clean = b64.replace(/\s/g, "");
+    const out = new Uint8Array((clean.length / 4) * 3);
+    let offset = 0;
+    const CHUNK = 4 * 1024 * 4; // multiple of 4 keeps base64 groups intact
+    for (let i = 0; i < clean.length; i += CHUNK) {
+      const binary = atob(clean.slice(i, i + CHUNK));
+      for (let j = 0; j < binary.length; j++) out[offset + j] = binary.charCodeAt(j);
+      offset += binary.length;
+    }
+    return out.subarray(0, offset);
+  };
+
   const makeImage = async (prompt: string): Promise<string> => {
+    // Non-streaming keeps peak memory low: streamed partials previously blew
+    // past the edge function memory limit and the picture never arrived.
     const requestImage = () => fetch(IMAGE_URL, {
       method: "POST",
-      headers: { "Content-Type": "application/json", "Lovable-API-Key": LOVABLE_API_KEY },
-      body: JSON.stringify({ model: IMAGE_MODEL, prompt, stream: true, partial_images: 1 }),
+      headers: { "Content-Type": "application/json", Authorization: `Bearer ${LOVABLE_API_KEY}` },
+      body: JSON.stringify({ model: IMAGE_MODEL, prompt, size: "1024x1024" }),
     });
     let res = await requestImage();
     if (res.status === 429 || res.status >= 500) {
@@ -264,54 +280,27 @@ Deno.serve(async (req) => {
       await new Promise((resolve) => setTimeout(resolve, Math.max(1, retryAfter) * 1000));
       res = await requestImage();
     }
-    if (!res.ok || !res.body) {
+    if (!res.ok) {
       const detail = await res.text().catch(() => "");
       console.error("image error", res.status, detail.slice(0, 300));
       if (res.status === 402) throw new Error("Picture credits are temporarily unavailable.");
       if (res.status === 429) throw new Error("Picture generation is busy. Please try again shortly.");
       throw new Error("The picture could not be created this time.");
     }
-    const imageReader = res.body.getReader();
-    const imageDecoder = new TextDecoder();
-    let imageBuffer = "";
-    let b64 = "";
-    let imageError = "";
-    let completed = false;
-    while (true) {
-      const { done, value } = await imageReader.read();
-      if (done) break;
-      imageBuffer += imageDecoder.decode(value, { stream: true });
-      const frames = imageBuffer.split("\n\n");
-      imageBuffer = frames.pop() ?? "";
-      for (const frameText of frames) {
-        const eventName = frameText.split("\n").find((line) => line.startsWith("event:"))?.slice(6).trim() ?? "";
-        const data = frameText.split("\n").filter((line) => line.startsWith("data:"))
-          .map((line) => line.slice(5).trim()).join("\n");
-        if (!data || data === "[DONE]") continue;
-        try {
-          const payload = JSON.parse(data);
-          if (eventName === "error" || payload?.type === "error") {
-            imageError = payload?.error?.message || "Picture generation failed.";
-          }
-          if (eventName === "image_generation.completed" || payload?.type === "image_generation.completed") {
-            b64 = payload?.b64_json || "";
-            completed = Boolean(b64);
-          }
-        } catch {
-          console.warn("image stream frame could not be parsed");
-        }
-      }
-    }
-    if (imageError) throw new Error(imageError);
-    if (!completed || !b64) throw new Error("Picture generation ended before the final image was ready.");
-    const bytes = Uint8Array.from(atob(b64), (c) => c.charCodeAt(0));
+    const payload = await res.json().catch(() => null);
+    const b64: string = payload?.data?.[0]?.b64_json || "";
+    if (!b64) throw new Error("Picture generation ended before the final image was ready.");
+    const bytes = decodeBase64(b64);
     const path = `${userId ?? `guest-${guestKey.slice(0, 16)}`}/${slug}/${crypto.randomUUID()}.png`;
     const { error: upErr } = await admin.storage
       .from("gpt-images")
       .upload(path, bytes, { contentType: "image/png", upsert: false });
-    if (upErr) throw new Error("image failed");
+    if (upErr) {
+      console.error("image upload failed", upErr.message);
+      throw new Error("The picture could not be saved this time.");
+    }
     const { data: signed } = await admin.storage.from("gpt-images").createSignedUrl(path, SIGNED_URL_TTL);
-    if (!signed?.signedUrl) throw new Error("image failed");
+    if (!signed?.signedUrl) throw new Error("The picture could not be opened this time.");
     return signed.signedUrl;
   };
 
