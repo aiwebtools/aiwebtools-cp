@@ -124,13 +124,11 @@ Deno.serve(async (req) => {
   const earlierContext = earlierMessages.length > 0
     ? earlierMessages
         .map((m) => `${m.role === "user" ? "Member" : "Assistant"}: ${m.content}`)
-        .join("
-")
+        .join("\n")
         .slice(-EARLIER_CONTEXT_CHARS)
     : "";
   const messages = earlierContext
-    ? [{ role: "system", content: `Earlier conversation context to remember:
-${earlierContext}` }, ...recentMessages]
+    ? [{ role: "system", content: `Earlier conversation context to remember:\n${earlierContext}` }, ...recentMessages]
     : recentMessages;
   if (recentMessages.length === 0) return json({ error: "Invalid request" }, 400);
 
