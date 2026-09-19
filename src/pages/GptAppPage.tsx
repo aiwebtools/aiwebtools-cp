@@ -15,6 +15,7 @@ import { buildCanonicalUrl } from "@/utils/seo";
 import { getGptAppTheme } from "@/utils/gptAppTheme";
 import { getRoomMotto } from "@/components/tool-detail/gptRoomThemes";
 import { getGptAvatar } from "@/components/tool-detail/gptAvatars";
+import { loadToolImageMap } from "@/utils/search/toolImageMap";
 import { getGuestId } from "@/utils/guestId";
 
 interface GptApp {
@@ -48,12 +49,20 @@ const GptAppPage = () => {
   const [favorite, setFavorite] = useState(false);
   const [siblings, setSiblings] = useState<GptApp[]>([]);
   const [switcherOpen, setSwitcherOpen] = useState(false);
+  const [toolImages, setToolImages] = useState<Map<string, string> | null>(null);
   const conversationIdRef = useRef<string | null>(null);
   const bottomRef = useRef<HTMLDivElement | null>(null);
   const inputRef = useRef<HTMLTextAreaElement | null>(null);
 
   const theme = useMemo(() => getGptAppTheme(slug, app?.display_name ?? ""), [slug, app]);
-  const avatar = useMemo(() => getGptAvatar(theme.key), [theme.key]);
+  const avatar = useMemo(() => {
+    const matchingToolImage = app?.tool_title && toolImages?.get(app.tool_title.trim().toLowerCase());
+    return matchingToolImage ?? getGptAvatar(theme.key);
+  }, [app?.tool_title, theme.key, toolImages]);
+
+  useEffect(() => {
+    loadToolImageMap().then(setToolImages);
+  }, []);
 
   useEffect(() => {
     let alive = true;

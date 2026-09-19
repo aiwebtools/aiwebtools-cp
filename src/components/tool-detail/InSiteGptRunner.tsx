@@ -18,6 +18,7 @@ import { Tool } from "@/types/tools";
 import { getGuestId } from "@/utils/guestId";
 import { getGptRoomTheme, getRoomMotto } from "./gptRoomThemes";
 import { getGptAvatar } from "./gptAvatars";
+import { getToolImage, loadToolImageMap } from "@/utils/search/toolImageMap";
 
 interface GptApp {
   slug: string;
@@ -47,8 +48,13 @@ const InSiteGptRunner = ({ tool }: { tool: Tool }) => {
   const [input, setInput] = useState("");
   const [streaming, setStreaming] = useState(false);
   const [notice, setNotice] = useState<string | null>(null);
+  const [toolImages, setToolImages] = useState<Map<string, string> | null>(null);
   const conversationIdRef = useRef<string | null>(null);
   const bottomRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    loadToolImageMap().then(setToolImages);
+  }, []);
 
   useEffect(() => {
     let alive = true;
@@ -159,7 +165,7 @@ const InSiteGptRunner = ({ tool }: { tool: Tool }) => {
     [app?.display_name, app?.slug, tool?.category],
   );
   const motto = useMemo(() => getRoomMotto(theme), [theme]);
-  const avatar = useMemo(() => getGptAvatar(theme.key), [theme.key]);
+  const avatar = useMemo(() => getToolImage(tool, toolImages) ?? getGptAvatar(theme.key), [theme.key, tool, toolImages]);
 
   if (!app) return null;
 
