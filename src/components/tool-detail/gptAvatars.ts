@@ -14,20 +14,20 @@ import studio from "@/assets/gpt-avatars/studio.png.asset.json";
 import timeMachine from "@/assets/gpt-avatars/time-machine.png.asset.json";
 
 const AVATARS: Record<string, string> = {
-  academy,
-  blueprint,
-  chambers,
-  clinic,
-  field,
-  forge,
-  ledger,
-  matrix,
-  observatory,
-  oracle,
-  sentinel,
-  soundstage,
-  studio,
-  "time-machine": timeMachine,
+  academy: academy.url,
+  blueprint: blueprint.url,
+  chambers: chambers.url,
+  clinic: clinic.url,
+  field: field.url,
+  forge: forge.url,
+  ledger: ledger.url,
+  matrix: matrix.url,
+  observatory: observatory.url,
+  oracle: oracle.url,
+  sentinel: sentinel.url,
+  soundstage: soundstage.url,
+  studio: studio.url,
+  "time-machine": timeMachine.url,
 };
 
 export const getGptAvatar = (themeKey: string): string => AVATARS[themeKey] ?? matrix;

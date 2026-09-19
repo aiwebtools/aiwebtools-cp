@@ -442,7 +442,7 @@ const GptAppPage = () => {
               status={streaming ? "streaming" : "ready"}
               disabled={streaming || !input.trim()}
               className="gpt-room-send min-w-[8.5rem] px-3"
-              size="default"
+              size="sm"
               aria-label={`Send message to ${app.display_name}`}
             >
               <SendHorizontal className="h-4 w-4" aria-hidden="true" />
