@@ -293,7 +293,7 @@ const GptAppPage = () => {
           <Button variant="ghost" size="icon" onClick={() => navigate(-1)} aria-label="Go back">
             <ArrowLeft className="h-4 w-4" />
           </Button>
-          <img src={avatar} alt={`${app.display_name} AI assistant avatar`} className="gpt-room-avatar h-10 w-10 shrink-0 rounded-full" />
+          <img src={avatar} alt={`${app.display_name} AI assistant avatar`} className="gpt-room-avatar h-10 w-10 shrink-0 rounded-full" onError={(event) => { event.currentTarget.src = getGptAvatar(theme.key); }} />
           <div className="min-w-0">
             <h1 className="truncate text-base font-bold" style={{ color: "hsl(var(--bot-accent))" }}>
               {app.display_name}
@@ -358,7 +358,7 @@ const GptAppPage = () => {
               background: "hsl(var(--bot-soft) / 0.45)",
             }}
           >
-            <img src={avatar} alt={`${app.display_name} AI assistant`} className="gpt-room-avatar mb-3 h-20 w-20 rounded-full" />
+            <img src={avatar} alt={`${app.display_name} AI assistant`} className="gpt-room-avatar mb-3 h-20 w-20 rounded-full" onError={(event) => { event.currentTarget.src = getGptAvatar(theme.key); }} />
             <p className="text-sm text-foreground/90">
               {app.greeting || `Hello. I am ${app.display_name}. What would you like to work on?`}
             </p>
@@ -405,7 +405,7 @@ const GptAppPage = () => {
           >
             <MessageContent className={message.role === "user" ? "gpt-msg-user" : "gpt-msg-bot"}>
               <div className="gpt-msg-meta">
-                {message.role === "assistant" && <img src={avatar} alt="" className="gpt-msg-avatar" aria-hidden="true" />}
+                {message.role === "assistant" && <img src={avatar} alt="" className="gpt-msg-avatar" aria-hidden="true" onError={(event) => { event.currentTarget.src = getGptAvatar(theme.key); }} />}
                 <span>{message.role === "user" ? "You" : app.display_name}</span>
               </div>
               {message.role === "assistant" ? (

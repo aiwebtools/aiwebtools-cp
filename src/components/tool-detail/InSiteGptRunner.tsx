@@ -187,6 +187,7 @@ const InSiteGptRunner = ({ tool }: { tool: Tool }) => {
           src={avatar}
           alt={`${app.display_name} AI assistant avatar`}
           className="gpt-room-avatar h-10 w-10 shrink-0 rounded-full"
+          onError={(event) => { event.currentTarget.src = getGptAvatar(theme.key); }}
         />
         <span className="gpt-room-accent text-[10px] font-bold uppercase tracking-[0.25em]">
           {theme.roomLabel} · {theme.consoleNumber}
@@ -247,7 +248,7 @@ const InSiteGptRunner = ({ tool }: { tool: Tool }) => {
             >
               <MessageContent className={message.role === "user" ? "gpt-msg-user" : "gpt-msg-bot"}>
                 <div className="gpt-msg-meta">
-                  {message.role === "assistant" && <img src={avatar} alt="" className="gpt-msg-avatar" aria-hidden="true" />}
+                  {message.role === "assistant" && <img src={avatar} alt="" className="gpt-msg-avatar" aria-hidden="true" onError={(event) => { event.currentTarget.src = getGptAvatar(theme.key); }} />}
                   <span>{message.role === "user" ? "You" : app.display_name}</span>
                 </div>
                 {message.role === "assistant" ? (
