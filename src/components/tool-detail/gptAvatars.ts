@@ -30,4 +30,4 @@ const AVATARS: Record<string, string> = {
   "time-machine": timeMachine.url,
 };
 
-export const getGptAvatar = (themeKey: string): string => AVATARS[themeKey] ?? matrix;
+export const getGptAvatar = (themeKey: string): string => AVATARS[themeKey] ?? matrix.url;
