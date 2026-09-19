@@ -16,7 +16,9 @@ const OpInstructionsButton = ({ slug, name, className = "", compact = false }: O
   const doc = getOpInstructionDoc(slug);
   if (!doc) return null;
 
-  const label = compact ? "Operational Instructions" : "Download Full Operational Instructions";
+  const label = compact
+    ? "Download Instructions (PDF)"
+    : "Download Operational Instructions for this Bot (PDF)";
 
   return (
     <a
