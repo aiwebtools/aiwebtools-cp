@@ -419,7 +419,7 @@ const GptAppPage = () => {
       </main>
 
       <div
-        className="fixed inset-x-0 bottom-0 z-20 border-t bg-background/95 p-3 backdrop-blur"
+        className="fixed inset-x-0 bottom-0 z-20 border-t bg-background/95 p-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] backdrop-blur sm:p-3"
         style={{ borderColor: "hsl(var(--bot-accent) / 0.35)" }}
       >
         <PromptInput onSubmit={({ text }) => send(text)} className="gpt-room-input mx-auto max-w-3xl">
