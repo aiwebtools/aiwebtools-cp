@@ -107,11 +107,6 @@ const ToolDetail = () => {
     toolIndex = -1;
   }
   
-  // Redirect to new slug-based URL if accessing via old format
-  if (shouldRedirect && redirectSlug) {
-    return <Navigate to={`/${redirectSlug}`} replace />;
-  }
-  
   const {
     tool,
     searchTerm,
@@ -121,7 +116,11 @@ const ToolDetail = () => {
     handleToolsLoaded
   } = useToolDetail(toolIndex);
 
-  // Debug logging removed for production performance
+  // Redirect to new slug-based URL if accessing via old format.
+  // Kept AFTER the hooks above so the hook order never changes between renders.
+  if (shouldRedirect && redirectSlug) {
+    return <Navigate to={`/${redirectSlug}`} replace />;
+  }
 
   if (!tool) {
     return <ToolNotFound requestedSlug={toolSlug || toolId} totalTools={allTools.length} />;

@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Message, MessageContent, MessageResponse } from "@/components/ai-elements/message";
 import { PromptInput, PromptInputFooter, PromptInputSubmit, PromptInputTextarea } from "@/components/ai-elements/prompt-input";
 import { Shimmer } from "@/components/ai-elements/shimmer";
+import { ImageProgress, splitImageProgress } from "@/components/ai-elements/image-progress";
 import { useToast } from "@/hooks/use-toast";
 import { useAuthSession } from "@/hooks/useAuthSession";
 import { buildCanonicalUrl } from "@/utils/seo";
@@ -345,10 +346,10 @@ const GptAppPage = () => {
         )}
       </header>
 
-      <main className="mx-auto flex max-w-3xl flex-col gap-4 px-4 pb-40 pt-6">
+      <main className="mx-auto flex max-w-3xl flex-col gap-4 px-3 pb-52 pt-4 sm:px-4 sm:pb-40 sm:pt-6">
         {messages.length === 0 && (
           <section
-            className="rounded-2xl border p-5"
+            className="rounded-2xl border p-4 sm:p-5"
             style={{
               borderColor: "hsl(var(--bot-accent) / 0.35)",
               background: "hsl(var(--bot-soft) / 0.45)",
@@ -373,7 +374,7 @@ const GptAppPage = () => {
                     key={prompt}
                     type="button"
                     onClick={() => send(prompt)}
-                    className="rounded-lg border border-border/70 bg-background/60 p-3 text-left text-xs text-muted-foreground transition hover:text-foreground"
+                    className="rounded-lg border border-border/70 bg-background/60 p-3 text-left text-[13px] leading-snug text-muted-foreground transition hover:text-foreground sm:text-xs"
                     style={{ borderColor: "hsl(var(--bot-accent) / 0.25)" }}
                   >
                     {prompt}
@@ -399,7 +400,18 @@ const GptAppPage = () => {
             from={message.role}
           >
             <MessageContent className={message.role === "user" ? "gpt-room-user-bubble text-foreground" : "text-foreground"}>
-              {message.role === "assistant" ? (message.content ? <MessageResponse className="gpt-generated-content">{message.content}</MessageResponse> : <Shimmer>Thinking…</Shimmer>) : <p className="whitespace-pre-wrap">{message.content}</p>}
+              {message.role === "assistant" ? (
+                (() => {
+                  const { text, working } = splitImageProgress(message.content);
+                  if (!text && !working) return <Shimmer>Thinking…</Shimmer>;
+                  return (
+                    <>
+                      {text && <MessageResponse className="gpt-generated-content">{text}</MessageResponse>}
+                      {working && <ImageProgress />}
+                    </>
+                  );
+                })()
+              ) : <p className="whitespace-pre-wrap">{message.content}</p>}
             </MessageContent>
           </Message>
         ))}
@@ -407,7 +419,7 @@ const GptAppPage = () => {
       </main>
 
       <div
-        className="fixed inset-x-0 bottom-0 z-20 border-t bg-background/95 p-3 backdrop-blur"
+        className="fixed inset-x-0 bottom-0 z-20 border-t bg-background/95 p-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] backdrop-blur sm:p-3"
         style={{ borderColor: "hsl(var(--bot-accent) / 0.35)" }}
       >
         <PromptInput onSubmit={({ text }) => send(text)} className="gpt-room-input mx-auto max-w-3xl">
@@ -420,7 +432,7 @@ const GptAppPage = () => {
             }
             rows={2}
             maxLength={6000}
-            className="max-h-40 min-h-[64px] resize-none"
+            className="max-h-32 min-h-[56px] resize-none text-base sm:max-h-40 sm:min-h-[64px]"
           />
           <PromptInputFooter>
             <span className="text-[10px] font-bold uppercase tracking-[0.18em]" style={{ color: "hsl(var(--bot-accent))" }}>{getRoomMotto(theme)}</span>

@@ -11,6 +11,7 @@ import {
   PromptInputTextarea,
 } from "@/components/ai-elements/prompt-input";
 import { Shimmer } from "@/components/ai-elements/shimmer";
+import { ImageProgress, splitImageProgress } from "@/components/ai-elements/image-progress";
 import { useAuthSession } from "@/hooks/useAuthSession";
 import { Tool } from "@/types/tools";
 import { getGuestId } from "@/utils/guestId";
@@ -238,7 +239,16 @@ const InSiteGptRunner = ({ tool }: { tool: Tool }) => {
             >
               <MessageContent className={message.role === "user" ? "gpt-room-user-bubble text-foreground" : "text-foreground"}>
                 {message.role === "assistant" ? (
-                  message.content ? <MessageResponse className="gpt-generated-content">{message.content}</MessageResponse> : <Shimmer>Thinking…</Shimmer>
+                  (() => {
+                    const { text, working } = splitImageProgress(message.content);
+                    if (!text && !working) return <Shimmer>Thinking…</Shimmer>;
+                    return (
+                      <>
+                        {text && <MessageResponse className="gpt-generated-content">{text}</MessageResponse>}
+                        {working && <ImageProgress />}
+                      </>
+                    );
+                  })()
                 ) : <p className="whitespace-pre-wrap">{message.content}</p>}
               </MessageContent>
             </Message>
@@ -261,7 +271,7 @@ const InSiteGptRunner = ({ tool }: { tool: Tool }) => {
             placeholder={theme.placeholder}
             rows={2}
             maxLength={6000}
-            className="min-h-[80px] w-full resize-y bg-transparent text-base leading-relaxed text-foreground sm:min-h-[110px]"
+            className="min-h-[64px] w-full resize-y bg-transparent text-base leading-relaxed text-foreground sm:min-h-[110px]"
           />
           <PromptInputFooter className="border-t border-border pt-2">
             <span className="gpt-room-accent text-[10px] font-bold uppercase tracking-[0.18em]">
