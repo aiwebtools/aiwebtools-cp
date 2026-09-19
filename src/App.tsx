@@ -366,6 +366,7 @@ const AnimatedRoutes = () => {
         <Route path="/our-story" element={<RouteReadySignal><OurStoryPage /></RouteReadySignal>} />
         <Route path="/submit-tool" element={<RouteReadySignal><ToolSubmission /></RouteReadySignal>} />
         <Route path="/admin/analytics" element={<RouteReadySignal><AdminAnalytics /></RouteReadySignal>} />
+        <Route path="/admin/chat-quality" element={<RouteReadySignal><AdminChatQuality /></RouteReadySignal>} />
         <Route path="/music-stream" element={<Suspense fallback={null}><RouteReadySignal><MusicStream /></RouteReadySignal></Suspense>} />
         <Route path="/user-submitted" element={<RouteReadySignal><UserSubmittedToolsPage /></RouteReadySignal>} />
         <Route path="/user-submitted/:slug" element={<RouteReadySignal><UserSubmittedToolDetail /></RouteReadySignal>} />
