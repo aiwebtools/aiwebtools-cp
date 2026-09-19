@@ -265,6 +265,63 @@ export type Database = {
         }
         Relationships: []
       }
+      gpt_chat_logs: {
+        Row: {
+          app_slug: string
+          assistant_reply: string | null
+          created_at: string
+          error: string | null
+          id: string
+          image_requested: boolean
+          image_succeeded: boolean
+          is_guest: boolean
+          latency_ms: number | null
+          model: string | null
+          prompt_chars: number
+          reply_chars: number
+          status: string
+          turn_count: number
+          user_id: string | null
+          user_message: string | null
+        }
+        Insert: {
+          app_slug: string
+          assistant_reply?: string | null
+          created_at?: string
+          error?: string | null
+          id?: string
+          image_requested?: boolean
+          image_succeeded?: boolean
+          is_guest?: boolean
+          latency_ms?: number | null
+          model?: string | null
+          prompt_chars?: number
+          reply_chars?: number
+          status?: string
+          turn_count?: number
+          user_id?: string | null
+          user_message?: string | null
+        }
+        Update: {
+          app_slug?: string
+          assistant_reply?: string | null
+          created_at?: string
+          error?: string | null
+          id?: string
+          image_requested?: boolean
+          image_succeeded?: boolean
+          is_guest?: boolean
+          latency_ms?: number | null
+          model?: string | null
+          prompt_chars?: number
+          reply_chars?: number
+          status?: string
+          turn_count?: number
+          user_id?: string | null
+          user_message?: string | null
+        }
+        Relationships: []
+      }
       gpt_conversations: {
         Row: {
           app_slug: string
