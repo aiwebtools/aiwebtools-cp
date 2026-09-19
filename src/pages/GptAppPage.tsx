@@ -304,6 +304,7 @@ const GptAppPage = () => {
             </p>
           </div>
           <div className="ml-auto flex items-center gap-1">
+            <OpInstructionsButton slug={app.slug} name={app.display_name} compact className="hidden text-[10px] sm:inline-flex" />
             <Button
               variant="ghost"
               size="icon"

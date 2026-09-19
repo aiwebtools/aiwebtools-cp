@@ -19,6 +19,7 @@ import { getGuestId } from "@/utils/guestId";
 import { getGptRoomTheme, getRoomMotto } from "./gptRoomThemes";
 import { getGptAvatar } from "./gptAvatars";
 import { getToolImage, loadToolImageMap } from "@/utils/search/toolImageMap";
+import OpInstructionsButton from "./OpInstructionsButton";
 
 interface GptApp {
   slug: string;
