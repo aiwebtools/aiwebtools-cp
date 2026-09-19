@@ -1,0 +1,1 @@
+DROP POLICY IF EXISTS "Public can view approved submissions" ON public.tool_submissions;
