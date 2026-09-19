@@ -374,7 +374,7 @@ const GptAppPage = () => {
                     key={prompt}
                     type="button"
                     onClick={() => send(prompt)}
-                    className="rounded-lg border border-border/70 bg-background/60 p-3 text-left text-xs text-muted-foreground transition hover:text-foreground"
+                    className="rounded-lg border border-border/70 bg-background/60 p-3 text-left text-[13px] leading-snug text-muted-foreground transition hover:text-foreground sm:text-xs"
                     style={{ borderColor: "hsl(var(--bot-accent) / 0.25)" }}
                   >
                     {prompt}
