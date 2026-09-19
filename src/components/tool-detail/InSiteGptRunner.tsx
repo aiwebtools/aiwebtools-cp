@@ -238,7 +238,16 @@ const InSiteGptRunner = ({ tool }: { tool: Tool }) => {
             >
               <MessageContent className={message.role === "user" ? "gpt-room-user-bubble text-foreground" : "text-foreground"}>
                 {message.role === "assistant" ? (
-                  message.content ? <MessageResponse className="gpt-generated-content">{message.content}</MessageResponse> : <Shimmer>Thinking…</Shimmer>
+                  (() => {
+                    const { text, working } = splitImageProgress(message.content);
+                    if (!text && !working) return <Shimmer>Thinking…</Shimmer>;
+                    return (
+                      <>
+                        {text && <MessageResponse className="gpt-generated-content">{text}</MessageResponse>}
+                        {working && <ImageProgress />}
+                      </>
+                    );
+                  })()
                 ) : <p className="whitespace-pre-wrap">{message.content}</p>}
               </MessageContent>
             </Message>
