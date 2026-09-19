@@ -432,7 +432,7 @@ const GptAppPage = () => {
             }
             rows={2}
             maxLength={6000}
-            className="max-h-40 min-h-[64px] resize-none"
+            className="max-h-32 min-h-[56px] resize-none text-base sm:max-h-40 sm:min-h-[64px]"
           />
           <PromptInputFooter>
             <span className="text-[10px] font-bold uppercase tracking-[0.18em]" style={{ color: "hsl(var(--bot-accent))" }}>{getRoomMotto(theme)}</span>
