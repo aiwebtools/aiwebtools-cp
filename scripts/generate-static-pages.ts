@@ -22,6 +22,7 @@ import path from "path";
 import { allTools } from "../src/data/toolsData";
 import { generateToolSlug } from "../src/utils/urlGenerator";
 import { getSpotlights } from "../src/data/spotlights";
+import { getFlagshipFeatures } from "../src/data/flagshipFeatures";
 import { blogPosts } from "../src/data/blogPostContent";
 import { mainCategories } from "../src/utils/mainCategoryMapping";
 
@@ -140,7 +141,7 @@ const writePage = (page: PageInput) => {
   fs.writeFileSync(outPath, renderPage(page), "utf-8");
 };
 
-const siteNav = `<nav class="meta"><a href="/">AI Web Tools</a> · <a href="/ai-tools">All AI Tools</a> · <a href="/spotlights">Tool Spotlights</a> · <a href="/rankings">Rankings</a> · <a href="/blog">Blog</a></nav>`;
+const siteNav = `<nav class="meta"><a href="/">AI Web Tools</a> · <a href="/ai-tools">All AI Tools</a> · <a href="/features">Flagship Features</a> · <a href="/spotlights">Tool Spotlights</a> · <a href="/rankings">Rankings</a> · <a href="/blog">Blog</a></nav>`;
 
 // ---------------------------------------------------------------------------
 // 1. Tool pages
@@ -306,6 +307,118 @@ for (const post of blogPosts) {
   });
   count += 1;
 }
+
+// ---------------------------------------------------------------------------
+// 3b. Flagship long-form features (live tool embedded in the page)
+// ---------------------------------------------------------------------------
+const features = getFlagshipFeatures();
+for (const feature of features) {
+  const featureTool = allTools.find((t) => t.title === feature.toolTitle);
+  const sections = feature.sections
+    .map(
+      (section) =>
+        `<h2>${esc(section.heading)}</h2>${section.body
+          .map((p) => `<p>${esc(clean(p))}</p>`)
+          .join("")}${
+          section.bullets?.length
+            ? `<ul>${section.bullets.map((b) => `<li>${esc(clean(b))}</li>`).join("")}</ul>`
+            : ""
+        }`
+    )
+    .join("");
+
+  const faq = feature.faq.map((item) => `<h3>${esc(item.q)}</h3><p>${esc(clean(item.a))}</p>`).join("");
+
+  const body = `
+    ${siteNav}
+    <h1>${esc(feature.headline)}</h1>
+    <p class="meta">${esc(feature.kicker)} · ${esc(feature.category)} · ${esc(feature.readTime)} read · Published ${esc(feature.publishDate)}</p>
+    <p><strong>${esc(clean(feature.deck))}</strong></p>
+    ${featureTool?.imageUrl ? `<p><img src="${esc(featureTool.imageUrl)}" alt="${esc(feature.toolTitle)} — custom AI tool by AIWebTools.ai" loading="lazy" width="1200" height="675" /></p>` : ""}
+    <p>${esc(clean(feature.answer))}</p>
+    <h2>Try ${esc(feature.toolTitle)} right here</h2>
+    <p>The real, working version of ${esc(feature.toolTitle)} runs inside this article — free in the browser, no install and no account needed for a daily allowance.</p>
+    <p><a href="/${feature.toolSlug}">Open the ${esc(feature.toolTitle)} tool page →</a></p>
+    <h2>${esc(feature.toolTitle)} at a glance</h2>
+    <ul>${feature.quickFacts.map((f) => `<li><strong>${esc(f.label)}:</strong> ${esc(f.value)}</li>`).join("")}</ul>
+    ${sections}
+    <h2>Frequently asked questions</h2>
+    ${faq}
+    <h2>More flagship features</h2>
+    <ul>${features
+      .filter((f) => f.slug !== feature.slug)
+      .map((f) => `<li><a href="/feature/${f.slug}">${esc(f.headline)}</a></li>`)
+      .join("")}</ul>
+    <p><a href="/category/${encodeURIComponent(feature.category)}">More ${esc(feature.category)} →</a></p>
+  `;
+
+  writePage({
+    route: `/feature/${feature.slug}`,
+    title: feature.metaTitle,
+    description: feature.metaDescription,
+    image: featureTool?.imageUrl,
+    type: "article",
+    jsonLd: {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Article",
+          headline: feature.headline,
+          description: feature.metaDescription,
+          datePublished: feature.publishDate,
+          author: { "@type": "Organization", name: "AI Web Tools" },
+          publisher: { "@type": "Organization", name: "AI Web Tools" },
+          mainEntityOfPage: `${BASE_URL}/feature/${feature.slug}`,
+          keywords: feature.keywords.join(", "),
+          ...(featureTool?.imageUrl ? { image: featureTool.imageUrl } : {}),
+          about: {
+            "@type": "SoftwareApplication",
+            name: feature.toolTitle,
+            applicationCategory: "AIApplication",
+            operatingSystem: "Web",
+            url: `${BASE_URL}/${feature.toolSlug}`,
+            offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+          },
+        },
+        {
+          "@type": "FAQPage",
+          mainEntity: feature.faq.map((item) => ({
+            "@type": "Question",
+            name: item.q,
+            acceptedAnswer: { "@type": "Answer", text: clean(item.a) },
+          })),
+        },
+      ],
+    },
+    body,
+  });
+  count += 1;
+}
+
+writePage({
+  route: "/features",
+  title: "Flagship AI Tool Features — Try Each Tool Inside the Article | AI Web Tools",
+  description: `${features.length} long-form features on the flagship custom AI GPTs built by AIWebTools.ai — each article has the real, working tool embedded so you can try it free.`,
+  jsonLd: {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "Flagship AI Tool Features",
+    url: `${BASE_URL}/features`,
+    numberOfItems: features.length,
+  },
+  body: `
+    ${siteNav}
+    <h1>Flagship AI Tool Features</h1>
+    <p>In-depth write-ups on the flagship custom GPTs built by AIWebTools.ai. Every feature has the real, working tool embedded in the page — read the story, then try it free without leaving the article.</p>
+    <ul>${features
+      .map(
+        (f) =>
+          `<li><a href="/feature/${f.slug}">${esc(f.headline)}</a> — ${esc(clean(f.deck))}</li>`
+      )
+      .join("")}</ul>
+  `,
+});
+count += 1;
 
 // ---------------------------------------------------------------------------
 // 4. Category pages

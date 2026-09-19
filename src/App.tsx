@@ -74,6 +74,8 @@ const AccountPage = lazyWithRetry(() => import("./pages/AccountPage"));
 const GptAppPage = lazyWithRetry(() => import("./pages/GptAppPage"));
 const DigestPage = lazyWithRetry(() => import("./pages/DigestPage"));
 const SpotlightPage = lazyWithRetry(() => import("./pages/SpotlightPage"));
+const FeaturesPage = lazyWithRetry(() => import("./pages/FeaturesPage"));
+const FeaturePage = lazyWithRetry(() => import("./pages/FeaturePage"));
 const GamingEntertainmentPage = lazyWithRetry(() => import("./pages/GamingEntertainmentPage"));
 const FAQPage = lazyWithRetry(() => import("./pages/FAQPage"));
 const AIToolsPage = lazyWithRetry(() => import("./pages/AIToolsPage"));
@@ -353,6 +355,8 @@ const AnimatedRoutes = () => {
         <Route path="/digest" element={<RouteReadySignal><DigestPage /></RouteReadySignal>} />
         <Route path="/digest/:date" element={<RouteReadySignal><DigestPage /></RouteReadySignal>} />
         <Route path="/spotlight/:slug" element={<RouteReadySignal><SpotlightPage /></RouteReadySignal>} />
+        <Route path="/features" element={<RouteReadySignal><FeaturesPage /></RouteReadySignal>} />
+        <Route path="/feature/:slug" element={<RouteReadySignal><FeaturePage /></RouteReadySignal>} />
         <Route path="/gaming-entertainment" element={<RouteReadySignal><GamingEntertainmentPage /></RouteReadySignal>} />
         <Route path="/faq" element={<RouteReadySignal><FAQPage /></RouteReadySignal>} />
         <Route path="/ai-tools" element={<RouteReadySignal><AIToolsPage /></RouteReadySignal>} />

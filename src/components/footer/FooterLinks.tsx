@@ -54,6 +54,12 @@ const FooterLinks = () => {
             📰 Blog
           </a>
           <a
+            href="/features"
+            className="block text-green-200 hover:text-green-400 transition-colors text-left"
+          >
+            🏅 Flagship AI Tool Features
+          </a>
+          <a
             href="/spotlights"
             className="block text-green-200 hover:text-green-400 transition-colors text-left"
           >
