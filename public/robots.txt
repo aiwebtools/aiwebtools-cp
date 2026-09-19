@@ -243,6 +243,14 @@ Allow: /
 
 # Enhanced sitemap locations for maximum discovery
 Sitemap: https://aiwebtools.app/sitemap.xml
+Sitemap: https://aiwebtools.app/sitemap-pages.xml
+Sitemap: https://aiwebtools.app/sitemap-features.xml
+Sitemap: https://aiwebtools.app/sitemap-spotlights.xml
+Sitemap: https://aiwebtools.app/sitemap-blog.xml
+Sitemap: https://aiwebtools.app/sitemap-categories.xml
+Sitemap: https://aiwebtools.app/sitemap-tools-1.xml
+Sitemap: https://aiwebtools.app/sitemap-tools-2.xml
+Sitemap: https://aiwebtools.app/sitemap-tools-3.xml
 Sitemap: https://aiwebtools.app/rss.xml
 Sitemap: https://aiwebtools.app/atom.xml
 

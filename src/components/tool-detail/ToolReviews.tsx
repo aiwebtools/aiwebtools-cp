@@ -27,6 +27,10 @@ interface ReviewRow {
 
 const REVIEW_SESSION_KEY = "aiwt_review_session";
 
+/** Strip markup characters from visitor-supplied text before it enters JSON-LD. */
+const sanitizeSchemaText = (value?: string | null): string =>
+  (value || "").replace(/[<>]/g, "").replace(/[\u2028\u2029]/g, " ").trim();
+
 const getReviewSession = (): string => {
   let id = sessionStorage.getItem(REVIEW_SESSION_KEY);
   if (!id) {
@@ -162,7 +166,7 @@ const ToolReviews = ({ tool, fallbackRating, fallbackVotes }: ToolReviewsProps) 
     },
     review: reviews.slice(0, 10).map((r) => ({
       "@type": "Review",
-      author: { "@type": "Person", name: r.author_name },
+      author: { "@type": "Person", name: sanitizeSchemaText(r.author_name) },
       datePublished: r.created_at.slice(0, 10),
       reviewRating: {
         "@type": "Rating",
@@ -170,9 +174,18 @@ const ToolReviews = ({ tool, fallbackRating, fallbackVotes }: ToolReviewsProps) 
         bestRating: 5,
         worstRating: 1,
       },
-      reviewBody: r.comment || `${r.rating}-star rating for ${tool.title}.`,
+      reviewBody: sanitizeSchemaText(r.comment) || `${r.rating}-star rating for ${tool.title}.`,
     })),
   };
+
+  // JSON.stringify does not escape "</script>", and Helmet writes the payload with
+  // innerHTML — so every user-supplied string is stripped of angle brackets and the
+  // serialized JSON has its unicode-escaped separators neutralised as well.
+  const reviewSchemaJson = JSON.stringify(reviewSchema)
+    .replace(/</g, "\\u003c")
+    .replace(/>/g, "\\u003e")
+    .replace(/\u2028/g, "\\u2028")
+    .replace(/\u2029/g, "\\u2029");
 
   return (
     <section
@@ -181,7 +194,7 @@ const ToolReviews = ({ tool, fallbackRating, fallbackVotes }: ToolReviewsProps) 
       aria-labelledby="tool-reviews-heading"
     >
       <Helmet>
-        <script type="application/ld+json">{JSON.stringify(reviewSchema)}</script>
+        <script type="application/ld+json">{reviewSchemaJson}</script>
       </Helmet>
 
       <div className="flex flex-wrap items-center justify-between gap-4">
