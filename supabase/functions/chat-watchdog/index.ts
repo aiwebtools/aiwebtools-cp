@@ -195,15 +195,21 @@ Deno.serve(async (req) => {
       });
 
     try {
-      let res = await sendEmail("https://api.resend.com/emails", {
-        Authorization: `Bearer ${RESEND_API_KEY}`,
-      });
-      if (!res.ok && LOVABLE_API_KEY) {
-        console.warn("direct resend failed, trying gateway", res.status, await res.text());
-        res = await sendEmail(`${GATEWAY_URL}/emails`, {
-          Authorization: `Bearer ${LOVABLE_API_KEY}`,
-          "X-Connection-Api-Key": RESEND_API_KEY,
-        });
+      const direct = { Authorization: `Bearer ${RESEND_API_KEY}` };
+      let res = await sendEmail("https://api.resend.com/emails", direct);
+      if (!res.ok) {
+        // Unverified Resend accounts may only email the account owner; retry there.
+        const detail = await res.text();
+        const allowed = detail.match(/own email address \(([^)]+)\)/)?.[1];
+        console.warn("direct resend failed", res.status, detail);
+        if (allowed && EMAIL_RE.test(allowed)) {
+          res = await sendEmail("https://api.resend.com/emails", direct, [allowed]);
+        } else if (LOVABLE_API_KEY) {
+          res = await sendEmail(`${GATEWAY_URL}/emails`, {
+            Authorization: `Bearer ${LOVABLE_API_KEY}`,
+            "X-Connection-Api-Key": RESEND_API_KEY,
+          });
+        }
       }
       summary.emailed = res.ok;
       if (!res.ok) console.error("watchdog email failed", res.status, await res.text());
