@@ -11,6 +11,7 @@ export const secondPriorityFeaturedGPTs: Tool[] = [
     color: "from-blue-500 to-green-600",
     category: "Creative & Entertainment (General & Gaming)",
     directUrl: "https://bookwritergpt.lovable.app/?via=aiwebtools",
+    imageUrl: "/src/assets/tools/book-writer-gpt-hero.jpg",
     videoUrl: "https://youtu.be/nBd9Uk62UiI",
     rating: 4.7,
     totalVotes: 4123,

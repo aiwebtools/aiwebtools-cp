@@ -9,6 +9,7 @@ import path from "path";
 import { allTools } from "../src/data/toolsData";
 import { generateToolSlug } from "../src/utils/urlGenerator";
 import { getSpotlights } from "../src/data/spotlights";
+import { getFlagshipFeatures } from "../src/data/flagshipFeatures";
 import { blogPosts } from "../src/data/blogPostContent";
 import { mainCategories } from "../src/utils/mainCategoryMapping";
 
@@ -95,6 +96,15 @@ const spotlights = getSpotlights();
 for (const spotlight of spotlights) {
   urls.push(
     `  <url><loc>${BASE_URL}/spotlight/${spotlight.slug}</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>`
+  );
+}
+
+// Flagship long-form features (each embeds the live tool).
+const features = getFlagshipFeatures();
+urls.push(`  <url><loc>${BASE_URL}/features</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>`);
+for (const feature of features) {
+  urls.push(
+    `  <url><loc>${BASE_URL}/feature/${feature.slug}</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>`
   );
 }
 
