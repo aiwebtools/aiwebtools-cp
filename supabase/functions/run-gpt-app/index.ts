@@ -401,9 +401,12 @@ Deno.serve(async (req) => {
               const md = `![Generated image ${index + 1}](${url})`;
               assistant += `\n\n${md}\n\n`;
               controller.enqueue(frame(`${md}\n\n`));
+              imageSucceeded = true;
               toolResult = "The picture was created and is already visible in the chat. Briefly describe it and offer refinements. Do not repeat the image link.";
             } catch (error) {
-              toolResult = error instanceof Error ? error.message : toolResult;
+              finalStatus = "image_error";
+              finalError = error instanceof Error ? error.message : "Unknown picture error";
+              toolResult = finalError;
               controller.enqueue(frame(`\n\n_${toolResult}_\n\n`));
             }
             toolResults.push({ role: "tool", tool_call_id: imageCall.id || `call_${index + 1}`, content: toolResult });
