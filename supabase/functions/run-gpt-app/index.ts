@@ -10,7 +10,9 @@ const corsHeaders = {
 
 const DAILY_LIMIT = 60;
 const GUEST_DAILY_LIMIT = 10;
-const MAX_HISTORY = 24;
+const MAX_HISTORY = 60;
+const MAX_CLIENT_HISTORY = 500;
+const EARLIER_CONTEXT_CHARS = 20_000;
 const CHAT_URL = "https://ai.gateway.lovable.dev/v1/chat/completions";
 const IMAGE_URL = "https://ai.gateway.lovable.dev/v1/images/generations";
 const IMAGE_MODEL = "openai/gpt-image-2.5-sunburst";
