@@ -50,6 +50,7 @@ export const legalAndGovernmentGPTs: Tool[] = [
     emoji: "⚖️",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://publicdefendergpt.lovable.app/",
+    imageUrl: "/src/assets/tools/public-defender-gpt-hero.jpg",
     videoUrl: "https://youtu.be/IYi4mYtDIVA",
     tags: ["legal defense", "legal research", "trial strategy", "legal assistance", "criminal defense"],
     category: "Legal & Government",
