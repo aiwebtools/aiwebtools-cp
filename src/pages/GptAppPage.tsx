@@ -349,7 +349,7 @@ const GptAppPage = () => {
       <main className="mx-auto flex max-w-3xl flex-col gap-4 px-3 pb-52 pt-4 sm:px-4 sm:pb-40 sm:pt-6">
         {messages.length === 0 && (
           <section
-            className="rounded-2xl border p-5"
+            className="rounded-2xl border p-4 sm:p-5"
             style={{
               borderColor: "hsl(var(--bot-accent) / 0.35)",
               background: "hsl(var(--bot-soft) / 0.45)",
