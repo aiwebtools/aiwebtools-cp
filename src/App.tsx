@@ -82,6 +82,7 @@ const FreeAIToolsPage = lazyWithRetry(() => import("./pages/FreeAIToolsPage"));
 const AIWritingToolsPage = lazyWithRetry(() => import("./pages/AIWritingToolsPage"));
 const AIWebToolsPage = lazyWithRetry(() => import("./pages/AIWebToolsPage"));
 const AdminAnalytics = lazyWithRetry(() => import("./pages/AdminAnalytics"));
+const AdminChatQuality = lazyWithRetry(() => import("./pages/AdminChatQuality"));
 const PrivacyPolicy = lazyWithRetry(() => import("./pages/PrivacyPolicy"));
 const MusicStream = lazyWithRetry(() => import("./pages/MusicStream"));
 const UserSubmittedToolsPage = lazyWithRetry(() => import("./pages/UserSubmittedToolsPage"));
@@ -365,6 +366,7 @@ const AnimatedRoutes = () => {
         <Route path="/our-story" element={<RouteReadySignal><OurStoryPage /></RouteReadySignal>} />
         <Route path="/submit-tool" element={<RouteReadySignal><ToolSubmission /></RouteReadySignal>} />
         <Route path="/admin/analytics" element={<RouteReadySignal><AdminAnalytics /></RouteReadySignal>} />
+        <Route path="/admin/chat-quality" element={<RouteReadySignal><AdminChatQuality /></RouteReadySignal>} />
         <Route path="/music-stream" element={<Suspense fallback={null}><RouteReadySignal><MusicStream /></RouteReadySignal></Suspense>} />
         <Route path="/user-submitted" element={<RouteReadySignal><UserSubmittedToolsPage /></RouteReadySignal>} />
         <Route path="/user-submitted/:slug" element={<RouteReadySignal><UserSubmittedToolDetail /></RouteReadySignal>} />
