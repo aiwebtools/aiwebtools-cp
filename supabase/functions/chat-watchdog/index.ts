@@ -24,9 +24,12 @@ const escapeHtml = (str: string): string =>
   ));
 
 const isAuthorized = async (req: Request): Promise<boolean> => {
-  const CRON_SECRET = Deno.env.get("DIGEST_CRON_SECRET");
   const provided = req.headers.get("x-cron-secret") || "";
-  if (CRON_SECRET && provided === CRON_SECRET) return true;
+  const secrets = [
+    Deno.env.get("CHAT_WATCHDOG_CRON_SECRET"),
+    Deno.env.get("DIGEST_CRON_SECRET"),
+  ].filter((s): s is string => !!s);
+  if (provided && secrets.some((s) => s === provided)) return true;
 
   const authHeader = req.headers.get("Authorization") || "";
   if (!authHeader.startsWith("Bearer ")) return false;
