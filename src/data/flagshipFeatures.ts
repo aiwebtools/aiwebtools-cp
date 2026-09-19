@@ -453,10 +453,12 @@ export const flagshipFeatures: FlagshipFeature[] = [
     headline: "MOVIE SCRIPT WRITER GPT — Industry format, from the first line",
     deck:
       "Screenwriting punishes amateurs on formatting alone. This tool gets the shape right so you can spend your attention on the story.",
-    metaTitle: "Movie Script Writer GPT — Free AI Screenwriting Assistant | AI Web Tools",
+    metaTitle: "Movie Script Generator — Movie Script Writer GPT, Free AI Screenwriting | AI Web Tools",
     metaDescription:
-      "Movie Script Writer GPT drafts scenes in professional screenplay format with sharp dialogue, clear action lines and scene-by-scene structure. Free live chat on AI Web Tools.",
+      "Movie Script Writer GPT is a free movie script generator that drafts scenes in professional screenplay format with sharp dialogue, clear action lines and scene-by-scene structure. Free live chat on AI Web Tools.",
     keywords: [
+      "movie script generator",
+      "ai script generator",
       "movie script writer gpt",
       "ai screenwriting tool",
       "screenplay format ai",
