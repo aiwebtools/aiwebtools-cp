@@ -19,6 +19,7 @@ import { getGuestId } from "@/utils/guestId";
 import { getGptRoomTheme, getRoomMotto } from "./gptRoomThemes";
 import { getGptAvatar } from "./gptAvatars";
 import { getToolImage, loadToolImageMap } from "@/utils/search/toolImageMap";
+import OpInstructionsButton from "./OpInstructionsButton";
 
 interface GptApp {
   slug: string;
@@ -195,13 +196,16 @@ const InSiteGptRunner = ({ tool }: { tool: Tool }) => {
         <h2 className="min-w-0 w-full truncate text-base font-bold uppercase tracking-wide text-foreground sm:w-auto sm:max-w-[45%] sm:border-l sm:border-border sm:pl-3">
           {app.display_name}
         </h2>
-        <Link
-          to={`/app/${app.slug}`}
-          className="gpt-room-accent ml-auto inline-flex items-center gap-1 text-xs"
-        >
-          <Maximize2 className="h-3 w-3" aria-hidden="true" />
-          Full screen
-        </Link>
+        <div className="ml-auto flex items-center gap-2">
+          <OpInstructionsButton slug={app.slug} name={app.display_name} compact className="text-[10px]" />
+          <Link
+            to={`/app/${app.slug}`}
+            className="gpt-room-accent inline-flex items-center gap-1 text-xs"
+          >
+            <Maximize2 className="h-3 w-3" aria-hidden="true" />
+            Full screen
+          </Link>
+        </div>
       </div>
 
       <div className="p-3 sm:p-5">

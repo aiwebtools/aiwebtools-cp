@@ -17,6 +17,7 @@ import { getRoomMotto } from "@/components/tool-detail/gptRoomThemes";
 import { getGptAvatar } from "@/components/tool-detail/gptAvatars";
 import { loadToolImageMap } from "@/utils/search/toolImageMap";
 import { getGuestId } from "@/utils/guestId";
+import OpInstructionsButton from "@/components/tool-detail/OpInstructionsButton";
 
 interface GptApp {
   slug: string;
@@ -304,6 +305,7 @@ const GptAppPage = () => {
             </p>
           </div>
           <div className="ml-auto flex items-center gap-1">
+            <OpInstructionsButton slug={app.slug} name={app.display_name} compact className="hidden text-[10px] sm:inline-flex" />
             <Button
               variant="ghost"
               size="icon"
@@ -350,6 +352,7 @@ const GptAppPage = () => {
       </header>
 
       <main className="mx-auto flex max-w-3xl flex-col gap-4 px-3 pb-52 pt-4 sm:px-4 sm:pb-40 sm:pt-6">
+        <OpInstructionsButton slug={app.slug} name={app.display_name} className="justify-center text-center sm:hidden" />
         {messages.length === 0 && (
           <section
             className="rounded-2xl border p-4 sm:p-5"
