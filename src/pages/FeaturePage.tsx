@@ -8,6 +8,8 @@ import InSiteGptRunner from "@/components/tool-detail/InSiteGptRunner";
 import { allTools } from "@/data/toolsData";
 import { getFlagshipFeatureBySlug, getFlagshipFeatures } from "@/data/flagshipFeatures";
 import { ArrowRight, ExternalLink, Grid3X3 } from "lucide-react";
+import { useResolvedToolImage } from "@/utils/assetResolver";
+import { isExpiredHost, getYouTubeThumbnail } from "@/utils/imageUtils";
 
 const BASE = "https://aiwebtools.app";
 
@@ -25,13 +27,19 @@ export default function FeaturePage() {
     [feature]
   );
 
+  // Resolve the hero image the same way tool cards do: bundled assets are
+  // rewritten, dead image hosts fall back to the tool's video thumbnail.
+  const rawImage = typeof tool?.imageUrl === "string" ? tool.imageUrl.trim() : "";
+  const expiredImage = rawImage ? isExpiredHost(rawImage) : false;
+  const resolvedImage = useResolvedToolImage(expiredImage ? "" : rawImage);
+
   if (!feature) {
     return <Navigate to="/features" replace />;
   }
 
   const url = `${BASE}/feature/${feature.slug}`;
   const toolPath = `/${feature.toolSlug}`;
-  const image = tool?.imageUrl;
+  const image = resolvedImage || getYouTubeThumbnail(tool?.videoUrl);
   const others = getFlagshipFeatures().filter((f) => f.slug !== feature.slug).slice(0, 6);
 
   const structuredData = [
