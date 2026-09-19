@@ -271,7 +271,7 @@ const InSiteGptRunner = ({ tool }: { tool: Tool }) => {
             placeholder={theme.placeholder}
             rows={2}
             maxLength={6000}
-            className="min-h-[80px] w-full resize-y bg-transparent text-base leading-relaxed text-foreground sm:min-h-[110px]"
+            className="min-h-[64px] w-full resize-y bg-transparent text-base leading-relaxed text-foreground sm:min-h-[110px]"
           />
           <PromptInputFooter className="border-t border-border pt-2">
             <span className="gpt-room-accent text-[10px] font-bold uppercase tracking-[0.18em]">
