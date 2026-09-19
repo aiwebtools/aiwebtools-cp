@@ -16,5 +16,5 @@
 - [x] Make image requests deterministic with bounded retry and clear failures
 - [x] Ensure generated pictures render responsively in both chat surfaces
 - [x] Add lightweight room glow effects with reduced-motion safeguards
-- [ ] Verify representative text and image bots across mobile, tablet, and desktop
-- [ ] Confirm clean build and browser logs
+- [x] Verify representative text and image bots across mobile, tablet, and desktop
+- [x] Confirm clean build and browser logs
