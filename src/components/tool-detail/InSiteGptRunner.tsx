@@ -11,6 +11,7 @@ import {
   PromptInputTextarea,
 } from "@/components/ai-elements/prompt-input";
 import { Shimmer } from "@/components/ai-elements/shimmer";
+import { ImageProgress, splitImageProgress } from "@/components/ai-elements/image-progress";
 import { useAuthSession } from "@/hooks/useAuthSession";
 import { Tool } from "@/types/tools";
 import { getGuestId } from "@/utils/guestId";
