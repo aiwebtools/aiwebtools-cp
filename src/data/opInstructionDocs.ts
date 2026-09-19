@@ -144,5 +144,17 @@ export const OP_INSTRUCTION_DOCS: Record<string, string> = {
   "yes-or-no-gpt": "YES OR NO GPT- Final Operational instructions 9_14_2024.docx",
 };
 
-export const getOpInstructionDoc = (slug?: string | null) =>
-  slug && OP_INSTRUCTION_DOCS[slug] ? { href: `/instructions/${slug}.docx`, source: OP_INSTRUCTION_DOCS[slug] } : null;
+/**
+ * Returns the branded PDF (AIWEBTOOLS.APP header, logo and footer) whose body text
+ * is the original document reproduced verbatim, plus the untouched source .docx.
+ */
+export const getOpInstructionDoc = (slug?: string | null) => {
+  if (!slug || !OP_INSTRUCTION_DOCS[slug]) return null;
+  const source = OP_INSTRUCTION_DOCS[slug];
+  return {
+    href: `/instructions/${slug}.pdf`,
+    download: source.replace(/\.docx$/i, "") + " (AIWEBTOOLS.APP).pdf",
+    docxHref: `/instructions/${slug}.docx`,
+    source,
+  };
+};

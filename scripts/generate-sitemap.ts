@@ -51,72 +51,85 @@ for (const tool of allTools) {
   slugs.push(slug);
 }
 
-const urls: string[] = [];
-for (const r of staticRoutes) {
-  urls.push(
-    `  <url><loc>${BASE_URL}${r.path}</loc><changefreq>${r.changefreq}</changefreq><priority>${r.priority}</priority></url>`
-  );
-}
+const url = (loc: string, changefreq: string, priority: string) =>
+  `  <url><loc>${loc}</loc><changefreq>${changefreq}</changefreq><priority>${priority}</priority></url>`;
 
+// --- section: core pages -----------------------------------------------------
+const pageUrls = staticRoutes.map((r) => url(`${BASE_URL}${r.path}`, r.changefreq, r.priority));
 
-// Every real category landing page. These are generated from the same data
-// sources used by the category routes so the sitemap stays synchronized.
+// --- section: categories -----------------------------------------------------
 const toolCategories = Array.from(
   new Set(allTools.map((tool) => tool.category?.trim()).filter((category): category is string => Boolean(category)))
 ).sort((a, b) => a.localeCompare(b));
-for (const category of toolCategories) {
-  urls.push(
-    `  <url><loc>${BASE_URL}/category/${encodePathSegment(category)}</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>`
-  );
-}
+const categoryUrls = [
+  ...toolCategories.map((c) => url(`${BASE_URL}/category/${encodePathSegment(c)}`, "weekly", "0.7")),
+  ...mainCategories.map((c) => url(`${BASE_URL}/main-category/${encodePathSegment(c.name)}`, "weekly", "0.8")),
+];
 
-for (const category of mainCategories) {
-  urls.push(
-    `  <url><loc>${BASE_URL}/main-category/${encodePathSegment(category.name)}</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>`
-  );
-}
+// --- section: tools ----------------------------------------------------------
+const toolUrls = slugs.map((slug) => url(`${BASE_URL}/${slug}`, "weekly", "0.8"));
 
-for (const slug of slugs) {
-  urls.push(
-    `  <url><loc>${BASE_URL}/${slug}</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>`
-  );
-}
-
+// --- section: blog -----------------------------------------------------------
 const blogSlugs = new Set<string>();
+const blogUrls: string[] = [];
 for (const post of blogPosts) {
   if (!post.slug || blogSlugs.has(post.slug)) continue;
   blogSlugs.add(post.slug);
-  urls.push(
-    `  <url><loc>${BASE_URL}/blog/${encodePathSegment(post.slug)}</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>`
-  );
+  blogUrls.push(url(`${BASE_URL}/blog/${encodePathSegment(post.slug)}`, "monthly", "0.7"));
 }
 
-// SEO "back pages": one long-form spotlight per custom GPT / Gem.
+// --- section: spotlights (long-form "back pages") ----------------------------
 const spotlights = getSpotlights();
-for (const spotlight of spotlights) {
-  urls.push(
-    `  <url><loc>${BASE_URL}/spotlight/${spotlight.slug}</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>`
-  );
-}
+const spotlightUrls = spotlights.map((s) => url(`${BASE_URL}/spotlight/${s.slug}`, "monthly", "0.8"));
 
-// Flagship long-form features (each embeds the live tool).
+// --- section: flagship features (each embeds the live tool) ------------------
 const features = getFlagshipFeatures();
-urls.push(`  <url><loc>${BASE_URL}/features</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>`);
-for (const feature of features) {
-  urls.push(
-    `  <url><loc>${BASE_URL}/feature/${feature.slug}</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>`
-  );
+const featureUrls = [
+  url(`${BASE_URL}/features`, "weekly", "0.9"),
+  ...features.map((f) => url(`${BASE_URL}/feature/${f.slug}`, "weekly", "0.9")),
+];
+
+// ---------------------------------------------------------------------------
+// Write one sitemap file per section (tools chunked) plus a sitemap index at
+// /sitemap.xml, so search engines can fetch and report on each group.
+// ---------------------------------------------------------------------------
+const publicDir = path.resolve(process.cwd(), "public");
+const today = new Date().toISOString().slice(0, 10);
+const written: Array<{ file: string; count: number }> = [];
+
+const writeSitemap = (file: string, entries: string[]) => {
+  const body =
+    `<?xml version="1.0" encoding="UTF-8"?>\n` +
+    `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
+    entries.join("\n") +
+    `\n</urlset>\n`;
+  fs.writeFileSync(path.join(publicDir, file), body, "utf-8");
+  written.push({ file, count: entries.length });
+};
+
+writeSitemap("sitemap-pages.xml", pageUrls);
+writeSitemap("sitemap-features.xml", featureUrls);
+writeSitemap("sitemap-spotlights.xml", spotlightUrls);
+writeSitemap("sitemap-blog.xml", blogUrls);
+writeSitemap("sitemap-categories.xml", categoryUrls);
+
+const CHUNK = 2000;
+for (let i = 0; i < toolUrls.length; i += CHUNK) {
+  writeSitemap(`sitemap-tools-${Math.floor(i / CHUNK) + 1}.xml`, toolUrls.slice(i, i + CHUNK));
 }
 
-const xml =
+const indexXml =
   `<?xml version="1.0" encoding="UTF-8"?>\n` +
-  `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
-  urls.join("\n") +
-  `\n</urlset>\n`;
+  `<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
+  written
+    .map((w) => `  <sitemap><loc>${BASE_URL}/${w.file}</loc><lastmod>${today}</lastmod></sitemap>`)
+    .join("\n") +
+  `\n</sitemapindex>\n`;
+fs.writeFileSync(path.join(publicDir, "sitemap.xml"), indexXml, "utf-8");
 
-const outPath = path.resolve(process.cwd(), "public/sitemap.xml");
-fs.writeFileSync(outPath, xml, "utf-8");
-console.log(`✅ sitemap.xml written with ${urls.length} URLs (${slugs.length} tool slugs, ${spotlights.length} spotlights)`);
+const totalUrls = written.reduce((sum, w) => sum + w.count, 0);
+console.log(`✅ sitemap index written with ${written.length} sitemaps / ${totalUrls} URLs`);
+for (const w of written) console.log(`   • ${w.file}: ${w.count}`);
 
 // ---------------------------------------------------------------------------
 // Generate the authoritative tool count so on-site counters never go stale.

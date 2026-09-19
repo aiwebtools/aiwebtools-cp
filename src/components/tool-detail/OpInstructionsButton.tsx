@@ -21,7 +21,7 @@ const OpInstructionsButton = ({ slug, name, className = "", compact = false }: O
   return (
     <a
       href={doc.href}
-      download={doc.source}
+      download={doc.download}
       className={`op-gold-btn inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-bold uppercase tracking-wide ${className}`}
       title={`Download the complete operational instructions for ${name || "this tool"} (original document, unedited)`}
       aria-label={`Download the full operational instructions for ${name || "this tool"}`}
