@@ -157,7 +157,7 @@ Deno.serve(async (req) => {
   const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
   const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
 
-  if (admins.length && LOVABLE_API_KEY && RESEND_API_KEY) {
+  if (admins.length && RESEND_API_KEY) {
     const rowsHtml = troubled.slice(0, 40).map((r) => `
       <tr>
         <td style="padding:4px 8px;">${escapeHtml(r.slug)}</td>
