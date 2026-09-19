@@ -82,6 +82,7 @@ const FreeAIToolsPage = lazyWithRetry(() => import("./pages/FreeAIToolsPage"));
 const AIWritingToolsPage = lazyWithRetry(() => import("./pages/AIWritingToolsPage"));
 const AIWebToolsPage = lazyWithRetry(() => import("./pages/AIWebToolsPage"));
 const AdminAnalytics = lazyWithRetry(() => import("./pages/AdminAnalytics"));
+const AdminChatQuality = lazyWithRetry(() => import("./pages/AdminChatQuality"));
 const PrivacyPolicy = lazyWithRetry(() => import("./pages/PrivacyPolicy"));
 const MusicStream = lazyWithRetry(() => import("./pages/MusicStream"));
 const UserSubmittedToolsPage = lazyWithRetry(() => import("./pages/UserSubmittedToolsPage"));
