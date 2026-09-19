@@ -346,7 +346,7 @@ const GptAppPage = () => {
         )}
       </header>
 
-      <main className="mx-auto flex max-w-3xl flex-col gap-4 px-4 pb-40 pt-6">
+      <main className="mx-auto flex max-w-3xl flex-col gap-4 px-3 pb-52 pt-4 sm:px-4 sm:pb-40 sm:pt-6">
         {messages.length === 0 && (
           <section
             className="rounded-2xl border p-5"
