@@ -4,6 +4,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { componentTagger } from "lovable-tagger";
 import { viteOGManifest } from "./plugins/vite-og-manifest";
+import { vitePrerender } from "./plugins/vite-prerender";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -18,6 +19,7 @@ export default defineConfig(({ mode }) => ({
     mode === 'development' &&
     componentTagger(),
     mode === 'production' && viteOGManifest(),
+    mode === 'production' && vitePrerender(),
   ].filter(Boolean),
   resolve: {
     alias: [
