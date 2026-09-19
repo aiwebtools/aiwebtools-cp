@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { Maximize2, ImageIcon } from "lucide-react";
+import { Maximize2, ImageIcon, SendHorizontal } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Conversation, ConversationContent, ConversationScrollButton } from "@/components/ai-elements/conversation";
 import { Message, MessageContent, MessageResponse } from "@/components/ai-elements/message";
@@ -12,10 +12,12 @@ import {
 } from "@/components/ai-elements/prompt-input";
 import { Shimmer } from "@/components/ai-elements/shimmer";
 import { ImageProgress, splitImageProgress } from "@/components/ai-elements/image-progress";
+import { ThinkingStatus } from "@/components/ai-elements/thinking-status";
 import { useAuthSession } from "@/hooks/useAuthSession";
 import { Tool } from "@/types/tools";
 import { getGuestId } from "@/utils/guestId";
 import { getGptRoomTheme, getRoomMotto } from "./gptRoomThemes";
+import { getGptAvatar } from "./gptAvatars";
 
 interface GptApp {
   slug: string;
@@ -157,6 +159,7 @@ const InSiteGptRunner = ({ tool }: { tool: Tool }) => {
     [app?.display_name, app?.slug, tool?.category],
   );
   const motto = useMemo(() => getRoomMotto(theme), [theme]);
+  const avatar = useMemo(() => getGptAvatar(theme.key), [theme.key]);
 
   if (!app) return null;
 
@@ -174,12 +177,11 @@ const InSiteGptRunner = ({ tool }: { tool: Tool }) => {
     >
       {/* Console header plate */}
       <div className="flex flex-wrap items-center gap-2 border-b border-white/10 px-4 py-3 sm:px-5">
-        <span
-          className="gpt-room-emblem grid h-9 w-9 shrink-0 place-items-center rounded-md border text-base"
-          aria-hidden="true"
-        >
-          {theme.emblem}
-        </span>
+        <img
+          src={avatar}
+          alt={`${app.display_name} AI assistant avatar`}
+          className="gpt-room-avatar h-10 w-10 shrink-0 rounded-full"
+        />
         <span className="gpt-room-accent text-[10px] font-bold uppercase tracking-[0.25em]">
           {theme.roomLabel} · {theme.consoleNumber}
         </span>
@@ -213,7 +215,7 @@ const InSiteGptRunner = ({ tool }: { tool: Tool }) => {
               {starters.length > 0 && (
                 <>
                   <p className="gpt-room-accent mt-4 text-[10px] font-bold uppercase tracking-[0.25em]">
-                    Start here
+                    Try one of these
                   </p>
                   <div className="mt-2 grid gap-2 sm:grid-cols-2">
                     {starters.map((prompt) => (
@@ -237,11 +239,15 @@ const InSiteGptRunner = ({ tool }: { tool: Tool }) => {
               key={`${message.role}-${index}`}
               from={message.role}
             >
-              <MessageContent className={message.role === "user" ? "gpt-room-user-bubble text-foreground" : "text-foreground"}>
+              <MessageContent className={message.role === "user" ? "gpt-msg-user" : "gpt-msg-bot"}>
+                <div className="gpt-msg-meta">
+                  {message.role === "assistant" && <img src={avatar} alt="" className="gpt-msg-avatar" aria-hidden="true" />}
+                  <span>{message.role === "user" ? "You" : app.display_name}</span>
+                </div>
                 {message.role === "assistant" ? (
                   (() => {
                     const { text, working } = splitImageProgress(message.content);
-                    if (!text && !working) return <Shimmer>Thinking…</Shimmer>;
+                    if (!text && !working) return <Shimmer>Writing…</Shimmer>;
                     return (
                       <>
                         {text && <MessageResponse className="gpt-generated-content">{text}</MessageResponse>}
@@ -253,6 +259,9 @@ const InSiteGptRunner = ({ tool }: { tool: Tool }) => {
               </MessageContent>
             </Message>
           ))}
+          {streaming && messages.at(-1)?.role !== "assistant" && (
+            <ThinkingStatus avatar={avatar} name={app.display_name} />
+          )}
           <div ref={bottomRef} />
           </ConversationContent>
           <ConversationScrollButton className="gpt-room-scroll" />
@@ -280,11 +289,16 @@ const InSiteGptRunner = ({ tool }: { tool: Tool }) => {
             <PromptInputSubmit
               status={streaming ? "streaming" : "ready"}
               disabled={streaming || !input.trim()}
-              className="gpt-room-send"
-              aria-label={`Send to ${app.display_name}`}
-            />
+              className="gpt-room-send min-w-[8.5rem] px-3"
+              size="default"
+              aria-label={`Send message to ${app.display_name}`}
+            >
+              <SendHorizontal className="h-4 w-4" aria-hidden="true" />
+              Send message
+            </PromptInputSubmit>
           </PromptInputFooter>
         </PromptInput>
+        <p className="mt-1.5 text-right text-[10px] text-muted-foreground">Press Enter to send · Shift+Enter for a new line</p>
 
         {!session && (
           <p className="mt-2 text-xs text-muted-foreground">
