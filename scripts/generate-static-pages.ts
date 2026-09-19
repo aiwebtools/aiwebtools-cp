@@ -23,6 +23,7 @@ import { allTools } from "../src/data/toolsData";
 import { generateToolSlug } from "../src/utils/urlGenerator";
 import { getSpotlights } from "../src/data/spotlights";
 import { getFlagshipFeatures } from "../src/data/flagshipFeatures";
+import { isExpiredHost, getYouTubeThumbnail } from "../src/utils/imageUtils";
 import { blogPosts } from "../src/data/blogPostContent";
 import { mainCategories } from "../src/utils/mainCategoryMapping";
 
@@ -314,6 +315,12 @@ for (const post of blogPosts) {
 const features = getFlagshipFeatures();
 for (const feature of features) {
   const featureTool = allTools.find((t) => t.title === feature.toolTitle);
+  const rawHero = typeof featureTool?.imageUrl === "string" ? featureTool.imageUrl.trim() : "";
+  // Bundled /src/ paths and dead image hosts are not usable in static HTML.
+  const heroImage =
+    rawHero && !rawHero.startsWith("/src/") && !isExpiredHost(rawHero)
+      ? rawHero
+      : getYouTubeThumbnail(featureTool?.videoUrl);
   const sections = feature.sections
     .map(
       (section) =>
@@ -334,7 +341,7 @@ for (const feature of features) {
     <h1>${esc(feature.headline)}</h1>
     <p class="meta">${esc(feature.kicker)} · ${esc(feature.category)} · ${esc(feature.readTime)} read · Published ${esc(feature.publishDate)}</p>
     <p><strong>${esc(clean(feature.deck))}</strong></p>
-    ${featureTool?.imageUrl ? `<p><img src="${esc(featureTool.imageUrl)}" alt="${esc(feature.toolTitle)} — custom AI tool by AIWebTools.ai" loading="lazy" width="1200" height="675" /></p>` : ""}
+    ${heroImage ? `<p><img src="${esc(heroImage)}" alt="${esc(feature.toolTitle)} — custom AI tool by AIWebTools.ai" loading="lazy" width="1200" height="675" /></p>` : ""}
     <p>${esc(clean(feature.answer))}</p>
     <h2>Try ${esc(feature.toolTitle)} right here</h2>
     <p>The real, working version of ${esc(feature.toolTitle)} runs inside this article — free in the browser, no install and no account needed for a daily allowance.</p>
@@ -356,7 +363,7 @@ for (const feature of features) {
     route: `/feature/${feature.slug}`,
     title: feature.metaTitle,
     description: feature.metaDescription,
-    image: featureTool?.imageUrl,
+    image: heroImage,
     type: "article",
     jsonLd: {
       "@context": "https://schema.org",
@@ -370,7 +377,7 @@ for (const feature of features) {
           publisher: { "@type": "Organization", name: "AI Web Tools" },
           mainEntityOfPage: `${BASE_URL}/feature/${feature.slug}`,
           keywords: feature.keywords.join(", "),
-          ...(featureTool?.imageUrl ? { image: featureTool.imageUrl } : {}),
+          ...(heroImage ? { image: heroImage } : {}),
           about: {
             "@type": "SoftwareApplication",
             name: feature.toolTitle,
