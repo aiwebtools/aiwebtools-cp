@@ -1,0 +1,1 @@
+DROP POLICY IF EXISTS "Public can view generated GPT images" ON storage.objects;

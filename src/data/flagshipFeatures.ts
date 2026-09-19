@@ -376,10 +376,12 @@ export const flagshipFeatures: FlagshipFeature[] = [
     headline: "BOOK WRITER GPT — The manuscript that remembers itself",
     deck:
       "Most AI writing falls apart at chapter four, when the assistant forgets who the characters are. This one is built around continuity.",
-    metaTitle: "Book Writer GPT — Write a Full Book With AI, Free | AI Web Tools",
+    metaTitle: "AI Book Writer Tool — Book Writer GPT, Write a Full Book Free | AI Web Tools",
     metaDescription:
-      "Book Writer GPT plans, drafts and continues full-length books with page-to-page continuity, structured chapters and consistent voice. Free live chat on AI Web Tools.",
+      "Book Writer GPT is a free AI book writer tool that plans, drafts and continues full-length books with page-to-page continuity, structured chapters and consistent voice. Free live chat on AI Web Tools.",
     keywords: [
+      "ai book writer tool",
+      "ai book generator",
       "book writer gpt",
       "ai book writing tool",
       "write a novel with ai",
@@ -451,10 +453,12 @@ export const flagshipFeatures: FlagshipFeature[] = [
     headline: "MOVIE SCRIPT WRITER GPT — Industry format, from the first line",
     deck:
       "Screenwriting punishes amateurs on formatting alone. This tool gets the shape right so you can spend your attention on the story.",
-    metaTitle: "Movie Script Writer GPT — Free AI Screenwriting Assistant | AI Web Tools",
+    metaTitle: "Movie Script Generator — Movie Script Writer GPT, Free AI Screenwriting | AI Web Tools",
     metaDescription:
-      "Movie Script Writer GPT drafts scenes in professional screenplay format with sharp dialogue, clear action lines and scene-by-scene structure. Free live chat on AI Web Tools.",
+      "Movie Script Writer GPT is a free movie script generator that drafts scenes in professional screenplay format with sharp dialogue, clear action lines and scene-by-scene structure. Free live chat on AI Web Tools.",
     keywords: [
+      "movie script generator",
+      "ai script generator",
       "movie script writer gpt",
       "ai screenwriting tool",
       "screenplay format ai",
