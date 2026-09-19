@@ -438,8 +438,6 @@ Deno.serve(async (req) => {
         finalError = err instanceof Error ? err.message : "Unknown stream error";
         console.error("stream error", err);
       } finally {
-        controller.enqueue(encoder.encode("data: [DONE]\n\n"));
-        controller.close();
         if (conversationId && assistant.trim()) {
           await admin.from("gpt_messages").insert({
             conversation_id: conversationId,
@@ -457,6 +455,8 @@ Deno.serve(async (req) => {
           finalError = "The model returned no visible reply.";
         }
         await writeChatLog();
+        controller.enqueue(encoder.encode("data: [DONE]\n\n"));
+        controller.close();
       }
     },
   });
