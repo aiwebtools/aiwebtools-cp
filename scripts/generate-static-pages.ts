@@ -47,7 +47,9 @@ const assetTags = (builtHtml.match(
 ) || []).join("\n    ");
 
 const inlineScripts = (builtHtml.match(/<script>[\s\S]*?<\/script>/g) || [])
-  .filter((s) => /googletagmanager|adsbygoogle|__aiwtReloadGuard/.test(s))
+  // Keep only the small analytics/ads bootstraps; the large inline boot
+  // watchdog belongs to the animated loader that these lean shells skip.
+  .filter((s) => /googletagmanager|adsbygoogle/.test(s) && s.length < 4000)
   .join("\n    ");
 
 const gptEngTag = (builtHtml.match(/<script[^>]*gptengineer\.js[^>]*><\/script>/) || [""])[0];
