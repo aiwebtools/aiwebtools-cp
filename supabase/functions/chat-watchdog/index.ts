@@ -193,6 +193,18 @@ Deno.serve(async (req) => {
             </div>`,
         }),
       });
+
+    try {
+      let res = await sendEmail("https://api.resend.com/emails", {
+        Authorization: `Bearer ${RESEND_API_KEY}`,
+      });
+      if (!res.ok && LOVABLE_API_KEY) {
+        console.warn("direct resend failed, trying gateway", res.status, await res.text());
+        res = await sendEmail(`${GATEWAY_URL}/emails`, {
+          Authorization: `Bearer ${LOVABLE_API_KEY}`,
+          "X-Connection-Api-Key": RESEND_API_KEY,
+        });
+      }
       summary.emailed = res.ok;
       if (!res.ok) console.error("watchdog email failed", res.status, await res.text());
     } catch (e) {
