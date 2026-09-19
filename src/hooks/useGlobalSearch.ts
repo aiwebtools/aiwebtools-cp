@@ -2391,11 +2391,13 @@ export const useGlobalSearch = () => {
 
     setIsOpen(true);
     const currentId = ++searchIdRef.current;
-    const lightweightResults = fallbackSearch(cappedT);
-    if (lightweightResults.length > 0 && toolsRef.current.length === 0) {
+    // Only run the tiny main-thread fallback while the real catalog is still
+    // loading. Once tools exist, every keystroke stays off the main thread.
+    const lightweightResults = toolsRef.current.length === 0 ? fallbackSearch(cappedT) : [];
+    if (lightweightResults.length > 0) {
       startTransition(() => {
         setSearchResults(lightweightResults);
-        setDisplayedCount(50);
+        setDisplayedCount(24);
         setIsOpen(true);
       });
     }
@@ -2452,31 +2454,33 @@ export const useGlobalSearch = () => {
     const shouldUseWorker = true;
     if (shouldUseWorker) {
       pendingSearchRef.current = null;
-      // Give the input one painted frame before worker/module startup. Never
-      // import the same giant database on the main thread in parallel.
-      window.setTimeout(() => void runWorkerSearch(cappedT)
-        .catch((err) => {
-          return [] as any[];
-        })
-        .then((workerResults) => {
-          if (currentId !== searchIdRef.current) return;
-          const haveTools = toolsRef.current.length > 0;
-          const results = workerResults.length > 0
-            ? ensureExactTitleHit(workerResults, cappedT)
-            : (haveTools ? ensureExactTitleHit(quickSearch(cappedT), cappedT) : lightweightResults);
-          const discoverableResults = withCategoryDiscovery(results, cappedT);
-          if (discoverableResults.length > 0 || haveTools) {
-            searchCache.set(fullCacheKey, discoverableResults);
-          }
-          // Always publish the outcome — including an empty set — so a query
-          // with no matches shows "no results" instead of the previous list.
-          startTransition(() => {
-            setSearchResults(discoverableResults);
-            setDisplayedCount(50);
-            setIsOpen(true);
+      // Coalesce keystrokes: only the last query in a burst is dispatched to the
+      // worker, so fast typing never queues a stack of round-trips or state commits.
+      quickRef.current = setTimeout(() => {
+        if (currentId !== searchIdRef.current) return;
+        void runWorkerSearch(cappedT)
+          .catch(() => [] as any[])
+          .then((workerResults) => {
+            if (currentId !== searchIdRef.current) return;
+            const haveTools = toolsRef.current.length > 0;
+            const results = workerResults.length > 0
+              ? ensureExactTitleHit(workerResults, cappedT)
+              : (haveTools ? ensureExactTitleHit(quickSearch(cappedT), cappedT) : lightweightResults);
+            const discoverableResults = withCategoryDiscovery(results, cappedT);
+            if (discoverableResults.length > 0 || haveTools) {
+              searchCache.set(fullCacheKey, discoverableResults);
+            }
+            if (currentId !== searchIdRef.current) return;
+            // Always publish the outcome — including an empty set — so a query
+            // with no matches shows "no results" instead of the previous list.
+            startTransition(() => {
+              setSearchResults(discoverableResults);
+              setDisplayedCount(24);
+              setIsOpen(true);
+            });
+            recordMetric("search.worker.ms", performance.now() - keystrokeAt, { len: cappedT.length });
           });
-          recordMetric("search.worker.ms", performance.now() - keystrokeAt, { len: cappedT.length });
-        }), 0);
+      }, quickDelay);
       return;
     }
 
