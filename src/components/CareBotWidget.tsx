@@ -1,8 +1,9 @@
 import { sanitizeExternalUrl } from "@/utils/links/linkSafety";
 import { useState, useRef, useEffect, useCallback } from "react";
-import { X, Send, Loader2, Sparkles, Bot } from "lucide-react";
+import { X, Send, Loader2, Sparkles, Bot, Volume2, VolumeX, Play, Square } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import { useNavigate } from "react-router-dom";
+import useSpeechReader from "@/hooks/useSpeechReader";
 import type { Tool } from "@/types/tools";
 
 type Msg = { role: "user" | "assistant"; content: string };
@@ -92,6 +93,7 @@ const CareBotWidget = () => {
   const [loading, setLoading] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
+  const voice = useSpeechReader();
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -111,10 +113,12 @@ const CareBotWidget = () => {
     setMessages((prev) => [...prev, userMsg]);
     setInput("");
     setLoading(true);
+    voice.reset();
 
     let assistantSoFar = "";
     const appendDelta = (chunk: string) => {
       assistantSoFar += chunk;
+      voice.feed(assistantSoFar);
       setMessages((prev) => {
         const last = prev[prev.length - 1];
         if (last?.role === "assistant") {
@@ -177,9 +181,10 @@ const CareBotWidget = () => {
       console.error("[CareBot] error", e);
       appendDelta("\n\n⚠️ Connection issue. Please try again.");
     } finally {
+      voice.flush();
       setLoading(false);
     }
-  }, [loading, messages]);
+  }, [loading, messages, voice]);
 
   return (
     <>
@@ -229,13 +234,29 @@ const CareBotWidget = () => {
                 <div className="text-[10px] text-green-500/70">Powered by AI · 5,500+ tools indexed</div>
               </div>
             </div>
-            <button
-              onClick={() => setOpen(false)}
-              aria-label="Close chat"
-              className="text-green-300 hover:text-green-100 transition-colors p-1"
-            >
-              <X className="w-5 h-5" />
-            </button>
+            <div className="flex items-center gap-1">
+              {voice.supported && (
+                <button
+                  onClick={voice.toggle}
+                  aria-label={voice.enabled ? "Turn off read-aloud" : "Turn on read-aloud"}
+                  title={voice.enabled ? "Read-aloud is ON — tap to mute" : "Read-aloud is OFF — tap to unmute"}
+                  className={`p-1.5 rounded-lg border transition-colors ${
+                    voice.enabled
+                      ? "text-green-200 border-green-400/60 bg-green-500/20"
+                      : "text-green-600 border-green-700/40 hover:text-green-300"
+                  }`}
+                >
+                  {voice.enabled ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
+                </button>
+              )}
+              <button
+                onClick={() => { voice.stop(); setOpen(false); }}
+                aria-label="Close chat"
+                className="text-green-300 hover:text-green-100 transition-colors p-1"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
           </div>
 
           {/* Messages */}
@@ -321,6 +342,18 @@ const CareBotWidget = () => {
                         >
                           {m.content}
                         </ReactMarkdown>
+                        {voice.supported && m.content.trim().length > 0 && (
+                          <button
+                            type="button"
+                            onClick={() => voice.speakNow(m.content)}
+                            aria-label={voice.speaking ? "Stop reading this answer" : "Read this answer out loud"}
+                            title={voice.speaking ? "Stop reading" : "Read this answer out loud"}
+                            className="mt-2 inline-flex items-center gap-1 px-2 py-1 rounded-md border border-green-400/50 bg-green-500/15 hover:bg-green-500/30 text-green-200 text-[11px] font-semibold transition-colors"
+                          >
+                            {voice.speaking ? <Square className="w-3 h-3" /> : <Play className="w-3 h-3" />}
+                            {voice.speaking ? "Stop" : "Play"}
+                          </button>
+                        )}
                       </div>
                     ) : (
                       <div className="whitespace-pre-wrap">{m.content}</div>

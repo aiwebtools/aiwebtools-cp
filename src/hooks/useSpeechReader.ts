@@ -19,6 +19,7 @@ const stripForSpeech = (text: string) =>
 export const useSpeechReader = () => {
   const supported = typeof window !== "undefined" && "speechSynthesis" in window;
   const [enabled, setEnabled] = useState(false);
+  const [speaking, setSpeaking] = useState(false);
   const spokenRef = useRef(0);
   const bufferRef = useRef("");
 
@@ -90,11 +91,36 @@ export const useSpeechReader = () => {
     });
   }, [supported]);
 
+  /**
+   * Read one specific message out loud on demand (a play button), regardless of
+   * whether auto-read is switched on. Calling it again while it is talking stops it.
+   */
+  const speakNow = useCallback(
+    (text: string) => {
+      if (!supported) return;
+      if (window.speechSynthesis.speaking || window.speechSynthesis.pending) {
+        window.speechSynthesis.cancel();
+        setSpeaking(false);
+        return;
+      }
+      const clean = stripForSpeech(text);
+      if (!clean) return;
+      const utterance = new SpeechSynthesisUtterance(clean);
+      utterance.rate = 1.02;
+      utterance.pitch = 1;
+      utterance.onend = () => setSpeaking(false);
+      utterance.onerror = () => setSpeaking(false);
+      setSpeaking(true);
+      window.speechSynthesis.speak(utterance);
+    },
+    [supported],
+  );
+
   useEffect(() => () => {
     if (supported) window.speechSynthesis.cancel();
   }, [supported]);
 
-  return { supported, enabled, toggle, feed, flush, reset, stop };
+  return { supported, enabled, toggle, feed, flush, reset, stop, speakNow, speaking };
 };
 
 export default useSpeechReader;

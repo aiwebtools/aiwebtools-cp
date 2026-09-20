@@ -470,6 +470,12 @@ const PostAcceptBoot: React.FC = () => {
           ? [import("./pages/AllToolsFastPage")]
           : [import("./pages/MainCategoryPage")]
       );
+
+      // Warm the tool-detail route + tool index so the first tool a visitor
+      // opens renders instantly instead of waiting on a cold chunk fetch.
+      import("@/utils/toolPrefetcher")
+        .then((m) => m.warmToolDetailModules())
+        .catch(() => {});
     };
 
     let cancelWait = () => {};
