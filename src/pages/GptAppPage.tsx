@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { Loader2, ArrowLeft, Star, ImageIcon, Repeat, SendHorizontal } from "lucide-react";
+import { Loader2, ArrowLeft, Star, ImageIcon, Repeat, SendHorizontal, Volume2, VolumeX } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Message, MessageContent, MessageResponse } from "@/components/ai-elements/message";
@@ -11,6 +11,7 @@ import { ImageProgress, splitImageProgress } from "@/components/ai-elements/imag
 import { ThinkingStatus } from "@/components/ai-elements/thinking-status";
 import { useToast } from "@/hooks/use-toast";
 import { useAuthSession } from "@/hooks/useAuthSession";
+import { useSpeechReader } from "@/hooks/useSpeechReader";
 import { buildCanonicalUrl } from "@/utils/seo";
 import { getGptAppTheme } from "@/utils/gptAppTheme";
 import { getRoomMotto } from "@/components/tool-detail/gptRoomThemes";
@@ -41,6 +42,7 @@ const GptAppPage = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
   const { session, user, loading: sessionLoading } = useAuthSession();
+  const speech = useSpeechReader();
 
   const [app, setApp] = useState<GptApp | null>(null);
   const [loadingApp, setLoadingApp] = useState(true);
@@ -168,6 +170,7 @@ const GptAppPage = () => {
       setMessages(nextMessages);
       setInput("");
       setStreaming(true);
+      speech.reset();
 
       let assistant = "";
       try {
@@ -214,12 +217,14 @@ const GptAppPage = () => {
               if (typeof delta === "string" && delta) {
                 assistant += delta;
                 setMessages([...nextMessages, { role: "assistant", content: assistant }]);
+                speech.feed(assistant);
               }
             } catch {
               /* partial frame */
             }
           }
         }
+        speech.flush();
         if (!assistant.trim()) {
           setMessages(nextMessages);
           toast({ title: "Reply interrupted", description: "The assistant returned an empty reply. Please try again.", variant: "destructive" });
@@ -232,7 +237,7 @@ const GptAppPage = () => {
         setStreaming(false);
       }
     },
-    [messages, navigate, session, slug, streaming, toast],
+    [messages, navigate, session, slug, speech, streaming, toast],
   );
 
   const starters = useMemo(() => app?.starter_prompts?.slice(0, 4) ?? [], [app]);
@@ -306,6 +311,18 @@ const GptAppPage = () => {
           </div>
           <div className="ml-auto flex items-center gap-1">
             <OpInstructionsButton slug={app.slug} name={app.display_name} compact className="hidden text-[10px] sm:inline-flex" />
+            {speech.supported && (
+              <button
+                type="button"
+                onClick={speech.toggle}
+                aria-pressed={speech.enabled}
+                className="gpt-room-icon-btn"
+                title={speech.enabled ? "Mute the voice" : "Read replies out loud"}
+                aria-label={speech.enabled ? "Mute the voice" : "Read replies out loud"}
+              >
+                {speech.enabled ? <Volume2 className="h-4 w-4" aria-hidden="true" /> : <VolumeX className="h-4 w-4" aria-hidden="true" />}
+              </button>
+            )}
             <Button
               variant="ghost"
               size="icon"
@@ -448,12 +465,12 @@ const GptAppPage = () => {
             maxLength={6000}
             className="max-h-32 min-h-[56px] resize-none text-base sm:max-h-40 sm:min-h-[64px]"
           />
-          <PromptInputFooter>
-            <span className="text-[10px] font-bold uppercase tracking-[0.18em]" style={{ color: "hsl(var(--bot-accent))" }}>{getRoomMotto(theme)}</span>
+          <PromptInputFooter className="flex-wrap gap-2">
+            <span className="hidden text-[10px] font-bold uppercase tracking-[0.18em] sm:inline" style={{ color: "hsl(var(--bot-accent))" }}>{getRoomMotto(theme)}</span>
             <PromptInputSubmit
               status={streaming ? "streaming" : "ready"}
               disabled={streaming || !input.trim()}
-              className="gpt-room-send min-w-[8.5rem] px-3"
+              className="gpt-room-send w-full justify-center px-4 sm:ml-auto sm:w-auto sm:min-w-[9rem]"
               size="sm"
               aria-label={`Send message to ${app.display_name}`}
             >
@@ -462,7 +479,7 @@ const GptAppPage = () => {
             </PromptInputSubmit>
           </PromptInputFooter>
         </PromptInput>
-        <p className="mx-auto mt-1 max-w-3xl text-right text-[10px] text-muted-foreground">Press Enter to send · Shift+Enter for a new line</p>
+        <p className="mx-auto mt-1 max-w-3xl text-center text-[10px] sm:text-right text-muted-foreground">Press Enter to send · Shift+Enter for a new line</p>
       </div>
     </div>
   );

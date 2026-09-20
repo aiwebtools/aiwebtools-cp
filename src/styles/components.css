@@ -73,9 +73,26 @@
 .gpt-room-motto { border-color: hsl(var(--bot-accent) / .2); color: hsl(var(--bot-accent) / .7); }
 .gpt-generated-content img { display: block; width: 100%; max-width: 48rem; height: auto; max-height: min(68vh, 48rem); margin: .75rem auto; border-radius: .5rem; border: 1px solid hsl(var(--bot-accent) / .4); object-fit: contain; box-shadow: 0 0 28px hsl(var(--bot-accent) / .2); }
 
+.gpt-room-icon-btn {
+  display: inline-grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  flex: 0 0 auto;
+  border-radius: 9999px;
+  border: 1px solid hsl(var(--bot-accent) / .45);
+  background: hsl(var(--bot-soft) / .6);
+  color: hsl(var(--bot-accent));
+  transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+}
+.gpt-room-icon-btn:hover { background: hsl(var(--bot-soft)); box-shadow: 0 0 16px hsl(var(--bot-accent) / .45); transform: translateY(-1px); }
+.gpt-room-icon-btn[aria-pressed="true"] { box-shadow: 0 0 14px hsl(var(--bot-accent) / .5); }
+
 @media (max-width: 639px) {
   .gpt-msg-user, .gpt-msg-bot { max-width: 96%; font-size: .925rem; }
   .gpt-thinking, .gpt-image-progress { align-items: center; }
+  .gpt-room { border-radius: 1rem; }
+  .gpt-room-motto { letter-spacing: .18em !important; font-size: 9px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

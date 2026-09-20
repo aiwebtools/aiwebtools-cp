@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { Maximize2, ImageIcon, SendHorizontal } from "lucide-react";
+import { Maximize2, ImageIcon, SendHorizontal, Volume2, VolumeX } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Conversation, ConversationContent, ConversationScrollButton } from "@/components/ai-elements/conversation";
 import { Message, MessageContent, MessageResponse } from "@/components/ai-elements/message";
@@ -14,6 +14,7 @@ import { Shimmer } from "@/components/ai-elements/shimmer";
 import { ImageProgress, splitImageProgress } from "@/components/ai-elements/image-progress";
 import { ThinkingStatus } from "@/components/ai-elements/thinking-status";
 import { useAuthSession } from "@/hooks/useAuthSession";
+import { useSpeechReader } from "@/hooks/useSpeechReader";
 import { Tool } from "@/types/tools";
 import { getGuestId } from "@/utils/guestId";
 import { getGptRoomTheme, getRoomMotto } from "./gptRoomThemes";
@@ -44,6 +45,7 @@ const FUNCTIONS_URL = "https://huupailptzvcykyqdkar.supabase.co/functions/v1/run
  */
 const InSiteGptRunner = ({ tool }: { tool: Tool }) => {
   const { session } = useAuthSession();
+  const speech = useSpeechReader();
   const [app, setApp] = useState<GptApp | null>(null);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState("");
@@ -94,6 +96,7 @@ const InSiteGptRunner = ({ tool }: { tool: Tool }) => {
       setInput("");
       setStreaming(true);
       setNotice(null);
+      speech.reset();
 
       let assistant = "";
       try {
@@ -139,12 +142,14 @@ const InSiteGptRunner = ({ tool }: { tool: Tool }) => {
               if (typeof delta === "string" && delta) {
                 assistant += delta;
                 setMessages([...nextMessages, { role: "assistant", content: assistant }]);
+                speech.feed(assistant);
               }
             } catch {
               /* partial frame */
             }
           }
         }
+        speech.flush();
         if (!assistant.trim()) {
           setMessages(nextMessages);
           setNotice("The assistant's reply was interrupted. Please try again.");
@@ -156,7 +161,7 @@ const InSiteGptRunner = ({ tool }: { tool: Tool }) => {
         setStreaming(false);
       }
     },
-    [app, messages, session, streaming],
+    [app, messages, session, speech, streaming],
   );
 
   // Two clear choices read far better than a confusing wall of four.
@@ -183,28 +188,48 @@ const InSiteGptRunner = ({ tool }: { tool: Tool }) => {
       aria-label={`Run ${app.display_name} here`}
     >
       {/* Console header plate */}
-      <div className="flex flex-wrap items-center gap-2 border-b border-white/10 px-4 py-3 sm:px-5">
-        <img
-          src={avatar}
-          alt={`${app.display_name} AI assistant avatar`}
-          className="gpt-room-avatar h-10 w-10 shrink-0 rounded-full"
-          onError={(event) => { event.currentTarget.src = getGptAvatar(theme.key); }}
-        />
-        <span className="gpt-room-accent text-[10px] font-bold uppercase tracking-[0.25em]">
-          {theme.roomLabel} · {theme.consoleNumber}
-        </span>
-        <h2 className="min-w-0 w-full truncate text-base font-bold uppercase tracking-wide text-foreground sm:w-auto sm:max-w-[45%] sm:border-l sm:border-border sm:pl-3">
-          {app.display_name}
-        </h2>
-        <div className="ml-auto flex items-center gap-2">
-          <OpInstructionsButton slug={app.slug} name={app.display_name} compact className="text-[10px]" />
+      <div className="border-b border-white/10 px-3 py-3 sm:px-5">
+        <div className="flex items-center gap-3">
+          <img
+            src={avatar}
+            alt={`${app.display_name} AI assistant avatar`}
+            className="gpt-room-avatar h-9 w-9 shrink-0 rounded-full sm:h-10 sm:w-10"
+            onError={(event) => { event.currentTarget.src = getGptAvatar(theme.key); }}
+          />
+          <div className="min-w-0 flex-1">
+            <p className="gpt-room-accent truncate text-[9px] font-bold uppercase tracking-[0.22em]">
+              {theme.roomLabel} · {theme.consoleNumber}
+            </p>
+            <h2 className="truncate text-sm font-bold uppercase tracking-wide text-foreground sm:text-base">
+              {app.display_name}
+            </h2>
+          </div>
+          {speech.supported && (
+            <button
+              type="button"
+              onClick={speech.toggle}
+              aria-pressed={speech.enabled}
+              className="gpt-room-icon-btn"
+              title={speech.enabled ? "Mute the voice" : "Read replies out loud"}
+              aria-label={speech.enabled ? "Mute the voice" : "Read replies out loud"}
+            >
+              {speech.enabled ? <Volume2 className="h-4 w-4" aria-hidden="true" /> : <VolumeX className="h-4 w-4" aria-hidden="true" />}
+            </button>
+          )}
           <Link
             to={`/app/${app.slug}`}
-            className="gpt-room-accent inline-flex items-center gap-1 text-xs"
+            className="gpt-room-icon-btn"
+            title="Open full screen"
+            aria-label="Open full screen"
           >
-            <Maximize2 className="h-3 w-3" aria-hidden="true" />
-            Full screen
+            <Maximize2 className="h-4 w-4" aria-hidden="true" />
           </Link>
+        </div>
+        <div className="mt-2.5 flex items-center gap-2">
+          <OpInstructionsButton slug={app.slug} name={app.display_name} compact className="text-[10px]" />
+          <span className="gpt-room-accent hidden text-[10px] font-semibold uppercase tracking-[0.18em] sm:inline">
+            {speech.enabled ? "Voice on" : "Voice off"}
+          </span>
         </div>
       </div>
 
@@ -291,16 +316,16 @@ const InSiteGptRunner = ({ tool }: { tool: Tool }) => {
             placeholder={theme.placeholder}
             rows={2}
             maxLength={6000}
-            className="min-h-[64px] w-full resize-y bg-transparent text-base leading-relaxed text-foreground sm:min-h-[110px]"
+            className="min-h-[56px] w-full resize-y bg-transparent text-base leading-relaxed text-foreground sm:min-h-[96px]"
           />
-          <PromptInputFooter className="border-t border-border pt-2">
-            <span className="gpt-room-accent text-[10px] font-bold uppercase tracking-[0.18em]">
+          <PromptInputFooter className="flex-wrap gap-2 border-t border-border pt-2">
+            <span className="gpt-room-accent hidden text-[10px] font-bold uppercase tracking-[0.18em] sm:inline">
               {theme.signature} · UNIT {theme.consoleNumber}
             </span>
             <PromptInputSubmit
               status={streaming ? "streaming" : "ready"}
               disabled={streaming || !input.trim()}
-              className="gpt-room-send min-w-[8.5rem] px-3"
+              className="gpt-room-send w-full justify-center px-4 sm:ml-auto sm:w-auto sm:min-w-[9rem]"
               size="sm"
               aria-label={`Send message to ${app.display_name}`}
             >
@@ -309,7 +334,7 @@ const InSiteGptRunner = ({ tool }: { tool: Tool }) => {
             </PromptInputSubmit>
           </PromptInputFooter>
         </PromptInput>
-        <p className="mt-1.5 text-right text-[10px] text-muted-foreground">Press Enter to send · Shift+Enter for a new line</p>
+        <p className="mt-1.5 text-center text-[10px] text-muted-foreground sm:text-right">Press Enter to send · Shift+Enter for a new line</p>
 
         {!session && (
           <p className="mt-2 text-xs text-muted-foreground">
