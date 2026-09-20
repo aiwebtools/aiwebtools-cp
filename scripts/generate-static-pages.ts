@@ -26,6 +26,7 @@ import { getFlagshipFeatures } from "../src/data/flagshipFeatures";
 import { isExpiredHost, getYouTubeThumbnail } from "../src/utils/imageUtils";
 import { blogPosts } from "../src/data/blogPostContent";
 import { mainCategories } from "../src/utils/mainCategoryMapping";
+import { OP_INSTRUCTION_DOCS } from "../src/data/opInstructionDocs";
 
 const BASE_URL = "https://aiwebtools.app";
 const DIST = path.resolve(process.cwd(), "dist");
@@ -631,7 +632,7 @@ hub(
 const freeTools = toolEntries.filter(({ tool }) => tool.isFree);
 hub(
   "/free-ai-tools",
-  "Free AI Tools — ${toolEntries.length} Tools You Can Use For Free | AI Web Tools",
+  `Free AI Tools — ${freeTools.length} Tools You Can Use For Free | AI Web Tools`,
   `A growing list of AI tools that are free to use: free tiers, open-source models and free custom GPTs built by AIWebTools.ai.`,
   `
     ${siteNav}
@@ -760,7 +761,7 @@ hub(
       )
       .join("")}</ul>
     <h2>Popular AI tools</h2>
-    <ul>${toolListItems(toolEntries.map((t) => ({ slug: t.slug, title: t.tool.title })), 40))}</ul>
+    <ul>${toolListItems(toolEntries.map((t) => ({ slug: t.slug, title: t.tool.title })), 40)}</ul>
     <h2>Open source, in the open</h2>
     <p>Every AIWebTools.ai GPT ships with its full operational instructions published for anyone to download and run, and our code and prompts live on GitHub at <a href="https://github.com/aiwebtools" rel="noopener">github.com/aiwebtools</a>.</p>
     <p><a href="/ai-tools">Browse the full directory →</a> · <a href="/features">Flagship features →</a> · <a href="/rankings">Rankings →</a></p>
