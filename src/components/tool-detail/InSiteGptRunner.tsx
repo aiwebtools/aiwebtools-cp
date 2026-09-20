@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { Maximize2, ImageIcon, SendHorizontal } from "lucide-react";
+import { Maximize2, ImageIcon, SendHorizontal, Volume2, VolumeX } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Conversation, ConversationContent, ConversationScrollButton } from "@/components/ai-elements/conversation";
 import { Message, MessageContent, MessageResponse } from "@/components/ai-elements/message";
@@ -14,6 +14,7 @@ import { Shimmer } from "@/components/ai-elements/shimmer";
 import { ImageProgress, splitImageProgress } from "@/components/ai-elements/image-progress";
 import { ThinkingStatus } from "@/components/ai-elements/thinking-status";
 import { useAuthSession } from "@/hooks/useAuthSession";
+import { useSpeechReader } from "@/hooks/useSpeechReader";
 import { Tool } from "@/types/tools";
 import { getGuestId } from "@/utils/guestId";
 import { getGptRoomTheme, getRoomMotto } from "./gptRoomThemes";
@@ -44,6 +45,7 @@ const FUNCTIONS_URL = "https://huupailptzvcykyqdkar.supabase.co/functions/v1/run
  */
 const InSiteGptRunner = ({ tool }: { tool: Tool }) => {
   const { session } = useAuthSession();
+  const speech = useSpeechReader();
   const [app, setApp] = useState<GptApp | null>(null);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState("");
@@ -94,6 +96,7 @@ const InSiteGptRunner = ({ tool }: { tool: Tool }) => {
       setInput("");
       setStreaming(true);
       setNotice(null);
+      speech.reset();
 
       let assistant = "";
       try {
@@ -139,12 +142,14 @@ const InSiteGptRunner = ({ tool }: { tool: Tool }) => {
               if (typeof delta === "string" && delta) {
                 assistant += delta;
                 setMessages([...nextMessages, { role: "assistant", content: assistant }]);
+                speech.feed(assistant);
               }
             } catch {
               /* partial frame */
             }
           }
         }
+        speech.flush();
         if (!assistant.trim()) {
           setMessages(nextMessages);
           setNotice("The assistant's reply was interrupted. Please try again.");
@@ -156,7 +161,7 @@ const InSiteGptRunner = ({ tool }: { tool: Tool }) => {
         setStreaming(false);
       }
     },
-    [app, messages, session, streaming],
+    [app, messages, session, speech, streaming],
   );
 
   // Two clear choices read far better than a confusing wall of four.
