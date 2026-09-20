@@ -183,28 +183,48 @@ const InSiteGptRunner = ({ tool }: { tool: Tool }) => {
       aria-label={`Run ${app.display_name} here`}
     >
       {/* Console header plate */}
-      <div className="flex flex-wrap items-center gap-2 border-b border-white/10 px-4 py-3 sm:px-5">
-        <img
-          src={avatar}
-          alt={`${app.display_name} AI assistant avatar`}
-          className="gpt-room-avatar h-10 w-10 shrink-0 rounded-full"
-          onError={(event) => { event.currentTarget.src = getGptAvatar(theme.key); }}
-        />
-        <span className="gpt-room-accent text-[10px] font-bold uppercase tracking-[0.25em]">
-          {theme.roomLabel} · {theme.consoleNumber}
-        </span>
-        <h2 className="min-w-0 w-full truncate text-base font-bold uppercase tracking-wide text-foreground sm:w-auto sm:max-w-[45%] sm:border-l sm:border-border sm:pl-3">
-          {app.display_name}
-        </h2>
-        <div className="ml-auto flex items-center gap-2">
-          <OpInstructionsButton slug={app.slug} name={app.display_name} compact className="text-[10px]" />
+      <div className="border-b border-white/10 px-3 py-3 sm:px-5">
+        <div className="flex items-center gap-3">
+          <img
+            src={avatar}
+            alt={`${app.display_name} AI assistant avatar`}
+            className="gpt-room-avatar h-9 w-9 shrink-0 rounded-full sm:h-10 sm:w-10"
+            onError={(event) => { event.currentTarget.src = getGptAvatar(theme.key); }}
+          />
+          <div className="min-w-0 flex-1">
+            <p className="gpt-room-accent truncate text-[9px] font-bold uppercase tracking-[0.22em]">
+              {theme.roomLabel} · {theme.consoleNumber}
+            </p>
+            <h2 className="truncate text-sm font-bold uppercase tracking-wide text-foreground sm:text-base">
+              {app.display_name}
+            </h2>
+          </div>
+          {speech.supported && (
+            <button
+              type="button"
+              onClick={speech.toggle}
+              aria-pressed={speech.enabled}
+              className="gpt-room-icon-btn"
+              title={speech.enabled ? "Mute the voice" : "Read replies out loud"}
+              aria-label={speech.enabled ? "Mute the voice" : "Read replies out loud"}
+            >
+              {speech.enabled ? <Volume2 className="h-4 w-4" aria-hidden="true" /> : <VolumeX className="h-4 w-4" aria-hidden="true" />}
+            </button>
+          )}
           <Link
             to={`/app/${app.slug}`}
-            className="gpt-room-accent inline-flex items-center gap-1 text-xs"
+            className="gpt-room-icon-btn"
+            title="Open full screen"
+            aria-label="Open full screen"
           >
-            <Maximize2 className="h-3 w-3" aria-hidden="true" />
-            Full screen
+            <Maximize2 className="h-4 w-4" aria-hidden="true" />
           </Link>
+        </div>
+        <div className="mt-2.5 flex items-center gap-2">
+          <OpInstructionsButton slug={app.slug} name={app.display_name} compact className="text-[10px]" />
+          <span className="gpt-room-accent hidden text-[10px] font-semibold uppercase tracking-[0.18em] sm:inline">
+            {speech.enabled ? "Voice on" : "Voice off"}
+          </span>
         </div>
       </div>
 
