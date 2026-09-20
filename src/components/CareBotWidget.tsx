@@ -93,6 +93,7 @@ const CareBotWidget = () => {
   const [loading, setLoading] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
+  const voice = useSpeechReader();
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -112,10 +113,12 @@ const CareBotWidget = () => {
     setMessages((prev) => [...prev, userMsg]);
     setInput("");
     setLoading(true);
+    voice.reset();
 
     let assistantSoFar = "";
     const appendDelta = (chunk: string) => {
       assistantSoFar += chunk;
+      voice.feed(assistantSoFar);
       setMessages((prev) => {
         const last = prev[prev.length - 1];
         if (last?.role === "assistant") {
