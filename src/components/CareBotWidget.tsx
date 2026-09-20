@@ -234,13 +234,29 @@ const CareBotWidget = () => {
                 <div className="text-[10px] text-green-500/70">Powered by AI · 5,500+ tools indexed</div>
               </div>
             </div>
-            <button
-              onClick={() => setOpen(false)}
-              aria-label="Close chat"
-              className="text-green-300 hover:text-green-100 transition-colors p-1"
-            >
-              <X className="w-5 h-5" />
-            </button>
+            <div className="flex items-center gap-1">
+              {voice.supported && (
+                <button
+                  onClick={voice.toggle}
+                  aria-label={voice.enabled ? "Turn off read-aloud" : "Turn on read-aloud"}
+                  title={voice.enabled ? "Read-aloud is ON — tap to mute" : "Read-aloud is OFF — tap to unmute"}
+                  className={`p-1.5 rounded-lg border transition-colors ${
+                    voice.enabled
+                      ? "text-green-200 border-green-400/60 bg-green-500/20"
+                      : "text-green-600 border-green-700/40 hover:text-green-300"
+                  }`}
+                >
+                  {voice.enabled ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
+                </button>
+              )}
+              <button
+                onClick={() => { voice.stop(); setOpen(false); }}
+                aria-label="Close chat"
+                className="text-green-300 hover:text-green-100 transition-colors p-1"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
           </div>
 
           {/* Messages */}
