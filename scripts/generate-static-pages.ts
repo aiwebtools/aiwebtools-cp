@@ -477,4 +477,322 @@ for (const main of mainCategories) {
   count += 1;
 }
 
+// ---------------------------------------------------------------------------
+// 5. Directory hub pages (indexable navigation for the whole catalogue)
+// ---------------------------------------------------------------------------
+const hub = (
+  route: string,
+  title: string,
+  description: string,
+  body: string,
+  jsonLd?: Record<string, unknown>,
+) => {
+  writePage({ route, title, description, body, jsonLd });
+  count += 1;
+};
+
+const rankedCategories = [...byCategory.entries()].sort((a, b) => b[1].length - a[1].length);
+const categoryLinks = rankedCategories
+  .map(
+    ([category, tools]) =>
+      `<li><a href="/category/${encodeURIComponent(category)}">${esc(category)}</a> (${tools.length})</li>`,
+  )
+  .join("");
+const toolListItems = (entries: Array<{ slug: string; title: string }>, limit: number) =>
+  entries
+    .slice(0, limit)
+    .map((t) => `<li><a href="/${t.slug}">${esc(t.title)}</a></li>`)
+    .join("");
+
+hub(
+  "/ai-tools",
+  "All AI Tools — Full Directory of AI Web Tools",
+  `Every AI tool listed on AI Web Tools in one place: ${toolEntries.length} real, working tools, custom GPTs, agents, assistants and open-source models, browsable by category.`,
+  `
+    ${siteNav}
+    <h1>The Full AI Tools Directory</h1>
+    <p>${toolEntries.length} AI tools are indexed in the AI Web Tools directory — custom GPTs built by AIWebTools.ai, open-source models, agents, image and video generators, coding assistants and business tools. Start with a category below or browse the listing.</p>
+    <h2>Categories</h2>
+    <ul>${categoryLinks}</ul>
+    <h2>Featured tools</h2>
+    <ul>${toolListItems(toolEntries.map((t) => ({ slug: t.slug, title: t.tool.title })), 300)}</ul>
+    <p><a href="/features">Read the flagship feature write-ups →</a></p>
+  `,
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "All AI Tools",
+    url: `${BASE_URL}/ai-tools`,
+    numberOfItems: toolEntries.length,
+  },
+);
+
+hub(
+  "/categories",
+  "AI Tool Categories — Browse Every Category | AI Web Tools",
+  `Browse the AI Web Tools directory by category: ${byCategory.size} categories covering writing, coding, image, video, health, legal, finance, spirituality and more.`,
+  `
+    ${siteNav}
+    <h1>AI Tool Categories</h1>
+    <p>The directory is organised into ${mainCategories.length} main groups and ${byCategory.size} categories. Pick one to see every AI tool listed under it.</p>
+    <h2>Main groups</h2>
+    <ul>${mainCategories
+      .map(
+        (main) =>
+          `<li><a href="/main-category/${encodeURIComponent(main.name)}">${esc(main.name)}</a></li>`,
+      )
+      .join("")}</ul>
+    <h2>All categories</h2>
+    <ul>${categoryLinks}</ul>
+  `,
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "AI Tool Categories",
+    url: `${BASE_URL}/categories`,
+    numberOfItems: byCategory.size,
+  },
+);
+
+hub(
+  "/blog",
+  "AI Tools Blog — Guides, Reviews & How-Tos | AI Web Tools",
+  `Guides, comparisons and how-to articles on using AI tools productively, written by the AI Web Tools team.`,
+  `
+    ${siteNav}
+    <h1>The AI Web Tools Blog</h1>
+    <p>Practical guides on getting more from AI: prompts, workflows, tool comparisons and honest notes from building the directory.</p>
+    <ul>${blogPosts
+      .filter((p) => p.slug)
+      .map(
+        (p) =>
+          `<li><a href="/blog/${p.slug}">${esc(p.title)}</a> — ${esc(clean(p.excerpt))}</li>`,
+      )
+      .join("")}</ul>
+    <p><a href="/features">Flagship feature write-ups →</a></p>
+  `,
+);
+
+hub(
+  "/spotlights",
+  "AI Tool Spotlights — In-Depth Write-Ups | AI Web Tools",
+  `Long-form spotlights on standout AI tools: what they do, how to use them well, and the questions people ask most.`,
+  `
+    ${siteNav}
+    <h1>AI Tool Spotlights</h1>
+    <p>${spotlights.length} in-depth spotlight articles on standout tools in the directory.</p>
+    <ul>${spotlights
+      .map(
+        (s) =>
+          `<li><a href="/spotlight/${s.slug}">${esc(s.title)}</a> — ${esc(clean(s.answer))}</li>`,
+      )
+      .join("")}</ul>
+  `,
+);
+
+hub(
+  "/rankings",
+  "AI Tool Rankings — Most Listed Categories & Flagship GPTs | AI Web Tools",
+  "Which AI categories and custom GPTs lead the AI Web Tools directory right now, ranked by how much of the catalogue they cover.",
+  `
+    ${siteNav}
+    <h1>AI Tool Rankings</h1>
+    <p>Rankings are drawn straight from the directory itself: categories ranked by how many working tools are listed, and the flagship custom GPTs our team builds and maintains.</p>
+    <h2>Top categories by tools listed</h2>
+    <ol>${rankedCategories
+      .slice(0, 40)
+      .map(
+        ([category, tools]) =>
+          `<li><a href="/category/${encodeURIComponent(category)}">${esc(category)}</a> — ${tools.length} tools</li>`,
+      )
+      .join("")}</ol>
+    <h2>Flagship AIWebTools.ai GPTs</h2>
+    <ol>${features
+      .map(
+        (f) =>
+          `<li><a href="/feature/${f.slug}">${esc(f.headline)}</a> — ${esc(clean(f.deck))}</li>`,
+      )
+      .join("")}</ol>
+    <p><a href="/ai-tools">Browse the full directory →</a></p>
+  `,
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "AI Tool Rankings",
+    itemListElement: rankedCategories.slice(0, 40).map(([category], index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: `${category} AI Tools`,
+      url: `${BASE_URL}/category/${encodeURIComponent(category)}`,
+    })),
+  },
+);
+
+const freeTools = toolEntries.filter(({ tool }) => tool.isFree);
+hub(
+  "/free-ai-tools",
+  "Free AI Tools — ${toolEntries.length} Tools You Can Use For Free | AI Web Tools",
+  `A growing list of AI tools that are free to use: free tiers, open-source models and free custom GPTs built by AIWebTools.ai.`,
+  `
+    ${siteNav}
+    <h1>Free AI Tools</h1>
+    <p>${freeTools.length} tools in the directory are listed as free to use — open-source models, free tiers and the custom GPTs AIWebTools.ai publishes with open operational instructions.</p>
+    <ul>${toolListItems(freeTools.map((t) => ({ slug: t.slug, title: t.tool.title })), 250)}</ul>
+    <p><a href="/ai-tools">See every AI tool →</a></p>
+  `,
+);
+
+hub(
+  "/best-ai-tools",
+  "Best AI Tools — The Curated Short List | AI Web Tools",
+  "The best AI tools to start with, hand-picked from the AI Web Tools directory: writing, images, video, coding, research and business.",
+  `
+    ${siteNav}
+    <h1>Best AI Tools</h1>
+    <p>A short, curated starting point from the directory — the tools our team features first because they do the most, for the widest range of people.</p>
+    <ol>${toolListItems(toolEntries.map((t) => ({ slug: t.slug, title: t.tool.title })), 60)}</ol>
+    <h2>Flagship features</h2>
+    <ul>${features
+      .map((f) => `<li><a href="/feature/${f.slug}">${esc(f.headline)}</a></li>`)
+      .join("")}</ul>
+  `,
+);
+
+hub(
+  "/chatgpt-alternatives",
+  "ChatGPT Alternatives — Other AI Assistants To Try | AI Web Tools",
+  "ChatGPT alternatives worth trying: open-source models, Perplexity, Gemini, Claude and free custom GPTs listed in the AI Web Tools directory.",
+  `
+    ${siteNav}
+    <h1>ChatGPT Alternatives</h1>
+    <p>Other AI assistants listed in the directory, from open-source chat models to web-aware research assistants and the free custom GPTs AIWebTools.ai builds.</p>
+    <h2>Assistants and chat models in the directory</h2>
+    <ul>${toolListItems(
+      toolEntries
+        .filter(({ tool }) =>
+          /(chatgpt|gpt|claude|gemini|llama|mistral|perplexity|copilot|assistant|chat)/i.test(
+            `${tool.title} ${tool.category} ${(tool.tags || []).join(" ")}`,
+          ),
+        )
+        .map((t) => ({ slug: t.slug, title: t.tool.title })),
+      150,
+    )}</ul>
+    <p><a href="/ai-tools">Browse every AI tool →</a></p>
+  `,
+);
+
+// ---------------------------------------------------------------------------
+// 6. In-site bot demo rooms (/app/<slug>) — every hosted GPT, Gem and agent
+// ---------------------------------------------------------------------------
+const humanize = (slug: string) =>
+  slug
+    .split("-")
+    .filter(Boolean)
+    .map((word) =>
+      word.length <= 2 ? word.toUpperCase() : word[0].toUpperCase() + word.slice(1),
+    )
+    .join(" ");
+
+for (const slug of Object.keys(OP_INSTRUCTION_DOCS)) {
+  const name = humanize(slug);
+  hub(
+    `/app/${slug}`,
+    `${name} — Try It Free In Your Browser | AI Web Tools`,
+    `Talk to ${name} right here in the browser — a free trial chat with starter prompts, and the full operational instructions you can download and run on your own model.`,
+    `
+    ${siteNav}
+    <h1>${esc(name)}</h1>
+    <p class="meta">AI Web Tools hosted demo room · free trial chat in the browser</p>
+    <p>This page runs ${esc(name)} as a live trial chat: pick one of the starter prompts or type your own message and the assistant replies instantly. No install and no account is needed for the daily free allowance.</p>
+    <h2>What you get on this page</h2>
+    <ul>
+      <li>A working chat window with starter prompts written for this specific tool</li>
+      <li>Image generation inside the chat where the tool supports it, with a progress counter</li>
+      <li>A clear <strong>Send message</strong> control and full-screen mode when you want more room</li>
+      <li>A gold button to download the complete operational instructions for this bot as a PDF</li>
+    </ul>
+    <h2>Use these instructions on your own model</h2>
+    <p>Every AIWebTools.ai bot ships with its operational instructions published in full. Download them and paste them into your own AI model to run the same assistant anywhere.</p>
+    <p><a href="/instructions/${encodeURIComponent(slug)}.pdf">Download the ${esc(name)} operational instructions (PDF) →</a></p>
+    <h2>More places to explore</h2>
+    <ul>
+      <li><a href="/features">Flagship feature write-ups with the tools embedded</a></li>
+      <li><a href="/ai-tools">The full AI tools directory</a></li>
+      <li><a href="/categories">Browse every category</a></li>
+    </ul>
+  `,
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      name,
+      applicationCategory: "AIApplication",
+      operatingSystem: "Web",
+      url: `${BASE_URL}/app/${slug}`,
+      offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+    },
+  );
+}
+
+// ---------------------------------------------------------------------------
+// 7. Homepage — the most important page the crawler ever sees
+// ---------------------------------------------------------------------------
+hub(
+  "/",
+  "AIWEBTOOLS — 5,500+ Best AI Tools Directory | Try Custom GPTs Free",
+  "The largest directory of real AI tools: 5,500+ listings plus free custom GPTs you can try in the browser, with their full operational instructions to download.",
+  `
+    ${siteNav}
+    <h1>AI Web Tools — 5,500+ AI Tools, And You Can Try Them Right Here</h1>
+    <p>AI Web Tools is a directory of real, working AI tools — ${toolEntries.length} indexed listings across ${byCategory.size} categories — and the custom GPTs AIWebTools.ai builds run free inside this site, no install and no account needed for a daily allowance.</p>
+    <h2>Flagship custom GPTs — read the story, then try the tool</h2>
+    <ul>${features
+      .map(
+        (f) =>
+          `<li><a href="/feature/${f.slug}">${esc(f.headline)}</a> — ${esc(clean(f.deck))}</li>`,
+      )
+      .join("")}</ul>
+    <h2>Most-listed categories</h2>
+    <ul>${rankedCategories
+      .slice(0, 30)
+      .map(
+        ([category, tools]) =>
+          `<li><a href="/category/${encodeURIComponent(category)}">${esc(category)}</a> — ${tools.length} tools</li>`,
+      )
+      .join("")}</ul>
+    <h2>Popular AI tools</h2>
+    <ul>${toolListItems(toolEntries.map((t) => ({ slug: t.slug, title: t.tool.title })), 40))}</ul>
+    <h2>Open source, in the open</h2>
+    <p>Every AIWebTools.ai GPT ships with its full operational instructions published for anyone to download and run, and our code and prompts live on GitHub at <a href="https://github.com/aiwebtools" rel="noopener">github.com/aiwebtools</a>.</p>
+    <p><a href="/ai-tools">Browse the full directory →</a> · <a href="/features">Flagship features →</a> · <a href="/rankings">Rankings →</a></p>
+  `,
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        name: "AI Web Tools",
+        url: `${BASE_URL}/`,
+        description:
+          "Directory of 5,500+ real AI tools with free in-browser custom GPTs and downloadable operational instructions.",
+        publisher: { "@type": "Organization", name: "AIWebTools.ai", url: BASE_URL },
+        potentialAction: {
+          "@type": "SearchAction",
+          target: `${BASE_URL}/?q={search_term_string}`,
+          "query-input": "required name=search_term_string",
+        },
+      },
+      {
+        "@type": "ItemList",
+        name: "Featured AI Tools",
+        itemListElement: features.map((f, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          name: f.headline,
+          url: `${BASE_URL}/feature/${f.slug}`,
+        })),
+      },
+    ],
+  },
+);
+
 console.log(`✅ prerender: ${count} static HTML pages written into dist/`);
