@@ -181,9 +181,10 @@ const CareBotWidget = () => {
       console.error("[CareBot] error", e);
       appendDelta("\n\n⚠️ Connection issue. Please try again.");
     } finally {
+      voice.flush();
       setLoading(false);
     }
-  }, [loading, messages]);
+  }, [loading, messages, voice]);
 
   return (
     <>
