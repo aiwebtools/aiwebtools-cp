@@ -206,7 +206,7 @@ export default function FeaturePage() {
               <Button
                 asChild
                 variant="outline"
-                className="border-green-500/40 text-green-300 hover:bg-green-950/40"
+                className="official-gold-btn"
               >
                 <a href={tool.directUrl} target="_blank" rel="noopener noreferrer">
                   Use the official version — click here

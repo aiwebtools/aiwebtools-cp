@@ -358,3 +358,36 @@ iframe {
   .op-gold-btn { transition: none; }
   .op-gold-btn:hover { transform: none; }
 }
+
+/* "Use the official version" — gold beacon so the real tool link can't be missed */
+@keyframes official-gold-pulse {
+  0%, 100% {
+    box-shadow: 0 0 18px hsl(45 100% 55% / 0.55), 0 0 42px hsl(45 100% 50% / 0.28), inset 0 1px 0 hsl(48 100% 88% / 0.7);
+  }
+  50% {
+    box-shadow: 0 0 30px hsl(45 100% 62% / 0.85), 0 0 68px hsl(45 100% 55% / 0.45), inset 0 1px 0 hsl(48 100% 92% / 0.85);
+  }
+}
+.official-gold-btn,
+.official-gold-btn.official-gold-btn {
+  background: linear-gradient(135deg, hsl(45 100% 66%), hsl(38 95% 52%) 50%, hsl(45 100% 70%)) !important;
+  color: hsl(30 50% 10%) !important;
+  border: 2px solid hsl(48 100% 72%) !important;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-shadow: 0 1px 0 hsl(48 100% 88% / 0.6);
+  animation: official-gold-pulse 2.4s ease-in-out infinite;
+  transition: transform 0.18s ease, filter 0.18s ease;
+}
+.official-gold-btn:hover {
+  filter: brightness(1.08);
+  transform: translateY(-1px) scale(1.02);
+}
+.official-gold-btn:focus-visible {
+  outline: 2px solid hsl(48 100% 78%);
+  outline-offset: 3px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .official-gold-btn { animation: none; transition: none; }
+  .official-gold-btn:hover { transform: none; }
+}
