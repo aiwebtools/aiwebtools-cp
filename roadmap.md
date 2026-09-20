@@ -18,3 +18,12 @@
 - [x] Add lightweight room glow effects with reduced-motion safeguards
 - [x] Verify representative text and image bots across mobile, tablet, and desktop
 - [x] Confirm clean build and browser logs
+
+# Finish pass (Sep 20)
+
+- [ ] Publish aiwebtools.app with PDF download fix + glowing gold buttons
+- [ ] Phone-viewport check: gold "USE THE OFFICIAL VERSION" button glows, PDF downloads
+- [x] Static prerendering for all hub pages, homepage, and 222 bot rooms (SSR-equivalent for crawlers)
+- [x] Flagship pages optimized for "AI book writer tool" / "movie script generator" phrases
+- [x] Sitemap split + resubmitted to Google Search Console (9 sitemaps, HTTP 204)
+- [x] Starter prompt audit — 0 generic across 222 bots
