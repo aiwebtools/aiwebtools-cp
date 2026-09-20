@@ -24,6 +24,7 @@ const AIWebToolsSEOSection = lazy(() => import("@/components/seo/AIWebToolsSEOSe
 const EthicalAIQuoteSection = lazy(() => import("@/components/EthicalAIQuoteSection"));
 const InspirationCarousel = lazy(() => import("@/components/InspirationCarousel"));
 const TikTokFeedSection = lazy(() => import("@/components/social/TikTokFeedSection"));
+const AwtTextToSpeech = lazy(() => import("@/components/AwtTextToSpeech"));
 
 
 
@@ -146,6 +147,13 @@ const Index = () => {
           </div>
         </section>
         
+        {/* Free AWT text-to-speech generator: lightweight, browser-voice powered. */}
+        <DeferredMount delay={1600} fallback={<div className="min-h-[40vh]" aria-hidden="true" />}>
+          <Suspense fallback={null}>
+            <AwtTextToSpeech />
+          </Suspense>
+        </DeferredMount>
+
         {/* Lightweight and immediately available: this is the first content a
             visitor reaches, so never compile/mount it during their first scroll. */}
         <div id="categories-section">
