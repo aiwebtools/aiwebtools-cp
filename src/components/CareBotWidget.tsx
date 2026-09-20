@@ -1,8 +1,9 @@
 import { sanitizeExternalUrl } from "@/utils/links/linkSafety";
 import { useState, useRef, useEffect, useCallback } from "react";
-import { X, Send, Loader2, Sparkles, Bot } from "lucide-react";
+import { X, Send, Loader2, Sparkles, Bot, Volume2, VolumeX, Play, Square } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import { useNavigate } from "react-router-dom";
+import useSpeechReader from "@/hooks/useSpeechReader";
 import type { Tool } from "@/types/tools";
 
 type Msg = { role: "user" | "assistant"; content: string };
