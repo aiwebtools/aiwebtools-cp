@@ -1,4 +1,5 @@
-import { Download } from "lucide-react";
+import { useState } from "react";
+import { Download, Loader2 } from "lucide-react";
 import { getOpInstructionDoc } from "@/data/opInstructionDocs";
 
 interface OpInstructionsButtonProps {
@@ -11,8 +12,12 @@ interface OpInstructionsButtonProps {
 /**
  * Gold one-click download of the ORIGINAL operational instructions document,
  * exactly as authored by AIWebTools.ai. The file is served verbatim — never rewritten.
+ * Uses a fetch -> blob -> object URL download so it works reliably on mobile
+ * browsers that drop plain anchor `download` attributes; falls back to opening
+ * the PDF in a new tab if the fetch fails.
  */
 const OpInstructionsButton = ({ slug, name, className = "", compact = false }: OpInstructionsButtonProps) => {
+  const [busy, setBusy] = useState(false);
   const doc = getOpInstructionDoc(slug);
   if (!doc) return null;
 
@@ -20,16 +25,48 @@ const OpInstructionsButton = ({ slug, name, className = "", compact = false }: O
     ? "Download Instructions (PDF)"
     : "Download Operational Instructions for this Bot (PDF)";
 
+  const handleClick = async (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (busy) {
+      e.preventDefault();
+      return;
+    }
+    e.preventDefault();
+    setBusy(true);
+    try {
+      const res = await fetch(doc.href, { credentials: "same-origin" });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = doc.download;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 10_000);
+    } catch {
+      // Fallback: open the PDF directly so the visitor still gets the document.
+      window.open(doc.href, "_blank", "noopener");
+    } finally {
+      setBusy(false);
+    }
+  };
+
   return (
     <a
       href={doc.href}
       download={doc.download}
-      className={`op-gold-btn inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-bold uppercase tracking-wide ${className}`}
+      onClick={handleClick}
+      className={`op-gold-btn inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-bold uppercase tracking-wide ${busy ? "opacity-80 pointer-events-none" : ""} ${className}`}
       title={`Download the complete operational instructions for ${name || "this tool"} (original document, unedited)`}
       aria-label={`Download the full operational instructions for ${name || "this tool"}`}
     >
-      <Download className="h-3.5 w-3.5" aria-hidden="true" />
-      {label}
+      {busy ? (
+        <Loader2 className="h-3.5 w-3.5 animate-spin" aria-hidden="true" />
+      ) : (
+        <Download className="h-3.5 w-3.5" aria-hidden="true" />
+      )}
+      {busy ? "Preparing download…" : label}
     </a>
   );
 };
