@@ -342,6 +342,18 @@ const CareBotWidget = () => {
                         >
                           {m.content}
                         </ReactMarkdown>
+                        {voice.supported && m.content.trim().length > 0 && (
+                          <button
+                            type="button"
+                            onClick={() => voice.speakNow(m.content)}
+                            aria-label={voice.speaking ? "Stop reading this answer" : "Read this answer out loud"}
+                            title={voice.speaking ? "Stop reading" : "Read this answer out loud"}
+                            className="mt-2 inline-flex items-center gap-1 px-2 py-1 rounded-md border border-green-400/50 bg-green-500/15 hover:bg-green-500/30 text-green-200 text-[11px] font-semibold transition-colors"
+                          >
+                            {voice.speaking ? <Square className="w-3 h-3" /> : <Play className="w-3 h-3" />}
+                            {voice.speaking ? "Stop" : "Play"}
+                          </button>
+                        )}
                       </div>
                     ) : (
                       <div className="whitespace-pre-wrap">{m.content}</div>
