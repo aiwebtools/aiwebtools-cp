@@ -21,8 +21,8 @@
 
 # Finish pass (Sep 20)
 
-- [ ] Publish aiwebtools.app with PDF download fix + glowing gold buttons
-- [ ] Phone-viewport check: gold "USE THE OFFICIAL VERSION" button glows, PDF downloads
+- [x] Publish aiwebtools.app with PDF download fix + glowing gold buttons
+- [x] Phone-viewport check: gold "USE THE OFFICIAL VERSION" button glows, PDF downloads
 - [x] Static prerendering for all hub pages, homepage, and 222 bot rooms (SSR-equivalent for crawlers)
 - [x] Flagship pages optimized for "AI book writer tool" / "movie script generator" phrases
 - [x] Sitemap split + resubmitted to Google Search Console (9 sitemaps, HTTP 204)
