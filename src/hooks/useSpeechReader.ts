@@ -1,0 +1,100 @@
+import { useCallback, useEffect, useRef, useState } from "react";
+
+const STORAGE_KEY = "awt-voice-enabled";
+
+const stripForSpeech = (text: string) =>
+  text
+    .replace(/!\[[^\]]*\]\([^)]*\)/g, " ")
+    .replace(/\[([^\]]+)\]\([^)]*\)/g, "$1")
+    .replace(/```[\s\S]*?```/g, " ")
+    .replace(/[#*_>`|]/g, " ")
+    .replace(/https?:\/\/\S+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+
+/**
+ * Reads assistant replies out loud as they stream in, sentence by sentence.
+ * Visitors can mute it at any time; the choice is remembered on this device.
+ */
+export const useSpeechReader = () => {
+  const supported = typeof window !== "undefined" && "speechSynthesis" in window;
+  const [enabled, setEnabled] = useState(false);
+  const spokenRef = useRef(0);
+  const bufferRef = useRef("");
+
+  useEffect(() => {
+    if (!supported) return;
+    setEnabled(localStorage.getItem(STORAGE_KEY) !== "off");
+  }, [supported]);
+
+  const stop = useCallback(() => {
+    if (!supported) return;
+    window.speechSynthesis.cancel();
+    spokenRef.current = 0;
+    bufferRef.current = "";
+  }, [supported]);
+
+  const speakChunk = useCallback(
+    (chunk: string) => {
+      const clean = stripForSpeech(chunk);
+      if (!clean) return;
+      const utterance = new SpeechSynthesisUtterance(clean);
+      utterance.rate = 1.02;
+      utterance.pitch = 1;
+      window.speechSynthesis.speak(utterance);
+    },
+    [],
+  );
+
+  /** Feed the growing reply; only newly completed sentences are spoken. */
+  const feed = useCallback(
+    (fullText: string) => {
+      if (!supported || !enabled) return;
+      bufferRef.current = fullText;
+      const pending = fullText.slice(spokenRef.current);
+      const lastBreak = Math.max(
+        pending.lastIndexOf(". "),
+        pending.lastIndexOf("! "),
+        pending.lastIndexOf("? "),
+        pending.lastIndexOf("\n"),
+      );
+      if (lastBreak < 0) return;
+      const ready = pending.slice(0, lastBreak + 1);
+      spokenRef.current += ready.length;
+      speakChunk(ready);
+    },
+    [enabled, speakChunk, supported],
+  );
+
+  /** Speak whatever is left once the reply has finished streaming. */
+  const flush = useCallback(() => {
+    if (!supported || !enabled) return;
+    const rest = bufferRef.current.slice(spokenRef.current);
+    spokenRef.current = bufferRef.current.length;
+    speakChunk(rest);
+  }, [enabled, speakChunk, supported]);
+
+  /** Start a fresh reply. */
+  const reset = useCallback(() => {
+    spokenRef.current = 0;
+    bufferRef.current = "";
+    if (supported) window.speechSynthesis.cancel();
+  }, [supported]);
+
+  const toggle = useCallback(() => {
+    setEnabled((was) => {
+      const next = !was;
+      localStorage.setItem(STORAGE_KEY, next ? "on" : "off");
+      if (!next && supported) window.speechSynthesis.cancel();
+      return next;
+    });
+  }, [supported]);
+
+  useEffect(() => () => {
+    if (supported) window.speechSynthesis.cancel();
+  }, [supported]);
+
+  return { supported, enabled, toggle, feed, flush, reset, stop };
+};
+
+export default useSpeechReader;
