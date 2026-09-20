@@ -373,6 +373,7 @@ iframe {
   background: linear-gradient(135deg, hsl(45 100% 66%), hsl(38 95% 52%) 50%, hsl(45 100% 70%)) !important;
   color: hsl(30 50% 10%) !important;
   border: 2px solid hsl(48 100% 72%) !important;
+  box-shadow: 0 0 22px hsl(45 100% 55% / 0.6), 0 0 50px hsl(45 100% 50% / 0.3), inset 0 1px 0 hsl(48 100% 88% / 0.7) !important;
   font-weight: 800;
   letter-spacing: 0.04em;
   text-shadow: 0 1px 0 hsl(48 100% 88% / 0.6);
