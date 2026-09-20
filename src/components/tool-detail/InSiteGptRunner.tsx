@@ -316,16 +316,16 @@ const InSiteGptRunner = ({ tool }: { tool: Tool }) => {
             placeholder={theme.placeholder}
             rows={2}
             maxLength={6000}
-            className="min-h-[64px] w-full resize-y bg-transparent text-base leading-relaxed text-foreground sm:min-h-[110px]"
+            className="min-h-[56px] w-full resize-y bg-transparent text-base leading-relaxed text-foreground sm:min-h-[96px]"
           />
-          <PromptInputFooter className="border-t border-border pt-2">
-            <span className="gpt-room-accent text-[10px] font-bold uppercase tracking-[0.18em]">
+          <PromptInputFooter className="flex-wrap gap-2 border-t border-border pt-2">
+            <span className="gpt-room-accent hidden text-[10px] font-bold uppercase tracking-[0.18em] sm:inline">
               {theme.signature} · UNIT {theme.consoleNumber}
             </span>
             <PromptInputSubmit
               status={streaming ? "streaming" : "ready"}
               disabled={streaming || !input.trim()}
-              className="gpt-room-send min-w-[8.5rem] px-3"
+              className="gpt-room-send w-full justify-center px-4 sm:ml-auto sm:w-auto sm:min-w-[9rem]"
               size="sm"
               aria-label={`Send message to ${app.display_name}`}
             >
@@ -334,7 +334,7 @@ const InSiteGptRunner = ({ tool }: { tool: Tool }) => {
             </PromptInputSubmit>
           </PromptInputFooter>
         </PromptInput>
-        <p className="mt-1.5 text-right text-[10px] text-muted-foreground">Press Enter to send · Shift+Enter for a new line</p>
+        <p className="mt-1.5 text-center text-[10px] text-muted-foreground sm:text-right">Press Enter to send · Shift+Enter for a new line</p>
 
         {!session && (
           <p className="mt-2 text-xs text-muted-foreground">
