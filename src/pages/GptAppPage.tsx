@@ -284,7 +284,7 @@ const GptAppPage = () => {
       </Helmet>
 
       {/* Living Matrix code rain + embers behind the whole room */}
-      <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-background" aria-hidden="true">
+      <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden bg-background" aria-hidden="true">
         <div
           className="absolute inset-0"
           style={{
@@ -372,7 +372,7 @@ const GptAppPage = () => {
         )}
       </header>
 
-      <main className="mx-auto flex max-w-3xl flex-col gap-4 px-3 pb-52 pt-4 sm:px-4 sm:pb-40 sm:pt-6">
+      <main className="relative z-10 mx-auto flex max-w-3xl flex-col gap-4 px-3 pb-52 pt-4 sm:px-4 sm:pb-40 sm:pt-6">
         <OpInstructionsButton slug={app.slug} name={app.display_name} className="justify-center text-center sm:hidden" />
         {messages.length === 0 && (
           <section
