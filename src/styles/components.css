@@ -429,27 +429,36 @@ iframe {
 }
 .gpt-glitch-title {
   position: relative;
+  display: inline-block;
+  max-width: 100%;
+  animation: gpt-glitch-jolt 7s steps(1, end) infinite;
+  text-shadow: 0 0 10px hsl(var(--bot-accent) / .3);
+}
+.gpt-glitch-title::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
   background-image: linear-gradient(
     100deg,
-    hsl(var(--bot-accent) / 0) 0%,
-    hsl(var(--bot-accent) / 0) 38%,
-    hsl(48 100% 88% / .95) 48%,
-    hsl(var(--bot-accent) / .95) 54%,
-    hsl(var(--bot-accent) / 0) 66%,
-    hsl(var(--bot-accent) / 0) 100%
+    transparent 38%,
+    hsl(48 100% 92% / .95) 47%,
+    hsl(var(--bot-accent) / .95) 53%,
+    transparent 62%
   );
   background-size: 260% 100%;
   background-repeat: no-repeat;
   -webkit-background-clip: text;
   background-clip: text;
-  animation: gpt-glitch-sweep 5.5s linear infinite, gpt-glitch-jolt 7s steps(1, end) infinite;
-  text-shadow: 0 0 10px hsl(var(--bot-accent) / .35);
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: gpt-glitch-sweep 5.5s linear infinite;
 }
 .gpt-glitch-title::before {
   content: attr(data-text);
   position: absolute;
   inset: 0;
-  color: hsl(var(--bot-accent) / .45);
+  color: hsl(var(--bot-accent) / .5);
   clip-path: polygon(0 12%, 100% 12%, 100% 46%, 0 46%);
   transform: translateX(-1px);
   opacity: 0;
@@ -536,9 +545,10 @@ iframe {
 @media (prefers-reduced-motion: reduce) {
   .gpt-glitch-title,
   .gpt-glitch-title::before,
+  .gpt-glitch-title::after,
   .gpt-room-send:not(:disabled):active,
   .gpt-room-send:not(:disabled):active::after {
     animation: none !important;
   }
-  .gpt-glitch-title { background-image: none; }
+  .gpt-glitch-title::after { display: none; }
 }
