@@ -259,8 +259,10 @@ const CareBotWidget = () => {
             </div>
           </div>
 
-          {/* Messages */}
-          <div ref={scrollRef} className="flex-1 overflow-y-auto px-3 py-3 space-y-3 min-h-[280px]">
+          {/* Messages — living Matrix code rain behind the conversation */}
+          <div className="relative flex-1 overflow-hidden">
+          <MatrixRainBackdrop className="opacity-[0.34]" intensity={0.55} />
+          <div ref={scrollRef} className="relative z-10 h-full overflow-y-auto px-3 py-3 space-y-3 min-h-[280px]">
             {messages.length === 0 ? (
               <div className="space-y-3">
                 <div className="text-green-200 text-sm leading-relaxed">
