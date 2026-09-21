@@ -306,7 +306,9 @@ const GptAppPage = () => {
           <img src={avatar} alt={`${app.display_name} AI assistant avatar`} className="gpt-room-avatar h-10 w-10 shrink-0 rounded-full" onError={(event) => { event.currentTarget.src = getGptAvatar(theme.key); }} />
           <div className="min-w-0">
             <h1 className="truncate text-base font-bold" style={{ color: "hsl(var(--bot-accent))" }}>
-              {app.display_name}
+              <span className="gpt-glitch-title truncate" data-text={app.display_name}>
+                {app.display_name}
+              </span>
             </h1>
             <p className="truncate text-xs text-muted-foreground">
               {theme.roomLabel} · UNIT {theme.consoleNumber}
