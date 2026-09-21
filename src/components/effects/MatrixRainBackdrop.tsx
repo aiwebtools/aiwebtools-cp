@@ -73,8 +73,12 @@ const MatrixRainBackdrop = memo(
         }
         last = now;
 
-        ctx.fillStyle = "rgba(0,0,0,0.16)";
+        // Fade the previous frame by erasing alpha so the canvas stays
+        // transparent instead of building up an opaque black sheet.
+        ctx.globalCompositeOperation = "destination-out";
+        ctx.fillStyle = "rgba(0,0,0,0.18)";
         ctx.fillRect(0, 0, width, height);
+        ctx.globalCompositeOperation = "source-over";
 
         ctx.font = `${fontSize}px "Courier New", monospace`;
         ctx.textBaseline = "top";
