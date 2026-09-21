@@ -242,6 +242,7 @@ Deno.serve(async (req) => {
       const seenUrls = new Set(safeContext.map((t: any) => String(t?.directUrl || '')));
       csvMatches = searchCsv(rows, userQuery, 12)
         .filter((t) => !seenUrls.has(t.url))
+        .filter((t) => !isCompetitor(t.url, t.title, t.description))
         .slice(0, Math.max(0, 12 - safeContext.length));
     } catch { /* non-fatal */ }
 
