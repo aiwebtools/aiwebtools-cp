@@ -235,7 +235,7 @@ const InSiteGptRunner = ({ tool }: { tool: Tool }) => {
       </div>
 
       <div className="p-3 sm:p-5">
-        <div className="relative overflow-hidden rounded-xl">
+        <div className="gpt-room-canvas relative overflow-hidden rounded-xl">
           {/* Living Matrix code + embers behind the conversation */}
           <MatrixRainBackdrop className="rounded-xl opacity-[0.38]" intensity={0.55} />
         <Conversation className="gpt-room-well relative z-10 h-[min(460px,55vh)] min-h-[260px] rounded-xl border bg-transparent">

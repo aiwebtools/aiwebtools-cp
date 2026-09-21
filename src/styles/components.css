@@ -409,3 +409,7 @@ iframe {
   .official-gold-btn { animation: none; transition: none; }
   .official-gold-btn:hover { transform: none; }
 }
+
+/* Matrix-rain chat surface: the dark well the code rain falls through. */
+.gpt-room-canvas { background: hsl(var(--bot-deep) / .92); box-shadow: inset 0 0 60px hsl(var(--bot-accent) / .12); }
+.gpt-room-canvas .gpt-room-well { background: transparent !important; backdrop-filter: blur(1px); }
