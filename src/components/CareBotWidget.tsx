@@ -231,7 +231,9 @@ const CareBotWidget = () => {
                 <Sparkles className="w-4 h-4 text-black" />
               </div>
               <div>
-                <div className="font-bold text-green-300 text-sm leading-tight">AIWebTools Care Bot</div>
+                <div className="font-bold text-green-300 text-sm leading-tight">
+                  <span className="gpt-glitch-title" data-text="AIWebTools Care Bot">AIWebTools Care Bot</span>
+                </div>
                 <div className="text-[10px] text-green-500/70">Powered by AI · 5,500+ tools indexed</div>
               </div>
             </div>
