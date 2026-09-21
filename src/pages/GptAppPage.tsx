@@ -285,7 +285,6 @@ const GptAppPage = () => {
 
       {/* Living Matrix code rain + embers behind the whole room */}
       <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-background" aria-hidden="true">
-        <MatrixRainBackdrop className="opacity-[0.32]" intensity={0.5} />
         <div
           className="absolute inset-0"
           style={{
@@ -293,6 +292,7 @@ const GptAppPage = () => {
               "radial-gradient(circle at 50% 0%, hsl(var(--bot-soft) / 0.7) 0%, transparent 55%)",
           }}
         />
+        <MatrixRainBackdrop className="opacity-[0.55]" intensity={0.85} />
       </div>
 
       <header
