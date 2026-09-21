@@ -273,7 +273,7 @@ const GptAppPage = () => {
   } as React.CSSProperties;
 
   return (
-    <div className="gpt-app-room min-h-screen bg-background text-foreground" data-room-pattern={theme.pattern} style={themeVars}>
+    <div className="gpt-app-room relative min-h-screen text-foreground" data-room-pattern={theme.pattern} style={themeVars}>
       <Helmet>
         <title>{`${app.display_name} — Run it free on AIWebTools.ai`}</title>
         <meta
