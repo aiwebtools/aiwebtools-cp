@@ -284,8 +284,8 @@ const GptAppPage = () => {
       </Helmet>
 
       {/* Living Matrix code rain + embers behind the whole room */}
-      <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden" aria-hidden="true">
-        <MatrixRainBackdrop className="opacity-[0.3]" intensity={0.5} />
+      <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-background" aria-hidden="true">
+        <MatrixRainBackdrop className="opacity-[0.32]" intensity={0.5} />
         <div
           className="absolute inset-0"
           style={{
