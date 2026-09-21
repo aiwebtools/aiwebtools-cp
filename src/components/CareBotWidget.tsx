@@ -4,6 +4,7 @@ import { X, Send, Loader2, Sparkles, Bot, Volume2, VolumeX, Play, Square } from 
 import ReactMarkdown from "react-markdown";
 import { useNavigate } from "react-router-dom";
 import useSpeechReader from "@/hooks/useSpeechReader";
+import MatrixRainBackdrop from "@/components/effects/MatrixRainBackdrop";
 import type { Tool } from "@/types/tools";
 
 type Msg = { role: "user" | "assistant"; content: string };
@@ -369,6 +370,7 @@ const CareBotWidget = () => {
                 <Loader2 className="w-3 h-3 animate-spin" /> Thinking…
               </div>
             )}
+          </div>
           </div>
 
           {/* Input */}
