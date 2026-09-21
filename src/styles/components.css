@@ -413,3 +413,142 @@ iframe {
 /* Matrix-rain chat surface: the dark well the code rain falls through. */
 .gpt-room-canvas { background: hsl(var(--bot-deep) / .92); box-shadow: inset 0 0 60px hsl(var(--bot-accent) / .12); }
 .gpt-room-canvas .gpt-room-well { background: transparent !important; backdrop-filter: blur(1px); }
+
+/* ─── Cosmic polish: glitch shimmer, ember flares, deeper gold ─────────── */
+
+/* Header names glitch-shimmer like a signal locking in. */
+@keyframes gpt-glitch-sweep {
+  0%   { background-position: -160% 0; }
+  100% { background-position: 260% 0; }
+}
+@keyframes gpt-glitch-jolt {
+  0%, 92%, 100% { transform: translate3d(0,0,0); }
+  93% { transform: translate3d(-1px, 0, 0) skewX(-0.6deg); }
+  95% { transform: translate3d(1px, 0, 0) skewX(0.6deg); }
+  97% { transform: translate3d(-0.5px, 0, 0); }
+}
+.gpt-glitch-title {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+  animation: gpt-glitch-jolt 7s steps(1, end) infinite;
+  text-shadow: 0 0 10px hsl(var(--bot-accent) / .3);
+}
+.gpt-glitch-title::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: linear-gradient(
+    100deg,
+    transparent 38%,
+    hsl(48 100% 92% / .95) 47%,
+    hsl(var(--bot-accent) / .95) 53%,
+    transparent 62%
+  );
+  background-size: 260% 100%;
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: gpt-glitch-sweep 5.5s linear infinite;
+}
+.gpt-glitch-title::before {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  color: hsl(var(--bot-accent) / .5);
+  clip-path: polygon(0 12%, 100% 12%, 100% 46%, 0 46%);
+  transform: translateX(-1px);
+  opacity: 0;
+  animation: gpt-glitch-ghost 7s steps(1, end) infinite;
+  pointer-events: none;
+}
+@keyframes gpt-glitch-ghost {
+  0%, 92%, 100% { opacity: 0; }
+  93%, 96% { opacity: .7; }
+}
+
+/* Ember flare when a message is sent. */
+@keyframes gpt-ember-flare {
+  0%   { box-shadow: 0 0 0 0 hsl(28 100% 60% / .65), 0 0 18px hsl(var(--bot-accent) / .45); }
+  60%  { box-shadow: 0 0 0 14px hsl(28 100% 60% / 0), 0 0 42px hsl(28 100% 62% / .55); }
+  100% { box-shadow: 0 0 0 0 hsl(28 100% 60% / 0), 0 0 18px hsl(var(--bot-accent) / .35); }
+}
+@keyframes gpt-ember-rise {
+  0%   { opacity: 0; transform: translate(-50%, 0) scale(.6); }
+  35%  { opacity: .9; }
+  100% { opacity: 0; transform: translate(-50%, -26px) scale(1.25); }
+}
+.gpt-room-send {
+  position: relative;
+  overflow: visible;
+  transition: box-shadow .25s ease, transform .18s ease, filter .18s ease;
+}
+.gpt-room-send:not(:disabled):hover {
+  filter: brightness(1.07);
+  box-shadow: 0 0 26px hsl(var(--bot-accent) / .5), 0 0 60px hsl(28 100% 58% / .22);
+}
+.gpt-room-send:not(:disabled):active {
+  transform: translateY(1px) scale(.985);
+  animation: gpt-ember-flare .7s ease-out;
+}
+.gpt-room-send::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 60%;
+  width: 10px;
+  height: 10px;
+  border-radius: 9999px;
+  background: radial-gradient(circle, hsl(45 100% 82% / .95), hsl(24 100% 55% / .55) 55%, transparent 72%);
+  opacity: 0;
+  pointer-events: none;
+}
+.gpt-room-send:not(:disabled):active::after {
+  animation: gpt-ember-rise .75s ease-out;
+}
+
+/* Gold buttons burn hotter. */
+.official-gold-btn,
+.official-gold-btn.official-gold-btn {
+  box-shadow:
+    0 0 26px hsl(45 100% 58% / .7),
+    0 0 62px hsl(38 100% 52% / .42),
+    0 0 110px hsl(30 100% 50% / .22),
+    inset 0 1px 0 hsl(48 100% 92% / .8) !important;
+}
+@keyframes official-gold-pulse {
+  0%, 100% {
+    box-shadow:
+      0 0 24px hsl(45 100% 56% / .65),
+      0 0 58px hsl(38 100% 52% / .36),
+      0 0 104px hsl(30 100% 50% / .18),
+      inset 0 1px 0 hsl(48 100% 90% / .75) !important;
+  }
+  50% {
+    box-shadow:
+      0 0 40px hsl(45 100% 64% / .95),
+      0 0 92px hsl(38 100% 56% / .6),
+      0 0 150px hsl(28 100% 52% / .34),
+      inset 0 1px 0 hsl(48 100% 95% / .92) !important;
+  }
+}
+.op-gold-btn:hover {
+  box-shadow:
+    0 0 26px hsl(45 96% 62% / .75),
+    0 0 58px hsl(36 100% 52% / .38),
+    inset 0 1px 0 hsl(48 100% 92% / .85);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gpt-glitch-title,
+  .gpt-glitch-title::before,
+  .gpt-glitch-title::after,
+  .gpt-room-send:not(:disabled):active,
+  .gpt-room-send:not(:disabled):active::after {
+    animation: none !important;
+  }
+  .gpt-glitch-title::after { display: none; }
+}

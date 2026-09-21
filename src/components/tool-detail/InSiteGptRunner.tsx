@@ -202,7 +202,9 @@ const InSiteGptRunner = ({ tool }: { tool: Tool }) => {
               {theme.roomLabel} · {theme.consoleNumber}
             </p>
             <h2 className="truncate text-sm font-bold uppercase tracking-wide text-foreground sm:text-base">
-              {app.display_name}
+              <span className="gpt-glitch-title truncate" data-text={app.display_name}>
+                {app.display_name}
+              </span>
             </h2>
           </div>
           {speech.supported && (
