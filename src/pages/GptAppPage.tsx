@@ -19,6 +19,7 @@ import { getGptAvatar } from "@/components/tool-detail/gptAvatars";
 import { loadToolImageMap } from "@/utils/search/toolImageMap";
 import { getGuestId } from "@/utils/guestId";
 import OpInstructionsButton from "@/components/tool-detail/OpInstructionsButton";
+import MatrixRainBackdrop from "@/components/effects/MatrixRainBackdrop";
 
 interface GptApp {
   slug: string;
@@ -282,14 +283,17 @@ const GptAppPage = () => {
         <link rel="canonical" href={buildCanonicalUrl(`/app/${app.slug}`)} />
       </Helmet>
 
-      <div
-        className="pointer-events-none fixed inset-0 -z-10"
-        style={{
-          background:
-            "radial-gradient(circle at 50% 0%, hsl(var(--bot-soft) / 0.85) 0%, transparent 55%)",
-        }}
-        aria-hidden="true"
-      />
+      {/* Living Matrix code rain + embers behind the whole room */}
+      <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden" aria-hidden="true">
+        <MatrixRainBackdrop className="opacity-[0.3]" intensity={0.5} />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(circle at 50% 0%, hsl(var(--bot-soft) / 0.7) 0%, transparent 55%)",
+          }}
+        />
+      </div>
 
       <header
         className="sticky top-0 z-20 border-b bg-background/90 backdrop-blur"
