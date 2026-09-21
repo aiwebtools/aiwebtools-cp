@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Maximize2, ImageIcon, SendHorizontal, Volume2, VolumeX } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Conversation, ConversationContent, ConversationScrollButton } from "@/components/ai-elements/conversation";
+import MatrixRainBackdrop from "@/components/effects/MatrixRainBackdrop";
 import { Message, MessageContent, MessageResponse } from "@/components/ai-elements/message";
 import {
   PromptInput,
@@ -234,7 +235,10 @@ const InSiteGptRunner = ({ tool }: { tool: Tool }) => {
       </div>
 
       <div className="p-3 sm:p-5">
-        <Conversation className="gpt-room-well h-[min(460px,55vh)] min-h-[260px] rounded-xl border">
+        <div className="gpt-room-canvas relative overflow-hidden rounded-xl">
+          {/* Living Matrix code + embers behind the conversation */}
+          <MatrixRainBackdrop className="rounded-xl opacity-[0.38]" intensity={0.55} />
+        <Conversation className="gpt-room-well relative z-10 h-[min(460px,55vh)] min-h-[260px] rounded-xl border bg-transparent">
           <ConversationContent className="gap-3 p-4">
           {messages.length === 0 && (
             <div>
@@ -302,6 +306,8 @@ const InSiteGptRunner = ({ tool }: { tool: Tool }) => {
           </ConversationContent>
           <ConversationScrollButton className="gpt-room-scroll" />
         </Conversation>
+        </div>
+
 
         {notice && <p className="mt-2 text-xs text-yellow-300">{notice}</p>}
 
