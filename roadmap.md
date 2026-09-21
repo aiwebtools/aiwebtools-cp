@@ -27,3 +27,10 @@
 - [x] Flagship pages optimized for "AI book writer tool" / "movie script generator" phrases
 - [x] Sitemap split + resubmitted to Google Search Console (9 sitemaps, HTTP 204)
 - [x] Starter prompt audit — 0 generic across 222 bots
+
+# Matrix chat atmosphere (Sep 21)
+
+- [x] Living Matrix rain + embers behind every chat surface (rooms, tool pages, Care Bot)
+- [x] Fix layering so the rain is actually visible (backdrop z-0, content z-10)
+- [x] Care Bot voice playback + refreshed knowledge deployed
+- [x] Verified live on aiwebtools.app (phone + desktop), published
