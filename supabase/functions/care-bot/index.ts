@@ -208,7 +208,27 @@ Deno.serve(async (req) => {
 
     // Cap context to 12 tools and sanitize every field so client-supplied strings
     // can't override the system prompt via injection patterns.
-    const safeContext = Array.isArray(toolContext) ? toolContext.slice(0, 12) : [];
+    // Rival AI-tool directories are stripped out entirely so the bot can never
+    // hand our visitors to a competing listing site.
+    const COMPETITOR_HOSTS = [
+      'theresanaiforthat.com', 'futuretools.io', 'toolify.ai', 'supertools.therundown.ai',
+      'aitools.fyi', 'topai.tools', 'futurepedia.io', 'insidr.ai', 'aitoolhunt.com',
+      'easywithai.com', 'aixploria.com', 'toolpilot.ai', 'aitoolmall.com', 'aivalley.ai',
+      'thataicollection.com', 'aitoolnet.com', 'saasaitools.com', 'aitoolsdirectory.com',
+      'allthingsai.com', 'aitooltracker.com', 'producthunt.com',
+    ];
+    const isCompetitor = (url?: unknown, title?: unknown, desc?: unknown) => {
+      const u = String(url || '').toLowerCase();
+      if (u.includes('aiwebtools') || u.includes('lovable.app')) return false;
+      if (COMPETITOR_HOSTS.some((h) => u.includes(h))) return true;
+      const text = `${String(title || '')} ${String(desc || '')}`.toLowerCase();
+      return /\b(ai tools? (directory|directories|database|listing|catalog|aggregator)|directory of ai tools|list of ai tools)\b/.test(text);
+    };
+
+    const safeContext = (Array.isArray(toolContext) ? toolContext : [])
+      .filter((t: any) => !isCompetitor(t?.directUrl, t?.title, t?.description))
+      .slice(0, 12);
+
 
     // Augment with CSV-backed catalog search using the latest user message.
     // This gives the AI access to the entire 3,700+ tool directory, not just
