@@ -1,99 +1,161 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
-import { Volume2, Square, Play, Pause, Mic2 } from "lucide-react";
+import React, { useEffect, useRef, useState } from "react";
+import { Volume2, Square, Download, Mic2, Loader2, Play, Pause } from "lucide-react";
 
 /**
- * AWT Free Text-to-Speech Generator.
- * Uses the browser's built-in speech engine so it is truly free, instant,
- * works offline after load, and never touches a server or API key.
+ * AWT Voice Studio — real, distinct studio voices with a true MP3 download.
+ * Audio is generated server-side so every voice genuinely sounds different
+ * and the resulting clip can be saved to the visitor's device.
  */
+
+const FUNCTION_URL = "https://huupailptzvcykyqdkar.supabase.co/functions/v1/awt-tts";
+const ANON_KEY =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh1dXBhaWxwdHp2Y3lreXFka2FyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg5MTMzODIsImV4cCI6MjA2NDQ4OTM4Mn0.IEqsLF3r-cyubqwwHOpkbSzz_IGt6v1U6LxO5fowHcQ";
+
+const VOICES = [
+  { id: "alloy", label: "Alloy — balanced neutral" },
+  { id: "ash", label: "Ash — warm male" },
+  { id: "ballad", label: "Ballad — soft storyteller" },
+  { id: "coral", label: "Coral — bright female" },
+  { id: "echo", label: "Echo — calm male" },
+  { id: "fable", label: "Fable — British narrator" },
+  { id: "nova", label: "Nova — energetic female" },
+  { id: "onyx", label: "Onyx — deep male" },
+  { id: "sage", label: "Sage — gentle female" },
+  { id: "shimmer", label: "Shimmer — airy female" },
+  { id: "verse", label: "Verse — expressive" },
+];
+
+const LANGUAGES = [
+  { id: "", label: "Match my text (auto)" },
+  { id: "English (US)", label: "English (US)" },
+  { id: "English (British)", label: "English (British)" },
+  { id: "Spanish", label: "Spanish" },
+  { id: "French", label: "French" },
+  { id: "German", label: "German" },
+  { id: "Italian", label: "Italian" },
+  { id: "Portuguese (Brazil)", label: "Portuguese (Brazil)" },
+  { id: "Japanese", label: "Japanese" },
+  { id: "Korean", label: "Korean" },
+  { id: "Hindi", label: "Hindi" },
+  { id: "Arabic", label: "Arabic" },
+];
+
+const STYLES = [
+  { id: "", label: "Natural" },
+  { id: "warm and friendly", label: "Warm & friendly" },
+  { id: "bold cinematic movie-trailer", label: "Cinematic trailer" },
+  { id: "calm and soothing, slow", label: "Calm & soothing" },
+  { id: "excited and upbeat", label: "Excited & upbeat" },
+  { id: "serious news anchor", label: "News anchor" },
+  { id: "mysterious and whispered", label: "Mysterious whisper" },
+];
+
 const AwtTextToSpeech: React.FC = () => {
-  const supported = typeof window !== "undefined" && "speechSynthesis" in window;
   const [text, setText] = useState(
     "Welcome to AI Web Tools — the largest free directory of AI tools on the internet."
   );
-  const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
-  const [voiceName, setVoiceName] = useState<string>("");
-  const [rate, setRate] = useState(1);
-  const [pitch, setPitch] = useState(1);
-  const [speaking, setSpeaking] = useState(false);
-  const [paused, setPaused] = useState(false);
-  const utterRef = useRef<SpeechSynthesisUtterance | null>(null);
+  const [voice, setVoice] = useState("alloy");
+  const [language, setLanguage] = useState("");
+  const [style, setStyle] = useState("");
+  const [speed, setSpeed] = useState(1);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [clipUrl, setClipUrl] = useState<string | null>(null);
+  const [playing, setPlaying] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const urlRef = useRef<string | null>(null);
 
-  useEffect(() => {
-    if (!supported) return;
-    const load = () => {
-      const list = window.speechSynthesis.getVoices();
-      if (list.length) {
-        setVoices(list);
-        setVoiceName((current) => {
-          if (current) return current;
-          const preferred =
-            list.find((v) => v.lang.startsWith("en") && /google/i.test(v.name)) ||
-            list.find((v) => v.lang.startsWith("en") && v.default) ||
-            list.find((v) => v.lang.startsWith("en")) ||
-            list[0];
-          return preferred?.name ?? "";
-        });
-      }
-    };
-    load();
-    window.speechSynthesis.addEventListener("voiceschanged", load);
-    return () => {
-      window.speechSynthesis.removeEventListener("voiceschanged", load);
-      window.speechSynthesis.cancel();
-    };
-  }, [supported]);
+  useEffect(
+    () => () => {
+      if (urlRef.current) URL.revokeObjectURL(urlRef.current);
+      audioRef.current?.pause();
+    },
+    []
+  );
 
-  const englishFirst = useMemo(() => {
-    const en = voices.filter((v) => v.lang.toLowerCase().startsWith("en"));
-    const rest = voices.filter((v) => !v.lang.toLowerCase().startsWith("en"));
-    return [...en, ...rest];
-  }, [voices]);
-
-  const stop = () => {
-    window.speechSynthesis.cancel();
-    utterRef.current = null;
-    setSpeaking(false);
-    setPaused(false);
-  };
-
-  const speak = () => {
+  const generate = async () => {
     const trimmed = text.trim();
-    if (!trimmed || !supported) return;
-    window.speechSynthesis.cancel();
-    const utterance = new SpeechSynthesisUtterance(trimmed);
-    const voice = voices.find((v) => v.name === voiceName);
-    if (voice) utterance.voice = voice;
-    utterance.rate = rate;
-    utterance.pitch = pitch;
-    utterance.onend = () => {
-      setSpeaking(false);
-      setPaused(false);
-      utterRef.current = null;
-    };
-    utterance.onerror = () => {
-      setSpeaking(false);
-      setPaused(false);
-      utterRef.current = null;
-    };
-    utterRef.current = utterance;
-    window.speechSynthesis.speak(utterance);
-    setSpeaking(true);
-    setPaused(false);
-  };
+    if (!trimmed || loading) return;
+    setLoading(true);
+    setError(null);
+    audioRef.current?.pause();
+    setPlaying(false);
 
-  const togglePause = () => {
-    if (!speaking) return;
-    if (paused) {
-      window.speechSynthesis.resume();
-      setPaused(false);
-    } else {
-      window.speechSynthesis.pause();
-      setPaused(true);
+    const instructionBits = [
+      language ? `Speak entirely in ${language}.` : "",
+      style ? `Delivery: ${style}.` : "",
+    ].filter(Boolean);
+
+    try {
+      const res = await fetch(FUNCTION_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          apikey: ANON_KEY,
+          Authorization: `Bearer ${ANON_KEY}`,
+        },
+        body: JSON.stringify({
+          text: trimmed,
+          voice,
+          speed,
+          instructions: instructionBits.join(" "),
+        }),
+      });
+
+      if (!res.ok) {
+        let message = "The voice studio could not generate that clip.";
+        try {
+          const data = await res.json();
+          if (data?.error) message = data.error;
+        } catch {
+          /* binary or empty error body */
+        }
+        throw new Error(message);
+      }
+
+      const blob = await res.blob();
+      if (urlRef.current) URL.revokeObjectURL(urlRef.current);
+      const url = URL.createObjectURL(blob);
+      urlRef.current = url;
+      setClipUrl(url);
+
+      const audio = new Audio(url);
+      audio.onended = () => setPlaying(false);
+      audio.onpause = () => setPlaying(false);
+      audio.onplay = () => setPlaying(true);
+      audioRef.current = audio;
+      await audio.play().catch(() => setPlaying(false));
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
-  if (!supported) return null;
+  const togglePlay = () => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    if (audio.paused) void audio.play();
+    else audio.pause();
+  };
+
+  const stop = () => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    audio.pause();
+    audio.currentTime = 0;
+    setPlaying(false);
+  };
+
+  const download = () => {
+    if (!clipUrl) return;
+    const link = document.createElement("a");
+    link.href = clipUrl;
+    link.download = `aiwebtools-voice-${voice}-${Date.now()}.mp3`;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+  };
 
   const charCount = text.length;
 
@@ -111,8 +173,8 @@ const AwtTextToSpeech: React.FC = () => {
             </span>
           </h2>
           <p className="text-green-200 max-w-2xl mx-auto">
-            Type or paste anything below and AIWebTools will read it out loud — free forever,
-            no account, no limits, right in your browser.
+            Type anything, pick a real studio voice and language, hear it instantly — then download
+            it as an MP3. Free, no account, no limits.
           </p>
         </div>
 
@@ -124,99 +186,139 @@ const AwtTextToSpeech: React.FC = () => {
             <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-green-400">
               AWT Voice Studio
             </span>
-            <span className="ml-auto text-[10px] text-green-200/70">{charCount.toLocaleString()} characters</span>
+            <span className="ml-auto text-[10px] text-green-200/70">
+              {charCount.toLocaleString()} / 4,000 characters
+            </span>
           </div>
 
           <textarea
             value={text}
             onChange={(e) => setText(e.target.value)}
             rows={5}
-            maxLength={5000}
+            maxLength={4000}
             placeholder="Type or paste the words you want spoken out loud…"
             aria-label="Text to speak"
             className="w-full resize-y rounded-xl border border-green-500/25 bg-black/60 p-3 text-sm text-green-100 placeholder:text-green-200/40 focus:border-green-400 focus:outline-none focus:ring-2 focus:ring-green-500/30 min-h-[120px]"
           />
 
-          <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-3">
-            <label className="flex flex-col gap-1 sm:col-span-1">
+          <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
+            <label className="flex flex-col gap-1">
               <span className="text-[10px] font-semibold uppercase tracking-wider text-green-300/80">Voice</span>
               <select
-                value={voiceName}
-                onChange={(e) => setVoiceName(e.target.value)}
+                value={voice}
+                onChange={(e) => setVoice(e.target.value)}
                 className="w-full rounded-lg border border-green-500/25 bg-black/70 px-2 py-2 text-xs text-green-100 focus:border-green-400 focus:outline-none"
               >
-                {englishFirst.map((v) => (
-                  <option key={`${v.name}-${v.lang}`} value={v.name}>
-                    {v.name} ({v.lang})
+                {VOICES.map((v) => (
+                  <option key={v.id} value={v.id}>
+                    {v.label}
                   </option>
                 ))}
               </select>
             </label>
+
+            <label className="flex flex-col gap-1">
+              <span className="text-[10px] font-semibold uppercase tracking-wider text-green-300/80">Language</span>
+              <select
+                value={language}
+                onChange={(e) => setLanguage(e.target.value)}
+                className="w-full rounded-lg border border-green-500/25 bg-black/70 px-2 py-2 text-xs text-green-100 focus:border-green-400 focus:outline-none"
+              >
+                {LANGUAGES.map((l) => (
+                  <option key={l.label} value={l.id}>
+                    {l.label}
+                  </option>
+                ))}
+              </select>
+            </label>
+
+            <label className="flex flex-col gap-1">
+              <span className="text-[10px] font-semibold uppercase tracking-wider text-green-300/80">Style</span>
+              <select
+                value={style}
+                onChange={(e) => setStyle(e.target.value)}
+                className="w-full rounded-lg border border-green-500/25 bg-black/70 px-2 py-2 text-xs text-green-100 focus:border-green-400 focus:outline-none"
+              >
+                {STYLES.map((s) => (
+                  <option key={s.label} value={s.id}>
+                    {s.label}
+                  </option>
+                ))}
+              </select>
+            </label>
+
             <label className="flex flex-col gap-1">
               <span className="text-[10px] font-semibold uppercase tracking-wider text-green-300/80">
-                Speed · {rate.toFixed(2)}x
+                Speed · {speed.toFixed(2)}x
               </span>
               <input
                 type="range"
                 min={0.5}
                 max={2}
                 step={0.05}
-                value={rate}
-                onChange={(e) => setRate(Number(e.target.value))}
+                value={speed}
+                onChange={(e) => setSpeed(Number(e.target.value))}
                 className="accent-green-400 mt-2"
                 aria-label="Speech speed"
               />
             </label>
-            <label className="flex flex-col gap-1">
-              <span className="text-[10px] font-semibold uppercase tracking-wider text-green-300/80">
-                Pitch · {pitch.toFixed(2)}
-              </span>
-              <input
-                type="range"
-                min={0.5}
-                max={2}
-                step={0.05}
-                value={pitch}
-                onChange={(e) => setPitch(Number(e.target.value))}
-                className="accent-green-400 mt-2"
-                aria-label="Speech pitch"
-              />
-            </label>
           </div>
+
+          {error && (
+            <p role="alert" className="mt-4 rounded-lg border border-red-500/40 bg-red-500/10 px-3 py-2 text-xs text-red-200">
+              {error}
+            </p>
+          )}
 
           <div className="mt-5 flex flex-wrap items-center justify-center gap-2 sm:gap-3">
             <button
               type="button"
-              onClick={speak}
-              disabled={!text.trim()}
+              onClick={generate}
+              disabled={!text.trim() || loading}
               className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-green-500 to-emerald-600 px-6 py-2.5 text-sm font-bold text-white transition hover:from-green-600 hover:to-emerald-700 disabled:opacity-50"
               style={{ boxShadow: "0 0 20px rgba(0, 255, 0, 0.3)" }}
             >
-              <Volume2 className="h-4 w-4" aria-hidden="true" />
-              Speak It
+              {loading ? (
+                <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
+              ) : (
+                <Volume2 className="h-4 w-4" aria-hidden="true" />
+              )}
+              {loading ? "Generating…" : "Speak It"}
             </button>
+
             <button
               type="button"
-              onClick={togglePause}
-              disabled={!speaking}
+              onClick={togglePlay}
+              disabled={!clipUrl}
               className="inline-flex items-center gap-2 rounded-full border border-green-500/50 px-5 py-2.5 text-sm font-bold text-green-300 transition hover:bg-green-500/10 disabled:opacity-40"
             >
-              {paused ? <Play className="h-4 w-4" aria-hidden="true" /> : <Pause className="h-4 w-4" aria-hidden="true" />}
-              {paused ? "Resume" : "Pause"}
+              {playing ? <Pause className="h-4 w-4" aria-hidden="true" /> : <Play className="h-4 w-4" aria-hidden="true" />}
+              {playing ? "Pause" : "Replay"}
             </button>
+
             <button
               type="button"
               onClick={stop}
-              disabled={!speaking}
+              disabled={!clipUrl}
               className="inline-flex items-center gap-2 rounded-full border border-green-500/50 px-5 py-2.5 text-sm font-bold text-green-300 transition hover:bg-green-500/10 disabled:opacity-40"
             >
               <Square className="h-4 w-4" aria-hidden="true" />
               Stop
             </button>
+
+            <button
+              type="button"
+              onClick={download}
+              disabled={!clipUrl}
+              className="op-gold-btn inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-bold uppercase tracking-wide disabled:opacity-40"
+            >
+              <Download className="h-4 w-4" aria-hidden="true" />
+              Download MP3
+            </button>
           </div>
 
           <p className="mt-4 text-center text-[10px] uppercase tracking-[0.18em] text-green-200/60">
-            100% free · no sign-up · powered by your device · AIWEBTOOLS.APP
+            100% free · no sign-up · 11 studio voices · downloadable MP3 · AIWEBTOOLS.APP
           </p>
         </div>
       </div>
