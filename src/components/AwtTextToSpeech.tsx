@@ -62,16 +62,66 @@ const AwtTextToSpeech: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [clipUrl, setClipUrl] = useState<string | null>(null);
   const [playing, setPlaying] = useState(false);
+  const [previewing, setPreviewing] = useState<string | null>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const urlRef = useRef<string | null>(null);
+  const previewCache = useRef<Map<string, string>>(new Map());
+  const previewAudioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(
     () => () => {
       if (urlRef.current) URL.revokeObjectURL(urlRef.current);
+      previewCache.current.forEach((u) => URL.revokeObjectURL(u));
+      previewAudioRef.current?.pause();
       audioRef.current?.pause();
     },
     []
   );
+
+  const previewSample = async (id: string) => {
+    setVoice(id);
+    setError(null);
+    previewAudioRef.current?.pause();
+    audioRef.current?.pause();
+
+    const cached = previewCache.current.get(id);
+    if (cached) {
+      const a = new Audio(cached);
+      previewAudioRef.current = a;
+      void a.play();
+      return;
+    }
+
+    setPreviewing(id);
+    try {
+      const label = VOICES.find((v) => v.id === id)?.label.split("—")[0].trim() ?? id;
+      const res = await fetch(FUNCTION_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          apikey: ANON_KEY,
+          Authorization: `Bearer ${ANON_KEY}`,
+        },
+        body: JSON.stringify({
+          text: `Hi, I'm ${label}. This is how I sound on AI Web Tools.`,
+          voice: id,
+          speed: 1,
+          instructions: "",
+        }),
+      });
+      if (!res.ok) throw new Error("Could not load that voice sample.");
+      const url = URL.createObjectURL(await res.blob());
+      previewCache.current.set(id, url);
+      const a = new Audio(url);
+      previewAudioRef.current = a;
+      await a.play().catch(() => undefined);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Could not load that voice sample.");
+    } finally {
+      setPreviewing(null);
+    }
+  };
+
 
   const generate = async () => {
     const trimmed = text.trim();
