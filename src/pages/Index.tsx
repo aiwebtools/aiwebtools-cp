@@ -147,6 +147,13 @@ const Index = () => {
           </div>
         </section>
         
+        {/* Featured Custom GPT collection sits directly under the main video. */}
+        <DeferredMount delay={0} fallback={<div className="min-h-[55vh]" aria-hidden="true" />}>
+          <Suspense fallback={null}>
+            <SpecialServices />
+          </Suspense>
+        </DeferredMount>
+
         {/* Free AWT text-to-speech generator: lightweight, browser-voice powered. */}
         <DeferredMount delay={1600} fallback={<div className="min-h-[40vh]" aria-hidden="true" />}>
           <Suspense fallback={null}>
@@ -166,18 +173,9 @@ const Index = () => {
           </Suspense>
         </DeferredMount>
    
-        {/* Featured tools + the custom GPT / Gem / Perplexity showcase are the
-            sections visitors scroll to first, so they mount right after paint
-            instead of waiting behind the idle queue. */}
         <DeferredMount delay={0} fallback={<div className="min-h-[55vh]" aria-hidden="true" />}>
           <Suspense fallback={null}>
             <LazyFeaturedTools onToolsLoaded={(count) => {}} />
-          </Suspense>
-        </DeferredMount>
-        
-        <DeferredMount delay={0} fallback={<div className="min-h-[55vh]" aria-hidden="true" />}>
-          <Suspense fallback={null}>
-            <SpecialServices />
           </Suspense>
         </DeferredMount>
 

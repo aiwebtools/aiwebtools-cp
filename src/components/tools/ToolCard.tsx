@@ -206,13 +206,9 @@ const ToolCard = memo(({ tool, index = 0 }: ToolCardProps) => {
     </>
   );
 }, (prevProps, nextProps) => {
-  // Custom comparison function for memo
-  return (
-    prevProps.tool.title === nextProps.tool.title &&
-    prevProps.tool.directUrl === nextProps.tool.directUrl &&
-    prevProps.tool.category === nextProps.tool.category &&
-    prevProps.index === nextProps.index
-  );
+  // Re-render whenever the tool itself changes so a reused card never
+  // keeps showing a previous tool's image/description after a sort/shuffle.
+  return prevProps.tool === nextProps.tool && prevProps.index === nextProps.index;
 });
 
 ToolCard.displayName = "ToolCard";

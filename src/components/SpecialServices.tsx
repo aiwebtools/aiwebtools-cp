@@ -3993,6 +3993,36 @@ const categorizedGPTs = featuredGPTs.map(gpt => ({
   filterCategory: categorizeGPT(gpt)
 }));
 
+// Featured card titles whose tool page is listed under a slightly different name.
+const FEATURED_PAGE_ALIASES: Record<string, string> = {
+  ".WorldPeace Web3 Registration": ".worldpeace Domain",
+  ".WorldTrade Web3 Registration": ".worldtrade Domain",
+  "Algebraic Expression Creative Inventor GPT": "Algebraic Expression Inventor GPT",
+  "COLLECTIBLES APPRAISAL GPT": "Antique and Collectible Appraisal GPT",
+  "Drill Baby Drill AI Suite": "Drill Baby Drill Ai Suite For Oil & Gas",
+  "Engineering GPT Suite": "Engineering GPT AI Suite",
+  "Native American History Time Machine GPT": "Native American History Time Machine GPT - (Special Edition)",
+  "Snoop Image AI": "Snoop Image Ai - Experimental AI Image Generation Detector",
+  "Soul Scan GPT": "Soul Scan PERPLEXITY BOT",
+  "STAGEMASTER AI SUITE": "STAGEMASTER AI SUITE FOR THE Performing Arts",
+  "Plastoline GPT - Plastic to Fuel": "Plastoline GPT - Inspired by Julian Brown",
+  "Akhenaten GPT": "Akhenaten",
+  "CHIEF SEATTLE Free Thought GPT": "CHIEF SEATTLE (SEALTH) Free Thought GPT",
+  "ENTER THE MATRIX GPT": "ENTER THE MATRIX GPT (NEO👁️MATRIX GPT)",
+  "Luma Dream Machine Prompt Assistant": "Luma Dream Machine Prompt Assistant PERPLEXITY BOT",
+  "Legislation Writer & Compiler GPT": "Legislation Writer GPT",
+  "Mental Wellness GPT (CBT)": "Mental Wellness GPT",
+  "FIAT TO CRYPTO AI VALUE CALCULATOR": "FIAT TO CRYPTO AI VALUE CALCULATOR –For Businesses",
+  "Greek New Testament GPT": "Greek New Testament GPT (Original Version)",
+  "GameSaas GPT": "GameSaas GPT - Video Game Prompt Generator",
+  "MR. FIX IT GPT": "MR. FIX IT (FIX ANYTHING) GPT",
+  "Garden & Plant Doctor GPT": "Garden & Vision Analysis Plant Doctor GPT",
+  'VEO 3 PROMPT MOVIE SCENE MAKER "OPEN MIC" EDITION': 'VEO 3 PROMPT MOVIE SCENE MAKER "OPEN MIC" EDITION (Custom Gem)',
+  "OG TIME MACHINE HISTORY EDUCATION (GEM)": "OG TIME MACHINE HISTORY EDUCATION (GEM) GEMINI",
+  "Educator Pro GPT": "Educator Pro",
+  "Real Estate GPT Suite": "Real Estate GPT",
+};
+
 const SpecialServices = () => {
   const navigate = useNavigate();
   const containerRef = useRef<HTMLDivElement>(null);
@@ -4007,7 +4037,7 @@ const SpecialServices = () => {
   // Progressive rendering: mobile browsers freeze when 200+ heavy cards
   // (with iframes/hero images) mount at once. Render in batches instead.
   const INITIAL_VISIBLE = 12;
-  const BATCH_SIZE = 24;
+  const BATCH_SIZE = 100;
   const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE);
 
   // Reset the visible window whenever the underlying list changes
@@ -4067,9 +4097,13 @@ const SpecialServices = () => {
     createTimePortalEffect(directUrl, title);
   };
 
+  // Opens the tool's own page in a new tab so the visitor keeps their exact
+  // spot in this list.
   const handleCardClick = (title: string) => {
-    const slug = generateToolSlug(title);
-    navigate(`/${slug}`);
+    const pageTitle = FEATURED_PAGE_ALIASES[title] ?? title;
+    const slug = generateToolSlug(pageTitle);
+    const win = window.open(`/${slug}`, "_blank", "noopener");
+    if (!win) navigate(`/${slug}`);
   };
 
   const createToolObject = (gpt: typeof featuredGPTs[0]): Tool => ({
@@ -4205,7 +4239,7 @@ const SpecialServices = () => {
             const isHumanRightsCard = isHumanBillOfRightsCard(gpt.title);
             return (
             <Card 
-              key={`${gpt.title}-${index}`}
+              key={`${gpt.title}-${gpt.directUrl}`}
               className={`group relative overflow-hidden border-0 bg-gradient-to-br from-card/90 to-card/70 backdrop-blur-md hover:shadow-2xl hover:shadow-primary/20 transition-all duration-500 hover:-translate-y-1 cursor-pointer ${isHumanRightsCard ? "sm:col-span-2 lg:col-span-2 xl:col-span-2 min-h-[460px] shadow-2xl shadow-primary/25 ring-1 ring-primary/40" : ""}`}
               onClick={() => handleCardClick(gpt.title)}
             >

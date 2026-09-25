@@ -20,6 +20,19 @@ const WEB3_VIDEO_URL = "https://youtu.be/Aq5R2ZrOdco";
 export const web3DomainsTools: Tool[] = [
   {
     icon: Globe,
+    title: "Register Web3",
+    description: "🌐 Register Web3 is the AIWebTools.ai-owned marketplace for Web3 top-level domains (TLDs). Browse and buy our Web3 extensions, then own your name as an NFT in your own wallet — resell it, point it at your website, and send or receive crypto with a human-readable address. Another way to register and truly own a piece of the decentralized web.",
+    emoji: "🌐",
+    color: "from-emerald-500 to-cyan-600",
+    directUrl: "https://www.registerweb3.com/",
+    videoUrl: WEB3_VIDEO_URL,
+    tags: [...WEB3_COMMON_TAGS, "Register Web3", "registerweb3", "register web3", "registerweb3.com", "register web 3", "web3 registrar", "web3 tld", "web3 tlds", "tld", "top level domain", "top-level domain", "buy web3 domain", "own a tld", "web3 domain marketplace", "aiwebtools", "original"],
+    category: "WEB3 Domains",
+    rating: 5.0,
+    isFree: false
+  },
+  {
+    icon: Globe,
     title: ".ai-tools Domain",
     description: "🧠 Secure the premium .ai-tools domain and lead the AI revolution. Perfect for AI tool directories, platforms, and cutting-edge technology companies building the future.",
     emoji: "🧠",
