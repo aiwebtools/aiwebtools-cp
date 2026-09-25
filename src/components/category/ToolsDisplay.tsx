@@ -37,7 +37,7 @@ const ToolsDisplay = memo(forwardRef<HTMLDivElement, ToolsDisplayProps>(
     const toolsWithStableKeys = useMemo(() => {
       return toolsToDisplay.map((tool, index) => ({
         ...tool,
-        stableKey: `${tool.title}-${tool.category}-${index}`
+        stableKey: `${tool.title}-${tool.directUrl || tool.category}`
       }));
     }, [toolsToDisplay]);
 
