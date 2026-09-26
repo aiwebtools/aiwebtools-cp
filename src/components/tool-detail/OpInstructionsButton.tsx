@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Download, Loader2 } from "lucide-react";
 import { getOpInstructionDoc } from "@/data/opInstructionDocs";
+import { downloadAllOperationalInstructions } from "@/utils/downloads";
 
 interface OpInstructionsButtonProps {
   slug?: string | null;
@@ -53,6 +54,7 @@ const OpInstructionsButton = ({ slug, name, className = "", compact = false }: O
   };
 
   return (
+    <span className="inline-flex flex-wrap items-center gap-2">
     <a
       href={doc.href}
       download={doc.download}
@@ -68,6 +70,16 @@ const OpInstructionsButton = ({ slug, name, className = "", compact = false }: O
       )}
       {busy ? "Preparing download…" : label}
     </a>
+    <button
+      type="button"
+      onClick={() => downloadAllOperationalInstructions()}
+      className="op-gold-btn inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-bold uppercase tracking-wide"
+      title="Download all 1,900+ AIWebTools operational instructions (ZIP)"
+    >
+      <Download className="h-3.5 w-3.5" aria-hidden="true" />
+      {compact ? "All 1,900+ (ZIP)" : "Download All 1,900+ Operational Instructions (ZIP)"}
+    </button>
+    </span>
   );
 };
 
