@@ -48,3 +48,10 @@ export const triggerPublicDownload = (path: string, filename: string): void => {
   link.click();
   document.body.removeChild(link);
 };
+import opInstructionsAsset from "@/assets/operational-instructions.zip.asset.json";
+
+/** Master ZIP: original 150 GPT instructions + 1,835 additional operational instructions (2,100+ files). */
+export const OPERATIONAL_INSTRUCTIONS_ZIP_URL = opInstructionsAsset.url;
+export const OPERATIONAL_INSTRUCTIONS_ZIP_NAME = "AIWebTools-1900-Operational-Instructions.zip";
+export const downloadAllOperationalInstructions = (): void =>
+  triggerPublicDownload(OPERATIONAL_INSTRUCTIONS_ZIP_URL, OPERATIONAL_INSTRUCTIONS_ZIP_NAME);

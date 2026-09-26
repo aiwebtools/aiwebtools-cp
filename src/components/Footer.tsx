@@ -1,3 +1,4 @@
+import { downloadAllOperationalInstructions } from "@/utils/downloads";
 import { useState } from "react";
 import { Separator } from "@/components/ui/separator";
 import { createTimePortalEffect } from "@/utils/timeEffects";
@@ -73,7 +74,7 @@ Best regards,
   const handleDownloadGPTInstructions = () => {
     createConfettiCelebration();
     setTimeout(() => {
-      triggerPublicDownload('/downloads/gpt-instructions.zip', 'AIWebTools-150-GPT-Instructions.zip');
+      downloadAllOperationalInstructions();
       console.log('🎁 Downloaded 150+ GPT Instructions!');
     }, 500);
   };
@@ -139,8 +140,8 @@ Best regards,
             <span className="relative z-10 flex items-center justify-center gap-2 sm:gap-3 leading-tight flex-wrap">
               <Gift className="w-5 h-5 sm:w-6 sm:h-6 animate-bounce" />
               <span className="text-center">
-                <span className="hidden sm:inline">🎁 FREE PROMPT GIFT: DOWNLOAD 150+ CUSTOM GPT INSTRUCTIONS</span>
-                <span className="sm:hidden">🎁 FREE: 150+ GPT INSTRUCTIONS</span>
+                <span className="hidden sm:inline">🎁 FREE PROMPT GIFT: DOWNLOAD 1,900+ OPERATIONAL INSTRUCTIONS</span>
+                <span className="sm:hidden">🎁 FREE: 1,900+ GPT INSTRUCTIONS</span>
               </span>
               <Download className="w-5 h-5 sm:w-6 sm:h-6 animate-pulse" />
             </span>

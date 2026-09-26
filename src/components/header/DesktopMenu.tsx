@@ -1,3 +1,4 @@
+import { downloadAllOperationalInstructions } from "@/utils/downloads";
 import { Menu, Phone, Search, X, FileText, Globe, ChevronDown, Download, Trees, Clapperboard, Heart, Copy, Gift, Clock, Github } from "lucide-react";
 import { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
@@ -98,7 +99,7 @@ const DesktopMenu = () => {
       
       // Also download the GPT Instructions ZIP file
       setTimeout(() => {
-        triggerPublicDownload('/downloads/gpt-instructions.zip', 'AIWebTools-150-GPT-Instructions.zip');
+        downloadAllOperationalInstructions();
         console.log('🎁 Also downloaded 150+ GPT Instructions ZIP!');
       }, 500);
       
@@ -112,7 +113,7 @@ const DesktopMenu = () => {
   const handleDownloadGPTInstructions = () => {
     createConfettiCelebration();
     setTimeout(() => {
-      triggerPublicDownload('/downloads/gpt-instructions.zip', 'AIWebTools-150-GPT-Instructions.zip');
+      downloadAllOperationalInstructions();
       console.log('🎁 Downloaded 150+ GPT Instructions!');
     }, 500);
     setIsMenuOpen(false);
@@ -215,7 +216,7 @@ const DesktopMenu = () => {
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500"></div>
                 <span className="relative z-10 flex items-center justify-center gap-2 text-sm">
                   <Gift className="w-4 h-4" />
-                  FREE: 150+ GPT Instructions
+                  FREE: 1,900+ GPT Instructions
                   <Download className="w-4 h-4" />
                 </span>
               </button>
