@@ -905,6 +905,7 @@
   <url><loc>https://aiwebtools.app/blue-prism</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/origin-pilot-os</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/seele-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://aiwebtools.app/register-web3</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/ai-tools-domain</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/aiwebtools-domain</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/aimainframe-domain</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -1999,5 +2000,4 @@
   <url><loc>https://aiwebtools.app/sindarin</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/solver-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aiwebtools.app/bolt-diy</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://aiwebtools.app/devstral</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
 </urlset>
