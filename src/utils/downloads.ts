@@ -48,10 +48,22 @@ export const triggerPublicDownload = (path: string, filename: string): void => {
   link.click();
   document.body.removeChild(link);
 };
-import opInstructionsAsset from "@/assets/operational-instructions.zip.asset.json";
+/**
+ * Master collection: original 150 GPT instructions + 1,835 additional
+ * operational instructions (2,100+ files), split into 4 parts so every file
+ * is served directly from the site's own code.
+ */
+export const OPERATIONAL_INSTRUCTIONS_PARTS: ReadonlyArray<{ path: string; name: string }> = [
+  { path: "/downloads/AIWebTools-Operational-Instructions-Part-1.zip", name: "AIWebTools-Operational-Instructions-Part-1.zip" },
+  { path: "/downloads/AIWebTools-Operational-Instructions-Part-2.zip", name: "AIWebTools-Operational-Instructions-Part-2.zip" },
+  { path: "/downloads/AIWebTools-Operational-Instructions-Part-3.zip", name: "AIWebTools-Operational-Instructions-Part-3.zip" },
+  { path: "/downloads/AIWebTools-Operational-Instructions-Part-4.zip", name: "AIWebTools-Operational-Instructions-Part-4.zip" },
+];
 
-/** Master ZIP: original 150 GPT instructions + 1,835 additional operational instructions (2,100+ files). */
-export const OPERATIONAL_INSTRUCTIONS_ZIP_URL = opInstructionsAsset.url;
-export const OPERATIONAL_INSTRUCTIONS_ZIP_NAME = "AIWebTools-1900-Operational-Instructions.zip";
-export const downloadAllOperationalInstructions = (): void =>
-  triggerPublicDownload(OPERATIONAL_INSTRUCTIONS_ZIP_URL, OPERATIONAL_INSTRUCTIONS_ZIP_NAME);
+/** Downloads all 4 parts of the full operational-instructions collection. */
+export const downloadAllOperationalInstructions = (): void => {
+  OPERATIONAL_INSTRUCTIONS_PARTS.forEach((part, index) => {
+    // Stagger slightly so browsers don't suppress the follow-up downloads.
+    window.setTimeout(() => triggerPublicDownload(part.path, part.name), index * 400);
+  });
+};
