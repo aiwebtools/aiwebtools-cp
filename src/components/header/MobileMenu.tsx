@@ -1,3 +1,4 @@
+import { downloadAllOperationalInstructions } from "@/utils/downloads";
 import { Menu, Phone, X, Globe, ChevronDown, Download, Trees, Clapperboard, Heart, Copy, Clock, Github } from "lucide-react";
 import mtvAiWebToolsLogo from "@/assets/mtv-aiwebtools-logo.png";
 import { useState, useRef, useCallback, useEffect, startTransition } from "react";
@@ -157,7 +158,7 @@ const MobileMenu = () => {
       
       // Also download the GPT Instructions ZIP file
       setTimeout(() => {
-        triggerPublicDownload('/downloads/gpt-instructions.zip', 'AIWebTools-150-GPT-Instructions.zip');
+        downloadAllOperationalInstructions();
         console.log('🎁 Also downloaded 150+ GPT Instructions ZIP!');
       }, 500);
       

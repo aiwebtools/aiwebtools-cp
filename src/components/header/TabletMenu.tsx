@@ -1,3 +1,4 @@
+import { downloadAllOperationalInstructions } from "@/utils/downloads";
 
 import { Menu, Phone, Globe, ChevronDown, Download, Copy, Gift, Clock } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -107,7 +108,7 @@ const TabletMenu = () => {
       
       // Also download the GPT Instructions ZIP file
       setTimeout(() => {
-        triggerPublicDownload('/downloads/gpt-instructions.zip', 'AIWebTools-150-GPT-Instructions.zip');
+        downloadAllOperationalInstructions();
         console.log('🎁 Also downloaded 150+ GPT Instructions ZIP!');
       }, 500);
     } catch (err) {

@@ -1,3 +1,4 @@
+import { downloadAllOperationalInstructions } from "@/utils/downloads";
 
 import { Phone, Trees, Clapperboard, Heart, Download } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -82,7 +83,7 @@ const Navigation = () => {
       
       // Also download the GPT Instructions ZIP file after a short delay
       setTimeout(() => {
-        triggerPublicDownload('/downloads/gpt-instructions.zip', 'AIWebTools-150-GPT-Instructions.zip');
+        downloadAllOperationalInstructions();
         console.log('🎁 Also downloaded 150+ GPT Instructions ZIP!');
       }, 500);
       

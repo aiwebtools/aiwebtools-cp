@@ -1,3 +1,4 @@
+import { downloadAllOperationalInstructions } from "@/utils/downloads";
 import { Menu, Phone, Search, X, FileText, Globe, ChevronDown, Download, Trees, Clapperboard, Heart, Copy, Gift, Clock, Github } from "lucide-react";
 import { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
@@ -98,7 +99,7 @@ const DesktopMenu = () => {
       
       // Also download the GPT Instructions ZIP file
       setTimeout(() => {
-        triggerPublicDownload('/downloads/gpt-instructions.zip', 'AIWebTools-150-GPT-Instructions.zip');
+        downloadAllOperationalInstructions();
         console.log('🎁 Also downloaded 150+ GPT Instructions ZIP!');
       }, 500);
       
@@ -112,7 +113,7 @@ const DesktopMenu = () => {
   const handleDownloadGPTInstructions = () => {
     createConfettiCelebration();
     setTimeout(() => {
-      triggerPublicDownload('/downloads/gpt-instructions.zip', 'AIWebTools-150-GPT-Instructions.zip');
+      downloadAllOperationalInstructions();
       console.log('🎁 Downloaded 150+ GPT Instructions!');
     }, 500);
     setIsMenuOpen(false);
